@@ -21,8 +21,9 @@ function haveFuckedAnno():Boolean
 
 function steeleTechTarkusShopAvailable():Boolean
 {
-	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
+	if (player.hasStatusEffect("ST Tarkus Closed")) return false;
 	if (flags["ANNO_CREWMEMBER"] == 1) return false;
+	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
 	return false;
 }
 
@@ -43,6 +44,17 @@ function steeleTechTarkusOutsideFunction():Boolean
 
 function steeleTechTarkusEntry():Boolean
 {
+	// Setup the potential event flag for this shit
+	if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days - 8;
+
+	if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
+	{
+		if (rand(3) == 0)
+		{
+			annoxKaedeNotRecruitedMeeting();
+			return true;
+		}
+	}
 	if (steeleTechTarkusShopAvailable())
 	{
 		return steeleTechBonusFunction();
@@ -3507,4 +3519,322 @@ function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 	processTime(30+rand(5));
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+function annoxKaedeNotRecruitedMeeting():void
+{
+	clearOutput();
+	author("Savin");
+	showName("ANNO &\nKAEDE");
+	showBust("ANNO", "KAEDE");
+
+	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
+	{
+		flags["ANNOxKAEDE_INTRODUCED"] = 1;
+
+		output("When you step into the shop, you notice that for once, there’s actually someone in the Steele Tech outpost other than you and the playful ausar who runs the place. A red-haired girl with perky wolf-ears is leaning over the counter, a fluffy red tail swishing just under her black leather jacket. Anno’s sitting up beside the register, legs crossed and one hand running through the thick mane of her snowy hair as she laughs gaily. The redhead smirks, clearly pleased. Both sets of perky ausar ears twitch as you step into the shop, though, and the pair turn towards you. ");
+		
+		output("\n\n“<i>Oh, hey Boss!</i>” Anno beams, hopping back behind the counter. “<i>You haven’t met Kaede here, have you?</i>” ");
+		
+		output("\n\nThe red-headed girl turns smiles shyly at you, giving a little wave. You note that her hands lack the familiar fur-coating of a full-blooded ausar -- a halfbreed, maybe? ");
+		
+		output("\n\nYou say that you haven’t, and introduce yourself. ");
+		
+		output("\n\n“<i>Kaede Entara,</i>” the half-ausar says, extending a hand. “<i>I’m Anno’s-</i>”");
+		
+		output("\n\n“<i>Girlfriend,</i>” Anno finishes, reaching over the counter to wrap her arms around Kaede’s shoulders. “<i>Her ship, </i>Talon Rogue<i> just stopped in on Tarkus for a big cargo run. But between you and me, I think she missed me.</i>”");
+		
+		output("\n\n“<i>Always,</i>” Kaede says with a little smile, leaning back to plant a kiss on Anno’s cheek. ");
+		
+		output("\n\nBefore you can get jealous, Anno flashes you a toothy grin. “<i>Don’t worry, boss, Kaede and I are pretty... open... about other people. Sometimes </i>with<i> other people.</i>”");
+		
+		output("\n\n“<i>Anno!</i>” the redhead says, suddenly blushing. ");
+		
+		output("\n\nShe grins. “<i>C’mon, Red, don’t you remember how we first-</i>” ");
+		
+		output("\n\nKaede squirms in Anno’s grasp as the taller, full-blooded ausar teases her. Anno ruffles her lover’s hair and adds, “<i>Don’t mind her, she’s just bashful. Anyway, boss, I’m gonna keep the shop closed down for a little bit. I’ve got a... break... to take. Unless you want to join us...?</i>”");
+		
+		output("\n\nKaede’s eyes go wide at the forward invitation, but then again, she doesn’t protest...");
+	}
+	else
+	{
+		flags["ANNOxKAEDE_INTRODUCED"]++;
+		output("When you step into the shop, you quickly notice that Kaede’s back, languidly resting against the counter chatting quietly with her lover. The two ausars look up, ears twitching, as you step into the company outpost{if fucked: “<i>; Kaede’s tail visibly wags as she recognizes you.}");
+		
+		output("\n\n“<i>Hey, boss!</i>” Anno says from behind the counter. “<i>Look who showed up!</i>”");
+		
+		output("\n\n“<i>Hey there, {pc.mr.} Steele,</i>” Kaede says, giving you a friendly smile. ");
+		
+		output("\n\n“<i>Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.</i>” Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. “<i>Especially if you’d like to join us, [pc.name].</i>”");
+	}
+
+	player.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
+	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
+	clearMenu();
+	if (player.hasCock()) addButton(0, "Fuck Them", annoxKaedeFuckThem);
+	addButton(1, "Service Kaede", annoxKaedeService);
+	addButton(2, "Watch", annoxKaedeWatch);
+	addButton(14, "Leave", annoxKaedeLeave);
+}
+
+function annoxKaedeFuckThem():void
+{
+	clearOutput();
+	author("Savin");
+	showName("ANNO &\nKAEDE");
+	showBust("ANNO", "KAEDE");
+
+	output("“<i>What do you say, girls?</i>” you say, indicating the rapidly-growing {bulge in your [pc.armor] // erection hanging in the breeze between your [pc.legs]}. Kaede blushes furiously when her eyes finally meet your mounting package, but Anno’s quick to adopt a lascivious grin. She leans over the {counter/table}, cupping her lover’s chin to pull her attention away from you and onto her.");
+	
+	output("\n\n“<i>C’mon, Red, you know you want a piece of that,</i>” Anno teases, nibbling on the edge of her girlfriend’s ear. ");
+	
+	output("\n\nThe halfbreed only blushes hotter, but manages to stammer out, “<i>I... well, maybe...</i>”");
+	
+	output("\n\n“<i>That’s what I like to hear,</i>” Anno grins, kissing her. Kaede gulps as Anno pulls her in for the kiss, a hand wandering down to cup one of the half-breed’s perky breasts. Both their tails rise up as they kiss, and Kaede’s soon blushing a bright crimson. You can’t help but notice that her pants are bulging hard. “<i>Alright, alright,</i>” she finally moans, breaking the kiss and brushing Anno’s hand off. “<i>Let’s just get out of here, okay?</i>”");
+	
+	output("\n\n“<i>I know just the place,</i>” Anno grins, taking her lover by the hand and leading her around the counter. “<i>Coming, boss?</i>”");
+	
+	output("\n\nYou’re quick to follow the canid girls out of the {shop/bar} and down a few decks to Anno’s place in the heart of the ship. You can’t help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way. Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim “<i>to something sexy.</i>” Her V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her back into another kiss. This time it’s more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
+	
+	output("\n\nAfter a few moments, though, the two ausars turn their attentions to you: hand in hand, they slink over to you with big, lusty smiles, eyes entirely focused on your [pc.cock]. You quickly toss your [pc.gear] aside and sit back on the edge of the bed, leaving yourself bare to the randy girls’ ministrations. Kaede’s prior nervousness is nowhere to be seen now: she even licks her lips at the sight of your manhood, and is the first of the pair of drop to her knees in front of you. Anno stands behind her for a moment, giving you a proud wink as her girlfriend wraps her fingers around your [pc.cock], giving it a tentative stroke. ");
+	
+	output("\n\n“<i>Red here’d never admit it,</i>” Anno says over her lover’s head, leaning in conspiratorially, “<i>but she was a the best little cocksucker back in college. You should see her handle three dicks at-</i>”");
+	
+	output("\n\nKaede goes beet red. “<i>Hey! Shut up and get down here, slut.</i>” ");
+	
+	output("\n\n“<i>Yes, ma’am,</i>” Anno giggles, {pulling down her zipper / pulling off her shirt} and slipping down to her knees beside Kaede. With both ausars in position, there’s a moment of squabbling for position before Kaede finally lunges forward and wraps her lips around your prick. Your breath catches as the eager halfbreed’s lips and tongue caress your [pc.cockHead], bathing the first inches of your [pc.cock] in pleasure. ");
+	
+	output("\n\n“<i>Good girl,</i>” Anno coos, stroking Kaede’s hair as the redhaired halfbreed goes down on your rod. For her part, Anno slips around beside you, putting her nose right up to your dick and taking in a long, full-chested whiff. ");
+	
+	output("\n\n“<i>Mmmm. Oh, that’s what I live for,</i>” Anno moans as she revels in your masculine musk. Her tongue lolls out on instinct, wrapping around your shaft just ahead of Kaede’s plunging lips, wetting the path for her cockhungry lover. You rest your hands between two pairs of perky wolf-ears, guiding your lovers onward towards your base, watching Kaede’s throat bulge as she {deepthroats your cock // struggles to take every inch of your hefty member // takes as much of your ogre-cock as she possibly can, leaving the rest up the Anno}. Her snowy-haired partner lavishes every inch of cock not buried in her mouth{if PC has balls: “<i> before working her way down, fingers tracing up your thigh and towards your heavy sack. You shudder as Anno’s fingers and lips meet there, her long tongue slurping along your tender flesh as she cups and squeezes your nads. ");
+	
+	output("\n\nThis treatment carries on for a few blissful minutes, Anno {suckling on your [pc.balls] // spit-shining your shaft} and Kaede swallowing the turgid length of your shaft. Finally, with a wet <i>pop</i>ping sound, Kaede pulls herself off your cock. Still connected to your crown by glistening bridges of saliva and with her cheeks flushed a dark, lustrous red, she asks, “<i>Is... is it good, [pc.name]?</i>”");
+	
+	output("\n\n“<i>Amazing,</i>” you answer, scratching the halfbreed between the ears. She answers with a big, goofy grin and sidles up to you, letting the heft of your cock fall into her cleavage. What Kaede lacks in cup size, she quickly makes up for in eagerness, humping her whole body up along the length of your [pc.cock] and using her hands to squeeze her C-cups around {your shaft / as much of your shaft as her handful of tits can cover}. ");
+	
+	output("\n\n“<i>Scoot over, babe,</i>” Anno says, giving her lover a little push as she shimmies out of her clothes -- and yanks down Kaede’s jeans, letting the half-ausar’s all-dog cock flop free. Kaede giggles and moves over to one side of your [pc.cock], letting Anno press her tits against her own, trapping your cock in a soft, hot vice of boobflesh. Anno leans in to kiss the crown, her tongue playing across your cumslit until your body instinctively reacts, depositing a thick dollop of pre onto the tip of her probing tongue. She shivers with delight before reaching across and pressing her lips to Kaede, introducing her lover to your taste. ");
+	
+	output("\n\nKaede takes it in eagerly, a hand running through Anno’s snowy hair and pulling her in tight. You can see their mouths opening, tongues intertwining as their bodies begin to move in near-unison, slowly ascending along the length of your [pc.cock], dragging you through the grip of their racks. They settle into a steady rhythm over you, bodies moving slow and steady as they kiss and grope over you, treating you to a front-row show of their passion. Underneath your spit-slick dick, you can see Anno’s hand moving to Kaede’s crimson doggycock, furred fingertips brushing along the swell of her lover’s knot. ");
+	
+	output("\n\nBefore you can feel too left out, though, their kiss ends and their attention returns to you. Anno looks between you, Kaede, and back to you... and then stands, stepping out of her discarded clothes and crawling over you, pushing you down onto the bed. You let the horny slut do it, reaching up to cup her breasts and squeeze her ass. She pauses to plant a kiss on your lips, giving you a little wink before moving forward over you, letting her breasts play across your face. She settles in just over you, her knees planted over your shoulders, tail swishing across your [pc.chest]. It’s just a little crane of your neck to put yourself within easy reach of Anno’s spread pussylips. She coos and gasps as your tongue slithers out to caress her glistening lower lips, squeezing her own rack to eke out a little more pleasure as your [pc.tongue] laps across the gash of her sex, probing in between the lips to taste the sweet juices inside. ");
+	
+	output("\n\nYou barely notice Kaede standing, slipping out of what clothes she’s still wearing as she crawls into the bed. You start to look up, but instantly find your head trapped between Anno’s thighs, pinning you with your tongue still firmly lodged inside her. “<i>Not yet,</i>” she purrs, stroking your [pc.hair]. “<i>Gotta get me ready first...</i>” ");
+	
+	output("\n\nNow that’s something you can get behind... not that you needed much motivation to keep licking up that sweet nectar from your lover’s netherlips. She shudders and groans as you get back to work, working your [pc.tongue] as deep into her [anno.cunt] as you can. The deeper you go, the more vigorously you eat her out, the wetter she gets. Her body rewards your every lick and kiss with more of her sexual excitement, drooling down onto your face until you’re plastered with excess femlube. ");
+	
+	output("\n\nOn the other end of the bed, Kaede rests on her knees, stroking her knotty cock in anticipation, eagerly eyeing her lover as she rides your [pc.face]. “<i>Don’t worry, Red... I haven’t forgotten about you,</i>” Anno coos, lowering herself onto all fours and reaching her tongue out to caress the veiny red tip of her lover’s pointed puppy pecker. Her thighs’ deathgrip on your head finally relaxes, allowing you to slip out from under the wet-and-ready ausar and roll onto your [pc.knees] behind her. ");
+	
+	output("\n\nAnno’s tail lifts invitingly as you situate yourself behind her, both the white fluff of tail and her flared hips wiggling in excitement. Your fingers sink into her plush ass, squeezing her cheeks until she gives a gasp of pleasure, sucking in breath when she ought to be sucking cock. She casts a glance over her shoulder at you, saying, “<i>Come on... I’m ready for you, boss. Give it to me!</i>”");
+	
+	output("\n\nYou align your [pc.cock], still glistening with Kaede’s orally-applied lubricant, with Anno’s sodden box and thrust in. Anno gives a little cry of pleasure as she’s spread wide on your dick, though she’s almost instantly silenced as Kaede thrusts her own hips forward, driving her thick red cock into Anno’s open mouth. You move slowly at first, enjoying the slick, hot tightness of your lover’s cunt. Anno clenches hard around you as you slide into her, making sure that it’s slow going at first. That’s fine, you’re happy to give her a few moments to adjust to you -- and to just enjoy the feeling of her around you. ");
+	
+	output("\n\nWhile you’re slowly plunging into Anno’s depths, you momentarily turn your attention to her girlfriend. You reach over Anno’s back, cupping Kaede’s cheek and drawing her in for a kiss. The red-haired halfbreed resists for a moment, unsure... until a particularly throaty motion on Anno’s part makes her melt in your grasp. Her lips are slender, smooth, drawing you in as you kiss her. Kaede moans lightly in your mouth, eyes fluttering closed in surrender. A moment later, your hand wanders down from her freckled cheek to cup one of her perky tits, rolling the pert tip of her teat between two fingers until she’s gasping for more. You’re more than happy to give the lusty halfbreed what she wants, groping at her tits with one hand as the other reaches around her thrusting hips to caress the tight cheeks of her ass. Seeing Kaede groaning and moving faster in response to your touch, it’s hard to resist the urge to see just what you can make her do. A finger deviates from the rest, tracing down the curves of Kaede’s ass and into the tight little crack between her cheeks. ");
+	
+	output("\n\nShe goes completely rigid when she feels your digit pressing against her backdoor, but gives her wordless assent by way of kissing you harder. Her arms lock around your neck, lips suckling on yours with greater fervor. Slowly, she relaxes enough to allow your lone digit to push into her: your finger wiggles through her clenched hole, gently easing into the hot, oh-so-tight passage of the halfbreed’s asshole. It takes a moment for you to work your way deep enough to find her little rectal pleasure-bud, but when you do, the effect is almost instantaneous. Kaede’s pleasure-gasps turn into high, girlish moans; her knot visibly expands, swelling to bitch-breaking proportions. Anno eagerly gets a mouthful of it, leaning in to wrap her lips around her lover’s tie. ");
+	
+	output("\n\nSpeaking of Anno, she’s finally relaxed enough for you to start really moving. Your [pc.hips] rock back and forth at a steady pace to get her started, easing the both of you into the throes of carnal pleasure one languid thrust at a time. As you dig your fingers into Kaede, though, you start to move faster on both ends, massaging the redhead’s prostate and stirring up the ausar’s pussy with increasing vigor. Before long, you’re pounding Anno’s box, hips slamming into her wet hole hard enough to to make some of her free-flowing lube splatter back against your thighs. ");
+	
+	output("\n\nSeeing that, Kaede grins. “<i>Juicy, isn’t she? Perfect for taking a big, thick knot {like mine / like yours}...</i>” ");
+	
+	output("\n\nAnno giggles, popping her mouth off of Kaede’s dick. “<i>Don’t get any big ideas, Red... I’ve got something else in mind for you.</i>”");
+	
+	output("\n\n“<i>Wha-</i>” Kaede starts to say, before Anno grabs her legs and pulls! ");
+	
+	output("\n\nIn the blink of an eye, Kaede goes from face-fucking her girlfriend to on her back in front of you, her slick red cock bobbing between her spread legs. Anno, now straddling her, gives Kaede a kiss full on the lips, channeling her moans of pleasure into her lover’s mouth as you continue to fuck her pussy. One of Anno’s white-furred hands travels down as the kiss endures, wrapping around Kaede’s throbbing doggydick and guiding it upwards to her own sodden quim. Your breath catches as you feel a sudden surge of heat in your ausar lover’s loins, her wetness seeming to redouble as Kaede’s cock is guided toward the spread lips of Anno’s sex. ");
+	
+	output("\n\nYou pause in your thrusting as the tip of Kaede’s pointed prick pushes in beside your own [pc.cock], stretching Anno’s cunt to the limit as the snowy ausar struggles to take you both at once. Both your lovers cry out in pleasure as they’re subjected to their own excruciating pleasures; you, too, can’t help but groan when the passage of Anno’s sex becomes almost unbearably tight, desperately trying to accommodate both cocks at once. ");
+	
+	output("\n\nAll three of you are still for a long moment, trying to adjust to the new position. Finally, looking to both you and Kaede with a lusty grin, Anno starts to move: slowly, almost unbearably so, the ausar rocks her hips forward, easing the both of you out of her until {whichever’s shorter: “<i>your/Kaede’s} cock is barely in her before sliding back down your twin poles again, taking {you / Kaede} nearly to the hilt again. And again, and again. Your hands lock around Anno’s hips in an attempt to guide her pace; theyre quickly joined by Kaede’s own hands. The redheaded shemale grins up at you, locking her fingers with yours over Anno’s flared, wiggling hips and both of you work to move the randy slut faster. The tightness is just too much to bear... you need to cum! ");
+	
+	output("\n\nAnno accedes to your need at first, humping back against your cocks with fervor. You meet her every movement, hammering into her hole as best you can, wringing every bit of pleasure from the ausar’s quim to bring yourself to orgasm. You’re so close you can taste it, your [pc.balls] lurching with rising need. So close...");
+	
+	output("\n\nSuddenly, one of Anno’s rising motions brings her completely off your cocks. You and Kaede both cry out in shock and surprise as your warm, wet cock-sheath is removed, leaving you with an ungodly coldness surrounding your suddenly stimulation-less member. Before you can put your protestations to words, however, Anno turns and grabs Kaede’s legs, spreading them out around your [pc.knees]. Kaede’s cock, glistening with Anno’s juices, flops haplessly onto its owner’s belly. From this angle, your eyes are instantly drawn to the tight little hole of Kaede’s ass, so recently occupied by your probing digit.");
+	
+	output("\n\n“<i>How about you shoot your load in here, boss?</i>” Anno coos, spreading her girlfriend wide open for you. If Kaede wanted to protest, she’s quickly muffled by a faceful of Anno’s cooch as the ausar rubs her sex across Kaede’s nose, the downy fuzz around it tickling her until she giggles. Well, one hole’s as good as another, right? Anno lowers herself onto all fours, resting her chin just beside Kaede’s trap-pouch of a sack, tongue reaching out to lick across the taut skin as she watches your cock’s approach. Your [pc.hips] guide you in, pressing the lube-slicked crown of your [pc.cock] to the dark ring of Kaede’s asshole. She gasps and clenches, squirming underneath Anno until a quick tail-swat to the top of the head gets her in line. ");
+	
+	output("\n\n“<i>Go ahead. Give it to her, [pc.name],</i>” Anno cheers, licking up the length of your shaft as you make the final plunge. Your cock is met by a moment’s resistance, but your [pc.hips] and the ample cunt-lube still clinging to your shaft makes short work of her, and you’re soon plunging into the unbearably hot tightness of the half-ausar’s ass. Kaede moans, back arching into it as you slowly thrust forward; her cock throbs powerfully, standing straight up against Anno’s cheek. The ausar makes a point of ignoring the hot shaft pressing into her face, instead busying herself on you, making sure every inch that slides into her lover is nice and coated with saliva to ease your entry.");
+	
+	output("\n\n You {bottom out inside Kaede’s tight backdoor // push as much of your cock into Kaede’s tight backdoor as you can}. She groans, legs and tail twitching as she adjusts to your girth inside her, stretching her out nice and wide. “<i>Good girl,</i>” Anno coos, planting a proud little kiss on the swell of Kaede’s balls, stifling a moan of her own as her lover’s attention returns to her oral pleasures. You grin as you see Anno’s tail instinctively rise, making way for Kaede’s probing tongue to dig deep into her. ");
+	
+	output("\n\nFor your part, you let yourself rest inside the halfbreed for a long moment, trying to catch your breath before you slowly start to withdraw. You give her a few tentative thrusts after that, nice and slow... but you can’t settle for that much longer. Anno gives you an approving nod as your pace increases, steadily gaining speed and power with every {balls-deep // hilting // gut-straining} buck of your [pc.hips]. Kaede whines and cries out, but you’re sure that muffled yell barely ringing out from between Anno’s legs is a desperate “<i>Yes! Yes! Fuck me!</i>” Or something close enough. You grab her hips and give her what she wants, pounding into her tight hole with gusto. ");
+	
+	output("\n\nHer cock spasms a moment later, jumping straight up and discharging a thick, white load across Anno’s cheek. The snowy ausar gives a shrill cry and a laugh as her lover cums hands-free, your hammering cock putting so much pressure on her poor hole that she can’t hold back anymore. A creamy white geyser shoots into the air, raining back onto Anno’s back and hair, and across Kaede’s belly, smearing into a little lake on her taut stomach. ");
+	
+	output("\n\n“<i>That’s right, boss! Give it to her hard!</i>” Anno cheers, licking a little spooge off her cheek, merely watching as Kaede cums and cums. ");
+	
+	output("\n\n“<i>Fuuuuuuck,</i>” Kaede groans, surfacing from Anno’s pussy to give voice to her pleasure, her single curse trailing into lewd moans and wordless cries as you relentlessly fuck her. Her ass squeezes tight around you, muscles going wild around your thrusting prick, both trying to force you out and milk you at once. You’re not far behind her now: you can feel the urgent need rising again, surging through your [pc.balls] and into your throbbing manhood. With Kaede’s ass and Anno’s face in easy reach, you have a split second to decide who to grace with your seed:");
+	
+	output("\n\n[Anno Facial] [Kaede Creampie]");
+	
+	output("\n\nAnno Facial");
+	output("\n\nA few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. At that last, crucial second, you pull out of her and level your [pc.cock] at Anno’s face, just inches above her lover’s now-agape hole. Anno goes wide-eyed as she realizes what’s about to happen, but doesn’t have time to do much else before your shoot your first wad of [pc.cumNoun] across her face. She recoils and gasps as a hot, sticky load splatters over her cheeks and lips, followed by more and more as you jack yourself off onto her. ");
+	
+	output("\n\n“<i>You {bitch/bastard}!</i>” Anno shrieks as you finish yourself off on her face, leaving the ausar looking like someone’s basted her with a hose of [pc.cumColor] jelly. Slowly, her tongue darts out to slurp up the mess around her mouth, and she slowly opens her eyes to regard you. Rather than chewing you out, though, she grins and leans in to plant a little kiss on the crown of your [pc.cock], lapping up the last few drops drooling from your cockhead. ");
+	
+	output("\n\nKaede Creampie");
+	output("\n\nA few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. You let it come on eagerly, working the surging load out through fervent strokes into Kaede’s spasming, orgasmically-writhing ass. With a final roar of pleasure, you slam yourself as deep into the halfbreed’s hole as you can go and let loose, pumping your first shot deep into her quivering hole. She cries out as she feels the first thick ropes of hot [pc.cumNoun] blasting into her, her voice joining with yours as you slowly withdraw your cock, still cumming all the while. You fill her utterly, pumping shot after shot of orgasmic juice into her bowels.");
+	
+	output("\n\nYour moment of pleasure subsides, leaving you shivering with the aftershocks. Your cock slowly finds its way out of Kaede’s well-fucked ass, popping out of her with a wet squelch; cum drools out after you like from a bottle uncorked, pooling onto the bedsheets between Kaede’s up-raised asscheeks. “<i>Now that’s what I like to see,</i>” Anno purrs, her tongue tracing down to sample the excess leaking from her lover, slurping up a few drops of your potent seed. ");
+	
+	output("\n\nCombine");
+	output("\n\nWith both your lovers covered with cum, you all but collapse atop them, panting hard in your orgasmic afterglow. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
+}
+
+function annoxKaedeService():void
+{
+"What do you say, boss?" Anno grins, leaning in behind Kaede and wrapping her arms around her lover's shoulders. "Want a taste of this big girl's thick, knotted puppy-cock?"
+
+Kaede blushes furiously at that, but Anno's quick to reassure her. She leans over the {counter / table}, cupping her lover's chin to pull her attention away from you and onto her.
+
+"C'mon, Red, you know you want {a piece of that ass // to fuck [pc.him] into the ground}," Anno teases, nibbling on the edge of her girlfriend's ear. "I can see it in your eyes."
+
+The halfbreed only blushes hotter, but manages to stammer out, "I... well, maybe..."
+
+"That's what I like to hear," Anno grins, kissing her. Kaede gulps as Anno pulls her in for the kiss, a hand wandering down to cup one of the half-breed's perky breasts. Both their tails rise up as they kiss, and Kaede's soon blushing a bright crimson. You can't help but notice that her pants are bulging hard. "Alright, alright," she finally moans, breaking the kiss and brushing Anno's hand off. "Let's just get out of here, okay?"
+
+"I know just the place," Anno grins, taking her lover by the hand and leading her around the {counter / table}. "Coming, boss?"
+
+You're quick to follow the canid girls out of the shop and down a few decks to Anno's place in the heart of the ship. You can't help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way. Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim "to something sexy." Her V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede's hair and tail as Anno slips her arms around her girlfriend's waist, pulling her back into another kiss. This time it's more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others' mouths.
+
+You take the opportunity to slip off your [pc.gear], tossing your equipment aside. While you do, Anno busies herself on her lover, letting Kaede take the initiative on disrobing her while Anno kisses and caresses the halfbreed. It takes a while for Anno to be fully bared to you, but the show they put on in the meantime is well worth the wait, and you're already {rock hard /and/ dripping wet // flushed with arousal} by the time the last of Anno's outfit hits the floor. With a wiggle of her tail, Anno beckons you over and together you slink down to the deck, putting you both on-level with the mounting bulge of doggycock straining against Kaede's jeans. 
+
+Anno leans in and, grinning from ear to ear, takes the tab of Kaede's zipper in between her teeth. Gingerly, she pulls it down around her lover's cock, letting the eight-inch red dogshaft spill free right onto her nose. Before the snowy ausar can, you gobble that slab of red cockmeat up, wrapping your [pc.lips] around Kaede's cock. The halfbreed gives a high, girlish moan as you suck all eight inches down; you gag a bit on it as the pointed crown batters against the back of your throat, refusing to bend down into the waiting channel of your throat. It's a struggle to tame the rock-hard rod, but your attempts have a visible effect on its owner anyway: she shivers and gasps as your mouth works her cock. One of Kaede's hands strokes your [pc.hair], gently pushing you down on her shaft, trying to cram more and more of her prick into you. 
+
+"Ease up there, you two," Anno teases, nuzzling in beside you. "I might get jealous..." 
+
+Rather than acting on her "jealousy" though, Anno takes the high road of leaning down and lapping her tongue along the base of her girlfriend's shaft, drawing herself down to the tight sack of ballsflesh beneath it. Kaede shivers at the sudden wet, hot touch, her cock throbbing hard in your mouth -- and depositing a heady little spurt of pre across the back of your throat. You suck it down greedily, your [pc.tongue] slurping at the tip of Kaede's cock to get at the leftovers, sure to get every drop of musky ausar cum you can. 
+
+And you get plenty, thanks to Anno. Giving you a sultry little wink, the snowy-haired ausar slips a hand between Kaede's thighs, completely unnoticed by the red-head thanks to the oral attention being lavished on her cock and balls. From your place locked onto Kaede's dick, you're granted a first-row seat to watch a single digit pop forward from Anno's hand, one lone finger separating from the others as her hand snakes up and around her lover's thigh. It doesn't take a genius to guess where that's going, so you brace for the inevitable, making sure your mouth is nice and wide, lips locked around the knot of Kaede's cock. The effect of Anno's mischievous play is instantaneous and overwhelming: Anno's finger vanishes between Kaede's cheeks, and the halfbreed immediately lets out a shrill cry of terror as she's penetrated. One smooth, forceful motion and Anno's finger is fully buried up her lover's ass; Kaede's cock jumps in your mouth, her hips thrusting it so deep you're afraid it's going to come out the back of your throat. 
+
+Kaede's voice comes out as a high, girlish whine as Anno finger-fucks her, probing deep into her lover's tight little ass. The halfbreed bites her lip, the only way she can manage to contain her moans of pleasure and muted pain as she's violated. Anno gleefully invites you to join her, crooking a free finger at you from between Kaede's legs. You do so, taking a hand through the other side of the redhead's crotch and slipping a single digit up between her clenched cheeks.
+
+"N-no more," Kaede whines, struggling against your and Anno's oral holds on her; your digit moves onward all the while, until your fingertip brushes against the rim of Kaede's hole, already agape and squirming around Anno's white-furred finger. "I-I can't... can't hold..." Kaede squeals as you start to push forward, meeting fierce resistance before finally pushing into the tight, warm passage of the half-ausar's asshole. 
+
+Between the two fingers digging into her behind, Kaede's hold on her lust melts like ice on a summer's day. The movements of her prick between your [pc.lips] become more frantic, desperate, as her slender hips pound into your face. You brace yourself for her orgasm, and are greeted moments later by a flood of ausar cum. Hot, sticky spunk rushes through the throbbing shaft of Kaede's cock and splatters across the back of your throat, drooling down your eager gullet. Kaede's hands wrap around your head, holding you steady as she fills you with her seed. Thrust after thrust until you feel positively engorged with boiling cum. 
+
+With a gasp, you slump off of the halfbreed's cock, unable to take anymore. A few final spurts of cum follow you, smearing across your face and [pc.chest] as Kaede's orgasm winds down. Good God, she was pent up! Your finger withdraws from her ass when you retreat, followed swiftly by Anno's. The white-maned ausar takes your place on her lover's cock, lapping up the last of Kaede's discharge from the tip of her pointed red pecker. 
+
+Kaede's knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale's sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don't have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.
+
+}
+
+function annoxKaedeWatch():void
+{
+"How about I just watch?" you ask, almost sheepish. There's no good way to ask a pair of smoking hot babes if you can watch them lez out, is there? 
+
+Kaede stares at you, almost in shock, but Anno's quick to adopt a lascivious grin. She leans over the {counter/table}, cupping her lover's chin to pull her attention away from you and onto her. "I... I dunno, Anno," Kaede murmurs, barely audible as Anno leans in close{if first time: , "I've never even...” // .}
+
+"C'mon, Red," the ausar grins, so close their lips are almost brushing. "Let's put on a show for {Mr./Ms.} Steele here... I think you'll like it more than {he/she} will."
+
+Kaede gulps as Anno pulls her in for a kiss, a hand wandering down to cup one of the half-breed's perky breasts. Both their tails rise up as they kiss, and Kaede's soon blushing a bright crimson. You can't help but notice that her pants are bulging hard. "Alright, alright," she finally moans, breaking the kiss and brushing Anno's hand off. "Let's just get out of here, okay?"
+
+"I know just the place," Anno grins, taking her lover by the hand and leading her around the counter. "Coming, boss?"
+
+You're quick to follow the canid girls out of the shop and down a few decks to Anno's place in the heart of the ship. You can't help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way. Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim "to something sexy." Her V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede's hair and tail as Anno slips her arms around her girlfriend's waist, pulling her back into another kiss. This time it's more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others' mouths. 
+
+You {if bipedal: find a chair and} have a seat, leaning back to enjoy the show. And what a show it is. Kaede is nervous and shy at first, but Anno soon breaks her out of it, sensually stripping off her lover's jacket and shirt before moving on to her bra, each motion slow and exaggerated, making sure to tease and tantalize you both with the sight of Kaede's tits. Finally, she lets her lover's boobs bounce free. Kaede gasps, raising an arm to cover herself before Anno stops her and redirects that arm to her own hip. With this done, she slips behind her lover, looking at you over Kaede's shoulder.
+
+"Like what you see, boss?" Anno drawls with a grin, cupping one of Kaede's big, perky tits. "I know I sure do."
+
+Kaede's blush darkens as Anno puts her out on display, squeezing her boobs together and pinching at her nipples, making sure to emphasize how nice and hard they're getting. Just like something else... your eyes are drawn down to the almost painfully swollen bulge in Kaede's pants, her cock trapped in the denim and unable to break free with her hands gripping tight on Anno's hips.
+
+Finally, the snowy-haired ausar changes her angle of approach, giving her lover's chest a rest as her hands slip down to her jeans, yanking them down with one quick motion. Kaede moans as her rigid rod pops free, its swollen red point protruding visibly from the lacy rim of her now-woefully inadequate panties. Anno doesn't deign to touch it, and indeed prevents Kaede from doing so. Instead, she grabs the half-breed's wrists and holds them tight behind their owner’s back -- which has the added effect of emphasizing her bare, heaving chest. 
+
+"Don't be shy, Red: show {Mr./Ms.} Steele here what you're packing," Anno breathes into her lover's ear, her voice barely loud enough for you to hear. Her verbal teasing is punctuated with a gentle nibble on the rim of Kaede's perky canid ear. The redhead goes completely tense as Anno chews on her, that red prick jumping to full attention as the other ausar pulls her straining panties down and out of the way. 
+
+Anno breaks the ear-nibble to flash you a grin, her snowy-furred arm tracing back up Kaede's leg before grabbing her butt, squeezing a cheek hard enough to make Kaede yelp. Anno presses herself tight into Kaede's back, breasts flattening against her lover as she continues to grope and squeeze the halfbreed's ass, never deigning to touch her cock until you can see a little dribble of pre cresting her pointed crown. 
+
+"Let me tell you a little secret about my Kaede here," Anno says to you, her hand finally releasing her lover's well-squeezed cheek... and vanishing behind her. "She likes to think she's a pitcher, but really... she's got the most sensitive little ass I've ever seen."
+
+"Anno, wait!" Kaede cries out, barely finishing before her voice cracks into a high-pitched whine. Her cock throbs and bounces in front of her, the knot swelling visibly right as you realize where Anno's hand just went. Kaede bites her lip, finally cutting off the feminine little cry as you lean down, looking between her legs -- and sure enough, are just able to see a pair of Anno's fingers vanishing between Kaede's cheeks, almost hidden by the tight pouch of her balls. 
+
+"See?" Anno grins at you, resting her chin on the halfbreed's shoulder. "Soooo sensitive." 
+
+Anno's arm shifts, and Kaede winces, her cock and balls clenching hard enough to send a little drop of pre trickling back down her shaft, rolling down the red, veiny flesh. Kaede reaches down to wipe it off, but is quickly restrained again by her lover, left to shudder as the thick droplet proceeds in a painfully slow course down her cock. 
+
+"No touching," Anno giggles, her arms shifting again, thrusting forward enough that Kaede almost seems to lift off her feet for a moment. Her bushy red tail tucks inward as she realizes just what she's in store for. "There you go... I want to show my boss just what you can do, love." 
+
+"S-show-off," Kaede groans, silenced by a kiss from her lover. Anno laughs and breaks off, trailing a few more kisses down the victimized canid-girl's neck. Behind Kaede, Anno's arm is moving rhythmically, her wrist pumping and and slowly sliding out once a second, holding a steady, sure beat into the redhead's straining asshole, keeping her nice and stretched around the two fur-clad digits. "Fuck! Ease up, babe... not so fast...."
+
+Anno grins. "Or what? Don't tell me you're ready to cum already?"
+
+"It was a long flight..." Kaede whines, cock twitching. 
+
+"Just from a little fingering? Aw, poor Red," Anno teases, moving her arm faster. "Lucky me you have a great recovery time."
+
+Kaede yelps as Anno hilts her fingers inside her. The snowy-haired vixen grins at you: "What do you say, boss? Wanna see how far she can shoot?"
+
+Hands Free
+"Wouldn't miss it," you answer, leaning back and enjoying the show. Anno winks at you, gently shifting Kaede's hips until her cock's facing the bulkhead beside you. It already looks swollen with cum, as if she’s ready to bust her nut at the drop of a hat. Anno keeps Kaede’s wrists pinned tight behind her back with one hand, the other thrusting faster and harder into Kaede's behind and taking itself to the knuckle with every advance. 
+
+Kaede can't endure that for long. With a low, sexy whine, the half-ausar yelps "C-cummiiiing!" and does so. Anno beams as her lover's cock clenches and fires a thick rope of white across the room, splattering against the steel bulkhead with a wet-sounding squelch. Another rope lands just short of the target, smearing across the deck. Kaede's voice breaks, high and loud as she cries her pleasure through the echoing chambers. Anno is relentless in her ministrations, continuing to finger-fuck Kaede's ass through the entire ordeal and refusing to let up until her lover's bright red, utterly untouched pecker is starting to wilt. The exhausted dick can do nothing but drool the last droplets of seed onto the deck between Kaede’s legs. Only then is Anno satisfied, pulling out and smacking the redhead's freckled behind for good measure.
+
+"Niiiice," she chuckles, looking at the ropes of cum laid out across her quarters. "You really were pent up, huh, Red?"
+
+Facial
+"I'd rather see her shoot all over you," you say with a wink, crooking your finger at Anno and beckoning her out from around her lover. 
+
+Anno rolls her eyes. "If it were anybody else... alright, Red, spread 'em," Anno commands, letting Kaede's wrists go to slap her on her tight little ass. Kaede gives a little gasp at that, but smiles as Anno slips around her and slides down to her knees in front of her, snowy tail waving at you. Her anal-bound hand goes straight back to work, though, slipping between Kaede's spread legs and back into her asshole. The redhead gives a little yelp as she's penetrated again, but at least this time she's got something to move against: Kaede grabs Anno's head with her newly-freed hands, using her to push back against the invading digits. 
+
+The lusty redhead can't endure that kind of treatment for much longer, though -- especially with a wide-open mouth barely an inch from her lengthy rod, hot breath steaming against her tender flesh that’s already desperate for denied sensation. With a low, sexy whine, the half-ausar yelps, "C-cummiiiing!" and does so. Anno recoils as the first hot load of cum bursts from her lover's crown, only halfway making it into her mouth as the rest smears across her chin and cheeks. The snowy-haired ausar corrects that problem before the next wad can shoot out, wrapping her lips just around the tip of Kaede's cock and sucking down the rest of her girlfriend's hot load.
+
+As Kaede finally starts to go soft, Anno stands, grabs the other ausar by the hips, and pulls her into a kiss. At first, Kaede leans into it, tail wagging at the affectionate embrace... right until Anno's mouth opens into hers. You only see the after-effect as Kaede sputters and coughs, a thick white trail running down her cheeks. 
+
+"Surprise!" Anno grins, a bit of cum trickling down her own cheeks as Kaede's left with what looks like the lion's share of her own load.
+
+//Continue
+"You're evil!" Kaede groans, still panting after her anal ravaging. 
+
+"And you've got the cutest ass in the galaxy," Anno teases, squeezing her lover's behind. Turning to you, Anno's tail swishes happily as she adds, "Now, what do you say we get down to the main course?"
+
+You give an approving nod, and in the blink of an eye Kaede is on her back on Anno's bed. Anno herself strips down and hops in after her, crawling up her lover's body until their breasts are pressed against each other. Anno pauses there just long enough to kiss her girlfriend fully on the lips, her tail and tush raised invitingly as Kaede's hands roam up her bare flesh. Anno's hips wiggle as Kaede gropes at her ass and thighs, and one hand gently teases its way up toward the snow-white patch of downy fuzz over Anno's sex. 
+
+You watch eagerly while the two ausar girls start to play with each other, hands wandering all over breasts, hips, thighs, and sexes, both gasping and moaning as their bodies intertwine. Kaede moans, legs twisting together, as the white-haired ausar's fingers wrap around her canid shaft and give a few experimental tugs.
+
+"Ah! No!" the halfbreed yelps, writhing under Anno's ministrations. "Too soon, too soon..."
+
+Anno grins. "Poor baby. Well, if you're not ready to go yet, I guess I'll have to find something else for you to do, won't I?"
+
+Kaede groans as her lover slips out of her grasp, crawling up until her knees are planted in Kaede's armpits and her tail is laying across the redhead's belly and chest, the very base wiggling between Kaede's tits. More importantly, Anno's cunt is left hovering just over Kaede's face, her body bent forward just enough that you can see the moisture glistening on Anno's lips. She grips the headboard and gives her tail a little wag across Kaede's chest, the soft fur brushing across the half-ausar's perky nipples.
+
+The slender redhead certainly knows what to do when presented with a wet and ready pussy: her hands quickly lock around Anno's flared hips, guiding her lover the rest of the way down until the lips of Anno's pussy are brushing her nose. Her tongue lashes out, lapping across the hot, sultry surface of her lover's pussy like a dog would a bowl of water, flicking up between the lips with short, quick strokes. Anno's body goes stiff – all but her tail, which swishes quickly across Kaede's chest as the other girl eats her out, tongue running rampant in the gulf between her slick lips.
+
+"Agh. You're so fucking </i>juicy<i>," Kaede complains, wiping a smear of her lover's excitement from her chin. 
+
+"You know you love it," Anno says over a shudder while Kaede's tongue probes into her. "Gotta get nice and... ooh, yeah... nice and slick for that thick knot of yours." 
+
+"Yeah, but it's a fucking waterfall down here," the redhead complains. You can see the rivulets of juice running down Kaede's cheeks, glistening in the dim light. Their owner shivers and gasps as Kaede laps at her crotch, leaning up to fully bury her tongue in the dripping sex. You can see Anno's knuckles turning white around the headboard as she rides her girlfriend's tongue, her hips starting to move and buck on the halfbreed's thrusting muscle. 
+
+They carry on for long, blissful minutes, Kaede eating Anno out until the snowy-haired ausar is panting and gasping, all but begging for more. You're afraid she's going to cum, so thick are the gushes of fem-slime drooling across Kaede's face, before Anno finally whines, "Enough... I can't take it anymore. Put it in, Red... fuck me!"
+
+You eyes are drawn down between Kaede's own splayed legs, and to the thick, red cock standing proudly between them. It looks like she's finally ready to go again, and just in time! She gives Anno one last, long lick through the gash of her drooling sex before scrambling away from the eager puppy-slut’s crotch and rolling onto her knees behind her lover's wiggling butt. She pauses just long enough to grab a silver-wrapped condom from Anno's nightstand, eagerly pulling it down around her shaft before aligning her now-sheathed prick with the ausar's slick slit. 
+
+"Spread 'em, bitch," Kaede growls, reaching down to pull Anno's legs apart. Her lover gives a little gasp, which is quickly muted as she feels the tip of Kaede's pointy puppy pecker pressing against the lips of her [anno.cunt]. 
+
+At the last moment, Anno reaches back and grabs the cheeks of her ass, opening herself wide for her lover and shooting the both of you a lusty wink over her shoulder. Kaede grins, and thrusts her hips forward. You watch the magic moment almost in slow-motion: Anno's lips parting around the pointed crown of her lover's cock; Kaede's fingers digging into the soft, squishy flesh of Anno's ass, pulling the ausar back against her lunging manhood; Anno's back arching, her big breasts bouncing as she's speared on eight inches of thick dog-cock. 
+
+Kaede sinks in almost to the hilt, right until the tight bulb of her canid knot starts to stretch the mouth of Anno's pussy. Only when Anno cries out, begging her to stop, does she relent, stopping for just a moment before pulling out to half length and thrusting back in again. The hung halfbreed shemale doesn't even pretend to be gentle after the treatment she's received so far: finally getting some stimulation on her cock, she can't hold back and fucks her lover hard, pounding Anno into the bed like a hammer. 
+
+The rough fucking doesn't seem to bother Anno; indeed, she's moaning like a whore before too long, tail thrashing madly behind her as she takes Kaede's cock again and again. Fem-cum sprays and drips from her cunt before a minute's gone by, smearing across Kaede's thighs and staining the bedsheets between her spread legs. Anno's voice breaks into a high cry of pleasure as she cums around Kaede's cock. The redhead seems undeterred, however, and continues to pound away at Anno's sloppy, cum-slathered box even faster thanks to the layer of extra lube her lover's producing. 
+
+You find yourself inching closer to the action as Kaede fucks her lover harder, getting a full and wonderful view of the halfbreed's tight little ass and the small, compact sack jiggling between her legs with every thrust while her auburn tail swishes gaily behind her. Leaning in, you look between Kaede's legs to the drooling cunt beyond. The thick red knot looks like it'll punch through at any moment, with every buck of Kaede’s hips pushing her crimson cock deeper still into Anno's pussy. 
+
+You're soon out of your seat, all but crawling onto the bed to get a good look at the main event: you want a front-row seat for when Kaede ties herself inside the snowy slut. It won't be long now, maybe another few thrusts... and it looks like Anno is as eager for it as you are: "Come on... come on already, Red! Fuck it into me!"
+
+Kaede does so. With one last, powerful, full-length thrust, Kaede rams herself in to the hilt. You get one last look at the inches-thick ball of crimson flesh before it vanishes through the slit of Anno's drooling sex. Anno screams when the knot slides into her, spreading her cunt painfully wide around the bulbous orb; her voice goes soundless, breaking into nothing more than a hoarse croak while Kaede's bitch-breaker {if silly: "breaks a bitch" else "vanishes into her sex, lodging itself deep into Anno's cunt"}. 
+
+The redheaded halfbreed's auburn tail goes rigid a moment later as her chest heaves and her own orgasm catches up with her. All you can see is her balls clenching and her slender hips making a few short, arrested thrusts into the sultry hole she's tied herself to. Finally, Kaede gives a quiet sigh and seems to go limp, barely able to hold herself upright on her knees. Anno smiles over her shoulder, reaching back to cup her lover's cheek while her tail curls around the redhead's freckled hips. 
+
+"Think you got what you came for, boss?" Anno says after a few moments, giving Kaede a little push to put them both on their sides. 
+
+Kaede's arms wrap around Anno's waist, holding her lover tight as she slowly deflates inside her. "I know I did," she whispers, kissing along Anno's neck. 
+
+You give the slutty pair a little nod{, barely containing your own, almost painful erection // trying to ignore your own untended excitement drooling down your [pc.legs] // trying to ignore the desperate need welling inside you}. Watching you stand, Anno grins and winks at you, "I think you've got all the fap material you'll need for a few months, huh boss?” You respond with a curt nod. “Go ahead and let yourself out -- you know the way. I've got to deal with this for a while," she adds, pointing a finger between her legs and down at the knotty ausar cock still lodged in her. 
+
+"See you around, [pc.name]," Kaede murmurs, giving you a slight smile as you depart.
+}
+
+function annoxKaedeLeave():void
+{
+
 }
