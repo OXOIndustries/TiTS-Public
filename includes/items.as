@@ -141,6 +141,11 @@ function shop(keeper:Creature):void {
 		repeatAnnoApproach();
 		return;
 	}
+	if(keeper is Ellie)
+	{
+		ellieMenu();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

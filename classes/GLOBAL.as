@@ -138,6 +138,7 @@
 		public static const TYPE_VANAE:int									= 46;
 		public static const TYPE_VANAE_MAIDEN:int							= 47;
 		public static const TYPE_VANAE_HUNTRESS:int							= 48;
+		public static const TYPE_LEITHAN:int 							    = 49;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",

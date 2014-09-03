@@ -2066,6 +2066,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 10;
+			if(hasStatusEffect("Ellie's Milk")) bonus += 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -4518,7 +4519,9 @@
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0) return 0;
-			return vaginas[arg].capacity() * elasticity;
+			var amount:Number = vaginas[arg].capacity() * elasticity;
+			if(isTaur()) amount += 400;
+			return amount;
 		}
 		public function smallestVaginalCapacity(): Number {
 			return vaginalCapacity(smallestVaginaIndex());

@@ -730,3 +730,30 @@ function manMilkerRoomBonusFunc():Boolean
 	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
 	return false;
 }
+function NTGiftShopBonusFunc():Boolean
+{
+	//First Time Entering the Shop
+	if(flags["SEEN_ELLIES_SHOP"] == undefined)
+	{
+		flags["SEEN_ELLIES_SHOP"] = 1;
+		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you've just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
+		pc.lustDamage(10);
+	}
+	else pc.lustDamage(5);
+	output("The gift shop looks like every other gift shop in the 'verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There's a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled \"The Treatment.\" ");
+	if(flags["MET_ELLIE"] != undefined) output("Ellie");
+	else output("A tauric woman with black scales on her lower body and a massive GG-cup rack, only barely restrained by a semi-translucent bra that's stained with milky moisture");
+	output(" is overseeing the automated shopping terminals, occasionally distracted by a customer's query or a particularly flirty bull wandering through.");
+	//Next, to room description. Add [Shopkeeper] button
+	ellieApproachButtonSetup();
+	return false;
+}
+
+function NTBarbequeBonusFunc():Boolean
+{
+	output("The restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. ");
+	if(flags["MET_HERMAN"] != undefined) output("Herman the chef");
+	else output("The chef");
+	output(" is busily trying to fill the orders as they come in, clearly swamped with customers.");
+	return false;
+}

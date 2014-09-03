@@ -909,7 +909,7 @@ function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 	if(x > 50) x = 50 + Math.round((amount-5000)/200);
 
 	//honey worth more!
-	if(pc.cumType == GLOBAL.HONEY) x *= 2;
+	if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) x *= 2;
 
 	clearOutput();
 	author("Savin");

@@ -3190,6 +3190,7 @@ function initializeRooms():void
 	rooms["504"].runOnEnter = undefined;
 	rooms["504"].westExit = "503";
 	rooms["504"].eastExit = "505";
+	rooms["504"].northExit = "525";
 	rooms["504"].planet = "PLANET: NEW TEXAS";
 	rooms["504"].system = "SYSTEM: NYE";
 	rooms["504"].addFlag(GLOBAL.OUTDOOR);
@@ -3360,6 +3361,83 @@ function initializeRooms():void
 	rooms["517"].addFlag(GLOBAL.INDOOR);
 	//rooms["517"].addFlag(GLOBAL.NPC);
 	
+	//525
+	//Porch Room Description
+	rooms["525"] = new RoomClass(this);
+	rooms["525"].roomName = "THE\nPORCH";
+	rooms["525"].description = "Big T.'s ranch house is like a super-sized version of an old Texas one, complete with a longhorn skull hanging over the door and a pair of rocking chairs on the front porch. An electric mosquito net hangs around the doorframe, the only sign of advanced technology around. Several cow-girls, bull-boys, and more human tourists are making their way in and out, many with black-and-white-splotched bags from the gift shop.";
+	rooms["525"].runOnEnter = undefined;
+	rooms["525"].southExit = "504";
+	rooms["525"].northExit = "526";
+	rooms["525"].planet = "PLANET: NEW TEXAS";
+	rooms["525"].system = "SYSTEM: NYE";
+	rooms["525"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["525"].addFlag(GLOBAL.NPC);
+
+	//526
+	//Foyer Room Description
+	rooms["526"] = new RoomClass(this);
+	rooms["526"].roomName = "RANCH\nFOYER";
+	rooms["526"].description = "The central room of the ranch house is a huge, wood-paneled affair, with old-school lever guns, tribal totems, and stuffed animals adorning the walls in between advertisements for the Treatment and for Texan Milk. A huge staircase in front of you leads upwards to the second floor, helpfully labeled \"Manager's Office.\" A door to the right leads to the gift shop, which seems to be pretty busy; to the left is a wide open set of double doors leading into what looks like a steakhouse, complete with a longhorn skull and horseshoes nailed to the barn-like door.";
+	rooms["526"].runOnEnter = undefined;
+	rooms["526"].southExit = "525";
+	rooms["526"].northExit = "529";
+	rooms["526"].eastExit = "528";
+	rooms["526"].westExit = "527";
+	rooms["526"].planet = "PLANET: NEW TEXAS";
+	rooms["526"].system = "SYSTEM: NYE";
+	rooms["526"].addFlag(GLOBAL.INDOOR);
+	//rooms["526"].addFlag(GLOBAL.NPC);
+
+	//527
+	//Gift Shop Room Description
+	rooms["527"] = new RoomClass(this);
+	rooms["527"].roomName = "GIFT\nSHOP";
+	rooms["527"].description = "";
+	rooms["527"].runOnEnter = NTGiftShopBonusFunc;
+	rooms["527"].eastExit = "526";
+	rooms["527"].planet = "PLANET: NEW TEXAS";
+	rooms["527"].system = "SYSTEM: NYE";
+	rooms["527"].addFlag(GLOBAL.INDOOR);
+	rooms["527"].addFlag(GLOBAL.COMMERCE);
+ 
+	//528
+	//Big T.'s Barbeque Pit
+	rooms["528"] = new RoomClass(this);
+	rooms["528"].roomName = "BARBEQUE\nPIT";
+	rooms["528"].description = "";
+	rooms["528"].runOnEnter = NTBarbequeBonusFunc;
+	rooms["528"].westExit = "526";
+	rooms["528"].planet = "PLANET: NEW TEXAS";
+	rooms["528"].system = "SYSTEM: NYE";
+	rooms["528"].addFlag(GLOBAL.INDOOR);
+	rooms["528"].addFlag(GLOBAL.COMMERCE);
+
+	//529
+	//Secretary's Room Description
+	rooms["529"] = new RoomClass(this);
+	rooms["529"].roomName = "SECRETARY'S\nOFFICE";
+	rooms["529"].description = "At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?\"</i> she asks, looking up from her work, <i>\"He'd be happy to see you. Go on through.\"</i>";
+	rooms["529"].runOnEnter = undefined;
+	rooms["529"].southExit = "526";
+	rooms["529"].northExit = "530";
+	rooms["529"].planet = "PLANET: NEW TEXAS";
+	rooms["529"].system = "SYSTEM: NYE";
+	rooms["529"].addFlag(GLOBAL.INDOOR);
+	rooms["529"].addFlag(GLOBAL.NPC);
+
+	//530
+	//Big T.'s Office Description
+	rooms["530"] = new RoomClass(this);
+	rooms["530"].roomName = "BIG T'S\nOFFICE";
+	rooms["530"].description = "The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat's study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair. The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world's affairs all from his desk.";
+	rooms["530"].runOnEnter = undefined;
+	rooms["530"].southExit = "529";
+	rooms["530"].planet = "PLANET: NEW TEXAS";
+	rooms["530"].system = "SYSTEM: NYE";
+	rooms["530"].addFlag(GLOBAL.INDOOR);
+	rooms["530"].addFlag(GLOBAL.NPC);
+
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
