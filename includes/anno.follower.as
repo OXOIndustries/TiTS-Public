@@ -405,6 +405,17 @@ function annoAtAnonsAddendum():void
 
 function annoFindingALostPooch():void
 {
+	if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days - 8;
+
+	if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
+	{
+		if (rand(3) == 0)
+		{
+			annoxKaedeFollowerMeeting();
+			return;
+		}
+	}
+
 	clearOutput();
 	annoFollowerHeader();
 	
@@ -1918,4 +1929,57 @@ function annoFollowerAppearance():void
 	output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 
 	removeButton(10);
+}
+
+function annoxKaedeFollowerMeeting():void
+{
+	clearOutput();
+	author("Savin");
+	showName("ANNO &\nKAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
+
+	// {First Time}
+	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
+	{
+		output("Over the din of dozens of murmuring voices in Anon’s, you hear a loud, “<i>HEY! [pc.name], over here!</i>” ");
+	
+		output("\n\nLooking over the bar, you see Anno sitting in a booth with another ausar - a red-headed girl wearing a black leather jacket. The other woman turns in the booth, big blue eyes regarding you as your lover waves you over. ");
+		
+		output("\n\n“<i>Hey, boss,</i>” Anno beams when you make you way over to them. “<i>Guess who this foxy babe is!</i>” she adds, pointing to her companion.");
+		
+		output("\n\nThe redhead rolls her eyes and extends a hand to you - a hand lacking the iconic fur sleeve of her race. A half-ausar, then. “<i>Hey there, I’m Kaede. Anno’s-</i>”");
+		
+		output("\n\n“<i>Girlfriend,</i>” the snowy-haired ausar finishes for her, reaching across the table to take the other girl’s hand in hers. “<i>I’ve told you about Kaede, right? ‘Course I have! Hey, come on, sit down,</i>” she says, scooting over to give you room to sit beside her. ");
+		
+		output("\n\nYou do so, and Anno promptly rests her head on your shoulder, an arm slipping around your waist. “<i>So, I was just telling Kaede here some of our misadventures");
+		if (flags["ANNO_MISSION_OFFER"] == 3) output(" - both with the gray goo and under the sheets");
+		output(",</i>” she says, flashing you a wolfish grin, “<i>and we were just thinking about heading back to my rent-by-the-hour down the way when you wandered in. Fancy that.</i>”");
+		
+		output("\n\nYou can all but feel the sexuality dripping out of Anno’s voice now. “<i>So you know, Kaede and I like to keep things pretty open. You just got to when you’re as long distance as we are... I think we’d both go nutty without a good hard");
+		if (pc.hasCock()) output(" dicking");
+		else output(" fucking");
+		output(" from time to time.</i>”");
+		
+		output("\n\nKaede blushes, but hardly refutes her girlfriend’s claim on the matter. “<i>In fact,</i>” Anno adds, nuzzling up against you. “<i>I was just mentioning how sweet it would be if we had a certain number three with us when we slink off... I don’t suppose you’re free for a little, boss?</i>”");
+	}
+	else
+	{
+		output("“<i>Hey, boss!</i>” Anno beams as you approach. “<i>Take a load off -- Kaede and I were just finishing drinks.</i>”");
+		
+		output("\n\nYou slide into the booth beside your ausar lover{s}, and quickly find a shotglass of a strong-smelling green ausar drink in front of you. You knock it back as the pair of wolf-eared babes giggle and tease at each other -- and at least one fluffy tail starts caressing your [pc.leg]. You spend a few pleasant minutes conversing with the couple, but it isn’t long before you feel the weight of lusty eyes wandering over you. Anno’s arm slips around your waist, and she nuzzles up against your shoulder.");
+		
+		output("\n\n“<i>What do you say we get out of here, huh boss? I’ve got a rent-by-the-hour down the way... and a cute little piece of ass to split between us.</i>”");
+	}
+
+	annoxKaedeAnonsBarMenu();
+}
+
+function annoxKaedeAnonsBarMenu():void
+{
+	clearMenu();
+	if (pc.hasCock()) addButton(0, "Fuck Them", annoxKaedeFuckThem, false);
+	else addDisabledButton(0, "Fuck Them", "Fuck Them", "Requires a penis.");
+	addButton(1, "Service Kaede", annoxKaedeService, false);
+	addButton(2, "Watch", annoxKaedeWatch, false)
+	addButton(14, "Leave", annoxKaedeLeave, false);
 }
