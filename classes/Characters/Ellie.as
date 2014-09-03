@@ -4,9 +4,15 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
-	import classes.Items.Miscellaneous.Cargobot;
-	import classes.Items.Miscellaneous.Hoverboard;
-	import classes.Items.Apparel.Smartclothes;
+	
+	import classes.Items.Apparel.BountyBra;
+	import classes.Items.Apparel.CowPrintLeotard;
+	import classes.Items.Apparel.CowPrintBra;
+	import classes.Items.Apparel.CowPrintBikiniBottom;
+	import classes.Items.Apparel.CowPrintPantiesAndGarter;
+	import classes.Items.Miscellaneous.MilkCaramelGushers;
+	import classes.Items.Miscellaneous.MilkmaidsAid;
+	import classes.Items.Miscellaneous.BoobswellPads;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
@@ -22,6 +28,15 @@
 			
 			this.sellMarkup = 2.0;
 			this.buyMarkdown = .75;
+			this.inventory.push(new BoobswellPads());
+			this.inventory.push(new BountyBra());
+			this.inventory.push(new CowPrintLeotard());
+			this.inventory.push(new CowPrintBra());
+			this.inventory.push(new CowPrintBikiniBottom());
+			this.inventory.push(new CowPrintPantiesAndGarter());
+			this.inventory.push(new MilkCaramelGushers());
+			this.inventory.push(new MilkmaidsAid());
+
 
 			this.short = "Ellie";
 			this.originalRace = "leithan";

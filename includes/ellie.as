@@ -13,8 +13,8 @@ function nephAffection(arg:Number = 0):Number
 		if(flags["NEPH_AFFECTION"] > 100) flags["NEPH_AFFECTION"] = 100;
 		else if(flags["NEPH_AFFECTION"] < 0) flags["NEPH_AFFECTION"] = 0;
 	}
-	//9999 - adjust her shop markups here.
-
+	//adjust her shop markups here.
+	chars["ELLIE"].sellMarkup = (200 - flags["NEPH_AFFECTION"])/100;
 	return flags["NEPH_AFFECTION"];
 }
 
@@ -167,55 +167,17 @@ function sellToEllie():void
 function elliesShopSetup():void
 {
 	shopkeep = chars["ELLIE"];
+	//Reset purchase prices
+	nephAffection();
 	//Ellie’s Menu: Buy
 	chars["ELLIE"].keeperBuy = "“<i>Want something from the shop... other than me, anyway! Step on over to the auto-terminal and I’ll make sure you’re treated right";
 	if(nephAffection() > 30) chars["ELLIE"].keeperBuy += ", especially since you’ve been so sweet on me";
-	chars["ELLIE"].keeperBuy += ". Pardon the pun.</i>”";
+	chars["ELLIE"].keeperBuy += ". Pardon the pun.</i>”\n";
 }
 
-
 /*
-output("\n\nBounty Bra");
-output("\n\n//Tooltip: A New Texan favorite, this sheer JoyCo maternity bra doesn’t leave much to the imagination, especially when the latexy material gets soaked with milk until it’s all but see-through. Thankfully, it’s almost completely leak-resistant. Several small battery-powered vibrators line the undercarriage, acting as a constant low-intensity breast massage to aid in lactation. According to the label on the back, JoyCo guarantees you’ll never stop lactating as long as you wear the Bounty Bra.");
-output("\n\n//Slowly increase lactation over time / doesn’t let lactation fall below a certain threshold. Passive lust gain+");
-
-output("\n\nCow-print Leotard");
-output("\n\n//Tooltip: This tight, form-hugging leotard leaves the legs and arms completely exposed and works hard to emphasize the bust -- not that it takes much effort, given the target audience for this particular bovine fashion statement. The primarily white, catsuit-like material has several black splotches across it, giving the wearer the distinctive appearance of a dairy cow. Handy buttons over the teats allow for easy milking.");
-output("\n\n//Armor 0. Fortitude 0. ");
-output("\n\n//Sexiness: +5");
-output("\n\n//Acts as an Armor slot item.. ");
-
-output("\n\nCow Print Bra");
-output("\n\n//Tooltip: This cow-print bra is specially made for the girls of New Texas. It easily resizes across a variety of large bust sizes, making it particularly appealing to dairy cows whose breasts swell with milk. The cups of the bra can be snapped off for easy milkings.");
-output("\n\n//Minimum bust size: D-cups");
-
-output("\n\nCow Print Panties & Garter");
-output("\n\n//Tooltip: These cow-print panties tightly hug the hips and only barely cover the crotch, and seem designed to be torn off with ease. They’re coupled with a sexy garter belt and thigh-high stockings, also in dairy cow blacks and whites. ");
-output("\n\n//Sexiness +1");
-
-output("\n\nCow Print Bikini Bottom");
-output("\n\n//Tooltip: This cow-print patterned bikini bottom is as slutty as it is bovine, blatantly made to be easily ripped off or yanked down your hips for easy access. ");
-
-
 output("\n\nThe Treatment");
 output("\n\n//Tooltip: This white medipen is simply labeled, in bolded all-caps: “<i>THE TREATMENT.</i>” In tiny, well-concealed font a warning indicates that effects are seemingly random, and are <i>permanent</i>. ");
-
-
-output("\n\nMilkmaid’s Aid");
-output("\n\n//Tooltip: This bottle contains milk-white pills, and the label shows several New Texan girls reclining against what look like industrial-strength milkers, their nudity tastefully hidden by foreground objects. The listed effects include a massive one-time surge in lactation: perfect for “<i>stocking up</i>” before a long, happy session in the milk barn. ");
-output("\n\n//Effect: Sudden fill up of lactation ("Instant Overmax Capacity</i>”). Should allow fairly lactic ladies to make a slim profit in the Milk Barn. ");
-output("\n\n//Note: Either has 3 uses per item, or else is sold in stacks of 3. Whatever!");
-
-
-output("\n\nMilk Caramel Gushers");
-output("\n\n//Tooltip: These caramel-flavored candies are laced with a creamy mixture of sugar, hormones, and nanomachines that can give you a sudden burst of lactic fullness -- even if you don’t normally lactate. ");
-output("\n\n//Instant fill up to 75% of capacity, whether or not you’re already lactating");
-
-
-output("\n\nBoobSwell Pads");
-output("\n\n//Tooltip: These slim, cup-shaped pads come with a handy adhesive that allows them to stick to the underside of the bust, or else be slipped stealthily into a bra. So long as these pads are worn, they will slowly massage and feed hormones and nanomachines into your breasts, causing them to increase in size over time. They only last a week, however, before they wear out. ");
-output("\n\n//Worn in Accessory slot, pad out bra/whatever. Increases cup size over time, but wear out after 7 days. Passive lust gain increase, too? ");
-
 
 output("\n\nBig T. Bobblehead ");
 output("\n\n//Tooltip: This limited-edition bobblehead bears the likeness of New Texas’s governor, Benjamin Tiberius Tee. Here he’s depicted as a comically exaggerated bull-horned human with a huge barrel chest and a great big black stetson. The blue suit he’s wearing is barely managing to strain over his huge frame. The bobblehead is giving you a big thumbs up, and a message at its base says, “<i>Live free on New Texas!</i>”");
@@ -252,33 +214,7 @@ output("\n\nRepeat Items");
 output("\n\nFrom other Vendors: Chocolac, Magic Milker. Incubi/Succubi Pills (When written)");
 output("\n\nItem Uses/Functions");
 
-output("\n\nItem: Milkmaid’s Aid");
-output("\n\n//Use, PC is not lactating");
-output("\n\nYou pop the bottle open and tap a few of the milk-colored pills into your hand. Before you consume them, however, you take a peek at the health and safety warnings, which tells you that there’s no known effect on persons not currently lactatings. You’d better start lactating before you fill up on it. ");
 
-output("\n\n//Use, PC is lactating");
-output("\n\nYou pop the bottle open and tap a few of the milk-colored pills into your hand, and swallow them down. They go down easily, small as they are, and leave a creamy after-taste as they make their way down. A few moments pass before you feel a slight, weighty shift in your [pc.boobs]. You give a little gasp a liquid rush surges in your tits. Your breasts seem to swell with [pc.milk], heavier and heavier until they feel about as full as they’ve ever been! <b>Your breasts are now completely swollen with [pc.milk]!</b> Time to find a nice, vigorous milker...");
-
-output("\n\nItem: Milk Caramel Gushers");
-output("\n\nYou greedily unwrap the creamy brown candies and pop them into your mouth. It’s as sweet as you imagined, the taste thick and rich and... well, caramelly. You suck and lick at the thick, round candies, enjoying the taste and texture over several minutes as they slowly dissolve. As they do, the first trickles of nanomachines and hormone-laced sugar glide down your eager throat, and begin to work their magic inside of you. Your [pc.breasts] suddenly begin to swell out, feeling weightier and... and fuller! You cup your burgeoning titflesh as your [pc.chest] expands under the weight of [pc.milk] welling up inside you. {<b>You now have {X} cups!</b>} Your breasts are very nearly full of [pc.milk], and your mind keeps insisting that you’re in need of a good, hard milking{if high libido: “<i> -- or was it fucking? --</i>”} now. ");
-
-output("\n\nItem: BoobSwell Pads");
-output("\n\n//Use, PC has tits and wearing clothes");
-output("\n\nYou pull the set of sticky, form-adhering pads out of their packaging{ and wiggle out of your [pc.armor]}. You quickly slip the pads into your [pc.upperUndergarment], spending a moment adjusting them so they hug the undersides of your breasts just right. As you’re working, the pads begin gently vibrating, and quickly become ever so slightly moist as the cocktail of hormones and nanomachines leaks out of the pad and into your [pc.skinFurScales]. ");
-
-output("\n\n//Use, PC has tits but isn’t wearing a top");
-output("\n\nYou pull the set of sticky, form-adhering pads out of their packaging and peel off the adhesive layer underneath them before slapping them onto the undersides of your [pc.boobs]. Once they’re secured, the pads begin gently vibrating, and quickly become ever so slightly moist as the cocktail of hormones and nanomachines leaks out of the pad and into your [pc.skinFurScales], making you go flush with sudden arousal. ");
-
-output("\n\n//Use, PC doesn’t have extant tits");
-output("\n\nYou pull the set of sticky, form-adhering pads out of their packaging and peel off the adhesive layer underneath them. A bit nervously, you slip the pads {under your [pc.upperGarments] and }onto your flat chest. You give a little gasp as the cold adhesive adheres to you, and again as the pads turn suddenly slightly... wet. As if they’re leaking something onto your skin, and makes you go flush with a combination of sudden arousal and chill. ");
-
-output("\n\n//Message text, boob size+. Every 6 hours or so.");
-output("\n\n<b>[pc.name]’s log:</b>");
-output("\n\nThanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out{ even more}! <b>You figure that you could now fit into an {X}-cup bra!</b>");
-
-output("\n\n//Message text, last boob size increase. 7 days later.");
-output("\n\n<b>[pc.name]’s log:</b>");
-output("\n\nThanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out{ even more}! <b>You figure that you could now fit into an {X}-cup bra!</b> Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads!</b> You peel them off your [pc.skinFurScales] and toss them away. ");
 
 output("\n\nItem: Grade T. Milk");
 output("\n\n//Use, restores 75 Energy. 1/hour");

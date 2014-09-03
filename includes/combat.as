@@ -2147,7 +2147,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	if(!(target is Celise)) 
 	{
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustDamageMultiplier() == 0)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() || target.lustDamageMultiplier() == 0)
 		{
 			if(target is HandSoBot)
 			{
@@ -2179,7 +2179,7 @@ function tease(target:Creature, part:String = "chest"):void {
 		//Success!
 		else {
 			//Calc base damage
-			damage += 10 * (teaseCount/100 + 1);
+			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
 			//Any perks or shit go below here.
 			//Apply randomization
 			damage *= randomizer;

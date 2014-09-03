@@ -3451,6 +3451,17 @@
 		public function hasStatusEffect(statusName: String): Boolean {
 			return hasStorageName(statusEffects, statusName);
 		}
+		public function hasStatusEffectCount(statusName:String):Number
+		{
+			var counter: Number = statusEffects.length;
+			var amount:int = 0;
+			if (statusEffects.length <= 0) return 0;
+			while (counter > 0) {
+				counter--;
+				if (statusEffects[counter].storageName == statusName) amount++;
+			}
+			return amount;
+		}
 		//Perk
 		public function hasPerk(perkName: String): Boolean {
 			return hasStorageName(perks, perkName);
