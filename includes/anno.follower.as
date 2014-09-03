@@ -1,5 +1,21 @@
 import classes.Util.InCollection;
 
+/* 
+FLAG SHIT:-
+
+ANNO_CREWMEMBER - 0/Undefined : Not Recruited, 1 : Is Crewmember, 2 : Recruited but kicked off the ship
+
+CREWMEMBER_SLEEP_WITH : String, "name" of the character that the PC currently has set as their bedbuddy. -> "ANNO". Undefined = None.
+
+ANNOxKAEDE_LAST_DAY : The last day number that a kaede/anno 3some possibility happened. If flag < days - 7 is true, the option can (potentially) appear based on a rand check.
+
+ANNO_MISSION_OFFER : State of Annoquest. 3 == Completed. If not 3, Anno must have been recruited via Tarkus assploding. This is the better check to figure out how she was recruited -- you can do her quest and then blow tarkus up after the fact.
+
+ANNOxSYRI_WINCEST : For when Syri (eventually) gets written and added.
+
+ANNOxKAEDE_INTRODUCED : PC has been introduced by Anno to Kaede
+ */
+
 // Anno has been recruited and is currently on the players ship.
 function annoIsCrew():Boolean
 {
