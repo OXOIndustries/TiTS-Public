@@ -9,10 +9,10 @@ package classes.Items.Apparel
 	 * Swapped in and out of Annos statblock to determine her state/type of dress.
 	 * @author Gedan
 	 */
-	public class AnnosCatsuit extends ItemSlotClass
+	public class AnnosBlouse extends ItemSlotClass
 	{
 		
-		public function AnnosCatsuit() 
+		public function AnnosBlouse() 
 		{
 			this._latestVersion = 1;
 			
@@ -20,13 +20,13 @@ package classes.Items.Apparel
 			this.stackSize = 1;
 			this.type = GLOBAL.ARMOR;
 			
-			this.shortName = "ST. Catsuit";
+			this.shortName = "Annos Blouse";
 			
-			this.longName = "steeletech catsuit";
+			this.longName = "Annos blouse";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a form-fitting smartcloth catsuit emblazoned with the Steele Industries logo";
+			this.description = "a blouse and jean pair worn exclusively by anno";
 			
 			this.tooltip = "Something something this is a tooltip something.";
 			

@@ -21,7 +21,7 @@ function haveFuckedAnno():Boolean
 
 function steeleTechTarkusShopAvailable():Boolean
 {
-	if (player.hasStatusEffect("ST Tarkus Closed")) return false;
+	if (pc.hasStatusEffect("ST Tarkus Closed")) return false;
 	if (flags["ANNO_CREWMEMBER"] == 1) return false;
 	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
 	return false;
@@ -3570,10 +3570,10 @@ function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n“<i>Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.</i>” Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. “<i>Especially if you’d like to join us, [pc.name].</i>”");
 	}
 
-	player.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
+	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
 	clearMenu();
-	if (player.hasCock()) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
+	if (pc.hasCock()) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
 	addButton(1, "Service Kaede", annoxKaedeService, true);
 	addButton(2, "Watch", annoxKaedeWatch, true);
 	addButton(14, "Leave", annoxKaedeLeave);
@@ -3716,8 +3716,8 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 
 	// [Anno Facial] [Kaede Creampie]
 	clearMenu();
-	addButton(0, "Anno Facial", );
-	addButton(1, "Kade Creampie", );
+	addButton(0, "Anno Facial", annoxKaedeFuckThemAnnoFacial);
+	addButton(1, "Kade Creampie", annoxKaedeFuckThemCreampie);
 }
 
 function annoxKaedeFuckThemAnnoFacial():void
@@ -3754,7 +3754,7 @@ function annoxKaedeFuckThemCombine():void
 
 	processTime(60+rand(30));
 
-	player.orgasm();
+	pc.orgasm();
 	anno.orgasm();
 	
 	annoSexed(1);
@@ -3825,7 +3825,7 @@ function annoxKaedeService(inShop:Boolean = true):void
 	var ppKaede:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppKaede.balls = 2;
 	ppKaede.ballFullness = 100;
-	ppKaede.ballSize = 8;
+	ppKaede.ballSizeRaw = 8;
 
 	pc.loadInMouth(ppKaede);
 
@@ -3833,7 +3833,7 @@ function annoxKaedeService(inShop:Boolean = true):void
 	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
 	flags["KAEDE_FUCKED"];
 
-	procesTime(20+rand(10));
+	processTime(20+rand(10));
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

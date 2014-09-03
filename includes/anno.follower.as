@@ -467,7 +467,7 @@ function annoFollowerBuyMenu():void
 
 	annoFollowerInventoryCheck();
 
-	shopKeep = anno;
+	shopkeep = anno;
 	anno.keeperBuy = "“<i>Want something from my stock, boss?</i>” Anno asks, picking up a datapad and handing it over to you. “<i>Here’s what’s in inventory at the moment.";
 	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperBuy += " Steele Tech’s still supplying us with top-tier equipment, and plenty of it.</i>”";
 	else anno.keeperBuy += "My contacts might be a </i>little<i> more seedy these days, but the equipment they’re hooking me up with isn’t too far behind Steele Tech’s gear.</i>”";
@@ -487,7 +487,7 @@ function annoFollowerInventoryCheck():void
 			anno.inventory.push(new EMPGrenade());
 			anno.inventory.push(new NovaRifle());
 			anno.inventory.push(new NovaPistol());
-			anno.inventory.push(new SteeletechSuit());
+			anno.inventory.push(new SteeleTechSuit());
 		}
 
 		// Buy/Sell markups
@@ -502,11 +502,11 @@ function annoFollowerInventoryCheck():void
 			anno.inventory.push(new HammerCarbine());
 			anno.inventory.push(new FlashGrenade());
 			anno.inventory.push(new JoyCoPremiumShield());
-			anno.inventory.push(new SteeletechSuit());
+			anno.inventory.push(new SteeleTechSuit());
 		}
 
 		anno.sellMarkup = 1.1;
-		annm.buyMarkdown = 0.85;
+		anno.buyMarkdown = 0.85;
 	}
 
 	// Set her up so she can buy/sell everything
@@ -520,7 +520,7 @@ function annoFollowerSellMenu():void
 
 	annoFollowerInventoryCheck();
 
-	shopKeep = anno;
+	shopkeep = anno;
 	anno.keeperSell = "“<i>Got something weighing you down, boss? I can";
 	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperSell += " send just about anything back to Steele Tech for a good profit. Perks of being a field merchant!";
 	else anno.keeperSell += " fence just about anything through my friends. Just give me the word!";
@@ -978,7 +978,7 @@ function annoFollowerTailjobSex():void
 	
 	output("\n\nYou chuckle and ruffle Anno’s cum-slathered hair, giving her a little push towards the ship’s autocleaner as you gear up.");
 
-	player.orgasm();
+	pc.orgasm();
 	processTime(15+rand(5));
 
 	annoSexed(1);
@@ -1044,7 +1044,7 @@ function annoFollowerSuckAndFuckSex():void
 	output("\n\nBut the feeling of your cock pounding their owners’ face, her chest heaving with every thrust, dissuades you. Content to fondle and squeeze, you let your thumbs run across the stiff, pink peaks of her nipples, rolling their rounded points under your digits in slow, wide circles, one full rotation for every half-dozen pumps of your [pc.cock]. Anno moans, her back arching at your touch as her breath catches between mouthfuls of cock. Still, her fingers travel down, pulling open her");
 	if (anno.armor is AnnosCatsuit) output(" uniform straight down her belly to the crotch");
 	else output(" fly");
-	output", where her hand quickly disappears.");
+	output(", where her hand quickly disappears.");
 	
 	output("\n\nYou thought she was moaning before... Her voice breaks into a high-pitched whine as her fingers delve her sex, her cries only stifled when your [pc.cock] is occupying her throat. You fuck faster, hips hammering to the beat of her wrist’s movements, reciprocating her every movement with one of your own. Soon, your voice joins hers, quiet moans turning into bestial grunts as your hips batter her face, her oh-so-skilled tongue, mouth, and throat working in concert to milk every inch of cockflesh that comes their way. ");
 	
@@ -1265,7 +1265,7 @@ function annoFollowerAnalSexCum():void
 	pc.orgasm();
 	anno.orgasm();
 
-	procesTime(30+rand(10));
+	processTime(30+rand(10));
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1481,7 +1481,7 @@ function annoFollowerSixtyNineSex():void
 	
 	output("\n\nPanting with exhaustion and staggered by errant bursts of ecstasy in the afterglow of your lovemaking, you slump down, resting your head in in the soft, wet valley of Anno’s thighs, trying to catch your breath. You can’t stop a smile, though, as you see Anno’s tail wagging happily, especially as you reach out and stroke the soft white appendage, sending another shiver of bliss through your lover as you rest in each other’s arms.");
 
-	player.orgasm();
+	pc.orgasm();
 	anno.orgasm();
 	annoSexed(1);
 
@@ -1556,7 +1556,7 @@ function annoFollowerShowerSex():void
 		
 		output("\n\n“<i>Come on, boss. Make a mess,</i>” Anno urges, leaving her mouth wide-open at that last syllable, just as you let loose the first jet of jizz through the gap between her boobs. That first ribbon of [pc.cumColor] doesn’t quite hit her mouth, instead splattering over her cheek -- and vanishing a moment later as the hot, still-liquid load is washed away by the powerful spray of the showerhead. Another jet of spunk sprays over her chin, then the next is caught between her tits, filling the valley of Anno’s cleavage with your hot, creamy seed as she continues to pump you, still moving all through your orgasm and using her tits to milk every last drop from you. ");
 
-		player.orgasm();
+		pc.orgasm();
 		
 		output("\n\nWhen your climax passes, you’re left slumped against the shower stall’s wall and trying to catch your breath. Anno licks an errant bit of cum from her cheek as she stands, letting the water clear the rest for her. With a little wiggle of her hips, Anno makes her way to the front of the stall and plants her hands on the ceramic tiles, shifting her legs wide apart and raising her tail invitingly to give you a good look at the still-slightly parted lips of her sex. ");
 	}
@@ -1578,7 +1578,7 @@ function annoFollowerShowerSex():void
 		
 		output("\n\nFinally, you can take no more. With a shrill cry of feminine pleasure, you let your ausar lover bring you over the edge. Sexual bliss overtakes your every nerve, your body afire with desire while Anno feverishly eats you out with a tongue that moves faster and faster as you surrender to ecstasy. Shudders and shakes rock your body, their force nearly enough to make you go limp with exhaustion by the time your orgasm passes. Your prolonged moment of passion leaves Anno’s face awash with your juices -- which quickly wash away as the downpour continues from the shower head. With a little wiggle of her hips, Anno makes her way to the front of the stall and plants her hands on the ceramic tiles, shifting her legs wide apart and raising her tail invitingly to give you a good look at the still-slightly parted lips of her sex. ");
 
-		player.orgasm();
+		pc.orgasm();
 	}
 	
 	// Combine for Great Ausar Rugmunching
@@ -1619,14 +1619,14 @@ function annoFollowerSpecialGear():void
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
 
-	if (pc.hasItem(new GrayMicrobots()) && !player.hasKeyItem("Goozooka"))
+	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))
 	{
 		addButton(1, "Gray Goo", annoFollowerSpecialGearGrayGoo, "Gray Microbots", "Ask Anno about the samples of Gray Microbots.");
 	}
 	else
 	{
 		if (!pc.hasItem(new GrayMicrobots())) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You need to have a sample of Gray Microbots to hand.");
-		if (player.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You've already wrangled an upgraded version of the Goovolver out of Anno.");
+		if (pc.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You've already wrangled an upgraded version of the Goovolver out of Anno.");
 	}
 
 	addButton(14, "Back", annoFollowerMenu);

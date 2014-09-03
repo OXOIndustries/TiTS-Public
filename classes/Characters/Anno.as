@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.AnnosCatsuit;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Guns.LaserCarbine;
 	import classes.Items.Guns.Goovolver;
@@ -184,8 +185,10 @@
 		public function UpgradeVersion2(dataObject:Object):void
 		{
 			dataObject.inventory = new Array();
-			dataObject.inventory.push(new Goovolver().getSaveObject);
-			dataObject.inventory.push(new AusarTreats().getSaveObject);
+			dataObject.inventory.push(new Goovolver().getSaveObject());
+			dataObject.inventory.push(new AusarTreats().getSaveObject());
+			
+			dataObject.armor = new AnnosCatsuit().getSaveObject();
 		}
 	}
 }
