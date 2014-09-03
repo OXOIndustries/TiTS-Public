@@ -3586,7 +3586,7 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("“<i>What do you say, girls?</i>” you say, indicating the rapidly-growing");
 	if (pc.isCrotchGarbed()) output(" bulge in your [pc.lowerGarment]");
@@ -3727,7 +3727,7 @@ function annoxKaedeFuckThemAnnoFacial():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("A few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. At that last, crucial second, you pull out of her and level your [pc.cock] at Anno’s face, just inches above her lover’s now-agape hole. Anno goes wide-eyed as she realizes what’s about to happen, but doesn’t have time to do much else before your shoot your first wad of [pc.cumNoun] across her face. She recoils and gasps as a hot, sticky load splatters over her cheeks and lips, followed by more and more as you jack yourself off onto her.");
 	
@@ -3741,7 +3741,7 @@ function annoxKaedeFuckThemCreampie():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("A few more thrusts into Kaede’s spasming ass, and you’re on the brink of orgasm. You let it come on eagerly, working the surging load out through fervent strokes into Kaede’s spasming, orgasmically-writhing ass. With a final roar of pleasure, you slam yourself as deep into the halfbreed’s hole as you can go and let loose, pumping your first shot deep into her quivering hole. She cries out as she feels the first thick ropes of hot [pc.cumNoun] blasting into her, her voice joining with yours as you slowly withdraw your cock, still cumming all the while. You fill her utterly, pumping shot after shot of orgasmic juice into her bowels.");
 	
@@ -3771,7 +3771,7 @@ function annoxKaedeService(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("“<i>What do you say, boss?</i>” Anno grins, leaning in behind Kaede and wrapping her arms around her lover’s shoulders. “<i>Want a taste of this big girl’s thick, knotted puppy-cock?</i>”");
 	
@@ -3846,7 +3846,7 @@ function annoxKaedeWatch(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("“<i>How about I just watch?</i>” you ask, almost sheepish. There’s no good way to ask a pair of smoking hot babes if you can watch them lez out, is there? ");
 	
@@ -3916,7 +3916,7 @@ function annoxKaedeWatchHandsFree():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("“<i>Wouldn’t miss it,</i>” you answer, leaning back and enjoying the show. Anno winks at you, gently shifting Kaede’s hips until her cock’s facing the bulkhead beside you. It already looks swollen with cum, as if she’s ready to bust her nut at the drop of a hat. Anno keeps Kaede’s wrists pinned tight behind her back with one hand, the other thrusting faster and harder into Kaede’s behind and taking itself to the knuckle with every advance. ");
 	
@@ -3932,7 +3932,7 @@ function annoxKaedeWatchFacial():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO", "KAEDE");
+	showBust("ANNO_NUDE", "KAEDE_NUDE");
 
 	output("“<i>I’d rather see her shoot all over you,</i>” you say with a wink, crooking your finger at Anno and beckoning her out from around her lover.");
 	
@@ -4021,7 +4021,7 @@ function annoxKaedeLeave(inShop:Boolean = true):void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust("ANNO", "KAEDE");
 
 	output("Not one to get in the way of two lovers, you excuse yourself and");
 	if (inShop) output(" head back out of the shop.");

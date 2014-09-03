@@ -399,8 +399,11 @@ function annoFollowerBootOff():void
 
 function annoAtAnonsAddendum():void
 {
-	output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
-	addButton(8, "Anno", annoFindingALostPooch);
+	if (flags["ANNO_CREWMEMBER"] == 2)
+	{
+		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
+		addButton(8, "Anno", annoFindingALostPooch);
+	}
 }
 
 function annoFindingALostPooch():void
@@ -462,6 +465,7 @@ function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 	output("\n\n<b>Anno has joined your crew!</b>");
 	
 	currentLocation = "SHIP INTERIOR";
+	flags["ANNO_CREWMEMBER"] = 1;
 	
 	processTime(30);
 	
@@ -1936,7 +1940,7 @@ function annoxKaedeFollowerMeeting():void
 	clearOutput();
 	author("Savin");
 	showName("ANNO &\nKAEDE");
-	showBust("ANNO_NUDE", "KAEDE_NUDE");
+	showBust("ANNO", "KAEDE");
 
 	// {First Time}
 	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
