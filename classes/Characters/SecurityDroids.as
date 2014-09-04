@@ -29,15 +29,15 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "These security bots are old and outmoded, but that doesn't make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades. ";
-			this.customDodge = "Somehow, the turrets' swivelling moves them out of the way.";
-			this.customBlock = "The armor plates soak up your attack.";
+			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
+			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
 			this.plural = true;
 			this.lustVuln = 0;
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "laser emitters";
 			this.rangedWeapon.attack = 0;
 			this.rangedWeapon.damage = 0;
-			this.rangedWeapon.attackVerb = "rocket";
+			this.rangedWeapon.attackVerb = "shot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "steel plates";

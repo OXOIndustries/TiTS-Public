@@ -1952,7 +1952,7 @@ function annoSensorLinkBuff():void
 	output("\nAnno levels her left wrist at");
 	if (foes[0].plural) output(" one of");
 	else output(" the");
-	output(" " + foes[0].short + "and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
+	output(" " + foes[0].short + " and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
 	if (foes[0].plural) output("s");
 	output(", linking up with your own equipment in the process. <b>Accuracy increased!</b>\n");
 
@@ -2087,6 +2087,7 @@ function securityDroidLaserBarrage():void
 
 	for (var i:int = 0; i < attacks; i++)
 	{
+		output("\n");
 		rangedAttack(foes[0], pc, true, 1);
 	}
 	processCombat();
@@ -2216,7 +2217,7 @@ function deck13ArmoryFunc():Boolean
 	{
 		author("Savin");
 
-		output("Anno is poking around in the robotic guards, murmuring to herself about their manufacture.");
+		output("\n\nAnno is poking around in the robotic guards, murmuring to herself about their manufacture.");
 	}
 
 	if (flags["DECK13_TAKEN_PISTOL"] == undefined || flags["DECK13_TAKEN_RIFLE"] == undefined) addButton(0, "Weapon Racks", deck13WeaponRacks);
@@ -3140,7 +3141,7 @@ function deck13DecisionGoo():void
 	
 	if (pc.accessory is TamWolf || pc.accessory is TamWolfDamaged)
 	{
-		output("\n\n“<i>[pc.Master]?</i>” Tam-wolf whines.");
+		output("\n\n“<i>" + pc.mf("Master","Mistress") + "?</i>” Tam-wolf whines.");
 	
 		output("\n\n“<i>Not you, boy.</i>”");
 	}
@@ -3273,7 +3274,7 @@ function gigaGooSwordThrust():void
 	{
 		output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
 
-		var damage:int = foes[0].damage(true) + foes[0].aim() + foes[0].reflexes() + 25;
+		var damage:int = foes[0].damage(true) + ((foes[0].aim() + foes[0].reflexes()) / 2) + 5;
 		damage *= (100 + (25-rand(50)))/100;
 		genericDamageApply(damage, foes[0], pc, GLOBAL.PIERCING);
 	}
@@ -3411,7 +3412,8 @@ function annoPostQuestSexytimes():void
 		if (pc.cocks.length == 1) output("s");
 		output(" with your own mounting need, hard and hot against Anno’s bare thigh, so close to penetration you can almost feel the heat welling off of her sultry sex. One of her hands wraps around your turgid member, gently stroking it as she pulls your [pc.gear] away.");
 	}
-	else if (pc.hasVagina())
+	
+	if (pc.hasVagina())
 	{
 		output(" Your own [pc.cunts]");
 		if (pc.vaginas.length > 1) output(" are");

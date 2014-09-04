@@ -1072,7 +1072,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
-		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connects with their " + attacker.rangedWeapon.longName + "!");
+		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + attacker.rangedWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
 		if (!(attacker.rangedWeapon is Goovolver))

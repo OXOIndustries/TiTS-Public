@@ -36,7 +36,7 @@ package classes.Characters
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
 			this.plural = true;
-			this.lustVuln = 0;
+			this.lustVuln = 0.8;
 			this.meleeWeapon = new GooeyPsuedopod();
 			(this.meleeWeapon as GooeyPsuedopod).attack = 3;
 			(this.meleeWeapon as GooeyPsuedopod).damage = 12;
@@ -61,7 +61,7 @@ package classes.Characters
 			this.XPRaw = 250;
 			this.level = 5;
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 60;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			
@@ -147,14 +147,14 @@ package classes.Characters
 		
 		override public function prepForCombat():void
 		{
-			var gooPrime:GrayPrime = this.makeCopy();
+			var gigaGoo:GigaGoo = this.makeCopy();
 			
 			kGAMECLASS.userInterface.showBust("GIGAGOO");
 			kGAMECLASS.userInterface.showName("FIGHT:\nGIGA GOO");
 			
 			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
 			
-			kGAMECLASS.foes.push(gooPrime);
+			kGAMECLASS.foes.push(gigaGoo);
 		}
 		
 	}
