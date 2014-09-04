@@ -1591,7 +1591,7 @@ function initializeRooms():void
 	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
 	
 	rooms["NOVA MAIN DECK ELEVATOR"] = new RoomClass(this);
-	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\MAIN DECK";
+	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\nMAIN DECK";
 	rooms["NOVA MAIN DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
 	rooms["NOVA MAIN DECK ELEVATOR"].runOnEnter = novaMainDeckElevator;
 	rooms["NOVA MAIN DECK ELEVATOR"].southExit = "210";

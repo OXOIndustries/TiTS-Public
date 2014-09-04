@@ -696,10 +696,7 @@ function novaShipHangarElevator():Boolean
 	}
 	else
 	{
-		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
-		
-		addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
-		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+		addButton(0, "Elevator", novaElevatorControlPanel);
 	}
 	return false;
 }
@@ -712,12 +709,31 @@ function novaMainDeckElevator():Boolean
 	}
 	else
 	{
-		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
-		addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
-		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+		addButton(0, "Elevator", novaElevatorControlPanel);
 	}
 	
 	return false;
+}
+
+function novaElevatorControlPanel():void
+{
+	clearOutput();
+	author("Gedan");
+	showName("NOVA\nELEVATOR");
+	
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevators doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
+	
+	clearMenu();
+	if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
+	else addDisabledButton(0, "Hangar Deck");
+	
+	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(1, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
+	else addDisabledButton(1, "Main Deck");
+	
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(2, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	else addDisabledButton(2, "Deck 13");
+	
+	addButton(14, "Back", mainGameMenu);
 }
 
 function newTexasRoadFirstTime():Boolean

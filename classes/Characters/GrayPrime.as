@@ -1,5 +1,6 @@
 package classes.Characters 
 {
+	import classes.BreastRowClass;
 	import classes.Creature;
 	import classes.GameData.Pregnancy.PregnancyStageProgression;
 	import classes.GLOBAL;
@@ -12,6 +13,7 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.VaginaClass;
 	
 	/**
 	 * ...
@@ -35,7 +37,7 @@ package classes.Characters
 			this.long = "This glistening gray goo-girl isn't like her sisters. Tall, well-built, and realistically proportioned, she's almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She's even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
-			this.plural = true;
+			this.plural = false;
 			this.lustVuln = 1;
 			this.meleeWeapon = new GooeyPsuedopod();
 			(this.meleeWeapon as GooeyPsuedopod).attack = 2;
@@ -66,12 +68,12 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			
 			
-			this.femininity = 50;
+			this.femininity = 85;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 24;
 			this.thickness = 70;
-			this.tone = 80;
+			this.tone = 60;
 			this.hairColor = "none";
 			this.scaleColor = "none";
 			this.furColor = "none";
@@ -124,7 +126,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 2;
+			this.hipRatingRaw = 10;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -135,7 +137,19 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 2;
+			this.buttRatingRaw = 6;
+			
+			var pCunt:VaginaClass = new VaginaClass(true);
+			pCunt.hymen = false;
+			pCunt.loosenessRaw = 3;
+			pCunt.wetnessRaw = 3;
+			this.vaginas = [pCunt];
+			
+			var pTits:BreastRowClass = new BreastRowClass();
+			pTits.breastRatingRaw = 14;
+			pTits.breasts = 2;			
+			this.breastRows = [pTits];
+			
 			//No dicks here!
 			this.cocks = new Array();
 			
