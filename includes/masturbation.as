@@ -113,7 +113,14 @@ function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	
+	//Boobswell pads. Need a way to exclude this from random selection sometime.	
+	if(pc.hasStatusEffect("Boobswell Pads")) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Remove B.Swell";
+		fap.func = removeBoobswellPads;
+		faps.push(fap);
+	}
 	return faps;
 }
 
@@ -1300,4 +1307,15 @@ public function joyCoMagicMilker7Sucks():void
 		}
 		pc.milked(pc.milkFullness);
 	}
+}
+
+
+function removeBoobswellPads():void
+{
+	clearOutput();
+	author("Fenoxo");
+	pc.removeStatusEffect("Boobswell Pads");
+	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The boobswell pads shut down, their use expended.</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

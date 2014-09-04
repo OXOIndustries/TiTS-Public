@@ -3345,6 +3345,7 @@
 		}
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
+			
 			if (this.hasStatusEffect(statusName)) {
 				trace("Status '" + statusName + "' already present on " + this.short);
 				return;

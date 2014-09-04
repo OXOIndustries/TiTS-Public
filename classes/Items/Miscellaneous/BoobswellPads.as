@@ -65,11 +65,20 @@
 			if(target is PlayerCharacter) {
 				//First use
 				kGAMECLASS.author("Savin");
-				if(target.hasStatusEffectCount("Boobswell Pads") >= target.bRows())
+				if(target.hasStatusEffect("Boobswell Pads"))
 				{
-					kGAMECLASS.output("You're already wearing the pads. You'll have to remove them before you put on another set.");
-					if(!kGAMECLASS.debug) quantity++;
-					return false
+					if(target.bRows() == 1) 
+					{
+						kGAMECLASS.output("You're already wearing the pads. You'll have to remove them before you put on another set.");
+						if(!kGAMECLASS.debug) quantity++;
+						return false
+					}
+					else
+					{
+						kGAMECLASS.output("You can only wear one set of pads at a time.");
+						if(!kGAMECLASS.debug) quantity++;
+						return false
+					}
 				}
 				else if(target.bRows() == 1)
 				{
@@ -100,7 +109,7 @@
 						}
 						else 
 						{
-							kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),useBoobPads,x,kGAMECLASS.num2Text(x+1),"Place the pads on this row.");
+							kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),multiBoobPadRouter,x,kGAMECLASS.num2Text(x+1),"Place the pads on this row.");
 							kGAMECLASS.output("\n" + (x+1) + ": [pc.breastCupSize " + x + "]");
 						}
 					}
@@ -111,6 +120,13 @@
 				kGAMECLASS.output(target.capitalA + target.short + " uses the pads, but nothing happens.");
 			}
 			return false;
+		}
+		protected function multiBoobPadRouter(arg:int = 0):void
+		{
+			kGAMECLASS.clearOutput();
+			useBoobPads(arg);
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		protected function useBoobPads(arg:int = 0):void
 		{
@@ -134,6 +150,7 @@
 				if(pc.isChestGarbed()) kGAMECLASS.output("under your [pc.upperGarments] and ");
 				kGAMECLASS.output("onto your flat chest. You give a little gasp as the cold adhesive adheres to you, and again as the pads turn suddenly slightly... wet. As if they’re leaking something onto your skin, and makes you go flush with a combination of sudden arousal and chill.");
 			}
+			pc.lust(5);
 			pc.createStatusEffect("Boobswell Pads",arg,0,0,0, false, "LustUp", "The applied boobswell pads are slowly but steadily working to fill out your chest. You can remove them at any point via the \"Remove Swell\" command in the \"Masturbation\" menu, but the pads will still be consumed. They're one use only.", false, 4320);
 		}
 		protected function rand(max:Number):Number

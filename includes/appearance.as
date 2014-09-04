@@ -645,7 +645,7 @@ function appearance(target:Creature):void {
 						else output2("each.");
 					}
 					if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
-						output2(" You can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
+						output2(" You can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 					}		
 				}
 				//Inverted type
@@ -662,16 +662,18 @@ function appearance(target:Creature):void {
 						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 						else output2("each.");
 					}
-					if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+					if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 						output2(" Your chest actually houses wet, slippery, secret entrances.");
 					}
-					else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+					else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 						output2(" Plump lips cap off your chest in place of nipples.");
 					}
-					else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
+					else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 						output2(" There isn't any actual nub to your nipples - just flat areolae.");
 					}
 				}
+				if(target.breastRows[temp].breastRating() >= 1) output2("  You could easily fill a " + target.breastCup(temp) + " bra.");
+				temp++;
 			}
 			//Done with tits.  Move on.
 			//Lactation and breast cup final!
@@ -684,7 +686,6 @@ function appearance(target:Creature):void {
 				else if(target.milkFullness < 200) output2(" Your [pc.fullChest] are painfully swollen with [pc.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
 				else output2(" <b>Your [pc.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 			}
-			if(target.breastRows[0].breastRating() >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
 		}
 		//CROTCH STUFF!
 		if(target.hasCock() || target.hasVagina()) {
