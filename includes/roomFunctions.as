@@ -672,7 +672,7 @@ function firstTimeOnTarkusBonus():Boolean
 		CodexManager.unlockEntry("Raskvel");
 		output("\n\n<b>You are on the starship Nova, now known as the raskvel's city, Novahome.</b>");
 	}
-	return false;
+	return returnToShipAfterRecruitingAnno();
 }
 
 function BonusFunction210():Boolean

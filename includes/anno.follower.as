@@ -169,7 +169,7 @@ function annoFollowerMenu():void
 	{
 		if (haveFuckedAnno())
 		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
 			else addButton(8, "Sleep With", annoSleepToggleOn, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
 		}
 		else
@@ -181,7 +181,7 @@ function annoFollowerMenu():void
 	
 	if (haveFuckedAnno()) addButton(10, "Appearance", annoFollowerAppearance);
 	
-	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
+	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can't bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
 
 	addButton(14, "Back", crew);
@@ -616,7 +616,7 @@ function annoFollowerTalkAkkadi():void
 	
 	output("\n\n“<i>So I ended up working at Akkadi at the tender age of twenty two. I got pushed into the FutureTech group pretty quickly, and from there to working on military projects. Advanced shield generators for starships, the next generation hover-tank for the army, even reverse-engineering some primitive powered exoskeleton prototypes. But my real passion was the Warp Gates: I published my doctoral thesis from inside Akkadi, all about advancing Gate tech. That got somebody’s attention, and pretty soon I had my own lab and team to work with.</i>”");
 	
-	output("\n\nAnno grins at that. “<i>Fun times. Definitely made my folks proud. Anyway, did you know that Gate tech’s basically been static for the last fifteen hundred years? Once we got them working, that was pretty much it for Gate tech. Sure, we make the casings that float around in space sturdier, update the software from time to time, but the amazing fucking technology that shoots you across the galaxy in the blink of an eye? Nah, it works, let’s leave it alone. Hell, the gates in the core are basically running off computers and hardware that haven’t been updated in a millennium -- you better hope to God if they break, somebody in-system knows how to fix it.</i>” She chuckles, shaking her head at the thought. “<i>So, anyway, I rustled some feathers with my paper about starting to update and expand on the core tech powering the Gates. ");
+	output("\n\nAnno grins at that. “<i>Fun times. Definitely made my folks proud. Anyway, did you know that Gate tech’s basically been static for the last fifteen hundred years? Once we got them working, that was pretty much it for Gate tech. Sure, we make the casings that float around in space sturdier, update the software from time to time, but the amazing fucking technology that shoots you across the galaxy in the blink of an eye? Nah, it works, let’s leave it alone. Hell, the gates in the core are basically running off computers and hardware that haven’t been updated in a millennium -- you better hope to God if they break, somebody in-system knows how to fix it.</i>” She chuckles, shaking her head at the thought. “<i>So, anyway, I rustled some feathers with my paper about starting to update and expand on the core tech powering the Gates.</i>”");
 	
 	output("\n\n“<i>First step: micro-ize the tech. There’s no reason for the Gates to be so damn big, right? Maybe a thousand years ago we needed capital-ship sized platforms for the tech, but nowadays it’s all about microchips so small you can’t even see them, plus holo and hardlight mechanisms. So we spent about a year working to miniaturize the Gates, with a little help from the Joint Ausar Fleet’s R&D, who immediately saw the potential for transmat on the individual scale: imagine being able to invade a planet from orbit, but completely bypassing the planet’s air-to-ground defenses. You just truck into orbit and warp your troops and material behind enemy lines. It could have revolutionized warfare, much less personal travel and planetary transportation. God, imagine standing on Ausaril, then just stepping through a door frame and onto Terra? We could have changed the </i>galaxy!<i>.</i>”");
 	
@@ -638,7 +638,7 @@ function annoFollowerTalkAkkadi():void
 	output(" Your dad helped me out of a tough spot after that... I was in a pretty bad place. Gave me a chance to come work for his company, to work without... </i>that<i> hanging over me, without brass breathing down my neck about my projects.</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(0);
+	addDisabledButton(0, "Akkadi R&D");
 	processTime(10+rand(5));
 }
 
@@ -661,7 +661,7 @@ function annoFollowerTalkFamily():void
 	output(".</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(1);
+	addDisabledButton(1, "Family");
 	processTime(5+rand(3));
 }
 
@@ -681,7 +681,7 @@ function annoFollowerTalkVictor():void
 	output("\n\nAnno shrugs and smiles, slipping a comforting arm around your waist. “<i>I miss him too, [pc.name].</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(2);
+	addDisabledButton(2, "Victor");
 	processTime(5+rand(3));
 }
 
@@ -706,7 +706,7 @@ function annoFollowerTalkStudies():void
 	output("</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(3);
+	addDisabledButton(3, "Studies");
 	processTime(5+rand(3));
 }
 
@@ -738,7 +738,7 @@ function annoFollowerTalkRelationships():void
 	}
 
 	annoFollowerTalkMenu(false);
-	removeButton(4);
+	addDisabledButton(4, "Relationships");
 	processTime(5+rand(3));
 }
 
@@ -762,7 +762,7 @@ function annoFollowerTalkSteeleTech():void
 	output("\n\n“<i>Oh well,</i>” Anno says with a shrug. “<i>I’m out of there now, so I guess I shouldn’t complain. I do miss my lab, though. It had the most amazing view of the forests of Verdure...</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(5);
+	addDisabledButton(5, "Steele Tech");
 	processTime(5+rand(3));
 }
 
@@ -793,7 +793,7 @@ function annoFollowerTalkEntertainment():void
 	output("\n\n“<i>You know, I actually used to play the bass way back,</i>” Anno adds, a hint of pride in her voice. “<i>I wasn’t </i>great<i> or anything, but it’s the fucking bass guitar, right? Used to play with some of the other rockers back at Akkadi after work, but nobody wanted to hang out at Steele Tech. Probably because I was their boss. That’d be a hell of a thing: ‘Oh, you missed practice last night? Well you can miss work today, too! Bwahaha I’m so evil hahaha.’ Not that I would actually do that or anything.</i>”");
 
 	annoFollowerTalkMenu(false);
-	removeButton(6);
+	addDisabledButton(6, "Entertainment");
 	processTime(5+rand(3));
 }
 
@@ -946,6 +946,8 @@ function annoFollowerSexMenu():void
 	else addDisabledButton(4, "ShowerSex", "Show Sex", "You need some form of genitalia to properly enjoy a shower with the snowy ausar slut.");
 
 	addButton(5, "Eat Her Out", annoFollowerEatDatDogslootOut, undefined, "Eat Her Out", "Give Anno some oral loving.");
+	
+	addButton(14, "Back", annoFollowerMenu);
 }
 
 function annoFollowerTailjobSex():void

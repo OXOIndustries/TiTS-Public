@@ -44,19 +44,20 @@ function steeleTechTarkusOutsideFunction():Boolean
 
 function steeleTechTarkusEntry():Boolean
 {
-	// Setup the potential event flag for this shit
-	if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days;
-
-	if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
-	{
-		if (rand(3) == 0)
-		{
-			annoxKaedeNotRecruitedMeeting();
-			return true;
-		}
-	}
 	if (steeleTechTarkusShopAvailable())
 	{
+		// Setup the potential event flag for this shit
+		if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days;
+	
+		if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
+		{
+			if (rand(3) == 0)
+			{
+				annoxKaedeNotRecruitedMeeting();
+				return true;
+			}
+		}
+	
 		return steeleTechBonusFunction();
 	}
 	else
