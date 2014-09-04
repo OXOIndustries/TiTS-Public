@@ -177,6 +177,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"] = new RoomClass(this);
 	rooms["SHIP HANGAR"].roomName = "SHIP\nHANGAR";
 	rooms["SHIP HANGAR"].description = "Though dubbed a hangar, this suspended platform is little more than an exposed landing pad. It's a hexagonal, steelcrete plate, one of dozens that ring the central elevator spire. Blinking lights ring the edges to guide you when taking off or landing, and to keep other ships from clipping the platform when seeking their own. An elevator door hangs open to the south, waiting for you to press the button that will take you back to the ground, while your ship remains parked here, ready to be entered.";
+	rooms["SHIP HANGAR"].runOnEnter = mhengaShipHangarFunc;
 	rooms["SHIP HANGAR"].planet = "PLANET: MHEN'GA";
 	rooms["SHIP HANGAR"].system = "SYSTEM: ARA ARA";
 	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";
@@ -1590,7 +1591,7 @@ function initializeRooms():void
 	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
 	
 	rooms["NOVA MAIN DECK ELEVATOR"] = new RoomClass(this);
-	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\MAIN DECK";
+	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\nMAIN DECK";
 	rooms["NOVA MAIN DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
 	rooms["NOVA MAIN DECK ELEVATOR"].runOnEnter = novaMainDeckElevator;
 	rooms["NOVA MAIN DECK ELEVATOR"].southExit = "210";
@@ -3145,6 +3146,7 @@ function initializeRooms():void
 	rooms["TEXAS CUSTOMS"].description = "";
 	rooms["TEXAS CUSTOMS"].runOnEnter = customsAndCheckInOnNewTexas;
 	rooms["TEXAS CUSTOMS"].southExit = "501";
+	rooms["TEXAS CUSTOMS"].northExit = "503";
 	rooms["TEXAS CUSTOMS"].planet = "PLANET: NEW TEXAS";
 	rooms["TEXAS CUSTOMS"].system = "SYSTEM: NYE";
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.INDOOR);
@@ -3162,7 +3164,7 @@ function initializeRooms():void
 
 	rooms["501"] = new RoomClass(this);
 	rooms["501"].roomName = "CARGO\nTHOROUGHFARE";
-	rooms["501"].description = "Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld good and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled \"milk,\" packaged in huge, temperature-controlled barrels. To the north. a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled \"Customs.\" Your ship is parked back to the east.";
+	rooms["501"].description = "Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld goods and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled \"milk,\" packaged in huge, temperature-controlled barrels. To the north, a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled \"Customs\". Your ship is parked back to the east.";
 	rooms["501"].runOnEnter = undefined;
 	rooms["501"].eastExit = "500";
 	rooms["501"].northExit = "TEXAS CUSTOMS";
@@ -3170,6 +3172,273 @@ function initializeRooms():void
 	rooms["501"].system = "SYSTEM: NYE";
 	rooms["501"].addFlag(GLOBAL.INDOOR);
 	
+	//503 New Texas - descs in bonus func
+	rooms["503"] = new RoomClass(this);
+	rooms["503"].roomName = "NEW\nTEXAS";
+	rooms["503"].description = "";
+	rooms["503"].runOnEnter = newTexasRoadFirstTime;
+	rooms["503"].southExit = "TEXAS CUSTOMS";
+	rooms["503"].eastExit = "504";
+	rooms["503"].planet = "PLANET: NEW TEXAS";
+	rooms["503"].system = "SYSTEM: NYE";
+	rooms["503"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["503"].addFlag(GLOBAL.NPC);
+	
+	//504 A Dirt Road
+	rooms["504"] = new RoomClass(this);
+	rooms["504"].roomName = "A DIRT\nROAD";
+	rooms["504"].description = "Just walking along this pockmarked road has you wishing that the locals would do a better job maintaining their infrastructure. They don't seem to mind, though. All too often, you see guys walking by, escorting curvy, wiggly cow-girls with a well-placed, squeezing palm or casually groping fingers. Their vehicles, boxy-looking hovertrucks, occasionally zip by, undoubtedly on some errand. Wooden steps to the north lead up onto a white porch that makes up the facade of an impressive looking ranch house. Plenty of foot traffic is going in and out, and you're pretty sure you can make out a doormat with \"Welcome, Y'all\" spelled out on it.";
+	rooms["504"].runOnEnter = undefined;
+	rooms["504"].westExit = "503";
+	rooms["504"].eastExit = "505";
+	rooms["504"].northExit = "525";
+	rooms["504"].planet = "PLANET: NEW TEXAS";
+	rooms["504"].system = "SYSTEM: NYE";
+	rooms["504"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["504"].addFlag(GLOBAL.NPC);
+	
+	//505 The Road
+	rooms["505"] = new RoomClass(this);
+	rooms["505"].roomName = "THE\nROAD";
+	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that's been weatherworn into a what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
+	rooms["505"].runOnEnter = undefined;
+	rooms["505"].westExit = "504";
+	rooms["505"].eastExit = "506";
+	rooms["505"].planet = "PLANET: NEW TEXAS";
+	rooms["505"].system = "SYSTEM: NYE";
+	rooms["505"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["505"].addFlag(GLOBAL.NPC);
+	
+	//506 The Road
+	rooms["506"] = new RoomClass(this);
+	rooms["506"].roomName = "THE\nROAD";
+	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They're at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It's best to stay on the road for now.";
+	rooms["506"].runOnEnter = undefined;
+	rooms["506"].westExit = "505";
+	rooms["506"].eastExit = "507";
+	rooms["506"].planet = "PLANET: NEW TEXAS";
+	rooms["506"].system = "SYSTEM: NYE";
+	rooms["506"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["506"].addFlag(GLOBAL.NPC);
+	
+	//507 The Road
+	rooms["507"] = new RoomClass(this);
+	rooms["507"].roomName = "THE\nROAD";
+	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn't far to the northeast, and an impressive ranch house stands off the road to the northwest.";
+	rooms["507"].runOnEnter = undefined;
+	rooms["507"].westExit = "506";
+	rooms["507"].eastExit = "508";
+	rooms["507"].planet = "PLANET: NEW TEXAS";
+	rooms["507"].system = "SYSTEM: NYE";
+	rooms["507"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["507"].addFlag(GLOBAL.NPC);
+	
+	//508
+	//1 SW of barn
+	rooms["508"] = new RoomClass(this);
+	rooms["508"].roomName = "THE\nROAD";
+	rooms["508"].description = "A prairie breeze hits you as you walk, carrying the smell of straw and milk on an eastern breeze. Just to the northeast, you can see what is likely the source of the farmland scents: a red and white barn. You can vaguely hear the sound of mooing from within. The whole place has a fresh, wholesome air that's entirely at odds with the message you received and the attitudes of the customs agents.";
+	rooms["508"].runOnEnter = undefined;
+	rooms["508"].westExit = "507";
+	rooms["508"].eastExit = "509";
+	rooms["508"].planet = "PLANET: NEW TEXAS";
+	rooms["508"].system = "SYSTEM: NYE";
+	rooms["508"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["508"].addFlag(GLOBAL.NPC);
+	
+	//509
+	//Just south of SW barn corner
+	rooms["509"] = new RoomClass(this);
+	rooms["509"].roomName = "THE\nROAD";
+	rooms["509"].description = "This close to the barn, you're able to appreciate the work that went into its construction. Every beam is perfectly straight. The paint is smooth as if freshly washed. It's even been patterned after the cows that undoubtedly lie within, with white spots interrupting its more normal, crimson exterior. Rather than having the typical cow-print shape, the spots' edges follow the joints and braces of the wood, making the structure vaguely resemble some kind of blocky, strawberry cow. The doors in aren't far to the east. You can also follow the road west towards the ranch house and landing barn.";
+	rooms["509"].runOnEnter = undefined;
+	rooms["509"].westExit = "508";
+	rooms["509"].eastExit = "510";
+	rooms["509"].planet = "PLANET: NEW TEXAS";
+	rooms["509"].system = "SYSTEM: NYE";
+	rooms["509"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["509"].addFlag(GLOBAL.NPC);
+	
+	//510
+	//Barn entrance
+	rooms["510"] = new RoomClass(this);
+	rooms["510"].roomName = "BARN\nENTRANCE";
+	rooms["510"].description = "A hand painted piece of what looks like oak hangs above the barn's single sliding door, declaring it to be the \"Milk Barn\". Even stranger, the door is transparent. You can see right down the barn's central path, covered as it is by a bed of straw. You can only assume that the stalls along either side are equally carpeted with the stuff. You hear pleased-sounding moos and moans in equal proportion, and the air is heady with the scent of milk. The roadway leads west, back towards the farmhouse, and is blocked by a checkpoint to the east. The guards working it inform you that visitors aren't permitted past without a visa.";
+	rooms["510"].runOnEnter = undefined;
+	rooms["510"].westExit = "509";
+	rooms["510"].northExit = "511";
+	rooms["510"].planet = "PLANET: NEW TEXAS";
+	rooms["510"].system = "SYSTEM: NYE";
+	rooms["510"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["510"].addFlag(GLOBAL.NPC);
+	
+	//511
+	//The Barn (South End)
+	rooms["511"] = new RoomClass(this);
+	rooms["511"].roomName = "THE\nBARN";
+	rooms["511"].description = "The inside of barn assaults your senses with two things above all else: indecent moans and the scent of milk. A not-so-subtle undercurrent of sexual musk runs beneath them, tickling at your nose and making it impossible to ignore the sexual pleasure surrounding you. Despite the lurid scents and smells, the floor of the barn is clean. It's covered with a fine layer of hay that will undoubtedly keep things dry in case of an accident, not that you've seen one yet. A massive sliding door is positioned on the southern wall, leading back out to the road. Empty stalls sit east and west of here, and more of them line the passageway to the north.";
+	rooms["511"].runOnEnter = undefined;
+	rooms["511"].southExit = "510";
+	rooms["511"].northExit = "512";
+	rooms["511"].westExit = "515";
+	rooms["511"].eastExit = "516";
+	rooms["511"].planet = "PLANET: NEW TEXAS";
+	rooms["511"].system = "SYSTEM: NYE";
+	rooms["511"].addFlag(GLOBAL.INDOOR);
+	//rooms["511"].addFlag(GLOBAL.NPC);
+	
+	//512
+	//The Barn (GIANNA)(South Center)
+	rooms["512"] = new RoomClass(this);
+	rooms["512"].roomName = "THE\nBARN";
+	rooms["512"].description = "You're standing square in the middle of a wide passage that runs north-south through the center of the barn. Stalls line it on either side along its whole length, but what really catches your eye is the bank of blinking lights built into the eastern wall. Flat panel displays, blinking lights, and various keypads all vie for your attention. It looks like you've found the controls for the barn's machinery. The stall next to the console is closed, and marked \"occupied\". Faint moans emanate from within. Opposite, the door hangs open. You could step inside if you wished.";
+	rooms["512"].runOnEnter = undefined;
+	rooms["512"].southExit = "511";
+	rooms["512"].northExit = "513";
+	rooms["512"].westExit = "517";
+	rooms["512"].planet = "PLANET: NEW TEXAS";
+	rooms["512"].system = "SYSTEM: NYE";
+	rooms["512"].addFlag(GLOBAL.INDOOR);
+	rooms["512"].addFlag(GLOBAL.NPC);
+	
+	//513
+	//The Barn (North Center)
+	rooms["513"] = new RoomClass(this);
+	rooms["513"].roomName = "THE\nBARN";
+	rooms["513"].description = "It's not often you get to see buildings constructed in the ancients' styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they're obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they're milking more than milk too. The door to the east is marked \"occupied\" as well.";
+	rooms["513"].runOnEnter = undefined;
+	rooms["513"].southExit = "512";
+	rooms["513"].northExit = "514";
+	rooms["513"].planet = "PLANET: NEW TEXAS";
+	rooms["513"].system = "SYSTEM: NYE";
+	rooms["513"].addFlag(GLOBAL.INDOOR);
+	//rooms["513"].addFlag(GLOBAL.NPC);
+	
+	//514
+	//The Barn (North End)
+	rooms["514"] = new RoomClass(this);
+	rooms["514"].roomName = "THE\nBARN";
+	rooms["514"].description = "The barn's central thoroughfare comes to an abrupt end here at the north wall. Worse yet, the stalls on either side are closed and occupied. You can hear two cow-girls to the west. One is giggling while the other screams in what can only be pleasure. If only the swinging door wasn't locked, you'd be able to find out. To the east, there's rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You'll need to head south if you want to clear your head.";
+	rooms["514"].runOnEnter = undefined;
+	rooms["514"].southExit = "513";
+	rooms["514"].planet = "PLANET: NEW TEXAS";
+	rooms["514"].system = "SYSTEM: NYE";
+	rooms["514"].addFlag(GLOBAL.INDOOR);
+	//rooms["514"].addFlag(GLOBAL.NPC);
+	
+	//515
+	//Milking Stall - Will have a milker someday
+	rooms["515"] = new RoomClass(this);
+	rooms["515"].roomName = "MILKING\nSTALL";
+	rooms["515"].description = "A thickly-spread layer of hair makes every step you take a rustling, shuffling affair. The walls are surprisingly modern, covered in liquid and stain resistant tile. A large, industrial-sized milking device is built into the wall to the west, but it is currently powered down and retracted. There's a padded table that a potential milkee could sit or recline upon during the process. An activation button labelled \"Moo\" is recessed next to the machinery. Its purpose seems obvious. You can leave out the door to the east.";
+	rooms["515"].runOnEnter = undefined;
+	rooms["515"].eastExit = "511";
+	rooms["515"].planet = "PLANET: NEW TEXAS";
+	rooms["515"].system = "SYSTEM: NYE";
+	rooms["515"].addFlag(GLOBAL.INDOOR);
+	//rooms["515"].addFlag(GLOBAL.NPC);
+
+	//516
+	//Prostate Milk Stall - Savin wrote dis shit.
+	rooms["516"] = new RoomClass(this);
+	rooms["516"].roomName = "MILKING\nSTALL";
+	rooms["516"].description = "Unlike most of the stalls in the Milk Barn, this one isn't closed or empty. A single auburn-haired cow is sitting on a stool near the door, dressed up in a cow-print corset, panties, and stockings, but otherwise the stall is empty. The center of the room is dominated by what looks like a padded steel vaulting horse with several holes drilled into the top. Pipes lead from the holes to drains and other machines along the walls. Looming overhead is a large, powerful-looking mechanical arm, from which dangles a huge floppy pink dildo.\n\nA sign overtop the stall reads in faded letters, \"Male Milker.\" Doesn't take a genius to figure out what that means... ";
+	rooms["516"].runOnEnter = manMilkerRoomBonusFunc;
+	rooms["516"].westExit = "511";
+	rooms["516"].planet = "PLANET: NEW TEXAS";
+	rooms["516"].system = "SYSTEM: NYE";
+	rooms["516"].addFlag(GLOBAL.INDOOR);
+	rooms["516"].addFlag(GLOBAL.NPC);
+
+	//517
+	//Milking Stall - Will have another duplicate milker in it
+	rooms["517"] = new RoomClass(this);
+	rooms["517"].roomName = "MILKING\nSTALL";
+	rooms["517"].description = "Hay covers every square inch of the floor, there to catch any stray fluids and be quickly cleaned away. A gleaming machine of metal and plastic has been built into the wall. It appears to be built to pop out into the stall in order to more readily service any available cows. It only has a single button that you can see - a simple green circle with a picture of a cow on its face. You don't push it, yet, but it seems the only option available to you besides leaving. At least there's a comfortable-looking table for the prospective cow to sit or lie upon.";
+	rooms["517"].runOnEnter = undefined;
+	rooms["517"].eastExit = "512";
+	rooms["517"].planet = "PLANET: NEW TEXAS";
+	rooms["517"].system = "SYSTEM: NYE";
+	rooms["517"].addFlag(GLOBAL.INDOOR);
+	//rooms["517"].addFlag(GLOBAL.NPC);
+	
+	//525
+	//Porch Room Description
+	rooms["525"] = new RoomClass(this);
+	rooms["525"].roomName = "THE\nPORCH";
+	rooms["525"].description = "Big T.'s ranch house is like a super-sized version of an old Texas one, complete with a longhorn skull hanging over the door and a pair of rocking chairs on the front porch. An electric mosquito net hangs around the doorframe, the only sign of advanced technology around. Several cow-girls, bull-boys, and more human tourists are making their way in and out, many with black-and-white-splotched bags from the gift shop.";
+	rooms["525"].runOnEnter = undefined;
+	rooms["525"].southExit = "504";
+	rooms["525"].northExit = "526";
+	rooms["525"].planet = "PLANET: NEW TEXAS";
+	rooms["525"].system = "SYSTEM: NYE";
+	rooms["525"].addFlag(GLOBAL.OUTDOOR);
+	//rooms["525"].addFlag(GLOBAL.NPC);
+
+	//526
+	//Foyer Room Description
+	rooms["526"] = new RoomClass(this);
+	rooms["526"].roomName = "RANCH\nFOYER";
+	rooms["526"].description = "The central room of the ranch house is a huge, wood-paneled affair, with old-school lever guns, tribal totems, and stuffed animals adorning the walls in between advertisements for the Treatment and for Texan Milk. A huge staircase in front of you leads upwards to the second floor, helpfully labeled \"Manager's Office.\" A door to the right leads to the gift shop, which seems to be pretty busy; to the left is a wide open set of double doors leading into what looks like a steakhouse, complete with a longhorn skull and horseshoes nailed to the barn-like door.";
+	rooms["526"].runOnEnter = undefined;
+	rooms["526"].southExit = "525";
+	rooms["526"].northExit = "529";
+	rooms["526"].eastExit = "528";
+	rooms["526"].westExit = "527";
+	rooms["526"].planet = "PLANET: NEW TEXAS";
+	rooms["526"].system = "SYSTEM: NYE";
+	rooms["526"].addFlag(GLOBAL.INDOOR);
+	//rooms["526"].addFlag(GLOBAL.NPC);
+
+	//527
+	//Gift Shop Room Description
+	rooms["527"] = new RoomClass(this);
+	rooms["527"].roomName = "GIFT\nSHOP";
+	rooms["527"].description = "";
+	rooms["527"].runOnEnter = NTGiftShopBonusFunc;
+	rooms["527"].eastExit = "526";
+	rooms["527"].planet = "PLANET: NEW TEXAS";
+	rooms["527"].system = "SYSTEM: NYE";
+	rooms["527"].addFlag(GLOBAL.INDOOR);
+	rooms["527"].addFlag(GLOBAL.COMMERCE);
+ 
+	//528
+	//Big T.'s Barbeque Pit
+	rooms["528"] = new RoomClass(this);
+	rooms["528"].roomName = "BARBEQUE\nPIT";
+	rooms["528"].description = "";
+	rooms["528"].runOnEnter = NTBarbequeBonusFunc;
+	rooms["528"].westExit = "526";
+	rooms["528"].planet = "PLANET: NEW TEXAS";
+	rooms["528"].system = "SYSTEM: NYE";
+	rooms["528"].addFlag(GLOBAL.INDOOR);
+	rooms["528"].addFlag(GLOBAL.COMMERCE);
+
+	//529
+	//Secretary's Room Description
+	rooms["529"] = new RoomClass(this);
+	rooms["529"].roomName = "SECRETARY'S\nOFFICE";
+	rooms["529"].description = "At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?\"</i> she asks, looking up from her work, <i>\"He'd be happy to see you. Go on through.\"</i>";
+	rooms["529"].runOnEnter = undefined;
+	rooms["529"].southExit = "526";
+	rooms["529"].northExit = "530";
+	rooms["529"].planet = "PLANET: NEW TEXAS";
+	rooms["529"].system = "SYSTEM: NYE";
+	rooms["529"].addFlag(GLOBAL.INDOOR);
+	rooms["529"].addFlag(GLOBAL.NPC);
+
+	//530
+	//Big T.'s Office Description
+	rooms["530"] = new RoomClass(this);
+	rooms["530"].roomName = "BIG T'S\nOFFICE";
+	rooms["530"].description = "The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat's study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair. The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world's affairs all from his desk.";
+	rooms["530"].runOnEnter = undefined;
+	rooms["530"].southExit = "529";
+	rooms["530"].planet = "PLANET: NEW TEXAS";
+	rooms["530"].system = "SYSTEM: NYE";
+	rooms["530"].addFlag(GLOBAL.INDOOR);
+	rooms["530"].addFlag(GLOBAL.NPC);
+
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

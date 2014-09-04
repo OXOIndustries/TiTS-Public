@@ -1881,7 +1881,7 @@ function pennySexMenu(outputT:Boolean = true):void {
 		this.addDisabledButton(3,"Pawjob","Pawjob","This scene requires you to have a penis.");
 		//this.addDisabledButton(4,"FaceFuckHer");
 		if(penny.hasCock()) this.addButton(4,"Catch Anal",getAssFuckedByPenny,undefined,"Catch Anal","Get ass-fucked by Penny.");
-		addDisabledButton(4,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
+		else addDisabledButton(4,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	}
 	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(6,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");

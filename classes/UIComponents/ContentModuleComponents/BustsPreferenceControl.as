@@ -79,7 +79,7 @@
 			_descriptionText.antiAliasType = AntiAliasType.ADVANCED;
 			_descriptionText.x = 5;
 			_descriptionText.y = 0;
-			_descriptionText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
+			_descriptionText.styleSheet = UIStyleSettings.gSharedStyleSheet;
 			_descriptionText.name = "name";
 			if (_prio == 0) _descriptionText.htmlText = "<span class='words'><p><b>Primary bust preference.</b></p></span>";
 			if (_prio == 1) _descriptionText.htmlText = "<span class='words'><p><b>Secondary bust preference.</b></p></span>";

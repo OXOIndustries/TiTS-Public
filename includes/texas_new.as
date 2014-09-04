@@ -645,17 +645,320 @@ function worshipZeBullCawk():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Use Machine
+function useDaMilkar():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+	//{PC doesn't have a dick}
+	if(!pc.hasCock())
+	{
+		showName("\nMILKER");
+		output("\n\nYou step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine looks up, looks you up and down, and giggles. “<i>Sorry, honey. I don’t think you... uh... have the right bits and pieces to use this machine.");
+		if(pc.biggestTitSize() >= 1) output(" Why don’t you head on down to one of the other stalls? I’m sure the girls there will treat you right!</i>”");
+		else output(" Maybe you ought to go down to the gift shop and ask Ellie for some enhancements, that way you can use the other machines, at least!</i>”");
+		processTime(1);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	//{First time, PC has a dick}
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0)
+	{
+		output("You step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine hops up and beams at you. “<i>Hey there! Sure you can, all the milkers - even this big lug - are open to visitors. My name’s Carrie, and I’ll be taking care of you while you use it, okay? Before we get started, I gotta tell you: unlike the normal milkers, the boy-milker here’s pretty involved. You’re gonna have to have me walk you through using it the first time at least, so I hope you’re comfortable with a girl seeing you naked.</i>”");
+		clearMenu();
+		//[Okay] [No thanks]
+		addButton(0,"Okay",okayEllieYaCuntLetsMilkMeFirstTime);
+		addButton(1,"No Thanks",FirstManMilkUseNoThanks);
+	}
+	//Repeat
+	else
+	{
+		output("When you approach, Carrie hops up and flashes you a big, doe-eyed smile. “<i>Hey there, [pc.name]! You here to use the boy-milker again? If so, since you’ve used it before, you can go on ahead without me if you want... or would you rather I stick around and help you out? I don’t mind either way!</i>”");
+		clearMenu();
+		//Use w/ Carrie
+		addButton(0,"w/Carrie",okayEllieYaCuntLetsMilkMeFirstTime,undefined,"w/Carrie","Ask Carrie to help you out in the milking stall. A little companionship never hurt, either.");
+		//Use w/o Carrie
+		addButton(1,"w/o Carrie",useTheMilkerWithoutCarrieYaSkag,undefined,"w/o Carrie","Tell Carrie you can get yourself situated.");
+		addButton(14,"Leave",mainGameMenu);
+	}
+}
+
+//No Thanks
+function FirstManMilkUseNoThanks():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+	//{PC will get First Time interactions until they decide to go through with it}
+	output("If that’s the case, no thank you.");
+
+	output("\n\nCarrie shrugs. “<i>Suit yourself, sugar. I’m sure there’s plenty of girls who’d be happy to take care of you if you get too pent up, so no worries!</i>”");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Okay
+function okayEllieYaCuntLetsMilkMeFirstTime():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+
+	//if First time: 
+	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output("You nod and introduce yourself in turn. ");
+	output("The auburn-tressed cow-girl grins and leads you into the stall, shutting the door behind you, flipping a little lock that turns on an OCCUPIED sign on the door. “<i>Not a lot of bulls need to use the boy-milker here - that’s a prostate milker if you want to get fancy - so you get to have some privacy, at least. Well, aside from me, anyway! Don’t worry, you’ll barely know I’m here. Unless you want to, anyway,</i>” Carrie says, giving you a little wink. “<i>");
+	if(!pc.isNude()) output("Anyway, let’s get you out of those clothes, alright?</i>”");
+	else output("I’ll hold onto your gear for you, alright?</i>”");
+
+	output("\n\nA little nervously, you do as the cow asks, stripping off your [pc.gear] and handing your equipment over piece by piece. Carries lays it all out on a small table inside the stall before turning back to you, giving you a reassuring smile even as her wandering eyes take in your nude form. “<i>Alrighty then! Let me help you get strapped into the machine here,</i>” she says, practically skipping back to your side and indicating ");
+	if(!pc.isBiped()) output("for you to just step up onto and over the machine, putting the weight of your belly onto it -- “<i>don’t worry, it can take your weight, no problem!</i>”");
+	else output("a pair of stirrups at one end, and a handlebar at the other. With a little help from your bovine assistant, you’re able to hop onto the machine and, at her instruction, lay face-down atop it.");
+	output(" Thankfully, a lining of wool padding separates most of your bare [pc.skinNoun] from the cold hard steel of the machine. Carrie adjusts the straps around your [pc.legs], making sure you’re nice and snug.");
+
+	output("\n\n“<i>Pretty as a picture, stud!</i>” she cheers, taking a step back. “<i>Now, let’s get your bits and pieces tucked away down here,</i>” she adds, stepping behind you and reaching between your [pc.legs]. Your breath catches as her slender, strong fingers wrap around your [pc.cock], hefting your flaccid length and guiding it into the nearest of the many padded holes in the machine.");
+	if(pc.cockTotal() > 1) 
+	{
+		output(" Carrie repeats the process for your remaining cock");
+		if(pc.cockTotal() > 2) output("s");
+		output(", guiding ");
+		if(pc.cockTotal() == 2) output("it");
+		else output("them each");
+		output(" into one of the other holes beneath you.");
+	}
+	output("\n\nOnce ");
+	if(pc.cockTotal() == 1) output("it’s");
+	else output("they’re");
+	output(" in, she gives you a couple friendly tugs until you’re nice and rigid before turning to you and saying “<i>There we go, " + pc.mf("handsome","cutie") + "! There’s a little dial on the side of the machine - just twist it up and down to set how snug your little ");
+	if(pc.cockTotal() == 1) output("buddy is");
+	else output("buddies are");
+	output(" down there. You want a nice, tight grip, but not uncomfortable. Trust me, you’ll be bucking your hips into ");
+	if(pc.cockTotal() == 1) output("that hole");
+	else output("those holes");
+	output(" like crazy when we get started!</i>”");
+
+	output("\n\nYou give her a nod and adjust the dials as she instructed, making sure your [pc.cocks] ");
+	if(pc.cockTotal() == 1) output("is");
+	else output("are");
+	output(" nice and cozy in the softly padded, almost slick, holes. Once you’re finished and give Carrie the thumbs up, she steps back up to you with a big pink bottle in her hand. “<i>Almost set, sugar. I’m just gonna make sure you’re nice and ready for Mister Floppycock up there, and you’ll be ready for the ride of your life!</i>”");
+	output("\n\nCarrie snaps on a latex glove and squirts a nice, thick handful of what can only be lube into her gloved palm. She rubs it between her fingers before reaching back to your [pc.butt] and wiping them through the crack of your ass. You wince at the sudden cold sensation, but manage to make yourself relax as a pair of her fingers begin circling, and then incessantly pressing in against, your [pc.asshole]. “<i>Just relax, babe. You’ll be glad you had a little help when we get started,</i>” Carrie coos soothingly, gently working a pair of her fingers into your ass. You bite your lip, trying not to groan too much as she gently spreads a nice, thick coat of lube through your anal passage.");
+	output("\n\n“<i>If you ask me, this is how it ought to be,</i>” Carrie says conversationally as she fingers your behind. “<i>No need for this crazy ol’ machine, when you’ve got a cow with talented fingers at your beck and call! But that’s just me,</i>” she adds with a giggle, one of her fingers putting just enough pressure on your prostate to make your [pc.cocks] jump in ");
+	if(pc.cockTotal() == 1) output("its restraint.");
+	else output("their restraints.");
+
+	output("\n\n“<i>All set!</i>” she says after another minute, pulling her lube-drenched fingers from your now equally-soaked behind. “<i>That ought to keep you nice and comfy while Mister Floppycock does his business. If you feel like you need more, don’t hesitate to ask, okay? This is supposed to be fun and, more importantly, feel really good. Just holler if you need something, okay? I’ll be right here with you the whole time, sugar. So lie back, relax, and get ready to cum buckets!</i>”");
+
+	output("\n\nWith that, Carrie step back to her stool, dims the lights to a dark, moody hue, and presses a big red button next to the door. “<i>Have fun!</i>”");
+
+	pc.lust(15);
+	processTime(5);
+	//[Continue to PROSTATE ABUSE WHOO]
+	clearMenu();
+	addButton(0,"Next",savinAbusesYerButtBecauseThatsHowHeLikesIt);
+}
+
+//Use w/o Carrie
+//Tell Carrie you can get yourself situated.
+function useTheMilkerWithoutCarrieYaSkag():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+
+	output("You tell Carrie that you’ll be fine without her help.");
+
+	output("\n\n“<i>You sure, babe? Okey-dokey, then. Job says I have to sit in the room with you, but you can get ahead and get yourself sat down and lubed up. Don’t hesitate to holler if you need help, though - that’s what I’m here for!</i>”");
+
+	output("\n\nYou thank the red-headed cow and step into the stall with her. She closes and locks the door behind you, then sits herself down and hands you a bright pink bottle of lube from the table. You spend a moment ");
+	if(!pc.isNude()) output("dressing down, ");
+	output("setting your equipment aside on the table before mounting the milking machine. You shift your weight onto it and adjust the straps around your [pc.legs], leaving yourself nice and spread open. You lean back, squirt a nice thick dollop of lube into your palm, and spend a couple minutes getting yourself nice and ready. Your fingers find your [pc.asshole] easily, and with a little breathing exercise, you relax enough to slip yourself inside and slather your inner walls until they’re absolutely drooling with moisture. Perfect!");
+
+	output("\n\nYou set the bottle aside and look back to your bovine attendant, giving her a thumbs up. “<i>Alright babe, just hold on and spread ‘em wide for Mister Floppycock!</i>” Carrie says, flashing you a grin before dimming the lights to a sultry haze of darkness and pushing the big red button next to her stool.");
+
+	pc.lust(5);
+	processTime(5);
+	//[To Prostate Abuse Whoo!]
+	clearMenu();
+	addButton(0,"Next",savinAbusesYerButtBecauseThatsHowHeLikesIt);
+}
+
+//Prostate Abuse Whoo!
+function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+
+	output("With a little mechanical buzz, the machine over your head rumbles to life. You watch with wide eyes as the steel arm slowly lowers from the ceiling, all the lights in the room seeming to concentrate on the long, hard rod. It’s almost majestic - or at least, as majestic as something can be when it has an almost comically oversized pink dildo hanging off of it. The prostate milker’s long arm extends well behind you, almost to the door, before steadily making its way back, finishing its descent at just the right speed so that it reaches you from above and behind at the same moment, coming in at something of a downward angle.");
+
+	output("\n\nA moment later, the machine shifts ever so slightly until the crown of the thick, soft equine dong is pressed against your [pc.asshole]. You wince as a slight pressure builds against your hole, but penetration doesn’t follow... at least for now. Just when you’re about to complain, a booming mechanical voice from one of the machines on the wall announces: “<i>APPROXIMATING MEASUREMENTS. CALCULATING IDEAL VOLUME FOR MAXIMUM PENETRATION. PLEASE WAIT.</i>”");
+
+
+	output("\n\nYou feel the pressure on your backdoor mount, and the thick cock seems to adjust its size, ");
+	if(pc.ass.looseness() >= 4) output("increasing in thickness to suit your gaping, well-used asshole");
+	else if(pc.ass.looseness() <= 1) output("shrinking down to better fit your tight backdoor");
+	else output("making a few minor corrections to better suit your altogether average pucker");
+	output(". When the machine is satisfied, and the dildo pressing in on your [pc.asshole] feels like it’s exactly the biggest dick you could ever possibly hope to take, the arm begins to slide it into you. You give a little cry as you’re penetrated, but the mechanical arm is surprisingly gentle at first, if relentless, as it slowly slides inch after agonizing inch into your lubed-up asshole, steadily feeding you the full foot of its length. Your [pc.cocks] jump");
+	if(pc.cockTotal() == 1) output("s");
+	output(" in response to the pressure on your backdoor, and again when the crown of the latex cock rubs against the little nub of your prostate. You can’t help but let out a long, low moan as the machine shifts a little weight behind the dildo once it hits your rectal pleasure-bud, making sure that every inch of robotic cock that follows it rubs and teases you through the thin muscles of your anus. Your rod");
+	if(pc.cockTotal() > 1) output("s swell");
+	else output(" swells");
+	output(" to full hardness, straining against the padded hole");
+	if(pc.cockTotal() > 1) output("s");
+	output(" beneath you.");
+
+	pc.buttChange(Math.round(pc.analCapacity()/2),true,true,false);
+
+	output("\n\nThe machine doesn’t care, though: it mechanically continues its ceaseless advance. Only when you feel the wide, cold steel base of the mechanical arm does the gut-filling pressure finally abate, giving you a moment to catch your breath. Your breath is already coming shallow and ragged as your body struggles to adjust to the overwhelming girth inside you. Your [pc.legs] strain against the straps, muscles going wild, desperate to escape. All you can consciously do is grip the handlebars at the head of your body-rest and brace yourself.");
+
+	output("\n\nAll that in the span of no more than five seconds, before the machine begins to move again. You try to scream, but your voice fails to come, leaving your mouth agape in a silent “<i>O</i>” of ecstasy as the latex cock inside you pulls back, almost to the crown, before thrusting back in. One long, hard push inwards until it’s hilted inside you. Faster this time, taking only a couple of seconds to bury all twelve inches up your [pc.asshole]. You’re given no time to adjust, and the moment the dildo hilts you, it begins to withdraw again, keeping the same steady speed in, out, and in again. Your [pc.cocks] squirm");
+	if(pc.cockTotal() == 1) output("s");
+	output(" in the soft, tight grip of the hole");
+	if(pc.cockTotal() > 1) output("s");
+	output(", reacting to the steadily increasing ass-fucking you’re getting by swelling to full size and starting to drool a bit, little droplets of pre beading on your [pc.cockHeadBiggest].");
+
+	output("\n\nThe machine only moves faster after that, picking the pace up until you feel like a jackhammer’s having its way with you. All the while, pressure continues to shift downwards as the machine hones in on your prostate, massaging it through the thin wall of your ass. The sensation is heavenly, and absolutely overwhelming. You cling to the vaulting horse, clutching at the straps and stirrups binding your limbs for dear life. Over the mechanical whirring and droning of the arm pounding you, you start to hear a high scream of pleasure, growing louder with every second until it nearly drowns out the machine. It takes a moment to recognize the voice as your own, wrent from your mouth in gasps and cries of unadulterated anal bliss.");
+	output("\n\nYou can’t hold on long against the unabating force of the prostate milker. Another few thrusts into your abused backdoor, and you feel the sudden rush of orgasm leaping up to claw at your mind. [pc.EachCock] throbs as your prostate is stimulated to climax, sending a thick gout of [pc.cum] rushing into the pussy-tight grip of the cockholster");
+	if(pc.cockTotal() > 1) output("s");
+	output(" beneath you. You clutch and claw at the rest beneath you as you’re mechanically fucked to orgasm, but the machine doesn’t ease up at all as it drains the first load from you, but steadily continues to fuck your [pc.asshole]. A slight vacuum pressure builds up around your cock");
+	if(pc.cockTotal() > 1) output("s as they discharge");
+	else output(" as it discharges");
+	output(", draining your spooge out of the bodyrest and down through a single thick tube connecting it to another machine on the wall.");
+	var firstCum:Number = pc.cumQ();
+	var cumTotal:Number = pc.cumQ();
+	//if PC has a huge cum volume:
+	if(pc.cumQ() >= 5000) output(" You watch as the tube strains and stretches to accommodate your inhumanly massive load, sucking it out as quick as you can produce it.");
+	//elseif moderate cumVol:
+	else if(pc.cumQ() >= 500) output(" You watch as the tube sucks down your hefty load of spunk, draining it away with mechanical efficiency just as quickly as you can produce it.");
+	else output(" You watch as your unremarkable load of spunk is carried away in the blink of an eye by the machine, sucking so quickly that you almost feel like it’s trying to suck another wad out of you on the heels of the first - the dildo still pumping your ass sure is!");
+	//Do the first two orgasms now so we can check if the PC has cum left for a third.
+	pc.orgasm();
+	cumTotal += pc.cumQ();
+	pc.orgasm();
+	output("\n\nYour orgasm is drawn out by the thrusting latex cock, as if the waves of pleasure will never abate. Worse, when your orgasmic bliss starts to die down, the machine changes tactics: you feel a tiny rumble in your ass, which quickly grows into an outright vibration at the apex of a deep, colon-stretching thrust, sending shivers up your spine. The milker’s turned on a vibe setting, and starts to move even faster, now. A scream tears from your throat as the shivering schlong rams twelve inches deep into you, and you’re barely given time to blink before it hammers back again. The machine never tires, never falters, never skips a beat: it just relentlessly pounds your [pc.asshole] until it wrings another orgasm from you. ");
+
+	output("\n\nYour [pc.balls] churn");
+	if(pc.balls > 0) output("s");
+	output(" as the mechanical milker pushes you over the edge once again, making you bust a second nut into the waiting mouth");
+	if(pc.cockTotal() > 1) output("s");
+	output(" of the vacuum-sucker machine. Your cum is spirited away as fast as you can spurt it out, leaving your ");
+	if(pc.cockTotal() > 1) output("cock a drooling, half-hard mess to be gently suckled on by the insatiable milker");
+	else output("cocks a mass of drooling, half-hard members, gently suckled on by the hungry milkers");
+	output(". You don’t even have time to go soft before a third orgasm is wrung from you, your cock");
+	if(pc.cockTotal() > 1) output("s");
+	output(" spurting ");
+	if(pc.cumQ() < 8) 
+	{
+		output("a few trickles of spunk, which the machine quickly sucks away from your quivering, half-hard member");
+		if(pc.cockTotal() > 1) output("s");
+		output(". You don’t have much left to give, but the machine continues to relentlessly fuck you, not satisfied until it’s drained every drop");
+	}
+	else if(firstCum > pc.cumQ()) 
+	{
+		output("another load, much smaller than the last ones, as your [pc.balls] ");
+		if(pc.balls <= 1) output("is");
+		else output("are");
+		output(" drained one busted nut at a time");
+	}
+	else output("a third thick, creamy load of virile spunk");
+	output(".");
+	cumTotal += pc.cumQ();
+	pc.orgasm();
+
+	output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute, orgasm after orgasm until your [pc.balls] ");
+	if(pc.balls <= 1) output("is");
+	else output("are");
+	output(" completely drained, cock");
+	if(pc.cockTotal() > 1) output("s");
+	output(" just drooling trickles of watery spooge into the unabating suction of the collecting pump. Only when you manage to cum on pretty much empty, your [pc.cocks] only shuddering and drooling in response to another anal orgasm, does the machine begin to slow. It takes six more thrusts before it finally manages to draw down to a creeping stop, still half-lodged in your ass, the full brunt of the cock’s crown pressing down on your poor, battered prostate. With agonizing sluggishness, the milker withdraws from you, making sure you feel every inch of vibrating latex prick rumble out of your abused, gaping [pc.asshole]. You’re not going to walk straight for days after this.... ");
+
+	output("\n\n“<i>All done!</i>” Carrie announces, hopping off her stool and pressing the red button again. With a satisfied whir, the milker shudders and withdraws back up into the ceiling. Carrie walks over to you and puts a reassuring hand on your battered, bare butt. “<i>Poor thing. I hope Mister Floppycock wasn’t too rough on you. C’mon, let’s get you out of those straps...</i>”");
+	//Doing this stuff early so display will have the full total:
+	processTime(45);
+	cumTotal += pc.cumQ();
+	pc.orgasm();
+	cumTotal += pc.cumQ();
+	pc.orgasm();
+	cumTotal += pc.cumQ();
+	pc.orgasm();
+
+	output("\n\nIt takes a minute for Carrie to help you out of the harness and onto your [pc.feet]. You’re a bit wobbly at first, but your bovine attendant steadies you and helps you collect and don your [pc.gear]. As you’re getting kitted up, Carrie wanders over to the spooge-collecting machine on the wall and punches a button labeled “<i>RESULTS.</i>” The display immediately lights up with the amount you produced: <b>" + cumTotal + "mLs</b>");
+
+	output("\n\n“<i>Oh, hey, before you go: since we’ve collected your sperm properly, would you mind if we sold it? Plenty of people out there are real choosey about what genes they want, and you look like a " + pc.mf("prize winning stud","a cute lil’ thing any girl would want to father their children") + "! I can even give you some money for it up front!</i>”");
+	
+	//[Yes] [No]
+	clearMenu();
+	StatTracking.track("milkers/prostate milker uses");
+	StatTracking.track("milkers/cum milked", cumTotal)
+	addButton(0,"Yes",sureSellMyCumBabiesFarAndWide,cumTotal);
+	addButton(1,"No",noIDontWantToSellBabies);
+}
+
+//Yes
+function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
+{
+	var x:int = 2;
+	x += Math.round(amount/100);
+	if(x > 50) x = 50 + Math.round((amount-5000)/200);
+
+	//honey worth more!
+	if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) x *= 2;
+
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+	output("“<i>Sure,</i>” you say, rubbing your [pc.butt].");
+
+	output("\n\n“<i>Great!</i>” Carrie beams, pushing another button. A credit chit pops out of the machine. “<i>Here you go! You ");
+	if(amount > 10000) output("gave us so very, very much");
+	else if(amount > 1000) output("gave so much");
+	else if(amount > 500) output("gave a pretty good amount");
+	else output("gave enough");
+	output(" that you’ll get " + x + " credits.");
+	if(amount > 1000) output(" I’m sure you’ll have a whole bunch of little yous running around the galaxy in no time!");
+
+	output("</i>”\n\nYou thank the cow-girl and take the chit before you stagger off.");
+
+	pc.credits += x;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//No
+function noIDontWantToSellBabies():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nCARRIE");
+	showBust("CARRIE");
+	output("“<i>I’d rather you didn’t,</i>” you say, rubbing your [pc.butt]. ");
+
+	output("\n\n“<i>Aww, you sure?</i>” Carrie says, blinking her big doe-eyes at you. “<i>A lot of mommies would be so happy to get some of your cum!</i>”");
+
+	output("\n\nYou shake you head, and she sighs, turning back to the machine and pressing a button labeled “<i>DESTROY.</i>”");
+
+	output("\n\n“<i>Okay, off to the incinerator it goes.</i>” ");
+
+	output("\n\nYou thank the cow-girl before you stagger off.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
 
 /*
 output("\n\n");
 output("\n\nThe Ranch House");
-
-
-
-
-
-
-
 
 output("\n\nPorch Room Description");
 output("\n\nBig T.’s ranch house is like a super-sized version of an old Texas one, complete with a longhorn skull hanging over the door and a pair of rocking chairs on the front porch. An electric mosquito net hangs around the doorframe, the only sign of advanced technology around. Several cow-girls, bull-boys, and more human tourists are making their way in and out, many with black-and-white-splotched bags from the gift shop. ");

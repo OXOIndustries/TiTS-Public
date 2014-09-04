@@ -123,6 +123,8 @@
 		include "../includes/saendra.as";
 		include "../includes/texas_new.as";
 		include "../includes/vanae.as";
+		include "../includes/anno.follower.as";
+		include "../includes/ellie.as";
 		
 		include "../includes/lightsOut.as";
 			
@@ -205,7 +207,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.49";
+			version = "0.02.50";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -501,6 +503,11 @@
 		public function removeButton(slot:int):void
 		{
 			userInterface.addDisabledButton(slot);
+		}
+		
+		public function refreshFontSize():void
+		{
+			userInterface.refreshFontSize(gameOptions.fontSize);
 		}
 		
 		public function showCodex():void

@@ -242,6 +242,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["GIGAGOO"] = new GigaGoo();
 	}
+	if (!justUpdate || (justUpdate && chars["ELLIE"] == undefined))
+	{
+		chars["ELLIE"] = new Ellie();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

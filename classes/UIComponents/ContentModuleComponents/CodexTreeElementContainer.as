@@ -212,7 +212,7 @@ package classes.UIComponents.ContentModuleComponents
 		private function linkContainer():TextField
 		{
 			var tf:TextField = new TextField();
-			tf.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
+			tf.styleSheet = UIStyleSettings.gSharedStyleSheet;
 			tf.width = 170;
 			tf.multiline = true;
 			tf.wordWrap = false;

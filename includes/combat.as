@@ -23,22 +23,24 @@ function combatMainMenu():void
 	userInterface.showPrimaryOutput();
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
-		clearOutput();
 		//Track round, expires on combat exit.
 		if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
 		else pc.addStatusValue("Round",1,1);
 
 		//If a round has passed since the last concentrated fire proc, clear the values as if a miss occurred.
 		if(pc.statusEffectv2("Concentrated Fire") + 1 < pc.statusEffectv1("Round")) concentratedFire(false);
-		
-		//Show what you're up against.
-		if(foes[0] == celise) this.userInterface.showBust("CELISE");
-		for(var x:int = 0; x < foes.length; x++) 
-		{
-			if(x > 0) output("\n\n");
-			displayMonsterStatus(foes[x]);
-		}
 	}
+	
+	//Show what you're up against.
+	// This only happening during the first initial display of the combatMainMenu should be irrelevent - it should be okay
+	// to regenerate/display it without having to cache the text/convert Tease menu to output2
+	if(foes[0] == celise) this.userInterface.showBust("CELISE");
+	for(var x:int = 0; x < foes.length; x++) 
+	{
+		if(x > 0) output("\n\n");
+		displayMonsterStatus(foes[x]);
+	}
+	
 	//Check to see if combat should be over or not.
 	//Victory check first, because PC's are OP.
 	if(allFoesDefeated()) {
@@ -77,7 +79,8 @@ function combatMainMenu():void
 	// Grayprime Gooclones
 	if (foes[0].hasStatusEffect("Gooclones"))
 	{
-		output("\nThere are " + foes[0].statusEffectv1("Gooclones") + " Lust Clones remaining, teasing you with their bountiful gray bodies, all but inviting you to just drop everything and submit to pleasures of the flesh!");
+		var numClones:int = foes[0].statusEffectv1("Gooclones");
+		output("\nThere " + ((numClones == 1) ? "is" : "are") + " Lust Clone" + ((numClones == 1) ? "" : "s") + " remaining, teasing you with " + ((numClones == 1) ? "her":"their") +" bountiful gray " + ((numClones == 1) ? "body" : "bodies") + ", all but inviting you to just drop everything and submit to pleasures of the flesh!");
 	}
 	
 	//Stunned Menu
@@ -1364,8 +1367,10 @@ function teaseCrotch(target:Creature):void {
 }
 
 //Name, long descript, lust descript, and '"
+// NO SIDEEFFECTS TO GAME DATA YO
 function displayMonsterStatus(targetFoe):void 
 {
+	clearOutput();
 	if(targetFoe.HP() <= 0) {
 		output("<b>You've knocked the resistance out of " + targetFoe.a + targetFoe.short + ".</b>\n");
 	}
@@ -2147,7 +2152,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	if(!(target is Celise)) 
 	{
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustDamageMultiplier() == 0)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() || target.lustDamageMultiplier() == 0)
 		{
 			if(target is HandSoBot)
 			{
@@ -2179,7 +2184,7 @@ function tease(target:Creature, part:String = "chest"):void {
 		//Success!
 		else {
 			//Calc base damage
-			damage += 10 * (teaseCount/100 + 1);
+			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
 			//Any perks or shit go below here.
 			//Apply randomization
 			damage *= randomizer;

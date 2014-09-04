@@ -1128,8 +1128,8 @@
 
 		public function buysType(arg: int): Boolean {
 			for (var x: int = 0; x < typesBought.length; x++) {
-				if (arg == typesBought[x]) return true;
 				if (typesBought[x] == GLOBAL.ALL) return true;
+				if (arg == typesBought[x]) return true;
 			}
 			return false;
 		}
@@ -1732,7 +1732,7 @@
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
-		//Placeholders for when i rework the personality system soon-ish.
+		//Placeholders for when i rework the personality system soon-ish."
 		public function addHard(arg:Number):void
 		{
 			personality += arg;
@@ -2066,6 +2066,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if(hasPerk("Drug Fucked")) bonus += 10;
+			if(hasStatusEffect("Ellie's Milk")) bonus += 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -3344,6 +3345,7 @@
 		}
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
+			
 			if (this.hasStatusEffect(statusName)) {
 				trace("Status '" + statusName + "' already present on " + this.short);
 				return;
@@ -3449,6 +3451,17 @@
 		//Status
 		public function hasStatusEffect(statusName: String): Boolean {
 			return hasStorageName(statusEffects, statusName);
+		}
+		public function hasStatusEffectCount(statusName:String):Number
+		{
+			var counter: Number = statusEffects.length;
+			var amount:int = 0;
+			if (statusEffects.length <= 0) return 0;
+			while (counter > 0) {
+				counter--;
+				if (statusEffects[counter].storageName == statusName) amount++;
+			}
+			return amount;
 		}
 		//Perk
 		public function hasPerk(perkName: String): Boolean {
@@ -4518,7 +4531,9 @@
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0) return 0;
-			return vaginas[arg].capacity() * elasticity;
+			var amount:Number = vaginas[arg].capacity() * elasticity;
+			if(isTaur()) amount += 400;
+			return amount;
 		}
 		public function smallestVaginalCapacity(): Number {
 			return vaginalCapacity(smallestVaginaIndex());

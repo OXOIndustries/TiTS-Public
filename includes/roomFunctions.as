@@ -21,6 +21,16 @@ import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
 import classes.Util.RandomInCollection;
 
+function mhengaShipHangarFunc():Boolean
+{
+	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
+	{
+		annoFollowerFirstTimeOnMhenga();
+		return true;
+	}
+	return false;
+}
+
 function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();
@@ -647,6 +657,7 @@ function anonsBarAddendums():Boolean {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
 	ShellyBlurb();
+	annoAtAnonsAddendum();
 	
 	return false;
 }
@@ -661,7 +672,7 @@ function firstTimeOnTarkusBonus():Boolean
 		CodexManager.unlockEntry("Raskvel");
 		output("\n\n<b>You are on the starship Nova, now known as the raskvel's city, Novahome.</b>");
 	}
-	return false;
+	return returnToShipAfterRecruitingAnno();
 }
 
 function BonusFunction210():Boolean
@@ -685,10 +696,7 @@ function novaShipHangarElevator():Boolean
 	}
 	else
 	{
-		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
-		
-		addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
-		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+		addButton(0, "Elevator", novaElevatorControlPanel);
 	}
 	return false;
 }
@@ -701,10 +709,78 @@ function novaMainDeckElevator():Boolean
 	}
 	else
 	{
-		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
-		addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
-		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+		addButton(0, "Elevator", novaElevatorControlPanel);
 	}
 	
+	return false;
+}
+
+function novaElevatorControlPanel():void
+{
+	clearOutput();
+	author("Gedan");
+	showName("NOVA\nELEVATOR");
+	
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevators doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
+	
+	clearMenu();
+	if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
+	else addDisabledButton(0, "Hangar Deck");
+	
+	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(1, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
+	else addDisabledButton(1, "Main Deck");
+	
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(2, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	else addDisabledButton(2, "Deck 13");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+
+function newTexasRoadFirstTime():Boolean
+{
+	//First time:
+	if(flags["SEEN_TEXAS_SURFACE"] == undefined)
+	{
+		output("So this is New Texas, the pastoral paradise, huh? With the seemingly endless blue sky, rustic-looking structures, and rolling fields of grass and grain, you can see where it got its name. Presently you've stepped out onto a bumpy dirt road; it's fortunate the locals rely on hover-based transit over primitive wheel systems, or they'd need to invest a little more heavily into their infrastructure. A huge barn looms over you to the south. Just inside the doors, you know there's a customs checkpoint and more ships than you bother to count. To the north sits a ranch house, the kind with a big, elevated porch that would normally house a farmer and his extended family. This one is dressed up with a bit of extra flair. Signs declare it to be the official visitor's center.");
+		flags["SEEN_TEXAS_SURFACE"] = 1;
+	}
+	//Repeat
+	else
+	{
+		output("You recognize this spot on the dusty country road. It's where you got your first real look at New Texas' so-called pastoral paradise. The whole place is built up in the style of old terran farms. The hangar is designed to resemble a gigantic barn, despite its contents being made of gleaming metal instead of flesh. Off to the northeast is a fancy ranch house, replete with a fenced-in porch, rocking chairs, and a dazzlingly white coat of paint. In other directions are fenced off fields.");
+	}
+	return false;
+}
+
+function manMilkerRoomBonusFunc():Boolean
+{
+	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
+	return false;
+}
+function NTGiftShopBonusFunc():Boolean
+{
+	//First Time Entering the Shop
+	if(flags["SEEN_ELLIES_SHOP"] == undefined)
+	{
+		flags["SEEN_ELLIES_SHOP"] = 1;
+		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you've just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
+		pc.lustDamage(10);
+	}
+	else pc.lustDamage(5);
+	output("The gift shop looks like every other gift shop in the 'verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There's a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled \"The Treatment.\" ");
+	if(flags["MET_ELLIE"] != undefined) output("Ellie");
+	else output("A tauric woman with black scales on her lower body and a massive GG-cup rack, only barely restrained by a semi-translucent bra that's stained with milky moisture");
+	output(" is overseeing the automated shopping terminals, occasionally distracted by a customer's query or a particularly flirty bull wandering through.");
+	//Next, to room description. Add [Shopkeeper] button
+	ellieApproachButtonSetup();
+	return false;
+}
+
+function NTBarbequeBonusFunc():Boolean
+{
+	output("The restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. ");
+	if(flags["MET_HERMAN"] != undefined) output("Herman the chef");
+	else output("The chef");
+	output(" is busily trying to fill the orders as they come in, clearly swamped with customers.");
 	return false;
 }
