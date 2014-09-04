@@ -21,6 +21,16 @@ import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
 import classes.Util.RandomInCollection;
 
+function mhengaShipHangarFunc():Boolean
+{
+	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
+	{
+		annoFollowerFirstTimeOnMhenga();
+		return true;
+	}
+	return false;
+}
+
 function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();
@@ -647,6 +657,7 @@ function anonsBarAddendums():Boolean {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
 	ShellyBlurb();
+	annoAtAnonsAddendum();
 	
 	return false;
 }

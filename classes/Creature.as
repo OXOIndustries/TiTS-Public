@@ -1128,8 +1128,8 @@
 
 		public function buysType(arg: int): Boolean {
 			for (var x: int = 0; x < typesBought.length; x++) {
-				if (arg == typesBought[x]) return true;
 				if (typesBought[x] == GLOBAL.ALL) return true;
+				if (arg == typesBought[x]) return true;
 			}
 			return false;
 		}
@@ -1732,7 +1732,7 @@
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
-		//Placeholders for when i rework the personality system soon-ish.
+		//Placeholders for when i rework the personality system soon-ish."
 		public function addHard(arg:Number):void
 		{
 			personality += arg;

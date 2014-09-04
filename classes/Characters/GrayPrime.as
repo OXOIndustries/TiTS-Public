@@ -36,7 +36,7 @@ package classes.Characters
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
 			this.plural = true;
-			this.lustVuln = 0;
+			this.lustVuln = 1;
 			this.meleeWeapon = new GooeyPsuedopod();
 			(this.meleeWeapon as GooeyPsuedopod).attack = 2;
 			(this.meleeWeapon as GooeyPsuedopod).damage = 11;
