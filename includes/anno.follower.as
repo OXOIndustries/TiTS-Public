@@ -1036,7 +1036,7 @@ function annoFollowerSuckAndFuckSex():void
 	if (!(pc.armor is EmptySlot)) output(" start pulling yourself out of your [pc.armor] and");
 	output(" grab [pc.oneCock], the rapidly hardening member");
 	if (pc.cocks.length > 1) output("s");
-	output(" mere inches from Anno’s bliss-etched face. Grinning with anticipation, Anno slinks back onto her bed and twists around to watch you, her head resting in her hands. You let your dong drop onto her cheek: "+ String(Math.floor(10 * target.cocks[selCock].cLength()) / 1) +" inches of hard, hot meat suddenly caressing her cheek is enough to make Anno’s breath catch. Her big, blue eyes flutter open, wandering over your naked form.");
+	output(" mere inches from Anno’s bliss-etched face. Grinning with anticipation, Anno slinks back onto her bed and twists around to watch you, her head resting in her hands. You let your dong drop onto her cheek: "+ String(Math.floor(10 * pc.cocks[selCock].cLength()) / 1) +" inches of hard, hot meat suddenly caressing her cheek is enough to make Anno’s breath catch. Her big, blue eyes flutter open, wandering over your naked form.");
 	
 	if (!haveFuckedAnno())
 	{
