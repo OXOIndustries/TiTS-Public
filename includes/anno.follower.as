@@ -155,6 +155,8 @@ function annoFollowerApproach():void
 
 function annoFollowerMenu():void
 {
+	annoFollowerHeader();
+	
 	clearMenu();
 	addButton(0, "Buy", annoFollowerBuyMenu);
 	addButton(1, "Sell", annoFollowerSellMenu);
@@ -597,6 +599,8 @@ function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		addDisabledButton(8, "Contacts", "Shady Contacts", "Anno doesn't have need of her shady black market contacts whilst still employed by Steele Tech.");
 	}
+	
+	addButton(14, "Back", annoFollowerMenu);
 }
 
 function annoFollowerTalkAkkadi():void
@@ -676,7 +680,9 @@ function annoFollowerTalkVictor():void
 	
 	output("\n\nAnno smiles, sliding her hand over yours. “<i>You know, he helped me out in a pretty bad time in my life. I was between jobs, basically living off convention speeches and my folks putting me up. He listened to one lecture I gave, not half an hour in a smoky hotel con room with maybe half a dozen washed-up eggheads in it, altogether. I guess he saw something in me. Or my work, anyway. Bought me a drink after my speech and, by night’s end, I had a ship ticket and a job waiting for me on Verdure at the R&D labs. I didn’t even realize until my first day on the job whom the hell I’d met.</i>” ");
 	
-	output("\n\n{if PC is Kind: “<i>You’re a lot like him, you know. You have that same kindness in your eyes.</i>” elseif Mischievous: “<i>He always had this amazing humor. That cunning way he’d talk, always circling around you, weaving words around you like a duelist feints.</i>” if Hard: “<i>He was a good man. I’ll never forget that. But he always had this hardness to him, like he was made of iron beneath that smile of his. You always had this impression it wouldn’t make him break a sweat to completely destroy you.</i>”}");
+	if (pc.isNice()) output("\n\n“<i>You’re a lot like him, you know. You have that same kindness in your eyes.</i>”");
+	else if (pc.isMischievous()) output("“<i>He always had this amazing humor. That cunning way he’d talk, always circling around you, weaving words around you like a duelist feints.</i>”");
+	else output("“<i>He was a good man. I’ll never forget that. But he always had this hardness to him, like he was made of iron beneath that smile of his. You always had this impression it wouldn’t make him break a sweat to completely destroy you.</i>”");
 	
 	output("\n\nAnno shrugs and smiles, slipping a comforting arm around your waist. “<i>I miss him too, [pc.name].</i>”");
 
@@ -702,8 +708,7 @@ function annoFollowerTalkStudies():void
 	
 	output("\n\nAnno laughs at herself: a good, hearty laugh from the gut. “<i>I had fun, though. Kind of miss it, honestly... I wouldn’t mind teaching again");
 	if (flags["ANNO_MISSION_OFFER"] == 3) output(" if I ever get tired of working for you, boss... not that that’ll ever happen,</i>” she giggles, giving you a knowing wink.");
-	else output(" now that I’m between jobs again. Steele Tech was nice and all, but maybe I’m not cut out for the whole research thing after all. I’ve done more than enough, you know?");
-	output("</i>”");
+	else output(" now that I’m between jobs again. Steele Tech was nice and all, but maybe I’m not cut out for the whole research thing after all. I’ve done more than enough, you know?</i>”");
 
 	annoFollowerTalkMenu(false);
 	addDisabledButton(3, "Studies");
@@ -784,7 +789,7 @@ function annoFollowerTalkEntertainment():void
 	
 	output("\n\nShe chuckles to herself. “<i>Let’s see... uh... man, why do you have to ask hard questions. Come on, ask me about warp theory or quantum mechanics or light drives - pitch me an easy question, [pc.name].</i>” When you decline, she groans in exasperation and slides down into her chair, legs crossed. “<i>God damn, I’m uninteresting. Well, uh, I watch a lot of TV I guess. Especially </i>Steph Irson<i>, James Farmer’s </i>Forty-Eight Hours<i> - oh, and </i>Magical Space Princess Lyota<i>.</i>”");
 	
-	output("\n\n“Magical Space Princess Lyota<i>...?</i>”");
+	output("\n\n“<i>Magical Space Princess Lyota...?</i>”");
 	
 	output("\n\nAnno blinks. “<i>What? It’s a great show!</i>” she says, a little too defensively. “<i>Any, uh, anyway. I’m pretty into music, I guess. Mostly rock and metal from the homeworlds, though I guess");
 	if (pc.isHuman()) output(" you");
@@ -1591,7 +1596,7 @@ function annoFollowerShowerSex():void
 	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and spreading your [pc.legs] apart. ");
 	
 	// Cockwielder Variant
-	if (!pc.hasVagina() || (pc.hasVagina() && rand(2) == 0))
+	if (!pc.hasVagina() || (pc.hasCock() && rand(2) == 0))
 	{
 		output("\n\nYou can’t suppress a groan as Anno’s fingers wrap around your dripping member, using the flowing water as lube to quickly pump up and down your swelling length and jacking your [pc.cock] until it’s nice and hard. Her cheek nuzzles against your [pc.crotch] while her tongue reaches out to caress");
 		if (pc.balls > 0) output(" your [pc.balls]");
@@ -1664,17 +1669,19 @@ function annoFollowerShowerSex():void
 
 function annoFollowerSpecialGear():void
 {
+	annoFollowerHeader();
+	
 	clearMenu();
 
 	// Merc/Smuggler + Quest Done
-	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3)
+	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItem(new HoldoutHP())
 	{
-		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
+		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
 
 	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))
 	{
-		addButton(1, "Gray Goo", annoFollowerSpecialGearGrayGoo, "Gray Microbots", "Ask Anno about the samples of Gray Microbots.");
+		addButton(1, "Gray Goo", annoFollowerSpecialGearGrayGoo, undefined, "Gray Microbots", "Ask Anno about the samples of Gray Microbots.");
 	}
 	else
 	{
@@ -1958,7 +1965,7 @@ function annoFollowerAppearance():void
 	clearOutput();
 	annoFollowerHeader();
 
-	output("\n\nAnno Dorna is a six-foot-tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though she is distinctly humanoid in face and form, the silky fur on her arms and legs, along with the swishing, bushy tail, give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing");
+	output("Anno Dorna is a six-foot-tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though she is distinctly humanoid in face and form, the silky fur on her arms and legs, along with the swishing, bushy tail, give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing");
 	if (anno.armor is AnnosCatsuit) output(" the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size.");
 	else output(" a civilian outfit, relatively simple compared to her usual slick catsuit: she’s got a pair of jeans, a button-up blouse, and a pair of tall work boots on. She’s not wearing a bra that you can see, which means you can get a nice look at her ample titflesh through the sheet fabric of her shirt.");
 	output(" Thanks to the")
@@ -1970,7 +1977,7 @@ function annoFollowerAppearance():void
 	
 	output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 
-	removeButton(10);
+	addDisabledButton(10, "Appearance");
 }
 
 function annoxKaedeFollowerMeeting():void
