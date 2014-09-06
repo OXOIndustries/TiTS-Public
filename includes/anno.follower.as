@@ -193,6 +193,8 @@ function annoSleepWithIntroduce():void
 {
 	clearOutput();
 	annoFollowerHeader();
+	
+	flags["ANNO_SLEEPWITH_INTRODUCED"] = 1;
 
 	output("Just as you’re getting ready for bed, you hear a knock on your cabin door. When you tell your visitor to enter, the door slides open and Anno steps through. She’s ditched her usual outfit, and is instead wrapped up in a loose white bathrobe that her hair seamlessly blends into. ");
 
@@ -299,7 +301,7 @@ function annoSleepSexyTimes():void
 	processTime(3);
 
 	clearMenu();
-	addButton(0, "Next", sleep, false);
+	sleep(false);
 }
 
 function annoMorningRouter():void
