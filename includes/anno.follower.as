@@ -323,7 +323,7 @@ function annoMorningHandy():void
 	
 	output("\n\nYou wake with a gasp as your dream self is on the verge of orgasm, ready to blow [pc.hisHer] seed across the faces of a dozen busty women gathered around [pc.hisHer] cock. But the incredible sensation of velvety fingers caressing [pc.eachCock] doesn’t abate as your eyes flutter open. You cast a look down between your [pc.legs], and find a");
 	if (pc.biggestCockLength() <= 7) output(" noticeable");
-	else if (pc.biggestcockLength() <= 12) output(" sizable");
+	else if (pc.biggestCockLength() <= 12) output(" sizable");
 	else output(" massive");
 	output(" tentpole under your sheets, a stain of pre-cum darkening the material immediately over your cockhead.");
 	
