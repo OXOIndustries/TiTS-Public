@@ -192,6 +192,8 @@ public function phoenixBridgeCaptain():void
 	currentLocation = "SHIP INTERIOR";
 
 	flags["FALL OF THE PHOENIX STATUS"] = 1;
+	
+	if (flags["STORED SHIP DESTINATION"] == undefined) flags["STORED SHIP DESTINATION"] = "Tavros";
 
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
