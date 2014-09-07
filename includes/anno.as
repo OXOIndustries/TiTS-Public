@@ -1394,7 +1394,8 @@ function cumInYerAusarShapedButtslot():void
 	output("No reason to hold back the inevitable. You give Anno one last slap on the ass and slam yourself deep inside, just in time to get the full effect of her muscles going wild around your cock, milking you for all you're worth. You don't try to resist your body's urges as Anno works you, instead reveling in the tightness of her quivering passage, savoring the warmth and wetness and exhilarating in the feeling of your cum rushing up through your [pc.cock " + x + "], hurtling into the dark embrace of Anno's bowels. Your whole body lurches forward when the first orgasmic wave of bliss hits you, nearly throwing you over as your own excitement is left to run rampant.");
 
 	output("\n\nYour [pc.cock " + x + "] spasms as a thick load of [pc.cum] blasts out and into Anno's ass. She yelps at the sudden");
-	if(chars["ANNO"].analVirgin) output(", unfamiliar sensation as she takes her very first load of spunk up the ass // sensation");
+	if (chars["ANNO"].analVirgin) output(", unfamiliar sensation as she takes her very first load of spunk up the ass");
+	else output(" sensation");
 	output(", and her ass clenches even harder - you’re practically seeing stars as your [pc.cumNoun]-nozzle pumps her ass full of spooge. By the time you're done, you are gasping for breath, barely able to feel your dick, while Anno is stretched out over the crate, fingering herself as you recover.");
 
 	output("\n\n<i>\"That wasn't so bad,\"</i> she admits as you withdraw from her, leaving a tiny trickle of seed drooling from her abused hole.");
