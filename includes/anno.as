@@ -1,3 +1,4 @@
+import classes.Characters.PlayerCharacter;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 //Steele Tech Shop (Tarkus)
@@ -3635,7 +3636,7 @@ function annoxKaedeNotRecruitedMeeting():void
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
 	clearMenu();
-	if (pc.hasCock() && (pc.hasCockThatFits(370) != -1) && (pc.cockThatFits(anno.vaginalCapacity()) != -1)) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
+	if (pc.hasCock() && (pc.cockThatFits(370) != -1) && (pc.cockThatFits(anno.vaginalCapacity()) != -1)) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
 	else addDisabledButton(0, "Fuck Them", "Fuck Them", "Requires a penis of appropriate size.");
 	addButton(1, "Service Kaede", annoxKaedeService, true);
 	addButton(2, "Watch", annoxKaedeWatch, true);
