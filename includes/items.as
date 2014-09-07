@@ -138,7 +138,8 @@ function shop(keeper:Creature):void {
 	}
 	if(keeper is Anno)
 	{
-		repeatAnnoApproach();
+		if (!annoIsCrew()) repeatAnnoApproach();
+		else annoFollowerApproach();
 		return;
 	}
 	if(keeper is Ellie)
