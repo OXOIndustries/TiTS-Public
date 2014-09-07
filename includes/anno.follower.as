@@ -179,7 +179,7 @@ function annoFollowerMenu():void
 			addDisabledButton(8, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
 		}
 	}
-	addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
+	else addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
 	if (haveFuckedAnno()) addButton(10, "Appearance", annoFollowerAppearance);
 	
