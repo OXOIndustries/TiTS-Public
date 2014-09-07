@@ -421,10 +421,24 @@ function annoFollowerBootOff():void
 
 function annoAtAnonsAddendum():void
 {
+	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
 		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
 		addButton(8, "Anno", annoFindingALostPooch);
+	}
+	// Is an active crewmember -- see if we can proc the Kaede event.
+	else if (flags["ANNO_CREWMEMBER"] == 1)
+	{
+		if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days - 8;
+
+		if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
+		{
+			if (rand(3) == 0)
+			{
+				addButton(8, "Anno", annoxKaedeFollowerMeeting);
+			}
+		}
 	}
 }
 
