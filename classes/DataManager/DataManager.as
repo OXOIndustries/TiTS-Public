@@ -359,7 +359,7 @@
 				
 				var file:FileReference = new FileReference();
 				file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
-				file.save(baDataBlob, "save_" + dataBlob.daysPassed + " - " + dataBlob.saveName + ".tits");
+				file.save(baDataBlob, dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
 			}
 			else
 			{
