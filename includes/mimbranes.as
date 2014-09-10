@@ -412,8 +412,8 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		else if (effectName == "Mimbrane Face")
 		{
-			if (oldFeedValue < 6 && newFeedValue >= 6) pc.lipMod + 1;
-			if (oldFeedValue < 12 && newFeedValue >= 12) pc.lipMod + 1;
+			if (oldFeedValue < 6 && newFeedValue >= 6) pc.lipMod += 1;
+			if (oldFeedValue < 12 && newFeedValue >= 12) pc.lipMod += 1;
 		}
 	}
 }
