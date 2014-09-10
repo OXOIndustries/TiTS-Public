@@ -546,7 +546,7 @@ public function mimbraneCodexEntry():void
 	userInterface.showBust("MIMBRANE");
 
 	outputCodex(header("Mimbranes"));
-	outputCodex(blockHeader("\n- (Graft, Epidel, Second Skin)"));
+	outputCodex(blockHeader("- (Graft, Epidel, Second Skin)\n"));
 
 	outputCodex("<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");

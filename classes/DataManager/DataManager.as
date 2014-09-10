@@ -8,6 +8,7 @@
 	import flash.display.Shader;
 	import flash.events.MouseEvent;
 	import flash.net.SharedObject;
+	import flash.net.SharedObjectFlushStatus;
 	import classes.StringUtil;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
@@ -274,12 +275,22 @@
 			{
 				// Verification successful, do things
 				this.replaceDataWithBlob(dataFile, dataBlob);
-				dataFile.flush();
-				kGAMECLASS.clearOutput2();
-				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
-				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				if (dataFile.flush() == SharedObjectFlushStatus.FLUSHED)
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				}
+				else
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click retry.");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob, slotNumber]);
+				}
 			}
 			else
 			{
@@ -293,6 +304,31 @@
 				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		private function retrySave(args:Array):void
+		{
+			var dataFile:SharedObject = args[0];
+			var dataBlob:Object = args[1];
+			var slotNumber:int = args[2];
+		
+			this.replaceDataWithBlob(dataFile, dataBlob);
+			if (dataFile.flush() == SharedObjectFlushStatus.FLUSHED)
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+			else
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click next.");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob]);
 			}
 		}
 		
