@@ -1177,7 +1177,7 @@ function faceFuckAnno():void
 	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0)) >= 0)
 	{
 		if(pc.libido() >= 80 || rand(pc.libido()) >= 15) addButton(0,"Fuck Her",fuckAnnoAfterBeeJay,undefined,"Fuck Her","Fuck Anno. You've got another round in you, right?");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a libido of 80 or 33 minimum lust in order to keep it up for another go-round.");
+		else addDisabledButton(0,"Fuck Her","Fuck Her","You're not sure if you've got another round in you just yet. (Requires 80 minimum libido to always be available.)");
 	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","There's no way you're going to fit yourself in a hole that small.");
 	addButton(14,"Leave",mainGameMenu);
