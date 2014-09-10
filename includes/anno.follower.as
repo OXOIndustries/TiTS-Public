@@ -1878,7 +1878,14 @@ function annoFollowerFirstTimeOnMhenga():void
 	else output(" cloth");
 	output("-clad tits pressing into your back. “<i>Hey, isn’t this... yeah, Mhen’ga!</i>” Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth. ");
 	
-	output("\n\n“<i>You know, my sister works here,</i>” Anno says, taking her arms off you to flip on her wrist computer. “<i>Let me see if I can give her a call. Might as well say hi while I’m here, right? God, it’s been AGES since I talked to Syri...</i>” ");
+	if (flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] == undefined)
+	{
+		output("\n\n“<i>You know, my sister works here,</i>” Anno says, taking her arms off you to flip on her wrist computer. “<i>Let me see if I can give her a call. Might as well say hi while I’m here, right? God, it’s been AGES since I talked to Syri...</i>” ");
+	}
+	else
+	{
+		output("\n\n“<i>Hey, while we’re here I should see about catching up with my sister,</i>” Anno says, taking her arms off you to flip up her wrist computer. “<i>Let me see if I can give her a call. Might as well say hi while I’m here, right? God, it’s been AGES since I talked to Syri...</i>”");
+	}
 	
 	output("\n\nShe pushes a holographic button hovering over her wrist and the display vanishes. It’s replaced by a hovering 3D photo of");
 	if (flags["MET_SYRI"] != undefined) output(" Syri");
@@ -1928,7 +1935,10 @@ function annoFollowerFirstTimeOnMhengaPartII():void
 
 	output("“<i>Hey! Over here!</i>” you hear, just as soon as you and Anno walk into “<i>Burt’s Badass Meadhall.</i>” Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
-	if (flags["MET_SYRI"] != undefined) output("\n\n“<i>Hey! Sis, Steele!</i>” she barks, grabbing you both into a fierce hug. Anno giggles as her powerfully strong sister squeezes the both of you tight before ushering you into the stools beside her own.");
+	if (flags["MET_SYRI"] != undefined)
+	{
+		output("\n\n“<i>Hey! Sis, Steele!</i>” she barks, grabbing you both into a fierce hug. Anno giggles as her powerfully strong sister squeezes the both of you tight before ushering you into the stools beside her own.");
+	}
 	else
 	{
 		output("\n\n“<i>Hey, Sis!</i>” Syri says, grabbing Anno and pulling her sister into a fierce hug. They might be the same size, but Syri seems to tower over her slighter sister, wrapping the nerdy scientist in her muscular arms. ");
