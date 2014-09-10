@@ -849,7 +849,7 @@ function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	output(" as the mechanical milker pushes you over the edge once again, making you bust a second nut into the waiting mouth");
 	if(pc.cockTotal() > 1) output("s");
 	output(" of the vacuum-sucker machine. Your cum is spirited away as fast as you can spurt it out, leaving your ");
-	if(pc.cockTotal() > 1) output("cock a drooling, half-hard mess to be gently suckled on by the insatiable milker");
+	if(pc.cockTotal() == 1) output("cock a drooling, half-hard mess to be gently suckled on by the insatiable milker");
 	else output("cocks a mass of drooling, half-hard members, gently suckled on by the hungry milkers");
 	output(". You don’t even have time to go soft before a third orgasm is wrung from you, your cock");
 	if(pc.cockTotal() > 1) output("s");
