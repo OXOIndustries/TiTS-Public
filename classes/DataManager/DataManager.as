@@ -6,7 +6,10 @@
 	import classes.kGAMECLASS;
 	import classes.ShipClass;
 	import flash.display.Shader;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.FileFilter;
+	import flash.net.FileReference;
 	import flash.net.SharedObject;
 	import flash.net.SharedObjectFlushStatus;
 	import classes.StringUtil;
@@ -19,6 +22,7 @@
 	import classes.Creature;
 	import classes.GameData.CodexManager;
 	import classes.GameData.StatTracking;
+	import flash.events.IOErrorEvent;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -160,8 +164,13 @@
 			kGAMECLASS.output2("\n\n<b>YOUR SAVE DATA STILL EXISTS.</b> Trying to load a slot that “<b>REQUIRES UPGRADE</b>” will perform an automatic upgrade of the save data whilst it is being loaded. Once done, you are free to continue playing the game as normal.");
 			
 			kGAMECLASS.userInterface.clearGhostMenu();
-			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu);
-			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu);
+			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
+			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
+			else kGAMECLASS.addDisabledGhostButton(1, "Save", "Save Game", "You can't save in your current location.");
+			
+			kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
+			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
+			else kGAMECLASS.addDisabledGhostButton(6, "Save File", "You can't save in your current location.");
 			
 			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
 		}
@@ -197,7 +206,6 @@
 			kGAMECLASS.output2(displayMessage);
 			kGAMECLASS.output2("\n");
 			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
-			
 		}
 		
 		/**
@@ -331,6 +339,141 @@
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob]);
 			}
+		}
+		
+		private function saveToFile():void
+		{
+			var dataBlob:Object = { };
+			this.saveBaseData(dataBlob);
+			
+			if (this.verifyBlob(dataBlob))
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Attempting to save data to file...");
+				
+				// Convert data into a byte array
+				var baDataBlob:ByteArray = new ByteArray();
+				baDataBlob.writeObject(dataBlob);
+				baDataBlob.position = 0;
+				
+				var file:FileReference = new FileReference();
+				file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
+				file.save(baDataBlob, "save_" + dataBlob.daysPassed + " - " + dataBlob.saveName + ".tits");
+			}
+			else
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		private function saveToFileWriteHandler(e:Event):void
+		{
+			trace("Save complete.");
+			
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Save complete.");
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+		}
+		
+		private var stickyFileRef:FileReference;
+		
+		private function loadFromFile():void
+		{
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Selected a file to load.");
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			
+			stickyFileRef = new FileReference();
+			stickyFileRef.browse([new FileFilter("TiTS Saves", "*.tits")]);
+			stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
+		}
+		
+		private function loadFileSelected(e:Event):void
+		{
+			trace("1. File selected.");
+			
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Attempting to load file...");
+			
+			stickyFileRef.removeEventListener(Event.SELECT, loadFileSelected);
+			
+			stickyFileRef.addEventListener(Event.OPEN, loadFileBegin);
+			stickyFileRef.addEventListener(Event.COMPLETE, loadFileHandler);
+			stickyFileRef.addEventListener(IOErrorEvent.IO_ERROR, loadFileError);
+			
+			stickyFileRef.load();
+		}
+		
+		private function loadFileBegin(e:Event):void
+		{
+			trace("2. Starting to load");
+			
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Loading...");
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+		}
+		
+		private function loadFileHandler(e:Event):void
+		{
+			trace("3. Load complete, inserting into game.");
+			
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Got file, verifying...");
+			
+			var dataBlob:Object;
+			
+			var byteArray:ByteArray = stickyFileRef.data;
+			byteArray.position = 0;
+			dataBlob = byteArray.readObject();
+			
+			var gamePtr:* = kGAMECLASS;
+			
+			// Now we can shuffle data into disparate game systems 
+			var saveBackup:Object = new Object();
+			var dataErrors:Boolean = this.loadBaseData(dataBlob, saveBackup);
+			
+			// Do some output shit
+			if (!dataErrors)
+			{
+				trace("4. Load successful.");
+				
+				kGAMECLASS.userInterface.hideNPCStats();
+				kGAMECLASS.userInterface.showPCStats();
+				kGAMECLASS.updatePCStats();
+				kGAMECLASS.output2("\n\nGame loaded from file!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "Next", this.executeGame);
+			}
+			else
+			{
+				if (kGAMECLASS.chars["PC"] != undefined && kGAMECLASS.chars["PC"].short != "uncreated" && kGAMECLASS.chars["PC"].short.length > 0)
+				{
+					var ph:Object = new Object();
+					this.loadBaseData(saveBackup, ph);
+				}
+				
+				kGAMECLASS.output2("Error: Could not load game data.");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		private function loadFileError(e:Event):void
+		{
+			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			kGAMECLASS.output2("Something went wrong.");
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 		}
 		
 		/**
