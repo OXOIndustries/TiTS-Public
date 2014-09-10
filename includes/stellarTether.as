@@ -3003,7 +3003,7 @@ function shekkaMidDeal():void
 	else addDisabledButton(0,"16,000","16,000","You don't have that many credits.");
 	if(pc.credits >= 20000) addButton(1,"20,000",bidVariable,20000,"20,000","Bid 20,000 credits for the pod.");
 	else addDisabledButton(1,"20,000","20,000","You don't have that many credits.");
-	if(pc.credits >= 25000) addButton(2,"25,000",bidVariable,25000,"25,000","Bid 20,000 credits for the pod.");
+	if(pc.credits >= 25000) addButton(2,"25,000",bidVariable,25000,"25,000","Bid 25,000 credits for the pod.");
 	else addDisabledButton(2,"25,000","25,000","You don't have that many credits.");
 	if(pc.hasKeyItem("Platinum 190")) addButton(3,"Platinum",payWithYourPlatinumPremiumCard,undefined,"Platinum 190","This stuff should more than cover the cost of the probe.");
 	else addDisabledButton(3,"Locked","Locked","Perhaps you missed something valuable at the Stellar Tether that could have covered this unexpected expense.");

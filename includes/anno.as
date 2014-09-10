@@ -863,8 +863,8 @@ function syriTalksAboutAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	userInterface.showBust("SYRI");
+	userInterface.showName("\nSYRI");
 	output("<i>\"Oh, hey, Anno says 'Write me, bitch!' by the way.");
 	if(pc.isNice() || pc.isMischievous()) output(" Her words, not mine!");
 	output("\"</i>");

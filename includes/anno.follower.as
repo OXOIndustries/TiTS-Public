@@ -1267,7 +1267,7 @@ function annoFollowerAnalSex():void
 		else output(" “<i>Don’t pretend you don’t like it,</i>”");
 		output(" you say, managing to get your finger in to the hilt.");
 
-		output("\n\n“<i>Fiiiiine,</i>” Anno groans, reaching back to grab one of her cheeks. “<i>Just be gentle, okay?");
+		output("\n\n“<i>Fiiiiine,</i>” Anno groans, reaching back to grab one of her cheeks. “<i>Just be gentle, okay?</i>");
 	}
 
 	output("\n\nAnno whines, tail tucking in until you can’t see what you’re doing anymore. With an exasperated sigh, you lift her snowy tail back out of the way and spread her legs a bit wider, giving you room to work. For her part, Anno shudders as you push another finger in, but makes no further move to stop your impending assfuck beyond clenching tight around your fingers. ");
