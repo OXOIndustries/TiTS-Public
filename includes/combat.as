@@ -731,7 +731,7 @@ function staticBurst():void {
 	else output("foe's");
 	output(" grip on you!");
 	if(pc.hasStatusEffect("Naleen Coiled")) {
-		pc.removeStatusEffect();
+		pc.removeStatusEffect("Naleen Coiled");
 		output("\nThe naleen's tail spasms as you easily slip out of its coils.");
 	}
 	if(pc.hasStatusEffect("Grappled"))

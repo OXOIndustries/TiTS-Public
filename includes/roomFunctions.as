@@ -738,6 +738,11 @@ function novaElevatorControlPanel():void
 
 function newTexasRoadFirstTime():Boolean
 {
+	if(!pc.hasStatusEffect("Disarmed")) 
+	{
+		customsFucksYourShitUp();
+		return true;
+	}
 	//First time:
 	if(flags["SEEN_TEXAS_SURFACE"] == undefined)
 	{
@@ -749,6 +754,7 @@ function newTexasRoadFirstTime():Boolean
 	{
 		output("You recognize this spot on the dusty country road. It's where you got your first real look at New Texas' so-called pastoral paradise. The whole place is built up in the style of old terran farms. The hangar is designed to resemble a gigantic barn, despite its contents being made of gleaming metal instead of flesh. Off to the northeast is a fancy ranch house, replete with a fenced-in porch, rocking chairs, and a dazzlingly white coat of paint. In other directions are fenced off fields.");
 	}
+
 	return false;
 }
 

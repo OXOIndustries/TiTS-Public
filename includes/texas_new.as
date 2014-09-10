@@ -161,6 +161,7 @@ function customsFucksYourShitUp():void
 	clearOutput();
 	output("“<i>Hey, " + pc.mf("buddy","beautiful") + ", where do you think you’re going?</i>” Ogram says, standing up behind his desk. “<i>No weapons past this point. Come over here and check ‘em, or you’re going nowhere.</i>”");
 	output("\n\nWhoops.");
+	currentLocation = "TEXAS CUSTOMS";
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

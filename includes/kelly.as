@@ -3005,7 +3005,7 @@ function kellysCocksGetBLOWN():void
 	if(flags["KELLY_BLOWJOBS_GIVEN"] == undefined) flags["KELLY_BLOWJOBS_GIVEN"] = 1;
 	else flags["KELLY_BLOWJOBS_GIVEN"]++;
 	//If Clothed:
-	if(!pc.isNude())
+	if(!pc.isNude() && !(pc.hasStatusEffect("Temporary Nudity Cheat")))
 	{
 		output("<i>\"Hold it!\"</i> Kelly suddenly interjects, frowning as she holds up a hand for emphasis. <i>\"Off with the [pc.gear] first, sugar; I'm a very messy honey-bunny, and take it from me, bunny-honey is very hard to get out of clothes. You just take your things off and put them out of the way before we start; save you some very nasty cleaning bills after we're done,\"</i> she declares.");
 		output("\n\nConceding she has a point, you see no reason to refuse. So you strip off your [pc.gear] and lay it neatly on a table in the living room. Somewhere where you don’t think she has a chance in heavens of hitting.\n\n");
@@ -3132,6 +3132,7 @@ function kellysCocksGetBLOWN():void
 
 	processTime(20+rand(3));
 	pc.lust(15);
+	tempNudeOff();
 	//[Splatter][DrinkAll]
 	clearMenu();
 	addButton(0,"Splatter",splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ,undefined,"Splatter","Splatter yourself with Kelly's honey.");
@@ -3536,6 +3537,7 @@ function eatOutKellysQuoteUnquoteCunny():void
 			addButton(0,"Next",kellyCunnilingusHardEndingNap);
 		}
 	}
+	tempNudeOff();
 }
 
 //[=Nap=]

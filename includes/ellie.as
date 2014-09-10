@@ -20,7 +20,7 @@ function nephAffection(arg:Number = 0):Number
 
 function ellieApproachButtonSetup():void
 {
-	if(flags["MET_ELLIE"] == undefined) addButton(0,"Ellie",meetingEllie,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
+	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",meetingEllie,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
 	else addButton(0,"Shopkeep",ellieMenu,undefined,"Shopkeep","Approach the shopkeeper and see what she's selling.");
 }
 
@@ -31,15 +31,15 @@ function meetingEllie():void
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	output("You step up to the tauric woman behind the counter, blinking through the ever-thickening cloud of lust hanging in the air like a sickly sexual twist on air freshener. Your [pc.skin] flushes as you stagger up to the shopkeeper, a creature who looks like some mix between a lizard, a centaur, and a cow-girl. A humanoid half sits looming over the counter, watching the other customers in the shop - who all seem about as awkwardly aroused as you - carry out their transactions with the automated terminals. As you approach, the tauric woman looks up from the line of auto-registers and gives you a great big toothy smile, the whites of her teeth blending in with her pale, ashen-colored skin. She takes a step forward, and you suddenly realize just how overpowering the musky odor’s become, just since you walked through the door. Your ");
+	output("You step up to the tauric woman behind the counter, blinking through the ever-thickening cloud of lust hanging in the air like a sickly sexual twist on air freshener. Your [pc.skin] flushes as you stagger up to the shopkeeper, a creature who looks like some mix between a lizard, a centaur, and a cow-girl. Her humanoid half sits looming over the counter, watching the other customers in the shop - who all seem about as awkwardly aroused as you - carry out their transactions with the automated terminals. As you approach, the tauric woman looks up from the line of auto-registers and gives you a great big toothy smile, the whites of her teeth blending in with her pale, ashen-colored skin. She takes a step forward, and you suddenly realize just how overpowering the musky odor’s become, just since you walked through the door. Your ");
 	if(pc.hasCock())
 	{
 		output("[pc.cocks] ");
 		if(pc.totalCocks() == 1) output("is");
 		else output("are");
 		output(" straining at full mast, shameless of ");
-		if(pc.isCrotchGarbed()) output("their nakedness");
-		else output("the bulge forming in your [pc.lowerGarment]");
+		if(pc.isCrotchGarbed()) output("their nakedness.");
+		else output("the bulge forming in your [pc.lowerGarment].");
 	}
 	else if(pc.hasVagina())
 	{
@@ -148,6 +148,7 @@ function ellieMenu(display:Boolean = true):void
 	addButton(0,"Buy",buyItem);
 	addButton(1,"Sell",sellToEllie);
 	addButton(2,"Talk",talkToEllieYaFuckingSkank);
+	addButton(3,"Suckle",suckleDatCowtaurTeat,undefined,"Suckle","Why not? You are thirsty.");
 	if(pc.lust() >= 33) addButton(3,"Sex",ellieSexScene);
 	else addDisabledButton(3,"Sex","Sex","Someone, you're still not turned on enough for sex.");
 	addButton(14,"Back",mainGameMenu);
@@ -331,11 +332,12 @@ function talkToEllieAboutPheromones():void
 	{
 		output(" Your cock feels like it’s about to bust a nut");
 		if(pc.isCrotchGarbed()) output(" right in your [pc.lowerGarment]");
+		output(".");
 	}
 	else if(pc.hasVagina()) output(" Heat washes over your [pc.cunt], and you shift uncomfortably as it begins to drool excitement, totally ready to spread open for the first cock to take it... or a big, thick, reptilian tail...");
 	output(" It takes a force of will not to throw yourself into the leithan girl’s arms. Not that you think she’d mind.");
 
-	pc.lust(15);
+	pc.lust(33);
 
 	output("\n\n“<i>I guess I’m a little bit worse than average, though,</i>” Ellie admits, watching your reaction with keen interest, her twin-pupiled eyes wandering across your flushed body. “<i>The Treatment does funny things to non-humans. It makes ausars into big, angry puppies; turns rahn libido up so high they just can’t pry themselves off of any cock they can find, like they’re </i>hungry<i> for it... and me? I guess it decided every day was breeding season, and I’m always putting out these sweet little pheromones... which really just means I get to </i>put out<i> more for the bulls that get a whiff of them!</i>”");
 
@@ -345,14 +347,24 @@ function talkToEllieAboutPheromones():void
 
 	output("\n\n“<i>Nope,</i>” Ellie says, her grin fading somewhat. “<i>Believe me, </i>plenty<i> of bulls have tried. They always think they’re gonna be the one, but... no. It takes some serious science to get a half-leithan born, and a lot of credits.");
 	if(pc.originalRace == "half-leithan") output(" You’d know, after all. Your mom and dad must have spent a fortune making sure you got here.");
-	output(" Around here, though, not being able to breed is... well, it could be better. A lotta bulls get tired of trying after a while. After all, what’s the point of fucking a mare full of cum ‘till she looks pregnant if it ain’t gonna do anything? Not that I don’t have a lot of fun in the trying, but I guess the boys are always gona go back to the soft lil’ cows and fill ‘em with babies.</i>”");
+	output(" Around here, though, not being able to breed is... well, it could be better. A lotta bulls get tired of trying after a while. After all, what’s the point of fucking a mare full of cum ‘till she looks pregnant if it ain’t gonna do anything? Not that I don’t have a lot of fun in the trying, but I guess the boys are always gonna go back to the soft lil’ cows and fill ‘em with babies.</i>”");
 
 	output("\n\nEllie shrugs. “<i>At least there’s a nice, steady stream of bulls still wanting to try - at least the once! Lucky me, my pheromones pretty much guarantee I’ll always have someone to play with.</i>” She grins, chewing on her lower lip and squeezing her shoulder together to emphasize her impressive rack, all but jiggling it in your face now. “<i>Speaking of which... what do you say, [pc.name]?");
 	if(pc.hasCock()) output(" “<i>Care to test your lil’ swimmer’s luck?</i>”");
 	else output(" “<i>I’m feeling all down now. You wanna step out back and help a girl get her spirits up?</i>”");
 	nephAffection(5);
 	clearMenu();
-	addButton(0,"Next",ellieSexScene);
+	if(pc.lust() >= pc.lustMax())
+	{
+		addButton(0,"Yes",ellieSexScene,undefined,"Yes","You're too horny to turn an offer like this down!");
+		addDisabledButton(1,"No","No","You're too horny to turn this down!");
+	}
+	else
+	{
+		if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
+		else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren't aroused enough for sex.");
+		addButton(1,"No",ellieMenu,undefined,"Turn her down for now.");
+	}
 }
 
 //The Treatment
@@ -476,8 +488,8 @@ function suckleDatCowtaurTeat():void
 		if(pc.cockTotal() > 1) output("s");
 	}
 	output(".");
-	output("\n\nThe leithan grins as you squirm, though you can’t help but notice her own skin flushing in turn. “<i>Do you like it?</i>” she asks, almost shyly. You answer comes in the form of a nod and an unintelligible grunt as another trickle of alien lactation trickles into your mouth, so sweet you nearly wince when it teases across the tip of your tongue. Instead, though, you find yourself digging your fingers into the great swells of Ellie’s breast and starting to suck, just a gentle pressure at first, but enough to draw forth a steady stream from your tauric lover’s teat. She moans in response, breath catching in her throat as you start to really milk her. Her hands press your head deeper into her bosom, holding you close as you drink deep from her. Ellie’s bounty seems nigh-endless, too: you gulp and gulp down mouthfuls of her sugary milk, and yet there’s always more where that came from! Her flow of sweet nectar only seems to increase as you suckle, until you feel like you’re trying to drink down a river! You can almost feel her breast shrinking as its heavy burden is drained away, going from milk-swollen simply huge and jiggly. Ellie’s little moans of pleasure carry a touch of relief in them as you eagerly drain bosom dry.");
-	output("\n\nYou only later notice that you’re moaning, too: needy, desperate little moans as her milk begins to affect you. Even before you started drinking, Ellie’s pheromones had made you blatantly aroused, barely able to hide your chemical excitement around the musky centaurin. Now, your desperate need is almost painful, your lusts boiling until you can’t think of anything but your raging excitement and how beautiful, soft, and warm the teat in your face is. You concentrate of that, trying to stay grounded from your lust. All of your attention focuses on Ellie’s breast, your fingers starting to knead and squeeze it, playing with the little patches of straining scales and plates that would all but cover a normally-endowed leithan’s rack. On Ellie, her plates look like tiny freckles of black compared to the immensity of her bosom, doing absolutely nothing to hide or support it. Your body, at least, is doing the latter: you completely lose yourself in the leithan’s cleavage, with no small help from her hand’s guidance, nuzzling against the hot, sheer curve of one tit as you suckle from the other.");
+	output("\n\nThe leithan grins as you squirm, though you can’t help but notice her own skin flushing in turn. “<i>Do you like it?</i>” she asks, almost shyly. You answer comes in the form of a nod and an unintelligible grunt as another trickle of alien lactation trickles into your mouth, so sweet you nearly wince when it teases across the tip of your tongue. Instead, though, you find yourself digging your fingers into the great swells of Ellie’s breast and starting to suck, just a gentle pressure at first, but enough to draw forth a steady stream from your tauric lover’s teat. She moans in response, breath catching in her throat as you start to really milk her. Her hands press your head deeper into her bosom, holding you close as you drink deep from her. Ellie’s bounty seems nigh-endless, too: you gulp and gulp down mouthfuls of her sugary milk, and yet there’s always more where that came from! Her flow of sweet nectar only seems to increase as you suckle, until you feel like you’re trying to drink down a river! You can almost feel her breast shrinking as its heavy burden is drained away, going from milk-swollen simply huge and jiggly. Ellie’s little moans of pleasure carry a touch of relief in them as you eagerly drain her bosom dry.");
+	output("\n\nYou only later notice that you’re moaning, too: needy, desperate little moans as her milk begins to affect you. Even before you started drinking, Ellie’s pheromones had made you blatantly aroused, barely able to hide your chemical excitement around the musky centaurin. Now, your desperate need is almost painful, your lusts boiling until you can’t think of anything but your raging excitement and how beautiful, soft, and warm the teat in your face is. You concentrate on that, trying to stay grounded from your lust. All of your attention focuses on Ellie’s breast, your fingers starting to knead and squeeze it, playing with the little patches of straining scales and plates that would all but cover a normally-endowed leithan’s rack. On Ellie, her plates look like tiny freckles of black compared to the immensity of her bosom, doing absolutely nothing to hide or support it. Your body, at least, is doing the latter: you completely lose yourself in the leithan’s cleavage, with no small help from her hand’s guidance, nuzzling against the hot, sheer curve of one tit as you suckle from the other.");
 	output("\n\n“<i>You’re starting to feel it, huh?</i>” Ellie teases, her free hand gently playing across your ever-more relaxed body. Every brush of her fingers feels like a starburst on your tender flesh - God you’re sensitive now! When her hand moves down your thigh, you nearly feel yourself cumming on the spot - just from the briefest touch. Oh, fuck. “<i>Like I said, my milk will just drive you wild.... Don’t worry about a thing, sweetie, just let me take care of you. I’ll be gentle.</i>”");
 	output("\n\nAs she speaks, her hand slips further up your thigh, fingertips brushing across your [pc.crotch] and sending an electric fire of pleasure up your spine. You almost choke on your current mouthful of milk. Do you let Ellie have her way with you?");
 	pc.lust(90+rand(20));
@@ -731,7 +743,9 @@ function ellieSexScene():void
 	output("\n\nYou move faster the more excited Ellie gets, your tongue darting in to tease at her inner walls, fingers even getting in on the action to caress her outer folds. Your tauric lover coos with delight when your wandering mouth finds a particularly tough, almost bulging nub just inside her pussy, just at the end of your tongue’s reach. “<i>Oooh, that’s the spot,</i>” she purrs, cupping one of her huge tits. Her saucer-sized teat responds to the stimulation immediately, squirting a thick trickle of milk into her bra. She flashes you a grin, twisting on her hips so that you can see the her lactating tits soak straight through the sheer material of her bra, never spilling a drop but still making sure that her tits are plainly visible through it.");
 	output("\n\nYou only glance up for those few precious moments to see your lover’s bountiful bust on full and blatant display before returning your focus back towards the delicious gash between her hind legs. Ellie shivers happily as your tongue probes in toward that wonderfully sensitive spot inside her, and her thick, leathery tail squeezes affectionately around your shoulders. “<i>Mmm, keep that up, " + pc.mf("big boy","pretty girl") + " and I’m liable to... liable to...</i>”");
 	output("\n\nHer body finishes the thought for her: her gaping cunt contracts around you, the slick walls rubbing against your tongue and her muscles go wild with sexual gratification, worked over the edge by your eager mouth. You’re treated to a faceful of wet, sticky tauric juices as Ellie cums, her hips grinding her pussy back against your face. Your vision swims as you’re laced with her aromatic, sweet-tasting girl-spunk, left in a heady cloud of leithan-musk and Ellie’s sexual release.");
-	output("\n\nShe shudders, leaning heavily against the wall, and her leathery tail releases its grip on you. You stagger back, wiping at the sticky webs of taur-cum splattered on your cheeks{ and through your hair}. Ellie gives you an apologetic smile, saying “<i>Sorry babe. If you couldn’t tell, I needed that...</i>”");
+	output("\n\nShe shudders, leaning heavily against the wall, and her leathery tail releases its grip on you. You stagger back, wiping at the sticky webs of taur-cum splattered on your cheeks");
+	if(pc.hasHair()) output(" and through your hair");
+	output(". Ellie gives you an apologetic smile, saying “<i>Sorry babe. If you couldn’t tell, I needed that...</i>”");
 	output("\n\nThe tip of her tail flicks across your cheek, wiping away a bit of her girl-spunk... only to turn around and drive itself into her twat. Ellie gives a little gasp as her tail sinks into her cum-soaked snatch, spreading her black lips wide open around its thick girth. “<i>Mmm, now what am I going to do with you, sweet thing?</i>” Ellie coos, cupping her tits and wiggling her animalistic hips as she spears herself. Her twin-pupiled eyes regard with you a look of lust and unrestrained desire...");
 	pc.lust(300);
 	processTime(14);
@@ -767,8 +781,10 @@ function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBi
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	output("“<i>Come and get it, big " + pc.mf("boy","girl") + ",</i>” Ellie purrs, withdrawing her arm-thick tail from her pussy, leaving her lips wide agape and drooling a web of excitement and anticipation. You all but leap at the opportunity, {grabbing a smallish box to stand on and }aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff shaft of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
-	output("\n\nYou grab your hefty{, animalistic} cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. “<i>Mmmm, I can </i>feel<i> that, lover...</i>” Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts. “<i>");
+	output("“<i>Come and get it, big " + pc.mf("boy","girl") + ",</i>” Ellie purrs, withdrawing her arm-thick tail from her pussy, leaving her lips wide agape and drooling a web of excitement and anticipation. You all but leap at the opportunity, ");
+	if(pc.tallness < 76) output("grabbing a smallish box to stand on and ");
+	output("aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff shaft of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
+	output("\n\nYou grab your hefty cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. “<i>Mmmm, I can </i>feel<i> that, lover...</i>” Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts. “<i>");
 	if(pc.biggestCockLength() <= 23) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!</i>”");
 	else output("That delicious hunk of meat belongs on a leithan, or maybe a real centaur... not that I’m complaining! Easier on my back this way, you know. Either way, my poor little pussy’s just drooling in anticipation... come on, lover, go ahead and slide it in!</i>”");
 
@@ -925,7 +941,9 @@ function getTailPeggedByTaurBitches():void
 	else pc.cuntChange(x,200,true,true,false);
 
 	output("\n\nEllie’s hips ram you again and again, her tauric body coming down on your up-raised ass like a hammer, pounding you forward with every thrust. You barely hang on, grasping at the bar and squirming under Ellie’s relentless fucking. Your screams of pleasure mount, climbing higher until they break into an orgasmic register, overwhelmed by the incredible, deep-thrusting stretching of your [pc.vagOrAss]. Your will breaks, mind going numb with pleasure; your body reacts with climax, muscles squirming and writhing around Ellie’s thick, plated tail, eliciting a lewd gasp from your bestial partner. A final thrust of Ellie’s hips sends her tail deep into you, your gut straining with the sheer size of it. Your whole body’s little more than a sheath for her now, gasping and crying and moaning in senseless pleasure, barely able to keep itself standing. She shudders over you, coming to a standstill as you ride your climax out, letting her tail work your stretched out hole through the ordeal.");
-	output("\n\nWhen your orgasm passes, you’re left as a limp, wet, gasping mess beneath Ellie’s bestial body, supported mostly by the still-squirming tail buried to what feels like the hilt up your [pc.vagOrAss]. Slowly, Ellie’s massive appendage begins to slide out of you, letting you plant face-first into the mass of pillows beneath you - and right into a growing pool of {your own cum mixed with} Ellie’s musky leithan spunk, pooled between her hindlegs during her mounting rut into you.");
+	output("\n\nWhen your orgasm passes, you’re left as a limp, wet, gasping mess beneath Ellie’s bestial body, supported mostly by the still-squirming tail buried to what feels like the hilt up your [pc.vagOrAss]. Slowly, Ellie’s massive appendage begins to slide out of you, letting you plant face-first into the mass of pillows beneath you - and right into a growing pool of ");
+	if(pc.hasVagina()) output("your own [pc.girlCum] mixed with ");
+	output("Ellie’s musky leithan spunk, pooled between her hindlegs during her mounting rut into you.");
 	output("\n\nEllie clops down over you a moment later, her clawed feet scratching at the floor as she steadies herself. “<i>Whoo! That was fun, huh babe?</i>” Ellie giggles, looking down at your collapsed form. “<i>Aww, maybe I went a little rough... but that [pc.vagOrAss] of yours just drives me wild! I can’t help myself...</i>”");
 	output("\n\nYou give a weak, shuddering groan. She giggles and picks you up, easily slinging you onto her back");
 	if(pc.isTaur() || pc.isNaga()) output(", bestial body and all");

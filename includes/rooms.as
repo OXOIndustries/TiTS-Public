@@ -3379,7 +3379,7 @@ function initializeRooms():void
 	//Foyer Room Description
 	rooms["526"] = new RoomClass(this);
 	rooms["526"].roomName = "RANCH\nFOYER";
-	rooms["526"].description = "The central room of the ranch house is a huge, wood-paneled affair, with old-school lever guns, tribal totems, and stuffed animals adorning the walls in between advertisements for the Treatment and for Texan Milk. A huge staircase in front of you leads upwards to the second floor, helpfully labeled \"Manager's Office.\" A door to the right leads to the gift shop, which seems to be pretty busy; to the left is a wide open set of double doors leading into what looks like a steakhouse, complete with a longhorn skull and horseshoes nailed to the barn-like door.";
+	rooms["526"].description = "The central room of the ranch house is a huge, wood-paneled affair, with old-school lever guns, tribal totems, and stuffed animals adorning the walls in between advertisements for the Treatment and for Texan Milk. A huge staircase in front of you leads upwards to the second floor, helpfully labeled \"Manager's Office.\" A door to the west leads to the gift shop, which seems to be pretty busy; to the east is a wide open set of double doors leading into what looks like a steakhouse, complete with a longhorn skull and horseshoes nailed to the barn-like door.";
 	rooms["526"].runOnEnter = undefined;
 	rooms["526"].southExit = "525";
 	rooms["526"].northExit = "529";
