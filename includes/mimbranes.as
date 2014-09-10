@@ -4591,10 +4591,10 @@ public function feedMimbranesWithCock():void
 	else output(" all of your Mimbranes");
 	output(" satisfied, you retrieve your gear and go back to something a little more self-gratifying.");
 
-	pc.orgasm();
-	pc.orgasm();
-
 	mimbraneFeed("all", 3);
+	
+	pc.orgasm();
+	pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

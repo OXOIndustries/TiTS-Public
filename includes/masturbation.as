@@ -729,7 +729,7 @@ function multiCockFap():void {
 		}
 	}
 	//Wrap-up, no new PG
-	output(" Your [pc.legs] quiver and involuntarily thrust until you are spent, and then, you lie there, coated coated with your goo and grinning a sated smile.");
+	output(" Your [pc.legs] quiver and involuntarily thrust until you are spent, and then, you lie there, coated with your goo and grinning a sated smile.");
 	if(pc.libido() <= 25) output("\n\nYou wipe up as best you can and gear up after a few minutes of rest, feeling like you can take on the world.");
 	else if(pc.libido() <= 50) output("\n\nYou make a half-hearted attempt to wipe up before getting your gear back on and getting ready go back to exploring.");
 	else if(pc.libido() <= 75) output("\n\nYou barely bother to clear your sexual juices from your body before getting dressed and getting back to exploring the universe for sexy aliens to fuck.");
