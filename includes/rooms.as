@@ -3212,7 +3212,7 @@ function initializeRooms():void
 	//506 The Road
 	rooms["506"] = new RoomClass(this);
 	rooms["506"].roomName = "THE\nROAD";
-	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They're at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It's best to stay on the road for now.";
+	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They're at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It's best to stay on the road for now. A gap to the southeast reveals a colorful structure.";
 	rooms["506"].runOnEnter = undefined;
 	rooms["506"].westExit = "505";
 	rooms["506"].eastExit = "507";
@@ -3225,9 +3225,10 @@ function initializeRooms():void
 	rooms["507"] = new RoomClass(this);
 	rooms["507"].roomName = "THE\nROAD";
 	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn't far to the northeast, and an impressive ranch house stands off the road to the northwest.";
-	rooms["507"].runOnEnter = undefined;
+	rooms["507"].runOnEnter = icedTeatsExteriorBonusFunc;
 	rooms["507"].westExit = "506";
 	rooms["507"].eastExit = "508";
+	rooms["507"].southExit = "540";
 	rooms["507"].planet = "PLANET: NEW TEXAS";
 	rooms["507"].system = "SYSTEM: NYE";
 	rooms["507"].addFlag(GLOBAL.OUTDOOR);
@@ -3237,7 +3238,7 @@ function initializeRooms():void
 	//1 SW of barn
 	rooms["508"] = new RoomClass(this);
 	rooms["508"].roomName = "THE\nROAD";
-	rooms["508"].description = "A prairie breeze hits you as you walk, carrying the smell of straw and milk on an eastern breeze. Just to the northeast, you can see what is likely the source of the farmland scents: a red and white barn. You can vaguely hear the sound of mooing from within. The whole place has a fresh, wholesome air that's entirely at odds with the message you received and the attitudes of the customs agents.";
+	rooms["508"].description = "A prairie breeze hits you as you walk, carrying the smell of straw and milk on an eastern breeze. Just to the northeast, you can see what is likely the source of the farmland scents: a red and white barn. You can vaguely hear the sound of mooing from within. The whole place has a fresh, wholesome air that's entirely at odds with the message you received and the attitudes of the customs agents. Off to the southwest is a colorful-looking structure. A sweet dairy scent emanates from within.";
 	rooms["508"].runOnEnter = undefined;
 	rooms["508"].westExit = "507";
 	rooms["508"].eastExit = "509";
@@ -3439,6 +3440,18 @@ function initializeRooms():void
 	rooms["530"].addFlag(GLOBAL.INDOOR);
 	rooms["530"].addFlag(GLOBAL.NPC);
 
+
+	//540
+	//Iced Teats
+	rooms["540"] = new RoomClass(this);
+	rooms["540"].roomName = "ICED\nTEATS";
+	rooms["540"].description = "";
+	rooms["540"].runOnEnter = icedTreatsInterior;
+	rooms["540"].northExit = "507";
+	rooms["540"].planet = "PLANET: NEW TEXAS";
+	rooms["540"].system = "SYSTEM: NYE";
+	rooms["540"].addFlag(GLOBAL.INDOOR);
+	rooms["540"].addFlag(GLOBAL.NPC);
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

@@ -125,6 +125,7 @@
 		include "../includes/vanae.as";
 		include "../includes/anno.follower.as";
 		include "../includes/ellie.as";
+		include "../includes/yammi.as";
 		
 		include "../includes/lightsOut.as";
 			

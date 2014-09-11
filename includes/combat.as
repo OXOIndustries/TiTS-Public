@@ -392,6 +392,13 @@ function updateCombatStatuses():void {
 			output("\n");
 		}
 	}
+	if(pc.hasStatusEffect("Poison"))
+	{
+		//2% of HP per tic.
+		output("<b>The poison continues to take its toll on your body, you need to end this fight as soon as possible!</b>");
+		genericDamageApply(Math.round(pc.HPMax() * 0.02),foes[0],pc,GLOBAL.GRAVITIC);
+		output("\n");
+	}
 	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
 	{
 		if(rand(10) == 0) 
@@ -705,6 +712,7 @@ function grappleStruggle():void {
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
+			//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
@@ -716,6 +724,7 @@ function grappleStruggle():void {
 		else if (foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 		else if (foes[0] is GrayPrime) grayPrimeFailEscape();
+		//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
@@ -725,6 +734,12 @@ function grappleStruggle():void {
 
 function staticBurst():void {
 	clearOutput();
+	/*if(foes[0] is GoblinGadgeteer)
+	{
+		output("You shock the net to little avail. It turns out electricity doesn't do much to nets.\n");
+		processCombat();
+		return;
+	}*/
 	pc.energy(-50);
 	output("You release a discharge of electricity, momentarily weakening your ");
 	if(foes[0].plural) output("foes'");
