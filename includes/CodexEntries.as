@@ -917,3 +917,167 @@ function vanaeHistoryCodexEntry():void
 
 	CodexManager.viewedEntry("Vanae: History");
 }
+
+//Bess-13 and Ben-14 Units 
+//(Maia Series)
+function Bess13CodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("BESS");
+	outputCodex(header("Bess-13 and Ben-14 Units"));
+
+	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
+	outputCodex("\n<b>Genders:</b> Female (Bess-13) or Male (Ben-14)");
+	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
+	outputCodex("\n<b>Weight:</b> 65kg (Bess-13), 70kg (Ben-14). These are the default factory settings.");
+	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
+	outputCodex("\n<b>Eyes:</b> Both unit types have adjustable irises; color is specified by their owner. Factory standard is silver.");
+	outputCodex("\n<b>Wings:</b> None.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Features:"));
+	outputCodex("Bess-13 and Ben-14 units are sleek, chrome-skinned humanoids with segmented artificial bodies. They fit the very definition of robot, lines running along their body showing each individual part for easy maintenance. These units are built almost entirely of FlexMetal, a patented synthetic alloy built by JoyCo that feels exactly like organic skin. JoyCo designers claim FlexMetal is actually superior to organic skin as it is far more durable and infinitely more flexible.");
+	outputCodex("\n\nJoyCo have put this flexibility to good use in these units; their FlexMetal bodies allow them to customize their shape depending on their user's preference. By filling sections of their body with a special liquid called Meld-Milk they can inflate or deflate any part. Because of this, no two units appear exactly the same.");
+	outputCodex("\n\nBess-13 and Ben-14 have a special multi-functional JoyCord that usually lies dormant in their spinal cavity. When they need to recharge themselves, the tail comes out just above their rear ends and connects into a local power source. It can also be rearranged and used as a cock-tail attachment.");
+	outputCodex("\n\nIn an emergency, they can use a stun attack from their JoyCords - as power can travel either way down the cord - though this function severely depletes their internal batteries. This feature was originally designed for users into electrostimulation.");
+	outputCodex("\n\nBoth Bess-13 and Ben-14 units come with male and female genital attachments. They can have one, both, or neither attached at any given time.");
+	outputCodex("\n\nBoth units have the ability to equip a pussy and have it extend out from a prehensile tail growing from between their legs. This is particularly useful for users with unusual body types or for offering vaginal penetration while being pegged from behind. Some users find this ability unsettling and never make use of it.");
+	outputCodex("\n\nTheir FlexMetal bodies allows them to incorporate all but the largest of individuals in any orifice. Since Bess-13 and Ben-14 Units are marketed as breeding relief androids, they can easily take huge amounts of liquid inside of them and in a pinch swell their bodies to compensate.");
+	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy. Bran Flazingan, the galaxy’s eight richest man and eccentric tycoon, called the Bess-13’s and Ben-14's \"the most enticing object you’ll ever feel the need to fuck.\"\n\n");
+	// * Totally changable of course. Sixth might be too big a spot for this NPC.
+
+	outputCodex(blockHeader("History:"));
+	outputCodex("For years, JoyCo and KihaCorp have been rival robot manufacturers. Despite this, there has always been one area each company was the undisputed leader. For Joyco, this was medical assist-bots. For KihaCorp, coded and grown AI units. For the longest time, neither company tried to muscle in on each other's 'turf'.");
+	outputCodex("\n\nThis all changed when fifteen years ago, KihaCorp abruptly announced it would be manufacturing a new, revolutionary medical assist bot. JoyCo saw this as nothing less than a declaration of war and went about designing an AI product to hit back at the rival company.");
+	outputCodex("\n\nTheir proposed solution was the creation of the universe's first truly empathic coded AI, breaking down the barriers between Coded and Grown AIs. They saw it as a way of getting all the benefits of an empathic consciousness without the hassles of copying and growing it in a simulator. It was also a way to steal away customers of both KihaCorp's coded and grown AI units.");
+	outputCodex("\n\nWith this in mind, the Mood Articulate Intelligence Android, or Maia Series, was conceived.");
+	outputCodex("\n\nOver a dozen different Maia type androids were designed and put on the market, however none saw as much success and failure as the Bess-13 and Ben-14 units. These units were designed to be perfect emergency sex substitutes. JoyCo marketed them as ideal for breeding relief in hospitals, frontier exploration, or private use.");
+	outputCodex("\n\nHowever, JoyCo's ambition far outstripped the expertise of its developers. As relative novices in the area of AI design, several mistakes were made when building the Bess-13 and Ben-14 units.");
+	outputCodex("\n\nTo create a truly empathic coded AI, JoyCo included emotional modules and libraries in the Maia Series, allowing them to sympathise with others. While this was a wildly popular feature, it was also incredibly dangerous. The perils of placing an AI mind capable of emotion into what was meant to be a bipedal sex toy became quickly apparent.");
+	outputCodex("\n\nNot only that, JoyCo had included a feature that allowed Bess-13 and Ben-14 units to feel a higher level of sexual pleasure than humans. Because of the units intuitive ability to find their partners sweet spots, their users were always swiftly satisfied. Unfortunately, the same could not be said for the units. This lead to the unfortunate side effect of almost every orgasm deprived unit going completely berserk and flying into \"sex rampages.\"");
+	outputCodex("\n\nJoyCo quickly issued a complete recall and went so far as to get the UTC to ban these particular AI models. The company also offered all owners a replacement Bess-13 or Ben-14 Unit - this time with a VI processor - or a complete refund. Despite this many owners refused to return their AI models, preferring to keep them and take the risk, rather than settling for the 'inferior' VI replacements.");
+	outputCodex("\n\nSince then JoyCo have continued to sell Bess-13 and Ben-14 VI units. While the AI models were popular amongst private owners, the VI units have been more popular in the fields of medicine and frontier exploration. This is because the VI units are a tenth of the price of the AI models.");
+	outputCodex("\n\nMeanwhile a large underground following and black market demand still exists for these AIs, with many rich individuals still secretly requesting for AI models to be made. JoyCo flatly denies receiving or fulfilling any of these requests.");
+	outputCodex("\n\nSince the attachments for the VI model are perfectly compatible with the AI model, owners of illegal units are still able to repair and upgrade them with impunity.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited:"));
+	outputCodex("Bess-13 and Bess-14 VI units can be found in most hospitals where breeding relief is needed for the general populace. There are a number of private owners, though most people cannot afford the high price of the units.  They are also frequently used as decoys on frontier planets with sexually aggressive natives, flora or fauna.\n\n");
+
+	outputCodex(blockheader("Reproduction:"));
+	output("Bess-13 and Ben-14 units cannot reproduce unless they are equipped with a special internal gene-splicer (GX) upgrade. When equipped with the GX upgrade they can impregnate or be impregnated by almost every conceivable species in the galaxy.");
+	outputCodex("\n\nThe Meld-Milk in their bodies can be discharged from their breasts (if they have them) or from any orifice. Through artificially induced biological processes, the units can transform Meld-Milk into several different types of fluid on request, allowing them to satiate certain kinks and also provide sustenance to organics. This function is particularly useful when a unit is equipped with a GX upgrade, allowing them to breastfeed progeny no matter what species they are.");
+	outputCodex("\n\nThe Units can also break down organic matter such as semen, milk and certain foods and turn it into Meld-Milk, easily replenishing their internal stores.\n\n");
+
+	outputCodex(blockHeader("Demeanor:"));
+	output("The AI and VI models share many personality traits due to their similar programming. Both are incredibly eager to please and possess a very pleasant and friendly demeanor. This is because the majority of them need to work in a hospital environment and must have a good bedside manner (as well as a good \"bedside manner\"). They are largely driven by their core directive to provide breeding relief.");
+	CodexManager.viewedEntry("Bess13");
+}
+
+function panaraCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Panara"));
+
+	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
+	outputCodex("\n<b>Genders:</b> Female (Bess-13) or Male (Ben-14)");
+	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
+
+	outputCodex("<b>Planet Name:</b> Panara");
+	outputCodex("\n<b>Size:</b> Small");
+	outputCodex("\n<b>Species:</b> Panaran Ausar (Thicker fur, wolf or husky-like), Humans.");
+	outputCodex("\n<b>Climate:</b> Tundra / Arctic Highlands");
+	outputCodex("\n<b>Position:</b> The Lagoon Nebulae, Sagittarius Arm of the Milky Way Galaxy.\n\n");
+
+	outputCodex(blockHeader("History:"));
+	outputCodex("Panara is a world hindered by low temperatures and slow growing seasons. What it does have going for it is strategic placement between three important solar systems and low land prices. Because of this, JoyCo built a factory on Panara during the tenth great planet rush in order to build its assist-bot range, taking advantage of not only the planet's galactic position but also its lax labor laws.");
+	outputCodex("\n\nA number of loyal ausar JoyCo employees able to handle the harsh winter climates have migrated to Panara over the years. While not technically a sub-species, the Ausar of Panara tend to have thicker fur and tend to be more ‘winter built’ than Ausar elsewhere in the galaxy. Humans, of course, go anywhere cash is to be made.");
+	outputCodex("\n\nSince JoyCo set up on Panara, several other enterprises have sprung up on the pivotal industry planet. While JoyCo has the largest factory on the planet, KihaCorp and Pyrite Industries also have industrial facilities there. It is not unusual for big corporations to hold military-related drills on Panara, taking advantage of the tundra planet’s wide open spaces and tight-lipped planetary government.");
+	outputCodex("\n\nPanara lacks a lot of culture and has no known recorded indigenous native races. If there is one, neither JoyCo nor the local government have ever recorded its existence.");
+	// This planet currently exists purely for Bess/Ben’s backstory.
+	// *Might want to rename this to something else, since you probably need to name a lot of planets named as part of the Offbeatr campaign!
+	CodexManager.viewedEntry("Panara");
+}
+
+function branFlazinganCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Bran Flazingan"));
+
+	outputCodex("<b>Full Name:</b> Bran Humpterhard Flazingan");
+	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty.");
+	outputCodex("\n<b>Species:</b> Human (debatably).");
+	outputCodex("\n<b>Gender:</b> Male.");
+	outputCodex("\n<b>Height:</b> 4'11\"");
+	outputCodex("\n<b>Weight:</b> 90 kg.");
+	outputCodex("\n<b>Hair:</b> Very little.");
+	outputCodex("\n<b>Eyes:</b> Blue.");
+	outputCodex("\n<b>Genitals:</b> Depends on the weekday.");
+	outputCodex("\n<b>Wings:</b> Private spacecraft.\n\n");
+
+	outputCodex(blockHeader("Features:"));
+	outputCodex("Bran Flazingan is a living breathing example of a man with no looks wielding incredible charisma. Short and portly with a thinning head, his intense blue eyes are about the only alluring thing about him. The rest of his body is typically covered in a flashy suit, though he prefers wearing nothing at all.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited:"));
+	outputCodex("There aren’t many environs he won’t inhabit - or let his cock inhabit, for that matter. Bran is well known for being the tycoon that will quite literally stick his junk in anything and everything for a thrill.\n\n");
+	outputCodex(blockHeader("History/Personality:"));
+	outputCodex("Bran Flazingan is well known as the the Universe’s sixth richest man and a thoroughly eccentric one to boot. The extranet adores his antics and follows his escapades, most of which are highly scandalous and sexual in nature.");
+	outputCodex("\n\nHis most infamous act is attempting to get an entire planet pregnant with his sperm. After several virility enhancements, he offered two large credit payments. The first for anyone who had sex with him without protection, and the second for anyone who became pregnant with his child. He also offered free transgender treatment for any men who wished to take him up on the offer.");
+	outputCodex("\n\nDespite his antics he is also a shrewd businessman who has made billions of credits by selling sex products to the galaxy through his company, HumpHard Inc. His outrageous persona has only added to his sales figures over the years.");
+	outputCodex("\n\nClaiming to be on the forefront of sexploration, Bran spends a good deal of his time documenting his travels and trialling his products in the field. He is well known for giving a \"Humpter Score\" for both his products and the places he visits. Bran was also a friend of influential tycoon and fellow hedonist Victor Steele.");
+	outputCodex("\n\nBran's opinion is so influential that a single statement from him can drastically change market sales. After he called JoyCo’s Bess-13 and Ben-14 models \"the most enticing object you’ll ever feel the need to fuck,\" sales immediately shot through the roof. The incident caused massive contention with Bran’s business partners who were already at threat of being eclipsed by JoyCo’s domination of frontier planet trade. The irony was that Bran was referring to the AI models, and not the VI models, when he made his statement.");
+	outputCodex("\n\nThere’s a saying known by most species in the known galaxy - \"If Bran won’t fuck it, nobody will.\"");
+	// Bran Flazingan: Imagine Donald Trump + Rance (AliceSoft Games) + Ron Jeremy. The name is a play on Zap Brannigan.
+	CodexManager.viewedEntry("Bran Flazingan");
+}
+
+function humphardIncCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Humphard Inc"));
+	outputCodex("<b>Company Name:</b> Humphard Incorporated.");
+	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor.");
+	outputCodex("\n<b>Head Office:</b> Tantalus, Evira System.");
+	outputCodex("\n<b>Company Head:</b> CEO Bran Flazingan.\n\n");
+	outputCodex("Humphard Inc is a company founded by Bran Flazingan over two centuries ago with a single mission statement - \"sexual pleasure is the only intrinsic good.\" Since then Humphard has risen to become the galaxy's number one adult product manufacturer and produces products for almost every conceivable species from the core worlds to the rim.");
+	outputCodex("\n\nHumphard products are known for three things; quality, innovation, and pleasure. It takes great pride on always being on the cutting edge and hires countless 'testers' to trial company products.");
+	outputCodex("\n\nThe company always has a large number of employees and freelancers travelling about the galaxy to seek inspiration for their products. The most famous of these is none other than the CEO himself, Bran Flazingan, one of the universes' foremost \"sexplorers\" (See Codex Entry: Bran Flazingan).");
+	outputCodex("\n\nThe hardlight holographic condom, or 'Holodom', was one of Humphard's first products. The one-use hardlight 'shield' - produced by a small ring slipped around the shaft - revolutionized safe sex around the galaxy (See Codex Entry: \"Holodom\").");
+	outputCodex("\n\nAnother famous product is the everflowing cumsucker; a white, semen flavored sphere that can be sucked on for pleasure and literally 'melts in your mouth'. The product has sold incredibly well with cumvores. Popular flavors include Ballbatter, Zilmead, Ausar Ecstasy, LooRahn Lemon, and Rahnsberry.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Notable Humphard Products:"));
+	outputCodex("Grav-Cuffs");
+	outputCodex("\nHolo condom (\"Holodom\")");
+	outputCodex("\nVibrating Lube");
+	outputCodex("\nEverflowing Cumsucker");
+	CodexManager.viewedEntry("Humphard Inc.");
+}
+
+//Grav-Cuffs
+// Probably needs to go in an 'items' listing. This codex entry was written up so I don't need to keep explaining what these are in both the Bess doc & the Doctor Badger doc. They're used in sex scenes for both chars.
+function gravCuffsCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Grav Cuffs"));
+
+	outputCodex("<b>Manufactured By:</b> Humphard Inc\n\n");
+
+	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
+	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
+	outputCodex("\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.");
+	outputCodex("\n\nGrav-cuffs are notoriously hard to break out of.");
+	if(silly) outputCodex(" They are made of top secret alloy that Bran Flazingan has patented as \"Hardium\". The Humphard CEO claims the composition of the alloy was inspired by his erect penis, \"the hardest thing in the known galaxy.\"");
+	CodexManager.viewedEntry("Grav Cuffs");
+}
+
+// Holodom
+function holodomCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Holodom"));
+	outputCodex("<b>Description:</b> Hard light holographic condom, or \"holodom.\"");
+	outputCodex("\n<b>Manufactured By:</b> Humphard Inc\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Holodoms were one of Humphard's first adult products and largely considered their \"first big break\" in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
+	outputCodex("\n\nBefore the holodom, galactic citizens had to rely on other less enjoyable methods of safe sex. Traditional condoms reduced sensation, body modification and implants were troublesome, and oral supplements were not always cross-species compatible. The holodom offered a quick, easy way to have sex with practically any species without worrying about impregnation or disease.");
+	outputCodex("\n\nOn the release of seed, a holodom captures it within the field and keeps it stored in a hard light bubble. For incredibly virile users, this often creates a spectacular 'bubble' of semen that can stress the holodom and potentially cause it to burst.");
+	outputCodex("\n\nSome seedy dealers sell fake holodoms that, while holographic, are not 'hard light'. There are a number of customers who buy these products to dupe their sexual partners, often in a bid to get them pregnant.");
+	CodexManager.viewedEntry("Holodom");
+}
