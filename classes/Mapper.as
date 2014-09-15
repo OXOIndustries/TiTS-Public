@@ -163,6 +163,14 @@
 			{
 				map[x][y][z] |= room_medical_mask;
 			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.LIFTUP))
+			{
+				map[x][y][z] |= z_pos_exit_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.LIFTDOWN))
+			{
+				map[x][y][z] |= z_neg_exit_mask;
+			}
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.SHIPHANGAR))
 			{
 				map[x][y][z] |= room_ship_mask;

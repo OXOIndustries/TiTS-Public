@@ -962,7 +962,7 @@ function Bess13CodexEntry():void
 	outputCodex(blockHeader("Environs Typically Inhabited:"));
 	outputCodex("Bess-13 and Bess-14 VI units can be found in most hospitals where breeding relief is needed for the general populace. There are a number of private owners, though most people cannot afford the high price of the units.  They are also frequently used as decoys on frontier planets with sexually aggressive natives, flora or fauna.\n\n");
 
-	outputCodex(blockheader("Reproduction:"));
+	outputCodex(blockHeader("Reproduction:"));
 	output("Bess-13 and Ben-14 units cannot reproduce unless they are equipped with a special internal gene-splicer (GX) upgrade. When equipped with the GX upgrade they can impregnate or be impregnated by almost every conceivable species in the galaxy.");
 	outputCodex("\n\nThe Meld-Milk in their bodies can be discharged from their breasts (if they have them) or from any orifice. Through artificially induced biological processes, the units can transform Meld-Milk into several different types of fluid on request, allowing them to satiate certain kinks and also provide sustenance to organics. This function is particularly useful when a unit is equipped with a GX upgrade, allowing them to breastfeed progeny no matter what species they are.");
 	outputCodex("\n\nThe Units can also break down organic matter such as semen, milk and certain foods and turn it into Meld-Milk, easily replenishing their internal stores.\n\n");

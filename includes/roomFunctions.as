@@ -51,10 +51,12 @@ function hangarBonus():Boolean
 	// trace("this.titsClassPtr.move,", this.titsClassPtr.move);
 	// trace("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
 	if(currentLocation == "LIFT: MERCHANT DECK") {
-		addButton(5,"ToHangar",liftMove, "TAVROS LIFT");
+		output("\n\n<b>You are currently on the merchant deck.</b>");
+		addButton(5,"Down",liftMove, "TAVROS LIFT");
 	}
 	else if(currentLocation == "TAVROS LIFT") {
-		addButton(5,"ToMerchant",liftMove, "LIFT: MERCHANT DECK");
+		output("\n\n<b>You are currently on the hangar deck.</b>");
+		addButton(5,"Up",liftMove, "LIFT: MERCHANT DECK");
 	}
 	return false;
 }
@@ -373,6 +375,8 @@ function jungleDeepEncounters():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
+	if(pc.level < 2) output("\n\n<b>You can't help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
+
 	return false;
 }
 

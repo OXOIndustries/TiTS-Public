@@ -633,6 +633,8 @@
 		public static const OBJECTIVE:int						       = 9;
 		public static const HAZARD:int								   = 10;
 		public static const NOFAP:int 								   = 11;
+		public static const LIFTUP:int 								   = 12;
+		public static const LIFTDOWN:int 								= 13;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

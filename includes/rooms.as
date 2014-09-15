@@ -72,16 +72,30 @@ function initializeRooms():void
 	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station would normally be particularly thick, but it looks like many of the local business have been shuttered, their owners likely trying their business out on the rim, profiteering off the planet rush. For now, Anon's Bar and Board looks to be open out the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food? The express lifts have entrances here, able to take you to any level on the station if you head <b>in</b> the door.";
+	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station are particularly thick thanks to the rush. You hear talk of old shops closing, their owners out trawling the rim, trying to strike it rich, while newer stores have opened their doors to take their place. For now, Anon's Bar and Board is ready for your business to the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food? The Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the west.";
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
 	rooms["MERCHANT'S THOROUGHFARE"].westExit = "DARK CHRYSALIS";
-	rooms["MERCHANT'S THOROUGHFARE"].southExit = "BETHS BROADS";
+	rooms["MERCHANT'S THOROUGHFARE"].southExit = "MERCHANT'S THOROUGHFARE2";
 	rooms["MERCHANT'S THOROUGHFARE"].northExit = "110";
-	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
-	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
+	//rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
+	//rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
+
+	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
+	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of varied races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it. The station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. The station's express lifts have entrances to the west. A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
+	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
+	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
+	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
+	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "BETHS BROADS";
+	//rooms["MERCHANT'S THOROUGHFARE2"].inExit = "LIFT: MERCHANT DECK";
+	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
+	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
+
+
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
@@ -89,8 +103,9 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
-	rooms["LIFT: MERCHANT DECK"].outExit = "MERCHANT'S THOROUGHFARE";
+	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
+	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
 	//105 "TAVROS HANGAR". The Hangar
@@ -99,9 +114,9 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].description = "A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.";
 	rooms["TAVROS HANGAR"].planet = "TAVROS STATION";
 	rooms["TAVROS HANGAR"].system = "SYSTEM: KALAS";
-	rooms["TAVROS HANGAR"].inExit = "TAVROS LIFT";
-	rooms["TAVROS HANGAR"].inText = "Lift";
-	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);	
+	rooms["TAVROS HANGAR"].westExit = "TAVROS LIFT";
+	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
@@ -110,10 +125,11 @@ function initializeRooms():void
 	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
-	rooms["TAVROS LIFT"].outExit = "TAVROS HANGAR";
+	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
 	//rooms["TAVROS LIFT"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS LIFT"].addFlag(GLOBAL.LIFTUP);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
 
 	//107 The Dark Chrysalis
