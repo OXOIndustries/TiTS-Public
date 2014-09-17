@@ -3840,7 +3840,8 @@ function annoxKaedeFuckThemCombine():void
 	anno.orgasm();
 	
 	annoSexed(1);
-	flags["KAEDE_FUCKED"] = 1;
+	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
+	flags["KAEDE_FUCKED"]++;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -3919,7 +3920,7 @@ function annoxKaedeService(inShop:Boolean = true):void
 
 	annoSexed(1);
 	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
-	flags["KAEDE_FUCKED"];
+	flags["KAEDE_FUCKED"]++;
 
 	processTime(20+rand(10));
 
