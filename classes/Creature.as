@@ -1757,6 +1757,14 @@
 				if(personality < 50) personality = 50;
 			}
 		}
+		public function isBimbo():Boolean
+		{
+			return hasPerk("Ditz Speech");
+		}
+		public function isBro():Boolean
+		{
+			return hasPerk("Brute Speech");	
+		}
 		//XP!
 		function XP(arg: int = 0): Number {
 			XPRaw += arg;

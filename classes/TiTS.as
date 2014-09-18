@@ -126,6 +126,7 @@
 		include "../includes/anno.follower.as";
 		include "../includes/ellie.as";
 		include "../includes/yammi.as";
+		include "../includes/gianna.as";
 		
 		include "../includes/lightsOut.as";
 			
@@ -208,7 +209,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.52";
+			version = "0.02.53";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -740,6 +741,10 @@
 		public function get vanaeHuntress():*
 		{
 			return chars["HUNTRESS_VANAE"];
+		}
+		public function get gianna():*
+		{
+			return chars["GIANNA"];
 		}
 	}
 }

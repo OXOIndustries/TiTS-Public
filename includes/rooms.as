@@ -3309,7 +3309,7 @@ function initializeRooms():void
 	rooms["512"] = new RoomClass(this);
 	rooms["512"].roomName = "THE\nBARN";
 	rooms["512"].description = "You're standing square in the middle of a wide passage that runs north-south through the center of the barn. Stalls line it on either side along its whole length, but what really catches your eye is the bank of blinking lights built into the eastern wall. Flat panel displays, blinking lights, and various keypads all vie for your attention. It looks like you've found the controls for the barn's machinery. The stall next to the console is closed, and marked \"occupied\". Faint moans emanate from within. Opposite, the door hangs open. You could step inside if you wished.";
-	rooms["512"].runOnEnter = undefined;
+	rooms["512"].runOnEnter = giannaBonusShit;
 	rooms["512"].southExit = "511";
 	rooms["512"].northExit = "513";
 	rooms["512"].westExit = "517";
