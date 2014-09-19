@@ -1,10 +1,17 @@
 #!/SOMETHING SOMETHING SOMETHING python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import os.path
 import re
 import sys
 import pprint
+
+
+def updateDictCoord(inDict, coord, change):
+	dictTmp = inDict.copy()
+	dictTmp[coord] += change
+	return dictTmp
+
 
 class DynamicArrayContainer():
 	def __init__(self):
@@ -31,7 +38,7 @@ class DynamicArrayContainer():
 			return self.getSetInDict(inDict[key], keys, setValue)
 	def __repr__(self):
 		pp = pprint.PrettyPrinter(indent=4, width=-1)
-		
+
 
 		ret = "SparseDict:\n%s" % pp.pformat(self.itemDict)
 		return ret
@@ -59,7 +66,7 @@ class Room():
 		self.game_runOnEnter   = None
 		self.game_planet       = None
 		self.game_system       = None
-		
+
 		self.game_northExit    = None
 		self.game_westExit     = None
 		self.game_southExit    = None
@@ -77,11 +84,13 @@ class Room():
 
 		self.drawCoords        = None
 
+		self.searched = False
+
 	def parseInfoString(self, inStr):
 
 
 		lookupDict = {
-			
+
 			".description" : {"paramN" : "game_description", "captureRE" : re.compile(".description\s?=\s?([\"\']?.*?[\"\']?);")},
 			".eastExit"    : {"paramN" : "game_eastExit",    "captureRE" : re.compile(".eastExit\s?=\s?([\"\']?.*?[\"\']?);")},
 			".northExit"   : {"paramN" : "game_northExit",   "captureRE" : re.compile(".northExit\s?=\s?([\"\']?.*?[\"\']?);")},
@@ -89,7 +98,7 @@ class Room():
 			".roomName"    : {"paramN" : "game_roomName",    "captureRE" : re.compile(".roomName\s?=\s?([\"\']?.*?[\"\']?);")},
 			".runOnEnter"  : {"paramN" : "game_runOnEnter",  "captureRE" : re.compile(".runOnEnter\s?=\s?(.*?);")},
 			".southExit"   : {"paramN" : "game_southExit",   "captureRE" : re.compile(".southExit\s?=\s?([\"\']?.*?[\"\']?);")},
-			
+
 			".outExit"     : {"paramN" : "game_outExit",     "captureRE" : re.compile(".outExit\s?=\s??[\"\']?(.*?[\"\']?)?;")},
 			".inExit"      : {"paramN" : "game_inExit",      "captureRE" : re.compile(".inExit\s?=\s?([\"\']?.*?[\"\']?);")},
 
@@ -116,7 +125,7 @@ class Room():
 			return
 
 		keyFound = False
-		
+
 		for key, valDict in lookupDict.iteritems():      # Finally, process the more generic calls
 			if inStr.startswith(key):
 
@@ -126,7 +135,8 @@ class Room():
 					keyFound = True
 
 		if not keyFound:
-			raise ValueError("No lookup found for key %s, value %s" % (inStr, valDict))
+			pass
+			# raise ValueError("No lookup found for key %s, value %s" % (inStr, valDict))
 		#print "Adding room info", inStr
 
 
@@ -149,7 +159,7 @@ class Room():
 
 
 		retDict = {
-		
+
 		"roomName"           : self.roomName,
 		"roomNameInGame"     : self.game_roomName,
 		"roomDescription"    : self.game_description,
@@ -178,7 +188,7 @@ class Room():
 		return retDict
 
 	def updateRromDict(self, inDict):
-		
+
 		print "Created", cls
 		return ret
 
@@ -193,6 +203,17 @@ class Room():
 			for flag in self.roomFlags:
 				code += "\n	rooms[%s].addFlag(%s);" % (self.roomName, flag)
 		return code
+
+	def iterExits(self):
+		exits = [self.game_northExit,
+				self.game_westExit,
+				self.game_southExit,
+				self.game_eastExit,
+				self.game_outExit,
+				self.game_inExit]
+		for exit in exits:
+			if exit:
+				yield exit
 
 	# Convenience functions for cleaner code
 	# {this rooms} is above(otherRoom)
@@ -266,7 +287,7 @@ class MapClass():
 		for fileName in roomFileList:
 			self.loadRoomStructure(fileName)
 
-		self.crawlMapStructure("\"SHIP INTERIOR\"")
+		self.crawlPlanets()
 
 	def __repr__(self):
 		ret = ""
@@ -293,7 +314,7 @@ class MapClass():
 
 		neighborName, neighborRoomName = self.getAdjacentRooms(*coords).popitem()
 		self.makeRoomLinks(self.mapDict[keyName], self.mapDict[neighborRoomName])
-		self.crawlMapStructure("\"SHIP INTERIOR\"")
+		self.crawlPlanets()
 		return keyName
 
 	def makeRoomLinks(self, room1, room2):
@@ -302,14 +323,14 @@ class MapClass():
 			raise ValueError("Trying to link non-adjacent rooms!")
 
 		'''
-		self.game_northExit  
-		self.game_westExit   
-		self.game_southExit  
-		self.game_eastExit   
-		self.game_outExit    
+		self.game_northExit
+		self.game_westExit
+		self.game_southExit
+		self.game_eastExit
+		self.game_outExit
 		self.game_inExit     # In is "up"
-		self.game_outText    
-		self.game_inText     
+		self.game_outText
+		self.game_inText
 		'''
 
 		if room1.isAbove(room2):
@@ -371,7 +392,7 @@ class MapClass():
 				self.mapDict[roomName].parseInfoString(roomCall)
 			else:
 				if line:
-				
+
 					if roomWutRe.search(line):
 						print "Line without trailing semicolon! Line:", line.encode("utf-8")
 
@@ -393,7 +414,7 @@ class MapClass():
 		return ret
 
 	def areAdjacentRooms(self, room1, room2):
-		
+
 		x1, y1, z1, p1 = room1.coordsAsTup()
 		x2, y2, z2, p2 = room2.coordsAsTup()
 		print "Comparing rooms. X:", x1, x2, "Y:", y1, y2, "Z:", z1, z2, "P:", p1, p2
@@ -407,56 +428,78 @@ class MapClass():
 			return True
 		return False
 
-	def getPlanetList(self):
-		print "FIXME: Need a proper planet list extraction mechanism"
-		return ["\"SHIP HANGAR\"", "\"TAVROS HANGAR\""]
+	def floodFill(self, roomName):
 
-	def crawlMapStructure(self, currentRoom, currentCoords = {"x": 0, "y": 0, "z": 1, "p" : 0}):
+		skipExits = [u'shipLocation']
+
+		self.mapDict[roomName].searched = True
+		for exit in self.mapDict[roomName].iterExits():
+
+			if exit in skipExits:
+				continue
+
+			if not self.mapDict[exit].searched:
+				self.floodFill(exit)
+
+	def getPlanetList(self):
+
+		planets = []
+		keysToScan = list(self.mapDict.keys())
+		while keysToScan:
+			baseRoom = keysToScan.pop(0)
+			if not self.mapDict[baseRoom].searched:
+				self.floodFill(baseRoom)
+				planets.append(baseRoom)
+
+		print("Found %s independent locations!" % len(planets))
+		return planets
+
+	def crawlPlanets(self):
+		tmpCoords = {"x": 0, "y": 0, "z": 0, "p" : 0}
+		planetList = self.getPlanetList()
+		for planetRoomName in planetList:
+			print("TmpCoords", tmpCoords, planetRoomName)
+			self.crawlMapStructure(planetRoomName, tmpCoords)
+			tmpCoords = updateDictCoord(tmpCoords, "p", 1)
+			print("TmpCoords", tmpCoords, planetRoomName)
+
+
+	def crawlMapStructure(self, currentRoom, currentCoords = {"x": 0, "y": 0, "z": 0, "p" : 0}):
 		if not currentRoom in self.mapDict:
-			raise ValueError("Room not in dict! %s" % currentRoom)
+			return
+			# raise ValueError("Room not in dict! %s" % currentRoom)
 
 		if self.mapDict[currentRoom].coords is not None:
 			return
 
-		def updateDictCoord(inDict, coord, change):
-			dictTmp = inDict.copy()
-			dictTmp[coord] += change
-			return dictTmp
-
 
 		self.mapDict[currentRoom].coords = currentCoords.copy()
-		
+
 		x, y, z, p = currentCoords["x"], currentCoords["y"], currentCoords["z"], currentCoords["p"]
 		self.coordDict[x, y, z, p] = currentRoom
 
 		tmpCoords = currentCoords.copy()
-		if self.mapDict[currentRoom].game_outExit == "shipLocation":
-			planetList = self.getPlanetList()
 
-			for planetName in planetList:
-				self.crawlMapStructure(planetName, tmpCoords)
-				tmpCoords = updateDictCoord(currentCoords, "p", 1)
+		# Procedural disaster
 
-		else:		# Procedural disaster
-
-			if self.mapDict[currentRoom].game_northExit:
-				tmpCoords = updateDictCoord(currentCoords, "y", -1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_northExit, tmpCoords)
-			if self.mapDict[currentRoom].game_westExit:
-				tmpCoords = updateDictCoord(currentCoords, "x", -1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_westExit, tmpCoords)
-			if self.mapDict[currentRoom].game_southExit:
-				tmpCoords = updateDictCoord(currentCoords, "y", +1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_southExit, tmpCoords)
-			if self.mapDict[currentRoom].game_eastExit:
-				tmpCoords = updateDictCoord(currentCoords, "x", +1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_eastExit, tmpCoords)
-			if self.mapDict[currentRoom].game_outExit:
-				tmpCoords = updateDictCoord(currentCoords, "z", -1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_outExit, tmpCoords)
-			if self.mapDict[currentRoom].game_inExit:
-				tmpCoords = updateDictCoord(currentCoords, "z", +1)
-				self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
+		if self.mapDict[currentRoom].game_northExit:
+			tmpCoords = updateDictCoord(currentCoords, "y", -1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_northExit, tmpCoords)
+		if self.mapDict[currentRoom].game_westExit:
+			tmpCoords = updateDictCoord(currentCoords, "x", -1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_westExit, tmpCoords)
+		if self.mapDict[currentRoom].game_southExit:
+			tmpCoords = updateDictCoord(currentCoords, "y", +1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_southExit, tmpCoords)
+		if self.mapDict[currentRoom].game_eastExit:
+			tmpCoords = updateDictCoord(currentCoords, "x", +1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_eastExit, tmpCoords)
+		if self.mapDict[currentRoom].game_outExit:
+			tmpCoords = updateDictCoord(currentCoords, "z", -1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_outExit, tmpCoords)
+		if self.mapDict[currentRoom].game_inExit:
+			tmpCoords = updateDictCoord(currentCoords, "z", +1)
+			self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
 
 	def getRoomDrawnAt(self, x, y, roomSize=50):
 		#print "Getting room drawn at", x, y
