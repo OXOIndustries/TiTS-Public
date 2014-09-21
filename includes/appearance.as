@@ -175,7 +175,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.TYPE_DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
 			else if(pc.earType == GLOBAL.TYPE_FELINE) output2(" A pair of cute, fuzzy cat-like ears have sprouted from the top of your skull.");
 			else if(pc.earType == GLOBAL.TYPE_LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
-			else if(pc.earType == GLOBAL.TYPE_LAPINE) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
+			else if(pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
 			else if(pc.earType == GLOBAL.TYPE_KANGAROO) output2(" A pair of long, furred kangaroo ears stick out from your skull at an angle.");
 			else if(pc.earType == GLOBAL.TYPE_VULPINE) output2(" A pair of large, adept fox ears sit high on your skull, always listening.");
 			else if(pc.earType == GLOBAL.TYPE_DRACONIC) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
@@ -193,7 +193,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.TYPE_DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
 			else if(pc.earType == GLOBAL.TYPE_FELINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute, fuzzy feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			else if(pc.earType == GLOBAL.TYPE_LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
-			else if(pc.earType == GLOBAL.TYPE_LAPINE) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
+			else if(pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
 			else if(pc.earType == GLOBAL.TYPE_KANGAROO) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long, furred kangaroo ears that stick out at an angle.");
 			else if(pc.earType == GLOBAL.TYPE_VULPINE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
 			else if(pc.earType == GLOBAL.TYPE_DRACONIC) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head serve as your ears. Bony fins sprout behind them.");
@@ -205,10 +205,12 @@ function appearance(target:Creature):void {
 				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
 			}
 		}
+		if(pc.earType == GLOBAL.TYPE_LEITHAN) output2(" In addition, pointed elfin ears jut out below them, giving you exceptional hearing.");
 		//Tongue
 		if(pc.tongueType == GLOBAL.TYPE_NAGA || pc.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like tongue occasionally flits between your lips, tasting the air.");
 		else if(pc.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
+		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible tongue that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 		//Horns
 		//Demonic horns
 		if(pc.hornType == GLOBAL.TYPE_DEMONIC) {
@@ -253,6 +255,7 @@ function appearance(target:Creature):void {
 		else output2(".");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
+		else if(target.armType == GLOBAL.TYPE_LEITHAN) output2(" Small claws protrude from the tips of your figners in place of fingernails, and your arms are covered in scales up to the shoulders.");
 		else if(target.armType == GLOBAL.TYPE_EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
 		else if(target.armType == GLOBAL.TYPE_CANINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
@@ -903,7 +906,7 @@ function appearance(target:Creature):void {
 		//VAGOOZ
 		if(target.vaginas.length > 0) {
 			if(target.hasCock()) output2("\n\n");
-			if(!target.hasCock() && target.isTaur()) output2("Ever since becoming a centaur, your womanly parts have shifted to lie between your rear legs, in a rather equine fashion. ");
+			if(!target.hasCock() && target.isTaur()) output2("As a centaur, your womanly parts lie between your rear legs in a rather equine fashion. ");
 			//Vaginal Numbers
 			if(target.vaginaTotal() == 1) {
 				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
@@ -1005,6 +1008,11 @@ function appearance(target:Creature):void {
 				if(target.vaginaTotal() > 1) output2("each");
 				else output2("your");
 				output2(" lengthy entrance a little more discrete.");
+			}
+			//LEITHAN FLAVOR
+			if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0)
+			{
+				output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 			}
 		}
 		//Genderless lovun'

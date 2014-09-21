@@ -187,6 +187,7 @@
 			"Vanae",
 			"Vanae Maiden",
 			"Vanae Huntress",
+			"Leithan"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -231,6 +232,7 @@
 			TYPE_NAGA,
 			TYPE_DEMONIC,
 			TYPE_DRACONIC,
+			TYPE_LEITHAN
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -253,6 +255,7 @@
 			TYPE_MOUSE,
 			TYPE_PANDA,
 			TYPE_HUMAN,
+			TYPE_LEITHAN,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -266,6 +269,7 @@
 			TYPE_ARACHNID,
 			TYPE_DRIDER,
 			TYPE_BADGER,
+			TYPE_LEITHAN
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -370,6 +374,7 @@
 			FLAG_SMOOTH,
 			FLAG_TAILCOCK,
 			FLAG_FURRED,
+			FLAG_SCALED,
 			FLAG_OVIPOSITOR
 		];
 		
@@ -562,6 +567,7 @@
 		public static const VALID_VAGINA_TYPES:Array = [
 			TYPE_HUMAN,
 			TYPE_EQUINE,
+			TYPE_LEITHAN,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

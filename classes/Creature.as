@@ -2770,6 +2770,7 @@
 		}
 		public function isTaur(): Boolean {
 			if (legCount == 4) return true;
+			if (legCount == 6) return true;
 			return false;
 		}
 		public function isDrider(): Boolean {
@@ -5323,6 +5324,16 @@
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "black and gold";
 			}
+			if (type == GLOBAL.TYPE_NAGA)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "purple";
+			}
+			if (type == GLOBAL.TYPE_LEITHAN)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "black";
+			}
 		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
@@ -7034,7 +7045,32 @@
 					else if (temp <= 15) vag += "twat";
 					else vag += "cunt";
 				}
-			} else {
+			}
+			else if (type == GLOBAL.TYPE_LEITHAN) {
+				if (!simple) {
+					temp = this.rand(16);
+					if (temp <= 1) vag += "puffy gash";
+					else if (temp <= 3) vag += "thick-lipped vagina";
+					else if (temp <= 5) vag += "leithan cunny";
+					else if (temp <= 7) vag += "inhuman honeypot";
+					else if (temp <= 9) vag += "dusky snatch";
+					else if (temp <= 11) vag += "swollen cunt";
+					else if (temp <= 13) vag += "pheromone-laden pussy";
+					else vag += "musky mare-cunt";
+				} else {
+					temp = this.rand(18);
+					if (temp <= 1) vag += "taur-pussy";
+					else if (temp <= 3) vag += "mare-cunt";
+					else if (temp <= 5) vag += "fuck-hole";
+					else if (temp <= 7) vag += "xeno-twat";
+					else if (temp <= 9) vag += "mare-twat";
+					else if (temp <= 11) vag += "centaur-snatch";
+					else if (temp <= 13) vag += "alien-pussy";
+					else if (temp <= 15) vag += "mare-pussy";
+					else vag += "leith-cunt";
+				}
+			}
+			else {
 				if (!simple) {
 					temp = this.rand(5);
 					if (temp <= 1) vag += "human ";

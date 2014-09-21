@@ -49,6 +49,8 @@ function startCharacterCreation(e:Event = null):void
 	this.addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor's child will be born a full-blooded human.");
 	this.addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
 	this.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
+	this.addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
+
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 }
 
@@ -62,6 +64,10 @@ function confirmRaceChoice(race:String = "human"):void {
 	}
 	else if(race == "kaithrit") {
 		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
+	}
+	else if(race == "leithan")
+	{
+		output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
 	}
 	output("\n\nIs this the race Victor chooses?")
 	this.clearMenu();
@@ -111,6 +117,30 @@ function chooseStartingRace(race:String = "human"):void {
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
+	//Half-leithan Starting Goods
+	else if(pc.originalRace == "half-leithan") {
+		pc.legCount = 6;
+		//Clawed lizardfeet
+		pc.legType = GLOBAL.TYPE_LIZAN;
+		pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+		pc.addLegFlag(GLOBAL.FLAG_SCALED);
+		pc.addLegFlag(GLOBAL.FLAG_PAWS);
+		pc.armType = GLOBAL.TYPE_LEITHAN;
+		//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
+		pc.earType = GLOBAL.TYPE_LEITHAN;
+		//>Reptilian, forked tongues
+		pc.tongueType = GLOBAL.TYPE_LEITHAN;
+		pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+		pc.addTongueFlag(GLOBAL.FLAG_LONG);
+		pc.tailType == GLOBAL.TYPE_LIZAN;
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_SCALED);
+		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+		pc.scaleColor = "black";
+		this.addButton(0,"Male",setStartingSex,1);
+		this.addButton(1,"Female",setStartingSex,3);
+	}
 	else if(pc.originalRace == "half-multicock") {
 		pc.earType = GLOBAL.TYPE_FELINE;
 		pc.tailType = GLOBAL.TYPE_FELINE;
@@ -147,6 +177,12 @@ function setStartingSex(sex:int = 1):void {
 		pc.createCock();
 		pc.balls = 2;
 		pc.ballSizeRaw = 1.5;
+
+		if(pc.originalRace == "half-leithan")
+		{
+			pc.shiftCock(0,GLOBAL.TYPE_NAGA);
+			pc.ballSizeRaw = 3;
+		}
 		if (pc.originalRace == "half-ausar") {
 			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
 		}
@@ -182,6 +218,12 @@ function setStartingSex(sex:int = 1):void {
 	}
 	if (sex >= 2) {
 		pc.createVagina();
+		if(pc.originalRace == "half-leithan")
+		{
+			pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
+			pc.vaginas[0].wetnessRaw = 2;
+			pc.vaginas[0].bonusCapacity += 20;
+		}
 		if(pc.originalRace == "half-ausar") {
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.vaginas[0].bonusCapacity = 10;
@@ -288,20 +330,29 @@ function chooseHairColor():void {
 	output("<i>“Great,”</i> he says absently, entering the information with his stylus. <i>“I thought of asking for " + pc.mf("his","her") + " adult weight in pounds, but knowing you, you would have taken me seriously. Obviously, your kitchen staff will be the ones who control that.”</i> He clears his throat, sombering slightly. <i>“How about hair color? We could do black, like yours was, or any of the other natural colors pretty easily.”</i>");
 	//[CoC-like choices with bonus options for certain half-races].
 	this.clearMenu();
-	this.addButton(0,"Black",applyHairColor,"black");
-	this.addButton(1,"Brown",applyHairColor,"brown");
-	this.addButton(2,"Dirty Blond",applyHairColor,"dirty blond");
-	this.addButton(3,"Blond",applyHairColor,"blond");
-	this.addButton(4,"Auburn",applyHairColor,"auburn");
-	this.addButton(5,"Red",applyHairColor,"red");
-	this.addButton(6,"Gray",applyHairColor,"gray");
-	if (pc.originalRace ==  "half-kaithrit") {
-		this.addButton(7,"Blue",applyHairColor,"blue");
-		this.addButton(8,"Green",applyHairColor,"green");
-		this.addButton(9,"Purple",applyHairColor,"purple");
+	if(pc.originalRace == "half-leithan")
+	{
+		this.addButton(0,"Gray",applyHairColor,"gray");
+		this.addButton(1,"Silver",applyHairColor,"silver");
+		this.addButton(2,"Dark Gold",applyHairColor,"dark gold");
 	}
-	if(pc.originalRace == "half-ausar") {
-		this.addButton(7,"White",applyHairColor,"white");
+	else
+	{
+		this.addButton(0,"Black",applyHairColor,"black");
+		this.addButton(1,"Brown",applyHairColor,"brown");
+		this.addButton(2,"Dirty Blond",applyHairColor,"dirty blond");
+		this.addButton(3,"Blond",applyHairColor,"blond");
+		this.addButton(4,"Auburn",applyHairColor,"auburn");
+		this.addButton(5,"Red",applyHairColor,"red");
+		this.addButton(6,"Gray",applyHairColor,"gray");
+		if (pc.originalRace ==  "half-kaithrit") {
+			this.addButton(7,"Blue",applyHairColor,"blue");
+			this.addButton(8,"Green",applyHairColor,"green");
+			this.addButton(9,"Purple",applyHairColor,"purple");
+		}
+		if(pc.originalRace == "half-ausar") {
+			this.addButton(7,"White",applyHairColor,"white");
+		}
 	}
 	this.addButton(14,"Back",chooseThickness);
 }
@@ -347,12 +398,22 @@ function chooseSkinTone():void
 	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great. How about skin pigmentation?”</i>");
 	this.clearMenu();
-	this.addButton(0,"Pale",applySkinTone,"pale");
-	this.addButton(1,"Fair",applySkinTone,"fair");
-	this.addButton(2,"Tanned",applySkinTone,"tanned");
-	this.addButton(3,"Olive",applySkinTone,"olive");
-	this.addButton(3,"Dark",applySkinTone,"dark");
-	this.addButton(4,"Ebony",applySkinTone,"ebony");
+	if(pc.originalRace == "half-leithan")
+	{
+		this.addButton(0,"Pale",applySkinTone,"pale");
+		this.addButton(1,"Fair",applySkinTone,"fair");
+		this.addButton(2,"Gray",applySkinTone,"gray");
+		this.addButton(3,"Black",applySkinTone,"black");
+	}
+	else
+	{
+		this.addButton(0,"Pale",applySkinTone,"pale");
+		this.addButton(1,"Fair",applySkinTone,"fair");
+		this.addButton(2,"Tanned",applySkinTone,"tanned");
+		this.addButton(3,"Olive",applySkinTone,"olive");
+		this.addButton(3,"Dark",applySkinTone,"dark");
+		this.addButton(4,"Ebony",applySkinTone,"ebony");
+	}
 	this.addButton(14,"Back",chooseEyeColor);
 }
 function applySkinTone(skinTone:String = "pale"):void {
@@ -370,7 +431,6 @@ function applySkinTone(skinTone:String = "pale"):void {
 	}
 	chooseBreastSize();	
 }
-
 
 //Boob Size:
 function chooseBreastSize():void {
@@ -391,6 +451,11 @@ function chooseBreastSize():void {
 	if(pc.hasVagina()) {
 		this.addButton(4,"D",applyBreastSize,4);
 		this.addButton(5,"DD",applyBreastSize,5);
+		if(pc.originalRace == "half-leithan")
+		{
+			this.addButton(6,"Big DD",applyBreastSize,6);
+			this.addButton(7,"E",applyBreastSize,7);
+		}
 	}
 	if (pc.originalRace ==  "half-kaithrit" && pc.hasVagina()) {
 		this.addButton(6,"Big DD",applyBreastSize,6);
@@ -422,12 +487,26 @@ function chooseYourJunkSize():void {
 	else output("six ");
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	this.clearMenu();
-	this.addButton(0,"4\"",applyJunkSize,4);
-	this.addButton(1,"5\"",applyJunkSize,5);
-	this.addButton(2,"6\"",applyJunkSize,6);
-	if (pc.originalRace !=  "half-kaithrit") {
-		this.addButton(3,"7\"",applyJunkSize,7);
-		this.addButton(4,"8\"",applyJunkSize,8);
+	if(pc.originalRace == "half-leithan")
+	{
+		this.addButton(0,"13\"",applyJunkSize,13);
+		this.addButton(1,"14\"",applyJunkSize,14);
+		this.addButton(2,"15\"",applyJunkSize,15);
+		this.addButton(3,"16\"",applyJunkSize,16);
+		this.addButton(4,"17\"",applyJunkSize,17);
+		this.addButton(5,"18\"",applyJunkSize,18);
+		this.addButton(6,"19\"",applyJunkSize,19);
+		this.addButton(7,"20\"",applyJunkSize,20);
+	}
+	else
+	{
+		this.addButton(0,"4\"",applyJunkSize,4);
+		this.addButton(1,"5\"",applyJunkSize,5);
+		this.addButton(2,"6\"",applyJunkSize,6);
+		if (pc.originalRace !=  "half-kaithrit") {
+			this.addButton(3,"7\"",applyJunkSize,7);
+			this.addButton(4,"8\"",applyJunkSize,8);
+		}
 	}
 	this.addButton(14,"Back",chooseBreastSize);
 }

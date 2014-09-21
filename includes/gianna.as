@@ -1815,47 +1815,162 @@ function diminishGiannaButt(siliconeReturned:int):void
 	giannaBodyModMenu(false);
 }
 
-/*
-//[***] Give Silicone
-output("\n\n//First time");
-output("\n\nYou hand the sealed container over to Gianna. “<i>{Happy to help./Look what I found lying around./Here you go.}</i>”");
-output("\n\nTaking hold of it, the android simply stares at the canister for a long moment. Then, she throws her arms around you, wrapping you up in a hug. “<i>I’d hoped, but I wasn’t sure you’d bring me any! This is the best present ever!</i>” She enthusiastically plants a joyful kiss on your [pc.lips]{, unmindful of her pumped-up chest}. Then another. And another. She kisses you until you have to reluctantly push her away, and then holds it tightly to her [gianna.chest] like a kid at Christmas. She blushes when she realizes what she’s doing. “<i>{I suppose we ought to put it to use, huh?/S-sorry. I’m just thankful is all. Why don’t we go ahead and use this?}</i>”");
-output("\n\n//+slight confidence");
-output("\n\n//Repeat");
-output("\n\nYou hand over another container of silicone.");
-output("\n\n“<i>Another!?</i>” the excited android {exclaims/interrobangs}. “<i>Oh, [pc.name], {you don’t have to keep doing this, but don’t let me stop you./If I were wearing panties, you’d damn near have them off./you’re the best a ‘bot could hope for.} Thank you.</i>” She looks about to tear up but turns to examine the canister. “<i>I reckon we ought to put this to use, then.</i>” The corner of her glittering mouth twists upward into a excited, if petite, grin.");
-output("\n\n//+slight confidence");
-output("\n\n//Merge");
-output("\n\nGianna pushes her prize against a port in machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. “<i>Let’s get started.</i>”");
-output("\n\n//Menu!");
-output("\n\n[***] Increase Lips");
-output("\n\n“<i>{Let’s see what you would look like with bigger lips./Could you pump your lips up a little bit more?/Let’s keep going with your lips. It’ll be hot to see them so plush and permanently puckered./Gianna, I want your lips bigger... fuller./All the way babe, let’s make your mouth as obscene as possible. Really pump it up all the way.}</i>” you request.");
-output("\n\n//0 bonus to 1 full to succulent/juicy");
-output("\n\n“<i>A little bigger wouldn’t hurt,</i>” Gianna agrees{, grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’}. She closes her eyes and focuses, her [gianna.lips] pursed to give you a better view. The glossy black surface of her mouth ripples slightly. The smooth flesh of her synthetic lips puffs up slightly, just enough to give them the kind of juicy look that only a gifted woman would naturally have.");
-output("\n\nThe android runs her tongue along the expanded surface of her mouth. “<i>Not bad. I only had to tweak up their sensory resolution slightly to compensate for the added volume.</i>” Sucking the bottom one briefly into her mouth, she quietly moans with pleasure. “<i>Yeah, these will do. {Was there something else you’d want your dream-woman to have?/Anything else that you think would look good on me?/Are there other parts of my appearance you would like me to change, {[pc.master]}?");
-output("\n\n	/Menu");
-output("\n\n//1 to 2 juicy/succulent to bee-stung/swollen");
-output("\n\n“<i>Again?</i>” Gianna asks with a wry smile{, grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’}. “<i>I bet the bulls around here will thank you for it... and a few of the cow-girl’s too.</i>” Closing her eyes, she puckers up and begins the process of shifting the silicone around once more. The effect on her [gianna.lips] is quite noticeable. You’d have to be blind to ignore the way her mouth swells up. By the time she’s done, they look almost swollen. The words \"bee-stung\</i>” spring to mind.");
-output("\n\nMaking obscene kissy-faces at you, the feminine android takes her new lips for a spin. “<i>Well, these pillows will make avoiding my teeth during a blowjob that much easier, huh?</i>” She licks them, making them shine that much more obviously. “<i>I don’t think I’m fit for high-class dinners like this, but I suppose I could always make whores jealous.</i>” She glances at a passing cow-girl and frowns. “<i>Of course, around here I’m still barely above average. {Why don’t we make ‘em bigger and really put these skanks to shame?/We could pump them up a little more, if you wanted./Would you like me to make them even larger?}</i>”");
-output("\n\n	//Menu");
-output("\n\n//2 - 3 bee-stung/swollen to dazzling/exquisitely large");
-output("\n\n“<i>Got a thing for slutty mouths?</i>” Gianna asks{, grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’}. “<i>{You’re lucky I’m the adventurous sort./I should be glad we’re both adventurous types, I suppose./If so, you’ll love this.}</i>” Pursing her [gianna.lips], she lets her eyelids flutter closed and starts pumping the silicone. You can hear it sloshing through the hose and sloshing through her spine towards its targets. After a moment, the smooth curves ripple and bloat, pulling the synthskin surface so tight that they shine brighter than any lipstick-slathered mouth.");
-output("\n\nThe pumps wind down a scant few seconds later, leaving the companion with significantly expanded facial assets. She runs her tongue across their expansive surface and moans, “<i>Mmmm... I love the feel of my synthskin’s input resolution shifting.</i>” She sucks her top lip in, then lets it pop out so that she can nibble on the lower one. “<i>Yeah... the cows are gonna be jealous now. I could easily match the biggest of them now, and I don’t need to breathe when I go down on someone.</i>” Blushing, she suggests, “<i>Why don’t we unhook the pump and try these out?</i>”");
-output("\n\n	//+10 lust");
-output("\n\n	//Menu");
-output("\n\n//3 - 4 dazzling/exquisitely large to hyper-engorged/constantly pursed");
-output("\n\n“<i>Even bigger?</i>”, Gianna asks{, grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’}. “<i>I’m not gonna say no, but much bigger and they’re going to be totally out of hand. I already look like a blowjob-fetishist’s wet-dream, and now I’m gonna turn into one’s heaven.</i>” She sighs and licks her lips as if suddenly aware of their existence. “<i>Here goes.</i>” The android’s eyes dip closed, and hear the sound of a muffled pump kicking on.");
-output("\n\nGianna belatedly purses her lips to give you as good a view as possible and moans when a ripple runs through her [gianna.lips]. The bigger they get, the more reflective their onyx surface gets. Any tiny wrinkles in their surface vanish when they expand like little balloons, pumping full of soft gel filling. The pumping sounds abate, leaving Gianna with significantly expanded lips.");
-output("\n\nWhen she relaxes, they remain pursed by virtue of their sheer unwieldy size, and when she talks, it comes out with a hint of a lisp. “<i>Uhhh... {[pc.name]/[pc.master]}? These are... they’re... ummm....</i>” She seems to be having trouble finding the right words to describe her new situation. “<i>They’re fucking huge.</i>” She licks them experimentally and barely stifles a moan. “<i>Maybe keeping their sensitivity the same was a mistake; there’s so much flesh to feel my tongue running across that it’s almost a second pussy.</i>”");
-output("\n\nBlushing pink, she looks up at you, saying, “<i>That’s what you wanted, isn’t it, [pc.name]? To give me a big, fuckable mouth?</i>”");
-output("\n\nWhat can you say? You wouldn’t have had her do this otherwise. You nod.");
-output("\n\n“<i>Well, I guess I can try them out. This isn’t the kind of planet to fret over a girl looking too fuckable,</i>” the dazed-looking android observes. “<i>What now?</i>”");
 
-output("\n\n//4 - 5 hyper-engorged/constantly pursed to ‘o’shaped/whorish");
-output("\n\n“<i>{Sure, but you’d better make use of them,/Sure... I’m going to have a hard time getting any work done like this, though,/Sure, I’ll be your plush-lipped fuckdoll, if that’s what you want, [pc.name],}</i>” Gianna replies{, grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’}. “<i>This is as big as I can really make them though. Synthskin can be expanded almost indefinitely, but without supporting structures, there’s no way to take them any bigger than I’m going to right now.</i>” She exhales and closes her eyes. “<i>Here goes.</i>”");
-output("\n\nThe slutty-looking companion android doesn’t bother puckering her lips - they’re big enough that they also stick out a little, pursed in a way that says, “<i>It’ll be okay if you slip your dick in here.</i>” When the pumping silicone hits a moment later, they balloon with surprising speed, inflating from pursed cocksuckers into an absolutely fuckable-looking o-ring. Her whole mouth ripples as the last ounce is put into place, completing Gianna’s transformation from respectable companion droid into whorish-looking pleasure-bot.");
-output("\n\nExperimentally pressing a finger between them, the artificial succubus soon finds herself adding a second, sliding them in to the knuckle. She pops them out, a breathy gasp on their heels, and lets out a lispy moan. “<i>They’re so biiig! It’s amazing just how much having lips this big can feel, like the bigger they are, the more fun they are to rub against things and compress around them. I think...</i>” Gianna pauses. “<i>I think I’m going to have to have to give more blowjobs. Not that I’ll have a hard time lining them up thanks to you!</i>”");
-output("\n\nBounding forward, the cheerful android gives you a super-sized kiss. “<i>So now what? Wanna try them out or adjust something else?</i>”");
+//[***] Give Silicone
+function giveGiannaSilicone():void
+{
+	clearOutput();
+	giannaDisplay();
+	//First time
+	if(flags["9999"] == undefined)
+	{
+		output("You hand the sealed container over to Gianna. “<i>");
+		if(pc.isNice()) output("Happy to help.");
+		else if(pc.isMischievous()) output("Look what I found lying around.");
+		else output("Here you go.");
+		output("</i>”");
+		output("\n\nTaking hold of it, the android simply stares at the canister for a long moment. Then, she throws her arms around you, wrapping you up in a hug. “<i>I’d hoped, but I wasn’t sure you’d bring me any! This is the best present ever!</i>” She enthusiastically plants a joyful kiss on your [pc.lips]");
+		if(gianna.biggestTitSize() >= 15) output(", unmindful of her pumped-up chest");
+		output(". Then another. And another. She kisses you until you have to reluctantly push her away, and then holds it tightly to her [gianna.chest] like a kid at Christmas. She blushes when she realizes what she’s doing. “<i>");
+		if(giannaPersonality() >= 20) output("I suppose we ought to put it to use, huh?");
+		else output("S-sorry. I’m just thankful is all. Why don’t we go ahead and use this?");
+		output("</i>”");
+		//+slight confidence
+		giannaPersonality(3);
+		flags["9999"] = 1;
+	}
+	//Repeat
+	else
+	{
+		output("You hand over another container of silicone.");
+		output("\n\n“<i>Another!?</i>” the excited android ");
+		if(!silly) output("exclaims");
+		else output("interrobangs");
+		output(". “<i>Oh, [pc.name], ");
+		if(giannaPersonality() >= 75) output("you don’t have to keep doing this, but don’t let me stop you.");
+		else if(giannaPersonality() >= 25) output("If I were wearing panties, you’d damn near have them off.");
+		else output("you’re the best a ‘bot could hope for.");
+		output(" Thank you.</i>” She looks about to tear up but turns to examine the canister. “<i>I reckon we ought to put this to use, then.</i>” The corner of her glittering mouth twists upward into a excited, if petite, grin.");
+		//+slight confidence
+		giannaPersonality(2);
+	}
+	//Merge
+	output("\n\nGianna pushes her prize against a port in machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. “<i>Let’s get started.</i>”");
+	//Menu!
+
+}
+
+
+//[***] Increase Lips
+function increaseGiannaLips(siliconeUsed:int):void
+{
+	clearOutput();
+	giannaDisplay();
+	giannaAvailableSilicone(-siliconeUsed);
+	output("“<i>");
+	/////}</i>” you request.");
+	//9999
+	//0 bonus to 1 full to succulent/juicy
+	if(gianna.lipMod == 0)
+	{
+		output("\"<i>Let’s see what you would look like with bigger lips.</i>\"");
+		output("\n\n“<i>A little bigger wouldn’t hurt,</i>” Gianna agrees");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’");
+		}
+		output(". She closes her eyes and focuses, her [gianna.lips] pursed to give you a better view. The glossy black surface of her mouth ripples slightly. The smooth flesh of her synthetic lips puffs up slightly, just enough to give them the kind of juicy look that only a gifted woman would naturally have.");
+		output("\n\nThe android runs her tongue along the expanded surface of her mouth. “<i>Not bad. I only had to tweak up their sensory resolution slightly to compensate for the added volume.</i>” Sucking the bottom one briefly into her mouth, she quietly moans with pleasure. “<i>Yeah, these will do. ");
+		if(giannaPersonality() >= 75) output("Was there something else you’d want your dream-woman to have?");
+		else if(giannaPersonality() >= 25) output("Anything else that you think would look good on me?");
+		else output("Are there other parts of my appearance you would like me to change, [pc.master] [pc.name]?");
+		output("</i>\"");
+		gianna.lipMod = 1;
+	}
+	//1 to 2 juicy/succulent to bee-stung/swollen
+	else if(gianna.lipMod == 1)
+	{
+		output("\"<i>Could you pump your lips up a little bit more?</i>\"");
+		output("\n\n“<i>Again?</i>” Gianna asks with a wry smile");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’");
+		}
+		output(". “<i>I bet the bulls around here will thank you for it... and a few of the cow-girl’s too.</i>” Closing her eyes, she puckers up and begins the process of shifting the silicone around once more. The effect on her [gianna.lips] is quite noticeable. You’d have to be blind to ignore the way her mouth swells up. By the time she’s done, they look almost swollen. The words \"bee-stung\</i>” spring to mind.");
+		output("\n\nMaking obscene kissy-faces at you, the feminine android takes her new lips for a spin. “<i>Well, these pillows will make avoiding my teeth during a blowjob that much easier, huh?</i>” She licks them, making them shine that much more obviously. “<i>I don’t think I’m fit for high-class dinners like this, but I suppose I could always make whores jealous.</i>” She glances at a passing cow-girl and frowns. “<i>Of course, around here I’m still barely above average. ");
+		if(giannaPersonality() >= 75) output("Why don’t we make ‘em bigger and really put these skanks to shame?");
+		else if(giannaPersonality() >= 25) output("We could pump them up a little more, if you wanted.");
+		else output("Would you like me to make them even larger?");
+		output("</i>”");
+		gianna.lipMod = 2;
+	}
+	//2 - 3 bee-stung/swollen to dazzling/exquisitely large
+	else if(gianna.lipMod == 2)
+	{
+		output("\"<i>Let’s keep going with your lips. It’ll be hot to see them so plush and permanently puckered.</i>\"");
+		output("\n\n“<i>Got a thing for slutty mouths?</i>” Gianna asks");
+
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’");
+		}
+		output(". “<i>");
+		if(giannaPersonality() >= 75) output("You’re lucky I’m the adventurous sort.");
+		else if(giannaPersonality() >= 25) output("I should be glad we’re both adventurous types, I suppose.");
+		else output("If so, you’ll love this.");
+		output("</i>” Pursing her [gianna.lips], she lets her eyelids flutter closed and starts pumping the silicone. You can hear it sloshing through the hose and sloshing through her spine towards its targets. After a moment, the smooth curves ripple and bloat, pulling the synthskin surface so tight that they shine brighter than any lipstick-slathered mouth.");
+		output("\n\nThe pumps wind down a scant few seconds later, leaving the companion with significantly expanded facial assets. She runs her tongue across their expansive surface and moans, “<i>Mmmm... I love the feel of my synthskin’s input resolution shifting.</i>” She sucks her top lip in, then lets it pop out so that she can nibble on the lower one. “<i>Yeah... the cows are gonna be jealous now. I could easily match the biggest of them now, and I don’t need to breathe when I go down on someone.</i>” Blushing, she suggests, “<i>Why don’t we unhook the pump and try these out?</i>”");
+		//+10 lust
+		pc.lust(10);
+		gianna.lipMod = 3;
+	}
+	//3 - 4 dazzling/exquisitely large to hyper-engorged/constantly pursed
+	else if(gianna.lipMod == 3)
+	{
+		output("\"<i>Gianna, I want your lips bigger... fuller.</i>\"");
+		output("\n\n“<i>Even bigger?</i>”, Gianna asks");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’");
+		}
+		output(". “<i>I’m not gonna say no, but much bigger and they’re going to be totally out of hand. I already look like a blowjob-fetishist’s wet-dream, and now I’m gonna turn into one’s heaven.</i>” She sighs and licks her lips as if suddenly aware of their existence. “<i>Here goes.</i>” The android’s eyes dip closed, and hear the sound of a muffled pump kicking on.");
+		output("\n\nGianna belatedly purses her lips to give you as good a view as possible and moans when a ripple runs through her [gianna.lips]. The bigger they get, the more reflective their onyx surface gets. Any tiny wrinkles in their surface vanish when they expand like little balloons, pumping full of soft gel filling. The pumping sounds abate, leaving Gianna with significantly expanded lips.");
+		output("\n\nWhen she relaxes, they remain pursed by virtue of their sheer unwieldy size, and when she talks, it comes out with a hint of a lisp. “<i>Uhhh... [pc.name]? These are... they’re... ummm....</i>” She seems to be having trouble finding the right words to describe her new situation. “<i>They’re fucking huge.</i>” She licks them experimentally and barely stifles a moan. “<i>Maybe keeping their sensitivity the same was a mistake; there’s so much flesh to feel my tongue running across that it’s almost a second pussy.</i>”");
+		output("\n\nBlushing pink, she looks up at you, saying, “<i>That’s what you wanted, isn’t it, [pc.name]? To give me a big, fuckable mouth?</i>”");
+		output("\n\nWhat can you say? You wouldn’t have had her do this otherwise. You nod.");
+		output("\n\n“<i>Well, I guess I can try them out. This isn’t the kind of planet to fret over a girl looking too fuckable,</i>” the dazed-looking android observes. “<i>What now?</i>”");
+		gianna.lipMod = 4;
+	}
+	//4 - 5 hyper-engorged/constantly pursed to ‘o’shaped/whorish
+	else
+	{
+		output("\"<i>All the way babe, let’s make your mouth as obscene as possible. Really pump it up all the way.\"</i>");
+		output("\n\n“<i>");
+		if(giannaPersonality() >= 70) output("Sure, but you’d better make use of them,");
+		else if(giannaPersonality() >= 25) output("Sure... I’m going to have a hard time getting any work done like this, though,");
+		else output("Sure, I’ll be your plush-lipped fuckdoll, if that’s what you want, [pc.name],");
+		output("</i>” Gianna replies");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", grabbing a mechanical hose and pressing it to socket in her spine with a satisfying-sounding ‘ca-chink’");
+		}
+		output(". “<i>This is as big as I can really make them though. Synthskin can be expanded almost indefinitely, but without supporting structures, there’s no way to take them any bigger than I’m going to right now.</i>” She exhales and closes her eyes. “<i>Here goes.</i>”");
+		output("\n\nThe slutty-looking companion android doesn’t bother puckering her lips - they’re big enough that they also stick out a little, pursed in a way that says, “<i>It’ll be okay if you slip your dick in here.</i>” When the pumping silicone hits a moment later, they balloon with surprising speed, inflating from pursed cocksuckers into an absolutely fuckable-looking o-ring. Her whole mouth ripples as the last ounce is put into place, completing Gianna’s transformation from respectable companion droid into whorish-looking pleasure-bot.");
+		output("\n\nExperimentally pressing a finger between them, the artificial succubus soon finds herself adding a second, sliding them in to the knuckle. She pops them out, a breathy gasp on their heels, and lets out a lispy moan. “<i>They’re so biiig! It’s amazing just how much having lips this big can feel, like the bigger they are, the more fun they are to rub against things and compress around them. I think...</i>” Gianna pauses. “<i>I think I’m going to have to have to give more blowjobs. Not that I’ll have a hard time lining them up thanks to you!</i>”");
+		output("\n\nBounding forward, the cheerful android gives you a super-sized kiss. “<i>So now what? Wanna try them out or adjust something else?</i>”");
+		gianna.lipMod = 5;
+	}
+	processTime(3);
+	giannaBodyModMenu(false);
+}
+
+
+/*
 output("\n\n[***] Decrease Lips");
 output("\n\n“<i>{Lets take your lips down a notch, they’ve gotten a little out of hand,/We should shrink your lips down a little bit or noone will take you seriously,/Your lips still look like they’re built for oral and nothing else. Shrink them down a bit, please,/Could you reduce your lips just a little bit? It still looks almost like you’ve recently been stung,/I think you’d look better with lips that didn’t look like they belonged on one of these bimbos, Gianna,} you say.");
 output("\n\n//(5-4) o-shaped to constantly pursed");
