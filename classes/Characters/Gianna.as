@@ -63,7 +63,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 59;
+			this.femininity = 75;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "blue";
 			this.tallness = 68;
@@ -83,7 +83,7 @@
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
-			this.lipMod = 1;
+			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;

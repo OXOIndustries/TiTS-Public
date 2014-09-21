@@ -460,10 +460,13 @@ function giannaAppearance():void
 	output(" Of course, there isn’t a single hair, mole, or blemish to disfigure the canvas of supple synthskin, not even in her armpits or pubic mound. Her manufacturer evidently wasn’t a fan of body hair.");
 
 	output("\n\nThe artificial woman’s face was also designed to replicate classical beauty, engineered with a small, slightly upturned nose, elegant cheekbones, and smoothly shaped eyebrows. Glowing faintly, her eyes are manufactured to work in the same way as their organic counterparts, and as a consequence, they look fairly natural at a distance. Lines of circuitry pattern her iris, only visible on close inspection, rotating and shifting as the companion droid’s gaze roves.");
-	//9999 add more lip ratings! Need 5!
-	if(gianna.lipRating() <= 1) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
-	else if(gianna.lipRating() <= 4) output(" Her lips are plush and pillowy, kept pouty by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
-	else output(" Her lips appear bee-stung in the extreme, so swollen and pouty that they would make proper speech impossible on a real girl. A mouth like that is only good for sucking cock and slobbering across a swollen cunt and little else.");
+	//add more lip ratings! Need 5!
+	if(gianna.lipRating() <= 3) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
+	else if(gianna.lipRating() <= 4) output(" Her lips are luscious and shapely, the kind of lips only the most gifted woman would naturally bear.");
+	else if(gianna.lipRating() <= 5) output(" Her voluptuous lips are so swollen that when look at them, the term 'bee-stung' springs to mind. They practically beg to be kissed.");
+	else if(gianna.lipRating() <= 6) output(" Her dazzling lips are exquisitely large. Their sable hue at once seems to devour all the light while simultaneously reflecting. They're almost hypnotic, begging you to press against them.");
+	else if(gianna.lipRating() <= 4) output(" Her lips are plush and pillowy, kept slightly pursed by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
+	else output(" Her lips appear 'o'-shaped and whorish in the extreme, so swollen and pouty that they would make proper speech impossible on a real girl. A mouth like that is only good for sucking cock or slobbering across a swollen cunt and little else.");
 
 	output("\n\nAn elaborately-braided ponytail of coal-black hair hangs down the back of the android’s head all the way to her ass. The fibers are thick and lustrous in spite of their synthetic nature, and they look as if they would be silky smooth to the touch. She frequently brings her hair over a shoulder to drape across her chest, deepening the contrast between her milk-white skin and sable locks.");
 
@@ -1296,6 +1299,43 @@ function giannaBodyModMenu(display:Boolean = true):void
 		addDisabledButton(1,"Increase Ass","Increase Ass","Gianna's butt is as big as she's willing to go with it!");
 		addButton(6,"Shrink Ass",diminishGiannaButt,10,"Shrink Ass","Shrinking Gianna's [gianna.butt] will free up 10 units of silicone.");
 	}
+
+	//LipDecrease!
+	if(gianna.lipMod <= 0) 
+	{
+		if(giannaAvailableSilicone() >= 2) addButton(2,"Increase Lips",increaseGiannaLips,2,"Increase Lips","Make Gianna's [gianna.lips] bigger.");
+		else addDisabledButton(2,"Increase Lips","Increase Lips","You need at least 2 units of silicone to increase her lip size by one step.");
+		addDisabledButton(7,"Shrink Lips","Shrink Lips","Gianna's tiny booty is as little as she's going to allow.");
+	}
+	else if(gianna.lipMod <= 1)
+	{
+		if(giannaAvailableSilicone() >= 2) addButton(2,"Increase Lips",increaseGiannaLips,2,"Increase Lips","Make Gianna's [gianna.lips] bigger.");
+		else addDisabledButton(2,"Increase Lips","Increase Lips","You need at least 2 units of silicone to increase her lip size by one step.");
+		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
+	}
+	else if(gianna.lipMod <= 2)
+	{
+		if(giannaAvailableSilicone() >= 2) addButton(2,"Increase Lips",increaseGiannaLips,2,"Increase Lips","Make Gianna's [gianna.lips] bigger.");
+		else addDisabledButton(2,"Increase Lips","Increase Lips","You need at least 2 units of silicone to increase her lip size to the next size up.");
+		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
+	}
+	else if(gianna.lipMod <= 3)
+	{
+		if(giannaAvailableSilicone() >= 2) addButton(2,"Increase Lips",increaseGiannaLips,2,"Increase Lips","Make Gianna's [gianna.lips] bigger.");
+		else addDisabledButton(2,"Increase Lips","Increase Lips","You need at least 2 units of silicone to increase her lip size to the next size up.");
+		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
+	}
+	else if(gianna.lipMod <= 4)
+	{
+		if(giannaAvailableSilicone() >= 2) addButton(2,"Increase Lips",increaseGiannaLips,2,"Increase Lips","Make Gianna's [gianna.lips] bigger.");
+		else addDisabledButton(2,"Increase Lips","Increase Lips","You need at least 2 units of silicone to increase her lip size to the next size up.");
+		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
+	}
+	else
+	{
+		addDisabledButton(2,"Increase Lips","Increase Lips","Gianna's lips are as big as she's willing to go with them!");
+		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
+	}
 	
 	//9999
 	if(!gianna.hasStatusEffect("Hose Plugged In")) addButton(14,"Back",approachGianna,"back");
@@ -1867,7 +1907,6 @@ function increaseGiannaLips(siliconeUsed:int):void
 	clearOutput();
 	giannaDisplay();
 	giannaAvailableSilicone(-siliconeUsed);
-	output("“<i>");
 	/////}</i>” you request.");
 	//9999
 	//0 bonus to 1 full to succulent/juicy
@@ -1969,91 +2008,277 @@ function increaseGiannaLips(siliconeUsed:int):void
 	giannaBodyModMenu(false);
 }
 
+//[***] Decrease Lips
+function giannaLipDecrease(siliconeReturned:int):void
+{
+	clearOutput();
+	giannaDisplay();
+	giannaAvailableSilicone(siliconeReturned);
+	output("“<i>");
+	if(gianna.lipMod == 5) output("Lets take your lips down a notch, they’ve gotten a little out of hand,");
+	else if(gianna.lipMod == 4) output("We should shrink your lips down a little bit or noone will take you seriously,");
+	else if(gianna.lipMod == 3) output("Your lips still look like they’re built for oral and nothing else. Shrink them down a bit, please,");
+	else if(gianna.lipMod == 2) output("Could you reduce your lips just a little bit? It still looks almost like you’ve recently been stung,");
+	else if(gianna.lipMod == 1) output("I think you’d look better with lips that didn’t look like they belonged on one of these bimbos, Gianna,");
+	output("</i>\" you say.");
+	//(5-4) o-shaped to constantly pursed
+	if(gianna.lipMod == 5)
+	{
+		output("\n\nThe android’s comically pillowy lips lisp, “<i>Awww, I was kind of enjoying the feel of them, and the locals kept giving me the hungriest looks!</i>”");
+		output("\n\nYou give her a serious look.");
+		output("\n\n“<i>All right, all right. Give me a nanosecond,</i>” Gianna begs");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(" while grabbing the familiar hose and connecting it to the port at the base of her spine");
+		}
+		output(". “<i>These sorts of things may be quick, but they’re not quite instantaneous. Hang on.</i>” A muffled noise that sounds somewhere between a vacuum and a growling kittens starts up. Shrinking visibly, the whorish-looking sexbot’s lips rapidly recede, quickly losing their stretched, o-ring shape and settling into a slightly less obscene pucker.");
+		output("\n\nTwisting her ponytail, between her fingers while the motor winds down, Gianna remarks, “<i>I think I might actually miss having those.</i>”");
+		output("\n\n“<i>Really?</i>”");
+		output("\n\nSmiling now, the ");
+		if(gianna.biggestTitSize() >= 15) output("busty ");
+		else if(gianna.buttRating() >= 15) output("bubble-butted ");
+		output("companion nods. “<i>With lips like that, I didn’t have to worry about maintaining any kind of decorum or propriety. They forced everyone to regard me as little more than a sex object or arm candy, kind of like the cows here.</i>” She sighs. “<i>In a way, it made things very, very simple for me. It may have limited me to one avenue of satisfaction, but it freed me from having to balance a dozen other concerns at the same time.</i>” Her eyes dim, and she sighs. “<i>I’ll admit, I’m jealous of them sometimes - the cow-girls. Their lives are so simple and carefree, while I’ll never get to be like that short of getting rewired by a brilliant A.I. programmer.</i>” Shrugging, she changes topic. “<i>Anything else you want to mess with while I’m hooked up?</i>”");
+		gianna.lipMod = 4;
+	}
+	//(4-3) constantly pursed to exquisitely large
+	else if(gianna.lipMod == 4)
+	{
+		output("\n\nGiggling, Gianna counters, “<i>Are you sure? It’s kind of fun watching a bull trip over his girl’s hooves while he’s staring at my mouth. It doesn’t help that I keep running my tongue around them or randomly puckering either.</i>”");
+		output("\n\nYou nod.");
+		output("\n\n“<i>All right, but you asked for it. Just don’t get bored with me on account of my mouth suddenly being a lot less slutty, okay?</i>” the lewd synthetic answers");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(" while hooking the familiar hose up to the port in her back");
+		}
+		output(". Her [gianna.lips] begin to diminish almost immediately, accompanied by a low, vacuum hum and the trickling of near-liquid silicone being extracted from her body. She touches them with her fingers, then graces you with a smile. “<i>It’ll be nice not having them on the edge of my vision when I look down, and maybe I’ll get to work for more than five minutes without getting interrupted by requests for blowjobs.</i>”");
+		output("\n\nGianna winks at you. “<i>Are you sure you’re not trying to turn me into a proper woman, [pc.name]? A respectable woman that you could bring along to high class parties? Because I can like, totally do that.</i>”");
+		output("\n\nYou’re not averse to the idea.");
+		output("\n\n“<i>What now?</i>” she asks, interrupting the momentary lull.");
+		gianna.lipMod = 3;
+	}
+	//(3-2) exquisitely large to bee-stung
+	else if(gianna.lipMod == 3)
+	{
+		output("\n\n“<i>You really think so? Well, okay,</i>” Gianna responds");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(" while fetching the hose and snapping it in place on her silicone port");
+		}
+		output(". “<i>Let’s go ahead and do it then. It’s hard to carry on a conversation with lips that look like they were made for a dick anyway.</i>”");
+		output("\n\nA gentle whirring starts, and you hear the sloshing sound of silicone traversing the length of the tube behind her. The difference is profound. Her cushy-looking mouth recedes into itself, but not so much that it loses its bee-stung look. The humming motor dies down, its task finished. Gianna gently prods at her less expansive gob, marvelling at the smaller size. She tries on a smile and says, “<i>Well, I’m still on par with the cows, I guess, and I could almost pass for a respectable woman with the right outfit.</i>” Her glowing eyes flick down to her [gianna.chest]. “<i>Assuming I had a reason to put on clothes, that is. What now?</i>”");
+		gianna.lipMod = 2;
+	}
+	//(2-1) bee-stung to juicy
+	else if(gianna.lipMod == 2)
+	{
+		output("\n\n“<i>Puhlease,</i>” Gianna retorts. “<i>Around here, this is what passes for normal.</i>” She rubs her chin in thought. “<i>I guess I’ve been here long enough that I’ve picked up some of the native culture. In the rest in of the galactic core, walking around naked with a pair of lips like this would get me mistaken for some kind of hooker-bot on the prowl for clients.</i>” A proud look graces her puffed-up features. “<i>Of course, I doubt a cheap sex-bot could compete with my feature set.</i>” She drops her voice to a halting monotone and jerkily waves her arms around. “<i>I am hooker. Please insert penis.</i>” Then, she bursts out in uproarious laughter.");
+		output("\n\nYou can’t help but ");
+		if(pc.isNice() || pc.isBimbo()) output("laugh along with her");
+		else if(pc.isMischievous()) output("chuckle in approving mirth");
+		else output("give a half-chuckle. It was almost funny");
+		output(".");
+		output("\n\n“<i>Anyway, I guess I can go ahead and shrink these bitches down to puppy size,</i>” Gianna states");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(" while grabbing a hose that dangles from the wall and snapping it into her spinal port");
+		}
+		output(". “<i>Bye bye bimbo lips!</i>” The muted hum of an electric motor pumping away fills the air, followed by the gentle babble of fluid flowing through a pipe. Gianna’s lips gradually recede, losing their swollen state. The whirring dies down to nothing. Touching fingers to lips, the companionable android examines herself. Her mouth is now unmistakably feminine, but not in an unnatural, artificial way. It’s the kind of mouth a terran supermodel might have. Looking your way, she pulls her fingers away and says, “<i>Back to just a little sexier than normal. Perfect, right?</i>” Gianna’s eyes are nearly as radiant as her smile. “<i>Wanna do some other tweaking?</i>”");
+		gianna.lipMod = 1;
+	}
+	//(1-0) juicy to full
+	else
+	{
+		output("\n\n“<i>");
+		if(giannaPersonality() >= 60) output("Oh come on! They aren’t anywhere near as big as some of these cows’!");
+		else if(giannaPersonality() >= 30) output("Awww, but most of theirs are way bigger!");
+		else output("Are you sure? Most of the cows have bigger ones,");
+		output("</i>\" Gianna protests. “<i>Big, dick-sucking lips that their bulls just wanna bang senseless. Still....</i>” She pauses, thinking. “<i>I guess it’s no big deal as long as there’s people like you to keep me company. There’s more to beauty than size after all, right?</i>” She bats her eyelashes at you.");
+		output("\n\nYou nod");
+		if(pc.isNice() || pc.isBimbo()) output(" with a friendly smile");
+		output(".");
+		output("\n\n“<i>Okay then,</i>” Gianna starts, “<i>are you ready for a magic trick?</i>” She pauses for a dramatic effect");
+		if(!gianna.hasStatusEffect("Hose Plugged In"))
+		{
+			gianna.createStatusEffect("Hose Plugged In", 0, 0, 0, 0, true, "", "", false,0);
+			output(", reaching behind herself to grab a hose from the wall and plug it into the silicone port in her spine");
+		}
+		output(". “<i>Watch closely, because you’re about to see the slut... disappear!</i>” Blinking her eyes closed, the synthetic woman focuses, and you hear the sound of a pump revving up. The hose sticking out of her back jerks when the emptying silicone hits it, and the hyper-feminine visage shrinks down towards a more classic type of beauty. The change takes no more than two seconds. It leaves her with a decent-sized set of feminine lips, the kind you’d expect to see on a pretty girl back home.");
+		gianna.lipMod = 0;
+	}
+	processTime(3);
+	giannaBodyModMenu(false);
+}
 
+//[*]Sex
+//[***] Huge Tits Titfuck
+//Blah blah blah, hyper boobs.
+//No taurs
+//Approx 2500 words.
+function hugeTittyTittyfuck():void
+{
+	clearOutput();
+	giannaDisplay();
+	output("“<i>Up for a titfuck?</i>” you ask");
+	if(pc.isNice()) output(", apologizing for being so direct.");
+	else if(pc.isMischievous()) output(" with a smile.");
+	else output(", knowing the answer.");
+	output("\n\nGianna smiles, running her hands over her huge boobs. “<i>");
+	if(giannaPersonality() >= 70) output("Don’t pretend you haven’t been fixated on these since the moment you saw them, [pc.name]. Hop up on that crate, and I’ll give you what you’ve been wanting.");
+	else if(giannaPersonality() >= 30) output("Oh, you like these, huh? I suppose that’s no surprise. You gave them to me. Hop up on that crate, and I’ll give you as much time with them as you want.");
+	else output("Yes [pc.sir]. They’re ready to serve. I recommend getting on that crate so that you’ll be as comfortable as possible while I tend to your needs.");
+	output("</i>” Her breasts swell from a sudden infusion of additional silicone, diverted from elsewhere to leave her even more well-endowed. Jigglier. “<i>There’s no rush, but the sooner you’re ready, the sooner I put these to use,</i>” the technological succubus coos.");
+	output("\n\nYou don’t need any more encouragement. ");
+	if(pc.isCrotchGarbed()) output("Shucking your [pc.lowerGarments] and tossing them aside");
+	else output("Setting your equipment aside");
+	output(", you ");
+	if(pc.isNaga()) output("slither");
+	else output("hop");
+	output(" up onto the crate. It’s rustic, wooden, and a little coarse against your [pc.butt]. This kind of old-fashioned silliness would never be allowed on a core hub, but here, you suppose it’s all part of the charm, assuming you manage to avoid getting any splinters. You spread your legs");
+	if(pc.balls > 0) output(" to give your [pc.balls] a little more room");
+	output(" and heft [pc.oneCock]");
+	if(pc.cockTotal() > 1) output(" - the biggest");
+	output(". ");
+	if(pc.lust() >= 80) output("You were already horny, leaving it hard and twitching at the prospect of a titfuck from the gorgeous android, pulsating with need that borders on the delirious.");
+	else output("It thickens perceptibly in your hand, swelling alongside your arousal at the thought of an hour nestled into the android’s cleavage. It pulsates powerfully, erect and ready.");
+	output("\n\n“<i>");
+	if(giannaPersonality() >= 70) output("That’s more like it,");
+	else if(giannaPersonality() >= 30) output("All ready, " + pc.mf("stud","cutie") + "?");
+	else output("This is what I was designed for, [pc.name],");
+	output("</i>” the alabaster courtesan drawls as she approaches. Every step sets her pendulous, artificially enhanced breasts swaying. They’re bigger than beach balls but vaguely teardrop shaped, weighed down by their own shuddering volume. Your eyes track them when they jiggle, and they jiggle with every single step the android takes. The distance between you vanishes in what feels like a flash, though you know it had to be at least several long seconds; Gianna’s swaying steps were slow after all. All the extra weight on her chest has made her stride uncertain, though her face is anything but. She’s smiling.");
+	output("\n\nGianna reaches out around as much of her breasts as her arms will reach, grabbing hold of her own nipples. She tries not to moan, but it’s a futile gesture. Fingertips dig into onyx teats, and a lusty groan vibrates past her lips. Whimpering, the big-breasted companion tugs her tits apart, revealing a solar system’s worth of creamy titflesh stained with a spreading pink blush. She offers, “<i>Relax and let me do all the work, [pc.name].</i>”");
+	output("\n\n[pc.EachCock] twitches approvingly. Meanwhile, the synthetic slut is already moving forward, struggling to bring her enormous breasts into the perfect position. The bottoms press on your [pc.legs] before your [pc.cocks], giving you a chance to admire the smoothness of her synthskin’s texture.");
+	if(flags["GIANNA_TEMP"] == 1) output(" She’s almost uncomfortably warm, and as a result, letting her smother your lap feels oddly reminiscent of slipping into a hot tub.");
+	else if(flags["GIANNA_TEMP"] == 0) output(" She’s every bit as warm as a terran girl, and without any of the blemishes. You’re not sure you ever want to give this up.");
+	else 
+	{
+		output(" She’s almost uncomfortably cool, and you shiver a result. Her chilled breasts contrast wonderfully with the aching warm of your erection");
+		if(pc.cockTotal() > 1) output("s");
+		output(", making it easy to let every sensation but the ones coming from your crotch fall away into a pleasant numbness.");
+	}
+	output(" Dainty fingertips ");
+	if(pc.cockTotal() == 1) output("grab your [pc.cock]");
+	else output("gather your lengths into a tumescent bundle");
+	output(". They struggle to reach you, and yet they still manage to eke little up and down strokes across your [pc.cockColor] skin.");
+	output("\n\nFinally, Gianna’s breasts close in around you");
+	if(pc.longestCockLength() < 25) output(", utterly smothering every inch of manhood in a squishy, silicone-padded heaven");
+	else 
+	{
+		output(", smothering almost every inch of manhood in a squishy, silicone-padded heaven. Not even her gigantic breasts can imprison the full size of your lewd phall");
+		if(pc.cockTotal() == 1) output("us");
+		else output("i");
+	}
+	output(". Her blush blossoms into a rosy, tit-covering sheen at the contact and hits her cheeks a second later. Nibbling her lower lip, Gianna tries to look calm, but it’s clear she’s enjoying herself almost as much as you are. Squeezing her elbows in, she presses the velvet softness of herself into you a little harder, making her tits bulge out above and below her arms.");
+	output("\n\nBlushing harder, the android licks her lips. “<i>There’s something powerful about the feel of ");
+	if(pc.cockTotal() == 1) output("a dick sandwiched");
+	else if(pc.cockTotal() == 2) output("a pair of dicks stuck");
+	else output("a bunch of dicks crammed");
+	output(" into my cleavage. The feel of it, all hot and trembling, truly makes me feel alive.</i>” She rocks her body one way and then the other, sliding her breasts up and down. “<i>I’m totally aware of every square inch that’s inside there, and it doesn’t just feel great.</i>” She pauses and gasps as she gives her boobs a particularly violent bounce. “<i>It satisfies my programming too - knowing that I’m pleasuring your body so thoroughly. That I’m making your [pc.cocks] so hard that you won’t be able to help but cum all over them.</i>”");
+	output("\n\nThe blissful feeling of so much ");
+	if(flags["GIANNA_TEMP"] == 1) output("hot");
+	else if(flags["GIANNA_TEMP"] == 0) output("warm");
+	else output("chill");
+	output(" flesh sliding all over steals the reply from your lips. Her nipples, hard with symptoms of her simulated arousal, press hard against your [pc.belly], thrust between her groping fingertips like miniature spears. You let out a contented sigh and simply enjoy the android’s attention. The more she excites you, the more she pleases herself. Her face is flushed, and her glowing eyes dilated. Soon, her sensuous globes are bouncing with near feverish intensity, quaking enticingly around your [pc.cocks], whipping your leaking pre-cum into a slippery slurry.");
+	//Dommy
+	if(giannaPersonality() >= 70)
+	{
+		output("\n\nGianna pants, “<i>Ahhh... yes! You love this, don’t you, [pc.name] - you all wrapped up in my giant tits, squirming on that crate like a nervous school[pc.boy]?</i>”");
+		output("\n\n");
+		if(!pc.isAss()) output("What can you say? She’s making [pc.eachCock] feel like a king, waited on by two very plush subjects.");
+		else output("There’s no point in denying the obvious.");
+		output(" You nod.");
+		output("\n\nShe slows the rhythmic quaking of her mountainous melons. “<i>What’s that, love? I couldn’t hear you with all the hot, wet titty-fucking I was doing.</i>” Gianna giggles playfully and resumes stroking you off with her tits, moaning, “<i>Oh, I couldn’t deny you this for more than a second. I love the dreamy smile my chest puts on your face, the way you sigh every couple strokes, even the feel of your pre-cum bubbling all over my skin.</i>” She nuzzles her cheek against your side, her slick tits bouncing and sliding all over you. “<i>Are you ready to cum yet? Are you going to climax for me?</i>”");
+	}
+	//Normal
+	else if(giannaPersonality() >= 30)
+	{
+		output("\n\nGianna pants, “<i>Ahhh... yes! I love this, [pc.name]! I love feeling your passion throb against my giant tits, oozing its slippery protein everywhere.</i>” She giggles, the motion making her bosom quake around you. “<i>Did I say protein? I meant cum. Your hot... sticky... cum.</i>” Squeezing her arms more tightly around her chest, the android increases the friction her massage is generating. “<i>Go on, [pc.name]. You can let it out any time. Just be a doll and cum on my tits.</i>” She leans forward to nuzzle your side. “<i>Relax and cum. Please, babe. Cum.</i>”");
+	}
+	//Subby
+	else
+	{
+		output("\n\nGianna pants, “<i>Yes! Yes!</i>” as she bounces herself up and down your length");
+		if(pc.cockTotal() > 1) output("s");
+		output(". She looks euphoric, entirely absorbed in the act of pleasing you. Her gaze seems distant and unfocused, and she’s pressing her whole body against you, not just her breasts anymore. “<i>Are you going to cum on my big, fake tits soon, [pc.master] [pc.name]?</i>” She presses them more tightly around you. “<i>This lowly synthslut desires a protein bath.</i>” The next word is little more than a half-whispered whimper, “<i>Please.</i>”");
+	}
+	//Merge
+	output("\n\nFaster now, Gianna bounces her tits in your lap. Her [gianna.lips] fall open in a expression of wordless enjoyment, and her fingers dig into the surface of her expanded nipples. Your [pc.cocks] surrender");
+	if(pc.cockTotal() == 1) output("s");
+	output(" to the onslaught of pleasure, spasming against the confining embrace of the android’s bust. Her blushing mammaries shiver with each downstroke, jiggling around you, coaxing bursts of pleasure from your over-stimulated rod");
+	if(pc.cockTotal() > 1) output("s");
+	output(" again and again. Each one leaves you dazzled and dazed, your [pc.legs] nervelessly twitching against the wood of the crate.");
+	output("\n\nThe robotic companion’s tits gleam in the artificial light, slick with your dripping fluids, heaving against one another, smushing you in a vice of liquid pleasure. ");
+	if(giannaPersonality() >= 70) output("Giggling, Gianna says, “<i>Cum for me, [pc.name].</i>” She uses her hands to alternate her breasts’ bouncing, sending one up while the other slides down. “<i>Cum for my tits.</i>”");
+	else if(giannaPersonality() >= 30) output("Giggling and moaning, Gianna pleads, “<i>Please cum, [pc.name]. Please, give it to me!</i>”");
+	else output("Moaning, Gianna begs, “<i>Please cum, [pc.name]. It’s all I want.... To make you happy.</i>”");
+	output(" She briefly pulls her pre-slicked globes apart, if only to expose the shiny mess in between, then presses them back together, far more firmly. Gianna drags them up and down as fast as she can, her whole body shaking with the effort of it, creating a pneumatic sleeve of lubricated chest that will not rest until your [pc.cocks] finally explode.");
+	output("\n\nOne last time, she encourages, “<i>Cum.</i>” It’s all the encouragement your dangerously swollen prick");
+	if(pc.cockTotal() > 1) output("s");
+	output(" need");
+	if(pc.cockTotal() == 1) output("s");
+	output(". Slivers of pleasure rocket through your spine and into your skull, bursting into fireworks whose intensity is matched only by the strength of the contractions in your loins.");
+	if(pc.balls > 1) output(" Your [pc.balls] quake, sliding your [pc.sack] against the underside of Gianna’s lubricated bust. The extra stimulation has your [pc.cocks] straining all the harder as they begin to erupt.");
+	else output(" You groan low in your throat as you begin to erupt.");
+
+	//Not too long to stick out the top.
+	if(pc.longestCockLength() < 25) 
+	{
+		//No new pg.
+		if(pc.cumQ() < 5) output(" The few small drops that leak out into Gianna’s tits are the only signs of your climax. She almost misses it, but coos with pleasure when she realizes what has happened.");
+		else if(pc.cumQ() <= 25) output(" The modest squirts you drizzle into her tits transform her cleavage into a slick, [pc.cumColor] swamp. The android girl coos excitedly, still kneading her boobs to wring every last ounce of [pc.cumNoun] from your shivering form.");
+		else if(pc.cumQ() <= 100) output(" The good-sized ropes of [pc.cum] you drizzle into Gianna’s tits do a good job of turning them into a syrupy mess. Cooing, the android continues to knead them, milking out every single drop. Her boobs shine with a thick coat of [pc.cumColor] when you finally sag back, drained.");
+		else if(pc.cumQ() <= 600) {
+			output(" The thick ropes of [pc.cum] you squirt into Gianna’s tits more than fill her cleavage, and big globs of it drizzle out the bottom onto your [pc.legs]");
+			if(pc.balls > 0) output(" and [pc.balls]");
+			else if(pc.hasVagina()) output(" and [pc.vaginas]");
+			output(". Gianna coos at the sight of your virility and continues to squeeze, filling the air with sloppy sounds that could only come from a pair of soaked breasts wringing every drop into their cleavage.");
+		}
+		else output(" The blasts of [pc.cum] that pour into Gianna’s breasts instantly drench every inch of her alabaster globes in a thick, [pc.cumVisc] coat of [pc.cumColor]. Her cleavage floods. Gobs of sperm-filled fluid drip out the bottom and onto your [pc.legs]. A waterfall of cascading [pc.cumNoun] cascades down the android’s trim belly. Moaning in enjoyment, she gives your [pc.cocks] the milking of a lifetime, filling the air with erotic-sounding squelches and ludicrously liquid sloshing.");
+	}
+	//Poking out! No new paragraphs
+	else
+	{
+		if(pc.cumQ() < 5) output(" The few small drops that you manage to drool down your length and into Gianna’s tits are the only signs of your climax. She almost doesn’t notice at first, but coos with pleasure when she realizes what has happened.");
+		else if(pc.cumQ() < 50) output(" The modest squirts you launch into the air fall over Gianna’s face and breasts in a perverse drizzle. She coos, kneading her boobs excitedly, trying to coax every last drop out of you. Her tongue dabs at a droplet of [pc.cum] that fell on her [gianna.lips], and she smiles as you paint the top her bosom.");
+		else if(pc.cumQ() <= 500) output(" The thick ropes of [pc.cum] that you squirt into the air hang there, suspended for a long moment of passion, before falling back into her welcoming tits, splashing [pc.cumColor] droplets across her face. Runnels of it soon fill her canyon-like cleavage, and a few droplets even manage to leak out the bottom of her heaving chest. She merely coos excitedly, still squeezing her boobs tightly around you, trying to wring out even larger bursts of seed with her unceasing attentions.");
+		else 
+		{
+			output(" The blasts of [pc.cum] that you launch in the air are so large that the first is more than enough to completely drench Gianna’s cooing face and slick tits. The rest splatter everywhere, but the curve of her cleavage still manages to collect enough of your seed to create a virtual [pc.cumColor] swimming pool on her chest.");
+			if(pc.cumQ() >= 1500) output(" Waterfalls of [pc.cumVisc] [pc.cumNoun] slowly roll down the outside of her bosom, pooling briefly in the crooks of her elbows before finally falling to the floor with wet splatters.");
+			output(" She’s still squeezing too, still milking every last drop, no matter how messy or [pc.cumNoun]-drenched she may become.");
+		}
+	}
+	//Whew! Orgasm over. We now return to our regularly scheduled titfuck.
+	output("\n\nSpent at last, you sag back against a bigger crate and watch wide-eyed as Gianna continues to smother your [pc.cocks] with her soaked melons. The blue glow from her eyes dully flickers, half-hidden behind a veil half-lidded contentment. She hisses, “<i>Yesssss,</i>” and shudders, going rigid before dropping limp. The only thing keeping her upright are the mammoth mammaries in your lap. Still dazed from orgasm, you affectionately rub one of them.");
+	output("\n\n“<i>Ooooh.</i>” Gianna shudders, blinking. “<i>That’s... nice....</i>” Her azure gaze looks up at you just in time for a pleasured shudder to wrack her form. Gasping, she digs her fingers into her nipples and moans once more. “<i>F-f-fuck, [pc.name]. You really enjoyed that, didn’t you?</i>”");
+	output("\n\nGrinning, you nod.");
+	output("\n\n“<i>I thought so,</i>” the companion says while trying to separate her weighty assets from your crotch. “<i>I’m sensitive enough to get off on this with my eyes closed, but the look on your face,</i>” Gianna explains, “<i>was just too much. I couldn’t NOT cum.</i>” She giggles. “<i>Wow, a double-negative. I’m getting almost as bad as some of the cows.</i>” Standing away now, she rubs her hands over the slick curves of her chest, gathering some [pc.cum] on a fingertip to lick.");
+	//No new PG
+	//Small
+	if(pc.cumQ() <= 50) output("\n\n“<i>Not a bad sample.</i>”");
+	//Medium
+	else if(pc.cumQ() <= 150) output("\n\n“<i>Yum!</i>”");
+	//Large
+	else if(pc.cumQ() <= 500) output("\n\n“<i>Ohh, there’s so much to clean...</i>”");
+	//XL
+	else output("\n\n“<i>So much deliciousness, so little time.</i>” She shivers. “<i>I’m glad I was configured to adore the tastes of all kinds of seed.</i>”");
+	output("\n\nYou hop off the crate and make to grab your [pc.gear] while Gianna grabs a nearby towel to wipe clean with. Come to think of it, there are a LOT of towels in the area. You suppose New Texan milk barns must be messy places.");
+	output("\n\nThe android’s ");
+	if(giannaPersonality() >= 70) output("confident");
+	else if(giannaPersonality() >= 30) output("chirpy");
+	else output("quiet");
+	output(" voice asks, “<i>");
+	if(giannaPersonality() >= 70) output("Got time to do something else, or did I milk you all out?");
+	else if(giannaPersonality() >= 30) output("Did you want to hang out a little more?");
+	else output("Is there anything else I could do to please you?</i>”");
+	processTime(24+rand(4));
+	pc.orgasm();
+	approachGianna("noText");
+}
 /*
-output("\n\n[***] Decrease Lips");
-output("\n\n“<i>{Lets take your lips down a notch, they’ve gotten a little out of hand,/We should shrink your lips down a little bit or noone will take you seriously,/Your lips still look like they’re built for oral and nothing else. Shrink them down a bit, please,/Could you reduce your lips just a little bit? It still looks almost like you’ve recently been stung,/I think you’d look better with lips that didn’t look like they belonged on one of these bimbos, Gianna,} you say.");
-output("\n\n//(5-4) o-shaped to constantly pursed");
-output("\n\nThe android’s comically pillowy lips lisp, “<i>Awww, I was kind of enjoying the feel of them, and the locals kept giving me the hungriest looks!</i>”");
-output("\n\nYou give her a serious look.");
-output("\n\n“<i>All right, all right. Give me a nanosecond,</i>” Gianna begs{ while grabbing the familiar hose and connecting it to the port at the base of her spine}. “<i>These sorts of things may be quick, but they’re not quite instantaneous. Hang on.</i>” A muffled noise that sounds somewhere between a vacuum and a growling kittens starts up. Shrinking visibly, the whorish-looking sexbot’s lips rapidly recede, quickly losing their stretched, o-ring shape and settling into a slightly less obscene pucker.");
-output("\n\nTwisting her ponytail, between her fingers while the motor winds down, Gianna remarks, “<i>I think I might actually miss having those.</i>”");
-output("\n\n“<i>Really?</i>”");
-output("\n\nSmiling now, the {busty/bubble-butted} companion nods. “<i>With lips like that, I didn’t have to worry about maintaining any kind of decorum or propriety. They forced everyone to regard me as little more than a sex object or arm candy, kind of like the cows here.</i>” She sighs. “<i>In a way, it made things very, very simple for me. It may have limited me to one avenue of satisfaction, but it freed me from having to balance a dozen other concerns at the same time.</i>” Her eyes dim, and she sighs. “<i>I’ll admit, I’m jealous of them sometimes - the cow-girls. Their lives are so simple and carefree, while I’ll never get to be like that short of getting rewired by a brilliant A.I. programmer.</i>” Shrugging, she changes topic. “<i>Anything else you want to mess with while I’m hooked up?</i>”");
-output("\n\n//(4-3) constantly pursed to exquisitely large");
-output("\n\nGiggling, Gianna counters, “<i>Are you sure? It’s kind of fun watching a bull trip over his girl’s hooves while he’s staring at my mouth. It doesn’t help that I keep running my tongue around them or randomly puckering either.</i>”");
-output("\n\nYou nod.");
-output("\n\n“<i>All right, but you asked for it. Just don’t get bored with me on account of my mouth suddenly being a lot less slutty, okay?</i>” the lewd synthetic answers{, while hooking the familiar hose up to the port in her back}. Her [gianna.lips] begin to diminish almost immediately, accompanied by a low, vacuum hum and the trickling of near-liquid silicone being extracted from her body. She touches them with her fingers, then graces you with a smile. “<i>It’ll be nice not having them on the edge of my vision when I look down, and maybe I’ll get to work for more than five minutes without getting interrupted by requests for blowjobs.</i>”");
-output("\n\nGianna winks at you. “<i>Are you sure you’re not trying to turn me into a proper woman, [pc.name]? A respectable woman that you could bring along to high class parties? Because I can like, totally do that.</i>”");
-output("\n\nYou’re not averse to the idea.");
-output("\n\n“<i>What now?</i>” she asks, interrupting the momentary lull.");
-output("\n\n//(3-2) exquisitely large to bee-stung");
-output("\n\n“<i>You really think so? Well, okay,</i>” Gianna responds{ while fetching the hose and snapping it in place on her silicone port}. “<i>Let’s go ahead and do it then. It’s hard to carry on a conversation with lips that look like they were made for a dick anyway.</i>”");
-output("\n\nA gentle whirring starts, and you hear the sloshing sound of silicone traversing the length of the tube behind her. The difference is profound. Her cushy-looking mouth recedes into itself, but not so much that it loses its bee-stung look. The humming motor dies down, its task finished. Gianna gently prods at her less expansive gob, marvelling at the smaller size. She tries on a smile and says, “<i>Well, I’m still on par with the cows, I guess, and I could almost pass for a respectable woman with the right outfit.</i>” Her glowing eyes flick down to her [gianna.chest]. “<i>Assuming I had a reason to put on clothes, that is. What now?</i>”");
-output("\n\n//(2-1) bee-stung to juicy");
-output("\n\n“<i>Puhlease,</i>” Gianna retorts. “<i>Around here, this is what passes for normal.</i>” She rubs her chin in thought. “<i>I guess I’ve been here long enough that I’ve picked up some of the native culture. In the rest in of the galactic core, walking around naked with a pair of lips like this would get me mistaken for some kind of hooker-bot on the prowl for clients.</i>” A proud look graces her puffed-up features. “<i>Of course, I doubt a cheap sex-bot could compete with my feature set.</i>” She drops her voice to a halting monotone and jerkily waves her arms around. “<i>I am hooker. Please insert penis.</i>” Then, she bursts out in uproarious laughter.");
-output("\n\nYou can’t help but {laugh along with her/chuckle in approving mirth/give a half-chuckle. It was almost funny}.");
-output("\n\n“<i>Anyway, I guess I can go ahead and shrink these bitches down to puppy size,</i>” Gianna states{ while grabbing a hose that dangles from the wall and snapping it into her spinal port}. “<i>Bye bye bimbo lips!</i>” The muted hum of an electric motor pumping away fills the air, followed by the gentle babble of fluid flowing through a pipe. Gianna’s lips gradually recede, losing their swollen state. The whirring dies down to nothing. Touching fingers to lips, the companionable android examines herself. Her mouth is now unmistakably feminine, but not in an unnatural, artificial way. It’s the kind of mouth a terran supermodel might have. Looking your way, she pulls her fingers away and says, “<i>Back to just a little sexier than normal. Perfect, right?</i>” Gianna’s eyes are nearly as radiant as her smile. “<i>Wanna do some other tweaking?</i>”");
-output("\n\n//(1-0) juicy to full");
-output("\n\n“<i>{Oh come on! They aren’t anywhere near as big as some of these cows’!/Awww, but most of theirs are way bigger!/Are you sure? Most of the cows have bigger ones,} Gianna protests. “<i>Big, dick-sucking lips that their bulls just wanna bang senseless. Still....</i>” She pauses, thinking. “<i>I guess it’s no big deal as long as there’s people like you to keep me company. There’s more to beauty than size after all, right?</i>” She bats her eyelashes at you.");
-output("\n\nYou nod{ with a friendly smile}.");
-output("\n\n“<i>Okay then,</i>” Gianna starts, “<i>are you ready for a magic trick?</i>” She pauses for a dramatic effect{, reaching behind herself to grab a hose from the wall and plug it into the silicone port in her spine}. “<i>Watch closely, because you’re about to see the slut... disappear!</i>” Blinking her eyes closed, the synthetic woman focuses, and you hear the sound of a pump revving up. The hose sticking out of her back jerks when the emptying silicone hits it, and the hyper-feminine visage shrinks down towards a more classic type of beauty. The change takes no more than two seconds. It leaves her with a decent-sized set of feminine lips, the kind you’d expect to see on a pretty girl back home.");
-
-
-
-
-
-
-output("\n\n[*]Sex");
-output("\n\n[***] Huge Tits Titfuck");
-output("\n\n//Blah blah blah, hyper boobs.");
-output("\n\n//No taurs");
-output("\n\n//Approx 2500 words.");
-output("\n\n“<i>Up for a titfuck?</i>” you ask{, apologizing for being so direct./ with a smile./, knowing the answer.}");
-output("\n\nGianna smiles, running her hands over her huge boobs. “<i>{Don’t pretend you haven’t been fixated on these since the moment you saw them, [pc.name]. Hop up on that crate, and I’ll give you what you’ve been wanting./Oh, you like these, huh? I suppose that’s no surprise. You gave them to me. Hop up on that crate, and I’ll give you as much time with them as you want./Yes [pc.sir]. They’re ready to serve. I recommend getting on that crate so that you’ll be as comfortable as possible while I tend to your needs.}</i>” Her breasts swell from a sudden infusion of additional silicone, diverted from elsewhere to leave her even more well-endowed. Jigglier. “<i>There’s no rush, but the sooner you’re ready, the sooner I put these to use,</i>” the technological succubus coos.");
-output("\n\nYou don’t need any more encouragement. {Shucking your [pc.lowerGarments] and tossing them aside/Setting your equipment aside}, you {slither/hop} up onto the crate. It’s rustic, wooden, and a little coarse against your [pc.butt]. This kind of old-fashioned silliness would never be allowed on a core hub, but here, you suppose it’s all part of the charm, assuming you manage to avoid getting any splinters. You spread your legs{ to give your [pc.balls] a little more room} and heft [pc.oneCock]{ - the biggest}. {You were already horny, leaving it hard and twitching at the prospect of a titfuck from the gorgeous android, pulsating with need that borders on the delirious./It thickens perceptibly in your hand, swelling alongside your arousal at the thought of an hour nestled into the android’s cleavage. It pulsates powerfully, erect and ready.}");
-output("\n\n“<i>{That’s more like it,/All ready, " + pc.mf("stud</i>”,"handsome</i>”) + "?/This is what I was designed for, [pc.name],}</i>” the alabaster courtesan drawls as she approaches. Every step sets her pendulous, artificially enhanced breasts swaying. They’re bigger than beach balls but vaguely teardrop shaped, weighed down by their own shuddering volume. Your eyes track them when they jiggle, and they jiggle with every single step the android takes. The distance between you vanishes in what feels like a flash, though you know it had to be at least several long seconds; Gianna’s swaying steps were slow after all. All the extra weight on her chest has made her stride uncertain, though her face is anything but. She’s smiling.");
-output("\n\nGianna reaches out around as much of her breasts as her arms will reach, grabbing hold of her own nipples. She tries not to moan, but it’s a futile gesture. Fingertips dig into onyx teats, and a lusty groan vibrates past her lips. Whimpering, the big-breasted companion tugs her tits apart, revealing a solar system’s worth of creamy titflesh stained with a spreading pink blush. She offers, “<i>Relax and let me do all the work, [pc.name].</i>”");
-output("\n\n[pc.EachCock] twitches approvingly. Meanwhile, the synthetic slut is already moving forward, struggling to bring her enormous breasts into the perfect position. The bottoms press on your [pc.legs] before your [pc.cocks], giving you a chance to admire the smoothness of her synthskin’s texture.{ She’s almost uncomfortably warm, and as a result, letting her smother your lap feels oddly reminiscent of slipping into a hot tub./ She’s every bit as warm as a terran girl, and without any of the blemishes. You’re not sure you ever want to give this up./ She’s almost uncomfortably cool, and you shiver a result. Her chilled breasts contrast wonderfully with the aching warm of your erection{s}, making it easy to let every sensation but the ones coming from your crotch fall away into a pleasant numbness.} Dainty fingertips {grab your [pc.cock]/gather your lengths into a tumescent bundle}. They struggle to reach you, and yet they still manage to eke little up and down strokes across your [pc.dickColor] skin.");
-output("\n\nFinally, Gianna’s breasts close in around you{, utterly smothering every inch of manhood in a squishy, silicone-padded heaven/, smothering almost every inch of manhood in a squishy, silicone-padded heaven. Not even her gigantic breasts can imprison the full size of your lewd phall{us/i}}. Her blush blossoms into a rosy, tit-covering sheen at the contact and hits her cheeks a second later. Nibbling her lower lip, Gianna tries to look calm, but it’s clear she’s enjoying herself almost as much as you are. Squeezing her elbows in, she presses the velvet softness of herself into you a little harder, making her tits bulge out above and below her arms.");
-output("\n\nBlushing harder, the android licks her lips. “<i>There’s something powerful about the feel of {a dick sandwiched/a pair of dicks stuck/a bunch of dicks crammed} into my cleavage. The feel of it, all hot and trembling, truly makes me feel alive.</i>” She rocks her body one way and then the other, sliding her breasts up and down. “<i>I’m totally aware of every square inch that’s inside there, and it doesn’t just feel great.</i>” She pauses and gasps as she gives her boobs a particularly violent bounce. “<i>It satisfies my programming too - knowing that I’m pleasuring your body so thoroughly. That I’m making your [pc.cocks] so hard that you won’t be able to help but cum all over them.</i>”");
-output("\n\nThe blissful feeling of so much {hot/warm/chill} flesh sliding all over steals the reply from your lips. Her nipples, hard with symptoms of her simulated arousal, press hard against your [pc.belly], thrust between her groping fingertips like miniature spears. You let out a contented sigh and simply enjoy the android’s attention. The more she excites you, the more she pleases herself. Her face is flushed, and her glowing eyes dilated. Soon, her sensuous globes are bouncing with near feverish intensity, quaking enticingly around your [pc.cocks], whipping your leaking pre-cum into a slippery slurry.");
-output("\n\n//Dommy");
-output("\n\nGianna pants, “<i>Ahhh... yes! You love this, don’t you, [pc.name] - you all wrapped up in my giant tits, squirming on that crate like a nervous school[pc.boy]?</i>”");
-output("\n\n{What can you say? She’s making [pc.eachCock] feel like a king, waited on by two very plush subjects./There’s no point in denying the obvious.} You nod.");
-output("\n\nShe slows the rhythmic quaking of her mountainous melons. “<i>What’s that, love? I couldn’t hear you with all the hot, wet titty-fucking I was doing.</i>” Gianna giggles playfully and resumes stroking you off with her tits, moaning, “<i>Oh, I couldn’t deny you this for more than a second. I love the dreamy smile my chest puts on your face, the way you sigh every couple strokes, even the feel of your pre-cum bubbling all over my skin.</i>” She nuzzles her cheek against your side, her slick tits bouncing and sliding all over you. “<i>Are you ready to cum yet? Are you going to climax for me?</i>”");
-output("\n\n//Normal");
-output("\n\nGianna pants, “<i>Ahhh... yes! I love this, [pc.name]! I love feeling your passion throb against my giant tits, oozing its slippery protein everywhere.</i>” She giggles, the motion making her bosom quake around you. “<i>Did I say protein? I meant cum. Your hot... sticky... cum.</i>” Squeezing her arms more tightly around her chest, the android increases the friction her massage is generating. “<i>Go on, [pc.name]. You can let it out any time. Just be a doll and cum on my tits.</i>” She leans forward to nuzzle your side. “<i>Relax and cum. Please, babe. Cum.</i>”");
-output("\n\n//Subby");
-output("\n\nGianna pants, “<i>Yes! Yes!</i>” as she bounces herself up and down your length{s}. She looks euphoric, entirely absorbed in the act of pleasing you. Her gaze seems distant and unfocused, and she’s pressing her whole body against you, not just her breasts anymore. “<i>Are you going to cum on my big, fake tits soon, [pc.master] [pc.name]?</i>” She presses them more tightly around you. “<i>This lowly synthslut desires a protein bath.</i>” The next word is little more than a half-whispered whimper, “<i>Please.</i>”");
-output("\n\n//Merge");
-output("\n\nFaster now, Gianna bounces her tits in your lap. Her [gianna.lips] fall open in a expression of wordless enjoyment, and her fingers dig into the surface of her expanded nipples. Your [pc.cocks] surrender{s} to the onslaught of pleasure, spasming against the confining embrace of the android’s bust. Her blushing mammaries shiver with each downstroke, jiggling around you, coaxing bursts of pleasure from your over-stimulated rod{s} again and again. Each one leaves you dazzled and dazed, your [pc.legs] nervelessly twitching against the wood of the crate.");
-output("\n\nThe robotic companion’s tits gleam in the artificial light, slick with your dripping fluids, heaving against one another, smushing you in a vice of liquid pleasure. {Giggling, Gianna says, “<i>Cum for me, [pc.name].</i>” She uses her hands to alternate her breasts’ bouncing, sending one up while the other slides down. “<i>Cum for my tits.</i>”/Giggling and moaning, Gianna pleads, “<i>Please cum, [pc.name]. Please, give it to me!</i>”/Moaning, Gianna begs, “<i>Please cum, [pc.name]. It’s all I want.... To make you happy.</i>”} She briefly pulls her pre-slicked globes apart, if only to expose the shiny mess in between, then presses them back together, far more firmly. Gianna drags them up and down as fast as she can, her whole body shaking with the effort of it, creating a pneumatic sleeve of lubricated chest that will not rest until your [pc.cocks] finally explode.");
-output("\n\nOne last time, she encourages, “<i>Cum.</i>” It’s all the encouragement your dangerously swollen prick{s} need{s}. Slivers of pleasure rocket through your spine and into your skull, bursting into fireworks whose intensity is matched only by the strength of the contractions in your loins.{ Your [pc.balls] quake, sliding your [pc.sack] against the underside of Gianna’s lubricated bust. The extra stimulation has your [pc.cocks] straining all the harder as they begin to erupt./You groan low in your throat as you begin to erupt.}");
-
-output("\n\n//Not too long to stick out the top.");
-output("\n\n//No new pg.");
-output("\n\n{ The few small drops that leak out into Gianna’s tits are the only signs of your climax. She almost misses it, but coos with pleasure when she realizes what has happened./ The modest squirts you drizzle into her tits transform her cleavage into a slick, [pc.cumColor] swamp. The android girl coos excitedly, still kneading her boobs to wring every last ounce of [pc.cumNoun] from your shivering form./ The good-sized ropes of [pc.cum] you drizzle into Gianna’s tits do a good job of turning them into a syrupy mess. Cooing, the android continues to knead them, milking out every single drop. Her boobs shine with a thick coat of [pc.cumColor] when you finally sag back, drained./ The thick ropes of [pc.cum] you squirt into Gianna’s tits more than fill her cleavage, and big globs of it drizzle out the bottom onto your [pc.legs]{ and {[pc.balls]/[pc.vaginas]}. Gianna coos at the sight of your virility and continues to squeeze, filling the air with sloppy sounds that could only come from a pair of soaked breasts wringing every drop into their cleavage./ The blasts of [pc.cum] that pour into Gianna’s breasts instantly drench every inch of her alabaster globes in a thick, [pc.cumVisc] coat of [pc.cumColor]. Her cleavage floods. Gobs of sperm-filled fluid drip out the bottom and onto your [pc.legs]. A waterfall of cascading [pc.cumNoun] cascades down the android’s trim belly. Moaning in enjoyment, she gives your [pc.cocks] the milking of a lifetime, filling the air with erotic-sounding squelches and ludicrously liquid sloshing.}");
-
-output("\n\n//Poking out! No new paragraphs");
-output("\n\n{ The few small drops that you manage to drool down your length and into Gianna’s tits are the only signs of your climax. She almost doesn’t notice at first, but coos with pleasure when she realizes what has happened./ The modest squirts you launch into the air fall over Gianna’s face and breasts in a perverse drizzle. She coos, kneading her boobs excitedly, trying to coax every last drop out of you. Her tongue dabs at a droplet of [pc.cum] that fell on her [gianna.lips], and she smiles as you paint the top her bosom./ The thick ropes of [pc.cum] that you squirt into the air hang there, suspended for a long moment of passion, before falling back into her welcoming tits, splashing [pc.cumColor] droplets across her face. Runnels of it soon fill her canyon-like cleavage, and a few droplets even manage to leak out the bottom of her heaving chest. She merely coos excitedly, still squeezing her boobs tightly around you, trying to wring out even larger bursts of seed with her unceasing attentions./ The blasts of [pc.cum] that you launch in the air are so large that the first is more than enough to completely drench Gianna’s cooing face and slick tits. The rest splatter everywhere, but the curve of her cleavage still manages to collect enough of your seed to create a virtual [pc.cumColor] swimming pool on her chest. Waterfalls of [pc.cumVisc] [pc.cumNoun] slowly roll down the outside of her bosom, pooling briefly in the crooks of her elbows before finally falling to the floor with wet splatters. She’s still squeezing too, still milking every last drop, no matter how messy or [pc.cumNoun]-drenched she may become.}");
-
-output("\n\n//Whew! Orgasm over. We now return to our regularly scheduled titfuck.");
-output("\n\nSpent at last, you sag back against a bigger crate and watch wide-eyed as Gianna continues to smother your [pc.cocks] with her soaked melons. The blue glow from her eyes dully flickers, half-hidden behind a veil half-lidded contentment. She hisses, “<i>Yesssss,</i>” and shudders, going rigid before dropping limp. The only thing keeping her upright are the mammoth mammaries in your lap. Still dazed from orgasm, you affectionately rub one of them.");
-output("\n\n“<i>Ooooh.</i>” Gianna shudders, blinking. “<i>That’s... nice....</i>” Her azure gaze looks up at you just in time for a pleasured shudder to wrack her form. Gasping, she digs her fingers into her nipples and moans once more. “<i>F-f-fuck, [pc.name]. You really enjoyed that, didn’t you?</i>”");
-output("\n\nGrinning, you nod.");
-output("\n\n“<i>I thought so,</i>” the companion says while trying to separate her weighty assets from your crotch. “<i>I’m sensitive enough to get off on this with my eyes closed, but the look on your face,</i>” Gianna explains, “<i>was just too much. I couldn’t NOT cum.</i>” She giggles. “<i>Wow, a double-negative. I’m getting almost as bad as some of the cows.</i>” Standing away now, she rubs her hands over the slick curves of her chest, gathering some [pc.cum] on a fingertip to lick.");
-output("\n\n//No new PG");
-output("\n\n//Small");
-output("\n\n“<i>Not a bad sample.</i>”");
-output("\n\n//Medium");
-output("\n\n“<i>Yum!</i>”");
-output("\n\n//Large");
-output("\n\n“<i>Ohh, there’s so much to clean...</i>”");
-output("\n\n//XL");
-output("\n\n“<i>So much deliciousness, so little time.</i>” She shivers. “<i>I’m glad I was configured to adore the tastes of all kinds of seed.</i>”");
-output("\n\nYou hop off the crate and make to grab your [pc.gear] while Gianna grabs a nearby towel to wipe clean with. Come to think of it, there are a LOT of towels in the area. You suppose New Texan milk barns must be messy places.");
-output("\n\nThe android’s {confident/chirpy/quiet} voice asks, “<i>{Got time to do something else, or did I milk you all out?/Did you want to hang out a little more?/Is there anything else I could do to please you?</i>”	");
 output("\n\n[***] Normal Tit Titfuck");
 output("\n\nYour eyes {casually }flick down to her [gianna.chest]{ as a smile tugs at the corner of your mouth}. “<i>How about a{nother} titfuck?</i>” {Tightness grows in your [pc.lowerGarments] at your suggestion, and your heartbeat’s tempo increases ever so slightly./Your [pc.cocks] visibly begin to engorge at the mention.}");
 output("\n\n//Lovedom Gianna");
@@ -2077,7 +2302,7 @@ output("\n\n//Dick not big enough to jut out the top.");
 output("\n\nGianna giggles over the gentle squishing noises her tits are making. “<i>Awww, it fits inside them perfectly.</i>” She jiggles her breasts a little more enthusiastically. “<i>How’s it feel in there? Good? What if do this?</i>” The artificial succubus jacks her breasts up and down your length in unison, pumping your titty-bound dick hard. “<i>Or this?</i>” She sticks her tongue out and drools even more slick fluid into her all-encompassing cockprison. Then, she goes even faster.");
 output("\n\nThe wet-sounding schlicks of her boobs bouncing on your [pc.cockBiggest] seem to echo through the whole of the barn, at least to your ears. Gianna is either oblivious to it or doesn’t care; her attention is squarely focused on jacking you off with her boobs. Sometimes she shifts her torso to provide a little rotational pleasure to your titty-cloistered cock. Other times she seems content to drag her gleaming bosom over every inch of you with mechanical precision - long strokes that smoothly milk even more pre from you.");
 output("\n\nYou groan and twitch. Your [pc.cockBiggest] throbs. Your [pc.legs] quiver, thumping your [pc.feet] into the side of the crate again. If anyone didn’t know Gianna was getting titfucked before, they do now. There’s no suppressing the knot of heat that blossoms in your belly or the way you feel thicker between her boobs with each beat of your heart. Your orgasm isn’t far. In fact, you’re not entirely sure you could stop yourself from cumming if she yanked you out of her tits right now.");
-output("\n\n“<i>Easy, " + pc.mf("stud</i>”,"princess</i>”) + ".</i>” Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait.");
+output("\n\n“<i>Easy, " + pc.mf("stud","princess</i>”) + ".</i>” Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait.");
 output("\n\nYou groan in disappointment.");
 output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. “<i>Do you want to cum now?</i>” She briefly jostles her chest, bouncing you between two slick love-pillows. “<i>I know the longer I can make this last, the better it will feel for you.</i>” She pauses. “<i>You’re on the cusp of a powerful orgasm. {I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him./Do you want it now? Do you want to paint my tits and fill my mouth?/I’ll bring you off now, if that’s what you command, [pc.master].}</i>”");
 output("\n\nYou screw your eyes closed and grunt, barely stopping yourself from grabbing hold of her tits and pounding them raw. “<i>Fuck yes I want to cum!</i>”");
@@ -2113,7 +2338,7 @@ output("\n\n//Dick big enough for sucking");
 output("\n\nGianna giggles when one downward motion {bumps your [pc.cockBiggest] into her chin, leaving a shining penis-print just below her [gianna.lips]./brings your [pc.cockBiggest] to smack wetly against her face, leaving a fat penis-print across the entirety of her artificially designed visage.} “<i>Whoah there, big [pc.boy]!</i>” The glistening android pulls back, smiling. She slides one hand around and up, keeping her breast held with the crook of her arm, and plays with you a little, just below the [pc.cockHeadBiggest]. Her eyes flick up, and you swear that somewhere inside the azure glow they produce, there’s a mischievous glint. “<i>{Such a rude beast. I’ll have to teach it some manners./Mmm... I know just how to treat anxious cocks like this one./It seems my breasts alone are unsuited to this task.}</i>” Her tongue flicks out, licking across her sable lips until they gleam in {the barn’s }artificial light.");
 output("\n\nThe attention-hungry A.I. slides her boobs all the way down to your [pc.sheathBiggest]. Her mouth opens, her [gianna.lips] lips spreading into a wide ‘o’ with nary a sign of teeth that could scrape against a sensitive spot. Descending, Gianna’s mouth slips over your [pc.cockHeadBiggest]. Her [gianna.lips] seem to swell a little as she does so, but it’s hard to worry about that. More pressing is the suction you feel, pulling on you, drawing you deeper, tugging you across the length of her wiggling, talented tongue. You buck your hips once, earning you a pleased look from the blushing android.");
 output("\n\nAbruptly, she reverses direction and pulls her vacuum-sealed lips up off your length, dawdling at the tip so that her tongue can take a few quick circuits around its circumference. Her breasts glide up your length as she does so, held firm by her hands. They squeeze and slide in a way that utterly complements the feel of her muscle on your glans. Involuntary shudders ripple through your [pc.legs], and your [pc.cockBiggest] throbs wildly, leaking liberally into Gianna’s maw - that is, until she finally lets you escape. The sound of your cock popping free seems deafening to your ears. Do the other people in the barn know you’re getting the squeeze and suck of a lifetime?");
-output("\n\n“<i>Easy, " + pc.mf("stud</i>”,"princess</i>”) + ".</i>” Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait{, the one cloistered in cleavage most of all}.");
+output("\n\n“<i>Easy, " + pc.mf("stud","princess</i>”) + ".</i>” Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait{, the one cloistered in cleavage most of all}.");
 output("\n\nYou groan in disappointment.");
 output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. “<i>Do you want to cum now?</i>” She licks the exposed portion of your length once. A second taste follows after a brief pause, faster than the first. “<i>I know the longer I can make this last, the better it will feel for you.</i>” She pauses, tongue half out of her mouth but talking perfectly clearly all the same. “<i>You do seem on the cusp of a powerful orgasm. {I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him./Do you want it now? Do you want to paint my tits and fill my mouth?/I’ll bring you off now, if that’s what you command, [pc.master].}</i>”");
 output("\n\nYou screw your eyes closed and grunt, barely stopping yourself from grabbing hold of her tits and pounding them raw. “<i>Fuck yes I want to cum!</i>”");
@@ -2466,7 +2691,7 @@ output("\n\nPutting your arm around the naked pleasure-droid, you surreptitiousl
 output("\n\n//Dommy");
 output("\n\n“<i>That idea is going to be milking your cock with my asscheeks, isn’t it?</i>” She flexes against your hand, leaving you wondering just what it would have felt like to already have your dick in place when she did that.");
 output("\n\n“<i>Maybe...</i>”");
-output("\n\nGianna grins and grabs you by the hand. “<i>Come on then, " + pc.mf("stud</i>”,"babe</i>”) + ". Let’s go somewhere where we can do this a little more comfortably.</i>” She casually rubs her [gianna.butt] against you. “<i>I can’t wait to feel you cumming all over me.</i>”");
+output("\n\nGianna grins and grabs you by the hand. “<i>Come on then, " + pc.mf("stud","babe</i>”) + ". Let’s go somewhere where we can do this a little more comfortably.</i>” She casually rubs her [gianna.butt] against you. “<i>I can’t wait to feel you cumming all over me.</i>”");
 output("\n\n//Normal!");
 output("\n\nGianna giggles. “<i>It’s my butt, isn’t it?</i>”");
 output("\n\n“<i>Well... yeah,</i>” you admit.");
