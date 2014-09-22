@@ -4139,6 +4139,10 @@
 			if (cocks.length == 0) return 0;
 			return cocks[biggestCockIndex()].cLength();
 		}
+		public function biggestCockThickness(): Number {
+			if (cocks.length == 0) return 0;
+			return cocks[biggestCockIndex()].thickness();
+		}
 		public function biggestCockVolume(effective: Boolean = true): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
@@ -4216,6 +4220,18 @@
 				thick += cocks[counter].thickness();
 			}
 			return thick;
+		}
+		public function cThickness(arg:int = 0):Number
+		{
+			if(arg >= cocks.length) return -1;
+			if(arg < 0) return -1;
+			return cocks[arg].thickness();
+		}
+		public function cLength(arg:int = 0):Number
+		{
+			if(arg >= cocks.length) return -1;
+			if(arg < 0) return -1;
+			return cocks[arg].cLength();
 		}
 		public function thickestCock(): Number {
 			if (cocks.length == 0) return 0;
@@ -5158,6 +5174,11 @@
 			if (arg < 0 || arg >= totalVaginas()) return false;
 			if (vaginas[arg].wetness() >= 4) return true;
 			return false;
+		}
+		//Placeholder
+		public function girlCumQ():Number
+		{
+			return 1;
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
