@@ -98,7 +98,7 @@ function combatMainMenu():void
 		addButton(0,"Struggle",naleenStruggle);
 		if(pc.hasPerk("Static Burst")) {
 			if(pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-			else if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
+			else if(pc.energy() >= 5) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
 		this.addButton(4,"Do Nothing",wait);
@@ -111,7 +111,7 @@ function combatMainMenu():void
 		addButton(0,"Struggle",grappleStruggle);
 		if(pc.hasPerk("Static Burst")) {
 			if(pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-			else if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
+			else if(pc.energy() >= 5) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
 		if(foes[0] is Kaska) addButton(10,"Nip-Pinch",pinchKaskaNipple,undefined,"Nip-Pinch","Maybe pinching Kaska's nipple will get her to release you.");
@@ -126,7 +126,7 @@ function combatMainMenu():void
 		if (pc.hasPerk("Static Burst"))
 		{
 			if (pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-			else if (pc.energy() >= 50) this.addButton(3, "Static Burst", staticBurst);
+			else if (pc.energy() >= 5) this.addButton(3, "Static Burst", staticBurst);
 			else this.addDisabledButton(3, "Static Burst");
 		}
 		this.addButton(4, "Do Nothing", wait);
@@ -740,7 +740,7 @@ function staticBurst():void {
 		processCombat();
 		return;
 	}*/
-	pc.energy(-50);
+	pc.energy(-5);
 	output("You release a discharge of electricity, momentarily weakening your ");
 	if(foes[0].plural) output("foes'");
 	else output("foe's");
