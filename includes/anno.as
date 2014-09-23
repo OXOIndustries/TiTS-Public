@@ -2981,7 +2981,7 @@ function deck13FinalFormIntro():void
 	output("\n\nSlumped against the reactor control panel is the goo-girl, breathing hard after your encounter and surrounded by a writhing, swirling lake of bubbling gray goo at her feet. She spins around as you and Anno approach, her sword forming out of her hand as she does so. Anno raises her gun, but the goo doesn’t advance. Not yet, at least. ");
 
 	output("“<i>That’s close enough,</i>” the goo says, wincing");
-	if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 3) output(" as if in pain");
+	if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2) output(" as if in pain");
 	else output(" at her enlarged, lust-addled bust's heaving");
 	output(" and waving you back with her sword. ")
 

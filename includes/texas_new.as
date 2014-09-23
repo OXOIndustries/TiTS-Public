@@ -898,8 +898,8 @@ function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	clearMenu();
 	StatTracking.track("milkers/prostate milker uses");
 	StatTracking.track("milkers/cum milked", cumTotal)
-	addButton(0,"Yes",sureSellMyCumBabiesFarAndWide,cumTotal);
-	addButton(1,"No",noIDontWantToSellBabies);
+	addButton(0,"Sell It",sureSellMyCumBabiesFarAndWide,cumTotal);
+	addButton(1,"Don't Sell",noIDontWantToSellBabies);
 }
 
 //Yes
