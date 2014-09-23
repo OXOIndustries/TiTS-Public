@@ -1524,14 +1524,15 @@ function vanaeHuntressTentaSex(selScene:String):void
 	else output(" dirty");
 	output(" insides, biting back a moan and pushing yourself against her rising hips.");
 
-	if (isCunt && pc.vaginas[0].looseness() <= 1 || isButt && pc.ass.looseness <= 1) output("“<i>...Was this your first time? You feel so tight!</i>” she exclaims");
-	else if (isCunt && pc.vaginas[0].looseness() <= 2 || isButt && pc.ass.looseness <= 2)
+	if (isCunt && pc.vaginas[0].looseness() <= 1 || (isButt && pc.ass.looseness <= 1)) output("“<i>...Was this your first time? You feel so tight!</i>” she exclaims");
+	else if ((isCunt && pc.vaginas[0].looseness() <= 2) || (isButt && pc.ass.looseness <= 2))
 	{
 		output("“<i>You like my tail buried in your");
 		if (isCunt) output(" [pc.pussyColor] pussy");
 		else output(" beautiful bottom");
 		output(", don't you? I love how tight you are!</i>” she exclaims");
 	}
+	else if ((isCunt && pc.vaginas[0].looseness() <= 3) || (isButt && pc.ass.looseness <= 3)) output("“<i>Oooh, you know just how to squeeze me - you've done this a lot, haven't you?</i>” she asks");
 	else output("“<i>You're so loose - you've done this a lot, haven't you?</i>” she asks");
 	output(". You let out a trembling cry in response, your mind reeling from the intense sensations utterly seizing your body as her tentacle 'cock' coils around inside of you.");
 

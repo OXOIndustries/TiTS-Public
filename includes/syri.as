@@ -92,7 +92,7 @@ function betSyriCredits(amount:int = 0):void {
 		flags["MET_SYRI"] = 1;
 		output("<i>“Sure,”</i>  you say, pulling up some credits on your codex tablet. <i>“Let's see what you've got, miss...”</i>");
 
-		output("\n\n<i>“The name's Syri. Best shot in this dump - at least as far as video games go, anyway. Well come on then, step on up at grab a rig. Let's see what you're made out of...”</i>");
+		output("\n\n<i>“The name's Syri. Best shot in this dump - at least as far as video games go, anyway. Well come on then, step on up and grab a rig. Let's see what you're made out of...”</i>");
 
 		output("\n\n<i>“[pc.name],”</i> you answer, picking up a bracer and visor.");
 		clearMenu();

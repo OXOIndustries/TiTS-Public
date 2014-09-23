@@ -542,8 +542,8 @@ function annoFollowerInventoryCheck():void
 		}
 
 		// Buy/Sell markups
-		anno.sellMarkup = 1.05;
-		anno.buyMarkdown = 0.95;
+		anno.sellMarkup = 1.1;
+		anno.buyMarkdown = 0.85;
 	}
 	else
 	{
@@ -556,8 +556,8 @@ function annoFollowerInventoryCheck():void
 			anno.inventory.push(new SteeleTechSuit());
 		}
 
-		anno.sellMarkup = 1.1;
-		anno.buyMarkdown = 0.85;
+		anno.sellMarkup = 1.2;
+		anno.buyMarkdown = 0.8;
 	}
 
 	// Set her up so she can buy/sell everything

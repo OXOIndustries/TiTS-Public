@@ -25,8 +25,8 @@
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
 			this.typesBought[this.typesBought.length] = GLOBAL.SHIELD;
-			this.sellMarkup = 1.1;
-			this.buyMarkdown = .85;
+			this.sellMarkup = 1.2;
+			this.buyMarkdown = .80;
 
 			this.short = "Anno";
 			this.originalRace = "ausar";
