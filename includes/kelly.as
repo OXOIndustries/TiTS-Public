@@ -1038,7 +1038,7 @@ function getKellyOff(newScreen:Boolean = false):void
 	output("\n\nYou grip each of her shafts, slick with honeyed pre, and begin pumping. She closes her eyes and whimpers softly at the feel of your fingers on her sensitive shafts. You alternate your strokes, sometimes stopping at her flared tips to coax more honey out of them. She groans and wriggles under your ministrations, bucking her hips against your touches.");
 
 	//If prehensile tail: //Assuming this also includes cock-tails
-	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
+	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG) && pc.tailCount > 0)
 	{
 		output("\n\nYou adjust your [pc.tails], tickling her clit with the tip. She wriggles at the ticklish sensation, letting out a soft moan of pleasure. Without warning you plunge into her depths, stretching her around you as you invade with a wet schluk.");
 		output("\n\nA cry spills from her throat as your tail plunges into her depths, the hot, wet flesh stretching around your ");
