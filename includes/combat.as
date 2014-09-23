@@ -268,11 +268,13 @@ function specialsMenu():void {
 		{
 			if(pc.energy() >= 25) addButton(offset,"S. Hack",attackRouter,shieldHack,"Shield Hack","Attempts to deal high damage to a target's shields.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"S. Hack","Shield Hack","You do not have enough energy to use this attack.\n\nConsumes 25 energy.");
+			offset++;
 		}
 		if(pc.hasPerk("Weapon Hack"))
 		{
 			if(pc.energy() >= 25) addButton(offset,"W. Hack",attackRouter,weaponHack,"Weapon Hack","Attempt to neutralize a foe's energy weapon.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"W. Hack","Weapon Hack","You do not have enough energy to use this attack.\n\nConsumes 20 energy.");
+			offset++;
 		}
 	}
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
