@@ -1498,7 +1498,7 @@ function goalsForGFPenny():void {
 	
 	output("\n\nBiting her lip, the vixen considers for a moment. <i>“Nah, I don’t think so. Get things paid for, train, and maybe make enough scratch to get a comfy place to call my own.”</i>  Her eyes twinkle mischieviously, <i>“Maybe someday I’ll let someone talk me into being a wife and not a mate. Heck, maybe I’ll go nuts and decide to retire to chase adventures with you among the stars.”</i>  She shakes her head. <i>“No sense worrying about that now. Esbeth needs me here.”</i>");
 	
-	output("\n\n<i>“Oh!”</i>  Penny adds, <i>“There was one other thing I’ve been thinking about.”</i>  She wrings her hands. “It’s a little weird, but I’ve been entertaining the idea of growing myself a cock. Maybe we should talk about that later, though.”</i>  Her eyes flick back to her monitor. <i>“I probably need to get back to work. Give me a yell if you need anything else, [pc.name].”</i>");
+	output("\n\n<i>“Oh!”</i>  Penny adds, <i>“There was one other thing I’ve been thinking about.”</i>  She wrings her hands. “<i>It’s a little weird, but I’ve been entertaining the idea of growing myself a cock. Maybe we should talk about that later, though.”</i>  Her eyes flick back to her monitor. <i>“I probably need to get back to work. Give me a yell if you need anything else, [pc.name].”</i>");
 	processTime(25);
 	this.clearMenu();
 	flags["HAD_PENNY_GOAL_CHAT"] = 1;

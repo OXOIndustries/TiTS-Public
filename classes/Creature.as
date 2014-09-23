@@ -5819,16 +5819,16 @@
 				else if (ballDiameter() < 15) desc += "watermelon-sized";
 				else if (ballDiameter() < 18) desc += "beachball-sized";
 				else desc += "hideously swollen and oversized";
-				if (ballSize() > 1) descripted++;
+				if (ballDiameter() > 1) descripted++;
 			}
 			//Uniball
 			if (hasStatusEffect("Uniball") && this.rand(3) == 0) {
 				if (descripted > 0) desc += ", ";
-				rando == this.rand(4);
+				rando = rand(4);
 				if (rando == 0) desc += "tightly-compressed";
-				else if (rando == 1) desc += "snug";
-				else if (rando == 2) desc += "cute";
-				else if (rando == 3) desc += "pleasantly squeezed";
+				else if (rando <= 1) desc += "snug";
+				else if (rando <= 2) desc += "cute";
+				else if (rando <= 3) desc += "pleasantly squeezed";
 				else desc += "compressed-together";
 				descripted++;
 			}

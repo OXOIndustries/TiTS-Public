@@ -622,7 +622,7 @@ function syriTalkThree():void {
 	userInterface.showBust("SYRI");
 	showSyriName();
 	author("Savin");
-	output("<i>“What're you reading?\"  you ask, nodding toward Syri's data slate.");
+	output("<i>“What're you reading?\"</i>  you ask, nodding toward Syri's data slate.");
 
 	output("\n\nThe ausar shrugs, <i>“Some shitty fantasy book. They're practically giving 'em away on Congo. But they're all just so... hackneyed. Village boy hero loses everything, slays dragon slash evil wizard, acquires princess. Lather rinse repeat. Blech. This one,”</i>  she pokes her slate, <i>“is literally 'I am a farmer. I will now slay a dragon, which carried off a princess.' No, really. That's the plot, hand to god. I need to go back to reading Sci-Fi or something...”</i>");
 
