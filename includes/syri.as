@@ -763,7 +763,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 
 			output("\n\nAs soon as you pass the airlock, clothes start flying. ");
 			if(pc.mf("man","") == "man") output("Syri leaps into your arms, legs wrapped around your waist and bare breasts pressed into your face, letting your stumble towards your cabin as she lavishes you in gropes and kisses.");
-			else output("Syri sweeps you up off your [pc.feet], pulling your into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your belly, growing steadily until her pants are gone, letting the rigid red rod prod your thigh.");
+			else output("Syri sweeps you up off your [pc.feet], pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your belly, growing steadily until her pants are gone, letting the rigid red rod prod your thigh.");
 			output(" Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the alien beauty is straddling you, gently pumping her pecker as she growls, <i>“Your call, [pc.name]. How do we do this?”</i>");
 		}
 	}

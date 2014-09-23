@@ -3586,7 +3586,7 @@ function phatBootyHotdogging():void
 	output(" excitedly. You’re hard enough that you feel like you could fuck the whole galaxy right now, but this wonderful ass will do for the time being. Rubbing it with both hands, you play nice with the tenderized derriere. Gianna coos and resumes her excited wiggling. She’s so hungry for attention that it’s almost comical. You could keep massaging her ass for hours, and she’d probably just lie there, smiling the whole while.");
 	output("\n\nThere’s more to life than butt massages, however. You’ve got a ready dick. All it needs is a little lube.");
 	//Futas got their own lube. - no new pg
-	if(pc.hasCock())
+	if(pc.hasVagina())
 	{
 		output(" Reaching ");
 		if(pc.balls > 0) output("under your [pc.balls]");

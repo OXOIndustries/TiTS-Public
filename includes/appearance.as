@@ -261,7 +261,7 @@ function appearance(target:Creature):void {
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.TYPE_FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		else if(target.armType == GLOBAL.TYPE_PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
-		else if(target.armType == GLOBAL.TYPE_BADGER) output2(" A coat of thick " + pc.furColor + " fur, while slight claws mark the tips of your fingers. These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
+		else if(target.armType == GLOBAL.TYPE_BADGER) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tips your fingers. These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
 		else if (target.armType == GLOBAL.TYPE_HUMAN && target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;

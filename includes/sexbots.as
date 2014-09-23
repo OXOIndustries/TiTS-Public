@@ -721,7 +721,7 @@ function loseToManBotWhenHavingAPussy():void
 	if(pc.cockTotal() > 0) output(", all the while its tentacle wrings your [pc.cock] in its close, rubber confines");
 	output(". Its red end glows with a delightful heat which it carries deep into your womb.");
 	//Small: 
-	if(pc.vaginalCapacity(x) <= 30)
+	if(pc.vaginas[x].loosenss() <= 3)
 	{
 		output("\n\nIts sturdy prick");
 		if(y >= 0) output("s are");
@@ -739,7 +739,7 @@ function loseToManBotWhenHavingAPussy():void
 		else output("y");
 		output(", barely able to touch the sides, you notice that bit by bit it begins to fill you, touching you deep as the hard latex of its stomach claps against yours. Mass is disappearing from its midriff, its waist thinning as it adds length and girth to its cocks until it is utterly packing your wet passage, make you tense up with glee.");
 		pc.cuntChange(x,70,true,true,false);
-		pc.cuntChange(y,70,true,true,false);
+		if(y >= 0) pc.cuntChange(y,70,true,true,false);
 	}
 	output("\n\nYou lose yourself in the rhythm, thrusting your [pc.hips] back into its streamlined legs, surrendering yourself to the indefatigability of a machine shaped specifically to trap and pleasure you. Looking down at its pumping, latex-clad hips you feel an urge to grip them. As soon as the wish forms the robot releases you at the elbows, and you accept the unspoken invitation eagerly, grabbing its white curves and glorying in their warmth, how they give ever-so-slightly under your fingertips. Its eyes flicker and it makes a husky sound somewhere between a man’s sigh and an engine’s throb as you eagerly engage with its probing warmth.");
 	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh buried in you. “<i>I am glad. Commencing phase two.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the man riding you.");
