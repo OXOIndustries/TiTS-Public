@@ -172,7 +172,7 @@ function annoFollowerMenu():void
 		if (haveFuckedAnno())
 		{
 			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
-			else addButton(8, "Sleep With", annoSleepToggleOn, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
+			else addButton(8, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
 		}
 		else
 		{
