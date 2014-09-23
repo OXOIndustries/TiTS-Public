@@ -864,7 +864,7 @@ function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
-	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i>  Celise pouts, before trying once again to her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
+	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i>  Celise pouts, before trying once again to have her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
 	//scene ends
 	sleep(false);
 }

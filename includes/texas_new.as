@@ -346,7 +346,7 @@ function askOggyForSex():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
+		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogram gets her mouth, you get her pussy.");
 		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
@@ -388,7 +388,7 @@ function talkToAmma(display:Boolean = false):void
 	addButton(0,"The Treatment",askAmmaAbootZeTreatManz,undefined,"The Treatment","Ask the cow-girl what she thinks of the Treatment.");
 	addButton(1,"Who'sInCharge",whosInCharge,undefined,"Who's In Charge Here?","Ask Amma about who runs this planet.");
 	addButton(2,"Herself",askAmmaAboutHerSelf,undefined,"Herself","Ask Amma about herself.");
-	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogrim",askAmmaAboutOgram,undefined,"Ogrim","Ask her about that big lug she's been seeing, Ogrim.");
+	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogram",askAmmaAboutOgram,undefined,"Ogram","Ask her about that big lug she's been seeing, Ogram.");
 	else addDisabledButton(3,"Locked","Locked","You'll need to talk to Amma about something else in particular before this scene unlocks.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 
@@ -512,7 +512,7 @@ function sexChatWithAmma():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
+		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogram gets her mouth, you get her pussy.");
 		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");

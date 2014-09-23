@@ -544,7 +544,7 @@ function appearance(target:Creature):void {
 		//expansive extensive spacious
 		else if (tempBelly <= 50) output2("Your [pc.belly] would look more at home on a woman in the later stages of her pregnancy than an adventuring rusher.");
 		//inflated excessive whopping
-		else if (tempBelly <= 60) output2("Your [pc.belly] is weighty enough to jiggle when you shift positions to suddenly, but still small enough for easy potability.");
+		else if (tempBelly <= 60) output2("Your [pc.belly] is weighty enough to jiggle when you shift positions too suddenly, but still small enough for easy portability.");
 		//distended immense bloated
 		else if (tempBelly <= 70) output2("Your [pc.belly] sticks out very noticeably, wobbling slightly with your motions. It would look right at home on a reclining, full-time breeding servant.");
 		//over-inflated jumbo-sized

@@ -181,7 +181,10 @@ function leaveHostileZil():void {
 			}
 			else if(pc.hasVagina())
 			{
-				output(" Your [pc.vaginas] are wet enough to soak ");
+				output(" Your [pc.vaginas] ");
+				if(pc.totalVaginas() == 1) output("is");
+				else output("are");
+				output(" wet enough to soak ");
 				if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") output("your garments");
 				else output("the ground");
 			}

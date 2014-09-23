@@ -29,7 +29,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a bone-shaped ausar treat";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A common transformative treatment used by ausars to counteract accidental mutations, this \"treats\" are a heady cocktail of hormones, one-use microsurgeons, and gene-splices that repair ausars inside and out. Some particularly xenophilic individuals co-opt these treatments to become more like their canid alien friends.";
+			this.tooltip = "A common transformative treatment used by ausars to counteract accidental mutations, these \"treats\" are a heady cocktail of hormones, one-use microsurgeons, and gene-splices that repair ausars inside and out. Some particularly xenophilic individuals co-opt these treatments to become more like their canid alien friends.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -81,7 +81,7 @@ public function encounterVanae(isHuntress:Boolean):void
 
 			output("\n\nWait, what?! She's after your");
 			if (pc.hasCock()) output(" [pc.cumNoun]?");
-			else if (pc.hasVagina()) output(" [pc.girlcumNoun]?");
+			else if (pc.hasVagina()) output(" [pc.girlCumNoun]?");
 			else output(" girl-cum? You don't even have any to give!");
 			output(" Do you even get a choice in the matter?");
 		}
@@ -106,7 +106,7 @@ public function encounterVanae(isHuntress:Boolean):void
 		// IF VANAE HUNTRESS
 		if (isHuntress)
 		{
-			output("You're glad you moved first, because a vanae huntress lands right where you were standing with a thud. She just came out of nowhere!");
+			output(" You're glad you moved first, because a vanae huntress lands right where you were standing with a thud. She just came out of nowhere!");
 
 			output("\n\n“<i>I missed? You're no ordinary");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
@@ -118,7 +118,7 @@ public function encounterVanae(isHuntress:Boolean):void
 		// IF MAIDEN VANAE
 		else
 		{
-			output("You're glad you moved first, because a vanae maiden lands right where you were standing. She hits the ground awkwardly, toppling over and very nearly braining herself.");
+			output(" You're glad you moved first, because a vanae maiden lands right where you were standing. She hits the ground awkwardly, toppling over and very nearly braining herself.");
 
 			output("\n\n“<i>Owww! How’d you see me coming? That’s not fair!</i>” You hear your attacker cry out pitifully. She seems perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
 

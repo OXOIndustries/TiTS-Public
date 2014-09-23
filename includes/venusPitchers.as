@@ -1347,7 +1347,7 @@ public function layFertilizedVenusPitcherEgg():void
 	output(".");
 
 	//Cuntchange 1,100 <-- unfertilized eggs specifed 800, leaving as a note for review
-	pc.cuntChange(pSlot, 800, true, false, false);
+	pc.cuntChange(pSlot, 800, true, true, false);
 
 	output("\n\nWhen you come to a few minutes later, the little pod is still sitting there, its tendrils rooting around on the ground for a place to make its home. Someday, that's going to grow into a beautiful venus pitcher.");
 	

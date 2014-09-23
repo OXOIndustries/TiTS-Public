@@ -811,7 +811,7 @@ function eatFlahneOutUnderDesk():void {
 	output("\n\n<i>“...yes, uhmm, just fill me-uh, I mean these forms out, and send them back to me for review...”</i>  The last word trickles away into nothing, and you get the idea that Flahne’s eyes must have drifted partway closed during that statement, relaxing as you taste her lewdest orifice. You’ve yet to even touch her ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("ovipositor");
 	else output("clit");
-	output(", instead watching the rivulets of lust soak into her sopping-wet set, squeezed out of her horny pussy thanks to your grip. You release her sensitive pussy and begin to gently massage her mons, running your lubricated digits down to slip and slide across her labia. Your palm catches on ");
+	output(", instead watching the rivulets of lust soak into her sopping-wet seat, squeezed out of her horny pussy thanks to your grip. You release her sensitive pussy and begin to gently massage her mons, running your lubricated digits down to slip and slide across her labia. Your palm catches on ");
 	if(!flahneDickOut()) output("her clit");
 	else output("the top of her powerfully engorged, egg-laying boner");
 	output(", eliciting a low purr of pleasure from the back of the thick-thighed secretary’s mouth.");
@@ -844,7 +844,7 @@ function eatFlahneOutUnderDesk():void {
 	output(". She’s getting close.... All you need to do is go a little bit faster and she’s going to be putty in your hands.");
 	
 	output("\n\nFlahne tries to protest, <i>“Please... please more... uhh,”</i>  She collects her thoughts. <i>“I mean, please, fill out all your forms. Ooooohhhh!”</i>  A sucker falls from her slack jaw onto the floor nearby.");
-	output("\n\n<i>“No. Come on,”</i>  comes the voice again, <i>“There’s something wrong with you.”</i>  Heels clatter closer to you, so you begin to thrust your fingers to the timing each footstep. Flahne slouches down in her chair, scooching her cunt closer to you, eager for more. It seems she’s given up all sense of propriety by this point. She’s grunting and groaning low in her throat. Her thick thighs are trembling to either side of you, so you grow more aggressive in your busy tonguing of her syrupy slit.");
+	output("\n\n<i>“No. Come on,”</i>  comes the voice again, <i>“There’s something wrong with you.”</i>  Heels clatter closer to you, so you begin to thrust your fingers to the timing of each footstep. Flahne slouches down in her chair, scooching her cunt closer to you, eager for more. It seems she’s given up all sense of propriety by this point. She’s grunting and groaning low in her throat. Her thick thighs are trembling to either side of you, so you grow more aggressive in your busy tonguing of her syrupy slit.");
 	
 	output("\n\nThe footsteps are almost there. ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("You grab Flahne’s dick and start jacking it, flicking your tongue back and forth where it emerges from her swollen twat.");
@@ -1114,9 +1114,9 @@ function flahneExhibitionHugsGirls():void {
 	output("\n\n<i>“Don’t worry about the door for now. Just sit here with me and I’ll make you forget it,”</i>  you say, giving Flahne your best bedroom eyes. The nervousness begins to fade as she hooks her legs through the chair’s arms to sit on your lap. Her goldenrod flesh is warm against your [pc.skinFurScales], and as you undo her top her breasts press against your [pc.chest] like soft pillows. You slip your hand between her parted legs and dip two fingers into her pliant gelpussy, ");
 	if(!flahneDickOut()) output("using your thumb to rub her budding clit.");
 	else output("rubbing your thumb against the base of her ovipositor.");
-	output(" Flahne moans loudly, but covers her mouth and looks over her shoulder at the door, her Lack of nerve still apparent.");
+	output(" Flahne moans loudly, but covers her mouth and looks over her shoulder at the door, her lack of nerve still apparent.");
 
-	output("\n\nUsing your other hand, you turn the gel-girl’s face back to you and give her a big kiss. Her saliva tastes as sweet as the candy she eats, and her worries seem to melt as her tongue swirls around with yours. Flahne wraps her arms around your shoulders and presses herself tightly against your body, her G-cups mashing against your [pc.chest]. The horny secretary moans into your mouth as your fingers rub the inner walls of her vagina. You guide one of her hands down to your [pc.oneVagina]");
+	output("\n\nUsing your other hand, you turn the gel-girl’s face back to you and give her a big kiss. Her saliva tastes as sweet as the candy she eats, and her worries seem to melt as her tongue swirls around with yours. Flahne wraps her arms around your shoulders and presses herself tightly against your body, her G-cups mashing against your [pc.chest]. The horny secretary moans into your mouth as your fingers rub the inner walls of her vagina. You guide one of her hands down to [pc.oneVagina]");
 	if(pc.hasCock()) output(", sliding it against your hardening [pc.cockNounSimple] as you do so");
 	output(". Her fingers feel cool as they enter you, eliciting a small gasp followed by a sigh of pleasure.");
 
@@ -1124,10 +1124,10 @@ function flahneExhibitionHugsGirls():void {
 	if(pc.hasCock()) output(" - sliding it along your throbbing member as it goes -");
 	output(" and licks her fingers with an exaggerated hum of pleasure before returning the hand to your pleasure hole.");
 
-	output("\n\nPulling your face back from the gel-girl’s cushiony breast, you slideyour mouth toward her cleavage, and kiss the center of her chest. She shivers and sighs with approval, but you change direction, making light kisses up her neck and ");
+	output("\n\nPulling your face back from the gel-girl’s cushiony breast, you slide your mouth toward her cleavage, and kiss the center of her chest. She shivers and sighs with approval, but you change direction, making light kisses up her neck and ");
 	if(!pc.isAss()) output("playfully nibbling");
 	else output("biting");
-	output(" her lower lip. The leather of the chair beneath you is slick with your combined juices, and Flahne begins to slide back and forth on your hips as her pelvis gyrates around your fingers. A steady stream of her liquid sugar dribbles down your hand to drip from your wrist, and you mimic her earlier action ,licking the sweet juices from your fingers before returning them to her nethers.");
+	output(" her lower lip. The leather of the chair beneath you is slick with your combined juices, and Flahne begins to slide back and forth on your hips as her pelvis gyrates around your fingers. A steady stream of her liquid sugar dribbles down your hand to drip from your wrist, and you mimic her earlier action, licking the sweet juices from your fingers before returning them to her nethers.");
 	if(!flahneDickOut()) output(" As you lower your hand you slide your palm along her twitching ovipositor, a steady trickle of candied pre-cum making it extra slippery. You circle a finger teasingly around her cumslit before continuing downward.");
 
 	output("\n\nThe pleasure of Flahne’s fingers is beginning to get to your head, but not so much so that you can’t hear the dull tap of heels clicking outside. The pleasure drunk secretary doesn’t seem to notice, and you bite your lip to stifle a ");

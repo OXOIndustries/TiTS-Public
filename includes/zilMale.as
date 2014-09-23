@@ -1069,7 +1069,7 @@ function getTailPussyFuckedByZil():void {
 	}
 	//{else cunts}
 	else if(pc.hasVagina()) {
-		output("\n\n[pc.eachVagina] suddenly begins to spasm in the moist mud underneath you, expelling ");
+		output("\n\n[pc.EachVagina] suddenly begins to spasm in the moist mud underneath you, expelling ");
 		if(pc.wetness() <= 1) output("droplets");
 		else if(pc.wetness() <= 2) output("dribbles");
 		else if(pc.wetness() <= 3) output("a small stream");

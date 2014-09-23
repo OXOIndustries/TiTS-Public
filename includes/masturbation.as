@@ -318,7 +318,7 @@ function vaginalFap():void {
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
 		output("[pc.nipples]. You pinch and tweak at your sensitive bud, really working it back and forth as you toy with your nethers, tugging it from time to time to shoot darts of pleasurable agony through your licentiously contorting form. With one back-arching plunge, you work a pair of fingers into your needy slit, thrusting again and again, so hard that the wet squelches of female bliss are distinctly audible.");
 	}
-	output("\n\nYou moan, loud and low but inexorably rising higher with each touch and caress, each thrusting slip through your neady crevice. Arching your [pc.hips], you hump against your hand, grinding back into your quickly moving fingers");
+	output("\n\nYou moan, loud and low but inexorably rising higher with each touch and caress, each thrusting slip through your needy crevice. Arching your [pc.hips], you hump against your hand, grinding back into your quickly moving fingers");
 	if(pc.totalClits() > 0) output(", some plunging inside while others tend to [pc.oneClit]");
 	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and you're fingers are rapidly become soaked with your [pc.girlCum].");
 	

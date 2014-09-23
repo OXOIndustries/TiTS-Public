@@ -1339,7 +1339,7 @@ function kellyShopping():void
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("Shopping with her is quite an experience, Kelly can be quite the energetic hopping bunny when she wants to. Since you’re getting a free meal out of this, you don’t mind helping, however it’s true that this is more than simple <i>grocery shopping</i>. Unless skin care, fur care and cleaning supplies suddenly became a part of the cooking process when you were not looking....");
+	output(" Shopping with her is quite an experience. Kelly can be quite the energetic hopping bunny when she wants to. Since you’re getting a free meal out of this, you don’t mind helping, however it’s true that this is more than simple <i>grocery shopping</i>. Unless skin care, fur care and cleaning supplies suddenly became a part of the cooking process when you were not looking....");
 	//if Strength <= 30:
 	if(pc.physique() <= 20)
 	{

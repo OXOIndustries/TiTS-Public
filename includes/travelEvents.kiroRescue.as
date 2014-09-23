@@ -541,7 +541,10 @@ public function kirosShipChubnookiFucksYouGud():void
 	else output(" womb with cervix-shattering force");
 	output(". Your [pc.belly] bulges bigger from the weight of the deposit. It actually jiggles and sloshes ponderously on the next bounce, forcing bigger, fatter cum-shots directly inside you, and each time, your swollen sperm-paunch gets bigger and bigger.");
 
-	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They're flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover's cushy boobs and {scream/howl} in delight, your body quaking with delight. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again... and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
+	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They're flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover's cushy boobs and ");
+	if(pc.race() != "ausar" && pc.race() != "half-ausar" && pc.originalRace != "half-ausar") output("scream");
+	else output("howl");
+	output(" in delight, your body quaking. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again... and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
 
 	//Dickgasms
 	if (pc.hasCock())

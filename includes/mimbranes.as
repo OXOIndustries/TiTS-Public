@@ -2668,7 +2668,7 @@ function mimbraneSmother():void
 	}
 	
 	//{hit} 
-	output(" Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.");
+	output(" Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breathe.");
 	pc.lust(10 + pc.libido()/10);
 	processCombat();
 	
@@ -2733,7 +2733,7 @@ public function mimbraneSpit():void
 	//{standard miss/block text}
 	if (combatMiss(foes[0], pc))
 	{
-		output("FIXME");
+		output(" You tuck out of the way!");
 	}
 	//{hit} 
 	else
@@ -2872,7 +2872,7 @@ public function mutinousMimbranesCombat():void
 		output(" all");
 		if (attachedMimbranes() > 1) output(" they");
 		else output(" it");
-		output(" can to heed your efforts."); 
+		output(" can to impede your efforts."); 
 	}
 	else if (select == 2)
 	{
@@ -3800,7 +3800,7 @@ public function attachVagMimbrane():void
 	output("\n\nThe Mimbrane splits itself to accommodate your own fissure, mimicking its every facet. In your throes of wanton desire and uncomfortable tension, you can’t even discern just how far into your box the creature goes. What do you do feel, though, is the parasite melding with your nervous system. There is no pain; only mounting confusion at the mixed messages coming from both your nerve endings and your <i>new</i> nerve endings. For a moment, you can’t picture your pussy. A nebulous region exists in its place, one where a clit is as familiar as a deity’s true intentions.");
 	output("\n\nThen nothing. Well, you feel normal. Suddenly you’re fine, albeit laying naked on the jungle floor. Your hands rush to investigate your [pc.pussy], eager to find something amiss. But its the same as before you ran into that blanket with a grudge. ");
 	output("\n\nNo... Further examination clues you in on a new development. Two, in fact. A pair of tiny little bumps sit just above your pussy. You get no response from pressing and prodding at them. But the instant you try and squeeze one of them, a debilitating pain blasts through you, lasting only as long as your fingers are poised to squeeze the blemish. The second they’re free is the second you feel fine again. That’s when you clue in on the barely-discernable lump of flesh outlining a little ways around your vagina. You try and work your way around it, but it feels as if you were trying to pry open a wrinkle. ");
-	output("\n\nAnother revelation dawns on you: not only are you free of the artificially-induced desire the parasite thrusted upon you during your fight, but you feel completely sated of any sexual passion. But you don’t recall experiencing the delightful climax that typically precludes how you feel now. Did it happen at all? It feels slightly wet between your legs, but now you aren’t even sure if that’s just your head making excuses.");
+	output("\n\nAnother revelation dawns on you: not only are you free of the artificially-induced desire the parasite thrusted upon you during your fight, but you feel completely sated of any sexual passion. But you don’t recall experiencing the delightful climax that typically precedes how you feel now. Did it happen at all? It feels slightly wet between your legs, but now you aren’t even sure if that’s just your head making excuses.");
 	output("\n\nYou decide it better to just gather your equipment and move on. Whether or not you climaxed - and can remember it if you did - is secondary to worrying about your latest involuntary traveling companion.");
 
 	createMimbraneEffect("Mimbrane Pussy");
@@ -3878,7 +3878,7 @@ public function attachHandMimbrane():void
 		output("\n\nNo, instead the Mimbrane casually wraps the rest of its body around your weak fist. You make a weak gesture, relinquishing your grapple to try and move your fingers in some useless attempt to escape the parasite. All you manage to do is make it easier for it to work its way around your digits and onto your palm. Falling back to making another fist is your final recourse, unable to move or react intelligibly enough to effectively defend yourself.");
 		output("\n\nThe gesture proves meaningless, and soon it appears you’ve found yourself a wriggling glove of sorts, grasped firmly onto your wrist. Next comes the recognizable sensation of the Mimbrane integrating into your nervous system. Though you can’t get a coherent feeling from them, you can at least still move your fingers. Soon, the moist, warm feeling of entrapment is replaced with the comparatively cool breeze of the jungle.");
 		output("\n\nYou’ve gotten rather used to this process by now. The jolt of normalcy isn’t even a shock anymore. The hunt for the creature’s eyes and mouth doesn’t even take long; a triage of tiny bumps lay concealed square center on your [pc.skinTone] palm. You rub your other thumb over them, a tad surprised to see how much durable the typically sensitive additions are. You suppose the Mimbrane has a grasp on what a hand actually is and has modified itself accordingly.");
-		output("\n\nAs you reach over for your gear, anxious to keep moving, something dawns on you. You run your thumb back over the parasitic palm again. Its actually moist. But this isn’t the remnants of your opponent. It looks like");
+		output("\n\nAs you reach over for your gear, anxious to keep moving, something dawns on you. You run your thumb back over the parasitic palm again. It's actually moist. But this isn’t the remnants of your opponent. It looks like");
 		if (pc.hasCock()) output(" cum");
 		else if (pc.hasVagina()) output(" girl spunk");
 		else output(" it came from you");
