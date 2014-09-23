@@ -521,15 +521,16 @@ function vanaeTFScene():void
 			if (pc.hasStatusEffect("Uniball") && rand(3) == 0)
 			{
 				pc.removeStatusEffect("Uniball");
-				if (pc.ballSize < 3) pc.ballSize = 3;
-				pc.balls = 2;
+				if (pc.ballSizeRaw < 3) pc.ballSizeRaw = 3;
+				//pc.balls = 2;
 			}
 			
-			if (pc.ballSize < 8)
+			if (pc.ballSizeRaw < 8)
 			{
-				if (pc.ballSize < 6) pc.ballSize += 0.1;
-				if (pc.ballSize < 4) pc.ballSize += 0.5;
+				if (pc.ballSizeRaw < 6) pc.ballSizeRaw += 0.5;
+				if (pc.ballSizeRaw < 4) pc.ballSizeRaw += 1;
 			}
+			pc.ballSizeRaw++;
 			
 			output(" The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
 			
