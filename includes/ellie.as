@@ -694,21 +694,26 @@ function publicUseForBullsByCentaurians():void
 	output("\n\nThe bulls keep coming. Some even go to get their friends once they’re done. You don’t mind, though: every other bull is another mind-melting orgasm for you, completely without effort on your part. All you can focus on is the immense, beautiful rack in your face, utterly transfixing you, demanding every iota of your withering attention. You’re starting to feel the effects of the quasi-alcohol in Ellie’s milk, too: your mind is turning in a haze, making it hard to think... or is that just the sea of bullspunk flooding your [pc.vagOrAss] and the seemingly endless orgasms the gang of males behind you wrings from your body? You’re not sure you care anymore, as long as they continue... don’t stop! Keep fucking you! Fill you with their seed until you can’t hold a single drop more!");
 	output("\n\nAnother orgasm - yours and his - and a flood of warm, sweet milk into your mouth, and your ability to think completely erodes, leaving you doing nothing but moaning and crying out in pure, animalistic pleasure until consciousness slips from you, leaving your body utterly at the mercy of the eager bulls - all forty in line, or maybe more.");
 	processTime(76);
+	//Used for holding the current target pussy
+	var x:int = 0;
 	var y:int = 0;
 	if(pc.hasVagina())
 	{
-		var x:int = pc.smallestVaginaIndex();
-		for(y = 0; x < 46; x++)
+		for(y = 0; y < 46; y++)
 		{
+			//Smallest cunt always takes the load and gets a stretchin!
+			x = pc.smallestVaginaIndex();
+			pc.cuntChange(x,100,false,true,false);
 			pc.loadInCunt(PregnancyPlaceholder,x);
 			pc.orgasm();
 		}
 	}
 	else
 	{
-		for(y = 0; x < 46; x++)
+		for(y = 0; y < 46; y++)
 		{
-			pc.loadInAss(PregnancyPlaceholder,x);
+			pc.buttChange(100,false);
+			pc.loadInAss(PregnancyPlaceholder);
 			pc.orgasm();
 		}
 	}
