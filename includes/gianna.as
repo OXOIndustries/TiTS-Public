@@ -1443,7 +1443,7 @@ function giannaSiliconeDistributionDisplay():void
 	output("\n\n<b>Available Silicone:</b> " + giannaAvailableSilicone() + " units");
 	output("\n\n<b>Breast Silicone:</b> " + gianna.biggestTitSize() + " units");
 	output("\n\n<b>Posterior Silicone:</b> " + (gianna.buttRating() * 2) + " units");
-	output("\n\n<b>Lip Silicone</b>: " + gianna.lipMod + " unit");
+	output("\n\n<b>Lip Silicone</b>: " + (gianna.lipMod*2) + " unit");
 	if(gianna.lipMod > 1) output("s");
 	//Redisplay menu with Distribution grayed out.
 	giannaBodyModMenu(false);
