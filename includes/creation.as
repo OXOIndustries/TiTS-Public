@@ -281,9 +281,14 @@ function applyHeight():void {
 		output("Choose a height above 48 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) > 84) {
+	else if(Number(this.userInterface.textInput.text) > 84 && originalRace != "half-leithan") {
 		clearOutput();
 		output("Choose a height below 84 inches tall, please.");
+		fail = true;
+	}
+	else if(Number(this.userInterface.textInput.text) > 108 && originalRace != "half-leithan") {
+		clearOutput();
+		output("Choose a height below 108 inches tall, please.");
 		fail = true;
 	}
 	if(fail) {

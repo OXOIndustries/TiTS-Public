@@ -238,7 +238,7 @@ function appearance(target:Creature):void {
 			if(pc.horns > 0) output2(" Two antlers, forking into " + num2Text(pc.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
 		}
 		//BODY PG HERE
-		output2("\n\nYou have a humanoid shape with the usual torso, arms, hands, and fingers");
+		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(pc.wingType != GLOBAL.TYPE_HUMAN) {
 			output2(", and ");
 			//WINGS!
