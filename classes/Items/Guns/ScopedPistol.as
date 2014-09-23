@@ -38,7 +38,7 @@
 			//Information
 			this.basePrice = 350;
 			this.attack = 2;
-			this.damage = 4;
+			this.damage = 5;
 			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;

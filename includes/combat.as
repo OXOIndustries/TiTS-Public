@@ -969,6 +969,14 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
 		//Damage bonuses:
 		var damage:int = attacker.damage() + attacker.physique()/2;
+		var crit:Boolean = false;
+		//Critical hits! 
+		if(attacker.critBonus(true) >= rand(100) + 1 && attacker == pc)
+		{
+			crit = true;
+			damage *= 2;
+			output("\n<b>Critical hit!</b>");
+		}
 		//Bonus damage for "sneak attack perk!"
 		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) {
 			output("\n<b>Sneak attack!</b>");
@@ -1099,8 +1107,16 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		{
 			//Damage bonuses:
 			var damage:int = attacker.damage(false) + attacker.aim()/2;
+			var crit:Boolean = false;
 			//Now that damage values are grabbed, check for "Concentrated Fire" stuff
 			concentratedFire();
+			//Critical hits! 
+			if(attacker.critBonus(false) >= rand(100) + 1 && attacker == pc)
+			{
+				crit = true;
+				damage *= 2;
+				output("\n<b>Critical hit!</b>");
+			}
 			//Bonus damage for "sneak attack perk!"
 			if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
 				output("\n<b>Aimed shot!</b>");

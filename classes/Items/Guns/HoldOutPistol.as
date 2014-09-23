@@ -37,7 +37,7 @@
 			//Information
 			this.basePrice = 300;
 			this.attack = 0;
-			this.damage = 5;
+			this.damage = 6;
 			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;

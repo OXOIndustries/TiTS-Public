@@ -2240,10 +2240,12 @@
 			return temp;
 		}
 		public function critBonus(melee: Boolean = true): Number {
-			var temp: int = 0;
+			var temp: int = 5;
 			if (melee) temp += meleeWeapon.critBonus;
 			else temp += rangedWeapon.critBonus;
+			if(hasPerk("Critical Blows")) temp += 10;
 			temp += armor.critBonus + upperUndergarment.critBonus + lowerUndergarment.critBonus + accessory.critBonus + shield.critBonus;
+			if(temp > 50) temp = 50;
 			return temp;
 		}
 		public function evasion(): Number {

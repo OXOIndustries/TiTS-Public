@@ -39,14 +39,14 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 2000;
-			this.attack = 1;
-			this.damage = 10;
+			this.attack = 0;
+			this.damage = 14;
 			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 3;
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
