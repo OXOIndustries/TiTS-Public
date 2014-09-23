@@ -387,7 +387,7 @@ function talkToEllieAboutTreatment():void
 	}
 	output("\n\n“<i>The Treatment’s a little one-use medi-pen full of a lifetime of bliss. It’s a potent cocktail chock full of hormones, nanomachines, and other secret goodies that rewrite your brain and body to be a happy, sexy little cow-girl or bull-boy - or as close as you can get, depending on species,</i>” she chuckles, reaching back to pat her reptilian flank.");
 
-	output("\n\nLooking you up and down, Ellie adds “<i>The Treatment’s effects are hard to predict - some people say they’re random altogether - but the biggest differences are along gender lines, not racial.");
+	output("\n\nLooking you up and down, Ellie adds “<i>The Treatment’s effects are hard to predict - some people say they’re random altogether - but the biggest differences are along gender and sex lines, not racial.");
 	//if PC is male:
 	if(pc.hasCock() && !pc.hasVagina())
 	{
@@ -398,9 +398,14 @@ function talkToEllieAboutTreatment():void
 	}
 	else if(pc.hasVagina() && !pc.hasCock())
 	{
-		output(" Since you’re a ");
-		if(pc.tallness < 60) output("cute little girl");
-		else output("smoking hot babe");
+		output(" Since you’re ");
+		if(pc.mf("","chick") == "chick")
+		{
+			output("a ");
+			if(pc.tallness < 60) output("cute little girl");
+			else output("smoking hot babe");
+		}
+		else output("packing a vagina down there under all the unlady-like bits");
 		output(", the Treatment’s going to focus on mental changes for you. Between you and me, we girls get the better deal: the boys might get big and strong, but </i>we<i> get the good stuff. A Treated girl’s tits swell up, getting nice and big and jiggly, and usually you start lactating right then and there! If you don’t, don’t fret: I’ve got just the thing for you here in the shop. And nothing in the ‘verse feels better than a good, hard milking once you’re Treated: it’s as good as sex! Well, almost. But that’s the really great thing about being a Treated girl: everything feels so much better. It’s all you’ll ever want to think about once you try it... trust me, you’ll be begging every big, swinging dick that passes by to fuck you once you realize just how </i>amazing<i> sex feels. And sex while you’re getting milked? Oh, if I didn’t have to work, I’d just spend the rest of my life hooked up in the milk barn with my legs spread for any passing bull. No doubt!</i>”");
 		output("\n\nEllie hugs her arms around herself and shivers just thinking about it. “<i>Some folks like to think we Treated girls get dumber, but they’re full of shit. There’s concrete proof that we’re just as smart as before we get Treated... we just don’t wanna think about silly things like tests when there’s a whole galaxy of dicks out there! Sure, we get a little cow-like: docile, sexy, sometimes grow horns or get fur on our legs. Tails? Definitely! Dumber? No way!</i>”");
 	}
