@@ -77,6 +77,9 @@ function approachJade():void {
 	//Sell Menu
 	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not.\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
 	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>\"See anything I can help you with?\"</i>";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
 	clearMenu();
 	addButton(0,"Buy",buyItem);
 	addButton(1,"Sell",sellItem);

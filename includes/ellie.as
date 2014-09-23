@@ -174,6 +174,9 @@ function elliesShopSetup():void
 	chars["ELLIE"].keeperBuy = "“<i>Want something from the shop... other than me, anyway! Step on over to the auto-terminal and I’ll make sure you’re treated right";
 	if(nephAffection() > 30) chars["ELLIE"].keeperBuy += ", especially since you’ve been so sweet on me";
 	chars["ELLIE"].keeperBuy += ". Pardon the pun.</i>”\n";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
 }
 
 /*
