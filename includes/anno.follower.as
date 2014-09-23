@@ -2025,6 +2025,8 @@ function annoxKaedeFollowerMeeting():void
 	// {First Time}
 	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
 	{
+		flags["ANNOxKAEDE_INTRODUCED"] = 1;
+
 		output("Over the din of dozens of murmuring voices in Anon’s, you hear a loud, “<i>HEY! [pc.name], over here!</i>” ");
 	
 		output("\n\nLooking over the bar, you see Anno sitting in a booth with another ausar - a red-headed girl wearing a black leather jacket. The other woman turns in the booth, big blue eyes regarding you as your lover waves you over. ");
