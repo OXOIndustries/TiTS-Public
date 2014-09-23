@@ -822,7 +822,7 @@ function firstTimePennyShowerSex():void {
 	if(!pc.hasSheath(x)) output("crotch");
 	else output("sensitive sheath");
 	output(" soon fills the shower. ");
-	if(pc.cockTotal() > 1)
+	if(pc.cockTotal() > 1 && y >= 0)
 	{
 		output("Her other hand moves away from your ");
 		if(pc.hasVagina()) output("[pc.vaginas]");

@@ -20,8 +20,8 @@ function nephAffection(arg:Number = 0):Number
 
 function ellieApproachButtonSetup():void
 {
-	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",meetingEllie,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
-	else addButton(0,"Shopkeep",ellieMenu,undefined,"Shopkeep","Approach the shopkeeper and see what she's selling.");
+	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",ellieMenu,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
+	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she's selling.");
 }
 
 //Meeting Ellie ([Shopkeeper])
