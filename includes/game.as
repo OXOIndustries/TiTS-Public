@@ -306,7 +306,7 @@ function shipMenu():Boolean {
 
 function flyMenu():void {
 	clearOutput();
-	if(pc.hasStatusEffect("Disarmed"))
+	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
 	{
 		output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
 		clearMenu();
