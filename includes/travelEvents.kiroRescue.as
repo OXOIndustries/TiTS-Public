@@ -171,6 +171,7 @@ public function kirosShipWails(doOutput:Boolean = true):void
 	{
 		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
 	}
+	addButton(4,"Nope!",kirosShipNopeFuckThisShit,undefined,"Nope, I'm Out","You don't get paid enough to deal with this kind of shit.");
 }
 
 public function kirosShipChubnookiUpDaButt():void
