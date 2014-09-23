@@ -105,7 +105,7 @@ function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, using
 		if (!debug)
 		{
 			item.quantity--;
-			if (item.quantity <= 0 && usingCreature.hasItem(item))
+			if (item.quantity <= 0)
 			{
 				usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
 			}
