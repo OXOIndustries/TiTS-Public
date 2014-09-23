@@ -2290,7 +2290,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 function crotchTeaseText(target:Creature):void {
 	var choices:Array = new Array();
 	if(pc.hasCock()) {
-		if(pc.isTaur() && pc.horseCocks() > 0) choices[choices.length] = 4;
+		if(pc.isTaur() && pc.cockTotal(GLOBAL.TYPE_EQUINE) > 0) choices[choices.length] = 4;
 		else 
 		{
 			if(pc.armor.shortName == "" && pc.lowerUndergarment.shortName != "") choices[choices.length] = 2;

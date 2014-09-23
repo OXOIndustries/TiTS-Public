@@ -5630,6 +5630,7 @@
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
+			if (leithanScore() >= 3) race = "half-leithan";
 			if (zilScore() >= 4) race = "zil";
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
@@ -5688,6 +5689,16 @@
 			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
+			return counter;
+		}
+		public function leithanScore():int {
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_LEITHAN) counter++;
+			if (legType == GLOBAL.TYPE_LIZAN && legCount == 6) counter+= 2;
+			if (armType == GLOBAL.TYPE_LEITHAN) counter++;
+			if (tongueType == GLOBAL.TYPE_LEITHAN) counter++;
+			if (tailType == GLOBAL.TYPE_LIZAN && tailCount > 0) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES && scaleColor == "black") counter++;
 			return counter;
 		}
 		public function kaithritScore(): int {

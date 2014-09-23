@@ -132,7 +132,8 @@ function chooseStartingRace(race:String = "human"):void {
 		pc.tongueType = GLOBAL.TYPE_LEITHAN;
 		pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.addTongueFlag(GLOBAL.FLAG_LONG);
-		pc.tailType == GLOBAL.TYPE_LIZAN;
+		pc.tailType = GLOBAL.TYPE_LIZAN;
+		pc.tailCount = 1;
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
 		pc.addTailFlag(GLOBAL.FLAG_SCALED);
 		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
@@ -281,12 +282,12 @@ function applyHeight():void {
 		output("Choose a height above 48 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) > 84 && originalRace != "half-leithan") {
+	else if(Number(this.userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
 		clearOutput();
 		output("Choose a height below 84 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) > 108 && originalRace != "half-leithan") {
+	else if(Number(this.userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
 		clearOutput();
 		output("Choose a height below 108 inches tall, please.");
 		fail = true;
@@ -337,9 +338,10 @@ function chooseHairColor():void {
 	this.clearMenu();
 	if(pc.originalRace == "half-leithan")
 	{
-		this.addButton(0,"Gray",applyHairColor,"gray");
-		this.addButton(1,"Silver",applyHairColor,"silver");
-		this.addButton(2,"Dark Gold",applyHairColor,"dark gold");
+		this.addButton(0,"Black",applyHairColor,"black");
+		this.addButton(1,"Gray",applyHairColor,"gray");
+		this.addButton(2,"Silver",applyHairColor,"silver");
+		this.addButton(3,"Dark Gold",applyHairColor,"dark gold");
 	}
 	else
 	{
