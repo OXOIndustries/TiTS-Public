@@ -3294,7 +3294,7 @@ function initializeRooms():void
 	rooms["511"] = new RoomClass(this);
 	rooms["511"].roomName = "THE\nBARN";
 	rooms["511"].description = "The inside of barn assaults your senses with two things above all else: indecent moans and the scent of milk. A not-so-subtle undercurrent of sexual musk runs beneath them, tickling at your nose and making it impossible to ignore the sexual pleasure surrounding you. Despite the lurid scents and smells, the floor of the barn is clean. It's covered with a fine layer of hay that will undoubtedly keep things dry in case of an accident, not that you've seen one yet. A massive sliding door is positioned on the southern wall, leading back out to the road. Empty stalls sit east and west of here, and more of them line the passageway to the north.";
-	rooms["511"].runOnEnter = undefined;
+	rooms["511"].runOnEnter = randomBarnEventFunc;
 	rooms["511"].southExit = "510";
 	rooms["511"].northExit = "512";
 	rooms["511"].westExit = "515";
@@ -3323,7 +3323,7 @@ function initializeRooms():void
 	rooms["513"] = new RoomClass(this);
 	rooms["513"].roomName = "THE\nBARN";
 	rooms["513"].description = "It's not often you get to see buildings constructed in the ancients' styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they're obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they're milking more than milk too. The door to the east is marked \"occupied\" as well.";
-	rooms["513"].runOnEnter = undefined;
+	rooms["513"].runOnEnter = randomBarnEventFunc;
 	rooms["513"].southExit = "512";
 	rooms["513"].northExit = "514";
 	rooms["513"].planet = "PLANET: NEW TEXAS";
@@ -3336,7 +3336,7 @@ function initializeRooms():void
 	rooms["514"] = new RoomClass(this);
 	rooms["514"].roomName = "THE\nBARN";
 	rooms["514"].description = "The barn's central thoroughfare comes to an abrupt end here at the north wall. Worse yet, the stalls on either side are closed and occupied. You can hear two cow-girls to the west. One is giggling while the other screams in what can only be pleasure. If only the swinging door wasn't locked, you'd be able to find out. To the east, there's rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You'll need to head south if you want to clear your head.";
-	rooms["514"].runOnEnter = undefined;
+	rooms["514"].runOnEnter = randomBarnEventFunc;
 	rooms["514"].southExit = "513";
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
