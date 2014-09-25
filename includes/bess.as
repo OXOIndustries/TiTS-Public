@@ -31,13 +31,11 @@ There are entries in the sex scenes for paths that don't exist yet (Such as the 
 
 The 'Bess Affection' score comes into play when story events unfold. His/Her variant greeting dialogue only kicks in once these events have progressed to a certain point. Because of this, you can skip putting in the Affection stat until the story is being implemented.
 
-Codex Entries*/
-
 General Storyline
 
 The PC finds an abandoned Bess-13 or Ben-14 Model (Depending on PC choice on discovery) in a trash pile on Tarkus. Why someone has abandoned such a valuable android is a complete mystery. 
 
-They appear to be in working order except their power cells need to be recharged, which can only be done by bringing them  to the player’s ship. Thankfully, the android is surprisingly light.
+They appear to be in working order except their power cells need to be recharged, which can only be done by bringing them to the player’s ship. Thankfully, the android is surprisingly light.
 
 Should the PC drag the android back to the ship it is a relatively simple process to recharge them. Upon restarting, she undergoes a factory settings reset - wiping their memory of what happened, and also making the PC her new owner. The PC can then name the unit, or use their default name "Bess/Ben". 
 
@@ -122,7 +120,7 @@ bess.thickness: Slightly Thin.
 bess.pussyType: synthetic (See "New Pussy Type: Synthetc" Section for adjective values.
 bess.pussyColor: silvery
 bess.pussyElasticity: >= 5. It's a super stretchy pussy!
-bess.pussyCapacity & bess.assCapacity: Always double the PC's size (snug fit).  
+bess.pussyCapacity & bess.assCapacity: Always double the PC's size (snug fit). 
 bess.nippleType: normal (0)
 bess.nippleColor: silver
 bess.nippleSize: Prominant/Average (0.5?)
@@ -149,7 +147,7 @@ bess.ass, bess.hips & bess.thighs : 4 (average)
 bess.tone: 60 (Lightly muscled)
 bess.thickness: Somewhat Thin
 bess.hasPussy: false.
-bess.assCapacity: Always double the PC's size (snug fit).  
+bess.assCapacity: Always double the PC's size (snug fit). 
 bess.nippleType: normal (0)
 bess.nippleColor: silver
 bess.nippleSize: Average (0.5?)
@@ -162,324 +160,293 @@ bess.cockSize: Whenever using any cock extension besides the Dino Cock, size is 
 bess.cum: Lots. Just... lots. Their insides are made up of MeldMilk, which can be turned right into cum. 
 bess.hairType and bess.hairLength: Handled by if Statements at the moment wherever hair is mentioned in detail, since they have unique haircuts. [bess.Hair] parser is not used. 
 bessHairStyle: "a backwards slick"
+*/
 
-
-Bess-13 Scenes
-
-Finding Bess-13
-
-Room Descriptor Addition
- 
-There is a strange silver glint over in a large pile of junk. It is completely out of place with the rusted rubbish surrounding it. Maybe it is something valuable?
- 
-[ Silver Object ]
- 
- 
-Silver Object {If clicked on}
- 
-You abandon caution for curiosity and inch closer towards the silvery object. 
-
-As you close in, you realise two things. One, it is much larger than it first appeared. Two, the shape of the part that is sticking out is easy to identify.
- 
-It’s a foot. Why is a silvery foot poking out of a pile of half-broken pipes and shattered holos?
- 
-It looks like a machine foot, to boot. On further examination, the foot is connected to a body, and the body is buried beneath the rubbish.  {ifRunIntoPleasureBots: "It looks far too sleek looking to be one of the Pleasure Bots that aimlessly roam the Tarkus wastes."}
-From what you can see it doesn’t look rusted, or even slightly scratched, adding even more to the air of mystery surrounding it. {SydiansMet: "You can't believe the Sydians haven't melted this thing down yet."}
-
-What kind of foot is it...?
-
-[Synthetic Female Foot] [Synthetic Male Foot]
-
-// This choice sets Bess/Ben's gender flag to female or male, respectively, and sets all the starting body values. 
-
-
-Either Choice
-
-On closer examination, it definitely looks like a {female/male} foot. The real question though is if you want to dig this thing up and see what it is...?
-
- 
-[ Dig It Up ] [ Leave It ]
- 
- 
-Dig It Up
- 
-Curiosity gets the better of you as you decide to dig it up. Getting rid of all the junk on top of it is a quick and easy process. 
-
-Soon a silvery humanoid body, distinctly {feminine/masculine} and covered in segmented lines, is revealed amongst the rubble. An incredibly shapely rear is glinting back up at you, connected to {womanly/manly} thighs and hips of glistening chrome. 
-
-What a butt! You can't help but reach out and poke it, just to see if it is real. For <i>exploratory</i> purposes, of course.
-
-As you touch {his/her} silvery rump, you find it is {male: delightfully taught with a tiny bit of give,/fem: surprisingly soft} and sensuously smooth. {Male: You poke elsewhere, and what}{Fem: What} looks like chrome metal plating is actually quite pliant and springy, just like the flesh of a human. The detail work is amazing!
-
- Even so, it is quite clearly a mechanical life form, complete with visible rivets along [bess.hisHer] spine. There is even a registration number stamped right above {fem: her pert/male: his incredibly fine} ass like a robotic tramp stamp. You read it out loud.
- 
-<i>\"{Bess Thirteen/Ben Fourteen."\</i> The rest of the registration number is scratched out. Is that [bess.hisHer] model number, [bess.hisHer] actual name, or is [bess.heShe] literally the {thirteenth/fourteenth} of a line of {Besses/Bens}?
-
-Since you're not going to get any answers from staring at [bess.hisHer] ass - no matter how perfect it is - you decide to turn [bess.himHer] over and get a good look at [bess.hisHer] other side. Maybe there are some more details there.
- 
-if (bess.gender = female)
+//Bess-13 Scenes
+//Finding Bess-13
+//Room Descriptor Addition
+function findingBessBonusFunc():Boolean
 {
-Once you have, you notice her silvery artificial hair draping across her face. It is tied back in a loose, messy chignon, knotted at her lower neck. Her eyes are closed, full womanly lips pursed as if merely asleep. 
-
-Those sleeping eyes are lined with thick artificial lashes that are marred with dirt, but even now look full and luscious. Her face is marked with two groove-like lines that start at her forehead, trail across her eyelids, and pass below her narrow chin. 
-
-Looking down, your eyes are met by a truly wondrous set of breasts. The swelling curve of her perfect peaks easily captures your attention, drawing them inevitably towards her perky, silver hued nipples. 
-
-Drawing your eyes away from <i>those</i> is difficult. Looking down, her stomach is a slender sterling expanse, her belly rising softly with all the right curves and grooves accentuating her feminine appeal. 
-
-Moving south, your eyes are rewarded by the sight of her glistening, utterly hairless crotch replete with plump pussy lips. Her thighs and folds are slightly parted, her soft inner lips on display. 
+	if(9999 == 0) output("\n\nThere is a strange silver glint over in a large pile of junk. It is completely out of place with the rusted rubbish surrounding it. Maybe it is something valuable?");
+	//[ Silver Object ]
+	addButton(0,"Silver Object",investigateBesssSilverButt,undefined,"Silver Object","Investigate the silver object.");
 }
-else // man bot!
+
+//Silver Object {If clicked on}
+function findASilverObject():void
 {
-Once you have, you notice his silvery artificial hair slicked back. What would normally be thick chin length hair has been pushed back in a sweeping wave, giving his hair great lift. His eyes are closed and his  rich, kissable lips are pursed as if merely asleep.
+	clearOutput();
+	output("You abandon caution for curiosity and inch closer towards the silvery object.");
+	output("\n\nAs you close in, you realise two things. One, it is much larger than it first appeared. Two, the shape of the part that is sticking out is easy to identify.");
+	output("\n\nIt’s a foot. Why is a silvery foot poking out of a pile of half-broken pipes and shattered holos?");
+	output("\n\nIt looks like a machine foot, to boot. On further examination, the foot is connected to a body, and the body is buried beneath the rubbish.");
+	//ifRunIntoPleasureBots: 
+	if(9999 == 0) output(" It looks far too sleek looking to be one of the Pleasure Bots that aimlessly roam the Tarkus wastes.");
+	output(" From what you can see it doesn’t look rusted, or even slightly scratched, adding even more to the air of mystery surrounding it.");
+	//SydiansMet:
+	if(9999 == 0) output(" You can't believe the Sydians haven't melted this thing down yet.");
+	output("\n\nWhat kind of foot is it...?");
 
-Those sleeping eyes are lined with powerful, brooding brows that look capable of a great deal of interesting expressions. His well shaped cheeks are marked with two groove-like lines that start at his forehead, trail down his eyelids, and pass below his narrow chin.
-
-Looking down, you are met with broad masculine shoulders and a positively adonic chest, the kind you could run your fingers up and down for <i>hours</i>. His preposterously perfect chest is capped in silver hued nipples.
-
-Drawing your eyes away from <i>that</i> is difficult. Looking down, his abs are a wondrous expanse of muscular curves, each one accentuating his masculine appeal. With bated breath, you let your eyes travel lower, seeking the sight of his most manly aspect.
-
-Your eyes are quickly rewarded with the sight of his gloriously thick manhood. It looks humanoid apart from its sterling color, though in no way could be called average. It towers upwards and presses pointedly against his taut stomach, enticingly stiff in his slumber.
-
-His silvery spheres are completely hairless, just like the rest of him. It's as if he's a well-shaved model lying back in his brazen glory, showing off his truly envious features. 
+	clearMenu();
+	//[Synthetic Female Foot] [Synthetic Male Foot]
+	// This choice sets Bess/Ben's gender flag to female or male, respectively, and sets all the starting body values. 
+	addButton(0,"Female Foot",setBessSex,"female","Female Foot","The synthetic foot obviously belongs to a female. Everyone knows you can tell the assumed gender of an inorganic by the shape of its ambulatory limbs!");
+	addButton(1,"Male Foot",setBessSex,"male","Male Foot","The synthetic foot obviously belongs to a male. Everyone knows you can tell the assumed gender of an inorganic by the shape of its ambulatory limbs!");
 }
 
-Everything about this silvery synthetic is 'too perfect', screaming artificial. {Women/Men} this beautiful aren’t born, they’re built- either through engineering or through genetic enhancement. 
-
-One thing's for certain; [bess.heShe] must have cost a <i>mint</i> to make. [bess.HisHer] detail work makes the other robots on Tarkus look like, well, trash. Why would someone throw a galactic class android like this out? [bess.HeShe] might even be worth as much as a <i>starship</i>.
- 
-Reaching up to [bess.hisHer] open neck compartment, you can see a small digital display. Flickering across it are three words: <i>Main Power Depleted</i>. It doesn’t take a starship engineer to figure out why [bess.heShe] isn't moving.
- 
-If cleaned up, this {female/male} unit would definitely sell for a pretty Galactic Credit, or you could keep [bess.himHer]  for your own use. Either way, [bess.heShe] needs to have [bess.hisHer] batteries recharged, and the easiest way to do that is to take [bess.himHer] back to your ship.
- 
-Finding [bess.himHer] really is like finding a gem in the rough, though you could just leave [bess.himHer] here. It doesn’t look like [bess.heShe] is going to rust anytime soon.
- 
-[Take On Ship] [Leave Here] 
-
-
-
-Taking him/her to the Ship
-Take On Ship
-
-if (bess.gender = female)
+//Either Choice
+function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String = "female"):void
 {
-It’s a good thing the female unit is so light - it takes you far less time to get her back to the ship than you first thought. She’s so soft to the touch that it is hard to believe she’s really a machine. 
+	clearOutput();
+	output("On closer examination, it definitely looks like a " + bessesStartingSexHahaThatsNotHowYouWriteAPossessive + " foot. The real question though is if you want to dig this thing up and see what it is...?");
+	//[ Dig It Up ] [ Leave It ]
+	clearMenu();
+	addButton(0,"Dig It Up",digUpBessBenWhoCares);
+	addButton(14,"Leave",mainGameMenu);
 }
 
-else // male
+//Dig It Up
+function digUpAFukkinSexbat():void
 {
-Carrying the male unit back to the ship takes quite a lot of effort. Having him pressed against your chest causes you to flush a little. His skin is so smooth, and his assets so detailed, it's hard to believe that he's really a machine and not an organic man.
+	clearOutput();
+	output("Curiosity gets the better of you as you decide to dig it up. Getting rid of all the junk on top of it is a quick and easy process.");
+	output("\n\nSoon a silvery humanoid body, distinctly " + bess.mf("masculine","feminine") + " and covered in segmented lines, is revealed amongst the rubble. An incredibly shapely rear is glinting back up at you, connected to " bess.mf("manly","womanly") + " thighs and hips of glistening chrome.");
+	output("\n\nWhat a butt! You can't help but reach out and poke it, just to see if it is real. For <i>exploratory</i> purposes, of course.");
+	output("\n\nAs you touch [bess.his] silvery rump, you find it is ");
+	if(bess.hasCock()) output("delightfully taught with a tiny bit of give,");
+	else output("surprisingly soft");
+	output(" and sensuously smooth.");
+	if(bess.hasCock()) output(" You poke elsewhere, and what");
+	else output(" What");
+	output(" looks like chrome metal plating is actually quite pliant and springy, just like the flesh of a human. The detail work is amazing!");
+	output("\n\n Even so, it is quite clearly a mechanical life form, complete with visible rivets along [bess.hisHer] spine. There is even a registration number stamped right above ");
+	if(bess.hasVagina()) output("her pert");
+	else output("his incredibly fine");
+	output(" ass like a robotic tramp stamp. You read it out loud.");
+
+	output("\n\n<i>\"" + bess.mf("Ben Fourteen","Bess Thirteen") + ".\"</i> The rest of the registration number is scratched out. Is that [bess.hisHer] model number, [bess.hisHer] actual name, or is [bess.heShe] literally the " + bess.mf("fourteenth","thirteenth") + " of a line of " bess.mf("Bens","Besses") + "?");
+
+	output("\n\nSince you're not going to get any answers from staring at [bess.hisHer] ass - no matter how perfect it is - you decide to turn [bess.himHer] over and get a good look at [bess.hisHer] other side. Maybe there are some more details there.");
+
+	if (bess.hasVagina())
+	{
+		output("\n\nOnce you have, you notice her silvery artificial hair draping across her face. It is tied back in a loose, messy chignon, knotted at her lower neck. Her eyes are closed, full womanly lips pursed as if merely asleep.");
+		output("\n\nThose sleeping eyes are lined with thick artificial lashes that are marred with dirt, but even now look full and luscious. Her face is marked with two groove-like lines that start at her forehead, trail across her eyelids, and pass below her narrow chin.");
+		output("\n\nLooking down, your eyes are met by a truly wondrous set of breasts. The swelling curve of her perfect peaks easily captures your attention, drawing them inevitably towards her perky, silver hued nipples.");
+		output("\n\nDrawing your eyes away from <i>those</i> is difficult. Looking down, her stomach is a slender sterling expanse, her belly rising softly with all the right curves and grooves accentuating her feminine appeal.");
+		output("\n\nMoving south, your eyes are rewarded by the sight of her glistening, utterly hairless crotch replete with plump pussy lips. Her thighs and folds are slightly parted, her soft inner lips on display.");
+	}
+	else // man bot!
+	{
+		output("\n\nOnce you have, you notice his silvery artificial hair slicked back. What would normally be thick chin length hair has been pushed back in a sweeping wave, giving his hair great lift. His eyes are closed and his rich, kissable lips are pursed as if merely asleep.");
+		output("\n\nThose sleeping eyes are lined with powerful, brooding brows that look capable of a great deal of interesting expressions. His well shaped cheeks are marked with two groove-like lines that start at his forehead, trail down his eyelids, and pass below his narrow chin.");
+		output("\n\nLooking down, you are met with broad masculine shoulders and a positively adonic chest, the kind you could run your fingers up and down for <i>hours</i>. His preposterously perfect chest is capped in silver hued nipples.");
+		output("\n\nDrawing your eyes away from <i>that</i> is difficult. Looking down, his abs are a wondrous expanse of muscular curves, each one accentuating his masculine appeal. With bated breath, you let your eyes travel lower, seeking the sight of his most manly aspect.");
+		output("\n\nYour eyes are quickly rewarded with the sight of his gloriously thick manhood. It looks humanoid apart from its sterling color, though in no way could be called average. It towers upwards and presses pointedly against his taut stomach, enticingly stiff in his slumber.");
+		output("\n\nHis silvery spheres are completely hairless, just like the rest of him. It’s as if he’s a well-shaved model lying back in his brazen glory, showing off his truly envious features.");
+	}
+	output("\n\nEverything about this silvery synthetic is ‘too perfect’, screaming artificial. " bess.fm("Women","Men") + " this beautiful aren’t born, they’re built- either through engineering or through genetic enhancement.");
+	output("\n\nOne thing’s for certain; [bess.heShe] must have cost a <i>mint</i> to make. [bess.HisHer] detail work makes the other robots on Tarkus look like, well, trash. Why would someone throw a galactic class android like this out? [bess.HeShe] might even be worth as much as a <i>starship</i>.");
+	output("\n\nReaching up to [bess.hisHer] open neck compartment, you can see a small digital display. Flickering across it are three words: <i>Main Power Depleted</i>. It doesn’t take a starship engineer to figure out why [bess.heShe] isn’t moving.");
+	output("\n\nIf cleaned up, this " + bess.fm("female","male") + " unit would definitely sell for a pretty Galactic Credit, or you could keep [bess.himHer] for your own use. Either way, [bess.heShe] needs to have [bess.hisHer] batteries recharged, and the easiest way to do that is to take [bess.himHer] back to your ship.");
+	output("\n\nFinding [bess.himHer] really is like finding a gem in the rough, though you could just leave [bess.himHer] here. It doesn’t look like [bess.heShe] is going to rust anytime soon.");
+	//[Take On Ship] [Leave Here] 
+	processTime(7);
+	clearMenu();
+	addButton(0,"TakeToShip",takeBessToShip);
+	addButton(1,"Leave Here",leaveBessHereYouCunt);
 }
 
-Luckily, you're not attacked by any natives on the way back to Novahome. You're pretty sure you wouldn't have been able to put up a proper fight carrying the synthetic. 
-
-Once you return to the ship, it is simply a matter of locating [bess.hisHer] power slot. Placing [bess.himHer] down in the cargo bay, you check over [bess.hisHer] body for anything that stands out. Right above [bess.hisHer] rump is a barely perceivable line that looks somewhat suspicious.
-
-After working it for a bit with some tools, you are able to pop it open. The second you do, something shoots out like a snake exploding from a can. It happens so suddenly you fall back on your ass, reaching immediately for {your [pc.rangedWeapon]/[pc.meleeWeapon]/a wrench.}
-
-When you collect yourself you can see a five foot snake-like appendage now protruding from just above [bess.hisHer] rear. It is dancing through the air like a cobra to a flute, apparently searching for something.
-
-Now that you’ve got a moment to examine it - and it doesn’t seem immediately threatening - you notice the head of the prehensile extension is incredibly phallic. While its body is tubular and flexible, the end is long, stiff, and ribbed. The very tip is flared just like a human member.
-
-Despite its appearance you see [bess.hisHer] neck compartment flashing with the words <i>power source found.</i>. Suddenly it shoots into one of the nearby power ports. At first it doesn’t look like it will fit, but then the mysteriously phallic head adjusts itself and expands to fit the coupling. 
-
-All in all, the entire process is pretty suggestive. That coupler can't be <i>coincidentally</i> shaped that way, can it?
-
-You're glad that you don't have to find one to fit the android, since [bess.heShe] apparently has one of [bess.hisHer] own. Convenient. Checking the side of [bess.hisHer] neck, you see [bess.heShe] is now in charging mode.
-
-You leave [bess.himHer] for a while and wander the ship. There's really no point hanging around until [bess.heShe]'s fully restored. 
-
-[Next]
-
-
-
-Your Codex bleeps at you when the unit is apparently finished charging. You finish your drink and head back down to the cargo bay.
-
-When you get there, the {female/male} android is already retracting the coupling cable out of the wall with a satisfied sigh. As [bess.heShe] stands upright it slides back inside [bess.hisHer] body and disappears completely from sight. 
-
-You can hear [bess.hisHer] rear compartment closing with a small clicking noise. 
-
-Striding into the room, you have {your [pc.rangedWeapon]/your [pc.meleeWeapon]/a welding torch} pointed at her for good measure. After all, [bess.heShe] may have been dumped on Tarkus for good reason. 
-
-Like your dad always said, \"{female: Scan 'er, THEN jam 'er. It's always the hot ones with the SSTD's/Male: No matter how good they are, an SSTD lasts longer. Scan 'em BEFORE you spread 'em}." Spoken like a true viral veteran.
-
-When the silver-haired synthetic notices you entering the room, {fem: she immediately bows to you, her hands clasped together in front of her body/he elegantly bows to you, almost as he were a butler or maitre d'}. [bess.HeShe] seems unphased not only by your weapon, but also by the fact that [bess.heShe] is completely nude. 
-
-if (bess.gender = female)
+//Taking him/her to the Ship
+//Take On Ship
+function takeBessToZeShip():void
 {
-When she speaks, her voice is positively melodic, each note lilting and falling at all the right places without a hint of synthesising, like a well-composed sonnet.
+	clearOutput();
+	if (bess.hasVagina())
+	{
+		output("It’s a good thing the female unit is so light - it takes you far less time to get her back to the ship than you first thought. She’s so soft to the touch that it is hard to believe she’s really a machine.");
+	}
+	else // male
+		output("Carrying the male unit back to the ship takes quite a lot of effort. Having him pressed against your chest causes you to flush a little. His skin is so smooth, and his assets so detailed, it's hard to believe that he's really a machine and not an organic man.");
+	output("\n\nLuckily, you’re not attacked by any natives on the way back to Novahome. You’re pretty sure you wouldn’t have been able to put up a proper fight carrying the synthetic.");
+	output("\n\nOnce you return to the ship, it is simply a matter of locating [bess.hisHer] power slot. Placing [bess.himHer] down in the cargo bay, you check over [bess.hisHer] body for anything that stands out. Right above [bess.hisHer] rump is a barely perceivable line that looks somewhat suspicious.");
+	output("\n\nAfter working it for a bit with some tools, you are able to pop it open. The second you do, something shoots out like a snake exploding from a can. It happens so suddenly you fall back on your ass, reaching immediately for a wrench.");
+	output("\n\nWhen you collect yourself you can see a five foot snake-like appendage now protruding from just above [bess.hisHer] rear. It is dancing through the air like a cobra to a flute, apparently searching for something.");
+	output("\n\nNow that you’ve got a moment to examine it - and it doesn’t seem immediately threatening - you notice the head of the prehensile extension is incredibly phallic. While its body is tubular and flexible, the end is long, stiff, and ribbed. The very tip is flared just like a human member.");
+	output("\n\nDespite its appearance you see [bess.hisHer] neck compartment flashing with the words <i>power source found.</i>. Suddenly it shoots into one of the nearby power ports. At first it doesn’t look like it will fit, but then the mysteriously phallic head adjusts itself and expands to fit the coupling.");
+	output("\n\nAll in all, the entire process is pretty suggestive. That coupler can’t be <i>coincidentally</i> shaped that way, can it?");
+	output("\n\nYou’re glad that you don’t have to find one to fit the android, since [bess.heShe] apparently has one of [bess.hisHer] own. Convenient. Checking the side of [bess.hisHer] neck, you see [bess.heShe] is now in charging mode.");
+	output("\n\nYou leave [bess.himHer] for a while and wander the ship. There’s really no point hanging around until [bess.heShe]’s fully restored.");
+	processTime(34);
+	clearMenu();
+	addButton(0,"Next",plugBessesFatAssInPartII);
 }
-else // male
+
+//[Next]
+function plugBessesFatAssInPartII():void
 {
-When he speaks, his voice is rich and full of timbre, far from the synthesized voice of typical androids. Instead, it sounds full and flavorsome, like a well composed sonnet.
+	clearOutput();
+	output("Your Codex bleeps at you when the unit is apparently finished charging. You finish your drink and head back down to the cargo bay.");
+	output("\n\nWhen you get there, the " + bess.fm("female","male") + " android is already retracting the coupling cable out of the wall with a satisfied sigh. As [bess.heShe] stands upright it slides back inside [bess.hisHer] body and disappears completely from sight.");
+	output("\n\nYou can hear [bess.hisHer] rear compartment closing with a small clicking noise.");
+	output("\n\nStriding into the room, you have your [pc.rangedWeapon] pointed at her for good measure. After all, [bess.heShe] may have been dumped on Tarkus for good reason.");
+	//No. Cutting dis.
+	//output("\n\nLike your dad always said, \</i>”{female: Scan ‘er, THEN jam ‘er. It’s always the hot ones with the SSTD’s/Male: No matter how good they are, an SSTD lasts longer. Scan ‘em BEFORE you spread ‘em}.</i>” Spoken like a true viral veteran.");
+
+	output("\n\nWhen the silver-haired synthetic notices you entering the room, " + bessfm("she immediately bows to you, her hands clasped together in front of her body","he elegantly bows to you, almost as he were a butler or maitre d’") + ". [bess.HeShe] seems unphased not only by your weapon, but also by the fact that [bess.heShe] is completely nude.");
+	if (bess.hasVagina())
+	{
+		output("\n\nWhen she speaks, her voice is positively melodic, each note lilting and falling at all the right places without a hint of synthesising, like a well-composed sonnet.");
+	}
+	else // male
+		output("\n\nWhen he speaks, his voice is rich and full of timbre, far from the synthesized voice of typical androids. Instead, it sounds full and flavorsome, like a well composed sonnet.");
+	output("\n\n<i>\"Greetings, [Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!</i>” " + bess.fm("She sounds surprisingly happy","He sounds remarkably upbeat") + " for someone who was just fished out of a junk pile. <i>\"JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!</i>”");
+	output("\n\nYou ask exactly <i>who</i> and <i>what</i> [bess.heShe] is, and <i>why</i> [bess.heShe] is calling you ‘[Master]’. There are an awful lot of ‘w’ questions that need to be answered until you put down your weapon.");
+	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>\</i>”[Master], I don’t have a name yet - you haven’t given me one. " + bess.fm("I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,","I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?</i>”");
+	output("\n\nIt seems [bess.heShe] has been reset to [bess.hisHer] factory settings, and now [bess.heShe] thinks you are [bess.hisHer] registered owner. Either that, or [bess.heshe] was fresh out of the box to begin with. Could you be lucky enough to have found your very own high-class, brand-spanking new JoyCo sex relief android?");
+	// Silly Mode && bess.gender = female
+	if(silly) output("\n\n...Somewhere, there’s a very unhappy looking Japanese boy, waiting for his girlfriend to arrive...");
+	output("\n\nHmm. What to do with [bess.himHer]? You could keep [bess.himHer], give [bess.himHer] a name and have [bess.himHer] live on your ship. [bess.HeShe]’s sure to do whatever you say. Having one on your ship could prove advantageous, especially with the lusty aliens you keep encountering.");
+	if(silly) output(" It’s like your life is some kind of <i>sex game</i>....");
+	output("\n\nIf you ditch [bess.himHer] back on the planet, [bess.heShe]’d probably just be food for the natives. That, or [bess.heShe]’d become another mindless drone wandering the wastes, albeit a ritzy one. Then again, dumping [bess.himHer] could save a lot of trouble down the line.");
+	output("\n\nGiven that [bess.heShe]’s a galactic class unit, you could probably get some major credits even with [bess.hisHer] registration number scratched off. You wouldn’t get anywhere near [bess.hisHer] commercial price. Best case scenario, you get a nice five figure sum, since [bess.heShe]’s obviously stolen property.");
+	output("\n\nYou could do your civic duty and call up the U.G.C. to hand [bess.himHer] in. After all, if [bess.heShe]’s been taken from someone, they’ll probably want [bess.himHer] back. Of course, [bess.hisHer] owner could have been the one who left [bess.himHer] on Tarkus to begin with. Seems unlikely they’d scratch off [bess.hisHer] code, though.");
+	output("\n\nIn old Terran movies, this is probably the part where the " + pc.mf("hero","heroine") + " offers the android freedom to show how nice they are. ");
+	if(pc.isNice()) output("You could do that, since that’s usually your style.");
+	else if(pc.isMischievous()) output("You wouldn’t call yourself ‘nice’, but you’re not an outright asshole either.");
+	else output("That doesn’t sound like you at all.");
+
+	output("\n\nYou could also opt to keep [bess.himHer], but have [bess.himHer] stay in your hangar bay at Tavros Station. After all, a high-quality sex bot doesn’t just fall into your lap every day....");
+	//if (GiannaFollowerYes)
+	if(flags["GIANNAFOLLOWER"] == 9999) output(" Well, except for Gianna. Actually, this is becoming a bit of a habit.");
+
+	//[Keep On Ship*] [Sell Off] [Hand To Authorities] [Dump Them] [Release] [Keep At Tavros]
+	//* Only if there is room.
+	processTime(48);
+	clearMenu();
+	addButton(0,"KeepOnShip",);
+	addButton(1,"Sell Off",);
+	addButton(2,"Authorities",);
+	addButton(3,"Dump Them",);
+	addButton(4,"Release",);
+	addButton(5,"KeepAtTavros",);
 }
 
-<i>\"Greetings, [Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!\"</i> {She sounds surprisingly happy/He sounds remarkably upbeat} for someone who was just fished out of a junk pile. <i>\"JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!\"</i>
-
-You ask exactly <i>who</i> and <i>what</i> [bess.heShe] is, and <i>why</i> [bess.heShe] is calling you '[Master]'. There are an awful lot of 'w' questions that need to be answered until you put down your weapon. 
-
-The {male/female} android looks a little confused. <i>\"[Master], I don't have a name yet - you haven't given me one. {I'm the Breeding Emergency Sex Substitute Android Model No.13, or 'Bess-13',/I'm the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,} that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?\"</i>
-
-It seems [bess.heShe] has been reset to [bess.hisHer] factory settings, and now [bess.heShe] thinks you are [bess.hisHer] registered owner. Either that, or [bess.heshe] was fresh out of the box to begin with. Could you be lucky enough to have found your very own high-class, brand-spanking new JoyCo sex relief android? 
-
-{// Silly Mode && bess.gender = female
-...Somewhere, there's a very unhappy looking Japanese boy, waiting for his girlfriend to arrive... 
-}
-
-Hmm. What to do with [bess.himHer]? You could keep [bess.himHer], give [bess.himHer] a name and have [bess.himHer] live on your ship. [bess.HeShe]’s sure to do whatever you say. Having one on your ship could prove advantageous, especially with the lusty aliens you keep encountering. {Silly: It's like your life is some kind of <i>sex game</i>...}
-
-If you ditch [bess.himHer] back on the planet, [bess.heShe]'d probably just be food for the native{RaskvelMetNo: "s"/else" Raskvel"}. That, or [bess.heShe]'d become another mindless drone wandering the wastes, albeit a ritzy one. Then again, dumping [bess.himHer] could save a lot of trouble down the line.
-
-Given that [bess.heShe]'s a galactic class unit, you could probably get some major credits even with [bess.hisHer] registration number scratched off. You wouldn't get anywhere near [bess.hisHer] commercial price. Best case scenario, you get a nice five figure sum, since [bess.heShe]'s obviously stolen property.
-
-You could do your civic duty and call up the UTC to hand [bess.himHer] in. After all, if [bess.heShe]'s been taken from someone, they'll probably want [bess.himHer] back. Of course, [bess.hisHer] owner could have been the one who left [bess.himHer] on Tarkus to begin with. Seems unlikely they'd scratch off [bess.hisHer] code, though.
-
-In old Terran movies, this is probably the part where the {hero/heroine} offers the android freedom to show how nice they are. {Nice: You could do that, since that's usually your style.'/You wouldn't call yourself 'nice', but you're not an outright asshole either.'/'That doesn't sound like you at all.'}
-
-You could also opt to keep [bess.himHer], but have [bess.himHer] stay in your hangar bay at Tavros Station. After all, a high-quality sex bot doesn't just fall into your lap every day...
-
-if (GiannaFollowerYes)
+//Sell Off
+function sellOfBessDatWhore():void
 {
-... Well, except for Gianna. Actually, this is becoming a bit of a habit.
+	clearOutput();
+	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your Bess-13 unit.");
+	output("\n\nThe handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. ");
+	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + pc.fm("Bess","Ben") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
+	output("\n\nThe owner of the ship is just as pleasant to look at as his starship is. Coming out to meet you and wringing their hands all the while, he hardly makes eye contact. He’s far too busy ogling the merchandise.");
+	output("\n\n<i>\"Nice, nice. Hard to get one of these for anything less than mega-creds. What did you do, steal [bess.himHer] from a hospital? Don’t answer that, I don’t want to know.\</i>”</i> The buyer gives you a near-toothless grin.");
+	output("\n\nCredits are exchanged, no names, and soon you’re 10,000 credits richer. It’s sub-light robbery - [bess.heShe]’s worth <i>at least</i> an extra zero - but there are no questions asked and you’re wealthier than before you found it.");
+	output("\n\nAfter concluding your business, you head back to Tarkus, wiping the flight path and history from your spaceship computer.");
+	//Appear back in Spaceship, story path ended. { Add 10,000 credits to PC’s credit score } 
+	pc.credits += 10000;
+	processTime(2040);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
-[Keep On Ship*] [Sell Off] [Hand To Authorities] [Dump Them] [Release] [Keep At Tavros]
-* Only if there is room.
+//Hand To Authorities
+function handBessOverToAuthorities():void
+{
+	clearOutput();
+	output("Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You’re surprised a U.G.C. official is actually going out of their way to Tarkus to pick up a sex bot.");
+	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.fm("Bess-13","Ben-14") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the “<i>dangerous sex bot</i>” in.");
+	output("\n\nLooking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it’s hard to imagine [bess.heShe]’s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense.");
+	output("\n\nThe U.G.C. official leaves with the {Bess-13/Ben-14} unit, and soon after you are wired 2,500 credits by JoyCo. Seems things wrapped up pretty nicely.");
+	pc.credits += 2500;
+	processTime(2040);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Sell Off
-
-
-You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your Bess-13 unit.
-
-The handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. 
-
-The hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your {Bess/Ben} Unit than on their starship, or they actually like it looking like a flying garbage heap.
-
-The owner of the ship is just as pleasant to look at as his starship is. Coming out to meet you and wringing their hands all the while, he hardly makes eye contact. He’s far too busy ogling the merchandise.
-
-<i>\"Nice, nice. Hard to get one of these for anything less than mega-creds. What did you do, steal [bess.himHer] from a hospital? Don’t answer that, I don’t want to know.\"</i> The buyer gives you a near-toothless grin. 
-
-Credits are exchanged, no names, and soon you’re 10,000 credits richer. It’s sub-light robbery - [bess.heShe]'s worth <i>at least</i> an extra zero - but there are no questions asked and you’re wealthier than before you found it.
-
-After concluding your business, you head back to Tarkus, wiping the flight path and history from your spaceship computer.
-
-//Appear back in Spaceship, story path ended. { Add 10,000 credits to PC’s credit score } 
-
+//Release 
+function releaseBessBenWhatever():void
+{
+	clearOutput();
+	output("You tell the " + bess.fm("female","male") + " synthetic that [bess.heShe] is free to do as she pleases, and that you are not [bess.hisHer] [Master]. It seems like the right thing to do.");
+	output("\n\nHowever, [bess.heShe] seems to have difficulty processing what you are saying, almost as if you were speaking a foreign language.");
+	output("\n\n<i>\"What do you mean, [Master]? I am a " + bess.fm("Bess-13","Ben-14") + " unit, and I belong to you! I am your personal unit. I am not designed to belong to myself.\"</i> " + bess.fm("Her voice seems to quiver a little","He furrows his brow, looking perplexed by your statement") + ". The concept of not belonging to someone seems to be outside of [bess.hisHer] programming.");
+	output("\n\nWhat exactly are you going to do? [bess.HeShe]'ll probably get caught in a logic loop if you push the point.");
+	//Once off +5 to Nice Score. Non-repeatable event.
+	pc.addNice(5);
+	processTime(1);
+	//9999 - menu with release grayed out.
+}
  
-Hand To Authorities
- 
-Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You're surprised a UTC official is actually going out of their way to Tarkus to pick up a sex bot.
+//Dump Them
+function dumpTheBessBot():void
+{
+	clearOutput();
+	output("Rather than keep the silver android, you decide that it’s best just to kick [bess.himHer] off your ship and let [bess.himHer] aimlessly wander Tarkus now that you’ve activated [bess.himHer]. Someone else can deal with [bess.himHer] - it’s just too much trouble.");
+	output("\n\nDespite her pleas, you shove [bess.himHer] in the airlock and vent [bess.himHer] out, sending [bess.himHer] flying out into a pile of junk. In the end [bess.heShe]’s just an object only pretending to have feelings – no different to the broken holos and pieces of pipe littering the whole crappy planet.");
+	output("\n\nThings are nice and quiet after that.");
+	//Appear back in Spaceship, Story path ended. +5 to Asshat Score.
+	processTime(10);
+	pc.addAss();
+	//9999
+}
 
-When the official shows up in the Novahome docking bay, you find out why. Apparently there's a standing order for all {Bess-13/Ben-14} Unit AIs put out by JoyCo. It seems you're entitled to a bounty for bringing the "dangerous sex bot" in.
-
-Looking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it's hard to imagine [bess.heShe]'s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense. 
-
-The UTC official leaves with the {Bess-13/Ben-14} unit, and soon after you are wired 2,500 credits by JoyCo. Seems things wrapped up pretty nicely.
-
-
-//Appear back in Spaceship, story path ended. { +5 to Nice Score } 
- 
-Release 
- 
-You tell the {female/male} synthetic that [bess.heShe] is free to do as she pleases, and that you are not [bess.hisHer} [Master]. It seems like the right thing to do. 
-
-However, [bess.heShe] seems to have difficulty processing what you are saying, almost as if you were speaking a foreign language.
- 
-<i>\"What do you mean, [Master]? I am a {Bess-13/Ben-14} unit, and I belong to you! I am your personal unit. I am not designed to belong to myself.\"</i> {Fem: Her voice seems to quiver a little/Male: He furrows his brow, looking perplexed by your statement}. The concept of not belonging to someone seems to be outside of [bess.hisHer] programming. 
-
-What exactly are you going to do? [bess.HeShe]'ll probably get caught in a logic loop if you push the point.
-
-//Once off +5 to Nice Score. Non-repeatable event.
- 
-[Keep On Ship*] [Sell Off] [Hand To Authorities] [Dump Them] [Release] [Keep At Tavros]
-* Only if there is room.
- 
- 
-Dump Them
- 
-Rather than keep the silver android, you decide that it’s best just to kick [bess.himHer] off your ship and let [bess.himHer] aimlessly wander Tarkus now that you’ve activated [bess.himHer]. Someone else can deal with [bess.himHer] - it’s just too much trouble.
- 
-Despite her pleas, you shove [bess.himHer] in the airlock and vent [bess.himHer] out, sending [bess.himHer] flying out into a pile of junk. In the end [bess.heShe]’s just an object only pretending to have feelings – no different to the broken holos and pieces of pipe littering the whole crappy planet.
-
-Things are nice and quiet after that.
- 
-//Appear back in Spaceship, Story path ended. +5 to Asshat Score.
-
-
-Tavros Station
-
-You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.
-
-It is a bit out of your way, but you fly all the way back and drop [bess.himHer] there for the time being. That way, you can pick her up once you know what you want to do with [bess.himHer].
-
-The {Bess-13/Ben-14) unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.
-
-
-// See Tavros Station section for more information.
-
+//Tavros Station
+function waitAtTavrosBess():void
+{
+	clearOutput();
+	output("You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.");
+	output("\n\nIt is a bit out of your way, but you fly all the way back and drop [bess.himHer] there for the time being. That way, you can pick her up once you know what you want to do with [bess.himHer].");
+	output("\n\nThe " + bess.fm("Bess-13","Ben-14") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.");
+	//See Tavros Station section for more information.
+	processTime(2040);
+	//9999
+}
 
 //Keep [bess.HimHer] - Leads to Tutorial Section.
-
-Tutorial / Configure 
-
-
-You decide that you'll take [bess.himHer] along after all. You don't really want to leave [bess.himHer] on Tavros, and you don't want to get rid of [bess.himHer] either. {Kind: "Plus, it kind of seems mean to leave her alone in your hanger just because [bess.heShe]'s an android".}{Misc: "Plus it might be kind of fun to add [bess.himHer] to your crew."}{Hard: "Besides, you need every edge you can get if you’re going to find that hidden treasure stash."}
-
-{Nice:
-
-<i>\"I guess I’ve got a new crewmate. Welcome aboard!\"</i> You smile warmly, happy to have another crew member on your ship.
+function keepBessYouSloot():void
+{
+	clearOutput();
+	//Tutorial / Configure 
+	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either. {Kind: “<i>Plus, it kind of seems mean to leave her alone in your hanger just because [bess.heShe]’s an android</i>”.}{Misc: “<i>Plus it might be kind of fun to add [bess.himHer] to your crew.</i>”}{Hard: “<i>Besides, you need every edge you can get if you’re going to find that hidden treasure stash.</i>”}");
+	//Nice:
+	if(pc.isNice()) output("\n\n<i>\"I guess I’ve got a new crewmate. Welcome aboard!\</i>”</i> You smile warmly, happy to have another crew member on your ship.");
+	//Misc:
+	else if(pc.isMischievous()) output("\n\n<i>\"Sure, why not? I’ve got room for another crew member. Welcome aboard!\</i>”</i> You welcome [bess.himHer] on a whim, though you’re sure it will all work out for the best.");
+	//Hard:
+	else output("\n\n<i>\"Do whatever you want, just don’t cause any trouble or you’re off the ship.\</i>”</i> You sternly warn [bess.himHer], making sure the message is received loud and clear.");
+	output("\n\nThe silver haired synthetic" + bess.fm(" flushes and bows","'s eyes light up and he gives a dutiful bow") + ", <i>\"You’re too kind, [Master]. Just think of me as yours to do with what you will.\</i>”</i>");
+	output("\n\n[Bess.HeShe] then pauses and looks at you with patient, " + bess.fm("hopeful","questioning") + " eyes, as if waiting for you to say something else. " + bess.fm("It reminds you of a girl at a social function waiting to be asked to dance.","He even coughs politely, as if trying to awkwardly bring your attention to something."));
+	output("\n\nYou ask [bess.himHer] exactly what [bess.heShe]’s waiting for, and [bess.heShe] gives a rather animated blink. It’s hardly that of a pre-programmed VI.");
+	output("\n\n<i>\"My name, [Master]. I don’t have an official designation yet.\</i>”</i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
+	output("\n\nWhat do you decide to name her?");
+	//(Default Name: {if (bess.gender = female) “<i>Bess</i>”}{else: “<i>Ben</i>”}");
 }
-
-{Misc:
-
-<i>\"Sure, why not? I’ve got room for another crew member. Welcome aboard!\"</i> You welcome [bess.himHer] on a whim, though you’re sure it will all work out for the best.
-}
-
-{Hard:
-<i>\"Do whatever you want, just don’t cause any trouble or you’re off the ship.\"</i> You sternly warn [bess.himHer], making sure the message is received loud and clear.
-}
-
-The silver haired synthetic{fem: flushes and bows/male: 's eyes light up and he gives a dutiful bow}, <i>\"You’re too kind, [Master]. Just think of me as yours to do with what you will.\"</i>
-
-[Bess.HeShe] then pauses and looks at you with patient, {fem: hopeful/men: questioning} eyes, as if waiting for you to say something else. {Fem: It reminds you of a girl at a social function waiting to be asked to dance./else: He even coughs politely, as if trying to awkwardly bring your attention to something.}
-
-You ask [bess.himHer] exactly what [bess.heShe]'s waiting for, and [bess.heShe] gives a rather animated blink. It's hardly that of a pre-programmed VI.
-
-<i>\"My name, [Master]. I don't have an official designation yet.\"</i> It seems [bess.heShe] needs a name of some sort, and you're supposed to give [bess.himHer] one.
-
-What do you decide to name her? (Default Name: {if (bess.gender = female) "Bess"}{else: "Ben"}
 
 //Entered name becomes string value [Bess]
+function nameBessResult():void
+{
+	clearOutput();
+	//9999 name shit
+	output("<i>\"Thank you for my name, [Master]. I am now called [Bess]!\</i>”</i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\</i>”</i>");
+	output("\n\nYou ask exactly what functions [Bess] comes equipped with, noting that [bess.heShe] doesn’t look like [bess.heShe]’s made of a regular kind of alloy.");
+	output("\n\n[Bess] comes quite lively when you observe that, since [bess.heShe] clearly takes pride in [bess.hisHer] design specs.");
+	output("\n\n<i>\"You’re very observant, [Master]! All Bess-13 units are built using FlexMetal, a patented creation exclusive to JoyCo. This material is softer than organic flesh and ten times more flexible, allowing me to change my form in specific ways.\</i>”</i> ");
+	output("\n\nYou ask what kind of specific way [bess.heShe] can shift [bess.hisHer] body about.");
+	output("\n\n<i>\"My insides are filled with a liquid called MeldMilk. By increasing or decreasing the amount in certain parts of my body, my form can be inflated or deflated to tailor my appearance to my [Master]’s tastes,\</i>”</i> [Bess] informs you.");
+	output("\n\n<i>\"I can retract, grow or recolor my hair, change eye color or grow appendages in order to fulfill your sexual needs. I also have several special modes that can be activated or deactivated, such as sexual roles or the flavor of my cum.\</i>”</i>");
+	output("\n\n<i>\"You can also purchase certain special modifications, clothes, and accessories for me through the JoyCo catalogue. These items will be delivered to you within one to three earth days, excluding public holidays and weekends.\</i>”</i>");
+	output("\n\nAfter [bess.hisHer] lengthy explanation of [bess.hisHer] various features, [Bess] takes a deep breath. It’s probably a programmed gesture, since [bess.heShe] doesn’t actually <i>need</i> to breathe.");
+	output("\n\n<i>\"I doubt I’m your perfect mate fresh out of the box, so feel free to change my settings at any time. I’ve got a lot of them, so please be patient with me.\</i>”</i> [Bess] then bows in a very " + bess.fm("subservient manner","well-mannered way") + ". <i>\</i>”... I look forward to serving your needs, [Master]!\</i>”</i>");
+	//Appear back in ship with Bess added to the Followers menu. 
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-<i>\"Thank you for my name, [Master]. I am now called [Bess]!\"</i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]'s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\"</i>
-
-You ask exactly what functions [Bess] comes equipped with, noting that [bess.heShe] doesn’t look like [bess.heShe]’s made of a regular kind of alloy.
-
-[Bess] comes quite lively when you observe that, since [bess.heShe] clearly takes pride in [bess.hisHer] design specs.
-
-<i>\"You're very observant, [Master]! All Bess-13 units are built using FlexMetal, a patented creation exclusive to JoyCo. This material is softer than organic flesh and ten times more flexible, allowing me to change my form in specific ways.\"</i> 
-
-You ask what kind of specific way [bess.heShe] can shift [bess.hisHer] body about.
-
-<i>\"My insides are filled with a liquid called MeldMilk. By increasing or decreasing the amount in certain parts of my body, my form can be inflated or deflated to tailor my appearance to my [Master]’s tastes,\"</i> [Bess] informs you.
-
-<i>\"I can retract, grow or recolor my hair, change eye color or grow appendages in order to fulfill your sexual needs. I also have several special modes that can be activated or deactivated, such as sexual roles or the flavor of my cum.\"</i>
-
-<i>\"You can also purchase certain special modifications, clothes, and accessories for me through the JoyCo catalogue. These items will be delivered to you within one to three earth days, excluding public holidays and weekends.\"</i>
-
-After [bess.hisHer] lengthy explanation of [bess.hisHer] various features, [Bess] takes a deep breath.  It's probably a programmed gesture, since [bess.heShe] doesn't actually <i>need</i> to breathe. 
-
-<i>\"I doubt I'm your perfect mate fresh out of the box, so feel free to change my settings at any time. I've got a lot of them, so please be patient with me.\"</i> [Bess] then bows in a very {fem: subservient manner/male: well-mannered way}. <i>\"... I look forward to serving your needs, [Master]!\"</i>
-
-<b>[Bess] has now been added to the Followers menu!]</b>
-
-//Appear back in ship with Bess added to the Followers menu. 
-
-
-Bess/Ben Titles
-
+//Bess/Ben Titles
 // This section is for the titles you can select via the Followers / Functions / Titles menu. 
-OPTIONS FOR NAMES AND SEX-NAMES, PC OR BESS
+//OPTIONS FOR NAMES AND SEX-NAMES, PC OR BESS
 
 // Used for menu alteration of the following string values - 
 // bName - PC's Normal Name For Bess/Ben
@@ -492,19 +459,19 @@ OPTIONS FOR NAMES AND SEX-NAMES, PC OR BESS
 // It's probably more complex than it needs to be, so have a chat with me if it looks too finicky. 
 
 
-NOTES ON LIST:
+//NOTES ON LIST:
 
 // Titles separated by a slash indicate different versions based on if the PC or Bess is using it. I.e. Master Steele/[Bess] would be Master Steele or Master Bess, alternatively.
 
 // 'String Entry = "blarg" indicates the string entry should be blarg.
 
-// Subs Only: Can be set as bNamePC or bSexNamePC if  BessRole = 2, or bName or bSexName if BessRole = 1. For subs referring to doms. 
+// Subs Only: Can be set as bNamePC or bSexNamePC if BessRole = 2, or bName or bSexName if BessRole = 1. For subs referring to doms. 
 
-// Doms Only: Can be set as bNamePC or bSexNamePC if  BessRole = 1, or bName or bSexName if BessRole = 2. For doms referring to subs.
+// Doms Only: Can be set as bNamePC or bSexNamePC if BessRole = 1, or bName or bSexName if BessRole = 2. For doms referring to subs.
 
-// Never Dom Bess: Can be set as bNamePC or bSexNamePC if  BessRole != 1. A Dom Bess would never do this.
+// Never Dom Bess: Can be set as bNamePC or bSexNamePC if BessRole != 1. A Dom Bess would never do this.
 
-
+/*
 [Master]
 [Master] Steele/[Bess] 
 My Queen/King (Subs Only)
@@ -548,12 +515,12 @@ Plot Triggered Titles
 // Lover only: if (BessLover = True) have as option.
 
 Captain (Scene 11) (Bess Only)
-Boss  (Scene 11 (Bess Only)
-Skipper  (Scene 11 (Bess Only)
-Chief  (Scene 11 (Bess Only)
-Captain, my Captain  (Scene 11(Bess Only)
-Big Boss  (Scene 11  (Bess Only)
-[bessRole]  (Scene 11) (Player Only)
+Boss (Scene 11 (Bess Only)
+Skipper (Scene 11 (Bess Only)
+Chief (Scene 11 (Bess Only)
+Captain, my Captain (Scene 11(Bess Only)
+Big Boss (Scene 11 (Bess Only)
+[bessRole] (Scene 11) (Player Only)
 my friend (Friend Only)
 buddy (Friend Only) 
 my love (Lover Only)
@@ -615,160 +582,263 @@ If Friend, per week not visited*: -5
 If Lover, per week not visited: -10
 After a month, per week not visited: x2 penalty. (e.g -5 becomes -10, -10 becomes -20).
 Some Story Events: Varies.
-* 'Visited' qualifies as actively engaging in Discussion or Sex (morning included), not just opening the Follower Menu or passively sleeping together. 
-Bess/Ben’s Room
+* 'Visited' qualifies as actively engaging in Discussion or Sex (morning included), not just opening the Follower Menu or passively sleeping together.
+*/
 
-if (Bess/Ben Event 11 completed)
+//Bess/Ben’s Room
+function approachFollowerBessRoom():void
 {
-The quarters of your ship's [bessRole] are a lot more expressive than they used to be. The room is full of polished wooden furniture and beautiful decor. [bess.HeShe]'s made it look more like a room in a house than a starship cabin.
-
-On a chest of drawers is vase filled with white asiatic lilies, pink roses, and purple statice. It looks and smells truly breathtaking. On the walls are paintings of planetary landscapes, an assortment of exotic and beautiful locales. 
+	//if (Bess/Ben Event 11 completed)
+	if(flags["9999"] == 0)
+	{
+		output("\n\nThe quarters of your ship’s [bessRole] are a lot more expressive than they used to be. The room is full of polished wooden furniture and beautiful decor. [bess.HeShe]’s made it look more like a room in a house than a starship cabin.");
+		output("\n\nOn a chest of drawers is vase filled with white asiatic lilies, pink roses, and purple statice. It looks and smells truly breathtaking. On the walls are paintings of planetary landscapes, an assortment of exotic and beautiful locales.");
+	}
+	//if (Bess/Ben Event 11 not completed)
+	else output("\n\n[Bess]'s room is fairly depressing. If you didn't know any better, you'd think it was a small cargo hold. The best thing it has to offer are freely available power ports and a large built in wardrobe.");
+	//if (Bess/Ben Event 11 Completed)
+	if(flags["9999"] == 0) output("\n\nAlmost every wall in [bess.hisHer] room has rows of retractable bookshelves built in, in order to contain [bess.himHes] massive book collection. [bess.HeShe] also has a sizable collection of holos. In order to watch them, [bess.heShe] has had a holo-projector built into the wall so[bess.heShe] can watch them in bed.");
+	//if (Bess/Ben Event 04 completed && Bess/Ben Event 11 not completed)
+	if(flags["9999"] == 0)
+	{
+		output("\n\nPiles of holos and books have recently begun to fill the room. Even though [bess.heShe] can’t afford shelves - since [bess.heShe] doesn’t have a real job - each stack is perfectly categorized by genre and in alphabetical order. [bess.HeShe]’s even moved a holo-projector into [bess.hisHer] room.");
+	}
+	//if (bessFriend = true)
+	if(9999 == 0)
+	{
+		output("\n\nOn [bess.hisHer] bedside table are two of [bess.himsHer] favorite books, ‘The Hobbit' and ‘Do Androids Dream of Electric Sheep?’ [bess.HeShe] loves them so much they never make it back to the shelves.");
+	}
+	//if (Bess/Ben Event 02 completed && Bess/Ben Event 04 not completed)
+	if(9999 == 0)
+	{
+		output("\n\nRecently [bess.hisHer] room has begun to fill with holos, and [bess.heShe]’s even moved in a holo-projector. It seems [bess.heShe]’s taking [bess.hisHer] research quite seriously.");
+	}
+	//if (Scene 11 completed)
+	if(flags["9999"] == 0) output("\n\nDominating the room is a king-sized four-poster bed with perfectly kept silky sheets. It is by far the most luxurious item in the room.");
+	//if (Scene 11 not completed)
+	else
+	{
+		output("\n\nThere is a double bed in the middle of the room, the sheets are in pristine condition. It doesn’t look like [bess.heShe] sleeps in it, it seems to be there for administering \"sexual relief.\"");
+		output("\n\nThe room itself is very spacious, and that makes the lack of furniture and personal effects even more evident. [bess.HeShe] is an AI after all and has very little physical needs.");
+	}
+	// Just a suggestion - maybe an option in the room to deactivate Bess/Ben's picture portrait? Might irk some people that the pic doesn't match the dialogue, but they might not want to deactivate *all* the pics. This way the option isn't always in your face, either.
 }
 
-if (Bess/Ben Event 11 not completed)
+//Greeting Dialogues
+function approachFollowerBess():void
 {
-[Bess]'s room is fairly depressing. If you didn't know any better, you'd think it was a small cargo hold. The best thing it has to offer are freely available power ports and a large built in wardrobe.
+	// Dialogues initiated by hitting the [Bess] button under companions. Or if they has a button under the normal ship stuff. Wherever you place it - just probably not in their room for story/sex consistency reasons.
+	clearOutput();
+	//if (bessLover = true && bessAffection >= 90)
+	if(9999 == 0)
+	{
+		output("[Bess] grins as soon as [bess.heShe] sees you, " + bess.fm("leaping into your arms","scooping you into his arms") + " and giving you a long, sensual kiss. </i>\"... Mmmm, [bNamePC]! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming");
+		//if bess.glasses = true: 
+		if(flags["BESS_GLASSES"] != undefined) output(" through [bess.hisHer] glasses");
+		output(" with happiness.");
+	}
+	//if (bessLover = true && bessAffection < 90 && bessAffection >= 70)
+	else if(9999 == 0)
+	{
+		output("[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you?\"</i> [bess.HeShe] asks, peering at you");
+		//if bess.glasses = true: 
+		if(flags["BESS_GLASSES"] != undefined) output(" through [bess.hisHer] glasses");
+		output(".");
+	}
+	//else if (bessLover = true && bessAffection < 70 && bessAffection >= 50)
+	else if(9999 == 0)
+	{
+		output("[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you? It's about time!\"</i> [bess.HeShe] exclaims");
+		if(flags["BESS_GLASSES"] != undefined) output(", peering at you over [bess.hisHer] glasses");
+		output(".");
+	}
+	//else if (bessLover = true && bessAffection < 50 && bessAffection >= 30)
+	else if(9999 == 0)
+	{
+		output("[Bess] wraps [bess.hisHer] arms around you, looking very serious, <i>\"... [bNamePC]... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?\"</i> [bess.HisHer] eyes " + bess.fm("are wavering","look pained"));
+		//[if (bessGlasses = true) "behind [bess.hisHer] glasses"]. 
+		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
+		output(".");
+	}
+	//else if (bessLover = true && bessAffection <30)
+	else if(9999 == 0)
+	{
+		output("[Bess] looks at you " + bess.fm("meekly","in distress") + ", [bess.hisHer] expression completely downtrodden. <i>\"... Oh, you're here [bNamePC]... do... do you still love me? You're gone all the time, I never see you anymore...\"</i> [bess.HisHer] eyes " + bess.fm("are tearing up","look truly agonized");
+			//[if (bessGlasses = true) "behind [bess.hisHer] glasses"]
+		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
+		output("."); 
+	}
+	//else if (bessLover = false && bessFriend = true && bessAffection >= 50)
+	else if(9999 == 0)
+	{
+		output("[Bess] runs " + bess.fm("at you","up to you") + ",giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? Great, I hope!\"</i> [bess.heShe] exclaims " + bess.fm("excitedly","brightly"));
+		//[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .}
+		if(flags["BESS_GLASSES"] != undefined) output(", eyes shining behind [bess.hisHer] glasses");
+		output(".");
+	}
+	//else if (bessLover = false && bessFriend = true && bessAffection < 50 && bessAffection >= 25)
+	else if(9999 == 0)
+	{
+		output("[Bess] runs " + bess.fm("at you","up to you") + ", giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!\"</i> [bess.heShe] exclaims cheerily");
+		//[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .
+		if(flags["BESS_GLASSES"] != undefined) output(", eyes shining behind [bess.hisHer] glasses");
+		output(".");
+	}
+	//else if (bessLover = false && bessFriend = true && bessAffection < 25)
+	else if(9999 == 0)
+	{
+		output("[Bess] walks up to you, looking a little downtrodden. <i>\"... Hey [bNamePC], we're still friends right? I never see you anymore... did I do something wrong?\"</i> [bess.HisHer] eyes are " + bess.fm("visibly wavering","look a bit strained"));
+		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
+		output(".");
+	}
+	else
+	{
+		output("[Bess] wanders up, greeting you with a smile. <i>\"How are you doing today, [bNamePC]? Did you want me to tend to your reproductive needs, or did you just want to talk?\"</i>[bess.heShe] asks, peering at you");
+		//{if bessGlasses = true "through [bess.hisHer] glasses"/else:"questioningly"].
+		if(flags["BESS_GLASSES"] != undefined) output(" through [bess.hisHer] glasses");
+		else output("questioningly");
+		output(".");
+	}
+	//{if (bess.hairLength != 0)
+	if(bess.hasHair()) output("\n\nThe synthetic's " + num2Text(Math.round(bess.hairLength*10)/10) + " inch [bess.hairColor] hair is done in [bessHairStyle].");
+	else output("\n\nThe synthetic has a smooth, silvery scalp, completely free of hair.");
+	if(bess.earType != GLOBAL.TYPE_HUMAN || bess.horns > 0)
+	{
+		output(" [bess.HisHer] ");
+		if(bess.earType != GLOBAL.TYPE_HUMAN) 
+		{
+			output("[bess.ears]");
+			if(bess.horns > 0) output(" and ");
+		}
+		if(bess.horns > 0) output("[bess.horns]");
+		output(" compliment her features.");
+	}
+	output(" [bess.HeShe] is currently wearing a [bess.armor] that accentuates [bess.hisHer] [bess.chest] and [bess.tone] body.");
+	if (bess.wingType != GLOBAL.TYPE_HUMAN || bess.tailCount > 0)
+	{
+		output(" [bess.HisHer] ");
+		if (bess.wingType != GLOBAL.TYPE_HUMAN) 
+		{
+			output("[bess.wings] stick");
+			
+			output(" proudly out [bess.hisHer] back");
+			if (bess.tailCount > 0) output(" and [bess.hisHer] ");
+		}
+		if (bess.tailCount > 0)
+		{
+			"[bess.tails] flick");
+			if(bess.tailCount == 1) output("s");
+			output(" noticeably behind [bess.himHer]");
+		}
+		output(".");
+	}
+	if(bess.meleeWeapon is bessKatana) output(" At [bess.himsHer] right side is a katana, secure in its glazed sheath.");
+	//if (pc.armor = Top&Skirt, Sleepshirt, Maid, Nurse, Schoolgirl, GothLolita, TankMini) 
+	if(9999 == 9999)
+	{
+		output("\n\nEvery time the hem of [bess.hisHer] outfit rides up, you get a good look at [bess.hisHer] ");
+		if(bess.lowerUndergarment.shortName != "") output("[bess.underGarment].");
+		else if(bess.hasVagina()) 
+		{
+			output("[bess.pussy]");
+			if(bess.hasCock()) output(" and [bess.cock]");
+			output(".");
+		}
+		else if(bess.hasCock()) output("[bess.cock].");
+		else output("bare crotch.");
+		if(bess.hasCock())
+		{
+			output(" It ");
+			if(bess.biggestCockLength() <= 10) 
+			{
+				if(bess.lowerUndergarment.shortName != "") output("makes a visible bulge in [bess.hisHer] [bess.underGarment].");
+				else output("hangs out proudly between [bess.hisHer] [bess.legs].");
+			}
+			else
+			{
+				if(bess.lowerUndergarment.shortName != "") output("cannot be contained by [bess.hisHer] [bess.underGarment] and dangles out defiantly.");
+				else output("dangles down proudly between [bess.hisHer] [bess.thighs].");
+			}
+		}
+	}
+	//if (bess.belly >= 10 || bess.armor = null)
+	else if(bess.bellyRating() >= 10) 
+	{
+		output("\n\n[bess.HisHer] [bess.bellyFullDesc] ");
+		if(bess.armor.shortName == "") output("is clearly visible ");
+		if(bess.isCrotchGarbed() || bess.isChestGarbed()) output("through [bess.hisHer] undergarments.");
+	}
+	//if bess.belly >= 10 && bess.armor != null)
+	else output("\n\n[bess.HisHer] [bess.bellyFullDesc] pushes pointedly against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
+	// Full Desc just means ensuring there's at least one or two adjectives with a noun.
+
+	//[Appearance] [Discuss] [Sex] [Functions] [Accessories] 
+	//[Return]
+	// Functions, Accessories, and Sex are locked off when bessAffection is below 25 and bessFriend = true, or bessAffection is below 30 and bessLover = true.
 }
 
-if (Bess/Ben Event 11 Completed)
+//Appearance
+function bessAppearance():void
 {
-Almost every wall in [bess.hisHer] room has rows of retractable bookshelves built in, in order to contain [bess.himHes] massive book collection. [bess.HeShe] also has a sizable collection of holos. In order to watch them, [bess.heShe] has had a holo-projector built into the wall so[bess.heShe] can watch them in bed.
+	clearOutput();
+	output("As you look at [Bess][bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. " + bess.fm("Her cheeks flush","He politely coughs") + " as you look [bess.himHer] over from head to toe.");
+	//Bald True:
+	if(!bess.hasHair())
+	{
+		output("\n\n[Bess]’s head is hairless. All the lines on [bess.hisHer] scalp, usually hidden by artificial locks, are now clearly exposed.");
+	}
+	else output("\n\nThe synthetic's [bess.hairColor] " + num2Text(Math.round(bess.hairLength*10)/10) + " inch hair is in a [bessHairStyle].");
+	output(". [bess.HisHer] [bess.eyeColor] eyes, framed by " + bess.fm("thick black lashes","brooding brows"));
+	if(flags["BESS_GLASSES"] != undefined) output(" as well as the glasses [bess.heShe] is currently wearing");
+	output(", are even more detailed and faceted than those of a human.");
+	if (bess.horns != 0) " On top of [bess.hisHer] head are [bess.horns].");
+	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" [bess.HeShe] has a pair of [bess.ears].");
+	if (bess.wingType != GLOBAL.TYPE_HUMAN) output(" Behind [bess.hisHer] back is a pair of [bess.wings]");
+	if (bess.tailCount > 0) 
+	{
+		output(" Above [bess.hisHer] rump, [bess.hisHer] [bess.tails] ");
+		if(bess.tailCount == 1) output("is");
+		else output("are");
+		output(" sticking out.");
+	}
+	if (bess.hasCockTail())
+	{
+		output("\n\n[Bess]’s \"JoyCord\" is ");
+		if(bess.tailCount > 0) output(" protruding from just above [bess.hisHer] rear, long and silvery just like [bess.hisHer] body. The tip looks exactly like a thick, synthetic tail-cock. The shaft looks quite bumpy and clearly designed for pleasure.");
+	}
+	output("\n\n[bess.HisHer] silver skinned body is segmented by lines, clearly identifying [bess.himHer] as a mechanical being despite its otherwise organic appearance. [bess.HeShe] has ");
+	if(bess.biggestTitSize() < 1) output("a flat chest");
+	else output(bess.breastSize(bess.biggestTitSize()) + " breasts capped with [bess.nipples]. Further down, your eyes are drawn to [bess.hisHer] [bess.hipsAdjective] [bess.hipsNoun] and [bess.assAdjective] [bess.assNoun].");
+
+	if (bess.hasPussy())
+	{
+		output("\n\n[Bess]'s mound is completely hairless and utterly smooth. [bess.HisHer] pussy lips are rather plump and cushony, designed to squeeze and pad a cock perfectly - not to mention extremely tasty.");
+		if (bess.hasCock()) output(" Above [bess.hisHer] synthetic snatch, ");
+	}
+	else if(bess.hasCock()) output("\n\n");
+	if (bess.hasCock()) 
+	{
+		output("[Bess] has a [bess.cock] with a [bess.cockHead]");
+		if(bess.hasASheath()) output(" and [bess.sheath]");
+		output(".");
+		if(bess.balls > 0) output("[bess.HerHis] [bess.balls] are contained in a [bess.sack].");
+	}
+	//if (bessCumDump = true)
+	if(flags["BESS_CUMDUMP"] != undefined)
+	{
+		output("\n\nHot, sticky cum is leaking down [bess.hisHer] thighs from [bess.hisHer] well-used ");
+		if(bess.hasVagina()) output("pussy and ");
+		output("ass. [Bess.HisHer] lips are smeared with fresh spunk collected from the nearby natives. [Bess.HisHer] eyes are unfocused, probably from being used day in and out as a synthetic cum dumpster.");
+	}
+	output("\n\n[Bess] currently has a [bess.belly].");
+	if(!bess.isNude()) output(" [bess.HeShe] is currently wearing [pc.gear].");
+	//if (bessKatana = true)
+	if(bess.meleeWeapon is bessKatana) output("\n\nAt [Bess]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [Bess] herself.");
+	clearMenu();
+	addButton(0,"Next",approachFollowerBess);
 }
 
-if (Bess/Ben Event 04 completed && Bess/Ben Event 11 not completed)
-{
-Piles of holos and books have recently begun to fill the room. Even though [bess.heShe] can’t afford shelves - since [bess.heShe] doesn’t have a real job - each stack is perfectly categorized by genre and in alphabetical order. [bess.HeShe]’s even moved a holo-projector into [bess.hisHer] room.
-}
-if (bessFriend = true)
-{
-On [bess.hisHer] bedside table are two of [bess.himsHer] favorite books, ‘The Hobbit ‘and ‘Do Androids Dream of Electric Sheep?’ [bess.HeShe] loves them so much they never make it back to the shelves.
-}
-
-if (Bess/Ben Event 02 completed && Bess/Ben Event 04 not completed)
-{
-Recently [bess.hisHer] room has begun to fill with holos, and [bess.heShe]’s even moved in a holo-projector. It seems [bess.heShe]’s taking [bess.hisHer] research quite seriously.
-}
-if (Scene 11 completed)
-{
-Dominating the room is a king-sized four-poster bed with perfectly kept silky sheets. It is by far the most luxurious item in the room.
-}
-
-if (Scene 11 not completed)
-{
-There is a double bed in the middle of the room, the sheets are in pristine condition. It doesn’t look like [bess.heShe] sleeps in it, it seems to be there for administering "sexual relief".
-
-The room itself is very spacious, and that makes the lack of furniture and personal effects even more evident. [bess.HeShe] is an AI after all and has very little physical needs. 
-}
-
-// Just a suggestion - maybe an option in the room to deactivate Bess/Ben's picture portrait? Might irk some people that the pic doesn't match the dialogue, but they might not want to deactivate *all* the pics. This way the option isn't always in your face, either.
-
-
-Greeting Dialogues
-
-// Dialogues initiated by hitting the [Bess] button under companions. Or if they has a button under the normal ship stuff. Wherever you place it - just probably not in their room for story/sex consistency reasons.
-
-if (bessLover = true && bessAffection >= 90
-{
-[Bess] grins as soon as [bess.heShe] sees you, {if (bess.gender = female "leaping into your arms"}{else: "scooping you into his arms} and giving you a long, sensual kiss. </i>\"... Mmmm, [bNamePC]! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming [if bess.glasses = true: "through [bess.hisHer] glasses"] with happiness.
-
-if (bessLover = true && bessAffection < 90 && bessAffection >= 70)
-{
-[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you?\"</i> [bess.HeShe] asks, peering at you [if (besssGlasses = true) "through [bess.hisHer] glasses"].
-}
-
-else if (bessLover = true && bessAffection < 70 && bessAffection >= 50)
-{
-[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you? It's about time!\"</i>[bess.heShe] exclaims[if (bessGlasses = true) ", peering at you over [bess.hisHer] glasses"].
-}
-
-else if (bessLover = true && bessAffection < 50 && bessAffection >= 30)
-{
-[Bess] wraps [bess.hisHer] arms around you, looking very serious, <i>\"... [bNamePC]... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?\"</i> [bess.HisHer] eyes are {fem: wavering/male: look pained}[if (bessGlasses = true) "behind [bess.hisHer] glasses"]. 
-}
-
-else if (bessLover = true && bessAffection <30)
-{
-[Bess] looks at you {fem: meekly/male: "in distress}, [bess.hisHer] expression completely downtrodden. <i>\"... Oh, you're here [bNamePC]... do... do you still love me? You're gone all the time, I never see you anymore...\"</i> [bess.HisHer] eyes are {fem: tearing up/male: look truly agonized}[if (bessGlasses = true) "behind [bess.hisHer] glasses"]. 
-}
-
-else if (bessLover = false && bessFriend = true && bessAffection >= 50)
-{
-[Bess] runs {fem: at you/male: up to you},giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? Great, I hope!\"</i>[bess.heShe] exclaims {fem: excitedly/male: brightly}[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .}
-
-else if (bessLover = false && bessFriend = true && bessAffection < 50 && bessAffection >= 25)
-{
-[Bess] runs {fem: at you/male: up to you}, giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!\"</i>[bess.heShe] exclaims cheerily[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .}
-}
-
-else if (bessLover = false && bessFriend = true && bessAffection < 25)
-{
-[Bess] walks up to you, looking a little downtrodden. <i>\"... Hey [bNamePC], we're still friends right? I never see you anymore... did I do something wrong?\"</i> [bess.HisHer] eyes are {fem:visibly wavering/male: look a bit strained}[if bessGlasses = true: " behind [bess.hisHer] glasses"]. 
-}
-
-else
-{
-[Bess] wanders up, greeting you with a smile. <i>\"How are you doing today, [bNamePC]? Did you want me to tend to your reproductive needs, or did you just want to talk?\"</i>[bess.heShe] asks, peering at you {if bessGlasses = true "through [bess.hisHer] glasses"/else:"questioningly"].
-}
-
-{if (bess.hairLength != 0) "The synthetic's [bess.hairLength] [bess.hairColor] hair is done in [bessHairStyle].}{else: The synthetic has a smooth, silvery scalp, completely free of hair. {if (bess.ears != 0 || bess.horns != 0) "[bess.HisHer] {if (bess.ears != 0) "[bess.ears]"}{if (bess.ears != 0 && bess.horns != 0) "and"}{if (bess.horns = 0) "bess.horns]"} compliment her features."}
-
-[bess.HeShe] is currently wearing a [bess.outfit] that accentuates [bess.hisHer] [bess.chest] and [bess.tone] body. {if (bess.wings != 0 || bess.tail != 0) "[bess.HisHer] {if (bess.wings != 0) "[bess.tail] stick proudly out [bess.hisHer] back"}{if (bess.ears != 0 && bess.horns != 0) "and [bess.hisHer]"}{if (bess.tails = 0) "[bess.hisHer] [bess.tails] flick noticeably behind [bess.himHer]"}."} {if (bessKatana = true) "At [bess.himsHer] right side is a katana, secure in its glazed sheath."} 
-
-{if (pc.armor = Top&Skirt, Sleepshirt, Maid, Nurse, Schoolgirl, GothLolita, TankMini) "Every time the hem of [bess.hisHer] outfit rides up, you get a good look at [bess.hisHer] {[bess.underGarment]/[bess.pussy].} {if bess.hasCock = true: "[bess.HisHer] [bess.cock] {if {bess.cockSize <= 10) "{clothes:make{s} a visible bulge in [bess.hisHer] [bess.underGarment]/else:hang{s} out proudly between [bess.hisHer] [bess.legs]}}{else: "{clothes: cannot be contained by [bess.hisHer] [bess.underGarment} and dangle{s} out defiantly}{else{dangle{s} down proudly between [bess.hisHer] [bess.thighs]}.
-
-{if (bess.belly >= 10 || bess.armor = null) "[bess.HisHer] [bess.bellyFullDesc] {if (bess.armor = null ) "is clearly visible {bess.wearingAnyUnderwear: "through [bess.hisHer] undergarments"}}{if bess.belly >= 10 && bess.armor != null) "[bess.HisHer] [bess.bellyFullDesc] pushes pointedly against the insides of [bess.hisHer] [bess.armor] and is visibly straining the fabric"}. 
-// Full Desc just means ensuring there's at least one or two adjectives with a noun.
-
-
-
-[Appearance] [Discuss] [Sex] [Functions] [Accessories] 
-[Return]
-
-// Functions, Accessories, and Sex are locked off when bessAffection is below 25 and bessFriend = true, or bessAffection is below 30 and bessLover = true.
-
-
-
-Appearance
-
-As you look at [Bess][bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. {if bess.gender = female "[bess.HisHer] cheeks flush"}{else //male: "politely coughs"} as you look [bess.himHer] over from head to toe.
-
-{Bald True: "[Bess]’s head is hairless. All the lines on [bess.hisHer] scalp, usually hidden by artificial locks, are now clearly exposed"/Else (GotHair) "The synthetic's [bess.hairColor] [bess.hairLength] hair is in a [bessHairStyle]"}. [bess.HisHer] [bess.eyeColor] eyes, framed by {Female: thick black lashes/Male: brooding brows} [if (bessGlasses = true) "as well as the glasses [bess.heShe] is currently wearing"], are even more detailed and faceted than those of a human. 
-
-[if (bess.horns != 0) "On top of [bess.hisHer] head are [bess.horns]."] [if (bess.ears != 0) "[bess.HeShe] has a pair of [bess.ears]."] [if (bess.wings != 0) "Behind [bess.hisHer] back is a pair of [bess.wings]"] [if (bess.tails != 0) "Above [bess.hisHer] rump, [bess.hisHer] [bess.tails] {is/are} sticking out."]
-
-if (bessCockTail = True)
-{
-[Bess]’s \"JoyCord\" is [if (bess.tails != 0) "also"] protruding from just above [bess.hisHer] rear, long and silvery just like [bess.hisHer] body. The tip looks exactly like a thick, synthetic tail-cock. The shaft looks quite bumpy and clearly designed for pleasure.
-}
-
-[bess.HisHer] silver skinned body is segmented by lines, clearly identifying [bess.himHer] as a mechanical being despite its otherwise organic appearance. [bess.HeShe] has a{n} [bess.chestAdjective] [bess.chestNoun] capped with [bess.nipples]. Further down, your eyes are drawn to [bess.hisHer] [bess.hipsAdjective] [bess.hipsNoun] and [bess.assAdjective] [bess.assNoun]. 
-
-if (bess.hasPussy = true)
-{
-[Bess]'s mound is completely hairless and utterly smooth. [bess.HisHer] pussy lips are rather plump and cushony, designed to squeeze and pad a cock perfectly - not to mention extremely tasty. 
-}
-
-if (bess.hasCock = true)
-{
-{if (bess.hasPussy = true) "Above [bess.hisHer] synthetic snatch, "}[Bess] has a [bess.cock] with a [bess.cockHead] and [bess.cockSheathe]. {if (bess.balls != null) "[bess.HerHis] [bess.balls] are contained in a [bess.sack]."}
-}
-
-if (bessCumDump = true)
-{
-Hot, sticky cum is leaking down [bess.hisHer] thighs from [bess.hisHer] well-used {if (bess.hasPussy) "pussy and"} ass. [Bess.HisHer] lips are smeared with fresh spunk collected from the nearby natives. [Bess.HisHer] eyes are unfocused, probably from being used day in and out as a synthetic cum dumpster.
-}
-
-{if (bessBelly = 1) "[Bess] currently has a [bess.bellyFullDesc}. {If clothes: [bess.HeShe] is currently wearing [pc.gear].}
-
-if (bessKatana = true)
-{
-At [Bess]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [Bess] herself.
-}
-
-
-
-
-Discuss
+/*Discuss
 
 https://docs.google.com/document/d/14h3a5TBxSU4x_SrFoKSXVehf66LOZ8XkNoobuaZNJ6k/edit?usp=sharing
 ( ^ See for the contents of the discussion tree)
@@ -866,7 +936,7 @@ else
 {
 <i>\"You want to change my designated name? What will my new name be, [bNamePC]?\"</i> [Bess] definitely doesn't seem adverse to the idea.
 
-// Enter new name that changes [Bess] string value. If bess.friend = true, cannot change their  name.
+// Enter new name that changes [Bess] string value. If bess.friend = true, cannot change their name.
 
 After being renamed
 
@@ -944,7 +1014,7 @@ Hair Length
 
 None (0)
 Short (2)
-Moderately Long  (8) - default.
+Moderately Long (8) - default.
 Shoulder Length (18)
 Ass Length (40)
 Floor Length (60)
@@ -1004,7 +1074,7 @@ Change Hair Length Message
 
 When [bess.heShe] comes back, [bess.hisHer] [bess.hairColor] [bess.hairLength] hair is done in [bessHairStyle]. [Bess.HeShe] seems quite happy with the change of pace.
 
-<i>\"Interesting look, don't you think?\"</i>  [Bess] touches [bess.hisHer] hair. [Bess.HeShe] sure spent [bess.hisHer] time on it! 
+<i>\"Interesting look, don't you think?\"</i> [Bess] touches [bess.hisHer] hair. [Bess.HeShe] sure spent [bess.hisHer] time on it! 
 
 <b>[Bess]'s hair is now styled in [bessHairStyle]!</b>
 
@@ -1053,8 +1123,8 @@ Breast Size
 
 //Menu Options alter bess.chest value.
 
-Flat  (0)
-A Cup  (1)
+Flat (0)
+A Cup (1)
 B Cup. (2)
 C Cup (3)
 D Cup (4) 
@@ -1089,7 +1159,7 @@ There is a sound like liquid sloshing about and {suddenly [bess.hisHer] silvery 
 
 // if (pc.hasCock = true && pc.frontGenitals = true)
 {
-You're so turned on by [bess.hisHer] needy, pleasured wiggling against your groin that you {pull off your [pc.lowerGarments]} and slip [pc.oneCock] into [bess.hisHer] {if (bess.hasPussy) ""[bess.pussyLight]"}{else: "[bess.assLight]"} from behind. As you penetrate [bess.himHer] [Bess.heShe] excitedly clenching around your length your thrusting length,  letting it easily slide inside of [bess.himHer]. 
+You're so turned on by [bess.hisHer] needy, pleasured wiggling against your groin that you {pull off your [pc.lowerGarments]} and slip [pc.oneCock] into [bess.hisHer] {if (bess.hasPussy) ""[bess.pussyLight]"}{else: "[bess.assLight]"} from behind. As you penetrate [bess.himHer] [Bess.heShe] excitedly clenching around your length your thrusting length, letting it easily slide inside of [bess.himHer]. 
 
 You grind and rub lewdly against each other until you both reach a fevered peak, spurting your [pc.cumLight] deep inside of [bess.hisHer] {[bess.pussyLight]/[bess.assLight] as it clenches and spasms around you. [bess.HeShe] immediately collects your {limited/liberal} loads of spunk and transforms it into [bess.hisHer] synthetic milk, recycling it to swell out [bess.hisHer] orgasming udders.}
 }
@@ -1159,7 +1229,7 @@ Nipple change
 
 <b>Bess now has a pair of [bess.nipplesNounSimple]!</b>
 
-  
+ 
 
 
 Lactation
@@ -1185,7 +1255,7 @@ Cupping one of [bess.hisHer] [bess.breastLight] in one hand, [Bess] begins to ge
 
 The {[bess.hairColor] haired/bald synthetic} seems keenly aware of your eyes on [bess.hisHer] every action, lewdly watching [bess.himHer] massage [bess.hisHer] {tiny/modest/ample/mountainous} mounds.
 
-<i>\"Kind of feels weird having you watch me like this. I feel a bit tingly...\"</i> [Bess] remarks as [bess.heShe] touches  [bess.himHer]self in front of you. You remark that [bess.heShe] is spending a lot of time on one breast, and {male android/android girl} huffs.
+<i>\"Kind of feels weird having you watch me like this. I feel a bit tingly...\"</i> [Bess] remarks as [bess.heShe] touches [bess.himHer]self in front of you. You remark that [bess.heShe] is spending a lot of time on one breast, and {male android/android girl} huffs.
 
 <i>\"Well of course, I've only got two hands!\"</i> That's an easily solved problem. You move up behind [bess.himHer] and reach around, gently caressing her other [bess.breastNoun]. 
 
@@ -1207,7 +1277,7 @@ Now that she's started lactating, [Bess] turns to you with a lusty look in [bess
 
 Dropping to [bess.hisHer] knees in front of you, [Bess] continues to stroke [bess.hisHer] freshly lactating tits, caressing [bess.hisHer] [bess.nipples] with [bess.hisHer] fingers. At the same time, [bess.heShe] {takes [pc.oneCock] into [bess.hisHer] mouth, sucking on it <i>long</i> and <i>hard</i>}{buries [bess.hisHer] face in your [bess.pussyNounSimple], sticking [bess.hisHer] tongue and lapping hungrily inside.}
 
-Taken aback by [bess.hisHer] boldness, you reel in the sensations of [bess.himHer] going down on your {achingly erect cock/thoroughly wet gash}.  [Bess.HeShe] passionately {sucks you off/laps at your folds} as [bess.heShe] massages and squeezes [bess.hisHer] freshly drooling udders, spurting [bess.hisHer] [bess.milk] on the ground beneath you.
+Taken aback by [bess.hisHer] boldness, you reel in the sensations of [bess.himHer] going down on your {achingly erect cock/thoroughly wet gash}. [Bess.HeShe] passionately {sucks you off/laps at your folds} as [bess.heShe] massages and squeezes [bess.hisHer] freshly drooling udders, spurting [bess.hisHer] [bess.milk] on the ground beneath you.
 
 if (pc.hasCock)
 {
@@ -1699,7 +1769,7 @@ OR
 
 Product Catalogue
 
-You download the latest JoyCo product catalogue for {Bess-13/Ben-14_ units into one of the ship's terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen.  
+You download the latest JoyCo product catalogue for {Bess-13/Ben-14_ units into one of the ship's terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen. 
 
 What are you interested in purchasing?
 
@@ -1719,15 +1789,15 @@ Accessory Sets
 What set would you like to purchase?
 
 Equine set (Allows Bess to set Equine Tail and Ears) - 250 Creds
-Bovine Set (Allows Bess to set Bovine Tail, Ears and Horns)  - 250 Creds
-Canine Set (Allows Bess to set Canine Tail and Ears)  - 250 Creds
-Feline Set (Allows Bess to set Feline Tail and Ears)  - 250 Creds
-Vulpine Set (Allows Bess to set Vulpine Tail and Ears)  - 250 Creds
+Bovine Set (Allows Bess to set Bovine Tail, Ears and Horns) - 250 Creds
+Canine Set (Allows Bess to set Canine Tail and Ears) - 250 Creds
+Feline Set (Allows Bess to set Feline Tail and Ears) - 250 Creds
+Vulpine Set (Allows Bess to set Vulpine Tail and Ears) - 250 Creds
 Bunny Set (Allows Bess to set Leporine Tail, Ears) - 250 Creds
-Bee Set (Allows Bess to set Bee Wings)  - 250 Creds
+Bee Set (Allows Bess to set Bee Wings) - 250 Creds
 Draconic Set (Allows Bess to set Draconic Ears, Tail, Wings and Horns). - 500 Creds
 Demonic Set (Allows Bess to set Demonic Ears, Tail, Wings and Horns) - 500 Creds
-Shark Set (Allows Bess to set Shark Ears and Tail)  - 250 Creds
+Shark Set (Allows Bess to set Shark Ears and Tail) - 250 Creds
 Deer Set (Allows Bess to set Deer Ears, Tail and Horns) - 250 Creds
 Mouse Set (Allows Bess to set Mouse Ears and Tail) - 250 Creds
 Angel Set (Allows Bess to set Angel/White Feathered Wings) - 500 Creds
@@ -1737,7 +1807,7 @@ Items
 What JoyCo product would you like to purchase for [Bess]?
 
 Katana (Allows Bess to equip Katana in Accessory Menu) - 1000 Creds
-Glasses (Allows Bess to equip Glasses in Accessory Menu)  - 500 Creds
+Glasses (Allows Bess to equip Glasses in Accessory Menu) - 500 Creds
 
 
 Cocks
@@ -1897,7 +1967,7 @@ Class Name: BusinessClothes
 ShortName: Business Clothes
 LongName: business clothes
 thisDescription: a set of high-powered business clothes
-thisTooltip: These business clothes are perfect for any high-powered corporate function. They're also perfect for someone aiming to make their way up the food chain.  
+thisTooltip: These business clothes are perfect for any high-powered corporate function. They're also perfect for someone aiming to make their way up the food chain. 
 Librarian Outfit
 Class Name: Librarian
 ShortName: Librarian Outfit
@@ -1910,7 +1980,7 @@ Class Name: LatexBodysuit
 ShortName: Latex Bodysuit
 LongName: latex bodysuit
 thisDescription: a shiny, full-body latex bodysuit
-thisTooltip: This snug fitting full-body latex bodysuit leaves nothing up to the imagination. It is also very shiny. There is a zipper starting at the neck and ending just above the crotch.  
+thisTooltip: This snug fitting full-body latex bodysuit leaves nothing up to the imagination. It is also very shiny. There is a zipper starting at the neck and ending just above the crotch. 
 
 China Dress
 Class Name: ChinaDress
@@ -1924,7 +1994,7 @@ Class Name: Kimono
 ShortName: Kimono
 LongName: kimono
 thisDescription: an elegantly designed Japanese kimono 
-thisTooltip: This kimono is designed of fine silk with brilliant patterns adorning every inch of fabric. It is worn with a specially designed waist sash or "obi".  
+thisTooltip: This kimono is designed of fine silk with brilliant patterns adorning every inch of fabric. It is worn with a specially designed waist sash or "obi". 
 
 Short Kimono
 // Useful for those who want a kimono plus some push up skirt & sex action.
@@ -1932,7 +2002,7 @@ Class Name: ShortKimono
 ShortName: Short Kimono
 LongName: short kimono
 thisDescription: a short silk kimono
-thisTooltip: This is a fetishized kimono made of silk that only reaches down to the mid thigh. It is worn with a specially designed waist sash or "obi".  Often worn by female ninjas. 
+thisTooltip: This is a fetishized kimono made of silk that only reaches down to the mid thigh. It is worn with a specially designed waist sash or "obi". Often worn by female ninjas. 
 
 Maid Outfit
 Class Name: Maid
@@ -1946,7 +2016,7 @@ Class Name: Nurse
 ShortName: Nurse Outfit
 LongName: nurse outfit
 thisDescription: A tight fitting nurse outfit
-thisTooltip: A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse's cap, stethoscope, and frilly stockings.  
+thisTooltip: A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse's cap, stethoscope, and frilly stockings. 
 
 Miko Outfit
 Class Name: Miko
@@ -1994,7 +2064,7 @@ Class Name: BunnyOutfit
 ShortName: Bunny Outfit
 LongName: bunny outfit
 thisDescription: a one-piece bunny outfit
-thisTooltip: This is a "HumpHard Bunny" outfit. It's not a full bunny outfit - there's only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links.  Wear it and be a HumpHard Bunny!
+thisTooltip: This is a "HumpHard Bunny" outfit. It's not a full bunny outfit - there's only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links. Wear it and be a HumpHard Bunny!
 
 Battle Ballgown
 Class Name: BattleBallgown
@@ -2015,7 +2085,7 @@ Class Name: SpacePirate
 ShortName: Space Pirate Outfit
 LongName: space pirate outfitt
 thisDescription: a space pirate outfit made mostly of leather
-thisTooltip: This is a space pirate outfit consisting of a lot of tight black leather. There's also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause.  
+thisTooltip: This is a space pirate outfit consisting of a lot of tight black leather. There's also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause. 
 
 Goth-Lolita Outfit
 Class Name: GothLolita	
@@ -2046,7 +2116,7 @@ Class Name: FrillyBra
 ShortName: Frilly Bra
 LongName: frilly bra
 thisDescription: frilly bra
-thisTooltip: This frilly bra is made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn.  
+thisTooltip: This frilly bra is made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn. 
 
 Girly Bra
 
@@ -2057,7 +2127,7 @@ thisDescription: girly bra
 thisTooltip: You couldn't get a bra much more girly than this. It's pink, lace frilled, and littered with cute little bows.
 
 White Bra
-// Aware that colors are not usually mentioned, but the "white panties" and "black lace underwear" are almost sub-fetishes of underwear fetishism. I know because it's my kink and I'm trying to slip it in here.  :)
+// Aware that colors are not usually mentioned, but the "white panties" and "black lace underwear" are almost sub-fetishes of underwear fetishism. I know because it's my kink and I'm trying to slip it in here. :)
 
 Class Name: WhiteBra
 ShortName: White Bra
@@ -2113,7 +2183,7 @@ Class Name: FrillyPanties
 ShortName: Frilly Panties
 LongName: frilly panties
 thisDescription: frilly panties
-thisTooltip: These frilly panties are made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn.  
+thisTooltip: These frilly panties are made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn. 
 
 Girly Panties
 
@@ -2272,8 +2342,8 @@ Where different Bess modification values are listed for quick reference.
 
 bess.chest
 
-Flat  (0) - Default if Bess-14
-A Cup  (1)
+Flat (0) - Default if Bess-14
+A Cup (1)
 B Cup. (2)
 C Cup (3) - Default if Bess-13
 D Cup (4) 
@@ -2430,7 +2500,7 @@ bess.hairLength
 
 None (0)
 Short (2) - Default for Ben-14
-Moderately Long  (8) - default for Bess-13
+Moderately Long (8) - default for Bess-13
 Shoulder Length (18)
 Ass Length (40)
 Floor Length (60)
