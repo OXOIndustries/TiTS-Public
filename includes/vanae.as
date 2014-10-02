@@ -24,13 +24,13 @@ public function encounterVanae(isHuntress:Boolean):void
 	{
 		CodexManager.unlockEntry("Vanae");
 
-		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
+		output("As you move through the jungle, your codex suddenly begins to beep out a warning. <i>“Vanae life-signs detected! Collecting all known extranet data on this species...”</i>");
 		
 		output("\n\nYou look around you and see nothing. Is the codex malfunctioning? The device is equipped with short-range sensors, but there’s nothing as far as you can see.");
 		
 		output("\n\nYou ready your [pc.weapon], your [pc.eyes] carefully scanning your surroundings...");
 		
-		output("\n\n“<i>Data Retrieved! The vanae are an all-female race that can change their skin to match the color of their surroundings. They are also tree-dwelling, "+ pc.mf("Master", "Mistress") +" Steele,</i>” your codex informs you, and just in time. ");
+		output("\n\n<i>“Data Retrieved! The vanae are an all-female race that can change their skin to match the color of their surroundings. They are also tree-dwelling, "+ pc.mf("Master", "Mistress") +" Steele,”</i> your codex informs you, and just in time. ");
 
 		// IF VANAE HUNTRESS
 		if (isHuntress)
@@ -39,9 +39,9 @@ public function encounterVanae(isHuntress:Boolean):void
 			
 			output("\n\nIt seems she was trying to hit you with the blunt end though - was she trying to knock you out?");
 			
-			output("\n\n“<i>... Whoops, I missed. You’re no ordinary");
+			output("\n\n<i>“... Whoops, I missed. You’re no ordinary");
 			if(pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
-			else output(" off-worlder</i>” the vanae woman exclaims. She looks fairly humanoid, except for her tentacle hair, tail, and organic skirt. Her tentacles are violet colored and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing violet swirls and patterns, just like her hair.");
+			else output(" off-worlder”</i> the vanae woman exclaims. She looks fairly humanoid, except for her tentacle hair, tail, and organic skirt. Her tentacles are violet colored and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing violet swirls and patterns, just like her hair.");
 			
 			// Please make sure the nipples parser always calls up the fact she’s lactating, if it doesn’t already. Couldn’t tell from the GIT info.
 			output("\n\nThe other thing that immediately captures your attention are her sizable [vanaeHuntress.breastCupSize]s and [vanaeHuntress.milkyNipples]. She seems to be lactating a transparent violet liquid that is drooling down her [vanaeHuntress.breasts]. As you check her out, you can see her webbed hands gripping the handle of her spear.");
@@ -53,13 +53,13 @@ public function encounterVanae(isHuntress:Boolean):void
 		{
 			output("\n\nYou look up and see someone about to land on you! You dive out of the way and quickly turn to look at your opponent. They hit the ground where you were seconds before, stumbling off balance and crashing spectacularly. ");
 			
-			output("\n\n“<i>Owww!</i>” You hear your attacker cry out pitifully. When she picks herself up, rubbing her head, you get a good look at her. She looks like a young humanoid woman, except for her tentacle hair, tail, and organic skirt. Her tendrils are pink and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing pink swirls and patterns, just like her hair. ");
+			output("\n\n<i>“Owww!”</i> You hear your attacker cry out pitifully. When she picks herself up, rubbing her head, you get a good look at her. She looks like a young humanoid woman, except for her tentacle hair, tail, and organic skirt. Her tendrils are pink and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing pink swirls and patterns, just like her hair. ");
 			
 			output("\n\nThe other thing that immediately captures your attention are her small [vanaeMaiden.breastCupSize]s and [vanaeMaiden.milkyNipples]. She seems to be lactating a transparent pink liquid that is drooling down her [vanaeMaiden.breasts]. ");
 			
 			output("\n\nAs you check her out, you also notice she’s holding a pointed spear in her webbed hands. They are visibly trembling - she doesn’t look terribly experienced at this kind of thing.");
 			
-			output("\n\n“<i>... Um, hold it right there! Don’t make me hurt you, okay?”</i> the pink-haired alien pleads. You realise she was trying to hit you with the blunt end. Does she really want to fight?");
+			output("\n\n<i>“... Um, hold it right there! Don’t make me hurt you, okay?”</i> the pink-haired alien pleads. You realise she was trying to hit you with the blunt end. Does she really want to fight?");
 			
 			output("\n\nYou also notice her eyes are firmly shut and have been this whole time. Is she planning to fight you blind? ");
 		}
@@ -67,17 +67,17 @@ public function encounterVanae(isHuntress:Boolean):void
 		// MERGE
 		output("\n\nYour codex clues you in to what is going on.");
 		
-		output("\n\n“<i>Vanae have vestigial eyes, "+ pc.mf("Master", "Mistress") +" Steele, and exceptionally keen hearing. You’ll also want to avoid the liquid she sprays from her breasts; it incapacitates and arouses on contact.</i>”");
+		output("\n\n<i>“Vanae have vestigial eyes, "+ pc.mf("Master", "Mistress") +" Steele, and exceptionally keen hearing. You’ll also want to avoid the liquid she sprays from her breasts; it incapacitates and arouses on contact.”</i>");
 		
 		output("\n\nBest. Present. Ever.");
 
 		// IF VANAE HUNTRESS
 		if (isHuntress)
 		{
-			output("\n\nMeanwhile, the vanae huntress looks a bit huffy. “<i>... I can't believe I messed up my first strike. But I won't make the same mistake twice,");
+			output("\n\nMeanwhile, the vanae huntress looks a bit huffy. <i>“... I can't believe I messed up my first strike. But I won't make the same mistake twice,");
 			if (pc.hasCock()) output(" your cum is mine");
 			else output(" your girl-cum is mine");
-			output("!</i>”"); 
+			output("!”</i>"); 
 
 			output("\n\nWait, what?! She's after your");
 			if (pc.hasCock()) output(" [pc.cumNoun]?");
@@ -88,7 +88,7 @@ public function encounterVanae(isHuntress:Boolean):void
 		// ELSE IF MAIDEN VANAE
 		else
 		{
-			output("\n\n“<i>Your... your hip talked!</i>” The vanae maiden squeaks out in surprise. The Codex wasn’t joking about her keen hearing. “<i>... Listen, you. " + pc.mf("I won’t mess up my first hunt - I just won’t - so you’re going to take my virginity and like it - understand?", "You’re going to be my first, so I hope you like girls!") + "</i>”");
+			output("\n\n<i>“Your... your hip talked!”</i> The vanae maiden squeaks out in surprise. The Codex wasn’t joking about her keen hearing. <i>“... Listen, you. " + pc.mf("I won’t mess up my first hunt - I just won’t - so you’re going to take my virginity and like it - understand?", "You’re going to be my first, so I hope you like girls!") + "”</i>");
 			
 			output("\n\nWhaaaaaaat?! You barely have time to register as she swings her spear. Clearly, she’s regained her composure.");
 		}
@@ -96,7 +96,7 @@ public function encounterVanae(isHuntress:Boolean):void
 	// REPEAT SCENE
 	else
 	{
-		output("As you move through the jungle, your Codex beeps out a warning. “<i>Vanae life-signs detected!</i>”");
+		output("As you move through the jungle, your Codex beeps out a warning. <i>“Vanae life-signs detected!”</i>");
 
 		output("\n\nYou instinctively leap back and ready your");
 		if (!(pc.rangedWeapon is EmptySlot)) output(" [pc.rangedWeapon]");
@@ -108,10 +108,10 @@ public function encounterVanae(isHuntress:Boolean):void
 		{
 			output(" You're glad you moved first, because a vanae huntress lands right where you were standing with a thud. She just came out of nowhere!");
 
-			output("\n\n“<i>I missed? You're no ordinary");
+			output("\n\n<i>“I missed? You're no ordinary");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 			else output(" off-worlder");
-			output(".</i>” She looks completely perplexed at your ability to sense her beforehand. You're pretty sure she wouldn't get it even if you explained it to her.");
+			output(".”</i> She looks completely perplexed at your ability to sense her beforehand. You're pretty sure she wouldn't get it even if you explained it to her.");
 
 			output("\n\nThe vanae huntress that attacked you is sporting a pair of sizable [vanaeHuntress.breastCupSize]s. She seems to be an experienced " + pc.mf("", "fem-") + "cum hunter.");
 		}
@@ -120,9 +120,9 @@ public function encounterVanae(isHuntress:Boolean):void
 		{
 			output(" You're glad you moved first, because a vanae maiden lands right where you were standing. She hits the ground awkwardly, toppling over and very nearly braining herself.");
 
-			output("\n\n“<i>Owww! How’d you see me coming? That’s not fair!</i>” You hear your attacker cry out pitifully. She seems perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
+			output("\n\n<i>“Owww! How’d you see me coming? That’s not fair!”</i> You hear your attacker cry out pitifully. She seems perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
 
-			output("\n\nThe pink-haired vanae quickly pulls herself to her feet, levelling her spear at you. “<i>S-stop right there, you! You're going to " + pc.mf("take my virginity - and you better be gentle!", "be my first - so I hope you like girls!") + "</i>”");
+			output("\n\nThe pink-haired vanae quickly pulls herself to her feet, levelling her spear at you. <i>“S-stop right there, you! You're going to " + pc.mf("take my virginity - and you better be gentle!", "be my first - so I hope you like girls!") + "”</i>");
 
 			output("\n\nThe vanae maiden that attacked you is sporting a pair of [vanaeMaiden.breastCupSize]s. This seems to be her first time hunting for a mate.");
 		}
@@ -360,8 +360,8 @@ function vanaeWaitWhilstGrappled():void
 {
 	// [Don't Struggle] 
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
-	if (foes[0] is MaidenVanae) output(" “<i>Nice! Now just lie back and relax, and I promise we'll have good time - okay?</i>”");
-	else output(" “<i>...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...</i>”");
+	if (foes[0] is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have good time - okay?”</i>");
+	else output(" <i>“...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...”</i>");
 	pc.lustDamage(16 + rand(8));
 }
 
@@ -370,8 +370,8 @@ function vanaeEscapeGrapple():void
 	// [Successful Escape]: 
 	output("You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
 
-	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. “<i>By the Sky Mother; you're so slippery! You better be worth all the effort.</i>”");
-	else output(" The blind huntress picks up her spear and stomps her foot. “<i>Arghh, I was so close! Was I really that bad?</i>”");
+	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. <i>“By the Sky Mother; you're so slippery! You better be worth all the effort.”</i>");
+	else output(" The blind huntress picks up her spear and stomps her foot. <i>“Arghh, I was so close! Was I really that bad?”</i>");
 	
 	pc.removeStatusEffect("Trip");
 	pc.removeStatusEffect("Stunned");
@@ -582,16 +582,16 @@ function vanaePCVictory():void
 
 		if (foes[0] is HuntressVanae)
 		{
-			output("\n\n“<i>W-what manner of");
+			output("\n\n<i>“W-what manner of");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 			else output(" creature");
-			output(" are you? I've never failed at an ambush before!</i>” the vanae huntress exclaims. Her spear is lying far away from her now. She's completely at your mercy...");
+			output(" are you? I've never failed at an ambush before!”</i> the vanae huntress exclaims. Her spear is lying far away from her now. She's completely at your mercy...");
 
-			output("\n\n“<i>... I guess that's that, then. You're going to kill me, right? Go right ahead. I'm ready.</i>”");
+			output("\n\n<i>“... I guess that's that, then. You're going to kill me, right? Go right ahead. I'm ready.”</i>");
 		}
 		else
 		{
-			output("\n\n“<i>I-I-I lost! I can't believe it, I can't believe this is happening. I failed my first hunt, and now I'm going to die!</i>” the vanae maiden babbles, clearly in a state of panic. She then curls up into a ball and begins to rock gently back and forth.");
+			output("\n\n<i>“I-I-I lost! I can't believe it, I can't believe this is happening. I failed my first hunt, and now I'm going to die!”</i> the vanae maiden babbles, clearly in a state of panic. She then curls up into a ball and begins to rock gently back and forth.");
 
 			output("\n\nHer spear is lying far away from her now. She's completely at your mercy. What will you do with her?");
 		}
@@ -602,15 +602,15 @@ function vanaePCVictory():void
 		{
 			output("\n\nThe busty huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
-			output("\n\n“<i>Oh sweet Sky Mother, I can't take it any longer");
+			output("\n\n<i>“Oh sweet Sky Mother, I can't take it any longer");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don't care if you are a [pc.race]");
-			output(". Please, just fuck me!</i>” she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is.");
+			output(". Please, just fuck me!”</i> she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is.");
 		}
 		else
 		{
 			output("\n\nThe virgin huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
-			output("\n\n“<i>Oh sweet Sky Mother, I've never been so horny in all my life! Please, can you fuck me? I don't care where!</i>” she whimpers, madly fingering her unsullied snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is. “<i>... Please?</i>”");
+			output("\n\n<i>“Oh sweet Sky Mother, I've never been so horny in all my life! Please, can you fuck me? I don't care where!”</i> she whimpers, madly fingering her unsullied snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is. <i>“... Please?”</i>");
 		}
 
 		output("\n\nShe's so worked up right now, you're pretty sure you could get her to do just about anything.");
@@ -764,18 +764,18 @@ function vanaeVictorySexIntro(scene:String):void
 			// IF VANAE HUNTRESS
 			if (foes[0] is HuntressVanae)
 			{
-				output("\n\n“<i>Y-you want to breed with me willingly, after I tried to attack you? Um... sure!</i>” Her cheeks flush. Suddenly she's acting quite coy. “<i>...");
+				output("\n\n<i>“Y-you want to breed with me willingly, after I tried to attack you? Um... sure!”</i> Her cheeks flush. Suddenly she's acting quite coy. <i>“...");
 				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You're really strange, for a [pc.race]. You're quite different from others of your kind");
 				else output(" You really aren't from around here, are you? I've never met an off-worlder like you before");
-				output(".</i>”");
+				output(".”</i>");
 			}
 			//IF VANAE MAIDEN
 			else
 			{
-				output("\n\n“<i>Y-you're serious? Really? You're not just messing with me?</i>” The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. “<i>... You're not a normal");
+				output("\n\n<i>“Y-you're serious? Really? You're not just messing with me?”</i> The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. <i>“... You're not a normal");
 				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 				else output(" off-worlder");
-				output(", are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something.</i>”");
+				output(", are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something.”</i>");
 			}
 		}
 
@@ -799,12 +799,12 @@ function vanaeVictorySexIntro(scene:String):void
 			
 			// IF VANAE HUNTRESS
 			{
-				output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?</i>”");
+				output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. <i>“Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?”</i>");
 			}
 
 			// IF VANAE MAIDEN
 			{
-				output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you're serious? You're not going to eat me? What would you like me to do, then?</i>”");
+				output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. <i>“Y-you're serious? You're not going to eat me? What would you like me to do, then?”</i>");
 			}
 		}
 	}
@@ -900,7 +900,7 @@ function vanaeVictorySexIntro(scene:String):void
 		// if Vanae Maiden & not 69 Cunni & not lust loss
 		if (foes[0] is MaidenVanae && scene != "69cunni")
 		{
-			output("\n\n“<i>I’ve never done that sort of thing before. So be patient with me, okay?</i>” she meekly requests, looking you up and down. She seems uncertain how to proceed, hindered by her lack of experience. ");
+			output("\n\n<i>“I’ve never done that sort of thing before. So be patient with me, okay?”</i> she meekly requests, looking you up and down. She seems uncertain how to proceed, hindered by her lack of experience. ");
 		}
 	}
 
@@ -908,7 +908,7 @@ function vanaeVictorySexIntro(scene:String):void
 
 	if (!pc.isNude())
 	{
-		output("\n\n“<i>Um, you're wearing clothes... so I should...</i>” Her words trail off as you begin to strip off your [pc.gear], causing her to lose her train of thought. ");
+		output("\n\n<i>“Um, you're wearing clothes... so I should...”</i> Her words trail off as you begin to strip off your [pc.gear], causing her to lose her train of thought. ");
 		//if (!(pc.armor is EmptySlot) || !(pc.upperUndergarment is EmptySlot)) output(" You expose yourself to her, momentarily holding your breath, waiting for her response. At the sight of your bare [pc.chest], her breathing grows shorter, heavier, and you can feel the warmth of her breath on your half-naked body.");
 		if(pc.isChestGarbed())
 		{
@@ -961,27 +961,27 @@ function vanaeMaidenTakeVirginity():void
 
 		output("Getting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she’s ever felt a cock, let alone one like yours.");
 
-		output(" “<i>...");
+		output(" <i>“...");
 		if (pc.cocks[selCock].cLength() <= 5) output(" It's smaller than I thought");
 		else if (pc.cocks[selCock].cLength() >= 10) output(" It feels so large");
 		else output(" It feels so soft");
-		output(" and so strangely shaped! I've never touched a male sex organ before.</i>” Her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. “<i>... It moves?! Mine doesn't do that!</i>”");
+		output(" and so strangely shaped! I've never touched a male sex organ before.”</i> Her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. <i>“... It moves?! Mine doesn't do that!”</i>");
 
 		output("\n\nYou tell her that it's perfectly normal, and she seems to settle down. She then begins to position herself above your [pc.cock " + selCock + "]. You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.pussyNoun] and [monster.clits].");
 
 		output("\n\nSlowly crouching down on top of you, she grabs your [pc.cock " + selCock +"] with one hand and rubs it against her moist, virginal slit. Since she's rushed to put you inside of her, you're not hard enough, and your [pc.cockHead " + selCock + "] keeps refusing to press inside of her entrance.");
 
-		output("\n\n“<i>Um, it's not going in...?</i>” the virgin huntress questions you, clearly not getting the problem. After you explain you need to be more aroused first, she flushes harder. “<i>Oh! You're not aroused? Don't you find me attractive enough? What if I do this?</i>”");
+		output("\n\n<i>“Um, it's not going in...?”</i> the virgin huntress questions you, clearly not getting the problem. After you explain you need to be more aroused first, she flushes harder. <i>“Oh! You're not aroused? Don't you find me attractive enough? What if I do this?”</i>");
 
 		output("\n\nShe leans forward and presses her [monster.breasts] against your [pc.face]. Her [monster.nipples] drag across the [pc.skinFurScales] of your cheek as she tries her hand at seduction. The floral aroma of her [monster.skin] fills your nostrils, innocently accompanied by the sweet scent of her arousal.");
 
 		output("\n\nHer silky unblemished skin and awkward attempts at arousal are cute and still have the desired effect, [pc.eachCock] becoming steadily more rigid. The amateur huntress lets out a delighted noise as you jerk and stiffen between her webbed fingers, her [monster.breasts] pressing eagerly against you.");
 
-		output("\n\n“<i>... Good! I knew I could be sexy, at least if I really tried.</i>” The young woman smiles triumphantly, your erect [pc.cockNoun " + selCock + "] gripped in her slender fingers. “<i>So... this bit I'm not so sure about.");
+		output("\n\n<i>“... Good! I knew I could be sexy, at least if I really tried.”</i> The young woman smiles triumphantly, your erect [pc.cockNoun " + selCock + "] gripped in her slender fingers. <i>“So... this bit I'm not so sure about.");
 		if (pc.cocks[selCock].cLength() <= 5) output(" But you're small enough, it should be okay...");
 		else if (pc.cocks[selCock].cLength() >= 10) output(" You're pretty big, I'm not sure you'll even fit...");
 		else output(" Be gentle, okay?");
-		output("</i>”");
+		output("”</i>");
 
 		output("\n\n");
 	}
@@ -1008,14 +1008,14 @@ function vanaeMaidenTakeVirginity():void
 	else output(" You know she's going to feel pain either way, so you don't screw around. With a single thrust you claim her womanhood, causing her to let out a sharp cry");
 	output("."); 
 
-	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her arms around your neck. “<i>It's okay - keep going. I can take it.</i>”");
+	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her arms around your neck. <i>“It's okay - keep going. I can take it.”</i>");
 	if (!pc.isAss()) output(" At her insistence, you");
 	else output(" You");
 	output(" do just that, sliding your [pc.cock " + selCock + "] deeper into her virgin [monster.pussyNoun]. Her untraversed insides part around your swelling cock and mold freshly to your [pc.cockShape " + selCock + "] cock's shape.");
 
 	output("\n\nHer pussy is lined with hundreds of little bumps which pleasurably stroke your [pc.cockNoun " + selCock + "] as you push further inside of her. Finally your [pc.cockHead " + selCock + "] is resting against her deepest point. You swell with the knowledge you have completely deflowered and claimed her amazonian [monster.pussyNoun], every inch now squeezing around your throbbing length.");
 
-	output("\n\n“<i>It stings a little, but at the same time, feels really good.</i>” the young huntress breathily exclaims, wiggling her [monster.ass] in your lap. Her movements cause your [pc.cock " + selCock + "] to churn around deep inside of her [monster.pussy], forcing a girlish moan from her [monster.lips].");
+	output("\n\n<i>“It stings a little, but at the same time, feels really good.”</i> the young huntress breathily exclaims, wiggling her [monster.ass] in your lap. Her movements cause your [pc.cock " + selCock + "] to churn around deep inside of her [monster.pussy], forcing a girlish moan from her [monster.lips].");
 
 	output("\n\nAll of a sudden there is a shifting sensation around your [pc.cock " + selCock + "] and it feels as if it is being licked by hundreds of tiny tongues. You realise that her [monster.pussy] is not lined with bumps, but feelers lying flush. Now awake for the first time, they lap eagerly at your length inside her incredibly narrow passage. As alien as it is, it feels <i>sooo good</i>.");
 
@@ -1031,7 +1031,7 @@ function vanaeMaidenTakeVirginity():void
 	else output(" [pc.base " + selCock + "]");
 	output(". Her juices excitedly dribble down your length, and her velvety soft feelers lick your length from point blank range. Meanwhile, she hugs your neck and presses her [monster.breasts] excitedly against your [pc.face].");
 
-	output("\n\nSoon the inexperienced huntress is bouncing and wiggling madly on your lap, losing herself to pleasure as she rides your [pc.cock " + selCock + "]. “<i>I've never felt anything like this before, it feels as if I'm flying!</i>” she whimpers.  All the while, her alien insides lash, clench, and drool excitedly around your length.");
+	output("\n\nSoon the inexperienced huntress is bouncing and wiggling madly on your lap, losing herself to pleasure as she rides your [pc.cock " + selCock + "]. <i>“I've never felt anything like this before, it feels as if I'm flying!”</i> she whimpers.  All the while, her alien insides lash, clench, and drool excitedly around your length.");
 
 	output("\n\nIn your mind, you can't believe an alien virgin is bouncing up and down on your [pc.cock " + selCock + "], about to gush all over your throbbing length. The image of you spurting your [pc.cum] deep inside of her previously unclaimed [monster.pussyNoun] gets you incredibly hot, and soon you find yourself utterly losing control.");
 
@@ -1047,14 +1047,14 @@ function vanaeMaidenTakeVirginity():void
 	pc.orgasm();
 	monster.orgasm();
 
-	output("\n\nWhen she pulls away from you, you can see a definite glow to her features and a bright smile on her face. “<i>... My first time... I never thought it would be so good. And because you came inside of me, I'm going to be pregnant!</i>”");
+	output("\n\nWhen she pulls away from you, you can see a definite glow to her features and a bright smile on her face. <i>“... My first time... I never thought it would be so good. And because you came inside of me, I'm going to be pregnant!”</i>");
 
 	// IF FIRST TIME
 	if (StatTracking.getStat("characters/maiden vanae/cherrys popped") == 0)
 	{
 		output("\n\nThe deflowered huntress rubs her belly and realization hits you like a ton of bricks. Pregnant?! Your Codex brings you up to speed.");
 
-		output("\n\n“<i>Vanae breed by hunting males and engaging in vaginal intercourse, "+ pc.mf("Master", "Mistress") +" Steele. Due to their incredible fertility, pregnancy is almost always assured. A vanae maiden is exceptionally fertile compared to others of her species.</i>”");
+		output("\n\n<i>“Vanae breed by hunting males and engaging in vaginal intercourse, "+ pc.mf("Master", "Mistress") +" Steele. Due to their incredible fertility, pregnancy is almost always assured. A vanae maiden is exceptionally fertile compared to others of her species.”</i>");
 
 		output("\n\nIn other words, there's a ridiculously high chance that you just got her pregnant. Your Codex asks if you want it to add a name to the Steele family register.");
 
@@ -1133,7 +1133,7 @@ function vanaeMaidenCunnilingus():void
 
 	output("\n\nWhen you pull back, you notice she is lying back on the ground staring at you. Both of you are wearing the same deliciously dazed expression, breathing low and heavy in your orgasmic haze.");
 
-	output("\n\n“<i>That was... that was amazing. I'll never forget you, my first.</i>” the nubile huntress gets up and kisses you long and hard, your lips smeared with her own [monster.girlCum].");
+	output("\n\n<i>“That was... that was amazing. I'll never forget you, my first.”</i> the nubile huntress gets up and kisses you long and hard, your lips smeared with her own [monster.girlCum].");
 
 	if (pc.hasCock() || pc.hasVagina())
 	{
@@ -1165,17 +1165,17 @@ function vanaeHuntressVaginalSex():void
 
 	if (pc.cocks[selCock].cLength() <= 3)
 	{
-	output("\n\nAs she strokes your [pc.cock " + selCock + "] she lets out a surprised noise, touching it a few times to be certain. “<i>Um, this is it? This feels a little too small - that can’t be right.</i>” You flush furiously, telling her that <i>is</i> your cock. She coughs a little, apologising for her rudeness. “<i>I guess I’ve just never come across one this... cute and small.</i>”");
+	output("\n\nAs she strokes your [pc.cock " + selCock + "] she lets out a surprised noise, touching it a few times to be certain. <i>“Um, this is it? This feels a little too small - that can’t be right.”</i> You flush furiously, telling her that <i>is</i> your cock. She coughs a little, apologising for her rudeness. <i>“I guess I’ve just never come across one this... cute and small.”</i>");
 	}
 	else if (pc.cocks[selCock].cLength() < 7)
 	{
-		output("\n\nAs the alien amazon touches your [pc.cock " + selCock +"] she lets out a pleased noise, stretching her webbed fingers around your [pc.sheath]. “<i>Mmm, I like this size. It should fit snugly in my [monster.vaginaNounSimple],</i>” she practically purrs. Clearly, she's a fan of your junk.");
+		output("\n\nAs the alien amazon touches your [pc.cock " + selCock +"] she lets out a pleased noise, stretching her webbed fingers around your [pc.sheath]. <i>“Mmm, I like this size. It should fit snugly in my [monster.vaginaNounSimple],”</i> she practically purrs. Clearly, she's a fan of your junk.");
 	}
 	else
 	{
-		output("\n\nAs the alien amazon touches your [pc.cock " + selCock +"] she lets out a surprised noise. Suddenly, she's bringing around her second hand to touch your length, making certain that it is what she thinks it is. “<i>Surely it's not this big - and you want to put that inside of me?!</i>” Clearly, she has doubts if it will even fit inside of her.");
+		output("\n\nAs the alien amazon touches your [pc.cock " + selCock +"] she lets out a surprised noise. Suddenly, she's bringing around her second hand to touch your length, making certain that it is what she thinks it is. <i>“Surely it's not this big - and you want to put that inside of me?!”</i> Clearly, she has doubts if it will even fit inside of her.");
 
-		output("\n\nYou assure her it will despite your size, though she looks dubious. “<i>If you leave me ruined from your stupidly huge cock, I'm holding you responsible,</i>” she warns.");
+		output("\n\nYou assure her it will despite your size, though she looks dubious. <i>“If you leave me ruined from your stupidly huge cock, I'm holding you responsible,”</i> she warns.");
 	}
 
 	output("\n\nOnce she has finishes appraising your [pc.cock " + selCock + "] she stretches out her [monster.tongue], gently lapping at your [pc.cockhead " + selCock +"]. The bumps of her tongue bristle and stroke your sensitive glans, her saliva drooling lewdly on it and down your [pc.cock " + selCock +"]. Soon she is moving down, her tongue curling hungrily around the underside of your shaft. You quickly stiffen and groan as she masterfully lashes your length, leaving it rigid and glistening in her spit.");
@@ -1228,10 +1228,10 @@ function vanaeHuntressVaginalSex():void
 	if (!lostVirgin) output("\n\nOnce you've mated with a pussy like this, you're not sure you'll <i>ever</i> be able to go back to having sex with a normal one. You might be ruined for life!");
 	else output("\n\nIs... is every pussy as good as this?! You can't believe you've gone without sex so long before now. You're not sure you'll ever be the same again.");
 
-	output("\n\n“<i>Oh sweet Sky Mother, your cock feels so good pressing deep inside of me!</i>” the busty huntress whimpers. As you stir around inside of her licking honey pot, her webbed fingers cling to your back, digging into your [pc.skinFurScales]. You keep a firm grip on her [monster.hips] as she wiggles about; her alien insides pressing, lashing, and clenching excitedly around your [pc.cock " + selCock + "]. “<i>Fuck me harder,");
+	output("\n\n<i>“Oh sweet Sky Mother, your cock feels so good pressing deep inside of me!”</i> the busty huntress whimpers. As you stir around inside of her licking honey pot, her webbed fingers cling to your back, digging into your [pc.skinFurScales]. You keep a firm grip on her [monster.hips] as she wiggles about; her alien insides pressing, lashing, and clenching excitedly around your [pc.cock " + selCock + "]. <i>“Fuck me harder,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" you damn [pc.race]!");
 	else output(" off-worlder.");
-	output(" Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!</i>”");
+	output(" Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!”</i>");
 
 	output("\n\nYou frantically begin bouncing her in your lap, causing her to let out a sweet, pleasured cry. A few hip thrusts later and she's already spastically creaming herself in your lap. Her [monster.pussy] clings desperately to you as she shudders and jets around your [pc.cock " + selCock + "], reaching that glorious pleasure peak.");
 
@@ -1290,7 +1290,7 @@ function vanaeHuntressTitfuck():void
 	else output(" is");
 	output(" mercilessly pumped and pistoned.");
 
-	output("\n\nYou're not the only one drowning in pleasure, the vanae huntress pinching her erect nipples and letting out a husky moan. “<i>Mmm, please mark me and make a mess of me - I want you to stain my [monster.breasts] with your [pc.cum],</i>” she begs, all the while pumping your aching firmness.");
+	output("\n\nYou're not the only one drowning in pleasure, the vanae huntress pinching her erect nipples and letting out a husky moan. <i>“Mmm, please mark me and make a mess of me - I want you to stain my [monster.breasts] with your [pc.cum],”</i> she begs, all the while pumping your aching firmness.");
 
 	output("\n\nHearing her plead for your [pc.cum] all over her fleshy alien assets pushes you over the edge. You seize her [monster.breasts] in both hands and begin ravishing them with lusty abandon. Each frantic thrust causes her to pant and moan, her violet milk spilling violently from her [monster.breasts].");
 
@@ -1524,16 +1524,16 @@ function vanaeHuntressTentaSex(selScene:String):void
 	else output(" dirty");
 	output(" insides, biting back a moan and pushing yourself against her rising hips.");
 
-	if (isCunt && pc.vaginas[0].looseness() <= 1 || (isButt && pc.ass.looseness <= 1)) output("“<i>...Was this your first time? You feel so tight!</i>” she exclaims");
+	if (isCunt && pc.vaginas[0].looseness() <= 1 || (isButt && pc.ass.looseness <= 1)) output("<i>“...Was this your first time? You feel so tight!”</i> she exclaims");
 	else if ((isCunt && pc.vaginas[0].looseness() <= 2) || (isButt && pc.ass.looseness <= 2))
 	{
-		output("“<i>You like my tail buried in your");
+		output("<i>“You like my tail buried in your");
 		if (isCunt) output(" [pc.pussyColor] pussy");
 		else output(" beautiful bottom");
-		output(", don't you? I love how tight you are!</i>” she exclaims");
+		output(", don't you? I love how tight you are!”</i> she exclaims");
 	}
-	else if ((isCunt && pc.vaginas[0].looseness() <= 3) || (isButt && pc.ass.looseness <= 3)) output("“<i>Oooh, you know just how to squeeze me - you've done this a lot, haven't you?</i>” she asks");
-	else output("“<i>You're so loose - you've done this a lot, haven't you?</i>” she asks");
+	else if ((isCunt && pc.vaginas[0].looseness() <= 3) || (isButt && pc.ass.looseness <= 3)) output("<i>“Oooh, you know just how to squeeze me - you've done this a lot, haven't you?”</i> she asks");
+	else output("<i>“You're so loose - you've done this a lot, haven't you?”</i> she asks");
 	output(". You let out a trembling cry in response, your mind reeling from the intense sensations utterly seizing your body as her tentacle 'cock' coils around inside of you.");
 
 	output("\n\nHer organic skirt begins wrapping around your [pc.hips] and [pc.thighs], pulling her waist flush with your [pc.ass]. You gasp as the crook of her upper thighs presses neatly against the grooves of your rump, her naked flesh pressing against your [pc.skinFurScales]. Suddenly she's all inside of you, her writhing appendage buried deep in your");
@@ -1614,7 +1614,7 @@ function vanaeHuntressSquirNJerk():void
 
 	output("\n\nAs her fluid and your [pc.cum] drool down your [pc.cockNounSimple], a delicious little shiver runs down your spine. Moving closer towards you, the alien female places her webbed hands on your shoulders, a cheeky smile playing on her [monster.lips].");
 
-	output("\n\n“<i>Mmm, I think I missed a few spots. How about I rub it in for you?</i>” she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocksNounSimple]. Violet tentacles reach out and sensuously caress your [pc.cockHeads].");
+	output("\n\n<i>“Mmm, I think I missed a few spots. How about I rub it in for you?”</i> she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocksNounSimple]. Violet tentacles reach out and sensuously caress your [pc.cockHeads].");
 
 	output("\n\nAs one of her tenta-tips wiggle and dip into your sticky cock hole");
 	if (pc.cocks.length > 1) output("s");
@@ -1638,13 +1638,13 @@ function vanaeHuntressSquirNJerk():void
 
 	output("\n\nYou let out a low, husky moan as her wet suckers flirt with and kiss every inch of your aching loins. Her coils utterly bombard your senses as they rub and writhe in different directions, a sticky, smacking noise filling the air. You press your [pc.cocks] needily into her violet tendrils, drowning in pleasure.");
 
-	output("\n\n“<i>You really like my tentacles, don't you");
+	output("\n\n<i>“You really like my tentacles, don't you");
 	if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
-	output("? I bet you'd just love it if I did this.</i>” Her suckers suddenly clamp onto your");
+	output("? I bet you'd just love it if I did this.”</i> Her suckers suddenly clamp onto your");
 	if (pc.balls > 0) output(" [pc.sack],");
 	output(" length");
 	if (pc.cocks.length > 1) output("s");
-	output(" and [pc.eachCockHead], tugging strongly at your sensitive flesh. It feels as if your genitals are being given a hundred hickeys from every angle. You whimper in delight, all the while struggling to contain the rapidly rising explosion threatening to claim your senses. “<i>I think you're almost there. Just let it go, shoot it all out.</i>”");
+	output(" and [pc.eachCockHead], tugging strongly at your sensitive flesh. It feels as if your genitals are being given a hundred hickeys from every angle. You whimper in delight, all the while struggling to contain the rapidly rising explosion threatening to claim your senses. <i>“I think you're almost there. Just let it go, shoot it all out.”</i>");
 
 	output("\n\nPurringly coaxing you, the alien huntress speeds up her massage, vigorously jerking you off in an completely unpredictable way. You can't hold out against the sensations assaulting your [pc.cocks], crying out as you reach that inevitable peak. You groan long and low as you spasmically shoot your [pc.cum] into the writhing, violet mess.");
 
@@ -1666,11 +1666,11 @@ function vanaeHuntressMilkBath():void
 	vanaeHeader("VICTORY: VANAE\n");
 	// Any gender, no requirements.
 
-	output("The exotic huntress gestures for you to lie down and you obediently do so. She stands a foot away from you. “<i>So, you want a nice bath? I can definitely do that.</i>” She purrs, the [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. “<i>I'm sure you'll enjoy it");
+	output("The exotic huntress gestures for you to lie down and you obediently do so. She stands a foot away from you. <i>“So, you want a nice bath? I can definitely do that.”</i> She purrs, the [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. <i>“I'm sure you'll enjoy it");
 	if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
 	output(". After all, I hear the sensation can be quite addicting");
 	if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", especially for your kind");
-	output(".</i>”");
+	output(".”</i>");
 
 	output("\n\nShe grabs her [monster.breasts] firmly in her webbed hands and begins to sensuously and forcefully massage them, almost as if she's stirring up the contents inside. For all you know that's exactly what she's doing as she lets out a sensuous purr. Talk about a milkshake!");
 
@@ -1678,16 +1678,16 @@ function vanaeHuntressMilkBath():void
 	output("\n\n");
 	vanaeTFScene();
 
-	output("\n\n“<i>Feels good doesn't it? I'm just getting started.</i>” She splatters twin streams of her [monster.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
+	output("\n\n<i>“Feels good doesn't it? I'm just getting started.”</i> She splatters twin streams of her [monster.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
 	if (pc.isLactating()) output(" Your [pc.milk] spurts out wildly all over your chest like a [pc.milkColor] bukkake shower.");
 
 	output("\n\nYou can't hold out any longer as you madly stroke your [pc.groin]");
 	if (!pc.hasCock() && !pc.hasVagina()) output(" and play with your [pc.nipples]");
 	output(". You are rewarded with electric jolts of pleasure that set your entire body alight. You've masturbated before, but never in your life has it ever felt this <b>intense</b>!");
 
-	output("\n\n“<i>Feels good, doesn't it? Should I continue, or did you want me to stop now? I will if you want me to.</i>” The vanae huntress teases you, squirting one more rope of her druggy goop onto your body. A blissful quiver travels up your [pc.thighs] as you desperately plead for her to continue - your cheeks burning furiously.");
+	output("\n\n<i>“Feels good, doesn't it? Should I continue, or did you want me to stop now? I will if you want me to.”</i> The vanae huntress teases you, squirting one more rope of her druggy goop onto your body. A blissful quiver travels up your [pc.thighs] as you desperately plead for her to continue - your cheeks burning furiously.");
 
-	output("\n\n“<i>Alright. Just remember, you asked for it!</i>” the busty huntress exclaims. She spurts even more violet arcs of her wonderful milk from her [monster.nipples] and splattering it all over your [pc.skinFurScales]. You moan and in the process swallow a mouthful of her [monster.milk] splattered on your [pc.lips]. It tastes delicious. As it rolls across your [pc.tongue] it begins to tingle, and your whole body aches.");
+	output("\n\n<i>“Alright. Just remember, you asked for it!”</i> the busty huntress exclaims. She spurts even more violet arcs of her wonderful milk from her [monster.nipples] and splattering it all over your [pc.skinFurScales]. You moan and in the process swallow a mouthful of her [monster.milk] splattered on your [pc.lips]. It tastes delicious. As it rolls across your [pc.tongue] it begins to tingle, and your whole body aches.");
 
 	if (pc.hasCock() || pc.hasVagina())
 	{
@@ -1697,16 +1697,16 @@ function vanaeHuntressMilkBath():void
 		if (pc.hasVagina()) output(" [pc.girlcum]");
 		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like a [pc.race]-shaped geyser until you are utterly spent.");
 
-		output("\n\n“<i>Couldn't hold out anymore? I understand, it's pretty intense. But we're nowhere near finished yet");
+		output("\n\n<i>“Couldn't hold out anymore? I understand, it's pretty intense. But we're nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(" , off-worlder");
-		output(".</i>” The alien huntress informs you, all the while squirting more milk onto your already slickened body. “<i>...And because you've been so good, I'll be nice, and touch you a little.</i>”");
+		output(".”</i> The alien huntress informs you, all the while squirting more milk onto your already slickened body. <i>“...And because you've been so good, I'll be nice, and touch you a little.”</i>");
 
 		output("\n\nShe reaches out with a single toe and strokes your slimey loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [monster.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
 
-		output("\n\n“<i>You want more,");
+		output("\n\n<i>“You want more,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 		else output(" off-worlder");
-		output("? Okay then, I can do that,</i>” she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
+		output("? Okay then, I can do that,”</i> she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
 
 		output("\n\nAfter the very last of orgasms subsides,  you are utterly covered in your own");
 		if (pc.hasCock()) output(" [pc.cum]");
@@ -1749,7 +1749,7 @@ function vanaeHuntressPostVictoryScene():void
 		
 		output("\n\nShe nods furiously and gets up, all the while rubbing her battered rump with a sorry look on her face. You then give her permission to leave. For some reason, she hesitates to do so. The huntress is suddenly sporting a rather coy look, and her [monster.hips] are wiggling side to side. ");
 		
-		output("\n\n“<i>Um... I know I deserved that, and I won’t do it ever again. But if you want to play sometime, come find me, okay?</i>” she cutely requests. She then darts back into the Mhen’gan jungle. Guess she took a real shine to you despite her bruised buttocks.");
+		output("\n\n<i>“Um... I know I deserved that, and I won’t do it ever again. But if you want to play sometime, come find me, okay?”</i> she cutely requests. She then darts back into the Mhen’gan jungle. Guess she took a real shine to you despite her bruised buttocks.");
 	}
 	else
 	{
@@ -1761,11 +1761,11 @@ function vanaeHuntressPostVictoryScene():void
 			
 			output("\n\nOnce she’s in position, you bring your flat hand down on her bare buttocks with a loud slap. She jumps and lets out a yelping noise, rubbing her sore butt and puffing out her cheek. You’re wearing a grin on your face, telling her it’s payback for the ambush. ");
 			
-			output("\n\n“<i>OWW! Well, I guess I deserved that.</i>” It appears her warrior pride has taken a dent. “<i>Um, hey. If I see you around, how about we do this again? You know, without the ambush. Think on it, okay?</i>” she cutely requests. She then darts back into the Mhen’gan jungle. Guess she took a real shine to you despite her bruised buttock.");
+			output("\n\n<i>“OWW! Well, I guess I deserved that.”</i> It appears her warrior pride has taken a dent. <i>“Um, hey. If I see you around, how about we do this again? You know, without the ambush. Think on it, okay?”</i> she cutely requests. She then darts back into the Mhen’gan jungle. Guess she took a real shine to you despite her bruised buttock.");
 		}
 		else
 		{
-			output("\n\n“<i>That was... um... something else. If I see you around sometime, can we do it again?</i>” she cutely requests. It's clear from the excitement in her voice that she enjoyed your frisky encounter. She gives you one more goodbye kiss before swiftly retreating back into the Mhen'gan jungle.");
+			output("\n\n<i>“That was... um... something else. If I see you around sometime, can we do it again?”</i> she cutely requests. It's clear from the excitement in her voice that she enjoyed your frisky encounter. She gives you one more goodbye kiss before swiftly retreating back into the Mhen'gan jungle.");
 		}
 	}
 
@@ -1784,17 +1784,17 @@ function vanaeHuntressPCDefeat():void
 	{
 		output("The pain is too much, and you fall on your back, unable to continue the fight. The vanae huntress slides up to you and strokes your aching wounds. She lets out a sympathetic noise.");
 
-		output("\n\n“<i>... Sorry,");
+		output("\n\n<i>“... Sorry,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my pet");
 		else output(" off-worlder");
-		output(". If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,</i>” she softly explains, kissing your tender [pc.skinFurScalesNoun]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk].");
+		output(". If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,”</i> she softly explains, kissing your tender [pc.skinFurScalesNoun]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk].");
 
 		output("\n\nAll of a sudden, the pain is gone. You also realise the feeling of her brushing along your [pc.skinFurScales] is causing your blood to boil. As she slowly drags her [monster.nipples] along your [pc.chest], blood rushes to your cheeks... among other places.");
 
-		output("\n\n“<i>Oh, I see you're feeling better now? That's good. There's nothing worse than damaging prey, after all. I will be letting you go after this - but not before I get what I came for.</i>” the busty huntress purrs, her tentacles wrapping around your lower body. “<i>... Your");
+		output("\n\n<i>“Oh, I see you're feeling better now? That's good. There's nothing worse than damaging prey, after all. I will be letting you go after this - but not before I get what I came for.”</i> the busty huntress purrs, her tentacles wrapping around your lower body. <i>“... Your");
 		if (pc.hasCock()) output(" virile cum belongs to me. You're my treasured prize, after all.");
 		else if (pc.hasVagina()) output(" tasty girlcum, my dear, belongs to me. And I am <i>very</i> experienced in getting girls off - trust me.");
-		output("</i>”");
+		output("”</i>");
 
 	}
 	// Lust
@@ -1809,14 +1809,14 @@ function vanaeHuntressPCDefeat():void
 
 		output("\n\nYour mind is spinning and you lose all sense of reason. If you don’t orgasm soon, you feel as if you’ll go mad! You’re surprised to hear your own voice begging her to help you cum.");
 
-		output("\n\n“<i>... You want me to do what now? How naughty of you!</i>” The busty huntress kisses your [pc.chest] sending a spike of torturous pleasure shooting through your body. “<i>I was going to let you go, but now you want to stay. Are you sure?</i>”");
+		output("\n\n<i>“... You want me to do what now? How naughty of you!”</i> The busty huntress kisses your [pc.chest] sending a spike of torturous pleasure shooting through your body. <i>“I was going to let you go, but now you want to stay. Are you sure?”</i>");
 
 		output("\n\nYou aren’t going to be able to move like this as you’re stuck in a delirious, debilitating sense of lust. You plead for her not to leave, since you can’t just be left like this.");
 
-		output("\n\nShe hums and trails her webbed fingers along your cheek, considering your request. “<i>Well, I’m very kind. I’ll get you off, and then let you go, but only if you are a good " + pc.mf("boy", "girl") + " and give me all your wonderful");
+		output("\n\nShe hums and trails her webbed fingers along your cheek, considering your request. <i>“Well, I’m very kind. I’ll get you off, and then let you go, but only if you are a good " + pc.mf("boy", "girl") + " and give me all your wonderful");
 		if (pc.hasCock()) output(" cum");
 		else output(" girlcum");
-		output(", okay?</i>”");
+		output(", okay?”</i>");
 	}
 
 	if (pc.hasCock() || pc.hasVagina())
@@ -1874,10 +1874,10 @@ function vanaeHuntressPCDefeatCuntFux():void
 	// Max girth 4 inches
 	// Max Length 12 inches.
 
-	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. “<i>... Today is a very good day for you,");
+	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. <i>“... Today is a very good day for you,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 	else output(" off-worlder");
-	output(". I'm fertile and raring to go.</i>”");
+	output(". I'm fertile and raring to go.”</i>");
 
 	var selCock:int = pc.cockThatFits(217);
 
@@ -1886,9 +1886,9 @@ function vanaeHuntressPCDefeatCuntFux():void
 	{
 		output("\n\nFertile... wait, is she going to breed with you? For some reason, the vanae huntress seems to be cupping her breasts instead. Her words and actions don’t seem to be matching up.");
 		
-		output("\n\n“<i>Vanae huntresses produce a euphoric and lust inducing liquid from their breasts. It also sharply increases a victim’s cum production when sprayed on the genitals,</i>” your codex enlightens you.");
+		output("\n\n<i>“Vanae huntresses produce a euphoric and lust inducing liquid from their breasts. It also sharply increases a victim’s cum production when sprayed on the genitals,”</i> your codex enlightens you.");
 		
-		output("\n\n“<i>They also breed by capturing male prey and forcing them to fertilize them, "+ pc.mf("Master", "Mistress") +" Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.</i>”");
+		output("\n\n<i>“They also breed by capturing male prey and forcing them to fertilize them, "+ pc.mf("Master", "Mistress") +" Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.”</i>");
 		
 		output("\n\nGee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it’s talking. She doesn’t seem to care much for any of your gear - it seems she’s solely interested in your loins and not in looting you.");
 		
@@ -1915,7 +1915,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 		
 		output("\n\nThe vanae huntress lets out a pleased noise as your [pc.cocksNoun] stand");
 		if (pc.cocks.length == 1) output("s");
-		output(" ready and raring to go. “<i>Ohh, you want to breed with me that badly? I guess there’s no helping it then - you’re going to be a daddy.</i>”");
+		output(" ready and raring to go. <i>“Ohh, you want to breed with me that badly? I guess there’s no helping it then - you’re going to be a daddy.”</i>");
 		
 		output("\n\nYou’re pretty sure you already are one, but you can’t bring yourself to speak. You simply lie back and take it as she positions her [pc.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
 		
@@ -1944,7 +1944,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 
 	output("\n\nWhen even more of your [pc.cumNoun] drools from your [pc.cockHeads], she reaches down and scoops it up - forbidding it to dribble down with the rest of your spilled seed.");
 
- 	output("\n\n“<i>Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?</i>” she coos, lapping up your [pc.cumFlav] [pc.cumNoun] from her webbed fingers.");
+ 	output("\n\n<i>“Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?”</i> she coos, lapping up your [pc.cumFlav] [pc.cumNoun] from her webbed fingers.");
 
 	output("\n\nYou nod drunkenly in response. Soon you feel her grabbing [pc.oneCock] and bringing it upward, lifting herself higher to hover over your [pc.cockHead " + selCock + "]. She then slowly lowers back down, sliding you into her otherworldly cooch.");
 
@@ -1952,12 +1952,12 @@ function vanaeHuntressPCDefeatCuntFux():void
 
 	output("\n\nOnce you've mated with a pussy like this, you're not sure you'll <i>ever</i> be able to go back to having sex with a normal one. You might be ruined for life!");
 
-	output("\n\n“<i>Mmm, you're all the way in. How does it feel?</i>” she asks, her violet netherlips excitedly clinging to your [pc.cockNoun] as her insides lash at you.");
+	output("\n\n<i>“Mmm, you're all the way in. How does it feel?”</i> she asks, her violet netherlips excitedly clinging to your [pc.cockNoun] as her insides lash at you.");
 	if (pc.balls > 0) output(" At the same time she gently rubs her hairless mound against your [pc.sack].");
 
 	output("\n\nYou moan out that it feels wonderful, your [pc.cockHead " + selCock + "] flexing inside of her. Grinning in response, she slowly begins rocking her waist in your lap. The busty huntress lets out a blissful moan as your [pc.cock " + selCock + "] wetly stirs around inside of her [pc.pussy], caressing her silky inner walls.");
  
-	output("\n\n“<i>Fuck me harder. Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!</i>” she commands, bucking wildly against you. One of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge.");
+	output("\n\n<i>“Fuck me harder. Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!”</i> she commands, bucking wildly against you. One of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge.");
 
 	output("\n\nOverwhelmed with sensation, you cum once more - this time inside her [monster.pussy]. Your [pc.hips] spasm shamefully as you batter her insides with your [pc.cum]. As your baby juice floods up inside of her, she lets out a sweet trembling cry, spastically creaming herself around your spurting [pc.cock " + selCock + "].");
 
@@ -1975,7 +1975,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 	// if First Time
 	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
 	{
-		output("\n\n“<i>Keep some of that. We're not done yet by a long shot. I want to make </i>sure<i> that you've gotten me pregnant,</i>” she informs you, grinning and getting down on all knees. She licks the underside of your [pc.cock " + selCock + "], making your whole body tremble with joy. You relax back, giving yourself over to pleasure...");
+		output("\n\n<i>“Keep some of that. We're not done yet by a long shot. I want to make </i>sure<i> that you've gotten me pregnant,”</i> she informs you, grinning and getting down on all knees. She licks the underside of your [pc.cock " + selCock + "], making your whole body tremble with joy. You relax back, giving yourself over to pleasure...");
 	}
 
 	output("\n\n... An hour later ...");
@@ -1988,7 +1988,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 
 	output("\n\nMeanwhile, the vanae huntress is sitting in a pool of your [pc.cum], her [monster.pussy] utterly battered with it. She scoops up some of her [monster.milk] and rubs it along her lower lips, seemingly sealing in your spunk.");
 
-	output("“<i>Mmm, that's </i>more<i> than enough. I'm sure we'll give birth to some lovely daughters, don't you think?</i>” she purrs. “<i>I'll be sure to bring your [pc.cum] back to our Queen and matrons, so they can get enjoy it it too.</i>”");
+	output("<i>“Mmm, that's </i>more<i> than enough. I'm sure we'll give birth to some lovely daughters, don't you think?”</i> she purrs. <i>“I'll be sure to bring your [pc.cum] back to our Queen and matrons, so they can get enjoy it it too.”</i>");
 
 	output("\n\nShe plants a single kiss on your");
 	if (pc.balls > 0) output(" [pc.balls]");
@@ -2006,25 +2006,25 @@ function vanaeHuntressPCDefeatMilkbath():void
 	// Any sex, no requisites.
 	if (!pc.hasCock() && !pc.hasVagina())
 	{
-		output("\n\n“<i>...But I don't have any to give!</i>” You explain frustratedly, all the while wiggling your [pc.hips]. You don't have a pussy or cock for her to milk. She really is barking up the wrong tree.");
+		output("\n\n<i>“...But I don't have any to give!”</i> You explain frustratedly, all the while wiggling your [pc.hips]. You don't have a pussy or cock for her to milk. She really is barking up the wrong tree.");
 
-		output("\n\nQuirking an eyebrow, the vanae huntress moves her [monster.hand] down and touches your loins. “<i>... Y-you're... what are you, exactly?!</i>” She seems utterly baffled by your lack of traditional genitalia.");
+		output("\n\nQuirking an eyebrow, the vanae huntress moves her [monster.hand] down and touches your loins. <i>“... Y-you're... what are you, exactly?!”</i> She seems utterly baffled by your lack of traditional genitalia.");
 
-		output("\n\nShe pats your loins before coming to a decision - she's not going to go away empty handed. “<i>There's no such thing as a creature with no liquids to give. I've just got to find out the right way to extract them, that's all... and I know just the way to do it.</i>”");
+		output("\n\nShe pats your loins before coming to a decision - she's not going to go away empty handed. <i>“There's no such thing as a creature with no liquids to give. I've just got to find out the right way to extract them, that's all... and I know just the way to do it.”</i>");
 	}
 
 	output("\n\nShe takes off your [pc.gear], making sure you're nice and prepared. Your things are tossed cleanly to the side and land somewhere in the nearby brush.");
 
-	output("\n\n“<i>I'm not going to even touch you,");
+	output("\n\n<i>“I'm not going to even touch you,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my dear");
 	else output(" off-worlder");
-	output(". How would you like a nice bath?</i>” The exotic huntress purrs, pulling herself off your body, and standing upright. The [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. “<i>I'm going to bathe you with my special milk for a bit, I'm sure you'll enjoy it. You'll be pumping out plenty of your delicious ");
+	output(". How would you like a nice bath?”</i> The exotic huntress purrs, pulling herself off your body, and standing upright. The [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. <i>“I'm going to bathe you with my special milk for a bit, I'm sure you'll enjoy it. You'll be pumping out plenty of your delicious ");
 	if (pc.hasVagina()) output("girl-");
-	output(" cream in no time.</i>”");
+	output(" cream in no time.”</i>");
 
 	if (flags["VANAE_MILKBATH_TIMES"] == undefined)
 	{
-		output("\n\n“<i>Vanae huntresses can produce a euphoric and lust inducing liquid from their breasts, "+ pc.mf("Master", "Mistress") +" Steele. It also sharply increases a victim's cum production when sprayed on the genitals.</i>” Your codex enlightens you from its position halfway in the brush.");
+		output("\n\n<i>“Vanae huntresses can produce a euphoric and lust inducing liquid from their breasts, "+ pc.mf("Master", "Mistress") +" Steele. It also sharply increases a victim's cum production when sprayed on the genitals.”</i> Your codex enlightens you from its position halfway in the brush.");
 
 		output("\n\nGee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it's talking. She doesn't seem to care much for any of your gear - it seems she's solely interested in your loins and not in looting you.");
 	}
@@ -2036,7 +2036,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 	output("\n\n");
 	vanaeTFScene();
 
-	output("\n\n“<i>Feels good doesn't it? I'm just getting started.</i>” She splatters twin streams of her [monster.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
+	output("\n\n<i>“Feels good doesn't it? I'm just getting started.”</i> She splatters twin streams of her [monster.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
 	if (pc.isLactating()) output(" Your [pc.milk] spurts out wildly all over your chest like a [pc.milkColor] bukkake shower.");
 
 	output("\n\nYou can't hold out any longer as you madly stroke your [pc.groin]");
@@ -2045,7 +2045,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 
 	output("\n\nDeep down you're truly ashamed about how you're acting, but you're also totally getting off on it. A blissful quiver travels up your [pc.thighs] as you desperately plead for her to continue - your cheeks burning furiously.");
 
-	output("\n\n“<i>Alright. Just remember, you asked for it!</i>” the busty huntress exclaims. She spurts even more violet arcs of her druggy milk from her [monster.nipples] and splatters it all over your [pc.skinFurScales]. You moan and, in the process, swallow a mouthful of the gloop splattered on your [pc.lips]. It tastes delicious. As it rolls across your [pc.tongue], it begins to tingle and your whole body aches.");
+	output("\n\n<i>“Alright. Just remember, you asked for it!”</i> the busty huntress exclaims. She spurts even more violet arcs of her druggy milk from her [monster.nipples] and splatters it all over your [pc.skinFurScales]. You moan and, in the process, swallow a mouthful of the gloop splattered on your [pc.lips]. It tastes delicious. As it rolls across your [pc.tongue], it begins to tingle and your whole body aches.");
 
 	if (pc.hasCock() || pc.hasVagina())
 	{
@@ -2055,16 +2055,16 @@ function vanaeHuntressPCDefeatMilkbath():void
 		if (pc.hasVagina()) output(" [pc.girlcum]");
 		output(" explode from your [pc.groin] and shoot all over the place. You continue to spasm spastically and unload like a [pc.race]-shaped jism geyser until you are utterly spent. ");
 
-		output("\n\n“<i>Couldn't hold out anymore? I understand, it's pretty intense. But we're nowhere near finished yet");
+		output("\n\n<i>“Couldn't hold out anymore? I understand, it's pretty intense. But we're nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
-		output(".</i>” The alien huntress informs you, all the while squirting more milk onto your already slickened body. “<i>...And because you've been so good, I'll be nice, and touch you a little.</i>”");
+		output(".”</i> The alien huntress informs you, all the while squirting more milk onto your already slickened body. <i>“...And because you've been so good, I'll be nice, and touch you a little.”</i>");
 
 		output("\n\nShe reaches out with a single toe and strokes your slimey loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [monster.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
 
-		output("\n\n“<i>You want more,");
+		output("\n\n<i>“You want more,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 		else output(" off-worlder");
-		output("? Okay then, I can do that,</i>” she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
+		output("? Okay then, I can do that,”</i> she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
 
 		output("\n\n... An hour later...");
 
@@ -2087,7 +2087,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 	{
 		output("\n\nShe douses you until you can't take it anymore and experience a truly body-wracking orgasm. Your whole body shudders and convulses as you reach that blissful peak. To her dismay you don't give her a drop of fluid - selfishly keeping all the pleasure to yourself.");
 
-		output("\n\n“<i>I don't understand. What <i>are</i> you?</i>” the vanae huntress exclaims. She's clearly frustrated by her failure to milk you. She squirts even more milk onto your already slickened body and causing your temperature to rise. A few minutes later, you're cumming all over again without giving her a single drop of spunk. “<i>... Maybe I'm not trying hard enough?</i>”");
+		output("\n\n<i>“I don't understand. What <i>are</i> you?”</i> the vanae huntress exclaims. She's clearly frustrated by her failure to milk you. She squirts even more milk onto your already slickened body and causing your temperature to rise. A few minutes later, you're cumming all over again without giving her a single drop of spunk. <i>“... Maybe I'm not trying hard enough?”</i>");
 
 		output("\n\nShe reaches out with a single toe and runs it up against your groin. Just the tiniest touch anywhere causes your lower body to explode with pleasure, as you moan and beg for more. She aggressively delivers, determined to get <i>something</i> out of you...");
 
@@ -2095,7 +2095,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 
 		output("\n\nYour mind is spinning in a delicious haze. You have been forced to orgasm countless times, your entire body now feeling impossibly heavy. The huntress, however, seems at the limit of her patience.");
 
-		output("\n\n“<i>... Fine! I give up. I don't know what you are, but for some reason I can't get anything out of you. The Sky Mother is clearly playing a joke on me. Keep it!</i>” She storms off into the Mhen'gan jungle in a huff and leaves you lying there, naked and spent.");
+		output("\n\n<i>“... Fine! I give up. I don't know what you are, but for some reason I can't get anything out of you. The Sky Mother is clearly playing a joke on me. Keep it!”</i> She storms off into the Mhen'gan jungle in a huff and leaves you lying there, naked and spent.");
 
 		pc.orgasm();
 		monster.orgasm();
@@ -2118,10 +2118,10 @@ function vanaeHuntressPCDefeatSquirtNJerk():void
 	output("\n\nThe exotic alien huntress purrs, sliding down your body");
 	if (!pc.isNude()) output(" and stripping off your [pc.armor]");
 	else output(" and dragging her naked self along your [pc.skin]");
-	output(". You can feel her pointedly rubbing against [pc.eachCock]. “<i>How about I pleasure");
+	output(". You can feel her pointedly rubbing against [pc.eachCock]. <i>“How about I pleasure");
 	if (pc.cocks.length == 1) output(" this");
 	else output(" these");
-	output(" for you, hmm? But first, let's get you a little bit more prepared...</i>”");
+	output(" for you, hmm? But first, let's get you a little bit more prepared...”</i>");
 
 	output("\n\nYou like there helpless as she pulls away from you, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier. ");
 
@@ -2138,7 +2138,7 @@ function vanaeHuntressPCDefeatSquirtNJerk():void
 	output("\n\n");
 	vanaeTFScene();
 
-	output("\n\n“<i>Mmm, I think I missed a few spots. How about I rub it in for you?</i>” she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocks]. Violet and ivory tentacles reach out and sensuously caress your [pc.cockHeads].");
+	output("\n\n<i>“Mmm, I think I missed a few spots. How about I rub it in for you?”</i> she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocks]. Violet and ivory tentacles reach out and sensuously caress your [pc.cockHeads].");
 
 	output("\n\nAs one of her tenta-tips wiggle and dip into your sticky cock hole");
 	if (pc.cocks.length > 1) output("s");
@@ -2146,7 +2146,7 @@ function vanaeHuntressPCDefeatSquirtNJerk():void
 	if (pc.cocks.length > 1) output("s");
 	output(" and deliver torturous amounts of pleasure. ");
 
-	output("“<i>You really like my tentacles, don't you? I bet you'd just love it if I did this.</i>” She gives a wicked little smile, wrapping your [pc.cocks]");
+	output("<i>“You really like my tentacles, don't you? I bet you'd just love it if I did this.”</i> She gives a wicked little smile, wrapping your [pc.cocks]");
 	if (pc.balls > 0) output(" and [pc.balls]");
 	output(" in a mass of her tentacles. Soon they are being deliciously squeezed, applying sticky friction to every inch of your length");
 	if (pc.cocks.length > 1) output("s");
@@ -2156,7 +2156,7 @@ function vanaeHuntressPCDefeatSquirtNJerk():void
 	if (pc.balls > 0) output(" [pc.sack],");
 	output(" length");
 	if (pc.cocks.length > 1) output("s");
-	output(" and [pc.eachCockHead], tugging strongly at your sensitive flesh. It feels as if your genitals are being given a hundred hickeys from every angle. “<i>I think you're almost there. Just let it go, shoot it all out.</i>”");
+	output(" and [pc.eachCockHead], tugging strongly at your sensitive flesh. It feels as if your genitals are being given a hundred hickeys from every angle. <i>“I think you're almost there. Just let it go, shoot it all out.”</i>");
 
 	output("\n\nPurringly coaxing you, the alien huntress speeds up her massage, vigorously jerking you off in an completely unpredictable way. You can't hold out against the sensations assaulting your [pc.cocks], crying out as you reach that inevitable peak. You groan long and low as you spasmically shoot your [pc.cum] into the writhing, violet mess.");
 
@@ -2203,13 +2203,13 @@ function vanaeHuntressPCDefeatTitfux():void
 		}
 	}
 
-	output("\n\nThe exotic alien huntress purrs, sliding down your body  and stripping off your [pc.gear]. You can feel her pointedly rubbing against [pc.eachCock]. “<i>... I can see you checking out my breasts. Do you like them?</i>” she asks coyly, all the while applying delicious friction to the underside of your sheathe");
+	output("\n\nThe exotic alien huntress purrs, sliding down your body  and stripping off your [pc.gear]. You can feel her pointedly rubbing against [pc.eachCock]. <i>“... I can see you checking out my breasts. Do you like them?”</i> she asks coyly, all the while applying delicious friction to the underside of your sheathe");
 	if (pc.cocks.length > 1) output("s");
 	output(".");
 
 	output("\n\nYou moan and nod, enjoying the sensation of her ample breasts dragging erotically along your exposed belly. Her nipples seem to stiffen in response. Clearly, she enjoys hearing how much you love her massive tits just as much as you love being tantalized with them.");
 
-	output("\n\n“<i>Well then, if you like them that much, how about you and my breasts get better acquainted?</i>” she sensuously suggests. You nod in response, aching to enjoy the pleasures her alien assets have to offer.");
+	output("\n\n<i>“Well then, if you like them that much, how about you and my breasts get better acquainted?”</i> she sensuously suggests. You nod in response, aching to enjoy the pleasures her alien assets have to offer.");
 
 	output("\n\nThe busty amazoness pulls back and brings her webbed hands up to cup her [monster.breasts], making her already impressive cleavage stand out. Her [monster.nipples] drool her violet milk down her ample flesh, curling and dribbling down to her [monster.belly]. There is a distinctly feminine scent in the air mixed with a fruity aroma, the latter coming from her nipple milk.");
 
@@ -2234,7 +2234,7 @@ function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nOnce again your [pc.cumNoun] begins to boil and surge from your [pc.cockHeads] as you smear your [pc.cumColor] jism all over her pumping cleavage.");
 
-	output("\n\n“<i>That's right, let it all out on my breasts. That's a good " + pc.mf("boy","girl") + ",</i>” she croons, rhythmically pumping your firmness. “<i>I want you to unload it all across my tits and cover them in your [pc.cum].</i>”");
+	output("\n\n<i>“That's right, let it all out on my breasts. That's a good " + pc.mf("boy","girl") + ",”</i> she croons, rhythmically pumping your firmness. <i>“I want you to unload it all across my tits and cover them in your [pc.cum].”</i>");
 
 	output("\n\nThe mental image of that gets you even more fired up. You let out an involuntary moan as she begins aggressively working [pc.eachCock], her ample breasts wetly slapping up and down against your groin. The sticky friction sets your straining staff");
 	if (pc.cocks.length > 1) output("s");
@@ -2272,9 +2272,9 @@ function vanaeHuntressPCDefeatCunnilingus():void
 {
 	// Must have Vagina
 
-	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. She slowly begins littering small kisses down your vulnerable belly. “<i>We vanae feed off certain liquids, you know. I'm not going to let you go until I've lapped up every drop you have to give; no matter how many times I have to make you cum in order to get it.</i>”");
+	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. She slowly begins littering small kisses down your vulnerable belly. <i>“We vanae feed off certain liquids, you know. I'm not going to let you go until I've lapped up every drop you have to give; no matter how many times I have to make you cum in order to get it.”</i>");
 
-	output("\n\n“<i>We also have a way of getting a lot of it out of you. Did you want to see?</i>” she huskily asks you. You nod feverishly, willing to do just about anything for her at this point.");
+	output("\n\n<i>“We also have a way of getting a lot of it out of you. Did you want to see?”</i> she huskily asks you. You nod feverishly, willing to do just about anything for her at this point.");
 
 	output("\n\nThe beautiful amazon pulls away from you and you seize the chance to inhale. Her kisses absolutely took your breath away! As you strain your neck you see her grabbing her [monster.breasts] in both hands and slowly and sensuously massaging them. Just watching her stirring them up causes your [pc.cunts] to tingle with excitement.");
 
@@ -2312,7 +2312,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 
 	pc.orgasm();
 
-	output("\n\n“<i>Mmm, it's as if your pussy was made to fit my mouth, my dear.</i>” The alien huntress exclaims, shortly before lapping up another helping of your [pc.cumNoun]. You shake and tremble wildly, experiencing several small explosive orgasms. One of her tail's suckers clamp onto your [pc.clit]. As she gently tugs on it, you feel your loins explode in a gooey gush right into her inviting mouth and your mind absolutely shatters.");
+	output("\n\n<i>“Mmm, it's as if your pussy was made to fit my mouth, my dear.”</i> The alien huntress exclaims, shortly before lapping up another helping of your [pc.cumNoun]. You shake and tremble wildly, experiencing several small explosive orgasms. One of her tail's suckers clamp onto your [pc.clit]. As she gently tugs on it, you feel your loins explode in a gooey gush right into her inviting mouth and your mind absolutely shatters.");
 
 	output("\n\n... An hour later ...");
 
@@ -2320,7 +2320,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 	if (pc.hasCock()) output(" [pc.cum] and");
 	output(" [pc.girlcum] you had to give with fervor. There's simply no more left to give.");
 
-	output("\n\n“<i>Thanks for the meal, beautiful. Maybe I'll catch you again sometime?</i>” The vanae huntress purrs, sliding off your paralyzed form. She lands a sensuous kiss on your [pc.lips], and you can taste your own [pc.girlCum]. She then retreats into the Mhen'gan jungle, her tail and hips sexily swaying all the while.");
+	output("\n\n<i>“Thanks for the meal, beautiful. Maybe I'll catch you again sometime?”</i> The vanae huntress purrs, sliding off your paralyzed form. She lands a sensuous kiss on your [pc.lips], and you can taste your own [pc.girlCum]. She then retreats into the Mhen'gan jungle, her tail and hips sexily swaying all the while.");
 
 	processTime(90+rand(25));
 	genericLoss();
@@ -2335,7 +2335,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	var isCunt:Boolean = false;
 	if (pc.hasVagina() && rand(2) == 0) isCunt = true;
 
-	output("\n\n“Anything<i>, you say? I'll take you up on that offer.</i>” The vanae huntress purrs, sliding down your body and stripping off your [pc.gear]. What exactly is she planning to do with you?");
+	output("\n\n“Anything<i>, you say? I'll take you up on that offer.”</i> The vanae huntress purrs, sliding down your body and stripping off your [pc.gear]. What exactly is she planning to do with you?");
 
 	output("\n\nShe pulls herself back from your body and cups her [monster.breasts] firmly in her webbed hands. She begins sensuously and forcefully massaging them, almost as if she's stirring up the mammary milk inside. For all you know, that's exactly what she's doing as she lets out a sensuous purr. Talk about a milkshake!");
 
@@ -2358,7 +2358,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	else output(" rim");
 	output(". Could it be she can ejaculate from it just like a cock?");
 
-	output("\n\n“<i>I'm going to stick this inside of you and fuck you just like a man. That's what you want, right?</i>” she teases you not only with her [monster.tail] but with her words. You try to think straight but keep sinking back into drunken pleasure...");
+	output("\n\n<i>“I'm going to stick this inside of you and fuck you just like a man. That's what you want, right?”</i> she teases you not only with her [monster.tail] but with her words. You try to think straight but keep sinking back into drunken pleasure...");
 
 	output("\n\nBefore you know it, you're nodding furiously and begging her to fuck you with it. Unable to get yourself off, her fucking you like this is the only way you'll get any release. And it feels so <i>good</i> rubbing against your");
 	if (isCunt) output(" sopping wet slit");
@@ -2416,16 +2416,16 @@ function vanaeHuntressPCDefeatTentafux():void
 	if (isCunt) looseness = pc.vaginas[0].looseness();
 	else looseness = pc.ass.looseness();
 
-	output("\n\n“<i>");
-	if (looseness <= 1) output("...Was this your first time? You feel so tight!</i>” she exclaims");
+	output("\n\n<i>“");
+	if (looseness <= 1) output("...Was this your first time? You feel so tight!”</i> she exclaims");
 	else if (looseness <= 2)
 	{
 		output("You like my tail buried in your");
 		if (isCunt) output(" [pc.pussyColor] pussy");
 		else output(" beautiful bottom");
-		output(", don't you? I love how tight you are!</i>” she exclaims");
+		output(", don't you? I love how tight you are!”</i> she exclaims");
 	}
-	else output("You're so loose - you've done this a lot, haven't you?</i>” she asks");
+	else output("You're so loose - you've done this a lot, haven't you?”</i> she asks");
 	output(". You let out a trembling cry in response, your mind reeling from the intense sensations utterly seizing your body as her tentacle 'cock' coils around inside of you.");
 
 	output("\n\nTentacles of her organic skirt begin coiling around your [pc.hips] and [pc.thighs], pulling her waist flush with your own. You gasp as your bellies rub together and her naked flesh brushes against your [pc.skinFurScales], her writhing alien appendage now buried fully inside of you.");
@@ -2466,7 +2466,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	monster.orgasm();
 	pc.orgasm();
 
-	output("\n\n“<i>How was that for starters?</i>” The vanae huntress asks. Your mind goes blank. That was just the start of it? Suddenly she's stoking your fire once more, getting you ready for yet another round. You're not sure if your mind can take that a second time!");
+	output("\n\n<i>“How was that for starters?”</i> The vanae huntress asks. Your mind goes blank. That was just the start of it? Suddenly she's stoking your fire once more, getting you ready for yet another round. You're not sure if your mind can take that a second time!");
 
 	output("\n\n... An hour later...");
 
@@ -2499,17 +2499,17 @@ function vanaeMaidenPCDefeat():void
 	{
 		output("The pain is too much and you fall on your back, unable to continue the fight. The vanae maiden pumps her fist and spear in the air, clearly elated by her victory.");
 		
-		output("\n\n“<i>YES! I did it, I won - i’m a real huntress now!</i>” She seems giddy with delight. It seems it’s the first fight that she’s ever won.");
+		output("\n\n<i>“YES! I did it, I won - i’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won.");
 		
-		output("\n\nRemembering your injuries, her elated look turns to one of clear concern. “<i>Oh... um... sorry I had to hurt you so badly. You didn’t look like you were going to go down without a fight, so... yeah.</i>” She scratches the back of her neck, looking a little bashful and nervous. You can’t believe you were beaten by such an obviously inexperienced huntress.");
+		output("\n\nRemembering your injuries, her elated look turns to one of clear concern. <i>“Oh... um... sorry I had to hurt you so badly. You didn’t look like you were going to go down without a fight, so... yeah.”</i> She scratches the back of her neck, looking a little bashful and nervous. You can’t believe you were beaten by such an obviously inexperienced huntress.");
 		
 		output("\n\nIn your defeat, you lie there helpless as she moves up and sticks her spear into the ground beside you. She’s not going to take your life, at any rate. Instead she’s cupping her tiny breasts, though for what reason, you have no idea.");
 		
-		output("\n\n“<i>You’re hurting, right? I know a trick to help. I don’t have much, but my breasts secrete a substance that’ll take away your pain. Hold still.</i>” she urges you. First she removes your [pc.gear] and then she squirts [monster.milk] from her [monster.breasts]. It splatters all over your [pc.chest] and smears all over your [pc.skinFurScales].");
+		output("\n\n<i>“You’re hurting, right? I know a trick to help. I don’t have much, but my breasts secrete a substance that’ll take away your pain. Hold still.”</i> she urges you. First she removes your [pc.gear] and then she squirts [monster.milk] from her [monster.breasts]. It splatters all over your [pc.chest] and smears all over your [pc.skinFurScales].");
 		
 		output("\n\nAll of a sudden, the pain is gone. You also realise the feeling of her brushing along your [pc.skinFurScales] is causing your blood to boil. As you look up at her cupping her [monster.breasts], blood rushes to your cheeks... among other places.");
 		
-		output("\n\n“<i>Oh, it worked! I’m so glad. Um... you might be feeling a bit aroused right now. That’s a side effect of our milk. How about I help you work that off?</i>” she coyly suggests. “<i>As... as the victor, I have to take my prize, after all... that’s the way my people do things.</i>”");
+		output("\n\n<i>“Oh, it worked! I’m so glad. Um... you might be feeling a bit aroused right now. That’s a side effect of our milk. How about I help you work that off?”</i> she coyly suggests. <i>“As... as the victor, I have to take my prize, after all... that’s the way my people do things.”</i>");
 	}
 	else
 	{
@@ -2520,13 +2520,13 @@ function vanaeMaidenPCDefeat():void
 		
 		output("\n\nMeanwhile, the vanae maiden pumps her fist and spear in the air, clearly elated by her victory. She completely ignores your obvious frustration as you fiddle with yourself on the ground.");
 		
-		output("\n\n“<i>YES! I did it, I won - i’m a real huntress now!</i>” She seems giddy with delight. It seems it’s the first fight that she’s ever won. Walking up to you, she sticks her spear in the ground and shoots you a confident grin.");
+		output("\n\n<i>“YES! I did it, I won - i’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won. Walking up to you, she sticks her spear in the ground and shoots you a confident grin.");
 		
-		output("\n\n“<i>I can’t believe I won with my sex appeal. Wait until I tell everyone about it! Well, after I help you with your frustration problem, that is.</i>” She suddenly looks a little bashful, “<i>A-as... as the victor, I have to take my prize. That’s the way my people do things. Any problems with that?</i>”");
+		output("\n\n<i>“I can’t believe I won with my sex appeal. Wait until I tell everyone about it! Well, after I help you with your frustration problem, that is.”</i> She suddenly looks a little bashful, <i>“A-as... as the victor, I have to take my prize. That’s the way my people do things. Any problems with that?”</i>");
 		
 		output("\n\nYou shake your head feverishly. If you don’t orgasm soon, you feel as if you’ll go mad! You strip off your [pc.gear] and lewdly demand that she take her prize.");
 		
-		output("\n\n“<i>Geez, you’re really forward about it! I guess it can’t be helped. You better be gentle, okay?</i>” she chastises you.");
+		output("\n\n<i>“Geez, you’re really forward about it! I guess it can’t be helped. You better be gentle, okay?”</i> she chastises you.");
 	}
 
 	var options:Array = [];
@@ -2549,15 +2549,15 @@ function vanaeMaidenPCDefeatTakeVirginity():void
 
 	output("\n\nGetting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she's ever felt a cock, let alone one like yours.");
 
-	output("\n\n“<i>");
+	output("\n\n<i>“");
 	if (pc.cocks[selCock].cLength() <= 3) output("It's smaller than I thought");
 	if (pc.cocks[selCock].cLength() >= 10) output("It feels so large");
 	else output("It feels so hard");
-	output(" and so strangely shaped! I've never touched a male sex organ before.</i>” Her cheeks flush. “<i>I'm going to get you to stick this inside of me, but I'm a little nervous. It is my first time after all, and it looks pretty scary.</i>”");
+	output(" and so strangely shaped! I've never touched a male sex organ before.”</i> Her cheeks flush. <i>“I'm going to get you to stick this inside of me, but I'm a little nervous. It is my first time after all, and it looks pretty scary.”</i>");
 
 	output("\n\nDespite her concerns, she positions herself above your [pc.cock]. You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.vaginaNounSimple] and [monster.clits]. It makes your already aching [pc.cock " + selCock + "] throb even harder.");
 
-	output("\n\nSlowly crouching down on top of you, she grabs your [pc.cock " + selCock + "] with one hand and rubs it against her moist, virginal slit. She seems to be having a tough time getting it inside of her because she's not wet enough yet. “<i>Um... it keeps slipping?</i>”");
+	output("\n\nSlowly crouching down on top of you, she grabs your [pc.cock " + selCock + "] with one hand and rubs it against her moist, virginal slit. She seems to be having a tough time getting it inside of her because she's not wet enough yet. <i>“Um... it keeps slipping?”</i>");
 
 	output("\n\nYou tell her she needs to be more aroused first");
 	if (pc.cockVirgin) output(" - at least that's your guess -");
@@ -2575,11 +2575,11 @@ function vanaeMaidenPCDefeatTakeVirginity():void
 
 	output("\n\nThe floral aroma of her [monster.skin] fills your nostrils, innocently accompanied by the sweet scent of her arousal. After a while of nipple play you're fairly sure she's wet, and tell her it's okay to proceed.");
 
-	output("\n\n“<i>Um... thank you!</i>” the young woman flushes, grabbing your erect [pc.cockNoun " + selCock + "] and holding it upright. “<i>Um, ");
+	output("\n\n<i>“Um... thank you!”</i> the young woman flushes, grabbing your erect [pc.cockNoun " + selCock + "] and holding it upright. <i>“Um, ");
 	if (pc.cocks[selCock].cLength() <= 3) output("you're pretty small, so I'm sure it'll be fine...");
 	else if (pc.cocks[selCock].cLength() < 10) output(" be gentle, okay?");
 	else output(" you're pretty big, I'm not sure you'll even fit...");
-	output("</i>”");
+	output("”</i>");
 
 	vanaeMaidenTakeVirginity();
 }
@@ -2590,7 +2590,7 @@ function vanaeMaidenPCDefeatCunnilingus():void
 
 	output("\n\nHer webbed hands come down and part her short tentacle skirt. Her [monster.pussyNoun] is cute and pink, two tiny clits poking out from her puffy lips. You can see a glistening wetness on her unsullied flower, just begging to be licked off.");
 
-	output("\n\n“<i>I... I want you to eat me out, okay? Can I trust you to do that?</i> she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
+	output("\n\n<i>“I... I want you to eat me out, okay? Can I trust you to do that?</i> she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
 
 	output("\n\nShe gives a pleasured shiver as you brush her girl parts with your [pc.lips]. As you tease them she wiggles eagerly on the spot, unable to contain the powerful sensations threatening to take over.");
 

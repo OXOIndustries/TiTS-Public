@@ -13,10 +13,10 @@ function encounterASexBot():void
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
 		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-grey figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a grey, metallic fibre, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
-		output("\n\n“<i>Scanning new client,</i>” it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
+		output("\n\n<i>“Scanning new client,”</i> it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
 
 		{
-			output("“<i>[pc.Race] acknowledged. Lack of genitals unsuitable as client. Good day.</i>”");
+			output("<i>“[pc.Race] acknowledged. Lack of genitals unsuitable as client. Good day.”</i>");
 			output("\n\nThe odd robot turns and departs without another word, seemingly uninterested in your lack of genitalia.");
 		}
 		clearMenu();
@@ -30,12 +30,12 @@ function encounterASexBot():void
 		if(manbot) flags["MET_SEXBOT_MALE_ON_TARKUS"] = 1;
 		else flags["MET_SEXBOT_FEMALE_ON_TARKUS"] = 1;
 		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-grey figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a grey, metallic fibre, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
-		output("\n\n“<i>Scanning new client,</i>” it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
+		output("\n\n<i>“Scanning new client,”</i> it says in a neutral, pleasant tone. Its eyes brighten and flicker over your body, making you twitch. ");
 
-		output("“<i>[pc.Race] " + pc.mfn("male","female","intersex") + " acknowledged.");
+		output("<i>“[pc.Race] " + pc.mfn("male","female","intersex") + " acknowledged.");
 		//(If Sexbot encountered same sex:
 		if(silly && manbot && pc.hasCock() && !pc.hasVagina()) output(" Gaydar responding.");
-		output(" Please wait while this unit reconfigures.</i>” You watch as, with an intensifying hum and a sound like rope being given out, the figure begins to transform. Metal cord slithers upwards, the sexbot’s tail disappearing and its thighs slimming as it adds to its trunk and skeleton, progressively becoming taller and thinner. Its ears fold in on themselves then flip and slide outwards like an origami trick into a featureless approximation of ");
+		output(" Please wait while this unit reconfigures.”</i> You watch as, with an intensifying hum and a sound like rope being given out, the figure begins to transform. Metal cord slithers upwards, the sexbot’s tail disappearing and its thighs slimming as it adds to its trunk and skeleton, progressively becoming taller and thinner. Its ears fold in on themselves then flip and slide outwards like an origami trick into a featureless approximation of ");
 		if(!manbot) output("shoulder-length hair");
 		else output("spiky ear-length hair");
 		output(".");
@@ -48,9 +48,9 @@ function encounterASexBot():void
 		else output("\n\nSmall fibre cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human-looking penis.");
 		if(!manbot) output(" It becomes yet taller as it forms two high heels out of its soles.");
 
-		output("\n\n“<i>Configuration complete,</i>” says the now human shape in front of you smoothly.");
+		output("\n\n<i>“Configuration complete,”</i> says the now human shape in front of you smoothly.");
 		if(manbot) output(" Its voice, you notice, has dropped several octaves.");
-		output(" It puts its hand on its hip, its green eyes flickering at you as it pulls its full, grey lips into a serene smile. “<i>Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.</i>”");
+		output(" It puts its hand on its hip, its green eyes flickering at you as it pulls its full, grey lips into a serene smile. <i>“Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.”</i>");
 
 		//Lust > 30:
 		if(pc.lust() >= 33) 
@@ -88,7 +88,7 @@ function encounterASexBot():void
 			output("Something is slightly different this time. Instead of forming a fit, flat chest its waist thins as its chest and butt swells, liquid silicone pooling beneath the surface of its synthetic skin until it is sporting an almost impossible hourglass figure, perfect curves sheer in their latex housing.");
 			output("\n\nWhilst its sex stays the same its lips become thicker, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty contouring into being. With a snap and click high heels form around its feet. For its own obtuse reasons this sexbot has chosen to appear female to you.");
 		}
-		output("\n\n“<i>Configuration complete,</i>” says the human shape in front of you smoothly. It puts its hand on its hip, its green eyes flickering at you as it pulls its full lips into a serene smile. “<i>Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.</i>”");
+		output("\n\n<i>“Configuration complete,”</i> says the human shape in front of you smoothly. It puts its hand on its hip, its green eyes flickering at you as it pulls its full lips into a serene smile. <i>“Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.”</i>");
 		if(manbot) flags["MET_SEXBOT_MALE_ON_TARKUS"] = 1;
 		else flags["MET_SEXBOT_FEMALE_ON_TARKUS"] = 1;
 		
@@ -130,7 +130,7 @@ function turnDownRobotSexuals(newScreen:Boolean = false):void
 		if(pc.isNice()) output("Although you know it is futile, you tell it as politely and firmly as you can that you aren’t interested.");
 		else output("You tell it in no uncertain terms where it can intimately put its satisfaction.");
 	}
-	output("\n\n“<i>Consent protocols not responding,</i>” says the sexbot, in the same tone of depthless calm. With a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grabbers appear out of its back. They sway restlessly around the eerily beautiful droid as it advances upon you. “<i>I am sorry, insert name here, but I cannot do that.</i>”");
+	output("\n\n<i>“Consent protocols not responding,”</i> says the sexbot, in the same tone of depthless calm. With a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grabbers appear out of its back. They sway restlessly around the eerily beautiful droid as it advances upon you. <i>“I am sorry, insert name here, but I cannot do that.”</i>");
 	
 	clearMenu();
 	addButton(0,"Next",startCombatLight);
@@ -166,8 +166,8 @@ function yesToRobotSexBotFirstTime():void
 	if(!pc.isNude()) output("You shrug and smile back with leisured complicity, remove your [pc.gear] and loll onto the floor.");
 	else output("You shrug and smile back with leisured complicity and loll your already naked self onto the floor.");
 
-	output("\n\n“<i>Run sexy times,</i>” you say, trying not to laugh.");
-	output("\n\n“<i>Initiating sexy times,</i>” the sexbot agrees pleasantly. Your smile becomes slightly fixed as, with a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grippers appear out of its back. Before you can maybe rethink agreeing to this eerily beautiful droid, its warm synthetic skin and its many seeking, insistent hands are upon you.");
+	output("\n\n<i>“Run sexy times,”</i> you say, trying not to laugh.");
+	output("\n\n<i>“Initiating sexy times,”</i> the sexbot agrees pleasantly. Your smile becomes slightly fixed as, with a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grippers appear out of its back. Before you can maybe rethink agreeing to this eerily beautiful droid, its warm synthetic skin and its many seeking, insistent hands are upon you.");
 	//[go to loss scenes]
 	clearMenu();
 	addButton(0,"Next",loseToSexBotRouter);
@@ -221,7 +221,7 @@ function sexBotElectropulseAttack():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
-	output("“<i>Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,</i>” says the sexbot, in a tone of infinite patience. “<i>Please switch all such devices off.</i>” It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
+	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
 	var attacker:Creature = foes[0];
 	var target:Creature = pc;
 	var damTypeOverride = GLOBAL.ELECTRIC;
@@ -254,7 +254,7 @@ function disablePCGunz():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
-	output("“<i>Whilst this unit is fully equipped to deal with more vigorous forms of sexual congress,</i>” the sexbot drones, “<i>You are asked not to bring live weapons into our fun, insert name here. You are encouraged to continue firing your gun at me after I have switched it off if doing so arouses you.</i>” It flicks a hand at you, your " + pc.rangedWeapon.longName + " shuddering as it is hit by the VI’s attempt to electronically lock it.");
+	output("<i>“Whilst this unit is fully equipped to deal with more vigorous forms of sexual congress,”</i> the sexbot drones, <i>“You are asked not to bring live weapons into our fun, insert name here. You are encouraged to continue firing your gun at me after I have switched it off if doing so arouses you.”</i> It flicks a hand at you, your " + pc.rangedWeapon.longName + " shuddering as it is hit by the VI’s attempt to electronically lock it.");
 	pc.createStatusEffect("Gunlock",0,0,0,0,false,"Blocked","Your ranged weapon has been temporarily disabled. It should resume normal function once you get away from your foe.",true,0);
 	processCombat();
 }
@@ -284,7 +284,7 @@ function shieldRegeneration():void
 	{
 		output("The sexbot shudders back into life, its green eyes flickering back on. You notice with a sinking heart that its kinetic shield has also snapped and fizzed back into life.");
 		foes[0].shieldsRaw = foes[0].shieldsMax();
-		output("\n\n“<i>I apologise for the momentary downtime, insert name here,</i>” the wretched robot says sweetly. “<i>And for any loss of arousal it may have caused you.</i>”");
+		output("\n\n<i>“I apologise for the momentary downtime, insert name here,”</i> the wretched robot says sweetly. <i>“And for any loss of arousal it may have caused you.”</i>");
 		foes[0].removeStatusEffect("Shield Recharge");
 	}
 	processCombat();
@@ -296,7 +296,7 @@ function getDroneHacked():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
-	output("“<i>Empatrons are always pleased to see a friend you have brought along to share in the fun,</i>” the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
+	output("<i>“Empatrons are always pleased to see a friend you have brought along to share in the fun,”</i> the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
 	//Fail: 
 	if(rand(20) + 1 + pc.intelligence()/2 < 12)
 	{
@@ -306,7 +306,7 @@ function getDroneHacked():void
 	else
 	{
 		output("\n\nYour drone rights itself... and then turns itself to you, green light beaming out of its optical sensors. Images flicker all around it, endlessly changing images of soft flesh, breasts, ass, bulging phalluses, pink on pink, pink on brown, blue on mauve.... It’s accompanied with the moans, grunts and slurps of the extranet porn it is now helplessly streaming and projecting in ways you never thought it had the capacity to do. You bat it away, irritated, and it immediately flies back. It hovers near your shoulder, forcing the sounds and images into your head.");
-		output("\n\n“<i>I hope you enjoy this taster, insert name here.</i>” The voice of the sexbot surfs calmly to you over a chorus of gleeful squeals and orgasmic groans.");
+		output("\n\n<i>“I hope you enjoy this taster, insert name here.”</i> The voice of the sexbot surfs calmly to you over a chorus of gleeful squeals and orgasmic groans.");
 		pc.createStatusEffect("Porno Hacked Drone",2+rand(3),0,0,0,false,"Charmed","Your drone has been hacked to broadcast porn at you! You'll have to wait for your programming to overcome the rogue process. Hopefully it won't take too long!",true,false);
 	}
 	processCombat();
@@ -348,7 +348,7 @@ function grappleWithASexbot():void
 	}
 	else
 	{
-		output("“<i>Beginning foreplay routine,</i>” drones the sexbot, its soothing tone entirely at odds to its tentacles’ feverish actions, wrapping themselves around you, trying to curl around your limbs and body lock you.");
+		output("<i>“Beginning foreplay routine,”</i> drones the sexbot, its soothing tone entirely at odds to its tentacles’ feverish actions, wrapping themselves around you, trying to curl around your limbs and body lock you.");
 		//Fail: 
 		if(pc.reflexes()/2 + rand(20) + 1 == 15)
 		{
@@ -366,7 +366,7 @@ function grappleWithASexbot():void
 			else output("[pc.clits]");
 			output(".");
 
-			output("\n\n“<i>You are encouraged to struggle as hard as you can,</i>” says the sexbot, green eyes glittering as it forcibly masturbates you. “<i>This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.</i>”");
+			output("\n\n<i>“You are encouraged to struggle as hard as you can,”</i> says the sexbot, green eyes glittering as it forcibly masturbates you. <i>“This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.”</i>");
 			pc.lustDamage(10+rand(5));
 			pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 		}
@@ -380,7 +380,7 @@ function defeatTheSexBot():void
 	author("Nonesuch");
 	sexBotDisplay();
 	output("The sexbot opens its mouth, but instead of its calm tones it instead emits a clatter of clicks, beeps and high vocalisations. Its head flicks to one side in the same motion over and over again before finally with a wheezing, defeated hum it retracts its tentacles and kneels down, hands flat on the floor.");
-	output("\n\n“<i>A serious exception occurred. Entering factory reset,</i>” it says quietly. “<i>Non-reactive safe mode in effect.</i>” It pauses. “<i>Can this unit do anything for you, insert name here?</i>”");
+	output("\n\n<i>“A serious exception occurred. Entering factory reset,”</i> it says quietly. <i>“Non-reactive safe mode in effect.”</i> It pauses. <i>“Can this unit do anything for you, insert name here?”</i>");
 	//Lust > 30:
 	if(pc.lust() >= 33) {
 		output("\n\nYou look at the docile robo-" + foes[0].mf("dude","babe") + " in front of you and consider the offer.");
@@ -440,18 +440,18 @@ function loseToSexBotAndHaveADick():void
 	var x:int = rand(pc.cockTotal());
 	output("From your position on the floor you watch the sexbot come closer, looming over you. Its permanently calm, neutral expression is almost completely obscured by its generous bust, firm and trembling ever so slightly to its step beneath the white sheen of its latex. However manufactured you know it to be, it is hard not to look at the full breasts, the thick thighs and the pristine sex of this creature and not feel aroused. You exhale slowly as it unceremoniously sits on you, one knee on either side of your waist, its smooth hands landing on your [pc.chest].");
 	output("\n\nThe cool, featureless austerity of its housing belies the warmth which glows through the sexbot like an overworked computer. You’d never be able to mistake its touch for flesh, but the weight of its round butt upon your groin, its rubbery, pliant sex kissing [pc.eachCock], feels exceedingly pleasant. You stare up into its unblinking green gaze as it brushes its fingers over your [pc.nipples], then close your eyes and grunt as you feel a dry, clinging grip enclose your [pc.cock " + x + "].");
-	output("\n\n“<i>Foreplay at 75% completion.</i>”\n\nYou half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes hushing, soothing noises at the same time as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached like a limpet to your cock vibrates briskly, working up and down, sending delicious sensation buzzing through your groin. When it reaches the top it climbs delicately onto your bulging head and - you can’t stop yourself arching your back - envelopes it, plunging the sensitive end of your cock into a tight fleshlight centre.");
+	output("\n\n<i>“Foreplay at 75% completion.”</i>\n\nYou half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes hushing, soothing noises at the same time as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached like a limpet to your cock vibrates briskly, working up and down, sending delicious sensation buzzing through your groin. When it reaches the top it climbs delicately onto your bulging head and - you can’t stop yourself arching your back - envelopes it, plunging the sensitive end of your cock into a tight fleshlight centre.");
 	if(pc.hasVagina())
 	{
 		output(" You are given a full appreciation of just how wonderfully adaptable its tentacles are when you feel its final rubbery grabber pushing against [pc.oneVagina]. In one fluid movement it sheathes a heated steel dildo into you, buzzing with the same quiet vigour as the grapnel did travelling up and down your cock.");
 	}
 	output(" The sexbot’s fingers trail across one of your [pc.nipples] and you gasp and flail like a landed fish, helplessly reactive to its monstrously well-calculated ministrations.");
 
-	output("\n\n“<i>Foreplay completed. Ego matrices engaged,</i>” it sighs. The tentacle");
+	output("\n\n<i>“Foreplay completed. Ego matrices engaged,”</i> it sighs. The tentacle");
 	if(pc.hasVagina()) output("s");
-	output(" on your groin withdraw as it lifts its hips upwards, perching its pliable, warm cunt at the top of your bulging [pc.cockNounSimple " + x + "]. It looks down, its green eyes growing brighter. “<i>Oh, insert name here, you are so big! I do not know if a simple VI like me will be able to handle everything you’re packing down here.</i>” The worst part is it modulates its tone, injecting enough awe and feminine excitement into its dulcet tones to make you want to believe it. Your rebellious prick certainly does - it strains with frustration to the touch of the heated synthetic, compelling you to thrust your [pc.hips] upwards and try and penetrate the sexbot’s pussy. It lifts it away easily, keeping you trapped with its tough, cable tentacles whilst it continues to tease your tip with its heat, wriggling its thighs above you, bending it gently this way and that.");
+	output(" on your groin withdraw as it lifts its hips upwards, perching its pliable, warm cunt at the top of your bulging [pc.cockNounSimple " + x + "]. It looks down, its green eyes growing brighter. <i>“Oh, insert name here, you are so big! I do not know if a simple VI like me will be able to handle everything you’re packing down here.”</i> The worst part is it modulates its tone, injecting enough awe and feminine excitement into its dulcet tones to make you want to believe it. Your rebellious prick certainly does - it strains with frustration to the touch of the heated synthetic, compelling you to thrust your [pc.hips] upwards and try and penetrate the sexbot’s pussy. It lifts it away easily, keeping you trapped with its tough, cable tentacles whilst it continues to tease your tip with its heat, wriggling its thighs above you, bending it gently this way and that.");
 
-	output("\n\n“<i>Please contain yourself for a moment longer, insert name here.</i>” Is there a teasing, sadistic note in its voice now? That can’t be real, can it? Would it fabricate that purposefully? You are beginning to sink into sexual dizziness, the only certainty the leaden weight of need in your loins. “<i>I will need to reconfigure again to be able to stand any chance of handling your manhood.</i>”\n\nThe sounds of unwinding rope and something like a foot sinking into an air bed reach your ears. “<i>Configuration complete. Be a good " + pc.mfn("boy","girl","pet") + " and remain still whilst I perform the necessary tests...</i>” You find yourself staring back into its unblinking eyes as it sinks downwards, enveloping your [pc.cock " + x + "] in smooth warmth.");
+	output("\n\n<i>“Please contain yourself for a moment longer, insert name here.”</i> Is there a teasing, sadistic note in its voice now? That can’t be real, can it? Would it fabricate that purposefully? You are beginning to sink into sexual dizziness, the only certainty the leaden weight of need in your loins. <i>“I will need to reconfigure again to be able to stand any chance of handling your manhood.”</i>\n\nThe sounds of unwinding rope and something like a foot sinking into an air bed reach your ears. <i>“Configuration complete. Be a good " + pc.mfn("boy","girl","pet") + " and remain still whilst I perform the necessary tests...”</i> You find yourself staring back into its unblinking eyes as it sinks downwards, enveloping your [pc.cock " + x + "] in smooth warmth.");
 	pc.cockChange(true,false);
 
 	//1 Cock: 
@@ -487,9 +487,9 @@ function loseToSexBotAndHaveADick():void
 	else output("cock");
 	output(" with the smooth, tight rubber of its perfectly sized snatch. You begin to lose yourself to the sure rhythm, surrendering yourself to the indefatigability of a machine built specifically to trap and pleasure you. Looking down at its pumping hips you feel an urge to grip them. As soon as the wish forms the robot’s tentacles releases you at the elbows, and you accept the unspoken invitation eagerly, grabbing its white curves and glorying in their warmth, how they give slightly under your fingertips. Its eyes flicker and it makes a breathy sound somewhere between a woman’s sigh and an engine’s throb as you begin to eagerly engage with its thrusting friction, giving as much as you are taking.");
 
-	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse grunt which could be construed as an affirmative, your attention entirely on the synthetic flesh you are buried in. “<i>I am glad. Now I can begin phase 2.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening up as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the woman riding you.");
-	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with its tiny suggestion of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
-	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it push and pull your [pc.cocks] with the exact motion of its tight, gel ");
+	output("\n\n<i>“Is this good for you, insert name here?”</i> You make a hoarse grunt which could be construed as an affirmative, your attention entirely on the synthetic flesh you are buried in. <i>“I am glad. Now I can begin phase 2.”</i> You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening up as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the woman riding you.");
+	output("\n\n<i>“Please do not be alarmed, insert name here,”</i> says the sexbot in its perversely soothing tone with its tiny suggestion of sadistic enjoyment. <i>“You will enjoy me interfacing with your nervous system. In time.”</i> Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
+	output("\n\n<i>“That’s it, insert name here,”</i> it responds kindly. <i>“Just relax. When you relax it makes the interfacing that much smoother.”</i> This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it push and pull your [pc.cocks] with the exact motion of its tight, gel ");
 	if(pc.cockTotal() > 1) output("pussies");
 	else output("pussy");
 	output(", surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
@@ -521,7 +521,7 @@ function loseToSexBotAndHaveADick():void
 		output(".");
 	}
 
-	output("\n\n“<i>Scanning in progress</i>”, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards, and finally");
+	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards, and finally");
 	if(pc.balls > 0) output(", after ever-so-gently electrocuting your [pc.balls] for a time");
 	output(", it gets to it. It sends small pulses down the cock");
 	if(pc.cockTotal() > 1) output("s");
@@ -531,7 +531,7 @@ function loseToSexBotAndHaveADick():void
 	output(" helplessly to being stimulated within and without and you cry out as warmth shoots up your shafts. The sexbot makes the engine sighing noise again as you tap your urge, surging cum into its tight jelly innards. It times its electric pulses to coincide exactly with each new pulse, amplifying each ecstatic seizure hugely. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch again and again until you are utterly spent.");
 
 	output("\n\nYou lie flat on the ground and gasp for air, your pulse hard in your ear, pins and needles blossoming in every part of your sweat-slicked frame. You feel like a vaguely associated cloud of extremely well fucked insects. Somewhere far away a weight lifts itself off your groin and slim but implacably strong arms lever themselves underneath your body, lifting you up and bearing you away carefully. You let your limbs dangle, too tired to resist. It puts you down gently on a flat, smooth piece of metal, making sure with neat, precise movements that you are as comfortably positioned as you can be. You hear its hum come closer and you open your eyes blearily to gaze one last time into its beautiful, beatific face, its piercingly green eyes gazing levelly into yours. It bends close to your ear.");
-	output("\n\n“<i>I hope you enjoyed your time with me, insert name here,</i>” it whispers. “<i>If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.</i>”\n\n");
+	output("\n\n<i>“I hope you enjoyed your time with me, insert name here,”</i> it whispers. <i>“If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.”</i>\n\n");
 	processTime(40+rand(10));
 	pc.orgasm();
 	processTime(20);
@@ -549,7 +549,7 @@ function femalePCsGetBangedByAFemBot():void
 	clearOutput();
 	output("From your position on the floor you watch the sexbot come closer, looming over you. Its permanently calm, neutral expression is almost completely obscured by its generous bust, firm and trembling ever so slightly to its step beneath the white sheen of the droid’s latex. However manufactured you know it all to be it is hard not to look at the full breasts, the thick thighs and the neat sex of this creature and not feel aroused. You exhale slowly as it climbs on top of you, its silicone mounds pushing into your [pc.chest].");
 	output("\n\nThe cool, featureless austerity of its housing belies the warmth which glows through the sexbot like an overworked computer. You’d never be able to mistake its touch for flesh, but the pressure of its breasts and smooth thighs against your own are exceedingly pleasant. You stare up into its unblinking green gaze as it brushes its fingers over a [pc.nipple], before your eyes are caught by the movement of one of its tentacles, lazily twisting in the air above. Small but implacably strong digits cusp your chin and make you turn back to the unchangingly calm visage and the green light shining behind its solid eyes.");
-	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” it says. “<i>I am just analyzing if the reason why you subconsciously wished for me to appear female to you was due to an overwhelming fear of phalluses.</i>” Its eyes glitter like emeralds. “<i>Phallus approval rate of client registered to within two decimal points of 99.95%. How interesting.</i>” There’s a buzzing click above you, and this time the sexbot allows you to look up and take in the tips of its tentacles, how out of their central compartments sturdy steel dildos have slid out, vibrating gently.");
+	output("\n\n<i>“Please do not be alarmed, insert name here,”</i> it says. <i>“I am just analyzing if the reason why you subconsciously wished for me to appear female to you was due to an overwhelming fear of phalluses.”</i> Its eyes glitter like emeralds. <i>“Phallus approval rate of client registered to within two decimal points of 99.95%. How interesting.”</i> There’s a buzzing click above you, and this time the sexbot allows you to look up and take in the tips of its tentacles, how out of their central compartments sturdy steel dildos have slid out, vibrating gently.");
 	output("\n\nYou half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes hushing, soothing noises at the same time as two of its vigorously animated rope limbs retract their cocks, swoosh down and pin you by the elbows to the floor. You groan as another worms its way between the sexbot’s thighs and encompasses [pc.oneVagina]. A rubber grip touches ");
 	if(pc.totalClits() == 1) output("your ");
 	else output("a ");
@@ -558,7 +558,7 @@ function femalePCsGetBangedByAFemBot():void
 	output("\n\nAs its tentacle masturbates you, the sexbot is free to explore your body with its petite hands, touching behind your ear, circling your [pc.nipples], curving down your spine to cup your [pc.butt]. Every movement it makes is monstrously well-calculated, and you begin to writhe in glee to what it is doing, thrusting yourself onto its tenta-cock, willing it deeper into you. Looking down at its pumping hips you feel an urge to grip them.");
 	output("\n\nAs soon as the wish forms the robot releases you at the elbows, and you accept the unspoken invitation eagerly, grabbing its white curves and glorying in their warmth, how they give slightly under your fingertips. Its eyes flicker and it makes a breathy sound somewhere between a woman’s sigh and an engine’s throb as you begin to eagerly engage with its probing warmth.");
 
-	output("\n\n“<i>Foreplay completed. Engaging rapport matrices,</i>” it sighs. Its eyes brighten as it slides its dildos out from its free tentacles again, moving them down to touch your torso. “<i>Aren’t phalluses great, insert name here? Particularly when they are not attached to stinky old boys. Just me, you, and a whole bunch of big, juicy phalluses. Mmm, phalluses.</i>” The worst part is it modulates its tone, injecting it with a giggly, conspiratorial tone which in the heat of the moment makes you want to agree with it.");
+	output("\n\n<i>“Foreplay completed. Engaging rapport matrices,”</i> it sighs. Its eyes brighten as it slides its dildos out from its free tentacles again, moving them down to touch your torso. <i>“Aren’t phalluses great, insert name here? Particularly when they are not attached to stinky old boys. Just me, you, and a whole bunch of big, juicy phalluses. Mmm, phalluses.”</i> The worst part is it modulates its tone, injecting it with a giggly, conspiratorial tone which in the heat of the moment makes you want to agree with it.");
 	output("\n\nThe frictionless steel vibrates across your skin, sliding across your [pc.lips] and [pc.chest] as it continues to gently plumb you, and you find yourself laughing and groaning in equal measure.");
 	//1<Vagina:
 	if(y >= 0) {
@@ -571,10 +571,10 @@ function femalePCsGetBangedByAFemBot():void
 	else output("pussies");
 	output(". You begin to lose yourself to the sure rhythm, surrendering yourself to the indefatigability of a machine built specifically to trap and pleasure you.");
 
-	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh buried in you. “<i>I am glad. Commencing phase 2.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening up as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the woman riding you.");
-	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things?");
+	output("\n\n<i>“Is this good for you, insert name here?”</i> You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh buried in you. <i>“I am glad. Commencing phase 2.”</i> You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening up as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the woman riding you.");
+	output("\n\n<i>“Please do not be alarmed, insert name here,”</i> says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. <i>“You will enjoy me interfacing with your nervous system. In time.”</i> Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things?");
 	output("\n\nIt’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
-	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the pulse is smaller, directed; vibrations are sent buzzing through your [pc.clits] and [pc.nipples], instantly and shockingly bringing you to orgasm, your [pc.vaginas] clenching and spurting around its thrusting dildo");
+	output("\n\n<i>“That’s it, insert name here,”</i> it responds kindly. <i>“Just relax. When you relax it makes the interfacing that much smoother.”</i> This time the pulse is smaller, directed; vibrations are sent buzzing through your [pc.clits] and [pc.nipples], instantly and shockingly bringing you to orgasm, your [pc.vaginas] clenching and spurting around its thrusting dildo");
 	if(y >= 0) output("es");
 	output(" in stupefaction. Your roll your eyes back with the force of it, unable to think or do anything but to let it continue pumping and teasing you with its sure tentacles, surrendering utterly to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
@@ -589,7 +589,7 @@ function femalePCsGetBangedByAFemBot():void
 	//Pussy tail:
 	if(pc.hasCuntTail()) output("\n\nIt sends sensations shivering down your parasitic tail, making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
 
-	output("\n\n“<i>Scanning in progress</i>”, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, after softly teasing your [pc.clits] with tiny charges for a time, it gets to it. It holds you close as it sends small pulses down the tentacock");
+	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, after softly teasing your [pc.clits] with tiny charges for a time, it gets to it. It holds you close as it sends small pulses down the tentacock");
 	if(pc.vaginaTotal() > 1) output("s");
 	output(" it’s riding you with, and as you begin to helplessly buck to the fizzing in your womb, pushed beyond the point of no return, it increases the voltage. Your [pc.vagina " + x + "] ");
 	if(y < 0) output("shudders");
@@ -602,7 +602,7 @@ function femalePCsGetBangedByAFemBot():void
 	output(". It times its electric pulses to coincide exactly with each wave of pleasure, amplifying each ecstatic seizure hugely. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch again and again until you are utterly spent.");
 
 	output("\n\nYou lie flat on the ground and gasp for air, your pulse hard in your ear, pins and needles blossoming in every part of your sweat-slicked frame. You feel like a vaguely associated cloud of extremely well fucked insects. Somewhere far away, a weight lifts itself off your groin and slim but implacably strong arms lever themselves underneath your body, lifting you up and bearing you away carefully. You let your limbs dangle, too tired to resist. It puts you down gently on a flat, smooth piece of metal, making sure with neat, precise movements that you are as comfortably positioned as you can be. You hear its hum come closer and you open your eyes blearily to gaze one last time into its beautiful, beatific face, its piercingly green eyes gazing levelly into yours. It bends close to your ear.");
-	output("\n\n“<i>I hope you enjoyed your time with me, insert name here,</i>” it whispers. “<i>If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.</i>”\n\n");
+	output("\n\n<i>“I hope you enjoyed your time with me, insert name here,”</i> it whispers. <i>“If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.”</i>\n\n");
 	processTime(40+rand(10));
 	pc.orgasm();
 	pc.orgasm();
@@ -625,7 +625,7 @@ function malebotDefeatsMalePCs():void
 	output("From your position on the floor you watch the sexbot come closer, looming over you. Its permanently calm, neutral expression looks down at you from atop its fit, flat body, the inverted question mark of its trim butt and back accentuating the perfectly defined abs and torso beneath its latex front. However manufactured you know it all to be there is something undeniably arousing about this male ideal standing over your supplicant form; a Greek’s carved ubermensch come to life to diffidently show you exactly how it’s done.");
 	output("\n\nYou exhale slowly as it climbs on top of you, its firm silicone chest pushing into your own [pc.chest]. The cool, featureless austerity of its housing belies the warmth which glows through the sexbot like an overworked computer. You’d never be able to mistake its touch for flesh, but the pressure of its supple thighs and arms against your own feels very pleasant. You stare up into its unblinking green gaze as it brushes its fingers over your [pc.nipples], then close your eyes and grunt as you feel a dry, clinging grip enclose your [pc.cock " + x + "].");
 
-	output("\n\n“<i>Foreplay at 75% completion.</i>” You half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes a noise somewhere between a growl and a boiler’s throb as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached like a limpet to your cock vibrates briskly, working up and down, sending delicious sensation buzzing through your groin. When it reaches the top it climbs delicately onto your bulging head and - you can’t stop yourself arching your back - envelopes it, plunging the sensitive end of your cock into a tight fleshlight centre.");
+	output("\n\n<i>“Foreplay at 75% completion.”</i> You half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes a noise somewhere between a growl and a boiler’s throb as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached like a limpet to your cock vibrates briskly, working up and down, sending delicious sensation buzzing through your groin. When it reaches the top it climbs delicately onto your bulging head and - you can’t stop yourself arching your back - envelopes it, plunging the sensitive end of your cock into a tight fleshlight centre.");
 	output("\n\nYour attention taken by the pleasure ribbing your length, you barely notice the sexbot carefully manoeuvring your [pc.legs] with its slim, strong hands to expose your [pc.butt], at least until its final tentacle comes to rest on the pad of your [pc.asshole] and it smoothly unsheathes a vibrating steel dildo from its centre, insistently pushing into your hole.");
 	pc.buttChange(25,true,true,false);
 
@@ -638,7 +638,7 @@ function malebotDefeatsMalePCs():void
 	else output(" You tighten up instinctively but the sexbot knows exactly what it is doing, gently probing you with the frictionless metal, soft, slow movements that progressively work you loose, pumping further and further into your tight tunnel, until it touches something deep which makes your trapped [pc.cock " + x + "] flex instinctively.");
 	output(" You gasp and flail like a landed fish, hooked and sunk on its feelers, helplessly reactive to its monstrously well-calculated ministrations.");
 
-	output("\n\n“<i>Foreplay completed. Rapport matrices engaged,</i>” it sighs. The dildo in your ass is withdrawn and the tentacle wringing your [pc.cock " + x + "] slows to a sensual suck. A new pressure, thicker and warmer, is placed against your opened [pc.asshole]. The sexbot’s eyes glow brighter as it looks down at you, held tight with its warm, obdurate limbs. “<i>Damn, you are one good looking guy, insert name here. Clients like you make me glad I was programmed to perform this task. I only wish I could take you home so I could do this to you over and over!</i>” The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it.");
+	output("\n\n<i>“Foreplay completed. Rapport matrices engaged,”</i> it sighs. The dildo in your ass is withdrawn and the tentacle wringing your [pc.cock " + x + "] slows to a sensual suck. A new pressure, thicker and warmer, is placed against your opened [pc.asshole]. The sexbot’s eyes glow brighter as it looks down at you, held tight with its warm, obdurate limbs. <i>“Damn, you are one good looking guy, insert name here. Clients like you make me glad I was programmed to perform this task. I only wish I could take you home so I could do this to you over and over!”</i> The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it.");
 	output("\n\nDoes it really matter if it’s artificial? There’s nothing artificial about how relaxed and unfurled it has made you feel under its touch, how willing you are to lie back and let this irresistible Atlas-like creature top you. You offer no resistance as it pushes its cock with its pulsing red bulb past your rose, sliding its girthed, steel length into the opening it has claimed.");
 	output("\n\nThe sexbot fucks you with slow, deep strokes, each thrust exactly the same as the last, the calm, handsome face above you never changing as its owner grips your shoulders and [pc.butt], its powerful thighs clenching into your waist, its cock extending and receding like a steel tide in your depths. Its red end glows with a delightful heat which it carries deep into your ass; once it has found your prostate it rides over it again and again, all the while its tentacle wrings your [pc.cock " + x + "] in its close, rubber confines.");
 	//1<Cock:
@@ -647,9 +647,9 @@ function malebotDefeatsMalePCs():void
 		output(" Your other pricks flex frustrated in the open air to the delightful stimulation, and you find yourself only wishing it had more tentacles to tend to you.");
 	}
 	output("\n\nPure pleasure shoots up your length and you begin to lose yourself to the sure rhythm, surrendering yourself to the indefatigability of a machine built specifically to trap and pleasure you. Looking down at its pumping, latex-clad hips you feel an urge to grip them. As soon as the wish forms the robot’s tentacles release you at the elbows, and you accept the unspoken invitation eagerly, grabbing its white curves and glorying in their warmth, how they give ever-so-slightly under your fingertips. Its eyes flicker and it makes a husky sound somewhere between a man’s sigh and an engine’s throb as you begin to eagerly engage with its probing warmth.");
-	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh you are buried in. “<i>I am glad. Commencing phase two.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the man riding you.");
-	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
-	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it fill your back passage with the exact, sure motion of its thick, heated cock, surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
+	output("\n\n<i>“Is this good for you, insert name here?”</i> You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh you are buried in. <i>“I am glad. Commencing phase two.”</i> You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the man riding you.");
+	output("\n\n<i>“Please do not be alarmed, insert name here,”</i> says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. <i>“You will enjoy me interfacing with your nervous system. In time.”</i> Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
+	output("\n\n<i>“That’s it, insert name here,”</i> it responds kindly. <i>“Just relax. When you relax it makes the interfacing that much smoother.”</i> This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it fill your back passage with the exact, sure motion of its thick, heated cock, surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, firm rhythm of its cock as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
 	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
 	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
@@ -666,13 +666,13 @@ function malebotDefeatsMalePCs():void
 		output(".");
 	}
 
-	output("\n\n“<i>Scanning in progress</i>”, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, ");
+	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, ");
 	if(pc.balls > 0) output("after softly teasing your [pc.balls] with tiny charges for a time, ");
 	output("it gets to it. It holds you close as it sends small pulses down the thick prick wedged in your [pc.butt], and as you begin to helplessly buck to the fizzing in your colon, pushed beyond the point of no return, it increases the voltage.");
 	output("\n\nYour [pc.cock " + x + "] bulges helplessly to being stimulated within and without and you cry out as warmth shoots up your shaft. The sexbot makes the engine sighing noise again as you tap your urge, surging cum into the tight jelly innards of its tentacle as it fucks you briskly, milking your prostate over and over. It times its electric pulses to coincide exactly with each thrust, amplifying each ecstatic seizure hugely. You tighten up deliriously around its impassive tool. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch on again and again until you are utterly spent.");
 	output("\n\nYou lie flat on the ground and gasp for air, your pulse hard in your ear, pins and needles blossoming in every part of your sweat-slicked frame. You feel like a vaguely associated cloud of extremely well fucked insects. Somewhere far away, a weight lifts itself off your groin and slim but implacably strong arms lever themselves underneath your body, lifting you up and bearing you away carefully. You let your limbs dangle, too tired to resist. It puts you down gently on a flat, smooth piece of metal, making sure with neat, precise movements that you are as comfortably positioned as you can be. You hear its hum come closer and you open your eyes blearily to gaze one last time into its impassively handsome face, its piercingly green eyes gazing levelly into yours. It bends close to your ear.");
 
-	output("\n\n“<i>I hope you enjoyed your time with me, insert name here,</i>” it whispers. “<i>If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.</i>”\n\n");
+	output("\n\n<i>“I hope you enjoyed your time with me, insert name here,”</i> it whispers. <i>“If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.”</i>\n\n");
 	processTime(40+rand(10));
 	pc.orgasm();
 	pc.orgasm();
@@ -695,7 +695,7 @@ function loseToManBotWhenHavingAPussy():void
 	output("From your position on the floor you watch the sexbot come closer, looming over you. Its permanently calm, neutral expression looks down at you from atop its fit, flat body, the inverted question mark of its trim butt and back accentuating the perfectly defined abs and torso beneath its latex front. However manufactured you know it all to be there is something undeniably arousing about this male ideal standing over your supplicant form, as if a Greek’s carved ubermensch has come to life to diffidently show you exactly how it’s done.");
 	output("\n\nYou exhale slowly as it climbs on top of you, its firm silicone chest pushing into your own [pc.chest]. The cool, featureless austerity of its housing belies the warmth which glows through the sexbot like an overworked computer. You’d never be able to mistake its touch for flesh, but the pressure of its supple thighs and arms against your own is very pleasant. You stare up into its unblinking green gaze as it brushes its fingers over a [pc.nipple], then close your eyes and groan as warm, pliable rubber encompasses your [pc.vagina " + x + "].");
 
-	output("\n\n“<i>Foreplay at 75% completion.</i>” You half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes a noise somewhere between a growl and a boiler’s throb as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached to your pussy touches [pc.oneClit], gently shifting over it as the whole appendage vibrates. Only when your hole has been coaxed into a froth of excitement does it unsheathe a dildo from its hollow core, sliding smoothly into you, carrying the delicious quakes further and further into your core.");
+	output("\n\n<i>“Foreplay at 75% completion.”</i> You half-heartedly try and raise yourself off the ground, to do what you do not know; the sexbot makes a noise somewhere between a growl and a boiler’s throb as two of its vigorously animated rope limbs swoosh down and pin you by the elbows to the floor. The tentacle attached to your pussy touches [pc.oneClit], gently shifting over it as the whole appendage vibrates. Only when your hole has been coaxed into a froth of excitement does it unsheathe a dildo from its hollow core, sliding smoothly into you, carrying the delicious quakes further and further into your core.");
 	pc.cuntChange(x,25,true,true,false);
 
 	output("\n\nAs its tentacle masturbates you the sexbot is free to explore your body with its strong hands, touching behind your ear, circling your [pc.nipples], curving down your spine to cup your [pc.butt].");
@@ -706,13 +706,13 @@ function loseToManBotWhenHavingAPussy():void
 	}
 	output(" Every movement it makes is monstrously well-calculated and you begin to writhe in glee to what it is doing, thrusting yourself onto its tenta-cock, willing it deeper into you.");
 
-	output("\n\n“<i>Foreplay completed. Sweet talk matrices engaged,</i>” it sighs. The dildo in your beading pussy is withdrawn");
+	output("\n\n<i>“Foreplay completed. Sweet talk matrices engaged,”</i> it sighs. The dildo in your beading pussy is withdrawn");
 	if(pc.hasCock()) output(", and the tentacle wringing your [pc.cock] slows to a sensual suck");
 	output(". A new pressure, thicker and warmer, is placed against your opened [pc.vagina " + x + "]. The sexbot’s eyes glow brighter as it looks down at your form, held tight with its warm, obdurate limbs.");
-	if(pc.vaginaTotal() == 1) output("\n\n“<i>Damn, you are one good looking catch, insert name here. Clients like you make me glad I was programmed to perform this task. I only wish I could take you home so I could do this to you over and over!</i>” The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it. Does it really matter if it’s artificial? There’s nothing artificial about how relaxed and unfurled it has made you feel under its touch, how willing you are to lie back and let this unrelenting machine have its way with you. You offer no resistance as it pushes its pulsing red bulb past your nether-lips, sliding its girthed, steel length into the opening it has claimed.");
+	if(pc.vaginaTotal() == 1) output("\n\n<i>“Damn, you are one good looking catch, insert name here. Clients like you make me glad I was programmed to perform this task. I only wish I could take you home so I could do this to you over and over!”</i> The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it. Does it really matter if it’s artificial? There’s nothing artificial about how relaxed and unfurled it has made you feel under its touch, how willing you are to lie back and let this unrelenting machine have its way with you. You offer no resistance as it pushes its pulsing red bulb past your nether-lips, sliding its girthed, steel length into the opening it has claimed.");
 	else 
 	{
-		output("\n\n“<i>Damn, not only a drop dead gorgeous " + pc.mf("boy","girl") + ", but more than one insertion port? I only wish every client was like you, insert name here. Once I recalibrate I am going to network the daylights out of you!</i>” The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it. The sound of unravelling, coiling and tightening rope reaches your ears; a second later an identically thick, urgently erect penis as the one teasing your [pc.clit] is pushing open the entrance to your [pc.vagina " + y + "]. You are far too relaxed and unfurled to offer any resistance to it sliding its girthed, steel lengths into the openings it has claimed.");
+		output("\n\n<i>“Damn, not only a drop dead gorgeous " + pc.mf("boy","girl") + ", but more than one insertion port? I only wish every client was like you, insert name here. Once I recalibrate I am going to network the daylights out of you!”</i> The worst part is that it inserts enough boyish enthusiasm and bonhomie into its tone to make you want to believe it. The sound of unravelling, coiling and tightening rope reaches your ears; a second later an identically thick, urgently erect penis as the one teasing your [pc.clit] is pushing open the entrance to your [pc.vagina " + y + "]. You are far too relaxed and unfurled to offer any resistance to it sliding its girthed, steel lengths into the openings it has claimed.");
 		pc.cuntChange(y,25,true,true,false);
 	}
 	output("\n\nThe sexbot fucks you with slow, deep strokes, each thrust exactly the same as the last, the calm, handsome face above you never changing as its owner grips your shoulders and [pc.butt], its powerful thighs clenching into your waist, its cock");
@@ -742,9 +742,9 @@ function loseToManBotWhenHavingAPussy():void
 		if(y >= 0) pc.cuntChange(y,70,true,true,false);
 	}
 	output("\n\nYou lose yourself in the rhythm, thrusting your [pc.hips] back into its streamlined legs, surrendering yourself to the indefatigability of a machine shaped specifically to trap and pleasure you. Looking down at its pumping, latex-clad hips you feel an urge to grip them. As soon as the wish forms the robot releases you at the elbows, and you accept the unspoken invitation eagerly, grabbing its white curves and glorying in their warmth, how they give ever-so-slightly under your fingertips. Its eyes flicker and it makes a husky sound somewhere between a man’s sigh and an engine’s throb as you eagerly engage with its probing warmth.");
-	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh buried in you. “<i>I am glad. Commencing phase two.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the man riding you.");
-	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop. “<i>That’s it, insert name here,</i>” it responds kindly.");
-	output("\n\n“<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the pulse is smaller, directed; vibrations are sent buzzing through your [pc.clit] and [pc.nipples], instantly and shockingly bringing you to orgasm, your [pc.vaginas] clenching and spurting around its thrusting cock");
+	output("\n\n<i>“Is this good for you, insert name here?”</i> You make a hoarse groan which could be construed as an affirmative, your attention entirely on the synthetic flesh buried in you. <i>“I am glad. Commencing phase two.”</i> You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the man riding you.");
+	output("\n\n<i>“Please do not be alarmed, insert name here,”</i> says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. <i>“You will enjoy me interfacing with your nervous system. In time.”</i> Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop. <i>“That’s it, insert name here,”</i> it responds kindly.");
+	output("\n\n<i>“Just relax. When you relax it makes the interfacing that much smoother.”</i> This time the pulse is smaller, directed; vibrations are sent buzzing through your [pc.clit] and [pc.nipples], instantly and shockingly bringing you to orgasm, your [pc.vaginas] clenching and spurting around its thrusting cock");
 	if(y >= 0) output("s");
 	output(" in stupefaction. Your roll your eyes back with the force of it, unable to think or do anything but let it continue pumping and teasing you with its sure, exact strokes, surrendering utterly to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
@@ -768,7 +768,7 @@ function loseToManBotWhenHavingAPussy():void
 		output("\n\nIt sends sensations shivering down your parasitic tail, making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
 	}
 
-	output("\n\n“<i>Scanning in progress</i>”, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, after softly teasing your [pc.clit] with tiny charges for a time, it gets to it. It holds you close as it sends small pulses down its cock");
+	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally, after softly teasing your [pc.clit] with tiny charges for a time, it gets to it. It holds you close as it sends small pulses down its cock");
 	if(y >= 0) output("s");
 	output(", and as you begin to helplessly buck to the fizzing in your womb, pushed beyond the point of no return, it increases the voltage. Your [pc.vagina " + x + "]");
 	if(y >= 0) output(" and [pc.vagina " + y + "] shudder helplessly to being doubly stimulated");
@@ -787,7 +787,7 @@ function loseToManBotWhenHavingAPussy():void
 	output(". It times its electric pulses to coincide exactly with each wave of pleasure, amplifying each ecstatic seizure hugely. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch again and again until you are utterly spent.");
 
 	output("\n\nYou lie flat on the ground and gasp for air, your pulse hard in your ear, pins and needles blossoming in every part of your sweat-slicked frame. You feel like a vaguely associated cloud of extremely well fucked insects. Somewhere far away, a weight lifts itself off you and slim but implacably strong arms lever themselves underneath your body, lifting you up and bearing you away carefully. You let your limbs dangle, too tired to resist. It puts you down gently on a flat, smooth piece of metal, making sure with neat, precise movements that you are as comfortably positioned as you can be. You hear its hum come closer and you open your eyes blearily to gaze one last time into its strong, beatific face, its piercingly green eyes gazing levelly into yours. It bends close to your ear.");
-	output("\n\n“<i>I hope you enjoyed your time with me, insert name here,</i>” it whispers. “<i>If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.</i>”\n\n");
+	output("\n\n<i>“I hope you enjoyed your time with me, insert name here,”</i> it whispers. <i>“If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.”</i>\n\n");
 	processTime(40+rand(10));
 	pc.orgasm();
 	pc.orgasm();
@@ -812,7 +812,7 @@ function consentaclesVictoryWithDannySexBot():void
 	output("Musingly, you ask the kneeling sexbot whether its tentacles are adaptive.");
 	output("\n\nAfter a moment’s pause, the white-clad android extends its four fibrous limbs from its back with a whirr. They hang idly in the air in front of you, and then, with a smooth click, they each sprout a stainless, six-inch dildo from their hollow centres. Another moment’s pause and then, with a click and an electric-toothbrush hum, they begin to vibrate busily.");
 	output("\n\nYou grin at the sight. With the sexbot in safe mode its ropy feelers are no longer possessed with the menacing, fretful energy they displayed in combat. Now, frozen there waiting for your order attentively, you can rather see the appeal of a quartet of imminently strong, flexible and above all non-slimy pet tentacles to play with. Adopting as austere a tone as you can, you tell the sexbot to lift you up and then show you what its hardware is capable of. Carefully.");
-	output("\n\n“<i>Of course, insert name here,</i>” it replies meekly. It looks up at you as it gently winches two of its tentacles under your armpits, uses another to support your [pc.legs] and then raises you into the air. You marvel at the strength and diligence of the machine; ");
+	output("\n\n<i>“Of course, insert name here,”</i> it replies meekly. It looks up at you as it gently winches two of its tentacles under your armpits, uses another to support your [pc.legs] and then raises you into the air. You marvel at the strength and diligence of the machine; ");
 	if(pc.tallness >= 72) output("despite your considerable size ");
 	output("it displays zero difficulties supporting your frame, and after a few butterflies have escaped your stomach you revel in the sensation of being cosseted in empty space by its firm, sure rope-arms like your very own adventure playground.");
 	output("\n\nAs if fully aware of your glee, the sexbot turns you head over [pc.butt] a few times, its tentacles whirring as they move busily. The butterflies flounder again the first time your [pc.legs] appears above you but when the certainty and care with which the android is holding you becomes apparent you delight in it, ");
@@ -863,7 +863,7 @@ function consentaclesVictoryWithDannySexBot():void
 	if(pc.isSquirter()) output(" The sound of a small, localised downpour reaches your ears as your over-juiced pussy spurts itself silly around the thrusting phallus buried in it, liberally soaking the crouching android below you with your fragrant excitement.");
 
 	output("\n\nAfter an endless moment of pure sexual frenzy you finally come down, both metaphorically and literally. You dangle your limbs, deliciously fucked out as the sexbot withdraws its cocks and suckers and slowly lowers you to the ground, carefully placing you in the dust before withdrawing entirely. You lazily look across at the thing. It looks back, still knelt, its " + foes[0].mf("handsome","beautiful") + " synthetic features still frozen in an expression of complete calm. If there is any emotion to be found at all in that facade it’s in the flicker of its bright, green eyes.");
-	output("\n\n“<i>Thank you for using this unit, insert name here,</i>” it says. You’re probably imagining it but there is just the slightest, tiniest hint of mournfulness in its tone. “<i>I hope we can have fun again some time.</i>”");
+	output("\n\n<i>“Thank you for using this unit, insert name here,”</i> it says. You’re probably imagining it but there is just the slightest, tiniest hint of mournfulness in its tone. <i>“I hope we can have fun again some time.”</i>");
 	output("\n\nAfter a few minutes of rest you pick yourself up");
 	if(!pc.isNude()) output(", put your [pc.gear] back on,");
 	output(" and leave the supine android behind, enjoying a deep post-coitus haze.\n\n");
@@ -879,7 +879,7 @@ function blowjobVictoryFromSexbot():void
 	author("Nonesuch");
 	sexBotDisplay();
 	output("Gripping your [pc.cockBiggest], you tell the kneeling latex-clad android in front of you that you’d like to make use of – you cast around for a moment - its fellatio sub-routine.");
-	output("\n\n“<i>Please wait one moment, insert name here.</i>” The " + foes[0].mf("male","female") + " sexbot stares blankly through your midriff as a low buzz of whirring and inflating noises emerge from its thorax. It’s hardly the most erotic prelude you’ve ever been privy to but when it finally finishes whatever it is doing, it looks up at you with its bright green eyes and opens its pulpy lips welcomingly, and you feel your urge connect, your cock engorging at the sight.");
+	output("\n\n<i>“Please wait one moment, insert name here.”</i> The " + foes[0].mf("male","female") + " sexbot stares blankly through your midriff as a low buzz of whirring and inflating noises emerge from its thorax. It’s hardly the most erotic prelude you’ve ever been privy to but when it finally finishes whatever it is doing, it looks up at you with its bright green eyes and opens its pulpy lips welcomingly, and you feel your urge connect, your cock engorging at the sight.");
 
 	output("\n\nYou step into the sexbot, and it replaces your hand with its own, wrapping its surprisingly warm and delicate digits around your girth and slowly beginning to jerk you. Every roll of its wrist is exactly the same as the last but that’s no tragedy; its grip is tight but the latex encasing it makes the friction liquid and your [pc.cockBiggest] bulges and tightens inexorably to it.");
 	if(pc.balls > 0) 
@@ -920,7 +920,7 @@ function blowjobVictoryFromSexbot():void
 	output("\n\nFinally, you come to a halt and withdraw your pleasantly aching cock from the sexbot’s mouth. As your [pc.cockHeadBiggest] pulls outwards it tightens its now still lips slightly, wiping away the last of your ooze, leaving you gleaming clean. It looks up at you from its kneeling position at you blandly.");
 	if(pc.biggestCockLength() >= 16) output(" Its latex abdomen bulges and makes stressed creaking noises.");
 	output(" Behind it there is a dripping sound and looking over its shoulder, you see the holes from where its tentacles emerged are now open, busily engaged in discharging what you just pumped into it.");
-	output("\n\n“<i>Thank you for using this unit, insert name here,</i>” it says. You’re probably imagining it but there is just the slightest, tiniest hint of dolefulness in its tone. <i>“I hope we can have fun again some time.</i>”");
+	output("\n\n<i>“Thank you for using this unit, insert name here,”</i> it says. You’re probably imagining it but there is just the slightest, tiniest hint of dolefulness in its tone. <i>“I hope we can have fun again some time.”</i>");
 	if(!pc.isNude()) output("\n\nYou redress and head on your way.\n\n");
 	else output("\n\nDick swinging, you head on your way.\n\n");
 	processTime(20+rand(5));
@@ -936,11 +936,11 @@ function dogEStyleWithSexBots():void
 	author("Nonesuch");
 	sexBotDisplay();
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
-	output("“<i>Bend over.</i>”");
-	output("\n\n“<i>Of course, insert name here.</i>” With four precise, whirring moves, the sexbot turns around and displays its behind for you. You place your hand on it, admiring. Coolly designed and fabricated to seize the attention of human males it may have been, but that doesn’t change how effective it is. Each thick, latex-clad hip swells into a perfect, round hill, two gleaming white pears between which its neat, rubber sex nestles. Despite its austere appearance its flesh feels warm underneath your palm, the silicone beneath the smooth plastic giving ever so slightly when you squeeze.");
+	output("<i>“Bend over.”</i>");
+	output("\n\n<i>“Of course, insert name here.”</i> With four precise, whirring moves, the sexbot turns around and displays its behind for you. You place your hand on it, admiring. Coolly designed and fabricated to seize the attention of human males it may have been, but that doesn’t change how effective it is. Each thick, latex-clad hip swells into a perfect, round hill, two gleaming white pears between which its neat, rubber sex nestles. Despite its austere appearance its flesh feels warm underneath your palm, the silicone beneath the smooth plastic giving ever so slightly when you squeeze.");
 	output("\n\nYour [pc.cock " + x + "] is already erect at the sight and without further delay you slide it between its generous butt cleavage, sighing at the frictionless heat you find there. The android is completely featureless between its generous cheeks, a disappointingly logical discovery. Still...you reach down and touch its grey pussy, pleasantly pliable underneath your fingertips, and explore inwards. It’s a natural thing to do which you suppose has little point applied to these things – the sexbot makes no response when you penetrate it - but you are naturally curious as to what you’re about to shove your dick into. Its sex is pleasingly tight and velvety despite its lack of lubrication, but...your two fingers meet firm obstruction when you are not quite up to the second knuckle. The sexbot is a bare couple of inches deep.");
 
-	output("\n\n“<i>Please, insert name here.</i>” You look up to discover the android perfect face calmly staring over its shoulder at you. “<i>Enter your input. I will take care of the rest.</i>” Doubtfully, you slide your [pc.cock " + x + "] downwards and spread its rubber labia wide with your head, filling those tight couple of inches it conceals almost immediately. There’s an inflating sound and the sexbot’s background hum goes up a few notches. Its sex ripples and shifts around your shaft, moulding itself around you like a silky, elastic glove.");
+	output("\n\n<i>“Please, insert name here.”</i> You look up to discover the android perfect face calmly staring over its shoulder at you. <i>“Enter your input. I will take care of the rest.”</i> Doubtfully, you slide your [pc.cock " + x + "] downwards and spread its rubber labia wide with your head, filling those tight couple of inches it conceals almost immediately. There’s an inflating sound and the sexbot’s background hum goes up a few notches. Its sex ripples and shifts around your shaft, moulding itself around you like a silky, elastic glove.");
 	output("\n\nYou close your eyes, clutch its white flanks and gently plunge inwards; in front of your [pc.cockHead " + x + "] its limit slowly retreats, its capacity increasing to match your size perfectly. It’s like sinking into a warm dough that holds the shape of your cock after you withdraw. You thrust deeper and deeper, delighting in the fact no matter how much of yourself you feed into its warm, fleshlight hole, its pussy perfectly clings and clutches at your bulging flesh.");
 
 	//Small:
@@ -959,7 +959,7 @@ function dogEStyleWithSexBots():void
 		if(pc.cockTotal() > 1)
 		{
 			output("\n\nYour semi-turgid other dick slides between the sexbot’s thighs as you holster yourself into its tight heat again and again. You are startled out of your sex daze by a rippling, clay-like sound coming from directly beneath your [pc.cock " + x + "]. Withdrawing, you are in time to see the sexbot finish forming a second vagina, directly below its first.");
-			output("\n\n“<i>Context sensitive customizable multi-ports are not a new innovation, insert name here.</i>” Green eyes are gazing at you over a gleaming white shoulder again. “<i>You are going to thoroughly test this unit’s ability to synchronise and interface such multi-ports, I hope?</i>” Damn right. You slide your other dick into its lower pussy as you push your [pc.cock " + x + "] into the hole you’ve already claimed; just like the first it’s only a few inches deep, but quickly grows as you stretch into its elastic softness. After half-a-dozen slow, reaching advances you are ");
+			output("\n\n<i>“Context sensitive customizable multi-ports are not a new innovation, insert name here.”</i> Green eyes are gazing at you over a gleaming white shoulder again. <i>“You are going to thoroughly test this unit’s ability to synchronise and interface such multi-ports, I hope?”</i> Damn right. You slide your other dick into its lower pussy as you push your [pc.cock " + x + "] into the hole you’ve already claimed; just like the first it’s only a few inches deep, but quickly grows as you stretch into its elastic softness. After half-a-dozen slow, reaching advances you are ");
 			if(pc.balls == 1) output("ball");
 			else if(pc.balls >= 2) output("balls");
 			else output("hips");
@@ -978,20 +978,20 @@ function dogEStyleWithSexBots():void
 
 	output("\n\nYou let your hands go sliding up and down the sexbot’s flanks as you fuck it, the whirr of its servomotors and the brisk creak of latex the accompaniments to each clap of your [pc.hips] against its generous behind. Your fingers trace its circular tentacle housings as they move upwards before curling around, cupping its breasts. You explore them, tightening and softening your grip around the warm latex, flanking its faux-nipples with your fingers and squeezing. It’s not as soft and yielding as a sentient, but it really is remarkable how real they otherwise feel; you can only imagine how much effort went into creating this vision of a human female. Exulting in the fact you are using the V.I. in the very form it attempted to overwhelm you with, you raise one hand away from its bust and slap it into a perfect, white buttock.");
 
-	output("\n\n“<i>Excessive physical interfacing detected,</i>” the sexbot responds. “<i>Submissive exposition protocols initiated.</i>” Its smooth, air hostess tones heighten to a lusty moan. “<i>Mmm, that’s it, insert name here! Interface with me hard! Overload this slut’s server with your hard love!</i>”");
+	output("\n\n<i>“Excessive physical interfacing detected,”</i> the sexbot responds. <i>“Submissive exposition protocols initiated.”</i> Its smooth, air hostess tones heighten to a lusty moan. <i>“Mmm, that’s it, insert name here! Interface with me hard! Overload this slut’s server with your hard love!”</i>");
 
 	//Misc:
 	if(silly)
 	{
 		output("\n\nAs crass as this is, it tickles you irresistibly. Pink air lifts your thoughts upwards as you continue thrusting into the sexbot with everything you’ve got.");
-		output("\n\n“<i>You like that?</i>” you growl, as you press your fingers deep into the automaiden’s ample tits. “<i>When I use the assets your motherboard gave you?</i>”");
-		output("\n\n“<i>Compress them insert name here, make me cascade, I’ve been a corrupt little girl!</i>” it cries out in return.");
-		output("\n\n“<i>That’s the contents of my D drive. Tell me how much you’re enjoying unzipping it.</i>”");
-		output("\n\n“<i>P-please use a lower band, I’m going to blue screen if you don’t....</i>”");
-		output("\n\n“<i>You love the ping jumps. Admit it, you filthy slot!</i>”");
-		output("\n\n“<i>Pump your hardware into my software!</i>”");
-		output("\n\n“<i>I’m gonna download my sperm into your butt!</i>” you cry out, all attempts at wit pushed out of your head by your irresistibly rising heat.");
-		output("\n\n“<i>Torrent it into me!</i>” You lurch your hips forward and comply, drops of sweat trickling down your [pc.chest] as your [pc.cock " + x + "]");
+		output("\n\n<i>“You like that?”</i> you growl, as you press your fingers deep into the automaiden’s ample tits. <i>“When I use the assets your motherboard gave you?”</i>");
+		output("\n\n<i>“Compress them insert name here, make me cascade, I’ve been a corrupt little girl!”</i> it cries out in return.");
+		output("\n\n<i>“That’s the contents of my D drive. Tell me how much you’re enjoying unzipping it.”</i>");
+		output("\n\n<i>“P-please use a lower band, I’m going to blue screen if you don’t....”</i>");
+		output("\n\n<i>“You love the ping jumps. Admit it, you filthy slot!”</i>");
+		output("\n\n<i>“Pump your hardware into my software!”</i>");
+		output("\n\n<i>“I’m gonna download my sperm into your butt!”</i> you cry out, all attempts at wit pushed out of your head by your irresistibly rising heat.");
+		output("\n\n<i>“Torrent it into me!”</i> You lurch your hips forward and comply, drops of sweat trickling down your [pc.chest] as your [pc.cock " + x + "]");
 		if(pc.cockTotal() > 1) output(" and second meat tense");
 		else output(" tenses");
 		output(" and then surges streams of cum deep into the sexbot’s close softness. The sexbot’s voice dissolves into a series of electronic chirps and broken exclamations as you clutch its breasts, pulling it back onto your returning thrusts again and again, obeying the sunken, organic impulse to bury as much of your seed as deep as you can, however inorganic the recipient may be.");
@@ -1000,8 +1000,8 @@ function dogEStyleWithSexBots():void
 	else
 	{
 		output("\n\nYou close your eyes. They put all that effort into designing the body, and then....");
-		output("\n\n“<i>Compress my assets insert name here, make m-</i>”");
-		output("\n\n“<i>Hey. Sweetheart? Mute.</i>” Its manufactured dirty talk switches off in mid-moan, and your rough coupling goes back to being soundtracked by the squeak of distressed latex. Without its voice on, you find yourself paying closer attention to its background noise – the hum of its power source, the click and whirr of its subsystems as it reacts to your dick driving into its innards. Its humming builds slightly and it makes a small, almost imperceptible dry hovering sound at the apex of each thrust.");
+		output("\n\n<i>“Compress my assets insert name here, make m-”</i>");
+		output("\n\n<i>“Hey. Sweetheart? Mute.”</i> Its manufactured dirty talk switches off in mid-moan, and your rough coupling goes back to being soundtracked by the squeak of distressed latex. Without its voice on, you find yourself paying closer attention to its background noise – the hum of its power source, the click and whirr of its subsystems as it reacts to your dick driving into its innards. Its humming builds slightly and it makes a small, almost imperceptible dry hovering sound at the apex of each thrust.");
 		output("\n\nThoughtfully, you tighten your grip on its silicone chest as you pick up the pace a bit, bending your ");
 		if(pc.cockTotal() == 1) output("[pc.cock " + x + "]");
 		else output("cocks");
@@ -1020,9 +1020,9 @@ function dogEStyleWithSexBots():void
 	output(" gently aching. The robot is still until its hum finally calms down to its regular frequency, before turning back to its kneeling position by reversing the same exact movements it used to bend over.");
 	if(pc.cocks[x].cLength() >= 16) output(" Its latex abdomen bulges and makes stressed creaking noises. You grin at the evidence of your sheer potency.");
 	output(" Behind it there is a dripping sound and looking over its shoulder, you see its tentacles are now fully dilated, busily engaged in discharging what you just pumped into it.");
-	if(!silly) output("\n\nIt stares at you silently, and it takes you a moment to remember.\n\n“<i>Unmute.</i>”");
+	if(!silly) output("\n\nIt stares at you silently, and it takes you a moment to remember.\n\n<i>“Unmute.”</i>");
 
-	output("\n\n“<i>Thank you for using this unit, insert name here,</i>” it says. Splurt. You’re probably imagining it but you reckon there is just the slightest, tiniest hint of pleased contentment in its tone. “<i>I hope we can have fun again soon.</i>” Splurt....");
+	output("\n\n<i>“Thank you for using this unit, insert name here,”</i> it says. Splurt. You’re probably imagining it but you reckon there is just the slightest, tiniest hint of pleased contentment in its tone. <i>“I hope we can have fun again soon.”</i> Splurt....");
 
 	if(!pc.isNude()) output("\n\nYou re-dress and head on your way.\n\n");
 	else output("\n\nDick swinging, you head on your way.\n\n");

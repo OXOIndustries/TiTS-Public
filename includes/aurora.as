@@ -69,7 +69,7 @@ function approachAuroraPostTarkusBoom():void
 	//bat is hangin’ out and waves when you approach, fukken bat god damn
 	else
 	{
-		output("As you approach, Aurora becomes much more lively. By the time you make it over to her, that peach treat she was gnawing on has completely disappeared! The bat-mechanist is all smiles, giving you her full attention. “<i>Hey! I’m just finishing up; what do you need?</i>”");
+		output("As you approach, Aurora becomes much more lively. By the time you make it over to her, that peach treat she was gnawing on has completely disappeared! The bat-mechanist is all smiles, giving you her full attention. <i>“Hey! I’m just finishing up; what do you need?”</i>");
 	}
 	//Menu calls show up already since this is called within the normal approachAurora
 }
@@ -357,7 +357,7 @@ function howdAuroraSurviveSplosions():void
 	output("\n\n<i>\"The sky got weird by the time I got back and the air was thin, like I was </i>wa-aaay<i> up. So I figured something had happened to the artificial tether and we were all doomed! So I hopped in the mini-pod that no one wanted and hid! I was scared. Then everything started getting sucked out of the workshop and the pod got flung out and was spinning around. Everything was terrible!\"</i>");
 	output("\n\n<i>”But the pod had fuel in it and worked, just like I said! So I got it turned on-”</i> Aurora’s intrepid retelling becomes a bit muted as she mumbles something about ‘eventually’, though like any good storytelling bard, her aside is brief, leaving her to continue boasting. <i>\"- and I flew to the </i>Novahome<i>! I even caught someone - she’s fine - and I crashed into one of the bays before the doors got shut.”</i>");
 	output("\n\nYou blink. That’s a bit dramatic. Actually, why didn’t she just run into the <i>Novahome</i> when she had the chance instead of hiding in the pod?");
-	output("\n\n“<i><b>Cuz</b>! It’s a piece of junk!”</i>");
+	output("\n\n<i>“<b>Cuz</b>! It’s a piece of junk!”</i>");
 	output("\n\nOh. That’s fair.");
 	processTime(7);
 	auroraTalkMenu(1);

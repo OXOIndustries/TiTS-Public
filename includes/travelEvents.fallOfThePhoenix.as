@@ -524,7 +524,7 @@ public function phoenixPiratesBulletstorm():void
 
 public function phoenixPiratesCarpetGrenades():void
 {
-	output("“<i>Frag out!</i>” one of the pirates shouts, hurling a beeping black cylinder your way.");
+	output("<i>“Frag out!”</i> one of the pirates shouts, hurling a beeping black cylinder your way.");
 
 	output(" You dive out of the way, but still get riddled with shrapnel.");
 	

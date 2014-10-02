@@ -889,7 +889,7 @@ function naleenReverseBJPart2():void
 	if(pc.balls > 0) output("[pc.balls]");
 	else output("[pc.cockBiggest]");
 	output(", causing her drool. Her newfound eagerness coats her tongue in a slick lubrication, and she wastes no time in coating the rest of your shaft with her serpentine appendage.");
-	output("\n\nThe snake woman shyly smiles at you as you pull away, returning to a standing position. She darts forward and takes your quivering cock between her feline claws. “<i>Mine?</i>” the naga asks as she gently pets and plays with your [pc.cockBiggest] using her fuzzy fingers. The light fur ");
+	output("\n\nThe snake woman shyly smiles at you as you pull away, returning to a standing position. She darts forward and takes your quivering cock between her feline claws. <i>“Mine?”</i> the naga asks as she gently pets and plays with your [pc.cockBiggest] using her fuzzy fingers. The light fur ");
 	if(pc.libido() < 80) output("covering her dextrous fingers causes your member to twitch from her pleasurable touch.");
 	else output("coating her dextrous fingers gives them a slightly soft feeling around your member. The gentle tickling from her ministrations causes extra blood to fill your glans.");
 	output(" You nod, and the naleen presses her head against your chest in a show of affection while her hands move around your [pc.hips]. With a snap of her head, she lunges forward with her mouth open and takes much of your shaft into her warm maw. Her long, snake-like tongue slips under your rod and pulls it further inside. As she draws more into her mouth, the slick, hot flesh encasing your cock tightens with sharp pressure and you realise that your dick has breached her throat.");
