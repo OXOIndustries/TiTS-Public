@@ -291,7 +291,7 @@ function plugBessesFatAssInPartII():void
 	output("\n\nYou can hear [bess.hisHer] rear compartment closing with a small clicking noise.");
 	output("\n\nStriding into the room, you have your [pc.rangedWeapon] pointed at her for good measure. After all, [bess.heShe] may have been dumped on Tarkus for good reason.");
 	//No. Cutting dis.
-	//output("\n\nLike your dad always said, \</i>”{female: Scan ‘er, THEN jam ‘er. It’s always the hot ones with the SSTD’s/Male: No matter how good they are, an SSTD lasts longer. Scan ‘em BEFORE you spread ‘em}.</i>” Spoken like a true viral veteran.");
+	//output("\n\nLike your dad always said, \”</i>{female: Scan ‘er, THEN jam ‘er. It’s always the hot ones with the SSTD’s/Male: No matter how good they are, an SSTD lasts longer. Scan ‘em BEFORE you spread ‘em}.”</i> Spoken like a true viral veteran.");
 
 	output("\n\nWhen the silver-haired synthetic notices you entering the room, " + bessfm("she immediately bows to you, her hands clasped together in front of her body","he elegantly bows to you, almost as he were a butler or maitre d’") + ". [bess.HeShe] seems unphased not only by your weapon, but also by the fact that [bess.heShe] is completely nude.");
 	if (bess.hasVagina())
@@ -300,9 +300,9 @@ function plugBessesFatAssInPartII():void
 	}
 	else // male
 		output("\n\nWhen he speaks, his voice is rich and full of timbre, far from the synthesized voice of typical androids. Instead, it sounds full and flavorsome, like a well composed sonnet.");
-	output("\n\n<i>\"Greetings, [Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!</i>” " + bess.fm("She sounds surprisingly happy","He sounds remarkably upbeat") + " for someone who was just fished out of a junk pile. <i>\"JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!</i>”");
+	output("\n\n<i>\"Greetings, [Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!”</i> " + bess.fm("She sounds surprisingly happy","He sounds remarkably upbeat") + " for someone who was just fished out of a junk pile. <i>\"JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!”</i>");
 	output("\n\nYou ask exactly <i>who</i> and <i>what</i> [bess.heShe] is, and <i>why</i> [bess.heShe] is calling you ‘[Master]’. There are an awful lot of ‘w’ questions that need to be answered until you put down your weapon.");
-	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>\</i>”[Master], I don’t have a name yet - you haven’t given me one. " + bess.fm("I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,","I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?</i>”");
+	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>\”</i>[Master], I don’t have a name yet - you haven’t given me one. " + bess.fm("I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,","I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?”</i>");
 	output("\n\nIt seems [bess.heShe] has been reset to [bess.hisHer] factory settings, and now [bess.heShe] thinks you are [bess.hisHer] registered owner. Either that, or [bess.heshe] was fresh out of the box to begin with. Could you be lucky enough to have found your very own high-class, brand-spanking new JoyCo sex relief android?");
 	// Silly Mode && bess.gender = female
 	if(silly) output("\n\n...Somewhere, there’s a very unhappy looking Japanese boy, waiting for his girlfriend to arrive...");
@@ -340,7 +340,7 @@ function sellOfBessDatWhore():void
 	output("\n\nThe handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. ");
 	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + pc.fm("Bess","Ben") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
 	output("\n\nThe owner of the ship is just as pleasant to look at as his starship is. Coming out to meet you and wringing their hands all the while, he hardly makes eye contact. He’s far too busy ogling the merchandise.");
-	output("\n\n<i>\"Nice, nice. Hard to get one of these for anything less than mega-creds. What did you do, steal [bess.himHer] from a hospital? Don’t answer that, I don’t want to know.\</i>”</i> The buyer gives you a near-toothless grin.");
+	output("\n\n<i>\"Nice, nice. Hard to get one of these for anything less than mega-creds. What did you do, steal [bess.himHer] from a hospital? Don’t answer that, I don’t want to know.\”</i></i> The buyer gives you a near-toothless grin.");
 	output("\n\nCredits are exchanged, no names, and soon you’re 10,000 credits richer. It’s sub-light robbery - [bess.heShe]’s worth <i>at least</i> an extra zero - but there are no questions asked and you’re wealthier than before you found it.");
 	output("\n\nAfter concluding your business, you head back to Tarkus, wiping the flight path and history from your spaceship computer.");
 	//Appear back in Spaceship, story path ended. { Add 10,000 credits to PC’s credit score } 
@@ -355,7 +355,7 @@ function handBessOverToAuthorities():void
 {
 	clearOutput();
 	output("Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You’re surprised a U.G.C. official is actually going out of their way to Tarkus to pick up a sex bot.");
-	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.fm("Bess-13","Ben-14") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the “<i>dangerous sex bot</i>” in.");
+	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.fm("Bess-13","Ben-14") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the <i>“dangerous sex bot”</i> in.");
 	output("\n\nLooking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it’s hard to imagine [bess.heShe]’s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense.");
 	output("\n\nThe U.G.C. official leaves with the {Bess-13/Ben-14} unit, and soon after you are wired 2,500 credits by JoyCo. Seems things wrapped up pretty nicely.");
 	pc.credits += 2500;
@@ -408,19 +408,19 @@ function keepBessYouSloot():void
 {
 	clearOutput();
 	//Tutorial / Configure 
-	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either. {Kind: “<i>Plus, it kind of seems mean to leave her alone in your hanger just because [bess.heShe]’s an android</i>”.}{Misc: “<i>Plus it might be kind of fun to add [bess.himHer] to your crew.</i>”}{Hard: “<i>Besides, you need every edge you can get if you’re going to find that hidden treasure stash.</i>”}");
+	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either. {Kind: <i>“Plus, it kind of seems mean to leave her alone in your hanger just because [bess.heShe]’s an android”</i>.}{Misc: <i>“Plus it might be kind of fun to add [bess.himHer] to your crew.”</i>}{Hard: <i>“Besides, you need every edge you can get if you’re going to find that hidden treasure stash.”</i>}");
 	//Nice:
-	if(pc.isNice()) output("\n\n<i>\"I guess I’ve got a new crewmate. Welcome aboard!\</i>”</i> You smile warmly, happy to have another crew member on your ship.");
+	if(pc.isNice()) output("\n\n<i>\"I guess I’ve got a new crewmate. Welcome aboard!\”</i></i> You smile warmly, happy to have another crew member on your ship.");
 	//Misc:
-	else if(pc.isMischievous()) output("\n\n<i>\"Sure, why not? I’ve got room for another crew member. Welcome aboard!\</i>”</i> You welcome [bess.himHer] on a whim, though you’re sure it will all work out for the best.");
+	else if(pc.isMischievous()) output("\n\n<i>\"Sure, why not? I’ve got room for another crew member. Welcome aboard!\”</i></i> You welcome [bess.himHer] on a whim, though you’re sure it will all work out for the best.");
 	//Hard:
-	else output("\n\n<i>\"Do whatever you want, just don’t cause any trouble or you’re off the ship.\</i>”</i> You sternly warn [bess.himHer], making sure the message is received loud and clear.");
-	output("\n\nThe silver haired synthetic" + bess.fm(" flushes and bows","'s eyes light up and he gives a dutiful bow") + ", <i>\"You’re too kind, [Master]. Just think of me as yours to do with what you will.\</i>”</i>");
+	else output("\n\n<i>\"Do whatever you want, just don’t cause any trouble or you’re off the ship.\”</i></i> You sternly warn [bess.himHer], making sure the message is received loud and clear.");
+	output("\n\nThe silver haired synthetic" + bess.fm(" flushes and bows","'s eyes light up and he gives a dutiful bow") + ", <i>\"You’re too kind, [Master]. Just think of me as yours to do with what you will.\”</i></i>");
 	output("\n\n[Bess.HeShe] then pauses and looks at you with patient, " + bess.fm("hopeful","questioning") + " eyes, as if waiting for you to say something else. " + bess.fm("It reminds you of a girl at a social function waiting to be asked to dance.","He even coughs politely, as if trying to awkwardly bring your attention to something."));
 	output("\n\nYou ask [bess.himHer] exactly what [bess.heShe]’s waiting for, and [bess.heShe] gives a rather animated blink. It’s hardly that of a pre-programmed VI.");
-	output("\n\n<i>\"My name, [Master]. I don’t have an official designation yet.\</i>”</i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
+	output("\n\n<i>\"My name, [Master]. I don’t have an official designation yet.\”</i></i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
 	output("\n\nWhat do you decide to name her?");
-	//(Default Name: {if (bess.gender = female) “<i>Bess</i>”}{else: “<i>Ben</i>”}");
+	//(Default Name: {if (bess.gender = female) <i>“Bess”</i>}{else: <i>“Ben”</i>}");
 }
 
 //Entered name becomes string value [Bess]
@@ -428,16 +428,16 @@ function nameBessResult():void
 {
 	clearOutput();
 	//9999 name shit
-	output("<i>\"Thank you for my name, [Master]. I am now called [Bess]!\</i>”</i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\</i>”</i>");
+	output("<i>\"Thank you for my name, [Master]. I am now called [Bess]!\”</i></i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\”</i></i>");
 	output("\n\nYou ask exactly what functions [Bess] comes equipped with, noting that [bess.heShe] doesn’t look like [bess.heShe]’s made of a regular kind of alloy.");
 	output("\n\n[Bess] comes quite lively when you observe that, since [bess.heShe] clearly takes pride in [bess.hisHer] design specs.");
-	output("\n\n<i>\"You’re very observant, [Master]! All Bess-13 units are built using FlexMetal, a patented creation exclusive to JoyCo. This material is softer than organic flesh and ten times more flexible, allowing me to change my form in specific ways.\</i>”</i> ");
+	output("\n\n<i>\"You’re very observant, [Master]! All Bess-13 units are built using FlexMetal, a patented creation exclusive to JoyCo. This material is softer than organic flesh and ten times more flexible, allowing me to change my form in specific ways.\”</i></i> ");
 	output("\n\nYou ask what kind of specific way [bess.heShe] can shift [bess.hisHer] body about.");
-	output("\n\n<i>\"My insides are filled with a liquid called MeldMilk. By increasing or decreasing the amount in certain parts of my body, my form can be inflated or deflated to tailor my appearance to my [Master]’s tastes,\</i>”</i> [Bess] informs you.");
-	output("\n\n<i>\"I can retract, grow or recolor my hair, change eye color or grow appendages in order to fulfill your sexual needs. I also have several special modes that can be activated or deactivated, such as sexual roles or the flavor of my cum.\</i>”</i>");
-	output("\n\n<i>\"You can also purchase certain special modifications, clothes, and accessories for me through the JoyCo catalogue. These items will be delivered to you within one to three earth days, excluding public holidays and weekends.\</i>”</i>");
+	output("\n\n<i>\"My insides are filled with a liquid called MeldMilk. By increasing or decreasing the amount in certain parts of my body, my form can be inflated or deflated to tailor my appearance to my [Master]’s tastes,\”</i></i> [Bess] informs you.");
+	output("\n\n<i>\"I can retract, grow or recolor my hair, change eye color or grow appendages in order to fulfill your sexual needs. I also have several special modes that can be activated or deactivated, such as sexual roles or the flavor of my cum.\”</i></i>");
+	output("\n\n<i>\"You can also purchase certain special modifications, clothes, and accessories for me through the JoyCo catalogue. These items will be delivered to you within one to three earth days, excluding public holidays and weekends.\”</i></i>");
 	output("\n\nAfter [bess.hisHer] lengthy explanation of [bess.hisHer] various features, [Bess] takes a deep breath. It’s probably a programmed gesture, since [bess.heShe] doesn’t actually <i>need</i> to breathe.");
-	output("\n\n<i>\"I doubt I’m your perfect mate fresh out of the box, so feel free to change my settings at any time. I’ve got a lot of them, so please be patient with me.\</i>”</i> [Bess] then bows in a very " + bess.fm("subservient manner","well-mannered way") + ". <i>\</i>”... I look forward to serving your needs, [Master]!\</i>”</i>");
+	output("\n\n<i>\"I doubt I’m your perfect mate fresh out of the box, so feel free to change my settings at any time. I’ve got a lot of them, so please be patient with me.\”</i></i> [Bess] then bows in a very " + bess.fm("subservient manner","well-mannered way") + ". <i>\”</i>... I look forward to serving your needs, [Master]!\”</i></i>");
 	//Appear back in ship with Bess added to the Followers menu. 
 	processTime(2);
 	clearMenu();

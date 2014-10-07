@@ -32,7 +32,7 @@
 			this.description = "a dose of milkmaid's aid";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This bottle contains milk-white pills, and the label shows several New Texan girls reclining against what look like industrial-strength milkers, their nudity tastefully hidden by foreground objects. The listed effects include a massive one-time surge in lactation: perfect for “<i>stocking up</i>” before a long, happy session in the milk barn.";
+			this.tooltip = "This bottle contains milk-white pills, and the label shows several New Texan girls reclining against what look like industrial-strength milkers, their nudity tastefully hidden by foreground objects. The listed effects include a massive one-time surge in lactation: perfect for <i>“stocking up”</i> before a long, happy session in the milk barn.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -989,7 +989,7 @@ public function mimbranesComplainAndShit():void
 						if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
 						{
 							// Both hands should following the same feeding/upgrading pattern
-							if (pc.statusEffectV1("Mimbrane Hand Left") <= 2)
+							if (pc.statusEffectv1("Mimbrane Hand Left") <= 2)
 							{
 								addMimbraneEvent("Your hands feel hungry, and you don’t understand it. Things may rise past this odd yearning if you don’t take care of it soon.");
 							}

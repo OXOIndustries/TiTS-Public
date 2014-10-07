@@ -26,11 +26,11 @@ function icedTreatsInterior():Boolean
 		flags["MET_YAMMI"] = 1;
 		output("The shop interior is made up of row after row of clear plastic devices with trays in front for bowls, and handles to draw the ice cream treats. On taking a second look, you realize each one appears to be occupied by a female form! Before you can make much of this, your attention is called to the right, where the cashier calls to you.");
 
-		output("\n\n“<i>Hello! Welcome to Iced Teats!</i>”");
+		output("\n\n<i>“Hello! Welcome to Iced Teats!”</i>");
 
 		output("\n\nThis tall orange skinned woman has short lime green hair and bright red eyes. She wears a bright red miniskirt and vest combo that she must have to squeeze her C-cups into with a shoehorn. Her eye shadow, nail polish, and lipstick all share the hue of her hair. Her ears are bony fans, her fingers webbed, and she has gill slits on her neck, betraying an amphibious origin. Her smile is inviting and warm as you step up to the counter.");
 
-		output("\n\n“<i>My name is Yammi! What can I get for you today?</i>” She chirps happily, indicating the large flavor list behind her. “<i>We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!</i>”");
+		output("\n\n<i>“My name is Yammi! What can I get for you today?”</i> She chirps happily, indicating the large flavor list behind her. <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
 		processTime(1);
 		//(Options include ‘Cone’, ‘Bowl’, ‘Feast’, ‘Questions’, and ‘Back’, with back leaving the store)
 		yammiRepeatMenu(false);
@@ -39,7 +39,7 @@ function icedTreatsInterior():Boolean
 	else
 	{
 		output("The shop interior is made up of row after row of clear plastic devices with trays in front for bowls, and handles to draw the ice cream treats. Just like last time, you spot women occupying the space inside the machinery. Yammi calls to you almost as soon as you step inside the door.");
-		output("\n\n“<i>Welcome back to Iced Teats! When you'd like to order, just say the word.</i>” The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
+		output("\n\n<i>“Welcome back to Iced Teats! When you'd like to order, just say the word.”</i> The orange-skinned alien is dressed the same as the last time you saw her, sporting a bright red miniskirt and vest combo that would threaten sensibilities on a more modest world. Her cheerful eyes watch you curiously as you make your way around the shop.");
 		addButton(0,"Yammi",yammiRepeatMenu,true,"Yammi","Approach the aquatic alien behind the counter.");
 		return false;
 	}
@@ -69,7 +69,7 @@ function questionsForYammi():void
 {
 	clearOutput();
 	yammiShopDisplay();
-	output("“<i>Of course! Anything you care to know!</i>” Yammi nods vigorously.");
+	output("<i>“Of course! Anything you care to know!”</i> Yammi nods vigorously.");
 	//(Select from ‘Ice Cream’, ‘Girls’, ‘Company’, ‘Yammi’, ‘Suggestions’, ‘Sex’, or ‘Back’)
 	//9999
 	clearMenu();
@@ -87,7 +87,7 @@ function orderAYammiCone():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 10;
-	output("“<i>Just a taste today? Certainly! Here you are!</i>” With a flourish, Yammi produces a deep cone made of red-brown wafer. “<i>Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!</i>”");
+	output("<i>“Just a taste today? Certainly! Here you are!”</i> With a flourish, Yammi produces a deep cone made of red-brown wafer. <i>“Our cones are 100% natural nutrients healthy for any carbon based life form and easily digestible for silicates!”</i>");
 	preparingToGetIceCream("cone");
 }
 
@@ -97,7 +97,7 @@ function orderAYammiBowl():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 20;
-	output("\n\n“<i>A hearty appetite, I see!</i>” Yammi smiles and hands you a black bowl and spoon. “<i>Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!</i>”");
+	output("\n\n<i>“A hearty appetite, I see!”</i> Yammi smiles and hands you a black bowl and spoon. <i>“Here you are. When you’re done, just toss those out. They automatically break down to simple particles in 48 hours so they don’t pollute!”</i>");
 	preparingToGetIceCream("bowl");
 }
 
@@ -107,7 +107,7 @@ function orderAYammiFeast():void
 	clearOutput();
 	yammiShopDisplay();
 	pc.credits -= 50;
-	output("“<i>As you wish! Here you go!</i>” Yammi pulls a tray with three bowl-like depressions in it from beneath the counter. “<i>Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!</i>” She giggles.");
+	output("<i>“As you wish! Here you go!”</i> Yammi pulls a tray with three bowl-like depressions in it from beneath the counter. <i>“Mix and match to your heart’s content, and you can keep the tray for use at home! Careful you don’t get a headache though!”</i> She giggles.");
 	preparingToGetIceCream("feast");
 }
 
@@ -573,11 +573,11 @@ function askYammiAbootIceCream():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You have to admit you’re curious about the whole idea, so you ask about the ice cream. Yammi perks right up.");
-	output("\n\n“<i>Oh, I hoped you’d ask! Iced Teats has been around for a very long time. Our founder Gelkenminah Broboskin Dravimilink the Eleventh supposedly came from a very hot world where drinkable moisture was reserved exclusively for breeding females. Everyone else just had to rely on their body absorbing what it could from the hot, dry world. Now, this may be apocryphal, since this was a very long time ago, but supposedly one day he got off his world and found a lover, and when they had children he was amazed to find that she lactated.</i>” She poses to display the best curve of her barely restrained mammaries. “<i>Discovering a source of sweet flavor and moisture got him to thinking, and it wasn’t long before he found ideal cooling-coil technology, a few genetic artists, and some 100% legal, legitimate indentured servants. The rest is history: he built the company and his descendants have made it a smash hit, moving from original flavors to carefully cultivated unique flavors over the company’s long lifespan!</i>”");
+	output("\n\n<i>“Oh, I hoped you’d ask! Iced Teats has been around for a very long time. Our founder Gelkenminah Broboskin Dravimilink the Eleventh supposedly came from a very hot world where drinkable moisture was reserved exclusively for breeding females. Everyone else just had to rely on their body absorbing what it could from the hot, dry world. Now, this may be apocryphal, since this was a very long time ago, but supposedly one day he got off his world and found a lover, and when they had children he was amazed to find that she lactated.”</i> She poses to display the best curve of her barely restrained mammaries. <i>“Discovering a source of sweet flavor and moisture got him to thinking, and it wasn’t long before he found ideal cooling-coil technology, a few genetic artists, and some 100% legal, legitimate indentured servants. The rest is history: he built the company and his descendants have made it a smash hit, moving from original flavors to carefully cultivated unique flavors over the company’s long lifespan!”</i>");
 	output("\n\nYou express your doubts about the story, and Yammi looks distressed.");
-	output("\n\n“<i>I assure you that it’s as accurate as historians have been able to verify!</i>” she notes.");
+	output("\n\n<i>“I assure you that it’s as accurate as historians have been able to verify!”</i> she notes.");
 	output("\n\nIn an effort to move the conversation along, you go back to clarify the source of the deserts.");
-	output("\n\n“<i>100% genuine female mammaries, or the nearest equivalent gland!</i>” she explains proudly, with a sweeping gesture around the store. “<i>Our girls have been exclusively selected and carefully bio-tweaked to provide the ultimate in cool refreshment, flavor, and nutrition to the sentient races of the cosmos!</i>”");
+	output("\n\n<i>“100% genuine female mammaries, or the nearest equivalent gland!”</i> she explains proudly, with a sweeping gesture around the store. <i>“Our girls have been exclusively selected and carefully bio-tweaked to provide the ultimate in cool refreshment, flavor, and nutrition to the sentient races of the cosmos!”</i>");
 	output("\n\nWell, that explains the product fairly well, doesn’t it?");
 	//(Select ‘Back’ to return to the Questions menu)
 	processTime(6);
@@ -591,15 +591,15 @@ function askYammiAbootZeGurls():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You glance at the machines nearby, noting the shapes of women trapped inside, and inquire with Yammi about them. Surely that can’t be a comfortable job.");
-	output("\n\n“<i>All production servants are fed, sheltered, and comfortably orgasmed well in excess of galactic minimum standards. Genetic engineering has been involved to bring each one to production output and produce appropriate flavoring. All indentured workers and servers are almost considered legal property of the Iced Teats Confectionery Company,</i>” she recites.");
+	output("\n\n<i>“All production servants are fed, sheltered, and comfortably orgasmed well in excess of galactic minimum standards. Genetic engineering has been involved to bring each one to production output and produce appropriate flavoring. All indentured workers and servers are almost considered legal property of the Iced Teats Confectionery Company,”</i> she recites.");
 	output("\n\nYou roll your eyes. Even ice cream stores have legal jargon these days! Calling her attention back to the point of your question, you indicate the discomfort they must feel in those machines.");
-	output("\n\n“<i>It’s really hard for me to sympathize with them, actually. They get one day on, two days off, spa treatments, exercise, great food, entertainments.... It’s really not fair!</i>” Yammi’s expression turns somewhat sour. “<i>They’re indentured servants, almost all of them were bred specifically for this role, so they don’t know any other life. The machines are carefully made to be comfortable as can be, and they have massaging devices to keep them from getting stiff and achy. Plus every time they make more than a cone, they get an orgasm.</i>”");
+	output("\n\n<i>“It’s really hard for me to sympathize with them, actually. They get one day on, two days off, spa treatments, exercise, great food, entertainments.... It’s really not fair!”</i> Yammi’s expression turns somewhat sour. <i>“They’re indentured servants, almost all of them were bred specifically for this role, so they don’t know any other life. The machines are carefully made to be comfortable as can be, and they have massaging devices to keep them from getting stiff and achy. Plus every time they make more than a cone, they get an orgasm.”</i>");
 	output("\n\nThat seems like not too bad of a job, except for the bit about being enslaved. You note as much to Yammi, and she rolls her eyes.");
-	output("\n\n“<i>Just between us, I kind of wish I’d made the cut. I mean sure, I actually have the chance to buy out my own contract and get out of here eventually, but they get all the good things, you know?</i>”");
+	output("\n\n<i>“Just between us, I kind of wish I’d made the cut. I mean sure, I actually have the chance to buy out my own contract and get out of here eventually, but they get all the good things, you know?”</i>");
 	output("\n\nYou let her know your curiosity is piqued by the ‘buying out contract’ comment. Sounds like there’s a loophole in this arrangement.");
-	output("\n\n“<i>Well, indentured servants have to work to pay off all the food, shelter, and so on that their master has given to them. It’s like being in deep debt. Since I just have those bills to pay off, I just need to squirrel away enough tips and make a bit of credit on the side. Eventually I’ll be able to afford it!</i>” She smiles cheerfully at the idea. “<i>The producers though, their bills are huge and they only get more expensive. Spas and gyms aren’t cheap! They’re in it for life, so they should be happy that life is going to be mostly pleasant.</i>” Yammi seems to have a hint of jealousy in her voice.");
+	output("\n\n<i>“Well, indentured servants have to work to pay off all the food, shelter, and so on that their master has given to them. It’s like being in deep debt. Since I just have those bills to pay off, I just need to squirrel away enough tips and make a bit of credit on the side. Eventually I’ll be able to afford it!”</i> She smiles cheerfully at the idea. <i>“The producers though, their bills are huge and they only get more expensive. Spas and gyms aren’t cheap! They’re in it for life, so they should be happy that life is going to be mostly pleasant.”</i> Yammi seems to have a hint of jealousy in her voice.");
 	output("\n\nWell, their situation could certainly be worse, you are forced to admit. Still, what a job. You imagine it must be a punishing task to make so much ice cream in a day.");
-	output("\n\n“<i>It absolutely is. Some of our best selling flavors have to be switched out once a day, twice on some holidays! The extractor is also a little on the merciless side. The intense squeezing and suction occasionally bruises overused flavors a little. One or two of them that are adapted for hot environments also bitch endlessly about the ice coils being so close to their nipples.</i>” Yammi crosses her arms and shrugs. “<i>But really, they have hyper metabolisms as far as digesting food and making cream. I’ve never yet seen one run out! They just slow down a little bit. And the constant feed ensures they have ample fuel for the process. As for their aches and gripes, they should just be happy they don’t have to deal with screaming angry customers throwing things at them and cursing at them all the time.</i>” Realizing she just resorted to grousing about her job, Yammi’s cheeks flush a cute blood-orange color and she covers her mouth, then notes: “<i>I’m just going to stop talking now! Sorry!</i>”");
+	output("\n\n<i>“It absolutely is. Some of our best selling flavors have to be switched out once a day, twice on some holidays! The extractor is also a little on the merciless side. The intense squeezing and suction occasionally bruises overused flavors a little. One or two of them that are adapted for hot environments also bitch endlessly about the ice coils being so close to their nipples.”</i> Yammi crosses her arms and shrugs. <i>“But really, they have hyper metabolisms as far as digesting food and making cream. I’ve never yet seen one run out! They just slow down a little bit. And the constant feed ensures they have ample fuel for the process. As for their aches and gripes, they should just be happy they don’t have to deal with screaming angry customers throwing things at them and cursing at them all the time.”</i> Realizing she just resorted to grousing about her job, Yammi’s cheeks flush a cute blood-orange color and she covers her mouth, then notes: <i>“I’m just going to stop talking now! Sorry!”</i>");
 	output("\n\nYou chuckle and tell her it’s alright, to put her at ease. No point getting her in trouble.");
 	//(Select ‘Back’ to return to the Questions menu)
 	processTime(9);
@@ -613,11 +613,11 @@ function askYammiAboutTheCompany():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You ask about the company. It sounds like a big one, you might trip over them somewhere down the line. It can’t hurt to know a thing or two about them.");
-	output("\n\n“<i>Iced Teats is one of the oldest confections companies still in operation. They are careful to manage their recruitment programs and keep ample stocks of indentured workers on hand in case opportunities for expansion pop up. The males they use for breeding are also typically used for light labor or office work.</i>” She leans on her counter and looks thoughtful. “<i>The company prides itself on never retiring a flavor. They’re also proud to note that because of their stocks of indentured servants, no less than three species have been saved from extinction after galactic calamities wiped out every other viable genetic deposit. They are also on the leading edge of collecting new species, snatching up breeders as soon as they are legally able and rapidly expanding their stores.</i>”");
+	output("\n\n<i>“Iced Teats is one of the oldest confections companies still in operation. They are careful to manage their recruitment programs and keep ample stocks of indentured workers on hand in case opportunities for expansion pop up. The males they use for breeding are also typically used for light labor or office work.”</i> She leans on her counter and looks thoughtful. <i>“The company prides itself on never retiring a flavor. They’re also proud to note that because of their stocks of indentured servants, no less than three species have been saved from extinction after galactic calamities wiped out every other viable genetic deposit. They are also on the leading edge of collecting new species, snatching up breeders as soon as they are legally able and rapidly expanding their stores.”</i>");
 	output("\n\nWell, that sounds not terrible, given that it’s a giant soulless corporation. You then notice Yammi leaning closer, and suspect she has more to add.");
-	output("\n\n“<i>Just between you, me, and the stars? I’m not entirely convinced that they have all that legality in mind. I’ve seen some new girls get hauled in and they weren’t all that cooperative. Others came in and I had only just heard of their species a month prior.</i>” She says hushedly. “<i>It doesn’t happen often, but in a company this big they could be kidnapping and enslaving thousands of new girls. Not at gunpoint, mind you. One I remember seeing came up in a newspaper as vanishing because of huge gambling debts, and another one was a sports player who lost them a huge amount of money after they funded her career.</i>”");
+	output("\n\n<i>“Just between you, me, and the stars? I’m not entirely convinced that they have all that legality in mind. I’ve seen some new girls get hauled in and they weren’t all that cooperative. Others came in and I had only just heard of their species a month prior.”</i> She says hushedly. <i>“It doesn’t happen often, but in a company this big they could be kidnapping and enslaving thousands of new girls. Not at gunpoint, mind you. One I remember seeing came up in a newspaper as vanishing because of huge gambling debts, and another one was a sports player who lost them a huge amount of money after they funded her career.”</i>");
 	output("\n\nWell, that’s pretty interesting. You make a mental note to keep your ears open for further news. When you ask Yammi if she has more details, she shakes her head.");
-	output("\n\n“<i>I’m just a cashier. And look, these people raised me. They’ve given me everything I have. Not all of them are bad. But somewhere in the middle of the company, something’s gone a little rotten.</i>”");
+	output("\n\n<i>“I’m just a cashier. And look, these people raised me. They’ve given me everything I have. Not all of them are bad. But somewhere in the middle of the company, something’s gone a little rotten.”</i>");
 	output("\n\nShe suddenly goes back to fiddling with her register, and you can’t get her to approach the topic any more. She must sense something extraordinary in you to have risked such a sensitive bit of information. You decide not to press further.");
 	//(Select ‘Back’ to return to the Questions menu)
 	processTime(5);
@@ -630,13 +630,13 @@ function askHerAboutHerself():void
 {
 	clearOutput();
 	yammiShopDisplay();
-	output("“<i>Eh? Me?</i>” Yammi blushes a darling blood-orange. “<i>I’m nobody special. Just an indentured servant who didn’t have the right genes for production use. I just work here as a cashier.</i>”");
+	output("<i>“Eh? Me?”</i> Yammi blushes a darling blood-orange. <i>“I’m nobody special. Just an indentured servant who didn’t have the right genes for production use. I just work here as a cashier.”</i>");
 	output("\n\nYou invite her to fill you in a little more. After all, everyone is someone, right?");
-	output("\n\n“<i>Well, I am an amphibian, that’s pretty neat. I even sleep in a tub of water. Very comfortable!</i>” She wracks her brain to try and find anything interesting to say about herself. “<i>Nope. That’s about it. I was bred and raised by the company and I’ve worked for them my whole life. I’m hoping to buy out my contract and get out and about soon. Apparently my people live a looong time, so I should have plenty of opportunities.</i>”");
+	output("\n\n<i>“Well, I am an amphibian, that’s pretty neat. I even sleep in a tub of water. Very comfortable!”</i> She wracks her brain to try and find anything interesting to say about herself. <i>“Nope. That’s about it. I was bred and raised by the company and I’ve worked for them my whole life. I’m hoping to buy out my contract and get out and about soon. Apparently my people live a looong time, so I should have plenty of opportunities.”</i>");
 	output("\n\nYou see an opening and slip right in, inquiring about what she would do and where she’d go when she’s free of contractual obligations?");
-	output("\n\n“<i>Well, think first I’d find some warm water-world and take a vacation. I get one day out of ten off around here. It’s terrible. I need a little unwinding time, you know?</i>” She looks off into the middle distance and sighs. “<i>Just somewhere nice and relaxing to spend some time, maybe get a job to pay my way and stay there longer. After that, maybe I’d try my hand at this space traveling stuff. I’m sure I could get on as a cook on some ship! Seems like there’s a lot out there to do and see, and so many meals to prepare. Cooking’s kind of a hobby of mine.</i>”");
+	output("\n\n<i>“Well, think first I’d find some warm water-world and take a vacation. I get one day out of ten off around here. It’s terrible. I need a little unwinding time, you know?”</i> She looks off into the middle distance and sighs. <i>“Just somewhere nice and relaxing to spend some time, maybe get a job to pay my way and stay there longer. After that, maybe I’d try my hand at this space traveling stuff. I’m sure I could get on as a cook on some ship! Seems like there’s a lot out there to do and see, and so many meals to prepare. Cooking’s kind of a hobby of mine.”</i>");
 	output("\n\nYou assure her there is a lot out there, and there’s no end to it in sight. She giggles and smiles.");
-	output("\n\n“<i>Thanks! It’s sweet of you to say that. Of course, first I’ve got to finish here.</i>” She shrugs. “<i>One thing at a time, right?</i>”");
+	output("\n\n<i>“Thanks! It’s sweet of you to say that. Of course, first I’ve got to finish here.”</i> She shrugs. <i>“One thing at a time, right?”</i>");
 	//(Select ‘Back’ to return to the Questions menu)
 	processTime(6);
 	clearMenu();
@@ -649,7 +649,7 @@ function askyammiAboutSex():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You don’t feel shy mentioning that so many beauties around is pretty stimulating, not the least of which is Yammi herself. Her face goes blood-orange in blush.");
-	output("\n\n“<i>Officially the company doesn’t condone unauthorized breeding and/or sexual interaction with our employees,</i>” she says calmly. When you inquire about unofficially, she smiles a little. “<i>Well, some of the girls are stored in back in case we need to switch flavors, and a friendly visit is possible, sometimes. The do enjoy warm flesh after all the cold machines. For a slight tip of course... a girl’s got to pay her way somehow!</i>” She taps the counter nervously. “<i>Not today though. The girls who would be up for that aren't in. But... maybe for a big enough tip, I might be convinced to put up the ‘Momentary Delay’ sign and lock the door for a little personal time. A woman has needs.</i>”");
+	output("\n\n<i>“Officially the company doesn’t condone unauthorized breeding and/or sexual interaction with our employees,”</i> she says calmly. When you inquire about unofficially, she smiles a little. <i>“Well, some of the girls are stored in back in case we need to switch flavors, and a friendly visit is possible, sometimes. The do enjoy warm flesh after all the cold machines. For a slight tip of course... a girl’s got to pay her way somehow!”</i> She taps the counter nervously. <i>“Not today though. The girls who would be up for that aren't in. But... maybe for a big enough tip, I might be convinced to put up the ‘Momentary Delay’ sign and lock the door for a little personal time. A woman has needs.”</i>");
 	output("\n\n<b>Placeholder till some sex appears. Someone be a dear and write this for me. She doesn't need scenes for everybody.</b>");
 	processTime(2);
 	clearMenu();

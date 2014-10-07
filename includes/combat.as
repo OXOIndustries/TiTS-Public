@@ -2189,7 +2189,7 @@ function tease(target:Creature, part:String = "chest"):void {
 		{
 			if(target is HandSoBot)
 			{
-				output("\n\n“<i>An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,</i>” says So. She sounds genuinely interested. “<i>An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.</i>”\n");
+				output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>\n");
 			}
 			else if(target.lustDamageMultiplier() == 0) 
 			{
@@ -2255,7 +2255,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 		if (damage == 0)
 		{
 			textRands = [
-				"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. “<i>All you're doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore >= 5) ? "[pc.race]" : "outsider") + "!</i>” she exclaims.",
+				"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. <i>“All you're doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore >= 5) ? "[pc.race]" : "outsider") + "!”</i> she exclaims.",
 				"You utterly fail to entice the huntress. You barely dodge an attack that causes you to cease your efforts. You're going to have to do better, or try something else...",
 				"The alien huntress seems to be getting into it, moving towards you... only to swipe her spear at your head. You barely duck in time. Seems she didn't go for it at all!"
 			];
@@ -2272,9 +2272,9 @@ function teaseReactions(damage:Number,target:Creature):String {
 		if (damage == 0)
 		{
 			textRands = [
-				"The young alien huntress jabs at you with her spear, forcing you to leap out of the way. “<i>Hey, this may be my first time, but I'm not </i>that<i> easy!</i>” she exclaims.",
+				"The young alien huntress jabs at you with her spear, forcing you to leap out of the way. <i>“Hey, this may be my first time, but I'm not </i>that<i> easy!”</i> she exclaims.",
 				"The virgin huntress quirks her head, clearly baffled by your actions. It seems you utterly failed to entice her....",
-				"The alien huntress fans her face with a webbed hand and moves closer to you. “<i>Oooh, I think I'm getting the vapors... </i>psyche<i>!</i>”",
+				"The alien huntress fans her face with a webbed hand and moves closer to you. <i>“Oooh, I think I'm getting the vapors... </i>psyche<i>!”</i>",
 			];
 			
 			buffer = textRands[rand(textRands.length)];

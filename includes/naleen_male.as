@@ -513,11 +513,11 @@ function getBlownByDudeleen():void {
 
 	output("\n\nSqueezing with your [pc.legs], you pull back slightly, just enough to keep your cock out of his mouth, well beyond his reach. As you do so, you praise him for getting into the spirit of things; he's doing very well.");
 
-	output("\n\n“<i>Please, can you...?</i>” he pleads.");
+	output("\n\n<i>“Please, can you...?”</i> he pleads.");
 
 	output("\n\nYou look at him in confusion.");
 
-	output("\n\n“<i>My hands are tied,</i>”  he says, struggling against his bonds.");
+	output("\n\n<i>“My hands are tied,”</i>  he says, struggling against his bonds.");
 
 	output("\n\nLooking over at your former foe, you turn your head back to see just how horny his submission has made him. He's panting slightly with frustrated lust, both cocks jutting forth hard and firm from his loins, already dripping with his desire.");
 

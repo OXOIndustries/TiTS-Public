@@ -1,5 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -203,7 +204,8 @@ package classes.UIComponents.SideBarComponents
 				}
 				
 				// Display the new bust
-				var bustObj = new bustT();
+				var bustObj:Bitmap = new bustT();
+				bustObj.smoothing = true;
 				_npcBusts.addChild(bustObj);
 				bustObj.y = -(bustObj.height);
 				_npcBusts.visible = true;

@@ -143,7 +143,7 @@ function aboutTheRobotFromCrazyCarl():void {
 	{
 		flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] = 1;
 		output("You tap the counter to get Carl’s full attention, unnecessarily, before speaking. \"<i>You mentioned something about a robot?</i>\"");
-		output("\n\n\"<i>Machina, but yeah. Things apparently been goin’ haywire around here, or at least they were a bit back. Ain’t too sure what’s the reason, but the powers that be are considerin’ it was some nefarious visitor hacking everything. Wasn’t the Zil or some astro event, anyway. Got the security systems all twitchy and set the various attendants on edge until we got someone in here to reset the lot of ‘em. No one got hurt, but I wasn’t the only one to lose something.</i>\"  The old man leans back in his seat with an audible creak, hand lazily scritchin at his long chin-whiskers. \"<i>Gotta say, the nurse-bot got pretty interesting. If a bit psychotic and clingy.</i>” He stifles a light little chuckle and you can only imagine the implications.");
+		output("\n\n\"<i>Machina, but yeah. Things apparently been goin’ haywire around here, or at least they were a bit back. Ain’t too sure what’s the reason, but the powers that be are considerin’ it was some nefarious visitor hacking everything. Wasn’t the Zil or some astro event, anyway. Got the security systems all twitchy and set the various attendants on edge until we got someone in here to reset the lot of ‘em. No one got hurt, but I wasn’t the only one to lose something.</i>\"  The old man leans back in his seat with an audible creak, hand lazily scritchin at his long chin-whiskers. \"<i>Gotta say, the nurse-bot got pretty interesting. If a bit psychotic and clingy.”</i> He stifles a light little chuckle and you can only imagine the implications.");
 		output("\n\nCan’t the local security help?");
 		output("\n\n\"<i>Overworked, underpaid and terribly staffed. Plus they’re a bit busy right now. Can’t go rummaging through the jungle lookin’ for lost goods that are probably fried, anyway. No, I’m afraid it’s a personal problem or nothing once it leaves the grounds.</i>\"");
 		output("\n\nHm. You’ll probably be going through the jungle here, actually.");
@@ -194,16 +194,16 @@ function aboutTheRobotFromCrazyCarl():void {
 		output("\n\nFollowing along without missing a beat, you nod firmly in understanding. The ZK series was already known for being a solid go-to carbine and this fixes up some of the flaws. A less egregious action that won’t catch on anything, reinforcement prevents the vulnerable wiring from being affected by environmental circumstances or attacks and the poor accuracy has been improved by adding more coolant, making the rails take longer to heat up and warp. The weapon is still marked for short ranges, ");
 		if(pc.rangedWeapon.damage < 13) output("but you’re confident that you would have a much more dependable weapon.");
 		else output("of course.");
-		output("\n\n\"<i>And it’s yours. As a reward.</i>”");
+		output("\n\n\"<i>And it’s yours. As a reward.”</i>");
 
 		output("\n\nQuite the expensive reward!");
 		output("\n\n\"<i>Nah, it’s fine. Legally speakin’ this place doesn’t even have the permit to sell it normally, so this is under the table. You’ve got somethin’ going on if you sallied forth into that mess and came out with this ‘ole bucket, I might as well enable ya and make sure you don’t come out like the bucket later on. Now, then, ‘fore I do...</i>\"");
 
 		output("\n\nUh oh.");
-		output("\n\n\"<i>Do you have a license for HC-5 class weapons and energy disposal, or a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?</i>”");
+		output("\n\n\"<i>Do you have a license for HC-5 class weapons and energy disposal, or a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?”</i>");
 
 		//*If mercenary:
-		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou give a firm nod. “<i>Of course.</i>\"");
+		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou give a firm nod. <i>“Of course.</i>\"");
 		//If tech-specialist:
 		else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("\n\nYou can get one by the end of the day. Legally, of <i>course</i>.");
 		//If smuggler:
