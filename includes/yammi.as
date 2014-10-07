@@ -115,7 +115,7 @@ function orderAYammiFeast():void
 function preparingToGetIceCream(servingType:String = "cone"):void
 {
 	yammiShopDisplay();
-	output("\n\nYou examine the selection before you, each device containing a woman with her tits wrapped in a net of straps ready to surrender her flavored breast milk for your snacking pleasure. Various tubes and devices are in place to feed them, please them, and clean them. As you examine the favor tags on each machine, the occupant watches you from inside; some are expectant, some a bit tired, and some look pleading, their massive melons overfull.");
+	output("\n\nYou examine the selection before you, each device containing a woman with her tits wrapped in a net of straps ready to surrender her flavored breast milk for your snacking pleasure. Various tubes and devices are in place to feed them, please them, and clean them. As you examine the flavor tags on each machine, the occupant watches you from inside; some are expectant, some a bit tired, and some look pleading, their massive melons overfull.");
 	//(Flavors would be Gewinfruit, Yokto, Blitzaberry, Strawberry, Jumbijumbi, Darginut, Chocolate, and Flameberks)
 	clearMenu();
 	addButton(0,"Gewinfruit",gewinFruit,servingType,"Gewinfruit","Try some gewinfruit flavor. It's supposed to be quite rich.");

@@ -4715,7 +4715,7 @@
 		public function canLactate():Boolean
 		{
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50) return true;
 			return false;
 		}
 
