@@ -706,7 +706,7 @@ public function phoenixEngineeringEngines(doOutput:Boolean = true):void
 		clearOutput();
 		output("You approach the engines and dust off the manual control panel. The power reading is flashing a great big '0%.' ");
 
-		output("\n\nFrom the holo-platform near the elevator, Valeria says, \"<i>Okay, I'm spooling up the engines now. The power converters are on manual reset, however. You'll need to guide the power into the sweet spot </i>without<i> going too far over, or I'll have to activate emergency shutdown, and you'll have to start over. Please hurry, [pc.name]: our shields won't hold for long.</i>\"");
+		output("\n\nFrom the holo-platform near the elevator, Valeria says, \"<i>Okay, I'm spooling up the engines now. The power converters are on manual reset, however. You'll need to guide the power into the sweet spot </i>without<i> going too far over, or I'll have to activate emergency shutdown, and you'll have to start over. <b>We need to hit 45%.</b> Please hurry, [pc.name]: our shields won't hold for long.</i>\"");
 
 		output("\n\nYou nod, and watch the emergency power flood into the engines in one last, desperate attempt to spin them up. Power readouts flash onto the screen, and your fingers go to work...");
 		
@@ -780,7 +780,7 @@ public function phoenixTRYAGAINCHAMP():void
 
 	output("\n\nIn front of you, the engines spin back down. A moment later, they're silent. ");
 
-	output("\n\n\"<i>Okay, okay... no pressure. Let's try this again.</i>\"");
+	output("\n\n\"<i>Okay, okay... no pressure. Let's try this again. <b>45%. You can do it.</b></i>\"");
 	
 	if (easy)
 	{
