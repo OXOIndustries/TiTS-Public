@@ -52,7 +52,8 @@ function anonsBarWaitressAddendum():void {
 		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
 		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
 	}
-	addButton(0,"Waitress",anonsBarWaitressApproach);
+	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach);
+	else addButton(0,"Sellesy",anonsBarWaitressApproach);
 }
 
 
