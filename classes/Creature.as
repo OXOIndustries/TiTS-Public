@@ -1287,6 +1287,9 @@
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
 					break;
+				case "cockNounBiggest":
+					buffer = simpleCockNoun(biggestCockIndex());
+					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1386,6 +1389,7 @@
 					break;
 				case "breasts":
 				case "boobs":
+				case "tits":
 					buffer = breastDescript(arg2);
 					break;
 				case "cockClit":
@@ -1399,6 +1403,11 @@
 				case "butt":
 				case "ass":
 					buffer = buttDescript();
+					break;
+				case "buttsDescript":
+				case "butts":
+				case "asses":
+					buffer = buttDescript(true);
 					break;
 				case "hipDescript":
 				case "hip":
@@ -1546,6 +1555,9 @@
 				case "belly":
 					buffer = bellyDescript();
 					break;
+				case "man":
+					buffer = this.mf("man", "woman");
+					break
 				case "he":
 				case "she":
 				case "heShe": // Shamelessly stole these from Alderbro. :3
@@ -4715,7 +4727,7 @@
 		public function canLactate():Boolean
 		{
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50) return true;
 			return false;
 		}
 
@@ -6053,7 +6065,7 @@
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
-		public function buttDescript(): String {
+		public function buttDescript(plural:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
 			if (buttRating() <= 1) {
@@ -6331,21 +6343,24 @@
 				}
 			}
 			rando = this.rand(21);
-			if (rando <= 4) desc += "butt";
-			else if (rando <= 9) desc += "ass";
-			else if (rando <= 11) desc += "backside";
-			else if (rando == 12) {
-				if (buttRating() >= 10) desc += "booty";
-				else desc += "derriere";
-			} else if (rando == 13) desc += "rump";
-			else if (rando == 14) desc += "bottom";
-			else if (rando == 15) desc += "behind";
-			else if (rando == 16) desc += "keister";
-			else if (rando == 17) desc += mf("butt", "tush");
-			else if (rando == 18) desc += "rear end";
-			else if (rando == 19) desc += "heinie";
-			else if (rando == 20) desc += "posterior";
-			//if(rando == 2) desc += "cheeks";
+			if(!plural)
+			{
+				if (rando <= 4) desc += "butt";
+				else if (rando <= 9) desc += "ass";
+				else if (rando <= 11) desc += "backside";
+				else if (rando == 12) {
+					if (buttRating() >= 10) desc += "booty";
+					else desc += "derriere";
+				} else if (rando == 13) desc += "rump";
+				else if (rando == 14) desc += "bottom";
+				else if (rando == 15) desc += "behind";
+				else if (rando == 16) desc += "keister";
+				else if (rando == 17) desc += mf("butt", "tush");
+				else if (rando == 18) desc += "rear end";
+				else if (rando == 19) desc += "heinie";
+				else if (rando == 20) desc += "posterior";
+			}
+			else desc += "cheeks";
 			return desc;
 		}
 		public function nipplesDescript(rowNum = 0, forceLactation:Boolean = false): String {

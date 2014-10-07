@@ -15,7 +15,7 @@
 		//constructor
 		public function Gianna()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -159,8 +159,13 @@
 			this.createVagina();
 			this.vaginas[0].wetness(5,true);
 			this.vaginas[0].looseness(1,true);
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].vaginaColor = "black";
 			this._isLoading = false;
+		}
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.vaginas[0].hymen = false;
 		}
 	}
 }

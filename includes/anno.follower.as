@@ -1,3 +1,7 @@
+import classes.Items.Apparel.SteeleTechSuit;
+import classes.Items.Guns.Goovolver;
+import classes.Items.Miscellaneous.AusarTreats;
+import classes.Items.Protection.JoyCoPremiumShield;
 import classes.Util.InCollection;
 
 /* 
@@ -311,7 +315,7 @@ function annoMorningRouter():void
 	flags["ANNO_SLEEPWITH_DOMORNING"] = undefined;
 
 	if (pc.hasCock() && rand(2) == 0) annoMorningHandy();
-	annoMorningShower();
+	else annoMorningShower();
 }
 
 function annoMorningHandy():void
@@ -528,14 +532,19 @@ function annoFollowerBuyMenu():void
 // Updates and configures Annos inventory depending on how she ended up on the players ship
 function annoFollowerInventoryCheck():void
 {
+	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		// Check for the presence of a unique item, if not there, add all
-		if (!anno.hasItem(new LaserCarbine()))
+		if (!anno.hasItem(new SteeleTechSuit()))
 		{
+			anno.inventory = new Array();
+			
 			anno.inventory.push(new GrayMicrobots());
+			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new LaserCarbine());
 			anno.inventory.push(new EMPGrenade());
+			anno.inventory.push(new Goovolver());
 			anno.inventory.push(new NovaRifle());
 			anno.inventory.push(new NovaPistol());
 			anno.inventory.push(new SteeleTechSuit());
@@ -546,14 +555,17 @@ function annoFollowerInventoryCheck():void
 		anno.buyMarkdown = 0.85;
 	}
 	else
+	// Unemployed by Steeletech
 	{
-		if (!anno.hasItem(new HammerCarbine()))
+		if (!anno.hasItem(new JoyCoPremiumShield()))
 		{
+			anno.inventory = new Array();
+			
 			anno.inventory.push(new GrayMicrobots());
+			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new HammerCarbine());
 			anno.inventory.push(new FlashGrenade());
 			anno.inventory.push(new JoyCoPremiumShield());
-			anno.inventory.push(new SteeleTechSuit());
 		}
 
 		anno.sellMarkup = 1.2;

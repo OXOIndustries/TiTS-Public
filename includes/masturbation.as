@@ -284,7 +284,7 @@ function vaginalFap():void {
 	else if(pc.vaginas[0].wetness() <= 2) output("sticky, simmering delta your fingers slip against");
 	else if(pc.vaginas[0].wetness() <= 3) output("unmistakably wet and ready slit your fingers almost slip into");
 	else if(pc.vaginas[0].wetness() <= 4) output("oozing, overly-lubricated entrance that nearly sucks your fingers in");
-	else output("the soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
+	else output("soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
 	output(" quivers deliciously at your touch, the folds engorging as they fill with unspent desire, their flesh sensitive and achy.");
 	if(pc.totalClits() > 0) {
 		output(" You slide your palm across the slowly-stiffening surface of your clitroral hood");
@@ -545,6 +545,7 @@ function multiCockFap():void {
 	
 	//precum options!
 	if(pc.ballFullness >= 33 || pc.cumQ() >= 500) {
+		output("\n\n");
 		if(pc.cumQ() <= 25) output("After a while of this, single pearls of pre-cum bead on your tips to shine in the light, begging to be touched and smeared over your sexy, throbbing fuck-sticks.");
 		else if(pc.cumQ() <= 150) output("After a while of this, single droplets of pre bead from your cumslits. They are the vanguard of a small contingent of lubricating leakages that rolls down the surfaces of your [pc.cockHeads] in a delightful way.");
 		else output("After a while of this, big droplets of pre-cum emerge from your cumslit, one after another. Each is hot on the heels of its predecessor, and in moments, your multitudinous masts are wreathed in eager cock-slime. There's so much that the rest of your crotch grows sticky with the wet-hot mess.");

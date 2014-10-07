@@ -214,7 +214,7 @@ function removeParasiteII(name:String):void {
 	output("<i>\"...complete success... ... vitals normal...\"</i>");
 	output("\n\nBits and pieces of V-Ko's voice pierce the murky haze that's fogging your thoughts. You blink your eyes open but immediately shut them against the harsh glare of the artificial lighting.");
 	output("\n\n<i>\"The chemicals should be metabolizing out of your bloodstream in a few seconds. Please be careful until then. It would not do for you to injure yourself so soon after having your ailments tended to.\"</i>");
-	output("\n\nYou open your eyes once more, this time slowly enough to let them adjustment. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride.");
+	output("\n\nYou open your eyes once more, this time slowly enough to let them adjust. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride.");
 	
 	if (name == "cuntsnake") output("<i>\"All 'C' type snakes have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
 	else if (name == "mimbrane") output("<i>\"All 'M' class epidel parasites have been removed from your extremities. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
@@ -227,7 +227,7 @@ function removeParasiteII(name:String):void {
 	output("\n\nV-Ko helps you down off the table. <i>\"There is no charge. Flahne has authorized me to deduct the requisite fees from this planet's health and wellness budget, paid for by local business taxes. Parasitism is taken very seriously across U.G.C. space and fully 90% of the member planets offer free treatments to remove them.\"</i>");
 	
 	if (name == "cuntsnake") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
-	else if (name == "mimbrane") output("\n\nYou thank her the service; it's as if you never had any mimbranes to you at all.");
+	else if (name == "mimbrane") output("\n\nYou thank her the service; it's as if you never had any mimbranes on you at all.");
 	
 	output("\n\n<i>\"Now then, would you like to pursue some of my other services or will you be on your way?\"</i> V-Ko asks. <i>\"It has been a pleasure to serve.\"</i>");
 	//Menu

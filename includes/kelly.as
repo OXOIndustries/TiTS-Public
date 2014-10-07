@@ -23,7 +23,7 @@ public function kellyFucked():void
 
 public function tempNudeOn():void
 {
-	if(pc.hasStatusEffect("Temporary Nudity Cheat")) pc.createStatusEffect("Temporary Nudity Cheat",0,0,0,0,true,"","",false);
+	if(!pc.hasStatusEffect("Temporary Nudity Cheat")) pc.createStatusEffect("Temporary Nudity Cheat",0,0,0,0,true,"","",false);
 }
 public function tempNudeOff():void
 {
@@ -162,7 +162,7 @@ function dontRegisterInKellysOffice():void {
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("You apologize, but you don’t feel like registering now, so you’ll be leaving.");
-	output("\n\n<i>\"I understand sir, Xenogen thanks you for your visit. Please come again.\"</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
+	output("\n\n<i>\"I understand " + pc.mf("sir","ma'am") + ", Xenogen thanks you for your visit. Please come again.\"</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
 	//Leave the area and redo everything in case the PC comes back.
 	
 	clearMenu();
@@ -1078,7 +1078,7 @@ function getKellyOff(newScreen:Boolean = false):void
 			if(pc.tailCount == 1) output("it's");
 			else output("they're");
 			output(" not ");
-			if(pc.tailCOunt == 1) output("a real dick");
+			if(pc.tailCount == 1) output("a real dick");
 			else output("real dicks");
 			output(", she certainly doesn't show it.");
 		}

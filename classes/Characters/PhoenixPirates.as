@@ -156,6 +156,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			this._isLoading = false;
+			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}
 		
 		override public function prepForCombat():void

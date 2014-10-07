@@ -309,7 +309,17 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 3"].westExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 3"].eastExit = "SOUTHEAST ESBETH";
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
+	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["ESBETH TRAVEL AUTHORITY"] = new RoomClass(this);
+	rooms["ESBETH TRAVEL AUTHORITY"].roomName = "TRAVEL\nAUTHORITY";
+	rooms["ESBETH TRAVEL AUTHORITY"].description = "The office of the U.G.C. Scout Authority is a cramped, cluttered office full of maps, vehicle parts, and hunting trophies. You duck and weave through the office until you arrive at the front desk, which is manned by a sturdily-built tauric man whose lower body is plated with black scales. He gives you a friendly nod as you approach";
+	rooms["ESBETH TRAVEL AUTHORITY"].planet = "PLANET: MHEN'GA";
+	rooms["ESBETH TRAVEL AUTHORITY"].runOnEnter = esbethFastTravelOfficeBonus;
+	rooms["ESBETH TRAVEL AUTHORITY"].system = "SYSTEM: ARA ARA";
+	rooms["ESBETH TRAVEL AUTHORITY"].northExit = "SOUTH ESBETH 3";
+	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.INDOOR);
 		
 	//11. The Southeast Corner of Esbeth
 	rooms["SOUTHEAST ESBETH"] = new RoomClass(this);
@@ -948,7 +958,7 @@ function initializeRooms():void
 	//64. Vined Jungle/Corner
 	rooms["VINED JUNGLE 2"] = new RoomClass(this);
 	rooms["VINED JUNGLE 2"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc, and the none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
+	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc and somehow manages to stay free of the encroaching mass of vines. If fact, none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
 	rooms["VINED JUNGLE 2"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 2"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 2"].northExit = "VINED JUNGLE 1";
@@ -1311,7 +1321,7 @@ function initializeRooms():void
 	rooms["A TURNING POINT"] = new RoomClass(this);
 	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
 	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.";
-	rooms["A TURNING POINT"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["A TURNING POINT"].runOnEnter = vanaeWarningBot;
 	rooms["A TURNING POINT"].planet = "PLANET: MHEN'GA";
 	rooms["A TURNING POINT"].system = "SYSTEM: ARA ARA";
 	//rooms["A TURNING POINT"].northExit = "";
@@ -1570,7 +1580,7 @@ function initializeRooms():void
 
 	rooms["ABANDONED CAMP"] = new RoomClass(this);
 	rooms["ABANDONED CAMP"].roomName = "";
-	rooms["ABANDONED CAMP"].description = "You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates and bodies lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you're not sure you'll find anything of value.";
+	rooms["ABANDONED CAMP"].description = "";
 	rooms["ABANDONED CAMP"].runOnEnter = mhengaVanaeAbandonedCamp;
 	rooms["ABANDONED CAMP"].planet = "PLANET: MHEN'GA";
 	rooms["ABANDONED CAMP"].system = "SYSTEM: ARA ARA";
@@ -1586,16 +1596,16 @@ function initializeRooms():void
 	//#1 Ship Hangar
 	rooms["201"] = new RoomClass(this);
 	rooms["201"].roomName = "SHIP\nHANGAR";
-	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a broken-down cargo-elevator. That'd be your ticket anywhere.";
+	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a cargo-elevator. That'd be your ticket anywhere.";
 	rooms["201"].runOnEnter = firstTimeOnTarkusBonus;
-	rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
+	//rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
 	rooms["201"].eastExit = "202";
 	rooms["201"].planet = "PLANET: TARKUS";
 	rooms["201"].system = "SYSTEM: REDACTED";
 	rooms["201"].addFlag(GLOBAL.INDOOR);
 	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
 	
-	rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
+	/*rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
 	rooms["NOVA SHIP DECK ELEVATOR"].roomName = "NOVA:\nHANGAR DECK";
 	rooms["NOVA SHIP DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
 	rooms["NOVA SHIP DECK ELEVATOR"].runOnEnter = novaShipHangarElevator;
@@ -1604,7 +1614,7 @@ function initializeRooms():void
 	rooms["NOVA SHIP DECK ELEVATOR"].system = "SYSTEM: REDACTED";
 	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	// Temp flag so I don't have to clobber fla with changes atm
-	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
+	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);*/
 	
 	rooms["NOVA MAIN DECK ELEVATOR"] = new RoomClass(this);
 	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\nMAIN DECK";
@@ -1619,20 +1629,30 @@ function initializeRooms():void
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
-	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going north into an access tunnel; the nearby cargo elevator sits askew in its brackets, obviously nonfunctional.";
+	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator's doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
 	rooms["202"].runOnEnter = undefined;
 	rooms["202"].westExit = "201";
-	rooms["202"].northExit = "203";
+	rooms["202"].eastExit = "203";
+	rooms["202"].northExit = "TARKUS SCOUT AUTHORITY";
 	rooms["202"].planet = "PLANET: TARKUS";
 	rooms["202"].system = "SYSTEM: REDACTED";
 	rooms["202"].addFlag(GLOBAL.INDOOR);
+
+	rooms["TARKUS SCOUT AUTHORITY"] = new RoomClass(this);
+	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHOTITY";
+	rooms["TARKUS SCOUT AUTHORITY"].description = "";
+	rooms["TARKUS SCOUT AUTHORITY"].runOnEnter = tarkusScoutAuthorityOffice;
+	rooms["TARKUS SCOUT AUTHORITY"].southExit = "202";
+	rooms["TARKUS SCOUT AUTHORITY"].planet = "PLANET: TARKUS";
+	rooms["TARKUS SCOUT AUTHORITY"].system = "SYSTEM: REDACTED";
+	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.INDOOR);
 
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
 	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can do down into the ship or south out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
-	rooms["203"].southExit = "202";
+	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
 	rooms["203"].outText = "Down";
 	rooms["203"].planet = "PLANET: TARKUS";
@@ -2589,7 +2609,7 @@ function initializeRooms():void
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
 	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
-	rooms["279"].runOnEnter = rustScytheGladeEncounters;
+	rooms["279"].runOnEnter = eastTransitStationBonus;
 	rooms["279"].westExit = "278";
 	rooms["279"].eastExit = "350";
 	rooms["279"].planet = "PLANET: TARKUS";
@@ -3553,22 +3573,44 @@ function initializeRooms():void
 	// KIROS SHIP
 	rooms["KIROS SHIP INTERIOR"] = new RoomClass(this);
 	rooms["KIROS SHIP INTERIOR"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but you can hear distressed wails coming from one near the end of the hall.";
-	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP QUARTERS";
+	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but the distressed wails are coming from further down the hall to the north.";
+	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP INTERIOR2";
 	rooms["KIROS SHIP INTERIOR"].eastExit = "KIROS SHIP ENGINEERING";
 	rooms["KIROS SHIP INTERIOR"].southExit = "KIROS SHIP AIRLOCK";
 	rooms["KIROS SHIP INTERIOR"].westExit = "KIROS SHIP TROPHYROOM";
-	rooms["KIROS SHIP INTERIOR"].runOnEnter = kirosShipInterior;
+	rooms["KIROS SHIP INTERIOR"].runOnEnter = undefined;
 	rooms["KIROS SHIP INTERIOR"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP INTERIOR"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["KIROS SHIP INTERIOR"].moveMinutes = 1;
 
+	rooms["KIROS SHIP INTERIOR2"] = new RoomClass(this);
+	rooms["KIROS SHIP INTERIOR2"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP INTERIOR2"].description = "The lavishly decorated hallway continues on its north-south journey through the center of this ship, lined by chambers on nearly all sides. The eastern door hangs askew. A lavishly carved plate declares it to be the Captain's quarters. Sounds of distress come almost nonstop from the west. Whoever is in trouble on this ship, they must be in there. Oddly, that room has no designation.";
+	rooms["KIROS SHIP INTERIOR2"].eastExit = "KIROS SHIP QUARTERS";
+	rooms["KIROS SHIP INTERIOR2"].southExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP INTERIOR2"].westExit = "KIROS SPUNK CHAMBER";
+	rooms["KIROS SHIP INTERIOR2"].runOnEnter = undefined;
+	rooms["KIROS SHIP INTERIOR2"].planet = "SHIP: LEAF"
+	rooms["KIROS SHIP INTERIOR2"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP INTERIOR2"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP INTERIOR2"].moveMinutes = 1;
+
+	rooms["KIROS SPUNK CHAMBER"] = new RoomClass(this);
+	rooms["KIROS SPUNK CHAMBER"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SPUNK CHAMBER"].description = "";
+	rooms["KIROS SPUNK CHAMBER"].eastExit = "KIROS SHIP INTERIOR2";
+	rooms["KIROS SPUNK CHAMBER"].runOnEnter = kirosShipWails;
+	rooms["KIROS SPUNK CHAMBER"].planet = "SHIP: LEAF"
+	rooms["KIROS SPUNK CHAMBER"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SPUNK CHAMBER"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SPUNK CHAMBER"].moveMinutes = 1;
+
 	rooms["KIROS SHIP QUARTERS"] = new RoomClass(this);
 	rooms["KIROS SHIP QUARTERS"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
 	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
-	rooms["KIROS SHIP QUARTERS"].southExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP QUARTERS"].westExit = "KIROS SHIP INTERIOR2";
 	rooms["KIROS SHIP QUARTERS"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP QUARTERS"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP QUARTERS"].addFlag(GLOBAL.INDOOR);
@@ -3585,7 +3627,7 @@ function initializeRooms():void
 
 	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
 	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
+	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i>, the captain's hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";

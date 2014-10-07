@@ -384,7 +384,7 @@
 			
 			//Butt expands to 7
 			if(target.buttRatingRaw < 7 && target.buttRatingUnlocked(target.buttRatingRaw + 1) && changes < changeLimit && rand(3) == 0) {
-				kGAMECLASS.output("\n\nAn odd feeling runs through [pc.butt], earning a small jump of surprise at the abrupt onset of sensation. It reminds you of that pins and needles feeling you get when part of you falls asleep, only on your ass. You reach back massage the feeling away and find yourself with a little bit more cheek in your hand than before. <b>Your [pc.butt] has gotten bigger!</b>");
+				kGAMECLASS.output("\n\nAn odd feeling runs through your [pc.butt], earning a small jump of surprise at the abrupt onset of sensation. It reminds you of that pins and needles feeling you get when part of you falls asleep, only on your ass. You reach back, massaging the feeling away and find yourself with a little bit more cheek in your hand than before. <b>Your [pc.butt] has gotten bigger!</b>");
 				target.buttRatingRaw++;
 				changes++;
 			}

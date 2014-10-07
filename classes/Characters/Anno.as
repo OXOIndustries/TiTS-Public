@@ -3,11 +3,13 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.AnnosCatsuit;
+	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Guns.LaserCarbine;
 	import classes.Items.Guns.Goovolver;
 	import classes.Items.Guns.ZKRifle;
 	import classes.Items.Miscellaneous.AusarTreats;
+	import classes.Items.Miscellaneous.EMPGrenade;
 	import classes.Items.Miscellaneous.GrayMicrobots;
 	
 	public class Anno extends Creature
@@ -15,12 +17,16 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
-			this.inventory.push(new Goovolver());
-			this.inventory.push(new AusarTreats());
+			inventory.push(new AusarTreats());
+			inventory.push(new HammerCarbine());
+			inventory.push(new LaserCarbine());
+			inventory.push(new EMPGrenade());
+			inventory.push(new TSTArmor());
+			inventory.push(new Goovolver());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -189,6 +195,17 @@
 			dataObject.inventory.push(new AusarTreats().getSaveObject());
 			
 			dataObject.armor = new AnnosCatsuit().getSaveObject();
+		}
+		
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.inventory = new Array();
+			dataObject.inventory.push(new AusarTreats().getSaveObject());
+			dataObject.inventory.push(new HammerCarbine().getSaveObject());
+			dataObject.inventory.push(new LaserCarbine().getSaveObject());
+			dataObject.inventory.push(new EMPGrenade().getSaveObject());
+			dataObject.inventory.push(new TSTArmor().getSaveObject());
+			dataObject.inventory.push(new Goovolver().getSaveObject());
 		}
 	}
 }

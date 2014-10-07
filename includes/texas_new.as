@@ -1,9 +1,10 @@
-﻿function newTexasEmail():void
+﻿import classes.Items.Miscellaneous.BBQToGo;
+
+function newTexasEmail():void
 {
 	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 	eventBuffer += "\n\n<b>New Email!</b>\nCome on out to New Texas, Partner!\nFrom: Benjamin Tiberius Tee (NoReply@NewTexas.gov)\nTo: [pc.name]@SteeleTech.corp\n\n<i>This message opens with a 3D masthead depicting rolling green hills that stretch off into the beautiful blue horizon. Several incredibly chesty woman are cavorting across the field, each dressed in a cow-pattern leotard that hugs her almost inhumanly ample curves just right...</i>\n\nHowdy, " + pc.mf("Mr.","Mz.") + " [pc.name] Steele!\n\nMy name is Benjamin Tee, but you and yours can call me Big T. I'm the governor of New Texas, and I'd like to invite you and your crew to our beautiful planet! Enjoy fresh-from-the-tap milk and ice cream, relax in rolling fields unspoiled by civilization, and meet the most beautiful women the galaxy has to offer!\n\nAttached to this message are coordinates and exclusive landing access codes for my personal ranch. Speaking for all of New Texas: we hope to see you soon, partner!\n\n<i>Giddy-on-up to New Texas!</i>\n-Governor Benjamin Tiberius Tee";
 }
-
 
 //Landing on New Texas (First Time)
 function landOnNewTexas():void
@@ -14,7 +15,7 @@ function landOnNewTexas():void
 		CodexManager.unlockEntry("The Treatment");
 		output("A bright green world comes into view ahead: a planet of small, scattered oceans, rolling plains, and clear weather. At first glance, New Texas looks like a male paradise world, peaceful and idyllic. The space lanes around the planet are mostly clear, letting you punch in the auto-lander and sit back as your ship’s computers guide you down to the surface. The clouds roll past you as your ship cruises down toward the largest continent.");
 		output("\n\nYour auto-nav guides you down toward the most popular tourist spot on the planet, a particularly large ranch owned by the planetary governor. You bring up a few articles on the place: the extranet is full of holo-pics of busty, bovine-like human girls milling about the ranch, as well as reviews of an amazing barbeque joint and a something simply called the Treatment, which has all but made the planet what it is today. A whole planetary society based on gene mods... interesting.");
-		output("\n\nThe computer alerts you to imminent landing. You cast a glance out your viewscreen just in time to see a monolithic barn coming into view, easily the size of two city blocks back to back on each side. As you approach, the roof of the barn shudders and begins to split, separated by two massive hydraulic arms that create an opening wide enough for a frigate to pass through. Your ship slows, guided in by the automatic docking protocols as it passes between the raised slates of the barn-dock’s roof. Inside, you can see a handful smaller cargo haulers and touristy passenger ships docked below, each pulled into an oversized, self-contained “<i>stall.</i>” You feel a slight shudder in the deck as your ship lands on the hay-covered floor, quickly surrounded by several buff, burly dock workers, each with a pair of bull horns growing from his head. ");
+		output("\n\nThe computer alerts you to imminent landing. You cast a glance out your viewscreen just in time to see a monolithic barn coming into view, easily the size of two city blocks back to back on each side. As you approach, the roof of the barn shudders and begins to split, separated by two massive hydraulic arms that create an opening wide enough for a frigate to pass through. Your ship slows, guided in by the automatic docking protocols as it passes between the raised slates of the barn-dock’s roof. Inside, you can see a handful of smaller cargo haulers and touristy passenger ships docked below, each pulled into an oversized, self-contained “<i>stall.</i>” You feel a slight shudder in the deck as your ship lands on the hay-covered floor, quickly surrounded by several buff, burly dock workers, each with a pair of bull horns growing from his head. ");
 		output("\n\nA heavy loader latches onto your ship, dragging it into a stall as you gather your gear and prepare to head out. Your docking ramp touches down just as the suit releases your ship. Several of the buff, bovine men working nearby give you ");
 		if(pc.mf("dude","chick") == "dude") output("friendly nods");
 		else output("askance, hungry looks");
@@ -600,7 +601,7 @@ function worshipZeBullCawk():void
 
 	output("\n\nBetween their teasing and the mounting musk pouring from between Og’s legs, your willpower finally snaps. You slip down beside Amma, gently pushing the cow aside and taking hold of Ogram’s rod. The cow-girl giggles as she surrenders her post to you, shifting herself off to one side of her lover’s enormous rod while you take the other. Like her, you spend a moment letting the intoxicating aroma fully strip away what remains of your willpower");
 	//treated
-	if(9999 == 9999) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
+	if(9999 == 0) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
 	output(". Your mind is left with only one, overpowering and all-consuming thought: cock.");
 
 	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your " + pc.mf("","<i>dainty</i> ") + "fingers circle his apple-sized nads, gently cupping and hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");
@@ -962,71 +963,149 @@ function noIDontWantToSellBabies():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-//Big T.’s Barbeque Pit
-function bigTsBarbequePit():void
+
+//[Food]
+function getFoodAtBigTs():void
 {
 	clearOutput();
-	//Fen: This’d be as good a place as any to stick Dane.
+	author("Savin");
+	showBust("HERMAN");
+	showName("\nHERMAN");
+	//Food (First Time)
+	if(flags["MET_HERMAN"] == undefined)
+	{
+		flags["MET_HERMAN"] = 1;
+		output("You queue up in line, glancing up the menu hanging over the grill: chalk on a blackboard, about as old-school as the rest of the decor. The line’s pretty quick-moving despite there only being one man at the grill: a towering, meaty bull-man who looks like he’s enjoyed quite a bit of his own cooking on top of the Treatment’s effects, leaving him looking like a brick house of muscle and belly. At the sweltering heat of the grill, you can see he’s not wearing much more than a pair of jeans and his great big “<i>Kiss the Cook</i>” apron. His arms are a blur as he flips burgers, sauces ribs, and pulls fries out of the deep-fryer.");
+		output("\n\nFinally, you’re up in line. Now that you’re closer, you can see why the chef’s able to go so fast through the orders: several robotic arms are working alongside him, tending to the orders a little further back, operating in concert with the chef so that even the one man can cook for dozens. The chef turns to you with a big grin. “<i>Hey! You’re new here, aren’t ya? Name’s Herman, and I run the place. What can I get you?</i>”");
+	}
+	//Food (Repeat)
+	else
+	{
+		output("You queue up in line for the Barbeque Pit once again. The line moves fast, and pretty soon you’re face to face with Chef Herman again. “<i>Welcome back!</i>” he grins, “<i>What can I get you?</i>”");
+	}
+	clearMenu();
+	//[Roast Beef] - 10
+	if(pc.credits >= 10) addButton(0,"Roast Beef",orderUp,"Roast Beef","Roast Beef","A delicious roast beef sandwich. It'll hit the spot even if it won't do much for your waistline.\n\n10 Credits.");
+	else addDisabledButton(0,"Roast Beef","Roast Beef","You can't afford a roast beef sandwich. You'd need 10 credits.");
+	//[Ribs] - 20
+	if(pc.credits >= 20) addButton(1,"Ribs",orderUp,"Ribs","Ribs","A plateful of awesome ribs - just what you needed for a pick-me-up. Of course ribs aren't the healthiest meal.\n\n20 Credits.");
+	else addDisabledButton(1,"Ribs","Ribs","You can't afford ribs. You'd need 20 credits.");
+	//[Burger] - 9
+	if(pc.credits >= 9) addButton(2,"Burger",orderUp,"Burger","Burger","A big, greaser burger. Your belly will love you. Your belt will hate you.\n\n9 Credits.");
+	else addDisabledButton(2,"Burger","Burger","You can't afford a burger. You'd need 9 credits.");
+	//[Salad] - 5
+	if(pc.credits >= 5) addButton(3,"Salad",orderUp,"Salad","Salad","A meal designed for the body-conscious cow-girl on the go, it doesn't fill you up too much, but it won't add to your waistline.\n\n5 Credits.");
+	else addDisabledButton(3,"Salad","Salad","You can't afford a salad. You'd need 5 credits.");
+	//[BBQ To-Go] - 20
+	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
+	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
+	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
+	if(pc.isBimbo()) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
+	//["Special Order</i>”]...
+	addButton(14,"Back",mainGameMenu);
 
+}
 
-output("\n\nThe restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. {Herman the chef // The chef} is busily trying to fill the orders as they come in, clearly swamped with customers.");
+//Food Chosen (Except BBQ To-GO / Special Order)
+function orderUp(order:String = ""):void
+{
+	clearOutput();
+	author("Savin");
+	showBust("HERMAN");
+	showName("\nHERMAN");
+	output("You give herman your order, which he punches in on the register. He hands you a numbered ticket: “<i>Be right up, " + pc.mf("buddy","missy") + ".</i>”");
+	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cookin is finger-licking good!");
+	//{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. 
+	if(order == "Ribs")
+	{
+		pc.energy(100);
+		pc.thickness += (3);
+		pc.credits -= 20;
+		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+	}
+	else if(order == "Roast Beef")
+	{
+		pc.energy(75);
+		pc.thickness += (2);
+		pc.credits -= 10;
+		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+	}
+	else if(order == "Burger")
+	{
+		pc.energy(60);
+		pc.thickness += (2);
+		pc.credits -= 9;
+		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
+	}
+	else
+	{
+		pc.energy(40);
+		pc.credits -= 5;
+	}
+	if(pc.thickness > 100) pc.thickness = 100;
 
-output("\n\n[Food]");
+	processTime(12);
+	clearMenu();
+	addButton(0,"Next",getFoodAtBigTs);
+}
 
-output("\n\nFood (First Time)");
-output("\n\nYou queue up in line, glancing up the menu hanging over the grill: chalk on a blackboard, about as old-school as the rest of the decor. The line’s pretty quick-moving despite there only being one man at the grill: a towering, meaty bull-man who looks like he’s enjoyed quite a bit of his own cooking on top of the Treatment’s effects, leaving him looking like a brick house of muscle and belly. At the sweltering heat of the grill, you can see he’s not wearing much more than a pair of jeans and his great big “<i>Kiss the Cook</i>” apron. His arms are a blur as he flips burgers, sauces ribs, and pulls fries out of the deep-fryer.");
+//BBQ To-GO
+function bbqToGo():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("HERMAN");
+	showName("\nHERMAN");
+	output("“<i>One to-go box, please,</i>” you say, pulling out your cred stick.");
+	output("\n\n“<i>Good choice! These babies will keep good for ages, but pop the top and it’ll be hot like it was right off the grill and as tasty as the day I cooked it,</i>” Herman says proudly as he rings you up. From under the counter, he hands over a big, black-and-white mottled box that’s ever-so-slightly warm to the touch and smells delicious.");
+	pc.credits -= 20;
+	eventQueue[eventQueue.length] = lootBBQ;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nFinally, you’re up in line. Now that you’re closer, you can see why the chef’s able to go so fast through the orders: several robotic arms are working alongside him, tending to the orders a little further back, operating in concert with the chef so that even the one man can cook for dozens. The chef turns to you with a big grin. “<i>Hey! You’re new here, aren’t ya? Name’s Herman, and I run the place. What can I get you?</i>”");
+function lootBBQ():void {
+	clearOutput();
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new BBQToGo();
+	//Set quantity!
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
 
-output("\n\nFood (Repeat)");
-output("\n\nYou queue up in line for the Barbeque Pit once again. The line moves fast, and pretty soon you’re face to face with Chef Herman again. “<i>Welcome back!</i>” he grins, “<i>What can I get you?</i>”");
+//“<i>Special Order</i>”
+//Requires feminine PC with the Treatment, Fluid Addiction, Bimbofication, etc. 
+//Tooltip: You bet that chef’s got a nice, thick member that needs some relief, all pent up in those tight pants of his... and you bet it’d taste great with a little of his home cooking...
+function specialOrdersForTreatedGals():void
+{
+	author("Savin");
+	showBust("HERMAN");
+	showName("\nHERMAN");
+	clearOutput();
+	output("You lean over the counter, looking the chef up and down, your eyes drawn toward the thick, heavy bulge tenting the chef’s greasy apron. “<i>Uh, is there something I can get you, miss...?</i>” he starts to ask, before his gaze follows you down.");
+	output("\n\nGrinning lasciviously, you point down to the suddenly-larger bulge and say, “<i>I’ll take a great big helping of that, Chef.</i>”");
+	output("\n\nHe seems to think for a moment before nodding toward the little door behind the grill. You quickly hop out of line and through the door, scooting down onto your [pc.knees] beneath the counter. Your hands run up Herman’s tree-trunk legs, brushing across his jean-clad thighs as you push the hem of his apron aside, giving yourself access to the chef’s fly. Even as you’re getting busy, though, Chef Herman doesn’t stop working; he dutifully turns back to the grill after grabbing the next order up, starting to cook just a surely as if there wasn’t a cum-hungry whore trying to free his cock.");
+	output("\n\nYour deft fingers lock around his zipper, carefully tugging it down and grabbing the meaty shaft of Herman’s cock. You roll his apron up to get a look at your prize: it’s as big as you’d hope, more than a foot and a half of turgid meat expanding at your touch, filling out to its full length at your tender touches. It’s bear-like in shape, thicker around than you can wrap your fingers over and blunted at the tip, its thick gash of a urethra sitting in a basin-like depression between the flat mass of cockhead.");
+	output("\n\nUnbeckoned, your hungry tongue slips out and laps along the underside of Herman’s rod. That finally gets a reaction out of the hard-working stud; he shudders, teeth gritting. He turns from the grill to the register, and you move with him, taking the opportunity to draw your tongue along the side of his freed willy. The taste is unbelievable, so good... musky, thick, manly. Like every male on this wonderful world, Herman seems to exude an aura of unwavering masculinity, the kind of men that spend their days breeding bitches, to whom sex is life itself. The flavor of his cock is electrifying, only spurring on your rampant, instinctual need for his cum. When Herman turns again, your lips lock around his flared, bearish cockhead, jaw straining to take the sheer girth of his blunted mast.");
+	output("\n\n“<i>Eager, aren’t ya?</i>” Herman grunts under his breath, reaching down to ");
+	if(pc.horns == 0) output("pat your head");
+	else output("grab one of your bestial horns, pulling you down on his rod");
+	output(". Your expertly-tamed gag reflexes subside utterly as his big, rough hand guides you down his bestial member, your throat expanding around the long, thick schlong being crammed down it. Herman turns again, all but dragging your limp, cock-craving body with him; you obediently follow the stud’s every motion, all conscious thought subsiding to the desperate need to suckle from his cock, to drain every drop of delicious, salty seed from his loins.");
+	output("\n\nWhen his hand leaves your head, reaching for his spatula, your cock-sucking instincts take over from him, your head bobbing up and down his length on automatic. Herman grunts again, breath catching as your tongue swirls around his flared head, as your hands stroke the shaft when your mouth is elsewhere. When you slide yourself back down his length, your hands reach through his fly, cupping a pair of heavy, meaty nuts still inside, covered with a thick layer of fuzz. You cup the bull’s twin, churning balls, barely able to contain your own excitement as you feel them, feel how full them are, ready to flood your needy lips with semen if you work just a little bit harder.");
+	output("\n\nYou gently squeeze and caress Herman’s hefty sack, moving your head along his cockflesh faster and faster, working yourself to a feverish pace of sucking and wanking, working as quick as you can to extract your salty meal from the chef’s meat. He grunts, a bull-like snarl as you work him over; his cock throbs and trembles with building need, so close to release you can taste the thick, creamy treat... or is that just the river of pre pouring down your throat?");
+	output("\n\n“<i>Slow down, or I’m gonna... gonna...</i>” Herman starts to stay, his voice trailing off into a wordless, bestial groan. You can feel his cock expanding, the thick load moving through it, shooting towards the waiting reception of your [pclips]. Just before the moment of his release, the chef roughly pushes you off his cock, sending you back with a yelp of surprises and utter disappointment. Instead of your mouth, the chef leans down and catches his cockhead between the folds of a hot, greasy roast beef on rye right off the grill. His hips buck like a bronco’s as he blows his load across the open lips of the sandwich, slathering it with his own special topping.");
+	output("\n\n“<i>Order up,</i>” Herman grunts, slapping the spunk-filled roast beef closed and handing it down to you. “<i>On the house.</i>”");
+	output("\n\nTalk about eating cum. You giggle and take the sandwich, munching down on the savory, salty cock-based concoction. The taste sends shivers of pure ecstasy down your spine as you finally sate your hunger for cum... and also lunch. You slump back against the interior of the counter, feasting upon the creamy sandwich. Delicious!");
 
-output("\n\nGetting Fed");
-output("\n\n[Roast Beef] [Ribs] [Burger] [Salad] [BBQ To-Go] ");
-output("\n\n{If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: ["Special Order</i>”]...}");
-
-output("\n\n//Food Chosen (Except BBQ To-GO / Special Order)");
-output("\n\nYou give herman your order, which he punches in on the register. He hands you a numbered ticket: “<i>Be right up, {buddy / missy}.</i>”");
-
-output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cookin is finger-licking good! ");
-
-output("\n\n{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. ");
-
-output("\n\n//BBQ To-GO");
-output("\n\n“<i>One to-go box, please,</i>” you say, pulling out your cred stick. ");
-
-output("\n\n“<i>Good choice! These babies will keep good for ages, but pop the top and it’ll be hot like it was right off the grill and as tasty as the day I cooked it,</i>” Herman says proudly as he rings you up. From under the counter, he hands over a big, black-and-white mottled box that’s ever-so-slightly warm to the touch and smells delicious. ");
-
-output("\n\nBBQ To-Go");
-output("\n\n//Tooltip: A tasty packaged meal from the Barbeque Pit on New Texas, this ever-fresh BBQ meal comes with fries and soda. Probably not great for your figure, but it’s guaranteed to give you a boost of energy in the middle of a long day at the office... or of galactic adventuring. ");
-output("\n\n//Effect: %Chance +thickness, +25 Energy");
-output("\n\n//Use: You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
-
-
-output("\n\n“<i>Special Order</i>”");
-output("\n\n//Requires feminine PC with the Treatment, Fluid Addiction, Bimbofication, etc. ");
-output("\n\n//Tooltip: You bet that chef’s got a nice, thick member that needs some relief, all pent up in those tight pants of his... and you bet it’d taste great with a little of his home cooking...");
-
-output("\n\nYou lean over the counter, looking the chef up and down, your eyes drawn toward the thick, heavy bulge tenting the chef’s greasy apron. “<i>Uh, is there something I can get you, miss...?</i>” he starts to ask, before his gaze follows you down. ");
-
-output("\n\nGrinning lasciviously, you point down to the suddenly-larger bulge and say, “<i>I’ll take a great big helping of that, Chef.</i>” ");
-
-output("\n\nHe seems to think for a moment before nodding toward the little door behind the grill. You quickly hop out of line and through the door, scooting down onto your [pc.knees] beneath the counter. Your hands run up Herman’s tree-trunk legs, brushing across his jean-clad thighs as you push the hem of his apron aside, giving yourself access to the chef’s fly. Even as you’re getting busy, though, Chef Herman doesn’t stop working; he dutifully turns back to the grill after grabbing the next order up, starting to cook just a surely as if there wasn’t a cum-hungry whore trying to free his cock. ");
-
-output("\n\nYour deft fingers lock around his zipper, carefully tugging it down and grabbing the meaty shaft of Herman’s cock. You roll his apron up to get a look at your prize: it’s as big as you’d hope, more than a foot and a half of turgid meat expanding at your touch, filling out to its full length at your tender touches. It’s bear-like in shape, thicker around than you can wrap your fingers over and blunted at the tip, its thick gash of a urethra sitting in a basin-like depression between the flat mass of cockhead. ");
-
-output("\n\nUnbeckoned, your hungry tongue slips out and laps along the underside of Herman’s rod. That finally gets a reaction out of the hard-working stud; he shudders, teeth gritting. He turns from the grill to the register, and you move with him, taking the opportunity to draw your tongue along the side of his freed willy. The taste is unbelievable, so good... musky, thick, manly. Like every male on this wonderful world, Herman seems to exude an aura of unwavering masculinity, the kind of men that spend their days breeding bitches, to whom sex is life itself. The flavor of his cock is electrifying, only spurring on your rampant, instinctual need for his cum. When Herman turns again, your lips lock around his flared, bearish cockhead, jaw straining to take the sheer girth of his blunted mast. ");
-
-output("\n\n“<i>Eager, aren’t ya?</i>” Herman grunts under his breath, reaching down to {if no horns: pat your head //else// grab one of your bestial horns, pulling you down on his rod}. Your expertly-tamed gag reflexes subside utterly as his big, rough hand guides you down his bestial member, your throat expanding around the long, thick schlong being crammed down it. Herman turns again, all but dragging your limp, cock-craving body with him; you obediently follow the stud’s every motion, all conscious thought subsiding to the desperate need to suckle from his cock, to drain every drop of delicious, salty seed from his loins. ");
-
-output("\n\nWhen his hand leaves your head, reaching for his spatula, your cock-sucking instincts take over from him, your head bobbing up and down his length on automatic. Herman grunts again, breath catching as your tongue swirls around his flared head, as your hands stroke the shaft when your mouth is elsewhere. When you slide yourself back down his length, your hands reach through his fly, cupping a pair of heavy, meaty nuts still inside, covered with a thick layer of fuzz. You cup the bull’s twin, churning balls, barely able to contain your own excitement as you feel them, feel how full them are, ready to flood your needy lips with semen if you work just a little bit harder. ");
-
-output("\n\nYou gently squeeze and caress Herman’s hefty sack, moving your head along his cockflesh faster and faster, working yourself to a feverish pace of sucking and wanking, working as quick as you can to extract your salty meal from the chef’s meat. He grunts, a bull-like snarl as you work him over; his cock throbs and trembles with building need, so close to release you can taste the thick, creamy treat... or is that just the river of pre pouring down your throat? ");
-
-output("\n\n“<i>Slow down, or I’m gonna... gonna...</i>” Herman starts to stay, his voice trailing off into a wordless, bestial groan. You can feel his cock expanding, the thick load moving through it, shooting towards the waiting reception of your [pclips]. Just before the moment of his release, the chef roughly pushes you off his cock, sending you back with a yelp of surprises and utter disappointment. Instead of your mouth, the chef leans down and catches his cockhead between the folds of a hot, greasy roast beef on rye right off the grill. His hips buck like a bronco’s as he blows his load across the open lips of the sandwich, slathering it with his own special topping.");
-
-output("\n\n“<i>Order up,</i>” Herman grunts, slapping the spunk-filled roast beef closed and handing it down to you. “<i>On the house.</i>”");
-
-output("\n\nTalk about eating cum. You giggle and take the sandwich, munching down on the savory, salty cock-based concoction. The taste sends shivers of pure ecstasy down your spine as you finally sate your hunger for cum... and also lunch. You slump back against the interior of the counter, feasting upon the creamy sandwich. Delicious!");
-*/
+	pc.lust(15);
+	processTime(23);
+	pc.energy(100);
+	pc.thickness += (1);
+	if(pc.thickness > 100) pc.thickness = 100;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

@@ -456,6 +456,11 @@ function equipItem(arg:ItemSlotClass):void {
 			output("<b> Once you get your gear back, this will be equipped.</b>");
 		}
 	}
+	if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
+	{
+		output("<b> Your new ranged weapon doesn't suffer from the effects of gunlock!</b>");
+		pc.removeStatusEffect("Gunlock");
+	}
 	//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
 	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
 	{

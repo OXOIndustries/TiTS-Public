@@ -721,7 +721,7 @@ function loseToManBotWhenHavingAPussy():void
 	if(pc.cockTotal() > 0) output(", all the while its tentacle wrings your [pc.cock] in its close, rubber confines");
 	output(". Its red end glows with a delightful heat which it carries deep into your womb.");
 	//Small: 
-	if(pc.vaginas[x].loosenss() <= 3)
+	if(pc.vaginas[x].looseness() <= 3)
 	{
 		output("\n\nIts sturdy prick");
 		if(y >= 0) output("s are");

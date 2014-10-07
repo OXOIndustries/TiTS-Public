@@ -8,11 +8,11 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class ZilHoney extends ItemSlotClass
+	public class BBQToGo extends ItemSlotClass
 	{
 		
 		//constructor
-		public function ZilHoney()
+		public function BBQToGo()
 		{
 			this._latestVersion = 1;
 			
@@ -21,25 +21,25 @@
 			this.type = GLOBAL.FOOD;
 			
 			//Used on inventory buttons
-			this.shortName = "ZilHoney";
+			this.shortName = "BBQ To-Go";
 			
 			//Regular name
-			this.longName = "vial of female zil honey";
+			this.longName = "box of barbeque to-go";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a vial of female zil honey";
+			this.description = "a box of barbeque to go";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This vial is filled with the honey created by a female zil's orgasm. It smells ludicrously sweet and delicious. A cursory examination indicates that shouldn't cause any kinds of mutation.";
+			this.tooltip = "A tasty packaged meal from the Barbeque Pit on New Texas, this ever-fresh BBQ meal comes with fries and soda. Probably not great for your figure, but it’s guaranteed to give you a boost of energy in the middle of a long day at the office... or of galactic adventuring.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 0;
+			this.basePrice = 15;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.KINETIC;
@@ -61,12 +61,14 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Consume:
-				kGAMECLASS.output("You knock back the gooey, sweet-tasting stuff with ease, finding it more than palatable to your tongue. It tingles pleasantly on your taste buds as it invigorates you.");
-				target.energy(35);
-				kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
+				//Effect: %Chance +thickness, +25 Energy
+				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
+				target.energy(25);
+				target.thickness += 2;
+				if(target.thickness >= 100) target.thickness = 100;
 			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " drinks the honey, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the food, getting a quick energy boost.");
 				target.energy(35);
 			}
 			return false;

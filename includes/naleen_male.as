@@ -375,7 +375,7 @@ function rideDudeleensWithAPussaaaaah():void {
 
 	//CHECK VIRGINITIES HERE!
 	pc.cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
-	pc.cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+	if(y >= 0) pc.cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 
 	output("\n\nYou groan lustily, clenching down and feeling ");
 	if(pc.totalVaginas() > 1) output("their");
@@ -403,7 +403,12 @@ function rideDudeleensWithAPussaaaaah():void {
 
 	output("\n\nLuckily, the feeling of hot spooge pouring into your receptive, quivering entrance");
 	if(y >= 0) output("s");
-	output(" is the last stimulant you need. Your [pc.vaginas] clamp down with all their might, instinctively trying to hold as much of his cum inside of you as possible while your climax rocks you. You fling back your head and cry out in pleasure, oblivious as ");
+	output(" is the last stimulant you need. Your [pc.vaginas] clamp");
+	if(y >= 0) output("s");
+	output(" down with all ");
+	if(y >= 0) output("their");
+	else output("its");
+	output(" might, instinctively trying to hold as much of his cum inside of you as possible while your climax rocks you. You fling back your head and cry out in pleasure, oblivious as ");
 	if(pc.hasCock())
 	{
 		output("[pc.eachCock] ");
