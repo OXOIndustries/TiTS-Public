@@ -315,7 +315,7 @@ function annoMorningRouter():void
 	flags["ANNO_SLEEPWITH_DOMORNING"] = undefined;
 
 	if (pc.hasCock() && rand(2) == 0) annoMorningHandy();
-	annoMorningShower();
+	else annoMorningShower();
 }
 
 function annoMorningHandy():void
