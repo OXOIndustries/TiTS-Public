@@ -62,7 +62,7 @@
 			if(rand(3) == 0) changeLimit++;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn't quite compare any pepper you've ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of the mixture. You don't really get much of a buzz; the euphoric effect must only work on ");
+				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn't quite compare to any pepper you've ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of the mixture. You don't really get much of a buzz; the euphoric effect must only work on ");
 				if(target.race() == "naleen") kGAMECLASS.output("full-blooded ");
 				kGAMECLASS.output("naleen.");
 				kGAMECLASS.processTime(3);
@@ -114,7 +114,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.legTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 					}
 				}
 				//Increase height to 6' then rarely to 6'5"
@@ -130,7 +130,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.tallnessLockedMessage());
+						kGAMECLASS.output("\n\n" + target.tallnessLockedMessage());
 					}
 				}
 
@@ -138,13 +138,13 @@
 				if (target.armType != GLOBAL.TYPE_FELINE && changes < changeLimit && rand(3) == 0 && target.skinType == GLOBAL.SKIN_TYPE_FUR) {
 					if (target.armTypeUnlocked(GLOBAL.TYPE_FELINE))
 					{
-						kGAMECLASS.output("\n\nYour fingertips clench involuntarily, digging into your pails with painful pricks of sharpness. Reluctantly prying them open, you watch in shock as your nails gradually shift closer to your fingertips. They narrow even as they lengthen, resulting in a set of sharp, feline-looking claws. <b>You could give someone quite the nasty scratch with your new claws!</b>");
+						kGAMECLASS.output("\n\nYour fingertips clench involuntarily, digging into your palms with painful pricks of sharpness. Reluctantly prying them open, you watch in shock as your nails gradually shift closer to your fingertips. They narrow even as they lengthen, resulting in a set of sharp, feline-looking claws. <b>You could give someone quite the nasty scratch with your new claws!</b>");
 						target.armType = GLOBAL.TYPE_FELINE;
 						changes++;
 					}
 					else
 					{
-						kGAMECLASS.output(target.armTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 					}
 				}
 				//Grow fur - req cat ears and naleen face!
@@ -172,7 +172,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.skinTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
 					}
 				}
 				//Cat ears - req naleen face
@@ -185,7 +185,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.earTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.earTypeLockedMessage());
 					}
 				}
 				//Naleen Face - human but never has fur/scales/whatevs
@@ -209,7 +209,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.faceTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.faceTypeLockedMessage());
 					}
 				}
 				//Naleen eyes: No prereq
@@ -228,7 +228,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.eyeTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.eyeTypeLockedMessage());
 					}
 				}
 			}
@@ -324,7 +324,7 @@
 			}
 			else if (!target.hipRatingUnlocked(12))
 			{
-				kGAMECLASS.output(target.hipRatingLockedMessage());
+				kGAMECLASS.output("\n\n" + target.hipRatingLockedMessage());
 			}
 			//Lengthen hair to ass-length!
 			if (target.hasHair() && target.hairLength < target.tallness/2 && target.hairLengthUnlocked(target.tallness / 2) && changes < changeLimit && rand(3) == 0)	{
@@ -340,7 +340,7 @@
 			}
 			else if (!target.hairLengthUnlocked(target.tallness / 2))
 			{
-				kGAMECLASS.output(target.hairLengthLockedMessage());
+				kGAMECLASS.output("\n\n" + target.hairLengthLockedMessage());
 			}
 			return changes;
 		}
@@ -369,7 +369,7 @@
 				}
 				else
 				{
-					kGAMECLASS.output(target.createCockLockedMessage());
+					kGAMECLASS.output("\n\n" + target.createCockLockedMessage());
 				}
 			}
 			//Naleen cock tf
@@ -402,7 +402,7 @@
 			}
 			else if (target.cockTotal() > 0)
 			{
-				kGAMECLASS.output(target.cockTypeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 			}
 			
 			//Genital slit

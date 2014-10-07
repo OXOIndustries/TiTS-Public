@@ -739,7 +739,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 	output(". ");
 	if((pc.hasCock() && pc.cumQ() >= 25) || pc.hasNippleCocks() || pc.canMilkSquirt()) output("The fluid covering her slowly vanishes, absorbed directly through her skin-like membrane. ");
 	output("You nervelessly flop off the chair and onto the floor, but Flahne comes right over, vacuuming up every bit of swampy sex-juice from your body. The gel-woman is happy to help you up, and before long, the two of you are giggling and smiling, flush-faced after having sex in such an unconventional place. Flahne’s juicy ass barely fits back into her skirt, but she manages somehow. She does need your help with her shirt, and you’re happy to help her with the buttons. Unsurprisingly, you can’t manage to button it any higher than it was when you first met. Flahne doesn’t mind.");
-	output("\n\nA tingle of fresh lust stirs in your well-fucked vagina as you handle your lover’s big bust, but you manage to suppress it for now. Flahne seems to be a flushed a little more orange than normal as well.");
+	output("\n\nA tingle of fresh lust stirs in your well-fucked vagina as you handle your lover’s big bust, but you manage to suppress it for now. Flahne seems to be flushed a little more orange than normal as well.");
 	//Pass 20 minutes
 	processTime(20);
 	//Cum

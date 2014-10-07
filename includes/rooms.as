@@ -958,7 +958,7 @@ function initializeRooms():void
 	//64. Vined Jungle/Corner
 	rooms["VINED JUNGLE 2"] = new RoomClass(this);
 	rooms["VINED JUNGLE 2"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc, and the none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
+	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc and somehow manages to stay free of the encroaching mass of vines. If fact, none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
 	rooms["VINED JUNGLE 2"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 2"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 2"].northExit = "VINED JUNGLE 1";

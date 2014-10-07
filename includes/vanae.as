@@ -1125,8 +1125,8 @@ function vanaeMaidenCunnilingus():void
 	{
 		output("\n\nHaving her girlishly spurt all over your face gets you so hot that you can't stand it any longer");
 		if (pc.hasCock()) output(" spastically shooting [pc.cum] from your [pc.cocks] and all over the ground");
-		if (pc.hasVagina()) output(", creaming yourself right there and then. You cry out as your [pc.pussies] spasm and your [pc.girlCum] gushes down your [pc.thighs]");
-		output(". You muffle your mouth inside of her spasming [monster.pussyNoun] as your face utterly drenched in her [monster.girlCum].");
+		if (pc.hasVagina()) output(", creaming yourself right there and then. You cry out as [pc.eachVagina] spasms and your [pc.girlCum] gushes down your [pc.thighs]");
+		output(". You muffle your mouth inside of her spasming [monster.pussyNoun] as your face is utterly drenched in her [monster.girlCum].");
 		pc.orgasm();
 		monster.orgasm();
 	}
@@ -2288,7 +2288,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 	output("\n\nWatching you laying there like the good little prey you are, your amazonian lover sucks on your [pc.nipple] and teases it gently with her teeth. You endure a delicious two-pronged assault on your privates, her tongue lashing your sensitive nub as her finger probes");
 	if (pc.vaginas.length > 1) output(" a");
 	else output(" your"); 
-	output(" gushing puss. It feels so damn good, the vanae huntress certainly knows what she's doing! As expected from an all-female race, she truly gifted at getting a girl off.");
+	output(" gushing puss. It feels so damn good, the vanae huntress certainly knows what she's doing! As expected from an all-female race, she is truly gifted at getting a girl off.");
 	if (pc.hasCock()) output(" [pc.EachCock] stiffens and jerks, obviously responding to her attentions.");
 
 	output("\n\nHer hot breath warms your [pc.skin] as her canine teasingly drags along your [pc.nipple], causing it to stiffen. Her beautiful floral scent and the feel of her silky smooth skin fill your senses as she rubs sensuously against you. You soon realise your ability to move is returning, but you're too far into it to care about escape. All you can do is shamelessly arch your back into her attentions, begging for more.");
@@ -2308,7 +2308,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 
 	output("\n\nWhen her long prehensile tail hooks around and rubs [pc.oneClit] at the same time, you let out a sharp cry of pleasure and spasm, instantly creaming yourself in her mouth.");
 	if (pc.hasCock()) output(" [pc.EachCock] spurts your [pc.cum] all over the place in an erotic fanfare.");
-	output(" Rather than stop, the vanae huntress thoroughly lashes your now overly sensitive snatch, eagerly scooping up your [pc.girlCum] with her skillful tongue. You're quickly fired back up again and bucking her hips wildly against her gorgeous face.");
+	output(" Rather than stop, the vanae huntress thoroughly lashes your now overly sensitive snatch, eagerly scooping up your [pc.girlCum] with her skillful tongue. You're quickly fired back up again and bucking your hips wildly against her gorgeous face.");
 
 	pc.orgasm();
 
@@ -2316,7 +2316,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 
 	output("\n\n... An hour later ...");
 
-	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. [pc.EachVagina] and [pc.clits] has been worked over in every way imaginable. All the while your forceful lover has lapped up every last drop of");
+	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. [pc.EachVagina] and [pc.clits] have been worked over in every way imaginable. All the while your forceful lover has lapped up every last drop of");
 	if (pc.hasCock()) output(" [pc.cum] and");
 	output(" [pc.girlcum] you had to give with fervor. There's simply no more left to give.");
 
