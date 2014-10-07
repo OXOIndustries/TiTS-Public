@@ -768,6 +768,7 @@ function firstTimeOnTarkusBonus():Boolean
 function BonusFunction210():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
+	output("\n\nThe cargo elevator seems to be working down here - it's doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
 	return false;
 }
 

@@ -3563,22 +3563,44 @@ function initializeRooms():void
 	// KIROS SHIP
 	rooms["KIROS SHIP INTERIOR"] = new RoomClass(this);
 	rooms["KIROS SHIP INTERIOR"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but you can hear distressed wails coming from one near the end of the hall.";
-	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP QUARTERS";
+	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but the distressed wails are coming from further down the hall to the north.";
+	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP INTERIOR2";
 	rooms["KIROS SHIP INTERIOR"].eastExit = "KIROS SHIP ENGINEERING";
 	rooms["KIROS SHIP INTERIOR"].southExit = "KIROS SHIP AIRLOCK";
 	rooms["KIROS SHIP INTERIOR"].westExit = "KIROS SHIP TROPHYROOM";
-	rooms["KIROS SHIP INTERIOR"].runOnEnter = kirosShipInterior;
+	rooms["KIROS SHIP INTERIOR"].runOnEnter = undefined;
 	rooms["KIROS SHIP INTERIOR"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP INTERIOR"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["KIROS SHIP INTERIOR"].moveMinutes = 1;
 
+	rooms["KIROS SHIP INTERIOR2"] = new RoomClass(this);
+	rooms["KIROS SHIP INTERIOR2"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP INTERIOR2"].description = "The lavishly decorated hallway continues on its north-south journey through the center of this ship, lined by chambers on nearly all sides. The eastern door hangs askew. A lavishly carved plate declares it to be the Captain's quarters. Sounds of distress come almost nonstop from the west. Whoever is in trouble on this ship, they must be in there. Oddly, that room has no designation.";
+	rooms["KIROS SHIP INTERIOR2"].eastExit = "KIROS SHIP QUARTERS";
+	rooms["KIROS SHIP INTERIOR2"].southExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP INTERIOR2"].westExit = "KIROS SPUNK CHAMBER";
+	rooms["KIROS SHIP INTERIOR2"].runOnEnter = undefined;
+	rooms["KIROS SHIP INTERIOR2"].planet = "SHIP: LEAF"
+	rooms["KIROS SHIP INTERIOR2"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP INTERIOR2"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP INTERIOR2"].moveMinutes = 1;
+
+	rooms["KIROS SPUNK CHAMBER"] = new RoomClass(this);
+	rooms["KIROS SPUNK CHAMBER"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SPUNK CHAMBER"].description = "";
+	rooms["KIROS SPUNK CHAMBER"].eastExit = "KIROS SHIP INTERIOR2";
+	rooms["KIROS SPUNK CHAMBER"].runOnEnter = kirosShipWails;
+	rooms["KIROS SPUNK CHAMBER"].planet = "SHIP: LEAF"
+	rooms["KIROS SPUNK CHAMBER"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SPUNK CHAMBER"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SPUNK CHAMBER"].moveMinutes = 1;
+
 	rooms["KIROS SHIP QUARTERS"] = new RoomClass(this);
 	rooms["KIROS SHIP QUARTERS"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
 	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
-	rooms["KIROS SHIP QUARTERS"].southExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP QUARTERS"].westExit = "KIROS SHIP INTERIOR2";
 	rooms["KIROS SHIP QUARTERS"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP QUARTERS"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP QUARTERS"].addFlag(GLOBAL.INDOOR);
@@ -3595,7 +3617,7 @@ function initializeRooms():void
 
 	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
 	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
-	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
+	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i>, the captain's hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";

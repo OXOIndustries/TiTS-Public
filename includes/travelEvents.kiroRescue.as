@@ -113,7 +113,7 @@ public function kirosShipCutlass():void
 	itemCollect([cutlass], false);
 }
 
-public function kirosShipWails(doOutput:Boolean = true):void
+public function kirosShipWails(doOutput:Boolean = true):Boolean
 {
 	showBust("KIRO_NUDE");
 
@@ -172,6 +172,7 @@ public function kirosShipWails(doOutput:Boolean = true):void
 		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
 	}
 	addButton(4,"Nope!",kirosShipNopeFuckThisShit,undefined,"Nope, I'm Out","You don't get paid enough to deal with this kind of shit.");
+	return true;
 }
 
 public function kirosShipChubnookiUpDaButt():void
