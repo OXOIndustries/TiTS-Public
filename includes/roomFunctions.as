@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
 import classes.Items.Apparel.TSTArmorMkII;
@@ -92,11 +93,11 @@ function debugMenus():void
 	
 	//addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
 	
-	addItemButton(0, new AtmaArmor(), function():void {
-		output("\n\nAtmaArmor get.\n");
+	addItemButton(0, new LightningDuster(), function():void {
+		output("\n\nLightning Duster.\n");
 		
 		var foundLootItems:Array = new Array();
-		foundLootItems.push(new AtmaArmor());
+		foundLootItems.push(new LightningDuster());
 		
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;

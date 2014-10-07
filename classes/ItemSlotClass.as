@@ -334,7 +334,7 @@
 			if (foundResistDiff)
 			{
 				resistancesDiffString += "\nBonus Resistances: \n";
-				resistancesDiffString += "<textformat tabstops='64,96,150,209,246'>";
+				resistancesDiffString += "<textformat tabstops='59,96,150,206,246'>";
 				//resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
 				
 				for (resistIndex = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
