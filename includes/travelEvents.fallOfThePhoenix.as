@@ -341,6 +341,7 @@ public function phoenixCargo():Boolean
 
 			output("\n\nShit.");
 			currentLocation = "PHOENIX RECROOM";
+			phoenixRecRoom();
 			return false;
 		}
 		else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)

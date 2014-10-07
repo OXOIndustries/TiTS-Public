@@ -309,7 +309,17 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 3"].westExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 3"].eastExit = "SOUTHEAST ESBETH";
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
+	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["ESBETH TRAVEL AUTHORITY"] = new RoomClass(this);
+	rooms["ESBETH TRAVEL AUTHORITY"].roomName = "TRAVEL\nAUTHORITY";
+	rooms["ESBETH TRAVEL AUTHORITY"].description = "The office of the U.G.C. Scout Authority is a cramped, cluttered office full of maps, vehicle parts, and hunting trophies. You duck and weave through the office until you arrive at the front desk, which is manned by a sturdily-built tauric man whose lower body is plated with black scales. He gives you a friendly nod as you approach";
+	rooms["ESBETH TRAVEL AUTHORITY"].planet = "PLANET: MHEN'GA";
+	rooms["ESBETH TRAVEL AUTHORITY"].runOnEnter = esbethFastTravelOfficeBonus;
+	rooms["ESBETH TRAVEL AUTHORITY"].system = "SYSTEM: ARA ARA";
+	rooms["ESBETH TRAVEL AUTHORITY"].northExit = "SOUTH ESBETH 3";
+	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.INDOOR);
 		
 	//11. The Southeast Corner of Esbeth
 	rooms["SOUTHEAST ESBETH"] = new RoomClass(this);
@@ -1311,7 +1321,7 @@ function initializeRooms():void
 	rooms["A TURNING POINT"] = new RoomClass(this);
 	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
 	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.";
-	rooms["A TURNING POINT"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["A TURNING POINT"].runOnEnter = vanaeWarningBot;
 	rooms["A TURNING POINT"].planet = "PLANET: MHEN'GA";
 	rooms["A TURNING POINT"].system = "SYSTEM: ARA ARA";
 	//rooms["A TURNING POINT"].northExit = "";
@@ -1570,7 +1580,7 @@ function initializeRooms():void
 
 	rooms["ABANDONED CAMP"] = new RoomClass(this);
 	rooms["ABANDONED CAMP"].roomName = "";
-	rooms["ABANDONED CAMP"].description = "You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates and bodies lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you're not sure you'll find anything of value.";
+	rooms["ABANDONED CAMP"].description = "";
 	rooms["ABANDONED CAMP"].runOnEnter = mhengaVanaeAbandonedCamp;
 	rooms["ABANDONED CAMP"].planet = "PLANET: MHEN'GA";
 	rooms["ABANDONED CAMP"].system = "SYSTEM: ARA ARA";
@@ -1586,16 +1596,16 @@ function initializeRooms():void
 	//#1 Ship Hangar
 	rooms["201"] = new RoomClass(this);
 	rooms["201"].roomName = "SHIP\nHANGAR";
-	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a broken-down cargo-elevator. That'd be your ticket anywhere.";
+	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a cargo-elevator. That'd be your ticket anywhere.";
 	rooms["201"].runOnEnter = firstTimeOnTarkusBonus;
-	rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
+	//rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
 	rooms["201"].eastExit = "202";
 	rooms["201"].planet = "PLANET: TARKUS";
 	rooms["201"].system = "SYSTEM: REDACTED";
 	rooms["201"].addFlag(GLOBAL.INDOOR);
 	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
 	
-	rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
+	/*rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
 	rooms["NOVA SHIP DECK ELEVATOR"].roomName = "NOVA:\nHANGAR DECK";
 	rooms["NOVA SHIP DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
 	rooms["NOVA SHIP DECK ELEVATOR"].runOnEnter = novaShipHangarElevator;
@@ -1604,7 +1614,7 @@ function initializeRooms():void
 	rooms["NOVA SHIP DECK ELEVATOR"].system = "SYSTEM: REDACTED";
 	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	// Temp flag so I don't have to clobber fla with changes atm
-	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
+	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);*/
 	
 	rooms["NOVA MAIN DECK ELEVATOR"] = new RoomClass(this);
 	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\nMAIN DECK";
@@ -1619,10 +1629,10 @@ function initializeRooms():void
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
-	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going north into an access tunnel; the nearby cargo elevator sits askew in its brackets, obviously nonfunctional.";
+	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator's doors sit askew in their frame, obviously nonfunctional.";
 	rooms["202"].runOnEnter = undefined;
 	rooms["202"].westExit = "201";
-	rooms["202"].northExit = "203";
+	rooms["202"].eastExit = "203";
 	rooms["202"].planet = "PLANET: TARKUS";
 	rooms["202"].system = "SYSTEM: REDACTED";
 	rooms["202"].addFlag(GLOBAL.INDOOR);
@@ -1632,7 +1642,7 @@ function initializeRooms():void
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
 	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can do down into the ship or south out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
-	rooms["203"].southExit = "202";
+	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
 	rooms["203"].outText = "Down";
 	rooms["203"].planet = "PLANET: TARKUS";

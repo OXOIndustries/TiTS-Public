@@ -619,8 +619,89 @@ function mhengaVanaeFernDamage():Boolean
 
 function mhengaVanaeAbandonedCamp():Boolean
 {
-	addButton(0, "Salvage", mhengaSalvageFromCamp);
+	output("You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates");
+	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined) output(" and bodies");
+	output(" lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you're not sure you'll find anything of value.");
+	if(flags["SALVAGED VANAE CAMP"] != 2) addButton(0, "Salvage", mhengaSalvageFromCamp);
+	else 
+	{
+		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It'll cost you 40 credits to ride back to Mhen'ga.");
+		else addDisabledButton(0,"Call Taxi","Call Taxi","You can't afford the 40 credits for a taxi. Damn.");
+	}
+	addButton(5,"Sleep",sleepInRuinedCamp,undefined,"Sleep","The camp is a wreck, but if you cleaned it up, you might be able to bed down here.");
 	return false;
+}
+
+function fastTravelToEsbeth():void
+{
+	clearOutput();
+	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you've got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
+	pc.credits -= 40;
+	currentLocation = "ESBETH TRAVEL AUTHORITY";
+	var map:* = mapper.generateMap(currentLocation);
+  	this.userInterface.setMapData(map);
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+function sleepInRuinedCamp():void
+{
+	clearOutput();
+	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined)
+	{
+		flags["CLEARED_XENOGEN_CAMP_BODIES"] = 1;
+		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you're far enough from town that you'd rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
+		output("\n\nYou clear out one of the tents and bunker down to sleep ");
+
+		//Standard sleep messages, etc. 
+	}
+	//Repeat [Sleep]
+	else
+	{
+		output("The camp is still clear enough, and the smell's not so bad anymore. You crawl into one of the tents and bunker down to sleep");
+	}
+	//Standard sleep messages, etc. 
+	var minutes:int = 420 + rand(80) + 1
+	output(" for about " + num2Text(Math.round(minutes/60)) + " hours.");
+	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
+	{
+		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
+	}
+	
+	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+	processTime(minutes);
+	mimbraneSleepEvents();
+	//Chance for a Vanae Attack! - can't be first time
+	if (CodexManager.entryUnlocked("Vanae") && rand(4) == 0)
+	{
+		//PC doesn't have TamWolf, has encountered a vanae before. Vanae gets the first turn!
+		if(!pc.accessory is TamWolf) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
+		//PC has Tam-wolf (broke or not)
+		else
+		{
+			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... you'll have to fight her.");
+		}
+		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
+		return;
+	}
+	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 7 && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	{
+		(pc as PlayerCharacter).unspentStatPoints += 13;
+		(pc as PlayerCharacter).unclaimedClassPerks += 1;
+		(pc as PlayerCharacter).unclaimedGenericPerks += 1;
+		
+		pc.level++;
+		pc.XPRaw = 0;
+		pc.maxOutHP();
+		
+		// Enable the button
+		userInterface.levelUpButton.Activate();
+		
+		eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 function mhengaSalvageFromCamp():void
@@ -636,7 +717,11 @@ function mhengaSalvageFromCamp():void
 	}
 	else
 	{
-		output("You spend a couple of minutes scouting around the defunct camp, but find nothing further of interest. Seems like you've salvaged everything of use.");
+		//Add to Salvage results, 2nd time
+		//Remove "Salvage" option, replace with [Use Comms].
+		flags["SALVAGED VANAE CAMP"] = 2;
+		output("As you pick through the abandoned research camp, you spot something useful among the wreckage of what looks to be a burned-out hoverloader: a mid-range communications array, new in box. While not particularly valuable, and much too heavy to carry around with you, this array could easily cut through the jungle and send back to Esbeth. You break it out of the box and boot it up. The array makes a happy chirping sound, announcing more loudly than you'd like that it is a top of the line Xenogen product brought to you courtesy of some dead, highly advanced race Xenogen looted whose name you're not sure you could replicate.\n\nWith the comms array set up, <b>you could probably call for retrieval from Esbeth now.</b>");
+		processTime(3);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu); 
 	}
@@ -874,3 +959,98 @@ function randomBarnEventFunc():Boolean
 	}
 	return false;
 }
+
+function vanaeWarningBot():Boolean
+{
+	output("\n\n<b>A small, sleek drone bearing the U.G.C. Peacekeeper emblem is hovering here, puttering around in a small circle.</b> When you approach, the drone intones in a clearly mechanical voice: “<i>Peacekeeper Inoue has posted the following safety advisory: beyond this point, the southern area of jungle is classified as a level four threat and is to be avoided if at all possible.</i>”");
+	addButton(0,"Drone",talkToWarningDrone);
+	return false;
+}
+
+function talkToWarningDrone():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nDRONE");
+	showBust("\nDRONE");
+	output("You step up to the drone and ask it for more information.");
+	output("\n\n“<i>Peacekeeper Inoue has classified the local species ‘Vanae’ as a level four threat. This species is highly aggressive. Only well-equipped explorers with significant off-world experience should proceed beyond this point.</i>”");
+	if(flags["SEXED_PENNY"] != undefined) output("\n\nAs you step back from the drone, it chirps and suddenly displays a holographic image of Penny. “<i>Hi, mate. I thought you might find this! Be safe out there, alright?</i>”\n\nYou smile and nod as the bonus message flickers off.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+function esbethFastTravelOfficeBonus():Boolean
+{
+	//Codex locked:
+	if(!CodexManager.entryUnlocked("Leithan")) 
+	{
+		output(", and your codex beeps to inform you it's identified the leithan race");
+		CodexManager.unlockEntry("Leithan");
+	}
+	output(".");
+
+	addButton(0,"Scout",mhengaScoutAuthority);
+	return false;
+}
+
+function mhengaScoutAuthority():void
+{
+	clearOutput();
+	if(flags["SALVAGED VANAE CAMP"] != 2) 
+	{
+		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
+		output("\n\n<i>\"Ah. Sorry to bother you,</i>” you say, turning to leave.\"</i>");
+		output("\n\n“<i>No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b></i>”");
+		processTime(1);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//[Scout] (PC has fixed a comm array)
+	else
+	{
+		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
+		processTime(1);
+		clearMenu();
+		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
+		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
+	}
+}
+
+function mhengaTaxiToXenogen():void
+{
+	clearOutput();
+	pc.credits -= 40;
+	output("“<i>Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head out back.</i>”");
+	output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the jungle of Mhen’ga.");
+	output("\n\nNot long after, you arrive at the camp, and disembark into the jungle. The hover-car zips away a minute later, leaving you behind.");
+	currentLocation = "ABANDONED CAMP";
+	var map:* = mapper.generateMap(currentLocation);
+  	this.userInterface.setMapData(map);
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Tarkus U.G.C. Scout Authority
+//Add to the flight deck of the Nova, 2 spaces east of the LZ. 
+/*
+output("\n\nWhat was once the crew chief’s office overlooking the flight deck has been converted into a U.G.C. scout base, complete with maps and star charts hanging from the walls and a massive board map dominating the center, with landmarks and racial analysis printouts scattered over it. Behind the chief’s desk sits a buxom cat-girl with her bright purple hair pulled back into a long ponytail. ");
+
+output("\n\n[Scout] (PC hasn’t fixed any comm arrays)");
+output("\n\nWhen you step up to the catgirl, she looks up from her work on a holoscreen and gives you an apologetic grin. “<i>Sorry, friend, we’re just getting set up here on Tarkus. All the junk’s sending up so much interference that it’s taking ages to set up proper comm beacons, so there’s no transports going out yet.</i>”");
+
+output("\n\n“<i>Ah. Sorry to bother you,</i>” you say, turning to leave.");
+
+output("\n\n“<i>No worries. Come on back if any comm arrays go up, and we’ll be able to get you anywhere they cover.</i>”");
+
+output("\n\n[Scout] (PC has fixed a comm array)");
+output("\n\nWhen you step up to the catgirl, she looks up from her work on a holoscreen and gives you a big grin. “<i>Hey there! Welcome to the Scout Authority base. We’re running light transports out into the wasteland now that comm arrays are coming online. So, where can we take you, {sir/ma’am}?</i>”");
+
+output("\n\n{Destination -- X Credits}");
+output("\n\n“<i>Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head back out into the flight deck. Can’t miss out transports right outside.</i>” ");
+
+output("\n\nYou do so, transferring your payment to the Scout Authority and walking back into the hangar. Several small hover-cars are arrayed there, all desert-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the junkyards of Tarkus. ");
+
+output("\n\nNot long after, you arrive at {destination}, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind. ");*/
