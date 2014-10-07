@@ -23,7 +23,7 @@ public function kellyFucked():void
 
 public function tempNudeOn():void
 {
-	if(pc.hasStatusEffect("Temporary Nudity Cheat")) pc.createStatusEffect("Temporary Nudity Cheat",0,0,0,0,true,"","",false);
+	if(!pc.hasStatusEffect("Temporary Nudity Cheat")) pc.createStatusEffect("Temporary Nudity Cheat",0,0,0,0,true,"","",false);
 }
 public function tempNudeOff():void
 {

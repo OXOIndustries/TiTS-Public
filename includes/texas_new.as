@@ -601,7 +601,7 @@ function worshipZeBullCawk():void
 
 	output("\n\nBetween their teasing and the mounting musk pouring from between Og’s legs, your willpower finally snaps. You slip down beside Amma, gently pushing the cow aside and taking hold of Ogram’s rod. The cow-girl giggles as she surrenders her post to you, shifting herself off to one side of her lover’s enormous rod while you take the other. Like her, you spend a moment letting the intoxicating aroma fully strip away what remains of your willpower");
 	//treated
-	if(9999 == 9999) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
+	if(9999 == 0) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
 	output(". Your mind is left with only one, overpowering and all-consuming thought: cock.");
 
 	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your " + pc.mf("","<i>dainty</i> ") + "fingers circle his apple-sized nads, gently cupping and hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");

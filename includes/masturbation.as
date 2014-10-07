@@ -284,7 +284,7 @@ function vaginalFap():void {
 	else if(pc.vaginas[0].wetness() <= 2) output("sticky, simmering delta your fingers slip against");
 	else if(pc.vaginas[0].wetness() <= 3) output("unmistakably wet and ready slit your fingers almost slip into");
 	else if(pc.vaginas[0].wetness() <= 4) output("oozing, overly-lubricated entrance that nearly sucks your fingers in");
-	else output("the soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
+	else output("soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
 	output(" quivers deliciously at your touch, the folds engorging as they fill with unspent desire, their flesh sensitive and achy.");
 	if(pc.totalClits() > 0) {
 		output(" You slide your palm across the slowly-stiffening surface of your clitroral hood");
