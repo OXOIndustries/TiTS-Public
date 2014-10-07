@@ -2473,13 +2473,13 @@
 			nouns[nouns.length] = "lip";
 			nouns[nouns.length] = "lip";
 			//High libido sluttery
-			if(libido() >= 50 && lips >= 2 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "dick-sucker";
-			if(libido() >= 60 && lips >= 3 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "cock-sucker";
-			if(libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
-			if(libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
-			if(libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
-			if(libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
-			if(libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
+			if(lust() >= 80 && libido() >= 50 && lips >= 2 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "dick-sucker";
+			if(lust() >= 80 && libido() >= 60 && lips >= 3 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "cock-sucker";
+			if(lust() >= 80 && libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
+			if(lust() >= 80 && libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
+			if(lust() >= 80 && libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
+			if(lust() >= 80 && libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
+			if(lust() >= 80 && libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
 			//Tack the selected choice onto result
 			result += nouns[rand(nouns.length)];
 			return result;

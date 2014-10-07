@@ -51,7 +51,7 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, -1, 0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 1, 0);
 			
 			this.version = _latestVersion;
 		}	

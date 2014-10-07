@@ -1,4 +1,11 @@
-﻿//Landing on New Texas (First Time)
+﻿function newTexasEmail():void
+{
+	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
+	eventBuffer += "\n\n<b>New Email!</b>\nCome on out to New Texas, Partner!\nFrom: Benjamin Tiberius Tee (NoReply@NewTexas.gov)\nTo: [pc.name]@SteeleTech.corp\n\n<i>This message opens with a 3D masthead depicting rolling green hills that stretch off into the beautiful blue horizon. Several incredibly chesty woman are cavorting across the field, each dressed in a cow-pattern leotard that hugs her almost inhumanly ample curves just right...</i>\n\nHowdy, " + pc.mf("Mr.","Mz.") + " [pc.name] Steele!\n\nMy name is Benjamin Tee, but you and yours can call me Big T. I'm the governor of New Texas, and I'd like to invite you and your crew to our beautiful planet! Enjoy fresh-from-the-tap milk and ice cream, relax in rolling fields unspoiled by civilization, and meet the most beautiful women the galaxy has to offer!\n\nAttached to this message are coordinates and exclusive landing access codes for my personal ranch. Speaking for all of New Texas: we hope to see you soon, partner!\n\n<i>Giddy-on-up to New Texas!</i>\n-Governor Benjamin Tiberius Tee";
+}
+
+
+//Landing on New Texas (First Time)
 function landOnNewTexas():void
 {
 	if(flags["LANDED_ON_TEXAS"] == undefined)
@@ -955,33 +962,13 @@ function noIDontWantToSellBabies():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-
-
 /*
-output("\n\n");
-output("\n\nThe Ranch House");
+//Big T.’s Barbeque Pit
+function bigTsBarbequePit():void
+{
+	clearOutput();
+	//Fen: This’d be as good a place as any to stick Dane.
 
-output("\n\nPorch Room Description");
-output("\n\nBig T.’s ranch house is like a super-sized version of an old Texas one, complete with a longhorn skull hanging over the door and a pair of rocking chairs on the front porch. An electric mosquito net hangs around the doorframe, the only sign of advanced technology around. Several cow-girls, bull-boys, and more human tourists are making their way in and out, many with black-and-white-splotched bags from the gift shop. ");
-
-output("\n\nFoyer Room Description");
-output("\n\nThe central room of the ranch house is a huge, wood-paneled affair, with old-school lever guns, tribal totems, and stuffed animals adorning the walls in between advertisements for the Treatment and for Texan Milk. A huge staircase in front of you leads upwards to the second floor, helpfully labeled “<i>Manager’s Office.</i>” A door to the right leads to the gift shop, which seems to be pretty busy {for the time of day}; to the left is a wide open set of double doors leading into what looks like a steakhouse, complete with a longhorn skull and horseshoes nailed to the barn-like door. ");
-
-output("\n\nGift Shop Room Description");
-output("\n\nThe gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white needle labeled “<i>The Treatment.</i>” ");
-
-output("\n\nBig T.’s Barbeque Pit");
-output("\n\nThe restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. {Herman the chef // The chef} is busily trying to fill the orders as they come in, clearly swamped with customers. ");
-
-output("\n\nSecretary’s Room Description");
-output("\n\nAt the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. “<i>Are you here to see Mr. T.?</i>” she asks, looking up from her work, “<i>He’d be happy to see you. Go on through.</i>”");
-
-output("\n\nBig T.’s Office Description");
-output("\n\nThe office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat’s study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair. {if T isn’t dead/broken: “<i>The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world’s affairs all from his desk.</i>”}");
-
-output("\n\nBig T.’s Barbeque Pit");
-
-output("\n\n//Fen: This’d be as good a place as any to stick Dane. ");
 
 output("\n\nThe restaurant attached to the ranch house is a smoky, meaty-smelling BBQ joint, advertising authentic terran steaks, ribs, and roast beef sandwiches. An open grill dominates the far northern wall of the restaurant, with several tourists and cow-folk lined up to order some delicious barbeque. {Herman the chef // The chef} is busily trying to fill the orders as they come in, clearly swamped with customers.");
 

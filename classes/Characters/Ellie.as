@@ -13,6 +13,7 @@
 	import classes.Items.Miscellaneous.MilkCaramelGushers;
 	import classes.Items.Miscellaneous.MilkmaidsAid;
 	import classes.Items.Miscellaneous.BoobswellPads;
+	import classes.Items.Accessories.LightningDuster;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
@@ -36,6 +37,7 @@
 			this.inventory.push(new CowPrintPantiesAndGarter());
 			this.inventory.push(new MilkCaramelGushers());
 			this.inventory.push(new MilkmaidsAid());
+			this.inventory.push(new LightningDuster());
 
 
 			this.short = "Ellie";

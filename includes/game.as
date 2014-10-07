@@ -315,21 +315,28 @@ function flyMenu():void {
 	}
 	output("Where do you want to go?");
 	this.clearMenu();
+	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") 
 		this.addButton(0,"Tavros",flyTo,"Tavros");
 	else addDisabledButton(0,"Tavros");
+	//MHEN'GA
 	if(shipLocation != "SHIP HANGAR") 
 		this.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
 	else addDisabledButton(1,"Mhen'ga");
-	//Planet #2 unlocked!
+	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
 		if(shipLocation != "201") addButton(2,"Tarkus",flyTo,"Tarkus");
 		else addDisabledButton(2,"Tarkus");
 	}
 	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
-	if(shipLocation != "500") addButton(3,"New Texas",flyTo,"New Texas");
-	else addDisabledButton(3,"New Texas","New Texas","You're already there.");
+	//NEW TEXAS
+	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
+	{
+		if(shipLocation != "500") addButton(3,"New Texas",flyTo,"New Texas");
+		else addDisabledButton(3,"New Texas","New Texas","You're already there.");
+	}
+	else addDisabledButton(3,"Locked","Locked","You have not yet learned of this planet's coordinates.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -704,6 +711,7 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				if(days >= 2 && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined) newTexasEmail();
 				this.hours = 0;
 				if(chars["ALISS"].lust() >= 70)
 				{
