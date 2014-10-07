@@ -205,7 +205,7 @@ function approachGianna(special:String = ""):void
 			output("\”</i>");
 			output("\n\nThe android gives a friendly smile. <i>\"You’ve got a beautiful name! My name is Gianna Tee. I don’t have a real last name on account of being a manufactured entity, but Tee is what I’ve chosen.”</i>");
 			output("\n\n<i>\"Really? Why’s that?”</i> You ask.");
-			output("\n\nThe smiling droid’s look turns a little melancholy. The bright blue of her eyes dims to a muted azure, and her forehead wrinkles in an entirely convincing look of consternation. <i>\"I was abandoned here, on New Texas.”</i> The stormclouds of discontent clear from her vision before you get the chance to learn if she can cry. <i>\"Big T took me in. He gave me shelter, let me stay on his property, and even gave me the freedom to do as I will, same as any real citizen. The big lug likes to act like he’s some hot-shot planetary governor, but underneath it all he’s got a heart of gold. I’m practically his adoptive daughter. Thus, Gianna Tee.”</i>");
+			output("\n\nThe smiling droid’s look turns a little melancholy. The bright blue of her eyes dims to a muted azure, and her forehead wrinkles in an entirely convincing look of consternation. <i>\"I was abandoned here, on New Texas.”</i> The storm clouds of discontent clear from her vision before you get the chance to learn if she can cry. <i>\"Big T took me in. He gave me shelter, let me stay on his property, and even gave me the freedom to do as I will, same as any real citizen. The big lug likes to act like he’s some hot-shot planetary governor, but underneath it all he’s got a heart of gold. I’m practically his adoptive daughter. Thus, Gianna Tee.”</i>");
 			output("\n\nSo Big T adopted some kind of sex-droid. <i>\"Wouldn’t that be kind of scandalous? I mean... you’re a sex android, right?");
 			if(pc.isNice()) output(" No offense.");
 			output(" This sort of thing could destroy a politician’s career on some core worlds.”</i>");
@@ -214,12 +214,12 @@ function approachGianna(special:String = ""):void
 			output("\n\nGianna’s sculpted lips smile once more. <i>\"I haven’t been asked that in ages... or even thought about it.”</i> You could swear her eyes twinkle. <i>\"To me, making someone happy feels like eating a nice meal and being well-rested combined. And... New Texas is a very, very sexually needy place. The natives get so much happier when fucking than any organic should. Their ecstasy... it’s contagious. I can’t even imagine trying to go back to pleasing my old master anymore”</i> She leans in close and puts an arm around you. <i>\"Plus, everybody on this planet is like, a pro at fucking. The women, the men, they all know how to treat a pair of tits and lay out a proper bedroom romp - really plow you silly, ya know?");
 			if(!pc.isBimbo()) output("”</i> She blinks and pink colors her ivory skin. <i>\"Maybe you don’t, but still, you get what I mean.");
 			output("”</i>");
-			output("\n\nFor emphasis, the unusual woman steps back and pinches both her nipples simultaneously. Her mouth falls open and an unmistakable moan of sexual bliss rolls out, leaving her panting (or at least simulating it). <i>\"My... entire body is covered in synthskin... affording a higher tactile resolution than human genitals are capable of. Fucking may not be my primary purpose, but I am build to excel at it and engineered to </i>love<i> it, when it happens.”</i> She sucks her lip. <i>\"It happens a lot here, and I could make you very happy. I have had so much time to practice.”</i>");
+			output("\n\nFor emphasis, the unusual woman steps back and pinches both her nipples simultaneously. Her mouth falls open and an unmistakable moan of sexual bliss rolls out, leaving her panting (or at least simulating it). <i>\"My... entire body is covered in synthskin... affording a higher tactile resolution than human genitals are capable of. Fucking may not be my primary purpose, but I am built to excel at it and engineered to </i>love<i> it, when it happens.”</i> She sucks her lip. <i>\"It happens a lot here, and I could make you very happy. I have had so much time to practice.”</i>");
 			output("\n\n");
 			if(pc.hasCock())
 			{
 				output("There’s no hiding the rush of blood to your [pc.cocks]");
-				if(pc.isCrotchGarbed()) output(" or the tent they make in your [pc.lowerGarment]");
+				if(pc.isCrotchGarbed()) output(" or the tent they make in your [pc.lowerGarment].");
 			}
 			if(pc.hasVagina()) output(" [pc.EachVagina] distinctly moistens in response to the wanton robot.");
 			if(!pc.hasVagina() && !pc.hasCock()) output(" You feel your [pc.skin] flush a little at her wanton declaration.");
@@ -606,7 +606,7 @@ function talkToGianna(display:Boolean = true):void
 				return;
 			}
 			output(".");
-			output("\n\nGianna’s eyes widen and brighten. <i>\"Like... really?”</i> She slowly folds her legs her legs into a prim posture. <i>\"All the new " + pc.mfn("bull","cows","people") + " I’ve met usually just want to take me for a roll in the hay. Synthetic creatures that can do what I can are something of a rarity here.”</i> She sighs wistfully. <i>\"Not much reason to import artificial pussies when there’s a buffet of all-naturals lined up, I guess.”</i> She leans against the wall and lets a welcoming smile return to her features, primly crossing her legs. <i>\"Don’t expect me to start bothering with clothes any time soon, but I’d love to talk. Just pick a topic!”</i>");
+			output("\n\nGianna’s eyes widen and brighten. <i>\"Like... really?”</i> She slowly folds her legs into a prim posture. <i>\"All the new " + pc.mfn("bull","cows","people") + " I’ve met usually just want to take me for a roll in the hay. Synthetic creatures that can do what I can are something of a rarity here.”</i> She sighs wistfully. <i>\"Not much reason to import artificial pussies when there’s a buffet of all-naturals lined up, I guess.”</i> She leans against the wall and lets a welcoming smile return to her features, primly crossing her legs. <i>\"Don’t expect me to start bothering with clothes any time soon, but I’d love to talk. Just pick a topic!”</i>");
 			flags["MET_GIANNAS_TALK_MENU"] = 1;
 		}
 		//Repeat
@@ -788,7 +788,7 @@ function talkToGiannaAboutHerAI():void
 	if(giannaPersonality() < 20) output("\n\nSighing with relief, ");
 	output("Gianna answers, <i>“Somewhere around 100,000 credits, depending on dealer discounts, incentives, and bundles. That’s just for the A.I. mind you. This body would be 65,000 new.”</i>");
 	output("\n\n");
-	if(flags["GIANNA_AI_TALK_RESULT"] == undefined) output("Even though you’ve heard all this before, your eyebrows raise all the all the same");
+	if(flags["GIANNA_AI_TALK_RESULT"] == undefined) output("Even though you’ve heard all this before, your eyebrows raise all the same.");
 	else output("She sees the way your eyebrows raise in surprise.");
 	output("\n\n<i>“Growing A.I.s is expensive. Biological drives need to be mapped to mechanical impulses in a way that helps us to serve our purpose without driving us insane. I’m not privy to the exact processes involved, but I’m told it has to be done for each intelligence off the line individually. Even with the same brainscan, tiny anomalies surface that require hand tuning,”</i> Gianna explains. <i>“Then it’s off to an incubating supercomputer with enough power put us through simulated years of schooling and social development. In the real world, it only takes a month. Imagine graduating with your educational proficiency card only to discover that only four weeks had passed.”</i>");
 	output("\n\nYou shake your head, struggling with the concept.");
@@ -899,7 +899,7 @@ function talkToGiannaAbootHerBodyEh():void
 
 	output("\n\nGianna’s alabaster fingertips slide down to her cheeks, pausing there. <i>“Of course, my whole body is covered in synthskin. KihaCorp still uses the same stuff on its newest androids.”</i> She rubs her digits against the flawless dermis for effect. <i>“It doesn’t rot. It can’t get sick. It’s even two times more durable than actual skin. A secondary layer of embedded, flash-programmable microsurgeons allow it to be repaired in case of damage or adjusted in case it needs to be resized.”</i>");
 	//Not changed
-	if(gianna.lipMod == 1 && gianna.buttRating() == 9 && gianna.biggestTitSize() == 8)
+	if(gianna.lipMod == 0 && gianna.buttRating() == 9 && gianna.biggestTitSize() == 8)
 	{
 		output("\n\n<i>“Resized?”</i> you ask.");
 		output("\n\nGianna answers, <i>“Resized,”</i> as her [gianna.lips] abruptly begin to balloon, swelling into an awkward pucker before your eyes. Her resulting smile looks obscenely, almost cartoonishly slutty. To fuel the transformation, her chest and ass both narrow significantly. Thankfully, she reduces her mouth and body to normal, her point made. <i>“Ever since the class fives, we’ve come with filling ports just above our spine. Softer companions like myself will use silicone to allow us to alter the size and voluptuousness of our forms. For those who prefer harder companions, ones that are closer to human males, they use a proprietary blend than can be sculpted into quite convincing muscles.”</i>");
@@ -962,7 +962,7 @@ function talkToGiannaAbootHerBodyEh():void
 		return;
 	}
 	//Repeat
-	output("\n\n<i>“You must really like my chassis, huh?”</i> Gianna asks, eyes twinkling, <i>“After all, you keep asking me about.”</i>");
+	output("\n\n<i>“You must really like my chassis, huh?”</i> Gianna asks, eyes twinkling, <i>“After all, you keep asking me about it.”</i>");
 	output("\n\nYou grin.");
 	output("\n\n<i>“So what now?”</i> she asks.");
 	//Pass 15 minutes
@@ -2412,7 +2412,11 @@ function giannaNormalTitTitfuck():void
 	if(pc.cockTotal() == 2) output(" while a nipple prods at your second shaft");
 	else if(pc.cockTotal() > 2) output(" while both nipples drag along your excess shafts");
 	output(".");
-	output("\n\nYou groan with delight as you’re enfolded in slick, synthetic skin, wrapped up tightly in the companion’s tits. She smushes them more tightly around you, then begins to move them around, shifting one down and the other up. It’s a heaven of {hot/warm/cold} friction. You ooze pre-cum with each cock-swaddling stroke, mixing your lusty fluid in with the already-present lube.");
+	output("\n\nYou groan with delight as you’re enfolded in slick, synthetic skin, wrapped up tightly in the companion’s tits. She smushes them more tightly around you, then begins to move them around, shifting one down and the other up. It’s a heaven of ");
+	if(flags["GIANNA_TEMP"] == 1) output("hot");
+	else if(flags["GIANNA_TEMP"] == 0) output("warm");
+	else output("cold");
+	output(" friction. You ooze pre-cum with each cock-swaddling stroke, mixing your lusty fluid in with the already-present lube.");
 	//Dick not big enough to jut out the top.
 	if(pc.biggestCockLength() <= gianna.biggestTitSize())
 	{
@@ -2870,7 +2874,7 @@ function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 		output("I hope you enjoyed yourself; you certainly came enough. I’ve got to go in there and mop up still! I guess that’s what I get for spending an hour pleasing you.”</i> She sighs.");
 		output("\n\n<i>“An hour!?”</i> Your disbelief is evident.");
 		output("\n\nThe alabaster woman giggles and nods. <i>“Yeah! It was pretty awesome. I wish you would’ve stayed conscious for all of it, but maybe if we do this some more, you’ll get better at it! I bet we can make your puss");
-		if(pc.totalVaginas() == 1) output("ies");
+		if(pc.totalVaginas() > 1) output("ies");
 		else output("y");
 		output(" crave it, at least!”</i>");
 		output("\n\nYou " + pc.mf("chuckle","giggle") + " back at that and gear up. <i>“I’d better watch myself then.”</i>");
@@ -3107,7 +3111,10 @@ function eatOutPussyOfRoboChicksDuring69():void
 	//PC has cocks
 	if(pc.hasCock())
 	{
-		output("\n\n[pc.EachCocks] rapidly reach full hardness and do their best to slip into Gianna’s cleavage, oozing trails of pre-cum across her milky skin. She doesn’t really acknowledge them, but she’s squirming just enough for the extra sensations to add to your pleasure. You idly wonder if she’ll get you off hard enough to blow some [pc.cum] across her [gianna.chest].");
+		output("\n\n[pc.EachCocks] rapidly reaches full hardness and does its best to slip into Gianna’s cleavage, oozing trails of pre-cum across her milky skin. She doesn’t really acknowledge ");
+		if(pc.cockTotal() > 1) output("them");
+		else output("it");
+		output(", but she’s squirming just enough for the extra sensations to add to your pleasure. You idly wonder if she’ll get you off hard enough to blow some [pc.cum] across her [gianna.chest].");
 	}
 	//merge
 	output("\n\nYou marvel at her taste - just like cherries. Then again, being an artificial creature, she can probably fill her reservoirs with whatever flavor of lubricant she desires. Still, the fruity flavor provides a heady encouragement for you to drive your tongue deeper. ");
@@ -3538,6 +3545,8 @@ function missionaryKnotEpilogue():void
 	if(pc.cumQ() > 2000) output(" and a gush of pressurized [pc.cumNoun]. Her belly retains its swollen shape, and the leaking fuckjuice trails off in no time, penned inside her by some mechanism you don’t fully understand but appreciate nonetheless");
 	output(".");
 	output("\n\nGianna ambles off to wipe down, but she’ll be back in a moment. You grab your gear, ready for more exploration.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[**]Phat booty hotdogging

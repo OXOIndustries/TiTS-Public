@@ -1029,7 +1029,7 @@ public function mimbranesComplainAndShit():void
 						if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
 						{
 							// Both feet should following the same feeding/upgrading pattern
-							if (pc.statusEffectV1("Mimbrane Foot Left") <= 2)
+							if (pc.statusEffectv1("Mimbrane Foot Left") <= 2)
 							{
 								addMimbraneEvent("Nothing you do helps you ignore the craving surrounding your [pc.feet]. The unusual urge worries you, as things may escalate if you don’t see to it soon.");
 							}
@@ -2452,7 +2452,9 @@ public function encounterMimbrane():void
 				output("\n\nThe muffled sounds from your");
 				if (pc.hasStatusEffect("Mimbrane Ass")) output(" rear");
 				else output(" crotch"); 
-				output(" reach your new opponent, causing the parasite to take pause and chirp back. You’re left a little confused as the brief conversation goes on for another few moments. The silken sheet in the air before you tenses up yet again, presumably ready to fight you. But just as you try and do the same, you’re distracted by yet another strange occurrence within your [pc.armor].");
+				output(" reach your new opponent, causing the parasite to take pause and chirp back. You’re left a little confused as the brief conversation goes on for another few moments. The silken sheet in the air before you tenses up yet again, presumably ready to fight you. But just as you try and do the same, you’re distracted by yet another strange occurrence");
+				if(pc.armor.shortName != "") output(" within your [pc.armor]");
+				output(".");
 
 				output("\n\nA damp spot on your");
 				if (pc.hasStatusEffect("Mimbrane Ass")) output(" butt");
@@ -2763,7 +2765,7 @@ function mimbraneTrip():void
 	//{standard miss/block text}
 	if (combatMiss(foes[0], pc))
 	{
-		output("FIXME");
+		output("\n\nYou dodge!");
 	}
 	//{hit}
 	else

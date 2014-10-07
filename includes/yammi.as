@@ -193,7 +193,7 @@ function getYokto(servingType:String = "cone"):void
 	{
 		if(flags["HAD_YOKTO"] == undefined)
 		{
-			output("Yokto? You’ve never even heard of it. Well, you have a cone anyways, not like you’re comitting too much. As you approach the machine, the gold scaled reptilian woman inside looks outright desperate, her bosoms bulging in their web of straps. Must not be a local favorite.");
+			output("Yokto? You’ve never even heard of it. Well, you have a cone anyways, not like you’re committing too much. As you approach the machine, the gold scaled reptilian woman inside looks outright desperate, her bosoms bulging in their web of straps. Must not be a local favorite.");
 			output("\n\nYou set up your cone and pull the lever, and instantly a pale yellow ice cream starts to fill it. Inside the machine, the woman’s face turns to an expression of relief. You’re sure if her mouth wasn’t taken up with a feed-tube she’d be thanking you!");
 			output("\n\nAfter only a couple seconds, you have a heaping cone of Yokto-flavored ice cream. You take an experimental lick, and find it to be somewhere between an orange and a lemon in sourness, but with almost the flavor of a blueberry! You suspect it won’t be an unpopular taste for long.");
 		}
@@ -484,7 +484,7 @@ function chocolateIcedCream(servingType:String = "cone"):void
 		//Repeat Bowl/Feast
 		else
 		{
-			output("Time for more chocolate, you decide. When you reach her, she’s just as tired as before. You suppose that’s one of those hazards of fame you hear about. You get filling your bowl and she shudders as the pleasure inducing devices set to work.Of course, even slow as she tends to be, you’re done long before she is. You head out, happily spooning chocolate into your mouth and knowing she’ll appreciate the climax later.");
+			output("Time for more chocolate, you decide. When you reach her, she’s just as tired as before. You suppose that’s one of those hazards of fame you hear about. You get filling your bowl and she shudders as the pleasure inducing devices set to work. Of course, even slow as she tends to be, you’re done long before she is. You head out, happily spooning chocolate into your mouth and knowing she’ll appreciate the climax later.");
 		}
 	}
 	flags["HAD_CHOCOLATE"] = 1;

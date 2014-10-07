@@ -69,7 +69,7 @@
 				if(kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] == undefined) 
 				{
 					kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] = 1;
-					kGAMECLASS.output("You carefully strip the wrapper, revealing an alluring, shimmering purple popsicle that makes its lesser cousin look slim by comparison. As you insert it between your [pc.Lips], you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
+					kGAMECLASS.output("You carefully strip the wrapper, revealing an alluring, shimmering purple popsicle that makes its lesser cousin look slim by comparison. As you insert it between your [pc.lips], you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
 					target.createStatusEffect("TittiesUsed",1,0,0,0, true, "", "", false, 720);
 				}
 				//Repeat use
@@ -114,7 +114,7 @@
 				//1 - 3-5 points
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nA shiver of warmth tingles on your lips in spite of the Estrobloom's coolness. It radiates out into your jawbones as you sit there licking the spent stick, undoubtedly feminizing you.");
+					kGAMECLASS.output("\n\nA shiver of warmth tingles on your lips in spite of the Tittyblossom's coolness. It radiates out into your jawbones as you sit there licking the spent stick, undoubtedly feminizing you.");
 					x = 3+rand(3);
 					target.modFem(x);
 				}
@@ -393,7 +393,7 @@
 					{
 						kGAMECLASS.output("\n\nA sudden tightness clenches behind your buxom breasts, making you wince in pain before it turns into a delightful pleasure. You sigh");
 						if(!target.isNude()) kGAMECLASS.output(", shrugging out of your [pc.gear]");
-						kGAMECLASS.output(" as your tits swell in size, urged to even greater size by the hormone and nanomachine combination. You can't stop yourself from cupping one and playing with it as it grows, pinching your [pc.nipple] as it grows even more sensitive. It takes every bit of willpower you have not to start masturbating on the spot, to find some release for the sexual tension coursing through your veins as the medicine does its works.");
+						kGAMECLASS.output(" as your tits swell in size, urged to even greater size by the hormone and nanomachine combination. You can't stop yourself from cupping one and playing with it as it grows, pinching your [pc.nipple] as it grows even more sensitive. It takes every bit of willpower you have not to start masturbating on the spot, to find some release for the sexual tension coursing through your veins as the medicine does its work.");
 						kGAMECLASS.output("\n\nFinally, the growth in your - now very sizable - tits subsides, leaving them bouncing with your every breath, nice and huge.");
 						if(target.upperUndergarment.shortName == "") kGAMECLASS.output(" You're probably going to want to invest in a bra, now... <i>or not</i> you think, giving yourself another squeeze.");
 						kGAMECLASS.output(" You now have a hefty pair of [pc.breastCupSize]s!");
@@ -405,7 +405,7 @@
 					{
 						kGAMECLASS.author("Savin");
 						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
-						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch of squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
+						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch or squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
 						if(target.hasCock()) 
 						{
 							kGAMECLASS.output(" rapidly hardening cock");
@@ -433,7 +433,7 @@
 						 	else kGAMECLASS.output("they desperately grasp for something to fuck as they send shockwaves of pleasure through you");
 						}
 						if(target.hasCock() || target.hasVagina()) kGAMECLASS.output(".");
-						kGAMECLASS.output(" You only just stop yourself from collapsing as your orgasm wracks your body, radiating from your [pc.chest] and groins as you continue to grope and caress yourself.");
+						kGAMECLASS.output(" You only just stop yourself from collapsing as your orgasm wracks your body, radiating from your [pc.chest] and groin as you continue to grope and caress yourself.");
 						kGAMECLASS.output("\n\nThe orgasm seems to last for ages, moments stretching to eternities as you succumb to bliss and your own explosive arousal, only groping yourself harder as you reach your climax, and slowly come down. When it ends, you find yourself drenched in sweat");
 						if(target.hasCock() || target.hasVagina())
 						{

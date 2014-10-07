@@ -36,7 +36,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 	//*Repeat Venus Pitcher Encounters
 	else {
 		flags["TIMES_MET_VENUS_PITCHER"]++;
-		if(rand(2) == 0) output("\n\nA lovely green woman is here, clad in a simple vine and leaf bikini, her lower half concealed behind a bush. She notices you and calls out to you, begging for you to come her with exaggerated shakes of her upper body that make her bosom quake in a most delightful manner. You sneeze as you watch the light glitter off her soft, pouty lower lip, nearly stumbling forward of your own volition before you realize that this must be another venus pitcher!");
+		if(rand(2) == 0) output("\n\nA lovely green woman is here, clad in a simple vine and leaf bikini, her lower half concealed behind a bush. She notices you and calls out to you, begging for you to come to her with exaggerated shakes of her upper body that make her bosom quake in a most delightful manner. You sneeze as you watch the light glitter off her soft, pouty lower lip, nearly stumbling forward of your own volition before you realize that this must be another venus pitcher!");
 		else {
 			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh so pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
 			output("\n\n<i>“Hey there, good lookin’. You say hi to all the girls that way?”</i>  a musically sweet voice playfully teases. The boob you’re currently palming presses harder into your digits, allowing them to sink deeply into the sizeable mammary. <i>“Enjoy it, sugar. Just come around front here so I can properly show my appreciation.”</i>");
@@ -596,7 +596,7 @@ function noRepeatElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
-	output("You turn away before she snare you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
+	output("You turn away before she snares you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -660,7 +660,7 @@ function catchVaginalFromAlex():void {
 	//if tight:
 	if(pc.vaginalCapacity(x) <= 25) output(", and you’re sure you’re going to come first. Doubly so when Alex reaches down and");
 	//if medium or gaped:
-	else if(pc.vaginalCapacity(x) <= 50) 
+	else 
 	{
 		output(", but you’re a little disappointed to note that it seems like Alex is going to come first, at least until he reaches down and");
 	}

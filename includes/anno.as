@@ -378,7 +378,7 @@ function takeYourShot(easy:Boolean = false):void
 	output("\n\nBefore you can squeeze the trigger, your body suddenly convulses as a hand grabs your [pc.butt], squeezing hard. You shoot a glance over your shoulder to see Anno nonchalantly grabbing your ass, grinning at you. <i>\"C'mon, boss, don't keep me waiting.\"</i>");
 	output("\n\nYou're about to respond when her hand slips lower, fingers brushing across your [pc.groin]");
 	if(pc.isCrotchGarbed()) output(" through your [pc.lowerGarment]");
-	output(". You shudder, feeling a sudden heat rushing up through your loins as the ausar gropes you, clearly trying to mess with your marksmanship. You try and concentrate on the target, but every time you think you have a it, Anno changes her tactics, ");
+	output(". You shudder, feeling a sudden heat rushing up through your loins as the ausar gropes you, clearly trying to mess with your marksmanship. You try and concentrate on the target, but every time you think you have it, Anno changes her tactics, ");
 	if(pc.hasCock()) output("massaging your shaft");
 	else if(pc.hasVagina()) output("probing at your pussy");
 	else output("rubbing your bare crotch");

@@ -162,7 +162,7 @@ function dontRegisterInKellysOffice():void {
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("You apologize, but you don’t feel like registering now, so you’ll be leaving.");
-	output("\n\n<i>\"I understand sir, Xenogen thanks you for your visit. Please come again.\"</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
+	output("\n\n<i>\"I understand " + pc.mf("sir","ma'am") + ", Xenogen thanks you for your visit. Please come again.\"</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
 	//Leave the area and redo everything in case the PC comes back.
 	
 	clearMenu();
