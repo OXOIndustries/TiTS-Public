@@ -1078,7 +1078,7 @@ function getKellyOff(newScreen:Boolean = false):void
 			if(pc.tailCount == 1) output("it's");
 			else output("they're");
 			output(" not ");
-			if(pc.tailCOunt == 1) output("a real dick");
+			if(pc.tailCount == 1) output("a real dick");
 			else output("real dicks");
 			output(", she certainly doesn't show it.");
 		}
