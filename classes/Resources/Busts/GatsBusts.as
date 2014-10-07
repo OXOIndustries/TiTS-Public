@@ -89,6 +89,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Jade_Nude.png", mimeType = "image/png")]
 		public var Bust_JADE_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kelly_Nude.png", mimeType = "image/png")]

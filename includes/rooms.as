@@ -1629,13 +1629,23 @@ function initializeRooms():void
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
-	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator's doors sit askew in their frame, obviously nonfunctional.";
+	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator's doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
 	rooms["202"].runOnEnter = undefined;
 	rooms["202"].westExit = "201";
 	rooms["202"].eastExit = "203";
+	rooms["202"].northExit = "TARKUS SCOUT AUTHORITY";
 	rooms["202"].planet = "PLANET: TARKUS";
 	rooms["202"].system = "SYSTEM: REDACTED";
 	rooms["202"].addFlag(GLOBAL.INDOOR);
+
+	rooms["TARKUS SCOUT AUTHORITY"] = new RoomClass(this);
+	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHOTITY";
+	rooms["TARKUS SCOUT AUTHORITY"].description = "";
+	rooms["TARKUS SCOUT AUTHORITY"].runOnEnter = tarkusScoutAuthorityOffice;
+	rooms["TARKUS SCOUT AUTHORITY"].southExit = "202";
+	rooms["TARKUS SCOUT AUTHORITY"].planet = "PLANET: TARKUS";
+	rooms["TARKUS SCOUT AUTHORITY"].system = "SYSTEM: REDACTED";
+	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.INDOOR);
 
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
@@ -2599,7 +2609,7 @@ function initializeRooms():void
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
 	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
-	rooms["279"].runOnEnter = rustScytheGladeEncounters;
+	rooms["279"].runOnEnter = eastTransitStationBonus;
 	rooms["279"].westExit = "278";
 	rooms["279"].eastExit = "350";
 	rooms["279"].planet = "PLANET: TARKUS";
