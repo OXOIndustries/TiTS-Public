@@ -1983,6 +1983,7 @@
 			{
 				//Certain bimbo TFs reduce gains by 50%.
 				if(hasPerk("Drug Fucked") && arg > 0) arg /= 2;
+				if(hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				intelligenceRaw += arg;
 				if (intelligenceRaw > intelligenceMax())
 				{
@@ -2005,7 +2006,10 @@
 				return currInt;
 			}
 		}
-
+		public function WQ():Number
+		{
+			return Math.round(willpower()/willpowerMax()*100);
+		}
 		public function willpower(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply)
@@ -2015,6 +2019,7 @@
 			else if (arg != 0)
 			{
 				if(arg < 0 && hasStatusEffect("Weak Will")) arg *= 2;
+				if(hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				willpowerRaw += arg;
 				if (willpowerRaw > willpowerMax())
 				{
@@ -2249,6 +2254,12 @@
 			temp += meleeWeapon.sexiness;
 			temp += rangedWeapon.sexiness;
 			temp += armor.sexiness + upperUndergarment.sexiness + lowerUndergarment.sexiness + accessory.sexiness + shield.sexiness;
+			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
+			if(hasPerk("Sexy Thinking"))
+			{
+				if(100 - IQ() - 25 >= 0) temp += Math.round((100 - IQ() - 25)/25);
+				if(100 - WQ() - 25 >= 0) temp += Math.round((100 - WQ() - 25)/25);
+			}
 			return temp;
 		}
 		public function critBonus(melee: Boolean = true): Number {
@@ -4599,6 +4610,7 @@
 			return vaginas[counter].wetness();
 		}
 		public function driestVaginalWetness(): Number {
+			if(!hasVagina()) return -1;
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
