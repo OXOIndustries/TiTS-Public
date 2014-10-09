@@ -606,7 +606,7 @@ function treatmentHourProcs():void
 			if(pc.breastRows[0].breastRating() >= pc.statusEffectv1("Treated") && !pc.hasStatusEffect("Boobgrow Done Notice"))
 			{
 				eventBuffer += "\n\nThere's a kind of quivering finality about the movements of your breasts as you walk. They don't seem as constantly warm or well... active as before. The Treatment must be done working its magic on them, but at least they're still big, sexy, and oh so fun to touch. Just the idea of fondling yourself has your [pc.skin] flushing hotly.";
-				pc.createStatusEffect("Boobgrow Done Notice",0,0,0,0,false,"","",true,10080);
+				pc.createStatusEffect("Boobgrow Done Notice",0,0,0,0,true,"","",false,10080);
 			}
 		}
 		//Lips 
@@ -732,7 +732,7 @@ function treatmentHourProcs():void
 		//boostLactation(1); every hour starting on day 3. until 100 is reached.
 		if(treatedHours >= 73 && pc.milkMultiplier < 100)
 		{
-			pc.boostLactation(1);
+			pc.boostLactation(2);
 			if(treatedHours > 100) pc.boostLactation(1);
 			if(treatedHours > 120) pc.boostLactation(1);
 			if(treatedHours > 130) pc.boostLactation(1);
@@ -746,25 +746,62 @@ function treatmentHourProcs():void
 		}
 		//lactation almost never stops. If combined with Milky perk, never stops. Ever.
 		//Once 100 milkMultiplier is reached, unlock the Treated Milk perk.
-		if()
-	You grow increasingly aware of how productive and wonderful your [pc.breasts] are. The Treatment has given you the ability to produce so much!{ You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!}
-	Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
-
-//Milk capacity gains
-	//1->1.5
-	By now you've gotten used to having a chest that feels like it's full of sloshing, delicious cream, but, out of the blue, that feeling diminishes. You weren't even milking yourself; you just feel like you can hold <i>more</i>. You rub your breasts curiously. Could the Treatment be making your body even better at storing up fluid? Rubbing your moistened teats, you wonder if your next milking will be that much more voluminous.
-	//1.5->2
-	A wave of warmth washes over your [pc.chest], and in its wake you're left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has someone made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings.
-	//2->2.5
-	Your attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You're getting better at it too - the whole milk giving thing. Just when you think you're starting to get too full, it's like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while.
-	//2.5->3
-	Your chest wobbles under the weight of its own unrestrained lactic prowess. Your body is so good at making milk that you find yourself wondering if your time would be better spent hooked up to a pump than hopping around the galaxy on a vainglorious quest for riches. Hefting the wonderful weight of your all too efficient mammaries, you smile, somehow knowing you could give a dairy cow a run for her money.
-
-//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
-//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
-	Weird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.
-	There's no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone "too big" for you again.
-
+		if(pc.milkMultiplier >= 100 && treatedHours >= 78 && !pc.hasPerk("Treated Milk"))
+		{
+			eventBuffer += "\n\nYou grow increasingly aware of how productive and wonderful your [pc.breasts] are. The Treatment has given you the ability to produce so much!";
+			if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) eventBuffer += " You squeeze a droplet onto a finger and try it, just to sample it. It tastes exactly like the freshest, most delicious milk you've ever tasted - way better than normal. No wonder New Texas is able to export so much milk; Texan cow-milk is amazing!";
+			//Perk Unlocked: Treated Milk - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.
+			eventBuffer += "\n\n(<b>Perk Gained: Treated Milk</b> - Your milk tastes delicious, and milk production takes much longer to slow. The only way you'd stop producing is if you made a conscious effort to keep your roving hands off your milky nipples.)";
+	 		pc.createPerk("Treated Milk",0,0,0,0,"Any milk you lactate tastes better, and you are less likely to stop lactating.");
+	 	}
+		//Milk capacity gains
+		if(pc.milkStorageMultiplier < 3 && pc.hasPerk("Treated Milk") && pc.canLactate() && rand(6) == 0)
+		{
+			//1->1.5
+			if(pc.milkStorageMultiplier <= 1)
+			{
+				eventBuffer += "\n\nBy now you've gotten used to having a chest that feels like it's full of sloshing, delicious cream, but, out of the blue, that feeling diminishes. You weren't even milking yourself; you just feel like you can hold <i>more</i>. You rub your breasts curiously. Could the Treatment be making your body even better at storing up fluid? Rubbing your moistened teats, you wonder if your next milking will be that much more voluminous.";
+				pc.milkStorageMultiplier = 1.5;
+			}
+			//1.5->2
+			else if(pc.milkStorageMultiplier <= 1.5)
+			{
+				eventBuffer += "\n\nA wave of warmth washes over your [pc.chest], and in its wake you're left feeling oddly... emptied. How odd. Hefting a tit in one hand, you squeeze it, delighted to see that [pc.milk] still comes out. The only conclusion you can come to is that the Treatment has someone made your breasts... better - able to hold and give more [pc.milkNoun]. A sensation of rightness accompanies that thought. Of course! It only makes sense that your body would change itself in order to experience even longer, more exciting milkings.";
+				pc.milkStorageMultiplier = 2;
+			}
+			//2->2.5
+			else if(pc.milkStorageMultiplier <= 2)
+			{
+				eventBuffer += "\n\nYour attention is drawn to your chest out of the blue - not that unusual given your current state. You giggle, smooshing your boobs against one another, enjoying the feel of your lactating jugs bouncing and sloshing together like two energetic best friends. You're getting better at it too - the whole milk giving thing. Just when you think you're starting to get too full, it's like your boobs find even more room for [pc.milkNoun]. You briefly imagine your tits rearranging their furniture to add another fridge, giggling all the while.";
+				pc.milkStorageMultiplier = 2.5;
+			}
+			//2.5->3
+			else if(pc.milkStorageMultiplier <= 2.5)
+			{
+				eventBuffer += "\n\nYour chest wobbles under the weight of its own unrestrained lactic prowess. Your body is so good at making milk that you find yourself wondering if your time would be better spent hooked up to a pump than hopping around the galaxy on a vainglorious quest for riches. Hefting the wonderful weight of your all too efficient mammaries, you smile, somehow knowing you could give a dairy cow a run for her money.";
+				pc.milkStorageMultiplier = 3;
+			}
+		}
+		//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
+		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
+		if(pc.elasticity < 3.5)
+		{
+			pc.elasticity = 3.5;
+			if(pc.hasVagina())
+			{
+				for(var cuntCount:int = 0; cuntCount < pc.totalVaginas(); cuntCount++)
+				{
+					if(pc.vaginas[cuntCount].bonusCapacity < 150) pc.vaginas[cuntCount].bonusCapacity  = 150;
+				}
+			}
+			else 
+			{
+				if(pc.ass.bonusCapacity < 150) pc.ass.bonusCapacity = 150;
+			}
+			pc.createStatusEffect("Treatment Elasticity Report Q'ed");
+			pc.createStatusEffect("Treatment Elasticity Report Needed");
+		}
+		
 Horn Grow 2 Nubs
 //Starting
 	Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.
@@ -832,4 +869,18 @@ function setMinimumWetness(arg:int = 0):void
 		if(pc.vaginas[0].wetness() < arg) pc.vaginas[0].wetnessRaw = arg;
 	}
 	return counter;
+}
+
+function treatedVagNote(butt:Boolean = false):void
+{
+	if(!butt && pc.hasVagina())
+	{
+		eventBuffer += "\n\nWeird. It felt really, really easy to slip something inside [pc.oneVagina]. Concerned, you decide a little vaginal exploration is in order. You press one finger at first, then another into your [pc.vagina], discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled [pc.eachVagina] into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.";
+	}
+	else
+	{
+		eventBuffer += "\n\nWeird. It felt really, really easy to slip something inside your [pc.asshole]. Concerned, you decide a little rectal exploration is in order. You press one finger at first, then another into your ring, discovering that the third is almost as easy to add as the first two. Impressively coordinated muscles squeeze and caress your digits, but don't impede the insertion of more in the slightest. As a matter of fact, once your fourth finger is inside, the muscles gradually pull your hand in to the wrist.\n\nThere's no getting around it, the Treatment has retooled your butt into an elastic, powerfully coordinated pleasure palace. You doubt you'll even run into someone \"too big\" for you again.";
+	}
+	pc.removeStatusEffect("Treatment Elasticity Report Needed");
+	pc.removeStatusEffect("Treatment Elasticity Report Q'ed");
 }

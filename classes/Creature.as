@@ -9407,11 +9407,23 @@
 		
 		function cuntChange(arg:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
+			//Notice for treated PCs with increased stretchiness.
+			if(hasStatusEffect("Treatment Elasticity Report Needed"))
+			{
+				if(!hasStatusEffect("Treatment Elasticity Report Q'ed")) createStatusEffect("Treatment Elasticity Report Q'ed");
+			}
+			//Actually change.
 			return holeChange(arg,volume,display,spacingsF,spacingsB);
 		}
 		
 		function buttChange(volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
+			//Notice for treated PCs with increased stretchiness.
+			if(hasStatusEffect("Treatment Elasticity Report Needed"))
+			{
+				if(!hasStatusEffect("Treatment Elasticity Report Q'ed")) createStatusEffect("Treatment Elasticity Report Q'ed",1);
+			}
+			//Actually change.
 			return holeChange(-1,volume,display,spacingsF,spacingsB);
 		}
 		
