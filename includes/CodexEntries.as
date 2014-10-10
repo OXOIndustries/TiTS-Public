@@ -352,7 +352,7 @@ public function rahnCodexEntry():void
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Society"));
-	outputCodex("Despite seeming to be over-sexed and almost nymphomaniacal, for rahn, the act of sex is as common as eating and approached with little fanfare. Once their lust or ardor is satisfied, they will return to whatever task they had embarked upon with gusto. Rahn are not overly violent or technologically inclined, though there are both rahn warriors and scientists exist. The only planet with a population containing mostly rahn is their homeworld, [Geis]. They’ve integrated wonderfully into the rest of galactic society, though many who do not know them better assume them to be easy sluts.");
+	outputCodex("Despite seeming to be over-sexed and almost nymphomaniacal, for rahn, the act of sex is as common as eating and approached with little fanfare. Once their lust or ardor is satisfied, they will return to whatever task they had embarked upon with gusto. Rahn are not overly violent or technologically inclined, though both rahn warriors and scientists exist. The only planet with a population containing mostly rahn is their homeworld, [Geis]. They’ve integrated wonderfully into the rest of galactic society, though many who do not know them better assume them to be easy sluts.");
 	CodexManager.viewedEntry("Rahn");
 }
 

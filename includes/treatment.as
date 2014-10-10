@@ -801,47 +801,101 @@ function treatmentHourProcs():void
 			pc.createStatusEffect("Treatment Elasticity Report Q'ed");
 			pc.createStatusEffect("Treatment Elasticity Report Needed");
 		}
-		
-Horn Grow 2 Nubs
-//Starting
-	Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.
-
-	//Add a line to appearance?
-	Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.
-
-//Breaking Skin
-	The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?
-	To your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your [pc.feet].
-	What have you done to yourself!? Pulling out your Codex, you use the camera to check.
-	You tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.
-
-//nubs -> 1" horns
-	For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.
-	You gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They're mostly there for ornamentation, you figure, like a pair of earrings for your forehead.
-
-//1" horns to 2" horns
-	A wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.
-	Your formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.{ You brush your bangs to one side, hooking them around one of the horns in the cutest way.} The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.
-	Everyone will know you're a New Texas " + pc.mf("boy","girl") + " now{, as if the tits weren't an obvious enough sign}.
-
-//2" horns to 3" horns
-	Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you're sure they're done growing.
-
-//3" horns to 4" horns - prolly gonna reuse some of this for guys.
-	Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.
-You grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.{ The Treatment isn't supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading./You sigh in satisfaction once they stop growing. Now these are respectable horns!}
-
-//4" horsn to 5" horns - MAX LADIES CAN GET.
-	You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns.
-	
-tail-converts existing to cowtail
-//cunt/cocktails prevent this!
-	//Single - short
-		//Furless
-		Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.{ A fine layer of [pc.furColor] fur covers the whole thing.} You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.
-	//Single - long
-		Your [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, an interior calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.
-		A lazily swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect{, and a coat of fine fur is growing out over its length}. In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.
+		//Horn Grow 2 Nubs
+		if((treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999))
+		{
+			//Existing horns transform into lil bull nubs.
+			if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE)
+			{
+				eventBuffer += "\n\nThere is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.";
+				pc.horns = 2;
+				pc.hornLength = .5;
+				pc.hornType = GLOBAL.TYPE_BOVINE;
+			}
+			//Starting
+			else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
+			{
+				eventBuffer += "\n\nUgh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it's red and irritated, though you haven't seen a head form on the zit yet. You've never had such prominent acne before, and there's a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.";
+				pc.createStatusEffect("Horn Bumps");
+			}
+			//Breaking Skin
+			else if(pc.horns == 0)
+			{
+				eventBuffer += "\n\nThe pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
+				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your [pc.feet].";
+				eventBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
+				eventBuffer += "\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.";
+				pc.hornType == GLOBAL.TYPE_BOVINE;
+				pc.removeStatusEffect("Horn Bumps");
+				pc.horns = 2;
+				pc.hornLength = .5;
+			}
+			//nubs -> 1" horns
+			else if(pc.hornLength < 1)
+			{
+				eventBuffer +="\n\nFor the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.";
+				eventBuffer += "\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They're mostly there for ornamentation, you figure, like a pair of earrings for your forehead.";
+				pc.hornLength = 1;
+			}
+			//1" horns to 2" horns
+			else if(pc.hornLength < 2)
+			{
+				eventBuffer += "\n\nA wave of discomfort strikes just behind your forehead, growing worse by the second. There's really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.";
+				eventBuffer += "\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they're growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.";
+				if(pc.hasHair() && pc.hairLength >= 2) eventBuffer += " You brush your bangs to one side, hooking them around one of the horns in the cutest way.";
+				eventBuffer += " The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.";
+				eventBuffer += "\n\nEveryone will know you're a New Texas " + pc.mf("boy","girl") + " now";
+				if(pc.biggestTitSize() >= 15) eventBuffer += ", as if the tits weren't an obvious enough sign";
+				eventBuffer += ".";
+				pc.hornLength = 2;
+			}
+			//2" horns to 3" horns
+			else if(pc.hornLength < 3)
+			{
+				eventBuffer += "\n\nYour jaw clenches, a low growl escaping your throat entirely uncontrollably. There's a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There's blessedly little pain, but when it passes, you're very aware of additional weight tugging on your head. Your horns have grown: they're now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you're sure they're done growing.";
+				pc.hornLength = 3;
+			}
+			//3" horns to 4" horns - prolly gonna reuse some of this for guys.
+			else if(pc.hornLength < 4)
+			{
+				eventBuffer += "\n\nYour eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn't hurt, but it is very disconcerting, making it next to impossible to think.";
+				eventBuffer += "\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.";
+				if(pc.statusEffectv1("The Treatment") == 0) eventBuffer += " The Treatment isn't supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading.";
+				else eventBuffer += "You sigh in satisfaction once they stop growing. Now these are respectable horns!";
+				pc.hornLength = 4;
+			}
+			//4" horsn to 5" horns - MAX LADIES CAN GET.
+			else if(pc.hornLength < 5)
+			{
+				eventBuffer += "\n\nYou feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it's all over, you're left holding two big, strong five-inch horns.";
+				pc.hornLength = 5;
+			}
+		}
+		//tail-converts existing to cowtail
+		//cunt/cocktails prevent this!
+		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE)
+		{
+			//Single - short
+			if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.LONG))
+			{
+				eventBuffer += "\n\nYour tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
+				if(!pc.hasTailFlag(GLOBAL.FLUFFY)) eventBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
+				eventBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
+			}
+			//Single - long
+			else
+			{
+				eventBuffer += "\n\nYour [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, an interior calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+				eventBuffer += "\n\nA lazily swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
+				if(!pc.hasTailFlag(GLOBAL.FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over its length";
+				eventBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
+			}
+			pc.clearTailFlags();
+			pc.tailType = GLOBAL.TYPE_BOVINE;
+			pc.addTailFlag(GLOBAL.LONG);
+			pc.addTailFlag(GLOBAL.FLUFFY);
+		}
+		//MULTI TAIL AND TAIL GROWTH NEEDS WRITTEN.
 Cow ears (maybe)
 	You go to scratch at one of your [pc.ears], only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.
 Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs

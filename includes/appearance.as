@@ -212,31 +212,40 @@ function appearance(target:Creature):void {
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible tongue that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 		//Horns
-		//Demonic horns
-		if(pc.hornType == GLOBAL.TYPE_DEMONIC) {
-			if(pc.horns <= 2) output2(" A small pair of pointed horns has broken through the " + pc.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
-			else if(pc.horns <= 4) output2(" A quartet of prominent horns has broken through your " + pc.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
-			else if(pc.horns <= 6) output2(" Six horns have sprouted through your " + pc.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
-			else output2(" A large number of thick demonic horns sprout through your " + pc.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly ten inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(pc.horns) + " horns.");	
+		if(pc.horsn > 0)
+		{
+			//Demonic horns
+			if(pc.hornType == GLOBAL.TYPE_DEMONIC) {
+				if(pc.horns <= 2) output2(" A small pair of pointed horns has broken through the " + pc.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
+				else if(pc.horns <= 4) output2(" A quartet of prominent horns has broken through your " + pc.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
+				else if(pc.horns <= 6) output2(" Six horns have sprouted through your " + pc.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
+				else output2(" A large number of thick demonic horns sprout through your " + pc.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly ten inches while the rest curve back over your head, some of the points ending just below your ears. You estimate you have a total of " + num2Text(pc.horns) + " horns.");	
+			}
+			//Minotaur horns
+			if(pc.hornType == GLOBAL.TYPE_BOVINE) {
+				if(pc.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by your village.");
+				else if(pc.hornLength < 2) output2(" Two small, roughly 1\" long bovine horns protrude from your forehead. They're kind of cute, actually.");
+				else if(pc.hornLength < 3) output2(" Two bovine horns, approximately two inches in length, jut from your forehead.");
+				else if(pc.hornLength < 4) output2(" A pair of bovine horns jut a full three inches from your forehead.");
+				else if(pc.hornLength < 5) output2(" Two horns protrude through the [pc.skin] of your forehead. Each is about four inches in length and impossible to ignore.");
+				else if(pc.hornLength < 6) output2(" Two big, strong bovine horns jut from your forehead. Their weight is a constant reminder just how much you look like a " + pc.mf("bull","cow") + ".");
+				else if(pc.hornLength < 8) output2(" Roughly half a foot of powerful, bovine horn protrudes from your skull. All you have to do is lower your head, and suddenly, you look quite dangerous.");
+				else if(pc.hornLength < 12) output2(" Two large horns sprout from your forehead, curving forwards like those of a bull.");
+				else if(pc.hornLength < 20) output2(" Two very large and dangerous looking horns sprout from your head, curving forward and over a foot long. They have dangerous looking points.");
+				else output2(" Two huge horns erupt from your forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
+			}
+			//Lizard horns
+			else if(pc.hornType == GLOBAL.TYPE_LIZAN) {
+				if(pc.horns == 2) output2(" A pair of " + num2Text(int(pc.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
+				//Super lizard horns
+				else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from your village's legends.");
+			}
+			//Antlers!
+			else if(pc.hornType == GLOBAL.TYPE_DEER) {
+				if(pc.horns > 0) output2(" Two antlers, forking into " + num2Text(pc.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
+			}
 		}
-		//Minotaur horns
-		if(pc.hornType == GLOBAL.TYPE_BOVINE) {
-			if(pc.horns < 3) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by your village.");
-			else if(pc.horns < 6) output2(" Two moderately sized horns grow from your forehead, similar in size to those on a young bovine.");
-			else if(pc.horns < 12) output2(" Two large horns sprout from your forehead, curving forwards like those of a bull.");
-			else if(pc.horns < 20) output2(" Two very large and dangerous looking horns sprout from your head, curving forward and over a foot long. They have dangerous looking points.");
-			else output2(" Two huge horns erupt from your forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
-		}
-		//Lizard horns
-		else if(pc.hornType == GLOBAL.TYPE_LIZAN) {
-			if(pc.horns == 2) output2(" A pair of " + num2Text(int(pc.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
-			//Super lizard horns
-			else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from your village's legends.");
-		}
-		//Antlers!
-		else if(pc.hornType == GLOBAL.TYPE_DEER) {
-			if(pc.horns > 0) output2(" Two antlers, forking into " + num2Text(pc.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
-		}
+		else if(pc.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(pc.wingType != GLOBAL.TYPE_HUMAN) {
