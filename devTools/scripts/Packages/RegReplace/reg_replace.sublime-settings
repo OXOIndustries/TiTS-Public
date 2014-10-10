@@ -60,15 +60,15 @@
         },
         // Finds any opening fancyquotes that don't have an opening italics tag, and adds the tag
         "fix_fancyquotes_open": {
-            "find": "“(?!<i>)",
+            "find": "(?<!<i>)“",
             "replace": "“<i>",
             "greedy": true,
             "case": false
         },
         // Finds any closing fancyquotes that don't have a closing italics tag, and adds the close.
         "fix_fancyquotes_close": {
-            "find": "(?<!</i>)”",
-            "replace": "</i>”",
+            "find": "”(?!</i>)",
+            "replace": "”</i>",
             "greedy": true,
             "case": false
         },
@@ -90,6 +90,12 @@
         "replace_emdash": {
             "find": "—",
             "replace": "–",
+            "greedy": true,
+            "case": false
+        },
+        "replace_doubledash": {
+            "find": "--",
+            "replace": "-",
             "greedy": true,
             "case": false
         },
@@ -117,6 +123,12 @@
             "find" : "\");",
             "replace": "",
             "literal": true,
+            "greedy": true,
+            "case": false
+        },
+        "fix_savvy_spaces": {
+            "find" : " $",
+            "replace" : "",
             "greedy": true,
             "case": false
         }
