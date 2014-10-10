@@ -1,4 +1,4 @@
-//Main info found in items -> Misc -> Treatment
+﻿//Main info found in items -> Misc -> Treatment
 /*
 //"Treated" - Main, permanent status effect
 v1 - boob size result
@@ -53,7 +53,7 @@ function treatmentHourProcs():void
 				if(!pc.isCrotchGarbed()) eventBuffer += " Glancing down, you look over your [pc.vaginas].";
 				else eventBuffer += "Peeling open your [pc.underGarment], you take a look at your [pc.vaginas].";
 				if(pc.totalVaginas() == 1) eventBuffer += " It doesn't";
-				else eventBuffer += " They don't");
+				else eventBuffer += " They don't";
 				eventBuffer += " look any different. Would touching yourself feel any better than before? Surely, it wouldn't hurt to test. For science.";
 			}
 			//Nopuss:
@@ -588,7 +588,7 @@ function treatmentHourProcs():void
 			{
 				eventBuffer += "\n\nOoooh! A throaty moan rips through the air around you as you feel something come over your tits. It feels like a wave of tingling is hitting you. Your [pc.nipples] instantly ";
 				if(pc.hasFuckableNipples() || pc.isLactating()) eventBuffer += "leak in noticeable streams";
-				else if(!pc.hasFuckableNipples() && pc.breastRows[0].nippleType != NIPPLE_TYPE_FLAT && pc.breastRows[0].nippleType != NIPPLE_TYPE_INVERTED && pc.breastRows[0].nippleType != NIPPLE_TYPE_LIPPLES) eventBuffer += "tent out to their full size";
+				else if(!pc.hasFuckableNipples() && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES) eventBuffer += "tent out to their full size";
 				else eventBuffer += "become sensitive and pebbly";
 				eventBuffer += ", and the flesh around them is flushed and expanding. You hold on for dear life, rubbing your chest enthusiastically and occasionally interrupting your moans with fervent, eager moos. You wish you had someone to milk you and fuck you all at the same time!";
 				eventBuffer += "\n\nStill tugging your nipples, you writhe on the ground";
@@ -613,7 +613,7 @@ function treatmentHourProcs():void
 		//Max size stored in v3
 		//Raise femininity to max, then add lipRating as needed.
 		//Final lip rating = 4 to 6.
-		if(pc.statusEffectv3("Treated") > pc.lipRating() && (treatedHours == 121 || treatedHours == 130 || treatedHours == 140 || treatedHours == 150 treatedHours == 160 treatedHours == 168))
+		if(pc.statusEffectv3("Treated") > pc.lipRating() && (treatedHours == 121 || treatedHours == 130 || treatedHours == 140 || treatedHours == 150 || treatedHours == 160 || treatedHours == 168))
 		{
 			//sub 25 to -> 26 Femininity
 			if(pc.femininity < 25)
@@ -741,7 +741,7 @@ function treatmentHourProcs():void
 			if(treatedHours > 150 && pc.milkMultiplier < 100) 
 			{
 				pc.milkMultiplier = 100;
-				createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+				pc.createStatusEffect("Pending Gain MilkMultiplier Note: 100");
 			}
 		}
 		//lactation almost never stops. If combined with Milky perk, never stops. Ever.
@@ -802,7 +802,7 @@ function treatmentHourProcs():void
 			pc.createStatusEffect("Treatment Elasticity Report Needed");
 		}
 		//Horn Grow 2 Nubs
-		if((treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999 || treatedHours == 9999))
+		if((pc.horns == 0 || pc.hornType != GLOBAL.TYPE_BOVINE || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(6) == 0))
 		{
 			//Existing horns transform into lil bull nubs.
 			if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE)
@@ -873,36 +873,82 @@ function treatmentHourProcs():void
 		}
 		//tail-converts existing to cowtail
 		//cunt/cocktails prevent this!
-		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE)
+		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && treatedHours == 97 && rand(10) != 0)
 		{
+			//No tail
+			if(pc.tailCount == 0)
+			{
+				eventBuffer += "\n\nYou go to scratch at a spot above your [pc.butt] that's been bothering you for a few hours, and jerk when you hit something that wasn't there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There's no doubt about it - <b>you have a tail.</b>\n\nIt's a fairly long tail with a cute little poof on the end, just like a cow's.";
+				pc.tailCount = 1;
+			}
+			//Multitail
+			else if(pc.tailCount > 1)
+			{
+				//Multi - short
+				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				{
+					eventBuffer += "\n\nYour [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you've got gently-swaying, bovine tails, complete with fuzzy puffs at the tips.";
+					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += " A fine layer of [pc.furColor] fur covers each one.";
+					eventBuffer += " You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they looks good.";
+				}
+				//Multi - long
+				else
+				{
+					eventBuffer += "\n\nYour [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+					eventBuffer += "\n\n" + upperCase(num2Text(pc.tailCount)) + " lazily swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
+					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over their lengths";
+					eventBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
+				}
+			}
 			//Single - short
-			if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.LONG))
+			if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				eventBuffer += "\n\nYour tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
-				if(!pc.hasTailFlag(GLOBAL.FLUFFY)) eventBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
+				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
 				eventBuffer += " You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			//Single - long
 			else
 			{
-				eventBuffer += "\n\nYour [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, an interior calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
+				eventBuffer += "\n\nYour [pc.tail] feels increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremity alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
 				eventBuffer += "\n\nA lazily swinging, bovine tail hangs behind you. The tip is poofing up, just as you'd expect";
-				if(!pc.hasTailFlag(GLOBAL.FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over its length";
+				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over its length";
 				eventBuffer += ". In seconds, the warmth fades, leaving you with a new, bovine butt appendage. You can make it swing on command but little else. The best control you can manage is to make it curl up to swat at your butt, and that takes some serious flexing. At least it looks good.";
 			}
 			pc.clearTailFlags();
 			pc.tailType = GLOBAL.TYPE_BOVINE;
-			pc.addTailFlag(GLOBAL.LONG);
-			pc.addTailFlag(GLOBAL.FLUFFY);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		}
-		//MULTI TAIL AND TAIL GROWTH NEEDS WRITTEN.
-Cow ears (maybe)
-	You go to scratch at one of your [pc.ears], only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.
-Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-	You stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape{, and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet/, and they begin to blacken, moment by moment}.
-	They split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. {The cow-girls are gonna be all over you!/The bull-boys are going to love the look!}
+		//Cow ears (maybe)
+		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 137 && rand(10) == 0)
+		{
+			eventBuffer += "\n\nYou go to scratch at one of your [pc.ears], only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
+			pc.earType = GLOBAL.TYPE_BOVINE;
+		}
+		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
+		if(pc.legType != GLOBAL.TYPE_BOVINE && rand(10) <= 1)
+		{
+			eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
+			if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
+			{
+				eventBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";
+			}
+			else eventBuffer += ", and they begin to blacken, moment by moment";
+			eventBuffer += ".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!");
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+		}
+	}
+}
 
-'
+//UNFINISHED FEMSTUFF
+	//Defattening
+	//Hip widening
+	//Clit Expanding
+
+
 function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
 {
 	if(!pc.hasVagina()) return 0;
@@ -922,7 +968,7 @@ function setMinimumWetness(arg:int = 0):void
 	{
 		if(pc.vaginas[0].wetness() < arg) pc.vaginas[0].wetnessRaw = arg;
 	}
-	return counter;
+	return;
 }
 
 function treatedVagNote(butt:Boolean = false):void

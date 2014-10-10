@@ -13,6 +13,7 @@
 	import classes.Items.Miscellaneous.MilkCaramelGushers;
 	import classes.Items.Miscellaneous.MilkmaidsAid;
 	import classes.Items.Miscellaneous.BoobswellPads;
+	import classes.Items.Miscellaneous.Treatment;
 	import classes.Items.Accessories.LightningDuster;
 	import classes.kGAMECLASS;
 	import classes.rand;
@@ -35,10 +36,10 @@
 			this.inventory.push(new CowPrintBra());
 			this.inventory.push(new CowPrintBikiniBottom());
 			this.inventory.push(new CowPrintPantiesAndGarter());
+			this.inventory.push(new LightningDuster());
 			this.inventory.push(new MilkCaramelGushers());
 			this.inventory.push(new MilkmaidsAid());
-			this.inventory.push(new LightningDuster());
-
+			this.inventory.push(new Treatment());
 
 			this.short = "Ellie";
 			this.originalRace = "leithan";

@@ -414,7 +414,11 @@ function appearance(target:Creature):void {
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
 		else if(target.tailType == GLOBAL.TYPE_CANINE) output2(" A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 		else if(target.tailType == GLOBAL.TYPE_DEMONIC) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
-		else if(target.tailType == GLOBAL.TYPE_BOVINE) output2(" A long cowtail with a puffy tip swishes back and forth as if swatting at flies.");
+		else if(target.tailType == GLOBAL.TYPE_BOVINE) 
+		{
+			if(target.tailCount == 1) output2(" A long cow tail with a puffy tip swishes back and forth as if swatting at flies.");
+			else output2(" " + upperCase(num2Text(target.tailCount)) + " long cow tails with puffy tips swish back and forth as if swatting at flies.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_DRIDER || target.tailType == GLOBAL.TYPE_ARACHNID) {
 			output2(" A large, spherical spider-abdomen has grown out from your backside, covered in shiny black chitin. Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" Your bulging arachnid posterior feels fairly full of webbing.");
@@ -502,7 +506,7 @@ function appearance(target:Creature):void {
 				}
 			}
 		}
-		else if(target.legType == GLOBAL.TYPE_EQUINE) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
+		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
 		else if(target.legType == GLOBAL.TYPE_CANINE) output2(" Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
 		else if(target.legType == GLOBAL.TYPE_NAGA) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
 		//Horse body is placed higher for readability purposes
