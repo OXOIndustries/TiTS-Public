@@ -628,6 +628,15 @@ public function processTime(arg:int):void {
 			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
 		}
 
+		//Treatment display shit
+		if(pc.hasStatusEffect("Treatment Elasticity Report Q'ed"))
+		{
+			//Buttes
+			if(pc.statusEffectv1("Treatment Elasticity Report Q'ed") == 1) treatedVagNote(true);
+			//Cooters
+			else treatedVagNote(false);
+		}
+
 		//Tick hours!
 		if (this.minutes >= 60) {
 			
@@ -889,16 +898,21 @@ function lactationUpdateHourTick():void
 	{
 		if(pc.milkFullness >= 200) 
 		{
-			if(pc.hasPerk("Milky")) pc.milkMultiplier -= .2;
+			if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
+			else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .2;
 			else pc.milkMultiplier -= 1;
 		}
 		else if(pc.milkFullness >= 150) 
 		{
-			if(!pc.hasPerk("Milky")) pc.milkMultiplier -= .5;
+			if(!pc.hasPerk("Milky") && !pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .5;
 		}
 	}
 	//Drops a tiny amount if below 50.
 	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra)) {
+		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
+		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
+		else pc.milkMultiplier -= 0.1;
+
 		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= 0.1;
 		else pc.milkMultiplier -= 0.02;
 		if(pc.milkFullness > 0) 

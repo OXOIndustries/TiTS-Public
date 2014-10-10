@@ -21,8 +21,12 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
-			this.inventory.push(new Goovolver());
-			this.inventory.push(new AusarTreats());
+			inventory.push(new AusarTreats());
+			inventory.push(new HammerCarbine());
+			inventory.push(new LaserCarbine());
+			inventory.push(new EMPGrenade());
+			inventory.push(new TSTArmor());
+			inventory.push(new Goovolver());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -196,7 +200,7 @@
 		public function UpgradeVersion3(dataObject:Object):void
 		{
 			dataObject.inventory = new Array();
-			
+			dataObject.inventory.push(new AusarTreats().getSaveObject());
 			dataObject.inventory.push(new HammerCarbine().getSaveObject());
 			dataObject.inventory.push(new LaserCarbine().getSaveObject());
 			dataObject.inventory.push(new EMPGrenade().getSaveObject());

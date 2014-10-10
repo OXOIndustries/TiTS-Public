@@ -145,7 +145,7 @@
 			
 			// "this." is the *new* item, "item." is the *old* item that "this." will replace
 			
-			compareString = mergeString(compareString, this.statDiff("attack", 			"Attack", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("attack", 			"Accuracy",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));

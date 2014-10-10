@@ -1,4 +1,5 @@
-﻿//Notes to the Coder
+﻿import classes.Characters.PregnancyPlaceholder;
+//Notes to the Coder
 //Nephelee has the following stat:
 //NephAffect: Ranges from 0-100. Translates 2:1 as a bonus to her store discount -- at 100%, she grants the PC a 50% discount. 
 
@@ -526,7 +527,7 @@ function turnDownDatLustReliefFroMElliebuns():void
 	output("\n\nThat you can allow. You relax your grip on the leithan’s breast, and soon find your head being craned ever so slightly toward her other breast. A fresh, stiff nipple brushes against your [pc.face], and you open wide to receive it. Your tauric nurse can’t stifle a low, sexual moan as you start to suckle from her other teat, instantly rewarding you with a thick stream of her lactic bounty. <i>“Guess this one was getting a little pent up,”</i> Ellie admits, though she just about chokes on the last word as your tongue grazes the very point of her nipple, sending a shiver of pleasure down her spine. Her tail curls about one of her rear legs, and her fingers dig into you for support, trying to steady herself as you dig into her over-full right breast.");
 	output("\n\n<i>“Easy, hun... keep that up and I’ll... I’ll... ahhhh!”</i> her voice trails off into a high cry of bliss as you set your [pc.tongue] to work on her big, sensitive nipple. One of your hands snakes back across the gulf of the centaurin’s bosom, back to the still-slick peak of her other tit, and begins to gently massage it. Ellie’s front claws flick across the floor, and the longest moan you’ve ever heard tears from her lips at your unexpected - but clearly appreciated - touch. The hand not supporting your head reaches up and locks over yours, her fingers interlacing with your own as you gently caress and squeeze Ellie’s boob.");
 	output("\n\n<i>“You know just the right spots, don’t ya?”</i> Ellie pants, tossing her head back as both your hand and tongue flick at her leaking nipples. <i>“Ah! I bet you’re gonna be just the star of the milk barn, aren’t you... oh, just like that... juuuust like that...”</i>");
-	output("\n\nYou don’t think Ellie’s got much stamina left... or much milk, for that matter. Your belly is bulging with the sheer weight of what you’ve consumed so far, and in turn, your tauric nurse’s breasts look considerably smaller. Drained. Behind you, several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek cum and male desire, you’re not sure what your lust-addled mind might do... better finish your drink, and fast!");
+	output("\n\nYou don’t think Ellie’s got much stamina left... or much milk, for that matter. Your belly is bulging with the sheer weight of what you’ve consumed so far, and in turn, your tauric nurse’s breasts look considerably smaller. Drained. Behind you, several bulls (and even a couple of cows!) are furiously beating their meat to the show you two are putting on, as utterly shameless in public as Treated folk are. You barely resisted Ellie’s touch, thanks to the lacing of her potent, delicious, amazing... pheromones in the air. With a dozen bulls filling the little shop with the reek of cum and male desire, you’re not sure what your lust-addled mind might do... better finish your drink, and fast!");
 	output("\n\nStill, it wouldn’t hurt to finish Ellie off while you’re at it, would it? She’s so close, you can practically smell it. You redouble your efforts toward your partner’s pleasure, squeezing, kneading, and caressing her tender teats until she’s crying out for more. She pulls you deeper into her ample cleavage, burying your head into the slick mounds of her gray titflesh until you can see nothing but the hazy outline of the shop’s lights and the all-encompassing darkness of her diamond-hard nipple in your face. She’s holding you just like a little baby");
 	if(pc.isTaur()) output(", bestial body and all");
 	output("!");
@@ -697,14 +698,21 @@ function publicUseForBullsByCentaurians():void
 	//Used for holding the current target pussy
 	var x:int = 0;
 	var y:int = 0;
+	
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	// Some of the stuff I might do for Brynn will add a generic cow-dude pregnancy for NT
+	// Uncomment this line when/if it gets in
+	//pp.impregnationType = "NewTexasGenericPregnancy";
+	
 	if(pc.hasVagina())
 	{
 		for(y = 0; y < 46; y++)
 		{
 			//Smallest cunt always takes the load and gets a stretchin!
 			x = pc.smallestVaginaIndex();
-			pc.cuntChange(x,100,false,true,false);
-			pc.loadInCunt(PregnancyPlaceholder,x);
+			pc.cuntChange(x, 100, false, true, false);
+
+			pc.loadInCunt(pp,x);
 			pc.orgasm();
 		}
 	}
@@ -713,7 +721,7 @@ function publicUseForBullsByCentaurians():void
 		for(y = 0; y < 46; y++)
 		{
 			pc.buttChange(100,false);
-			pc.loadInAss(PregnancyPlaceholder);
+			pc.loadInAss(pp);
 			pc.orgasm();
 		}
 	}
