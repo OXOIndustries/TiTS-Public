@@ -127,7 +127,8 @@
 		include "../includes/ellie.as";
 		include "../includes/yammi.as";
 		include "../includes/gianna.as";
-		
+		include "../includes/treatment.as";
+
 		include "../includes/lightsOut.as";
 			
 		public var chars:Object;

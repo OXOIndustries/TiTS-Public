@@ -12,6 +12,7 @@ package classes.Items.Miscellaneous
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CodexManager;
 	
 	public class Treatment extends ItemSlotClass
 	{
@@ -94,7 +95,7 @@ package classes.Items.Miscellaneous
 					if(!kGAMECLASS.debug) quantity++;
 				}
 				//Faux-cow repeat use
-				else if(pc.isBimb() && 9999 == 0 && pc.isTreated())
+				else if(pc.isBimbo() && 9999 == 0 && pc.isTreated())
 				{
 					output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn't take away your dick. The warnings say it won't do anything if you've already taken one, but maybe you can find someone cute to get to take it. Then you'll have someone to help keep your balls from getting so painfully full!");
 					if(!kGAMECLASS.debug) quantity++;
@@ -118,7 +119,7 @@ package classes.Items.Miscellaneous
 						
 						output("\n\nPressing the activation stud is all it will take. You hold the tip against your arm and brace yourself, pushing the button. A quiet-sounding 'snick' hits your ears, but nothing else. Did it even work? You look where you had the pen held. There's a tiny red mark and nothing else. The pen's label displays the word ‘inactive’ in bold red text. It must have a built in painkiller. You wonder how long it’ll take until your dick gets bigger.");
 						output("\n\n<b>Turns out only the female version is done. NOTHING HAPPENS!</b>");
-						return;
+						return false;
 					}
 					//First use - Female
 					else if(pc.hasVagina() && !pc.hasCock())
@@ -141,7 +142,7 @@ package classes.Items.Miscellaneous
 
 						output("\n\nWell, whatever. You decided to do this. No point in turning back now. You jab the medipen against the [pc.skinFurScales] of your arm and push the activation stud. A soft 'snick' is all you notice, not even a little pain. Not bad at all. You toss the empty pen away, noting that it's now covered in red text. Rubbing the small red spot it left behind, you wonder how long until you'll notice any changes. Hopefully they all wind up being good!");
 						output("\n\n<b>Turns out only the female version is done. NOTHING HAPPENS!</b>");
-						return;
+						return false;
 					}
 					/*
 					//"Treated" - Main, permanent status effect

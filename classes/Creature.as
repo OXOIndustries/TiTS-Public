@@ -1777,6 +1777,10 @@
 		{
 			return hasPerk("Brute Speech");	
 		}
+		public function isTreated():Boolean
+		{
+			return hasStatusEffect("Treated");
+		}
 		//XP!
 		function XP(arg: int = 0): Number {
 			XPRaw += arg;
