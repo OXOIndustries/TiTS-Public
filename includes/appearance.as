@@ -212,7 +212,7 @@ function appearance(target:Creature):void {
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible tongue that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 		//Horns
-		if(pc.horsn > 0)
+		if(pc.horns > 0)
 		{
 			//Demonic horns
 			if(pc.hornType == GLOBAL.TYPE_DEMONIC) {

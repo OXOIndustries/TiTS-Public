@@ -1000,7 +1000,7 @@ function getFoodAtBigTs():void
 	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
-	if(pc.isBimbo()) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
+	if(pc.isBimbo() || pc.isTreated()) addButton(5,"\"SpecialOrder\"",specialOrdersForTreatedGals,undefined,"\"Special Order\"","Get a meal with some of the Chef's special sauce. It's practically free food!");
 	//["Special Order</i>”]...
 	addButton(14,"Back",mainGameMenu);
 

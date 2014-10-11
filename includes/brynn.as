@@ -11,12 +11,16 @@ public function brynnIntroduced():Boolean
 	return true;
 }
 
+// Returns 3 states
+// 0 = no proc
+// 1 = regular proc. message but no button
+// 2 = autoenter proc. message and hide all buttons, run this shit go go go
 public function brynnRandomBarnEventFunc():Boolean
 {
-	if (flags["BRYNN_MET_TODAY"] == undefined && rand(5) == 0 && currentLocation = "514")
-	{
-		flags["BRYNN_AUTOENTER"] = 0;
-		
+	flags["BRYNN_AUTOENTER"] = 0;
+	
+	if (flags["BRYNN_MET_TODAY"] == undefined && rand(5) == 0 && currentLocation == "514")
+	{		
 		clearOutput();
 		brynnHeader();
 		
@@ -41,7 +45,7 @@ public function brynnRandomBarnEventFunc():Boolean
 			}
 			else
 			{
-				return false;
+				return true;
 			}
 		}
 		else
@@ -99,13 +103,13 @@ public function brynnRandomBarnEventFunc():Boolean
 
 			output("\n\nDeep, guttural groans of encouragement emanate from one of the stalls in your proximity, simply adding further confirmation that there's somebody getting hot and heavy nearby.");
 
-			return false;
+			return true;
 		}
 	}
 	return false;
 }
 
-public function brynnsStall():Boolean
+public function brynnsStallFunc():Boolean
 {
 	if (flags["BRYNN_MET_TODAY"] != undefined) return false;
 
@@ -158,7 +162,7 @@ public function brynnsStall():Boolean
 			{
 				output("The delicious smell filling the air speaks to your treated mind on a level far below conscious thought, drumming directly on the deeply-rooted part of your mind that desires- no, craves- the essence of those scents. The quiet minority that used to lurk deep within your mind; the miniscule voice that grew and grew, until it started to drown out every other thought. The small part of your psyche that your rational mind used to be able to reason with - now, thanks to the Treatment, it shouts over every other need, every last desire, every other conceivable action until it gets what it wants. Until it gets what it <i>craves</i>; sex. Hot, sweaty, messy <i>fucking</i>, in every imaginable way, shape and form.");
 				if (pc.hasVagina()) output(" Thick, virile cocks to sate the burning fire, smoldering away deep within your [pc.cunt]");
-				if (pc.hasVagina()) && pc.hasCock()) output("; t");
+				if (pc.hasVagina() && pc.hasCock()) output("; t");
 				else if (!pc.hasVagina() && pc.hasCock()) output(" T");
 				if (pc.hasCock()) output("ight, juicy cunts ready to wring your throbbing [pc.cocksLight] for every drop of cum your body can produce");
 				if (pc.hasVagina() || pc.hasCock()) output(".");
@@ -206,8 +210,9 @@ public function brynnsStall():Boolean
 
 public function brynnEntranceMenu():void
 {
+	flags["BRYNN_MET_TODAY"] = 1;
 	clearMenu();
-	addButton(0, "Suck It", suckThatMassiveStudlyBrynnDick, "Suck It", "Help the girls out on their quest to worship his massive dick.");
+	addButton(0, "Suck It", suckThatMassiveStudlyBrynnDick, undefined, "Suck It", "Help the girls out on their quest to worship his massive dick.");
 	addButton(4, "Leave", brynnLeave);
 }
 
@@ -276,6 +281,9 @@ public function brynnLeave():void
 			output(" before you have a chance to reconsider.");
 		}
 	}
+	
+	clearMenu();
+	addButton(0, "Next", move, "514");
 }
 
 public function suckThatMassiveStudlyBrynnDick():void
@@ -285,7 +293,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 	var didDeepthroat:Boolean = false;
 
-	output("\n\nBefore you have a chance to realize which way is up, you’re down on your [pc.knees] and shuffling your way between the two curvaceous cowgirls already servicing");
+	output("Before you have a chance to realize which way is up, you’re down on your [pc.knees] and shuffling your way between the two curvaceous cowgirls already servicing");
 	if (!brynnIntroduced()) output(" the bull-stud");
 	else output(" Brynn");
 	output("’s magnificent cock. As you settle into position at just the perfect spot, the girls close in around you, their wide, luscious frames brushing against your [pc.hips] to ensure that their new-found help doesn’t have opportunity to make a last-second departure before the stud has been sated.");
@@ -298,6 +306,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	{
 		output(" [pc.cuntsLight] flutter");
 		if (pc.vaginas.length == 1) output("s");
+	}
 	else if (pc.hasCock())
 	{
 		output(" [pc.cocksLight] throb");
@@ -339,7 +348,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	output("\n\nThe");
 	if (pc.isTreated()) output(" delicious");
 	output(" tang of pre-cum coating your digits only lasts a few scant seconds; in no time at all, the majority of it is gone, and you're sucking the last traces of its flavor from your skin. Your very next breath reminds you of where you are, and that the source of that delicious taste is only inches away. You lean forward and bring your");
-	if (!pc.hasFaceFlag(GLOBAL.MUZZLED)) output(" mouth");
+	if (!pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" mouth");
 	else output(" maw");
 	output(" to within millimeters of");
 	if (!brynnIntroduced()) output(" the stud");
@@ -406,7 +415,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		else if (pc.hasCock()) output(" [pc.cocks]");
 		else output(" loins");
 		if (pc.hasVagina() && pc.vaginas.length == 1) output(" is");
-		else if (pc.hasVagina()) && pc.vaginas.length > 1) output(" are");
+		else if (pc.hasVagina() && pc.vaginas.length > 1) output(" are");
 		else if (pc.hasCock() && pc.cocks.length == 1) output(" is");
 		else if (pc.hasCock() && pc.cocks.length > 1) output(" are");
 		else output(" are");
@@ -457,7 +466,8 @@ public function suckThatMassiveStudlyBrynnDick():void
 		else output(" groan");
 		output(" of thanks before refocusing your mouth fully to the task of bringing immeasurable pleasure to");
 		if (!brynnIntroduced()) output(" the stud");
-		else output(" Brynn");.
+		else output(" Brynn");
+		output(".");
 	}
 
 	output("\n\nYour mouth is inched along the seemingly endless feet of cock with a firmly controlled pace, allowing you time to inspect every ridge along its length with your tongue in great detail");
@@ -510,6 +520,8 @@ public function suckThatMassiveStudlyBrynnDick():void
 	// First time OR not treated OR no horns
 	if (flags["SUCKED_BRYNN"] == undefined || !pc.isTreated() || pc.tallness < 59)
 	{
+		flags["SUCKED_BRYNN"] = 1;
+		
 		output("\n\nThe increasing flow of musky pre oozing directly onto your tongue rapidly begins to fill your mouth to capacity; between the volume occupied by thickly pulsating cock and the near-perfect seal of your [pc.lips] stretched tight around the mottled, veiny flesh, there’s nowhere for it to escape. It builds and builds, contained within your mouth, basting your tongue in its heady flavor, sloshing around as your sinuous muscle continues to tease at the head of the stud’s cock in an uncontrollable reactive impulse, trying to weakly push the foreign invader, by now firmly lodged behind your teeth, out.");
 		
 		output("\n\nWith nowhere for the churning, tangy pre building up in your mouth to go, it’s only a matter of a few short seconds before it’s tickling at the back of your throat. With no other option, you’re forced to swallow it down- not that you were actively trying to avoid it. With the air-tight seal of lips-around-cock, swallowing the stud’s liquid lust has the added side-effect of providing an exquiste vaccum around his cock, suckling firmly on the sensetive flared head in the process. The response is immediate, a much thicker spurt of salty fluid jetting from Brynn’s cock, filling your mouth much faster than previously- a vicious feedback cycle, every mouthful of pre swallowed forcing the next to come even faster than the last.");
@@ -537,7 +549,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output("\n\nThat doesn’t stop you though; it only serves to encourage you all the more, to cut out the middleman of swallowing the lustrous fluid entirely- just swallow the cock and let it pump the proof of the stud’s virility directly into you. With the next mouthful, you do just that. Or at least, that’s what you attempt to do; you push forward in time with the suction, the wide tip of Brynn’s cock just too fat to easily swallow down.");
 		
 		output("\n\nHe catches your intent though, and quickly takes action to help out, wrapping his powerful hands around the");
-		if (pc.horns != 0) output(" convenient [pc.horns] jutting from your head as if they were handlebars provided just for this purpose");
+		if (pc.hornType != 0) output(" convenient [pc.horns] jutting from your head as if they were handlebars provided just for this purpose");
 		else if (pc.hairLength > 5) output(" entwining his powerful fingers with your [pc.hair] and using it to gain the needed leverage");
 		else output(" surrounding the back of your head with his powerful fingers to gain the needed leverage");
 		output(". You swallow again, and the stud tugs your head firmly towards his crotch, the flat battering ram of his cock prising your throat open in the process. With a resounding wet slurp, the slightly fatter tip of his cock settles into your throat.");
@@ -545,12 +557,15 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output("\n\n");
 		if (flags["DEEPTHROATED_BRYNN"] == undefined) output("<i>“Gahh </i>fuck<i> [pc.name], it’s been a long fucking time since I had my dick sucked this good,”</i> Brynn says with clear enthusiasm for your skill.");
 		else output("<i>“</i>Fuck<i> [pc.name]; how the fuck did I manage to get by without you, huh?”</i> Brynn enthusiastically says.");
+		
+		flags["DEEPTHROATED_BRYNN"] = 1;
+		
 		output(" He gives another firm tug");
-		if (pc.horns != 0) output(" on your [pc.horns]");
+		if (pc.hornType != 0) output(" on your [pc.horns]");
 		output(" and slides his iron-hard, throbbing cock another few inches deeper into your greedy gullet.");
 		
 		output("\n\nWith such a fat slab of dickmeat stuffed deep into your throat, you can’t stop the involuntary reaction to swallow; your gullet pulsing and undulating, pulling the stud’s cock ever deeper into the warm, oh so tight embrace of your body. Between the induced swallowing, and the carefully measured pull on your");
-		if (pc.horns != 0) output(" [pc.horns]");
+		if (pc.hornType != 0) output(" [pc.horns]");
 		if (pc.hairLength > 5) output(" [pc.hair]");
 		else output(" head");
 		output(", his dick quickly disappears into your body, forcing you to");
@@ -573,7 +588,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output("\n\nSomething warm and soft gently presses against the [pc.skinFurScales] of your neck, right in the middle of the bulge of cock distorting the usually much slimmer profile. A second later, the delicate touch is replaced by something much wetter and rougher swiping along the same area. A pair of incredibly smooth-skinned arms wrap around you, quickly followed by a sensually soft presence almost melting against the left side of your body. “<i>Keep going, stud, I wanna see if [pc.heShe] can take all of you,”</i> left-girl says, an obvious lusty tone dripping from her words. Licking. She’s licking your neck, continuing to pay reverence to the stud’s cock despite the fact that it’s busy being swallowed whole!");
 		
 		output("\n\nWith the challenge set, Brynn wastes no time; his calculated force");
-		if (pc.horns != 0) output(" around your [pc.horns]");
+		if (pc.hornType != 0) output(" around your [pc.horns]");
 		else if (pc.hairLength > 5) output(" applied to your scalp");
 		else output(" applied to the back of your skull");
 		output(" increases, quickly sliding more of his cock deep into your mouth. Very quickly though, he runs into a roadblock. Or more accurately, your [pc.lips] run into the fat ridge marking the two-thirds point of his dick. With what little play you have, you slowly manage to wriggle your lips around and over the ridge with care, slowly working past the widest part of his cock so that he can continue.");
@@ -640,7 +655,7 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 	brynnHeader();
 
 	output("You can’t muster the energy to do much more than rest on your [pc.knees] before the magnificent bull-stud, his massive load oozing from your features and dripping to the ground in a chorus of irregularly-timed splats. His spunk weighs heavily on your frame, the rivulets of cum pooling wherever they can before falling to the floor; especially your [pc.nipples], jizz building up");
-	if (pc.nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES && pc.nippleType != GLOBAL.NIIPPLE_TYPE_INVERTED) output(" on their pointy tips");
+	if (pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) output(" on their pointy tips");
 	else output(" against them");
 	output(" only to tickle as the drops ball up and pull away from your [pc.skinFurScales].");
 	
@@ -661,7 +676,7 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 	if (pc.isBiped()) output(" kneeling");
 	else output(" poised"); 
 	output(" at his feet. He stands up from his seat, the floor under his feet groaning in protest at his sheer bulk, and heads toward the stall door.");
-	if (didDeepthroat()) output("<i>“Sure hope I see you again tomorrow, [pc.name]. Been a long-ass time since I had a pretty somethin’ like you drain me out that good.”</i>");
+	if (didDeepthroat) output("<i>“Sure hope I see you again tomorrow, [pc.name]. Been a long-ass time since I had a pretty somethin’ like you drain me out that good.”</i>");
 	
 	output("\n\nThe two cow-girls make quick work of the spunk blanket splattered all over your body, slurping up every last drop they can find in short order. Not an inch is spared in their meticulous work, the same effort they were demonstrating on Brynn’s cock now being applied to your [pc.skinFurScales]. The pair of them manage to re-stoke your lust, but keep you simmering at a low boil as they glide over every patch of skin, very clearly spending more time than absolutely required whenever they’re working on anything particularly sensitive to a careful nibble or a gentle kiss. Your [pc.nipples] bear the brunt of their attention, at least one of the two girls lapping, sucking or kissing one of your [pc.breasts] almost constantly.");
 	if (pc.cumflationEnabled()) output(" Your [pc.belly] is also a prime target for long, drawn out swipes of the tongue across its surface; every touch against it only reminding you of the potent, virile load pumped so casually down your throat, leaving you looking heavily pregnant.");

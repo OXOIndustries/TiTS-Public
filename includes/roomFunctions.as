@@ -892,8 +892,10 @@ function NTBarbequeBonusFunc():Boolean
 
 function randomBarnEventFunc():Boolean
 {
+	var retVal:Boolean = false;
+	
 	//Chance to proc any one of these events when passing by a milking stall. Each can proc 1/day at most. 
-	if(flags["MILK_BARN_EVENT_TODAY"] != undefined && rand(10) == 0)
+	if(flags["MILK_BARN_EVENT_TODAY"] == undefined && rand(10) == 0)
 	{
 		//Cured Reaha
 		if(9999 == 0 && rand(3) == 0)
@@ -942,23 +944,33 @@ function randomBarnEventFunc():Boolean
 			output("\n\nHe gives a lazy wave back over his shoulder, and all but crashes into you while he's distracted. \"<i>Gah! Oh, uh, hey, [pc.name]. Just getting some R&R. Don't tell your cuz.</i>\"");
 			output("\n\nBefore you can question it, the four-armed ausar man walks off. Huh.");
 		}
-		//Amma and Ogram
-		else if(rand(2) == 0)
+		else if (brynnRandomBarnEventFunc())
 		{
-			output("\n\n<b>You see Ogram standing outside this stall</b>, leaning against the door with his arms crossed over his broad chest. \"<i>Hey there, " + pc.mf("buddy","beautiful") + ",</i>\" he says, inclining his head to you as you pass. \"<i>Just waiting on the little lady in there.\"</i>");
-			output("\n\nThrough the stall door, you can hear pleasure moans and cries as his partner gets a little lactic relief.");
+			if (flags["BRYNN_AUTOENTER"] == 1)
+			{
+				retVal = true;
+			}
 		}
-		//Amma and Ogram II
 		else
 		{
-			output("\n\n<b>Amma is stepping out of the stall as you pass by</b>, buttoning her blouse back up after a little time on the milker. A few droplets of excess milk quickly stain through the fabric. \"<i>Hey, cutie!</i>\" she calls, shooting you a wink across the barn.");
-			if(pc.biggestTitSize() >= 5) output(" \"<i>Come to spend a little time on the milker, too?</i>\"");
-			else output(" \"<i>Come to see if any of the girls need a little </i>help<i> with their milkers? How sweet of you!</i>\"");
-			output("\n\nAs she speaks, Ogram steps out from the stall behind her, zipping his jeans back up. \"<i>C'mon, you. Back to work before the big man sees we're gone!</i>\" He scoops Amma up under an arm like she weighs nothing at all, giving you a friendly wave before absconding with his giggling cow-girl partner.");
+			//Amma and Ogram
+			if(rand(2) == 0)
+			{
+				output("\n\n<b>You see Ogram standing outside this stall</b>, leaning against the door with his arms crossed over his broad chest. \"<i>Hey there, " + pc.mf("buddy","beautiful") + ",</i>\" he says, inclining his head to you as you pass. \"<i>Just waiting on the little lady in there.\"</i>");
+				output("\n\nThrough the stall door, you can hear pleasure moans and cries as his partner gets a little lactic relief.");
+			}
+			//Amma and Ogram II
+			else
+			{
+				output("\n\n<b>Amma is stepping out of the stall as you pass by</b>, buttoning her blouse back up after a little time on the milker. A few droplets of excess milk quickly stain through the fabric. \"<i>Hey, cutie!</i>\" she calls, shooting you a wink across the barn.");
+				if(pc.biggestTitSize() >= 5) output(" \"<i>Come to spend a little time on the milker, too?</i>\"");
+				else output(" \"<i>Come to see if any of the girls need a little </i>help<i> with their milkers? How sweet of you!</i>\"");
+				output("\n\nAs she speaks, Ogram steps out from the stall behind her, zipping his jeans back up. \"<i>C'mon, you. Back to work before the big man sees we're gone!</i>\" He scoops Amma up under an arm like she weighs nothing at all, giving you a friendly wave before absconding with his giggling cow-girl partner.");
+			}
 		}
-		flags["MILK_BARN_EVENT_TODAY"] == 1;
+		flags["MILK_BARN_EVENT_TODAY"] = 1;
 	}
-	return false;
+	return retVal;
 }
 
 function vanaeWarningBot():Boolean

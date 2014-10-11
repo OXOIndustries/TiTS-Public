@@ -1,4 +1,5 @@
-﻿import classes.Characters.GigaGoo;
+﻿import classes.Characters.Brynn;
+import classes.Characters.GigaGoo;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
 import classes.Characters.Kiro;
@@ -249,6 +250,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["GIANNA"] == undefined))
 	{
 		chars["GIANNA"] = new Gianna();
+	}
+	if (!justUpdate || (justUpdate && chars["BRYNN"] == undefined))
+	{
+		chars["BRYNN"] = new Brynn();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

@@ -3373,6 +3373,7 @@ function initializeRooms():void
 	rooms["BrynnsStall"].planet = "PLANET: NEW TEXAS";
 	rooms["BrynnsStall"].system = "SYSTEM: NYE";
 	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
+	rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
 	
 	//515
 	//Milking Stall - Will have a milker someday
