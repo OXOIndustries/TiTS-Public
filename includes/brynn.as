@@ -19,7 +19,7 @@ public function brynnRandomBarnEventFunc():Boolean
 {
 	flags["BRYNN_AUTOENTER"] = 0;
 	
-	if (flags["BRYNN_MET_TODAY"] == undefined && rand(5) == 0 && currentLocation == "514")
+	if (flags["BRYNN_MET_TODAY"] == undefined && rand(5) == 0)
 	{		
 		clearOutput();
 		brynnHeader();
