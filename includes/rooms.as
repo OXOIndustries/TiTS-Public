@@ -3357,11 +3357,22 @@ function initializeRooms():void
 	rooms["514"].roomName = "THE\nBARN";
 	rooms["514"].description = "The barn's central thoroughfare comes to an abrupt end here at the north wall. Worse yet, the stalls on either side are closed and occupied. You can hear two cow-girls to the west. One is giggling while the other screams in what can only be pleasure. If only the swinging door wasn't locked, you'd be able to find out. To the east, there's rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You'll need to head south if you want to clear your head.";
 	rooms["514"].runOnEnter = randomBarnEventFunc;
+	rooms["514"].northExit = "BrynnsStall";
 	rooms["514"].southExit = "513";
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
 	rooms["514"].addFlag(GLOBAL.INDOOR);
 	//rooms["514"].addFlag(GLOBAL.NPC);
+	
+	// Brynn's Stall
+	rooms["BrynnsStall"] = new RoomClass(this);
+	rooms["BrynnsStall"].roomName = "BRYNN'S\nSTALL";
+	rooms["BrynnsStall"].description = "The thick smell of sex still lingers in this stall- Brynn's chosen place of residence whenever he needs to release some tension. Which is pretty fucking often come to think about it, given how awe-inspiringly productive he is- and how much difficulty he seems to have finding proper release. Despite the essence infused so deeply into the floor and walls of the stall, the place is well kept and clean.\n\nThe sturdy bench Brynn uses as a seat is sat here, off toward the rear of the room, the leather padding covering the surface of it featuring a well-worn impression of the studs frame.";
+	rooms["BrynnsStall"].runOnEnter = brynnsStallFunc;
+	rooms["BrynnsStall"].southExit = "514";
+	rooms["BrynnsStall"].planet = "PLANET: NEW TEXAS";
+	rooms["BrynnsStall"].system = "SYSTEM: NYE";
+	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
 	
 	//515
 	//Milking Stall - Will have a milker someday

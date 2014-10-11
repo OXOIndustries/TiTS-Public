@@ -1777,10 +1777,27 @@
 		{
 			return hasPerk("Brute Speech");	
 		}
+		/**
+		 * Brynn has a bunch of shit that leans on this that kinda needs to be expanded.
+		 * @Fen- if you decide how you're going to handle differentiating the type of treatment applied, remind me after to go through and clean it up to match.
+		 * I'd suggest maybe doing something with args to filter it- maybe stuff the types into GLOBAL so you can do singular if (isTreated()) checks, and then break it
+		 * into smaller chunks for each variant like if (isTreated(GLOBAL.FAUXCOW)) etc
+		 * @return
+		 */
 		public function isTreated():Boolean
 		{
 			return hasStatusEffect("Treated");
 		}
+		
+		public function cumflationEnabled():Boolean
+		{
+			return false;
+		}
+		public function maxOutCumflation(target:String, source:Creature):void
+		{
+			
+		}
+		
 		//XP!
 		function XP(arg: int = 0): Number {
 			XPRaw += arg;
