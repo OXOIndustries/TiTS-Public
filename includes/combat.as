@@ -1314,8 +1314,8 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	var leftoverDamage:int = 0;
 	var shieldDefense:Number = 0;
 	//Reduce damage by shield defense value
-	shieldDefense -= victim.shieldDefense();
-	if(special == "ranged" && pc.hasPerk("Armor Piercing"))
+	shieldDefense += victim.shieldDefense();
+	if(special == "ranged" && pc.hasPerk("Armor Piercing") && pc != victim)
 	{
 		if(shieldDefense > 0) shieldDefense -= (pc.level+rand(3));
 		if(shieldDefense < 0) shieldDefense = 0;
