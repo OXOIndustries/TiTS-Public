@@ -612,7 +612,8 @@ public function processTime(arg:int):void {
 	}
 
 	//Queue up procs for boobswell shit
-	if(pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
+	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
+	variableRoomUpdateCheck();
 
 	//loop through every minute
 	while(arg > 0) {
@@ -649,7 +650,7 @@ public function processTime(arg:int):void {
 			this.minutes = 0;
 			this.hours++;
 			//Hours checks here!
-			variableRoomUpdateCheck();
+			
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
