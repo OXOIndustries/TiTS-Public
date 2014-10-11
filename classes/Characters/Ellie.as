@@ -30,6 +30,7 @@
 			
 			this.sellMarkup = 2.0;
 			this.buyMarkdown = .75;
+			this.inventory.push(new Treatment());
 			this.inventory.push(new BoobswellPads());
 			this.inventory.push(new BountyBra());
 			this.inventory.push(new CowPrintLeotard());
@@ -39,8 +40,7 @@
 			this.inventory.push(new LightningDuster());
 			this.inventory.push(new MilkCaramelGushers());
 			this.inventory.push(new MilkmaidsAid());
-			this.inventory.push(new Treatment());
-
+			
 			this.short = "Ellie";
 			this.originalRace = "leithan";
 			this.a = "";

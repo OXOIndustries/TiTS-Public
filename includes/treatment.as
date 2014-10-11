@@ -20,6 +20,8 @@ v3 hour counter
 //Special variants - girls with bigger horns (size 5)!
 */
 
+
+
 function treatmentHourProcs():void
 {
 	pc.addStatusValue("The Treatment",3,1);
@@ -29,6 +31,20 @@ function treatmentHourProcs():void
 	{
 		//Over Time Intelligence + Perks
 		//Intelligence/Willpower Reductions to 25 statquotient every 2 hours for 2 days. (time remaining % 60 == 0) for 48 hours. Played even if stats are done dropping.
+		if(treatedHours <= 48 && treatedHours % 2 == 0)
+		{
+			if(pc.hasPerk("Weak Mind"))
+			{
+				if(pc.IQ() > 25) pc.intelligence(-.5);
+				if(pc.WQ() > 25) pc.willpower(-.5);
+			}
+			else
+			{
+				if(pc.IQ() > 25) pc.intelligence(-1);
+				if(pc.WQ() > 25) pc.willpower(-1);
+			}
+			pc.libido(1);
+		}
 		//1
 		if(treatedHours == 2)
 		{
@@ -51,7 +67,7 @@ function treatmentHourProcs():void
 			if(pc.hasVagina())
 			{
 				if(!pc.isCrotchGarbed()) eventBuffer += " Glancing down, you look over your [pc.vaginas].";
-				else eventBuffer += "Peeling open your [pc.underGarment], you take a look at your [pc.vaginas].";
+				else eventBuffer += " Peeling open your [pc.underGarment], you take a look at your [pc.vaginas].";
 				if(pc.totalVaginas() == 1) eventBuffer += " It doesn't";
 				else eventBuffer += " They don't";
 				eventBuffer += " look any different. Would touching yourself feel any better than before? Surely, it wouldn't hurt to test. For science.";
@@ -161,7 +177,7 @@ function treatmentHourProcs():void
 			if(pc.lust() + 8 < 33) pc.lust(33-pc.lust());
 			else pc.lust(8);
 			//Libido +2
-			pc.libido(2);
+			pc.libido(1);
 		}
 		//14
 		else if(treatedHours == 28)
@@ -175,7 +191,7 @@ function treatmentHourProcs():void
 	 		pc.createPerk("Sexy Thinking",0,0,0,0,"Increases maximum lust by 15.");
 			//Libido to 30 or +5
 			if(pc.libido() + 5 < 30) pc.libido(30-pc.libido());
-			else pc.libido(5);
+			else pc.libido(3);
 		}
 		//15
 		else if(treatedHours == 30)
@@ -185,7 +201,7 @@ function treatmentHourProcs():void
 			pc.lust(7);
 			//Libido to 35 or +5
 			if(pc.libido() + 5 < 35) pc.libido(35-pc.libido());
-			else pc.libido(5);
+			else pc.libido(4);
 		}
 		//16
 		else if(treatedHours == 32)
@@ -200,7 +216,7 @@ function treatmentHourProcs():void
 			eventBuffer += "\n\n(<b>Perk Gained: Fuck Sense</b> - The Sense ability now relies on your libido rather than intelligence.)";
 			pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
 			//Libido to 40 or +5
-			pc.libido(5);
+			pc.libido(4);
 			pc.lust(5);
 		}
 		//18
@@ -208,10 +224,10 @@ function treatmentHourProcs():void
 		{
 			eventBuffer += "\n\nYou rub your nipple and smile. With how good this feels, you should be whimpering on the floor in a puddle of your own [pc.girlCum], but... but you're not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.";
 			//Inhuman Desire +20 max lust.
-			if(pc.hasPerk("Inhuman Desire"))
+			if(!pc.hasPerk("Inhuman Desire"))
 			{
 				eventBuffer += "\n\n(<b>Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 20.)";
-				pc.createPerk("Inhuman Desire",15,0,0,0,"Increases maximum lust by 20.");
+				pc.createPerk("Inhuman Desire",20,0,0,0,"Increases maximum lust by 20.");
 			}
 			else
 			{
@@ -220,7 +236,7 @@ function treatmentHourProcs():void
 				pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
 			}
 			//Libido to 50 or +5
-			pc.libido(5);
+			pc.libido(4);
 			pc.lust(5);
 		}
 		//19
@@ -248,7 +264,7 @@ function treatmentHourProcs():void
 			//+11 lust
 			pc.lust(11);
 			//Libido to 60 or +5
-			pc.libido(5);
+			pc.libido(4);
 		}
 		//22
 		else if(treatedHours == 44)
@@ -269,7 +285,7 @@ function treatmentHourProcs():void
 			pc.addPerkValue("Inhuman Desire",1,20);
 			pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
 			//Libido to 75 or +5
-			pc.libido(5);
+			pc.libido(4);
 		}
 		//24
 		else if(treatedHours == 48)
@@ -285,7 +301,7 @@ function treatmentHourProcs():void
 		//========================
 		//Tits 
 		//to predetermined max. Many small changes.
-		if(treatedHours > 48 && pc.breastRows[0].breastRating() < pc.statusEffectv1("Treated") && treatedHours % 3)
+		if(treatedHours > 48 && pc.breastRows[0].breastRating() < pc.statusEffectv1("Treated") && treatedHours % 3 == 0)
 		{
 			//Flat chest -> .5 cup
 			if(pc.breastRows[0].breastRatingRaw < .5)
@@ -755,7 +771,7 @@ function treatmentHourProcs():void
 	 		pc.createPerk("Treated Milk",0,0,0,0,"Any milk you lactate tastes better, and you are less likely to stop lactating.");
 	 	}
 		//Milk capacity gains
-		if(pc.milkStorageMultiplier < 3 && pc.hasPerk("Treated Milk") && pc.canLactate() && rand(6) == 0)
+		if(pc.milkStorageMultiplier < 3 && pc.hasPerk("Treated Milk") && pc.canLactate() && rand(8) == 0)
 		{
 			//1->1.5
 			if(pc.milkStorageMultiplier <= 1)
@@ -784,7 +800,7 @@ function treatmentHourProcs():void
 		}
 		//Elasticity + bonus capacity to make sure the girl can handle roughly 24" by 4.5" poles.
 		//Change it silently. Leave notification status effect that triggers off the next time cuntchange is called. Followup message:
-		if(pc.elasticity < 3.5)
+		if(pc.elasticity < 3.5 && treatedHours >= 155)
 		{
 			pc.elasticity = 3.5;
 			if(pc.hasVagina())
@@ -798,7 +814,7 @@ function treatmentHourProcs():void
 			{
 				if(pc.ass.bonusCapacity < 150) pc.ass.bonusCapacity = 150;
 			}
-			pc.createStatusEffect("Treatment Elasticity Report Q'ed");
+			//pc.createStatusEffect("Treatment Elasticity Report Q'ed");
 			pc.createStatusEffect("Treatment Elasticity Report Needed");
 		}
 		//Horn Grow 2 Nubs
@@ -825,7 +841,7 @@ function treatmentHourProcs():void
 				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your [pc.feet].";
 				eventBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
 				eventBuffer += "\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.";
-				pc.hornType == GLOBAL.TYPE_BOVINE;
+				pc.hornType = GLOBAL.TYPE_BOVINE;
 				pc.removeStatusEffect("Horn Bumps");
 				pc.horns = 2;
 				pc.hornLength = .5;
@@ -901,7 +917,7 @@ function treatmentHourProcs():void
 				}
 			}
 			//Single - short
-			if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				eventBuffer += "\n\nYour tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you've got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip.";
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += " A fine layer of [pc.furColor] fur covers the whole thing.";
@@ -927,7 +943,7 @@ function treatmentHourProcs():void
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && rand(10) <= 1)
+		if(pc.legType != GLOBAL.TYPE_BOVINE && treatedHours == 145 && rand(10) <= 145)
 		{
 			eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
 			if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
@@ -944,9 +960,11 @@ function treatmentHourProcs():void
 }
 
 //UNFINISHED FEMSTUFF
+	//Hooves -> hooves
 	//Defattening
 	//Hip widening
 	//Clit Expanding
+	//Treatment finishing.
 
 
 function cuntsBelowWetnessThreshold(threshold:Number = 0):Number

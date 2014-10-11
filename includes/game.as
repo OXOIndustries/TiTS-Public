@@ -675,6 +675,11 @@ public function processTime(arg:int):void {
 				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
 			}	
+			//Treatmentr procs
+			if(pc.hasStatusEffect("The Treatment"))
+			{
+				treatmentHourProcs();
+			}
 			//Cunt stretching stuff
 			if(this.chars["PC"].hasVagina()) {
 				for(x = 0; x < this.chars["PC"].totalVaginas(); x++) {

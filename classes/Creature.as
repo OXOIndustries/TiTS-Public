@@ -2105,7 +2105,7 @@
 
 		public function lustMax(): Number {
 			var bonus:int = 0;
-			if(hasPerk("Inhuman Desire")) bonus += perkv1("Inhuman Desire");
+			bonus += perkv1("Inhuman Desire");
 			//trace("Max lust: " + (bonus + 100));
 			return (100 + bonus);
 		}
@@ -3675,7 +3675,7 @@
 			addStorageValue(keyItems, statusName, statusValueNum, newNum);
 		}
 		public function addStorageValue(array, storageName: String, storageValueNum: Number = 1, newNum: Number = 0) {
-			var counter: Number = statusEffects.length;
+			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) {
 				return;
