@@ -8614,9 +8614,8 @@
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM) {
 				if (temp <= 4) return "white";
-				else if (temp <= 6) return "alabaster";
-				else if (temp <= 8) return "ivory";
-				else return "pearl";
+				else if (temp <= 7) return "alabaster";
+				else return "ivory";
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				if (temp <= 4) return "amber";
 				else if (temp <= 7) return "yellow";
@@ -8629,8 +8628,7 @@
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				if (temp <= 4) return "whitish-yellow";
 				else if (temp <= 7) return "ivory gold";
-				else if (temp <= 8) return "off-white";
-				else return "pearl";
+				else return "off-white";
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				if (temp <= 4) return "transluscent";
 				else if (temp <= 7) return "clear";
