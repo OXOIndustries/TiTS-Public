@@ -676,12 +676,13 @@ function sleepInRuinedCamp():void
 	if (CodexManager.entryUnlocked("Vanae") && rand(4) == 0)
 	{
 		//PC doesn't have TamWolf, has encountered a vanae before. Vanae gets the first turn!
-		if(!pc.accessory is TamWolf) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
+		if(!(pc.accessory is TamWolf) && !(pc.accessory is TamWolfDamaged)) output("\n\nYou're awoken by a high, shrill warcry. Your eyes snap open, just as a throwing spear slams into the dirt beside your bedroll, tearing through the tent. You scramble to your [pc.feet], grabbing your equipment as your assailer leaps into view. <b>You've been ambushed by a vanae</b>!");
 		//PC has Tam-wolf (broke or not)
 		else
 		{
 			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... you'll have to fight her.");
 		}
+		clearMenu();
 		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
 		return;
 	}
