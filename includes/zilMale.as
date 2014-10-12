@@ -236,7 +236,7 @@ function winVsZil():void {
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
 	clearMenu();
-	if(pc.hasCock() && pc.shortestCockLength() <= 17) addButton(0,"Buttfuck",buttfuckDefeatedZil);
+	if(pc.hasCock() && pc.shortestCockLength() <= 20) addButton(0,"Buttfuck",buttfuckDefeatedZil);
 	else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a dick shorter than 17\" long to plug this wasp.");
 	//*Ride His Cock
 	//To cumfinity, and beyond! REQS CUNT
@@ -321,14 +321,14 @@ function buttfuckDefeatedZil():void {
 	output("\n\nYou eye your carapace-coated lover's almost heart-shaped ass as you clap against it over and over.  Your [pc.hips] seem to move of their own volition while you tilt your head back and sigh, watching nothing with half-closed, dilated eyes.  With so much pleasure coursing through your [pc.cock " + x + "] and such a wonderful scent all around, you can barely think well enough to remain upright.");
 	
 	output("\n\nYour lusty reprieve is ended by a high-pitched whine from the Zil, one that culminates in explosive");
-	if(pc.cockVolume(x) <= zil.analCapacity()) output(", squeezing tightness in his rectum");
+	if(pc.cocks[x].cLength() <= 15) output(", squeezing tightness in his rectum");
 	else output(", spastic twitches of his erection");
 	output(". Messy globs of cum gather in his foreskin before dribbling out in languid waves,");
-	if(pc.cockVolume(x) > zil.analCapacity()) output(" pooling on your own mammoth erection, further lubricating your thorough thigh-fucking.");
+	if(pc.cocks[x].cLength() > 15) output(" pooling on your own mammoth erection, further lubricating your thorough thigh-fucking.");
 	else output(" pooling beneath him, wastefully filling a depression in the ground with oodles of viscous boy-honey.");
 	
 	output("\n\n<i>“Unghhh.... yes!”</i> the orgasmic waspling blurts while his wings buzz with uncoordinated movements, and you have to agree with his assessment.  You fuck him harder and faster while he comes, letting his climactic jerks and spasms assist you in getting your own pleasure.");
-	if(pc.cockVolume(x) <= zil.analCapacity()) output(" At this point, his asshole is getting nice and stretched around your girth, to the point where when you pull back you can see it gape.  Then, you fill it back up with the dick it needs.");
+	if(pc.cocks[x].cLength() <= 15) output(" At this point, his asshole is getting nice and stretched around your girth, to the point where when you pull back you can see it gape.  Then, you fill it back up with the dick it needs.");
 	else output("  At this point, his thighs are getting nice and sloppy from all the cum he's spurted, but it just makes them feel hotter and wetter.  You pull back to admire them before filling his legs up with a real cock, unintentionally frotting with his still-dripping prick while you do it.");
 	
 	output("\n\nThe zil goes completely nervous under your assault, and with a quick glance, you confirm your suspicions: he's smiling dopily and sagging into your grip. If you'd cum first, you'd probably be doing the same thing, but for now, the only thing on your mind is ");
@@ -336,13 +336,13 @@ function buttfuckDefeatedZil():void {
 	else if(pc.isMischievous()) output("making sure your orgasm is even better than his was");
 	else output("using him to cum as fast possible");
 	output(".  The cacophonous smacks of [pc.skinFurScales] on armored bottom fills the air, accompanied by the sloppy slurps ");
-	if(pc.cockVolume(x) > zil.analCapacity()) output("you make as you saw through his thighs");
+	if(pc.cocks[x].cLength() > 15) output("you make as you saw through his thighs");
 	else output("his stretched-out asshole makes as you unceasingly sink in and out of it");
 	output(". Like a broken machine, you go faster and faster until a tiny part of you worries that you'll fly apart into a million pieces. The heat of friction and your own passions climbs to intolerable levels, gathering in your [pc.balls] like molten-hot metal.");
 	
 	output("\n\nSeizing up, your muscles plunge you into your target's backside with enough force to nearly topple him over, and the sweltering, liquid deluge erupts from [pc.eachCock] almost without warning.  Your eyes roll back and your body shudders as you push the zil's cheek into the dirt with the force of your orgasm");
 	if(pc.cumQ() >= 50) {
-		if(pc.cockVolume(x) > zil.analCapacity()) output(", rope after rope splattering onto the ground, mixed with the waves of amber honey your pet has already produced.");
+		if(pc.cocks[x].cLength() > 15) output(", rope after rope splattering onto the ground, mixed with the waves of amber honey your pet has already produced.");
 		else output(", splattering the inside of his rectum with thick spooge.");
 		if(pc.cumQ() >= 500) output("  Your [pc.cum] seems to come out almost without end, extending your pleasure for as long as the tide will last.");
 		if(pc.cumQ() >= 7000) {
@@ -369,7 +369,7 @@ function buttfuckDefeatedZil():void {
 	//{Nice}
 	if(pc.isNice()) {
 		output("\n\nYou pull away, clearheaded for the first time since you smelled your foe.  Oddly, though you are aware of his scent, it doesn't seem to affect you as it did before.  You catch the zil before he falls down into the cum puddled below and gently rest him down on the ground, patting him ");
-		if(pc.cockVolume(x) <= zil.analCapacity()) output("while your cum pours out of his ass unimpeded");
+		if(pc.cocks[x].cLength() <= 15) output("while your cum pours out of his ass unimpeded");
 		else output("while he gathers your cum from his thighs and licks it off your fingers");
 		output(". The armored male lounges, fondling himself while you get dressed, and by the time you leave, he's openly masturbating himself towards a second orgasm.\n\n");
 	}

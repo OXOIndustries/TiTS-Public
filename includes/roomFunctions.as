@@ -816,14 +816,14 @@ function novaElevatorControlPanel():void
 	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevators doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
 	
 	clearMenu();
-	if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
-	else addDisabledButton(0, "Hangar Deck");
+	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
+	//else addDisabledButton(0, "Hangar Deck");
 	
-	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(1, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
-	else addDisabledButton(1, "Main Deck");
+	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
+	else addDisabledButton(0, "Main Deck");
 	
-	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(2, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
-	else addDisabledButton(2, "Deck 13");
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	else addDisabledButton(1, "Deck 13");
 	
 	addButton(14, "Back", mainGameMenu);
 }

@@ -343,6 +343,7 @@ function treatmentHourProcs():void
 				eventBuffer += " Damn! When did you get tits like that? They're proper C-cups now - big enough to give your hands something perfectly cushy to squeeze on, which they're doing right now. It feels great, really. You sigh and let your bigger boobs go, looking at them one last time. Yeah, you're getting pretty sexy.";
 				//+1 lust
 				pc.lust(1);
+				pc.breastRows[0].breastRatingRaw++
 			}
 			//C-D
 			else if(pc.breastRows[0].breastRatingRaw < 4)

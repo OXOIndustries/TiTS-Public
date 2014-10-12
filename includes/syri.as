@@ -264,7 +264,13 @@ function victoryFuckSyrisBunghole():void {
 	output("\n\nThe canine rear's convulsions eventually push your proud resolve to its brink. Sinking your fingers into Syri's thick kiester, you roar a primal exaltation and slam your prick home ");
 	if(pc.cockVolume(x) > chars["SYRI"].analCapacity()) output("until you're giving her every inch the poor ausar can take");
 	else output("to the hilt");
-	output(". Your [pc.balls] churn and your [pc.cockHead " + x + "] blasts the first massive load into Syri's guts, shooting a thick stream of [pc.cumColor] seed deep into her bowels. The ausar girl groans and cries as your burning love fills her, the excess spurting out around your [pc.cock] as you hammer her, fucking her right through the orgasm until you're completely spent.");
+	if(pc.balls > 0)
+	{
+		output(". Your [pc.balls] churn");
+		if(pc.balls <= 1) output("s");
+	}
+	else output(". Your prostate clenches");
+	output(" and your [pc.cockHead " + x + "] blasts the first massive load into Syri's guts, shooting a thick stream of [pc.cumColor] seed deep into her bowels. The ausar girl groans and cries as your burning love fills her, the excess spurting out around your [pc.cock] as you hammer her, fucking her right through the orgasm until you're completely spent.");
 
 	output("\n\nPrick still lodged in Syri's well-fucked ass, you heave a heavy sigh and wipe the sweat from your brow. Beneath you, the ausar girl's breath comes in short little gasps, her breasts rising and falling erratically as she tries to pick herself up from the table. <i>“D-damn, [pc.name]. You're a fucking machine. Gods and spirits I'll be sore for days after that reaming....”</i>");
 
