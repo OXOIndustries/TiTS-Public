@@ -27,6 +27,7 @@
 		public static const room_outdoor_mask:int		= 1<<15; // I don't want to lean on assuming INDOOR = !OUTDOOR because we might end up with other variations etc.
 		public static const room_indoor_mask:int		= 1 << 16;
 		public static const room_hazard_mask:int		= 1 << 17;
+		public static const room_taxi_mask:int		= 1 << 18;
 
 		private var roomsObj:Object;
 
@@ -189,6 +190,10 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.HAZARD))
 			{
 				map[x][y][z] |= room_hazard_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.TAXI))
+			{
+				map[x][y][z] |= room_taxi_mask;
 			}
 			
 			if (this.mapDebug) trace("Finished room ", targetRoom)

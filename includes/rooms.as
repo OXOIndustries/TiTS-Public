@@ -320,6 +320,7 @@ function initializeRooms():void
 	rooms["ESBETH TRAVEL AUTHORITY"].system = "SYSTEM: ARA ARA";
 	rooms["ESBETH TRAVEL AUTHORITY"].northExit = "SOUTH ESBETH 3";
 	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.INDOOR);
+	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.TAXI);
 		
 	//11. The Southeast Corner of Esbeth
 	rooms["SOUTHEAST ESBETH"] = new RoomClass(this);
@@ -1646,6 +1647,7 @@ function initializeRooms():void
 	rooms["TARKUS SCOUT AUTHORITY"].planet = "PLANET: TARKUS";
 	rooms["TARKUS SCOUT AUTHORITY"].system = "SYSTEM: REDACTED";
 	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.INDOOR);
+	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.TAXI);
 
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
@@ -2616,6 +2618,7 @@ function initializeRooms():void
 	rooms["279"].system = "SYSTEM: REDACTED";
 	rooms["279"].addFlag(GLOBAL.OUTDOOR);
 	rooms["279"].addFlag(GLOBAL.HAZARD);
+	rooms["279"].addFlag(GLOBAL.TAXI);
 
 	//#81 SCYTHING\nGLADE
 	rooms["281"] = new RoomClass(this);
