@@ -1555,6 +1555,10 @@
 				case "belly":
 					buffer = bellyDescript();
 					break;
+				case "mistress":
+				case "master":
+					buffer = this.mf("master", "mistress");
+					break
 				case "man":
 					buffer = this.mf("man", "woman");
 					break
