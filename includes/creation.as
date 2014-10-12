@@ -489,9 +489,17 @@ function applyBreastSize(size:int = 0):void {
 function chooseYourJunkSize():void {
 	clearOutput();
 	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
-	output("The doctor smiles knowingly and moves on, <i>“Alright, now what about the penis? It looks like we could pretty easily have it be anywhere from four to ");
-	if(pc.originalRace != "half-kaithrit") output("eight ");
-	else output("six ");
+	output("The doctor smiles knowingly and moves on, <i>“Alright, now what about the penis? It looks like we could pretty easily have it be anywhere from ");
+	if(pc.originalRace != "half-leithan")
+	{
+		output("four to ");
+		if(pc.originalRace != "half-kaithrit") output("eight ");
+		else output("six ");
+	}
+	else
+	{
+		output("thirteen to twenty ");
+	}
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	this.clearMenu();
 	if(pc.originalRace == "half-leithan")
