@@ -5756,6 +5756,7 @@
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter++;
+			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
 			return counter;
 		}
 		public function zilScore(): int {
