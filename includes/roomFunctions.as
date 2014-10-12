@@ -1028,6 +1028,7 @@ function mhengaScoutAuthority():void
 		clearMenu();
 		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
 		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
+		addButton(14,"Back",mainGameMenu);
 	}
 }
 
