@@ -2458,7 +2458,7 @@ function hipsTeaseText():void {
 	}
 	//Generic hips!
 	else {
-		output("Watching your target, you place a hand upon your [pc.hips] and sway them in the other direction then back again like a pendulum. You let the hypnotic undulations go on as you dare and smile triumphantly as you stop.");
+		output("Watching your target, you place a hand upon your [pc.hips] and sway them in the other direction then back again like a pendulum. You let the hypnotic undulations go on as long as you dare and smile triumphantly as you stop.");
 	}
 }
 
