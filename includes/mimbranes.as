@@ -342,56 +342,75 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				if (pc.vaginas[0].loosenessRaw == 0) pc.vaginas[0].loosenessMod = 1;
-				if (pc.vaginas[0].wetnessRaw == 0) pc.vaginas[0].wetnessMod = 1;
+				//if (pc.vaginas[0].loosenessRaw == 0) pc.vaginas[0].loosenessMod = 1;
+				//if (pc.vaginas[0].wetnessRaw == 0) pc.vaginas[0].wetnessMod = 1;
+				pc.vaginas[0].wetnessMod++;
+				pc.vaginas[0].loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				if (pc.vaginas[0].loosenessRaw <= 1) pc.vaginas[0].loosenessMod = 2;
-				if (pc.vaginas[0].wetnessRaw <= 1) pc.vaginas[0].wetnessMod = 2;
+				//if (pc.vaginas[0].loosenessRaw <= 1) pc.vaginas[0].loosenessMod = 2;
+				//if (pc.vaginas[0].wetnessRaw <= 1) pc.vaginas[0].wetnessMod = 2;
+				pc.vaginas[0].wetnessMod++;
+				pc.vaginas[0].loosenessMod++;
 			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				if (pc.vaginas[0].loosenessRaw <= 2) pc.vaginas[0].loosenessMod = 3;
-				if (pc.vaginas[0].wetnessRaw <= 2) pc.vaginas[0].wetnessMod = 3;
+				//if (pc.vaginas[0].loosenessRaw <= 2) pc.vaginas[0].loosenessMod = 3;
+				//if (pc.vaginas[0].wetnessRaw <= 2) pc.vaginas[0].wetnessMod = 3;
+				pc.vaginas[0].wetnessMod++;
+				pc.vaginas[0].loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				if (pc.vaginas[0].loosenessRaw <= 3) pc.vaginas[0].loosenessMod = 4;
-				if (pc.vaginas[0].wetnessRaw <= 3) pc.vaginas[0].wetnessMod = 4;
+				//if (pc.vaginas[0].loosenessRaw <= 3) pc.vaginas[0].loosenessMod = 4;
+				//if (pc.vaginas[0].wetnessRaw <= 3) pc.vaginas[0].wetnessMod = 4;
+				pc.vaginas[0].wetnessMod++;
+				pc.vaginas[0].loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				if (pc.vaginas[0].loosenessRaw <= 4) pc.vaginas[0].loosenessMod = 5;
-				if (pc.vaginas[0].wetnessRaw <= 4) pc.vaginas[0].wetnessMod = 5;
+				//if (pc.vaginas[0].loosenessRaw <= 4) pc.vaginas[0].loosenessMod = 5;
+				//if (pc.vaginas[0].wetnessRaw <= 4) pc.vaginas[0].wetnessMod = 5;
+				pc.vaginas[0].wetnessMod++;
+				pc.vaginas[0].loosenessMod++;
 			}
 		}
 		else if (effectName == "Mimbrane Ass")
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				if (pc.ass.loosenessRaw == 0) pc.ass.loosenessMod = 1;
-				if (pc.ass.wetnessRaw == 0) pc.ass.wetnessMod = 1;
+				//if (pc.ass.loosenessRaw == 0) pc.ass.loosenessMod = 1;
+				//if (pc.ass.wetnessRaw == 0) pc.ass.wetnessMod = 1;
+				pc.ass.wetnessMod++;
+				pc.ass.loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				if (pc.ass.loosenessRaw <= 1) pc.ass.loosenessMod = 2;
-				if (pc.ass.wetnessRaw <= 1) pc.ass.wetnessMod = 2;
-			}
+				//if (pc.ass.loosenessRaw <= 1) pc.ass.loosenessMod = 2;
+				//if (pc.ass.wetnessRaw <= 1) pc.ass.wetnessMod = 2;
+				pc.ass.wetnessMod++;
+				pc.ass.loosenessMod++;			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				if (pc.ass.loosenessRaw <= 2) pc.ass.loosenessMod = 3;
-				if (pc.ass.wetnessRaw <= 2) pc.ass.wetnessMod = 3;
+				//if (pc.ass.loosenessRaw <= 2) pc.ass.loosenessMod = 3;
+				//if (pc.ass.wetnessRaw <= 2) pc.ass.wetnessMod = 3;
+				pc.ass.wetnessMod++;
+				pc.ass.loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				if (pc.ass.loosenessRaw <= 3) pc.ass.loosenessMod = 4;
-				if (pc.ass.wetnessRaw <= 3) pc.ass.wetnessMod = 4;
+				//if (pc.ass.loosenessRaw <= 3) pc.ass.loosenessMod = 4;
+				//if (pc.ass.wetnessRaw <= 3) pc.ass.wetnessMod = 4;
+				pc.ass.wetnessMod++;
+				pc.ass.loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				if (pc.ass.loosenessRaw <= 4) pc.ass.loosenessMod = 5;
-				if (pc.ass.wetnessRaw <= 4) pc.ass.wetnessMod = 5;
+				//if (pc.ass.loosenessRaw <= 4) pc.ass.loosenessMod = 5;
+				//if (pc.ass.wetnessRaw <= 4) pc.ass.wetnessMod = 5;
+				pc.ass.wetnessMod++;
+				pc.ass.loosenessMod++;
 			}
 
 			pc.buttRatingMod += actualFeed / 2.0;
@@ -443,8 +462,11 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) pussyMod++;
 		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
 		
+		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.vaginas[0].loosenessMod -= pussyMod;
+		if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
 		pc.vaginas[0].wetnessMod -= pussyMod;
+		if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
 	}
 	else if (effectName == "Mimbrane Ass")
 	{
@@ -455,8 +477,11 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) buttMod++;
 		if (pc.statusEffectv3(effectName) >= 15) buttMod++;
 		
+		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.ass.loosenessMod -= buttMod;
+		if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
 		pc.ass.wetnessMod -= buttMod;
+		if(pc.ass.wetnessMod < 0) pc.ass.wetnessMod = 0;
 		pc.buttRatingMod -= Number(pc.statusEffectv3(effectName)) / 2.0;
 	}
 	else if (effectName == "Mimbrane Balls")
