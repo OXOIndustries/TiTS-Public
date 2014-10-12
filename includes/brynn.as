@@ -213,7 +213,7 @@ public function brynnEntranceMenu():void
 	flags["BRYNN_MET_TODAY"] = 1;
 	clearMenu();
 	addButton(0, "Suck It", suckThatMassiveStudlyBrynnDick, undefined, "Suck It", "Help the girls out on their quest to worship his massive dick.");
-	addButton(4, "Leave", brynnLeave);
+	addButton(14, "Leave", brynnLeave);
 }
 
 public function brynnLeave():void
