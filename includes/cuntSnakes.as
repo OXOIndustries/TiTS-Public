@@ -475,8 +475,15 @@ function getACuntTail():void {
 	output("A stabbing lance of pain shoots through your spine, just above your [pc.butt]. It's just intense enough stir you from slumber, but not much worse than a nasty scratch, now that you're awake - almost as if you rolled onto a rock while sleeping.");
 	output("\n\nYou reach back to feel the wound and touch... scales. Smooth, glossy, reptilian scales. The pain gets worse at contact, but the added sensation aids you in realizing that it's actually two wounds on your backside about an inch apart. It hurts more and more with each passing second, and the severity of the situation dawns on you: the snake is fang-deep in your back. You swat at it with your arm, squirming and writhing from the discomfort, barely missing again and again. When you finally make contact, it doesn't budge, but it does hurt.");
 	output("\n\nThe snake's tail thrashes back and forth against you, leaking its copious fluids as it does, crashing into your wrist a few times. You can feel the sensation of scales slapping on your [pc.skin]. The feelings don't originate in your arm, however - a realization that makes panic well up in you. You feel around more gently this time, locating the tubular body before reaching up towards where it connects with your back. Where the creature's head should be, there's a single raised lump of flesh, narrow at the top where it joins to your spine and wider near the base, where it separates from your body just above your [pc.butt].");
-	if(pc.tailCount > 0) output(" Where did your [pc.tail] go? The snake is connected to you right where your old tail used to be... did it swallow it whole?");
-	
+	if(pc.tailCount > 0) 
+	{
+		output(" Where did your [pc.tails] go? The snake is connected to you right where your old tail");
+		if(pc.tailCount > 1) output("s");
+		output(" used to be... did it swallow ");
+		if(pc.tailCount > 1) output("them");
+		else output("it");
+		output(" whole?");
+	}	
 	output("\n\nAt the same time, the pain is slowly fading - the agony has been replaced by the tingly throb of knitting flesh and connecting nerve tissue. You wince and poke at it, feeling the pressure from both sides as the irritation diminishes. It seems to have joined with your body, and there's not even a seam you can grab hold of to pry it apart! You grab the thing a bit further down and tug, but it hurts even more, like tugging directly on your spine. The vertebrae inside the thing seem connected directly to your own at this point.");
 	if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("\n\nThe scales already match your own, so in a way, it's as if this thing was perfectly made to join with you.");
 	else output("\n\nThe scales flake off at your touch, exposing flesh that matches your [pc.skinFurScales] exactly.");
