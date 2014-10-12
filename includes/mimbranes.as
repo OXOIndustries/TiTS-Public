@@ -462,7 +462,7 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) pussyMod++;
 		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
 		
-		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
+		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.vaginas[0].loosenessMod -= pussyMod;
 		if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
 		pc.vaginas[0].wetnessMod -= pussyMod;
@@ -477,7 +477,7 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) buttMod++;
 		if (pc.statusEffectv3(effectName) >= 15) buttMod++;
 		
-		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
+		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.ass.loosenessMod -= buttMod;
 		if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
 		pc.ass.wetnessMod -= buttMod;
