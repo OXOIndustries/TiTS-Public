@@ -943,18 +943,111 @@ function treatmentHourProcs():void
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && treatedHours == 145 && rand(10) <= 145)
+		if(pc.legType != GLOBAL.TYPE_BOVINE && treatedHours == 145 && rand(10) <= 1)
 		{
-			eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
-			if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
+			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
-				eventBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";
+				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your [pc.feet] are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a cow would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new cow hooves.</b>";
 			}
-			else eventBuffer += ", and they begin to blacken, moment by moment";
-			eventBuffer += ".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!");
+			else
+			{
+				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
+				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
+				{
+					eventBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";
+				}
+				else eventBuffer += ", and they begin to blacken, moment by moment";
+				eventBuffer += ".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!");
+			}
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+		}
+		//Clit Expanding
+		if(pc.clitLength < .75 && (treatedHours == 113 || treatedHours == 127))
+		{
+			if(treatedHours == 113)
+			{
+				//Small clits gro - clothed
+				if(pc.isCrotchGarbed())
+				{
+					eventBuffer += "\n\nWith every movement you make, you become increasingly aware of your [pc.clits] rubbing against your [pc.lowerGarment]. It’s impossible to ignore the constant, distraction friction on your nub";
+					if(pc.totalClits() > 1) eventBuffer += "s";
+					eventBuffer += ", constantly feeding your arousal fresh fuel. You huff in annoyance and yank the offending garments down, eyeballing [pc.oneClit] to see why it’s gotten so gosh darn sensitive.";
+				}
+				//Small clits gro - unclothed
+				else
+				{
+					eventBuffer += "\n\nWith every movement you make, you find your " + possessive(pc.vaginasDescript()) + " [pc.clits] rubbing on your netherlips as if constantly aroused and swollen. It’s a nagging, constant sensation of friction on your nub";
+					if(pc.totalClits() > 1) eventBuffer += "s";
+					eventBuffer += ", constantly feeding your arousal fresh fuel. You huff in annoyance and bend over for a closer look, eyeing [pc.oneClit] to see why it’s so sensitive now.";
+				}
+				//Merge
+				eventBuffer += "\n\n<b>Your clit is like a big, pink gumball!</b> Even when it isn’t stimulated, it’ll probably stick out of its hood. It must be three quarters of an inch long at full size. You’ll just have to get used to having such a big, easily stimulated buzzer.";
+				pc.clitLength = 0.75;
+			}
+			//Big clit exhibitionism - not a TF, just a fun message.
+			else
+			{
+				eventBuffer += "\n\nYou wonder if the best way to handle your enlarged clit";
+				if(pc.totalClits() > 1) eventBuffer += "s";
+				eventBuffer += " would just be to leave ";
+				if(pc.totalClits() == 1) eventBuffer += "it";
+				else eventBuffer += "them";
+				eventBuffer += " out and open to the air. Most of the frontier worlds don’t have laws against public nudity; some even encourage it! You wouldn’t have the constant rubbing to worry about, and you could bask in the lusty gazes of onlookers, maybe even seduce one into a quick romp!";
+			}
+		}
+		//Defattening
+		if(pc.thickness > 60 && treatedHours == 65)
+		{
+			//High thickness trims in.
+			//Ogre -> Curvy cowgal
+			if(pc.tone > 59)
+			{
+				eventBuffer += "\n\nHour by hour, the imposing girth and size of your body has been narrowing into a more svelte, feminine shape. Sure, some parts of you have stayed the same - your hips, for example, but your shoulders aren’t nearly as broad, and your arms are no longer as visibly muscular. You still feel just as strong; you’ve just taken on a more womanly look.";
+				//Thickness to 60.
+				pc.thickness = 60;
+				//Tone to 59.
+				pc.tone = 59;
+			}
+			//High thickness and high fat trims in.
+			//Fatty -> Curvy Cowgal
+			else
+			{
+				eventBuffer += "\n\nAll the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got plush curves that just beg to be squeezed and handled. It’s just that noone with half a brain would call you fat now, though the term curvy might be apt.";
+				//Thickness to 60
+				pc.thickness = 60;
+			}
+		}
+		//Hip widening towards 7-11.
+		if(pc.hipRating() < 7 && rand(20) == 0 && treatedHours > 55)
+		{
+			//Sub 3 to 3
+			if(pc.hipRatingRaw < 3)
+			{
+				eventBuffer += "\n\nYou look yourself over, discovering that your hips have widened, giving you a more feminine look.";
+				pc.hipRatingRaw = 3;
+			}
+			//Not so smallish Sub 6 to 6
+			else if(pc.hipRatingRaw < 6)
+			{
+				eventBuffer += "\n\nWhoah! Your hips have gotten wider. Nobody is going to mistake you for a boy when you can swivel these back and forth. You sashay them around a few times, just to try it out.";
+				pc.hipRatingRaw = 6;
+			}
+			//Biggish (Sub max to max)
+			else
+			{
+				pc.hipRatingRaw += 1 + rand(5);
+				eventBuffer += "\n\nMoving around, you’re pleased to discover a little extra wiggle in you walk. Your [pc.butt] sways hypnotically as you go, automatically borne on a sinuous back and forth motion by your expanding [pc.hips]. You wonder if anyone will notice.";
+			}
+		}
+		//Bigger Booty Towards 7-12.
+		if(pc.buttRatingRaw < 7 && rand(24) == 0 && treatedHours > 49)
+		{
+			if(pc.isCrotchGarbed()) eventBuffer += "\n\nAn increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.";
+			else eventBuffer += "\n\nA slight shift in your balance gradually makes itself known to you, and you twist to regard your changing form, expecting to find a bigger butt.";
+			eventBuffer += " Sure enough, your ass has swollen up an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
+			pc.buttRatingRaw = 7 + rand(6);
 		}
 	}
 }
@@ -963,6 +1056,7 @@ function treatmentHourProcs():void
 	//Hooves -> hooves
 	//Defattening
 	//Hip widening
+	//Bigger Booty
 	//Clit Expanding
 	//Treatment finishing.
 

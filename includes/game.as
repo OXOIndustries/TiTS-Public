@@ -441,6 +441,12 @@ function statusTick():void {
 					if(pc.bRows() > 1) eventBuffer += "on your " + num2Text2(this.chars["PC"].statusEffects[x].value1+1) + " row of breasts";
 					eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
 				}
+				//Treatment finishing.
+				if(this.chars["PC"].statusEffects[x].storageName == "The Treatment")
+				{
+					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
+					eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
+				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Mead") 
 				{
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
