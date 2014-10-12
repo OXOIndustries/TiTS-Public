@@ -304,7 +304,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	output("’s legs, you can see every glorious inch of equine mare-breaker in exquisite detail; every vein, ridge and bulge throbbing in time with the adonis’ powerful heartbeat. Your");
 	if (pc.hasVagina())
 	{
-		output(" [pc.cuntsLight] flutter");
+		output(" [pc.cunts] flutter");
 		if (pc.vaginas.length == 1) output("s");
 	}
 	else if (pc.hasCock())
