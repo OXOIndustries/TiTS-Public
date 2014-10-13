@@ -34,6 +34,7 @@ public function output(words:String, markdown:Boolean = false):void
 
 public function clearOutput():void 
 {
+	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
 }
 

@@ -758,6 +758,7 @@ function flahneDeskMunchies():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
+	showImage("FlahneUnderDesk");
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
 	output("\n\n<i>“Getting a good look?”</i>  she teases. The buxom gel pushes her chest even farther, ");
 	if(!pc.canMilkSquirt()) {

@@ -58,6 +58,8 @@
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
+	
+	import classes.Engine.showImage;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip

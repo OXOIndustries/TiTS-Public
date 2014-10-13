@@ -5278,10 +5278,17 @@
 			return totalVaginas(type);
 		}
 		//BOolean alternate
-		public function hasCock(): Boolean {
-			if (cocks.length >= 1) return true;
+		public function hasCock(type:int = -1):Boolean {
+			if (type == -1 && cocks.length > 0) return true;
+		
+			for (var i:int = 0; i < cocks.length; i++)
+			{
+				if ((cocks[i] as CockClass).cType == type) return true;
+			}
+			
 			return false;
 		}
+		
 		public function hasCocks(): Boolean {
 			if (cocks.length > 1) return true;
 			return false;

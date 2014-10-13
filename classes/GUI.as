@@ -68,8 +68,9 @@
 		private var cacheSystem:String;
 		
 		//Used for output()
-		var outputBuffer:String;
-		var outputBuffer2:String;
+		public var outputBuffer:String;
+		public var outputBuffer2:String;
+		public var imgString:String;
 		var outputCodexBuffer:String
 		var authorBuffer:Array;
 		var textPage:int;
