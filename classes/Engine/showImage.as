@@ -8,6 +8,9 @@ package classes.Engine
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.kGAMECLASS;
+	import classes.Resources.ImagePack;
+	import classes.Resources.ImagePackAssets.ImageContainer;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -15,17 +18,14 @@ package classes.Engine
 	public function showImage(imgName:String):void
 	{
 		if (CONFIG::IMAGEPACK == true)
-		{
-			import classes.Resources.ImagePack;
-			import flash.display.Bitmap;
-			
+		{			
 			if (ImagePack[imgName] != undefined)
 			{
 				var classT:Class = ImagePack[imgName];
 				var classP:* = new classT();
 				
-				var width:Number = classP.bmp.width;
-				var height:Number = classP.bmp.height;
+				var width:Number = classP.width;
+				var height:Number = classP.height;
 				
 				var scale:Number = 387 / width;
 				
@@ -39,8 +39,14 @@ package classes.Engine
 				
 				// Haha fuck you AS3
 				trace("Displaying image: " + imgName);
-				kGAMECLASS.output("<img src='" + getQualifiedClassName(classT) + "' width='" + width + "' height='" + height + "'>");
-			}			
+				ImagePack.ImageRequestT = classT;
+				
+				kGAMECLASS.output("<img src='" + getQualifiedClassName(ImageContainer) + "' width='" + width + "' height='" + height + "'>");
+			}
+			else
+			{
+				classT = null;
+			}
 		}
 	}
 

@@ -1,5 +1,4 @@
-package classes.Resources.ImagePack 
-{
+package classes.Resources.ImagePackAssets {
 	import flash.display.Bitmap;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;

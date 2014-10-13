@@ -1,22 +1,25 @@
-package classes.Resources.ImagePack 
-{
+package classes.Resources.ImagePackAssets {
 	import flash.display.Bitmap;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import classes.Resources.ImagePack;
+	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	public class ImageContainer extends MovieClip
 	{
-		protected var imageT:Class = null;
+		public var imageT:Class;
 		public var bmp:Bitmap;
 		private var bigI:BigImageContainer;
 		
 		public function ImageContainer() 
 		{
 			super();
+			imageT = ImagePack.ImageRequestT;
+			
 			bmp = new imageT();
 			bmp.smoothing = true;
 			this.addChild(bmp);
