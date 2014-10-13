@@ -3304,7 +3304,7 @@ function initializeRooms():void
 	rooms["510"] = new RoomClass(this);
 	rooms["510"].roomName = "BARN\nENTRANCE";
 	rooms["510"].description = "A hand painted piece of what looks like oak hangs above the barn's single sliding door, declaring it to be the \"Milk Barn\". Even stranger, the door is transparent. You can see right down the barn's central path, covered as it is by a bed of straw. You can only assume that the stalls along either side are equally carpeted with the stuff. You hear pleased-sounding moos and moans in equal proportion, and the air is heady with the scent of milk. The roadway leads west, back towards the farmhouse, and is blocked by a checkpoint to the east. The guards working it inform you that visitors aren't permitted past without a visa.";
-	rooms["510"].runOnEnter = undefined;
+	rooms["510"].runOnEnter = randomBarnEntranceEventsFunc;
 	rooms["510"].westExit = "509";
 	rooms["510"].northExit = "511";
 	rooms["510"].planet = "PLANET: NEW TEXAS";

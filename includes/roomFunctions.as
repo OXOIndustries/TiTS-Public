@@ -891,11 +891,22 @@ function NTBarbequeBonusFunc():Boolean
 	return false;
 }
 
+function randomBarnEntranceEventsFunc():Boolean 
+{
+	// Gonnae splice gobbles in here so it can be handled separately
+	if (gobblesAvailable() && rand(3) == 0)
+	{
+		supGobbles2014CanadaEdition();
+		return true;
+	}
+	return false;
+}
+
 function randomBarnEventFunc():Boolean
 {
 	var retVal:Boolean = false;
 	
-	//Chance to proc any one of these events when passing by a milking stall. Each can proc 1/day at most. 
+	//Chance to proc any one of these events when passing by a milking stall. Each can proc 1/day at most.
 	if(flags["MILK_BARN_EVENT_TODAY"] == undefined && rand(10) == 0)
 	{
 		//Cured Reaha

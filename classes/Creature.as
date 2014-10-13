@@ -1793,6 +1793,19 @@
 			return hasStatusEffect("Treated");
 		}
 		
+		// These are shit for the time being, as I assume you'd wanna divorce Physical & Mental changes (ie get a Female physical+mental change set, but then tf to male or some shit idk)
+		public function isTreatedFemale():Boolean
+		{
+			if (isTreated() && this.mf("m", "f") == "f") return true;
+			return false;
+		}
+		
+		public function isTreatedMale():Boolean
+		{
+			if (isTreated() && this.mf("m", "f") == "m") return true;
+			return false;
+		}
+		
 		public function cumflationEnabled():Boolean
 		{
 			return false;
