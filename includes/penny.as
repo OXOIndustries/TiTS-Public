@@ -1923,7 +1923,7 @@ function faceFuckPenny():void {
 	
 	output("\n\n\<i>“I love the way you look at me,”</i>  Penny sighs, voice husky with desire. <i>“Why don't you come prove that you liked the show?”</i>");
 	
-	output("\n\nShe licks her lips seductively, mouth wide open and inviting. You stip your gear off and slip around the desk as Penny adjusts her stance, getting her face at just the perfect height to accept your ");
+	output("\n\nShe licks her lips seductively, mouth wide open and inviting. You strip your gear off and slip around the desk as Penny adjusts her stance, getting her face at just the perfect height to accept your ");
 	if(pc.cocks[x].cLength() >= 10) output("massive, ");
 	output("throbbing need.");
 
