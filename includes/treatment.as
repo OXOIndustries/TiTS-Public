@@ -188,7 +188,7 @@ function treatmentHourProcs():void
 			pc.lust(9);
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			eventBuffer += "\n\n(<b>Perk Gained: Sexy Thinking</b> - Increases tease damage inversely to how high willpower and intelligence are.)";
-	 		pc.createPerk("Sexy Thinking",0,0,0,0,"Increases maximum lust by 15.");
+	 		pc.createPerk("Sexy Thinking",0,0,0,0,"Boosts tease damage more the dumber and less willful you are.");
 			//Libido to 30 or +5
 			if(pc.libido() + 5 < 30) pc.libido(30-pc.libido());
 			else pc.libido(3);
