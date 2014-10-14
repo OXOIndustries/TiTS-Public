@@ -40,13 +40,13 @@ package classes.Items.Guns
 			//Information
 			this.basePrice = 1; // Intentionally giving the items from Kiro a shit value so that they won't outweigh the 1k credit reward from /not/ taking any items.
 			this.attack = 3;
-			this.damage = 5;
+			this.damage = 7;
 			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 3;
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);

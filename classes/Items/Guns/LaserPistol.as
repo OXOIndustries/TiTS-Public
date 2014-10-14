@@ -37,13 +37,13 @@
 			//Information
 			this.basePrice = 1050;
 			this.attack = 2;
-			this.damage = 4;
+			this.damage = 6;
 			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 1;
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
