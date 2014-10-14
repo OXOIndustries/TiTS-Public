@@ -1955,7 +1955,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 	output("\n\n<i>“Mmm, you're all the way in. How does it feel?”</i> she asks, her violet netherlips excitedly clinging to your [pc.cockNoun] as her insides lash at you.");
 	if (pc.balls > 0) output(" At the same time she gently rubs her hairless mound against your [pc.sack].");
 
-	output("\n\nYou moan out that it feels wonderful, your [pc.cockHead " + selCock + "] flexing inside of her. Grinning in response, she slowly begins rocking her waist in your lap. The busty huntress lets out a blissful moan as your [pc.cock " + selCock + "] wetly stirs around inside of her [pc.pussy], caressing her silky inner walls.");
+	output("\n\nYou moan out that it feels wonderful, your [pc.cockHead " + selCock + "] flexing inside of her. Grinning in response, she slowly begins rocking her waist in your lap. The busty huntress lets out a blissful moan as your [pc.cock " + selCock + "] wetly stirs around inside of her [monster.pussy], caressing her silky inner walls.");
  
 	output("\n\n<i>“Fuck me harder. Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!”</i> she commands, bucking wildly against you. One of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge.");
 
