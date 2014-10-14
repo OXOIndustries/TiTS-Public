@@ -2063,8 +2063,11 @@ function fantasize():void {
 function wait():void {
 	clearOutput();
 	output("You choose not to act.\n");
-	if (foes[0] is Kaska && pc.hasStatusEffect("Grappled")) doNothingWhileTittyGrappled();
-	else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeWaitWhilstGrappled();
+	if (pc.hasStatusEffect("Grappled"))
+	{
+		if (foes[0] is Kaska) doNothingWhileTittyGrappled();
+		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeWaitWhilstGrappled();
+	}
 	processCombat();
 }
 
