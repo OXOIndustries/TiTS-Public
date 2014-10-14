@@ -1134,7 +1134,10 @@ function zilSticksItInYourBoot():void {
 	else {
 		output("Shuddering as the scent of the alien aggressor overwhelms your feeble resistance, you fall down in an uncoordinated heap, one hand plunging into your equipment to strip it away. Your heart is hammering, each beat carrying the fevered lust deeper into your groin, inflating [pc.eachCock] to steel-hard rigidity. Pre-jism drips out in heavy droplets, spattering the ground underneath you in a mockery of jungle dew.");
 		output("\n\nThe zil flutters up curiously, his gaze flitting past yours as he admires the way your groin secretes evidence of your lust.");
-		output("\n\n<i>“A shame you are not female. I had hoped to breed,”</i> he admits, but then his hand comes to rest on your upraised [pc.butt], giving it a none-too-subtle squeeze. <i>“We can still have fun, I think.”</i> The waspling's wings buzz around you as he floats back before you. His leaking, foreskin-shrouded cock presses against your cheek abruptly, sliming you with the stuff as he forces you to take a direct dose of his pheromones. <i>“Yes... this will be fun.”</i>");
+		output("\n\n<i>“");
+		if(pc.hasVagina()) output("I originally thought to breed you. I've changed my mind,");
+		else output("A shame you are not female. I had hoped to breed,");
+		output("”</i> he admits, but then his hand comes to rest on your upraised [pc.butt], giving it a none-too-subtle squeeze. <i>“We can still have fun, I think.”</i> The waspling's wings buzz around you as he floats back before you. His leaking, foreskin-shrouded cock presses against your cheek abruptly, sliming you with the stuff as he forces you to take a direct dose of his pheromones. <i>“Yes... this will be fun.”</i>");
 		output("\n\nYou moan and raise your ass higher, overcome with lust. He's right.");
 	}
 	//{Both}
