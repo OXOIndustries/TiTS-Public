@@ -2428,7 +2428,7 @@ function giannaNormalTitTitfuck():void
 		output("\n\n<i>“Easy, " + pc.mf("stud","princess") + ".”</i> Gianna slows the incessant pumping of her tits to a more reasonable, slow grinding. [pc.EachCock] jerks and pulsates as it drips, so close to release and being forced to wait.");
 		output("\n\nYou groan in disappointment.");
 		output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. <i>“Do you want to cum now?”</i> She briefly jostles her chest, bouncing you between two slick love-pillows. <i>“I know the longer I can make this last, the better it will feel for you.”</i> She pauses. <i>“You’re on the cusp of a powerful orgasm. ");
-		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him.");
+		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until he’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give [pc.himHer].");
 		else if(giannaPersonality() >= 70) output("Do you want it now? Do you want to paint my tits and fill my mouth?");
 		else output("I’ll bring you off now, if that’s what you command, [pc.master] [pc.name].");
 		output("”</i>");
@@ -2699,7 +2699,7 @@ function giveGirlsOral():void
 		if(giannaPersonality() >= 80) 
 		{
 			output("\n\nGianna brazenly grabs hold of you by the crotch and ");
-			if(pc.isCrotchGarbed()) output("presses her thumb down through your [pc.outerUnderGarment]");
+			if(pc.isCrotchGarbed()) output("presses her thumb down through your [pc.lowerGarments]");
 			else
 			{
 				output("rubs her thumb along ");
@@ -2805,11 +2805,20 @@ function giveGirlsOral():void
 		output("\n\nAs you black out, a tiny part of you marvels at the sparks of overwhelming enjoyment that arc across your synapses, shutting them down with what feels like the most powerful orgasm of your life.");
 		//Next - to epilogues - at the end of other scene variation.
 		processTime(10);
+		
+		/* u wot m8?
 		[pc.orgasm];
 		[pc.orgasm];
 		[pc.orgasm];
 		[pc.orgasm];
 		[pc.orgasm];
+		*/
+		
+		for (var i:int = 0; i < 5; i++)
+		{
+			pc.orgasm();
+		}
+		
 		clearMenu();
 		addButton(0,"Next",girlyTongueVibeEpilogue);
 		return;
@@ -3434,7 +3443,7 @@ function coochFuckThreeMaybeFourInOne():void
 		else
 		{
 			output("\n\n<i>“On the table, tiger.”</i> Gianna gives the bed a few firm pats. <i>“You can lie down and enjoy it. I’ll do </i>all<i> the work.”</i>");
-			output("\n\nNot seeing any point in arguing with a girl that’s about to take [pc.oneCock] for a ride, you climb on board with the idea and on top of the table. It’s surprisingly soft and comfortable. You suppose the cow-girls that get milked in these stalls might find it relaxing. There’s even a padded place for your head. Your tumescent [pc.cockNouns] jut");
+			output("\n\nNot seeing any point in arguing with a girl that’s about to take [pc.oneCock] for a ride, you climb on board with the idea and on top of the table. It’s surprisingly soft and comfortable. You suppose the cow-girls that get milked in these stalls might find it relaxing. There’s even a padded place for your head. Your tumescent [pc.cocksNounSimple] jut");
 			if(pc.cockTotal() == 1) output("s");
 			output(" up into the air, pulsating eagerly.");
 			output("\n\nComing up alongside you, the alabaster android smiles down at you");
@@ -3625,7 +3634,7 @@ function phatBootyHotdogging():void
 	}
 	//Merge
 	output("\n\n<i>“");
-	if(giannaPersonality() >= 70) output("Slip it in it, [pc.name]. Go ahead. Just don’t blame me when you’re getting your dick milked for the third time today my cheeks. I’m not responsible if you get addicted to it.");
+	if(giannaPersonality() >= 70) output("Slip it in it, [pc.name]. Go ahead. Just don’t blame me when you’re getting your dick milked for the third time today by my cheeks. I’m not responsible if you get addicted to it.");
 	else if(giannaPersonality() >= 30) output("Put it in! I’m completely, like, ready to feel you cumming all over my butt. I won’t even complain if you slip the tip inside and fill me from behind. Just cum wherever you like.");
 	else output("Please, [pc.Master]. I’m ready. I promise, I’ll make my butt feel as good as possible for you and earn every drop of seed you shoot out.");
 	output("”</i> Gianna flexes her ass, bouncing her cheeks.");
@@ -3643,7 +3652,7 @@ function phatBootyHotdogging():void
 	else output("I’m glad you approve of my slutty butt, [pc.Master]. Use it as you please.");
 	output("”</i> She flexes, forcing the silicone embrace to tighten yet further. You groan in response and probably leak a droplet of pre-cum into her crack, but it’s impossible to tell with all the ass in your way.");
 	output("\n\nWith your own heartbeat hammering in your ears, you shift position, pulling back until you’re about to pop out, and thrust inside, the first of many. This is your ass! It jiggles against you with each rhythmic pound. It’s your butt to use and abuse - to nestle your dick in whenever you feel the urge to blow a load. You grunt and growl as you fuck her bottom, suddenly possessed by barely understood urges that feed off the sensations spooling from your dick. One thing is clear to you: you’re not stopping until you reach completion.");
-	output("\n\nThe fat-bottomed companion urges you own with appreciative moans of her own. Sometimes, your strokes carry your [pc.cockHead] into the edge of her rim, and the brief catch will push her into ecstatic cries. Your hands playfully knead her butt as you fuck it, occasionally roughly groping it, other times bouncing it. Still other times, you’ll press it back down into a tight sleeve. The only constant is your pistoning rod, plumbing her backdoor cleavage with rapidfire thrusts.");
+	output("\n\nThe fat-bottomed companion urges you on with appreciative moans of her own. Sometimes, your strokes carry your [pc.cockHead] into the edge of her rim, and the brief catch will push her into ecstatic cries. Your hands playfully knead her butt as you fuck it, occasionally roughly groping it, other times bouncing it. Still other times, you’ll press it back down into a tight sleeve. The only constant is your pistoning rod, plumbing her backdoor cleavage with rapidfire thrusts.");
 	//2 Dix
 	if(pc.cockTotal() == 2)
 	{

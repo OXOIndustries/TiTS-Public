@@ -387,7 +387,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 			{
 				if (pc.wettestVaginalWetness() <= 3) output(" beading");
 				else output(" drooling");
-				output(" wetness of your [pc.cuntsLight]");
+				output(" wetness of your [pc.cunts]");
 			}
 			if (pc.hasCock() && pc.hasVagina()) 
 			{
@@ -480,7 +480,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 	if (!brynnIntroduced())
 	{
-		output("\n\n“<i>You’re good, girl. What’s your name?”</i> he asks. The sheer fact that his attention is now firmly focused on you, waiting for your answer, causes a flutter in your loins.");
+		output("\n\n“<i>You’re good, [pc.girl]. What’s your name?”</i> he asks. The sheer fact that his attention is now firmly focused on you, waiting for your answer, causes a flutter in your loins.");
 		
 		output("\n\n“<i>[pc.name],”</i> you reply");
 		if (pc.isTreated()) output(" with a wink of an eye");
