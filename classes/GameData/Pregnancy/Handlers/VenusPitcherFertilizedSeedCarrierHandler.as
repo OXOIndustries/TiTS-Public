@@ -83,8 +83,8 @@
 			kGAMECLASS.eventBuffer += ".";
 
 			// Change bellyMod
-			mother.bellyRatingMod += 2 * pData.pregnancyQuantity;
-			pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
+			mother.bellyRatingMod += 4 * pData.pregnancyQuantity;
+			pData.pregnancyBellyRatingContribution += 4 * pData.pregnancyQuantity;
 		}
 		
 		public static function cleanupPregnancy(target:Creature):void
