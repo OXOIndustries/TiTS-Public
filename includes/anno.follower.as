@@ -351,7 +351,7 @@ function annoMorningHandy():void
 	else if (pc.tone < 70 && pc.thickness <= 60 && pc.femininity >= 50) output(" the delicate curves of your body");
 	else if (pc.tone < 50 && pc.thickness > 60 && pc.femininity >= 50) output(" the ample curves of your body");
 	else output(" your [pc.skinFurScales]");
-	output(", lapping up your orgasmic fluids as she goes. The next few minutes pass in bliss as your lover cleans up her mess, slurping up every drop of [pc.cumType] until you feel like you just stepped out of a warm, if slightly sticky, shower. ");
+	output(", lapping up your orgasmic fluids as she goes. The next few minutes pass in bliss as your lover cleans up her mess, slurping up every drop of [pc.cum] until you feel like you just stepped out of a warm, if slightly sticky, shower. ");
 	
 	output("\n\nYou give Anno a scratch between the ears when she finishes, thanking your favorite alarm ausar for starting your day off right.");
 

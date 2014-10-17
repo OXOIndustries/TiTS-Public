@@ -111,8 +111,9 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = target.getPregnancyOfType("VenusPitcherSeedCarrier");
 			
 			pData.pregnancyQuantity--;
+			pData.pregnancyIncubation = 240 + rand(30);
 			pData.pregnancyBellyRatingContribution -= 10;
-			target.bellyRatingRaw -= 10;
+			target.bellyRatingMod -= 10;
 			
 			if (pData.pregnancyQuantity == 0)
 			{
