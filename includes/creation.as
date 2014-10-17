@@ -627,7 +627,7 @@ function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Bulgy"))
 	{
-		pc.ballSizeRaw -= 1;
+		pc.ballSizeRaw -= 4;
 		pc.ballEfficiency -= 1;
 		pc.removePerk("Bulgy");
 	}
@@ -700,7 +700,7 @@ function applySexualGift(arg:String = "none"):void {
 	}
 	else if(arg == "bulgy") {
 		pc.createPerk("Bulgy",0,0,0,0,"Increase the size of any gonads and the speed at which they are enhanced.");
-		pc.ballSizeRaw += 1;
+		pc.ballSizeRaw += 4;
 		pc.ballEfficiency += 1;
 	}
 	else if(arg == "extra ardor") {

@@ -972,16 +972,16 @@ function treatmentHourProcs():void
 				//Small clits gro - clothed
 				if(pc.isCrotchGarbed())
 				{
-					eventBuffer += "\n\nWith every movement you make, you become increasingly aware of your [pc.clits] rubbing against your [pc.lowerGarment]. It’s impossible to ignore the constant, distraction friction on your nub";
+					eventBuffer += "\n\nWith every movement you make, you become increasingly aware of your [pc.clits] rubbing against your [pc.lowerGarment]. It’s impossible to ignore the constant, distracting friction on your nub";
 					if(pc.totalClits() > 1) eventBuffer += "s";
-					eventBuffer += ", constantly feeding your arousal fresh fuel. You huff in annoyance and yank the offending garments down, eyeballing [pc.oneClit] to see why it’s gotten so gosh darn sensitive.";
+					eventBuffer += ", feeding your arousal fresh fuel. You huff in annoyance and yank the offending garments down, eyeballing [pc.oneClit] to see why it’s gotten so gosh darn sensitive.";
 				}
 				//Small clits gro - unclothed
 				else
 				{
 					eventBuffer += "\n\nWith every movement you make, you find your " + possessive(pc.vaginasDescript()) + " [pc.clits] rubbing on your netherlips as if constantly aroused and swollen. It’s a nagging, constant sensation of friction on your nub";
 					if(pc.totalClits() > 1) eventBuffer += "s";
-					eventBuffer += ", constantly feeding your arousal fresh fuel. You huff in annoyance and bend over for a closer look, eyeing [pc.oneClit] to see why it’s so sensitive now.";
+					eventBuffer += ", feeding your arousal fresh fuel. You huff in annoyance and bend over for a closer look, eyeing [pc.oneClit] to see why it’s so sensitive now.";
 				}
 				//Merge
 				eventBuffer += "\n\n<b>Your clit is like a big, pink gumball!</b> Even when it isn’t stimulated, it’ll probably stick out of its hood. It must be three quarters of an inch long at full size. You’ll just have to get used to having such a big, easily stimulated buzzer.";
@@ -1047,7 +1047,7 @@ function treatmentHourProcs():void
 		{
 			if(pc.isCrotchGarbed()) eventBuffer += "\n\nAn increase in the tightness of your [pc.lowerGarments] gradually comes to your attention, forcing you to shift and adjust them.";
 			else eventBuffer += "\n\nA slight shift in your balance gradually makes itself known to you, and you twist to regard your changing form, expecting to find a bigger butt.";
-			eventBuffer += " Sure enough, your ass has swollen up an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
+			eventBuffer += " Sure enough, your ass has swollen up with an influx of fresh new flesh, pushing it out into a quite squeezable, bubbly butt. The urge to shake it comes over you, but you fight it off, for now. There will be plenty of time for that sort of thing later. Not too much later, but later.";
 			pc.buttRatingRaw = 7 + rand(6);
 		}
 	}
