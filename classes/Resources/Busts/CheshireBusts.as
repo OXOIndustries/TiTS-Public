@@ -24,6 +24,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cheshire/Rival_Jack.png", mimeType = "image/png")]
+		public var Bust_JACK:Class;
+		[Embed(source = "../../../assets/images/npcs/cheshire/Rival_Jill.png", mimeType = "image/png")]
+		public var Bust_JILL:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
 
@@ -39,6 +44,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanmale.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/cheshire/Machina.png", mimeType = "image/png")]
+		public var Bust_MACHINA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/Mimbrane.png", mimeType = "image/png")]
+		public var Bust_MIMBRANE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Naleen_Female.png", mimeType = "image/png")]
 		public var Bust_NALEEN:Class;
 
@@ -57,11 +68,19 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/Syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cheshire/Vanae_Huntress.png", mimeType = "image/png")]
+		public var Bust_VANAE_HUNTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/cheshire/Vanae_Maiden.png", mimeType = "image/png")]
+		public var Bust_VANAE_MAIDEN:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Venus_Pitcher_Elder.png", mimeType = "image/png")]
 		public var Bust_VENUS_PITCHER_ELDER:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/V-Ko.png", mimeType = "image/png")]
+		public var Bust_VKO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
