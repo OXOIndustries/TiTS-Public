@@ -798,14 +798,12 @@ function yesSnuggleWifZatNaleen():void {
 		if(pc.cockTotal() > 1) output("s");
 		output(" as she guides ");
 		if(pc.cockTotal() == 1) output("it");
-		else output("them");
+		else output("one");
 		output(" toward her waiting womanhood. Your mind fizzles blank with sudden and overwhelming pleasure as [pc.oneCock] sinks into the hot, sultry depths of the naleen's welcoming pussy.");
 		
 		output("\n\n<i>“Better?”</i> she teases, clenching her muscles around your prick");
-		if(pc.cockTotal() > 1) output("s");
 		output(", massaging ");
-		if(pc.cockTotal() == 1) output("it");
-		else output("them");
+		output("it");
 		output(" oh so sweetly inside herself.");
 		
 		output("\n\n<i>“Much,”</i> you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You've never felt warmer.");
