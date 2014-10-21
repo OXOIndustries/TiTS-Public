@@ -188,5 +188,13 @@
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+
+		}
 	}
 }

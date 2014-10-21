@@ -1051,16 +1051,261 @@ function treatmentHourProcs():void
 			pc.buttRatingRaw = 7 + rand(6);
 		}
 	}
+	//REGULAR DUDEMOAD
+	else if(pc.statusEffectv1("The Treatment") == 1)
+	{
+		//48 Hours of Mental Changes: slowStatGain of 2 libido an hour.
+		//+Confidence
+		//+Increased Enjoyment of Physical Tasks
+		//+Libido (of course)
+		//+Craving for vaginal fluid
+		pc.slowStatGain("libido",2);
+		if(treatedHours == 2)
+		{
+			eventBuffer += "\n\nWell, you’ve taken the Treatment and you don’t really feel any different yet. You would’ve thought that after an hour or two you’d be daydreaming about the silken slit between a busty cow-gal’s thighs, but... nope. You sigh and return to your previous business, hoping something happens soon.";
+		}
+		else if(treatedHours == 4)
+		{
+			eventBuffer += "\n\nYou idly munch on a ration bar, struck by an unexpected pang of hunger. One moment, you’re moving along just fine, the next, you need to eat like nobody’s business. Good thing your ship was stocked full of them. You wouldn’t want to starve out here just because your body is stocking up on calories for a little ";
+			if(!pc.hasCock()) eventBuffer += "muscle-building";
+			else eventBuffer += "dick-swelling";
+			eventBuffer += ".";
+			if(pc.hasCock()) eventBuffer += " You pull open your bottoms and eyeball your [pc.cocks]. Still the same. Damn.";
+		}
+		else if(treatedHours == 6)
+		{
+			eventBuffer += "\n\nYou belch loudly, not remembering your manners until it’s too late to do anything about. A sheepish look around you is all you manage before your shame melts away. It was just a burp. It’s a totally normal thing to do, particularly after eating another ration bar. You belch again, enjoying the way it rumbles out of your chest a little more strongly than you anticipated. You’ve got nothing to be ashamed of.";
+		}
+		else if(treatedHours == 8)
+		{
+			eventBuffer += "\n\nRubbing your chin, you consider the evidence stacking up around you in the form of empty wrappers. The Treatment is definitely doing something to you, though it’s still way too soon for it to be ";
+			if(pc.hasCock()) eventBuffer += "giving you a sperm-dripping bull-cock";
+			else eventBuffer += "changing your body";
+			eventBuffer += ". You have been thinking about sex a little more than normal over these past few hours";
+			if(pc.hasCock()) eventBuffer += ", and [pc.eachCock] in engorges in anticipation of a little attention";
+			eventBuffer += ". Not that there’s anything wrong with thinking about sex, you suppose. It’s not exactly a new thing, and it probably has nothing to do with the Treatment.";
+			pc.lust(2);
+		}
+		else if(treatedHours == 10)
+		{
+			eventBuffer += "\n\nYou find yourself smiling more and more, and not in the silly, stupid, giggly way that the bimbos back on New Texas do. No, it’s just an easy, friendly grin - the kind that lets people know you’ve probably got a few good stories to tell over beers and a campfire. It’s the kind of grin that could get a girl to climb into your lap for a heavy make-out session, and that thought just makes you smile all the harder.";
+			pc.lust(4);
+		}
+		else if(treatedHours == 12)
+		{
+			eventBuffer += "\n\nYou have so much energy lately. You could jog in place or drop and work through twenty pushups right now if you didn’t have other stuff to do. Maybe you ought to start working out soon. With all the food you’re consuming, it might be a good idea to burn some of the excess calories off before they go to your waistline. You’re going to need to be hot enough to pick up some cuties soon, what with how your libido is supposed to spike.";
+			pc.lust(4);
+			if(pc.hasCock()) 
+			{
+				eventBuffer += "\n\nYou pointedly adjust your [pc.cocks], finding ";
+				if(pc.cockTotal() == 1) eventBuffer += "it";
+				else eventBuffer += "them";
+				eventBuffer += " to be entirely too rigid at this exact moment.";
+				if(pc.lust() >= 80) eventBuffer += " You’re either going to need to give them some attention, or find a slippery girl in need of a good reaming soon.";
+				else eventBuffer += " You give yourself a comforting squeeze and move on, revelling in the sensuous warmth that infuses you.";
+
+			}
+		}
+		else if(treatedHours == 14)
+		{
+			eventBuffer += "\n\nYou frown. It’s already been the better part of a day and you’re no closer to being a ";
+			if(pc.hasCock()) eventBuffer += "hung bull";
+			else eventBuffer += "chiseled adonis";
+			eventBuffer += " than you were back when you took the Treatment.";
+			if(pc.hasCock()) 
+			{
+				eventBuffer += " Is it too much to ask for your [pc.cocks] to swell up huge and hard when you want it to? You’re fucking horny, and ";
+				if(pc.biggestCockLength() >= 12) eventBuffer += "though [pc.eachCock] is already huge, you could be bigger! Imagine the gaped holes you’d leave behind!";
+				else eventBuffer += "you’re not even ready to properly gape any cunts yet.";
+			}
+			eventBuffer += " Growling, you scratch your crotch and sigh.";
+			pc.lust(5);
+		}
+		else if(treatedHours == 16)
+		{
+			eventBuffer += "\n\nYou decide to do a few pushups out of the blue. Despite your mind telling you that they should be a piece of cake, they’re way harder than your brain expected. You muscle through them anyhow, building up a sheen of sweat in the process. In the aftermath of the activity, you reflect on just how satisfying that felt. In its own way, it was almost as good as sex.";
+			eventBuffer += "\n\nOf course, nothing would feel as right a solid, bed-breaking fuck right about now.";
+			pc.lust(6);
+		}
+		else if(treatedHours == 18)
+		{
+			eventBuffer += "\n\nYou spend a few minutes looking at yourself in the screen of your Codex and wonder if there’s anything you should change or do differently. A little grooming would go a long way towards making the ladies’ panties damp and clingy. Unbidden, a perfectly realized vision of a pair of white, cottony ones comes to mind, perfectly molded to a very aroused looking slit. You lick your lips and dismiss the image. You’re sure you’ll see that sort of thing plenty soon enough.";
+			pc.lust(8);
+		}
+		else if(treatedHours == 20)
+		{
+			eventBuffer += "\n\nSomething occurs to you. You’re getting more confident. You’re sure of it. If you walked into a bar on the wrong planet, you’d look everyone you met in the eye without thinking twice about it. Best case scenario, you’d pick yourself up a punky honey. Worst case scenario, you get to lay out a few toughs.";
+			eventBuffer += "\n\n...You hope that muscle growth starts before you wind up getting yourself in over your head.";
+		}
+		else if(treatedHours == 22)
+		{
+			eventBuffer += "\n\nIn a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs between your legs.";
+			eventBuffer += "\n\nThere’s nothing wrong with a little daydreaming, after all.";
+			pc.lust(25);
+		}
+		else if(treatedHours == 24)
+		{
+			eventBuffer += "\n\nOne day under the Treatment, and you’re already finding yourself imagining every woman you see with bigger, milkier, pregnant boobs. It’s hard not to, really. They’ve got all these organs whose sole purpose is to be filled with life, and their bodies get so sexy from it. It’s almost like it’s your duty to seed as many as possible. And in another day or two, you’ll probably be big and strong enough that they’ll just throw themselves into your arms. That easy grin comes back to your face, and you don’t expect it to ever leave.";
+			pc.lust(10);
+		}
+		else if(treatedHours == 26)
+		{
+			eventBuffer += "\n\nYou crack your neck and roll your shoulders. There’s a lot to get done, and you’re the only " + pc.mf("guy","gal") + " that can do it. If you can manage to get your dick taken care of in the process, more power to you.";
+			pc.lust(2);
+		}
+		else if(treatedHours == 28)
+		{
+			eventBuffer += "\n\nYou grunt while looking at your Codex. When did you put such a cruddy color scheme on this thing? It looks like something a kid would have on their computer, not the type of thing you’d put on a serious business machine with a surprising amount of processing power. You click through the settings and pick a scheme that befits the serious nature of your quest. Now, back to work.";
+		}
+		else if(treatedHours == 30)
+		{
+			eventBuffer += "\n\nStars above, there is a serious ";
+			if(pc.hasCock())
+			{
+				if(pc.isCrotchGarbed()) eventBuffer += "tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your [pc.balls]. One way or the other, you’re due to blow a load.";
+				else 
+				{
+					eventBuffer += "hardness in your groin. You take a look down and find yourself more hard than you’ve been in a while, dribbling pre-cum down your length";
+					if(pc.cockTotal() > 1) eventBuffer += "s";
+					eventBuffer += ". Either it’s time to find a partner or time to jack off. Either way, you need to blow a load.";
+				}
+			}
+			else eventBuffer += "ache of desire welling up within you. If only had a dick, you could just reach down and tug yourself to an easy, messy orgasm. Maybe you could even splatter a layer of baby-making cream across a cute slut’s face. She’d love it. As it is, you’re going to have to settle for getting off some other way - anything to burn through this lusty haze.";
+			pc.lust(pc.lustMax());
+		}
+		else if(treatedHours == 32)
+		{
+			eventBuffer += "\n\nYou examine yourself and sigh, ticking through a mental list of the changes you’ve noticed so far. You’re a lot more confident. That’s a plus. And you’re hornier. A lot hornier. You can’t really doubt that now, even if your boosted libido feels as normal and right as fresh apple pie. You file that away as a plus too. The extra lust and the extra demands it places on you don’t distract you from what needs to be done as much as you thought they would. Also, you’re pretty sure you’re really starting to enjoy physical work. Just lifting a heavy weight up and down for an hour would be a pretty great way to spend an afternoon.";
+			eventBuffer += "\n\nWhat about downsides? You rack your brain. Well, you’ve got to get off more for sure, but that’s not really a downside. You wouldn’t be able to keep a treated girl sated if you weren’t getting so randy. Is there anything else? You shake your head. Nothing is coming to mind. This Treatment this is working out pretty great.";
+			pc.lust(2);
+
+		}
+		else if(treatedHours == 34)
+		{
+			eventBuffer += "\n\nYou idly wonder how hard it would be to fit some gym equipment onto your ship so that you can stay in shape on the road. It’d be an entertaining diversion from the monotony of waiting for light drive to carry you to the next jump gate.";
+			if(celiseIsCrew()) eventBuffer += " Celise could even service you while you go at it.";
+			else eventBuffer += " Maybe you can find someone willing to service you while you go at it.";
+		}
+		else if(treatedHours == 36)
+		{
+			//Cock
+			if(pc.hasCock())
+			{
+				eventBuffer += "\n\nYou growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the way it keeps your [pc.cocks] so iron-hard with thoughts of near-constant sex. Even your [pc.nipples] are ";
+				if(pc.hasDickNipples()) eventBuffer += "jutting out of their sheaths, ready to be thrust inside something";
+				else if(pc.isLactating() || pc.hasFuckableNipples()) eventBuffer += "leaking";
+				else if(pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT || pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) eventBuffer += "hard";
+				else if(pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) eventBuffer += "pursed and drooling";
+				else eventBuffer += "pebbly and sensitive";
+				eventBuffer += ". You briefly consider forcing yourself upon the next person you meet but immediately discard the thought. Why would you stoop to something so... so... uncivilized when there’s plenty of willing partners out there?";
+			}
+			//Pussah
+			else if(pc.hasVagina())
+			{
+				eventBuffer += "\n\nYou growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit";
+				if(pc.totalVaginas() > 1) eventBuffer += "s";
+				eventBuffer += " against them until you’re both covered in sweat and sexual effluvia, panting breathily with you on top.";
+			}
+			//Nothing
+			else
+			{
+				eventBuffer += "\n\nYou growl in dissatisfaction. You can’t seem to quell the feeling of building eroticism or odd desires. Playing with your [pc.asshole] or [pc.nipples] just won’t be enough for you anymore. You want to <i>penetrate</i>, not be penetrated. If only had a dick, this would be so much easier... a nice, hard, throbbing prick to bury into your partners. You look at your fingers and smile. They’re no cock, but you bet you can make some cutie howl in delight if you use them right.";
+			}
+			//Merge
+			eventBuffer += "\n\nBesides, the real takeaway is just how hot and horny you’re able to get without going off. You’re able to sit there fantasizing about a beauty so busty that her milk-stained top is about to tear off her tits well past the point where you’d have to masturbate before. You suppose you’re getting better at it - being aroused that is. You could walk around ";
+			if(pc.hasCock()) eventBuffer += "with a pant-straining stiffy for hours";
+			else if(pc.hasVagina()) eventBuffer += "with soaked panties";
+			else eventBuffer += "with overwhelming desire";
+			eventBuffer += " and still wait a few hours to find just the right playmate. It must be an effect of the treatment, turning you into some combination of a rutting bull and sexual god. Either seems fine.";
+			//Inhuman Desire +20 max lust.
+			if(!pc.hasPerk("Inhuman Desire"))
+			{
+				eventBuffer += "\n\n(<b>Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 20.)";
+				pc.createPerk("Inhuman Desire",20,0,0,0,"Increases maximum lust by 20.");
+			}
+			else
+			{
+				eventBuffer += "\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 20.)";
+				pc.addPerkValue("Inhuman Desire",1,20);
+				pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
+			}
+			pc.lust(20);
+
+		}
+		else if(treatedHours == 38)
+		{
+			eventBuffer += "\n\nYou crack your knuckles a few times, admiring the rich sound, powerful sound it makes. You can’t be far from getting your real rewards for taking the Treatment - muscles";
+			if(pc.hasCock()) eventBuffer += ", a bigger dick";
+			if(pc.balls > 1) eventBuffer += ", bigger balls";
+			eventBuffer += ", potent pheromones, and badass horns. A cocky smile graces your features. This should be fun.";
+		}
+		else if(treatedHours == 42)
+		{
+			eventBuffer += "\n\nThere’s little doubt that your preferences have been changing these past two days, but you decide to really put things to the test by using your Codex to access some of the more... sexual sites on the extranet. You don’t really do so with the intention of masturbating. It’s just idle curiosity over how your tastes are changing.";
+			eventBuffer += "\n\nYou browse through the categories one by one, starting with things like galotian oil-porn and ausars in heat, then working your way across the xxx-rated mélange into ultraporn, the realm of gene-modded sexual parodies. The things you liked before are all still pretty awesome, but it’s like someone went and turned things like lactation, cow-girls, and pregnancy into the universe’s fetishes. Seeing a leaky tit onscreen makes your mouth water.";
+			eventBuffer += "\n\nHell, even squirting orgasms look way more exciting that before. Your tongue feels chapped and dry, and you have the distinct desire to ram it into the gushing onscreen hole.";
+			pc.lust(13);
+		}
+		else if(treatedHours == 44)
+		{
+			//Cocks
+			if(pc.hasCock())
+			{
+				eventBuffer += "\n\nYou find yourself just kind of idly rubbing at [pc.oneCock] whenever you have a spare moment. At first, you’d stop yourself whenever it happened, but more and more, you don’t see the logic in stopping. It feels really good to have a little friction on your length, and if it keeps your body churning up a fresh load faster, who are you to complain? Your ";
+				if(pc.hasVirginCock()) eventBuffer += "next";
+				else eventBuffer += "first";
+				eventBuffer += " lay is going to thank you for being so ready for her, you’re sure of it.";
+				eventBuffer += "\n\nIt doesn’t even distract you that much, really. Dealing with arousal is an automatic thing for you now. Pre-soaked undies? You’re pretty sure you’d have no problem ignoring the sticky, moist feeling. Adjusting the fit of clothing to deal with your rigid length? Your hand is there anyway. It might as well keep you comfortable. And you can still sit there browsing the extranet with your other hand, or buying supplies... or grabbing a tit. Whatever really.";
+				eventBuffer += "\n\nThe important takeaway is that you’re so much better at being rock-hard than ever before. Before, when you were less awesome, you might’ve been desperate to climax, masturbating furiously. Now? You’ve learned to control it, to ride the tide of sexual desire like a cowboy on his steed. It’s empowering.";
+			}
+			//Cooches!
+			else if(pc.hasVagina())
+			{
+				eventBuffer += "\n\nYou find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ";
+				if(pc.hasVirginCock()) eventBuffer += "first";
+				else eventBuffer += "next";
+				eventBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
+				eventBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels between your legs, putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
+				eventBuffer += "\n\nThe important takeaway is that you’re fucking amazing at being aroused now. Stimulation that would’ve morphed you into a mewling ball only makes you hotter and more capable of pleasure. It’ll take so much more teasing to bring you to the brink than ever before, but that just means you get to have bigger orgasms when you do. It’s win-win.";
+			}
+			//No Cooch!
+			else
+			{
+				eventBuffer += "\n\nYou find yourself just kind of oddly clenching and unclenching your [pc.asshole]. Whenever you do, pleasant flashes of desire run through your body, slithering up your spine to wrap your brain in their sensuous warmth. Before taking the treatment, you’d be so turned on that you would probably be down on the ground, trying to stuff four fingers inside yourself. Now you can ride the arousal like your own personal steed, directing it but never denying it.";
+				eventBuffer += "\n\nYou can only theorize that your brain is getting better and better at dealing with pleasure. The Treatment is making you more capable than ever before, even without normal genitalia. Why would anyone ever refuse such a gift?";
+			}
+			//All:
+			//Inhuman Desire++
+			//Inhuman Desire upgrade to +40.
+			eventBuffer += "\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 20.)";
+			pc.addPerkValue("Inhuman Desire",1,20);
+			pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
+			pc.lust(13);
+
+		}
+		else if(treatedHours == 46)
+		{
+			eventBuffer += "\n\nYou catch yourself using fewer and fewer words to communicate as the days go by, not because using them is hard or anything, but because they seem pointless. Can’t they see how you feel from the set of your jaw or the tenseness of your shoulders? Can’t they read arousal in the flush of your [pc.skin] or the smell of your pheromones? There’s no point getting fancy with it when you can just state what you mean plainly and simply.";
+			eventBuffer += "\n\nAll the big words are just a distraction.";
+			//Brute Speech Unlock!
+			eventBuffer += "\n\n(<b>Gained Perk: Brute Speech</b> - You will now sound like more like a reticent brute in scenes that support it.)";
+			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
+
+		}
+		else if(treatedHours == 48)
+		{
+			eventBuffer += "\n\nYou check your Codex’s chrono. It’s been 48 hours since your Treatment injection. That wasn’t that bad. You had worried that it would change who you were on the inside, but that didn’t happen, did it? You’re bigger, more confident, and ready to do some exercise as your muscles swell. And you’re hornier too, of course, but that goes without saying.";
+			if(pc.hasCock())
+			{
+				eventBuffer += " You could probably break a board in half with your dick";
+				if(pc.cockTotal() > 1) eventBuffer += "s; they're that hard.";
+				else eventBuffer += "; it’s that hard.";
+			}
+			eventBuffer += " Underneath your more terse exterior and desire to fuck a big-boobed submissive, you’re still the same [pc.name] Steele.";
+			eventBuffer += "\n\nA better [pc.name] Steele.";
+		}
+	}
 }
-
-//UNFINISHED FEMSTUFF
-	//Hooves -> hooves
-	//Defattening
-	//Hip widening
-	//Bigger Booty
-	//Clit Expanding
-	//Treatment finishing.
-
 
 function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
 {

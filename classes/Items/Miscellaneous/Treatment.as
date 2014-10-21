@@ -118,8 +118,6 @@ package classes.Items.Miscellaneous
 						output(" isn't too bad a price to pay.");
 						
 						output("\n\nPressing the activation stud is all it will take. You hold the tip against your arm and brace yourself, pushing the button. A quiet-sounding 'snick' hits your ears, but nothing else. Did it even work? You look where you had the pen held. There's a tiny red mark and nothing else. The pen's label displays the word ‘inactive’ in bold red text. It must have a built in painkiller. You wonder how long it’ll take until your dick gets bigger.");
-						output("\n\n<b>Turns out only the female version is done. NOTHING HAPPENS!</b>");
-						return false;
 					}
 					//First use - Female
 					else if(pc.hasVagina() && !pc.hasCock())
@@ -180,14 +178,15 @@ package classes.Items.Miscellaneous
 						//No balls.
 						pc.setStatusValue("Treated",4,0);
 						//Set mode to lady mode
-						pc.setStatusValue("Treatment Storage",1,0);
+						pc.setStatusValue("The Treatment",1,0);
 						//Set rare proc to 0.
-						pc.setStatusValue("Treatment Storage",2,0);
+						pc.setStatusValue("The Treatment",2,0);
 					}
 					//Set values for dudes
 					else if(pc.hasCock() && !pc.hasVagina())
 					{
-
+						//Set mode to man mode
+						pc.setStatusValue("The Treatment",1,1);
 					}
 					//Herms/neuters
 					else
