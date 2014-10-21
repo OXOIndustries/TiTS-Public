@@ -1203,7 +1203,7 @@ function talkToPennyAboutSpecies():void {
 	//Pass 30m
 	processTime(30);
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",approachFriendPenny);
 }
 
 //[Do For Fun?]
@@ -1220,7 +1220,7 @@ function whatDoesPennyDoForFun():void {
 	output("\n\n<i>“I know, but who would we play against? The zil? I need to wait for this planet to get more than a dozen permanent, civilized residents before I try anything like that,”</i>  Penny declares. <i>“Other than that, fitness is my real hobby. Being a girl, I’ve got to keep in good shape to take down some of the more burly customers I get. I can run laps around just about everyone I’ve met. The extra animal vitality I’m packing might be helping a little bit with that.”</i>  She winks. <i>“That isn’t all, but if you want the whole scoop, you’ll just have to keep coming around and getting me talking until I’m comfortable telling you about my... racier hobbies.”</i>");
 	processTime(25);
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",approachFriendPenny);
 }
 
 //Her Youth
@@ -1236,7 +1236,7 @@ function pennysYouth():void {
 	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i>  Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",approachFriendPenny);
 }
 
 //[PC Name]
@@ -1265,7 +1265,7 @@ function talkToPennyAboutYourself():void {
 	output("\n\nEars standing straight up, Penny bristles, <i>“No, I think I’ve said it all. Now, unless you have something else to discuss, I do have work to do, you know.”</i> You shrug, letting the conversation end, but before you can go anywhere, Penny looks back up at you again. <i>“Come back soon, okay crazy?”</i>");
 	processTime(20);
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",approachFriendPenny);
 }
 	
 //Girlfriend Greetings
@@ -1459,7 +1459,7 @@ function askGFPennyAboutSpecies():void {
 	output("\n\n<i>“Be sure and let me know if you want a roll in the hay later, okay? </i>");
 	if(!penny.hasCock()) output("<i>I may not always be horny, but it’s worth getting a little riled up to have a clear head later,</i>");
 	else output("<i>You know how I feel about fucking: the more the better. And thanks to you, I have the best tool to do it with,</i>");
-	output("<i>”</i>  Penny offers as she turns back to her job.");
+	output("<i>”</i> Penny offers as she turns back to her job.");
 	this.clearMenu();
 	processTime(25);
 	this.addButton(0,"Next",approachGirlfriendPenny);
