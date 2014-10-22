@@ -146,7 +146,7 @@ package classes.Items.Miscellaneous
 					//"Treated" - Main, permanent status effect
 					v1 - boob size result
 					v2 - horn size result
-					v3 - lip size result
+					v3 - lip/cock size result
 					v4 - ball size result
 					Have a second status to store more shit.
 					//"The Treatment"
@@ -187,6 +187,14 @@ package classes.Items.Miscellaneous
 					{
 						//Set mode to man mode
 						pc.setStatusValue("The Treatment",1,1);
+						//Horn size result - 5 to 8"
+						pc.setStatusValue("Treated",2,5 + rand(4));
+						//9.4-12.5 ballRating (3-4").
+						pc.setStatusValue("Treated",4,9.4+(rand(32)/10));
+						//Cock Bonus 2-8
+						pc.setStatusValue("Treated",3,2 + rand(7));
+						if(pc.biggestCockLength() < 7) pc.setStatusValue("Treated",3,6);
+						if(pc.hasPerk("Hung")) pc.setStatusValue("Treated",3,8);
 					}
 					//Herms/neuters
 					else

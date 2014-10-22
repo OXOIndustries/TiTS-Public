@@ -2187,8 +2187,11 @@ function tease(target:Creature, part:String = "chest"):void {
 	//Celise ignores ALL THIS SHIT!
 	if(!(target is Celise)) 
 	{
+		//Misc Bonuses
+		var bonus:int = 0;
+		if(pc.hasPerk("Pheromone Cloud")) bonus = 1;
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() || target.lustDamageMultiplier() == 0)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.lustDamageMultiplier() == 0)
 		{
 			if(target is HandSoBot)
 			{
@@ -2222,6 +2225,7 @@ function tease(target:Creature, part:String = "chest"):void {
 			//Calc base damage
 			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
 			//Any perks or shit go below here.
+			if(pc.hasPerk("Pheromone Cloud")) damage += 1+rand(4);
 			//Apply randomization
 			damage *= randomizer;
 			//Apply like adjustments

@@ -244,6 +244,11 @@ function appearance(target:Creature):void {
 			else if(pc.hornType == GLOBAL.TYPE_DEER) {
 				if(pc.horns > 0) output2(" Two antlers, forking into " + num2Text(pc.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
 			}
+			//Goatliness is next to godliness.
+			else if(pc.hornType == GLOBAL.TYPE_GOAT)
+			{
+				if(pc.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [pc.ears] like a satyr out of terran legend.");
+			}
 		}
 		else if(pc.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
 		//BODY PG HERE

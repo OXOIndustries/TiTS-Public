@@ -135,7 +135,7 @@
 				{
 					kGAMECLASS.output("\n\nYou shudder as your [pc.cock " + x + "] throbs, swelling powerfully. You look down just in time to see your cockflesh expanding, sending waves of pleasure through your body. Your dick spurts a thin trickle of [pc.cum] as it grows out to its new size of ");
 					pc.cocks[x].cLength(Math.round(5 + rand(10))/10);
-					if(pc.hasStatusEffect("Hung")) pc.cocks[x].cLength(Math.round(5 + rand(10))/10);
+					if(pc.hasPerk("Hung")) pc.cocks[x].cLength(Math.round(5 + rand(10))/10);
 					kGAMECLASS.output(Math.round(pc.cocks[x].cLength()*10)/10 + " inches. You take a moment to marvel at your new, larger member, ready for action.");
 					changes++;
 					pc.lust(10+rand(5));

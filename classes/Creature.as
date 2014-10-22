@@ -4900,6 +4900,28 @@
 			//Failsafe:
 			return 0;
 		}
+		public function boostCum(amount:Number = 1):void
+		{
+			if(cumMultiplierRaw > 10) amount /= 2;
+			if(cumMultiplierRaw > 50) amount /= 2;
+			if(cumMultiplierRaw > 100) amount /= 2;
+
+			//Efficiency is always 3x Multiplier
+			ballEfficiency += amount * 3;
+			cumMultiplierRaw += amount;
+			//Boost efficiency more if behind
+			if(cumMultiplierRaw* 3 > ballEfficiency)
+			{
+				ballEfficiency += amount * 2;
+				if(cumMultiplierRaw* 3 > ballEfficiency) ballEfficiency += amount * 2;
+			}
+			//Boost multiplier if way too low.
+			else if(cumMultiplierRaw * 4 < ballEfficiency)
+			{
+				cumMultiplierRaw += amount;
+				if(cumMultiplierRaw * 4 < ballEfficiency) cumMultiplierRaw += amount;
+			}
+		}
 		public function boostLactation(amount:Number = 1):void
 		{
 			//Record this for tracking change
@@ -5192,6 +5214,8 @@
 			quantity = Math.round(quantity / 10) * 10;
 			trace("Cum produced: " + quantity);
 			if (quantity < 2) quantity = 2;
+			//Super high refractory raises minimum.
+			if (refractoryRate >= 50 && quantity < 15) quantity = 15;
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
@@ -5447,6 +5471,11 @@
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+			}
+			if (type == GLOBAL.TYPE_FELINE) {
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
 			}
 			if (type == GLOBAL.TYPE_EQUINE) {
 				cocks[slot].knotMultiplier = 1;

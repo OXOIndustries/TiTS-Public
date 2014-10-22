@@ -139,6 +139,7 @@
 		public static const TYPE_VANAE_MAIDEN:int							= 47;
 		public static const TYPE_VANAE_HUNTRESS:int							= 48;
 		public static const TYPE_LEITHAN:int 							    = 49;
+		public static const TYPE_GOAT:int 									= 50;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -210,8 +211,7 @@
 			TYPE_CANINE,
 			TYPE_PANDA,
 			TYPE_BADGER,
-			TYPE_KANGAROO,
-			
+			TYPE_KANGAROO,			
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -323,6 +323,7 @@
 			TYPE_BOVINE,
 			TYPE_LIZAN,
 			TYPE_DEER,
+			TYPE_GOAT,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -642,6 +643,7 @@
 		public static const LIFTUP:int 								   = 12;
 		public static const LIFTDOWN:int 								= 13;
 		public static const TAXI:int    								= 14;
+		public static const PUBLIC:int 									= 15;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
