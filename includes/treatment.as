@@ -1168,7 +1168,7 @@ function treatmentHourProcs():void
 			eventBuffer += "\n\nStars above, there is a serious ";
 			if(pc.hasCock())
 			{
-				if(pc.isCrotchGarbed()) eventBuffer += "tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your [pc.balls]. One way or the other, you’re due to blow a load.";
+				if(pc.isCrotchGarbed()) eventBuffer += "tightness in your [pc.lowerGarment]. You take a look inside and find yourself more hard than you’ve been in a while, and just dribbling pre-cum all over the inside of your equipment. You let it snap closed and sigh. Either you’ve got to find a partner fast, or it’s time to vent some of the pressure building in your " + pc.ballsDescript() + ". One way or the other, you’re due to blow a load.";
 				else 
 				{
 					eventBuffer += "hardness in your groin. You take a look down and find yourself more hard than you’ve been in a while, dribbling pre-cum down your length";
@@ -1317,7 +1317,7 @@ function treatmentHourProcs():void
 			//Goodbye trap pouch
 			if(pc.hasStatusEffect("Uniball"))
 			{
-				eventBuffer += "\n\nYou manage to make your swaying sack smack against your [pc.thigh] in the most painful way. It almost doubles you over. How could that have happened? You had such a tight, compact pouch for your [pc.balls]. Once the pain clears, you grab hold of yourself and sigh. Your almost vacuum-tight pouch is gone. In its place you’ve got a very normal, masculine-looking nutsack.";
+				eventBuffer += "\n\nYou manage to make your swaying sack smack against your [pc.thigh] in the most painful way. It almost doubles you over. How could that have happened? You had such a tight, compact pouch for your " + pc.ballsDescript() + ". Once the pain clears, you grab hold of yourself and sigh. Your almost vacuum-tight pouch is gone. In its place you’ve got a very normal, masculine-looking nutsack.";
 				pc.removeStatusEffect("Uniball");
 				//Remove pouch
 				//pc.lust(-10);
@@ -1326,7 +1326,7 @@ function treatmentHourProcs():void
 			//Hit max - notify and disable ball TFs till treatedment is over
 			else if(pc.ballSizeRaw >= pc.statusEffectv4("Treated"))
 			{
-				eventBuffer += "\n\nA fateful tingle runs from one side of your [pc.sack] to the other, drawing your attention to the [pc.balls] within. They don’t look to have gotten any bigger this time. In fact, they’re probably done growing now. Well, ";
+				eventBuffer += "\n\nA fateful tingle runs from one side of your [pc.sack] to the other, drawing your attention to the " + pc.ballsDescript() + " within. They don’t look to have gotten any bigger this time. In fact, they’re probably done growing now. Well, ";
 				if(pc.balls == 1) eventBuffer += "it’s";
 				else eventBuffer += "they’re";
 				eventBuffer += " at least as big as ";
@@ -1345,7 +1345,7 @@ function treatmentHourProcs():void
 			//Up to 3
 			else if(pc.ballSizeRaw < 3)
 			{
-				eventBuffer += "\n\nYou feel a sort of effervescent heat pooling down in your loins, all warm and bubbly, like champagne inside you. It’s most concentrated in your [pc.balls], which you are very aware of pressing on the [pc.skinFurScales] of your [pc.thighs] through your [pc.sack].";
+				eventBuffer += "\n\nYou feel a sort of effervescent heat pooling down in your loins, all warm and bubbly, like champagne inside you. It’s most concentrated in your " + pc.ballsDescript() + ", which you are very aware of pressing on the [pc.skinFurScales] of your [pc.thighs] through your [pc.sack].";
 				if(pc.isCrotchGarbed()) eventBuffer += " You yank open your [pc.lowerGarment] for a look.";
 				if(pc.balls == 1) eventBuffer += " It’s";
 				else eventBuffer += " They’re";
@@ -1365,7 +1365,7 @@ function treatmentHourProcs():void
 			//To 5
 			else if(pc.ballSizeRaw < 5)
 			{
-				eventBuffer += "\n\nA pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your [pc.balls]. ";
+				eventBuffer += "\n\nA pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your " + pc.ballsDescript() + ". ";
 				if(pc.balls == 1) eventBuffer += "It’s ";
 				else eventBuffer += "They’re ";
 				eventBuffer += "warm and so pleasantly sensitive. You can almost swear you feel ";
@@ -1399,7 +1399,7 @@ function treatmentHourProcs():void
 			//To 9
 			else if(pc.ballSizeRaw < 9)
 			{
-				eventBuffer += "\n\nThe sensation of heat and warmth throbbing through your [pc.balls] is increasingly common, hour to hour, as ";
+				eventBuffer += "\n\nThe sensation of heat and warmth throbbing through your " + pc.ballsDescript() + " is increasingly common, hour to hour, as ";
 				if(pc.balls == 1) eventBuffer += "it";
 				else eventBuffer += "they";
 				eventBuffer += " swell";
@@ -2070,7 +2070,7 @@ function treatmentHourProcs():void
 						if(pc.cockTotal() > 2) eventBuffer += "lucky ";
 						eventBuffer += "twin lengths into your hands. At the same time, you become aware of something else.... They’re changing in your very grips, twisting and reshaping against your slickened palms. The nubs don’t change, but just about everything else does. One second, your shafts feel like they’re swelling up like balloons. The next, your " + pc.cockHeads() + " are fat and prominent, a little squishy and almost spongy. Then, they’re narrowing to tapered points. Your pricks are transforming by the second, and you can do naught but continue to stroke them, compelled by infinitely erotic, transformative energies.";
 						eventBuffer += "\n\nThere’s no stopping you now. The pleasure rises higher and higher, taking you further and further away from the mundane world. Your head is in the clouds even as your hands are bound to the pulsating, slowly-solidifying lengths below. Your cocks are almost finished changing, and releasing larger and larger waves of bliss to push you beyond conscious thought. Their tips are narrow and pointed, the shafts thick, each nub jolting your ecstatic mind with red-hot, rutting desire.";
-						if(pc.balls > 1) eventBuffer += " Your [pc.balls] clench, and y";
+						if(pc.balls > 1) eventBuffer += " Your " + pc.ballsDescript() + " clench, and y";
 						else eventBuffer += " Y";
 						eventBuffer += "our rods thicken, urethras flooding with soon to be expelled goo. One thought surfaces a moment before you explode: you have thick, feline dicks, like an immense, powerful lion.";
 						eventBuffer += "\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of ";
@@ -2102,7 +2102,7 @@ function treatmentHourProcs():void
 			//Balls
 			if(pc.balls > 0)
 			{
-				eventBuffer += "\n\nYou feel the inside of your [pc.sack] clench and release. The feeling repeats two or three times in quick succession, each time leaving you feeling a little heavier... a little denser, like your [pc.balls] ";
+				eventBuffer += "\n\nYou feel the inside of your [pc.sack] clench and release. The feeling repeats two or three times in quick succession, each time leaving you feeling a little heavier... a little denser, like your " + pc.ballsDescript() + " ";
 				if(pc.balls > 1) eventBuffer += "are";
 				else eventBuffer += "is";
 				eventBuffer += " somehow becoming even more capable. You’ll probably have bigger, messier orgasms with ";
@@ -2128,7 +2128,7 @@ function treatmentHourProcs():void
 			//RefractoryRate to 10
 			if(pc.refractoryRate < 10)
 			{
-				eventBuffer += "\n\nOne thing that you’re increasingly aware of is just how fast your [pc.balls] feel";
+				eventBuffer += "\n\nOne thing that you’re increasingly aware of is just how fast your " + pc.ballsDescript() + " feel";
 				if(pc.balls <= 1) eventBuffer += "s like it’s";
 				else eventBuffer += " like they’re";
 				eventBuffer += " filling up with new seed. You don’t really spend any time trying to measure your new production, but you’re definitely filling up way faster than before. You smile, doubting you’ll ever leave a hole unfilled again.";
@@ -2143,7 +2143,7 @@ function treatmentHourProcs():void
 			//RefractoryRate to 50! & minimum cumQ of 15
 			else if(pc.refractoryRate < 50)
 			{
-				eventBuffer += "\n\nThere’s no doubt about it. Your [pc.balls] ";
+				eventBuffer += "\n\nThere’s no doubt about it. Your " + pc.ballsDescript() + " ";
 				if(pc.balls <= 1) eventBuffer += "is";
 				else eventBuffer += "are";
 				eventBuffer += " filling up far faster than before, flooding with more and more unspent virility by the second. You could probably fuck a line of fifty girls and still not go dry by the last orgasm, not that you mind. At least the ubiquitous milking stalls and offers of blowjobs on New Texas make sense now. It could get quite uncomfortable without a regular release.";
@@ -2265,13 +2265,13 @@ function treatmentHourProcs():void
 		{
 			eventBuffer += "\n\nYour [pc.sack] sways heavily, more than ever before, the skin stretched taut. It gets your attention without even trying, really.";
 			//One nut no new PG
-			if(pc.balls == 1) eventBuffer += " Your [pc.balls] is huge, easily four times its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on. There are seams in its surface in a number of places, splitting it into four quadrants, and the longer you poke and prod at them, the more obvious they become. You let go in shock, afraid you’ve somehow damaged your one super-nut, but it doesn’t stop the seams from growing deeper, their edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into four smaller ones, each about the same size as your original testicle. One breaks away first, and the others follow, splitting into unique testes. All four settle at the bottom of your [pc.sack] after a moment. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
+			if(pc.balls == 1) eventBuffer += " Your " + pc.ballsDescript() + " is huge, easily four times its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on. There are seams in its surface in a number of places, splitting it into four quadrants, and the longer you poke and prod at them, the more obvious they become. You let go in shock, afraid you’ve somehow damaged your one super-nut, but it doesn’t stop the seams from growing deeper, their edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into four smaller ones, each about the same size as your original testicle. One breaks away first, and the others follow, splitting into unique testes. All four settle at the bottom of your [pc.sack] after a moment. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
 			//Two nuts no new PG
-			else if(pc.balls == 2) eventBuffer += " Your [pc.balls] are huge, easily double their old size and probably still growing. You heft them curiously, feeling around their bulk to try and understand just what’s going on with your genitals. There are seams in their surfaces, dividing them in half. How... why do your nuts have <i>seams</i>? Letting go in shock, afraid you’ve somehow damaged your swelling nuts, you watch with a mounting sense of trepidation.\n\nThey’re definitely dividing, you realize. Those two seams are getting deeper and deeper, the edges more rounded by the second, curving until it looks less like a pair of meganuts and more like two pairs of conjoined testes. Even then, they look like they could come apart at any second, and they do, just a moment later. You wince, expecting pain, but it doesn’t hurt at all. You simply gain an awareness of having four balls, each as big as your original two were. <b>You’ll just have to get used to having four nuts crammed into your sack.</b>";
+			else if(pc.balls == 2) eventBuffer += " Your " + pc.ballsDescript() + " are huge, easily double their old size and probably still growing. You heft them curiously, feeling around their bulk to try and understand just what’s going on with your genitals. There are seams in their surfaces, dividing them in half. How... why do your nuts have <i>seams</i>? Letting go in shock, afraid you’ve somehow damaged your swelling nuts, you watch with a mounting sense of trepidation.\n\nThey’re definitely dividing, you realize. Those two seams are getting deeper and deeper, the edges more rounded by the second, curving until it looks less like a pair of meganuts and more like two pairs of conjoined testes. Even then, they look like they could come apart at any second, and they do, just a moment later. You wince, expecting pain, but it doesn’t hurt at all. You simply gain an awareness of having four balls, each as big as your original two were. <b>You’ll just have to get used to having four nuts crammed into your sack.</b>";
 			//Triballs
 			else if(pc.balls == 3)
 			{
-				eventBuffer += " One of your [pc.balls] is huge, easily double its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on without bothering the other two. There’s a seam in its surface across the middle, dividing it in half, and the longer you poke and prod at it, the more obvious it becomes. You let go in shock, afraid you’ve somehow damaged your growing super-nut, but it doesn’t stop the seam from growing deeper, the edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into two smaller ones, each about the same size as your unmodified testicles. They round further and then divide, splitting into unique testes. The new twins settle in at the bottom of your [pc.sack] alongside their brothers a moment later. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
+				eventBuffer += " One of your " + pc.ballsDescript() + " is huge, easily double its old size and probably still growing. You heft it, curiously, feeling around its bulk to try and identify just what’s going on without bothering the other two. There’s a seam in its surface across the middle, dividing it in half, and the longer you poke and prod at it, the more obvious it becomes. You let go in shock, afraid you’ve somehow damaged your growing super-nut, but it doesn’t stop the seam from growing deeper, the edges more rounded.\n\nIndeed, your ball is slowly dividing now. There’s no hiding it. That one big sphere is splitting into two smaller ones, each about the same size as your unmodified testicles. They round further and then divide, splitting into unique testes. The new twins settle in at the bottom of your [pc.sack] alongside their brothers a moment later. <b>You’ll just have to get used to having four nuts</b> and be careful not to sit on them.";
 			}
 			pc.balls = 4;
 		}
