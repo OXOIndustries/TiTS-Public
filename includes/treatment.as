@@ -391,7 +391,7 @@ function treatmentHourProcs():void
 			//E -> big E
 			else if(pc.breastRows[0].breastRatingRaw < 8)
 			{
-				eventBuffer += "\n\nYou let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They're bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You're on the upper end of an E-cup now. If they keep growing, you're going to have a very hard time finding your [pc.feet], but that'll be fine.";
+				eventBuffer += "\n\nYou let your hand play across your [pc.nipple] during an idle moment, just to check if like, your sensitivity is getting crazy or anything. It feels so good, but more startling is how there seems to be a little extra behind the pleasantly pulsing pleasure-bud. Your tits were already nice and big.... You squeeze them for good measure... so nice and big. They're bigger now! The thought is slow coming while you grope yourself, but it comes all the same. You're on the upper end of an E-cup now. If they keep growing, you're going to have a very hard time finding your " + pc.feet() + ", but that'll be fine.";
 				eventBuffer += "\n\nYou fondle your expanded chest. Everything's gonna be fine.";
 				pc.breastRows[0].breastRatingRaw++
 				pc.lust(2);
@@ -415,7 +415,7 @@ function treatmentHourProcs():void
 			//big EE -> F
 			else if(pc.breastRows[0].breastRatingRaw < 11)
 			{
-				eventBuffer += "\n\nLooking down, you smile. Your [pc.feet] are totally gone from view.";
+				eventBuffer += "\n\nLooking down, you smile. Your " + pc.feet() + " are totally gone from view.";
 				if(pc.hasCock()) 
 				{
 					eventBuffer += " Heck, if your " + pc.cocksDescript() + " ";
@@ -426,7 +426,7 @@ function treatmentHourProcs():void
 					else eventBuffer += "them";
 					eventBuffer += " either.";
 				}
-				eventBuffer += " The swelling of your bustline is truly a sight to behold. Besides, you can still see them if you bend forward a little bit, and you don't need to watch your [pc.feet] or anything - not when you've got an ocean of pillowy flesh to look at. You've got big, sexy F-cups now.";
+				eventBuffer += " The swelling of your bustline is truly a sight to behold. Besides, you can still see them if you bend forward a little bit, and you don't need to watch your " + pc.feet() + " or anything - not when you've got an ocean of pillowy flesh to look at. You've got big, sexy F-cups now.";
 				pc.breastRows[0].breastRatingRaw++
 				pc.lust(2);
 			}
@@ -517,7 +517,7 @@ function treatmentHourProcs():void
 			//big H -> HH
 			else if(pc.breastRows[0].breastRatingRaw < 21)
 			{
-				eventBuffer += "\n\nYou glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your [pc.feet] anyway, and you can always pull your boobs out to the side if you need to see past them. As a bonus, that would give you a chance to squeeze and rub at the well-rounded melons. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.";
+				eventBuffer += "\n\nYou glance down, pleased to note that your view of the ground is even more obstructed than before. You don't need to see your " + pc.feet() + " anyway, and you can always pull your boobs out to the side if you need to see past them. As a bonus, that would give you a chance to squeeze and rub at the well-rounded melons. They're so rounded and shapely; how could anyone ignore a perfect, HH-cup rack like yours? You arch your back, displaying them like solar panels that exist solely to soak up attention.";
 				if(pc.bRows() > 1)
 				{
 					eventBuffer += "\n\nMaybe you could get your other row";
@@ -601,7 +601,7 @@ function treatmentHourProcs():void
 			//J -> big J
 			else if(pc.breastRows[0].breastRatingRaw < 30)
 			{
-				eventBuffer += "\n\nLooking down, you barely suppress a giggle. Your titties are just so gosh darned big! They're all wobbly and completely obscure your [pc.feet]; why, you're pretty sure that without some serious effort you won't be able to make out your own groin. It's a good thing your fingers already know just where to go, but you're pretty sure they'd be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.";
+				eventBuffer += "\n\nLooking down, you barely suppress a giggle. Your titties are just so gosh darned big! They're all wobbly and completely obscure your " + pc.feet() + "; why, you're pretty sure that without some serious effort you won't be able to make out your own groin. It's a good thing your fingers already know just where to go, but you're pretty sure they'd be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.";
 				//+10 lust
 				pc.lust(10);
 				pc.breastRows[0].breastRatingRaw++
@@ -845,7 +845,7 @@ function treatmentHourProcs():void
 			else if(pc.horns == 0)
 			{
 				eventBuffer += "\n\nThe pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
-				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your [pc.feet].";
+				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
 				eventBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
 				eventBuffer += "\n\nYou tumble onto your [pc.butt] in shock. You... y-you're... <b>you've got the cutest pair of horns growing out of your forehead!</b> They're small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities.";
 				pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -946,7 +946,7 @@ function treatmentHourProcs():void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 137 && rand(10) == 0)
 		{
-			eventBuffer += "\n\nYou go to scratch at one of your [pc.ears], only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
+			eventBuffer += "\n\nYou go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -954,11 +954,11 @@ function treatmentHourProcs():void
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
-				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your [pc.feet] are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a cow would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new cow hooves.</b>";
+				eventBuffer += "\n\nYou stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your " + pc.feet() + " are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a cow would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new cow hooves.</b>";
 			}
 			else
 			{
-				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
+				eventBuffer += "\n\nYou stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					eventBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";
@@ -2189,7 +2189,7 @@ function treatmentHourProcs():void
 			else if(pc.horns == 0)
 			{
 				eventBuffer += "\n\nThe pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?";
-				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your [pc.feet].";
+				eventBuffer += "\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".";
 				eventBuffer += "\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.";
 				eventBuffer += "\n\nYou cup your chin and smile, regarding what you see with delight. <b>Your horns are coming in!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all is said and done, all the better to attract girls with nice squishy racks of their own.";
 				pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -2335,7 +2335,7 @@ function treatmentHourProcs():void
 		//Cow ears (maybe)
 		if(pc.earType != GLOBAL.TYPE_BOVINE && treatedHours == 141 && rand(10) == 0)
 		{
-			eventBuffer += "\n\nYou go to scratch at one of your [pc.ears], only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
+			eventBuffer += "\n\nYou go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you're just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them.";
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -2343,11 +2343,11 @@ function treatmentHourProcs():void
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
-				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your [pc.feet] are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a bull would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new bull hooves.</b>";
+				eventBuffer += "\n\nYou stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. It’s then that you spot way your " + pc.feet() + " are shifting and changing. They look like they’re staying as hooves, but they’re a little more of a brown-black color, with a split down the middle. They look like the kind of hooves a bull would have. Well, there are worse things than having a matched set of transformations. <b>You resolve to enjoy your new bull hooves.</b>";
 			}
 			else
 			{
-				eventBuffer += "\n\nYou stumble over your own [pc.feet], sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your [pc.feet]. They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
+				eventBuffer += "\n\nYou stumble over your own " + pc.feet() + ", sprawling on the ground with all the grace of a drunken penguin. Groaning in pain, you roll over, trying to figure out just what went wrong. You see why when you glance to your " + pc.feet() + ". They're malformed, twisting and narrowing before your eyes. They're pulling their disparate parts together into one unified mass, almost cylindrical in shape";
 				if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					eventBuffer += ", and the change isn’t limited to below the ankle either. Your calves are reshaping, placing what used to be your ankle far above your blackening feet";

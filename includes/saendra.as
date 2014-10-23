@@ -123,7 +123,7 @@ public function takeTheRewardYouSlut():void
 {
 	saenHeader();
 
-output("<i>“Alright,”</i> you say, reaching down to stroke the soft tail slithering up your leg. <i>“Let’s see this gratitude of yours, captain.”</i>");
+output("<i>“Alright,”</i> you say, reaching down to stroke the soft tail slithering up your [pc.leg]. <i>“Let’s see this gratitude of yours, captain.”</i>");
 
 output("\n\nGrinning from ear to ear, the fluffy halfbreed takes you by the hand and pulls you out of the booth. You follow her up the stairs to the bar’s collection of rooms, enjoying the view of her pert, gropable behind swaying with every step. Her pair of dexterous tails gently tease you as you make your way upstairs, flicking across your [pc.chest] or brushing against your thighs until you’re");
 	if (pc.hasCock()) output(" hard as a rock");
