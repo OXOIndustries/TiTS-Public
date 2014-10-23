@@ -139,8 +139,6 @@ package classes.Items.Miscellaneous
 						output(" About the only thing it guarantees is that you'll get better at being sexy, whatever that means.");
 
 						output("\n\nWell, whatever. You decided to do this. No point in turning back now. You jab the medipen against the [pc.skinFurScales] of your arm and push the activation stud. A soft 'snick' is all you notice, not even a little pain. Not bad at all. You toss the empty pen away, noting that it's now covered in red text. Rubbing the small red spot it left behind, you wonder how long until you'll notice any changes. Hopefully they all wind up being good!");
-						output("\n\n<b>Turns out only the female version is done. NOTHING HAPPENS!</b>");
-						return false;
 					}
 					/*
 					//"Treated" - Main, permanent status effect
@@ -169,37 +167,18 @@ package classes.Items.Miscellaneous
 					//Set values for chicks:
 					if(pc.hasVagina() && !pc.hasCock())
 					{
-						//Boobs from EE to JJ
-						pc.setStatusValue("Treated",1,9 + rand(22));
-						//Horn size result - 1 to 3"
-						pc.setStatusValue("Treated",2,1 + rand(3));
-						//Lip Bonus 0-2
-						pc.setStatusValue("Treated",3,0 + rand(3));
-						//No balls.
-						pc.setStatusValue("Treated",4,0);
-						//Set mode to lady mode
-						pc.setStatusValue("The Treatment",1,0);
-						//Set rare proc to 0.
-						pc.setStatusValue("The Treatment",2,0);
+						setTreatmentMode(pc,0);
 					}
 					//Set values for dudes
 					else if(pc.hasCock() && !pc.hasVagina())
 					{
-						//Set mode to man mode
-						pc.setStatusValue("The Treatment",1,1);
-						//Horn size result - 5 to 8"
-						pc.setStatusValue("Treated",2,5 + rand(4));
-						//9.4-12.5 ballRating (3-4").
-						pc.setStatusValue("Treated",4,9.4+(rand(32)/10));
-						//Cock Bonus 2-8
-						pc.setStatusValue("Treated",3,2 + rand(7));
-						if(pc.biggestCockLength() < 7) pc.setStatusValue("Treated",3,6);
-						if(pc.hasPerk("Hung")) pc.setStatusValue("Treated",3,8);
+						setTreatmentMode(pc,1);	
 					}
 					//Herms/neuters
 					else
 					{
-
+						if(rand(2) == 0) setTreatmentMode(pc,0);
+						else setTreatmentMode(pc,1);
 					}
 				}
 			}
@@ -234,5 +213,38 @@ package classes.Items.Miscellaneous
 			}
 			return false;
 		}
+		function setTreatmentMode(pc:Creature,arg:int = 0):void
+		{
+			//chicks
+			if(arg == 0)
+			{
+				//Boobs from EE to JJ
+				pc.setStatusValue("Treated",1,9 + rand(22));
+				//Horn size result - 1 to 3"
+				pc.setStatusValue("Treated",2,1 + rand(3));
+				//Lip Bonus 0-2
+				pc.setStatusValue("Treated",3,0 + rand(3));
+				//No balls.
+				pc.setStatusValue("Treated",4,0);
+				//Set mode to lady mode
+				pc.setStatusValue("The Treatment",1,0);
+				//Set rare proc to 0.
+				pc.setStatusValue("The Treatment",2,0);
+			}
+			else if(arg == 1)
+			{
+				//Set mode to man mode
+				pc.setStatusValue("The Treatment",1,1);
+				//Horn size result - 5 to 8"
+				pc.setStatusValue("Treated",2,5 + rand(4));
+				//9.4-12.5 ballRating (3-4").
+				pc.setStatusValue("Treated",4,9.4+(rand(32)/10));
+				//Cock Bonus 2-8
+				pc.setStatusValue("Treated",3,2 + rand(7));
+				if(pc.biggestCockLength() < 7) pc.setStatusValue("Treated",3,6);
+				if(pc.hasPerk("Hung")) pc.setStatusValue("Treated",3,8);
+			}
+		}
 	}
 }
+

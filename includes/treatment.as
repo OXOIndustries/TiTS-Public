@@ -223,7 +223,12 @@ function treatmentHourProcs():void
 		//18
 		else if(treatedHours == 36)
 		{
-			eventBuffer += "\n\nYou rub your nipple and smile. With how good this feels, you should be whimpering on the floor in a puddle of your own [pc.girlCum], but... but you're not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.";
+			eventBuffer += "\n\nYou rub your nipple and smile. With how good this feels, you should be whimpering on the floor in a puddle of your own ";
+			if(pc.hasVagina()) eventBuffer += "[pc.girlCum]";
+			else if(pc.hasCock()) eventBuffer += "[pc.cum]";
+			else if(pc.isLactating()) eventBuffer += "[pc.milk]";
+			else eventBuffer += "drool";
+			eventBuffer += ", but... but you're not. You could probably take yourself to whole new heights of pleasure. Suddenly, regular orgasms seem like chopped liver, and you should be dining on caviar.";
 			//Inhuman Desire +20 max lust.
 			if(!pc.hasPerk("Inhuman Desire"))
 			{
@@ -820,10 +825,10 @@ function treatmentHourProcs():void
 			pc.createStatusEffect("Treatment Elasticity Report Needed");
 		}
 		//Horn Grow 2 Nubs
-		if((pc.horns == 0 || pc.hornType != GLOBAL.TYPE_BOVINE || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(6) == 0))
+		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(6) == 0))
 		{
 			//Existing horns transform into lil bull nubs.
-			if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE)
+			if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
 			{
 				eventBuffer += "\n\nThere is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.";
 				pc.horns = 2;

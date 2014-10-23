@@ -575,8 +575,8 @@ function mhengaHarvestUthra():void
 	
 	quickLoot(new UthraSap());
 	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	//clearMenu();
+	//addButton(0, "Next", mainGameMenu);
 }
 
 function mhengaVanaeFernDamage():Boolean
