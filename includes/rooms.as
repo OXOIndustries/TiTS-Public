@@ -313,7 +313,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["ESBETH TRAVEL AUTHORITY"] = new RoomClass(this);
-	rooms["ESBETH TRAVEL AUTHORITY"].roomName = "TRAVEL\nAUTHORITY";
+	rooms["ESBETH TRAVEL AUTHORITY"].roomName = "SCOUT\nAUTHORITY";
 	rooms["ESBETH TRAVEL AUTHORITY"].description = "The office of the U.G.C. Scout Authority is a cramped, cluttered office full of maps, vehicle parts, and hunting trophies. You duck and weave through the office until you arrive at the front desk, which is manned by a sturdily-built tauric man whose lower body is plated with black scales. He gives you a friendly nod as you approach";
 	rooms["ESBETH TRAVEL AUTHORITY"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH TRAVEL AUTHORITY"].runOnEnter = esbethFastTravelOfficeBonus;

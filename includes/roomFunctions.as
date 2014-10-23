@@ -1026,7 +1026,7 @@ function mhengaScoutAuthority():void
 	if(flags["SALVAGED VANAE CAMP"] != 2) 
 	{
 		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
-		output("\n\n<i>\"Ah. Sorry to bother you,</i>” you say, turning to leave.\"</i>");
+		output("\n\n<i>\"Ah. Sorry to bother you,</i>” you say, turning to leave.");
 		output("\n\n“<i>No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b></i>”");
 		processTime(1);
 		clearMenu();
