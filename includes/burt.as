@@ -556,7 +556,7 @@ function talkToBurtAboutDeseZilGueys():void {
 		output("Burt smirks as you bring up his favorite subject,<i> “Yah, so... sex. The Zil are good at it, and open with it, but you have to be careful. They can breed with humans, so</i>");
 		//[if (hasVagina = false)]
 		if(!pc.hasCock()) output("<i> unless you are fixing to settle down and raise some kids, keep it in your pants.</i>");
-		else output("<i> unless you want a belly full of bees, I’d recommend not spreading your legs for them.</i>");
+		else output("<i> unless you want a belly full of bees, I’d recommend not spreading your [pc.legs] for them.</i>");
 		output("<i>”</i>");
 	}
 	//Scene 3
@@ -746,7 +746,7 @@ function getOralFromBurt():void {
 			//[if (tail > 0)
 			if(pc.tailCount > 0) output("\n\nHis arm shifts to brush your [pc.tails] out of the way gently, allowing him to see the genderless expanse between your hind [pc.legs].");
 			else output("\n\nHe takes a moment to look you over, frowning as he looks over the genderless expanse between your hind legs.");
-			output(" Burt smiles and admits sheepishly,<i> “I’m not really sure what to do with you down here.”</i> Still, he isn’t against trying. He continues to lick gently at the featureless patch of [pc.skin] between your legs. He slips a finger into your [pc.asshole] and starts to slowly finger you as though it were a pussy, trying to find some way to bring you to an orgasmic release. He is content to spend the whole of his break trying to get you off, licking and kissing your genderless loins and fingering your ass. By the time his tongue and fingers are exhausted, he looks up at you and asks with honest confused curiosity,<i> “So, uh... was it good for you at all?”</i> a look of relief crossing his face when you assure him that it was.");
+			output(" Burt smiles and admits sheepishly,<i> “I’m not really sure what to do with you down here.”</i> Still, he isn’t against trying. He continues to lick gently at the featureless patch of [pc.skin] between your [pc.legs]. He slips a finger into your [pc.asshole] and starts to slowly finger you as though it were a pussy, trying to find some way to bring you to an orgasmic release. He is content to spend the whole of his break trying to get you off, licking and kissing your genderless loins and fingering your ass. By the time his tongue and fingers are exhausted, he looks up at you and asks with honest confused curiosity,<i> “So, uh... was it good for you at all?”</i> a look of relief crossing his face when you assure him that it was.");
 		}
 	}
 	//[if (biped = true)]

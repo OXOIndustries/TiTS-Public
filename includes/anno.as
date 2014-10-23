@@ -2579,7 +2579,7 @@ function grayPrimeGooGrapple():void
 	else
 	{
 		output(" Two of the tentacles wrap tightly around your wrists");
-		if (pc.isBiped()) output(", while two more grab your legs, lifting you up from the ground!");
+		if (pc.isBiped()) output(", while two more grab your [pc.legs], lifting you up from the ground!");
 		else if (pc.isTaur()) output(",  while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling ");
 		output(" Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole");
 		if (pc.hasVagina()) output("s");

@@ -560,7 +560,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	//If PC has a cooch:
 	if(pc.hasVagina()) 
 	{
-		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.leg]. You yelp and look down, seeing Sera's tail swishing between your legs... and another cock where the spade ought to have been.");
+		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.leg]. You yelp and look down, seeing Sera's tail swishing between your [pc.legs]... and another cock where the spade ought to have been.");
 		output("\n\n<i>\"I know your type,\"</i>  Sera grins as the tail-cock lines up with your [pc.vagina], its length wriggling excitedly between the violent thrusts of her hips. <i>\"A slut like you couldn't be satisfied with just one cock, could you? So I brought you an extra one...\"</i>");
 		output("\n\nBetween the brutal ass-fucking you're already getting, you don't have much wiggle room to complain... even if you wanted to. And the thought of that other thick member doubling your pleasure quickly erodes any hope of resistance. Instead, you spread your [pc.legs] as best you can as the little tail-cock demands entrance to your sex. A yelp of pleasure escapes your mouth as the cock thrusts into you, spearing your [pc.vagina] right to the mouth of your womb, thrusting in without the faintest hint of a rhythm, driving you wild with its erratic thrusts between her hip-slapping ass-fucking.");
 		pc.cuntChange(0,8,true,true,false);

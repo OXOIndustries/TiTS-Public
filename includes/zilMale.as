@@ -539,7 +539,7 @@ function giveTheZilAFootjob():void {
 	output("You watch the Zil collapse, exhausted. A delightfully perverted idea comes to mind as you watch the boy pant. <i>“Awh, poor little thing, all tired and burned out are we?”</i>  You stroll towards him, your smile growing with every step.");
 	output("\n\nThe Zil, on the ground, tries crawling backwards but ends up hitting the foot of a tree. He looks from side to side, worried as you come to a halt right in front of him. <i>“W-what are you planning?”</i>");
 	output("\n\n<i>“Oh, don’t you be so frightened, boy. I won’t cause any permanent damage to you,”</i>  you tell him, coyly.");
-	output("\n\nAs you say this, you raise your leg and place your foot against his crotch, pushing teasingly against his exoskeleton. <i>“You lost, and you know what happens to the loser right?”</i>  You lean down, increasing the pressure with your foot as you whisper into his ear. <i>“The loser becomes the victor’s plaything. Can you say you would have done anything different?”</i>  As he realizes his predicament, you lift your foot off of the insectile humanoid’s genitals.");
+	output("\n\nAs you say this, you raise your [pc.leg] and place your foot against his crotch, pushing teasingly against his exoskeleton. <i>“You lost, and you know what happens to the loser right?”</i>  You lean down, increasing the pressure with your foot as you whisper into his ear. <i>“The loser becomes the victor’s plaything. Can you say you would have done anything different?”</i>  As he realizes his predicament, you lift your foot off of the insectile humanoid’s genitals.");
 	
 	output("\n\nThe young Zil can’t hide his growing arousal, his body warming up to the idea of you dominating him. ");
 	if(pc.armor.shortName == "") output("Noticing this, you decide it’s time to rid yourself of your footwear. ");
@@ -553,7 +553,7 @@ function giveTheZilAFootjob():void {
 	
 	output("\n\nHearing his gasping moans of approval, you change your movements, alternating between giving him the pressure he needs and pushing your feet and toes against the length of his cock, rubbing it while your toes squish and toy with his smooth, dusky nutsack. <i>“You need to come, don’t you boy? You want to blow that filthy load of cream all over my feet.”</i>  You urge him on, teasing him like that for minutes on end before you let him go into the frenzy his pent-up orgasm has driven him to.");
 	
-	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your legs, much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your legs. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i>  You grin and give him another push against your sticky toes and legs, moaning as you feel his agile tongue against your [pc.skinFurScales].");
+	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i>  You grin and give him another push against your sticky toes and legs, moaning as you feel his agile tongue against your [pc.skinFurScales].");
 	
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your feet are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));
@@ -619,7 +619,7 @@ function alkahestsForeskinOralPlay():void {
 		output(", throbbing with heat, snaking ");
 		if(pc.cockTotal() == 1) output("its");
 		else output("their");
-		output(" way further down. You feel what seems like an ocean of your own pre-cum flowing down your leg and you shiver with the sensation. You pull your [pc.cocks] ");
+		output(" way further down. You feel what seems like an ocean of your own pre-cum flowing down your [pc.leg] and you shiver with the sensation. You pull your [pc.cocks] ");
 		if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") {
 			output("out of your ");
 			if(pc.armor.shortName != "") output(pc.armor.longName);
@@ -910,7 +910,7 @@ function getBredByZil():void {
 	output(" The male's fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folks, adding a second sensation to your already overburdened vagina.");
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = 0;
-	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your legs. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
+	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
 	
 	output("\n\n<i>“Fuck me,”</i> you whimper.");
 	

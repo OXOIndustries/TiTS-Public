@@ -369,7 +369,7 @@ function sellesyTribadismIsBadYoByZ():void
 		if(!pc.isTaur()) output("bed, feeling the exquisite velvety tongues of the fabric on your [pc.butt]");
 		else output("ground, shivering as the cool, smooth surface glides across your [pc.butt]");
 		output(". The sensations seem to magnify threefold, screaming for the attention of your drink-fogged mind, as you ");
-		if(pc.legCount > 1) output("slide open your legs to ");
+		if(pc.legCount > 1) output("slide open your [pc.legs] to ");
 		output("reveal what has been forming beneath your body. Sellesy remains unmoved, at first, and you ");
 		if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("blush");
 		else output("grin");
@@ -498,7 +498,7 @@ function sellesyTribadismIsBadYoByZ():void
 		}
 		else output("your back spasms and locks up firmly enough to leave the burden of moving around squarely on Sellesy as your asshole tries to wring her dry");
 	}
-	output(". It’s far too difficult, and your [pc.vagina] clenches down on a tentacle that just as quickly slips out of its grasp. Sellesy’s knees bend, locking your legs into hers, as she positions her opening directly opposite to yours. <i>“Squirt for me, my beautiful fountain!”</i> she cajoles. <i>“Put on a lovely display!”</i> Your pussy gapes and grabs air as your body empties moisture and ejaculate into your insatiable lover.");
+	output(". It’s far too difficult, and your [pc.vagina] clenches down on a tentacle that just as quickly slips out of its grasp. Sellesy’s knees bend, locking your [pc.legs] into hers, as she positions her opening directly opposite to yours. <i>“Squirt for me, my beautiful fountain!”</i> she cajoles. <i>“Put on a lovely display!”</i> Your pussy gapes and grabs air as your body empties moisture and ejaculate into your insatiable lover.");
 	if(pc.isSquirter())
 	{
 		output(" Rivers of joy run from your overproductive body, filling Sellesy faster than her own greedy entrance can drink it down; a soup of mixed juices slips from between you to spatter below with every pleasurable spasm.");
@@ -629,7 +629,7 @@ function ladyType69WithSellesy():void
 
 	output("\n\n<i>“But you can’t do everything on your own,”</i> you counter, leaning across the distance and taking her wet breast in hand again. <i>“And it’s just not as fun, is it?”</i> Her head rolls back as you squeeze gently and you take the opportunity to kiss her graceful neck. She shivers again, but doesn’t try to pull away. Teasing her nipple in the way she just showed you, you succeed in producing a squirt of sweet-smelling booze. You can feel her throat swallowing hard under your lips and as her shoulders relax, you realize: <i>you’re getting to her</i>.");
 
-	output("\n\n<i>“Lay down,”</i> you command. Sellesy looks at you dozily for a moment, and then complies. You lean over her, hand still cupping her breast. <i>“Spread your legs.”</i> She obliges, separating her three legs in a spidery welcome. Your hand slides from her alcohol-slicked breast, trailing wetness, slowly down her stomach, feeling it quiver with her anticipation. You reach the gap between two of her legs and linger there, staring into her eyes, until she meets your gaze, and then slide the last of the way until your fingers feel the bump that marks her entrance. The woman shivers under you as you work your way in slowly, tracing first the outlines of her unusual tripartite labia and second the ring of her vaginal opening. Deliberately, making sure she watches, you lean down between her legs and kiss her nearest exposed clitoris, which is even now twitching and flexing in place. Slowly pulling away, you glance between her thighs at your lover’s face.");
+	output("\n\n<i>“Lay down,”</i> you command. Sellesy looks at you dozily for a moment, and then complies. You lean over her, hand still cupping her breast. <i>“Spread your [pc.legs].”</i> She obliges, separating her three legs in a spidery welcome. Your hand slides from her alcohol-slicked breast, trailing wetness, slowly down her stomach, feeling it quiver with her anticipation. You reach the gap between two of her legs and linger there, staring into her eyes, until she meets your gaze, and then slide the last of the way until your fingers feel the bump that marks her entrance. The woman shivers under you as you work your way in slowly, tracing first the outlines of her unusual tripartite labia and second the ring of her vaginal opening. Deliberately, making sure she watches, you lean down between her legs and kiss her nearest exposed clitoris, which is even now twitching and flexing in place. Slowly pulling away, you glance between her thighs at your lover’s face.");
 
 	output("\n\n<i>“Well-”</i>");
 

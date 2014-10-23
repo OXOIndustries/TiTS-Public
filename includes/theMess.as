@@ -488,7 +488,7 @@ function stephIrsonEpisodeTwoDashTwo():void
 		//If PC has a vag:
 		else 
 		{
-			output("\n\nHaving seen the googirl's show the same as you, your poor little ladyboy is already rock-hard, cock making a nice little tent under her skirt. You figure, why not be generous? Even sissies need to cum sometimes. You spread your legs for her");
+			output("\n\nHaving seen the googirl's show the same as you, your poor little ladyboy is already rock-hard, cock making a nice little tent under her skirt. You figure, why not be generous? Even sissies need to cum sometimes. You spread your [pc.legs] for her");
 			if(pc.isCrotchGarbed()) output(", pushing your [pc.lowerGarments] out of the way");
 			output(" to give the bartender easy access to your [pc.vagina " + x + "]. Horny as she is, it doesn't take much more prompting than that to get your favorite Tarkusian trap to straddle your [pc.legs] and start pounding away, her tiny prick easily entering your sex and spearing you with pleasure. Now that's more like it. You lean back in your booth, letting the trappy slut wrap her arms around you as she fucks you, and enjoy the show and the sex at once....");
 			pc.cuntChange(x,chars["DELILAH"].cockVolume(0),true,true,false);

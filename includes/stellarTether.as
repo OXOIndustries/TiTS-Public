@@ -687,7 +687,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	{
 		output(" Thanks the to the pressure on your prostate, your own [pc.cocks] twitch");
 		if(pc.cockTotal() == 1) output("es");
-		output(" between your legs, thankfully unrestrained as ");
+		output(" between your [pc.legs], thankfully unrestrained as ");
 		if(pc.cockTotal() == 1) output("it");
 		else output("they");
 		output(" pokes through the crotchless leather suit Mistress has bound you up in.");
@@ -706,7 +706,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("pair of huge, swinging mammaries drop out onto the deck! You gasp, suddenly realizing the old trick Mistress has used on you, even as your huge tits expand, growing monstrously huge until you're practically lying atop them, your stunted, bound arms unable to touch the ground. As your chest grows, the rest of you does as well, your hips and ass straining against the tight leather of your puppy-suit, threatening to break from your constraints.");
 
 	output("\n\nBetween the strange, stretching feeling in your suddenly much more curvy body and the vibrator still humming away in your ass, you only just stop short of cumming as waves of mutating bliss flow through your changing body. Mistress gently strokes your [pc.hair], cooing what a good puppy you are as you slump out of her lap, usable to sit upright thanks to your heavier bosom.");
-	if(!pc.hasVagina()) output(" But that's not the last change Mistress's drugs have in store for you, as you can feel a slight, stretching pain in your loins, as something... something tears in your crotch. You cry out, but not in pain, but pleasure. You can't reach back to see what's happening, but Mistress seems to understand your need, as she reaches down and pulls away the leathers covering your groin and ass. You wince as cool air brushes across something new and alien between your legs -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
+	if(!pc.hasVagina()) output(" But that's not the last change Mistress's drugs have in store for you, as you can feel a slight, stretching pain in your loins, as something... something tears in your crotch. You cry out, but not in pain, but pleasure. You can't reach back to see what's happening, but Mistress seems to understand your need, as she reaches down and pulls away the leathers covering your groin and ass. You wince as cool air brushes across something new and alien between your [pc.legs] -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
 	else output(" With your new additions straining against your suit, Mistress slips a hand back around your prone body, yanking down the leather around your [pc.ass] to let your womanhood kiss the stale air of the cabin for the first time in what seems like forever.");
 
 	output("\n\nAs you lie on the deck, Mistress rises to her feet and steps over you, going to the thus-far silent Tam-wolf. You crane your neck around your now-immobile body, trying to see what's going on but not quite able: but you <i>can</i> hear....");

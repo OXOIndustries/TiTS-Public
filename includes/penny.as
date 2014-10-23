@@ -2820,7 +2820,7 @@ function gardeFordWritesPennySmex():void {
 		pc.cockChange();
 	}
 	//female:
-	else if(pc.hasVagina()) output(" You slide a leg between the fox-girl’s own and begin grinding [pc.oneVagina] against her upper thigh. Your own leg grinds against her smooth cleft as you thrust against it. The busty fennec’s thighs tighten around your leg, but it does little to slow your femcum-slicked efforts.");
+	else if(pc.hasVagina()) output(" You slide a leg between the fox-girl’s own and begin grinding [pc.oneVagina] against her upper thigh. Your own leg grinds against her smooth cleft as you thrust against it. The busty fennec’s thighs tighten around your [pc.leg], but it does little to slow your femcum-slicked efforts.");
 	else output(" You plunge your fingers into the fox-girl’s waiting cunt, using two for easier penetration. Penny’s tail begins wagging faster at this, but hits your arm at the halfway point and stops for a moment before repeating the process. You slip your other hand under her body and play with her clit, starting her moans anew.");
 	output(" Penny’s moans catch in her throat as she cums again.");
 	if(penny.hasCock()) output(" You hear a thud as her [penny.cock] rises to full hardness and knocks the underside of the desk, splattering the floor with pearly jizz.");
@@ -2833,7 +2833,7 @@ function gardeFordWritesPennySmex():void {
 		{
 			output(" Your unused [pc.vaginas] explode");
 			if(pc.vaginaTotal() == 1) output("s");
-			output(" in orgasm, soaking your legs in femcum.");
+			output(" in orgasm, soaking your [pc.legs] in femcum.");
 		}
 		output(" As your torrent slows, you pull out of her thighs and reposition your cock closer to her head. Penny’s furry ears twitch as you empty ");
 		if(pc.balls > 0) output("your [pc.balls]");

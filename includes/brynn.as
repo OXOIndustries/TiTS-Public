@@ -168,7 +168,7 @@ public function brynnsStallFunc():Boolean
 				if (pc.hasVagina() || pc.hasCock()) output(".");
 				output(" To <i>fuck</i>.");
 				
-				output("\n\nYou push through the doors of the stall in a daze, the smell of the very thing your Treated body needs dragging you nose-first through the barn and to the strongest source of raw sex it can find. Your feet abruptly come to a stop, your legs having been moving on effective autopilot without your conscious consent.");
+				output("\n\nYou push through the doors of the stall in a daze, the smell of the very thing your Treated body needs dragging you nose-first through the barn and to the strongest source of raw sex it can find. Your feet abruptly come to a stop, your [pc.legs] having been moving on effective autopilot without your conscious consent.");
 				
 				if (brynnIntroduced())
 				{

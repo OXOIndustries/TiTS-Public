@@ -833,7 +833,7 @@ function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 	//{if PC is not nude} 
 	if(disrobe) output("You remove your clothing at Celise’s suggestion, prompting happy applause from the green woman. It sounds rather like two wet towels slapping together. Once completely nude, you’re once again invited to lay down on the bed of ooze and rest your head between her appropriately sized pillowcase cup breasts.\n\n");
 	output("Her gel is warm to the touch, and is quite pleasant on your skin. You let out a contented sigh as your head sinks partially into her bust and she puts her hands onto your chest, hugging you to her breast. You switch off the lights in your room and close your eyes, completely relaxed on the thick goopy body of the Galotian.");
-	output("\n\nBefore you’re actually able to fall asleep, you feel the mat of goo suddenly run up your legs and around your body, enveloping it in mere moments. Fear of being trapped is quickly banished from your mind as Celise’s goo begins caressing and vibrating on your skin. Long veins rub across your back and shoulders, working out the pains and knots from your muscles after a long day. Damn, this girl is a natural with massages!");
+	output("\n\nBefore you’re actually able to fall asleep, you feel the mat of goo suddenly run up your [pc.legs] and around your body, enveloping it in mere moments. Fear of being trapped is quickly banished from your mind as Celise’s goo begins caressing and vibrating on your skin. Long veins rub across your back and shoulders, working out the pains and knots from your muscles after a long day. Damn, this girl is a natural with massages!");
 	output("\n\nCelise continues to work the tension from you for the next half hour or so. Just when you feel like every ");
 	if(pc.isGoo()) output("bit of goo");
 	else output("muscle");
@@ -928,7 +928,7 @@ function getDrainedSexyTimes():void {
 	if (pc.hasTailCock())
 	{
 		//n is the first tail that the PC has that is a tailcock
-		output("\n\nGiven all the stimulation your body has received, your unusual endowment is quite easy to find and your [pc.tail] is led down between your legs. The whole tail is surrounded in a thick sleeve of gel that promptly rocks forward and backwards down its full length. A small tendril of goo forms across the tip of your [pc.tailCock] and rubs its urethra, trying to draw out as much as possible with each orgasm you experience throughout the night.");
+		output("\n\nGiven all the stimulation your body has received, your unusual endowment is quite easy to find and your [pc.tail] is led down between your [pc.legs]. The whole tail is surrounded in a thick sleeve of gel that promptly rocks forward and backwards down its full length. A small tendril of goo forms across the tip of your [pc.tailCock] and rubs its urethra, trying to draw out as much as possible with each orgasm you experience throughout the night.");
 	}
 	//tail vagina
 	else if (pc.hasTailCunt())

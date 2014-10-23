@@ -1261,7 +1261,7 @@ function vanaeHuntressTitfuck():void
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
 
-	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your legs. As she walks over her [monster.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
+	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your [pc.legs]. As she walks over her [monster.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
 
 	output("\n\nApproaching you and getting on her knees, the busty amazon brings her webbed hands up to cup her [monster.breasts], making her already impressive cleavage stand out. Her [monster.nipples] drool her violet milk down her ample flesh, curling and dribbling down to her [monster.belly].  There is a distinctly feminine scent in the air mixed with a fruity aroma, the latter coming from her nipple milk.");
 
@@ -1313,7 +1313,7 @@ function vanaeHuntressEatsPCCunt():void
 	vanaeHeader("VICTORY: VANAE\n");
 
 	output("The exotic huntress gestures for you to seat yourself");
-	if (pc.isBiped()) output(" and spread your legs");
+	if (pc.isBiped()) output(" and spread your [pc.legs]");
 	output(" down");
 	output(". As soon as you do she sinks down onto her webbed hands and knees, crawling towards you just like a cat. Your breathing becomes heavy and your temperature rises several degrees as she slinks up");
 	if (pc.legCount == 2) output(" between your [pc.legs]");
@@ -1603,7 +1603,7 @@ function vanaeHuntressSquirNJerk():void
 	// Must have Cock
 	// Must have front or mid genitals.
 
-	output("The exotic huntress gestures for you to seat yourself on a nearby rock. After you sit down and spread your legs she follows, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier.");
+	output("The exotic huntress gestures for you to seat yourself on a nearby rock. After you sit down and spread your [pc.legs] she follows, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier.");
 
 	output("\n\nShe squirts thick, gooey ropes of [monster.milk] from her [monster.nipples], dousing [pc.eachCock]. You let out a " + pc.mfn("masculine groan", "girlish moan", "breathy moan") + ", your slick staff");
 	if (pc.cocks.length > 1) output("s");

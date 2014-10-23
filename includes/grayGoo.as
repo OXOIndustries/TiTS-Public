@@ -524,7 +524,7 @@ function pcDefeatByGooBitch():void
 	else {
 		output("\n\n<i>\"Oooh, this is SO PERFECT!\"</i> the goo declares, grabbing your massive wang with both hands, jacking it off vigorously. <i>\"And it's all mine! Mineminemine!\"</i>");
 		output("\n\nYou shudder as the goo surrounding your dong shifts and writhes, sending shockwaves of pleasure through your body, nearly enough to knock your off your [pc.feet].");
-		if(pc.cocks[pc.biggestCockIndex()].type != GLOBAL.TYPE_EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape you member into the form of immense, equine-like phallus.");
+		if(pc.cocks[pc.biggestCockIndex()].cType != GLOBAL.TYPE_EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape you member into the form of immense, equine-like phallus.");
 	}
 	//{Combine all cock variants:}
 	output("\n\nHappily jerking on her big, new cock, the goo-girl takes a few steps forward, twisting her head as if looking for something. <i>\"Hmm. Where's a cute lil' raskvel when you need one, huh? Ooh! I think I hear one over there!\"</i>");
@@ -676,7 +676,7 @@ function gooGooEnvelopsCunts():void
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("LOST VS.\nGRAY GOO");
 	output("<i>“You know... I’ve always had an appreciation for the theater,”</i> the gray goo suddenly blurts from your mouth. She wanders over and sits you down on a little outcropping of assorted junk just in front of her makeshift mirror.");
-	output("\n\n<i>“I think I’ve got quite the knack for storytelling myself,”</i> she boasts, your arms wildly gesticulating for emphasis. The prima donna is spreading your legs");
+	output("\n\n<i>“I think I’ve got quite the knack for storytelling myself,”</i> she boasts, your arms wildly gesticulating for emphasis. The prima donna is spreading your [pc.legs]");
 	if(pc.balls > 0) output(", trying");
 	output(" to get a clear view of your gray-painted [pc.vaginaNounSimple].");
 	if(pc.balls > 0) output(" <i>“Hey! Down in front!”</i> Her silvery shout causes your [pc.balls] to flop upward with a will of their own, stopping them from obscuring your [pc.vaginas].");

@@ -756,7 +756,7 @@ public function saendraTalkInDC():void
 	
 	output("\n\nSera snorts. <i>“Called it. Hey, ease up. Girls with dicks are basically the new big tits fetish. Especially when they’ve got both, huh?”</i> she says, shifting slightly to emphasize her own ample bust. <i>“So what’s it gonna be, kitten? You want a big, thick cock to fuck your [pc.boy]friend here with?");
 	if (pc.hasCock()) output(" Maybe one so big that you’ll put [pc.hisHers] to shame?");
-	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they spread your legs and fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.”</i>");
+	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they spread your [pc.legs] and fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.”</i>");
 	
 	output("\n\nFlashing the demoness a grin, Saendra leans in and whispers, <i>“You’re just jealous that I don’t have to fake it.”</i>");
 	
@@ -764,7 +764,7 @@ public function saendraTalkInDC():void
 	
 	output("\n\n<i>“Not my fault the boys - and the girls - are lining up around the block for a chance at me!”</i>");
 	
-	output("\n\nSera snickers. <i>“A chance? Like you could keep your legs closed if they paid you to.”</i> ");
+	output("\n\nSera snickers. <i>“A chance? Like you could keep your [pc.legs] closed if they paid you to.”</i> ");
 	
 	output("\n\n<i>“That’s right,”</i> Saen says, leaning in so close her nose is practically touching the succubus’s, <i>“I give it away, instead of having to brow-beat my customers into it. How’s it feel not being able to actually get a date, glow-in-the-dark?”</i>");
 	
@@ -1173,7 +1173,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	}
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");
-	if (pc.legs == 2) output(" spreading your legs wide for herself, hands braced on your knees");
+	if (pc.legs == 2) output(" spreading your [pc.legs] wide for herself, hands braced on your knees");
 	else output(" positioning herself between your [pc.legs], bracing herself on your [pc.hips]");
 	output(". You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of the probe brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... ");
 

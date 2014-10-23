@@ -2197,7 +2197,7 @@ function hugeTittyTittyfuck():void
 	output(", you ");
 	if(pc.isNaga()) output("slither");
 	else output("hop");
-	output(" up onto the crate. It’s rustic, wooden, and a little coarse against your [pc.butt]. This kind of old-fashioned silliness would never be allowed on a core hub, but here, you suppose it’s all part of the charm, assuming you manage to avoid getting any splinters. You spread your legs");
+	output(" up onto the crate. It’s rustic, wooden, and a little coarse against your [pc.butt]. This kind of old-fashioned silliness would never be allowed on a core hub, but here, you suppose it’s all part of the charm, assuming you manage to avoid getting any splinters. You spread your [pc.legs]");
 	if(pc.balls > 0) output(" to give your [pc.balls] a little more room");
 	output(" and heft [pc.oneCock]");
 	if(pc.cockTotal() > 1) output(" - the biggest");

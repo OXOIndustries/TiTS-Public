@@ -122,8 +122,8 @@ function lapinaraBite():void
 /*Tail Trip:
 **She will only attempt this if your shield is down. You really don’t want her to succeed at this attack (or maybe you do?).
 
-Dodge: <i>“The lapinara swings her tail in the direction of your legs. Thinking fast, you jump, her tail swishing harmlessly under you.”</i>
-Hit: <i>“The lapinara swings her tail in the direction of your legs, subsequently tripping you. She immediately hops on top of you, pinning you down. Damn, she’s strong for such a little thing! You'll need to break free of her grasp, and fast!”</i>
+Dodge: <i>“The lapinara swings her tail in the direction of your [pc.legs]. Thinking fast, you jump, her tail swishing harmlessly under you.”</i>
+Hit: <i>“The lapinara swings her tail in the direction of your [pc.legs], subsequently tripping you. She immediately hops on top of you, pinning you down. Damn, she’s strong for such a little thing! You'll need to break free of her grasp, and fast!”</i>
 Struggle (strength, succeed):  <i>“You pry the lapinara off you you, tossing her backwards and you get back on your feet.”</i>
 Struggle (reflex, succeed): <i>“You manage to slip out from under the lapinara, clearly catching her off guard.”</i>
 Struggle (first fail, both strength and reflex): <i>“The lapinara strengthens her grasp, pulling a syringe from her belt. She uncaps it, delving the needle into your neck. You scream loudly. The pain is unbearable! As she withdraws you needle, you can already feel the potent drug going to work on your body. You'll need to break free soon, before this drug overwhelms you!”</i>
@@ -408,7 +408,7 @@ function getLickedByLapinara():void
 	else output("your");
 	output(" exposed puss. She appears to have taken the hint, licking her lips at the suggestion.");
 
-	output("\n\n<i>“You’re just so full of ideas, aren’t you, babe? I like that. I like that very much,”</i> your partner comments, plopping down between your legs. She inspects [pc.oneVagina], smiling all the while. You even catch her biting her lip as she pokes and prods through your folds. <i>“And to top it all off, I’d say that you have just about the cutest pussy I’ve ever seen. Simply adorable!”</i>");
+	output("\n\n<i>“You’re just so full of ideas, aren’t you, babe? I like that. I like that very much,”</i> your partner comments, plopping down between your [pc.legs]. She inspects [pc.oneVagina], smiling all the while. You even catch her biting her lip as she pokes and prods through your folds. <i>“And to top it all off, I’d say that you have just about the cutest pussy I’ve ever seen. Simply adorable!”</i>");
 
 	output("\n\n<i>“Ahem!”</i> you interrupt. Skip the banter, you’re ready to get down to business!");
 	output("\n\n<i>“Oh, right. Sorry,”</i> she apologizes.");
@@ -435,7 +435,7 @@ function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick Just Right Size Variant- 12 Inches and Below)
 	if(pc.cocks[x].cLength() <= 12)
 	{
-		output("You lie down on the ground, spreading your legs for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
 		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 
@@ -446,7 +446,7 @@ function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick A Little Big Variant- Between 13 and 20 inches)
 	else if(pc.cocks[x].cLength() <= 20)
 	{
-		output("You lie down on the ground, spreading your legs for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
 		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“It’s a little bigger than what I’m used to...”</i> she muses. <i>“I’m not sure if I can take the whole thing, but I’ll do my best!”</i>");
@@ -455,7 +455,7 @@ function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick Too Big Variant- More than 20 inches long)
 	else
 	{
-		output("You lie down on the ground, spreading your legs for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
 		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“Oh my goodness, it’s huge!”</i> she interjects. <i>“I’m not going to be able to take too much of it, but I’ll do my best!”</i>");

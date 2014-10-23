@@ -1000,12 +1000,12 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 
 	output("\n\n<i>“I can fuck your ass raw any day, [pc.name]. But when we're alone like this... when I see you on your back, so beautiful, so very much mine... I just want to take it gentle. At least at first. What do you say?”</i>");
 
-	output("\n\n<i>“That sounds just about perfect.”</i>  You reach up and give your lover a deep, long kiss, pulling her down into your [pc.chest] as your legs lock behind her, drawing her inexorably into you. Her breathing picks up, a shallow pant by the time you can feel the boiling hot rod of dog-cock spreading your cheeks, heading for home. Squeezing Syri tight, you grit your teeth and try to relax your sphincter to ease the coming blissful agony.");
+	output("\n\n<i>“That sounds just about perfect.”</i>  You reach up and give your lover a deep, long kiss, pulling her down into your [pc.chest] as your [pc.legs] lock behind her, drawing her inexorably into you. Her breathing picks up, a shallow pant by the time you can feel the boiling hot rod of dog-cock spreading your cheeks, heading for home. Squeezing Syri tight, you grit your teeth and try to relax your sphincter to ease the coming blissful agony.");
 
 	output("\n\nA slight, pleasured whimper escapes your lips as the pointy tip of Syri's cock presses against your [pc.asshole], ");
 	if(pc.ass.looseness() <= 2) output("building up pressure before your tight little pucker finally yields, letting it slip past");
 	else output("sliding past your relaxed, yielding muscles to slip right in");
-	output(". The both of you groan as your legs shepherd Syri's hips in, pushing her deeper and deeper in one long, slow motion until she's so deep you can practically taste her cock; her thick, throbbing knot presses tightly to your back door, but she relaxes her advance just as your body tenses, bracing for impact.");
+	output(". The both of you groan as your [pc.legs] shepherd Syri's hips in, pushing her deeper and deeper in one long, slow motion until she's so deep you can practically taste her cock; her thick, throbbing knot presses tightly to your back door, but she relaxes her advance just as your body tenses, bracing for impact.");
 
 	output("\n\n<i>“Not so fast,”</i>  Syri grins, a hand playing across your bare [pc.chest]");
 	if(pc.biggestTitSize() >= 1) output(", cupping one of your full breasts, giving the perky teat a playful squeeze");

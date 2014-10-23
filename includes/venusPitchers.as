@@ -410,7 +410,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		if(pc.cumQ() >= 200 && pc.cumQ() <= 1000) output(", bulging them with your sheer virility.");
 		else if(pc.cumQ() > 1000) 
 		{
-			output(", bulging them with your sheer virility while the excess spatters out around their entrances, dripping down your legs");
+			output(", bulging them with your sheer virility while the excess spatters out around their entrances, dripping down your [pc.legs]");
 			if(pc.cumQ() >= 8000) output(" and filling a good portion of the bulb’s bottom");
 		}
 		output("."); 

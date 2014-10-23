@@ -702,7 +702,7 @@ function treatmentHourProcs():void
 					eventBuffer += "\n\nAll at once, you feel moist all over your crotch. The strange sensation won't go away, leaving you with nothing to do but press a pair of fingertips inside yourself, just to check. It's slippery and wet - ";
 					if(pc.totalVaginas() == 2) eventBuffer += "both";
 					else eventBuffer += "all of";
-					eventBuffer += " your holes. You whimper. How are you supposed to keep your legs closed when you're getting so fuckable?";
+					eventBuffer += " your holes. You whimper. How are you supposed to keep your [pc.legs] closed when you're getting so fuckable?";
 				}
 				//+5 lust for all
 				pc.lust(5);
@@ -1145,7 +1145,7 @@ function treatmentHourProcs():void
 		}
 		else if(treatedHours == 22)
 		{
-			eventBuffer += "\n\nIn a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs between your legs.";
+			eventBuffer += "\n\nIn a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs between your [pc.legs].";
 			eventBuffer += "\n\nThere’s nothing wrong with a little daydreaming, after all.";
 			pc.lust(25);
 		}
@@ -1271,7 +1271,7 @@ function treatmentHourProcs():void
 				if(pc.hasVirginCock()) eventBuffer += "first";
 				else eventBuffer += "next";
 				eventBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
-				eventBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels between your legs, putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
+				eventBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels between your [pc.legs], putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
 				eventBuffer += "\n\nThe important takeaway is that you’re fucking amazing at being aroused now. Stimulation that would’ve morphed you into a mewling ball only makes you hotter and more capable of pleasure. It’ll take so much more teasing to bring you to the brink than ever before, but that just means you get to have bigger orgasms when you do. It’s win-win.";
 			}
 			//No Cooch!

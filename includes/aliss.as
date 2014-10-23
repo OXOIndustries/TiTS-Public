@@ -903,7 +903,7 @@ function condomWithAliss(x:int = -1):void
 	output("\n\n\"<i>And now how about you, </i>mi amour<i>?</i>\" Aliss asks, cocking her head over her shoulder at you. ");
 	//if using hardlight strapon:
 	if(x < 0) output("You merely smirk and activate the hardlight projectors in your panties. Looking down, you watch as a vague penis shape forms at your crotch, made entirely of orange light. As it solidifies, it takes on a more natural color, matching your skin. It takes only a few seconds for it to achieve its intended shape, a perfectly normal human-like penis, about nine inches long. Finally, you feel a slight pinch around your waist as the panties begin sending your body tactile feedback. You can feel the air on your new virtual cock, and as you run a hand over it, you can't help but shiver at the odd, alien feeling. \"<i>Ohh, using my own products against me? Well no need for a condom I guess.</i>\"");
-	else output("You smile, slipping your hand between your legs to grip the hardening member there. You grab another \"Stallionguard\" condom, unwrap it and gently slip it on. Once it's properly on, you note it's almost like you're not wearing anything at all. You can still feel the air blow across your dick, or the gentle caress of your own fingers. Not a single sensation is dulled.");
+	else output("You smile, slipping your hand between your [pc.thighs] to grip the hardening member there. You grab another \"Stallionguard\" condom, unwrap it and gently slip it on. Once it's properly on, you note it's almost like you're not wearing anything at all. You can still feel the air blow across your dick, or the gentle caress of your own fingers. Not a single sensation is dulled.");
 	condomOrNoCondomAlissButtfuck(x,true);
 }
 
@@ -918,7 +918,7 @@ function noCondomsAlissYerASlut(x:int = -1):void
 
 	//if using hardlight strapon:
 	if(x < 0) output("\n\nThe grin still plastered on your face, you activate the hardlight projectors in your panties. Looking down, you watch as a vague penis shape forms at your crotch, made entirely of orange light. As it solidifies, it takes on a more natural color, matching your skin. It takes only a few seconds for it to achieve its intended shape, a perfectly normal human-like penis, about nine inches long. Finally, you feel a slight pinch around your waist as the panties begin sending your body tactile feedback. You can feel the air on your new virtual cock, and as you run a hand over it, you can't help but shiver at the odd, alien feeling.");
-	else output("\n\nYou slip a hand between your legs, bringing your cock to full attention. It gleams in the soft lighting of the changing room, pulsing with blood and energy. Aliss gives you an appreciative little nod.");
+	else output("\n\nYou slip a hand between your [pc.thighs], bringing your cock to full attention. It gleams in the soft lighting of the changing room, pulsing with blood and energy. Aliss gives you an appreciative little nod.");
 	condomOrNoCondomAlissButtfuck(x,false);
 }
 
@@ -1075,7 +1075,7 @@ function offerPussyYouSloot():void
 	userInterface.showName("\nALISS");
 	var x:int = rand(pc.totalVaginas());
 	output("The cock before you glistens tantalizingly with precum. You swallow hard, feeling a warm tingle from down below. Almost instinctually [pc.eachVagina] is growing wet with arousal.");
-	output("\n\nSeeming to sense this, Aliss steps forward, her strawberry flavored lips suddenly on yours. One of her hands delves between your legs, her fingers gently exploring your outer cunt lips while her mouth explores your real lips. She gently sucks your lower lip into her mouth, nibbling it for a moment before pulling away and releasing it.");
+	output("\n\nSeeming to sense this, Aliss steps forward, her strawberry flavored lips suddenly on yours. One of her hands delves between your [pc.legs], her fingers gently exploring your outer cunt lips while her mouth explores your real lips. She gently sucks your lower lip into her mouth, nibbling it for a moment before pulling away and releasing it.");
 	//Tauric players:
 	if(pc.isTaur()) output(" Aliss slips behind your large, bulky body and kneels.");
 	else output(" \"<i>Lets get you comfortable first,</i>\" she says, motioning to the bench in the changing room. She pulls you over to it and gently lays you down onto your back before sitting on the opposite end and leaning down.");
@@ -1106,8 +1106,8 @@ function offerPussyYouSloot():void
 	//tauric:
 	if(pc.isTaur()) output("\n\nStanding, Aliss takes her shaft in hand as she positions herself behind your large body.");
 	else if(pc.isNaga()) output("\n\nAliss straddles your serpentine body, her shaft in hand as she lines it up with your vagina.");
-	else output("\n\nShe sits up, straddling the bench as you splay your legs wide, granting her entrance to your waiting hole.");
-	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds and clit. This teasing continues for another minute, until your legs are dripping with arousal. You groan loudly and tell her to just stick it in already.");
+	else output("\n\nShe sits up, straddling the bench as you splay your [pc.legs] wide, granting her entrance to your waiting hole.");
+	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds and clit. This teasing continues for another minute, until your [pc.legs] are dripping with arousal. You groan loudly and tell her to just stick it in already.");
 
 	output("\n\nAliss smirks and obliges, sinking the first few inches of her impressive cock into your waiting cunt. ");
 	if(pc.hasCock()) output("[pc.eachCock] has a pang of jealousy and twitches, rapidly growing to full mast while Aliss plunges into you. ");
