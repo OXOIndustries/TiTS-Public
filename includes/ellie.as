@@ -645,7 +645,7 @@ function publicUseForBullsByCentaurians():void
 	output("\n\n<i>“That’s a ‘come and get it,’ boys!”</i> Ellie grins, reaching over to pat the backside of your humanoid half.");
 	output("\n\n<i>“Yes ma’am,”</i> one of the bigger bulls says, leading her herd toward your exposed backside. They make short work of your gear, tossing it aside to leave your bestial half nice and bare and totally ready for them.");
 	if(pc.hasVagina()) output(" Your pussy is dripping with excitement, feminine need drooling to the floor as the bulls gather behind you.");
-	if(pc.hasVagina()) output(" Your [pc.cock] is so hard that it’s leaking, pre drooling onto the floor between your rear legs.");
+	if(pc.hasCock()) output(" Your [pc.cock] is so hard that it’s leaking, pre drooling onto the floor between your rear legs.");
 	output(" The biggest bull butts a few of the others away and plants his hooves behind your ass. You hear a loud <i>ZIIIIIIP</i>, and then a sudden, hard heat on your [pc.butt]. You try to look over your shoulder and see what’s going on, but Ellie catches you, returns you to her teat.");
 
 	output("\n\n<i>“It’s best you don’t watch, sugar. Just relax... and give the boys a sexy little moan when they pump you full of spunk, alright?”</i>");
