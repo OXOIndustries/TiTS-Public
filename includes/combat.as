@@ -148,6 +148,7 @@ function combatMainMenu():void
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+		if(foes[0] is Varmint) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
 		//Bonus shit for stuff!
 		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 	}
@@ -693,6 +694,8 @@ function processCombat():void
 			}
 		}
 	}
+	//Clear lasso status from varmints.
+	if(foes[0] is Varmint) foes[0].removeStatusEffect("Lassoed");
 	combatStage = 0;
 	this.clearMenu();
 	this.addButton(0,"Next",combatMainMenu);
@@ -1517,6 +1520,7 @@ function enemyAI(aggressor:Creature):void
 	else if (aggressor is SecurityDroids) securityDroidAI();
 	else if (aggressor is GrayPrime) grayPrimeAI();
 	else if (aggressor is GigaGoo) gigaGooAI();
+	else if (aggressor is Varmint) varmintAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
@@ -1619,6 +1623,10 @@ function victoryRouting():void
 	else if (foes[0] is GigaGoo)
 	{
 		victoryOverGigaGoo();
+	}
+	else if (foes[0] is Varmint)
+	{
+		pcVictoryVsVarmints();
 	}
 	else genericVictory();
 }
@@ -1725,6 +1733,10 @@ function defeatRouting():void
 	else if (foes[0] is GigaGoo)
 	{
 		loseToGigaGoo();
+	}
+	else if (foes[0] is Varmint)
+	{
+		pcLosesToVarmint();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1960,6 +1972,9 @@ function startCombat(encounter:String):void
 			break;
 		case "gigagoo":
 			chars["GIGAGOO"].prepForCombat();
+			break;
+		case "varmint":
+			chars["VARMINT"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

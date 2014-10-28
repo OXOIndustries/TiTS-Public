@@ -3516,13 +3516,14 @@ function initializeRooms():void
 	rooms["533"] = new RoomClass(this);
 	rooms["533"].roomName = "THE\nROAD";
 	rooms["533"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["533"].runOnEnter = undefined;
+	rooms["533"].runOnEnter = fauxCowFarmerBonus;
 	rooms["533"].eastExit = "532";
 	rooms["533"].northExit = "534";
 	rooms["533"].westExit = "541";
 	rooms["533"].planet = "PLANET: NEW TEXAS";
 	rooms["533"].system = "SYSTEM: NYE";
 	rooms["533"].addFlag(GLOBAL.OUTDOOR);
+	rooms["533"].addFlag(GLOBAL.NPC);
 
 	rooms["534"] = new RoomClass(this);
 	rooms["534"].roomName = "SHORT\nGRASS";
@@ -3559,7 +3560,7 @@ function initializeRooms():void
 	rooms["537"] = new RoomClass(this);
 	rooms["537"].roomName = "THE\nFIELDS";
 	rooms["537"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["537"].runOnEnter = undefined;
+	rooms["537"].runOnEnter = varmintRoomsBonus;
 	rooms["537"].northExit = "538";
 	rooms["537"].eastExit = "536";
 	rooms["537"].southExit = "539";
@@ -3572,7 +3573,7 @@ function initializeRooms():void
 	rooms["538"] = new RoomClass(this);
 	rooms["538"].roomName = "THE\nFIELDS";
 	rooms["538"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["538"].runOnEnter = undefined;
+	rooms["538"].runOnEnter = varmintRoomsBonus;
 	rooms["538"].southExit = "537";
 	rooms["538"].westExit = "547";
 	rooms["538"].planet = "PLANET: NEW TEXAS";
@@ -3583,7 +3584,7 @@ function initializeRooms():void
 	rooms["539"] = new RoomClass(this);
 	rooms["539"].roomName = "THE\nFIELDS";
 	rooms["539"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["539"].runOnEnter = undefined;
+	rooms["539"].runOnEnter = varmintRoomsBonus;
 	rooms["539"].northExit = "537";
 	rooms["539"].eastExit = "534";
 	rooms["539"].southExit = "541";
@@ -3597,7 +3598,7 @@ function initializeRooms():void
 	rooms["541"] = new RoomClass(this);
 	rooms["541"].roomName = "THE\nFIELDS";
 	rooms["541"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["541"].runOnEnter = undefined;
+	rooms["541"].runOnEnter = varmintRoomsBonus;
 	rooms["541"].northExit = "539";
 	rooms["541"].eastExit = "533";
 	rooms["541"].southExit = "542";
@@ -3610,7 +3611,7 @@ function initializeRooms():void
 	rooms["542"] = new RoomClass(this);
 	rooms["542"].roomName = "THE\nFIELDS";
 	rooms["542"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["542"].runOnEnter = undefined;
+	rooms["542"].runOnEnter = varmintRoomsBonus;
 	rooms["542"].northExit = "541";
 	rooms["542"].westExit = "543";
 	rooms["542"].planet = "PLANET: NEW TEXAS";
@@ -3621,7 +3622,7 @@ function initializeRooms():void
 	rooms["543"] = new RoomClass(this);
 	rooms["543"].roomName = "THE\nFIELDS";
 	rooms["543"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["543"].runOnEnter = undefined;
+	rooms["543"].runOnEnter = varmintRoomsBonus;
 	rooms["543"].northExit = "544";
 	rooms["543"].eastExit = "542";
 	rooms["543"].westExit = "552";
@@ -3633,7 +3634,7 @@ function initializeRooms():void
 	rooms["544"] = new RoomClass(this);
 	rooms["544"].roomName = "THE\nFIELDS";
 	rooms["544"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["544"].runOnEnter = undefined;
+	rooms["544"].runOnEnter = varmintRoomsBonus;
 	rooms["544"].northExit = "545";
 	rooms["544"].eastExit = "541";
 	rooms["544"].southExit = "543";
@@ -3646,7 +3647,7 @@ function initializeRooms():void
 	rooms["545"] = new RoomClass(this);
 	rooms["545"].roomName = "THE\nFIELDS";
 	rooms["545"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["545"].runOnEnter = undefined;
+	rooms["545"].runOnEnter = varmintRoomsBonus;
 	rooms["545"].northExit = "546";
 	rooms["545"].eastExit = "539";
 	rooms["545"].southExit = "544";
@@ -3659,7 +3660,7 @@ function initializeRooms():void
 	rooms["546"] = new RoomClass(this);
 	rooms["546"].roomName = "THE\nFIELDS";
 	rooms["546"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["546"].runOnEnter = undefined;
+	rooms["546"].runOnEnter = varmintRoomsBonus;
 	rooms["546"].northExit = "547";
 	rooms["546"].eastExit = "537";
 	rooms["546"].southExit = "545";
@@ -3672,7 +3673,7 @@ function initializeRooms():void
 	rooms["547"] = new RoomClass(this);
 	rooms["547"].roomName = "THE\nFIELDS";
 	rooms["547"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["547"].runOnEnter = undefined;
+	rooms["547"].runOnEnter = varmintRoomsBonus;
 	rooms["547"].eastExit = "538";
 	rooms["547"].southExit = "546";
 	rooms["547"].westExit = "548";
@@ -3684,7 +3685,7 @@ function initializeRooms():void
 	rooms["548"] = new RoomClass(this);
 	rooms["548"].roomName = "THE\nFIELDS";
 	rooms["548"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["548"].runOnEnter = undefined;
+	rooms["548"].runOnEnter = varmintRoomsBonus;
 	rooms["548"].eastExit = "547";
 	rooms["548"].southExit = "549";
 	rooms["548"].westExit = "557";
@@ -3696,7 +3697,7 @@ function initializeRooms():void
 	rooms["549"] = new RoomClass(this);
 	rooms["549"].roomName = "THE\nFIELDS";
 	rooms["549"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["549"].runOnEnter = undefined;
+	rooms["549"].runOnEnter = varmintRoomsBonus;
 	rooms["549"].northExit = "548";
 	rooms["549"].eastExit = "546";
 	rooms["549"].southExit = "550";
@@ -3709,7 +3710,7 @@ function initializeRooms():void
 	rooms["550"] = new RoomClass(this);
 	rooms["550"].roomName = "THE\nFIELDS";
 	rooms["550"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["550"].runOnEnter = undefined;
+	rooms["550"].runOnEnter = varmintRoomsBonus;
 	rooms["550"].northExit = "549";
 	rooms["550"].eastExit = "545";
 	rooms["550"].southExit = "551";
@@ -3722,7 +3723,7 @@ function initializeRooms():void
 	rooms["551"] = new RoomClass(this);
 	rooms["551"].roomName = "THE\nFIELDS";
 	rooms["551"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["551"].runOnEnter = undefined;
+	rooms["551"].runOnEnter = varmintRoomsBonus;
 	rooms["551"].northExit = "550";
 	rooms["551"].eastExit = "544";
 	rooms["551"].southExit = "552";
@@ -3735,7 +3736,7 @@ function initializeRooms():void
 	rooms["552"] = new RoomClass(this);
 	rooms["552"].roomName = "THE\nFIELDS";
 	rooms["552"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["552"].runOnEnter = undefined;
+	rooms["552"].runOnEnter = varmintRoomsBonus;
 	rooms["552"].northExit = "551";
 	rooms["552"].eastExit = "543";
 	rooms["552"].westExit = "553";
@@ -3747,7 +3748,7 @@ function initializeRooms():void
 	rooms["553"] = new RoomClass(this);
 	rooms["553"].roomName = "THE\nFIELDS";
 	rooms["553"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["553"].runOnEnter = undefined;
+	rooms["553"].runOnEnter = varmintRoomsBonus;
 	rooms["553"].northExit = "554";
 	rooms["553"].eastExit = "552";
 	rooms["553"].westExit = "562";
@@ -3759,7 +3760,7 @@ function initializeRooms():void
 	rooms["554"] = new RoomClass(this);
 	rooms["554"].roomName = "THE\nFIELDS";
 	rooms["554"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["554"].runOnEnter = undefined;
+	rooms["554"].runOnEnter = varmintRoomsBonus;
 	rooms["554"].northExit = "555";
 	rooms["554"].eastExit = "551";
 	rooms["554"].southExit = "553";
@@ -3772,7 +3773,7 @@ function initializeRooms():void
 	rooms["555"] = new RoomClass(this);
 	rooms["555"].roomName = "THE\nFIELDS";
 	rooms["555"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["555"].runOnEnter = undefined;
+	rooms["555"].runOnEnter = varmintRoomsBonus;
 	rooms["555"].northExit = "556";
 	rooms["555"].eastExit = "550";
 	rooms["555"].southExit = "554";
@@ -3785,7 +3786,7 @@ function initializeRooms():void
 	rooms["556"] = new RoomClass(this);
 	rooms["556"].roomName = "THE\nFIELDS";
 	rooms["556"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["556"].runOnEnter = undefined;
+	rooms["556"].runOnEnter = varmintRoomsBonus;
 	rooms["556"].northExit = "557";
 	rooms["556"].eastExit = "549";
 	rooms["556"].southExit = "555";
@@ -3798,7 +3799,7 @@ function initializeRooms():void
 	rooms["557"] = new RoomClass(this);
 	rooms["557"].roomName = "THE\nFIELDS";
 	rooms["557"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["557"].runOnEnter = undefined;
+	rooms["557"].runOnEnter = varmintRoomsBonus;
 	rooms["557"].eastExit = "548";
 	rooms["557"].southExit = "556";
 	rooms["557"].westExit = "558";
@@ -3810,7 +3811,7 @@ function initializeRooms():void
 	rooms["558"] = new RoomClass(this);
 	rooms["558"].roomName = "THE\nFIELDS";
 	rooms["558"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["558"].runOnEnter = undefined;
+	rooms["558"].runOnEnter = varmintRoomsBonus;
 	rooms["558"].eastExit = "557";
 	rooms["558"].southExit = "559";
 	rooms["558"].westExit = "568";
@@ -3822,7 +3823,7 @@ function initializeRooms():void
 	rooms["559"] = new RoomClass(this);
 	rooms["559"].roomName = "THE\nFIELDS";
 	rooms["559"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["559"].runOnEnter = undefined;
+	rooms["559"].runOnEnter = varmintRoomsBonus;
 	rooms["559"].northExit = "558";
 	rooms["559"].eastExit = "556";
 	rooms["559"].southExit = "560";
@@ -3835,7 +3836,7 @@ function initializeRooms():void
 	rooms["560"] = new RoomClass(this);
 	rooms["560"].roomName = "THE\nFIELDS";
 	rooms["560"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["560"].runOnEnter = undefined;
+	rooms["560"].runOnEnter = varmintRoomsBonus;
 	rooms["560"].northExit = "559";
 	rooms["560"].eastExit = "555";
 	rooms["560"].southExit = "561";
@@ -3848,7 +3849,7 @@ function initializeRooms():void
 	rooms["561"] = new RoomClass(this);
 	rooms["561"].roomName = "THE\nFIELDS";
 	rooms["561"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["561"].runOnEnter = undefined;
+	rooms["561"].runOnEnter = varmintRoomsBonus;
 	rooms["561"].northExit = "560";
 	rooms["561"].eastExit = "554";
 	rooms["561"].southExit = "562";
@@ -3861,7 +3862,7 @@ function initializeRooms():void
 	rooms["562"] = new RoomClass(this);
 	rooms["562"].roomName = "THE\nFIELDS";
 	rooms["562"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["562"].runOnEnter = undefined;
+	rooms["562"].runOnEnter = varmintRoomsBonus;
 	rooms["562"].northExit = "561";
 	rooms["562"].eastExit = "553";
 	rooms["562"].westExit = "563";
@@ -3873,7 +3874,7 @@ function initializeRooms():void
 	rooms["563"] = new RoomClass(this);
 	rooms["563"].roomName = "THE\nFIELDS";
 	rooms["563"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["563"].runOnEnter = undefined;
+	rooms["563"].runOnEnter = varmintRoomsBonus;
 	rooms["563"].northExit = "564";
 	rooms["563"].eastExit = "562";
 	rooms["563"].planet = "PLANET: NEW TEXAS";
@@ -3884,7 +3885,7 @@ function initializeRooms():void
 	rooms["564"] = new RoomClass(this);
 	rooms["564"].roomName = "THE\nFIELDS";
 	rooms["564"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["564"].runOnEnter = undefined;
+	rooms["564"].runOnEnter = varmintRoomsBonus;
 	rooms["564"].northExit = "565";
 	rooms["564"].eastExit = "561";
 	rooms["564"].southExit = "563";
@@ -3896,7 +3897,7 @@ function initializeRooms():void
 	rooms["565"] = new RoomClass(this);
 	rooms["565"].roomName = "THE\nFIELDS";
 	rooms["565"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["565"].runOnEnter = undefined;
+	rooms["565"].runOnEnter = varmintRoomsBonus;
 	rooms["565"].northExit = "567";
 	rooms["565"].eastExit = "560";
 	rooms["565"].southExit = "564";
@@ -3908,7 +3909,7 @@ function initializeRooms():void
 	rooms["567"] = new RoomClass(this);
 	rooms["567"].roomName = "THE\nFIELDS";
 	rooms["567"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["567"].runOnEnter = undefined;
+	rooms["567"].runOnEnter = varmintRoomsBonus;
 	rooms["567"].northExit = "568";
 	rooms["567"].eastExit = "559";
 	rooms["567"].southExit = "565";
@@ -3920,7 +3921,7 @@ function initializeRooms():void
 	rooms["568"] = new RoomClass(this);
 	rooms["568"].roomName = "THE\nFIELDS";
 	rooms["568"].description = "This is a placeholder. Assume something cool is here and then never read it anyway.";
-	rooms["568"].runOnEnter = undefined;
+	rooms["568"].runOnEnter = varmintRoomsBonus;
 	rooms["568"].eastExit = "558";
 	rooms["568"].southExit = "567";
 	rooms["568"].planet = "PLANET: NEW TEXAS";

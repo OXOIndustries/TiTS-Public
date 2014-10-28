@@ -255,6 +255,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["BRYNN"] = new Brynn();
 	}
+	if (!justUpdate || (justUpdate && chars["VARMINT"] == undefined))
+	{
+		chars["VARMINT"] = new Varmint();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

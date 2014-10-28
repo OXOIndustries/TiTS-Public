@@ -1,4 +1,5 @@
-﻿/*Faux Cow Farmer
+﻿import classes.Items.Miscellaneous.VarmintItem;
+/*Faux Cow Farmer
 Farmer (First time)
 Cameron (Repeat)
 {if PC hasn't gotten 5+ varmints}
@@ -11,16 +12,21 @@ PC Defeat*/
 
 
 //Faux Cow Farmer
-function fauxCowFarmerBonus():void
+function fauxCowFarmerBonus():Boolean
 {
-	clearOutput();
 	//{1st Time Room Add}
 	if(flags["MET_CAMERON"] == undefined)
 	{
-		output("\n\nSitting by the gate to the field is a New Texan dressed in overalls and a wide-brimmed straw hat. For a moment, you think you've found the mythic flat-chested cow-girl by the figure's extremely feminine face, nub-like horns, tiny cloven hooves, and slight figure -- until your eyes wander down and see the very blatant bulge in his pants, holding what must be a pretty sizable member at bay. He seems to be in something of a huff, kicking at a fence post and thumbing the handle of a slug gun on his belt.");
+		output("\n\nSitting by the gate to the field is a New Texan dressed in overalls and a wide-brimmed straw hat. For a moment, you think you've found the mythic flat-chested cow-girl by the figure's extremely feminine face, nub-like horns, tiny cloven hooves, and slight figure - until your eyes wander down and see the very blatant bulge in his pants, holding what must be a pretty sizable member at bay. He seems to be in something of a huff, kicking at a fence post and thumbing the handle of a slug gun on his belt.");
+		addButton(0,"Farmer",approachFarmer);
 	}
 	//{Repeat Room Add}
-	else output("\n\nCameron is leaning up against the fence, mumbling to himself about the \"darned varmints\" running rampant in the fields still.");
+	else 
+	{
+		output("\n\nCameron is leaning up against the fence, mumbling to himself about the \"darned varmints\" running rampant in the fields still.");
+		addButton(0,"Cameron",approachFarmer);
+	}
+	return false;
 }
 
 function approachFarmer():void
@@ -29,6 +35,9 @@ function approachFarmer():void
 	//Farmer (First time)
 	if(flags["MET_CAMERON"] == undefined)
 	{
+		author("Savin");
+		showName("\nFARMER");
+		showBust("CAMERON");
 		output("You step up to the svelte farmer boy and ask what the problem is.");
 		output("\n\nHe jerks back when you speak, startled. Looking ");
 		if(pc.tallness > 70) output("up ");
@@ -57,8 +66,16 @@ function approachFarmer():void
 	//Cameron (Repeat)
 	else
 	{
+		author("Savin");
+		showName("\nCAMERON");
+		showBust("CAMERON");
 		output("“<i>Hey!</i>” Cameron says as you approach. “<i>Got any varmints tied up for me? Or you got something else on your mind?</i>”");
 		//{Options!}
+		if(pc.hasItem(new VarmintItem(),1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you've bagged for some cash.");
+		else addDisabledButton(0,"Varmint","Varmint","You haven't caught any varmints to turn in yet.");
+		if(pc.lust() >= 33) addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
+		else addDisabledButton(1,"Flirt","Flirt","You don't really feel like flirting at the moment.");
+		addButton(14,"Back",mainGameMenu);
 	}
 }
 
@@ -66,6 +83,9 @@ function approachFarmer():void
 function dontHelpCameron():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nFARMER");
+	showBust("CAMERON");
 	output("“<i>Well, good luck with that.</i>”");
 	output("\n\nThe farmer shrugs. “<i>Yeah. Thanks. Here’s hopin’.</i>”");
 	clearMenu();
@@ -76,6 +96,9 @@ function dontHelpCameron():void
 function helpCameronBeAGiantSlut():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	output("You ask the farmer if maybe you could be of some help?");
 	output("\n\n“<i>Woah, really? Hey, I’d owe ya one, " + pc.mf("brother","sister") + "!</i>” he says, a great big smile spreading on his face. “<i>Every varmint you wrangle down would be a big help. And I bet Gianna’d be stoked if you found her silicone shipments out there - she’s off in the milk barn, I reckon.</i>”");
 	output("\n\n“<i>What do you mean ‘wrangle’?</i>” you ask, indicating the magnum he’s carrying.");
@@ -84,7 +107,7 @@ function helpCameronBeAGiantSlut():void
 	output("become a citizen, I can’t give you Bertha here. Sorry. Gotta net the little bastards with this,</i>” he adds, handing you a... a lasso, of all things. Welp. At least it’s glowing, made out of some kind of modern high-durability, high-visibility material.");
 	output("\n\nHe grins at you as you take the lasso. “<i>Thanks a million, " + pc.mf("brother","sister") + "! Oh, name’s Cameron by the way. I’ll be here dawn till dusk, if you’ve got any wrangled varmints for me to pop. Might could throw you some credits for ‘em even.</i>”");
 	output("\n\nYou've gained a <b>Lasso</b>! It's been added to Key Items!");
-	pc.createKeyItem("Lasso");
+	pc.createKeyItem("Lasso",0,0,0,0);
 	clearMenu();
 	processTime(4);
 	flags["MET_CAMERON"] = 1;
@@ -97,6 +120,9 @@ function helpCameronBeAGiantSlut():void
 function turnInAVarmint():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	output("You sling an unconscious varmint off your shoulder and dangle it in front of Cameron.");
 	//If first Varmint: 
 	if(flags["VARMINTS_CAUGHT"] == undefined)
@@ -110,10 +136,11 @@ function turnInAVarmint():void
 		flags["VARMINTS_CAUGHT"]++;
 	}
 	output(" he cheers, taking the defeated beast from you.");
-	output("\n\n“<i>Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,</i>” he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
+	output("\n\n“<i>Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,</i>” he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?\"</i>");
 	pc.credits += 5;
 	output("\n\nYou take the payment, and Cameron takes the varmint. Which promptly goes flying into the back of his hover-pickup sitting nearby. You don’t ask what happens next to the critter.");
 	processTime(3);
+	pc.destroyItem(new VarmintItem(),1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -122,12 +149,17 @@ function turnInAVarmint():void
 function flirtWithCameron():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	output("<i>\"Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?\"</i>");
 
 	//{if PC hasn't gotten 5+ varmints}
 	if(flags["VARMINTS_CAUGHT"] == undefined || flags["VARMINTS_CAUGHT"] < 5)
 	{
-		output("\n\nHe blinks. <i>\"Are you... uh, I mean, I can't get out of here yet. My daddy would tan my hide raw! Why don't you try bagging five or so, and we'll talk about... other stuff, okay?\"</i>");
+		output("\n\nHe blinks. <i>\"Are you... uh, I mean, I can't get out of here yet. My daddy would tan my hide raw! Why don't you try bagging five or so, and we'll talk about... other stuff, okay?");
+		if(flags["VARMINTS_CAUGHT"] != undefined) output(" You've already caught " + num2Text(flags["VARMINTS_CAUGHT"]) + "!");
+		output("\"</i>");
 	}
 	//{if PC has bagged 5+ varmints, PC doesn't have a cock}
 	else if(!pc.hasCock())
@@ -144,6 +176,7 @@ function flirtWithCameron():void
 		output("\n\nYou nod, telling the effete bull-boy that you’d like that. He smiles nervously and motions toward his truck, telling you to get in. You do so, and it’s a quick jaunt in the hover-pickup from the fields to an attractive red ranch house a short ways across the fields. Cam parks just out front and leads you through the front door.");
 		output("\n\n“<i>Good, my folks aren’t here,</i>” he says, visibly relieved. Cam guides you from the living room into his bedroom, a small room with a bed you’ll both only barely fit on and walls decorated with shelf after shelf of miniatures and figurines. “<i>So, uh, what now, [pc.name]?</i>”");
 		processTime(1);
+		clearMenu();
 		if(pc.lust() >= 33)
 		{
 			if(pc.cockThatFits(700) < 0) addDisabledButton(0,"Fuck Him","Fuck Him","You're too big to fuck his ass.");
@@ -161,6 +194,9 @@ function flirtWithCameron():void
 function fuckCameronsButt():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	var panties:Boolean = (rand(2) == 0);
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -205,6 +241,9 @@ function fuckCameronsButt():void
 function rimHimFirst():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You don't doubt it. But a lubed cock is only half of the equation, isn't it? You flash the faux-cow a wink and plant your hands on his raised thighs, getting a good look at the tight little black ring between his big butt cheeks. It winks nervously at you, trickles of lube staining it from the thorough cock-basting you've given its owner already. You lean in and give it a lick, dragging your tongue through the crack and up the the underside of Cameron's hefty Treated sack, feeling the cum-filled orbs tremble at your touch. He gives a little whine when you turn your attention back to his hole, putting just enough pressure on it to force it open. Your [pc.tongue] slips in easily, probing into the tight little passage of Cam's ass.");
@@ -226,9 +265,12 @@ function rimHimFirst():void
 function fuckCamsButt(camCame:Boolean = false):void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nCAMERON");
+	showBust("CAMERON");
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("\n\nSatisfied with the job you’ve done, you lean in over Cam and take hold of your [pc.cock], angling it toward the slick, black ring of his ass. His eyes lock with yours, full of lust and hunger and unbridled need. You expect a little resistance when you start to push forward, but instead you find the little cow-boy’s ass opening wide to welcome you, sucking you in. You sink into Cam’s ass, both of you gasping and moaning as you spread him wide on your [pc.cock " + x + "].");
+	output("Satisfied with the job you’ve done, you lean in over Cam and take hold of your [pc.cock], angling it toward the slick, black ring of his ass. His eyes lock with yours, full of lust and hunger and unbridled need. You expect a little resistance when you start to push forward, but instead you find the little cow-boy’s ass opening wide to welcome you, sucking you in. You sink into Cam’s ass, both of you gasping and moaning as you spread him wide on your [pc.cock " + x + "].");
 	output("\n\n“<i>Ahhh! It... it feels good,</i>” Cam admits, blushing furiously and pointedly avoiding your gaze. His cock, however, does most of the talking for him: every inch you slide into him makes his equine prick twitch and jump, rising on its own to a half-mast looming over his chest, drooling onto him as your [pc.cock " + x + "] mercilessly teases his inner walls. You start to pump into his ass with short, quick strokes that leave him moaning, fingers clawing for purchase on the bed as you go from gentle as silk to rough as a stallion. Every thrust makes his little cock bob and buck, throbbing with need as you abuse this faux-cow’s tight hole.");
 	output("\n\nYou decide to have a little mercy on the poor boy and grab his lube-slick dick, jacking him off as you go to the same rhythm of your pistoning hips. The effect on his is immediate: a shrill cry of pleasure tears from Cam’s lips, and his hips buck in your hands, letting you slam your [pc.cock " + x + "] all the deeper.");
 	if(pc.cockVolume(x) >= 500) output(" Cameron’s belly bulges, distending to take the huge girth of your shaft as you ram it in.");
@@ -255,17 +297,14 @@ function fuckCamsButt(camCame:Boolean = false):void
 //Varmint Combat Encounter
 function varmintProc():void
 {
+	author("Savin");
+	showName("FIGHT:\nVARMINT");
+	showBust("VARMINT");
 	output("\n\nAs you make your way through the field, you spot something... digging? Yeah, digging into the earth, trying to root up some of the crop. You pull the light lasso off your belt and step towards the strange, blue shape in the dirt.");
 	output("\n\nSure enough, as you approach, the creature pokes its head up, revealing a jaw of razor-sharp teeth and large, thin spikes poking up from its flat head. The varmint growls at you and lunges!");
 	clearMenu();
-	addButton(0,"Next",startCombat,"9999");
+	addButton(0,"Next",startCombat,"varmint");
 }
-
-/*You're fighting a varmint! (Level: Scales 1-5)
-This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like. 
-
-The creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!*/
-
 
 //Notes on the Encounter.
 //Varmints don't have Health, and they're immune to LUST. Rather, they have "Resistance" which degrades as you lasso them. Eventually, you'll get them down and tie them. 
@@ -277,46 +316,65 @@ function lassoAVarmint():void
 	var damage:int = 0;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss
-	if(rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0])) output("\n\nThe glowing rope goes wide, scattering into the ground. You quickly reel it back in.");
-	//crit
-	else if(pc.critBonus(false) >= rand(100) + 1)
-	{
-		output("\n\nYou snag the varmintg by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.");
-		damage = 9999;
-		//Randomize +/- 15%
-		damage *= randomizer;
-		genericDamageApply(damage,pc,foes[0],GLOBAL.KINETIC);
-	}
+	if(rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0])) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
 	else
 	{
-		output("\n\nYou snag a ");
-		if(rand(3) == 0) output("horn");
-		else if(rand(2) == 0) output("leg");
-		else output("spike");
-		output(" on the varmint, barreling the creature to the ground.");
-		damage = 6 + pc.aim()/2;
+		damage = 20 + pc.aim()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
+		//Will this down the fucker
+		if(damage - foes[0].defense() >= foes[0].HP()) output(" <b>You snag the varmintg by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+		//Naw, he's still up
+		else
+		{
+			output(" You snag a ");
+			if(rand(3) == 0) output("horn");
+			else if(rand(2) == 0) output("leg");
+			else output("spike");
+			output(" on the varmint, barreling the creature to the ground.");
+		}
 		genericDamageApply(damage,pc,foes[0],GLOBAL.KINETIC);
+		//Used to track if the PC downed the shithead with a whip or something else.
+		foes[0].createStatusEffect("Lassoed");
+		output("\n");
 	}
 	processCombat();
+}
+
+function varmintAI():void
+{
+	//Maul
+	//Powerful attack against prone targets
+	if(pc.hasStatusEffect("Trip") && rand(2) == 0) getMauledBiyaaaaatch();
+	//Ram
+	//Powerful attack, chance to stun
+	else if(rand(5) == 0) varmintRamAttack();
+	//Leap Attack
+	//Moderate melee, chance to knock prone
+	else if(rand(2) == 0) leapAttackFromVarmint();
+	else enemyAttack(foes[0]);
 }
 
 //Leap Attack
 //Moderate melee, chance to knock prone
 function leapAttackFromVarmint():void
 {
-	output("\nThe varmint leaps at you with its slavering jaws agape, teeth bared!");
+	output("The varmint leaps at you with its slavering jaws agape, teeth bared!");
 	if(!combatMiss(foes[0],pc))
 	{
 		output(" Its teeth sink into you, and the sheer weight of its impact against your ");
-		if(pc.hasStatusEffect("Trip") || pc.physique()/2 + rand(20) > 17) output("staggers you momentarily!");
+		if((pc.hasStatusEffect("Trip") || pc.physique()/2 + rand(20) > 17) && !pc.hasStatusEffect("Stunned")) output("staggers you momentarily!");
 		else
 		{
 			output("throws you right to the ground!");
 			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 		}
+		var damage:int = 12;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
 	}
 	else output(" You slip out of the way.");
 	processCombat();
@@ -326,7 +384,7 @@ function leapAttackFromVarmint():void
 //Powerful attack against prone targets
 function getMauledBiyaaaaatch():void
 {
-	output("\nWhile you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
+	output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
 	var damage:int = 25+rand(6);
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
@@ -339,7 +397,7 @@ function getMauledBiyaaaaatch():void
 //Powerful attack, chance to stun
 function varmintRamAttack():void
 {
-	output("\nThe varmint lunges at you with its horns, slamming them ");
+	output("The varmint lunges at you with its horns, slamming them ");
 	if(combatMiss(foes[0],pc) && !combatMiss(foes[0],pc)) output("just past you, digging them into the ground.");
 	else
 	{
@@ -348,7 +406,13 @@ function varmintRamAttack():void
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
+		if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 18)
+		{
+			output("<b> The hit was hard enough to stun you!</b>");
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+		}
 		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+
 	}
 	processCombat();
 }
@@ -356,10 +420,30 @@ function varmintRamAttack():void
 //PC Victory
 function pcVictoryVsVarmints():void
 {
-	output("\n\nYou get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it's easy enough to sling the creature over your shoulder and move on.");
-	output("\n\n<b>Varmint bagged!</b>");
-	if(pc.isTreated()) output(" “<i>Yee-haw!</i>” you cheer.");
+	author("Savin");
+	showName("FIGHT:\nVARMINT");
+	showBust("VARMINT");
+	if(foes[0].hasStatusEffect("Lassoed"))
+	{
+		if(!pc.hasItem(new VarmintItem(),1))
+		{
+			output("You get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it's easy enough to sling the creature over your shoulder and move on.");
+			output("\n\n<b>Varmint bagged!</b>");
+			if(pc.isTreated()) output(" “<i>Yee-haw!</i>” you cheer.");
+		 	foes[0].inventory.push(new VarmintItem());
+		}
+		else
+		{
+			output("Despite getting the varmint to the ground, you don't have a way to carry it while you're already dragging another one around. Maybe you should go hand it off to Cameron before you try to wrangle anymore. Grumbling, you cut loose the fallen creature and watch it take off into the brush. Maybe it'll learn its lesson.");
+		}
+
+	}
 	//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
+	else
+	{
+		output("The varmint hauls ass into the weeds before you can bring it down. Maybe you should look into using some kind of lasso on it.");
+	}
+	output("\n\n");
 	genericVictory();
 }
 
@@ -367,6 +451,11 @@ function pcVictoryVsVarmints():void
 function pcLosesToVarmint():void
 {
 	clearOutput();
+	author("Savin");
+	showName("FIGHT:\nVARMINT");
+	showBust("VARMINT");
+	pc.HP(-(pc.HPMax()-1));
+	pc.lust(-50);
 	output("Suddenly, the varmint lunges up and takes you right in the chest with its horned head, knocking you onto the ground. The creature barrels you over and gives you another brutal WHACK with its horns, and everything goes black....");
 	clearMenu();
 	addButton(0,"Next",pcLosesToVarmint2);
@@ -375,6 +464,7 @@ function pcLosesToVarmint():void
 function pcLosesToVarmint2():void
 {
 	clearOutput();
+	author("Savin");
 	output("You wake up some time later.");
 	if(pc.credits > 1)
 	{
@@ -388,4 +478,18 @@ function pcLosesToVarmint2():void
 	processTime(120+rand(30));
 	clearMenu();
 	genericLoss();
+}
+
+function varmintRoomsBonus():Boolean
+{
+	if (flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if (flags["FIELDS_STEP"] == undefined) flags["FIELDS_STEP"] = 1;
+	else flags["FIELDS_STEP"]++;
+	if(flags["FIELDS_STEP"] >= 4 && rand(3) == 0)
+	{
+		varmintProc();
+		flags["FIELDS_STEP"] = 0;
+		return true;
+	}
+	return false;
 }
