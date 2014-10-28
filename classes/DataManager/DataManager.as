@@ -31,7 +31,7 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 16;
+		private static const LATEST_SAVE_VERSION:int = 17;
 		private static const MINIMUM_SAVE_VERSION:int = 6;
 		
 		private var _autoSaveEnabled:Boolean = false;
@@ -59,6 +59,7 @@
 			var sv13:SaveVersionUpgrader13;
 			var sv14:SaveVersionUpgrader14;
 			var sv15:SaveVersionUpgrader15;
+			var sv16:SaveVersionUpgrader16;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
