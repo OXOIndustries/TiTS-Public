@@ -2311,6 +2311,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 }
 
 function crotchTeaseText(target:Creature):void {
+	var temp:int = 0;
 	var choices:Array = new Array();
 	if(pc.hasCock()) {
 		if(pc.isTaur() && pc.cockTotal(GLOBAL.TYPE_EQUINE) > 0) choices[choices.length] = 4;
@@ -2324,6 +2325,24 @@ function crotchTeaseText(target:Creature):void {
 		if(pc.isTaur()) choices[choices.length] = 5;
 		else choices[choices.length] = 3;
 	}
+	//Reqs: PC has a vagina with maximum wetness
+	if(pc.hasVagina() && pc.wettestVaginalWetness() >= 5) choices.push(6);
+	//Reqs: PC has a cock with a knot
+	if(pc.hasAKnot()) choices.push(7);
+	//Reqs: PC has a cock with foreskin
+	if(pc.hasACockFlag(GLOBAL.FLAG_FORESKINNED)) choices.push(8);
+	//Reqs: PC has a cock with a flare
+	if(pc.hasACockFlag(GLOBAL.FLAG_FLARED)) choices.push(9);
+	//Reqs: PC has a cock with a medial ring
+	if(pc.hasCock(GLOBAL.TYPE_EQUINE)) choices.push(10);
+	//Reqs: PC has a dick, PC has extremely high cum volume
+	if(pc.hasCock() && pc.cumQ() >= 1000) choices.push(11);
+	//Reqs: Crotch skill 50+
+	if(flags["TIMES_CROTCH_TEASED"] >= 50 && pc.hasCock() || pc.hasVagina()) choices.push(12);
+	//Reqs: PC is in combat with a zil male, zil female, or the dual zil when meeting Penny, PC has a zil vagina
+	if((foes[0] is ZilFemale || foes[0] is ZilMale || foes[0] is ZilPack) && pc.hasVagina(GLOBAL.TYPE_BEE)) choices.push(13);
+	//Reqs: PC has at least 3 vaginal wetness
+	if(pc.hasVagina() && pc.wettestVaginalWetness() >= 3) choices.push(14);
 
 	var select:int = choices[rand(choices.length)];
 	//1 - dick!
@@ -2368,12 +2387,281 @@ function crotchTeaseText(target:Creature):void {
 	else if(select == 5) {
 		output("You gallop toward your unsuspecting enemy, dodging their defenses and knocking them to the ground.  Before they can recover, you slam your massive centaur ass down upon them, stopping just short of using crushing force to pin them underneath you.  In this position, your opponent's face is buried right in your girthy horsecunt.  You grind your cunt into your target's face for a moment before standing.  When you do, you're gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
 	}
+	//Reqs: PC has at least 3 vaginal wetness
+	else if(select == 14)
+	{
+		//PC has clothes or a lower undergarment on: 
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] to reveal");
+		else output("You direct your foe’s attention to");
+		output(" [pc.oneVagina], already dripping wet. A brush of your fingers across your folds leaves them glistening with [pc.girlCumVisc] fluid, and you give your target a grin before popping your fingers into your mouth, working your [pc.tongue] around the intruding digits to lick up every last [pc.girlCumFlavor] drop.");
+		if((pc.armor.shortName == "" && pc.lowerUndergarment.shortName != "") || (pc.armor.shortName != "" && pc.lowerUndergarment.shortName == "")) output(" You close back up your [pc.lowerGarments], a drip of [pc.girlCum] leaving a dark stain between your legs.");
+		//PC has both undergarments and clothes:
+		else if(pc.isCrotchGarbed()) output(" You close back up your [pc.lowerGarments], flushing slightly at the sensation of the fluid trapped within your [pc.lowerGarment].");
+		//PC is nude or only has a bra:
+		else 
+		{
+			output(" You return your attention to your foe, stray [pc.girlCumNoun]");
+			if(pc.legCount > 1) 
+			{
+				output(" dripping to the ground between your [pc.legs]");
+				//PC has wetness 5:
+				if(pc.wettestVaginalWetness() >= 5) output(" in a steady stream of droplets");
+			}
+			//PC has one leg such as a naga tail:
+			else 
+			{
+				output(" winding a");
+				if(pc.wettestVaginalWetness() >= 3) output(" trail");
+				else if(pc.wettestVaginalWetness() >= 4) output(" stream");
+				else output(" river");
+				output(" down your [pc.legs]");
+			}
+			output(".");
+		}
+	}
+	//Reqs: PC has a vagina with maximum wetness
+	else if(select == 6)
+	{
+		if(pc.isCrotchGarbed()) output("You slip off your [pc.lowerGarments]");
+		else output("You only need to face your [pc.crotch] towards your enemy");
+		output(" and cock your hips to one side, letting the [pc.girlCum] gushing from between your thighs speak for itself. You casually drop a hand to between your [pc.thighs] and sample a bit of the river, popping your fingers into your mouth to savor the [pc.girlCumFlavor] treat.");
+		//Skill 50+:
+		if(flags["TIMES_CROTCH_TEASED"] > 50) output(" You dip your fingers into the [pc.girlCumNoun] again, this time holding out your fingers towards your foe invitingly before again licking yourself clean.  “<i>Imagine what it’s like when I’m actually cumming.</i>”");
+		output(" You give your foe a heady grin as you ");
+		if(pc.isCrotchGarbed()) output("pull your [pc.lowerGarments] back up, producing a wet sound as your endless flow is plugged back up - for now.");
+		else output("return your attention to the fight, [pc.girlCumColor] still streaming freely down your [pc.legs].");
+	}
+	//Reqs: PC has a cock with a knot
+	else if(select == 7)
+	{
+		//Clothed: 
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments]");
+		else output("You stand with your legs apart");
+		output(" and let your [pc.cocks] hang out");
+		var knottedSheath:Boolean = false;
+		for(var sheathCounter: int = 0; sheathCounter < pc.totalCocks(); sheathCounter++)
+		{
+			if(pc.hasSheath(sheathCounter) && pc.hasKnot(sheathCounter)) knottedSheath = true;
+		}
+		if(knottedSheath) 
+		{
+			output(", slipping out of ");
+			if(pc.hasSheaths()) output("their sheaths");
+			else output("its sheath");
+		}
+		//PC has a genital slit:
+		else if(pc.hasStatusEffect("Genital Slit")) 
+		{
+			output(", standing proudly from the slit ");
+			if(pc.cockTotal() == 1) output("it");
+			else output("they");
+			output(" normally hide within");
+		}
+		output(". You wrap a hand around your knot and give it a squeeze, showing off its size. “<i>Think that [enemy.vagOrAss] of yours can take the whole thing?</i>”");
+	}
+	//Reqs: PC has a cock with foreskin
+	//FLAG_FORESKINNED
+	else if(select == 8)
+	{
+		temp = -1;
+		for(var foreskinCounter:int = 0; foreskinCounter < pc.totalCocks(); foreskinCounter++)
+		{
+			if(temp == -1 && pc.cocks[foreskinCounter].hasFlag(GLOBAL.FLAG_FORESKINNED)) temp = foreskinCounter;
+		}
+		if(temp == -1)
+		{
+			output("FORESKIN ERROR: 8===D");
+		}
+		//Clothed:
+		if(pc.isCrotchGarbed())
+		{
+			output("You free your [pc.cocks] from ");
+			if(pc.cockTotal() == 1) output("its");
+			else output("their");
+			output(" confinement");
+		}
+		else
+		{
+			output("You draw your foe’s attention to your [pc.cocks]");
+		}
+		output(", taking hold of your foreskin between two fingers and lightly tugging on it to show off its stretchy length.");
+		if(flags["TIMES_CROTCH_TEASED"] > 25)
+		{
+			output(" You angle your tugs a little to one side, making a slow circle that reveals the silhouette of your [pc.cockHead " + temp + "] trapped within.");
+		}
+		if(flags["TIMES_CROTCH_TEASED"] > 50) output(" Getting a little creative, you slip one of your fingers inside your exotic covering to stroke the [pc.cockHead " + temp + "] within and draw out a little of [pc.cumVisc] preseed before you pinch the base of your foreskin and draw your fingers upward, causing a little bit of [pc.cumColor] fluid to bubble from the opening of your shroud.");
+		output(" After a few moments, ");
+		if(pc.isCrotchGarbed()) output("you close up your [pc.lowerGarments]");
+		else output("you let go of yourself");
+		output(" and return your eyes to the fight.");
+	}
+	//Reqs: PC has a cock with a flare
+	else if(select == 9)
+	{
+		temp = -1;
+		for(var flareCounter:int = 0; flareCounter < pc.totalCocks(); flareCounter++)
+		{
+			if(temp == -1 && pc.cocks[flareCounter].hasFlag(GLOBAL.FLAG_FLARED)) temp = flareCounter;
+		}
+		if(temp == -1)
+		{
+			output("FLARE ERROR: 8===D");
+		}
+		//Clothed:
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] and");
+		else output("You");
+		output(" draw attention to [pc.oneCock], your flare already getting nice and wide. Your finger traces around the edge and underside of the thick ring, before coming up and over to brush the [pc.cockHead " + temp + "] above it. A bit of [pc.cum] comes away with your fingertip, showing off just how ready your flare is to be plunged inside the nearest willing hole... if they can take it.  The thought of it makes you smirk as you ");
+		if(pc.isCrotchGarbed()) output("cover up");
+		else output("return to attention");
+		output(", ready to continue.");
+	}
+	//Reqs: PC has a cock with a medial ring
+	//if(pc.hasCock(GLOBAL.TYPE_EQUINE))
+	else if(select == 10)
+	{
+		temp = -1;
+		for(var ringCounter:int = 0; ringCounter < pc.totalCocks(); ringCounter++)
+		{
+			if(temp == -1 && pc.cocks[ringCounter].cType == GLOBAL.TYPE_EQUINE) temp = ringCounter;
+		}
+		if(temp == -1)
+		{
+			output("MEDIAL RING ERROR: 8===D");
+		}
+		//Clothed:
+		if(pc.isCrotchGarbed()) output("As your [pc.lowerGarments] come away from");
+		else output("As you draw your foe’s attention to");
+		output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual.  Your hand goes up to your [pc.cockHead" + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick.  Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing.  You pull your hand away");
+		if(pc.isCrotchGarbed()) output(" and cover up.");
+		else output(" and let your cock relax.");
+	}
+	//Reqs: PC has a dick, PC has extremely high cum volume
+	else if(select == 11)
+	{
+		//Clothed:
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments]");
+		else output("You direct your foe’s attention to between your thighs");
+		if(pc.hasSheath(0)) output(" and let your [pc.oneCock] out of its sheath");
+		else if(pc.hasStatusEffect("Genital Slit")) output(" and let your [pc.oneCock] slip out of your genital slit");
+		output(", a little bit of pre-cum already bubbling from your [pc.cockHead]. You give yourself a light handjob, enough to make your [pc.cumVisc] fluid squirt with volume comparable to a normal human’s full orgasm. “<i>My [pc.balls] can barely keep all this [pc.cumNoun] in.... Think your [enemy.vagOrAss] can do any better?</i>” You let go of your cum-packed cock");
+		if(pc.isCrotchGarbed()) output(" and cover up");
+		output(", ready to resume the fight.");
+	}
+	//Reqs: Crotch skill 50+
+	else if(select == 12)
+	{
+		//Clothed: 
+		if(pc.isCrotchGarbed()) output("You slip off your [pc.lowerGarments]");
+		else output("You take a moment to relish being uncovered");
+		output(" and let your hands descend to your [pc.crotch]. ");
+		if(pc.hasCock()) output("One of your hands takes [pc.oneCock] near the tip, thumb circling the [pc.cockHead]. ");
+		if(pc.hasVagina() && !pc.hasCock())
+		{
+			output("One of your hands");
+		}
+		else if(pc.hasVagina()) output("Your other hand");
+		if(pc.hasVagina()) output(" opens your [pc.oneVagina], giving your foe a good view of the glorious [pc.vaginaColor] interior. ");
+		output("After a bit, ");
+		if(pc.hasCock()) output("[pc.cum] begins to bubble from your dick");
+		if(pc.hasVagina() && pc.hasCock()) output(" while");
+		if(pc.hasVagina()) output(" [pc.girlCum] gleams fresh in your cunt");
+		output(", and you sample your ");
+		if(!(pc.hasCock() && pc.hasVagina())) output("fluid");
+		else output("fluids");
+		output(" to take a taste.");
+
+		output("\n\n“<i>");
+		if(pc.hasCock() && pc.hasVagina()) output("[pc.CumFlavor] and [pc.girlCumFlavor], two great tastes that go great together. Herm " + pc.mf("boys","girls") + " really do get the best of everything.");
+		//Male: 
+		else if(pc.hasCock()) output("Sure you don’t want some of this [pc.cumNoun] for yourself? It’s nice and [pc.cumFlavor], " + pc.mf("a real man’s spunk","high femininity: perfect for a “girl” like me") + ".");
+		else if(pc.hasVagina()) 
+		{
+			output("Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some");
+			if(pc.wettestVaginalWetness() >= 3) output(". I’ve got plenty to go around");
+			output(".");
+		}
+		output("</i>”");
+
+		output("\n\nYou don’t give your foe much longer to watch your self-serve taste test before you ");
+		if(pc.isCrotchGarbed()) output(" cover back up");
+		else 
+		{
+			output(" return your attention to the fight");
+			if(pc.hasCock())
+			{
+				if(pc.hasSheath() || pc.hasStatusEffect("Genital Slit")) output(", your [pc.cock] returning to its container");
+			}
+		}
+		output(", but they can still see vestiges of ");
+		if(pc.hasCock()) output("[pc.cumColor]");
+		if(pc.hasVagina() && pc.hasCock()) output(" and ");
+		if(pc.hasVagina()) output("[pc.girlCumColor]");
+		output(" on your lips.");
+	}
+	//Reqs: PC is in combat with a zil male, zil female, or the dual zil when meeting Penny, PC has a zil vagina
+	else if(select == 13)
+	{
+		//PC is relevantly clothed: 
+		if(pc.isCrotchGarbed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
+		else output("You adjust your thighs to highlight");
+		output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of your [pc.oneVagina], drawing your target’s gaze.");
+		output("\n\n“<i>Surprised? When I saw ");
+		if(foes[0] is ZilFemale) output("you girls");
+		else output("your zil girls");
+		output(" with those exotic pussies, I just had to try it for myself.</i>”");
+		//clothed:
+		if(pc.isCrotchGarbed()) output(" Your [pc.lowerGarment] comes down the rest of the way");
+		else output(" You move your thighs away");
+		output(", allowing you to spread yourself to reveal your [pc.vaginaColor] interior.");
+		//[pc.vaginaColor == gold]
+		if(pc.vaginas[0].vaginaColor == "gold") 
+		{
+			output(" “<i>See? Just like ");
+			if(foes[0] is ZilFemale)  output("yours");
+			else output("the ones you’re used to");
+			output(".</i>”");
+		}
+		else output(" “<i>But I thought another color on the inside would look even nicer.</i>”");
+		//[pc.girlCum == honey]
+		if(pc.girlCum == GLOBAL.FLUID_TYPE_HONEY) 
+		{
+			output("\n\n“<i>I even cum honey now");
+			if(pc.vaginas[0].wetness() >= 3) output(", a lot more than most zil even");
+			output(".</i>”");
+		}
+		else 
+		{
+			output("\n\n“<i>The taste is totally different, though.  So, [pc.girlCumFlavor] compared to what you’re used to, though I bet you’d love it if you tried it.");
+			if(pc.vaginas[0].wetness() >= 3) output(" There's a lot, so you’d have to make sure to drink up every drop.");
+			output("</i>”");
+		}
+		output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe.  “<i>I’ve gotta say, I’m really loving having a honeypot like this...maybe I’ll give you a taste, if you’re a good " + foes[0].mf("boy","girl","...thing") + ".</i>”");
+		//Clothed:
+		if(pc.isCrotchGarbed()) output(" You close up your [pc.lowerGarments]");
+		else output(" You adjust your thighs back to their normal stance");
+		output(" as you say this, taking a moment to suck your fingers clean with a wink.");
+	}
 }
 
 function buttTeaseText():void {
+	var choices:Array = new Array();
+	choices.push(3);
+	if(flags["TIMES_BUTT_TEASED"] > 75) choices.push(0);
+	if(flags["TIMES_BUTT_TEASED"] > 75 && pc.armor.shortName != "") choices.push(1);
+	if(pc.analCapacity() >= 450) choices.push(2);
+	if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) choices.push(4);
+	if(pc.hasCuntTail()) choices.push(5);
+	if(pc.hasCuntTail() && flags["TIMES_BUTT_TEASED"] > 25) choices.push(6);
+	if(pc.hasCockTail()) choices.push(7);
+	//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
+	if(pc.isCrotchGarbed() && pc.hasCock() && (pc.balls == 0 || pc.hasStatusEffect("Uniball")) && !pc.hasVagina() && pc.femininity >= 60) choices.push(8);
+	if(pc.hasVagina() && pc.wettestVaginalWetness() >= 3) choices.push(9);
+
+	//pick our winner!
+	var select:int = choices[rand(choices.length)];
 
 	//75+
-	if(flags["TIMES_BUTT_TEASED"] > 75 && rand(3) == 0)
+	if(select == 0)
 	{
 		output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + foes[0].a + foes[0].short + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + foes[0].a + foes[0].short + " an excellent view of your [pc.asshole]");
 		if(pc.hasVagina() && pc.balls > 0) output(" and [pc.vaginas] and [pc.balls]");
@@ -2382,7 +2670,7 @@ function buttTeaseText():void {
 		output(".");
 	}
 	//50+
-	else if(flags["TIMES_BUTT_TEASED"] > 75 && rand(3) == 0 && pc.armor.shortName != "")
+	else if(select == 1)
 	{
 		output("Swirling away, you find yourself facing away from your enemy. A cunning smile slaps itself across your [pc.face] as you hook your fingers into your " + pc.armor.longName + " and pull down your bottoms to expose your ");
 		if(pc.lowerUndergarment.shortName != "") output(pc.lowerUndergarment.longName + " and ");
@@ -2392,8 +2680,63 @@ function buttTeaseText():void {
 		if(pc.lowerUndergarment.shortName != "") output("unseen ");
 		output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
 	}
-	else if(pc.analCapacity() >= 450 && rand(3) == 0) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
-	else {
+	else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+	//Reqs: PC has at least one tail with the Fluffy tag
+	else if(select == 4)
+	{
+		output("You turn around and bend over, then raise your [pc.tails], shaking ");
+		if(pc.tailCount == 1) output("it");
+		else output("them");
+		output(" enticingly. “<i>These things are made for touching, you know. So nice and soft...</i>”");
+	}
+	//Reqs: PC has a cunt-tail
+	else if(select == 5)
+	{
+		output("You reach your hand between your legs and grab your [pc.tailgina] then pull it under your waist and up to your stomach, you flick your [pc.tails] to let a bit of fluid drip from it. Giving your opponent a sly look you curl your tail up and take a lick, letting your [pc.tongue] probe the folds of your tail-mounted snatch for a few seconds.");
+		if(flags["TIMES_BUTT_TEASED"] > 75 && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You work your tail itself around a little bit, just enough to show off where it’s bulging around your deep-diving tongue.");
+		output(" A thin string of of [pc.girlCumVisc] fluid connects your mouth and [pc.oneTailgina] as you pull it away, flashing the moist opening towards your foe for a moment.");
+	}
+	//Reqs: PC has a cunt-tail, skill >25
+	else if(select == 6)
+	{
+		output("You raise your [pc.tailgina] and point it towards your foe, taking hold of the exotic appendage with both of your hands. Your fingers brush across the opening at its tip, pulling the lips apart");
+		if(flags["TIMES_BUTT_TEASED"] < 50) 
+		{
+			output(" to reveal the slick entrance. A bit of fluid drips from the tip of your [pc.tailgina], wet and ready for mating.");
+		}
+		else output(" just enough to reveal a bit of the interior.  You take it slow on opening your tailcunt the rest of the way, until you can use two fingers to hold the dripping entrance open, leaving your other hand free to run its fingers over the exotic folds, pressing in just enough to show your foe how slippery soft your tailpussy really is.");
+	}
+	//Reqs: PC has a cock-tail
+	else if(select == 7)
+	{
+		output("You curl your [pc.tailcock] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
+	}
+	//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
+	else if(select == 8)
+	{
+		output("You pull down your [pc.lowerGarments] as you turn around, carefully tucking your [pc.cocks] between your legs.");
+		//PC has a trap-pouch:
+		if(pc.hasStatusEffect("Uniball")) output(" You carefully arrange your [pc.sack] to look like a feminine crease");
+		else if(pc.balls == 0) output(" You feel a rush of pleasure");
+		output(" as you shake your ass, letting out a girly giggle.  You don’t give your foe time to tell what’s really between your legs before you pull your [pc.lowerGarments] back up and turn back around, giving a sly smile.");
+	}
+	//Reqs: PC has a vagina with 3+ wetness
+	else if(select == 9)
+	{
+		//Clothed:
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] as you");
+		else output("You");
+		output(" turn and bend over to show off your [pc.butt]");
+		if(pc.hasCock()) output(", [pc.cocks],");
+		output(" and [pc.vaginas]");
+		output(", though your attention goes to the last. You’re practically dripping by this point, as you slowly rub your index finger across the cleft of ");
+		if(pc.totalVaginas()) output("one cunny");
+		else output("your cunny");
+		output(" and stick your thumb inside your [pc.asshole], beginning to lightly finger your backdoor. You pull your fingers away");
+		if(pc.isCrotchGarbed()) output(" and slide your [pc.lowerGarments] back into place");
+		output(", looking over your shoulder at your foe seductively.");
+	}
+	else if(select == 3) {
 		output("You turn away");
 		if(pc.isCrotchGarbed()) output(", slide down your clothing,");
 		output(" and bounce your [pc.butt] up and down hypnotically");
@@ -2412,19 +2755,50 @@ function buttTeaseText():void {
 
 function chestTeaseText():void {
 	if(pc.biggestTitSize() < 1) {
-		if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
+		if(rand(3) != 0 && pc.tone >= 70)
+		{
+			//Clothed:
+			if(pc.isChestGarbed()) output("Shedding your [pc.upperGarments], you");
+			else output("You");
+			output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
+			output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
+			output(" After a good few seconds of showing off,");
+			if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
+			else output(" you cease your posing");
+			output(" return your gaze to the fight.");
+		}
+		else if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
 		else output("Naked as you are, there's nothing you need to do to expose your [pc.chest] and [pc.nipples], and it running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
 	}
 	//Titties!
 	else {
+		var choices:Array = new Array();
+		if(pc.milkFullness > 50 && pc.isChestGarbed()) 
+		{
+			choices.push(0);
+			choices.push(0);
+			choices.push(0);
+		}
+		choices.push(1);
+		//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
+		if(pc.isChestGarbed() && pc.biggestTitSize() >= 4) choices.push(2);
+		//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
+		if(pc.isChestGarbed() && pc.tailCount >= pc.totalNipples()) choices.push(3);
+		//Reqs: PC has very high tone
+		if(pc.tone >= 70) choices.push(4);
+
+		//pick our winner!
+		var select:int = choices[rand(choices.length)];
+
+
 		//User submitted milkiness! 75%!
-		if(pc.milkFullness > 50 && pc.isChestGarbed() && rand(4) != 0)
+		if(select == 0)
 		{
 			//If Breasts Tease >=75 Lactating.
 			if(pc.milkFullness >= 75)
 			{
 				output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + foes[0].a + foes[0].short + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
-				output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>Mmmmm…</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
+				output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>Mmmmm...</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
 			}
 			//If Breast tease <75 Lactating.
 			else
@@ -2432,7 +2806,7 @@ function chestTeaseText():void {
 				output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + foes[0].a + foes[0].short + "s eyes on you, running over your [pc.chest], and take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
 			}
 		}
-		else 
+		else if(select == 1)
 		{
 			//HYPER TIIIIITS
 			if(pc.biggestTitSize() >= 15) {
@@ -2451,21 +2825,107 @@ function chestTeaseText():void {
 				else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + foes[0].mfn("him","her","it") + ".");
 			}
 		}
+		//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
+		else if(select == 2)
+		{
+			output("“<i>Want to see just how perky these are?</i>” You give your target a sly smile while opening up your [pc.chestGarments], bouncing lightly on your feet to make your [pc.fullChest] jiggle. Once the jiggle subsides a bit you pass a hand across the space under your [pc.biggestBreastDescript], showing off how they return to sitting good and high on your chest once they stop bouncing. “<i>Isn’t modern medicine great? No need for a bra with these big girls.</i>” You flash a coy wink as you cover back up.");
+		}
+		//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
+		else if(select == 3)
+		{
+			output("You start to strip off your [pc.upperGarments], but curl your [pc.tails] around as you do. Just as your [pc.fullChest] is coming into view you cover up each of your nipples with one of your tails, winking and sticking your tongue out.");
+			output("\n\n“<i>Ooh, sorry, were you wanting to see these?</i>” You make small circles with your tailtips, allowing your target glimpses of [pc.nippleColor] peeking out around the edges but nothing more. “<i>You could give up and maybe I’ll reward you with a real show.</i>” You pull your tails away just as your [pc.upperGarments] close back over your chest, giving another wink as you cover up.");
+		}
+		//Reqs: PC has very high tone
+		else if(select == 4)
+		{
+			//Clothed:
+			if(pc.isChestGarbed()) output("Shedding your [pc.upperGarments], you");
+			else output("You");
+			output(" flex your arms, showing off the bulging biceps.  After a bit of posing");
+			if(pc.biggestTitSize() < 1) output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
+			else if(pc.biggestTitSize() <= 3) output(" you stretch to show off your sleek chest, turning your upper body so they can see the way your breasts fit the form of your highly-toned physique.");
+			else output(" you give one of your breasts a grope, showing off how you’re every bit as curvy as a girl without your incredible musculature.");
+			output(" After a good few seconds of showing off,");
+			if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
+			else output(" you cease your posing");
+			output(" return your gaze to the fight.");
+		}
 	}
 }
 
 function hipsTeaseText():void {
+	var choices:Array = new Array();
+
+	if(pc.hipRating() < 4) choices.push(0);
+	else if(pc.hipRating() >= 10) choices.push(1);
+	else choices.push(2);
+	//Reqs:  PC has a naga tail
+	if(pc.isNaga()) choices.push(3);
+	//Reqs: PC is in combat with a naleen, PC has a naga tail
+	if(foes[0] is Naleen && pc.isNaga()) choices.push(4);
+	//Reqs: Hips skill 75+
+	if(flags["TIMES_HIPS_TEASED"] >= 75) choices.push(5);
+
+	var select:int = choices[rand(choices.length)];
+
 	//Small hips!
-	if(pc.hipRating() < 4) {
+	if(select == 0) {
 		output("Putting a hand on your [pc.hips], you stretch, sliding your palms up and down them for emphasis, really showing off how narrow they are.");
 	}
 	//Big hips!
-	else if(pc.hipRating() >= 10) {
+	else if(select == 1) {
 		output("With a sinuous undulation, you rock your [pc.hips] out to the right side, then the left. You gracefully strut around, swaying to a rhythm only you can hear and doing your best to keep curviness on full display throughout.");
 	}
 	//Generic hips!
-	else {
+	else if(select == 2) {
 		output("Watching your target, you place a hand upon your [pc.hips] and sway them in the other direction then back again like a pendulum. You let the hypnotic undulations go on as long as you dare and smile triumphantly as you stop.");
+	}
+	//Reqs: PC has a naga tail
+	else if(select == 3)
+	{
+		output("You run a hand down your [pc.hips] and across the surface of your tail, making a slow circle as you do to show off every last foot of its thick, winding length.");
+	}
+	//Reqs: PC is in combat with a naleen, PC has a naga tail
+	else if(select == 4)
+	{
+		output("You slither towards the ");
+		if(pc.race() == "naleen") output("other ");
+		output("naleen, idly swaying your [pc.hips] to show off your tail.");
+		//PC’s original race is not some sort of naga that may be introduced in the future:
+		output(" “<i>I used to have spindly little legs, you know.</i>”");
+		//PC’s original race is some sort of naga: “<i>Plenty of other races out there have spindly little legs they have to move around on.</i>”
+		output(" You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. “<i>This is </i>much<i> better, don’t you agree?");
+		if(pc.race() != "naleen") output(" I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.");
+		else output(" Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.");
+		output("</i>” You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.");
+	}
+	//Reqs: Hips skill 75+
+	//flags["TIMES_HIPS_TEASED"]
+	else if(select == 5)
+	{
+		//Clothed:
+		if(pc.armor.shortName != "")
+		{
+			output("You shed your [pc.armor] to leave yourself");
+			if(pc.upperUndergarment.shortName != "" && pc.lowerUndergarment.shortName != "") output(" in your [pc.upperGarment] and [pc.lowerGarment]");
+			//if bra only: 
+			else if(pc.upperUndergarment.shortName != "") output(" in just your [pc.upperGarment]");
+			else if(pc.lowerUndergarment.shortName != "") output(" in just your [pc.lowerGarment]");
+			else output(" nude");
+		}
+		//Nude:
+		else output("You take a moment to ready yourself");
+		output(" before drawing your hands up over your head.  You start in on rocking your [pc.hips], treating your foe to a dance");
+		if(pc.tone < 30 && pc.thickness >= 60) output(" that gets your [pc.belly] jiggling");
+		else output(" that shows off your [pc.belly], the light glinting off your [pc.skinFurScales] as it moves");
+		output(".  Your hands slowly descend and move outwards to your sides, remaining largely steady while the bulk of your motion remains in your hips and belly, though there’s just enough motion in your [pc.legs] to show those off as well");
+		if(pc.biggestTitSize() >= 4) output(", and the motion is plenty to set your [pc.chest] quaking in time with your dance");
+		if(pc.hasHair() && pc.hairLength >= 8) output("while your [pc.hair] sways in concert with your hips");
+		output(".");
+		output("\n\nFinally you stop and take a moment to wipe the sweat off your brow");
+		if(pc.armor.shortName != "") output(" before putting your [pc.armor] back on");
+		output(".");
 	}
 }
 

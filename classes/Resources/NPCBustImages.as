@@ -14,6 +14,7 @@
 		public static var GATS:Object = new GatsBusts();
 		public static var GATSOLD:Object = new GatsOldBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
+		public static var SHOU:Object = new ShouBusts();
 		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class

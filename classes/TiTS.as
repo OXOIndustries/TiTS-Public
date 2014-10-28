@@ -657,6 +657,11 @@
 			return chars["RIVAL"];
 		}
 
+		public function get enemy():*
+		{
+			return foes[0];
+		}
+
 		public function get geoff():*
 		{
 			return chars["GEOFF"];

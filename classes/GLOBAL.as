@@ -569,6 +569,7 @@
 			TYPE_HUMAN,
 			TYPE_EQUINE,
 			TYPE_LEITHAN,
+			TYPE_BEE,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

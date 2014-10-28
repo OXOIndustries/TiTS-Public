@@ -1195,6 +1195,9 @@
 				case "skinFurScalesNoun":
 					buffer = skinNoun(false);
 					break;
+				case "skinFurScalesColor":
+					buffer = skinFurScalesColor();
+					break;
 				case "skinFurScales":
 				case "skinfurscales":
 					buffer = skinFurScales();
@@ -2750,6 +2753,12 @@
 			else return "\n\nMoving brings with it a little more jiggle than you're used to.  You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
 			return "";
 		}
+		public function skinFurScalesColor():String
+		{
+			if(skinType == GLOBAL.SKIN_TYPE_FUR) return furColor;
+			else if(skinType == GLOBAL.SKIN_TYPE_SCALES) return scaleColor;
+			else return skinTone;
+		}
 		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
 			var output: String = "";
 			var temp;
@@ -4156,6 +4165,15 @@
 			if (cocks[arg].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
 			return false;
 		}
+		public function hasSheaths(arg: int = 2): Boolean {
+			if (cocks.length <= 0) return false;
+			var total:int = 0;
+			for(var x:int = 0; x < totalCocks(); x++)
+			{
+				if(hasSheath(x)) total++;
+			}
+			return (total >= arg);
+		}
 		public function hasKnot(arg: int = 0): Boolean {
 			if (arg > cockTotal() - 1 || arg < 0) return false;
 			return (cocks[arg].hasFlag(GLOBAL.FLAG_KNOTTED));
@@ -4169,6 +4187,12 @@
 		public function hasCockFlag(arg: int = 0, cockNum: int = 0): Boolean {
 			if (cockNum > cockTotal() - 1 || cockNum < 0) return false;
 			return (cocks[cockNum].hasFlag(arg));
+		}
+		public function hasACockFlag(arg:int = 0): Boolean {
+			for (var x: int = 0; x < cocks.length; x++) {
+				if (cocks[x].hasFlag(arg)) return true;
+			}
+			return false;
 		}
 		public function cockVolume(cockNum: Number, effective: Boolean = true): Number {
 			if (cockNum >= cocks.length || cockNum < 0) return 0;

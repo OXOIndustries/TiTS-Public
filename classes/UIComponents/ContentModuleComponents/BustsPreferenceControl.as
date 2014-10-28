@@ -21,6 +21,7 @@
 		private var _gatsOldButton:MainMenuButton;
 		private var _gatsButton:MainMenuButton;
 		private var _cheshireButton:MainMenuButton;
+		private var _shouButton:MainMenuButton;
 		private var _noneButton:MainMenuButton;
 		
 		private var _optsProperty:String;
@@ -68,6 +69,13 @@
 			_gatsOldButton.buttonName = "Old Gats";
 			_gatsOldButton.x = _gatsButton.x - (_gatsOldButton.width + 5);
 			_gatsOldButton.y = 30;
+
+			_shouButton = new MainMenuButton(false, buttonClickHandler);
+			_shouButton.name = _shouButton.arg = "SHOU";
+			this.addChild(_shouButton);
+			_shouButton.buttonName = "Shou";
+			_shouButton.x = _gatsOldButton.x - (_shouButton.width + 5);
+			_shouButton.y = 30;
 			
 			_descriptionText = new TextField();
 			_descriptionText = new TextField();
@@ -84,6 +92,7 @@
 			if (_prio == 0) _descriptionText.htmlText = "<span class='words'><p><b>Primary bust preference.</b></p></span>";
 			if (_prio == 1) _descriptionText.htmlText = "<span class='words'><p><b>Secondary bust preference.</b></p></span>";
 			if (_prio == 2) _descriptionText.htmlText = "<span class='words'><p><b>Tertiary bust preference.</b></p></span>";
+			if (_prio == 3) _descriptionText.htmlText = "<span class='words'><p><b>Quaternary bust preference.</b></p></span>";
 			this.addChild(_descriptionText);
 			
 			_descriptionText.width = _gatsButton.x - 10;
@@ -101,6 +110,7 @@
 				_gatsButton.DeHighlight();
 				_cheshireButton.DeHighlight();
 				_noneButton.Highlight();
+				_shouButton.DeHighlight();
 				_gatsOldButton.DeHighlight();
 			}
 			else if (opts.getBustPriority(_prio) == "CHESHIRE")
@@ -108,6 +118,7 @@
 				_gatsOldButton.DeHighlight();
 				_gatsButton.DeHighlight();
 				_cheshireButton.Highlight();
+				_shouButton.DeHighlight();
 				_noneButton.DeHighlight();
 			}
 			else if (opts.getBustPriority(_prio) == "GATS")
@@ -115,6 +126,7 @@
 				_gatsOldButton.DeHighlight();
 				_gatsButton.Highlight();
 				_cheshireButton.DeHighlight();
+				_shouButton.DeHighlight();
 				_noneButton.DeHighlight();
 			}
 			else if (opts.getBustPriority(_prio) == "GATSOLD")
@@ -122,6 +134,15 @@
 				_gatsOldButton.Highlight();
 				_gatsButton.DeHighlight();
 				_cheshireButton.DeHighlight();
+				_shouButton.DeHighlight();
+				_noneButton.DeHighlight();
+			}
+			else if (opts.getBustPriority(_prio) == "SHOU")
+			{
+				_gatsOldButton.DeHighlight();
+				_gatsButton.DeHighlight();
+				_cheshireButton.DeHighlight();
+				_shouButton.Highlight();
 				_noneButton.DeHighlight();
 			}
 		}

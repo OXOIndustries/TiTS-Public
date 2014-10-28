@@ -17,7 +17,7 @@ package classes.DataManager
 		
 		public function upgrade(data:Object):Boolean
 		{
-			data.gameOptions.bustPriority = ["CHESHIRE", "GATS", "GATSOLD"];
+			data.gameOptions.bustPriority = ["CHESHIRE", "SHOU", "GATS", "GATSOLD"];
 			
 			data.version = this._newVersionValue;
 			data.minVersion = this._newVersionValue;

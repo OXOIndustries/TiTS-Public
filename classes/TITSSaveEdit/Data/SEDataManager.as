@@ -216,7 +216,7 @@ package classes.TITSSaveEdit.Data
 					flags: { },
 					gameOptions: {
 						bustFallbacks: true,
-						bustPriority: ["CHESHIRE", "GATS", "GATSOLD"],
+						bustPriority: ["CHESHIRE", "SHOU", "GATS", "GATSOLD"],
 						bustsEnabled: true,
 						classInstance: "classes.GameData::GameOptions",
 						debugMode: false,

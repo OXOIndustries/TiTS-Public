@@ -10,7 +10,7 @@ package classes.GameData
 		
 		public function GameOptions() 
 		{
-			bustPriority = ["CHESHIRE", "GATS", "GATSOLD"];
+			bustPriority = ["CHESHIRE", "SHOU", "GATS", "GATSOLD"];
 			bustsEnabled = true;
 			bustFallbacks = true;
 			easyMode = false;
@@ -21,7 +21,7 @@ package classes.GameData
 		public function setBustPriority(artist:String, priority:int):void
 		{
 			if (priority < 0 || priority > 2) return;
-			if (artist != "CHESHIRE" && artist != "GATS" && artist != "GATSOLD" && artist != "none") return;
+			if (artist != "CHESHIRE" && artist != "GATS" && artist != "GATSOLD" && artist != "SHOU" && artist != "none") return;
 			
 			if (artist == "none")
 			{
