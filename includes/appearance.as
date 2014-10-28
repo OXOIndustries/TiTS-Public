@@ -223,7 +223,7 @@ function appearance(target:Creature):void {
 			}
 			//Minotaur horns
 			if(pc.hornType == GLOBAL.TYPE_BOVINE) {
-				if(pc.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by your village.");
+				if(pc.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by terrans.");
 				else if(pc.hornLength < 2) output2(" Two small, roughly 1\" long bovine horns protrude from your forehead. They're kind of cute, actually.");
 				else if(pc.hornLength < 3) output2(" Two bovine horns, approximately two inches in length, jut from your forehead.");
 				else if(pc.hornLength < 4) output2(" A pair of bovine horns jut a full three inches from your forehead.");
@@ -238,7 +238,7 @@ function appearance(target:Creature):void {
 			else if(pc.hornType == GLOBAL.TYPE_LIZAN) {
 				if(pc.horns == 2) output2(" A pair of " + num2Text(int(pc.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
 				//Super lizard horns
-				else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from your village's legends.");
+				else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from terran legends.");
 			}
 			//Antlers!
 			else if(pc.hornType == GLOBAL.TYPE_DEER) {

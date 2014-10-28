@@ -124,6 +124,7 @@
 		include "../includes/stellarTether.as";
 		include "../includes/saendra.as";
 		include "../includes/texas_new.as";
+		include "../includes/texas_varmint_wrangling.as";
 		include "../includes/texas_new_gobbles.as";
 		include "../includes/vanae.as";
 		include "../includes/anno.follower.as";
