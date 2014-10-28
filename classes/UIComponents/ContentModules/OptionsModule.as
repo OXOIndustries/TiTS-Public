@@ -93,7 +93,7 @@ package classes.UIComponents.ContentModules
 		
 		private function addBustPreferenceControl():void
 		{
-			for (var i:int = 0; i < 3; i++)
+			for (var i:int = 0; i < 4; i++)
 			{
 				var bpC:BustsPreferenceControl = new BustsPreferenceControl(i);
 				_controls.push(bpC);
