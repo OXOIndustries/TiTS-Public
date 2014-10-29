@@ -1397,6 +1397,9 @@ function giannaBodyModMenu(display:Boolean = true):void
 		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna's [gianna.lips] will free up 2 units of silicone.");
 	}
 	
+	if(pc.hasItem(new Silicone(),1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
+	else addDisabledButton(8,"GiveSilicone","GiveSilicone","You need to find a bag of silicone before you can give it to Gianna.");
+
 	//9999
 	if(!gianna.hasStatusEffect("Hose Plugged In")) addButton(14,"Back",approachGianna,"back");
 	else addButton(14,"Back",unhookGiannaHose);
@@ -1922,7 +1925,7 @@ function giveGiannaSilicone():void
 	clearOutput();
 	giannaDisplay();
 	//First time
-	if(flags["9999"] == undefined)
+	if(flags["GIVEN_GIANNA_SILICONE"] == undefined)
 	{
 		output("You hand the sealed container over to Gianna. <i>“");
 		if(pc.isNice()) output("Happy to help.");
@@ -1937,7 +1940,7 @@ function giveGiannaSilicone():void
 		output("”</i>");
 		//+slight confidence
 		giannaPersonality(3);
-		flags["9999"] = 1;
+		flags["GIVEN_GIANNA_SILICONE"] = 1;
 	}
 	//Repeat
 	else
@@ -1957,7 +1960,9 @@ function giveGiannaSilicone():void
 	//Merge
 	output("\n\nGianna pushes her prize against a port in machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. <i>“Let’s get started.”</i>");
 	//Menu!
-
+	giannaAvailableSilicone(6);
+	pc.destroyItem(new Silicone(),1);
+	giannaBodyModMenu(false);
 }
 
 

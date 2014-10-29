@@ -1,4 +1,6 @@
 ﻿import classes.Items.Miscellaneous.VarmintItem;
+import classes.Items.Miscellaneous.Silicone;
+
 /*Faux Cow Farmer
 Farmer (First time)
 Cameron (Repeat)
@@ -316,7 +318,7 @@ function lassoAVarmint():void
 	var damage:int = 0;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss
-	if(rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0]) || rangedCombatMiss(pc,foes[0])) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
+	if(rangedCombatMiss(pc,foes[0])) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.\n");
 	else
 	{
 		damage = 20 + pc.aim()/2;
@@ -485,6 +487,13 @@ function varmintRoomsBonus():Boolean
 	if (flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if (flags["FIELDS_STEP"] == undefined) flags["FIELDS_STEP"] = 1;
 	else flags["FIELDS_STEP"]++;
+
+	if((currentLocation == "564" && flags["TAKEN_SILICONE_564"] == undefined) || (currentLocation == "556" && flags["TAKEN_SILICONE_556"] == undefined) || (currentLocation == "552" && flags["TAKEN_SILICONE_552"] == undefined) || (currentLocation == "538" && flags["TAKEN_SILICONE_538"] == undefined)) 
+	{
+		output("\n\nA chewed-up bag of silicone is sitting in an area of trampled crops. It looks like the varmints got tired of trying to chew through the packaging and sought an easier food source.");
+		addButton(0,"TakeSilicone",takeSilicone);
+	}
+
 	if(flags["FIELDS_STEP"] >= 4 && rand(3) == 0)
 	{
 		varmintProc();
@@ -492,4 +501,14 @@ function varmintRoomsBonus():Boolean
 		return true;
 	}
 	return false;
+}
+
+function takeSilicone():void
+{
+	clearOutput();
+	quickLoot(new Silicone());
+	if(currentLocation == "564" && flags["TAKEN_SILICONE_564"] == undefined) flags["TAKEN_SILICONE_564"] = 1;
+	else if(currentLocation == "556" && flags["TAKEN_SILICONE_556"] == undefined) flags["TAKEN_SILICONE_556"] = 1;
+	else if(currentLocation == "552" && flags["TAKEN_SILICONE_552"] == undefined) flags["TAKEN_SILICONE_552"] = 1;
+	else if(currentLocation == "538" && flags["TAKEN_SILICONE_538"] == undefined) flags["TAKEN_SILICONE_538"] = 1;
 }
