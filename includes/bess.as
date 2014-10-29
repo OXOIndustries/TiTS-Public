@@ -1,4 +1,10 @@
-﻿/*come and get it Bess-13/Ben-14 Core Doc
+﻿/*FLAGS:
+BESS_LOVER
+BESS_FRIEND
+BESS_HAIRSTYLE = bessHairStyle: "a messy chignon"
+
+
+/*come and get it Bess-13/Ben-14 Core Doc
 //By JimThermic
 A highly customizable sex bot companion with a heart of silver. 
 
@@ -167,7 +173,7 @@ bessHairStyle: "a backwards slick"
 //Room Descriptor Addition
 function findingBessBonusFunc():Boolean
 {
-	if(9999 == 0) output("\n\nThere is a strange silver glint over in a large pile of junk. It is completely out of place with the rusted rubbish surrounding it. Maybe it is something valuable?");
+	if(flags["BESS_IN_RUBBLE"] == 0) output("\n\nThere is a strange silver glint over in a large pile of junk. It is completely out of place with the rusted rubbish surrounding it. Maybe it is something valuable?");
 	//[ Silver Object ]
 	addButton(0,"Silver Object",investigateBesssSilverButt,undefined,"Silver Object","Investigate the silver object.");
 }
@@ -181,10 +187,10 @@ function findASilverObject():void
 	output("\n\nIt’s a foot. Why is a silvery foot poking out of a pile of half-broken pipes and shattered holos?");
 	output("\n\nIt looks like a machine foot, to boot. On further examination, the foot is connected to a body, and the body is buried beneath the rubbish.");
 	//ifRunIntoPleasureBots: 
-	if(9999 == 0) output(" It looks far too sleek looking to be one of the Pleasure Bots that aimlessly roam the Tarkus wastes.");
+	if(flags["MET_SEXBOTS_ON_TARKUS"] != undefined) output(" It looks far too sleek looking to be one of the Pleasure Bots that aimlessly roam the Tarkus wastes.");
 	output(" From what you can see it doesn’t look rusted, or even slightly scratched, adding even more to the air of mystery surrounding it.");
 	//SydiansMet:
-	if(9999 == 0) output(" You can't believe the Sydians haven't melted this thing down yet.");
+	if(flags["MET_SYDIAN_MALE"] != undefined) output(" You can't believe the Sydians haven't melted this thing down yet.");
 	output("\n\nWhat kind of foot is it...?");
 
 	clearMenu();
@@ -199,6 +205,89 @@ function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String =
 {
 	clearOutput();
 	output("On closer examination, it definitely looks like a " + bessesStartingSexHahaThatsNotHowYouWriteAPossessive + " foot. The real question though is if you want to dig this thing up and see what it is...?");
+	if(bessesStartingSexHahaThatsNotHowYouWriteAPossessive == "female")
+	{
+		chars["BESS"].short = "Bess";
+		//Gender: Female
+		chars["BESS"].tallness = 62;
+		//Weight: 65 kg
+		chars["BESS"].hairColor = "silver";
+		chars["BESS"].hairLength = 8;
+		chars["BESS"].skinTone = "silver";
+		chars["BESS"].eyeColor = "silver";
+		chars["BESS"].breastRows[0].breastRatingRaw = 3;
+		chars["BESS"].buttRatingRaw = 4;
+		chars["BESS"].hipRatingRaw = 4;
+		chars["BESS"].tone = 50;
+		chars["BESS"].thickness = 30;
+		chars["BESS"].vaginas = new Array();
+		chars["BESS"].cocks = new Array();
+		chars["BESS"].createVagina();
+		//bess.pussyType: synthetic (See "New Pussy Type: Synthetc" Section for adjective values.
+		chars["BESS"].vaginas[0].type = GLOBAL.TYPE_SYNTHETIC;
+		chars["BESS"].vaginas[0].vaginaColor = "silvery";
+		chars["BESS"].elasticity = 5;
+		//bess.pussyCapacity & bess.assCapacity: Always double the PC's size (snug fit). 
+		//bess.nippleType: normal (0)
+		chars["BESS"].nippleColor = "silver";
+		//bess.nippleSize: Prominant/Average (0.5?)
+		chars["BESS"].nippleLengthRatio = 1.5;
+		chars["BESS"].nippleWidthRatio = 1.5;
+		//bess.clitSize: Average
+		//bess.cockSize: Whenever using any cock extension besides the Dino Cock, size is half the PC's capacity (Snug fit, no stretching). This is because almost all her cocks are resizing cocks.
+		//bess.cum: Lots. Just... lots. Their insides are made up of MeldMilk, which can be turned right into cum.
+		chars["BESS"].ballEfficiency = 150;
+		chars["BESS"].cumMultiplier = 50;
+		//bess.hairType and bess.hairLength: Handled by if Statements at the moment wherever hair is mentioned in detail, since they have unique haircuts. [bess.Hair] parser is not used. 
+		//bessHairStyle: "a messy chignon"
+		flags["BESS_HAIRSTYLE"] = "a messy chignon";
+	}
+	//Ben Starting Values
+	// If chose "Synthetic Male Foot" upon discovery
+	// Probably just a large set of value shifts on the Bess template, rather than an entirely seperate one. The marker that searches out Bess or Ben is their Gender.
+	{
+		chars["BESS"].short = "Ben";
+		//Gender: Male (Important)
+		//Height: 6"1
+		chars["BESS"].tallness = 73;
+		//Weight: 70 kg
+		chars["BESS"].hairColor = "silver";
+		chars["BESS"].hairLength = 2;
+		chars["BESS"].skinTone = "silver";
+		chars["BESS"].eyeColor = "silver";
+		chars["BESS"].breastRows[0].breastRatingRaw = 0;
+		//bess.ass, bess.hips & bess.thighs : 4 (average)
+		chars["BESS"].buttRatingRaw = 4;
+		chars["BESS"].hipRatingRaw = 4;
+		//bess.tone: 60 (Lightly muscled)
+		chars["BESS"].tone = 60;
+		chars["BESS"].thickness = 30;
+		//bess.hasPussy: false.
+		bess.vaginas = new Array();
+		//bess.assCapacity: Always double the PC's size (snug fit).
+		chars["BESS"].elasticity = 5;
+		//bess.nippleType: normal (0)
+		chars["BESS"].nippleColor = "silver";
+		//bess.nippleSize: Average (0.5?)
+		//bess.hasCock: Yes
+		chars["BESS"].cocks = new Array();
+		chars["BESS"].vaginas = new Array();
+		chars["BESS"].createCock();
+		//bess.cockType: Synthetic (See "New Cock Type: Synthetc" Section for adjective values.)
+		bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+		//bess.hasBalls: Yes
+		bess.balls = 2;
+		bess.ballSizeRaw = 3;
+		//Color of male bits: Silver.
+		bess.cocks[0].cockColor = "silver";
+		//bess.cockSize: Whenever using any cock extension besides the Dino Cock, size is half the PC's capacity (Snug fit, no stretching). This is because almost all her cocks are resizing cocks.
+		//bess.cum: Lots. Just... lots. Their insides are made up of MeldMilk, which can be turned right into cum. 
+		chars["BESS"].ballEfficiency = 150;
+		chars["BESS"].cumMultiplier = 50;
+		//bess.hairType and bess.hairLength: Handled by if Statements at the moment wherever hair is mentioned in detail, since they have unique haircuts. [bess.Hair] parser is not used. 
+		//bessHairStyle: "a backwards slick"
+		flags["BESS_HAIRSTYLE"] = "a backwards slick";
+	}
 	//[ Dig It Up ] [ Leave It ]
 	clearMenu();
 	addButton(0,"Dig It Up",digUpBessBenWhoCares);
@@ -323,13 +412,19 @@ function plugBessesFatAssInPartII():void
 	//[Keep On Ship*] [Sell Off] [Hand To Authorities] [Dump Them] [Release] [Keep At Tavros]
 	//* Only if there is room.
 	processTime(48);
+	decisionTimeForBessMenu();
+}
+
+function decisionTimeForBessMenu():void
+{
 	clearMenu();
-	addButton(0,"KeepOnShip",);
-	addButton(1,"Sell Off",);
-	addButton(2,"Authorities",);
-	addButton(3,"Dump Them",);
-	addButton(4,"Release",);
-	addButton(5,"KeepAtTavros",);
+	addButton(0,"KeepOnShip",keepBessYouSloot);
+	addButton(1,"Sell Off",sellOfBessDatWhore);
+	addButton(2,"Authorities",handBessOverToAuthorities);
+	addButton(3,"Dump Them",dumpTheBessBot);
+	if(flags["TRIED_TO_GIVE_BESS_FREEDOM"] == undefined) addButton(4,"Release",);
+	else addDisabledButton(4,"Release","Release","Your new robotic friend doesn't seem to understand the idea of freedom.");
+	addButton(5,"KeepAtTavros",waitAtTavrosBess);
 }
 
 //Sell Off
@@ -345,6 +440,7 @@ function sellOfBessDatWhore():void
 	output("\n\nAfter concluding your business, you head back to Tarkus, wiping the flight path and history from your spaceship computer.");
 	//Appear back in Spaceship, story path ended. { Add 10,000 credits to PC’s credit score } 
 	pc.credits += 10000;
+	flags["SOLD_BESS"] = 1;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -359,6 +455,7 @@ function handBessOverToAuthorities():void
 	output("\n\nLooking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it’s hard to imagine [bess.heShe]’s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense.");
 	output("\n\nThe U.G.C. official leaves with the {Bess-13/Ben-14} unit, and soon after you are wired 2,500 credits by JoyCo. Seems things wrapped up pretty nicely.");
 	pc.credits += 2500;
+	flags["BESS_GIVEN_TO_UGC"] = 1;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -374,8 +471,10 @@ function releaseBessBenWhatever():void
 	output("\n\nWhat exactly are you going to do? [bess.HeShe]'ll probably get caught in a logic loop if you push the point.");
 	//Once off +5 to Nice Score. Non-repeatable event.
 	pc.addNice(5);
+	flags["TRIED_TO_GIVE_BESS_FREEDOM"] = 1;
 	processTime(1);
-	//9999 - menu with release grayed out.
+	//menu with release grayed out.
+	decisionTimeForBessMenu();
 }
  
 //Dump Them
@@ -387,8 +486,10 @@ function dumpTheBessBot():void
 	output("\n\nThings are nice and quiet after that.");
 	//Appear back in Spaceship, Story path ended. +5 to Asshat Score.
 	processTime(10);
-	pc.addAss();
-	//9999
+	pc.addAss(10);
+	currentLocation = shipLocation;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Tavros Station
@@ -400,7 +501,9 @@ function waitAtTavrosBess():void
 	output("\n\nThe " + bess.fm("Bess-13","Ben-14") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.");
 	//See Tavros Station section for more information.
 	processTime(2040);
-	//9999
+	currentLocation = shipLocation;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Keep [bess.HimHer] - Leads to Tutorial Section.
@@ -419,15 +522,35 @@ function keepBessYouSloot():void
 	output("\n\n[Bess.HeShe] then pauses and looks at you with patient, " + bess.fm("hopeful","questioning") + " eyes, as if waiting for you to say something else. " + bess.fm("It reminds you of a girl at a social function waiting to be asked to dance.","He even coughs politely, as if trying to awkwardly bring your attention to something."));
 	output("\n\nYou ask [bess.himHer] exactly what [bess.heShe]’s waiting for, and [bess.heShe] gives a rather animated blink. It’s hardly that of a pre-programmed VI.");
 	output("\n\n<i>\"My name, [Master]. I don’t have an official designation yet.\”</i></i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
-	output("\n\nWhat do you decide to name her?");
+	clearMenu();
+	addButton(0,"Next",nameBessForRealsies);
+}
+
+function nameBessForRealsies():void
+{
+	clearOutput();
+	output("What do you decide to name her?");
+	displayInput();
+	this.userInterface.textInput.text = chars["BESS"].mf("Ben","Bess");
 	//(Default Name: {if (bess.gender = female) <i>“Bess”</i>}{else: <i>“Ben”</i>}");
+}
+
+function nameBessProcessing():void
+{
+	if(this.userInterface.textInput.text == "") {
+		output("<b>You must input a name.</b>");
+		return;
+	}
+	chars["BESS"].short = this.userInterface.textInput.text;
+	if(stage.contains(this.userInterface.textInput)) 
+		this.removeInput();
+	nameBessResult();
 }
 
 //Entered name becomes string value [Bess]
 function nameBessResult():void
 {
 	clearOutput();
-	//9999 name shit
 	output("<i>\"Thank you for my name, [Master]. I am now called [Bess]!\”</i></i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\”</i></i>");
 	output("\n\nYou ask exactly what functions [Bess] comes equipped with, noting that [bess.heShe] doesn’t look like [bess.heShe]’s made of a regular kind of alloy.");
 	output("\n\n[Bess] comes quite lively when you observe that, since [bess.heShe] clearly takes pride in [bess.hisHer] design specs.");
@@ -538,7 +661,7 @@ Bess/Ben As Follower
 Affection Values
 
 The bessAffection value starts at 0 and caps at 100. There are also other important flags that influence thier Affection value, listed below:
-If they has become friends with or the lover of the PC (Booleans bessFriend and bessLover, respectively).
+If they has become friends with or the lover of the PC (Booleans bessFriend and flags["BESS_LOVER"], respectively).
 The bessPoly value triggered when you are lovers. This flag determines if you have an open relationship (bessPoly = 1) or a polyamorous relationship (bessPoly = 2). 
 The bessSleepW flag. This flag determines if you sleep together at night.
 bessAffection can increase or decrease from certain actions or events. They are listed below. Story Event increases/decreases are listed in the Bess Story Document.
@@ -546,7 +669,7 @@ bessAffection can increase or decrease from certain actions or events. They are 
 General Categorization
 // These categories correlate with the Bess/Ben follower greetings.
 
-bessLover = true
+flags["BESS_LOVER"] = true
 >= 90 - Giddily in love with PC
 > 70 - Normal Lover Level
 > 50 - Playfully disgruntled with inattention.
@@ -586,7 +709,7 @@ Some Story Events: Varies.
 */
 
 //Bess/Ben’s Room
-function approachFollowerBessRoom():void
+function followerBessRoom():void
 {
 	//if (Bess/Ben Event 11 completed)
 	if(flags["9999"] == 0)
@@ -604,7 +727,7 @@ function approachFollowerBessRoom():void
 		output("\n\nPiles of holos and books have recently begun to fill the room. Even though [bess.heShe] can’t afford shelves - since [bess.heShe] doesn’t have a real job - each stack is perfectly categorized by genre and in alphabetical order. [bess.HeShe]’s even moved a holo-projector into [bess.hisHer] room.");
 	}
 	//if (bessFriend = true)
-	if(9999 == 0)
+	if(flags["BESS_FRIEND"] != undefined)
 	{
 		output("\n\nOn [bess.hisHer] bedside table are two of [bess.himsHer] favorite books, ‘The Hobbit' and ‘Do Androids Dream of Electric Sheep?’ [bess.HeShe] loves them so much they never make it back to the shelves.");
 	}
@@ -629,63 +752,63 @@ function approachFollowerBess():void
 {
 	// Dialogues initiated by hitting the [Bess] button under companions. Or if they has a button under the normal ship stuff. Wherever you place it - just probably not in their room for story/sex consistency reasons.
 	clearOutput();
-	//if (bessLover = true && bessAffection >= 90)
-	if(9999 == 0)
+	//if (flags["BESS_LOVER"] = true && bessAffection >= 90)
+	if(flags["BESS_LOVER"] != undefined && bessAffection() >= 90)
 	{
 		output("[Bess] grins as soon as [bess.heShe] sees you, " + bess.fm("leaping into your arms","scooping you into his arms") + " and giving you a long, sensual kiss. </i>\"... Mmmm, [bNamePC]! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming");
 		//if bess.glasses = true: 
 		if(flags["BESS_GLASSES"] != undefined) output(" through [bess.hisHer] glasses");
 		output(" with happiness.");
 	}
-	//if (bessLover = true && bessAffection < 90 && bessAffection >= 70)
-	else if(9999 == 0)
+	//if (flags["BESS_LOVER"] = true && bessAffection < 90 && bessAffection >= 70)
+	else if(flags["BESS_LOVER"] != undefined && bessAffection() >= 70)
 	{
 		output("[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you?\"</i> [bess.HeShe] asks, peering at you");
 		//if bess.glasses = true: 
 		if(flags["BESS_GLASSES"] != undefined) output(" through [bess.hisHer] glasses");
 		output(".");
 	}
-	//else if (bessLover = true && bessAffection < 70 && bessAffection >= 50)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = true && bessAffection < 70 && bessAffection >= 50)
+	else if(flags["BESS_LOVER"] != undefined && bessAffection() >= 50)
 	{
 		output("[Bess] wraps [bess.hisHer] arms around you, giving you a hello kiss, <i>\"... Greetings, [bNamePC]. Come to see me have you? It's about time!\"</i> [bess.HeShe] exclaims");
 		if(flags["BESS_GLASSES"] != undefined) output(", peering at you over [bess.hisHer] glasses");
 		output(".");
 	}
-	//else if (bessLover = true && bessAffection < 50 && bessAffection >= 30)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = true && bessAffection < 50 && bessAffection >= 30)
+	else if(flags["BESS_LOVER"] != undefined && bessAffection() >= 30)
 	{
 		output("[Bess] wraps [bess.hisHer] arms around you, looking very serious, <i>\"... [bNamePC]... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?\"</i> [bess.HisHer] eyes " + bess.fm("are wavering","look pained"));
 		//[if (bessGlasses = true) "behind [bess.hisHer] glasses"]. 
 		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
 		output(".");
 	}
-	//else if (bessLover = true && bessAffection <30)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = true && bessAffection <30)
+	else if(flags["BESS_LOVER"] != undefined)
 	{
 		output("[Bess] looks at you " + bess.fm("meekly","in distress") + ", [bess.hisHer] expression completely downtrodden. <i>\"... Oh, you're here [bNamePC]... do... do you still love me? You're gone all the time, I never see you anymore...\"</i> [bess.HisHer] eyes " + bess.fm("are tearing up","look truly agonized");
 			//[if (bessGlasses = true) "behind [bess.hisHer] glasses"]
 		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
 		output("."); 
 	}
-	//else if (bessLover = false && bessFriend = true && bessAffection >= 50)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = false && bessFriend = true && bessAffection >= 50)
+	else if(flags["BESS_FRIEND"] != undefined && bessAffection() >= 50)
 	{
 		output("[Bess] runs " + bess.fm("at you","up to you") + ",giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? Great, I hope!\"</i> [bess.heShe] exclaims " + bess.fm("excitedly","brightly"));
 		//[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .}
 		if(flags["BESS_GLASSES"] != undefined) output(", eyes shining behind [bess.hisHer] glasses");
 		output(".");
 	}
-	//else if (bessLover = false && bessFriend = true && bessAffection < 50 && bessAffection >= 25)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = false && bessFriend = true && bessAffection < 50 && bessAffection >= 25)
+	else if(flags["BESS_FRIEND"] != undefined && bessAffection() >= 25)
 	{
 		output("[Bess] runs " + bess.fm("at you","up to you") + ", giving you a massive hug. <i>\"... [bNamePC]! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!\"</i> [bess.heShe] exclaims cheerily");
 		//[if (bessGlasses = true) ", eyes shining behind [bess.hisHer] glasses"] .
 		if(flags["BESS_GLASSES"] != undefined) output(", eyes shining behind [bess.hisHer] glasses");
 		output(".");
 	}
-	//else if (bessLover = false && bessFriend = true && bessAffection < 25)
-	else if(9999 == 0)
+	//else if (flags["BESS_LOVER"] = false && bessFriend = true && bessAffection < 25)
+	else if(flags["BESS_FRIEND"] != undefined)
 	{
 		output("[Bess] walks up to you, looking a little downtrodden. <i>\"... Hey [bNamePC], we're still friends right? I never see you anymore... did I do something wrong?\"</i> [bess.HisHer] eyes are " + bess.fm("visibly wavering","look a bit strained"));
 		if(flags["BESS_GLASSES"] != undefined) output(" behind [bess.hisHer] glasses");
@@ -733,7 +856,7 @@ function approachFollowerBess():void
 		output(".");
 	}
 	if(bess.meleeWeapon is bessKatana) output(" At [bess.himsHer] right side is a katana, secure in its glazed sheath.");
-	//if (pc.armor = Top&Skirt, Sleepshirt, Maid, Nurse, Schoolgirl, GothLolita, TankMini) 
+	//if (bess.armor = Top&Skirt, Sleepshirt, Maid, Nurse, Schoolgirl, GothLolita, TankMini) 
 	if(9999 == 9999)
 	{
 		output("\n\nEvery time the hem of [bess.hisHer] outfit rides up, you get a good look at [bess.hisHer] ");
@@ -773,8 +896,11 @@ function approachFollowerBess():void
 	// Full Desc just means ensuring there's at least one or two adjectives with a noun.
 
 	//[Appearance] [Discuss] [Sex] [Functions] [Accessories] 
+	addButton(0,"Appearance",bessAppearance);
 	//[Return]
-	// Functions, Accessories, and Sex are locked off when bessAffection is below 25 and bessFriend = true, or bessAffection is below 30 and bessLover = true.
+	// Functions, Accessories, and Sex are locked off when bessAffection is below 25 and bessFriend = true, or bessAffection is below 30 and flags["BESS_LOVER"] = true.
+	addButton(14,"Leave",mainGameMenu);
+
 }
 
 //Appearance
@@ -851,73 +977,71 @@ https://docs.google.com/document/d/1Mt7-7sCLMwJQwBq2XoDnKqqbZGaUlLgRPH7oiz6HKH0/
 
 Intimate Sex
 
-// Also under Sex Doc. Shows up if bessLover = true. Separate versions of "normal sex" positions. 
+// Also under Sex Doc. Shows up if flags["BESS_LOVER"] = true. Separate versions of "normal sex" positions. 
+*/
 
-
-Functions
-
-if (bessLoverStatus = domme | dom)
+//Functions
+function bessFunctions():void
 {
-You meekly suggest that [Bess] <i>perhaps</i> could improve [bess.hisHer] appearance with a few tweaks. Your remark is met with a quirked eyebrow. It's sometimes hard to tell when [Bess] is in [bessLoverStatus] mode or not.
-
-Thankfully, you seem to be in luck. [Bess.HisHer] gaze is softer than usual, which means you aren't going to get disciplined for your impertinence. 
-
-<i>\"Oh really? What exactly do you think I should change about myself, [bNamePC]? I'm all ears...\"</i>
+	clearOutput();
+	if (flags["BESS_LOVER_STATUS"] == "domme" || flags["BESS_LOVER_STATUS"] == "domme")
+	{
+		output("You meekly suggest that [Bess] <i>perhaps</i> could improve [bess.hisHer] appearance with a few tweaks. Your remark is met with a quirked eyebrow. It’s sometimes hard to tell when [Bess] is in " + flags["BESS_LOVER_STATUS"] + " mode or not.");
+		output("\n\nThankfully, you seem to be in luck. [Bess.HisHer] gaze is softer than usual, which means you aren’t going to get disciplined for your impertinence. ");
+		output("\n\n<i>\"Oh really? What exactly do you think I should change about myself, [bNamePC]? I’m all ears...\</i>”</i>");
+	}
+	else if (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet")
+	{
+		output("[Bess]’s appearance is not to your taste, so you order [bess.himHer] to change it. It’s really that simple.");
+		output("\n\nYour devoted " + flags["BESS_LOVER_STATUS"] + " gets down on all fours and bows deeply to you, [bess.hisHer] eyes glittering with unwavering devotion. <i>\"Of course, anything you wish! What would you like me to change about myself..?\</i>”</i>");
+	}
+	else if (flags["BESS_LOVER"] != undefined || flags["BESS_FRIEND"] != undefined)
+	{
+		output("You casually bring up the topic of [Bess] changing some things about [bess.himHer]self.");
+		output("\n\n[Bess] responds with a quirked eyebrow. <i>\"You want me to change myself? What, are you not happy with your {[flags["BESS_LOVER_STATUS"]]/dear friend} the way [bess.heShe] is?\</i>”</i> You watch [bess.himHer] try to keep a straight face, but [bess.heShe] can’t hold it.");
+		output("\n\n<i>\"Of course, anything for you, [bNamePC]. What would you like me to switch up?\</i>”</i>");
+	}*/
+	else 
+	{
+		output("You suggest changing some things about [Bess], and [bess.heShe] seems happy to comply. In fact, [bess.heShe] seems to relish the chance to display [bess.hisHer] different functions.");
+		output("\n\n<i>\"Of course, [bNamePC]! What would you like me to change?\</i>”</i> [Bess]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
+	}
+	//[Titles] [Role] [Hair] [Eyes] [Chest] 
+	//[Body Shape] [Genitals] [Cum]
+	//[Clothing] [Accessories] [Cum]
+	//[JoyCord] [Tenta-pussy] 
+	//Titles.tooltip: "Change [Bess]'s name or what you call each other in sexual and non-sexual encounters."}
+	//Role.tooltip: "Change [Bess]'s various roles, such as if [bess.heShe]'s dominant or not during sex."}
+	//Hair.tooltip: "Ask [Bess] to change [bess.hisHer] hair such as color, length, and styling.
+	//Chest.tooltip: "Ask [Bess] to change [bess.hisHer] chest, such as breast size and nipple type.
+	//Body Shape.tooltip: "Ask [Bess] to change [bess.hisHer] body shape, such as muscle tone, hip, and ass size.
+	//Genitals.tooltip: "Ask [Bess] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.
+	clearMenu();
+	addButton(14,"Back",approachFollowerBess);
 }
 
-else if (bessLoverStatus = sub or pet}
+//Titles
+function talkToBessAboutTitles():void
 {
-[Bess]'s appearance is not to your taste, so you order [bess.himHer] to change it. It's really that simple.
+	clearOutput();
+	output("<i>\"Which one?\"</i>");
 
-Your devoted [bessLoverStatus] gets down on all fours and bows deeply to you, [bess.hisHer] eyes glittering with unwavering devotion. <i>\"Of course, anything you wish! What would you like me to change about myself..?\"</i>
+	/*[[Bess]'s Name] [Your Title] [{His/Her} Title] [Your Sex Name] [{His/Her} Sex Name]
+	[Bess]'s Name.tooltip: "Change [Bess]'s name. At least, if [bess.heShe] agrees to it..."
+	Your Title.tooltip: "The title that [Bess] will call you in non-sexual encounters.
+	{His/Her} Title.tooltip: "The title that you will call [Bess] in non-sexual encounters.
+	Your Sex Name.tooltip: "The title that [Bess] will call you in sexual encounters.
+	{His/Her} Sex Name.tooltip: "The title that you will call [Bess] in sexual encounters.*/
 }
 
-else if (bess.lover = true || bess.friend = true)
-{
-You casually bring up the topic of [Bess] changing some things about [bess.himHer]self.
-
-[Bess] responds with a quirked eyebrow. <i>\"You want me to change myself? What, are you not happy with your {[bessLoverStatus]/dear friend} the way [bess.heShe] is?\"</i> You watch [bess.himHer] try to keep a straight face, but [bess.heShe] can't hold it. 
-
-<i>\"Of course, anything for you, [bNamePC]. What would you like me to switch up?\"</i>
-}
-else 
-{
-You suggest changing some things about [Bess], and [bess.heShe] seems happy to comply. In fact, [bess.heShe] seems to relish the chance to display [bess.hisHer] different functions.
-
-<i>\"Of course, [bNamePC]! What would you like me to change?\"</i> [Bess]'s [bess.eyeColor] eyes are {fem: positively glittering/male:shining brightly}, waiting to hear what you want to switch up.
-
-[Titles] [Role] [Hair] [Eyes] [Chest] 
-[Body Shape] [Genitals] [Cum]
-[Clothing] [Accessories] [Cum]
-[JoyCord] [Tenta-pussy] 
-
-Titles.tooltip: "Change [Bess]'s name or what you call each other in sexual and non-sexual encounters."}
-Role.tooltip: "Change [Bess]'s various roles, such as if [bess.heShe]'s dominant or not during sex."}
-Hair.tooltip: "Ask [Bess] to change [bess.hisHer] hair such as color, length, and styling.
-Chest.tooltip: "Ask [Bess] to change [bess.hisHer] chest, such as breast size and nipple type.
-Body Shape.tooltip: "Ask [Bess] to change [bess.hisHer] body shape, such as muscle tone, hip, and ass size.
-Genitals.tooltip: "Ask [Bess] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.
-
-Titles
-
-<i>\"Which one?"</i>
-
-[[Bess]'s Name] [Your Title] [{His/Her} Title] [Your Sex Name] [{His/Her} Sex Name]
-
-[Bess]'s Name.tooltip: "Change [Bess]'s name. At least, if [bess.heShe] agrees to it..."
-Your Title.tooltip: "The title that [Bess] will call you in non-sexual encounters.
-{His/Her} Title.tooltip: "The title that you will call [Bess] in non-sexual encounters.
-Your Sex Name.tooltip: "The title that [Bess] will call you in sexual encounters.
-{His/Her} Sex Name.tooltip: "The title that you will call [Bess] in sexual encounters.
-
-
-[Bess]'s Name
+//[Bess]'s Name
+function changeBess
 
 [Bess] peers at you as you suggest changing [bess.himsHer] name. [bess.heShe]'s clearly not comfortable with the idea.
 
-if (bessLoverStatus = dom || domme)
+if (flags["BESS_LOVER"]Status = dom || domme)
 {
-<i>\"... You want your [bessLoverStatus] to change [bess.hisHer] name, because you're unhappy with it?\"</i> [Bess] asks you in a dry tone, as if [bess.heShe] misheard you.
+<i>\"... You want your [flags["BESS_LOVER_STATUS"]] to change [bess.hisHer] name, because you're unhappy with it?\"</i> [Bess] asks you in a dry tone, as if [bess.heShe] misheard you.
 
 You cough and nod, feeling yourself shrink under [bess.hisHer] penetrating gaze.
 
@@ -954,7 +1078,7 @@ Afterwards:
 <b<{You will now call [Bess]/[Bess] will now call you} {new title} {during sex/outside of sex}!</b> 
 
 Sex Role
-// Option unavailable if bessLoverStatus = pet, domme, or sub.
+// Option unavailable if flags["BESS_LOVER"]Status = pet, domme, or sub.
 
 <i>\"What attitude would you like me to assume during sex, [bNamePC]?\"</i>
 [Equal] [Dominant] [Submissive]
@@ -2286,7 +2410,7 @@ bessCockTail = False
 bessCuntTail = False
 // Boolean value determining if Bess/Ben's detaching pussy is active.
 
-bessLover = False
+flags["BESS_LOVER"] = False
 // Boolean triggered when the player professes mutual love for Bess/Ben.
 
 bessFriend = False

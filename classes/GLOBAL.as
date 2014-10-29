@@ -140,6 +140,7 @@
 		public static const TYPE_VANAE_HUNTRESS:int							= 48;
 		public static const TYPE_LEITHAN:int 							    = 49;
 		public static const TYPE_GOAT:int 									= 50;
+		public static const TYPE_SYNTHETIC:int 								= 51;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -570,6 +571,7 @@
 			TYPE_EQUINE,
 			TYPE_LEITHAN,
 			TYPE_BEE,
+			TYPE_SYNTHETIC,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
