@@ -967,6 +967,7 @@ function treatmentHourProcs():void
 				eventBuffer += ".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a cow, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!");
 			}
 			pc.clearLegFlags();
+			pc.legType = GLOBAL.TYPE_BOVINE;
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 		}
@@ -2356,6 +2357,7 @@ function treatmentHourProcs():void
 				eventBuffer += ".\n\nThey split in half, right down the middle, growing harder by the moment, dulling your sense of touch. You dully rub them, confused at first. Realization hits you like a ton of bricks - you have hooves! Just like a bull, you've got hooves to clop around on while you walk. Most people don't get hooves from the Treatment. It looks like you were one of the lucky ones. " + pc.mf("The cow-girls are gonna be all over you!","The bull-boys are going to love the look!");
 			}
 			pc.clearLegFlags();
+			pc.legType = GLOBAL.TYPE_BOVINE;
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 		}

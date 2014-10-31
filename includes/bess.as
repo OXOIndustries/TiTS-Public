@@ -1000,7 +1000,7 @@ function bessFunctions():void
 		output("You casually bring up the topic of [Bess] changing some things about [bess.himHer]self.");
 		output("\n\n[Bess] responds with a quirked eyebrow. <i>\"You want me to change myself? What, are you not happy with your {[flags["BESS_LOVER_STATUS"]]/dear friend} the way [bess.heShe] is?\</i>”</i> You watch [bess.himHer] try to keep a straight face, but [bess.heShe] can’t hold it.");
 		output("\n\n<i>\"Of course, anything for you, [bNamePC]. What would you like me to switch up?\</i>”</i>");
-	}*/
+	}
 	else 
 	{
 		output("You suggest changing some things about [Bess], and [bess.heShe] seems happy to comply. In fact, [bess.heShe] seems to relish the chance to display [bess.hisHer] different functions.");
