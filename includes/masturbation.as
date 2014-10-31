@@ -522,7 +522,7 @@ function multiCockFap():void {
 	var nippleFucked:Boolean = false;
 	var sucked:Boolean = false;
 	//Three dicks+
-	if(pc.cockTotal() >= 2) {
+	if(pc.cockTotal() > 2) {
 		output("\n\nYour groin seems almost too bountiful, if such a thing is possible. There's all these wonderfully erect phalluses aching to be touched and yet you only have two hands to tend to them with.");
 		if(pc.hasTailCunt() && pc.tailCount >= pc.cockTotal() - 2) {		
 			output(" Without a single thought from you, your ");

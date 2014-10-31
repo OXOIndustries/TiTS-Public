@@ -148,6 +148,7 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].loosenessRaw = 3;
 			this.vaginas[0].bonusCapacity = 1000;
+			this.vaginas[0].type = GLOBAL.TYPE_NAGA;
 			//Goo is hyper friendly!
 			this.elasticity = 1.4;
 			//Fertility is a % out of 100. 

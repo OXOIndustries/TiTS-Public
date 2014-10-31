@@ -873,7 +873,7 @@ function suckJadesTentacleNipplesYouWeirdo():void {
 	output("Jade grins a knowing grin at your suggestion. <i>\"Of course, [pc.name]; go ahead,\"</i>  she tells you, thrusting her ample bosom towards you and beckoning you with a crooked finger.");
 	output("\n\nYou follow after her, and as soon as the door is closed you bring your hands to her breasts. Still as sensitive as ever.");
 	output("\n\n<i>\"Mmm, you haven't lost your touch,\"</i>  Jade moans in glee, eyes closing as she savors the feeling.");
-	output("\n\nThe smooth flesh of her areolas feels sublime. You tease around the opening of her inverted nipples, circling it with the tip of your finger. Then, finally, you stick the tip of your finger inside.");
+	output("\n\nThe smooth flesh of her areolae feels sublime. You tease around the opening of her inverted nipples, circling it with the tip of your finger. Then, finally, you stick the tip of your finger inside.");
 	output("\n\nA quiet squeak of delight escapes the panda, her tongue momentarily lolling from her jaws at the feeling you penetrating her flesh in such a way.");
 	output("\n\nYou can feel the nub inside, hardening, growing. It takes only a moment before your fingers are ejected by the excited nipples. Regardless, you press your advantage. You flick your [pc.tongue] on one nub, carefully encompassing it with your mouth, gently nibbling while you pinch and tug the other perky tip.");
 	output("\n\nShe groans deep and low, her whole body quivering with delight. <i>\"T-that's the way to do it,\"</i>  she moans eagerly.");
@@ -938,12 +938,12 @@ function boobToBoobSexathon():void {
 	else output("stroke the bare flesh between your thighs");
 	output(".");
 
-	output("\n\nSince she asked so nicely, you see no reason to refuse her. You cup her breasts, sliding your hands around their circumference as you approach the black areolas that hide her tentacle-nips. Jade gasps when you insert a digit inside each of them, teasing the prehensile appendage to come out and play. It barely takes a moment before you feel the telltale push of her emerging tentacles.");
+	output("\n\nSince she asked so nicely, you see no reason to refuse her. You cup her breasts, sliding your hands around their circumference as you approach the black areolae that hide her tentacle-nips. Jade gasps when you insert a digit inside each of them, teasing the prehensile appendage to come out and play. It barely takes a moment before you feel the telltale push of her emerging tentacles.");
 
 	//if PC.Cock=TooBig:
 	if(x < 0 && pc.hasCock())
 	{
-		output("\n\nJade simply grins at you as her tentacles tickle your fingertips, her own fingers trailing up and down your mammoth [pc.cockNounSimple " + x + "]. <i>\"Mmm... too bad this bad boy is too big for me, or we could have some real fun. I'll make do, but maybe you should shrink that down before you come back next time?\"</i>  she suggests, winking at you.");
+		output("\n\nJade simply grins at you as her tentacles tickle your fingertips, her own fingers trailing up and down your mammoth [pc.cockNounSimple " + pc.smallestCockIndex() + "]. <i>\"Mmm... too bad this bad boy is too big for me, or we could have some real fun. I'll make do, but maybe you should shrink that down before you come back next time?\"</i>  she suggests, winking at you.");
 		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with the the vulva that is far too dainty to fit you.");
 	}
 	//else if PC.Cock=Else:
@@ -976,9 +976,13 @@ function boobToBoobSexathon():void {
 	if(pc.hasCock() || (pc.hasVagina() && pc.clitLength >= 4))
 	{
 		output(" Her pussy contracts around your ");
-		if(pc.hasCock()) output("[pc.cock " + x + "]");
+		if(pc.hasCock()) 
+		{
+			if(x < 0) output("[pc.cock " + pc.smallestCockIndex() + "");
+			else output("[pc.cock " + x + "]");
+		}
 		else if(pc.hasVagina()) output("[pc.clit]");
-		output(", milking you despite noither of you bothering to buck against one another. ");
+		output(", milking you despite neither of you bothering to buck against one another. ");
 	}
 	output("Your arms wrap around her, pressing your breasts tight to one-another. It feels great! you can only imagine how great it must be feel for Jade. You gasp at a particularly good stroke from her tenta-nips.");
 
@@ -1019,7 +1023,7 @@ function boobToBoobSexathon():void {
 	//if cock too big:
 	if(pc.hasCock() && x < 0)
 	{
-		output("\n\nThough you’re not inside her, you can feel each spasm from her black-lipped pussy, drooling Jade’s juices to lube your [pc.cock " + x + "] as she grinds into you. And you throb, pre leaking onto the floor as you border the edge of a massive orgasm.");
+		output("\n\nThough you’re not inside her, you can feel each spasm from her black-lipped pussy, drooling Jade’s juices to lube your [pc.cock " + pc.smallestCockIndex() + "] as she grinds into you. And you throb, pre leaking onto the floor as you border the edge of a massive orgasm.");
 	}
 	//else if cock:
 	else if(pc.hasCock()) output("\n\nEach spasm, each little contraction, her leaking juices and her milking pussy... you can feel them all. Even if you’re not moving, everything that’s going both down inside her and up there with her lipples and tenta-nips is enough to nearly push you over. Your [pc.cock " + x + "] throbs in warning. Anytime now, you’ll be shooting your [pc.cum] into the receptive panda-girl’s womb, much to your mutual pleasure.");
