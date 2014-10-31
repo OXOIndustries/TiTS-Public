@@ -52,7 +52,11 @@ function raskvelChickAI():void
 {
 	userInterface.showBust("RASKVEL_FEMALE");
 	userInterface.showName("RASKVEL\nFEMALE");
-	if(foes[0].hasStatusEffect("Wrench Charge")) 
+	if(foes[0].hasStatusEffect("Disarmed"))
+	{
+		raskvelPunch();
+	}
+	else if(foes[0].hasStatusEffect("Wrench Charge")) 
 	{
 		enemyWrenchAttack();
 	}
@@ -65,6 +69,23 @@ function raskvelChickAI():void
 	}
 }
 
+function raskvelPunch():void
+{
+	output("Unmoved by being disarmed, the petite raskvel balls her fists and charges you.");
+	if(rangedCombatMiss(foes[0], pc))
+	{
+		output("\nYou slide to the side of her clumsy swings.");
+	}
+	else
+	{
+		var damage:int = foes[0].physique()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+	}
+	processCombat();
+}
 
 //Combat Attacks
 //Aphrodisiac darts!
@@ -649,7 +670,7 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 	//{Combat Loss: Don't Have a Dick}
 	if(combat)
 	{
-		output("\n\nYou fall to your [pc.kness], too ");
+		output("\n\nYou fall to your [pc.knees], too ");
 		if(pc.HP() < 1) output("badly beaten ");
 		else output("aroused ");
 		output("to resist the slutty scaly's advances. She grins as you succumb, sharp teeth flashing brightly as she drops the bulging head of her wrench to the ground, leaning on it as you collapse.");

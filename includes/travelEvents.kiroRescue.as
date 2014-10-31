@@ -337,7 +337,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	else
 	{
 		output("\n\nTo be honest, you don't really feel she has any right to complain about this. You're saving her after all. You give her tits a greedy squeeze, groping the plush, fuzzy orbs eagerly as you adjust to her recently-claimed snatch. You say, \"<i>Look, I'm saving your life, here. Just lie back and enjoy it.</i>\" You play your fingers over her nipples to tug and pull on them in between your words. \"<i>I saw you cum the moment I put it inside.</i>\"");
-		output("\n\nThe raccoon-colored woman pants, trying to hide her enjoyment for a moment before just caving right on in. Her tongue lolls out, and she tentatively answers, \"<i>O-okay... just... quit talking and fuck me then! I'm need it!</i>\" She grabs hold of your busy hands for support, watching and waiting for you to start properly fucking her once-virgin pussy.");
+		output("\n\nThe raccoon-colored woman pants, trying to hide her enjoyment for a moment before just caving right on in. Her tongue lolls out, and she tentatively answers, \"<i>O-okay... just... quit talking and fuck me then! I need it!</i>\" She grabs hold of your busy hands for support, watching and waiting for you to start properly fucking her once-virgin pussy.");
 	}
 
 	//Merge
