@@ -766,7 +766,7 @@
 					
 					if (target.vaginaTypeUnlocked(cuntToBe, GLOBAL.TYPE_EQUINE))
 					{
-						kGAMECLASS.eventBuffer += "You stagger as your " + pc.vaginaDescript(cuntToBe) + " abruptly engorges, feeling utterly and completely swollen with blood. It feels even fuller and more plush than when you're turned on, most noticeably around the outer lips. It looks just like... well, a horse-cunt. <b>You've got a big, puffy horse-cunt</b>, perfectly sized to take a big, blunted member.";
+						kGAMECLASS.eventBuffer += "You stagger as your " + target.vaginaDescript(cuntToBe) + " abruptly engorges, feeling utterly and completely swollen with blood. It feels even fuller and more plush than when you're turned on, most noticeably around the outer lips. It looks just like... well, a horse-cunt. <b>You've got a big, puffy horse-cunt</b>, perfectly sized to take a big, blunted member.";
 						target.shiftVagina(cuntToBe,GLOBAL.TYPE_EQUINE);
 						target.lust(10);
 					}
