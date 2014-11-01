@@ -139,6 +139,8 @@
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].bonusCapacity = 10;
+			this.vaginas[0].type = GLOBAL.TYPE_RASKVEL;
+			this.vaginas[0].clits = 2;
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;

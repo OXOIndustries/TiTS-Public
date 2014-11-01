@@ -7234,10 +7234,20 @@
 				}
 			}
 			else {
-				if (!simple) {
-					temp = this.rand(5);
-					if (temp <= 1) vag += "human ";
-					else vag += "terran ";
+				if(type == GLOBAL.TYPE_HUMAN)
+				{
+					if (!simple) {
+						temp = this.rand(5);
+						if (temp <= 1) vag += "human ";
+						else vag += "terran ";
+					}
+					else
+					{
+						temp = this.rand(5);
+						if (temp <= 1) vag += "human-like ";
+						else if(temp <= 3) vag += "exotic ";
+						else vag += "inhuman ";
+					}
 				}
 				temp = this.rand(16);
 				if (temp <= 2) vag += "vagina";
