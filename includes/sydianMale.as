@@ -935,7 +935,7 @@ function getPeggedToOrgasmByRustBro():void
 	processTime(90+rand(10));
 	// Five PC orgasms, one orgasm in the PC's ass by the Male Sydian.
 	pc.orgasm();
-	genericVictory();
+	genericLoss();
 }
 
 //Mouthful of Pennies (Male loss, Blowjob for the Rust Monster)
@@ -974,5 +974,5 @@ function mouthfulOfPenniesByFrogalog():void
 	pc.lust(40+rand(10));
 	pc.loadInMouth(chars["SYDIANMALE"]);
 	processTime(40+rand(10));
-	genericVictory();
+	genericLoss();
 }
