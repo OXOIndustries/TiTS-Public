@@ -2556,8 +2556,8 @@ function crotchTeaseText(target:Creature):void {
 		//Clothed:
 		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments]");
 		else output("You direct your foe’s attention to between your thighs");
-		if(pc.hasSheath(0)) output(" and let your [pc.oneCock] out of its sheath");
-		else if(pc.hasStatusEffect("Genital Slit")) output(" and let your [pc.oneCock] slip out of your genital slit");
+		if(pc.hasSheath(0)) output(" and let [pc.oneCock] out of its sheath");
+		else if(pc.hasStatusEffect("Genital Slit")) output(" and let [pc.oneCock] slip out of your genital slit");
 		output(", a little bit of pre-cum already bubbling from your [pc.cockHead]. You give yourself a light handjob, enough to make your [pc.cumVisc] fluid squirt with volume comparable to a normal human’s full orgasm. “<i>My [pc.balls] can barely keep all this [pc.cumNoun] in.... Think your [enemy.vagOrAss] can do any better?</i>” You let go of your cum-packed cock");
 		if(pc.isCrotchGarbed()) output(" and cover up");
 		output(", ready to resume the fight.");

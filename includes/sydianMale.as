@@ -887,7 +887,7 @@ function getPeggedToOrgasmByRustBro():void
 	output(" But first, you are going to need a little bit of preparation, I think.\"</i>");
 	output("\n\nSuddenly, his long tail curls around your [pc.hip], and you can feel the soft antennae brushing against your [pc.ass]. You try to wiggle away in vain as a a gooey, viscous substance is being smeared all over your buttcheeks, though for what purpose you do not know. His tail also slips between your [pc.thighs] and slathers [pc.eachCock] with the sticky liquid. Whatever he's doing, you're sure the handsome sydian has something sexual in mind.");
 
-	output("\n\nAs an exquisite heat travels up from your saturated loins, you realise the sticky solution is an aphrodisiac. Suddenly your [pc.oneCock] feels incredibly hypersensitive, your [pc.legs] quiver as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
+	output("\n\nAs an exquisite heat travels up from your saturated loins, you realise the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legs] quiver as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
 
 	output("\n\nThe sensation of his fingers rubbing along your [pc.sheath] feels just as exquisite as the act of sex itself, your [pc.cockHead] bubbling pre-cum as you let out a whimpering moan. As the male sydian begins to stroke faster, you bite your lower lip, and suddenly you're letting out an uninhibited cry of delight.");
 	if(pc.cumQ() < 25) output(" Tiny trickles of [pc.cum] dribble from your tip, as you convulse in his manly grip.");
