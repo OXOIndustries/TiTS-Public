@@ -138,7 +138,7 @@ function turnInAVarmint():void
 		flags["VARMINTS_CAUGHT"]++;
 	}
 	output(" he cheers, taking the defeated beast from you.");
-	output("\n\n“<i>Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,</i>” he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?\"</i>");
+	output("\n\n“<i>Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,</i>” he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
 	pc.credits += 5;
 	output("\n\nYou take the payment, and Cameron takes the varmint. Which promptly goes flying into the back of his hover-pickup sitting nearby. You don’t ask what happens next to the critter.");
 	processTime(3);
@@ -154,11 +154,10 @@ function flirtWithCameron():void
 	author("Savin");
 	showName("\nCAMERON");
 	showBust("CAMERON");
-	output("<i>\"Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?\"</i>");
-
 	//{if PC hasn't gotten 5+ varmints}
 	if(flags["VARMINTS_CAUGHT"] == undefined || flags["VARMINTS_CAUGHT"] < 5)
 	{
+		output("<i>\"Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?\"</i>");
 		output("\n\nHe blinks. <i>\"Are you... uh, I mean, I can't get out of here yet. My daddy would tan my hide raw! Why don't you try bagging five or so, and we'll talk about... other stuff, okay?");
 		if(flags["VARMINTS_CAUGHT"] != undefined) output(" You've already caught " + num2Text(flags["VARMINTS_CAUGHT"]) + "!");
 		output("\"</i>");
@@ -166,14 +165,14 @@ function flirtWithCameron():void
 	//{if PC has bagged 5+ varmints, PC doesn't have a cock}
 	else if(!pc.hasCock())
 	{
-		//"Hey, Cameron, now that I've helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?" 
+		output("“<i>Hey, Cameron, now that I’ve helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?</i>”");
 		output("\n\nHe blushes at the suggestion, shuffling his high-booted feet. “<i>I, uh...</i>” he looks up at you with his big, hazel eyes. “<i>Look, I appreciate the help with the critters an’ all, but, uh, I mean... ya seem nice and all, but I don’t ride your flavor of bull, ya know?</i>”");
 		output("\n\nWhoops. You apologize for the unwanted advance, which Cameron brushes off. “<i>Don’t fret, it’s fine! Now, anything else I can do for ya?</i>”");
 	}
 	//{if PC has bagged 5+ varmints, PC has a cock}
 	else
 	{
-		output("\n\n“<i>Hey, Cameron, now that I’ve helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?</i>”");
+		output("“<i>Hey, Cameron, now that I’ve helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?</i>”");
 		output("\n\nHe blushes at the suggestion, shuffling his high-booted feet. “<i>I, uh...</i>” he looks up at you with his big, hazel eyes. “<i>I think I’d be up for that, [pc.name]. Wanna maybe go back by my place?</i>”");
 		output("\n\nYou nod, telling the effete bull-boy that you’d like that. He smiles nervously and motions toward his truck, telling you to get in. You do so, and it’s a quick jaunt in the hover-pickup from the fields to an attractive red ranch house a short ways across the fields. Cam parks just out front and leads you through the front door.");
 		output("\n\n“<i>Good, my folks aren’t here,</i>” he says, visibly relieved. Cam guides you from the living room into his bedroom, a small room with a bed you’ll both only barely fit on and walls decorated with shelf after shelf of miniatures and figurines. “<i>So, uh, what now, [pc.name]?</i>”");
@@ -351,7 +350,7 @@ function varmintAI():void
 	if(pc.hasStatusEffect("Trip") && rand(2) == 0) getMauledBiyaaaaatch();
 	//Ram
 	//Powerful attack, chance to stun
-	else if(rand(5) == 0) varmintRamAttack();
+	else if(rand(4) == 0) varmintRamAttack();
 	//Leap Attack
 	//Moderate melee, chance to knock prone
 	else if(rand(2) == 0) leapAttackFromVarmint();
@@ -366,7 +365,7 @@ function leapAttackFromVarmint():void
 	if(!combatMiss(foes[0],pc))
 	{
 		output(" Its teeth sink into you, and the sheer weight of its impact against your ");
-		if((pc.hasStatusEffect("Trip") || pc.physique()/2 + rand(20) > 17) && !pc.hasStatusEffect("Stunned")) output("staggers you momentarily!");
+		if((pc.hasStatusEffect("Trip") || pc.physique()/2 + rand(20) > 19) && !pc.hasStatusEffect("Stunned")) output("staggers you momentarily!");
 		else
 		{
 			output("throws you right to the ground!");
@@ -387,7 +386,7 @@ function leapAttackFromVarmint():void
 function getMauledBiyaaaaatch():void
 {
 	output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
-	var damage:int = 25+rand(6);
+	var damage:int = 40+rand(6);
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
 	damage *= randomizer;
