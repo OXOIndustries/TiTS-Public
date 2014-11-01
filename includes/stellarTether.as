@@ -73,7 +73,7 @@ function canIHelpWithShittyJamesBondIntroductions():void
 	output("<i>\"Anything I can do to help?\"</i> you venture. <i>\"The name's Steele. [pc.name] Steele.\"</i>");
 	output("\n\n<i>\"Steele?\"</i> the vet asks, clearly surprised. <i>\"Oh, don't tell me you're one of Vic's little snots, are you?\"</i>");
 	output("\n\n<i>\"Hey, I--\"</i>");
-	output("\n\n<i>\"I'm joshing you, kid. Used to work security for your old man, back during the Strike of '10.\"</i> He sighs, wiping the sweat from his brow. <i>\"Look, kid, you wanna help? If you're half the " + pc.mf("man","woman") + " you father was -- hell, a quarter, even -- we could use you. It won't be a walk in the park, though, kid, so you better be ready for this. No room for screw-ups today.\"</i>");
+	output("\n\n<i>\"I'm joshing you, kid. Used to work security for your old man, back during the Strike of '10.\"</i> He sighs, wiping the sweat from his brow. <i>\"Look, kid, you wanna help? If you're half the " + pc.mf("man","woman") + " Vic was -- hell, a quarter, even -- we could use you. It won't be a walk in the park, though, kid, so you better be ready for this. No room for screw-ups today.\"</i>");
 	//[The Mission] [Leave]
 	clearMenu();
 	addButton(0,"Handle It",askAUGCTroopAboutStellarTetherMission,undefined,"Handle It","Handle this yourself. A few pirates are no match for you!");
