@@ -249,7 +249,9 @@ public function hasFeedableMimbranes():Boolean
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			if (pc.statusEffectv2(mimbraneEffects[i]) > 0) return true;
+			//Old: if (pc.statusEffectv2(mimbraneEffects[i]) > 0) return true;
+			//Fix suggested here: https://github.com/Fenoxo/sourceTiTS/issues/203
+			if (pc.statusEffectv2(mimbraneEffects[i]) > 0 && pc.statusEffectv3(mimbraneEffects[i]) < 15) return true;
 		}
 	}
 	return false;
