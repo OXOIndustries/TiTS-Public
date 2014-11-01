@@ -2808,12 +2808,13 @@ function bombExplodes():void
 		output("There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.");
 		output("\n\n<b>GAME OVER</b>");
 		clearMenu();
+		return;
 	}
 	//PC Bailed on Dungeon, Didn't Defeat Kaska OR Khorgan
 	if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator"))
 	{
 		//Three hours later, after the bomb should have gone off
-		output("You codex buzzes, a priority message alert chiming through. You answer, and see a 2-D image coming through on the Codex's primitive screen: of all the people you didn't expect to see, it's the nutty cat-girl you beat down ");
+		output("Your codex buzzes, a priority message alert chiming through. You answer, and see a 2-D image coming through on the Codex's primitive screen: of all the people you didn't expect to see, it's the nutty cat-girl you beat down ");
 		if(flags["TAM_DISABLE_METHOD"] == 2) output("and fucked ");
 		output("in the control station.");
 		output("\n\n<i>\"Hey!\"</i> she cheers, beaming at you. Behind her, ");
