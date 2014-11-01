@@ -1655,7 +1655,8 @@ function dickFuckDatThraggenCoochie():void
 	else output("rush");
 	output(" into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her");
 	if(pc.hasKnot(x)) output(", your [pc.knot " + x + "] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt");
-	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave. There's a bomb that needs your attention.");
+	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave.");
+	if(flags["TARKUS_BOMB_TIMER"] != 0) output(" There's a bomb that needs your attention.");
 	processTime(20+rand(10));
 	pc.orgasm();
 	if(inCombat()) 
@@ -2610,7 +2611,9 @@ function victoryKaskaDicksex():void
 	if(pc.hasKnot(x)) output("with an audible pop ");
 	output("to examine your work. The once-mighty pirate is a blubbering wreck, still quivering in the aftershocks of her pleasure. She glistens with sweat and pants for breath, reduced to a quivering puddle sex. Slowly drifting up, her limp body floats in the zero-G atmosphere. The spunk she had been shooting, unnoticed until now, bubbles and swirls around her, though a residue of white lines the box she had been pressed against.");
 	if(silly) output("\n\n It seems you both managed to cream two boxes today.");
-	output("\n\nNow that you can think a little more clearly, it's time to deal with that bomb.");
+	
+	if(flags["TARKUS_BOMB_TIMER"] == 0) output("\n\nWith the bomb disarmed, you're free to take your time with the pirates. What next?");
+	else output("\n\nNow that you can think a little more clearly, it's time to deal with that bomb.");
 	//Pass 17 minutes.
 	processTime(17);
 	//Orgasm
@@ -2639,7 +2642,10 @@ function makeKaskaSuchYerCoochLikeABaws():void
 	showName("\nKASKA");
 	if(pc.isCrotchGarbed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");
-	output(" intending to get some quick, oral relief from this pirate before dealing with the potentially planet-cracking bomb. Her eyes are a little glassy and unfocused, like someone half lost in a daydream. You grab her by the chin and tip her head back to look you in the eye. Her jaw works, opening and closing, trying to find the words that she undoubtedly believes she must say. You put a finger to her lips to shush her and speak yourself.");
+	output(" intending to get some quick, oral relief from this pirate ");
+	if(flags["TARKUS_BOMB_TIMER"] != 0) output("before dealing with the potentially planet-cracking bomb");
+	else output("now that the bomb has been taken care of");
+	output(". Her eyes are a little glassy and unfocused, like someone half lost in a daydream. You grab her by the chin and tip her head back to look you in the eye. Her jaw works, opening and closing, trying to find the words that she undoubtedly believes she must say. You put a finger to her lips to shush her and speak yourself.");
 	//Nice
 	if(pc.isNice())
 	{
@@ -2701,7 +2707,8 @@ function makeKaskaSuchYerCoochLikeABaws():void
 	else output("ies");
 	output(". Wet trails of cum fall on your [pc.legs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.");
 	output("\n\nIf gravity were normal, you both would've collapsed into a pile of sweaty, orgasmically spent bodies long ago, but you're able to float in place, cumming yourselves dry, for some time. When you do manage to stumble away from the jizz-stained pirate, she's gasping and weakly stroking herself, her lips stained with your [pc.girlCum] as well as much of her own juice as she can gather.");
-	output("\n\nKaska won't be bothering anyone for a while. You had better deal with the bomb.");
+	output("\n\nKaska won't be bothering anyone for a while.");
+	if(flags["TARKUS_BOMB_TIMER"] != 0) output(" You had better deal with the bomb.");
 	processTime(18);
 	pc.orgasm();
 	//Tag Kaska as fucked.
