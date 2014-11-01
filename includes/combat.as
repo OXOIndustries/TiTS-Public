@@ -3308,7 +3308,7 @@ function disarmingShot(target:Creature):void {
 	else if(rangedCombatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
 	else {
 		output("You land a crack shot on " + possessive(target.a + target.short) + ", disarming them.\n");
-		target.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+		target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
 }
@@ -3320,7 +3320,7 @@ function NPCDisarmingShot(user:Creature):void
 	else if(rangedCombatMiss(pc,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!");
 	else {
 		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
-		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
 }
@@ -3554,7 +3554,7 @@ function weaponHack(target:Creature):void {
 	else if(!target.hasEnergyWeapon()) output("You try to hack " + target.a + target.short + " but there are no energy weapons to shut down!");
 	else {
 		output("You hack " + possessive(target.a + target.short) + " weapon, disarming them.\n");
-		target.createStatusEffect("Disarmed",4+rand(2),0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+		target.createStatusEffect("Disarmed",4+rand(2),0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
 }

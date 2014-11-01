@@ -2132,7 +2132,7 @@ function kaskaHighKick():void
 {
 	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
 	pc.lustDamage(3+rand(4));
-	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	if(pc.lust() >= pc.lustMax()) output("\n\nIt's too much. You can't keep up the facade of fighting her any longer.");
 	else output("\n\nYou stumble back, more aroused by the view than you care to admit.");
 	processCombat();

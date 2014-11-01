@@ -134,7 +134,7 @@ function customsPassFinale():void
 {
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n“<i>Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...</i>” He shudders a little bit, barely muting a curse. “<i>Uh, real soon.</i>”");
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",visitorDeskApproach);
@@ -260,7 +260,7 @@ function getDisarmedRepeat():void
 	showBust("OGRAM");
 	output("“<i>Ready to check your weapons? Cool, just hand ‘em over and put your Hancock on this form here,</i>” Ogram says, handing over a dataslate. You fill out the form and hand your gear over, watching as Og tags it and stows your armaments away in the container behind his desk.");
 	output("\n\n“<i>Alright, good to go,</i>” he says, closing the container and checking the forms. “<i>Have a good one.</i>”");
-	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
