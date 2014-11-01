@@ -32,6 +32,8 @@ function customsAndCheckInOnNewTexas():Boolean
 {
 	clearOutput();
 	author("Savin");
+	showBust("OGRAM","AMMA");
+	author("Savin");
 	output("The Customs and Visitor Check-in office dominates the only passage between the spaceport and the ranch proper, ensuring anybody coming or going gets a proper screening. Two desks are set up, facing each other across the thoroughfare: one is labeled “<i>Customs and Weapons Check,</i>” the other, “<i>Visitor Check-in.</i>” Very straightforward. ");
 	//{If First time going through:}
 	if(flags["NEW_TEXAN_CUSTOMS_MET"] == undefined)
@@ -66,6 +68,9 @@ function customsAndCheckInOnNewTexas():Boolean
 function approachCustomsFirstTime():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("You approach the bull-man behind the desk. He looks human enough at first glance, if abnormally tall, muscular, and broad-chested. Up close, though, you can get a good look at the massive pair of bull horns sticking up on either side of his blue cap, and the mat of thick, dark hair poking out from his long sleeves and over the hem of his undershirt. He’s dressed in old-school corporate security getup: blue pants and shirt, with a ballistic vest strapped tight to his barrel chest, barely hanging in there thanks to his size. Pinned to his vest is a tag reading, “<i>Hello, my name is Ogram.</i>”");
 	output("\n\nSeeing you looking, he chuckles and sits up straighter behind his desk. “<i>What? Never seen a Texan before, or do I have something on my shirt?</i>”");
 	output("\n\nYou apologize as he picks up a stack of forms, sticks them on a clipboard, and hands them to you. “<i>Basic stuff, here: just check to say that you don’t have any contagious diseases, you’re not bringing foreign foodstuffs in, and that you’re generally not going to be a dick on my planet. Oh, and there’s a weapons check. No firearms, bladed weapons, or other means of murder and mayhem beyond this point. Don’t worry, we’ll tag ‘em and hand ‘em back to you as soon as you’re ready to leave.</i>”");
@@ -85,6 +90,9 @@ function approachCustomsFirstTime():void
 function noWayTexasJose():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	flags["REFUSED_TEXAN_DISARM"] = 1;
 	output("\n\n“<i>Not happening,</i>” you say, throwing the clipboard down on Ogram’s desk.");
 	output("\n\nHe shrugs and takes the paperwork back. “<i>Hey, whatever. There’s the door back to fuck-off. Let me know if you change your mind.</i>”");
@@ -98,6 +106,9 @@ function noWayTexasJose():void
 function noWeaponsInTexasHoss():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	flags["REFUSED_TEXAN_DISARM"] = undefined;
 	output("\n\n“<i>I’m unarmed anyway,</i>” you say with a shrug.");
 	output("\n\nOgram blinks. “<i>Huh. Did somebody actually read the FAQ on the website for once, or do you just prefer to lay in with your fists? Anyway, just sign the paperwork and you’re all good.</i>”");
@@ -109,6 +120,9 @@ function noWeaponsInTexasHoss():void
 function disarmMeHoss():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	flags["REFUSED_TEXAN_DISARM"] = undefined;
 	output("“<i>Alright,</i>” you say warily, handing over your armaments.");
 	output("\n\nTrue to his word, Ogram hooks a paper tag over your gear and stows it in a small container behind his desk. “<i>Thankya kindly. Now just finish off that paperwork, and you’re all good.</i>”");
@@ -130,6 +144,9 @@ function customsPassFinale():void
 function visitorDeskApproach():void
 {
 	clearOutput();
+	author("Savin");
+	showName("OGRAM &\nAMMA");
+	showBust("OGRAM","AMMA");
 	output("As Ogram said, you step across the hall to the desk marked for visitor check-in, though there’s still nobody sitting there. You shrug and ");
 	if(!pc.isTaur() && !pc.isNaga()) output("take a seat");
 	else if(pc.isTaur()) output("sit down on your haunches");
@@ -167,6 +184,9 @@ function customsFucksYourShitUp():void
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>Hey, " + pc.mf("buddy","beautiful") + ", where do you think you’re going?</i>” Ogram says, standing up behind his desk. “<i>No weapons past this point. Come over here and check ‘em, or you’re going nowhere.</i>”");
 	output("\n\nWhoops.");
 	currentLocation = "TEXAS CUSTOMS";
@@ -178,6 +198,9 @@ function customsFucksYourShitUp():void
 function repeatOgramApproach():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("You step over to the customs desk and clear your throat to get Ogram’s attention. ");
 	output("“<i>Sup, " + pc.mf("bro","beautiful") + "?</i>” Og says with a friendly nod. ");
 
@@ -217,6 +240,9 @@ function repeatOgramApproach():void
 function rearmAtOgram():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>Alright, let’s see what we’ve got here,</i>” Ogram says, popping open the container behind his desk and pulling out your gear. He compares the bundle to the tag attached to it, checks something on his holo-terminal, and hands it over to you. “<i>Just sign here, and you’re all set.</i>”");
 	output("\n\nYou do so, and are promptly handed a bundle with your weapons in it. “<i>Cool. Take care out there, " + pc.mf("buddy","beautiful") + ".</i>”");
 	pc.removeStatusEffect("Disarmed");
@@ -229,6 +255,9 @@ function rearmAtOgram():void
 function getDisarmedRepeat():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>Ready to check your weapons? Cool, just hand ‘em over and put your Hancock on this form here,</i>” Ogram says, handing over a dataslate. You fill out the form and hand your gear over, watching as Og tags it and stows your armaments away in the container behind his desk.");
 	output("\n\n“<i>Alright, good to go,</i>” he says, closing the container and checking the forms. “<i>Have a good one.</i>”");
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","You've checked all forms of weaponry at New Texas' customs.",false,0);
@@ -243,6 +272,9 @@ function talkToOggy(display:Boolean = false):void
 	if(display)
 	{
 		clearOutput();
+		author("Savin");
+		showName("\nOGRAM");
+		showBust("OGRAM");
 		output("“<i>Got a minute to chat?</i>”");
 		output("\n\n" + pc.mf("“<i>Guess I’m not doing anything important. What’s up, buddy?</i>”","“<i>For a beautiful gal like you? Absolutely,</i>”") + " Og says, leaning back in his chair.");
 	}
@@ -258,6 +290,9 @@ function talkToOggy(display:Boolean = false):void
 function talkToOggyAbootTreatManz():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>So, tell me about this Treatment.</i>”");
 	output("\n\nOgram shrugs, “<i>Hey, if you want the tourist pitch, talk to Amma. I just live here.</i>”");
 	output("\n\n“<i>But you got the Treatment,</i>” you suggest, indicating his bulging muscles and bull-horns.");
@@ -276,6 +311,9 @@ function talkToOggyAbootTreatManz():void
 function oggysCurrentJob():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>So, tell me about what you do here.</i>”");
 	output("\n\n“<i>Customs? C’mon, " + pc.mf("buddy","beautiful") + ", it’s the same shit as anywhere. ‘Oh, no, you can’t take that horribly poisonous Evaxi cactus here;’ ‘Please stop trying to take your power armor through the gate, you don’t need it here;’ ‘Yeah, we can all see you’ve got contraband stuffed up your ass. Drop trou, buddy. It’s Mr. Gloves time.’ Least NT’s pretty peaceful. Not a lot of scum try and come through, since all we’ve got is milk and the Treatment. Worst we have to worry about is the occasional slaver trying to steal our cows, but that’s Fleet’s problem most of the time.</i>”");
 	output("\n\nHe shrugs. “<i>Honestly, it’s pretty boring. At least compared to my old job. I remember digging through the ground levels of the biggest hive worlds, pulling security at planetary conventions... that was exciting. Even stopped an assassin, once. Head-butted her when she came ‘round a corner; went down like a </i>bitch<i>. Less getting shot at now, though. That’s pretty nice. Haven’t even had to draw down since I got the job.</i>”");
@@ -300,6 +338,9 @@ function oggysCurrentJob():void
 function oggysOldJob():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>So, care to talk about your old gig?</i>”");
 	output("\n\nOg laughs. Behind you, Amma groans, “<i>Don’t get him started... he’ll go on all day!</i>”");
 	output("\n\n“<i>Hey, " + pc.mf("my friend here","the pretty lady") + " asked!</i>” Ogram says defensively. “<i>Don’t mind her. Before I came to New Texas and got Treated, I worked private security. Joined Nova way back, ended up mostly doing personal escorts. Not </i>that<i> kind. Amma.</i>”");
@@ -317,6 +358,9 @@ function oggysOldJob():void
 function askOggyAboutAmma():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nOGRAM");
+	showBust("OGRAM");
 	output("“<i>What can you tell me about your partner there,</i>” you whisper, nodding back to the busty cow behind you.");
 	output("\n\nOgram chuckles. “<i>Other than that she’s the reason I stick around here? Hell, I even got Treated just to get her to give me a chance. What more do you need to know than that?</i>”");
 	output("\n\n“<i>Come on,</i>” you coax, “<i>You gotta tell me more than that.</i>”");
@@ -334,6 +378,9 @@ function askOggyAboutAmma():void
 function askOggyForSex():void
 {
 	clearOutput();
+	author("Savin");
+	showName("OGGY &\nAMMA");
+	showBust("OGRAM","AMMA");
 	//First time:
 	if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined)
 	{
@@ -366,6 +413,9 @@ function askOggyForSex():void
 function approachDatCowGalRepeat():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	output("You take a seat at the visitor’s desk across from the well-endowed cow-girl.");
 	output("\n\n“<i>Hey there, sugar! Welcome back! Anything I can help you with?</i>” Amma asks with a warm smile. As she does so, she fidgets slightly, her thick legs shifting under the desk");
 	if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined) output(" like she’s got an itch");
@@ -389,6 +439,9 @@ function talkToAmma(display:Boolean = false):void
 	if(display)
 	{
 		clearOutput();
+		author("Savin");
+		showName("\nAMMA");
+		showBust("AMMA");
 		output("“<i>Got a minute to chat?</i>”");
 		output("\n\n“<i>Sure thing, sugar,</i>” the cow beams. “<i>Anything I can help you with, let me know!</i>”");
 	}
@@ -407,6 +460,9 @@ function talkToAmma(display:Boolean = false):void
 function askAmmaAbootZeTreatManz():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	output("“<i>Could you tell me a little about this Treatment?</i>”");
 	output("\n\nAmma grins and nods, a little too eagerly. “<i>I’d be happy to! The Treatment’s what makes New Texas such a great, fun place. It’s a special gene-therapy developed right here on NT; everyone gets it when they reach maturity, and have for the last couple hundred years. The Treatment makes sex super fun -- that’s the really important part. But it also gives us girls these,</i>” she says, jiggling her shirt-straining chest, “<i>and just plain makes us sexier!");
 	output("\n\n“<i>Boys like Oggy over there get all muscley and big, plus some other awesome benefits...</i>” she winks, pointing a finger down between her legs. “<i>Without the Treatment, New Texas would just be any other rural colony. With it, we’ve got ourselves a pleasure paradise!</i>”");
@@ -428,6 +484,9 @@ function askAmmaAbootZeTreatManz():void
 function whosInCharge():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	output("“<i>So, who’s in charge around here?</i>”");
 	output("\n\nAmma points out the door and northward. “<i>That’d be Big T. He’s the planetary governor. His ranch house is the big one up the road a little way, you can’t miss it. He loves meeting visitors, so you should totally go say ‘hi.’</i>”");
 	output("\n\n“<i>Tell me about him.</i>”");
@@ -466,6 +525,9 @@ function whosInCharge():void
 function askAmmaAboutHerSelf():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	//{Unlocks “<i>Ogram</i>” talk option}
 	flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] = 1;
 	output("“<i>So, tell me about yourself,</i>” you say, inching a little closer to the cow-girl.");
@@ -486,6 +548,9 @@ function askAmmaAboutHerSelf():void
 function askAmmaAboutOgram():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	output("You whisper so as not to be overheard, “<i>So... you and Ogram?</i>”");
 	output("\n\nAmma nods. “<i>Uh-huh! He was a big ol’ mercenary or something who came through with some kind of important, snooty executive-type. We got to talking while they were coming through customs, and I guess Oggy just fell in love! He couldn’t even get out of the building before he was asking me to marry him! He got down on a knee and everything! It was soooo cute. He’s such a romantic, under all that grumpy.</i>”");
 	output("\n\n“<i>So, did you say yes?</i>”");
@@ -501,6 +566,9 @@ function askAmmaAboutOgram():void
 function sexChatWithAmma():void
 {
 	clearOutput();
+	author("Savin");
+	showName("\nAMMA");
+	showBust("AMMA");
 	//{First time:}
 	if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined)
 	{
@@ -535,6 +603,9 @@ function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
+	showBust("AMMA","OGRAM");
+	author("Savin");
+	showName("AMMA &\nOGGY");
 	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("At the cow-girl’s invitation, your hands quickly find their way onto Amma’s hips, pulling the ditzy cow up against you. She gives a gasp of a moo, her spankable ass grinding into your [pc.crotch] while her long, slender tail wraps affectionately around one of your [pc.legs]. Your wandering hands sink into her fleshy figure, caressing her wide hips before slipping up under her blouse, tracing along her bare, hot flesh and up to the shirt-straining mounds of her milky tits.");
@@ -583,6 +654,9 @@ function spitRoastAmmoOnYerDicks():void
 function worshipZeBullCawk():void
 {
 	clearOutput();
+	showBust("OGRAM","AMMA");
+	author("Savin");
+	showName("OGGY &\nAMMA");
 	output("“<i>What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?</i>” Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
 	output("\n\nAmma’s fingers wrap around Og’s cock, holding the lengthy pole at full mast as she runs her nose across it from stem to crown. Her eyes all but roll up in her head, lids fluttering as she succumbs to the meaty, earthy musk of pheromones radiating off of Ogram’s manhood. ");
 	//if PC is Treated-feminine:
@@ -664,8 +738,8 @@ function useDaMilkar():void
 	//{PC doesn't have a dick}
 	if(!pc.hasCock())
 	{
-		showName("\nMILKER");
-		output("\n\nYou step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine looks up, looks you up and down, and giggles. “<i>Sorry, honey. I don’t think you... uh... have the right bits and pieces to use this machine.");
+		showName("MILKER\nOPERATOR");
+		output("You step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine looks up, looks you up and down, and giggles. “<i>Sorry, honey. I don’t think you... uh... have the right bits and pieces to use this machine.");
 		if(pc.biggestTitSize() >= 1) output(" Why don’t you head on down to one of the other stalls? I’m sure the girls there will treat you right!</i>”");
 		else output(" Maybe you ought to go down to the gift shop and ask Ellie for some enhancements, that way you can use the other machines, at least!</i>”");
 		processTime(1);

@@ -231,7 +231,7 @@ function sleep(outputs:Boolean = true):void {
 		clearOutput();
 		
 		// Anno interjection
-		if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew())
+		if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
 		{
 			annoSleepWithIntroduce();
 			return;
