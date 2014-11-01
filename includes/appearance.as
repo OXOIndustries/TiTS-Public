@@ -253,7 +253,11 @@ function appearance(target:Creature):void {
 		else if(pc.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
-		if(pc.wingType != GLOBAL.TYPE_HUMAN) {
+		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(", mostly covered in a layer of " + target.skinFurScales(true, true));
+		else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(", covered in a layer of " + target.skinFurScales(true, true));
+		else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2(", covered in a layer of " + target.skinFurScales(true, true));
+		else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(", all of them glittering, semi-transparent goo");
+		if(target.wingType != GLOBAL.TYPE_HUMAN) {
 			output2(", and ");
 			//WINGS!
 			if(target.wingType == GLOBAL.TYPE_SMALLBEE) output2("a pair of insect-like wings sprout from your back, too small to allow you to fly. They shimmer beautifully in the light.");
@@ -269,13 +273,35 @@ function appearance(target:Creature):void {
 		else output2(".");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN) output2(" Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
-		else if(target.armType == GLOBAL.TYPE_LEITHAN) output2(" Small claws protrude from the tips of your figners in place of fingernails, and your arms are covered in scales up to the shoulders.");
+		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
+		{
+			output2(" Small claws protrude from the tips of your figners in place of fingernails");
+			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(", and your arms are covered in scales up to the shoulders");
+			output2(".");
+		}
 		else if(target.armType == GLOBAL.TYPE_EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
-		else if(target.armType == GLOBAL.TYPE_CANINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
+		else if(target.armType == GLOBAL.TYPE_CANINE) 
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
+		}
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
-		else if(target.armType == GLOBAL.TYPE_FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
-		else if(target.armType == GLOBAL.TYPE_PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
-		else if(target.armType == GLOBAL.TYPE_BADGER) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tips your fingers. These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
+		else if(target.armType == GLOBAL.TYPE_FELINE) 
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			output2(" Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
+		}
+		else if(target.armType == GLOBAL.TYPE_PANDA) 
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			output2(" Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
+		}
+		else if(target.armType == GLOBAL.TYPE_BADGER) 
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tip your fingers.");
+			else output2(" Claws tip your fingers.");
+			output2(" These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
+		}
 		else if (target.armType == GLOBAL.TYPE_HUMAN && target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;

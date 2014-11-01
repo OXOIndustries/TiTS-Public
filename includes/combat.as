@@ -2936,7 +2936,7 @@ function hipsTeaseText():void {
 		else output(" that shows off your [pc.belly], the light glinting off your [pc.skinFurScales] as it moves");
 		output(".  Your hands slowly descend and move outwards to your sides, remaining largely steady while the bulk of your motion remains in your hips and belly, though there’s just enough motion in your [pc.legs] to show those off as well");
 		if(pc.biggestTitSize() >= 4) output(", and the motion is plenty to set your [pc.chest] quaking in time with your dance");
-		if(pc.hasHair() && pc.hairLength >= 8) output("while your [pc.hair] sways in concert with your hips");
+		if(pc.hasHair() && pc.hairLength >= 8) output(" while your [pc.hair] sways in concert with your hips");
 		output(".");
 		output("\n\nFinally you stop and take a moment to wipe the sweat off your brow");
 		if(pc.armor.shortName != "") output(" before putting your [pc.armor] back on");
