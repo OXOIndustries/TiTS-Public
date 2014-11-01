@@ -638,7 +638,7 @@ function loseToZilpackPartTwoLoseHarder():void {
 //[Next]
 function finishLosingToZilYouLoser():void {
 	clearOutput();
-	output("The shower is blessedly warm, washing the away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling a little calmer and more in control of your rampantly sexual urges.");
+	output("The shower is blessedly warm, washing away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling a little calmer and more in control of your rampantly sexual urges.");
 	output("\n\nWhen you step out, the cell room is empty and the wonderful-smelling zil are gone...");
 	//Reduce libido and stick PC in empty jail room.
 	//(NO WAY SAV-O)
@@ -682,7 +682,7 @@ function defeatZilPair():void {
 }
 function beatPennysZilPartII():void {
 	clearOutput();
-	output("The shower is blessedly warm, washing the away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling much calmer and more in control of your urges.");
+	output("The shower is blessedly warm, washing away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling much calmer and more in control of your urges.");
 	output("\n\nWhen you step out, the cell room is empty and the wonderful-smelling zil are gone....\n\n");
 	//Reduce libido and stick PC in empty jail room.
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
