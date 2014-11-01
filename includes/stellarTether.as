@@ -3031,9 +3031,9 @@ function tooPoorToBuyTheProbe():void
 	author("Fenoxo");
 	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
 	showBust("RIVAL","SHEKKA");
-	output("\n\nYou shake your head. The money isn't there.");
-	if(flags["TIMES_SEXED_SHEKKA"] == undefined) output("Shekka shrugs and turns to [rival.name].");
-	else output("Shekka looks a little disappointed to turn to [rival.name]. It's clear she would've loved to sell it to you.");
+	output("You shake your head. The money isn't there.");
+	if(flags["TIMES_SEXED_SHEKKA"] == undefined) output("\n\nShekka shrugs and turns to [rival.name].");
+	else output("\n\nShekka looks a little disappointed to turn to [rival.name]. It's clear she would've loved to sell it to you.");
 	output(" She places a pad on the hunk of metal and gestures to a row of boxes. <i>\"Make your mark here, and we'll get this finalized. The cart is included in the fee, so you can leave with it today if it suits your fancy.\"</i> She looks your well-dressed cousin up and down. <i>\"Fancy indeed.\"</i>");
 	output("\n\nLeaning over the probe, [rival.name] makes [rival.his] mark, then puts [rival.his] hands on the hull of the thing to push away. A prim-sounding female voice chimes, <i>\"DNA signature recognized.\"</i>");
 	output("\n\n<i>\"No! No! Not while [pc.he]'s around!\"</i> Your cousin panics, slapping ineffectually at the gleaming metal. A seam appears next to [rival.name]'s hand and retracts, revealing a blinking, electronic screen with a set of flashing coordinates. <i>\"Damn,\"</i> [rival.he] mutters. To [rival.his] credit, your cousin recovers quickly. [rival.He] flashes you a smarmy grin. <i>\"I still beat you to two of them. I'll be sure to send you a message when I get the keys to Uncle Vic's fortune.\"</i> Snapping [rival.his] fingers, [rival.name] calls, <i>\"Dane, lug this hunk of metal back to the ship. We're out of here.\"</i>");

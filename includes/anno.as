@@ -2492,7 +2492,8 @@ function deck13ShieldControlFunc():Boolean
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
 
-		addButton(0, "Shields", deck13Shields);
+		if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
+		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
 		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(2, "Goo Sample", deck13GooSample);

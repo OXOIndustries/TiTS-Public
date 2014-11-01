@@ -3001,7 +3001,7 @@ function paralyzingShock(target:Creature):void {
 		return;
 	}
 	//Attempt it!
-	output(" You launch a paralyzing shock at " + target.a + target.short + "!");
+	output("You launch a paralyzing shock at " + target.a + target.short + "!");
 	pc.energy(-25);
 	//Success!
 	if(pc.intelligence()/2 + rand(20) + 1 >= target.physique()/2 + 10) {
