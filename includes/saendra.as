@@ -1019,7 +1019,7 @@ public function saenAndSeraGetTheDrugs(fullPrice:Boolean = false):void
 	saenSeraHeader();
 
 	// Money was already taken by Saen, so she'll give you half of it back
-	if (!fullPrice) pc.credits += 1000;
+	if (!fullPrice) pc.credits -= 1000;
 
 	output("<i>“Alright,”</i> Sera says, taking credit chit offered by Saen and pulling a small hypo spray out from under her counter. <i>“Here you go, furball. Read the fucking warning label before you take the damn thing, or I’m gonna laugh when you end up in the hospital with a dick bigger than you are.”</i> ");
 	
