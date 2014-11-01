@@ -211,10 +211,24 @@ function pcBeatsSyriWhenSexBet():void {
 	output("\n\nSyri's breath catches as you cup one of her full mounds, twisting the pert red nipple between your fingers as you contemplate what to do with the defeated ausar.");
 	//SEX MENU!
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"FuckHerButt",victoryFuckSyrisBunghole);
+	if(pc.hasCock() && pc.cockThatFits(chars["SYRI"].analCapacity()*1.75) >= 0) addButton(0,"FuckHerButt",victoryFuckSyrisBunghole);
+	else if(pc.hasCock()) addDisabledButton(0,"FuckHerButt","Fuck Her Butt","You'd split her in half if you tried to fuck her butt. Damn");
+	else addDisabledButton(0,"FuckHerButt","Fuck Her Butt","You need a dick to fuck her butt.");
 	addButton(1,"RideHerDick",rideSyrisCockYouWinner);
 	if(pc.hasVagina()) addButton(2,"Up My Pussy",rideSyriInYerCoochYaWinner,undefined,"Up My Pussy","Take your prize and stick it as far up pussy as it will go.");
 	else addDisabledButton(2,"Up My Pussy","Up My Pussy","You need at least one vagina on your crotch large enough to accept Syri's cock to play this scene.");
+	addButton(3,"Uh, Nevermind",nevermindSyri,undefined,"Uh, Nevermind","On second thought, you'll pass on claiming your winnings this time.");
+}
+
+function nevermindSyri():void
+{
+	clearOutput();
+	showSyriName();
+	author("Not Savin. HAH!");
+	output("“<i>You get off lucky this time, ausar,</i>” you say as you spin the panting dickgirl away. “<i>But next time you might not be so lucky.</i>”\n\nShe looks a little confused at the reprieve and maybe even a little hurt, but she doesn’t show it for long. Besides, you’ve got better things to do than waste all your time screwing around in a bar.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Fuck Her Butt
