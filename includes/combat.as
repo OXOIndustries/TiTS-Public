@@ -2546,7 +2546,7 @@ function crotchTeaseText(target:Creature):void {
 		//Clothed:
 		if(pc.isCrotchGarbed()) output("As your [pc.lowerGarments] come away from");
 		else output("As you draw your foe’s attention to");
-		output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual.  Your hand goes up to your [pc.cockHead" + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick.  Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing.  You pull your hand away");
+		output(" your [pc.cocks], you opt to focus on a different part of your shaft from the usual.  Your hand goes up to your [pc.cockHead " + temp + "], but soon slides halfway down your shaft to the masculine ring wrapped around the center of your dick.  Your finger traces around its edge, pressing inward just enough to showcase the slightly spongy texture of your all-natural ribbing.  You pull your hand away");
 		if(pc.isCrotchGarbed()) output(" and cover up.");
 		else output(" and let your cock relax.");
 	}
