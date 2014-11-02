@@ -22,6 +22,13 @@ function miAmoreBonusShit():Boolean
 	else
 	{
 		output("The inside of \"Mi Amour\" is warm and cozy, thanks to the evenly spaced red and pink braziers that hang from the ceiling. The southern and western walls are covered in various lingerie racks, while more circular displays stand on the floor of the store. To the north are the various changing rooms, the back room, and the checkout counter. A number of people mill about the store, including employees dressed only in lingerie.");
+		//Anno Buys a Strapon
+		//PC visits Aliss’s shop while Anno’s on the crew. Anno doesn’t already own a strapon. Anno’s been sex’d.
+		if(flags["ANNO_OWNS_LIGHT_STRAPON"] == undefined && annoIsCrew() && haveFuckedAnno())
+		{
+			takeOverAlisssShopForPuppySlootPeanutButterStrapons();
+			return true;
+		}
 		output("\n\nAliss is here, tending to one of the circular displays. Her long tail curls around in front of her, and you're surprised to note she's using it to help fold the various intimates.");
 		output("\n\nYou take a glance around the shop. They have a wide selection of items for sale. Various bras, corsets, and negligees to cover your upper body, and panties, garters and all manner of stockings to cover your lower body. There is even a display labeled \"Handmade Cocksocks by Aliss\".");
 		output("\n\nAliss sees you checking the place out and approaches you, saying, \"<i>Welcome back, </i>mi amour<i>. See anything you like?</i>\"");
