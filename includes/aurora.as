@@ -104,7 +104,7 @@ function auroraBonus():Boolean
 function auroraBust():void
 {
 	userInterface.showName("\nAURORA");
-	userInterface.showBust("\nAURORA");
+	userInterface.showBust("AURORA");
 }
 
 //Aurora
