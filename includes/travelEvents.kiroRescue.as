@@ -131,6 +131,13 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 
 		output("\n\n\"<i>D-don't just stand there, fuck me or something! This is- unnnnghmmm... It's- ooohhh gods... life or death!</i>\" she cries as she bends over her mechanized lover and reaches back,  spreading her well-rounded cheeks to expose her dark-lipped pussy and darker anal star. \"<i>P-please, if I cum the swelling will go down!</i>\" Her eyes desperately implore you to help her get off.");
 
+
+		if(!CodexManager.entryUnlocked("Kui-Tan"))
+		{
+			CodexManager.unlockEntry("Kui-Tan");
+			output("\n\nYour Codex beeps, alerting you that this woman is an example of the kui-tan species and unlocking a new entry.");
+		}
+
 		output("\n\nHow do you try to set her off?");
 	}
 
@@ -138,7 +145,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	clearMenu();
 	if (pc.hasCock())
 	{
-		addButton(0, "Anal", kirosShipChubnookiUpDaButt, undefined, "Anally", "Fuck the beached Tankuis ass.");
+		addButton(0, "Anal", kirosShipChubnookiUpDaButt, undefined, "Anally", "Fuck the beached Tanuki's ass.");
 		addButton(1, "Vaginal", kirosShipChubnookiUpDaCooter, undefined, "Vaginally", "Fuck the beached Tankuis cunt.");
 	}
 	else
