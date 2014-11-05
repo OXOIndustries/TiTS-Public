@@ -505,7 +505,7 @@ public function VKoCodex():void
 public function ausarCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("SYRI","ANNO","SYRI_NUDE","ANNO_NUDE"); // An example of an Ausar?
+	userInterface.showBust("SYRI"); // An example of an Ausar?
 
 	outputCodex(header("The Ausar"));
 	outputCodex("\n<b>Sexes:</b> Male and female.");
