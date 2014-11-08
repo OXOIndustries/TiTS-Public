@@ -99,9 +99,9 @@ public function encounterVanae(isHuntress:Boolean):void
 		output("As you move through the jungle, your Codex beeps out a warning. <i>“Vanae life-signs detected!”</i>");
 
 		output("\n\nYou instinctively leap back and ready your");
-		if (!(pc.rangedWeapon is EmptySlot)) output(" [pc.rangedWeapon]");
-		else if (!(pc.meleeWeapon is EmptySlot)) output(" [pc.meleeWeapon]"); 
-		else output(" fists. ");
+		if (!(pc.rangedWeapon is EmptySlot)) output(" [pc.rangedWeapon].");
+		else if (!(pc.meleeWeapon is EmptySlot)) output(" [pc.meleeWeapon]."); 
+		else output(" fists.");
 
 		// IF VANAE HUNTRESS
 		if (isHuntress)
@@ -233,48 +233,54 @@ function vanaeAI():void
 function vanaeSpearStrike():void
 {
 	//Effect: Light physical damage, stun chance. Extra damage against tripped or stunned opponents. Small crit chance - higher against tripped or stunned opponents.
-	
-	output("The blind huntress twirls towards you, bringing her spear head up to strike. Just when you think she's going to hit you, she flicks the blunt end around at the last moment.");
-
-	// [Miss]: 
-	if (combatMiss(foes[0], pc)) output(" You jerk out of the way and she connects with nothing but air. The alien girl spins around, returning to a neutral stance.");
+	if(foes[0].hasStatusEffect("Disarmed"))
+	{
+		output("The blind huntress searches for her spear, giving you time to attack.");
+	}
 	else
 	{
-		var isCrit:Boolean = false;
-		var dMulti:Number = 1.0;
-		var critChance:int = 15;
+		output("The blind huntress twirls towards you, bringing her spear head up to strike. Just when you think she's going to hit you, she flicks the blunt end around at the last moment.");
+
+		// [Miss]: 
+		if (combatMiss(foes[0], pc)) output(" You jerk out of the way and she connects with nothing but air. The alien girl spins around, returning to a neutral stance.");
 		
-		if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Trip"))
-		{
-			dMulti += 0.25;
-			critChance *= 2;
-		}
-		
-		if (rand(100) > critChance)
-		{
-			// [Hit]: 
-			output(" You're caught off guard, the flat end cracking against the side of your head. Pain shoots through your skull - her feint a success.");
-		}
 		else
 		{
-			// [Critical]: 
-			isCrit = true;
-			output(" One minute you're fighting, the next you're seeing stars as she drives the flat end right into your temple. Your world spins, your head feeling as if it suddenly exploded.");
+			var isCrit:Boolean = false;
+			var dMulti:Number = 1.0;
+			var critChance:int = 15;
+			
+			if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Trip"))
+			{
+				dMulti += 0.25;
+				critChance *= 2;
+			}
+			
+			if (rand(100) > critChance)
+			{
+				// [Hit]: 
+				output(" You're caught off guard, the flat end cracking against the side of your head. Pain shoots through your skull - her feint a success.");
+			}
+			else
+			{
+				// [Critical]: 
+				isCrit = true;
+				output(" One minute you're fighting, the next you're seeing stars as she drives the flat end right into your temple. Your world spins, your head feeling as if it suddenly exploded.");
+			}
+			
+			var damage:int = foes[0].meleeWeapon.damage + 8;
+			var randInf:Number = (rand(10) + 90) / 100;
+			damage *= randInf;
+			
+			if (isCrit)
+			{
+				dMulti += 1;
+				pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
+			}
+			
+			genericDamageApply(damage * dMulti, foes[0], pc, GLOBAL.KINETIC);
 		}
-		
-		var damage:int = foes[0].meleeWeapon.damage + 8;
-		var randInf:Number = (rand(10) + 90) / 100;
-		damage *= randInf;
-		
-		if (isCrit)
-		{
-			dMulti += 1;
-			pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
-		}
-		
-		genericDamageApply(damage * dMulti, foes[0], pc, GLOBAL.KINETIC);
-	}
-	
+	}		
 	processCombat();
 }
 
@@ -724,8 +730,8 @@ function noThanksTentaSlutImOut():void
 	vanaeHeader("VICTORY: VANAE\n");
 	
 	output("You shake your head to clear the cobwebs out after your brief spat with the");
-	if (monster is MaidenVanae) output(" vanae maiden");
-	else output(" vanae huntress");
+	if (monster is MaidenVanae) output(" vanae maiden.");
+	else output(" vanae huntress.");
 	
 	output("\n\nYou scavenge through her dropped equippment, looking for anything that might be of use, before quickly and quietly leaving the area.");
 	
