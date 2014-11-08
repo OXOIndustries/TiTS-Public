@@ -456,17 +456,34 @@ function millieMilkingFinale():void
 				pc.breastRows[0].breastRatingRaw = 3;
 				output(" You guess that part wasn't as temporary as advertised.");
 			}
-			pc.removeStatusEffect("Temporary Treatment");
+			if(!pc.isLactating()) pc.boostLactation(4);
+			
 		}
 	}
 	//Merge
 	output("\n\n“<i>Not bad, huh?</i>” Millie");
 	if(pc.isChestGarbed()) output(" hands you back your top");
 	else output(" gives your ass a confident swat");
-	output(". “<i>Come back when you want some more.</i>”");
+	output(". “<i>Come back when you want some more.</i>”\n\nA holodisplay on the wall proudly broadcasts this session's productivity: <b> ");
+	var milkAmount:Number = pc.lactationQ(99);
+	if(milkAmount < 1000 && pc.hasStatusEffect("Temporary Treatment")) milkAmount += 1500 + rand(500);
+
+	milkAmount = Math.round(milkAmount);
+
+	if(milkAmount > 1000) output(milkAmount/1000 + " Ls</b>")
+	else output(milkAmount + " mLs</b>");
+
 	processTime(20);
 	pc.milked(pc.milkFullness);
+	pc.boostLactation(1);
 	flags["MILLIE_LAST_ACTION"] = "Milker";
+
+	//Faux Treatment!
+	if(pc.hasStatusEffect("Temporary Treatment"))
+	{
+		flags["MILLIE_LAST_ACTION"] = "Faux Treated";
+		pc.removeStatusEffect("Temporary Treatment");
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -714,7 +731,7 @@ function millieFuckFinale(cumQ:Number):void
 	{
 		output("\n\neases off you carefully, shuddering a few times when she bumps you with the raw, sensitive parts of her anatomy. “<i>Mmm, that hit the spot.</i>” Her accent is thicker... much more noticeable than before your tryst, but you suppose a few dozen climaxes will do that to a girl. It’s a wonder she’s able to stand up at all with the way her thighs were trembling.");
 		output("\n\nMillie tosses you a couple fluffy towels to wipe up with, already dabbing at the ");
-		if(pc.cumQ() >= 500) output("gushing [pc.cumNoun] rushing from her slit");
+		if(cumQ >= 500) output("gushing [pc.cumNoun] rushing from her slit");
 		else output("excessive amounts of girlcum coating her thighs");
 		output(". You join her in getting a cursory cleanup, ready to go in a few minutes. You at least look clean, even if you smell like you just fucked three-dozen cherry trees.");
 	}
