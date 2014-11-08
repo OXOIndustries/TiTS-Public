@@ -494,7 +494,10 @@ function loseToSexBotAndHaveADick():void
 	else output("pussy");
 	output(", surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
-	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, succulent rhythm of its tight pussies as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
+	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, succulent rhythm of its tight ");
+	if(pc.cockTotal() > 1) output("pussies");
+	else output("pussy");
+	output(" as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
 	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
 	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
 	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
@@ -528,7 +531,9 @@ function loseToSexBotAndHaveADick():void
 	output(" it’s riding, and as you begin to helplessly buck to the fizzing in your cum veins, pushed beyond the point of no return, it increases the voltage. Your [pc.cock " + x + "] ");
 	if(pc.cockTotal() == 1) output("bulges");
 	else output(" and second shaft bulge");
-	output(" helplessly to being stimulated within and without and you cry out as warmth shoots up your shafts. The sexbot makes the engine sighing noise again as you tap your urge, surging cum into its tight jelly innards. It times its electric pulses to coincide exactly with each new pulse, amplifying each ecstatic seizure hugely. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch again and again until you are utterly spent.");
+	output(" helplessly to being stimulated within and without and you cry out as warmth shoots up your shaft");
+	if(pc.cockTotal() > 1) output("s");
+	output(". The sexbot makes the engine sighing noise again as you tap your urge, surging cum into its tight jelly innards. It times its electric pulses to coincide exactly with each new pulse, amplifying each ecstatic seizure hugely. You are a mindless circuit of flesh snared to a beautiful battery, and its calm hand flicks your switch again and again until you are utterly spent.");
 
 	output("\n\nYou lie flat on the ground and gasp for air, your pulse hard in your ear, pins and needles blossoming in every part of your sweat-slicked frame. You feel like a vaguely associated cloud of extremely well fucked insects. Somewhere far away a weight lifts itself off your groin and slim but implacably strong arms lever themselves underneath your body, lifting you up and bearing you away carefully. You let your limbs dangle, too tired to resist. It puts you down gently on a flat, smooth piece of metal, making sure with neat, precise movements that you are as comfortably positioned as you can be. You hear its hum come closer and you open your eyes blearily to gaze one last time into its beautiful, beatific face, its piercingly green eyes gazing levelly into yours. It bends close to your ear.");
 	output("\n\n<i>“I hope you enjoyed your time with me, insert name here,”</i> it whispers. <i>“If you have any questions or feedback you’d like to share, our customer support line can be reached on number not found. Please come again soon.”</i>\n\n");
