@@ -32,7 +32,7 @@ package classes.Items.Apparel
 			this.description = "a steeletech suit";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The slick new uniform your Dad issued a while back. Sexy, form-fitting, and utilitarian. Doesn't provide much protection (or modesty, for that matter), but it's got a built-in shield emitter to keep you from harm.";
+			this.tooltip = "The slick new uniform your Dad issued a while back. Sexy, form-fitting, and utilitarian. Doesn't provide much protection (or modesty, for that matter), but it's got a built-in shield emitter to boost your shields. Note that isn't strong enough to generate a defensive shield on its own.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
