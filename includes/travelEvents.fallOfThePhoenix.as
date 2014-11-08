@@ -603,7 +603,7 @@ public function phoenixEngineering():void
 	clearOutput();
 	author("Savin");
 	
-	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
 		output("The Engineering deck is largely dominated by a huge engine, currently idling and humming lowly. An instance of Valeria's avatar is sitting near the engines, carefully keeping an eye on several flickering readouts and sensor reports. A loading ramp is opposite the engines, with a heavy cargo lifter parked nearby, as well as a pair of hover bikes. ");
 	}
