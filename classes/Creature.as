@@ -9107,8 +9107,7 @@
 		public function cockHeadGetName(type: int = 0): String {
 			var temp: int;
 			var type: int;
-			if (cocks.length == 0)
-				return "ERROR. CockHead lookup with no cocks!";
+			
 			if (type == GLOBAL.TYPE_EQUINE) {
 				temp = this.rand(5);
 				if (temp == 0) return "flare";

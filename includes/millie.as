@@ -670,7 +670,7 @@ function yeahMillieLetsFuck():void
 	else if(pc.hasCockFlag(GLOBAL.FLAG_FLARED) && pc.cocks[x].cLength() >= 7) 
 	{
 		output("flaring tip in ");
-		else if(pc.cocks[x].cLength() < 25) output("until it kisses the cow’s cervix");
+		if(pc.cocks[x].cLength() < 25) output("until it kisses the cow’s cervix");
 		else output("as far as it will go");
 	}
 	else output("rigid dick in to the hilt");
