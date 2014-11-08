@@ -151,7 +151,7 @@ function ellieMenu(display:Boolean = true):void
 	addButton(2,"Talk",talkToEllieYaFuckingSkank);
 	addButton(3,"Suckle",suckleDatCowtaurTeat,undefined,"Suckle","Why not? You are thirsty.");
 	if(pc.lust() >= 33) addButton(3,"Sex",ellieSexScene);
-	else addDisabledButton(3,"Sex","Sex","Someone, you're still not turned on enough for sex.");
+	else addDisabledButton(3,"Sex","Sex","Somehow, you're still not turned on enough for sex.");
 	addButton(14,"Back",mainGameMenu);
 }
 

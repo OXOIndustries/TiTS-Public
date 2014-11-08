@@ -12,7 +12,7 @@ function millieBonusShitYouFuckface():Boolean
 		//isLactating()
 		else if(pc.isLactating()) output("Ready for a milking? Come on over, I won’t bite... much.</i>”");
 		//Cockwielders
-		else if(pc.hasCock()) output("[pc.guy]. I’ve only got a breast-milker here, but if you need to let off some pressure, I could probably handle you.</i>” The scent of cherries floods the air as you spy a wet patch in the center of her crotch.");
+		else if(pc.hasCock()) output("I’ve only got a breast-milker here, but if you need to let off some pressure, I could probably handle you.</i>” The scent of cherries floods the air as you spy a wet patch in the center of her crotch.");
 		//No dick no lactating, but has boobs.
 		else if(pc.biggestTitSize() >= 1)
 		{
@@ -23,7 +23,7 @@ function millieBonusShitYouFuckface():Boolean
 			output(" your tits are. We could rectify that, if you want. Come on over.</i>”");
 		}
 		//No dick no lactating.
-		else output("\n\nYou sure you’re in the right place?</i>” She wrinkles her nose. “<i>I don’t smell any milk on you, and you definitely aren’t packing a dick.</i>” The cow-girl’s expression turns thoughtful. “<i>I’m not sure the pumps will do anything for you, but I’m sure I could find something fun for us to do. Come on over.</i>”");
+		else output("You sure you’re in the right place?</i>” She wrinkles her nose. “<i>I don’t smell any milk on you, and you definitely aren’t packing a dick.</i>” The cow-girl’s expression turns thoughtful. “<i>I’m not sure the pumps will do anything for you, but I’m sure I could find something fun for us to do. Come on over.</i>”");
 		addButton(0,"Milker Girl",approachMillie);
 	}
 	//Met
@@ -587,7 +587,7 @@ function yeahMillieLetsFuck():void
 
 	output("\n\nMillie picks up her stroking where she left off, though you can hear her other hand fiddling with the last clasp on her denim outfit. You can see it now with your minds eye, those nimble fingers struggling with a too-tight fastener, sending those gigantic boobs swaying and jostling against one another, giving her cleavage a sensuous wiggle. Springing open with an audible rustle of fabric, Millie’s outfit gives out. She doesn’t even have to stop jacking you off to get out of it. She goes right on stroking, treating your rod like a favored pet while wiggling the tight fabric down.");
 
-	output("\n\nA bright, cherry-scented musk fills the air - Millie’s scent, you realize a moment before the pheromones you. And they do hit you hard, speeding your heartbeat, spurring fresh blood to pump into your [pc.cocks], making you harder and firmer than normal. Pre-cum is already beading at your tip");
+	output("\n\nA bright, cherry-scented musk fills the air - Millie’s scent, you realize a moment before the pheromones hit you. And they do hit you hard, speeding your heartbeat, spurring fresh blood to pump into your [pc.cocks], making you harder and firmer than normal. Pre-cum is already beading at your tip");
 	if(pc.cockTotal() > 1) output("s");
 	output(", and the dutiful cow collects it all to smear back over your length");
 	if(pc.cockTotal() > 1) output("s");
@@ -667,13 +667,13 @@ function yeahMillieLetsFuck():void
 	if(pc.balls > 1) output(" and your [pc.balls] tense");
 	output(". You gurgle happily, suck down a mouthful of milk, and slather her nipple in an excited, feverish lick. Abandoning any semblance of self-control, you grab hold of her wide birthing hips and bury your ");
 	if(pc.hasKnot(x)) output("bone to the knot, letting it expand inside her to tie you in place");
-	else if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) 
+	else if(pc.hasCockFlag(GLOBAL.FLAG_FLARED) && pc.cocks[x].cLength() >= 7) 
 	{
 		output("flaring tip in ");
-		if(pc.cocks[x].cLength() < 10) output("rigid dick in to the hilt");
 		else if(pc.cocks[x].cLength() < 25) output("until it kisses the cow’s cervix");
 		else output("as far as it will go");
 	}
+	else output("rigid dick in to the hilt");
 	output(". Tension and pleasure war for your attention for an eternity, but the pleasure slowly melts through, replacing the tension with sublime, [pc.cumNoun]-pumping relief.");
 	var cumQ:Number = pc.cumQ();
 	output("\n\nMillie trembles atop you, the feeling of your [pc.cum] inside her triggering the mother of all climaxes. Her back arches");
@@ -729,7 +729,7 @@ function millieFuckFinale(cumQ:Number):void
 	//Noknot
 	else
 	{
-		output("\n\neases off you carefully, shuddering a few times when she bumps you with the raw, sensitive parts of her anatomy. “<i>Mmm, that hit the spot.</i>” Her accent is thicker... much more noticeable than before your tryst, but you suppose a few dozen climaxes will do that to a girl. It’s a wonder she’s able to stand up at all with the way her thighs were trembling.");
+		output("eases off you carefully, shuddering a few times when she bumps you with the raw, sensitive parts of her anatomy. “<i>Mmm, that hit the spot.</i>” Her accent is thicker... much more noticeable than before your tryst, but you suppose a few dozen climaxes will do that to a girl. It’s a wonder she’s able to stand up at all with the way her thighs were trembling.");
 		output("\n\nMillie tosses you a couple fluffy towels to wipe up with, already dabbing at the ");
 		if(cumQ >= 500) output("gushing [pc.cumNoun] rushing from her slit");
 		else output("excessive amounts of girlcum coating her thighs");
@@ -750,7 +750,7 @@ function treatmentTryouts():void
 	output("“<i>How about those enhancers?</i>”");
 	output("\n\nMillie’s smile gets wider. “<i>You wanna see what it’s like to be Treated, huh?</i>”");
 	output("\n\nYou nod a little ");
-	if(flags["TRIED_TREATMENT_LIGHT"] == undefined) output("too eagerly, still fondly remembering the last time.");
+	if(flags["TRIED_TREATMENT_LIGHT"] != undefined) output("too eagerly, still fondly remembering the last time.");
 	else output("hesitantly");
 	output(".");
 

@@ -1568,6 +1568,9 @@
 				case "man":
 					buffer = this.mf("man", "woman");
 					break
+				case "guy":
+					buffer = mf("guy","girl");
+					break;
 				case "he":
 				case "she":
 				case "heShe": // Shamelessly stole these from Alderbro. :3
