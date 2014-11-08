@@ -1796,6 +1796,8 @@
 		 */
 		public function isTreated():Boolean
 		{
+			//Used for Millie's temporary treatment sampling.
+			if(hasStatusEffect("Temporary Treatment")) return true;
 			return hasStatusEffect("Treated");
 		}
 		

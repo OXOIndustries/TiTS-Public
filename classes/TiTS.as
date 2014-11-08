@@ -133,6 +133,7 @@
 		include "../includes/gianna.as";
 		include "../includes/treatment.as";
 		include "../includes/brynn.as";
+		include "../includes/millie.as";
 
 		include "../includes/lightsOut.as";
 			
@@ -215,7 +216,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.5";
+			version = "0.5.6";
 
 			//temporary nonsense variables.
 			temp = 0;

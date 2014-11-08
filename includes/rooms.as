@@ -3384,12 +3384,12 @@ function initializeRooms():void
 	rooms["515"] = new RoomClass(this);
 	rooms["515"].roomName = "MILKING\nSTALL";
 	rooms["515"].description = "A thickly-spread layer of hair makes every step you take a rustling, shuffling affair. The walls are surprisingly modern, covered in liquid and stain resistant tile. A large, industrial-sized milking device is built into the wall to the west, but it is currently powered down and retracted. There's a padded table that a potential milkee could sit or recline upon during the process. An activation button labelled \"Moo\" is recessed next to the machinery. Its purpose seems obvious. You can leave out the door to the east.";
-	rooms["515"].runOnEnter = undefined;
+	rooms["515"].runOnEnter = millieBonusShitYouFuckface;
 	rooms["515"].eastExit = "511";
 	rooms["515"].planet = "PLANET: NEW TEXAS";
 	rooms["515"].system = "SYSTEM: NYE";
 	rooms["515"].addFlag(GLOBAL.INDOOR);
-	//rooms["515"].addFlag(GLOBAL.NPC);
+	rooms["515"].addFlag(GLOBAL.NPC);
 
 	//516
 	//Prostate Milk Stall - Savin wrote dis shit.
