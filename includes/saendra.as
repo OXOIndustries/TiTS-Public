@@ -70,6 +70,7 @@ public function saenAtTheBarFirstTimeEvent():void
 	flags["SAEN MET AT THE BAR"] = 1;
 
 	saenHeader();
+	showBust("SAENDRA","VALERIA");
 
 	output("As you step into Anon’s, you hear a sharp whistle over the low din of conversation, followed by a voice calling <i>“Hey, hero!”</i> Searching the dark bar room, you eventually spot a familiar figure among the patrons: the red-headed freighter captain you rescued from the Black Void not all that long ago. Surprised to see the fiery captain again, you make your way over to her table. She makes a gesture to the bartender, and as you take a seat across from her, a pair of steins are dropped off: yours full of top-shelf booze, hers full of some salty-smelling white cream. ");
 
@@ -123,9 +124,9 @@ public function takeTheRewardYouSlut():void
 {
 	saenHeader();
 
-output("<i>“Alright,”</i> you say, reaching down to stroke the soft tail slithering up your [pc.leg]. <i>“Let’s see this gratitude of yours, captain.”</i>");
+	output("<i>“Alright,”</i> you say, reaching down to stroke the soft tail slithering up your [pc.leg]. <i>“Let’s see this gratitude of yours, captain.”</i>");
 
-output("\n\nGrinning from ear to ear, the fluffy halfbreed takes you by the hand and pulls you out of the booth. You follow her up the stairs to the bar’s collection of rooms, enjoying the view of her pert, gropable behind swaying with every step. Her pair of dexterous tails gently tease you as you make your way upstairs, flicking across your [pc.chest] or brushing against your thighs until you’re");
+	output("\n\nGrinning from ear to ear, the fluffy halfbreed takes you by the hand and pulls you out of the booth. You follow her up the stairs to the bar’s collection of rooms, enjoying the view of her pert, gropable behind swaying with every step. Her pair of dexterous tails gently tease you as you make your way upstairs, flicking across your [pc.chest] or brushing against your thighs until you’re");
 	if (pc.hasCock()) output(" hard as a rock");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" dripping wet");
@@ -276,7 +277,7 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	clearMenu();
 	addButton(0, "How's Work", saendraHowsWork);
 	addButton(1, "Hobbies", saendraHobbies);
-	addButton(2, "Valiera Work", saendraValeriaWork);
+	addButton(2, "Valeria Work", saendraValeriaWork);
 	addButton(3, "Her Race", saendraHerRace);
 
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
@@ -297,7 +298,7 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 public function saendraHowsWork():void
 {
 	saenHeader();
-
+	showBust("SAENDRA","VALERIA");
 	output("<i>“So, how’s work,”</i> you ask, remembering the strained conversation between her and Valeria when you first met her here.");
 	
 	output("\n\nSaen makes a face and grabs another drink from a passing waitress. <i>“Could be better, honestly. The </i>Phoenix<i> took a beating from those pirates and the repair costs were, uh, unexpected.”</i>");
@@ -346,7 +347,7 @@ public function saendraHobbies():void
 public function saendraValeriaWork():void
 {
 	saenHeader();
-
+	showBust("SAENDRA","VALERIA");
 	output("As you chat a bit with Saen, you notice that Valeria’s holo-avatar is sitting out on her wrist, legs dangling over the edge as she flips through what looks like a virtual book. You ask her what she’s got there, which startles the A.I. girl enough that she nearly falls over. ");
 	
 	output("\n\n<i>“Oh, uh, nothing. It’s just an idle animation that plays when I’m distracted or doing a search, is all.”</i>");
@@ -418,7 +419,7 @@ public function saendraParents():void
 public function saendraHerArm():void
 {
 	saenHeader();
-
+	showBust("SAENDRA","VALERIA");
 	output("<i>“So, mind telling me a little about that chrome?”</i> you ask, nodding to her cybernetic arm. ");
 	
 	output("\n\nSaendra blinks at you, then looks to her half-mechanical arm, almost like she’d forgotten it was there. <i>“Oh, yeah. Nothing too fancy, I guess. Between medical bills and patching my ship up, I’m pretty tight on credits. Had to settle for the most basic model, pretty much. I can kind-of-sort-of feel things through it, but it responds pretty much one-to-one and it’s easy to clean and fix.”</i>");
@@ -1129,7 +1130,7 @@ public function saendraSexTalk():void
 public function takeAGoodLookAtSaendra():void
 {
 	saenHeader();
-
+	showBust("SAENDRA","VALERIA");
 	output("Captain Saendra en Illya is a six-foot-three halfbreed, a clear mix of ausar and kaithrit physiology. She’s humanoid, tall and lanky, with just enough visible muscle to give her a chiseled appearance, harder than your average gal. Her face is human enough, though she sports a pair of green slitted eyes, distinctly feline, and a pair of overly tall, perky grey cat ears that adorn the top of her head. Both ears are pierced with rows of small silver studs from base to tip. Her right arm is coated up to the elbow in a thin layer of soft grey fur, and her fingers are tipped with tiny curved claws. Her legs are long and powerful, furred from the knee down, and ending in a pair of soft, padded soles. A pair of long, bushy tails swish gaily behind her, coiling around her with a kaithrit’s prehensile dexterity. Saen’s facial features are feminine, with a smattering of pale freckles accentuating her cute little nose, though a trio of faint scars on her right cheek and brow belie a history of violence. A long, fiery-red ponytail hangs all the way down her back to her waist, bound by a pretty blue bow. She has flared hips and a soft, squishy butt; above it, you can just see the outline of a holster, loaded with her archaic Hammer pistol. She’s wearing a low-cut white blouse under a black vest, and a pair of dark blue pants held up by a belt sporting all manner of gadgets, as well as a pair of suspenders that hug her breasts nicely. She’s wearing a leather choker around her neck, from which dangles a pair of long silk strips that hang to her waist, each tipped with a golden bell. Saen’s left arm is visibly mechanical from the elbow down, now sporting a wrist-mounted display screen and holo-projector on which flutters her Artificial Intelligence companion. Valeria’s holo-avatar smiles warmly at you.");
 	
 	output("\n\nSaen has a pair of big, pillowy E-cup breasts, each with a perky nipple at their tip.");
