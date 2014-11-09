@@ -1541,6 +1541,7 @@
 					buffer = legs();
 					break;
 				case "leg(s)":
+				case "legOrLegs":
 					buffer = legOrLegs();
 					break;
 				case "feet":
@@ -1784,6 +1785,7 @@
 		}
 		public function isBimbo():Boolean
 		{
+			if(hasStatusEffect("Temporary Treatment")) return true;
 			return hasPerk("Ditz Speech");
 		}
 		public function isBro():Boolean
