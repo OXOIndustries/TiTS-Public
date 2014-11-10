@@ -1728,7 +1728,73 @@
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
 		}
-		
+		public function mimbranePartDescript(mimType: String = ""): String {
+			//Mimbrane additions in relation to face.
+			var desc: String = "";
+			var rando: Number = 0;
+			var descripted: Number = 0;
+			
+			//Player character check--not sure if NPCs can get the Mims since the flags are probably global...
+			if (this is PlayerCharacter)
+			{
+				// 50% trust and hunger-related description
+				if(this.rand(2) == 0) {
+					if(statusEffectv2(mimType) <= 0) desc += "mutinous";
+					else if(statusEffectv1(mimType) <= 1) desc += "shifty";
+					else if(statusEffectv1(mimType) <= 2) desc += "questionable";
+					else if(statusEffectv1(mimType) <= 3) desc += "befriended";
+					else if(statusEffectv1(mimType) <= 4) desc += "loyal";
+					else desc += "devoted";
+					desc += " and ";
+					if(statusEffectv2(mimType) <= 0) desc += "satiated";
+					else if(statusEffectv2(mimType) <= 1) desc += "well-fed";
+					else if(statusEffectv2(mimType) <= 2) desc += "fed";
+					else if(statusEffectv2(mimType) <= 3) desc += "slightly hungry";
+					else if(statusEffectv2(mimType) <= 4) desc += "hungry";
+					else if(statusEffectv2(mimType) <= 5) desc += "very hungry";
+					else if(statusEffectv2(mimType) <= 6) desc += "starving";
+					else desc += "irritable";
+					descripted++;
+				}
+				// 50% sweatiness and combat-ready description
+				if (this.rand(2) == 0) {
+					if(kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
+						if (descripted > 0) desc += ", ";
+						rando = this.rand(10);
+						if (rando == 0) desc += "glistening";
+						else if (rando == 1) desc += "moist";
+						else if (rando == 2) desc += "slippery";
+						else if (rando == 3) desc += "self-lathering";
+						else if (rando == 4) desc += "perspiring";
+						else if (rando == 5) desc += "mucid";
+						else if (rando == 6) desc += "sudoriferous";
+						else if (rando == 7) desc += "clammy";
+						else if (rando == 8) desc += "diaphoretic";
+						else desc += "sweating";
+						descripted++;
+					}
+					if (kGAMECLASS.flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
+						if (descripted > 0) desc += " and ";
+						rando = this.rand(4);
+						if (rando == 0) desc += "lust-inducing";
+						else if (rando == 1) desc += "lust-spraying";
+						else if (rando == 2) desc += "lust-projecting";
+						else desc += "lust-spitting";
+						descripted++;
+					}
+				}
+				if (descripted > 0) desc += " ";
+				// Mimbrane descriptor
+				rando = this.rand(10);
+				if (rando == 0) desc += "parasite";
+				else if (rando == 1) desc += "epidel";
+				else if (rando == 2) desc += "graft";
+				else if (rando == 3) desc += "second skin";
+				else if (rando == 4) desc += "cum leech";
+				else desc += "Mimbrane";
+			}
+			return desc;
+		}
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
@@ -2665,9 +2731,9 @@
 			if (this is PlayerCharacter)
 			{
 				//Birthmark
-				if (flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
+				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
 				//Lip piercings
-				else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
+				else if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
 			}
 			
 			return facemim;
@@ -6745,7 +6811,7 @@
 			return description;
 		}
 		public function areolaSizeDescript(): String {
-		    //Define areola size description by nippleWidth
+			//Define areola size description by nippleWidth
 			var areolasize: String = "";
 			
 			if(nippleWidth() <= 0) areolasize = "non-existant";

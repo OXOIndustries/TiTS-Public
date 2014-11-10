@@ -1181,8 +1181,8 @@ function appearance(target:Creature):void {
 				else if(pc.hasStatusEffect("Mimbrane Boobs")) output2(" your [pc.chest]");
 				else if(pc.hasStatusEffect("Mimbrane Hand Left")) output2(" your left hand");
 				else if(pc.hasStatusEffect("Mimbrane Hand Right")) output2(" your right hand");
-				else if(pc.hasStatusEffect("Mimbrane Foot Left")) output2(" your left [pc.foot]";
-				else if(pc.hasStatusEffect("Mimbrane Foot Right")) output2(" your right [pc.foot]";
+				else if(pc.hasStatusEffect("Mimbrane Foot Left")) output2(" your left [pc.foot]");
+				else if(pc.hasStatusEffect("Mimbrane Foot Right")) output2(" your right [pc.foot]");
 				else if(pc.hasStatusEffect("Mimbrane Face")) output2(" your [pc.face]");
 				else output2(" your body");
 			}
