@@ -216,7 +216,7 @@ function getMilkedWithMillie():void
 	pc.lust(15);
 	clearMenu();
 	addButton(0,"Milkers",useTheMilkersMillie);
-	addDisabledButton(1,"Feed Her","Feed Her","This scene is not yet written.")
+	addButton(1,"Feed Her",milliePersonallyDrainsYerTiTS,undefined,"Feed Her","Let Millie suck out all the pressure.");
 	//[Milkers] [Feed Her]
 }
 //Milkers
@@ -522,7 +522,7 @@ function fuckMillie():void
 	output("\n\nThe dark-haired cow-woman ");
 	if(pc.isNude()) output("bats your hand away");
 	else output("uses a hoof to kick your [pc.lowerGarments] aside");
-	output(". “<i>Yeah, you look like you need a good... thorough... milking.</i>” Her gray-blue eyes twinkle while her hand wraps you in a firm grip. “<i>This needs a more personal touch, don’t you agree?</i>”");
+	output(", then flicks the volume on control on her tablet, filling the stall with harsh-sounding tunes. “<i>Yeah, you look like you need a good... thorough... milking.</i>” Her gray-blue eyes twinkle while her hand wraps you in a firm grip. “<i>This needs a more personal touch, don’t you agree?</i>”");
 
 	pc.lust(10);
 	processTime(5);
@@ -815,4 +815,194 @@ function treatmentTryouts():void
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",millieMilkersPartDues);
+}
+
+function milliePersonallyDrainsYerTiTS():void
+{
+	clearOutput();
+	showBust("MILLIE_NUDE");
+	showName("\nMILLIE");
+	//Bimbo
+	if(pc.isBimbo()) output("“<i>Like, suck it out yourself? For sure!</i>”");
+	//Bro
+	else if(pc.isBro()) output("“<i>Help yourself.</i>” You gesture magnanimously at your own pillowy bosom.");
+	//Nice
+	else if(pc.isNice()) output("“<i>Ohhh, you’d do that? Yes, please.</i>”");
+	//Mischievous
+	else if(pc.isMischievous()) output("“<i>So long as you don’t use your teeth, they’re all yours.</i>”");
+	//Hard
+	else output("“<i>Fine, but you’d better not use your teeth.</i>”");
+
+	//Merge
+	output("\n\nMillie licks her lacquered lips and practically pounces on you, lifting you up and bearing you to the table ");
+	if(pc.tallness >= 70 || (pc.tallness >= 60 && pc.thickness >= 70)) output("with a considerable amount of effort");
+	else output("under the weight of her curvy form");
+	output(". After placing you down, she doesn’t remove her hands. They migrate to your top instead, each finding a slippery breast to fondle and caress. Her confident grip tightens around your nipples, and you groan, surprised by the cow-girl’s shameless groping of your ");
+	if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output("milky");
+	else output("liquid-stuffed");
+	output(" assets.");
+	output("\n\n“<i>Doesn’t this feel better than any old milker?</i>” the buxom cow suggests while idly tugging at your [pc.nipples] as if she were milking an actual bovine.");
+	
+	output("\n\nYou bite your [pc.lip], ");
+	if(pc.isTreated() && pc.isBimbo()) output("awash with too much pleasure to manage an answer.");
+	else output("not sure how to respond.");
+	output(" ");
+	if(pc.milkFullness < 50) output("She’s already squeezed the first few droplets of [pc.milk] from your increasingly sensitive teats");
+	else if(pc.milkFullness < 80) output("She’s already getting her fingers wet with free-flowing [pc.milkNoun] from your increasingly sensitive teats");
+	else output("She’s already soaked her fingers with all the [pc.milk] you’re increasingly sensitive teats are spraying out");
+	output(" and doesn’t seem to be expecting any kind of response. Your breathing quickens the longer you endure her practiced, boob-draining ministrations. Arousal is welling up apace with your [pc.milk], and you squirm against the table while she works, flushing hot.");
+	output("\n\nMillie is well aware of the effect she’s having on you, and continues to lavish your areolae in attention. “<i>There we go... got a nice flow going now, wouldn’t you say?</i>”");
+	output("\n\nYou crane your head to look, watching with blushing cheeks while ");
+	if(pc.lactationQ() >= 2000) output("cascades of [pc.milkColor] careen down the sides of your [pc.fullChest]");
+	else if(pc.lactationQ() >= 1000) output("streams of [pc.milkColor] roll down the sides of your [pc.fullChest]");
+	else output("droplet after droplet rolls down the sides of your [pc.fullChest]");
+	output(". The cow-girl’s fingertips are soaked with the stuff, but she doesn’t seem to mind.");
+	output("\n\n“<i>Yeah...</i>”");
+	output("\n\nPulling one hand away, Millie licks her digits clean, making a show of it. She plunges her index finger into her lips and slowly drags it back out, leaving it clean of everything but a layer of gleaming saliva. She rolls a wide, bovine tongue to handle the middle one, dragging the slippery muscle across each side until she’s collected every drop of your [pc.milk] from her largest digit. Half-licking, half-licking her thumb, the clearly excited milkmaid cleans the worst of your mess from her hand, oblivious to the wet patches her own well-endowed chest is leaving on her overalls.");
+	output("\n\nThe cow looks down and giggles vapidly, her eyes a little glassy. “<i>Whoopsie! Looks like I’m getting a little milky too. Do you mind if I...?</i>” The statement trails off, but its clear from the way she’s holding her freshly cleaned hand at the snaps on her overalls just what she means.");
+	output("\n\nMillie’s other hand has been busy this whole time, tugging and squeezing to keep you nice and drippy. It moves to an unoccupied breast while she awaits an answer, the motion the kind of thoughtless, practiced thing that only comes about as a result of hours upon hours of sordid milkings.");
+	output("\n\nYou stifle a moan and try not to arch your back, denying your body’s desire to crush your teat into her palm. ");
+	if(pc.isBimbo()) output("Cogent thoughts come hard at times like these - the pleasure is just too much, blowing your thoughts apart with surges of pleasant tingles and bright pink bubbles. Still, she’s expecting an answer, so you rack your overloaded cerebrum for an answer. “<i>Like, go ahead.</i>” You chew on your [pc.lip] excitedly. She’s gonna be all milky with you!");
+	else output(" It’s hard to care at moments like these. Besides, she’s already got her hands all over your tits, what’s it gonna hurt if she pulls hers out too? You glance toward the straining fabric. The poor cow probably needs the release, honestly. “<i>Sure, go ahead.</i>”");
+	output("\n\nMillie pops one of the catches on her top, releasing the weight of one of her breasts all at once. The fabric flings open, spraying you with hail of sweet, New Texan cream. Some even lands in your mouth");
+	if(pc.isBimbo()) output(", and it’s super tasty!");
+	else output(", but rather than feeling disgust, you can only marvel at the delicious taste.");
+	output(" No wonder they export so much of their milk! Your [pc.tongue] gathers some off your [pc.lips] while Millie releases the second half of her avalanche of boob. Those creamy mounds bounce for far longer than you would have thought, drizzling more milk while the stained ruins of her denim outfit slide down to her ankles.");
+	output("\n\n“<i>Mmm, that’s better.</i>” Millie squeezes the underside of her left breast, hosing out a much thicker spray. “<i>Are you ready for the good part?</i>” She puts her other hand across you, on the other side of the table. “<i>Why am I even asking? Of course you are.</i>” She stops tugging your tit long enough to brace herself on the edge of the table and vaults up, landing with her thick thighs squeezing against your [pc.legOrLegs]. “<i>It takes a good sucking to empty out all the [pc.milkNoun].</i>” Her plush-looking lips break into a dazzling grin. “<i>I love this part.</i>”");
+	output("\n\nBending over, Millie leans down to one of your [pc.nipples]. ");
+	output("Her immense bust smushes against you");
+	if(pc.bRows() > 1)
+	{
+		
+		if(pc.bRows() == 2) output("r second breast row");
+		else output("r bottom row of breasts");
+	}
+	output(", bulging out at the sides as rigid, milk-seeping nipples lubricate your [pc.skinFurScales]. She gasps from pleasure, her mouth gaped and tongue lolling. Gathering her wits, the slutty cow-gal, lowers herself down, not bothering to stop vocalizing her pleasure until your teat is firmly embedded in her mouth. The sounds of pleasure cut off, replaced by audible, diligent sucks. Her hands aren’t idle either - one cups the boob she’s sucking, and the other resumes milking ");
+	if(pc.totalBreasts() > 2) output("a spare tit");
+	else output("the other tit");
+	output(".");
+	//Treated girls should probably cum their little brains out.
+	if(pc.isTreated() && pc.isBimbo())
+	{
+		output("\n\nThe feeling are overwhelmingly pleasant. The contact of her skin on ");
+		if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("yours");
+		else output("your [pc.skinFurScales]");
+		output(" is electric, enhanced by a coating of warm milk that may as well be the finest massage oil for how good it feels. And her mouth... her lips make your areola feel like a clit getting some world-class cunnilingus, all while erupting squirt after squirt of [pc.milk] thanks to her rhythmic sucking. Even your neglected ");
+		if(pc.totalNipples() > 2) output("[pc.nipples] are");
+		else output("[pc.nipple] is");
+		output(" squirting like ");
+		if(pc.totalNipples() == 2) output("a firehose");
+		else output("firehoses");
+		output(", sympathetically gushing. You arch your back, pressing more firmly into Millie’s mouth. She releases the underside of your tit and wraps that arm around underneath your torso, lifting you up off the table, holding you there while she swallows every fresh burst of [pc.milkNoun].");
+		output("\n\nYou moo, something Millie rewards with a longer drag on your tit. Encouraged by this, you low once more, loud enough that it can probably be heard outside the stall, but what do you care? Your titties are like two jiggly bundles of nerves, feeding lines of bubbly, lactic happiness right into your brain. The longer she sucks, the stronger that ecstasy becomes. Grabbing the cow-girl by the horns, you throw your head back and cum, losing yourself in the pleasure of giving your [pc.milk].");
+		output("\n\nAt some point, you feel the flow stop, but Millie just switches to another [pc.nipple], subjecting you to a whole new wave of blissful milking. The knowledge that it’s sucked out by another person makes the experience that much more pleasant, her happy swallows music to your ears.");
+		output("\n\nYou lose track of time, conscious only of dazed-sounding moos and the sensation of expressing more [pc.milk] than you knew you could hold.");
+		processTime(35);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	//Untreated girls should probably just cum once.
+	else
+	{
+		output("\n\nOhhh, now that’s the stuff. With nothing else to do, you grab one of her horns and run your fingers through the long half of her hair, wishing she could feel as nice as you are. You almost feel like you’re taking advantage of the poor girl, getting to enjoy to the feeling of her mouth coaxing out your [pc.milk] while she gets nothing back in return... well, besides getting to slip and slide over your body on a tide of her own alabaster moisture.");
+		output("\n\nYou groan and squirm beneath her. On some planets, you could go pay for a massage... maybe a milking with a clinical machine if you really wanted it. Here? You’re getting your [pc.breasts] sucked for free by a big-breasted cow-slut that seems to have a sixth sense for just what’ll make your bust drip.");
+		//Cocks
+		if(pc.hasCock())
+		{
+			output("\n\nAnd your tits aren’t the only things dripping. Your [pc.cocks] have been pinned between two warm, milky bodies all this time, subjected to flesh sliding against flesh until ");
+			if(pc.cockTotal() > 1) output("they’re");
+			else output("it’s");
+			output(" practically weeping strands of pre-cum. ");
+			if(pc.longestCockLength() >= 14) output("The best part is that you’re long enough that you’ve penetrated Millie’s cleavage by getting hard - no special effort needed to bury yourself into the cow’s pillowy softness. ");
+			output("You couldn’t hold back if you wanted to. Just lying here enduring the suckles would be enough, but you have to deal with her body rocking back and forth when she changes position, dragging her slippery tummy across you, heedless of how close you are to cumming.");
+			output("\n\nLooking up at you from around a mouthful of boob, Millie smiles, winking as if to let you know that’s alright to let go - to unload into ");
+			if(pc.longestCockLength() < 14) output("the underside of");
+			else output("her");
+			output(" milky cow-tits. She even goes far as to slide up and down as far as she can without losing out on your [pc.milkFlavor] treasure, grinding against your throbbing hardness knowingly.");
+
+			output("\n\nGroaning, you tighten your grip on her horns and jerk your [pc.hips] upward, suddenly overcome with passion and pleasure, erupting into her sensuous bosom. Your [pc.cocks] ");
+			if(pc.cockTotal() == 1) output("isn’t");
+			else output("aren’t");
+			output(" the only thing");
+			if(pc.cockTotal() > 1) output("s");
+			output(" going off either; your [pc.nipples] are gushing harder than ever. Millie’s cheeks bulge obscenely before she manages to gulp down her mouthful, her other hand suddenly drowning waves of [pc.milkColor]. Holding on tight, you ride out the orgasm, kept warm and wet by Millie’s attension");
+			if(pc.cumQ() >= 500) output(", drenching the table");
+			if(pc.cumQ() >= 4000) output(" and floor");
+			output(". Your eyes drift closed, exhausted");
+			if(pc.cumQ() >= 5000) output(" to the sound of the drain choking on the waves of [pc.cum] you’re dumping out");
+			output(".");
+		}
+		//Vagina
+		else if(pc.hasVagina())
+		{
+			output("\n\nAnd your tits aren’t the only things dripping. You’re wet enough to feel it pooling under your [pc.butt]. Your [pc.vaginas] ");
+			if(pc.totalVaginas() > 1) output("are");
+			else output("is");
+			output(" hungry. If Millie wasn’t blocking your access, you’d probably be three fingers deep and trying to see how much friction your thumb could generate on [pc.oneClit]. It’s not fair that your nipples are the only ones getting any love! You wriggle and squirm until Millie gets tired of it and pins you down, surprisingly strong for a cow-girl.");
+			output("\n\nShe breaks the seal on your [pc.nipple] to say, “<i>Just settle and try and enjoy it,</i>” before returning to her eager nuzzling of your chest. It’s torture and ecstasy all mixed together, unfilled desire rubbing elbows with lactic bliss. Your [pc.legs] tremble, awash in at all, your muscles twitching just to award your [pc.vaginas] the barest measure of friction. Just as you begin to fear that you’ll go mad from it all, your body caves in to what its red-hot, lactic pleasure-buzzers are demanding, setting off a full body, titty-quaking boobgasm.");
+			output("\n\nIt goes on for what feels like a solid minute, and after you’re too exhausted to move, lying there while Millie gleefully finishes harvesting your [pc.milk].");
+		}
+		//Neither
+		else
+		{
+			output("\n\nYou want more. And not just more pleasure on your [pc.nipples]. No, you want more everywhere! You’d let her slip a finger in your [pc.asshole] if she wanted, just to intensify that whole-body pleasure-glow you’re experiencing. Moaning excitedly, you feel your [pc.legOrLegs] trembling against the table, pinned by Millie’s thighs. Your [pc.chest] are gushing harder than ever, despite feeling almost entirely emptied. Held captive by your body’s enjoyment, you let the pleasure take you. Your eyes roll back in rapture, then unconsciousness.");
+		}
+		processTime(35);
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",millieSucksTitsVol2);
+}
+
+function millieSucksTitsVol2():void
+{
+	clearOutput();
+	showName("\nMILLIE");
+	showBust("MILLIE");
+	//Bimbo Next!
+	if(pc.isBimbo())
+	{
+		output("You come to while Millie is wiping you off with a fluffy towel. She’s wearing her overalls and a shit-eating grin, her own breasts noticeably reduced in size. The scent of sweet cream hangs heavy in the air, and there’s a sticky spot at the bottom of your [pc.belly] where she was sitting.");
+		output("\n\nMillie helps you up and over to your things, but not before coaxing you into a nice, wet goodbye kiss. You giggle to yourself; it tastes just like [pc.milkNoun]. Cow-girls give the best kisses!");
+		//Temporary Treatment funtimes
+		if(pc.hasStatusEffect("Temporary Treatment"))
+		{
+			output("\n\nYou almost miss her the headband off you, stunning you as your thoughts realign into their former patterns. Your jaw works as you try to make sense of the insane experience.");
+			if(pc.breastRows[0].breastRating < 3)
+			{
+				output(" And your breasts... wow.");
+				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they're plenty big.")
+				else output(" They're still bigger.");
+				pc.breastRows[0].breastRatingRaw = 3;
+				output(" You guess that part wasn't as temporary as advertised.");
+			}
+			if(!pc.isLactating()) pc.boostLactation(4);	
+		}
+	}
+	//Merge -> Next
+	else
+	{
+		output("You come to while Millie is wiping you off with a fluffy towel. She’s wearing her overalls and a shit-eating grin, her own breasts noticeably reduced in size. The scent of sweet cream hangs heavy in the air, and there’s a sticky spot at the bottom of your [pc.belly] where she was sitting.");
+		if(pc.hasCock() && pc.cumQ() >= 1500) output(" A pile of [pc.cumNoun]-stained towels has accumulated in the corner.");
+		output("\n\nMillie helps you up and over to your things, but not before giving you a goodbye kiss to remember her bye. Well, they sure are friendly here. You gather your gear and step away before she tries to pull you into something even lewder. You’re not sure ");
+		if(pc.isTreated()) output("you have time for another go-round, no matter how much fun.");
+		else output("your body could handle that right now.");
+	}
+
+	pc.milked(pc.milkFullness);
+	pc.boostLactation(1);
+	flags["MILLIE_LAST_ACTION"] = "Milker";
+
+	//Faux Treatment!
+	if(pc.hasStatusEffect("Temporary Treatment"))
+	{
+		flags["MILLIE_LAST_ACTION"] = "Faux Treated";
+		pc.removeStatusEffect("Temporary Treatment");
+	}
+	processTime(24);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

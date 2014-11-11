@@ -1541,6 +1541,7 @@
 					buffer = legs();
 					break;
 				case "leg(s)":
+				case "legOrLegs":
 					buffer = legOrLegs();
 					break;
 				case "feet":
@@ -1727,7 +1728,73 @@
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
 		}
-		
+		public function mimbranePartDescript(mimType: String = ""): String {
+			//Mimbrane additions in relation to face.
+			var desc: String = "";
+			var rando: Number = 0;
+			var descripted: Number = 0;
+			
+			//Player character check--not sure if NPCs can get the Mims since the flags are probably global...
+			if (this is PlayerCharacter)
+			{
+				// 50% trust and hunger-related description
+				if(this.rand(2) == 0) {
+					if(statusEffectv2(mimType) <= 0) desc += "mutinous";
+					else if(statusEffectv1(mimType) <= 1) desc += "shifty";
+					else if(statusEffectv1(mimType) <= 2) desc += "questionable";
+					else if(statusEffectv1(mimType) <= 3) desc += "befriended";
+					else if(statusEffectv1(mimType) <= 4) desc += "loyal";
+					else desc += "devoted";
+					desc += " and ";
+					if(statusEffectv2(mimType) <= 0) desc += "satiated";
+					else if(statusEffectv2(mimType) <= 1) desc += "well-fed";
+					else if(statusEffectv2(mimType) <= 2) desc += "fed";
+					else if(statusEffectv2(mimType) <= 3) desc += "slightly hungry";
+					else if(statusEffectv2(mimType) <= 4) desc += "hungry";
+					else if(statusEffectv2(mimType) <= 5) desc += "very hungry";
+					else if(statusEffectv2(mimType) <= 6) desc += "starving";
+					else desc += "irritable";
+					descripted++;
+				}
+				// 50% sweatiness and combat-ready description
+				if (this.rand(2) == 0) {
+					if(kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && statusEffectv1(mimType) >= 3) {
+						if (descripted > 0) desc += ", ";
+						rando = this.rand(10);
+						if (rando == 0) desc += "glistening";
+						else if (rando == 1) desc += "moist";
+						else if (rando == 2) desc += "slippery";
+						else if (rando == 3) desc += "self-lathering";
+						else if (rando == 4) desc += "perspiring";
+						else if (rando == 5) desc += "mucid";
+						else if (rando == 6) desc += "sudoriferous";
+						else if (rando == 7) desc += "clammy";
+						else if (rando == 8) desc += "diaphoretic";
+						else desc += "sweating";
+						descripted++;
+					}
+					if (kGAMECLASS.flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && statusEffectv1(mimType) >= 4) {
+						if (descripted > 0) desc += " and ";
+						rando = this.rand(4);
+						if (rando == 0) desc += "lust-inducing";
+						else if (rando == 1) desc += "lust-spraying";
+						else if (rando == 2) desc += "lust-projecting";
+						else desc += "lust-spitting";
+						descripted++;
+					}
+				}
+				if (descripted > 0) desc += " ";
+				// Mimbrane descriptor
+				rando = this.rand(10);
+				if (rando == 0) desc += "parasite";
+				else if (rando == 1) desc += "epidel";
+				else if (rando == 2) desc += "graft";
+				else if (rando == 3) desc += "second skin";
+				else if (rando == 4) desc += "cum leech";
+				else desc += "Mimbrane";
+			}
+			return desc;
+		}
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
@@ -1784,6 +1851,7 @@
 		}
 		public function isBimbo():Boolean
 		{
+			if(hasStatusEffect("Temporary Treatment")) return true;
 			return hasPerk("Ditz Speech");
 		}
 		public function isBro():Boolean
@@ -2623,7 +2691,7 @@
 			//0-10
 			if (femininity < 10) {
 				faceo = "a square chin";
-				if(!hasBeard() && lipRating() > 2) faceo += ", " + pluralize(lipDescript(true)) + ", and chiseled jawline.";
+				if(!hasBeard() && lipRating() > 2) faceo += ", " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and chiseled jawline.";
 				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
@@ -2631,28 +2699,44 @@
 			else if (femininity < 20) {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
-				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + " that are";
+				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
 				else faceo += "that's surely handsome";
 			}
 			//21-28
-			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + ", and a fairly masculine profile";
-			//28+-35 
-			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + pluralize(lipDescript(true)) + "";
+			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";
+			//28+-35
+			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//35-45
-			else if (femininity < 45) faceo = "a pair of " + pluralize(lipDescript(true)) + " and the barest hint of masculinity in its structure";
+			else if (femininity < 45) faceo = "a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
 			//45-55
-			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + pluralize(lipDescript(true)) + "";
+			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//55+-65
-			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + pluralize(lipDescript(true)) + "";
+			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//65+-72
-			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + pluralize(lipDescript(true)) + "";
+			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//72+-80
-			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + pluralize(lipDescript(true)) + "";
+			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//81-90
-			else if (femininity <= 90) faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + ", a button nose, and noticeable eyelashes";
+			else if (femininity <= 90) faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", a button nose, and noticeable eyelashes";
 			//91-100
-			else faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + ", an adorable nose, and long, beautiful eyelashes";
+			else faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", an adorable nose, and long, beautiful eyelashes";
 			return faceo;
+		}
+
+		public function faceLipMimbraneDescript(): String {
+			//Mimbrane additions in relation to face.
+			var facemim: String = "";
+			
+			//Player character check--not sure if NPCs can get the Mims since the flag is probably global...
+			if (this is PlayerCharacter)
+			{
+				//Birthmark
+				if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 1) facemim = " adorned with beauty marks just above them";
+				//Lip piercings
+				else if (kGAMECLASS.flags["MIMBRANE_FACE_APPEARANCE"] == 2) facemim = " decorated with a pair of lip piercings";
+			}
+			
+			return facemim;
 		}
 		//Modify femininity!
 		public function modFem(change: Number, strength: Number = 1): String {
@@ -6025,23 +6109,6 @@
 			var desc: String = "";
 			var rando: Number = 0;
 			var descripted: Number = 0;
-			//66% wetness description
-			if (this.rand(3) <= 1 && ass.wetness() >= 2) {
-				if (ass.wetness() == 2) {
-					if (this.rand(2) == 0) desc += "moist";
-					else desc += "lubricated";
-				} else if (ass.wetness() == 3) {
-					if (this.rand(2) == 0) desc += "slimy";
-					else desc += "slick";
-				} else if (ass.wetness() == 4) {
-					if (this.rand(2) == 0) desc += "lube-drooling";
-					else desc += "soaked";
-				} else if (ass.wetness() == 5) {
-					if (this.rand(2) == 0) desc += "slime-drooling";
-					else desc += "immaculately lubricated";
-				}
-				descripted++;
-			}
 			//25% tightness desc
 			if (this.rand(4) == 0 || (ass.looseness() <= 1 && this.rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
@@ -6066,8 +6133,37 @@
 					else if (this.rand(2) == 0) desc += "wide-open";
 					else desc += "expansive";
 				}
+				//Account for larger values of loosness!
+				else if (ass.looseness() > 5) {
+					if (this.rand(3) == 0) desc += "elastically yawning";
+					else if (this.rand(2) == 0) desc += "completely cavernous";
+					else desc += "excessively agape";
+				}
 				descripted++;
 			}
+			//66% wetness description
+			if (this.rand(3) <= 1 && ass.wetness() >= 2) {
+				if (ass.wetness() == 2) {
+					if (this.rand(2) == 0) desc += "moist";
+					else desc += "lubricated";
+				} else if (ass.wetness() == 3) {
+					if (this.rand(2) == 0) desc += "slimy";
+					else desc += "slick";
+				} else if (ass.wetness() == 4) {
+					if (this.rand(2) == 0) desc += "lube-drooling";
+					else desc += "soaked";
+				} else if (ass.wetness() == 5) {
+					if (this.rand(2) == 0) desc += "slime-drooling";
+					else desc += "immaculately lubricated";
+				}
+				//Account for larger values of wetness!
+				else if (ass.wetness() > 5) {
+					if (this.rand(2) == 0) desc += "lube-flooding";
+					else desc += "slime-spilling";
+				}
+				descripted++;
+			}
+			
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
 			rando = this.rand(18);
@@ -6714,6 +6810,39 @@
 			if (plural) description = pluralize(description);
 			return description;
 		}
+		public function areolaSizeDescript(): String {
+			//Define areola size description by nippleWidth
+			var areolasize: String = "";
+			
+			if(nippleWidth() <= 0) areolasize = "non-existant";
+			else if(nippleWidth() <= .375) areolasize = "fairly tiny";
+			else if(nippleWidth() <= .75) areolasize = "average-sized";
+			else if(nippleWidth() <= 1.5) areolasize = "coin-sized";
+			else if(nippleWidth() <= 3) areolasize = "rather huge";
+			else if(nippleWidth() <= 6) areolasize = "saucer-sized";
+			else if(nippleWidth() <= 9) areolasize = "appetizer plate-sized";
+			else if(nippleWidth() <= 12) areolasize = "dinner plate-sized";
+			else if(nippleWidth() <= 18) areolasize = "quite massive";
+			else if(nippleWidth() <= 24) areolasize = "extremely elephantine";
+			else if(nippleWidth() <= 36) areolasize = "manhole cover-sized";
+			else if(nippleWidth() <= 72) areolasize = "person-sized";
+			else if(nippleWidth() <= 120) areolasize = "hallway-clearing";
+			else if(nippleWidth() <= 240) areolasize = "room-filling";
+			else if(nippleWidth() <= 480) areolasize = "truly tremendous";
+			else if(nippleWidth() <= 960) areolasize = "generously gargantuan";
+			else if(nippleWidth() <= 1920) areolasize = "completely colossal";
+			else if(nippleWidth() <= 3840) areolasize = "positively hyper-sized";
+			else if(nippleWidth() <= 7680) areolasize = "stadium-sized";
+			else if(nippleWidth() <= 15360) areolasize = "sky-scraping";
+			else if(nippleWidth() <= 30720) areolasize = "airplane-catching";
+			else if(nippleWidth() <= 61440) areolasize = "cloud-licking";
+			else if(nippleWidth() <= 122880) areolasize = "solar-eclipsing";
+			else if(nippleWidth() <= 491520) areolasize = "planet-engulfing";
+			else if(nippleWidth() > 491520) areolasize = "galaxy-swallowing";
+			
+			return areolasize;
+		}
+
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
 			var descripted: Number = 0;
@@ -7867,10 +7996,10 @@
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "reptilian ";
-					else if (rando == 1) descript += "purple ";
+					else if (rando == 1) descript += "ophidian ";
 					else if (rando == 2) descript += "inhuman ";
 					else if (rando == 3) descript += "reptilian ";
-					else if (rando == 4) descript += "purple ";
+					else if (rando == 4) descript += "herpetological ";
 					else if (rando == 5) descript += "serpentine ";
 					else if (rando == 6) descript += "bulbous ";
 					else descript += "bulging ";
