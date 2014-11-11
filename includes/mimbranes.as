@@ -335,7 +335,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		if (oldFeedValue < 13 && newFeedValue >= 13) pc.willpowerMod -= 0.2;
 		
 		// Mimbrane-specific changes
-		if (effectName == "Mimbrane Penis")
+		if (effectName == "Mimbrane Cock")
 		{
 			pc.cocks[0].cThicknessRatioMod += (0.05 * actualFeed);
 			pc.cocks[0].cLengthMod += (0.75 * actualFeed);
@@ -450,7 +450,7 @@ public function resetMimbraneEffects(effectName:String):void
 	
 	pc.willpowerMod += willMod;
 	
-	if (effectName == "Mimbrane Penis")
+	if (effectName == "Mimbrane Cock")
 	{
 		pc.cocks[0].cThicknessRatioMod -= 0.05 * Number(pc.statusEffectv3("Mimbrane Penis"));
 		pc.cocks[0].cLengthMod -= 0.75 * Number(pc.statusEffectv3("Mimbrane Penis"));
