@@ -28,6 +28,7 @@
 			else if (arg != 0)
 			{
 				breastRatingRaw += arg;
+				if (breastRatingRaw < 0) breastRatingRaw = 0;
 			}
 			
 			var currRating:Number = breastRatingRaw + breastRatingMod + breastRatingLactationMod;

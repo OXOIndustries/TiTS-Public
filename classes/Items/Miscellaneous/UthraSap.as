@@ -104,7 +104,7 @@ package classes.Items.Miscellaneous
 						
 						if (target.breastRatingUnlocked(i, target.breastRows[i].breastRatingRaw - ratingReduction))
 						{
-							target.breastRows[i].breastRating( -ratingReduction );
+							target.breastRows[i].breastRatingRaw -= ratingReduction;
 							if (moddedAnyTits == 0) moddedAnyTits = ratingReduction;
 							changes++;
 							

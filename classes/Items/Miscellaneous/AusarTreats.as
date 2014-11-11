@@ -245,12 +245,12 @@
 				if(changes < changeLimit && pc.breastRows[0].breastRating() >= 12 && rand(2) == 0)
 				{
 					var tittyDrop:int = 0;
-					if(pc.breastRows[0].breastRating() >= 24) tittyDrop += pc.breastRows[0].breastRatingRaw * .25;
-					else if(pc.breastRows[0].breastRating() >= 16) tittyDrop += rand(3);
+					if(pc.breastRows[0].breastRatingRaw >= 24) tittyDrop += pc.breastRows[0].breastRatingRaw * .25;
+					else if(pc.breastRows[0].breastRatingRaw >= 16) tittyDrop += rand(3);
 					tittyDrop += 1;
-					if (pc.breastRatingUnlocked(0, pc.breastRows[0].breastRating() - tittyDrop))
+					if (pc.breastRatingUnlocked(0, pc.breastRows[0].breastRatingRaw - tittyDrop))
 					{
-						pc.breastRows[0].breastRating(-tittyDrop);
+						pc.breastRows[0].breastRatingRaw -= tittyDrop;
 						//**Same as Zil TF, I guess?
 						kGAMECLASS.output("\n\nTipping backwards, you flail your arms frantically to keep your balance. Once you right, you realize what happened; your [pc.chest] have lost a bit of weight, dropping you down to a " + pc.breastCup(0) + ".");
 						changes++;
@@ -258,17 +258,17 @@
 						var bonusRowsTFed:int = 0;
 						for(x = 1; x < pc.bRows(); x++)
 						{
-							if(pc.breastRows[x].breastRating() >= 12)
+							if(pc.breastRows[x].breastRatingRaw >= 12)
 							{
 								//Figure out how much dat row will change!
-								if(pc.breastRows[x].breastRating() >= 24) tittyDrop += pc.breastRows[x].breastRating() * .25;
-								else if(pc.breastRows[x].breastRating() >= 16) tittyDrop += rand(3);
+								if(pc.breastRows[x].breastRatingRaw >= 24) tittyDrop += pc.breastRows[x].breastRatingRaw * .25;
+								else if(pc.breastRows[x].breastRatingRaw >= 16) tittyDrop += rand(3);
 								tittyDrop += 1;
 								//If that row is unlocked!
-								if (pc.breastRatingUnlocked(0, pc.breastRows[x].breastRating() - tittyDrop))
+								if (pc.breastRatingUnlocked(0, pc.breastRows[x].breastRatingRaw - tittyDrop))
 								{
 									bonusRowsTFed++;
-									pc.breastRows[x].breastRating(-tittyDrop);
+									pc.breastRows[x].breastRatingRaw -= tittyDrop;
 								}
 							}
 						}

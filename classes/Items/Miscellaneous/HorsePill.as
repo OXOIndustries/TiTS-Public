@@ -359,8 +359,8 @@
 						kGAMECLASS.eventBuffer += " from the change. You whicker without meaning to. Mares aren't really supposed to be that stacked anyway.";
 						for(x = 0; x < target.bRows(); x++)
 						{
-							if(target.breastRows[x].breastRating() > 10) target.breastRows[x].breastRating(-4 + -1 * rand(3));
-							else target.breastRows[x].breastRating(-1);
+							if(target.breastRows[x].breastRatingRaw > 10) target.breastRows[x].breastRatingRaw -= (-4 + -1 * rand(3));
+							else target.breastRows[x].breastRatingRaw -= 1;
 						}
 					}
 					else
@@ -648,11 +648,11 @@
 					{
 						if (target.breastRatingUnlocked(x, 0))
 						{
-							target.breastRows[x].breastRating(-3-rand(3));
+							target.breastRows[x].breastRatingRaw -= (-3-rand(3));
 							bRatingChange = true;
 						}
 						
-						if(target.breastRows[x].breastRating() < 0) target.breastRows[x].breastRating(0,true);;
+						if (target.breastRows[x].breastRating() < 0) target.breastRows[x].breastRating(0, true);
 					}
 					if (bRatingChange)
 					{					
