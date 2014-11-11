@@ -4891,7 +4891,7 @@
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					capacity += (400 + breastRows[x].breastRating / 2 * 100);
+					capacity += (400 + breastRows[x].breastRating() / 2 * 100);
 				}
 				capacity *= milkStorageMultiplier;
 			}
