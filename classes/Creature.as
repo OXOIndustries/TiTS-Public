@@ -2874,6 +2874,19 @@
 			output += skinNoun(skin);
 			return output;
 		}
+		public function hasFur():Boolean
+		{
+			return (skinType == GLOBAL.SKIN_TYPE_FUR);
+		}
+		public function hasScales():Boolean
+		{
+			return (skinType == GLOBAL.SKIN_TYPE_SCALES);
+		}
+		public function hasFeathers():Boolean
+		{
+			return false;
+			//return (skinType == GLOBAL.SKIN_TYPE_SCALES);
+		}
 		public function skinNoun(skin: Boolean = false): String {
 			var output: String = "";
 			var temp: int = 0;

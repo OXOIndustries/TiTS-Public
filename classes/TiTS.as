@@ -134,6 +134,7 @@
 		include "../includes/treatment.as";
 		include "../includes/brynn.as";
 		include "../includes/millie.as";
+		include "../includes/yancy.as";
 
 		include "../includes/lightsOut.as";
 			

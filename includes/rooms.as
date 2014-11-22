@@ -3408,12 +3408,12 @@ function initializeRooms():void
 	rooms["517"] = new RoomClass(this);
 	rooms["517"].roomName = "MILKING\nSTALL";
 	rooms["517"].description = "Hay covers every square inch of the floor, there to catch any stray fluids and be quickly cleaned away. A gleaming machine of metal and plastic has been built into the wall. It appears to be built to pop out into the stall in order to more readily service any available cows. It only has a single button that you can see - a simple green circle with a picture of a cow on its face. You don't push it, yet, but it seems the only option available to you besides leaving. At least there's a comfortable-looking table for the prospective cow to sit or lie upon.";
-	rooms["517"].runOnEnter = undefined;
+	rooms["517"].runOnEnter = yancyBonusSloots;
 	rooms["517"].eastExit = "512";
 	rooms["517"].planet = "PLANET: NEW TEXAS";
 	rooms["517"].system = "SYSTEM: NYE";
 	rooms["517"].addFlag(GLOBAL.INDOOR);
-	//rooms["517"].addFlag(GLOBAL.NPC);
+	rooms["517"].addFlag(GLOBAL.NPC);
 	
 	//525
 	//Porch Room Description
