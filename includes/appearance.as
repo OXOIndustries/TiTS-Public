@@ -1046,7 +1046,7 @@ function appearance(target:Creature):void {
 			}
 			else if(target.vaginaTotal() > 1) 
 			{
-				output2("You have " + num2Text(target.vaginas.length) + " " + plural(target.vaginasDescript()) + ", with " + num2Text(target.vaginas[0].clits) + " " + int(target.clitLength*10)/10 + "-inch clits each. ");
+				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", with " + num2Text(target.vaginas[0].clits) + " " + int(target.clitLength*10)/10 + "-inch clits each. ");
 			}
 			//Variances based on lustiness & wetness & such. THE DETAIL!
 			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
@@ -1056,7 +1056,7 @@ function appearance(target:Creature):void {
 				else if(target.vaginas[0].wetness() >= 4)
 				{
 					output2("Occasional beads of ");
-					output2("lubricant drip from ");
+					output2("[pc.girlCum] drip from ");
 				}				
 			}
 			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
@@ -1067,11 +1067,11 @@ function appearance(target:Creature):void {
 				else if(target.vaginas[0].wetness() < 4) 
 				{
 					output2("Occasional beads of ");
-					output2("lubricant drip from ");
+					output2("[pc.girlCum] drip from ");
 				}
 				else {
 					output2("Thin streams of ");
-					output2("lubricant occasionally dribble from ");
+					output2("[pc.girlCum] occasionally dribble from ");
 				}
 			}
 			else //WTF horny!
@@ -1081,17 +1081,17 @@ function appearance(target:Creature):void {
 				else if(target.vaginas[0].wetness() < 2) 
 				{
 					output2("Occasional beads of ");
-					output2("lubricant drip from ");
+					output2("[pc.girlCum] drip from ");
 				}
 				else if(target.vaginas[0].wetness() < 4)
 				{
 					output2("Thin streams of ");
-					output2("lubricant occasionally dribble from ");
+					output2("[pc.girlCum] occasionally dribble from ");
 				}
 				else 
 				{
 					output2("Thick streams of ");
-					output2("lubricant drool constantly from ");
+					output2("[pc.girlCum] drool constantly from ");
 				}				
 			}
 			//Different description based on vag looseness

@@ -53,6 +53,8 @@
 			this.inventory.push(new Estrobloom());
 			this.inventory.push(new Tittyblossom());
 			this.inventory.push(new Chocolac());
+			this.inventory.push(new Pussybloom());
+			this.inventory.push(new Pussyblossom());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;

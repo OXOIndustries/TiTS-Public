@@ -104,9 +104,21 @@ function upperCase(str:String):String {
 	var restOfString:String = str.substr(1,str.length);
 	return firstChar.toUpperCase()+restOfString.toLowerCase();
 }
-function plural(str:String):String {
-	var lastChar:String = str.substr(str.length-1,str.length);
-	if(lastChar == "s") str += "es";
+
+public function plural(str:String):String {
+	var lastChar: String = str.substr(str.length - 1, str.length);
+	var nextToLastChar: String = str.substr(str.length - 2, str.length - 1);
+	//Various weird pluralize shits
+	if (lastChar == "s") str += "es";
+	else if (nextToLastChar == "s" && lastChar == "h") str += "es";
+	else if (lastChar == "x") str += "es";
+	//Ends in y and consonant before, ex: pussy -> pussies
+	else if (lastChar == "y" && nextToLastChar != "e" && nextToLastChar != "a" && nextToLastChar != "u" && nextToLastChar != "o" && nextToLastChar != "i") 
+	{
+		var temp:String = str.substr(0, str.length-1);
+		str = temp + "ies";
+	}
+	//Normal pluralizes
 	else str += "s";
 	return str;
 }

@@ -1639,16 +1639,8 @@
 			var restOfString: String = str.substr(1, str.length);
 			return firstChar.toUpperCase() + restOfString;
 		}
-		public function pluralize(str: String): String {
-			var lastChar: String = str.substr(str.length - 1, str.length);
-			var nextToLastChar: String = str.substr(str.length - 2, str.length - 1);
-			//Various weird pluralize shits
-			if (lastChar == "s") str += "es";
-			else if (nextToLastChar == "s" && lastChar == "h") str += "es";
-			else if (lastChar == "x") str += "es";
-			//Normal pluralizes
-			else str += "s";
-			return str;
+		private function pluralize(str: String): String {
+			return kGAMECLASS.plural(str);
 		}
 		public function inventorySlots(): int {
 			var slots:int = 10;
@@ -5727,6 +5719,23 @@
 			var newVagina = new VaginaClass();
 			vaginas.push(newVagina);
 			return true;
+		}
+		public function copyVagina(target:int, donor:int):void
+		{
+			if(target < 0 || donor < 0) return;
+			if(target >= vaginas.length || donor >= vaginas.length) return;
+			vaginas[target].type = vaginas[donor].type;
+			vaginas[target].wetnessRaw = vaginas[donor].wetnessRaw;
+			vaginas[target].loosenessRaw = vaginas[donor].loosenessRaw;
+			vaginas[target].clits = vaginas[donor].clits;
+			vaginas[target].vaginaColor = vaginas[donor].vaginaColor;
+			vaginas[target].bonusCapacity = vaginas[donor].bonusCapacity;
+			vaginas[target].minLooseness = vaginas[donor].minLooseness;
+			for(var y:int = 0; y < vaginas[donor].vagooFlags.length; y++)
+			{
+				vaginas[target].vagooFlags[y] = vaginas[donor].vagooFlags[y];
+			}
+			return;
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
 		{
