@@ -1023,7 +1023,9 @@ function esbethFastTravelOfficeBonus():Boolean
 
 function mhengaScoutAuthority():void
 {
+	//I call him Tanis in my head, and he likes coffee. And he keeps a nerf gun under his desk for office wars. >>; That is my story for him and I'm sticking to it.
 	clearOutput();
+	showBust("TANIS");
 	if(flags["SALVAGED VANAE CAMP"] != 2) 
 	{
 		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
@@ -1048,6 +1050,7 @@ function mhengaScoutAuthority():void
 function mhengaTaxiToXenogen():void
 {
 	clearOutput();
+	showBust("TANIS");
 	pc.credits -= 40;
 	output("“<i>Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head out back.</i>”");
 	output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the jungle of Mhen’ga.");
