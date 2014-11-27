@@ -492,6 +492,7 @@ function statusTick():void {
 		this.chars["PC"].statusEffects.splice(shitToCut[0],1);
 		shitToCut.splice(0,1);
 	}
+
 }
 
 public function variableRoomUpdateCheck():void
@@ -671,6 +672,14 @@ public function processTime(arg:int):void {
 				chars["ALISS"].lust(5);
 			}
 			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
+
+			//Gobbles Cooldown
+			if(flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != 24)
+			{
+				if(flags["GOBBLES_COOLDOWN"] == undefined) flags["GOBBLES_COOLDOWN"] = 0;
+				flags["GOBBLES_COOLDOWN"]++;
+				if(flags["GOBBLES_COOLDOWN"] > 24) flags["GOBBLES_COOLDOWN"] = 24;
+			}
 
 			//Lactation effect updates
 			lactationUpdateHourTick();

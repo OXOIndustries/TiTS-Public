@@ -895,11 +895,18 @@ function NTBarbequeBonusFunc():Boolean
 function randomBarnEntranceEventsFunc():Boolean 
 {
 	// Gonnae splice gobbles in here so it can be handled separately
-	if (gobblesAvailable() && rand(3) == 0)
+	if (gobblesAvailable() && rand(3) == 0 && flags["GOBBLES_SEXYTIMES_STARTED"] == undefined)
 	{
 		supGobbles2014CanadaEdition();
 		return true;
 	}
+	if (gobblesAvailable() && flags["GOBBLES_SEXYTIMES_STARTED"] == 1 && flags["GOBBLES_COOLDOWN"] != undefined && flags["GOBBLES_COOLDOWN"] >= 24 && rand(3) == 0)
+	{
+		trace("EVENT TRIGGERED!");
+		canadaTheTurkeyRepeats();
+		return true;
+	}
+	trace("SEXYTIMES?: " + flags["GOBBLES_SEXYTIMES_STARTED"] + " COOLDOWN? " + flags["GOBBLES_COOLDOWN"] + " GOBB AVAIL? " + gobblesAvailable());
 	return false;
 }
 
