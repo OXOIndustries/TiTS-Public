@@ -95,7 +95,7 @@ package classes.UIComponents.ContentModules
 		{
 			for (var i:int = 0; i < 4; i++)
 			{
-				var bpC:BustsPreferenceControl = new BustsPreferenceControl(i);
+				var bpC:BustsPreferenceControl = new BustsPreferenceControl(i, this);
 				_controls.push(bpC);
 				_controlsContainer.addChild(bpC);
 				

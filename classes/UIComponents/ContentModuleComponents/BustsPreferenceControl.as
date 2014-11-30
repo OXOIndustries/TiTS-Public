@@ -1,5 +1,6 @@
 ﻿package classes.UIComponents.ContentModuleComponents 
 {
+	import classes.UIComponents.ContentModules.OptionsModule;
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.text.TextField;
@@ -28,9 +29,12 @@
 		
 		private var _prio:int;
 		
-		public function BustsPreferenceControl(priority:int) 
+		private var _optsRef:OptionsModule
+		
+		public function BustsPreferenceControl(priority:int, optsRef:OptionsModule) 
 		{
 			_prio = priority;
+			_optsRef = optsRef;
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -158,7 +162,7 @@
 			
 			kGAMECLASS.gameOptions.setBustPriority(tName, _prio);
 			
-			updateStateFromOptions();
+			_optsRef.updateDisplay();
 		}
 	}
 }

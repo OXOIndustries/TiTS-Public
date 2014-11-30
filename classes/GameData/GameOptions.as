@@ -20,7 +20,7 @@ package classes.GameData
 		
 		public function setBustPriority(artist:String, priority:int):void
 		{
-			if (priority < 0 || priority > 2) return;
+			if (priority < 0 || priority > 3) return;
 			if (artist != "CHESHIRE" && artist != "GATS" && artist != "GATSOLD" && artist != "SHOU" && artist != "none") return;
 			
 			if (artist == "none")
@@ -41,11 +41,13 @@ package classes.GameData
 			}
 			
 			bustPriority.splice(priority, 0, artist);
+			
+			trace("boop");
 		}
 		
 		public function getBustPriority(priority:int):String
 		{
-			if (priority < 0 || priority > 2) return null;
+			if (priority < 0 || priority > 3) return null;
 			
 			if (priority > bustPriority.length) return null;
 			
