@@ -1599,6 +1599,9 @@
 				case "girl":
 					buffer = this.mf("boy", "girl");
 					break;
+				case "guy":
+					buffer = this.mf("guy","girl");
+					break;
 				case "cockShape":
 				case "cockshape":
 				case "cockType":
