@@ -6175,6 +6175,7 @@
 			}
 			//66% wetness description
 			if (this.rand(3) <= 1 && ass.wetness() >= 2) {
+				if (descripted > 0) desc += ", ";
 				if (ass.wetness() == 2) {
 					if (this.rand(2) == 0) desc += "moist";
 					else desc += "lubricated";

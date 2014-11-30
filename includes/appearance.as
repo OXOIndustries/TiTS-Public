@@ -1186,11 +1186,12 @@ function appearance(target:Creature):void {
 				else if(pc.hasStatusEffect("Mimbrane Foot Right")) output2(" your right [pc.foot]");
 				else if(pc.hasStatusEffect("Mimbrane Face")) output2(" your [pc.face]");
 				else output2(" your body");
+				output2(" seems");
 			}
 			// More than one.
 			else
 			{
-				(" parasites attached to");
+				output2(" parasites attached to");
 				if(attachedMimbranes() == 2)
 				{
 					if(pc.hasStatusEffect("Mimbrane Cock") && pc.hasStatusEffect("Mimbrane Balls")) output2(" your cock and balls");
@@ -1214,8 +1215,9 @@ function appearance(target:Creature):void {
 					else output2(" some of your appendages");
 				}
 				else output2(" a variety of your appendages");
+				output2(" seem");
 			}
-			output2(" seem intelligent enough for some rudimentary communication....");
+			output2(" intelligent enough for some rudimentary communication....");
 		}		
 		addGhostButton(14, "Back", pcAppearance);
 	}
