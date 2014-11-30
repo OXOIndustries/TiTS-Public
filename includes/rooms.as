@@ -3835,7 +3835,7 @@ function initializeRooms():void
 
 	rooms["560"] = new RoomClass(this);
 	rooms["560"].roomName = "THE\nFIELDS";
-	rooms["560"].description = "No more than five massive trees stand in the center of this field, seemingly alone amidst the sandy dirt.  You can see though, even from a distance, that gigantic, glittering peaches hang from the branches of these house-sized trees.  You take a step closer, and jump back as the sandy soil gives way far too easily.  Ants swarm in the deep divot left by the brief touch of your [PC.foot].  To your horror, you realize the ground here is saturated with living ants.  Are these some kind of terrible guard system?  Who would want peaches that badly?";
+	rooms["560"].description = "No more than five massive trees stand in the center of this field, seemingly alone amidst the sandy dirt.  You can see though, even from a distance, that gigantic, glittering peaches hang from the branches of these house-sized trees.  You take a step closer, and jump back as the sandy soil gives way far too easily.  Ants swarm in the deep divot left by the brief touch of your [pc.foot].  To your horror, you realize the ground here is saturated with living ants.  Are these some kind of terrible guard system?  Who would want peaches that badly?";
 	rooms["560"].runOnEnter = varmintRoomsBonus;
 	rooms["560"].northExit = "559";
 	rooms["560"].eastExit = "555";
@@ -3861,7 +3861,7 @@ function initializeRooms():void
 
 	rooms["562"] = new RoomClass(this);
 	rooms["562"].roomName = "THE\nFIELDS";
-	rooms["562"].description = "The green plants in this field cling low the ground, no more than an inch high in places.  In fact, many of the stems seem to bend directly back into the ground.  You wonder what kind of crop this could be, until a small, six-legged rodent runs across the path, carrying a dirt-covered peanut in its mouth.  Mystery solved!";
+	rooms["562"].description = "The green plants in this field cling low to the ground, no more than an inch high in places.  In fact, many of the stems seem to bend directly back into the ground.  You wonder what kind of crop this could be, until a small, six-legged rodent runs across the path, carrying a dirt-covered peanut in its mouth.  Mystery solved!";
 	rooms["562"].runOnEnter = varmintRoomsBonus;
 	rooms["562"].northExit = "561";
 	rooms["562"].eastExit = "553";

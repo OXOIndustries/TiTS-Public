@@ -4263,7 +4263,7 @@
 		}
 		public function totalSheaths():Number
 		{
-			if (cocks.length <= 0) return false;
+			if (cocks.length <= 0) return 0;
 			var total:int = 0;
 			for(var x:int = 0; x < totalCocks(); x++)
 			{
