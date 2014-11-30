@@ -4257,6 +4257,16 @@
 			}
 			return true;	
 		}
+		public function totalSheaths():Number
+		{
+			if (cocks.length <= 0) return false;
+			var total:int = 0;
+			for(var x:int = 0; x < totalCocks(); x++)
+			{
+				if(hasSheath(x)) total++;
+			}
+			return total;
+		}
 		public function hasSheath(arg: int = 0): Boolean {
 			if (arg >= cocks.length) return false;
 			if (cocks[arg].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
@@ -4264,11 +4274,7 @@
 		}
 		public function hasSheaths(arg: int = 2): Boolean {
 			if (cocks.length <= 0) return false;
-			var total:int = 0;
-			for(var x:int = 0; x < totalCocks(); x++)
-			{
-				if(hasSheath(x)) total++;
-			}
+			var total:int = totalSheaths();
 			return (total >= arg);
 		}
 		public function hasKnot(arg: int = 0): Boolean {
