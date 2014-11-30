@@ -1086,7 +1086,13 @@ function tarkusScoutMenu():void
 	author("Savin");
 	showName("\nKAITHRIT\nSCOUT");
 	showBust("KAITHRIT_SCOUT");
-	if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		output("When you step up to the cat-girl, she looks up from her holoscreen and sighs. “<i>Sorry, there's not really anywhere to take a taxi to anymore.</i>”");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
 	{
 		output("When you step up to the cat-girl, she looks up from her work on a holoscreen and gives you an apologetic grin. “<i>Sorry, friend, we’re just getting set up here on Tarkus. All the junk’s sending up so much interference that it’s taking ages to set up proper comm beacons, so there’s no transports going out yet.</i>”");
 		output("\n\n“<i>Ah. Sorry to bother you,</i>” you say, turning to leave.");

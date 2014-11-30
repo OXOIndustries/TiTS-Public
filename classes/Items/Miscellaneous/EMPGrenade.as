@@ -24,11 +24,11 @@ package classes.Items.Miscellaneous
 			
 			this.shortName = "EMP Gren.";
 			
-			this.longName = "emp grenade";
+			this.longName = "EMP grenade";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "an emp grenade";
+			this.description = "an EMP grenade";
 			
 			this.tooltip = "Used by soldiers and police officers to quickly neutralize shielded or robotic opponents, modern EMP grenades temporarily fry electronics. Though individually expensive, these little babies pretty much pay for themselves when you're up against a heavily shielded enemy or an assassin droid!";
 			

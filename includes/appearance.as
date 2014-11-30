@@ -1166,7 +1166,8 @@ function appearance(target:Creature):void {
 		// [MIMBRANECODE]
 		if (attachedMimbranes() > 0)
 		{
-			addGhostButton(0, "Mimbranes", mimbraneMenu);
+			if (kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(0, "Mimbranes", mimbraneMenu);
+			else addDisabledGhostButton(0,"Mimbranes","Mimbranes","You cannot access your mimbrane menu at this time.");
 			
 			// Detailed Mimbrane sentence that includes specific body regions.
 			output2("\n\nFrom time to time, small chirps remind you that your body is not owned by just you alone. The");
