@@ -3660,6 +3660,7 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 		if (anno.vaginalCapacity() < tarVolume) tarVolume = anno.vaginalCapacity();
 		
 		selCock = pc.cockThatFits(tarVolume);
+		if(selCock < 0) output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.biggestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>")
 	}
 
 	output("<i>“What do you say, girls?”</i> you say, indicating the rapidly-growing");
