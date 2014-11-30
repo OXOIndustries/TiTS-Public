@@ -208,7 +208,7 @@ function getMilkedWithMillie():void
 		if(flags["MILLIE_MILK_COUNT"] == undefined) output("nervously glance back at the buxom bovine.");
 		else output("glance back at the buxom bovine, ready for your milking.");
 	}
-	output("\n\nMillie is openly ogling your [pc.fullChest], her eyes tracintracing figure eights over every sensuous");
+	output("\n\nMillie is openly ogling your [pc.fullChest], her eyes tracing figure eights over every sensuous");
 	if(pc.milkFullness >= 90) output(", [pc.milkNoun]-packed");
 	else output(", lactating");
 	output(" curve. Her nipples have grown even more prominent, if such a thing is even possible. They look hard enough to cut two holes in the top of her too-tight overalls. She licks her lips, offering, “Did you want to use the machines or would you rather I take care of you the old fashioned way? I’m feeling a little thirsty...</i>”");
@@ -858,7 +858,7 @@ function milliePersonallyDrainsYerTiTS():void
 	else output("droplet after droplet rolls down the sides of your [pc.fullChest]");
 	output(". The cow-girl’s fingertips are soaked with the stuff, but she doesn’t seem to mind.");
 	output("\n\n“<i>Yeah...</i>”");
-	output("\n\nPulling one hand away, Millie licks her digits clean, making a show of it. She plunges her index finger into her lips and slowly drags it back out, leaving it clean of everything but a layer of gleaming saliva. She rolls a wide, bovine tongue to handle the middle one, dragging the slippery muscle across each side until she’s collected every drop of your [pc.milk] from her largest digit. Half-licking, half-licking her thumb, the clearly excited milkmaid cleans the worst of your mess from her hand, oblivious to the wet patches her own well-endowed chest is leaving on her overalls.");
+	output("\n\nPulling one hand away, Millie licks her digits clean, making a show of it. She plunges her index finger into her lips and slowly drags it back out, leaving it clean of everything but a layer of gleaming saliva. She rolls a wide, bovine tongue to handle the middle one, dragging the slippery muscle across each side until she’s collected every drop of your [pc.milk] from her largest digit. Half-licking, half-sucking her thumb, the clearly excited milkmaid cleans the worst of your mess from her hand, oblivious to the wet patches her own well-endowed chest is leaving on her overalls.");
 	output("\n\nThe cow looks down and giggles vapidly, her eyes a little glassy. “<i>Whoopsie! Looks like I’m getting a little milky too. Do you mind if I...?</i>” The statement trails off, but its clear from the way she’s holding her freshly cleaned hand at the snaps on her overalls just what she means.");
 	output("\n\nMillie’s other hand has been busy this whole time, tugging and squeezing to keep you nice and drippy. It moves to an unoccupied breast while she awaits an answer, the motion the kind of thoughtless, practiced thing that only comes about as a result of hours upon hours of sordid milkings.");
 	output("\n\nYou stifle a moan and try not to arch your back, denying your body’s desire to crush your teat into her palm. ");
