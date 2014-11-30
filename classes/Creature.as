@@ -2764,13 +2764,13 @@
 		}
 		public function femininityMax(): Number {
 			//Herms + genderless
-			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina)) return 85;
+			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 85;
 			else if (hasCock() && !hasVagina()) return 70;
 			else return 100;
 		}
 		public function femininityMin(): Number {
 			//Herms + genderless
-			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina)) return 20;
+			if ((!hasVagina() && !hasCock()) || (hasCock() && hasVagina())) return 20;
 			else if (!hasCock() && hasVagina()) return 30;
 			else return 000;
 		}

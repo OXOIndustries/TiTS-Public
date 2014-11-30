@@ -1,6 +1,7 @@
 ﻿public function gobblesHeader():void
 {
-	showName("\nGOBBLES");
+	if(flags["CANADA_EXPLAINED"] == undefined) showName("TURKEY\nGIRL");
+	else showName("\nCANADA");
 	showBust("GOBBLES");
 	author("Savin");
 }
@@ -328,11 +329,32 @@ function canadaTheTurkeyRepeats():void
 	if(pc.tallness >= 72) output("up ");
 	else output("down ");
 	output("at you, a hopeful smile playing across her rosy lips.");
-	output("\n\nYou grin at her and plant an affectionate hand on one of her syrup-stuffed tits. Canada blushes and chews on her lip while your fingers sink into her pillowy flesh. “<i>Hey again. You looking for a milking?</i>”");
-	output("\n\n“<i>I wouldn’t say no,</i>” she says, her cheeks flushing a nice, rosy red to match her lips. “<i>");
-	if(flags["REPEAT_GOBBLES_MILKED"] == undefined) output("Or just spending some time together... i-if that’s alright, eh?");
-	else output("I enjoyed last time a lot. If it’s not a bother, I’d wouldn’t mind just... spending some time together. I-if you want, that is, eh?");
-	output("</i>”");
+	//Canada introduceeeeed!
+	if(flags["CANADA_EXPLAINED"] == undefined)
+	{
+		output("\n\n“<i>Hey, it’s you again,</i>” you grin, planting an affectionate hand on one of her syrup-stuffed tits. “<i>Long time no see.</i>”");
+		output("\n\nShe blushes and chews a lip as your fingers sink into the pillowy flesh of her bosom. You try to think of something to say, but suddenly realize, “<i>You know, I didn’t get your name last time.</i>”");
+		output("\n\n“<i>Oh!</i>” the turkey-cow gasps, flushing a darker red than when you were squeezing her boob. “<i>I’m so sorry! I didn’t mean to be so rude.... Everyone here calls me Canada. Because, um, I’m Canadian I guess? Well, my <i>parents</i> were, but I’ve still got the accent. They call me Canny sometimes, too. Or just Cans. Though I think they might be talking about my cans when they say that,</i>” she babbles, hefting her over-stuffed boobs.");
+		output("\n\nShe chuckles to herself and locks her arms under her bosom, still staring ");
+		if(pc.tallness > 72) output("up ");
+		else if(pc.tallness < 60) output("down ");
+		output("intently at you.");
+
+		output("\n\nFor what it’s worth, you give her your name in turn, and ask “<i>Doesn’t that bother you? The name calling, I mean.</i>”");
+		output("\n\n“<i>Nah,</i>” she shrugs, “<i>I’m used to it. I get... really silly when nobody will have sex with me. Part of the Treatment, I guess. If I get too silly, the other girls will dress me up in kooky outfits and stuff me full of weird toys. Like this!</i>” she adds, wiggling her hips which, in turn, sends her plumage of turkey feathers shivering. “<i>Last year I ended up walking around in a Canada goose outfit for almost a week with six bullet vibes in me, all on full power, until Amma and Ogram finally found me and, uh, helped me. Unless they were the ones who did it in the first place... I can’t remember. Anyway, uh, the name kind of stuck after that. Better than Goose, eh?</i>”");
+		output("\n\nYou suppose. After a moment of silence, you realize your hand’s still firmly planted on Canada’s boob, and ask, “<i>So, you looking for a milking again?</i>”");
+		output("\n\n“<i>I wouldn’t say no,</i>” she says, her cheeks flushing a nice, rosy red to match her lips. “<i>Or just spending some time together... i-if that’s alright, eh?</i>”");
+		flags["CANADA_EXPLAINED"] = 1;
+	}
+	//Repeat;
+	else
+	{
+		output("\n\nYou grin at her and plant an affectionate hand on one of her syrup-stuffed tits. Canada blushes and chews on her lip while your fingers sink into her pillowy flesh. “<i>Hey again. You looking for a milking?</i>”");
+		output("\n\n“<i>I wouldn’t say no,</i>” she says, her cheeks flushing a nice, rosy red to match her lips. “<i>");
+		if(flags["REPEAT_GOBBLES_MILKED"] == undefined) output("Or just spending some time together... i-if that’s alright, eh?");
+		else output("I enjoyed last time a lot. If it’s not a bother, I’d wouldn’t mind just... spending some time together. I-if you want, that is, eh?");
+		output("</i>”");
+	}
 	//[Milk Her] [Not Now]
 	clearMenu();
 	addButton(0,"Milk Her",milkGobblesRepeat);

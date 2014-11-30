@@ -320,7 +320,9 @@ function approachGianna(special:String = ""):void
 		else if(giannaPersonality() < 40 && giannaPersonality() >= 20)
 		{
 			output("<i>“Gianna,”</i> you call as you approach.");
-			output("\n\nThe android swivels up to a standing position, placing her arms behind her, and looking at you hopefully. <i>“I’m up for anything,”</i> she offers, running her hands down her front{ and shuddering at the long, slow trip across her expanded chest}. <i>“Anything.”</i> She looks you in the eye as she say it, absolutely serious. Her eyes drop low after. <i>“Just let me know, okay?”</i>");
+			output("\n\nThe android swivels up to a standing position, placing her arms behind her, and looking at you hopefully. <i>“I’m up for anything,”</i> she offers, running her hands down her front");
+			if(gianna.biggestTitSize() >= 30) output(" and shuddering at the long, slow trip across her expanded chest");
+			output(". <i>“Anything.”</i> She looks you in the eye as she say it, absolutely serious. Her eyes drop low after. <i>“Just let me know, okay?”</i>");
 		}
 		//Repeat Negative Approach
 		else if(giannaPersonality() < 20 && giannaPersonality() > 0)

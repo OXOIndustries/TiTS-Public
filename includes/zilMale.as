@@ -177,6 +177,8 @@ function zilDrop():void {
 	if (combatMiss(foes[0],pc)) 
 	{
 		output(" You avoid it!");
+		processCombat();
+		return;
 	}
 	var damage:int = 0;
 	var sDamage:int = 0;
