@@ -1454,6 +1454,7 @@
 					buffer = oneVagina();
 					break;
 				case "vagOrAss":
+				case "vagOrAsshole":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
 					break;
