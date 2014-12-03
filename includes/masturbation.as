@@ -301,7 +301,7 @@ function vaginalFap():void {
 	
 	//Second coochie touches!
 	if(pc.vaginaTotal() > 1) {
-		output("\n\nIf one is this good.... You thrust your other hand down to your crotch as fast as you can, brushing past your other wrist as you find your way to your [pc.vaginaDescript 1] and stroking it with eager, feverish need. Paroxysms of pleasure rock your body, alternately locking and convulsing your muscles but not quite bringing you off yet; this is still mere foreplay. You curl your hand into a fists and drag your knuckles up and down that slit, spreading its lips slightly around your digit, rubbing yourself with both hands and letting out quiet little moans of enjoyment. This taste of ecstasy is almost too much and yet not nearly enough, and you plunge two sets of fingers into your eager openings.");
+		output("\n\nIf one is this good.... You thrust your other hand down to your crotch as fast as you can, brushing past your other wrist as you find your way to your [pc.vagina 1] and stroking it with eager, feverish need. Paroxysms of pleasure rock your body, alternately locking and convulsing your muscles but not quite bringing you off yet; this is still mere foreplay. You curl your hand into a fist and drag your knuckles up and down that slit, spreading its lips slightly around your digit, rubbing yourself with both hands and letting out quiet little moans of enjoyment. This taste of ecstasy is almost too much and yet not nearly enough, and you plunge two sets of fingers into your eager openings.");
 	}
 	//Nipple fucky
 	if(pc.hasFuckableNipples()) {
@@ -320,9 +320,9 @@ function vaginalFap():void {
 	}
 	output("\n\nYou moan, loud and low but inexorably rising higher with each touch and caress, each thrusting slip through your needy crevice. Arching your [pc.hips], you hump against your hand, grinding back into your quickly moving fingers");
 	if(pc.totalClits() > 0) output(", some plunging inside while others tend to [pc.oneClit]");
-	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and you're fingers are rapidly become soaked with your [pc.girlCum].");
+	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and your fingers are rapidly become soaked with your [pc.girlCum].");
 	
-	output("\n\nThen, it comes all at once, an explosion of ecstasy strong enough to make your eyes roll back and your body go on autopilot: fingers thrusting, [pc.hips] lurching, [pc.legs] quivering. Your wail turns into a lurid moan every bit as sloppy and as your spasming [pc.vaginas]");
+	output("\n\nThen, it comes all at once, an explosion of ecstasy strong enough to make your eyes roll back and your body go on autopilot: fingers thrusting, [pc.hips] lurching, [pc.legs] quivering. Your wail turns into a lurid moan every bit as sloppy as your spasming [pc.vaginas]");
 	if(pc.isSquirter()) output(", just before you squirt out ribbons of [pc.girlCum]");
 	output(".");
 	if(pc.hasFuckableNipples()) output(" Your [pc.nipples] react similarly, and you wind up pulling your soaked fingers free in the throes of your passion.");
