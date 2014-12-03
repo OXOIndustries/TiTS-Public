@@ -5741,6 +5741,7 @@
 			vaginas[target].vaginaColor = vaginas[donor].vaginaColor;
 			vaginas[target].bonusCapacity = vaginas[donor].bonusCapacity;
 			vaginas[target].minLooseness = vaginas[donor].minLooseness;
+			vaginas[target].hymen = vaginas[donor].hymen;
 			for(var y:int = 0; y < vaginas[donor].vagooFlags.length; y++)
 			{
 				vaginas[target].vagooFlags[y] = vaginas[donor].vagooFlags[y];
