@@ -106,8 +106,10 @@ function upperCase(str:String):String {
 }
 
 public function plural(str:String):String {
-	var lastChar: String = str.substr(str.length - 1, str.length);
-	var nextToLastChar: String = str.substr(str.length - 2, str.length - 1);
+	//var lastChar: String = str.substr(str.length - 1, str.length);
+	//var nextToLastChar: String = str.substr(str.length - 2, str.length - 1);
+	var lastChar: String = str.substr(str.length - 1);
+	var nextToLastChar: String = str.substr(str.length - 2, 1); //Someone here confused .substr with .substring!
 	//Various weird pluralize shits
 	if (lastChar == "s") str += "es";
 	else if (nextToLastChar == "s" && lastChar == "h") str += "es";

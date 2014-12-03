@@ -384,7 +384,7 @@ function beatDatCatNaga():void {
 	if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
 	else addDisabledButton(2,"GetTailPeg");
 	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.FLUID_TYPE_MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
-	else addDisabledButton(3,"Breastfeed");
+	else addDisabledButton(3,"Breastfeed","Breastfeed","You need to actually be lactating real milk.");
 
 	addButton(14,"Leave",genericVictory);
 }
@@ -870,7 +870,7 @@ function pcGetsABlowjobThatTurnsIntoButtSmex():void
 	output("\n\nYou ");
 	if(!pc.isNude()) output("shed your [pc.gear], exposing your [pc.cockBiggest]");
 	else output("shift your [pc.hips] forward, exposing your [pc.cockBiggest]");
-	output(". Taking it in one hand, you stroke it slowly as you show your manhood to the Naleen. The kitty visibly relaxes and even smiles as you cautiously inch toward her. You try to keep yourself ready for some kind of trickery, but her feline agility affords her excess of stealthy prowess. You feel her striped snake-tail wrap firmly around your [pc.feet] before you see it, then fall directly into the amazoness’ embrace.");
+	output(". Taking it in one hand, you stroke it slowly as you show your manhood to the Naleen. The kitty visibly relaxes and even smiles as you cautiously inch toward her. You try to keep yourself ready for some kind of trickery, but her feline agility affords her excess of stealthy prowess. You feel her striped snake-tail wrap firmly around your [pc.legs] before you see it, then fall directly into the amazoness’ embrace.");
 	output("\n\nTemporarily outmaneuvered by the Naleen, you scramble to assume control over the coiled trickster once more. As you shove her human-like torso to the side and stand up, you inadvertently slide your [pc.cockBiggest] up her chest. Your [pc.cockHeadBiggest] thickens and rapidly fills with blood as your member is assailed by the fine, feline fur that covers the naga’s body. The sensation tickles your shaft in a enjoyable way, and you leave a smear of your pre-cum against her belly as you stand up. Recovering from your push, the tightly coiled spring of feline grace raises herself up only to find herself faced with your [pc.cockBiggest].");
 	output("\n\nSmiling and taking a hold of one of her feline ears, you pull her head forward towards your waiting dong. As her lips make contact your crown, shivers of pleasure run through your [pc.cockBiggest]. Her gentle breathing blows cool air into your opening. Your advances are halted, however, when  she refuses to un-purse her lips to allow access to the part of her you want most. You remove your hand from her ear and instead use your digits to push her cheeks forward, forcing her pucker apart and her mouth open just enough to allow you slip your [pc.cockHeadBiggest] past her lips. With your length now past the sexual predator’s fangs, you figure that if she were going to bite, she would have by now, so you remove your hand from her face and allow yourself a moment to take in the feeling of sublime, warm wetness that now surrounds your member.");
 	processTime(5);
