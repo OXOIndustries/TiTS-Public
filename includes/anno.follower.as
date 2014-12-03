@@ -2367,12 +2367,12 @@ function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	//STRETCHIN'
 	if(annoDickType == GLOBAL.TYPE_EQUINE)
 	{
-		if(!pc.hasVagina()) pc.cuntChange(0,200,true,true,false);
+		if(pc.hasVagina()) pc.cuntChange(0,200,true,true,false);
 		else pc.buttChange(200,true,true,false);
 	}
 	else
 	{
-		if(!pc.hasVagina()) pc.cuntChange(0,40,true,true,false);
+		if(pc.hasVagina()) pc.cuntChange(0,40,true,true,false);
 		else pc.buttChange(40,true,true,false);
 	}
 

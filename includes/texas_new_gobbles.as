@@ -689,5 +689,5 @@ function gobblesRepeatSexEndCleanup():void
 	//Strip her statuseffects from the PC
 	pc.removeStatusEffect("CreamedGobbleCunt");
 	pc.removeStatusEffect("CreamedOnGobbleFace");
-	flags["GOBBLES_SEXYTIMES_STARTED"] = 0;
+	//flags["GOBBLES_SEXYTIMES_STARTED"] = 0;
 }

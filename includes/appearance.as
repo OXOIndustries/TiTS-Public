@@ -1137,26 +1137,26 @@ function appearance(target:Creature):void {
 			{
 				//Wetness
 				if(target.ass.wetness() < 0) output2(" without any sign of moisture.");
-				else if(target.ass.wetness() == 0) output2(".");
-				else if(target.ass.wetness() >= 2 && target.ass.wetness() >= 4) output2(" with slight signs of moisture bordering its edges.");
+				else if(target.ass.wetness() <= 2) output2(".");
+				else if(target.ass.wetness() <= 4) output2(" with slight signs of moisture bordering its edges.");
 				else output2(" with occasional beads of lube bordering its edges.");
 			}
 			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 			{
 				//Wetness
 				if(target.ass.wetness() < 0) output2(", completely dry of any kind of moisture.");
-				else if(target.ass.wetness() == 0) output2(".");
-				else if(target.ass.wetness() < 2) output2(" with slight signs of moisture bordering its edges.");
-				else if(target.ass.wetness() < 4) output2(" with occasional beads of lube bordering its edges.");
+				else if(target.ass.wetness() <= 2) output2(".");
+				else if(target.ass.wetness() <= 3) output2(" with slight signs of moisture bordering its edges.");
+				else if(target.ass.wetness() < 5) output2(" with occasional beads of lube bordering its edges.");
 				else output2(" with thin streams of lube leaking out of its edges.");
 			}
 			else //WTF horny!
 			{
 				//Wetness
 				if(target.ass.wetness() < 0) output2(", desperately in need of lubricant.");
-				else if(target.ass.wetness() == 0) output2(".");
-				else if(target.ass.wetness() < 2) output2(" with occasional beads of lubricant dripping from the orifice every so often.");
-				else if(target.ass.wetness() < 4) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
+				else if(target.ass.wetness() <= 2) output2(".");
+				else if(target.ass.wetness() <= 3) output2(" with occasional beads of lubricant dripping from the orifice every so often.");
+				else if(target.ass.wetness() < 5) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
 				else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 			}
 		}

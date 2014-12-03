@@ -452,8 +452,8 @@ public function resetMimbraneEffects(effectName:String):void
 	
 	if (effectName == "Mimbrane Cock")
 	{
-		pc.cocks[0].cThicknessRatioMod -= 0.05 * Number(pc.statusEffectv3("Mimbrane Penis"));
-		pc.cocks[0].cLengthMod -= 0.75 * Number(pc.statusEffectv3("Mimbrane Penis"));
+		pc.cocks[0].cThicknessRatioMod -= 0.05 * Number(pc.statusEffectv3("Mimbrane Cock"));
+		pc.cocks[0].cLengthMod -= 0.75 * Number(pc.statusEffectv3("Mimbrane Cock"));
 	}
 	else if (effectName == "Mimbrane Pussy")
 	{

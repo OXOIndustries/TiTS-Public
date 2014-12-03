@@ -32,7 +32,7 @@
 			this.description = "a set of boobswell pads";
 
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These slim, cup-shaped pads come with a handy adhesive that allows them to stick to the underside of the bust, or else be slipped stealthily into a bra. So long as these pads are worn, they will slowly massage and feed hormones and nanomachines into your breasts, causing them to increase in size over time. They only last a week, however, before they wear out.";
+			this.tooltip = "These slim, cup-shaped pads come with a handy adhesive that allows them to stick to the underside of the bust, or else be slipped stealthily into a bra. So long as these pads are worn, they will slowly massage and feed hormones and nanomachines into your breasts, causing them to increase in size over time. They only last 3 days, however, before they wear out.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
