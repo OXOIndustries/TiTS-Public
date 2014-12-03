@@ -68,7 +68,7 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.output("With more than a little bit of discomfort, you knock back the pill. It weighs heavy in your belly, but nothing changes just yet. The effects are supposed to take some time to manifest.");
-				if(target.hasTail()) kGAMECLASS.output(" You flick your [pc.tails] in irritation, waiting.");
+				if(target.hasTail()) kGAMECLASS.output(" You flick your " + pc.tailsDescript() + " in irritation, waiting.");
 				//Already under the effects? Strengthen and reset cooldown
 				if(target.hasStatusEffect("Horse Pill"))
 				{
@@ -844,7 +844,7 @@
 						//if bee/spider-butt.
 						else if (target.tailType == GLOBAL.TYPE_ARACHNID || target.tailType == GLOBAL.TYPE_BEE)
 						{
-							kGAMECLASS.eventBuffer += "Your [pc.tails] bunch";
+							kGAMECLASS.eventBuffer += "Your " + pc.tailsDescript() + " bunch";
 							if(target.tailCount == 1) kGAMECLASS.eventBuffer += "es";
 							kGAMECLASS.eventBuffer += " up as ";
 							if(target.tailCount == 1) kGAMECLASS.eventBuffer += "it begins";
@@ -861,7 +861,7 @@
 						}
 						//if other animal tail
 						else {
-							kGAMECLASS.eventBuffer += "Pain lances up your " + target.assholeDescript() + " as your [pc.tails] shift";
+							kGAMECLASS.eventBuffer += "Pain lances up your " + target.assholeDescript() + " as your " + pc.tailsDescript() + " shift";
 							if(target.tailCount == 1) kGAMECLASS.eventBuffer += "s";
 							kGAMECLASS.eventBuffer += " and morph";
 							kGAMECLASS.eventBuffer += "s";
