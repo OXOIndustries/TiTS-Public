@@ -2999,11 +2999,11 @@ function shekkaMidDeal():void
 
 	output("\n\nLaughing, [rival.name] adds, <i>\"Yes, [pc.name], wait a minute. I'm almost finished buying the keys to your legacy.\"</i>");
 	output("\n\nPausing, Shekka looks between the two of you. <i>\"You two know each other?\"</i>");
-	output("\n\n[rival.name] nods to Shekka at the same time.");
+	output("\n\nYou and [rival.name] nod to Shekka at the same time.");
 	output("\n\n<i>\"And you both want this probe - the one I just got in stock");
 	if(flags["TARKUS_DESTROYED"] != undefined) output(" before the planet blew");
 	output("?\"</i> the little alien asks with a puzzled look on her face.");
-	output("\n\nYou both nod against, though your rival looks a little unsettled by the tone in Shekka's voice.");
+	output("\n\nYou both nod again, though your rival looks a little unsettled by the tone in Shekka's voice.");
 	output("\n\n<i>\"Well, this baby's hotter than fusion core rod,\"</i> the short-statured alien chirps. She runs a hand along the gleaming metal. <i>\"The deal's off, tough stuff. We're going to do this raskvel style. Each of you make me an offer. The first one to make me an offer I won't say no to - or to go so high that the other gives up - wins.\"</i> Shekka seems a little wistful. <i>\"We used to do this at swap meets all the time, before Novahome.\"</i>");
 	output("\n\nSighing, [rival.name] opens up before you have a chance to check your credit balance. <i>\"15,000, as we discussed.\"</i>");
 	output("\n\nShekka turns back to you, <i>\"");
