@@ -71,17 +71,17 @@ package classes.TITSSaveEdit.UI.Controls
 			_skinTone = new InputLabelPair();
 			AddControl(_skinTone);
 			_skinTone.labelText = "Skin Tone";
-			_skinTone.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			_skinTone.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 
 			_furColor = new InputLabelPair();
 			AddControl(_furColor);
 			_furColor.labelText = "Fur Color";
-			_furColor.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			_furColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 
 			_scaleColor = new InputLabelPair();
 			AddControl(_scaleColor);
 			_scaleColor.labelText = "Scale Color";
-			_scaleColor.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			_scaleColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			
 			_skinType = new ComboLabelPair();
 			AddControl(_skinType);
