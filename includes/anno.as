@@ -1751,6 +1751,7 @@ function joinCrewPlanetCrackerVersionSheWantsIt():void
 		//{PC is put back in hall outside Steele Tech. Can no longer access shop.}
 		clearMenu();
 		flags["ANNOS_SHOP_CLOSED"] = 1;
+		flags["ANNO_CREWMEMBER"] = 1;
 		addButton(0, "Next", move, "212");
 	}
 }

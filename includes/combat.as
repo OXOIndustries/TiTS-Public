@@ -148,7 +148,7 @@ function combatMainMenu():void
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
-		if(foes[0] is Varmint) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
+		if(foes[0] is Varmint && pc.hasKeyItem("Lasso")) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
 		//Bonus shit for stuff!
 		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 	}
@@ -2746,7 +2746,7 @@ function buttTeaseText():void {
 		if(pc.hasCock()) output(", [pc.cocks],");
 		output(" and [pc.vaginas]");
 		output(", though your attention goes to the last. You’re practically dripping by this point, as you slowly rub your index finger across the cleft of ");
-		if(pc.totalVaginas()) output("one cunny");
+		if(pc.totalVaginas() > 1) output("one cunny");
 		else output("your cunny");
 		output(" and stick your thumb inside your [pc.asshole], beginning to lightly finger your backdoor. You pull your fingers away");
 		if(pc.isCrotchGarbed()) output(" and slide your [pc.lowerGarments] back into place");
