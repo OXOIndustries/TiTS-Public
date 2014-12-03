@@ -177,7 +177,8 @@ function specialsMenu():void {
 		
 		if(pc.hasPerk("Power Strike"))
 		{
-			if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Power Strike","Power Strike","You cannot use power strike while disarmed.");
+			else if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset, "Power Strike");
 			offset++;
 		}
@@ -192,14 +193,16 @@ function specialsMenu():void {
 		
 		if (pc.hasPerk("Carpet Grenades"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Carpet Grenades","Carpet Grenades","You cannot use carpet grenades while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Detonation Charge"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Det. Charge","Det. Charge","You cannot use det. charges while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Det. Charge");
 			offset++;
 		}
