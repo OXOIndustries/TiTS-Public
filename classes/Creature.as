@@ -7615,7 +7615,7 @@
 			if (vaginas.length > 1) 
 			{
 				//Matching cunts get type descriptor.
-				if() return pluralize(vaginaDescript(this.rand(vaginas.length)));
+				if(vaginasMatch()) return pluralize(vaginaDescript(this.rand(vaginas.length)));
 				//Mixed vaginas get plain result - vaginaNoun with oddball value results in plain shit.
 				else
 				{
@@ -7623,6 +7623,19 @@
 				}
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
+		}
+		function vaginasMatch():Boolean 
+		{
+			if(vaginas.length == 0) return false;
+			var y:int = 0;
+			for(var x:int = 0; x < vaginas.length; x++)
+			{
+				//If they don't match, report it
+				if(vaginas[x].type != vaginas[y].type) return false;
+				//Set y to the previous value of x for next comparisons
+				y = x;
+			}
+			return true;
 		}
 		public function multiCockDescript(): String {
 			if (cocks.length < 1) return "<B>Error: multiCockDescript() called with no penises present.</B>";
