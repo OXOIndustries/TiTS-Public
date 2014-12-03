@@ -2081,6 +2081,7 @@ function wait():void {
 	if (pc.hasStatusEffect("Grappled"))
 	{
 		if (foes[0] is Kaska) doNothingWhileTittyGrappled();
+		else if (foes[0] is GrayPrime) grayPrimeFailEscape();
 		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeWaitWhilstGrappled();
 	}
 	processCombat();
