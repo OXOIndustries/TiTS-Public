@@ -7611,7 +7611,16 @@
 		//Allvagina descript
 		public function vaginasDescript(): String {
 			if (vaginas.length == 1) return vaginaDescript();
-			if (vaginas.length > 1) return pluralize(vaginaDescript(this.rand(vaginas.length)));
+			if (vaginas.length > 1) 
+			{
+				//Matching cunts get type descriptor.
+				if() return pluralize(vaginaDescript(this.rand(vaginas.length)));
+				//Mixed vaginas get plain result - vaginaNoun with oddball value results in plain shit.
+				else
+				{
+					return pluralize(vaginaNoun(99));
+				}
+			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
 		public function multiCockDescript(): String {
