@@ -144,7 +144,7 @@
 			if(target.physique() < target.physiqueMax())
 				TFList[TFList.length] = 8;
 			//#9 Reduce willpower to 33% of max.
-			if(target.intelligence() / target.intelligenceMax() > 0.33)
+			if(target.willpower() / target.willpowerMax() > 0.33)
 				TFList[TFList.length] = 9;
 			//#10 Remove horns
 			if(target.horns > 0)
