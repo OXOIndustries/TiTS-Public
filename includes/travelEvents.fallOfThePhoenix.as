@@ -185,6 +185,8 @@ public function phoenixBridgeCaptain():void
 {
 	clearOutput();
 	author("Savin");
+	showName("\nSAENDRA");
+	showBust("SAENDRA");
 	output("You step up behind the captain, planting an arm around the headrest of her chair. Upon looking down at her, you see that she looks deathly pale, her sides and left arm wrapped in bandages stained red with blood. ");
 
 	output("\n\n\"<i>You're a life-saver, [pc.name],</i>\" she says through gritted teeth, planting a hand on the throttle. \"<i>The </i>Phoenix<i> can cover you for a couple minutes. Get back to your ship and get out of here... I'll try and limp back to Tavros station, get patched up. If we actually make it out of here... look me up some time, hero. I owe you one.</i>\"");
