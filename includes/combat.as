@@ -170,14 +170,16 @@ function specialsMenu():void {
 		//EITHER OR!
 		if(pc.hasPerk("Rapid Fire"))
 		{
-			if(pc.energy() >= 20) addButton(offset,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Rapid Fire","Rapid Fire","You cannot use rapid fire while disarmed.");
+			else if(pc.energy() >= 20) addButton(offset,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset, "Rapid Fire");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Power Strike"))
 		{
-			if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Power Strike","Power Strike","You cannot use power strike while disarmed.");
+			else if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset, "Power Strike");
 			offset++;
 		}
@@ -192,14 +194,16 @@ function specialsMenu():void {
 		
 		if (pc.hasPerk("Carpet Grenades"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Carpet Grenades","Carpet Grenades","You cannot use carpet grenades while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Detonation Charge"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Det. Charge","Det. Charge","You cannot use det. charges while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Det. Charge");
 			offset++;
 		}
@@ -219,7 +223,8 @@ function specialsMenu():void {
 		
 		if(pc.hasPerk("Volley")) 
 		{
-			if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Volley","Volley","You cannot use volley while disarmed.");
+			else if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset, "Volley");
 			offset++;
 		}
@@ -232,7 +237,8 @@ function specialsMenu():void {
 			}
 			else
 			{
-				if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 20 energy.");
+				if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Overcharge","Overcharge","You cannot use overcharge while disarmed.");
+				else if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 20 energy.");
 				else addDisabledButton(offset, "Overcharge", "Overcharge", "You do not have enough energy to use Overcharge.");
 			}
 			offset++;
@@ -254,14 +260,16 @@ function specialsMenu():void {
 		
 		if(pc.hasPerk("Thermal Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Thermal Strike","Thermal Strike","You cannot use thermal disruptors while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "T. Disrupt.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "G. Disrupt.");
 			offset++;
 		}
@@ -302,7 +310,8 @@ function specialsMenu():void {
 		
 		if (pc.hasPerk("Disarming Shot")) 
 		{
-			if(pc.energy() >= 20) addButton(offset, "Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Disarm Shot","Disarm Shot","You cannot use disarming shot while disarmed.");
+			else if(pc.energy() >= 20) addButton(offset, "Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
 			else addDisabledButton(offset, "Disarm Shot");	
 			offset++;
 		}
@@ -316,14 +325,16 @@ function specialsMenu():void {
 		
 		if(pc.hasPerk("Grenade"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Grenade","Grenade","You cannot use grenades while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "Grenade");	
 			offset++;
 		}
 		
 		if(pc.hasPerk("Gas Grenade"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Gas Grenade","Gas Grenade","You cannot use grenades while disarmed.");
+			else if(pc.energy() >= 25) addButton(offset,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "Gas Grenade");	
 			offset++;
 		}
@@ -350,7 +361,8 @@ function specialsMenu():void {
 		}
 		else
 		{
-			addButton(offset, "Goozooka", attackRouter, goozookaCannon, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
+			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Goozooka","Goozooka","You cannot use a goozooka while disarmed.");
+			else addButton(offset, "Goozooka", attackRouter, goozookaCannon, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
 		}
 	}
 }
