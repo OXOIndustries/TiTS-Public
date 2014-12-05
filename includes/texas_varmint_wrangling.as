@@ -315,7 +315,7 @@ function lassoAVarmint():void
 {
 	clearOutput();
 	//Set drone target
-	setDroneTarget(target);
+	setDroneTarget(foes[0]);
 	var damage:int = 0;
 	output("You twirl your light lasso, trying to get a bead on the varmint. When you've got enough spin, you let the lasso go, hurling it toward the varmint!");
 	//Miss

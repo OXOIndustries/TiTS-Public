@@ -3471,8 +3471,8 @@ function initializeRooms():void
 	//Secretary's Room Description
 	rooms["529"] = new RoomClass(this);
 	rooms["529"].roomName = "SECRETARY'S\nOFFICE";
-	rooms["529"].description = "At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?\"</i> she asks, looking up from her work, <i>\"He'd be happy to see you. Go on through.\"</i>";
-	rooms["529"].runOnEnter = undefined;
+	rooms["529"].description = "";
+	rooms["529"].runOnEnter = zephyrRoomBonus;
 	rooms["529"].southExit = "526";
 	rooms["529"].northExit = "530";
 	rooms["529"].planet = "PLANET: NEW TEXAS";
