@@ -40,14 +40,14 @@ function bigTOfficeBonusBullshit():Boolean
 function showBigT():void
 {
 	showBust("BIGT");
-	showName("BIG\nT.");
+	showName("\nBIG T");
 	author("Savin");
 }
 
 function TsDoorIsLocked():void
 {
 	clearOutput();
-	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble.");
+	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. \"<i>You'll need to talk to me if you want to get in there, but why don't you save us both the time and just leave?</i>\"\n\nRude.");
 
 	currentLocation = "529";
 	var map:* = mapper.generateMap(currentLocation);
@@ -81,7 +81,8 @@ function introToBigTSeeMeAfterClass():void
 
 function bigTMenu():void
 {
-	addButton(0,"Talk",talkToBigT);
+	clearMenu();
+	addButton(0,"Talk",talkToBigT,talkToBigT);
 	addButton(14,"Leave",mainGameMenu);
 }
 

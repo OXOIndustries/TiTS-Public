@@ -57,7 +57,7 @@ function approachZephyr(approached:Boolean = false):void
 		output("\n\nThat forceful, masculine voice bellows out again, this time not in laughter but in friendly-sounding speech. “<i>Zephyr, do we have visitors? I want to meet ‘em!</i>”");
 		output("\n\nSnarling under her breath, the cow-girl - Zephyr - pushes back her chair and rises to her full, nine foot height before shouting, “<i>Fine, but they don’t want to see you!</i>” She turns to you as you start to reply. “<i>Shut it. The Governor doesn’t have time to chat with every Tom, Dick, and Harry that manages to stumble through customs. Don’t even get me started on his choice to plant his base of operations at a high-class tourist destination.</i>”");
 		output("\n\n“<i>I’m not buying it, Zeph. You send ‘em back if they want to say hi. Don’t be welshing out on our bet now.</i>” There’s a touch of irritation in the Governor’s voice.");
-		output("\n\nZephyr grits her teeth, glaring at the door behind her so intently that you fear it might burst into flame. “<i>Fine!</i>” She turns back to you, hands tucked under a bosom as overside as the cow-girl it’s attached to. “<i>You wanna meet Big T? Fine.</i>” Exasperation is plain on her face. “<i>Just don’t waste too much of his time. There’s a half-dozen proposals he needs to review before the day is out.</i>”");
+		output("\n\nZephyr grits her teeth, glaring at the door behind her so intently that you fear it might burst into flame. “<i>Fine!</i>” She turns back to you, hands tucked under a bosom as overside as the cow-girl it’s attached to. “<i>You wanna meet Big T? Fine.</i>” Exasperation is plain on her face. “<i>Just don’t waste too much of his time. There’s a half-dozen proposals he needs to review before the day is out.</i>” <b>The door to the north clicks. Zephyr has deactivated the lock.</b>");
 		output("\n\nWell... that was something. Zephyr seats herself and sighs, no longer paying attention to you. You could probably chat her up if you wanted.");
 	}
 	//From Another Menu
@@ -79,6 +79,11 @@ function approachZephyr(approached:Boolean = false):void
 			output("Zephyr smirks at the sight of you. “<i>Back for more, huh? You insatiable slut.</i>” The buxom cow-girl stretches, her bust straining at her classy suit. “<i>I could squeeze you in if you really need it.</i>”");
 		}
 	}
+	clearMenu();
+	addButton(0,"Talk",talkToZephyr,undefined,"Talk","Talk about some stuff, why not?");
+	if(pc.lust() >= 33) addButton(1,"Sex",zephyrSexMenu,undefined,"Sex","Why not?");
+	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough for sex.");
+	addButton(14,"Back",mainGameMenu);
 }
 
 //Sex
@@ -236,7 +241,7 @@ function overDeskButtCatch():void
 	output("You mention that she could bend you over the desk and take you right here.");
 	output("\n\nZephyr strides around the desk with a swiftness and grace belied by her imposing form. “<i>Now you’re speaking my language.</i>” Grabbing you by the neck with one hand, she pushes you down toward the top, her unoccupied fingers releasing the clasp at the side of her skirt. You turn your head to keep the eager amazon from breaking your nose and get a good look at her crotch in the process.");
 	output("\n\nOf course, she’s not wearing any panties, not with a fat hound-sausage like that between her legs. It’d destroy panties on contact.");
-	if(pc.lowerUndergarments.shortName != "") output(" You suddenly fear for your own.");
+	if(pc.lowerUndergarment.shortName != "") output(" You suddenly fear for your own.");
 	output(" You’d guess it’s seven inches long right now, but there’s no way its at full size yet - it’s still hanging down, pointed at the floor. Every second or so it twitches, getting thicker, veinier, and redder. It protrudes from her forgotten slit, stretching her clitoral hood into an exotic-looking sheath. Just above its root, a slight bulb appears at its base, obviously a canine knot.");
 	output("\n\nYou whimper, knowing that tennis ball-sized orb is going to be expanding inside you.");
 	output("\n\n“<i>Now, now. Being anxious will only make me have to push that much harder.</i>” The hand holding you to the desk");
@@ -484,7 +489,7 @@ function getFuckedByZephyrIV():void
 	output("\n\nZephyr holds you there for what feels like hours, pinned beneath her, slowly filling, expanding from the pressure of her endless, liquid load. She whispers perverse promises in your ear once it finally dies down, promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below");
 	if(!pc.isTreated()) 
 	{
-		output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.mfnRaw("cow","bull","person") + " you come out as.");
+		output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
 	}
 	//[Next]
 	processTime(8);
@@ -550,9 +555,10 @@ function dontEatZephyrCock():void
 	output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
 	//[Fight] [Leave]
 	clearMenu();
-	addButton(0,"Fight",fightZephyrLikeABitch,undefined,"Fight","It might be a terrible idea, but you're itching for a fight after that kind of casual dismissal.");
-	addButton(1,"Snarky Leave",snarkLeaveLikeABitch,undefined,"Snarky Leave","Leave with a bit of snark. Fuck her for being so stuck up.");
-	addButton(14,"Leave",leaveLikeABitchPC);
+	addButton(0,"Leave",leaveLikeABitchPC);
+	addButton(1,"Fight",fightZephyrLikeABitch,undefined,"Fight","It might be a terrible idea, but you're itching for a fight after that kind of casual dismissal.");
+	addButton(2,"Snarky Leave",snarkLeaveLikeABitch,undefined,"Snarky Leave","Leave with a bit of snark. Fuck her for being so stuck up.");
+	
 }
 //Leave
 function leaveLikeABitchPC():void
@@ -592,67 +598,108 @@ function fightZephyrLikeABitch():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-output("\n\nTalk");
-output("\n\n“<i>I have some questions,</i>” you say.");
-output("\n\nZephyr rolls her eyes. “<i>You have questions because you’re too lazy to do the research yourself, but Big T probably expects me to answer them all the same....</i>” She leans her cheek into a balled fist. “<i>So go ahead and ask your stupid questions.</i>”");
-output("\n\nTreatment?");
-output("\n\n//What’s she think of it, what’d it do to her, she has a cock, etc");
-output("\n\n“<i>So what do you think of the Treatment? Did it make you like this?</i>” You gesture at all of her.");
-output("\n\nZephyr rolls her eyes. “<i>I think the Treatment is a crock of shit a bunch of old, bothersome bulls cooked up to get their dicks licked by stupid, brainless bimbos.</i>” She smirks. “<i>I assume by ‘like this’, you’re talking about how stacked I am, and not just in the tit department.</i>”");
-output("\n\nYou nod. “<i>You guessed it.</i>”");
-output("\n\n“<i>It did. I was a little slip of the girl before I had my state-mandated Treatment.</i>” She scowls. “<i>Government shouldn’t be interfering in our lives like that at all if you ask me. Anyway, imagine the surprise when I damn near doubled in height over the next week. I damn near emptied a grain silo by myself, and the family apple tree got picked clean. The muscles and tits grew in a while later, once I stopped burning every calorie growing like a weed.</i>”");
-output("\n\nYou scratch your chin in, imagining it.");
-output("\n\nZephyr chuckles. “<i>Turns out I got a rare side effect of the treatment. You don’t usually get all big, muscular, and confident unless your a guy, or at least packing a dick when you take it. Something went wrong in my dose though, or maybe my hormones were already imbalanced, I don’t know.</i>” She leans in close, wrapping an arm under her enormous bust. Her cleavage threatens to pop out the top of her button-down shirt. “<i>Still got the tits and the milk too, so it wasn’t a total wash.</i>”");
-output("\n\nDid she ever. You don’t think you’ve seen anyone else here with boobs like hers{, except maybe Gianna, and that’s due to your own meddling}.");
-output("\n\n“<i>I got a knockout body that can actually knock someone out, unlike those milky fluffballs we call women.</i>” She grins fondly. “<i>Only problem was I wanted to be in charge of the sex, and the guys around here... most of ‘em don’t wanna be on the bottom. Besides, the bulls made fucking their cows silly look so fun. How could I not give it a try?</i>”");
-output("\n\nShe leans still closer, reaching down towards her skirt. “<i>So I did the only thing a self-respecting proponent of equality would do. I imported a gene mod that would put me on par with the boys.</i>” She lifts the fabric, revealing six inches of bright red, semi-hard cock. “<i>Got myself a nice dog-cock. The knotted ones always looked like more fun.</i>” It twitches, but she drops the crotch curtain down before it can get any bigger. “<i>Its pretty awesome, but tough to deal with when you’re packing a chemically-altered libido. Fucking Treatment can be a real pain.</i>”");
-output("\n\n“<i>So yeah, I don’t like it on principle, but I’m pretty happy with how I came out, all things considered. Personally, I’d like to see them change up the mix for a few generations.</i>” A dangerous twinkle alights in the corner of her eye. “<i>Imagine this place if all the guys were soft, demure faux cows and the girls were all authoritative bitches like me.</i>” She winks. “<i>Of course they’d still be hung. A girl’s gotta have something decent to ride.</i>”");
-output("\n\nThat{ sounds pretty fun and stuff! Its hard to wrap your brain around the idea being in charge, but having lots of dick on call sounds great./’s a little extreme.} “<i>Really?</i>”");
-output("\n\nZephyr nods. “<i>Oh yeah. Sure, I’d rather not have the government messing with us at all, but everybody else around here is too damned taken with it to put a stop to its use. So I figure, why not try and strike a blow for equality. The world needs more strong women, and I don’t just mean physically.</i>” She pauses, considering. “<i>Of course, a little muscle doesn’t hurt either. Hell, my muscles got me closer to the top than anything else.</i>”");
-output("\n\nCurious now, you ask, “<i>{Like, w/W}hat’s that mean?</i>”");
-output("\n\nZephyr leans back and glances at her work. “<i>It’s a story for another time. Why don’t you make yourself scarce so I can get something done.</i>” She mutters, “<i>If I have to work this job, I might as well do it right.</i>”");
-output("\n\nYou nod.");
-output("\n\n“<i>Are you still here? Get out.</i>”");
-output("\n\nHer Job?");
-output("\n\n//How’d she wind up as a secretary? Explain Big T’s bet, etc.");
-output("\n\n“<i>So how’d you get your job? Doesn’t seem like you care for it,</i>” you ask.");
-output("\n\nZephyr slams her fist into the table. “<i>That fucker!</i>”");
-output("\n\n“<i>What?</i>” You step back, confused.");
-output("\n\n“<i>Big T!</i>” Zephyr growls. “<i>That fucker cheated me.</i>” She stands up out of her chair and paces back and forth. “<i>Okay, he didn’t exactly cheat me, but it’s his fault I’m stuck here. I’ve known that big dolt for years. We were actually drinking buddies at the time.</i>”");
-output("\n\nShe was drinking buddies with the governor? “<i>How’d you pull that off?</i>”");
-output("\n\nZephyr laughs at that, her smile warm and genuine for once. “<i>Its pretty easy when your families are already close and you’re the only one that can match him drink for drink. Besides, I’m the only girl around that he can carry on a conversation with. The others wind up sucking his dick mid-sentence, and Gianna’s a little naive to discuss politics with.</i>”");
-output("\n\n//Not met Gianna");
-output("\n\n“<i>Who’s Gianna?</i>” you ask.\n\n“<i>Some sexbot tramp he’s adopted. It doesn’t matter.</i>”");
-output("\n\n//Met her");
-output("\n\n“<i>I guess so,</i>” you agree.\n\n“<i>She doesn’t really matter.</i>”");
-output("\n\n//No new paragraph, space first");
-output("\n\nZephyr’s pacing quickens. “<i>Like I was saying.</i>” She tosses you a glare as if she blamed you for side-tracking her. “<i>So we’re drinking buddies, and I’m trying to explain to the idiot why the Treatment is fucking terrible for us. He’s not having it of course, something about super-varmints or some shit. Moron</i>” She punches her table again. “<i>Anyway, I tell him I could run this place a thousand times better than him. We were both pretty toasty, and a little competition is healthy, right?</i>”");
-output("\n\nYou give her a little nod, curious how the story will end.");
-output("\n\n“<i>He laughs and tells me I should learn a little respect. Tells me its easy to be high and mighty when you’ve got a big family farm and a body that makes the work easy. Says I’d learn more from sitting behind a desk and working out my brain for a change.</i>” Zephyr throws her hands up. “<i>Can you believe that? I don’t think he’s worked a muscle above his crotch in years.</i>”");
-output("\n\nA booming voice echoes from behind the office doors. “<i>I heard that!</i>” More quietly, it suggests, “<i>Suck a little deeper, honey.</i>”");
-output("\n\n“<i>Buy some fucking insulation then! If I’ve gotta hear one of your hussies screaming while I file paperwork, you can hear this!</i>” Zephyr rounds on you. “<i>So he’s a big dumb idiot, right?</i>”");
-output("\n\n“<i>Uh... right?</i>”");
-output("\n\nZephyr repeats, louder, “<i>Definitely a big idiot.</i>”");
-output("\n\nAn answering groan comes from the other side of the wall. You don’t think the governor is listening any more.");
-output("\n\n“<i>Whatever.</i>” The amazon’s face turns proud. “<i>So if there’s one thing you can count on getting a big idiot to respond to, it’s a physical challenge.</i>” She flexes and impressively corded bicep. “<i>I challenged him to an arm wrestling contest. Told him I was smarter and stronger. Said that if I won, I’d get to be the governor for a week. I figured a week of good governance would have me voted into office the next term.</i>”");
-output("\n\nYou tilt your head. “<i>Did it work?</i>”");
-output("\n\n“<i>Not at first. He tried to laugh it off until I suggested that he was just afraid of losing to a girl.</i>” Zephyr slaps her knee. “<i>I might of said it loud enough for every bull in the place to hear.</i>”");
-output("\n\nYou wince.");
-output("\n\nThe suit-wearing cow just grins all the wider. “<i>Yeah, he couldn’t turn me down then. He accepted of course, but his terms fucked me over.</i>”");
-output("\n\n“<i>What were they?</i>” Just how could the wagers screw her?");
-output("\n\nZephyr sweeps her arm over his desk. “<i>He said that he’d accept if I’d be his secretary for a year. Can you believe it? That’s hardly a fair deal, but I had no bargaining position.</i>” She crosses her arms over her bust once more. “<i>I did make him promise that the job would be a galactic standard secretarial position - no mandatory oral or sexual relief.</i>”");
-output("\n\n“<i>Oh.</i>” There’s nothing else you can really say about that, besides... “<i>That sucks.</i>”");
-output("\n\n“<i>Yeah.</i>” Zephyr flops back down into her chair, defeated. “<i>I almost had him, too, but then he pulled the girl off his dick and focused. I didn’t even know she was there until then!</i>” She pouts, an expression that looks incongruous on her normally self-assured features. “<i>They don’t call him Big T. for nothing. I tried again last year, same terms, and lost again, but next time, I’m gonna get him for sure.</i>” She gestures at a huge pair of weights next to her desk. “<i>I’m practicing.</i>”");
-output("\n\n//Not met Ellie");
-output("\n\nThe door on the north side of the room clicks open, revealing a gray-skinned face attached to giant boobs and three pairs of legs. Zephyr’s are bigger, but the six-legged bimbo leaving Big T’s office is showing more, and besides, hers are shining, wet with something. The newcomer dabs at a white dribble on her cheeks and cheerly waves at the both of you. “<i>Hey Zephie! Hey stranger! See you in a few hours!</i>”");
-output("\n\n“<i>Fuck off, bimbo!</i>”");
-output("\n\nThe scent of sex fills the air as the woman passes by, blowing you and Zephyr a set of matching kisses. “<i>I love you too!</i>”");
-output("\n\nZephyr sighs, then looks back up at you. “<i>Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy.</i>”");
-output("\n\n//Met Ellie");
-output("\n\nThe door on the north side of the room clicks open, revealing Ellie’s smiling face and gleaming, sperm-slathered boobs. Her bra is wet with more than milk at the moment, and she’s dabbing at a trickle of sperm on the corner of her mouth. She beams at you both. “<i>Ohhh, Zephie’s got a [pc.boy]-friend! How cute!</i>” She points accusingly at Zephyr. “<i>Don’t scare this one off, okay!</i>”");
-output("\n\n“<i>Fuck off, bimbo!</i>”");
-output("\n\nEllie prances by, her tail waving happily, leaving a cloud of sex-scented musk in her wake. “<i>Kay, I love you both! Later!</i>” The door slams closed behind her.");
-output("\n\nZephyr sighs, then looks back up at you. “<i>Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy, and I do </i>not<i> want to make her right.</i>”");
-output("\n\n//+10 lust");
-*/
+//Talk
+function talkToZephyr():void
+{
+	clearOutput();
+	showZephyrDeets();
+	output("“<i>I have some questions,</i>” you say.");
+	output("\n\nZephyr rolls her eyes. “<i>You have questions because you’re too lazy to do the research yourself, but Big T probably expects me to answer them all the same....</i>” She leans her cheek into a balled fist. “<i>So go ahead and ask your stupid questions.</i>”");
+	clearMenu();
+	addButton(1,"Her Job",zephyrsShittasticJobstory,undefined,"Her Job?","Ask Zephyr how she wound up as a secretary, a position she seems... ill-suited for.");
+	addButton(0,"Treatment?",talkToZephyrAbootZeTreatmentEh,undefined,"Treatment?","Ask her about ")
+	addButton(14,"Back",approachZephyr);
+}
+
+//Treatment?
+function talkToZephyrAbootZeTreatmentEh():void
+{
+	clearOutput();
+	showZephyrDeets();
+	//What’s she think of it, what’d it do to her, she has a cock, etc
+	output("“<i>So what do you think of the Treatment? Did it make you like this?</i>” You gesture at all of her.");
+	output("\n\nZephyr rolls her eyes. “<i>I think the Treatment is a crock of shit a bunch of old, bothersome bulls cooked up to get their dicks licked by stupid, brainless bimbos.</i>” She smirks. “<i>I assume by ‘like this’, you’re talking about how stacked I am, and not just in the tit department.</i>”");
+	output("\n\nYou nod. “<i>You guessed it.</i>”");
+	output("\n\n“<i>It did. I was a little slip of the girl before I had my state-mandated Treatment.</i>” She scowls. “<i>Government shouldn’t be interfering in our lives like that at all if you ask me. Anyway, imagine the surprise when I damn near doubled in height over the next week. I damn near emptied a grain silo by myself, and the family apple tree got picked clean. The muscles and tits grew in a while later, once I stopped burning every calorie growing like a weed.</i>”");
+	output("\n\nYou scratch your chin in, imagining it.");
+	output("\n\nZephyr chuckles. “<i>Turns out I got a rare side effect of the treatment. You don’t usually get all big, muscular, and confident unless your a guy, or at least packing a dick when you take it. Something went wrong in my dose though, or maybe my hormones were already imbalanced, I don’t know.</i>” She leans in close, wrapping an arm under her enormous bust. Her cleavage threatens to pop out the top of her button-down shirt. “<i>Still got the tits and the milk too, so it wasn’t a total wash.</i>”");
+	output("\n\nDid she ever. You don’t think you’ve seen anyone else here with boobs like hers");
+	if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] != undefined && chars["GIANNA"].biggestTitSize() >= 30) output(", except maybe Gianna, and that’s due to your own meddling");
+	output(".");
+
+	output("\n\n“<i>I got a knockout body that can actually knock someone out, unlike those milky fluffballs we call women.</i>” She grins fondly. “<i>Only problem was I wanted to be in charge of the sex, and the guys around here... most of ‘em don’t wanna be on the bottom. Besides, the bulls made fucking their cows silly look so fun. How could I not give it a try?</i>”");
+	output("\n\nShe leans still closer, reaching down towards her skirt. “<i>So I did the only thing a self-respecting proponent of equality would do. I imported a gene mod that would put me on par with the boys.</i>” She lifts the fabric, revealing six inches of bright red, semi-hard cock. “<i>Got myself a nice dog-cock. The knotted ones always looked like more fun.</i>” It twitches, but she drops the crotch curtain down before it can get any bigger. “<i>Its pretty awesome, but tough to deal with when you’re packing a chemically-altered libido. Fucking Treatment can be a real pain.</i>”");
+	output("\n\n“<i>So yeah, I don’t like it on principle, but I’m pretty happy with how I came out, all things considered. Personally, I’d like to see them change up the mix for a few generations.</i>” A dangerous twinkle alights in the corner of her eye. “<i>Imagine this place if all the guys were soft, demure faux cows and the girls were all authoritative bitches like me.</i>” She winks. “<i>Of course they’d still be hung. A girl’s gotta have something decent to ride.</i>”");
+	output("\n\nThat");
+	if(pc.isBimbo()) output(" sounds pretty fun and stuff! Its hard to wrap your brain around the idea being in charge, but having lots of dick on call sounds great.");
+	else output("’s a little extreme.");
+	output(" “<i>Really?</i>”");
+	output("\n\nZephyr nods. “<i>Oh yeah. Sure, I’d rather not have the government messing with us at all, but everybody else around here is too damned taken with it to put a stop to its use. So I figure, why not try and strike a blow for equality. The world needs more strong women, and I don’t just mean physically.</i>” She pauses, considering. “<i>Of course, a little muscle doesn’t hurt either. Hell, my muscles got me closer to the top than anything else.</i>”");
+	output("\n\nCurious now, you ask, “<i>");
+	if(pc.isBimbo()) output("Like, w");
+	else output("W");
+	output("hat’s that mean?</i>”");
+	output("\n\nZephyr leans back and glances at her work. “<i>It’s a story for another time. Why don’t you make yourself scarce so I can get something done.</i>” She mutters, “<i>If I have to work this job, I might as well do it right.</i>”");
+	output("\n\nYou nod.");
+	output("\n\n“<i>Are you still here? Get out.</i>”");
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+} 
+
+//Her Job?
+function zephyrsShittasticJobstory():void
+{
+	clearOutput();
+	showZephyrDeets();
+	//How’d she wind up as a secretary? Explain Big T’s bet, etc.
+	output("“<i>So how’d you get your job? Doesn’t seem like you care for it,</i>” you ask.");
+	output("\n\nZephyr slams her fist into the table. “<i>That fucker!</i>”");
+	output("\n\n“<i>What?</i>” You step back, confused.");
+	output("\n\n“<i>Big T!</i>” Zephyr growls. “<i>That fucker cheated me.</i>” She stands up out of her chair and paces back and forth. “<i>Okay, he didn’t exactly cheat me, but it’s his fault I’m stuck here. I’ve known that big dolt for years. We were actually drinking buddies at the time.</i>”");
+	output("\n\nShe was drinking buddies with the governor? “<i>How’d you pull that off?</i>”");
+	output("\n\nZephyr laughs at that, her smile warm and genuine for once. “<i>Its pretty easy when your families are already close and you’re the only one that can match him drink for drink. Besides, I’m the only girl around that he can carry on a conversation with. The others wind up sucking his dick mid-sentence, and Gianna’s a little naive to discuss politics with.</i>”");
+	//Not met Gianna
+	if(flags["MET_GIANNA"] == undefined) output("\n\n“<i>Who’s Gianna?</i>” you ask.\n\n“<i>Some sexbot tramp he’s adopted. It doesn’t matter.</i>”");
+	//Met her
+	else output("\n\n“<i>I guess so,</i>” you agree.\n\n“<i>She doesn’t really matter.</i>”");
+	//No new paragraph, space first
+	output("\n\n Zephyr’s pacing quickens. “<i>Like I was saying.</i>” She tosses you a glare as if she blamed you for side-tracking her. “<i>So we’re drinking buddies, and I’m trying to explain to the idiot why the Treatment is fucking terrible for us. He’s not having it of course, something about super-varmints or some shit. Moron</i>” She punches her table again. “<i>Anyway, I tell him I could run this place a thousand times better than him. We were both pretty toasty, and a little competition is healthy, right?</i>”");
+	output("\n\nYou give her a little nod, curious how the story will end.");
+	output("\n\n“<i>He laughs and tells me I should learn a little respect. Tells me its easy to be high and mighty when you’ve got a big family farm and a body that makes the work easy. Says I’d learn more from sitting behind a desk and working out my brain for a change.</i>” Zephyr throws her hands up. “<i>Can you believe that? I don’t think he’s worked a muscle above his crotch in years.</i>”");
+	output("\n\nA booming voice echoes from behind the office doors. “<i>I heard that!</i>” More quietly, it suggests, “<i>Suck a little deeper, honey.</i>”");
+	output("\n\n“<i>Buy some fucking insulation then! If I’ve gotta hear one of your hussies screaming while I file paperwork, you can hear this!</i>” Zephyr rounds on you. “<i>So he’s a big dumb idiot, right?</i>”");
+	output("\n\n“<i>Uh... right?</i>”");
+	output("\n\nZephyr repeats, louder, “<i>Definitely a big idiot.</i>”");
+	output("\n\nAn answering groan comes from the other side of the wall. You don’t think the governor is listening any more.");
+	output("\n\n“<i>Whatever.</i>” The amazon’s face turns proud. “<i>So if there’s one thing you can count on getting a big idiot to respond to, it’s a physical challenge.</i>” She flexes and impressively corded bicep. “<i>I challenged him to an arm wrestling contest. Told him I was smarter and stronger. Said that if I won, I’d get to be the governor for a week. I figured a week of good governance would have me voted into office the next term.</i>”");
+	output("\n\nYou tilt your head. “<i>Did it work?</i>”");
+	output("\n\n“<i>Not at first. He tried to laugh it off until I suggested that he was just afraid of losing to a girl.</i>” Zephyr slaps her knee. “<i>I might of said it loud enough for every bull in the place to hear.</i>”");
+	output("\n\nYou wince.");
+	output("\n\nThe suit-wearing cow just grins all the wider. “<i>Yeah, he couldn’t turn me down then. He accepted of course, but his terms fucked me over.</i>”");
+	output("\n\n“<i>What were they?</i>” Just how could the wagers screw her?");
+	output("\n\nZephyr sweeps her arm over his desk. “<i>He said that he’d accept if I’d be his secretary for a year. Can you believe it? That’s hardly a fair deal, but I had no bargaining position.</i>” She crosses her arms over her bust once more. “<i>I did make him promise that the job would be a galactic standard secretarial position - no mandatory oral or sexual relief.</i>”");
+	output("\n\n“<i>Oh.</i>” There’s nothing else you can really say about that, besides... “<i>That sucks.</i>”");
+	output("\n\n“<i>Yeah.</i>” Zephyr flops back down into her chair, defeated. “<i>I almost had him, too, but then he pulled the girl off his dick and focused. I didn’t even know she was there until then!</i>” She pouts, an expression that looks incongruous on her normally self-assured features. “<i>They don’t call him Big T. for nothing. I tried again last year, same terms, and lost again, but next time, I’m gonna get him for sure.</i>” She gestures at a huge pair of weights next to her desk. “<i>I’m practicing.</i>”");
+	//Not met Ellie
+	if(flags["MET_ELLIE"] == undefined)
+	{
+		output("\n\nThe door on the north side of the room clicks open, revealing a gray-skinned face attached to giant boobs and three pairs of legs. Zephyr’s are bigger, but the six-legged bimbo leaving Big T’s office is showing more, and besides, hers are shining, wet with something. The newcomer dabs at a white dribble on her cheeks and cheerly waves at the both of you. “<i>Hey Zephie! Hey stranger! See you in a few hours!</i>”");
+		output("\n\n“<i>Fuck off, bimbo!</i>”");
+		output("\n\nThe scent of sex fills the air as the woman passes by, blowing you and Zephyr a set of matching kisses. “<i>I love you too!</i>”");
+		output("\n\nZephyr sighs, then looks back up at you. “<i>Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy.</i>”");
+	}
+	//Met Ellie
+	else
+	{
+		output("\n\nThe door on the north side of the room clicks open, revealing Ellie’s smiling face and gleaming, sperm-slathered boobs. Her bra is wet with more than milk at the moment, and she’s dabbing at a trickle of sperm on the corner of her mouth. She beams at you both. “<i>Ohhh, Zephie’s got a [pc.boy]-friend! How cute!</i>” She points accusingly at Zephyr. “<i>Don’t scare this one off, okay!</i>”");
+		output("\n\n“<i>Fuck off, bimbo!</i>”");
+		output("\n\nEllie prances by, her tail waving happily, leaving a cloud of sex-scented musk in her wake. “<i>Kay, I love you both! Later!</i>” The door slams closed behind her.");
+		output("\n\nZephyr sighs, then looks back up at you. “<i>Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy, and I do </i>not<i> want to make her right.</i>”");
+	}
+	//+10 lust
+	pc.lust(11);
+	processTime(9);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

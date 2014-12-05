@@ -3484,8 +3484,8 @@ function initializeRooms():void
 	//Big T.'s Office Description
 	rooms["530"] = new RoomClass(this);
 	rooms["530"].roomName = "BIG T'S\nOFFICE";
-	rooms["530"].description = "The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat's study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair. The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world's affairs all from his desk.";
-	rooms["530"].runOnEnter = undefined;
+	rooms["530"].description = "";
+	rooms["530"].runOnEnter = bigTOfficeBonusBullshit;
 	rooms["530"].southExit = "529";
 	rooms["530"].planet = "PLANET: NEW TEXAS";
 	rooms["530"].system = "SYSTEM: NYE";

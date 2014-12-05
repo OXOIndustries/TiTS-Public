@@ -5692,7 +5692,6 @@
 				if (weighting <= 49) return male;
 				else return female;
 			}
-
 		}
 		public function mf(male: String, female: String): String {
 			return mfn(male, female, "");
@@ -7402,9 +7401,10 @@
 				}
 			}
 			else {
-				if(type == GLOBAL.TYPE_HUMAN)
+				if (!simple)
 				{
-					if (!simple) {
+					if(type == GLOBAL.TYPE_HUMAN)
+					{
 						temp = this.rand(5);
 						if (temp <= 1) vag += "human ";
 						else vag += "terran ";
