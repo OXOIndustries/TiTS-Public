@@ -139,6 +139,8 @@
 
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
+		include "../includes/myrellion.embassy.as";
+		include "../includes/myrellion.tavern.as";
 
 		include "../includes/vanae.as";
 		include "../includes/anno.follower.as";		

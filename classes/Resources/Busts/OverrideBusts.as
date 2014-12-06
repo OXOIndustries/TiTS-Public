@@ -16,6 +16,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/juro.png", mimeType = "image/png")]
+		public var Bust_JURO:Class;
+
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
