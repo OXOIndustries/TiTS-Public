@@ -82,6 +82,7 @@
 		include "../includes/burt.as";
 		include "../includes/appearance.as";
 		include "../includes/rooms.as";
+
 		include "../includes/roomFunctions.as";
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
@@ -135,6 +136,10 @@
 		include "../includes/texasNew.yammi.as";
 		include "../includes/texasNew.yancy.as";
 		include "../includes/texasNew.zephyr.as";
+
+		include "../includes/myrellion.rooms.as";
+		include "../includes/myrellion.roomFunctions.as";
+
 		include "../includes/vanae.as";
 		include "../includes/anno.follower.as";		
 		
@@ -263,6 +268,7 @@
 
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
+			initializeMyrellionRooms();
 			
 			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)

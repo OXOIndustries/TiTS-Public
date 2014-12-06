@@ -330,13 +330,20 @@ function flyMenu():void {
 		else addDisabledButton(2,"Tarkus");
 	}
 	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
+	//MYRELLION
+	if(flags["PLANET_3_UNLOCKED"] != undefined)
+	{
+		if(shipLocation != "600") addButton(3,"Myrellion",flyTo,"Myrellion");
+		else addDisabledButton(3,"Myrellion","Myrellion","You're already here.");
+	}
+	else addDisabledButton(3,"Locked","Locked","You need to find one of your father's probes to access this planet's coordinates and name.");
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
-		if(shipLocation != "500") addButton(3,"New Texas",flyTo,"New Texas");
-		else addDisabledButton(3,"New Texas","New Texas","You're already there.");
+		if(shipLocation != "500") addButton(5,"New Texas",flyTo,"New Texas");
+		else addDisabledButton(5,"New Texas","New Texas","You're already there.");
 	}
-	else addDisabledButton(3,"Locked","Locked","You have not yet learned of this planet's coordinates.");
+	else addDisabledButton(5,"Locked","Locked","You have not yet learned of this planet's coordinates.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -373,7 +380,8 @@ function flyTo(arg:String):void {
 	else if(arg == "Tarkus")
 	{
 		shipLocation = "201";
-		output("You slow your ship down as you near the orbit of your next destination, Loora. As you scale down from near a third the speed of light, the planet begins to come into focus ahead: surrounded by a dense field of asteroids looms the two sundered halves of the goblin world. What should be a lifeless system, however, teems with activity: your sensors go wild as you approach the riven planet, alerting you to massive electrical activity below. The planet - or perhaps more accurately, planets - are two halves of different wholes, unsubtly chained together with a massive space tether whose every link must be the size of a dreadnought. Good god, it must have taken the resources of an entire race to erect such a technological marvel: no wonder the new pioneers have been so interested in the planet.");
+		currentLocation = "201";
+		output("You slow your ship down as you near the orbit of your next destination, Tarkus. As you scale down from near a third the speed of light, the planet begins to come into focus ahead: surrounded by a dense field of asteroids looms the two sundered halves of the goblin world. What should be a lifeless system, however, teems with activity: your sensors go wild as you approach the riven planet, alerting you to massive electrical activity below. The planet - or perhaps more accurately, planets - are two halves of different wholes, unsubtly chained together with a massive space tether whose every link must be the size of a dreadnought. Good god, it must have taken the resources of an entire race to erect such a technological marvel: no wonder the new pioneers have been so interested in the planet.");
 		output("\n\nSlow and steady, you guide your vessel through the asteroid field around the planet. Now that you're closer, though, those asteroids look more like debris than rock: hulls of space ships and ruined clumps of satellites mashed together over centuries of disuse now litter the upper atmosphere of Tarkus, making your approach difficult. More than once, a mass of space debris bounces off your shields, sending shudders through the hull. Finally, though, you break through, heat shields going up as you make the dive planetside.");
 		output("\n\nYour nav beacon guides you in most of the way, directing you towards what looks like a derelict capital ship in the middle of a great red wasteland, littered with debris from all manner of machines and vessels. This whole planet is little more than a junkyard, a once-ripe world ravished by the march of a civilization that has left little more than its garbage in its wake. You shudder at the sight of the ruined landscape as you're guided in toward an open docking bay on the side of the ancient-looking, monolithic ship, flying past a glowing hull plate reading NOVA. It looks vaguely like a human vessel, but not of a make or model you've ever seen, and it looks centuries old, a derelict of ancient days. How'd it get all the way out here? Benching the question for now, you loop around the broadside of the capsized capital ship, easing into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
 	}
@@ -381,6 +389,12 @@ function flyTo(arg:String):void {
 		shipLocation = "500";
 		currentLocation = "500";
 		landOnNewTexas();
+	}
+	else if(arg == "Myrellion")
+	{
+		shipLocation = "600";
+		currentLocation = "600";
+		flyToMyrellion();
 	}
 	processTime(600 + rand(30));
 	this.clearMenu();
