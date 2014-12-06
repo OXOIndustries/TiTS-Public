@@ -92,7 +92,7 @@
 		include "../includes/julianSHaswell.as";
 		include "../includes/sellesy.as";
 		include "../includes/alex.as";
-		include "../includes/naleen_male.as";
+		include "../includes/naleenMale.as";
 		include "../includes/crazyCarl.as";
 		include "../includes/jade.as";
 		include "../includes/reaha.as";
@@ -123,21 +123,21 @@
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/stellarTether.as";
 		include "../includes/saendra.as";
-		include "../includes/texas_new.as";
-		include "../includes/texas_varmint_wrangling.as";
-		include "../includes/texas_new_gobbles.as";
+		include "../includes/texasNew.as";
+		include "../includes/texasNew.bigT.as";
+		include "../includes/texasNew.brynn.as";
+		include "../includes/texasNew.ellie.as";
+		include "../includes/texasNew.gianna.as";
+		include "../includes/texasNew.gobbles.as";
+		include "../includes/texasNew.millie.as";
+		include "../includes/texasNew.treatment.as";
+		include "../includes/texasNew.varmint_wrangling.as";
+		include "../includes/texasNew.yammi.as";
+		include "../includes/texasNew.yancy.as";
+		include "../includes/texasNew.zephyr.as";
 		include "../includes/vanae.as";
-		include "../includes/anno.follower.as";
-		include "../includes/ellie.as";
-		include "../includes/yammi.as";
-		include "../includes/gianna.as";
-		include "../includes/treatment.as";
-		include "../includes/brynn.as";
-		include "../includes/millie.as";
-		include "../includes/yancy.as";
-		include "../includes/zephyr.as";
-		include "../includes/bigT.as";
-
+		include "../includes/anno.follower.as";		
+		
 		include "../includes/lightsOut.as";
 			
 		public var chars:Object;
