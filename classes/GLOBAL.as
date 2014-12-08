@@ -226,6 +226,7 @@
 			TYPE_ARACHNID,
 			TYPE_FELINE,
 			TYPE_SNAKE,
+			TYPE_SYNTHETIC,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
