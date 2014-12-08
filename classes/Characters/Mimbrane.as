@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.GameData.CodexManager;
 	
 	/**
 	 * ...
@@ -176,7 +177,7 @@ package classes.Characters
 			kGAMECLASS.setLocation("FIGHT:\nMIMBRANE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			
 			combatMimbrane.tallness = 6 + rand(31);
-			
+			CodexManager.unlockEntry("Mimbrane");
 			kGAMECLASS.foes.push(combatMimbrane);
 		}
 	}

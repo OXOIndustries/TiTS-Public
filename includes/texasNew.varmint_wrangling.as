@@ -58,7 +58,11 @@ function approachFarmer():void
 
 		output("\n\nHe huffs at the question. <i>\"I wish! This here used to be my daddy's job, and he tasked me to clear the little bastards out, but... agh, look at me! Damn Treatment backfired on me! Was supposed to turn me into a big, buff hunk who could wrestle these varmints like that Steph Irson chick tackled that naleen on the TV! But noooo, I can't even use the damn gun my dad gave me. Kicks so hard I damn near broke my nose, and you know what the little blue critter did? Just made this hissy little laughing noise and shat right on my boot while I bled everywhere.\"</i>");
 		output("\n\nThat's unfortunate. Maybe you could help the little feller out?");
-
+		if(!CodexManager.entryUnlocked("Varmints")) 
+		{
+			output(" <b>New Codex entry unlocked: Varmints.</b>");
+			CodexManager.unlockEntry("Varmints");
+		}
 		//[Help] [Nah]
 		processTime(3);
 		clearMenu();
@@ -301,8 +305,14 @@ function varmintProc():void
 	author("Savin");
 	showName("FIGHT:\nVARMINT");
 	showBust("VARMINT");
+	
 	output("\n\nAs you make your way through the field, you spot something... digging? Yeah, digging into the earth, trying to root up some of the crop. You pull the light lasso off your belt and step towards the strange, blue shape in the dirt.");
 	output("\n\nSure enough, as you approach, the creature pokes its head up, revealing a jaw of razor-sharp teeth and large, thin spikes poking up from its flat head. The varmint growls at you and lunges!");
+	if(!CodexManager.entryUnlocked("Varmints")) 
+	{
+		output(" <b>New Codex entry unlocked: Varmints.</b>");
+		CodexManager.unlockEntry("Varmints");
+	}
 	clearMenu();
 	addButton(0,"Next",startCombat,"varmint");
 }
