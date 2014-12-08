@@ -8,7 +8,17 @@ function goldenPeakBonusFunction():Boolean
 	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it'd feel like home!");
 	output(" A holoscreen is set up just over the bar, showing reruns of Steph Irson: Galactic Huntress.");
 	addButton(1,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
+	if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
+	else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
 	return false;
+}
+
+function showCandice():void
+{
+	author("Savin");
+	if(flags["MET_CANDICE"] == undefined) showName("\nBARTENDER");
+	else showName("\nCANDICE");
+	showBust("CANDICE");		
 }
 
 //[Bartender]
@@ -18,30 +28,222 @@ function approachTheBartenderAtTheBar():void
 	clearOutput();
 	author("Savin");
 	output("You take a seat at the bar and flag the perky half-ausar girl working behind it down. She comes over to you a moment later, flicking a rag over her shoulder and planting her hands on her jean-short clad hips. “<i>Hey, hun. What can I getcha?</i>”");
-	
-	//9999 Bar menu
-	/*
-	[Chitin Cracker]
-	//A local favorite, the chitin cracker is made with a local strain of fungus that grows freely in the deeper caves on Myrellion. It tastes foul to anybody but a myr and it packs enough wallop to crack a nyrea's chitin, but it'll get you drunk for next to nothing.
 
-	[Queen's Honey]
-	//The Myrellion equivalent of an expensive bottle of wine, Queen's Honey is made from exactly what you might expect: the breast honey of a Gold Myr queen. The liquor made from it is as sweet as candy, expensive as hell, and as rich in taste as you need to be in cash to buy it. A favorite among the upper echelon of the Gold Myr, every bottle is unique and signed by the queen whose nectar produced it. 
-
-	[Ausar Chaser]
-	//Bartender's favorite! An energy drink mixed with vodka, the ausar chaser will get you revved up and ready for action - or drunk enough to go chasing your tail after a couple shots. {A few MORE shots and you might not remember you don't have a tail at all!}
-
-	[Nyrean Knot]
-	//Guaranteed to keep you in your place for a few hours: drop dead drunk on the bar's floor. Powerful, kicks like a mule, and stings like barbs going down. Only recommended for creatures with high alcohol tolerance or nothing to do tomorrow. 
-
-	[Miniature Rahn]
-	//A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink. Though {the bartender / Candice} might have gone down on one beforehand to make it!
-
-	[Fire Pepper]
-	//A red myr staple, this red drink has little flecks of a local pepper floating in it. This drink bites like a red myr warrioress, and may or may not be laced with some of their aphrodisiac venom to boot. So yes, it literally bites - and you'll no doubt want to find a nice, warm, red-chitined beauty to snuggle up with afterwards. 
-
-	[Your Number] replace on repeat with: [Quickie]*/
-	//Tooltip: This bartender's cute as hell. Maybe you could hook up after her shift...?
+	//Bar menu
+	clearMenu();
+	if(pc.credits >= 10) addButton(0,"Chitin Cr.",buyADrinkFromCandice,"Chitin Cracker","Chitin Cracker","A local favorite, the chitin cracker is made with a local strain of fungus that grows freely in the deeper caves on Myrellion. It tastes foul to anybody but a myr and it packs enough wallop to crack a nyrea's chitin, but it'll get you drunk for next to nothing.\n\n10 Credits");
+	else addDisabledButton(0,"Chitin Cr.","Chitin Cracker","You can't afford this drink.");
+	if(pc.credits >= 15)
+	{
+		if(pc.tailCount > 0) addButton(1,"Ausar Chaser",buyADrinkFromCandice,"Ausar Chaser","Ausar Chaser","Bartender's favorite! An energy drink mixed with vodka, the ausar chaser will get you revved up and ready for action - or drunk enough to go chasing your tail after a couple shots. A few MORE shots and you might not remember you don't have a tail at all!\n\n15 Credits");
+		else addButton(1,"Ausar Chaser",buyADrinkFromCandice,"Ausar Chaser","Ausar Chaser","Bartender's favorite! An energy drink mixed with vodka, the ausar chaser will get you revved up and ready for action - or drunk enough to go chasing your tail after a couple shots.\n\n15 Credits");
+	}
+	else addDisabledButton(1,"Ausar Chaser","Ausar Chaser","You can't afford this drink.");
+	if(pc.credits >= 25) addButton(2,"Mini Rahn",buyADrinkFromCandice,"Miniature Rahn","Miniature Rahn","A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink. Though the bartender might have gone down on one beforehand to make it!\n\n25 Credits");
+	else addDisabledButton(2,"Mini Rahn","Miniature Rahn","You can't afford this drink.");
+	if(pc.credits >= 34) addButton(3,"Nyrean Knot",buyADrinkFromCandice,"Nyrean Knot","Nyrean Knot","Guaranteed to keep you in your place for a few hours: drop dead drunk on the bar's floor. Powerful, kicks like a mule, and stings like barbs going down. Only recommended for creatures with high alcohol tolerance or nothing to do tomorrow.\n\n34 Credits");
+	else addDisabledButton(3,"Nyrean Knot","Nyrean Knot","You can't afford this drink.");
+	if(pc.credits >= 100) addButton(4,"Queen'sHoney",buyADrinkFromCandice,"Queen's Honey","Queen's Honey","The Myrellion equivalent of an expensive bottle of wine, Queen's Honey is made from exactly what you might expect: the breast honey of a Gold Myr queen. The liquor made from it is as sweet as candy, expensive as hell, and as rich in taste as you need to be in cash to buy it. A favorite among the upper echelon of the Gold Myr, every bottle is unique and signed by the queen whose nectar produced it.\n\n100 Credits");
+	else addDisabledButton(4,"Queen'sHoney","Queen's Honey","You can't afford this drink.");
+	if(pc.credits >= 120) addButton(5,"Fire Pepper",buyADrinkFromCandice,"Fire Pepper","Fire Pepper","A red myr staple, this red drink has little flecks of a local pepper floating in it. This drink bites like a red myr warrioress, and may or may not be laced with some of their aphrodisiac venom to boot. So yes, it literally bites - and you'll no doubt want to find a nice, warm, red-chitined beauty to snuggle up with afterwards.\n\n120 Credits");
+	else addDisabledButton(5,"Fire Pepper","Fire Pepper","You can't afford this drink.");
+	//[Your Number] replace on repeat with: [Quickie]*/
+	addButton(9,"Your Number",bartenderFlirt,undefined,"Your Number","This bartender's cute as hell. Maybe you could hook up after her shift...?");
+	addButton(14,"Leave",mainGameMenu);
 }
+
+//Actually Buying a Drink
+function buyADrinkFromCandice(drink:String):void
+{
+	clearOutput();
+	showCandice();
+	output("You give ");
+	if(flags["MET_CANDICE"] != undefined) output("Candice");
+	else output("the bartender");
+	output(" your order.");
+
+	output("\n\n“<i>Sure thing!</i>” she says, skipping off to fetch your drink, returning a moment later with your order. She slides a " + drink + " to you, and you spend the next few minutes ");
+	if(drink != "9999") output("nursing your drink, slowly sipping it down");
+	else 
+	{
+		output("kicking back your shot and recovering from the ");
+		if(drink == "9999") output("Knot");
+		else output("Pepper");
+		output("’s intense kick. Whew, that burns!");
+	}
+	output(".");
+	output("\n\nYou transfer a few credits over with your Codex to cover your tab. Once you're squared, you stand up and stagger back from the bar.");
+
+	if(drink == "Chitin Cracker")
+	{
+		pc.imbibeAlcohol(25);
+		pc.credits -= 10;
+	}
+	//[15] Ausar Chaser - 15 Booze, +5 energy if ausar or half-ausar
+	else if(drink == "Ausar Chaser")
+	{
+		pc.imbibeAlcohol(15);
+		pc.credits -= 15;
+		if(pc.race() == "ausar" || pc.race == "half-ausar") pc.energy(5);
+	}
+	//[25] Miniature Rahn - 13
+	else if(drink == "Miniature Rahn")
+	{
+		pc.credits -= 25;
+		pc.imbibeAlcohol(13);
+	}
+	//[35] Nyrean Knot - 40 booze
+	else if(drink == "Nyrean Knot")
+	{
+		pc.credits -= 35;
+		pc.imbibeAlcohol(40);
+	}
+	//[100] Queen's Honey - 7 booze, 10 energy, 
+	else if(drink == "Queen's Honey")
+	{
+		pc.credits -= 100;
+		pc.imbibeAlcohol(7);
+		pc.energy(10);
+	}
+	//[120] Fire Pepper - 33 booze, +20 lust
+	else if(drink == "Fire Pepper")
+	{
+		pc.credits -= 120;
+		pc.imbibeAlcohol(33);
+		pc.lust(20);
+	}
+	processTime(6);
+	if((pc.isSmashed() && rand(4) == 0) || pc.statusEffectv2("Alcohol") >= 100)
+	{
+		smashedEpilogueToDrinkBuyFromCandice();
+	}
+	else 
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//PC too drunk for his own good
+//Append to above.
+function smashedEpilogueToDrinkBuyFromCandice():void
+{
+	output("\n\nYour whole world goes topsy-turvey when you try to stand. You find yourself rushing for the bathroom, barely making it before you chuck. You spend the next few minutes firmly planted in the stall, puking your guts up.");
+	output("\n\nUgh. You splash some water on your face and head back out into the tavern, carefully leaning on the walls as you go.");
+	//Clear pending drinking.
+	pc.setStatusValue("Alcohol",1,0);
+	processTime(4);
+	//Super smashed
+	if(pc.statusEffectv2("Alcohol") >= 90) reallySmashedEpilogueToDrinkingWithCandice();
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//PC REALLY FUCKING DRUNK, SON
+//Append above
+function reallySmashedEpilogueToDrinkingWithCandice():void
+{
+	output("\n\nWell, you <i>try</i> to stagger back. Instead, you take one clumsy step and fall flat on your face, blacking out before you hit the deck.");
+
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",reallySmashedEpiloguetoDrinkingWithCandicePartII);
+}
+
+function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
+{
+	clearOutput();
+	author("Savin");
+	//PC's been to New Texas, either fucked Shade or has a Cunt Tail, and has Reaha on Crew
+	if(flags["NEW_TEXAN_CUSTOMS_MET"] != undefined && ((flags["SEXED_SHADE"] != undefined && pc.hasCock()) || pc.hasCuntTail()) && reahaIsCrew())
+	{
+		showBust("REAHA");
+		showName("\nREAHA");
+		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your feet as... something... hammers the door to the bathroom. You take a second to take inventory: you're on your ship, you've got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
+		output("\n\n<i>BANG</i> goes the bathroom door.");
+		output("\n\nOh, shit, what <i>is</i> that!? You stumble away from the door and grab your [pc.rangedWeapon] and level it at the door. As you’re going for your weapon, though, you notice something huge and firm in your pack that wasn’t there before. You fish it out, and find yourself blinking at... an egg?");
+
+		if(CodexManager.entryUnlocked("Cunt Snake")) output(" A cunt-snake egg, at that!");
+		if(pc.hasCuntTail()) output(" When the hell did you lay that?");
+		else if(flags["SEXED_SHADE"] != undefined && pc.hasCock()) output("Did Shade lay that? And if so, why do you have it?");
+		else output("What the <i>fuck</i>!?");
+
+		output("\n\nThe door pounds again, straining on its sliding track. You ready yourself for anything, setting the egg aside and steeling yourself. Another BANG, and the door flies open, revealing... a huge, fangy blue critter twice the size of a shepherd dog, covered in spikes and claws. It hisses at you and lunges, too fast to aim at. You just swat it, desperately punching it in the face as it comes flying. The creature squeals and tumbles back");
+		if(!CodexManager.entryUnlocked("Varmints")) output(", just in tiem for your codex to identify it as a New Texan “<i>varmint</i>” creature.");
+		else output(", giving you enough time to realize it’s a... a New Texas varmint!?");
+		output(" You rush forward and kick the varmint towards the door. It yelps and goes running, all the way to your gangplank. It’s an effort to get the creature off the ship, but with a little work, you set it loose on the tarmac... and immediately hear screams of alarm as it goes rushing off through the crowded street.");
+		output("\n\nYou take a step off the ship and wipe the sweat from your brow. How the hell did that get in your bathroom, and why? What did you get up to while you were blacked out, anyway?");
+		output("\n\nAs you're wondering, you hear a voice from overhead call out, “<i>");
+		//Normal Reaha
+		if(9999 == 9999) output("[pc.Master]! Heeeeelp!");
+		//if Treated Reaha: 
+		else if(chars["REAHA"].isTreated()) output("Hey! Up here!");
+		else output("[pc.name]! Heeeeelp!");
+		output("</i>”");
+		output("\n\nYou turn around and follow the sound up to the roof of your ship. Reaha's sitting on the roof, buck naked");
+		//Normal & Treated
+		if(9999 == 9999 || chars["REAHA"].isTreated()) output(" as usual");
+		output(", and shivering pitifully.");
+		output("\n\n“<i>C-can I come down now?</i>” she whines, “<i>It’s been hours!</i>”");
+		output("\n\nYou blink. “<i>Uh. Sure,</i>” you say, opening your arms to catch her. She comes plummeting down a moment later, and you both grunt as she flops into your waiting arms.");
+		output("\n\n“<i>What were you doing up there?</i>” you ask, setting Reaha down.");
+		output("\n\nShe stares at you a moment. “<i>Y-you don’t remember?</i>” When you shake your head, she beams. “<i>Don’t, uh, don’t worry about it, then! I was just sun bathing!</i>”");
+		output("\n\nSays the pale, ginger cow-girl. You try to get some answers out of her, but she’s dead silent on the matter. Finally, frustrated, you give her a great big spank on the ass and send her running off into the ship.");
+		output("\n\nAs she’s going, you notice a thick cake of spunk plastering her ass and thighs. What the.... You shake your head and try to forget it. You need to drink less...");
+		processTime(189);
+		if(pc.isMischievous()) output(" or more");
+		output(".");
+		currentLocation = shipLocation;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//PC's fucked Shade
+	else if(flags["SEXED_SHADE"] != undefined)
+	{
+		output("You wake up in an amazingly comfortable bed, naked and with a cold washcloth over your forehead, your cheeks still wet from being cleaned. You blink in the light, slowly coming to recognize the interior of Shade's ship.\n\nYour ");
+		if(!pc.isNude()) output("clothes");
+		else output("items");
+		output(" are neatly stacked on a chair beside the bed, and you're pretty sure you've been through a bath or shower at some point. The clock alerts you to the passage of three hours. Whew, what a ");
+		if(hours < 3 || hours > 16) output("night");
+		else output("day");
+		output(". At least Shade's not here to chastise you");
+		if(pc.isNice()) output(", even if you would like to thank her for the motherly treatment");
+		output(". You pack your gear up and head out shortly.");
+		processTime(189);
+		//PC in back alley
+		currentLocation = shipLocation;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//PC has no friends in the bar or lovers applicable
+	else
+	{
+		showName("SPACER'S\nROW");
+		output("You wake up in an alley some hours later, covered in vomit and regretting your life choices. When the hell did you become such an alcoholic? Damn.");
+		output("\n\nYou stagger up, barely restraining yourself from barfing again. You check yourself over");
+		if(pc.credits >= 5) 
+		{
+			output(", and quickly realize you’ve been looted for five credits. Bastards!");
+			pc.credits -= 5;
+		}
+		else
+		{
+			output(" and it looks like your stuff is still there. Maybe you didn't have enough credits to bother stealing.");
+		}
+		processTime(189);
+		//PC in back alley
+		currentLocation = "608";
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+}
+
+
 
 function bartenderFlirt():void
 {

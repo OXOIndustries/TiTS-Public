@@ -143,7 +143,7 @@ function initializeMyrellionRooms():void
 	rooms["609"].addFlag(GLOBAL.INDOOR);
 	rooms["609"].addFlag(GLOBAL.BAR);
 
-	//Scout Authority
+	//610 Scout Authority
 	rooms["610"] = new RoomClass(this);
 	rooms["610"].roomName = "SCOUT\nAUTHORITY";
 	rooms["610"].description = "The U.G.C. Scout base on Myr is bigger than most, but frankly spartan compared the nearly hunting-lodge feel of many you've seen in the past. Several pioneers and spacers are checking out maps, mineral scans, and species indices. A bored-looking human sits behind the desk.";
