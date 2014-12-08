@@ -259,6 +259,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["VARMINT"] = new Varmint();
 	}
+	if (!justUpdate || (justUpdate && chars["KARA"] == undefined))
+	{
+		chars["KARA"] = new Kara();
+	}
+	if (!justUpdate || (justUpdate && chars["SHADE"] == undefined))
+	{
+		chars["SHADE"] = new Shade();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

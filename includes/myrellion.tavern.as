@@ -5,8 +5,16 @@
 
 function goldenPeakBonusFunction():Boolean
 {
+
 	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it'd feel like home!");
 	output(" A holoscreen is set up just over the bar, showing reruns of Steph Irson: Galactic Huntress.");
+
+	//First time - Kara quest first time proc
+	if(flags["BEEN_TO_MYRELLION_BAR"] == undefined)
+	{
+		karaFirstTimeBarStuff();
+		return true;
+	}
 	addButton(1,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
 	if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
 	else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
@@ -26,7 +34,7 @@ function showCandice():void
 function approachTheBartenderAtTheBar():void
 {
 	clearOutput();
-	author("Savin");
+	showCandice();
 	output("You take a seat at the bar and flag the perky half-ausar girl working behind it down. She comes over to you a moment later, flicking a rag over her shoulder and planting her hands on her jean-short clad hips. “<i>Hey, hun. What can I getcha?</i>”");
 
 	//Bar menu

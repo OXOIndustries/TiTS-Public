@@ -4,7 +4,8 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Guns.ArcCaster;
-	import classes.Items.Protection.GenericCatsuit;
+	import classes.Items.Apparel.GenericCatsuit;
+	import classes.kGAMECLASS;
 	
 	public class Kara extends Creature
 	{
@@ -20,7 +21,7 @@
 			this.originalRace = "kaithrit";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Placeholder";
+			this.long = "";
 			this.customDodge = "Kara nimbly ducks aside!";
 			this.customBlock = "";
 			this.plural = false;
@@ -47,7 +48,7 @@
 			this.intelligenceRaw = 25;
 			this.willpowerRaw = 15;
 			this.libidoRaw = 70;
-			this.HPMod = 15;
+			this.HPMod = 125;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
@@ -175,33 +176,33 @@
 			this.ass.bonusCapacity = 100;
 			
 			this._isLoading = false;
-		}		
+		}	
+		override public function setDefaultSexualPreferences():void
+		{
+			//LIKES
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS, 	GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,		GLOBAL.KINDA_LIKES_SEXPREF);
+
+			//Dislikes
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,	GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS, 	GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, 		GLOBAL.REALLY_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
+		}
+		
+		override public function prepForCombat():void
+		{
+			var combatKara:Kara = this.makeCopy();
+			
+			kGAMECLASS.userInterface.showBust("KARA","SHADE");
+			kGAMECLASS.userInterface.showName("FIGHT:\nKARA");
+			combatKara.setDefaultSexualPreferences();
+			
+			kGAMECLASS.foes.push(combatKara);
+		}	
 	}
+
 }
-
-
-Kara Likes:
->Big Dicks
->Big Boobs
->Wet Pussies
->Milky Boobs
-
-Kara Dislikes:
->Tiny Dicks
->Small Boobs
->Dry Cunnies
->Masculinity
->Taurs and Nagas
-
-Shade Lights:
->Small PCs
->Femininity
->Small Dicks
->Big Boobs
->Big Butts (And she cannot lie)
-
-Shade Dislikes:
->Nagas and Taurs pls go
->Genderless
->Huge cocks
->Vaginas

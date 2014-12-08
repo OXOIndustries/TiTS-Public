@@ -414,6 +414,23 @@ function updateCombatStatuses():void {
 		genericDamageApply(Math.round(pc.HPMax() * 0.02),foes[0],pc,GLOBAL.GRAVITIC);
 		output("\n");
 	}
+	if(pc.hasStatusEffect("Burn"))
+	{
+		//2% of HP per tic.
+		output("<b>The flames slowly lick at you,");
+		if(pc.statusEffectv1("Burn") > 1) 
+		{
+			pc.addStatusValue("Burn",1,-1);
+			output(" resisting any attempt to put them out.</b>");
+		}
+		else 
+		{
+			pc.removeStatusEffect("Burn");
+			output(" refusing to go out until they've done their foul work.</b>");
+		}		
+		genericDamageApply(3+rand(4),foes[0],pc,GLOBAL.THERMAL);
+		output("\n");
+	}
 	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
 	{
 		if(rand(10) == 0) 
@@ -528,7 +545,7 @@ function updateCombatStatuses():void {
 		{
 			pc.removeStatusEffect("Sensor Link");
 			pc.aimMod -= 5;
-			output("<b>Your equipments connection to Anno's wanes as combat draws on, your improved accuracy diminishing.</b>");
+			output("<b>Your equipments connection to Anno's wanes as combat draws on, your improved accuracy diminishing.</b>\n");
 		}
 	}
 	
@@ -544,6 +561,23 @@ function updateCombatStatuses():void {
 	//ENEMY STATUSES!
 	for(var x:int = 0; x < foes.length; x++)
 	{
+		if(foes[x].hasStatusEffect("Burn"))
+		{
+			//2% of HP per tic.
+			output("<b>The flames slowly lick at " + foes[x].a + foes[x].short + ",");
+			if(foes[x].statusEffectv1("Burn") > 1) 
+			{
+				foes[x].addStatusValue("Burn",1,-1);
+				output(" resisting any attempt to put them out.</b>");
+			}
+			else 
+			{
+				foes[x].removeStatusEffect("Burn");
+				output(" refusing to go out until they've done their foul work.</b>");
+			}		
+			genericDamageApply(3+rand(4),pc,foes[x],GLOBAL.THERMAL);
+			output("\n");
+		}
 		if(foes[x].hasStatusEffect("Blind"))
 		{
 			foes[x].addStatusValue("Blind",1,-1);
@@ -1533,6 +1567,8 @@ function enemyAI(aggressor:Creature):void
 	else if (aggressor is GrayPrime) grayPrimeAI();
 	else if (aggressor is GigaGoo) gigaGooAI();
 	else if (aggressor is Varmint) varmintAI();
+	else if (aggressor is Shade) shadeAI();
+	else if (aggressor is Kara) karaAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
@@ -1987,6 +2023,14 @@ function startCombat(encounter:String):void
 			break;
 		case "varmint":
 			chars["VARMINT"].prepForCombat();
+			break;
+		case "Kara":
+			chars["KARA"].prepForCombat();
+			buildShadeAndKaraFight(false);
+			break;
+		case "Shade":
+			chars["SHADE"].prepForCombat();
+			buildShadeAndKaraFight(true);
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -3330,7 +3374,7 @@ function NPCDisarmingShot(user:Creature):void
 	user.energy(-20);
 	if(pc.hasStatusEffect("Disarm Immune")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>It's physically impossible!</b>\n");
 	else if(pc.hasStatusEffect("Disarmed")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>");
-	else if(rangedCombatMiss(pc,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!");
+	else if(rangedCombatMiss(user,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!");
 	else {
 		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);

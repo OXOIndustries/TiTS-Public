@@ -1,4 +1,6 @@
-﻿/*Character Background & Design
+﻿import classes.Creature;
+
+/*Character Background & Design
 
 In a nutshell: Kara's a futa kaithrit who escaped slavery to become a smuggler.
 
@@ -49,29 +51,31 @@ Kara rewards PC with credits, bugs out of the bar.
 Adventure 1: A Damsel in Distress, you say?
 */
 
+function showKara():void
+{
+	author("Savin");
+	showName("\nSHADE");
+	showBust("SHADE");
+}
+function showShade():void
+{
+	author("Savin");
+	showName("\nSHADE");
+	showBust("SHADE");
+}
+
 //Play on entering the bar. Possibly first time entering the bar. 
 function karaFirstTimeBarStuff():void
 {
 	clearOutput();
-	//9999
+	showCandice();
+	flags["BEEN_TO_MYRELLION_BAR"] = 1;
 	output("You make your way into the big, smoky lounge labeled “<i>Tavern,</i>” pushing through bat-wing doors into a crowded room full in equal measures of myr and off-worlders. What might have once been a military barracks has been cleared out by the pioneers who’ve taken over this airfield, turning it into a surprisingly cozy tavern. A long wooden bar and stools have been set up along one wall, and several makeshift tables are scattered throughout the wide room.");
 	output("\n\nYou saunter over to the bar and take a seat, heaving a sigh as you take a load off. Going through interstellar customs is trying at the best of times; customs on a planet on the brink of self-destruction is near maddening. You rub your temples and signal to the bartender, a perky half-ausar girl in a short-cropped halter top that shows off a delightful amount of taut belly.");
-	output("\n\n“<i>Hey, " + pc.mf("handsome","cutie") + ",</i>” she says with a wink, flicking a rag over her shoulder. “<i>What can I get you?</i>”");
-	//{Insert List of Drinks} [Your Number]
-	//9999
-}
-
-//[Your Number]
-//This bartender’s cute as hell. Maybe you could hook up after her shift...?
-function barTenderNumberRequest():void
-{
-	clearOutput();
-	output("You look the cute halfbreed up and down, eyes playing across all the lush, tanned skin on display. “<i>How about your number, first of all?</i>”");
-	output("\n\nShe plants her hands on her hips and gives you a look. “<i>C’mon, " + pc.mf("mister","miss") + ", I’m trying to work here... at least get a couple drinks first.</i>”");
-	//{if Silly: What a prude.}
-	if(silly) output("\n\nWhat a prude.");
-	processTime(1);
-	//9999 - bartender menu with no "Your Number" option.
+	output("\n\n“<i>Hey, " + pc.mf("handsome","cutie") + ",</i>” she says with a wink, flicking a rag over her shoulder. “<i>What can I get you?</i>”\n\nYou look over the menu and order something light to start.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",firstTimeBuyADrinkForKaraShits);
 }
 
 //[{Drink}]
@@ -80,11 +84,11 @@ function barTenderNumberRequest():void
 function firstTimeBuyADrinkForKaraShits():void
 {
 	clearOutput();
+	showCandice();
 	output("“<i>Sure thing!</i>” the bartender says, skipping off to fetch your drink.");
 	output("\n\nShe returns a moment later with your order. You reach for your creditstick, but she stops you before you can get it out. “<i>With compliments from the girl at the end of the bar,</i>” she says, nodding to your left. You lean back, looking around the handful of bodies between you and your benefactor.");
 	output("\n\nAt the far end of the bar, you catch a glimpse of a kaithrit female with a windswept head of cobalt-blue hair, dressed in a skin-tight gray top that accentuates a pair of big EE-cups on her chest. She flashes you an inviting smile and a come-hither wink.");
 	processTime(1);
-	//9999
 	clearMenu();
 	//if Silly OR Bimbo: 
 	if(silly || pc.isBimbo()) addButton(0,"Go Over",goOverToKaraSloot,undefined,"Go Over","Hey, a cute kitty! Go over and introduce yourself. She certainly seems interested.");
@@ -98,8 +102,10 @@ function firstTimeBuyADrinkForKaraShits():void
 function ignoreDisBitch():void
 {
 	clearOutput();
+	showCandice();
 	author("Savin");
 	output("Fuck that. Knowing your luck, she probably just wants something from you. You resume your seat and knock back your drink, enjoying the view of the bartender working in her jean-shorts and blatantly nonexistent bra in front of you. By the time you finish your drink and stand up, the bothersome kitten is long gone.");
+	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -110,7 +116,8 @@ function goOverToKaraSloot():void
 {
 	clearOutput();
 	showKara();
-	output("\n\nYou pick up your drink and meander over to the generous cat-girl, ");
+	flags["MET_KARA"] = 1;
+	output("You pick up your drink and meander over to the generous cat-girl, ");
 	if(!pc.isTaur() && !pc.isNaga()) output("planting yourself in the open seat beside her.");
 	else
 	{
@@ -181,6 +188,7 @@ function stillSayNoToKaraYouGiganticFuckingAsshole():void
 {
 	clearOutput();
 	output("You shake your head and step away from the cat-girl, leaving her to her fate.");
+	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -207,7 +215,11 @@ function helpDisKaraSlut(finishedDrink:Boolean = false):void
 
 	processTime(3);
 	//[Trip and Fall] [Flirt] [Tell About Kara] [Back Off]
-	//9999
+	clearMenu();
+	addButton(0,"Trip & Fall",tripAndFallOnShade,undefined,"Trip & Fall","Trip and make a mess right in front of the huntress; try and distract her with some good old-fashioned stoogery.");
+	addButton(1,"Flirt",flirtWithShade,undefined,"Flirt","Flirt with the cat-girl hunter. Who knows, you might get laid AND paid!");
+	addButton(2,"Tell",tellAboutKara,undefined,"Tell","Betray Kara and tell the mystery cat-girl where she’s at.");
+	addButton(3,"Back Off",backOfAndScrewOverKaraYouAsshat,undefined,"Back Off","Forget it. Kara’s in trouble, but that’s her problem.");
 }
 
 //[Back Off]
@@ -219,6 +231,7 @@ function backOfAndScrewOverKaraYouAsshat():void
 	showShade();
 	output("As smoothly as you can, you change course away from the armed kaithrit and back toward the bar - well away from where Kara was sitting. Nobody said anything about guns. Kara’s on her own.");
 	processTime(1);
+	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -236,8 +249,11 @@ function tellAboutKara():void
 	output("\n\n“<i>Steele, huh?</i>” she says, a flicker of mirth playing across her face as she speaks, as if savoring the word. “<i>Well, you look like someone who can handle themselves, and the kitten over there’s going to be a bitch to wrangle. I’ll cut you in for a share of the bounty if you’ll get my back here.</i>”");
 	output("\n\n“<i>Bounty?</i>”");
 	output("\n\nShe grins. “<i>Why do you think I’m after her? Black Void’s put a bounty on her head so high, every two-bit chump with a gun’s after her. Must have pissed somebody off pretty bad. Now, I’m pretty decent at slinging a gun, but Kara Volke’s put six hunters in the ground already. Wouldn’t mind sharing some of the reward to double my chances, capiche? So what do you say?</i>”");
+	flags["BETRAYED_KARA"] = 1;
 	processTime(2);
-	//9999
+	clearMenu();
+	addButton(0,"Deal",itsADealToBetrayKaraSloots,undefined,"It's a Deal","Take Shade up on her offer and go after Kara.");
+	addButton(1,"No Thanks",turnDownAChanceToCaptureKara,undefined,"No Thanks","Refuse the bounty hunter’s offer. You’re out of here.");
 }
 
 //[No Thanks]
@@ -250,6 +266,7 @@ function turnDownAChanceToCaptureKara():void
 	output("\n\nShade kicks back the whiskey shot in front of her, draws a deep breath, and nods. “<i>Better clear out, kid. Could get hairy here in a minute.</i>”");
 	output("\n\nCouldn’t have said it better. You step away.");
 	processTime(1);
+	flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -268,7 +285,11 @@ function itsADealToBetrayKaraSloots():void
 	output("\n\nInstead of a gunshot, your ears explode with the sound of flesh crashing into flesh, a body crumpling to the ground. You duck and draw down, just in time to see Kara tumbling back across the deck, wiping blood from the corner of her mouth. Shade’s beside you, gun leveled at Kara. The huntress gives you a slight nod, distracting her just long enough for Kara to leap to her feet. ");
 	output("\n\n“<i>Come on then, you pirate bitch. Come and get me!</i>” she shouts, finger coming down on the trigger.");
 	processTime(2);
+	flags["BETRAYED_KARA"] = 2;
 	//[Fight!]
+	clearMenu();
+	addButton(0,"Next",startCombat,"Kara");
+	foes[0].HP(-15);
 }
 
 //[Flirt]
@@ -287,11 +308,13 @@ function flirtWithShade():void
 	output("\n\n“<i>Steele,</i>” you answer. “<i>[pc.name] Steele.</i>”");
 	output("\n\nShe smiles at that, a twinkle in her eyes. “<i>Steele, huh? Look, I don’t want to come off the wrong way here, but look: I’m a little drunk, I’m pretty sure I’ve lost the bitch I’ve been tracking, and you’ve been fun to talk to. My ship’s parked on the tarmac outside, and I could use some cheering up. What do you say we get out of here?</i>”");
 	output("\n\nThat was unexpected. Maybe you laid on the charm a little harder than you’d expected. Either way, looks like Shade here’s looking for a little fun.");
+	flags["DISTRACTED_SHADE"] = 1;
 	pc.lust(3);
 	processTime(16);
 	//[Sure] [Sorry, No]
 	clearMenu();
-	//9999
+	addButton(0,"Sure",sureIWantSomeShadePussayTailFuckYes);
+	addButton(1,"Sorry, No",sorryNoIDontWantToGetLaidShade);
 }
 
 //[Sorry, No]
@@ -348,8 +371,10 @@ function tripAndFallOnShade():void
 	output("\n\n“<i>You know how this goes, Kara. Cross the Void, and your life’s forfeit,</i>” the silver-haired huntress, Shade, answers.");
 	output("\n\nThe Void? As in Black Void? Uh-oh. That’s only the biggest cartel of space pirates and outlaws in the galaxy! And Kara’s managed to get on their bad side? That’s a tall order for one cat. Do you help her?");
 	processTime(2);
-	//9999
-
+	flags["TRIPPED_ON_SHADE"] = 1;
+	clearMenu();
+	addButton(0,"Yes",karaAndPCVersusShadeFightIntroduction,undefined,"Yes","Help Kara against Shade.");
+	addButton(1,"No",fuckThisShiiitImNotGettingInACatNDogFight,undefined,"No","Fuck this. She's on her own.");
 }
 
 //[Yes]
@@ -362,7 +387,8 @@ function karaAndPCVersusShadeFightIntroduction():void
 	showName("SHADE\n& KARA");
 	output("You steel yourself and stand, ready to stand beside Kara.");
 	output("\n\n“<i>You brought friends?</i>” Shade spits, taking a step back and leveling the lightning gun at you. “<i>Big mistake, friend.</i>”");
-	//9999
+	clearMenu();
+	addButton(0,"Next",startCombat,"Shade");
 }
 
 //[No]
@@ -374,11 +400,14 @@ function fuckThisShiiitImNotGettingInACatNDogFight():void
 	author("Savin");
 	output("Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to the sounds you hear gunfire behind you.");
 	output("\n\nYou spend a few minutes in the crowd of people before myr security guards come rushing, weapons drawn, and charge into the bar. More gunfire ensues over another minute or so, until a guard steps outside and waves the people back in, saying that the issue has been resolved. Taking a peek in the doors, you see a great number of bullet holes in the walls and the back door hanging open. Looks like Kara and Shade booked it. You doubt you’ll see them again.");
+	flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] = 1;
+
 	processTime(10);
+
 	currentLocation = "606";
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
-
+	showName("SPACER'S\nROW");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -403,8 +432,10 @@ function lastChanceForHelpingKara():void
 	output("\n\n“<i>Please,</i>” Kara shouts, taking a step back. “<i>I can match what she’s paying. Easy.</i>”");
 	output("\n\nShe scoffs. “<i>Take it or leave it, friend. You can just walk away.</i>”");
 	
-	//9999
-	//[Help Shade] [Help Kara] [Leave]
+	clearMenu();
+	addButton(14,"Leave",fuckDisBarShit,undefined,"Leave","Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you.");
+	addButton(0,"Help Shade",helpShadeOutLastChance,undefined,"Help Shade","Help out Shade, the bounty hunter.");
+	addButton(1,"Help Kara",helpKaraOutLastChance,undefined,"Help Kara","Help Kara, the down on her luck kaithrit.");
 
 }
 
@@ -415,6 +446,7 @@ function fuckDisBarShit():void
 	clearOutput();
 	author("Savin");
 	output("You spend a few minutes in the crowd of people before myr security guards come rushing, weapons drawn, and charge into the bar. More gunfire ensues over another minute or so, until a guard steps outside and waves the people back in, saying that the issue has been resolved. Taking a peek through the doorway, you see a great number of bullet holes in the walls and the back door hanging open. Looks like Kara and Shade booked it. You doubt you’ll see them again.");
+	flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] = 1;
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -432,7 +464,9 @@ function helpShadeOutLastChance():void
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
-	//9999
+	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Shade";
+	clearMenu();
+	addButton(0,"Next",startCombat,"Kara");
 }
 
 //[Help Kara]
@@ -446,8 +480,10 @@ function helpKaraOutLastChance():void
 	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside Kara. The bounty hunter curses, waving her weapon between the two of you as she realizes things just took a turn for the worse.");
+	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";
 	processTime(1);
-	//9999
+	clearMenu();
+	addButton(0,"Next",startCombat,"Shade");
 }
 
 //Quest Complete - Meet Kara in the Back Alley
@@ -470,6 +506,91 @@ function meetUpWithKaraInTheBackAlley():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+function shadeAI():void
+{
+	var target:Creature = pc;
+	if(pc.statusEffectv1("Round") <= 1)
+	{
+		//Shoot First (First round)
+		//Shade gets off an extra shot in Turn 1, UNLESS the PC also has Shoot First. 
+		shootFirstFromtShade(pc);
+	}
+	//Tazer - stuns
+	else if(rand(5) == 0 && !target.hasStatusEffect("Stunned") && foes[0].energy() >= 20) tazerForShade(target);
+	//Disarming Shot - PC target only
+	else if(rand(4) == 0 && !target.hasStatusEffect("Disarmed") && foes[0].energy() >= 20) disarmingShotFromShade();
+	//Gas Grenade (Reduces Reflexes and Aim)
+	else if(rand(5) == 0 && !target.hasStatusEffect("Gassed") && foes[0].energy() >= 20) gasGrenadesFromShade(target);
+	//Holdout Pistol (Backup Ranged)
+	else if(foes[0].rangedWeapon is HoldOutPistol) shadeShootHoldoutPistol(target);
+	//Arc Caster (Basic Ranged)
+	else shadeUsesArcCaster(target);
+	
+	//Quickdraw (Free action) - end of enemyAI
+	//if PC is immune to electricity after getting shot by the Arc Caster
+	shadeQuickdraws(pc);
+
+	//Kara's AI in here:
+	output("\n\n");
+	if(foes[0].hasStatusEffect("Force Edge Cooldown") && rand(2) == 0)
+	{
+		foes[0].removeStatusEffect("Force Edge Cooldown");
+	}
+	//Stimulant Boost (Herself and Allies by 25%; 1/encounter)
+	if(((pc.HP() < 50 && rand(2) == 0) || pc.HP() < 25) && !foes[0].hasStatusEffect("Stimmed"))
+	{
+		karaStimulantBoost();
+		foes[0].createStatusEffect("Stimmed");
+	}
+	//Force Edge (High-damage melee attack, moderate cooldown)
+	else if(!foes[0].hasStatusEffect("Force Edge Cooldown") && rand(3) == 0)
+	{
+		karaHitsWivASwordChuck(foes[0]);
+		foes[0].createStatusEffect("Force Edge Cooldown");
+	}
+	//Kara’s Abilities
+	//Plasma Pistol (Basic Ranged)
+	else if(rand(3) <= 1) karaPlasmaShot(foes[0]);
+	//Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
+	else karaDoesChargeShot(foes[0]);
+
+	buildShadeAndKaraFight();
+	processCombat();
+}
+
+function karaAI():void
+{
+	if(foes[0].hasStatusEffect("Force Edge Cooldown") && rand(2) == 0)
+	{
+		foes[0].removeStatusEffect("Force Edge Cooldown");
+	}
+	//Stimulant Boost (Herself and Allies by 25%; 1/encounter)
+	if(((foes[0].HP() < 50 && rand(2) == 0) || foes[0].HP() < 25) && !foes[0].hasStatusEffect("Stimmed"))
+	{
+		karaStimulantBoost();
+		foes[0].createStatusEffect("Stimmed");
+	}
+	//Force Edge (High-damage melee attack, moderate cooldown)
+	else if(!foes[0].hasStatusEffect("Force Edge Cooldown") && rand(3) == 0)
+	{
+		karaHitsWivASwordChuck(pc);
+		foes[0].createStatusEffect("Force Edge Cooldown");
+	}
+	//Kara’s Abilities
+	//Plasma Pistol (Basic Ranged)
+	else if(rand(3) <= 1) karaPlasmaShot(pc);
+	//Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
+	else karaDoesChargeShot(pc);
+
+	//Shade's AI in here:
+	output("\n\n");
+	//Arc Caster (Basic Ranged)
+	shadeUsesArcCaster(foes[0]);
+
+	buildShadeAndKaraFight(true);
+	processCombat();
+}
+
 //Fight! Shade vs Kara
 //PC can be fighting one or the other of them.
 //Should probably run this every round so the pistol can get updated.
@@ -478,14 +599,32 @@ function buildShadeAndKaraFight(helpingKara:Boolean = false):void
 	showName("FIGHT:\nSHADE & KARA");
 	if(!helpingKara) showBust("SHADE","KARA");
 	else showBust("KARA","SHADE");
-	//Shade
-	if(helpingKara) foes[0].long = "You’re fighting Shade");
-	else foes[0].long = "Beside you stands Shade");
+	foes[0].long = "";
+	//Which gets talked about first?
+	if(helpingKara) 
+	{
+		shadeDesc(helpingKara);
+		foes[0].long += "\n\n";
+		karaDesc(helpingKara);
+	}
+	else 
+	{
+		karaDesc(helpingKara);
+		foes[0].long += "\n\n";
+		shadeDesc(helpingKara);
+	}	
+}
+
+function shadeDesc(helpingKara:Boolean):void
+{
+	if(helpingKara) foes[0].long += "You’re fighting Shade";
+	else foes[0].long += "Beside you stands Shade";
 	foes[0].long += ", a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
-	if(helpingKara && foes[0].rangedWeapon is HoldoutPistol) foes[0].long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
+	if(helpingKara && foes[0].rangedWeapon is HoldOutPistol) foes[0].long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
 	else foes[0].long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
-	//Kara
-	foes[0].long += "\n\n");
+}
+function karaDesc(helpingKara:Boolean):void
+{
 	if(!helpingKara) foes[0].long += "You’re fighting Kara";
 	else foes[0].long += "Beside you stands Kara";
 	foes[0].long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
@@ -495,56 +634,89 @@ function buildShadeAndKaraFight(helpingKara:Boolean = false):void
 //Plasma Pistol (Basic Ranged)
 function karaPlasmaShot(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["KARA"];
+
 	output("Kara fires a bolt of superheated plasma at ");
 	if(target == pc) output("you!");
 	else output("Shade!");
-	//Flat 10% miss chance cause Fen is lazy.
-	if(rand(100) <= 9)
+	if(rangedCombatMiss(attacker, target))
 	{
 		output(" Her shot goes wide, burning into the ground!");
 	}
 	else
 	{
-		//9999 put in genericDamage guts here
+		var damage:int = attacker.damage(false) + attacker.aim()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
 	}
-	processCombat();
 }
 
 //Force Edge (High-damage melee attack, moderate cooldown)
 function karaHitsWivASwordChuck(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["KARA"];
+
 	output("Kara flicks on the blade of her hardlight sword and charges, hacking a deadly arc toward ");
 	if(target == pc) output("you");
 	else output("Shade");
 	output(".");
-	//Flat 10% miss chance cause I'm a lazy cunt.
-	if(rand(100) <= 9)
+	if(combatMiss(attacker, target))
 	{
 		if(target != pc) output(" Her strike is parried!");
 		else output(" You parry her strike!");
 	}
-	processCombat();
+	else
+	{
+		var damage:int = attacker.damage(true) + attacker.physique()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target);
+	}
 }
 
 //Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
 function karaDoesChargeShot(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["KARA"];
+
 	output("Kara holds down the trigger on her plasma pistol, just for a second, letting a charge build up before she lets the bolt of green go screaming towards ");
 	if(target == pc) output("you!");
 	else output("Shade.");
-	if(rand(100) <= 9)
+	if(rangedCombatMiss(attacker, target))
 	{
 		output(" Her shot blasts into a wall, sizzling harmlessly.");
 	}
 	else
 	{
-		//{It hits for X damage! // } {If burn: The bolt explodes across {target}, slathering {him/her/it/you} in burning hot green plasma. {He/She/It/You} {is/are} burning!}");
-	}
-	processCombat();
-}
+		var damage:int = attacker.damage(false) + attacker.aim()/2;
+		//OVER CHAAAAAARGE
+		damage *= 1.5;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
 
-//Targeting Shot (Higher accuracy shot, grants all allies a +% to hit on target for a turn. Moderate cooldown)
-//output("\n\n{Standard attack text +, on hit} Kara keys a button on the holoband at her wrist, causing a great big targeting reticle to flash over {target} along the path of her shot. Accuracy increased!");
+		//{It hits for X damage! // } {If burn: ");
+		if(!target.hasStatusEffect("Burn") && rand(2) == 0)
+		{
+			if(target == pc) output("\nThe bolt explodes across you, slathering you in burning hot green plasma. <b>You are burning!</b>");
+			else output("\nThe bolt explodes across " + target.a + target.short + ", slathering " + target.mfn("him","her","it") + " in burning hot green plasma. <b>" + target.mfn("He","She","It") + " is burning!</b>");
+			target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+		}
+	}
+}
 
 //Stimulant Boost (Herself and Allies by 25%; 1/encounter)
 function karaStimulantBoost():void
@@ -556,31 +728,43 @@ function karaStimulantBoost():void
 		pc.HP(Math.round(pc.HPMax()/4));
 	}
 	else foes[0].HP(Math.round(pc.HPMax()/4));
-	processCombat();
 }
 
 //Shade’s Abilities
 //Arc Caster (Basic Ranged)
 function shadeUsesArcCaster(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["SHADE"];
+
 	output("Shade levels her Arc Caster at ");
 	if(target == pc) output("you");
 	else output("Kara");
 	output(" and squeezes the trigger down, charging up a lightning bolt that comes screaming out of the barrel.");
-	if(rand(100) <= 9)
+	if(rangedCombatMiss(attacker, target))
 	{
 		output(" The shot goes wide, blasting a hole in the tavern wall.");
 	}
 	else
 	{
-		//" {It slams into {target} for X damage(, and arcs into Kara for Y damage!) // }");
+		var damage:int = attacker.damage(false) + attacker.aim()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
 	}
-	processCombat();
+
 }
 
 //Holdout Pistol (Backup Ranged)
 function shadeShootHoldoutPistol(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["SHADE"];
+
 	output("Shade squeezes off a round from her holdout pistol, ");
 	if(rand(100) <= 9)
 	{
@@ -590,22 +774,36 @@ function shadeShootHoldoutPistol(target:Creature):void
 	}
 	else
 	{
-		//{hitting {target} for X damage // }. ");
+		var damage:int = attacker.damage(false) + attacker.aim()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target,GLOBAL.KINETIC);
 	}
-	processCombat();
 }
 
 //Shoot First (First round)
 //Shade gets off an extra shot in Turn 1, UNLESS the PC also has Shoot First. 
 function shootFirstFromtShade(target:Creature):void
 {
-	//9999
-	processCombat();
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["SHADE"];
+	output("Shade opens up with a surprise volley, trying to shoot first!\n");
+	rangedAttack(foes[0],target,true,1);
+	output("\n");
+	rangedAttack(foes[0],target,true,1);
 }
 
 //Gas Grenade (Reduces Reflexes and Aim)
 function gasGrenadesFromShade(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["SHADE"];
+
+	foes[0].energy(-20);
 	output("Shade hurls a grenade from her belt into the center of the tavern. The grenade explodes in a flash of blinding light that renders ");
 	if(target == pc) output("you");
 	else output("Kara");
@@ -617,22 +815,37 @@ function gasGrenadesFromShade(target:Creature):void
 	else output("Kara clutches her");
 	output(" throat as the gas drifts out, coughing violently. Aim and Reflex decreased!");
 
-	//9999 apply blind and aim/reflex shittening.
-	processCombat();
+	//apply blind and aim/reflex shittening.
+	target.createStatusEffect("Gassed",0,0,0,0,false,"Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!",true,0);
+	target.aimMod -= 5;
+	target.reflexesMod -= 5;	
 }
 
 //Disarming Shot
-function disarmingShot():void
+function disarmingShotFromShade():void
 {
+	var attacker:Creature;
+	attacker = foes[0];
+	
+	foes[0].energy(-20);
+	if(pc.hasStatusEffect("Disarm Immune")) output(foes[0].capitalA + foes[0].short + " tries to shoot your weapons out of your hands but can't. <b>It's physically impossible!</b>\n");
+	else if(pc.hasStatusEffect("Disarmed")) output(foes[0].capitalA + foes[0].short + " tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>");
+	else if(rangedCombatMiss(foes[0],pc)) output(foes[0].capitalA + foes[0].short + " misses when trying hit you with disarming shots!");
+	else {
+		output(foes[0].capitalA + foes[0].short + " shoots your weapons away with well-placed shots!");
+		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
+	}
 	//output("\n\nShade {takes a bead // draws a holdout pistol from her belt in her off hand} and snaps off a shot at {target}. The bullet collides violently with the weapon in {your / Kara’s} hand, sending it clattering to the ground. ");
-	NPCDisarmingShot(user:Creature)?
-
-	processCombat();
 }
 
-//Tazer
+//Tazer - stuns
 function tazerForShade(target:Creature):void
 {
+	var attacker:Creature;
+	if(target == pc) attacker = foes[0];
+	else attacker = chars["SHADE"];
+
+	foes[0].energy(-20);
 	output("Shade levels her wrist at ");
 	if(target == pc) output("you");
 	else output("Kara");
@@ -640,25 +853,38 @@ function tazerForShade(target:Creature):void
 	if(target == pc) output("you");
 	else output("Kara");
 	output(".");
-	if(rand(100) <= 9) output(" The dart misses!");
+	if(rangedCombatMiss(attacker, target)) output(" The dart misses!");
 	else
 	{
 		//The dart hits and unleashes a shock of electricity, zapping {target} for X damage and stunning {you / her}! "
+		var damage:int = 10;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
+		if(foes[0].aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+			target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			output(" <b>You are stunned!</b>");
+		}
 	}
-	processCombat();
 }
 
 //Quickdraw (Free action) - end of enemyAI
 //if PC is immune to electricity after getting shot by the Arc Caster
-function shadeQuickdraws():void
+function shadeQuickdraws(target:Creature):void
 {
 	//if she’s disarmed from her Arc Caster
 	if(foes[0].hasStatusEffect("Disarmed") && foes[0].rangedWeapon is ArcCaster)
 	{
-		output("Just as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.");
+		output("\n\nJust as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.");
+		foes[0].rangedWeapon = new HoldOutPistol();
 	}
-	else output("Shade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
-	foes[0].rangedWeapon = new HoldoutPistol();
+	else if(target.getResistance(GLOBAL.ELECTRIC) <= 0)
+	{
+		output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+		foes[0].rangedWeapon = new HoldOutPistol();
+	}	
 }
 
 //Combat End
@@ -670,9 +896,14 @@ function pcAndKaraBeatShade():void
 	author("Savin");
 	output("“<i>Fuck this,</i>” Shade grunts, clutching her wounds. She drops her gun and fumbles a grenade off of her belt, throwing it between you and her. It explodes in a white flash, sending you stumbling back, shielding your eyes. By the time you’re able to blink away the light, the kaithrit huntress is gone, vanished through the back door.");
 	output("\n\nLooks like she dropped her lightning gun on the way out.");
-	output("\n\nA moment later, you hear jackboots stomping down the street towards the bar. Kara sucks in a breath and pulls her cloak up over her ears, flashing you a wink before she shields her face. “<i>Meet me in the back alley!</i>” she whispers before holstering her gun and running out the door. You follow her out, trying to blend into the crowd before the myr soldiers arrive.");
-	//9999 relocate to alley
+	output("\n\nA moment later, you hear jackboots stomping down the street towards the bar. Kara sucks in a breath and pulls her cloak up over her ears, flashing you a wink before she shields her face. “<i>Meet me in the back alley!</i>” she whispers before holstering her gun and running out the door. You follow her out, trying to blend into the crowd before the myr soldiers arrive.\n\n");
+	//relocate to alley
 	//Add Arc Caster to inventory
+	currentLocation = "606";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("SPACER'S\nROW");
+	genericVictory();
 }
 
 //PC + Shade defeat Kara
@@ -1129,4 +1360,6 @@ output("\n\nYou wake up a good while later, rested and relaxed, with a great big
 
 output("\n\n“<i>Still here?</i>” she teases, letting the towel fall to the ground as she strides over to her dresser, bending over to pull out a fresh pair of underwear, and giving you a view to die for. She gets dressed quickly, though not without giving you quite the show as she does so. When she’s done, Shade slips an arm through yours and gives you a rough pull out of her cabin. “<i>C’mon, can’t lounge around </i>all<i> day.</i>”");
 
-output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.*/");
+output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
+
+*/

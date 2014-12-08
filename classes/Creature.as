@@ -3577,7 +3577,12 @@
 				removeStatusEffect("Sensor Link");
 				aimMod -= 5;
 			}
-			
+			if (hasStatusEffect("Gassed"))
+			{
+				removeStatusEffect("Gassed");
+				aimMod += 5;
+				reflexesMod += 5;
+			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{
@@ -9894,7 +9899,7 @@
 			}
 			return (stretched || devirgined);
 		}
-		//public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void
+		
 		public function imbibeAlcohol(alcoholRating:int = 1):void
 		{
 			//E'rrybody should have dis status yo, it's da TiTS.

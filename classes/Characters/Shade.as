@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Guns.ArcCaster;
+	import classes.kGAMECLASS;
 	
 	public class Shade extends Creature
 	{
@@ -19,7 +20,7 @@
 			this.originalRace = "kaithrit";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Placeholder";
+			this.long = "";
 			this.customDodge = "Shade nimbly ducks aside!";
 			this.customBlock = "";
 			this.plural = false;
@@ -43,7 +44,7 @@
 			this.intelligenceRaw = 15;
 			this.willpowerRaw = 25;
 			this.libidoRaw = 50;
-			this.HPMod = 15;
+			this.HPMod = 125;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
@@ -167,6 +168,31 @@
 			this.ass.bonusCapacity = 100;
 			
 			this._isLoading = false;
-		}		
+		}	
+		override public function setDefaultSexualPreferences():void
+		{
+			//LIKES
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, 		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,	 	GLOBAL.KINDA_LIKES_SEXPREF);
+
+			//DISLIKES
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, 	GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
+		}
+		
+		override public function prepForCombat():void
+		{
+			var combatShade:Shade = this.makeCopy();
+			
+			kGAMECLASS.userInterface.showBust("SHADE","KARA");
+			kGAMECLASS.userInterface.showName("FIGHT:\nSHADE");
+			combatShade.setDefaultSexualPreferences();
+			
+			kGAMECLASS.foes.push(combatShade);
+		}
 	}
 }
