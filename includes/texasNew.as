@@ -94,7 +94,7 @@ function noWayTexasJose():void
 	showName("\nOGRAM");
 	showBust("OGRAM");
 	flags["REFUSED_TEXAN_DISARM"] = 1;
-	output("\n\n“<i>Not happening,</i>” you say, throwing the clipboard down on Ogram’s desk.");
+	output("“<i>Not happening,</i>” you say, throwing the clipboard down on Ogram’s desk.");
 	output("\n\nHe shrugs and takes the paperwork back. “<i>Hey, whatever. There’s the door back to fuck-off. Let me know if you change your mind.</i>”");
 	output("\n\nWith a heavy sigh, the bull-man leans back in his chair and pulls his cap down over his eyes. He seems to be enjoying himself...");
 	processTime(1);
