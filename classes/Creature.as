@@ -3563,7 +3563,7 @@
 		//REMOVING THINGS!
 		//status
 		public function removeStatusEffect(statusName: String): void {
-			removeStorageSlot(statusEffects, statusName)
+			removeStorageSlot(statusEffects, statusName);
 		}
 		//statuses
 		public function removeStatuses(): void {
@@ -9893,6 +9893,134 @@
 				}
 			}
 			return (stretched || devirgined);
+		}
+		//public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void
+		public function imbibeAlcohol(alcoholRating:int = 1):void
+		{
+			//E'rrybody should have dis status yo, it's da TiTS.
+			if(!hasStatusEffect("Alcohol")) createStatusEffect("Alcohol",0,0,0,0);
+			//V1 stores the PC's current alcohol belly level.
+			//V2 is the actual blood drunkeness
+			addStatusValue("Alcohol",1,alcoholRating);
+			//100% alcohol is yer cap
+			if(statusEffectv1("Alcohol") >= 100) setStatusValue("Alcohol",1,100);
+		}
+		public function alcoholTic():void
+		{
+			var currentLevel:Number;
+			//Phase 1: Getting drunker - booze in da belly.
+			if(statusEffectv1("Alcohol") > 0)
+			{
+				//Absorb some into blood.
+				addStatusValue("Alcohol",1,-1);
+				addStatusValue("Alcohol",2,1);
+				setStatusValue("Alcohol",3,0);
+				
+				//Updated current hammered level
+				currentLevel = statusEffectv2("Alcohol")
+				//Hammered
+				//+5 physique & -2 willpower/int/reflexes
+				if(currentLevel >= 75 && hasStatusEffect("Drunk"))
+				{
+					//Adjust drunk effect
+					removeStatusEffect("Drunk");
+					//Int/reflexes already adjusted from buzzed
+					physiqueMod += 1;
+					reflexesMod -= 1;
+					willpowerMod -= 1;
+					intelligenceMod -= 1;
+					createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You're three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					kGAMECLASS.eventBuffer += "\n\nWalking is increasingly difficult, but you'll be damned if you don't feel like you can do anything. <b>You're smashed!</b>";
+				}
+				//Drunk
+				//+4 physique & -1 willpower/int/reflexes
+				else if(currentLevel >= 50 && hasStatusEffect("Buzzed"))
+				{
+					//Adjust buzzed effect
+					removeStatusEffect("Buzzed");
+					//Int/reflexes already adjusted from buzzed
+					physiqueMod += 2;
+					reflexesMod -= 1;
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					kGAMECLASS.eventBuffer += "\n\nYour sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
+				}
+				//Buzzed
+				//+2 physique & -1 willpower/Intelligence
+				else if(currentLevel >= 25 && !hasStatusEffect("Buzzed") && !hasStatusEffect("Drunk") && !hasStatusEffect("Smashed"))
+				{
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					physiqueMod += 2;
+					willpowerMod -= 1;
+					intelligenceMod -= 1;
+					kGAMECLASS.eventBuffer += "\n\nDamn, that stuff you were drinking was awesome. <b>You're feeling pretty good right now. You must be buzzed.</b>";
+				}
+			}
+			//Phase 2 - waiting for booze levels to drop.
+			//v3 counts to 60, then starts dropping
+			else if(statusEffectv3("Alcohol") < 60)
+			{
+				addStatusValue("Alcohol",3,1);
+			}
+			//Phase 3 - booze levels falling
+			else if(statusEffectv2("Alcohol") > 0)
+			{
+				//Pee some out
+				addStatusValue("Alcohol",2,-1);
+				
+				//Updated current hammered level
+				currentLevel = statusEffectv2("Alcohol")
+				//Hammered -> Drunk
+				//+5 physique & -2 willpower/int/reflexes
+				if(currentLevel < 75 && hasStatusEffect("Smashed"))
+				{
+					//Adjust smashed -> drunk
+					removeStatusEffect("Smashed");
+					//Int/reflexes already adjusted from buzzed
+					physiqueMod -= 1;
+					reflexesMod += 1;
+					willpowerMod += 1;
+					intelligenceMod += 1;
+					createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You're feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					kGAMECLASS.eventBuffer += "\n\nYour head is starting to clear a little, but <b>you're still pretty drunk.</b>";
+				}
+				//Drunk -> Buzzed
+				//+4 physique & -1 willpower/int/reflexes
+				else if(currentLevel < 50 && hasStatusEffect("Drunk"))
+				{
+					removeStatusEffect("Drunk");
+					//Int/reflexes already adjusted from buzzed
+					physiqueMod -= 2;
+					reflexesMod += 1;
+					createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You're a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0);
+					kGAMECLASS.eventBuffer += "\n\nThe more time passes, the more nimble you feel. Your reflexes are sharpening as the alcohol fades from your system. <b>You're only buzzed.</b>";
+				}
+				//Buzzed -> Nothing
+				//+2 physique & -1 willpower/Intelligence
+				else if(currentLevel < 25 && hasStatusEffect("Buzzed"))
+				{
+					removeStatusEffect("Buzzed");
+					physiqueMod -= 2;
+					willpowerMod += 1;
+					intelligenceMod += 1;
+					kGAMECLASS.eventBuffer += "\n\nBlinking, you realize that the alcohol has faded from your system. <b>You're no longer buzzed.</b>";
+				}
+			}
+			else
+			{
+				removeStatusEffect("Alcohol");
+			}
+		}
+		public function isDrunk():Boolean
+		{
+			return (hasStatusEffect("Drunk") || hasStatusEffect("Smashed"));
+		}
+		public function isSmashed():Boolean
+		{
+			return hasStatusEffect("Smashed");
+		}
+		public function isBuzzed():Boolean
+		{
+			return (hasStatusEffect("Buzzed") || hasStatusEffect("Drunk") || hasStatusEffect("Smashed"));
 		}
 	}
 }

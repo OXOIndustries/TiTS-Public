@@ -644,6 +644,8 @@ public function processTime(arg:int):void {
 
 		//Status Effect Updates
 		statusTick();
+		//AlcoholTic
+		if(pc.hasStatusEffect("Alcohol")) pc.alcoholTic();
 		
 		//Tarkus'splosions
 		if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0)
