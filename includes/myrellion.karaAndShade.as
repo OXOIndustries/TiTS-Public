@@ -382,7 +382,11 @@ function sureIWantSomeShadePussayTailFuckYes():void
 	output("\n\nIt’s a short trip to Shade’s bunk, but you’re buck naked by the time you reach it. The kaithrit huntress gives you a lascivious wink over her shoulder as she pops the door open and guides you through. Her quarters are cluttered, a random assortment of clothes, gun parts, and chunks of armor scattered across the floor beneath punk rock posters and kaithrit grav-balls. In one fluid motion, she faces you, slips her arms out of her jacket sleeves, and pulls her shirt off over her head, giving you an eyeful of big, E-cup tits barely restrained by a black sports bra. Shade takes a single step towards you, pressing herself tight against you, letting you feel those lush mounds compress against your [pc.chest]... before she gives you a rough shove onto the bed, sending you tumbling onto your back. Her pants hit the deck with an audible <i>thump</i> of a gunbelt clattering on steel before she hops in after you, straddling your [pc.hips] and slipping a hand under her bra to cup her breast, slipping the garment off to reveal the sun-kissed mounds beneath it.");
 	output("\n\n“<i>Now then... what to do with you...?</i>”");
 	pc.lust(30);
-	processTime(9);
+	processTime(15);
+	currentLocation = "602";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("AIRFIELD\nNORTH");
 	//{Shade’s Scenes go Here}
 	clearMenu();
 	//Shade starts straddling the PC. Still wearing her undies, no bra or clothes.
@@ -1219,7 +1223,7 @@ function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	output("\n\nShade finishes by giving you a light, playful smack on the ass.");
 	processTime(17);
 	pc.orgasm();
-	flags["SEXED_SHADE"];
+	flags["SEXED_SHADE"] = 1;
 	inseminateShadesCuntTail();
 	flags["TAKEN_SHADES_HARDLIGHT"] = 1;
 	clearMenu();
@@ -1360,6 +1364,11 @@ function shadeApproach():void
 		output("\n\n“<i>So,</i>” she says after a moment, “<i>Up for a couple drinks, kid? Or do you have something else in mind?</i>” she asks, with a visible glint in her eye.");
 	}
 	shadeMenu();
+	if(flags["SHADE_INSEMINATION_COUNTER"] != undefined && flags["SHADE_INSEMINATION_COUNTER"] >= 20)
+	{
+		clearMenu();
+		addButton(0,"Next",tailCuntOvipositionForShade);
+	}
 }
 
 function shadeMenu():void
@@ -1444,7 +1453,7 @@ function shadeTalkMenu(arg):void
 	else addButton(0,"Tail",talkToShadeAboutTailCunt,undefined,"Tail","Ask her about her odd tail.");
 	//Her Ship
 	//PC must have been to Shade’s ship (ie, prolly fucked her).
-	if(flags["SHADE_SEXED"] != undefined)
+	if(flags["SEXED_SHADE"] != undefined)
 	{
 		if(arg == talkAboutShadesShip) addDisabledButton(1,"Her Ship","Her Ship","You just talked about that.");
 		else addButton(1,"Her Ship",talkAboutShadesShip,undefined,"Her Ship","Ask her about her ship.")
@@ -1465,7 +1474,7 @@ function shadeTalkMenu(arg):void
 	}
 	else addDisabledButton(4,"Runes","Runes","You don't know enough about Shade to broach this topic yet.");
 	addButton(14,"Back",shadeApproach);
-	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined && flags["SHADE_INSEMINATION_COUNTER"] >= 20)
+	if(flags["SHADE_INSEMINATION_COUNTER"] != undefined && flags["SHADE_INSEMINATION_COUNTER"] >= 20)
 	{
 		clearMenu();
 		addButton(0,"Next",tailCuntOvipositionForShade);
@@ -1589,7 +1598,7 @@ function runesYouTurdShade():void
 	clearOutput();
 	showShade();
 	output("“<i>Any reason for the rune motif?</i>” you ask, pointing to the sigils stitched across Shade’s vest. You’ve seen similar ones on the fringe of her duster ");
-	if(flags["SHADE_SEXED"] == undefined) output("and her gun");
+	if(flags["SEXED_SHADE"] == undefined) output("and her gun");
 	else output(", her gun, and even the silver necklace hanging between her breasts");
 	output(". They all look like something you’d find in an old-earth museum, or else some kind of fantasy game.");
 
