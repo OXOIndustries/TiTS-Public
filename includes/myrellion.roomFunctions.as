@@ -4,6 +4,15 @@ function myrellionHangarBonus():Boolean
 	return false;
 }
 
+function airFieldNorthBonus():Boolean
+{
+	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
+	{
+		output(" You recognize Shade's ship, a purple MS-XI with \"Mirage\" painted in bold white letters across its bow, parked next to one of the hangers here.")
+	}
+	return false;
+}
+
 function flyToMyrellion():void
 {
 	if(flags["VISITED_MYRELLION"] == undefined)

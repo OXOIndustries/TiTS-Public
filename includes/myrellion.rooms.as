@@ -55,11 +55,11 @@ function initializeMyrellionRooms():void
 	//602 Airfield North
 	rooms["602"] = new RoomClass(this);
 	rooms["602"].roomName = "AIRFIELD\nNORTH";
-	rooms["602"].description = "The northern part of the airfield is mostly devoted to several partially-assembled myr planes, with a large garage to the east working to repair damaged or faulty aircraft. A few rusher ships have parked here, including {the Silence / a particularly sleek looking KihaCorp ship with several laser batteries mounted on its hull}.";
+	rooms["602"].description = "The northern part of the airfield is mostly devoted to several partially-assembled myr planes, with a large garage to the east working to repair damaged or faulty aircraft. A few rusher ships have parked here, including a particularly sleek looking KihaCorp ship with several laser batteries mounted on its hull.";
 	rooms["602"].planet = "PLANET: MYRELLION";
 	rooms["602"].system = "SYSTEM: SINDATHU";
 	rooms["602"].southExit = "601";
-	rooms["602"].runOnEnter = undefined;
+	rooms["602"].runOnEnter = airFieldNorthBonus;
 	rooms["602"].addFlag(GLOBAL.OUTDOOR);
 
 	//603 The Embassy
@@ -69,6 +69,7 @@ function initializeMyrellionRooms():void
 	rooms["603"].planet = "PLANET: MYRELLION";
 	rooms["603"].system = "SYSTEM: SINDATHU";
 	rooms["603"].eastExit = "601";
+	rooms["603"].northExit = "613";
 	rooms["603"].westExit = "604";
 	rooms["603"].runOnEnter = theEmbassyBonusFunc;
 	rooms["603"].addFlag(GLOBAL.INDOOR);
@@ -172,4 +173,15 @@ function initializeMyrellionRooms():void
 	rooms["612"].southExit = "604";
 	rooms["612"].runOnEnter = undefined;
 	rooms["612"].addFlag(GLOBAL.OUTDOOR);
+
+	//The Red Myr Warehouse
+	rooms["613"] = new RoomClass(this);
+	rooms["613"].roomName = "RED MYR\nEMBASSY";
+	rooms["613"].description = "";
+	rooms["613"].planet = "PLANET: MYRELLION";
+	rooms["613"].system = "SYSTEM: SINDATHU";
+	rooms["613"].southExit = "603";
+	rooms["613"].runOnEnter = nehzaraBonus;
+	rooms["613"].addFlag(GLOBAL.INDOOR);
+	rooms["613"].addFlag(GLOBAL.NPC);
 }

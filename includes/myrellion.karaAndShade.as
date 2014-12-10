@@ -229,6 +229,7 @@ function helpDisKaraSlut(finishedDrink:Boolean = false):void
 	clearOutput();
 	showKara();
 	showBust("KARA","SHADE");
+	showName("KARA &\nMYSTERY GIRL");
 	output("“<i>Fine,</i>” you say, ");
 	if(!finishedDrink) output("knocking back the last of your drink");
 	else output("setting your empty drink aside");
@@ -279,6 +280,7 @@ function tellAboutKara():void
 	output("\n\n“<i>Bounty?</i>”");
 	output("\n\nShe grins. “<i>Why do you think I’m after her? Black Void’s put a bounty on her head so high, every two-bit chump with a gun’s after her. Must have pissed somebody off pretty bad. Now, I’m pretty decent at slinging a gun, but Kara Volke’s put six hunters in the ground already. Wouldn’t mind sharing some of the reward to double my chances, capiche? So what do you say?</i>”");
 	flags["BETRAYED_KARA"] = 1;
+	pc.addHard(5);
 	processTime(2);
 	clearMenu();
 	addButton(0,"Deal",itsADealToBetrayKaraSloots,undefined,"It's a Deal","Take Shade up on her offer and go after Kara.");
@@ -304,9 +306,10 @@ function turnDownAChanceToCaptureKara():void
 function itsADealToBetrayKaraSloots():void
 {
 	clearOutput();
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	author("Savin");
 	showName("SHADE\n& KARA");
+	pc.addHard(10);
 	output("“<i>Deal,</i>” you say, planting a hand on your [pc.rangedWeapon]. “<i>Let’s get her.</i>”");
 	output("\n\nShade grins, standing up and rolling her shoulders. She draws a gun from her belt, a sleek hand cannon emblazoned with lightning bolts. “<i>Right on.</i>”");
 	output("\n\nYou fall in behind her, brushing through the crowd in the bar back toward Kara’s seat. Just before you get there, you feel something hot and heavy press against the back of your head. Your heart skips a beat, and you freeze in place. Uh-oh.");
@@ -327,6 +330,7 @@ function flirtWithShade():void
 {
 	clearOutput();
 	showShade();
+	pc.addMischievous(5);
 	output("“<i>Hey, there,</i>” you say, sliding into the booth across from the cat-girl, casually putting your body directly between her seat and Kara’s. “<i>Can I buy you a drink?</i>”");
 	output("\n\nThe cat-girl flicks her gaze around the room, sighs, and waves over a gold-plated myr waitress. “<i>Sure. I wouldn’t mind the distraction, to be honest. Rough day.</i>”");
 	output("\n\nPerfect. You order a couple of stiff drinks and ask her what’s making her day so rough.");
@@ -395,7 +399,8 @@ function sureIWantSomeShadePussayTailFuckYes():void
 		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
 	}
-	else addDisabledButton(2,"Wank?","Wank?","You aren't girly enough to get wanked off like some kind of femboy.");
+	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
+	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
 }
 
 //[Trip and Fall]
@@ -404,9 +409,10 @@ function sureIWantSomeShadePussayTailFuckYes():void
 function tripAndFallOnShade():void
 {
 	clearOutput();
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	author("Savin");
+	pc.addMischievous(5);
 	output("You saunter over towards the cat-girl, looking for your opportunity. You find it quickly: a waitress with an over-laden tray of drinks, making her way toward a table full of rowdy looking interstellar miners. You slow your pace, just enough to make sure you’re on a collision course with the overburdened waitress, and let her distraction take its course. She slams face-first into you, giving a startled yelp as her tray of glasses goes flying, crashing into the floor. You intentionally trip yourself over her leg, sending the both of you tumbling down in a wet heap on the deck.");
 	output("\n\nAll eyes in the bar seem to be on you, a quiet hush settling over the place as the sounds of shattering glass reverberate through the bar. “<i>OhmyGodI’msorry!</i>” the waitress babbles in a panic, trying to simultaneously wipe the beer splattered over you up with a rag and collect the couple of mugs still intact. You make a show of rubbing your head, looking dazed and confused, watching the waitress blush in embarrassment, suddenly aware of how many people are staring at the pair of you.");
 	output("\n\nHopefully Kara got the hint and bugged out already. You look around at the bar full of staring faces, letting your gaze play around the place towards the silver-haired kaithrit hunter. You’ve got her full attention for the moment. Good. With a grunt of effort, you haul yourself to your [pc.feet] and give the embarrassed waitress a hand up, smiling and nodding at her stream of apologies. A quick glance towards the bar shows you a distinct absence of Kara - looks like she did slip out in the momentary confusion.");
@@ -427,7 +433,7 @@ function karaAndPCVersusShadeFightIntroduction():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("You steel yourself and stand, ready to stand beside Kara.");
 	output("\n\n“<i>You brought friends?</i>” Shade spits, taking a step back and leveling the lightning gun at you. “<i>Big mistake, friend.</i>”");
@@ -473,7 +479,7 @@ function lastChanceForHelpingKara():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("You head out of the bar, trying to put the strange kaithrit’s request out of your mind. You make it all the way to the batwing doors, ready to head out into the street when you hear a scream behind you.");
 	output("\n\nYou cast a glance over your shoulder, just in time to brace yourself for a stream of people running for the doors, trying desperately to escape. Behind them, you can see a pair of kaithrit women standing in the middle of the bar leveling handguns at each other: Kara on one side, a woman dressed in a long duster that parts around a single reptilian tail behind her on the other.");
@@ -516,7 +522,7 @@ function helpShadeOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
 	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
@@ -533,7 +539,7 @@ function helpKaraOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("SHADE","KARA");
+	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
 	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
@@ -623,7 +629,7 @@ function shadeAI():void
 	//Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
 	else karaDoesChargeShot(foes[0]);
 
-	buildShadeAndKaraFight();
+	buildShadeAndKaraFight(true);
 	processCombat();
 }
 
@@ -656,7 +662,7 @@ function karaAI():void
 	//Arc Caster (Basic Ranged)
 	shadeUsesArcCaster(foes[0]);
 
-	buildShadeAndKaraFight(true);
+	buildShadeAndKaraFight();
 	processCombat();
 }
 
@@ -666,7 +672,7 @@ function karaAI():void
 function buildShadeAndKaraFight(helpingKara:Boolean = false):void
 {
 	showName("FIGHT:\nSHADE & KARA");
-	if(!helpingKara) showBust("SHADE","KARA");
+	if(!helpingKara) showBust("KARA","SHADE");
 	else showBust("KARA","SHADE");
 	foes[0].long = "";
 	//Which gets talked about first?
@@ -1090,7 +1096,7 @@ function cuntTailShadeFux():void
 	processTime(24);
 	pc.orgasm();
 	flags["SEXED_SHADE"] = 1;
-	flags["SHADES_CUNTTAIL_FED"] = 1;
+	inseminateShadesCuntTail();
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
@@ -1130,8 +1136,8 @@ function takeShadesHardlightPenisInYerBoot():void
 	output("\n\nShade holds still for a long moment, letting you adjust to the feeling of her inside you - and by the look on her face, trying very hard to keep in control herself. Her breath comes hot and heavy against your neck, shuddering out as your [pc.vagOrAss " + x + "] writhes around her tingling cock, squeezing it in all the right ways to drive her wild. Her hands draw up your body, playing up to your [pc.legs] and thighs, spreading and caressing them in preparation. You relax again thanks to her gentle touches, loosening your vice-like grip on her strapon. Soon, she starts to move again, drawing back and then slamming in again, so fast that you can’t help but scream.");
 	output("\n\nOnce the floodgate is down, your voice becomes a symphony of moans and cries, playing to the beat of Shade’s increasing pace. Your sultry sounds only seem to urge the huntress on, driving her to thrust faster into you. “<i>Scream for me, slut,</i>” she murmurs into your [pc.ear], drawing close against your [pc.chest] and running her tongue across one of your [pc.nipples]. With Shade tucked against you, you can see her pussy-tipped tail curling up behind her, its rosy lips spreading eagerly as it coils around Shade’s back. She glares at it over her shoulder, but the parasitic organ’s instincts drive it on against its owner’s desire, making it seek out the source of her pleasure. Flashing Shade a grin, you reach up and grab the tail’s head in both hands, pulling it up over her back and planting a big, wet kiss on its drooling lips. Your lover sucks in a sharp breath, trying not to voice her reaction as your tongue slithers into her tail’s channel.");
 	output("\n\n“<i>From both ends, huh?</i>” Shade purrs, her back arching as you tease her tailcunt’s clit. She chuckles and plants a hand over yours, guiding you to hold her tail where both of you can reach it. Giving you a sultry little wink, the cat-girl rolls her long tongue out and caresses her own pussylip, joining you in sating her parasitic tail’s insatiable need. Your [pc.tongue] soon starts to play with Shade’s, teasing and probing each other’s mouths as much as her pussylips, turning it into a messy, fem-cum slathered makeout session. The taste of your lover’s lips mix with the sweet juice of her pussy, tinged by waves of pleasure wracking your body, spreading from your [pc.vagOrAss " + x + "] up through the rest of you as Shade pounds you harder, driven faster by your squirming hole and skillful tongue.");
-	output("\n\nUnder Shade’s constant assault, you can’t last long - then again, neither can she, if the way she’s breathing hard is any indication. You cup her cheek, distracting her from her tailcunt and drawing the kaithrit into a long, tongue-filled kiss, pushing back against her jackhammering hips as best you can until you feel the swelling pressure inside you reach its crescendo. ");
-	if(pc.hasCock()) output("Trapped between your belly and Shade’s, your [pc.cock " + x + "] strains against its confines, growing turgid with cum and ready to burst. Pre drools out of your [pc.cockHead " + x + "], turning the space between your bellies into a swamp of sticky [pc.cumNoun]. ");
+	output("\n\nUnder Shade’s constant assault, you can’t last long - then again, neither can she, if the way she’s breathing hard is any indication. You cup her cheek, distracting her from her tailcunt and drawing the kaithrit into a long, tongue-filled kiss, pushing back against her jackhammering hips as best you can until you feel the swelling pressure inside you reach its crescendo.");
+	if(pc.hasCock()) output("Trapped between your belly and Shade’s, [pc.eachCock] strains against its confines, growing turgid with cum and ready to burst. Pre drools out of your [pc.cockHeads], turning the space between your bellies into a swamp of sticky [pc.cumNoun].");
 	output("You let out a quiet mewl to announce your orgasm, a soft squeal of pleasure pumped out of you by Shade’s relentless fucking.");
 	output("\n\nYour [pc.vagOrAss " + x + "] contracts hard around the hardlight cock buried in it, trying to squeeze out a load of cum that will never come. Under pressure, her hardlight prick tingles and buzzes, sending electric waves of pleasure through your spasming hole. You clutch at your lover with arm and [pc.leg], drawing her deeper into the kiss as you ride out your climax.");
 	if(pc.hasCock()) output("[pc.Cum] bursts out of your [pc.cocks], plastering your [pc.belly] with [pc.cumNoun]. Shade gasps as the hot, sticky spurt of seed splatters onto her, but makes no complaint.");
@@ -1142,6 +1148,7 @@ function takeShadesHardlightPenisInYerBoot():void
 	processTime(20);
 	pc.orgasm();
 	flags["SEXED_SHADE"] = 1;
+	flags["TAKEN_SHADES_HARDLIGHT"] = 1;
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
@@ -1213,7 +1220,7 @@ function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	processTime(17);
 	pc.orgasm();
 	flags["SEXED_SHADE"];
-	flags["SHADES_CUNTTAIL_FED"] = 1;
+	inseminateShadesCuntTail();
 	flags["TAKEN_SHADES_HARDLIGHT"] = 1;
 	clearMenu();
 	addButton(0,"Next",shadePostCoitusHangouts);
@@ -1223,6 +1230,7 @@ function rimAndWankOrLickAndWankWhoKnowsSloot():void
 function shadePostCoitusHangouts():void
 {
 	clearOutput();
+	showShade();
 	//Daytime Version
 	if(hours > 6 && hours < 19)
 	{
@@ -1413,7 +1421,8 @@ function askShade4Sex():void
 		if(pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
 	}
-	else addDisabledButton(2,"Wank?","Wank?","You aren't girly enough to get wanked off like some kind of femboy.");
+	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
+	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
 	addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 
@@ -1456,6 +1465,11 @@ function shadeTalkMenu(arg):void
 	}
 	else addDisabledButton(4,"Runes","Runes","You don't know enough about Shade to broach this topic yet.");
 	addButton(14,"Back",shadeApproach);
+	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined && flags["SHADE_INSEMINATION_COUNTER"] >= 20)
+	{
+		clearMenu();
+		addButton(0,"Next",tailCuntOvipositionForShade);
+	}
 }
 
 //Tail Cunt
@@ -1610,83 +1624,154 @@ function runesYouTurdShade():void
 	shadeTalkMenu(runesYouTurdShade);
 }
 
+//Set to 1 on insemination. Counts up every hour. Resets on its own after a week.
+function inseminateShadesCuntTail():void
+{
+	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
+	flags["SHADES_CUNTTAIL_FED"] = 1;
+}
 
+//Tailcunt Oviposition
+//Unlock after PC’s boned Shade’s tailcunt. Now it can get preggers! 
+//Play near/at the end of Tailcuntpreggers time, at the end of any Talk scene. If no scene triggered any time near due date, egg is laid without PC intervention. 
+function tailCuntOvipositionForShade():void
+{
+	clearOutput();
+	showShade();
+	output("As you’re thinking about where to take the conversation next, your kaithrit companion suddenly sucks in a sharp breath and puts a hand on her belly. Shade leans back in her seat, groaning and loosening her vest a bit. You’re about to ask if she’s feeling sick when she turns to her wriggling, green-scaled tail and mumbles “<i>Really? Right now... in the middle of a conversation?</i>”");
+	output("\n\nThe pussy-tail perks up, its head dancing from side to side emphatically.");
+	output("\n\n“<i>For fuck’s... Ugh. Sorry, kid, I gotta go take care of something. </i>Your<i> something, probably.</i>” Shade shakes her head and slips out of her seat, throwing her great big blue duster over her shoulder. You grab her arm before she can get past you, cocking an inquiring eyebrow at her until she relents and adds, “<i>Guess the old girl here’s got some eggs to drop. Don’t wait up... this could take a while.</i>”");
+	processTime(1);
+	//[Go With] [Let Her Go]
+	clearMenu();
+	addButton(0,"Go With",goWithShadeToTakeCareOfBusinessYuSlut,undefined,"Go With","Ask Shade if she needs any help. Or at least, would like some company while she lays.");
+	addButton(1,"Let Her Go",takinCareOfBusinessEveryDayWithShadeSheWorksForUPS,undefined,"Let Her Go","Let Shade take care of business.");
+}
 
-/*
-output("\n\nTailcunt Oviposition");
-output("\n\n//Unlock after PC’s boned Shade’s tailcunt. Now it can get preggers! ");
-output("\n\n//Play near/at the end of Tailcuntpreggers time, at the end of any Talk scene. If no scene triggered any time near due date, egg is laid without PC intervention. ");
+//Let Her Go
+//Let Shade take care of business.
+function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
+{
+	clearOutput();
+	showShade();
+	output("You release your lover’s arm, and she rewards you with a slight grin. “<i>Back in a while.");
+	if(!pc.hasTailCunt()) output("If you’re real lucky I might save one of her clutch for you.</i>” She leans in to your own quivering tailpussy and gives it a scratch. “<i>You’d like a little sister, wouldn’t you?");
+	output("</i>”");
 
-output("\n\n[Next]");
-output("\n\nAs you’re thinking about where to take the conversation next, your kaithrit companion suddenly sucks in a sharp breath and puts a hand on her belly. Shade leans back in her seat, groaning and loosening her vest a bit. You’re about to ask if she’s feeling sick when she turns to her wriggling, green-scaled tail and mumbles “<i>Really? Right now... in the middle of a conversation?</i>”");
+	output("\n\nShade passes you by with an affectionate squeeze of your shoulder, heading off to the women’s room.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nThe pussy-tail perks up, its head dancing from side to side emphatically.");
+//Go With
+//Ask Shade if she needs any help. Or at least, would like some company while she lays.
+function goWithShadeToTakeCareOfBusinessYuSlut():void
+{
+	clearOutput();
+	showShade();
+	output("“<i>Need a hand?</i>” you ask, squeezing her hand affectionately. “<i>Like you said, they’re probably mine anyway.</i>”");
+	output("\n\nYour lover thinks on it for a second, until another birthing pang makes her wince. “<i>Yeah, sure. ");
+	if(flags["SHADE_GOT_HELP_WITH_LAYING"] == undefined)
+	{
+		output("I’m used to dealing with it alone, but I guess I wouldn’t mind the company");
+		flags["SHADE_GOT_HELP_WITH_LAYING"] = 1;
+	}
+	else output("You were a peach last time, after all");
+	output(".</i>”");
 
-output("\n\n“<i>For fuck’s... Ugh. Sorry, kid, I gotta go take care of something. </i>Your<i> something, probably.</i>” Shade shakes her head and slips out of her seat, throwing her great big blue duster over her shoulder. You grab her arm before she can get past you, cocking an inquiring eyebrow at her until she relents and adds, “<i>Guess the old girl here’s got some eggs to drop. Don’t wait up... this could take a while.</i>”");
+	output("\n\nShade gives you a hand up and turns on a heel, away from the women’s room towards the tarmac. It’s a quick walk from the bar to the airfield, though even in that short time, you can see Shade becoming progressively more uncomfortable: the hand not holding yours rarely leaves her belly, and her pace becomes erratic as you near her ship. A grimac is plastered on her face by the time the two of you are aboard, and a bit of sweat sheens her brow.");
+	output("\n\nYou follow her to her quarters, where Shade quickly flops down on the edge of her bed and kicks a shallow plastic tub filled with pillow stuffing out from under it. Clearly not her first ovipositing rodeo.");
+	processTime(15);
+	currentLocation = "602";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("AIRFIELD\nNORTH");
+	clearMenu();
+	addButton(0,"Next",helpShadeLayHerEgg2);
+}
 
-output("\n\n[Go With] [Let Her Go]");
+function helpShadeLayHerEgg2():void
+{
+	clearOutput();
+	showShade();
+	output("Before she gets started, though, Shade grabs her tail by its bulbous head and brings it around to stare her straight in the face. Or as close as it can, given that it’s tip is it’s backside. “<i>Think you could give me a little more warning next time?</i>” she growls at it. Her chastisement is cut short by a wince of discomfort, and she angles to tip down into the bucket.");
+	output("\n\nYou don’t think Shade’s in pain per se, but the expression on her face makes it clear she’s not in a good place. Her fingers dig into her bedspread, and she takes a slow, deep breath.");
+	output("\n\n“<i>If you want to help... grab my tail and rub the tip. Help it relax.</i>”");
+	output("\n\nThat you can do. You reach out with tentative hands, gently wrapping them around the bulbous crown of Shade’s reptilian tail. The squirming creature struggles in your grasp for a moment before your massaging fingers settle it down, lulling it into a fitful acquiescence. With the tail calmed, you begin to gently caress its length, massaging the head around the drooling pussylips. A bit of moisture trickles onto your fingers, letting you move along its polished scales easily. The length of her tail swells slightly after a moment, and Shade throws her head back with a low moan as the egg starts to move down the vaginal passage.");
+	output("\n\nShade’s hand shifts up to her breast, cupping and squeezing through the straining fabric of her shirt. “<i>Oh, fuck, now we’re getting somewhere,</i>” she moans, breathing hard and grunting as she forces the egg down her tail. Femcum and lube squirts out of tailpussy, slathering your hands and drenching the stuffing at the bottom of the bucket.");
+	output("\n\nA mischievous grin spreads across your lips as your bear witness to Shade’s sexual moans. You shift the lips of her tail up to your mouth and let your [pc.tongue] play across them, licking her reptilian cunt cunt its owner makes a cry of pleasure. The egg traveling down her passage starts coming faster in answer to your movements, sliding through her passage with increasing speed as you eat her tail-pussy out. Shade’s voice quavers as she moans, trying to tell you to either lick faster or fuck her - she wobbles in between extremes, her voice picking up to an ecstatic scream. You keep your [pc.tongue] moving quickly, teasing the hooded little clit near her tail’s broad tip until you can feel the lips spreading, parting around the thick, white surface of the cunt-snake’s egg.");
+	output("\n\nShade screams as an orgasm rocking through her, spurred on by the egg cresting from her pussylips. You get your face out of the way and level her cunt-tail with the bin, letting the egg roll out of her twat and onto the thick layer of stuffing waiting for it. Shade groans and flops onto her back, breathing hard, hands on her belly.");
+	output("\n\n“<i>Oof. Never get used to that,</i>” she laughs, running a hand through her silver hair. You cover the egg up with some fluff and crawl into bed beside your lover, slipping an arm around her waist. She gives you a wan smile, and her juicy tale caresses your [pc.leg].");
+	processTime(15);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",helpShadeLayHerEgg3);
+}
 
-output("\n\nLet Her Go");
-output("\n\n//Let Shade take care of business.");
+function helpShadeLayHerEgg3():void
+{
+	clearOutput();
+	showShade();
+	//Daytime Version
+	if(hours >= 6 && hours < 20)
+	{
+		output("“<i>Was that everything you were hoping it would be?</i>” she asks after a while, sitting up and grabbing her duster. “<i>I’m going back to the bar, I think. Coming?</i>”");
+		output("\n\nYou nod and follow Shade back to the bar, hand in hand. As you walk, her tail curls around your waist, more affectionate than normal.");
+		processTime(1);
+		currentLocation = "609";
+		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
+		showName("THE\nGOLDEN PEAK");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Night Version
+	else
+	{
+		output("Shade gives a big yawn and stretches. “<i>I think that’s about taken everything out of me,</i>” Shade purrs, turning toward you with a slight smile. “<i>Thanks for the company, kid. That was... not bad.</i>”");
+		output("\n\nShade shifts in bed, pulling her boots and pants off and making for the covers. “<i>You’re welcome to stay, as always,</i>” she offers, pulling her shirt off to give you a view of her big, soft love pillows. The thought of resting your head against them tonight is almost too much to resist. ");
+		//[Stay] [Go]
+		clearMenu();
+		addButton(0,"Go",skipTownAfterHelpingThisSlootLayEggs);
+		addButton(1,"Stay",stayWithShadeAfterLayingAnEgg);
+	}
+}
 
-output("\n\nYou release your lover’s arm, and she rewards you with a slight grin. “<i>Back in a while. {if PC has a tailcunt: If you’re real lucky I might save one of her clutch for you.</i>” She leans in to your own quivering tailpussy and gives it a scratch. “<i>You’d like a little sister, wouldn’t you?}</i>”");
+//[Go]
+function skipTownAfterHelpingThisSlootLayEggs():void
+{
+	clearOutput();
+	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
+	output("\n\n“<i>Show yourself out, hmm?</i>” she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nShade passes you by with an affectionate squeeze of your shoulder, heading off to the women’s room.");
-
-output("\n\nGo With");
-output("\n\n//Ask Shade if she needs any help. Or at least, would like some company while she lays.");
-
-output("\n\n“<i>Need a hand?</i>” you ask, squeezing her hand affectionately. “<i>Like you said, they’re probably mine anyway.</i>”");
-
-output("\n\nYour lover thinks on it for a second, until another birthing pang makes her wince. “<i>Yeah, sure. {if 1st time: I’m used to dealing with it alone, but I guess I wouldn’t mind the company //else: You were a peach last time, after all}.</i>”");
-
-output("\n\nShade gives you a hand up and turns on a heel, away from the women’s room towards the tarmac. It’s a quick walk from the bar to the airfield, though even in that short time, you can see Shade becoming progressively more uncomfortable: the hand not holding yours rarely leaves her belly, and her pace becomes erratic as you near her ship. A grimac is plastered on her face by the time the two of you are aboard, and a bit of sweat sheens her brow. ");
-
-output("\n\nYou follow her to her quarters, where Shade quickly flops down on the edge of her bed and kicks a shallow plastic tub filled with pillow stuffing out from under it. Clearly not her first ovipositing rodeo. ");
-
-output("\n\nBefore she gets started, though, Shade grabs her tail by its bulbous head and brings it around to stare her straight in the face. Or as close as it can, given that it’s tip is it’s backside. “<i>Think you could give me a little more warning next time?</i>” she growls at it. Her chastisement is cut short by a wince of discomfort, and she angles to tip down into the bucket. ");
-
-output("\n\nYou don’t think Shade’s in pain per se, but the expression on her face makes it clear she’s not in a good place. Her fingers dig into her bedspread, and she takes a slow, deep breath. ");
-
-output("\n\n“<i>If you want to help... grab my tail and rub the tip. Help it relax.</i>”");
-
-output("\n\nThat you can do. You reach out with tentative hands, gently wrapping them around the bulbous crown of Shade’s reptilian tail. The squirming creature struggles in your grasp for a moment before your massaging fingers settle it down, lulling it into a fitful acquiescence. With the tail calmed, you begin to gently caress its length, massaging the head around the drooling pussylips. A bit of moisture trickles onto your fingers, letting you move along its polished scales easily. The length of her tail swells slightly after a moment, and Shade throws her head back with a low moan as the egg starts to move down the vaginal passage. ");
-
-output("\n\nShade’s hand shifts up to her breast, cupping and squeezing through the straining fabric of her shirt. “<i>Oh, fuck, now we’re getting somewhere,</i>” she moans, breathing hard and grunting as she forces the egg down her tail. Femcum and lube squirts out of tailpussy, slathering your hands and drenching the stuffing at the bottom of the bucket. ");
-
-output("\n\nA mischievous grin spreads across your lips as your bear witness to Shade’s sexual moans. You shift the lips of her tail up to your mouth and let your [pc.tongue] play across them, licking her reptilian cunt cunt its owner makes a cry of pleasure. The egg traveling down her passage starts coming faster in answer to your movements, sliding through her passage with increasing speed as you eat her tail-pussy out. Shade’s voice quavers as she moans, trying to tell you to either lick faster or fuck her - she wobbles in between extremes, her voice picking up to an ecstatic scream. You keep your [pc.tongue] moving quickly, teasing the hooded little clit near her tail’s broad tip until you can feel the lips spreading, parting around the thick, white surface of the cunt-snake’s egg. ");
-
-output("\n\nShade screams as an orgasm rocking through her, spurred on by the egg cresting from her pussylips. You get your face out of the way and level her cunt-tail with the bin, letting the egg roll out of her twat and onto the thick layer of stuffing waiting for it. Shade groans and flops onto her back, breathing hard, hands on her belly. ");
-
-output("\n\n“<i>Oof. Never get used to that,</i>” she laughs, running a hand through her silver hair. You cover the egg up with some fluff and crawl into bed beside your lover, slipping an arm around her waist. She gives you a wan smile, and her juicy tale caresses your [pc.leg]. ");
-
-output("\n\n//Daytime Version");
-output("\n\n“<i>Was that everything you were hoping it would be?</i>” she asks after a while, sitting up and grabbing her duster. “<i>I’m going back to the bar, I think. Coming?</i>” ");
-
-output("\n\nYou nod and follow Shade back to the bar, hand in hand. As you walk, her tail curls around your waist, more affectionate than normal.");
-
-
-output("\n\n//Night Version");
-output("\n\nShade gives a big yawn and stretches. “<i>I think that’s about taken everything out of me,</i>” Shade purrs, turning toward you with a slight smile. “<i>Thanks for the company, kid. That was... not bad.</i>”");
-
-output("\n\nShade shifts in bed, pulling her boots and pants off and making for the covers. “<i>You’re welcome to stay, as always,</i>” she offers, pulling her shirt off to give you a view of her big, soft love pillows. The thought of resting your head against them tonight is almost too much to resist. ");
-
-output("\n\n[Stay] [Go]");
-
-output("\n\n[Go]");
-output("\n\nYou hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go. ");
-
-output("\n\n“<i>Show yourself out, hmm?</i>” she purrs, giving you a parting smile before shutting off her light. You slip on out of the ship, and head out into the airfield.");
-
-output("\n\n[Stay]");
-output("\n\nYou tell Shade that you’ve got nowhere to be, which earns you a playful smile from the buxom kaithrit as she flips the lights off. {if PC has a flat chest: You feel a long, strong arm lock around your waist, and Shade’s cheek nuzzle against your [pc.chest]. //else: One of Shade’s arms slips under you, and you feel yourself being pulled over onto your side, planting your face squarely into the valley of her ample cleavage. You nuzzle in, getting comfortable on your makeshift pillows, and letting yourself slowly drift off to sleep in Shade’s arms, enjoying the embrace of her soft breasts and her overly affectionate tail. ");
-
-output("\n\n//Pass 8 hours");
-
-output("\n\nYou wake up a good while later, rested and relaxed, with a great big yawn to announce your waking. After a moment, you note a distinct absence of busty cat-girl in the bed, and the faint sound of running water beating down nearby. You take the opportunity to gather your [pc.gear] scattered all through the ship and get {dressed // yourself re-equipped}. By the time you’re done, the shower’s turned off and Shade appears through her bathroom door, an open-faced towel draped from her shoulders, exposing her chest and sex for your viewing. ");
-
-output("\n\n“<i>Still here?</i>” she teases, letting the towel fall to the ground as she strides over to her dresser, bending over to pull out a fresh pair of underwear, and giving you a view to die for. She gets dressed quickly, though not without giving you quite the show as she does so. When she’s done, Shade slips an arm through yours and gives you a rough pull out of her cabin. “<i>C’mon, can’t lounge around </i>all<i> day.</i>”");
-
-output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
-
-*/
+//[Stay]
+function stayWithShadeAfterLayingAnEgg():void
+{
+	clearOutput();
+	showShade();
+	output("You tell Shade that you’ve got nowhere to be, which earns you a playful smile from the buxom kaithrit as she flips the lights off. ");
+	if(pc.biggestTitSize() < 1) output("You feel a long, strong arm lock around your waist, and Shade’s cheek nuzzle against your [pc.chest].");
+	else output("One of Shade’s arms slips under you, and you feel yourself being pulled over onto your side, planting your face squarely into the valley of her ample cleavage. You nuzzle in, getting comfortable on your makeshift pillows, and letting yourself slowly drift off to sleep in Shade’s arms, enjoying the embrace of her soft breasts and her overly affectionate tail.");
+	clearMenu();
+	addButton(0,"Next",stayWithShadeAfterLayingAnEgg2);
+}
+function stayWithShadeAfterLayingAnEgg2():void
+{
+	clearOutput();
+	showShade();
+	//Pass 8 hours
+	processTime(477);
+	output("You wake up a good while later, rested and relaxed, with a great big yawn to announce your waking. After a moment, you note a distinct absence of busty cat-girl in the bed, and the faint sound of running water beating down nearby. You take the opportunity to gather your [pc.gear] scattered all through the ship and get ");
+	if(!pc.isNude()) output("dressed");
+	else output("yourself re-equipped");
+	output(". By the time you’re done, the shower’s turned off and Shade appears through her bathroom door, an open-faced towel draped from her shoulders, exposing her chest and sex for your viewing.");
+	output("\n\n“<i>Still here?</i>” she teases, letting the towel fall to the ground as she strides over to her dresser, bending over to pull out a fresh pair of underwear, and giving you a view to die for. She gets dressed quickly, though not without giving you quite the show as she does so. When she’s done, Shade slips an arm through yours and gives you a rough pull out of her cabin. “<i>C’mon, can’t lounge around </i>all<i> day.</i>”");
+	output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

@@ -762,6 +762,13 @@ public function processTime(arg:int):void {
 					eventQueue[eventQueue.length] = giveBirthThroughCuntTail;
 				}
 			}
+			//Shade cunt snakustuff
+			if(flags["SHADE_INSEMINATION_COUNTER"] != undefined)
+			{
+				flags["SHADE_INSEMINATION_COUNTER"]++;
+				//Birth that shit on her own time if she holds it too long
+				if(flags["SHADE_INSEMINATION_COUNTER"] > 167) flags["SHADE_INSEMINATION_COUNTER"] = undefined;
+			}
 
 			//Days ticks here!
 			if(this.hours >= 24) {

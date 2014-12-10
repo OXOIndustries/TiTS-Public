@@ -201,7 +201,7 @@ function fuckCameronsButt():void
 	clearOutput();
 	author("Savin");
 	showName("\nCAMERON");
-	showBust("CAMERON");
+	showBust("CAMERON_NUDE");
 	var panties:Boolean = (rand(2) == 0);
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -248,7 +248,7 @@ function rimHimFirst():void
 	clearOutput();
 	author("Savin");
 	showName("\nCAMERON");
-	showBust("CAMERON");
+	showBust("CAMERON_NUDE");
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You don't doubt it. But a lubed cock is only half of the equation, isn't it? You flash the faux-cow a wink and plant your hands on his raised thighs, getting a good look at the tight little black ring between his big butt cheeks. It winks nervously at you, trickles of lube staining it from the thorough cock-basting you've given its owner already. You lean in and give it a lick, dragging your tongue through the crack and up the the underside of Cameron's hefty Treated sack, feeling the cum-filled orbs tremble at your touch. He gives a little whine when you turn your attention back to his hole, putting just enough pressure on it to force it open. Your [pc.tongue] slips in easily, probing into the tight little passage of Cam's ass.");
@@ -272,7 +272,7 @@ function fuckCamsButt(camCame:Boolean = false):void
 	clearOutput();
 	author("Savin");
 	showName("\nCAMERON");
-	showBust("CAMERON");
+	showBust("CAMERON_NUDE");
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Satisfied with the job you’ve done, you lean in over Cam and take hold of your [pc.cock], angling it toward the slick, black ring of his ass. His eyes lock with yours, full of lust and hunger and unbridled need. You expect a little resistance when you start to push forward, but instead you find the little cow-boy’s ass opening wide to welcome you, sucking you in. You sink into Cam’s ass, both of you gasping and moaning as you spread him wide on your [pc.cock " + x + "].");

@@ -137,11 +137,15 @@
 		include "../includes/texasNew.yancy.as";
 		include "../includes/texasNew.zephyr.as";
 
+		
+		include "../includes/myrellion.embassy.as";
+		include "../includes/myrellion.karaAndShade.as";
+		include "../includes/myrellion.nehzara.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
-		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.tavern.as";
-		include "../includes/myrellion.karaAndShade.as";
+		
+
 
 		include "../includes/vanae.as";
 		include "../includes/anno.follower.as";		
@@ -227,7 +231,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.11";
+			version = "0.5.12";
 
 			//temporary nonsense variables.
 			temp = 0;
