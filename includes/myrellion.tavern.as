@@ -15,7 +15,15 @@ function goldenPeakBonusFunction():Boolean
 		karaFirstTimeBarStuff();
 		return true;
 	}
-	addButton(1,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
+	if(shadeAtTheBar())
+	{
+		//Shade Repeat Encounters
+		//Add to Bar Description
+		output("\n\nShade, the kaithrit bounty hunter, is sitting with her boots propped up on a corner table, silently watching the rest of the bar. A couple of empty beers are stacked up on her table, surrounding a portable holoterminal dominating half the table. At a glance, it looks like Shade’s researching local bounties.");
+		if(shadeQuestNeedsTurnIn()) addButton(1,"Shade",getPaidByShade4Kara,undefined,"Shade","Collect your portion of the pay from Shade.");
+		else addButton(1,"Shade",shadeApproach,undefined,"Shade","Go talk to Shade, the bounty hunter you met previously.");
+	}
+	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
 	if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
 	else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
 	return false;

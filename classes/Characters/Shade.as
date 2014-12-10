@@ -167,6 +167,8 @@
 			this.ass.loosenessRaw = 1;
 			this.ass.bonusCapacity = 100;
 			
+			this.inventory.push(new ArcCaster());
+
 			this._isLoading = false;
 		}	
 		override public function setDefaultSexualPreferences():void

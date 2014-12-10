@@ -268,12 +268,7 @@ function sleep(outputs:Boolean = true):void {
 		output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
 	
-	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
-	{
-		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
-	}
-	
-	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+	sleepHeal();
 	
 	processTime(minutes);
 
@@ -283,6 +278,17 @@ function sleep(outputs:Boolean = true):void {
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
 	else this.addButton(0,"Next",mainGameMenu);
 }
+
+function sleepHeal():void
+{
+	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
+	{
+		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
+	}
+	
+	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+}
+
 
 function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;

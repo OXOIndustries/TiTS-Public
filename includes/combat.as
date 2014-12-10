@@ -535,6 +535,19 @@ function updateCombatStatuses():void {
 			output("<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>\n");
 		}
 	}
+	if(pc.hasStatusEffect("Disarmed") && !(foes[0] is Varmint))
+	{
+		pc.addStatusValue("Disarmed",1,-1);
+		if(pc.statusEffectv1("Disarmed") <= 0)
+		{
+			pc.removeStatusEffect("Disarmed");
+			output("<b>You are no longer disarmed!</b>\n");
+		}
+		else 
+		{
+			output("<b>You are disarmed and cannot use weapon based attacks.</b>\n");
+		}
+	}
 	
 	// Annoquest stuffs
 	
@@ -1676,6 +1689,16 @@ function victoryRouting():void
 	{
 		pcVictoryVsVarmints();
 	}
+	else if(foes[0] is Shade)
+	{
+		// PC + Kara defeat Shade
+		pcAndKaraBeatShade();
+	}
+	else if(foes[0] is Kara)
+	{
+		//PC + Shade defeat Kara
+		pcAndShadeBeatKara();
+	}
 	else genericVictory();
 }
 
@@ -1785,6 +1808,16 @@ function defeatRouting():void
 	else if (foes[0] is Varmint)
 	{
 		pcLosesToVarmint();
+	}
+	else if(foes[0] is Shade)
+	{
+		//PC + Kara Defeated
+		loseWithKaraYouSlut()
+	}
+	else if(foes[0] is Kara)
+	{
+		//PC + Shade Defeated
+		pcAndShadeDefeated();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");

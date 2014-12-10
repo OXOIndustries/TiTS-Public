@@ -101,35 +101,35 @@ function initializeMyrellionRooms():void
 	//606 Spacer's Row, S1 (Outside the Tavern)
 	rooms["606"] = new RoomClass(this);
 	rooms["606"].roomName = "SPACER'S\nROW";
-	rooms["606"].description = "One of the airfield's barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be \"The Golden Peak.\" The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.{if just finished KaraQuest 1: <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>}";
+	rooms["606"].description = "One of the airfield's barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be \"The Golden Peak.\" The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.";
 	rooms["606"].planet = "PLANET: MYRELLION";
 	rooms["606"].system = "SYSTEM: SINDATHU";
 	rooms["606"].northExit = "605";
 	rooms["606"].southExit = "607";
 	rooms["606"].eastExit = "609";
-	rooms["606"].runOnEnter = undefined;
+	rooms["606"].runOnEnter = streetOutsideBarBonus;
 	rooms["606"].addFlag(GLOBAL.OUTDOOR);
  
 	//607 Spacer's Row, S2 (Outside the Scout Authority)
 	rooms["607"] = new RoomClass(this);
 	rooms["607"].roomName = "SPACER'S\nROW";
-	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of this building. Several pioneers are gathered around just in the doors, and there's a constant stream of people coming and going. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway{ where Kara is hiding}.";
+	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of this building. Several pioneers are gathered around just in the doors, and there's a constant stream of people coming and going. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway";
 	rooms["607"].planet = "PLANET: MYRELLION";
 	rooms["607"].system = "SYSTEM: SINDATHU";
 	rooms["607"].northExit = "606";
 	rooms["607"].southExit = "608";
 	rooms["607"].eastExit = "610";
-	rooms["607"].runOnEnter = undefined;
+	rooms["607"].runOnEnter = spacersRowBonusFunc;
 	rooms["607"].addFlag(GLOBAL.OUTDOOR);
 
 	//608 Spacer's Row, S3 (Back Alley)
 	rooms["608"] = new RoomClass(this);
 	rooms["608"].roomName = "SPACER'S\nROW";
-	rooms["608"].description = "This is a dank, dark alleyway at the end of Spacer's Row. The only way out is either over a fence topped with concertina wire that surrounds the active military parts of the airfield, or else back north towards the embassies. {Not much to see here // Kara steps out of the shadows as you approach, smiling. [Kara]}";
+	rooms["608"].description = "This is a dank, dark alleyway at the end of Spacer's Row. The only way out is either over a fence topped with concertina wire that surrounds the active military parts of the airfield, or else back north towards the embassies.";
 	rooms["608"].planet = "PLANET: MYRELLION";
 	rooms["608"].system = "SYSTEM: SINDATHU";
-	rooms["608"].northExit = "606";
-	rooms["608"].runOnEnter = undefined;
+	rooms["608"].northExit = "607";
+	rooms["608"].runOnEnter = backAlleyBonus;
 	rooms["608"].addFlag(GLOBAL.OUTDOOR);
 
 	//609 The Tavern

@@ -41,3 +41,31 @@ function flyToMyrellion():void
 		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you're guiding your ship back through the atmosphere for a flawless landing on the tarmac.");
 	}
 }
+
+function streetOutsideBarBonus():Boolean
+{
+	if(karaQuestTurninNeeded()) output(" <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
+	if(karaAndShadeUnfinished())
+	{
+		lastChanceForHelpingKara();
+		return true;
+	}
+	return false;
+}
+function spacersRowBonusFunc():Boolean
+{
+	if(karaQuestTurninNeeded()) output(" <b>where Kara is hiding</b>");
+	output(".");
+	return false;
+}
+function backAlleyBonus():Boolean
+{
+	if(karaQuestTurninNeeded()) 
+	{
+		meetUpWithKaraInTheBackAlley();
+		return true;
+	}
+	else output(" Not much to see here.");
+	return false;
+}
+
