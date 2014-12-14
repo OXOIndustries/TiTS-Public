@@ -68,48 +68,60 @@
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all
 		
+		//Core Game Stuff
+		include "../includes/appearance.as";
 		include "../includes/combat.as";
-		include "../includes/celise.as";
-		include "../includes/flahne.as";
-		include "../includes/items.as";
-		include "../includes/penny.as";
-		include "../includes/scrapyard.as";
+		include "../includes/ControlBindings.as";
+		include "../includes/CodexEntries.as";
 		include "../includes/creation.as";
+		include "../includes/debug.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
+		include "../includes/lightsOut.as";
+		include "../includes/items.as";
 		include "../includes/masturbation.as";
 		include "../includes/NPCTemplates.as";
-		include "../includes/burt.as";
-		include "../includes/appearance.as";
 		include "../includes/rooms.as";
-
 		include "../includes/roomFunctions.as";
-		include "../includes/zilMale.as";
-		include "../includes/zilFemale.as";
-		include "../includes/cuntSnakes.as";
-		include "../includes/naleen.as";
-		include "../includes/venusPitchers.as";
-		include "../includes/syri.as";
-		include "../includes/julianSHaswell.as";
-		include "../includes/sellesy.as";
-		include "../includes/alex.as";
-		include "../includes/naleenMale.as";
-		include "../includes/crazyCarl.as";
-		include "../includes/jade.as";
-		include "../includes/reaha.as";
+
+		//Misc content
 		include "../includes/rivalEncounters.as";
-		include "../includes/kelly.as";
-		include "../includes/sera.as";
-		include "../includes/mimbranes.as";
-		include "../includes/vko.as";
+		include "../includes/saendra.as";
+		include "../includes/travelEvents.as";
+		include "../includes/travelEvents.fallOfThePhoenix.as";
+		include "../includes/travelEvents.kiroRescue.as";
+		include "../includes/anno.follower.as";	
+
+		//Tavros Station
+		include "../includes/tavros.aliss.as";
+		include "../includes/tavros.alex.as";
+		include "../includes/tavros.celise.as";
+		include "../includes/tavros.jade.as";
+		include "../includes/tavros.reaha.as";
+		include "../includes/tavros.sellesy.as";
+		include "../includes/tavros.sera.as";
+		include "../includes/tavros.shelly.as";
 		
+		//First planet
+		include "../includes/mhenga.burt.as";
+		include "../includes/mhenga.crazyCarl.as";
+		include "../includes/mhenga.cuntSnakes.as";
+		include "../includes/mhenga.flahne.as";
+		include "../includes/mhenga.julianSHaswell.as";
+		include "../includes/mhenga.kelly.as";
+		include "../includes/mhenga.mimbranes.as";
+		include "../includes/mhenga.naleen.as";
+		include "../includes/mhenga.naleenMale.as";
+		include "../includes/mhenga.penny.as";
+		include "../includes/mhenga.scrapyard.as";
+		include "../includes/mhenga.syri.as";
+		include "../includes/mhenga.vanae.as";
+		include "../includes/mhenga.venusPitchers.as";
+		include "../includes/mhenga.vko.as";
+		include "../includes/mhenga.zilMale.as";
+		include "../includes/mhenga.zilFemale.as";
 		
-		include "../includes/shelly.as";
-		
-		
-		include "../includes/aliss.as";
-		
-	
+		//Second planet
 		include "../includes/tarkus.anno.as";
 		include "../includes/tarkus.aurora.as";
 		include "../includes/tarkus.colenso.as";
@@ -124,14 +136,7 @@
 		include "../includes/tarkus.stellarTether.as";
 		include "../includes/tarkus.sydianMale.as";
 
-	
-		include "../includes/debug.as";
-		include "../includes/ControlBindings.as";
-		include "../includes/CodexEntries.as";
-		include "../includes/travelEvents.as";
-		include "../includes/travelEvents.fallOfThePhoenix.as";
-		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/saendra.as";
+		//Third planet
 		include "../includes/texasNew.as";
 		include "../includes/texasNew.bigT.as";
 		include "../includes/texasNew.brynn.as";
@@ -144,8 +149,8 @@
 		include "../includes/texasNew.yammi.as";
 		include "../includes/texasNew.yancy.as";
 		include "../includes/texasNew.zephyr.as";
-
 		
+		//Fourth planet
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.nehzara.as";
@@ -153,13 +158,6 @@
 		include "../includes/myrellion.roomFunctions.as";
 		include "../includes/myrellion.tavern.as";
 		
-
-
-		include "../includes/vanae.as";
-		include "../includes/anno.follower.as";		
-		
-		include "../includes/lightsOut.as";
-			
 		public var chars:Object;
 		public var foes:Array;
 
