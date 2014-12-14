@@ -102,27 +102,35 @@
 		include "../includes/sera.as";
 		include "../includes/mimbranes.as";
 		include "../includes/vko.as";
-		include "../includes/raskvelFemaleFight.as";
-		include "../includes/sexbots.as";
-		include "../includes/grayGoo.as";
-		include "../includes/lapinara.as";
+		
+		
 		include "../includes/shelly.as";
-		include "../includes/sydianMale.as";
-		include "../includes/theMess.as";
+		
+		
 		include "../includes/aliss.as";
-		include "../includes/shekka.as";
-		include "../includes/anno.as";
-		include "../includes/drBadger.as";
-		include "../includes/dumbfuckBonus.as";
-		include "../includes/colenso.as";
-		include "../includes/aurora.as";
+		
+	
+		include "../includes/tarkus.anno.as";
+		include "../includes/tarkus.aurora.as";
+		include "../includes/tarkus.colenso.as";
+		include "../includes/tarkus.drBadger.as";
+		include "../includes/tarkus.dumbfuckBonus.as";
+		include "../includes/tarkus.grayGoo.as";
+		include "../includes/tarkus.lapinara.as";
+		include "../includes/tarkus.raskvelFemaleFight.as";
+		include "../includes/tarkus.theMess.as";
+		include "../includes/tarkus.sexbots.as";
+		include "../includes/tarkus.shekka.as";
+		include "../includes/tarkus.stellarTether.as";
+		include "../includes/tarkus.sydianMale.as";
+
+	
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/stellarTether.as";
 		include "../includes/saendra.as";
 		include "../includes/texasNew.as";
 		include "../includes/texasNew.bigT.as";
