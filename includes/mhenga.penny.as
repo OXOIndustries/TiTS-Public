@@ -1558,8 +1558,19 @@ function pennyFutanariTalk():void {
 	//Repeat Futanari Talk
 	else
 	{
+		if(penny.hasCock(GLOBAL.TYPE_EQUINE))
+		{
+			output("<i>“Oh, you mean this show pony you tricked me into getting?”</i> Penny asks with a knowing grin. <i>“I thought Throbb would have be all drippy and horny at all times of the day, but this thing is almost as bad!”</i> She shifts uncomfortably. <i>“I can barely hide the thing, and just thinking about it gets it hard enough to whack into the bottom of my desk.”</i>");
+			if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
+			{
+				output("\n\nThe over-sized futanari fennec shifts to bring the flared head up to her lips. She swiftly slathers it in a fresh layer of spit. <i>“Part of me wants more... but...”</i> She moans, swallowing at least six inches of pulsing meat. When she pulls it back out again her cock is slick and dripping white. <i>“This is just so awesome already.”</i> A pearl-white smile spreads across her face.")
+			}
+			output("\n\nShe's no longer interested in taking Throbb.");
+			clearMenu();
+			this.addButton(14,"Back",approachGirlfriendPenny);
+		}
 		//Not yet futa
-		if (!penny.hasCock())
+		else if (!penny.hasCock())
 		{
 			output("<i>“Oh, you want to talk about me growing a dick again?”</i>  Penny asks. <i>“You know, if I dose myself with Throbb I’m going to wind up horny and dripping more often than normal. My self control will probably slip a little too. However, I’ll be able to fuck you like freight train, and oh god I bet the orgasms will feel great.”</i>");
 			output("\n\nFrom the sounds of it, Penny’s panties are already more than a little moist at the idea. Do you tell her to take some Throbb?");
@@ -1629,7 +1640,7 @@ function pennyFutanariTalk():void {
 			}
 			else 
 			{
-				output("<i>“MMmoooore?</i>\"  Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
+				output("<i>“Mmmoooore?</i>\"  Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
 				if(penny.balls > 0) output("cradles her balls");
 				else output("dips into her sheath to play with it");
 				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i>  She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");	
@@ -3431,7 +3442,7 @@ function pennyGrowsAHorseCockPart2():void
 	}
 	else
 	{
-		output("\n\nYou look at the sex toy tacked to Penny’s crotch the sheer length of the sheath amazes you. It’s about eight to ten inches long laying atop her massive balls. Thick veins gently pulse with Penny’s heartbeat. It’s amazing craftsmanship you tell yourself; if you didn’t know any better you would say it was real. You catch yourself wishing it -was- real. The thought of a massive horse cock sliding out of the end of the dark fleshy tube arouses you more than you thought it would.\n\nLicking your lips, you turn your thoughts towards your fulsome hermaphroditic lover panting in front of you and the huge sheath on her groin. The more you look at it, however, the more real it looks. The sheath and sack are becoming slick and shiny as Penny’s excretions ooze out of the gaping opening and down onto the balls. The veins on her equipment become more and more pronounced as they throb more strongly with Penny’s blood.");
+		output("You look at the sex toy tacked to Penny’s crotch the sheer length of the sheath amazes you. It’s about eight to ten inches long laying atop her massive balls. Thick veins gently pulse with Penny’s heartbeat. It’s amazing craftsmanship you tell yourself; if you didn’t know any better you would say it was real. You catch yourself wishing it -was- real. The thought of a massive horse cock sliding out of the end of the dark fleshy tube arouses you more than you thought it would.\n\nLicking your lips, you turn your thoughts towards your fulsome hermaphroditic lover panting in front of you and the huge sheath on her groin. The more you look at it, however, the more real it looks. The sheath and sack are becoming slick and shiny as Penny’s excretions ooze out of the gaping opening and down onto the balls. The veins on her equipment become more and more pronounced as they throb more strongly with Penny’s blood.");
 		output("\n\n“<i>T-that was different, but it felt amazing, [pc.name]. Let’s go again...</i>” she murmurs dreamily. You nod in agreement and reach down to pull up on the sex toy, only to garner a loud yelp and a slap from the busty prick-vixen as a look of mute horror passes across her face. “<i>T...that hurt,</i>” she supplies tentatively. You lean in and inspect her crotch. Upon closee scrutiny, you see the seam has vainished! The toy has now somehow grafted itself onto Penny’s crotch.\n\nYou look up past Penny’s quaking tits into her confused eyes. You’re not sure how to say it, but you break the news that Penny is now part pony. She looks at you quizzically, still flushed from her previous orgasm. “<i>R-really, [name]? W-well, I always...did love horsies,</i>” Penny mutters as she idly toys with the dripping opening of her sheath until a look crosses her face that isn’t unlike confusion. You wonder what it is until you see her new endowment jump in her hand, massive veins pumping blood into Penny’s newly enhanced endowment.");
 		output("\n\nPenny grits her teeth and looks down with you in amazement as a massive, flared head slides out of the sheath, its pink mottled flesh dripping precum as inch after inch of throbbing horsecock oozes out of the sheath. Penny’s heavy, swollen balls visibly churn, pulsing with each ball-swelling beat of her heart as her equine dong reaches its full, magnificent 20-inch length. The breath catches in her throat as Penny gazes at her powerful cock, its length gently throbbing and pulsing in front of her face. She looks nervously back and forth before abandoning all pretense to the contrary and shoving as much of her horsecock as she can down her throat, her hands reaching down and roughly squeezing her balls. “<i>Dssh essh arshom m’ mat!!</i>” she gargles over a throat full of dong. You watch in amazement as she bobs up and down her length, nearly reaching her medial ring in the throes of her lust induced fervor.");
 		output("\n\nFinally, you see her balls seize up and her cock distend as a massive gout of cum rockets its way up her length and into her mouth. Penny gulps down load after load of salty horse-spunk, small streams escaping the side of her mouth from the sheer force of her ejaculation. It becomes too much for her to keep down and releases her cock from her gullet; still firing creamy seed for several more shots, painting her golden fur a silky white. Spent, Penny’s impressive organ softens to lay against her leg before retreating into her sheath.  Penny pats her crotch before looking into your eyes with a lascivious grin. “<i>Next time, you can take her for a ride, [pc.name]!</i>”");
