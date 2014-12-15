@@ -383,7 +383,7 @@ function talkToEllieAboutTreatment():void
 	output("\n\n<i>“The Treatment’s a New Texas tradition - everyone on the planet gets it, and a whole bunch of visitors even take it after they see how much fun we have here. The Treatment makes sure everyone on the planet is happy, content, fertile, and fuckable. When you’re treated, you’re never shy or lonely: everyone here’s outgoing, friendly, and there’s not a girl on the planet won’t spread her legs if you ask nice. It’s made our beautiful little planet here a veria- varit- uh, basically a paradise!”</i>");
 	output("\n\nEllie beams proudly at the statement. Still, you can’t help but ask for a more... in-depth answer.");
 	//if PC is treated
-	if(9999 == 0) 
+	if(pc.isTreated()) 
 	{
 		output("\n\n<i>“I think you already know what it does, silly!”</i> she says, crossing her arms under her milky bosom. <i>“Still, I guess it doesn’t hurt to give you a reminder. Just stop me if you get bored");
 		if(pc.hasCock()) output(" and wanna ram that [pc.cock] of yours into me instead");
@@ -452,7 +452,7 @@ function talkToEllieAboutNewTexas():void
 	output(" like a " + pc.mf("handsome stud","cute girl") + " suckling on one of my tits!”</i>");
 	output("\n\nAnd you thought you were swimming in leithan-musk before... your mouth is absolutely <i>watering</i> now. And you have an incredible urge for ");
 	//if Treated or Bimbo’d:
-	if(9999 == 0) output("a mouthful of tit to suckle from");
+	if(pc.isTreated() || pc.isBimbo()) output("a mouthful of tit to suckle from");
 	else output("a tall glass of milk");
 	output(".");
 	processTime(11);
@@ -469,9 +469,9 @@ function suckleDatCowtaurTeat():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
-	//Insta-maxes Lust. Raises Minimum Lust to 33 for 24 hours. 9999
+	//Insta-maxes Lust. Raises Minimum Lust to 33 for 24 hours.
 	if(pc.hasStatusEffect("Ellie's Milk")) pc.setStatusMinutes("Ellie's Milk",1440);
 	else pc.createStatusEffect("Ellie's Milk",0,0,0,0, false, "LustUp", "Ellie's milk is keeping your body more aroused than normal. You'll have to wait for it to wear off before your body goes back to normal.", false, 1440);
 	output("You ask Ellie if she wouldn’t mind sharing some of her milk with you. By the looks of things, she’s got plenty to spare.");
@@ -520,7 +520,7 @@ function turnDownDatLustReliefFroMElliebuns():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("You wordlessly brush Ellie’s hand away from your [pc.crotch], though it’s an almost physical pain to do so. Your lusts are your own - for now.");
 	output("\n\n<i>“Suit yourself,”</i> Ellie moans, her hand settling on your [pc.knee]. <i>“At least let me switch you to the other teat, huh? Ol’ lefty’s getting a little sore...”</i>");
@@ -554,7 +554,7 @@ function getAHandyFromEllie():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("You answer Ellie with a little nod, spreading your [pc.legs] a bit to give her access to your rock-hard [pc.cock]. <i>“Good " + pc.mf("boy","girl") + ",”</i> Ellie coos, starting to strip your [pc.gear] off. <i>“Nothing gets me in the mood to tug on a [pc.cock] like a gentle mouth on my tits, suckling like a babe... speaking of which, what do you say to switching tits, huh? Poor righty’s feeling awfully left out.”</i>");
 	output("\n\nYou don’t have much say in the matter, as by the time she asks, Ellie’s half way to pulling you from her teat. You let go only with a little whine, milk dribbling from the corners of your [pc.lips]. Thankfully, your nurse quickly shifts you to her other, fuller breast, and you happily return to suckling. She moans, a low, sensual sound as you draw forth the first beads of milk from her right breast, which quickly turns into a stream that you’re all too happy to try and keep up with.");
@@ -595,7 +595,7 @@ function getFingerByEllieDuringMilkDrinking():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	//Sav’s note: Ellie fingers while suckling. Option to let other bulls pound you while you drink? Delicious public use!
 	output("You answer Ellie with a little nod, spreading your [pc.legs] a bit to give her access to your [pc.crotch]. <i>“Good " + pc.mf("boy","girl") + ",”</i> Ellie coos, starting to strip your [pc.gear] off. <i>“Nothing makes me want to slip a few fingers into a tight little hole than a gentle mouth on my tits, suckling like a babe... speaking of which, what do you say to switching tits, huh? Poor righty’s feeling awfully left out.”</i>");
@@ -637,7 +637,7 @@ function publicUseForBullsByCentaurians():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("You desperately want to get off, but the positioning just isn’t working in your favor. Ellie’s hands brush your thighs, caressing your bestial body, but there’s no way she can get a proper reach on your back-mounted genitalia. Frankly, you’re desperate enough now that it doesn’t much matter who sates your lusts.");
 	output("\n\nEllie sees this, and coos appreciatively. <i>“Don’t you worry, sweet thing, I’m sure all these bulls wouldn’t mind giving you a little relief, would they?”</i>");
@@ -736,7 +736,7 @@ function ellieSexScene():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	nephAffection(10);
 
@@ -800,7 +800,7 @@ function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBi
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("<i>“Come and get it, big " + pc.mf("boy","girl") + ",”</i> Ellie purrs, withdrawing her arm-thick tail from her pussy, leaving her lips wide agape and drooling a web of excitement and anticipation. You all but leap at the opportunity, ");
 	if(pc.tallness < 76) output("grabbing a smallish box to stand on and ");
@@ -840,7 +840,7 @@ function littleDicksGetToPlayForTheFirstTime():void
 {
 	clearMenu();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] = 1;
 	output("<i>“Come and get it, big " + pc.mf("boy","girl") + ",”</i> Ellie purrs, withdrawing her arm-thick tail from her pussy, leaving her lips wide agape and drooling a web of excitement and anticipation. You all but leap at the opportunity, ");
@@ -867,7 +867,7 @@ function littleDicksGetToGoRoundTwo():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("<i>“Don’t worry about size this time, lover-" + pc.mf("boy","girl") + ",”</i> Ellie adds a moment later, still thrusting her thick tail into herself, punctuating her words with little gasps of pleasure. <i>“My big ol’ pussy may be a little too big for you, but I’ve got another little hole that’s as tight as a Terran virgin’s little slit.”</i>");
 	output("\n\nAs she speaks, her tail pops out from her now-gaping sex and drags itself up her haunch, the tapered tip coming to rest against the dark little star of her asshole. She’s not kidding: her butt’s about as big as a pornstar’s cooch, but it’s a hell of a lot more... well, you-sized than her animalistic pussy. She gives a little gasp as her tail pushes in, just a few inches, but covered in her sweltering girl-cum as it is, the going’s not too rough for maybe six inches of her rapidly-widening thickness. <i>“What do you say, sweet thing? Wanna feel my hot, tight little pucker around that gorgeous little cock of yours?”</i>");
@@ -901,7 +901,7 @@ function centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("<i>“How about you give me what none of those big bulls out there can, sweet thing? Trot up here and give me a good, hard mounting!”</i> Ellie commands, her tail sliding out of her and coiling out of the way to reveal the gaping gasp of her cum-slick pussy. She wiggles her hips invitingly, hands wrapping around the bolted bar on the wall to steady herself in preparation. Her black-lipped cunt winks at you, still webbed with strands of sticky girl-spunk and beading anew with moisture, looking so inviting that you just can’t help yourself.");
 	output("\n\n<i>“Oooh, come and get it, eager " + pc.mf("boy","girl") + ",”</i> she giggles as you stomp up behind her, already feeling the weight of your [pc.cockBiggest] growing to full mast under your own tauric body. As you approach, you find yourself walking right into the potent cloud of Ellie’s over-active sex pheromones,");
@@ -935,7 +935,7 @@ function getTailPeggedByTaurBitches():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ELLIE");
+	showBust("ELLIE_NUDE");
 	showName("\nELLIE");
 	output("<i>“Well, since you don’t have a big, throbbing bulldick to stick in me, I guess I’ll just have to return the favor the old-fashioned way, won’t I?”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
 	output("\n\nShe beckons you over with a come-hither crook of a finger, still happily pounding away at her gaping cunt with the thick, supple length of her tail. When you make your way over to your tauric lover, she gives you a lascivious smile and pats the bolted iron bar on the wall. <i>“Grab this, sweet thing, and spread ‘em wide!”</i>");
