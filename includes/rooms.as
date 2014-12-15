@@ -2769,8 +2769,8 @@ function initializeRooms():void
 	//#93 NEXT TO\nCRASHED SHIP
 	rooms["293"] = new RoomClass(this);
 	rooms["293"].roomName = "NEXT TO\nCRASHED SHIP";
-	rooms["293"].description = "An orange ship, mostly covered in junk, sits to the northwest, it's rounded hull curving gracefully away to the north and west in spite of the many pits and blast marks that score its surface.\n<b>Fen note: custom loot stuff goes here later on along with a blurb from the room desc document.</b>";
-	rooms["293"].runOnEnter = rustPlainsEncounters;
+	rooms["293"].description = "An orange ship, mostly covered in junk, sits to the northwest, it's rounded hull curving gracefully away to the north and west in spite of the many pits and blast marks that score its surface.";
+	rooms["293"].runOnEnter = bonusTubeSteak;
 	rooms["293"].northExit = "261";
 	rooms["293"].eastExit = "259";
 	rooms["293"].southExit = "257";

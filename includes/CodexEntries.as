@@ -40,6 +40,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items","SynthSheath",synthSheathCodex);
 }
 
 public function codexHomeFunction():void
@@ -72,6 +73,16 @@ public function codexHomeFunction():void
 
 	userInterface.outputCodex();
 }
+
+function synthSheathCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Item: Xenogen Biotech SynthSheath"));
+	outputCodex("The XenoGen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.");
+	outputCodex("\n\nFemale subjects attaching this device have their blood cells used to populate their new penis and testicles. The microsurgeons also insert a prostate near the device; genetic manipulation of the subject’s brain chemistry links the device to the subjects nervous, circulatory, and immune systems to prevent phantom limb disorder and tissue rejection.\n");
+	CodexManager.viewedEntry("SynthSheath");
+}
+
 
 function varmintCodex():void
 {

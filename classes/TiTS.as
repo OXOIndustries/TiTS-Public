@@ -130,11 +130,12 @@
 		include "../includes/tarkus.grayGoo.as";
 		include "../includes/tarkus.lapinara.as";
 		include "../includes/tarkus.raskvelFemaleFight.as";
-		include "../includes/tarkus.theMess.as";
+		include "../includes/tarkus.roomFunctions.as";
 		include "../includes/tarkus.sexbots.as";
 		include "../includes/tarkus.shekka.as";
 		include "../includes/tarkus.stellarTether.as";
 		include "../includes/tarkus.sydianMale.as";
+		include "../includes/tarkus.theMess.as";
 
 		//Third planet
 		include "../includes/texasNew.as";

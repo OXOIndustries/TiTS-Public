@@ -1663,6 +1663,26 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		public function destroyItemByName(arg:String,amount:int = 1):void
+		{
+			if(inventory.length == 0) return;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				//Item in the slot?
+				if(inventory[x].shortName == arg) 
+				{
+					//If we still need to eat some, eat em up!
+					while(amount > 0 && inventory[x].quantity > 0) 
+					{
+						inventory[x].quantity--;
+						amount--;
+						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+					}
+				}
+			}
+			return;
+		}
 		public function destroyItem(arg:ItemSlotClass,amount:int = 1):void
 		{
 			if(inventory.length == 0) return;
@@ -5038,24 +5058,32 @@
 		}
 		public function boostCum(amount:Number = 1):void
 		{
-			if(cumMultiplierRaw > 10) amount /= 2;
-			if(cumMultiplierRaw > 50) amount /= 2;
-			if(cumMultiplierRaw > 100) amount /= 2;
+			var total = amount;
+			//Loop through one at a time!
+			while(total > 0)
+			{
+				total--;
+				amount = 1;
+			
+				if(cumMultiplierRaw > 10) amount /= 2;
+				if(cumMultiplierRaw > 50) amount /= 2;
+				if(cumMultiplierRaw > 100) amount /= 2;
 
-			//Efficiency is always 3x Multiplier
-			ballEfficiency += amount * 3;
-			cumMultiplierRaw += amount;
-			//Boost efficiency more if behind
-			if(cumMultiplierRaw* 3 > ballEfficiency)
-			{
-				ballEfficiency += amount * 2;
-				if(cumMultiplierRaw* 3 > ballEfficiency) ballEfficiency += amount * 2;
-			}
-			//Boost multiplier if way too low.
-			else if(cumMultiplierRaw * 4 < ballEfficiency)
-			{
+				//Efficiency is always 3x Multiplier
+				ballEfficiency += amount * 3;
 				cumMultiplierRaw += amount;
-				if(cumMultiplierRaw * 4 < ballEfficiency) cumMultiplierRaw += amount;
+				//Boost efficiency more if behind
+				if(cumMultiplierRaw* 3 > ballEfficiency)
+				{
+					ballEfficiency += amount * 2;
+					if(cumMultiplierRaw* 3 > ballEfficiency) ballEfficiency += amount * 2;
+				}
+				//Boost multiplier if way too low.
+				else if(cumMultiplierRaw * 4 < ballEfficiency)
+				{
+					cumMultiplierRaw += amount;
+					if(cumMultiplierRaw * 4 < ballEfficiency) cumMultiplierRaw += amount;
+				}
 			}
 		}
 		public function boostLactation(amount:Number = 1):void
