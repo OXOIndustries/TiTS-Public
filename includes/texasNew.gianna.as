@@ -361,7 +361,7 @@ function giannaFuckChoices():void
 	{
 		//[**]Cooch Fuck - Four-In-One (3 of 4 Finished)
 		//No taurs 4now!
-		if(!pc.isTaur()) addButton(0,"Vaginal", coochFuckThreeMaybeFourInOne,undefined,"Fuck Her Vagina","Take her what some would describe as \"a manly fashion\".");
+		if(!pc.isTaur()) addButton(0,"Vaginal", coochFuckThreeMaybeFourInOne,undefined,"Fuck Her Vagina","Take her in what some would describe as \"a manly fashion\".");
 		else addDisabledButton(0,"Vaginal","Vaginal","There is currently no vaginal scene for Gianna + Centaurs. Fen meant to write one, honest.");
 		//[**]Anal Buttfuck By Savin
 		//Any cocksize that can fit in her, any GiannaButt size. 
