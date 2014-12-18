@@ -11,6 +11,7 @@ import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Miscellaneous.EmptySlot;
+import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Miscellaneous.TestHPBooster;
@@ -107,9 +108,9 @@ function debugMenus():void
 	});
 	
 	addItemButton(1, new NaleenArmor(), function():void {
-		output("\n\nNaleenscale Armor get.\n");
+		output("\n\nHorsecock get.\n");
 		
-		var foundLootItems:Array = [new NaleenArmor];
+		var foundLootItems:Array = [new HorseCock()];
 		
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
