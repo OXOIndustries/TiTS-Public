@@ -40,7 +40,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items","SynthSheath",synthSheathCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
 }
 
 public function codexHomeFunction():void
@@ -1217,4 +1218,10 @@ function AISystemsCodexEntry():void
 
 	outputCodex("\n\nThe net effect of this uniqueness and rigidity of hardware means that every A.I. must be handled individually, and can make repair or modification difficult or impossible. Outright replacing a damaged or destroyed A.I. is often necessary, as the ability to create backups or clones of an intelligence is veritably impossible. At best, some A.I.s can create V.I. ghosts of themselves, mere shadows of the parent programming, good for little more than temporary replacement or extending the reach of the parent program. Even this ability is drastically limited by the parent intelligence's ability and training, and most A.I.s are simply stuck in the same core and body forever.\n");
 	CodexManager.viewedEntry("AI Systems");
+}
+
+function daynarCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header(
 }
