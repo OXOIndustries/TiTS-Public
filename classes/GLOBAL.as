@@ -141,6 +141,7 @@
 		public static const TYPE_LEITHAN:int 							    = 49;
 		public static const TYPE_GOAT:int 									= 50;
 		public static const TYPE_SYNTHETIC:int 								= 51;
+		public static const TYPE_SIMII:int 								    = 52;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -552,6 +553,7 @@
 			TYPE_KANGAROO,
 			TYPE_DRACONIC,
 			TYPE_BEE,
+			TYPE_SIMII,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [

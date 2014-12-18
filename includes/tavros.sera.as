@@ -127,8 +127,8 @@ function seraSexMenu(display:Boolean = false):void {
 	userInterface.showBust("SERA");
 	//OPTIONS
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou);
-	else addDisabledButton(0,"Fuck Me");
+	if(pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou,undefined);
+	else addDisabledButton(0,"Fuck Me","Fuck Me","You aren't turned on enough for this.");
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
 }

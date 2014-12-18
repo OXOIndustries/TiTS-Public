@@ -8200,6 +8200,22 @@
 				if (rando == 8) noun += "dick";
 				if (rando == 9) noun += "tool";
 				if (rando == 10) noun += "shaft";
+			} else if (type == GLOBAL.TYPE_SIMII) {
+				if (!simple) {
+					descript += "simian ";
+				}
+				rando = this.rand(11);
+				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
+				if (rando <= 1) noun += "cock";
+				if (rando <= 2) noun += "member";
+				if (rando <= 3) noun += "shaft";
+				if (rando <= 4) noun += "phallus";
+				if (rando <= 5) noun += "prick";
+				if (rando <= 6) noun += "member";
+				if (rando <= 7 && descript != "simian ") noun += "simii-cock";
+				if (rando <= 8) noun += "dick";
+				if (rando <= 9) noun += "tool";
+				if (rando <= 10) noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {
