@@ -1223,5 +1223,58 @@ function AISystemsCodexEntry():void
 function daynarCodexEntry():void
 {
 	clearOutputCodex();
-	outputCodex(header(
+	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
+	outputCodex(header("The Daynar"));
+
+	outputCodex("<b>Genders:</b> Male & Female");
+	outputCodex("\n<b>Height:</b> Males - 5' 9\" ft, Females - 5' 7\"");
+	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
+	outputCodex("\n<b>Hair:</b> None");
+	outputCodex("\n<b>Eyes:</b> Slit, reptilian irises. Sandy brown sclera, but self-controllable iris color.");
+	outputCodex("\n<b>Skin:</b> Tough, leathery epidermis, covered in a layer of scales. Varying textures and shades of brown; front is smooth and light, whereas the rear is rougher and darker.")
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Features"));
+	outputCodex("Both male and female daynar have slender, trim, streamlined bodies, and from a glance it’s difficult to tell them apart. A male has a flatter, broader face, while a female’s is more angular; a male is also thicker across the chest while a female is fatter in the waist, but both of these are miniscule differences. Their hands each have four digits and their digitigrade feet each have four toes; on the end of each finger and toe is a short, stubby claw, good for puncturing and not letting go but poor for actually tearing. Each hand and foot is webbed.");
+
+	outputCodex("\n\nThey have elongated faces, their noses reaching roughly 12cm from their faces, and they are hooked downward and to a point. They have an average sense of smell. They have strong jaws, and unlike the common lizard, their cheeks are elastic, capable of ballooning slightly, like a human’s, to store food. In light of that fact, their side and rear teeth are actually flat whilst their front eight teeth- four on top and four on bottom- are sharp incisors. Their lips are typically thin and colourless, but they do have lips. Their tongues are long and wide, but thin. Their ears are little more than dark holes on the sides of their heads, resting at eye level, but despite that, they have extraordinary hearing.");
+
+	outputCodex("\n\nConnecting their necks to the tips of each of their shoulders is a thin membrane, only about one inch thick. They are commonly referred to as ‘tassels’. It originally came about as an evolutionary advantage; the membranes regulated blood flow from the body to the head and could control the creature’s body temperature depending on the climate, and they could be flared to intimidate predators. Once the Daynar evolved to their more humanoid form and they began living more civilized lives, the tassels lost their defensive purpose, and climate control makes regulating their body temperature easy, but remain as vestigial evidence of their origins. Many daynar have taken to ‘decorating’ their membranes, painting tattoos and designs on them, and adorning them with all manner of piercings.");
+
+	outputCodex("\n\nThey are a cold-blooded species. A unique feature of the Daynar is that their blood is luminescent: their oxygenized blood glows a healthy red through their skin, and is most easily visible through their tassels. Blood that is not oxygenized glows through their skin as a pale blue. While, before they evolved, the blood made it difficult to hide from predators, especially in the night, the strength of the glow was used as an indicator of the individual’s health and fertility/virility, and a specific pulse pattern signified if a female was in heat. The Daynar were hunted for a short stint in their existence for their blood, which was used in mood lights and as a status symbol, until they gained sapience.");
+
+	outputCodex("\n\nA male’s penis averages roughly 21cm in length (roughly six inches), and is smooth all over; the penis’s skin is thick all around and conceals all veins. It has a tapered, pointed tip. It has a general width of 6.6cm, but as intercourse continues, the width will inflate to an average of 11.88cm. Variances occur between individuals, of course. A female’s vagina is narrow and deep, and they do not have clitorises. A male’s penis is most sensitive at the base, and a female’s vagina is most sensitive at the lips and deeper within the body: these were evolutionary incentives to plant the seed as deeply as possible for ensured survival of the species.");
+
+	outputCodex("\n\nTheir sexes are concealed within a vertical genital slit, roughly 7.3cm in length and only 2cm across when unaroused. The genital slit is rough and tight, to protect against the elements, but is easily malleable on arousal. Depending on the asset of the male, the genital slit could bulge with his flaccid penis even when not aroused. The male’s testicles are internal.");
+
+	outputCodex("\n\nThe Daynar have tails reaching from the small of their back to the calf of their legs, and are totally smooth all around, unlike the rest of their bodies. The tails were originally much shorter, but because of their new bipedal stature, they have been evolving to grow longer to assist with balance. Their anus is located at the base of the tail; they have not evolved gluteal muscles, and thus their anus is poorly concealed, save a lowered tail. They also cannot sit on hard surfaces for long because of this.");
+
+	outputCodex("\n\nFemales do not have breasts. Both the male and female form is completely flat and streamlined. Because they are cold-blooded, they also do not have nipples. Thanks to the advances of modern science and medicine, they can have both breasts and nipples, but they’ll be obviously unnatural. That said, the Daynar’s more carnal preferences evolved with their sapience, and breasts of any size on females are considered something of a status symbol – and are more desirable.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Typical Environments"));
+	outputCodex("Hot, arid, dry environments such as deserts and rocky mountains.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Originally, a Daynar’s sense of self-preservation and survival of the species made it much like any other single-minded beast: eat, breed, and survive as long as possible. When they evolved to have a higher form of thinking, their sexual appetites grew with them: they sought out sex for the pleasure and recreation rather than strictly the procreation. As their species transitioned, they entered an era where they bred continuously, and in as many imaginative ways as possible, regardless of gender, age, and relationship. Social stigmas and taboos didn’t surface until as recently as several hundred years ago, when food became too scarce in their harsh living environments and they resolved to dial back their nonstop breeding.");
+
+	outputCodex("\n\nA mating couple can take any position, though missionary is favourable because of the smoothness of their front scales. A female’s vagina is most sensitive the deeper her mate penetrates her, as well as at the lips of her vagina: the purpose being to want the male’s penis to penetrate as deeply as possible so that there would be a more likely chance of impregnation. Likewise, a male’s penis is most sensitive at the base, so that he would instinctually want to penetrate with his entire length. The male’s penis also engorges during intercourse, in an effort to lock the semen inside the female. Depending on the assets of the male, the female might find this unpleasant. Oral sex is more popular with more ‘gifted’ males.");
+
+	outputCodex("\n\nDaynar lay eggs as opposed to live birth. The eggs are very small (compared to an adult female Daynar), at roughly 10.97cm (three inches) across – this is so the mother gains as little mass as possible during gestation. They are spherical. A typical clutch is only between three and five eggs, and even then, a natural birth meant none of them were guaranteed to hatch. As the Daynar improved their quality of life and medicine, the chances of any fertilized egg hatching successfully increased exponentially. In a modern life, it’s very unlikely that a fertilized egg would not hatch – and to combat the sudden, massive boom in population that would occur, JoyCo supplies nearly-free birth control pills for the female Daynar to regulate how many eggs she would lay: anywhere from one to seven, if she wanted.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The Daynar were a lizard-like species on the planet Venar. They were originally a very simple-minded bestial race, with one-track minds and quadruped structures. As the Daynar evolved, so too did their predators, until the lizards had advanced their intellect until they were roughly equivalent to modern Earth dogs. Climate changes in the planet devastated its lush forests and wetlands, reducing most of it to harsh desert, which wiped out the Daynar’s natural predators and gave them a vastly expanded biome to inhabit and explore. Their evolution did not stop until they had the same intellectual capability as any human.");
+
+	outputCodex("\n\nTheir smooth fronts are attributed to the way the Daynar’s ancient ancestors slithered and waddled over the hard, rough stone; and over and under and through the hot, coarse sand, wearing their skin thin, soft and smooth. Their diet consisted of whatever small life (insects or other, smaller, less lucky salamanders, usually) or edible vegetation they could come across; their sense of taste evolved with the rest of them.");
+
+	outputCodex("\n\nMany of the entire species of Daynar still living on Venar are employed by Steele Industrial Technology and Production: Venar isn’t an especially habitable planet, aside from the Daynar and the Venarians. Because the Daynar prefer warmer climates and can easily exist within the scorching crust of the planet, they’re a valuable race for Steele Tech to employ as miners. They’re technically a prosperous and thriving race, but because there isn’t much food on Venar (especially since the Daynar evolved to be much larger and require more food), most of their money is spent importing it and less on luxuries. As a result, they look poorer than they are, and the uneducated tend to turn their noses up at them because of it.");
+
+	outputCodex("\n\nThe Daynar are a very cunning species; although they lagged behind in the evolutionary race compared to the rest of the universe, they are very business savvy and they have no troubles adapting to new systems and customs. They generally pick up new languages easily, thanks to their exceptional hearing sense.");
+
+	outputCodex("\n\nHowever, because they were generally at the bottom of the food chain pre-evolution, they rely on deceit and trickery with their dealings: dealing with a Daynar in business is always a very risky proposition. The harsh landscape they evolved on has also made them very stubborn, and they are prone to tantrums if their schemes fall through or are used against them. They are also aggressive lovers with anyone that is not also a Daynar: the unique sensitivity on their sexual organs makes lovemaking with them a very demanding experience.");
+	outputCodex("\n");
+
+	CodexManager.viewedEntry("Daynar");
 }
