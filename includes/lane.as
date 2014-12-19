@@ -1,20 +1,180 @@
 const HYPNOSIS_LEVEL_MAX:int = 5;
 
-function isUnderHypnosis():Boolean
+/*
+Lanes Hypnosis Mechnic
+----
+
+PC can freely be hypnotised once every 24 hours with no ill-effect.
+
+If they return to Lane with an existing effect already in place, the hypnosis level will increase.
+
+Hypnosis level increases by "decreasing" a seeded value by some modifier of the players willpower:
+
+	Level 1: 75
+	Level 2: 100
+	Level 3: 125
+	Level 4: 150
+	Level 5: 175
+
+	=> 50 + (level * 25)
+
+	On event   => current power += math.round(1.5 - pc.WQ() * 50)
+
+	@ <= 25%  will == 10  events to go from 0 to level 5
+	@ <= 50%  will == 14 events to go from 0 to level 5
+	@ <= 100% will == 25 events to go from 0 to level 5
+
+Once hypnosis level has increased, it will not decay outside of special events. I think there are some crew-related things that this will be hinged upon.
+
+*/
+
+/*
+Check if the player has an existing hypnosis effect. This is just a marker for a 24 hour period.
+All of the stat-boosting effects will have unique names, so that they can co-exist, but each will create/bump this effect up as a hidden marker.
+*/
+function hasLaneHypnosis():Boolean
 {
 	if (pc.hasStatusEffect("Lane Hypnosis")) return true;
 	return false;
 }
 
+/*
+Get the players current hypnosis level
+*/
 function laneHypnosisLevel():int
 {
-	if (isUnderHypnosis())
-	{
+	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined) return 0;
+	else return flags["LANE_HYPNOSIS_LEVEL"];
+}
 
+/*
+Figure out the level-up mechanic for hypnosis levels. Uses weights based on the PCs current hypnosis level versus the PCs willpower.
+Returns true if a levelup occured.
+*/
+function increaseLaneHypnosisLevel():Boolean
+{
+	if (flags["LANE_HYPNOSIS_LEVEL"] == HYPNOSIS_LEVEL_MAX) return false;
+
+	// Init the "power" tracker
+	if (flags["LANE_HYPNOSIS_POWER"] == undefined)
+	{
+		flags["LANE_HYPNOSIS_POWER"] = (laneHypnosisLevel() * 25) + 50;
+	}
+
+	// Decrease power
+	flags["LANE_HYPNOSIS_POWER"] -= math.round((1.5 - pc.WQ()) * 50); // This includes a potential will-boost from lanes stat bonuses, because fuck complicating this any more than it already is.
+
+	// Check if "power" was entirely consumed, if so level up
+	if (flags["LANE_HYPNOSIS_POWER"] <= 0)
+	{
+		flags["LANE_HYPNOSIS_LEVEL"] += 1;
+		flags["LANE_HYPNOSIS_POWER"] = (laneHypnosisLevel() * 25) + 50;
+		return true;
 	}
 	else
 	{
-		return 0;
+		return false;
+	}
+}
+
+/*
+Decrease the PCs hypnosis level, and forces the level-up power required for the next hypnosis level to reset back to the default for the *new* lower level.
+*/
+function decreaseLaneHypnosisLevel():Boolean
+{
+	if (flags["LANE_HYPNOSIS_LEVEL"] > 0) flags["LANE_HYPNOSIS_LEVEL"] -= 1;
+	flags["LANE_HYPNOSIS_POWER"] = undefined; // Force the next increase event to work from the "base" of the reduced level.
+}
+
+function hasMaxedLaneHypnosis():Boolean
+{
+	if (laneHypnosisLevel() == HYPNOSIS_LEVEL_MAX) return true;
+	return false;
+}
+
+/*
+Add a hypnosis effect that boosts a stat. Also creates the time-checking hidden effect that will be used to determine if we're doing special things.
+*/
+const HYPNO_STAT_PHYS:String = "Physique";
+const HYPNO_STAT_REF:String = "Reflexes";
+const HYPNO_STAT_INT:String = "Intelligence";
+const HYPNO_STAT_AIM:String = "Aim";
+const HYPNO_STAT_WILL:String = "Willpower";
+
+function addHypnosisEffect(stat:String):Boolean
+{
+	if (stat == HYPNO_STAT_PHYS)
+	{
+		if (!pc.hasStatusEffect("Lane's Hypnosis - Physique"))
+		{
+			pc.createStatusEffect("Lane's Hypnosis - Physique", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your physique!", false, 60 * 24);
+			pc.physiqueMod += 5;
+		}
+		else
+		{
+			pc.setStatusMinutes("Lane's Hypnosis - Physique", 60 * 24);
+		}
+	}
+	else if (stat == HYPNO_STAT_REF)
+	{
+		if (!pc.hasStatusEffect("Lane's Hypnosis - Reflexes"))
+		{
+			pc.createStatusEffect("Lane's Hypnosis - Reflexes", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your reflexes!", false, 60 * 24);
+			pc.reflexesMod += 5;
+		}
+		else
+		{
+			pc.setStatusMinutes("Lane's Hypnosis - Reflexes", 60 * 24);
+		}
+	}
+	else if (stat == HYPNO_STAT_INT)
+	{
+		if (!pc.hasStatusEffect("Lane's Hypnosis - Intelligence"))
+		{
+			pc.createStatusEffect("Lane's Hypnosis - Intelligence", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your intelligence!", false, 60 * 24);
+			pc.intelligenceMod += 5;
+		}
+		else
+		{
+			pc.setStatusMinutes("Lane's Hypnosis - Intelligence", 60 * 24);
+		}
+	}
+	else if (stat == HYPNO_STAT_AIM)
+	{
+		if (!pc.hasStatusEffect("Lane's Hypnosis - Aim"))
+		{
+			pc.createStatusEffect("Lane's Hypnosis - Aim", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your aim!", false, 60 * 24);
+			pc.aimMod += 5;
+		}
+		else
+		{
+			pc.setStatusMinutes("Lane's Hypnosis - Aim", 60 * 24);
+		}
+	}
+	else if (stat == HYPNO_STAT_WILL)
+	{
+		if (!pc.hasStatusEffect("Lane's Hypnosis - Willpower"))
+		{
+			pc.createStatusEffect("Lane's Hypnosis - Willpower", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your willpower!", false, 60 * 24);
+			pc.willpowerMod += 5;
+		}
+		else
+		{
+			pc.setStatusMinutes("Lane's Hypnosis - Willpower", 60 * 24);
+		}
+	}
+
+	// create the 24 hour tracking effect
+	if (!hasLaneHypnosis())
+	{
+		pc.createStatusEffect("Lane Hypnosis", 0, 0, 0, 0, true, "", "", false, 60 * 24);
+		return false;
+	}
+	// deeper shit
+	else
+	{
+		pc.setStatusMinutes("Lane Hypnosis", 60 * 24);
+		return true;
 	}
 }
 
@@ -22,7 +182,7 @@ function enterLanesShop():void
 {
 	if (flags["MET_LANE"] == undefined) discoverLanesShop();
 	else if (flags["LANE_FIRST_HYPNO"] == 1) lanesShopFirstRepeat();
-	else if (laneHypnosisLevel() >= HYPNOSIS_LEVEL_MAX) lanesShopFullyUnder();
+	else if (hasMaxedLaneHypnosis()) lanesShopFullyUnder();
 	else repeatEnterLanesShop();
 }
 
