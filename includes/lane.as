@@ -26,11 +26,14 @@ Hypnosis level increases by "decreasing" a seeded value by some modifier of the 
 
 Once hypnosis level has increased, it will not decay outside of special events. I think there are some crew-related things that this will be hinged upon.
 
+There are a number of status effects:
+	"Lane's Hypnosis - [Stat]" -- These are used to track the individual treatments (and statboosts) that he can give the player, and are isolated so the player can have many.
+	"Lane Hypnosis" -- This indicates that the player has been subject to Lane's illicit hypnosis.
 */
 
 /*
-Check if the player has an existing hypnosis effect. This is just a marker for a 24 hour period.
-All of the stat-boosting effects will have unique names, so that they can co-exist, but each will create/bump this effect up as a hidden marker.
+Check if the player is subject to Lane's illicit hypnosis effect.
+All of the stat-boosting effects will have unique names, so that they can co-exist, but each will create/bump this effect up as a hidden marker where appropriate.
 */
 function hasLaneHypnosis():Boolean
 {
@@ -103,6 +106,28 @@ const HYPNO_STAT_WILL:String = "Willpower";
 
 function addHypnosisEffect(stat:String):Boolean
 {
+	throw new Error("Ensure the statmods are removed appropriately!");
+
+	var alreadyUnder:Boolean = false;
+
+	if 	(	pc.hasStatusEffect("Lane's Hypnosis - Physique") 
+		|| 	pc.hasStatusEffect("Lane's Hypnosis - Reflexes") 
+		|| 	pc.hasStatusEffect("Lane's Hypnosis - Intelligence") 
+		|| 	pc.hasStatusEffect("Lane's Hypnosis - Willpower") 
+		|| 	pc.hasStatusEffect("Lane's Hypnosis - Aim")
+		)
+	{
+		if (pc.hasStatusEffect("Lane Hypnosis"))
+		{
+			pc.setStatusMinutes("Lane Hypnosis", 60 * 24);
+		}
+		else
+		{
+			pc.createStatusEffect("Lane Hypnosis", 0, 0, 0, 0, true, "", "", false, 60 * 24);
+		}
+		alreadyUnder = true;
+	}
+
 	if (stat == HYPNO_STAT_PHYS)
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Physique"))
@@ -164,18 +189,7 @@ function addHypnosisEffect(stat:String):Boolean
 		}
 	}
 
-	// create the 24 hour tracking effect
-	if (!hasLaneHypnosis())
-	{
-		pc.createStatusEffect("Lane Hypnosis", 0, 0, 0, 0, true, "", "", false, 60 * 24);
-		return false;
-	}
-	// deeper shit
-	else
-	{
-		pc.setStatusMinutes("Lane Hypnosis", 60 * 24);
-		return true;
-	}
+	return alreadyUnder;
 }
 
 function enterLanesShop():void
@@ -344,19 +358,21 @@ function laneTalkOccupation():void
 {
 	flags["LANE_OCCUPATION_TALK"] = 1;
 	clearOutput();
-	outputText("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the Venar desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very… rustic. There’s very little in the way of modernization here.");
+	outputText("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the Venar desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
 
-	outputText("\n\n<i>“Yeah, you’re right,”</i> [lane.heShe] says proudly. <i>“I know my way around the modern world about as well as anyone else, but I try to keep my house, and my business, as down-to-earth as possible. I specialize in....”</i> [lane.HeShe] pauses, tapping a claw against [lane.hisHer] chin. <i>“‘Spiritualistic medicine,’ is one way of putting it.”</i> You ask {him} to elaborate.");
+	outputText("\n\n<i>“Yeah, you’re right,”</i> [lane.heShe] says proudly. <i>“I know my way around the modern world about as well as anyone else, but I try to keep my house, and my business, as down-to-earth as possible. I specialize in....”</i> [lane.HeShe] pauses, tapping a claw against [lane.hisHer] chin. <i>“</i>Spiritualistic medicine<i> is one way of putting it.”</i> You ask [lane.himHer] to elaborate.");
 
 	outputText("\n\n<i>“Well, think about it. Say you don’t like something about yourself – maybe you’re too meek, or shy, or you have a nervous tic, or something. Maybe you’re just depressed. Today, most of those things can be fixed with a bottle of pills, or the push of a button, or a needle in your arm. Modern medicine is all well and good, and if I ever get sick with the pony pox, you’ll find me elbow-deep in my medicine cabinet. But maybe you have something a pill can’t fix, or maybe you’re not a fan of putting things in your body. That’s where I can help out.”</i>");
 
 	outputText("\n\nA pair of thin, fleshy membranes unstick from the sides of [lane.hisHer] neck and flare open. They reach from the very edges of [lane.hisHer] shoulders to the bottom of [lane.hisHer] jaw on either side of [lane.hisHer] head. They have some markings and piercings on them, but they’re so thin that the glowing from the inside of [lane.hisHer] body is especially intense on them. <i>“I specialize in hypnosis,”</i> [lane.heShe] says, after letting you gawk at the red-and-blue flashing of [lane.hisHer] thin skin a bit. [lane.HeShe] presses the membranes flat against [lane.hisHer] neck again, stopping the light show. <i>“I can hypnotize anybody.”</i>");
 
-	outputText("\n\nYou shake the lights from your eyes, and you scoff at {him}. Hypnosis? You’d have thought something as archaic as that would have phased out centuries before the first Great Planet Rush.");
+	outputText("\n\nYou shake the lights from your eyes, and you scoff at [lane.himHer]. Hypnosis? You’d have thought something as archaic as that would have phased out centuries before the first Great Planet Rush.");
 
 	outputText("\n\n<i>“A lot of people thought so,”</i> [lane.heShe] said, lifting up [lane.hisHer] codex and pressing a few buttons on its screen. [lane.HeShe] then turned it towards you. <i>“Here are some customer testimonials if you’re unconvinced.”</i> On the bright screen was a sort of guestbook: different names and handwriting from every unique customer Lane ever had was there, and each of them sang [lane.hisHer] praises, assuring whoever read them that Lane was the real deal. [lane.HeShe] turns towards his bookcase. <i>“I also have a work permit, and a certification of guaranteed quality from the UGC, if you’d like.”</i> From its top shelf, [lane.heShe] pulls out two certificates, both of them framed, stamped, and signed. You can’t deny it – Lane is running a real, legitimate business in hypnotism.");
 
-	outputText("\n\nYou return his codex to {him} and, intrigued, you ask {him} how hypnosis works, and how [lane.heShe] can use it as a business. <i>“The most important part is that the customer has to want it. If, say, you came to me complaining about your depression and you paid me to hypnotize it out of you, but you didn’t actually want it, then it would fail.”</i> [lane.HeShe] nods to the sign on [lane.hisHer] desk, tapping at the top line of the sign: the big words that say ‘No Refunds.’ <i>“That’s why there are no refunds. As soon as you give me the credits, I’m not giving them back. If nothing else, it provides a good incentive for people to want to get their money’s worth.”</i>[if {PC’s personality is ‘Mischievous’}[pg]You lean back in your chair and you smirk at {him}. If the customer really has to want it, then [lane.heShe] can’t exactly just walk down the street and hypnotize the money out of people’s wallets, then. <i>“Unfortunately, no,”</i> [lane.heShe] says, laughing with you. <i>“If I could do something like that, then I’d have taken up a job as a politician, or a news anchor; something to get me in front of a camera. But unless every single person watching me wants me to hypnotize them, all they’d see is a Daynar with a bunch of tattoos on [lane.hisHer] tassels. I’m afraid universal domination isn’t really in my schedule.”</i> You tell {him} that [lane.heShe] must be heartbroken, and [lane.heShe] just waves you off.]");
+	outputText("\n\nYou return his codex to [lane.himHer] and, intrigued, you ask [lane.himHer] how hypnosis works, and how [lane.heShe] can use it as a business. <i>“The most important part is that the customer has to want it. If, say, you came to me complaining about your depression and you paid me to hypnotize it out of you, but you didn’t actually want it, then it would fail.”</i> [lane.HeShe] nods to the sign on [lane.hisHer] desk, tapping at the top line of the sign: the big words that say ‘No Refunds.’ <i>“That’s why there are no refunds. As soon as you give me the credits, I’m not giving them back. If nothing else, it provides a good incentive for people to want to get their money’s worth.”</i>");
+
+	if (pc.isMischevious()) outputText("\n\nYou lean back in your chair and you smirk at [lane.himHer]. If the customer really has to want it, then [lane.heShe] can’t exactly just walk down the street and hypnotize the money out of people’s wallets, then. <i>“Unfortunately, no,”</i> [lane.heShe] says, laughing with you. <i>“If I could do something like that, then I’d have taken up a job as a politician, or a news anchor; something to get me in front of a camera. But unless every single person watching me wants me to hypnotize them, all they’d see is a Daynar with a bunch of tattoos on [lane.hisHer] tassels. I’m afraid universal domination isn’t really in my schedule.”</i> You tell [lane.himHer] that [lane.heShe] must be heartbroken, and [lane.heShe] just waves you off.");
 
 	outputText("\n\n<i>“So, are you convinced?”</i> [lane.heShe] asks, opening [lane.hisHer] hands to you. <i>“Would you like to give it a try? Or is there something I can help you further with?”</i>");
 
@@ -369,15 +385,22 @@ function laneTalkDaynar():void
 	flags["LANE_DAYNAR_TALK"] = 1;
 	clearOutput();
 
-	outputText("You ask {him} about his species. When you first met, {he} introduced himself as a ‘Daynar’. <i>“That’s correct,”</i> {he} says, crossing {his} arms. <i>“We’re one of the many races natively found on the planet Venar. I’m told we closely resemble a common lizard on the planet Terra.”</i> You confirm. <i>“We’re big fans of hot, dry places, like the desert we’re under. We evolved from a smaller, more… beastly, single-minded creature only a few millenniums ago. A blink of an eye, in geological terms.”</i> {He} scratches the top of {his} bald, scaly head. <i>“Our evolution was natural for the most part, until aliens like yourself started showing up and polluting our sands with your biogenetic drugs. Not that I’m complaining, myself.”</i>");
+	outputText("You ask [lane.himHer] about his species. When you first met, [lane.heShe] introduced himself as a ‘Daynar’. <i>“That’s correct,”</i> [lane.heShe] says, crossing [lane.hisHer] arms. <i>“We’re one of the many races natively found on the planet Venar. I’m told we closely resemble a common lizard on the planet Terra.”</i> You confirm. <i>“We’re big fans of hot, dry places, like the desert we’re under. We evolved from a smaller, more... beastly, single-minded creature only a few millenniums ago. A blink of an eye, in geological terms.”</i> [lane.HeShe] scratches the top of [lane.hisHer] bald, scaly head. <i>“Our evolution was natural for the most part, until aliens like yourself started showing up and polluting our sands with your biogenetic drugs. Not that I’m complaining, myself.”</i>");
 
-	outputText("\n\nYou ask {him} if all the Daynar have blood that glows. You find it awfully distracting in a pleasant way. <i>“Oh, yes. It’s another evolutionary advantage, one we still use today. How brightly it glows is an indicator of the individual’s health and sexual potency – [if {Lane is male}the brighter it is on a male, for instance, then the healthier he is, and the more virile his sperm is.][if {Lane is female}the brighter it is on a female, for instance, then the healthier she is, and she’ll lay a larger, healthier clutch of eggs than others.] The way the blood pulses can also be a signal if a female Daynar is in heat.”</i> {He} looks away and sighs, twirling a claw on {his} desk. <i>“Back when we were still a fledgling species, we were hunted quite a bit for our blood. They were used for fancy baubles and knick-knacks: tacky, expensive glowsticks and the like. That stopped in a hurry, thankfully, once we learned how to talk. The UGC didn’t like the idea of hunting a sapient species, and made it outlawed.”</i>");
+	outputText("\n\nYou ask [lane.himHer] if all the Daynar have blood that glows. You find it awfully distracting in a pleasant way. <i>“Oh, yes. It’s another evolutionary advantage, one we still use today. How brightly it glows is an indicator of the individual’s health and sexual potency - " + lane.mf("the brighter it is on a male, for instance, then the healthier he is, and the more virile his sperm is.", "the brighter it is on a female, for instance, then the healthier she is, and she’ll lay a larger, healthier clutch of eggs than others.") + " The way the blood pulses can also be a signal if a female Daynar is in heat.”</i> [lane.HeShe] looks away and sighs, twirling a claw on [lane.hisHer] desk. <i>“Back when we were still a fledgling species, we were hunted quite a bit for our blood. They were used for fancy baubles and knick-knacks: tacky, expensive glowsticks and the like. That stopped in a hurry, thankfully, once we learned how to talk. The UGC didn’t like the idea of hunting a sapient species, and outlawed the practice.”</i>");
 
-	outputText("\n\nYou look at Lane’s neck and chest, watching {his} blood course, {his} skin glowing an iridescent red and then a melancholy blue. [if {PC’s personality is not ‘Mischievous’}An obvious, quite personal question comes to mind, but you decide not to embarrass the poor thing.][if {PC’s personality is ‘Mischievous’}You ask {him} what {his} own glowing means for {his} health. <i>“I’m not asked that too often,”</i> {he} notes, looking down at {his} chest. <i>“I</i> feel <i>fine… I’m hardly a fitness nut, but I usually start my mornings with a set of [if {Lane is male}push-ups][if {Lane is female}crunches]. I think I’m about average.”</i> And, you ask... what about {his} ‘sexual potency?’ [if {PC is not hypnotized}The colour of {his} eyes change from brown to a rosy red, and {he} just chuckles and looks away.][if {PC is hypnotized} <i>“I should think you’d know,”</i> {he} says, flaring open {his} tassels for a moment, <i>“but I can give you a reminder a little later, pet.”</i> You feel something of yours flaring between your legs as well.]]");
+	outputText("\n\nYou look at Lane’s neck and chest, watching [lane.hisHer] blood course, [lane.hisHer] skin glowing an iridescent red and then a melancholy blue.");
+	if (!pc.isMischevious()) outputText(" An obvious, quite personal question comes to mind, but you decide not to embarrass the poor thing.");
+	else 
+	{
+		outputText(" You ask [lane.himHer] what [lane.hisHer] own glowing means for [lane.hisHer] health. <i>“I’m not asked that too often,”</i> [lane.heShe] notes, looking down at [lane.hisHer] chest. <i>“I</i> feel <i>fine... I’m hardly a fitness nut, but I usually start my mornings with a set of " + lane.mf("push-ups", "crunches") +". I think I’m about average.”</i> And, you ask... what about [lane.hisHer] ‘sexual potency?’");
+		if (!hasLaneHypnosis()) outputText(" The colour of [lane.hisHer] eyes change from brown to a rosy red, and [lane.heShe] just chuckles and looks away.");
+		else outputText(" <i>“I should think you’d know,”</i> [lane.heShe] says, flaring open [lane.hisHer] tassels for a moment, <i>“but I can give you a reminder a little later, pet.”</i> You feel something of yours flaring between your legs as well.");
+	}
 
-	outputText("\n\nYou ask Lane about the weird membranes connecting {his} jaw to {his} shoulders. <i>“Oh, these,”</i> {he} says, flapping them open. Your eyes are caught on them, watching how {his} blood glows brightest through them, and how the veins in {his} skin work with the tattoos on – {he} closes them before you get a little <i>too</i> distracted. <i>“We Daynar call them ‘tassels’. They’re used to regulate our body temperature, and, if we’re in the middle of a fight, we can open them in a flash to scare our opponent. In today’s modern world, though, with air-conditioning, climate control, and not much in the way of natural predators, they don’t see much use anymore.”</i>");
+	outputText("\n\nYou ask Lane about the weird membranes connecting [lane.hisHer] jaw to [lane.hisHer] shoulders. <i>“Oh, these,”</i> [lane.heShe] says, flapping them open. Your eyes are caught on them, watching how [lane.hisHer] blood glows brightest through them, and how the veins in [lane.hisHer] skin work with the tattoos on - [lane.heShe] closes them before you get a little <i>too</i> distracted. <i>“We Daynar call them ‘tassels’. They’re used to regulate our body temperature, and, if we’re in the middle of a fight, we can open them in a flash to scare our opponent. In today’s modern world, though, with air-conditioning, climate control, and not much in the way of natural predators, they don’t see much use anymore.”</i>");
 
-	outputText("\n\n{He} opens his eyes wide – unusually wide, making you fidget in your seat – and, just like that, the colour of Lane’s irises begin to change, into every colour you can imagine. <i>“Daynar don’t have the best night vision, so we can open our eyes really wide to draw in more light to compensate. As for the irises… nobody is really sure why we can do that. Our best guess is to unnerve predators: to make us look sickly and unappetizing. Whatever the purpose, they sure make my job easier.”</i> {He} points to the sides of {his} head. <i>“Our ears are pretty plain,”</i> {he} begins. You have to lean forward to see where {his} ears even are: they’re just a pair of holes in {his} head, nothing more. <i>“But we have</i> great <i>hearing. Some Daynar pick up jobs as interpreters because we have an easier time picking up different languages than most.”</i>");
+	outputText("\n\n[lane.HeShe] opens his eyes wide – unusually wide, making you fidget in your seat – and, just like that, the colour of Lane’s irises begin to change, into every colour you can imagine. <i>“Daynar don’t have the best night vision, so we can open our eyes really wide to draw in more light to compensate. As for the irises... nobody is really sure why we can do that. Our best guess is to unnerve predators: to make us look sickly and unappetizing. Whatever the purpose, they sure make my job easier.”</i> [lane.HeShe] points to the sides of [lane.hisHer] head. <i>“Our ears are pretty plain,”</i> [lane.heShe] begins. You have to lean forward to see where {his} ears even are: they’re just a pair of holes in {his} head, nothing more. <i>“But we have</i> great <i>hearing. Some Daynar pick up jobs as interpreters because we have an easier time picking up different languages than most.”</i>");
 
 	outputText("\n\n{He} leans forward in {his} seat. <i>“There’s just one more thing I want to mention. It’s about Steele Tech.”</i> You match {his} posture, interested. <i>“I don’t know if you knew this, but most Daynar on the planet are employed by Steele Tech. Venar, it turns out, has a lot of minerals and ores that the rest of the universe is interested in, but no other race can withstand the harsh climate of the hot desert or the planet core like a Daynar can. Which makes us</i> highly <i>desirable for a mining company. Your dad paid us pretty well, and his stickler for safety carried over to Venar; there isn’t a Daynar here that wouldn’t mind calling you ‘boss’ if you kept up his legacy, [pc.name].”</i>");
 
