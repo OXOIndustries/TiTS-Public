@@ -45,8 +45,9 @@
 		public static const FLAG_TAILCOCK:int                               = 27;
 		public static const FLAG_STINGER_BASED:int                          = 28;
 		public static const FLAG_STINGER_TIPPED:int                         = 29;
-		public static const FLAG_NUBBY:int  		                           = 30;
-		public static const FLAG_FORESKINNED:int	    					   = 31;
+		public static const FLAG_NUBBY:int  		                        = 30;
+		public static const FLAG_FORESKINNED:int	    					= 31;
+		public static const FLAG_HOLLOW:int									= 32;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -81,6 +82,7 @@
 			"Stinger Tip",
 			"Nubby",
 			"Foreskinned",
+			"Hollow",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -241,6 +243,7 @@
 		public static const VALID_TONGUE_FLAGS:Array = [
 			FLAG_LONG,
 			FLAG_PREHENSILE,
+			FLAG_HOLLOW,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
