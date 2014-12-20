@@ -104,8 +104,21 @@ const HYPNO_STAT_INT:String = "Intelligence";
 const HYPNO_STAT_AIM:String = "Aim";
 const HYPNO_STAT_WILL:String = "Willpower";
 
+function hasHypnosisEffect():void
+{
+	if (pc.hasStatusEffect("Lane's Hypnosis - Physique")) return true;
+	if (pc.hasStatusEffect("Lane's Hypnosis - Reflexes")) return true;
+	if (pc.hasStatusEffect("Lane's Hypnosis - Intelligence")) return true;
+	if (pc.hasStatusEffect("Lane's Hypnosis - Willpower")) return true;
+	if (pc.hasStatusEffect("Lane's Hypnosis - Aim")) return true;
+	return false;
+}
+
 function addHypnosisEffect(stat:String):Boolean
 {
+	if (flags["LANE_TIMES_HYPNOTISED"] == undefined) flags["LANE_TIMES_HYPNOTISED"] = 0;
+	flags["LANE_TIMES_HYPNOTISED"]++;
+
 	throw new Error("Ensure the statmods are removed appropriately!");
 
 	var alreadyUnder:Boolean = false;
@@ -195,7 +208,7 @@ function addHypnosisEffect(stat:String):Boolean
 function enterLanesShop():void
 {
 	if (flags["MET_LANE"] == undefined) discoverLanesShop();
-	else if (flags["LANE_FIRST_HYPNO"] == 1) lanesShopFirstRepeat();
+	else if (flags["LANE_FIRST_HYPNO"] == 1 && flags["LANE_TIMES_HYPNOTISED"] > 0 && !hasHypnosisEffect()) lanesShopFirstRepeat();
 	else if (hasMaxedLaneHypnosis()) lanesShopFullyUnder();
 	else repeatEnterLanesShop();
 }
@@ -328,7 +341,7 @@ function talkToLane():void
 {
 	clearOutput();
 
-	if (isUnderHypnosis())
+	if (hasLaneHypnosis())
 	{
 		outputText("[lane.HeShe] laughs, not derisively, but not amusedly either. <i>“You and I have gotten plenty intimate over your visits. I’ve charmed you quite enough, I think.”</i> [lane.HeShe] flairs his tassels open again, and his power over you is refreshed. If [lane.heShe] doesn’t want to talk, that’s perfectly fine with you. <i>“But,”</i> [lane.heShe] yawns, closing [lane.hisHer] membranes against [lane.hisHer] neck, <i>“you’ve come all this way just to taste of your "+ lane.mf("Master", "Mistress") +"’s voice some more. Who would I be to turn down such a loyal pet?”</i>");
 	}
@@ -349,7 +362,8 @@ function generateLaneTalkMenu():void
 	if (flags["LANE_OCCUPATION_TALK"] != undefined) addButton(1, "Daynar", laneTalkDaynar);
 	else addDisabledButton(1, "Daynar");
 
-	addButton(2, lane.mf("Him", "Her") + "self", laneTalkThemself);
+	if (flags["LANE_DAYNAR_TALK"] != undefined) addButton(2, lane.mf("Him", "Her") + "self", laneTalkThemself);
+	else addDisabledButton(2, lane.mf("Him", "Her") + "self");
 	
 	addButton(14, "Back", laneShowMenu);
 }
@@ -406,9 +420,291 @@ function laneTalkDaynar():void
 	outputText("\n\n[lane.HeShe] leans forward in [lane.hisHer] seat. <i>“There’s just one more thing I want to mention. It’s about Steele Tech.”</i> You match [lane.hisHer] posture, interested. <i>“I don’t know if you knew this, but most Daynar on the planet are employed by Steele Tech. Venar, it turns out, has a lot of minerals and ores that the rest of the universe is interested in, but no other race can withstand the harsh climate of the hot desert or the planet core like a Daynar can. Which makes us</i> highly <i>desirable for a mining company. Your dad paid us pretty well, and his stickler for safety carried over to Venar; there isn’t a Daynar here that wouldn’t mind calling you ‘boss’ if you kept up his legacy, [pc.name].”</i>");
 
 	outputText("\n\nYou shift in your seat, uncomfortable with the sudden pressure, but you assure [lane.himHer] that you’ll do what you can. Lane leans back, relaxing. <i>“That about covers it, I think. Is there anything else I can help you with?”</i>");
+
+	generateLaneTalkMenu();
+	addDisabledButton(1, "Daynar");
 }
 
 function laneTalkThemself():void
 {
+	flags["LANE_SELF_TALK"] = 1;
+	clearOutput();
 
+	outputText("You ask [lane.himHer] if hypnosis is a thing that all Daynar can do. <i>“As in, is it something they just intrinsically know? No. Anyone can learn it, of course, but, as far as I know, I’m the only Daynar that bothered to take the time.”</i>");
+
+	outputText("\n\nYou then ask [lane.himHer] about himself. What inspired [lane.himHer] to get into the business of hypnotism? Despite the certificates and the testimonials, you insist that it <i>is</i> a pretty ancient practice. <i>“Yes, I know, and I agree. Hypnosis hasn’t really been in the news, so to speak, for hundreds of years now.”</i> [lane.HeShe] chuckles sheepishly. <i>“If I’m honest, the inspiration for picking it up was because... I was bullied a lot when I was younger. I had a lot of power fantasies about controlling the people around me to do whatever I wanted. Like, commanding them to be my footrest as I sit on my gilded, golden throne; stuff like that. Making them ‘regret’ bullying the wrong Daynar.”</i>");
+
+	outputText("\n\n[lane.HeShe] rests his chin on the palm of [lane.hisHer] scaly hand, reminiscing about [lane.hisHer] younger years. <i>“I didn’t learn about hypnotism until my adolescent years, when I was studying history. One of my textbooks mentioned hypnosis as an old, ancient, spiritual practice. I was intrigued, so I studied it some more, and before I knew it, I was getting a permit to practice it as a business.”</i>");
+
+	if (!hasLaneHypnosis())
+	{
+		outputText("\n\nYou chuckle uncomfortably, rolling your shoulders. [lane.HeShe] learned how to control people, and [lane.heShe] made it a legitimate business... because of a power fantasy? <i>“I know what you’re thinking,”</i> [lane.heShe] says smoothly, trying to calm your nerves. <i>“If I put a person ‘under’, then I could, theoretically, control what the person feels and thinks and does until they pull out of it. Believe it or not, the UGC thought so too – and they made me swear that I wouldn’t use my skills ‘to the detriment of the peoples that trust my judgment’. Sort of like the Hippocratic Oath for doctors.”</i> You narrow your eyes and chew your bottom lip. You could trust a surgeon, but a hypnotist...?");
+	}
+	else
+	{
+		outputText("\n\nYou smile sensually, resting an elbow on Lane’s desk. You tell {him}, in a dulcet tone, that you find power fantasies pretty sexy, yourself – especially when it’s {him} that’s in charge. In response, {he} grins, and opens {his} tassels, letting you absorb more of {him}. <i>“It wasn’t easy at first,”</i> {he} says, enjoying the way you watch the patterns on {his} tassels. <i>“I swore not to use my powers for evil. But then, the heir" + pc.mf("", "ess") + " of Steele Tech had to go and pay me to abuse [pc.himHer] until [pc.heShe] couldn’t get enough of me. And, I have to admit, ‘evil’ feels pretty good when" + lane.mf(" your pretty lips are sucking my dick and swallowing my cum like I was the only fountain in the desert.", " you’re digging for gold with your tongue in my cunny and you try oh-so-hard to hit just the right spots to make your mistress come again and again." + "”</i> {He} closes his tassels, leaving you teased for more.");
+	}
+
+	if (lane.mf("m", "f") == "f")
+	{
+		outputText("\n\nYou decide to broach a rather delicate and personal question, and you preface it by telling Lane that she doesn’t need to answer if she doesn’t want to. If you’re not mistaken, Daynarians are cold-blooded – which she confirms – and that Daynarians lay eggs – which she confirms. So, why does she have breasts?");
+		outputText("\n\nShe leans back and stretches her arms, shamelessly showing off her doubly-dangerous jugs to you. <i>“I’m glad you noticed,”</i> she says slyly and without a hint of reserve. <i>“Daynarians were a very sexual species as we transitioned from a lowlier species to one of higher thought. The females don’t have breasts, you’re correct, but, as we discovered the more... carnal pleasures of life, we recognized their appeal and why they’re sexually desirable. Today, breasts on a female Daynarian means she has the means to acquire them in the first place, so they’re something of a status symbol. They don’t serve any purpose other than to be shown off – and,”</i> she says, massaging them right in front of you, <i>“I gotta say, they’re pretty fun.”</i>");
+		outputText("\n\nIf they’re considered a status symbol among the Daynarians, does that mean male Daynarians can get them too? You chuckle as you imagine it, but she only smiles. <i>“It’s not unusual.”</i> That silences you in a hurry. <i>“But it is uncommon. It’s something of a clash between Daynarian culture and that of the rest of the universe’s: to us, boobs on anybody means they’re well off and financially stable, but not a lot of other cultures see it that way. So, don’t be surprised if you see a male Daynarian with a set bigger than mine, but try not to be repulsed, either.”</i>");
+	}
+
+	outputText("\n\n<i>“Now then, do you have any further questions?”</i> {He} leans back in {his} seat, waiting for your response.");
+
+
+	generateLaneTalkMenu();
+	addDisabledButton(2, lane.mf("Him", "Her") + "self");
+}
+
+function laneServices():void
+{
+	clearOutput();
+
+	if (flags["LANE_SHOWN_SERVICES"] == undefined)
+	{
+		// First time.
+		flags["LANE_SHOWN_SERVICES"] = 1;
+		outputText("You ask Lane about {his} service, and you mention that you’re interested. <i>“Of course!”</i> {he} says, giddy that {he} has some business. <i>“I specialize in hypnosis. A lot of problems that a lot of people have are all in their head – if there’s something about yourself that you don’t like, but you’re not comfortable with using drugs or biotech to change your body, I can give you the boost you need. Or maybe you’re struggling with something more cerebral: I’ve had writers come to me before asking me to help with their writer’s block. Whatever the case, there’s no psychological barrier I can’t help you breach.”</i>");
+
+		outputText("\n\nYou ask {him} to elaborate. <i>“Well, in your case, you don’t really seem like the desk-jockey sort. You’re more of a doer, a shaker; you’re out there, exploring new planets and conquering new terrains, or your name isn’t [pc.name] Steele. Am I right?”</i> You confirm. You never were one for desk jobs, and, without telling {him} why, you’ve been exploring the planets rather extensively lately.");
+
+		outputText("\n\n<i>“So, and I don’t want to be presumptuous here, but let’s say you’re in the jungles of Mhen’ga and you see some Naleen in the bushes. You reach for your gun – but it’s faster! It lunges at you, and you point and shoot, but your aim goes wide and now that cat-snake has got you in its coils! You struggle and you struggle, but you don’t have the strength to break free! If only your reflexes were a little better!”</i>");
+
+		outputText("\n\nYou sigh and cross your arms, waiting for {him} to get to the point. <i>“That’s where I can help. I can hypnotize your senses to be more acute, more in-tune with your surroundings and atmosphere. With my help, the next time you’re in those jungles, you’ll be able to turn the surprise around on the Naleen before it could even blink.”</i>");
+
+		outputText("\n\nYou’re definitely intrigued, and you lean forward. {He} can really make your reflexes <i>that</i> good? <i>“Not only your reflexes!”</i> {he} insists. <i>“Have you ever been in a fight, and you wished you were stronger than you were? I can help with that, too! You often hear stories about people performing extraordinary feats of strength, when they look as wiry as a straw, yes? If only a person can harness that sort of strength and call on it whenever they wish. I can help with that! Whatever it is you need – anything at all – I can make you</i> better <i>just by making you believe that you are.”</i>");
+
+		outputText("\n\nYou sit back in your seat, strongly considering Lane’s words. What the fuck, you decide – you’re here, you may as well. You tell {him} that you’re in. <i>“Excellent!”</i> {He} pulls up {his} own codex, and begins tapping at its screen. <i>“I charge one hundred credits per hypnosis. I am contractually obligated to remind you that there are no refunds. As soon as the payment goes through, we can begin.”</i>");
+
+		outputText("\n\n{He} hands you {his} codex. It’s asking for your confirmation, and it lists what you’re purchasing, and for how much. Before you sign your confirmation, you think on it. If you paid Lane to hypnotize you... what would you change about yourself?");
+
+		if (pc.credits < 100)
+		{
+			outputText("\n\nYou wince, looking at the codex, and you hand it back to {him}, sheepishly telling {him} that you can’t afford it. <i>“Oh.”</i> {He} wipes at its screen, and it goes blank. <i>“Not to worry, I don’t mind this being a social call. Is there anything else I can do for you?”</i>");
+
+			laneShowMenu();
+		}
+		else
+		{
+			laneServicesMenu();
+		}
+	}
+	else
+	{
+		// not hypno
+		if (!hasLaneHypnosis())
+		{
+			if (flags["LANE_TIMES_HYPNOTISED"] > 0)
+			{
+				outputText("<i>“Of course,”</i> says Lane, already reaching for {his} codex and writing up your receipt. <i>“I’m glad that you enjoyed my service enough to come back, [pc.name].”</i> {He} passes you the codex. <i>“One hundred credits, as usual. Contract, no refunds, blah blah blah. What can I do for you this time?”</i>");
+			}
+			else
+			{
+				outputText("<i>“Of course,”</i> says Lane, already reaching for {his} codex and writing up your receipt. <i>“I’m glad to see that you're still interested in my services, [pc.name].”</i> {He} passes you the codex. <i>“One hundred credits, as usual. Contract, no refunds, blah blah blah. What can I do for you?”</i>")
+			}
+
+			if (pc.credits < 100)
+			{
+				outputText("\n\nYou wince, looking at the codex, and you hand it back to {him}, sheepishly telling {him} that you can’t afford it. <i>“Oh.”</i> {He} wipes at its screen, and it goes blank. <i>“I’m afraid I can’t give discounts to my regulars. Sorry. Is there anything else I can do for you, though? Shooting the breeze is always free.”</i>");
+
+				laneShowMenu();
+			}
+			else
+			{
+				laneServicesMenu();
+			}
+		}
+		else
+		{
+			// PC is hypnotized
+
+			outputText("{He} smiles at you, and {he} reaches for his codex. <i>“Of course you do, [pc.name].”</i> {His} tassels flutter just enough so that you can get a taste of what’s to come. {His} claws are jittery on the codex’s screen, proof of {his} own excitement. <i>“I’m sure if I were to charge you three hundred credits, you wouldn’t object.”</i>");
+			outputText("\n\nYou tell {him} that you wouldn’t.");
+			outputText("\n\n<i>“How about three thousand? And you’re definitely not getting a refund.”</i>");
+			outputText("\n\nYou insist that no price is too high.");
+			outputText("\n\n<i>“You’re right. Submitting to me and my pleasure is worth more to you than your life. I could ask you to sign everything over to me and you wouldn’t say no, would you?”</i>");
+
+			outputText("\n\nYou shake your head, salivating, eager to get started. {He} hands you the codex – and to your surprise, {he’s} only charging you the standard one hundred credits. <i>“I’m a little kinder than that, though.”</i> You blink, and thank {him} sincerely for {his} unprecedented generosity. <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
+
+			outputText("\n\nYou thank him for his ‘generosity’ again.");
+
+			laneServicesMenu();
+		}
+	}
+}
+
+function laneServicesMenu():void
+{
+	clearMenu();
+	if (pc.credits >= 100)
+	{
+		addButton(0, "Physique", laneServicePhysique);
+		addButton(1, "Reflexes", laneServiceReflexes);
+		addButton(2, "Aim", laneServiceAim);
+		addButton(3, "Intelligence", laneServiceIntelligence);
+		addButton(4, "Willpower", laneServiceWillpower);
+	}
+	else
+	{
+		addDisabledButton(0, "Physique");
+		addDisabledButton(1, "Reflexes");
+		addDisabledButton(2, "Aim");
+		addDisabledButton(3, "Intelligence");
+		addDisabledButton(4, "Willpower");
+	}
+	if (!hasLaneHypnosis()) addButton(14, "Back", laneServicesBack);
+	else addButton(14, "Taxes", laneServicesBack);
+
+	//[=Physique=] [=Reflexes=] [=Aim=] [=Intelligence=] [=Willpower=] [=Back=]
+}
+
+function laneServicesBack():void
+{
+	clearOutput();
+	if (!hasLaneHypnosis())
+	{
+		outputText("{He} frowns as you hand {him} the codex. <i>“Changed your mind?”</i> You apologize, but you’re just not ready for {his} business today. <i>“Don’t worry, I understand. A lot of my customers, even the repeats, get the jitters sometimes. Is there anything else I can help you with, while you’re here?”</i>");
+
+		// Return to main menu
+		laneShowMenu();
+	}
+	else
+	{
+		if (pc.credits >= 100)
+		{
+			outputText("You glance up from the codex, your finger hovering teasingly over the confirmation button, when you hand it back to {him}. He looks confused, before you tell {him} that you’d like to skip the foreplay. {He} smiles and stands from {his} chair; {he} crooks a claw at you, ordering you to follow, as {he} leads you behind the curtain and to the left, towards {his} bedroom.");
+		}
+		else
+		{
+			outputText("You grin mischievously, returning {his} codex to {him}, and you tell {him} that you just don’t have the funds. Is there, maybe, some other way you can compensate {him} for {his} time and {his} effort? <i>“No.”</i> {He} looks at you rather sternly, and your attempts at being " + pc.mf("suave", "coy") + " quickly fall flat. <i>“Sex with you doesn’t pay for my bills, [pc.name]. Once we’re done here, you’re going out and you’re making some money, I don’t care how.”</i> Just as you slump in your chair, {he} rises from {his}. <i>“But that doesn’t mean I</i> won’t <i>fuck you. Follow me.”</i> Giddy again, you rise from your seat, following {him} like a horny dog as {he} leads you into {his} bedroom.");
+		}
+
+		outputText("\n\nBy the time you enter behind your {master/mistress}, {his} shirt and pants have already been pulled off[if {Lane is female}, letting her heavy breasts bounce free in the wind – not that they were especially well concealed to begin with]. {He} turns to you and, with a predatory grin, slides a claw across the fabric of {his} undergarment, tearing it away and revealing " + lane.mf("his throbbing, pointed cock. It’s halfway hard, and you lick your lips as you watch it slide free from his genital slit, inflating in length and in girth", "her wet, puffy cunt. Her genital slit is open and malleable, ready for you to play with; her labia waves at you, waiting for your pleasure") + ".");
+
+		outputText("\n\n<i>“Strip naked,”</i> {he} commands, opening {his} tassels wide, letting you absorb yourself into {him}. You do as you’re commanded, with ease, excitement, and some flair, for {his} benefit. Naked, vulnerable, and horny, you’re completely at {his} mercy. The patterns on {his} tassels swirl in your vision, and you know you’re going to enjoy it.");
+
+		// Go to Randomized sex
+		payTheLaneTax();
+	}
+}
+
+function laneServicePhysique():void
+{
+	clearOutput();
+	outputText("Before you sign your confirmation, you ask {him} if {he} could improve your strength. You know that’s more of a physical thing, but {he} did say <i>anything</i>, after all. <i>“I sure can,”</i> {he} says confidently. <i>“Other customers have asked me the same question. There is a limit to how hard you can push your body without appropriate work or training, of course, but many hurdles are strictly mental. I’ve had thin, spindly little things come to me, telling me that a ten pound barbell feels like a hundred, especially when they’re in a public place like a gym. With just a little bit of my work, you’ll be pushing past your limits and setting new ones within the hour.”</i>");
+
+	outputText("\n\nLane certainly seems cool about it. Do you ask {him} to improve your physique, by removing your inhibitions and your limits?");
+
+	//[=Confirm=] [=Ehh...=]
+	clearMenu();
+	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_PHYS);
+	addButton(1, "Maybe Not...", laneServiceMaybeNot);
+}
+
+function laneServiceReflexes():void
+{
+	clearOutput();
+	outputText("Before you sign your confirmation, you ask {him} if {he} could improve your reflexes. You’ve walked down enough streets, hiked through enough forests, and drank in enough shady bars to know that anything could get the jump on you at any time. <i>“Of course,”</i> {he} says assuredly. <i>“You wouldn’t be the first adventurer I’ve had. I can sharpen each of your senses to be more in-tune with your surroundings: you’ll see, hear, and smell anything stalking you in the sands of Veran before they’d realize it. You’ll know exactly when you are and are not alone, and you’ll be able to react to it faster than you ever could before. I’ve been known to service more than one starship pilot, as well.”</i>");
+
+	outputText("\n\nLane certainly seems sure of himself. Do you ask {him} to improve your reflexes, by attuning your senses to your environment?");
+
+	//[=Confirm=] [=Ehh...=]
+	clearMenu();
+	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_REF);
+	addButton(1, "Maybe Not...", laneServiceMaybeNot);
+}
+
+function laneServiceAim():void
+{
+	clearOutput();
+	outputText("Before you sign your confirmation, you ask {him} if {he} could improve your aim. In the modern world of weaponry and warfare, the better shot is usually the victor, and you want to be sure yours counts. <i>“You bet I can,”</i> {he} says smugly. <i>“I can give you eyesight like... I believe you call it a ‘hawk’ on Terra? While I don’t exactly improve your eyes, I can help your mind process what it is you’re seeing faster than it ever could before. Shapes, velocity, momentum, and distance will become easier for you to discern, and your marksmanship will follow suit. Although... I have to ask. Is there a marksmanship competition coming up somewhere? I’ve had a customer asking the same thing for that reason, and when the judges found out, he was disqualified for having an unfair advantage.”</i>");
+
+	outputText("\n\nYou tell {him} that it’s purely personal, and {he} nods, waving to {his} codex. Lane certainly seems secure about it. Do you ask {him} to improve your aim, by sharpening your mental acuity?");
+
+	//[=Confirm=] [=Ehh...=]
+	clearMenu();
+	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_AIM);
+	addButton(1, "Maybe Not...", laneServiceMaybeNot);
+}
+
+function laneServiceIntelligence():void
+{
+	clearOutput();
+	outputText("Before you sign your confirmation, you ask {him} if {he} could improve your intelligence. You’re... you refuse to call yourself ‘dumb’, but you admit that, sometimes, you... aren’t exactly as ‘worldly’ as you’d like. Is there anything {he} can do to help? <i>“That’s not a problem at all,”</i> {he} insists gently. <i>“You’re not the first to want that changed about yourself, and you won’t be the last. I can’t exactly make you ‘smarter’, per se, but I can improve your memory by streamlining the way your conscious mind recalls thoughts. Those lessons you thought you doodled through in high school will come back to you as easily as recalling your fondest childhood moment. I’ve had college students come to me asking me about it, and my skills have helped them through many cram sessions.”</i>");
+
+	outputText("\n\nLane certainly seems positive about it. Do you ask {him} to improve your memory by, as he put it, ‘streamlining’ how your conscious mind recalls lessons and memories?");
+
+	//[=Confirm=] [=Ehh...=]
+	clearMenu();
+	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_INT);
+	addButton(1, "Maybe Not...", laneServiceMaybeNot);
+}
+
+function laneServiceWillpower():void
+{
+	clearOutput();
+	outputText("Before you sign your confirmation, you ask {him} if {he} could improve your willpower. Sometimes, you feel a little too meek and shy for your own personal safety, and if exploring these planets and encountering their fauna has taught you anything, it’s that having the strength to say ‘no’ can be your strongest weapon sometimes. <i>“Easily,”</i> {he} says surely. <i>“At least three times now, I’ve had wallflowers come up to me and confess that they don’t have the spine to ask a crush out to a date, or something, and if I could help them with that. There’s nothing special about giving you the strength of will: no improved mental acuity or overcoming mental barriers. All I’m doing is giving that little voice in your head, the voice that says what you</i> really <i>feel and what you</i> really <i>want, a helping hand.”</i>");
+
+	outputText("\n\nLane certainly seems confident about it. Do you ask {him} to improve your willpower, by helping your mouth say what your mind is really thinking?");
+
+	//[=Confirm=] [=Ehh...=]
+	clearMenu();
+	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_WILL);
+	addButton(1, "Maybe Not...", laneServiceMaybeNot);
+}
+
+function laneServiceMaybeNot():void
+{
+	clearOutput();
+	outputText("You frown, unsure about the whole thing, but you’re not quite ready to give the codex back to {him}. You tap at the table as you consider what else you can ask {him}.");
+	// Return to [=Services=] menu")
+	laneServicesMenu();
+}
+
+function laneConfirmService(selected:String):void
+{
+	clearOutput();
+
+	if (flags["LANE_TIMES_HYPNOTISED"] == 0)
+	{
+		outputText("You sign your signature in the empty field and tap on the confirmation button. A loading bar appears on the codex, and then it beeps – followed by a beep from your own codex. You hand Lane back {his} as you check your own. The payment’s gone through without a hitch. <i>“Lovely!”</i> {He} stands, placing {his} codex in a drawer under {his} desk, twisting its lock shut and hiding the key in {his} transparent pants’ pocket. From another drawer, {he} pulls out a ‘busy’ sign and lays it on the end of {his} table. <i>“Please follow me, [pc.name]. I have a room in the back where I work my magic.”</i>");
+
+		outputText("\n\nYou follow {him} as he leads you behind the faint, airy curtains, barely hiding the second half of the room. {He} turns right and opens a door into another room of {his} hut, holding it open for you. The second room is much darker and warmer: there are no windows or lights; the only thing providing light is Lane’s glowing body. In the room are two plain, concrete chairs, but both of them are heavily dressed with soft, plump cushions and comfy, giving armrests. Four candles sit in a square around the two chairs, their smoke wafting the wax’s incense through the air and immediately assaulting your nostrils with their burning scent. They all sit on a round, featureless, but thick and plush carpet. The room is otherwise rather large and totally bare.");
+
+		outputText("\n\n{He} shuts the door once you’re in, and you’re concealed in total darkness, except for the constant pulsing reds and blues of Lane’s body. {He} removes his shirt, bearing {his} exposed top to you");
+		if (pc.isMischevious()) outputText(" – a rogue thought considers that maybe you’re getting a little extra for what you paid for");
+		outputText(". {He} sees you looking at him and {his} topless form curiously. <i>“My hypnosis relies on you having an uninterrupted line of vision with my body,”</i> {he} explains, <i>“which means I have to go topless. It’s not going to go any farther than that, I promise, and you don’t have to take anything off yourself.”</i>");
+	}
+	else
+	{
+		outputText("You sign your signature in the empty field and tap on the confirmation button. The two familiar beeps between {his} codex and yours ring out, and you know the funds have transferred properly. With practiced ease, {he} slides {his} codex away and places {his} ‘busy’ sign on the end of {his} table. <i>“Follow me, [pc.name],”</i> {he} instructs, leading you through {his} hut and into {his} hypnosis room.");
+
+		outputText("\n\nWhen {he} shuts the door behind you, it’s as dark as you remember it. The incense from the candles greets your nose, and already you feel yourself relaxing, your legs becoming languid as you walk. You turn to Lane, watching {him} remove his top");
+		if (hasLaneHypnosis()) outputText(", your eyes lingering on the smoothness of {his} skin for a little longer than you mean");
+		outputText(", and then {he} walks past you, towards {his} seat");
+		if (laneHypnosisLevel() >= 3) outputText(". Your eyes glue to {him}, trailing themselves from the ridges of {his} shoulders to where {his} tail meets the small of {his} back....");
+	}
+
+	outputText("\n\n");
+	if (!pc.isTaur()) outputText("{He} takes the farther seat, and wordlessly invites you to take the one across from {him}.");
+	else outputText("{He} picks up the closest seat and sets it aside, leaving you to sit on your haunches on the carpet.] <i>“First, I want you to close your eyes.”</i> You do so, blocking what little vision you had of the room. The only thing you see is the dull pulse of {his} body through your eyelids
+
+<i>“Breathe deep through your nose. Focus on what you’re experiencing. Let it calm your body.”</i> You breathe deep, inhaling the smoky incense – a plethora of spices and scents fill your nose, combining to smell like everything they are and not anything at all, somehow. As your thoughts linger on the scents, [if (pc.isTaur = false)your body sinks into the comfort of the chair: your arms slack on the rests and your neck begins to roll your head slightly.][if (pc.isTaur = true)your body sinks into the comfort of the carpet: your arms begin to go slack and your body feels as though it’s sinking into the floor, in a pleasant way.]
+
+<i>“Now, focus on my voice,”</i> says Lane. <i>“Listen to my words, but</i> feel <i>for my voice. Let my voice into your ears, into your mind. Don’t worry about where I am. Don’t worry about where my voice is coming from. Don’t worry about anything.”</i> Lane’s voice seems to come from everywhere all at once, but at the same time, it feels as though {his} voice is coming from somewhere very close by. With every word {he} says, your chest thrums in vibration, as though {he}’s speaking through you.
+
+Even with all of these sensations combined, though, you don’t really feel ‘hypnotized’. You still feel in control of your conscious thought. Still, if only to get the most for your money, you follow along with Lane’s commands. <i>“Now, I want you to open your eyes. Don’t force them open. Just let them.”</i> You try to follow {his} command, and you ‘let’ your eyes open –
+
+Your vision is assaulted with Lane’s glowing, luminescent body. {His} tassels are wide open, where {his} coursing blood glows the brightest. With every heartbeat of {his}, you see {his} red blood flow all throughout {his} neck, tassels, face, {chest/breasts}, through {his} arms, over {his} stomach, before disappearing underneath {his} undergarments and blurring beneath {his} translucent pants. {His} pulse has taken a rather peculiar rhythm, beating twice quickly, then pausing, flooding your vision with bursts of red and a stream of blue, repeating again and again.
+
+Your eyes open wider of their own accord as you absorb {him}. Adorned across the inside of {his} tassels are a number of black tattoos with swirling, almost tribal designs on them, and all throughout the skin of {his} membranes are light, glassy piercings. As {his} blood beats through {him}, they mingle with the tattoos and their light bounces all throughout the glass of {his} piercings: the lights distract your focus, and every time you move your eyes between them, the tattoos on {him} begin to swirl with each other in the corners of your eyes. With every movement your eyes make, the coursing blood, the bright trinkets pierced to Lane’s skin, and the moving tattoos draw you deeper and deeper into a trance – into <i>{him}</i>.
+
+<i>“Watch the swirling lights,”</i> {he} says, but you barely need the instruction. Lane begins to say a lot of other things, but you’ve lost your attention. Your senses begin to overcome your consciousness: your nostrils begin to pick out every individual smell with every breath, and your eyes soon start seeing new shapes and motions that hadn’t existed before. Your mind is completely on autopilot: you’re aware of every sight, every smell, and every vague command Lane tells you, but you barely register them as thoughts. Soon, even your thoughts are leaving you, and you become nothing but a blank slab of a person for Lane to mold and shape as {he} likes. {He} tells you that’s okay, and that becomes <i>your</i> thought, <i>your</i> decision.
+
+You’re left hanging limp in Lane’s control. {He} says some other things to you, and they become your thoughts for only a moment before they’re lost in the ether that is your blank consciousness. {His} words become your own, and that’s okay. Your eyes hurt, and you remember to blink – no, Lane reminds you to blink – no, <i>you</i> remember to blink.
+
+Lane watches you, completely enthralled and under {his} spell. Your mouth is dry, and you swallow – no, Lane tells you to swallow – no, <i>you</i> swallow, it was a thought you had. {He} takes a deep breath, remaining calm in {his} seat. Confident that you’re deep enough under {his} spell, {he} begins the work you paid {him} to do.
 }
