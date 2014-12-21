@@ -485,6 +485,13 @@ function embryMenu():void
 			else addDisabledButton(4,"Spend Time","Spend Time","Only lovers have additional scenes for spending time with Embry.");
 		}
 		else addDisabledButton(4,"Spend Time","Spend Time","You don't know her well enough to spend time with her.");
+		if(flags["EMBRY_RELATIONSHIP"] == 0) addDisabledButton(5,"Sex","Sex","She has no interest in sex with you.");
+		else if(flags["EMBRY_RELATIONSHIP"] < 3) addDisabledButton(5,"Sex","Sex","You don't have that kind of relationship with her.");
+		else
+		{
+			if(pc.lust() >= 33) addButton(5,"Sex",embrySexMenu,undefined,"Sex","Have a sexual encounter with her.");
+			else addDisabledButton(5,"Sex","Sex","You aren't aroused enough for a sex act.");
+		}
 	}
 	//[Sex]
 	addButton(14,"Leave",mainGameMenu);
@@ -1542,7 +1549,9 @@ function doneWivGlassesChatGuvnah():void
 	output("\n\nWhen she finally calms down, your front is soaked with her tears, and her fingers are curled and clutching at your [pc.skinFurScalesNoun]. “<i>... I-I’m sorry, I thought I’d be happy, b-but what I am most of all is </i>relieved<i>. I’m just... so relieved.</i>”");
 	output("\n\nShe takes a deep breath and pulls away. “<i>... R-right, so, um... right,</i>” [embry.name] takes another breath and brushes back a strand of hair. “<i>...I’m going to take off my pants, okay?</i>”");
 	output("\n\n<i>\"Not the rest of your clothes?</i>” you ask. Every other time she’s stripped naked.");
-	output("\n\n[embry.name] shakes her head and lies back on the bed. <i>\"This treatment is different. Localized. It’s a big change... giving me, um, a pussy, {and getting rid of THAT,} so it requires a big, focused dose.</i>”");
+	output("\n\n[embry.name] shakes her head and lies back on the bed. <i>\"This treatment is different. Localized. It’s a big change... giving me, um, a pussy, ");
+	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined) output("and getting rid of THAT, ");
+	output("so it requires a big, focused dose.</i>”");
 
 	//If PC.likespeen
 	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined)
@@ -2090,7 +2099,8 @@ function IHeartAndKissHer():void
 	//[[ SEE SEX MENU (Vaginal Sex Scene) FOR THE REST ]]
 	flags["EMBRY_VAGINAL_SEX_UNLOCKED"] = 1;
 	// Unlocks Vaginal Sex in sex menu.
-	embrySexMenu();
+	clearMenu();
+	addButton(0,"Next",vagisilSexForEmbry,true);
 }
 
 function iDontLoveYouEmbry():void
@@ -2114,7 +2124,25 @@ function iDontLoveYouEmbry():void
 function embrySexMenu():void
 {
 	clearMenu();
-	
+	if(pc.hasCock()) addButton(0,"Blowjob",blowjorbsFromEmbry,undefined,"Blowjob","Get a blowjob from Embry.");
+	else addDisabledButton(0,"Blowjob","Blowjob","You need a penis in order to receive a blowjob.");
+	if(pc.hasVagina()) addButton(1,"Cunnilingus",cunnilingusWithEmbry,undefined,"Cunnilingus","Get a eaten out by Embry.");
+	else addDisabledButton(1,"Cunnilingus","Cunnilingus","You need a vagina in order to receive cunnilingus.");
+	addButton(2,"Analingus",analingusWithEmbry,undefined,"Analingus","Get your ass eaten by Embry.");
+	//Breast Massage
+	// [embry.name] must have transitioned at least once / She must have breasts
+	if(embry.biggestTitSize() >= 1) addButton(3,"BreastMassage",breastMassageScene4Embrah,undefined,"Breast Massage","Give Embry a breast massage.");
+	else addDisabledButton(3,"BreastMassage","Breast Massage","Embry must have breasts in order to massage them.");
+	//Anal Sex
+	// [embry.name] must have undergone her second transition.
+	if(flags["EMBRY_TREATMENTS"] >= 2) addButton(4,"Pitch Anal",embryAnalSex,undefined,"Pitch Anal","Stick it in her butt.");
+	else addDisabledButton(4,"Pitch Anal","Pitch Anal","Embry needs to be further in her transition before she'll be up for anal.");
+	//Vaginal Sex
+	// This scene is first viewed through a ‘Spend Time’ scene. The repeat / non virgin version is accessed through the normal sex menu.
+	if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] != undefined) addButton(5,"Fuck Vag",vagisilSexForEmbry,false,"Fuck Vag","Fuck her vagina.");
+	else addDisabledButton(5,"Fuck Vag","Fuck Vag","She doesn't know you well enough for that yet.");
+
+	addButton(14,"Back",callWaitress);
 }
 
 //Blowjob
@@ -2212,6 +2240,7 @@ function blowjorbsFromEmbry():void
 	output("\n\nYou notice her fingers occasionally move in the direction of [pc.oneCockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
 	output("\n\nYou stagger back to the bar with a smile.");
 	flags["GOTTEN_AN_EMBRY_BJ"] = 1;
+	flags["SEXED_EMBRY"] = 1;
 	processTime(52);
 	pc.orgasm();
 	clearMenu();
@@ -2270,6 +2299,7 @@ function cunnilingusWithEmbry():void
 	output("\n\n“<i>... I... I liked that a lot...</i> [embry.name] shyly admits, all the while stroking your cheek with her fingers. “<i>... I kind of feel like you marked my face with your cum... and your smell, and taste...</i>” she flushes, “<i>... Just that thought fills me with a happy, warm feeling. It feels right.</i>”");
 	output("\n\n“<i>... Anytime you want me to lick you out, a-anywhere, you ask, okay--?</i>” she nuzzles into you, and her pink tail happily flicks about. She really enjoys eating you out!");
 	flags["GOTTEN_CUNNILINGUS_FROM_EMBRY"] = 1;
+	flags["SEXED_EMBRY"] = 1;
 	output("\n\nYou stagger back to the bar with a smile.");
 	processTime(52);
 	pc.orgasm();
@@ -2340,6 +2370,7 @@ function analingusWithEmbry():void
 	output("\n\nYou stagger back to the bar with a smile.");
 	processTime(52);
 	flags["GOTTEN_RIMMED_BY_EMBRY"]  = 1;
+	flags["SEXED_EMBRY"] = 1;
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2411,6 +2442,7 @@ function breastMassageScene4Embrah():void
 	output("\n\n[embry.name] turns her head around, and presses her soft, pink lips against yours. You passionately kiss, your tongues dancing with each other, enjoying the afterglow together. When you finally pull apart, she reaches up and strokes your cheek, and affectionately stares into your eyes.");
 	output("\n\n<i>\"I-I never knew I could cum like that... until you. You’re amazing...</i> she breathily tells you, her cheeks flushed. “<i>... But I love this bit the most; being in your arms afterwards.</i>”");
 	processTime(52);
+	flags["SEXED_EMBRY"] = 1;
 	pc.lust(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2485,7 +2517,7 @@ function embryAnalSex():void
 	// pc does not have a dick or pussy
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
-		if(9999)
+		if(flags["SEEN_MONKEY_STRAPON"] == undefined)
 		{
 			output("\n\nYou take the strap-on from her, grabbing it by one of the black leather straps. The shaft is purple, with an extremely smooth surface, and a head slightly wider than the shaft. It’s the perfect shape for pegging her.");
 		}
@@ -2534,14 +2566,22 @@ function embryAnalSex():void
 
 	output("\n\n<i>\"M-my butt--you’re fingering my naughty butt--!</i> [embry.name] breathily moans. You can see her eyes in the mirror, and she looks drunk on lust. Her [embry.breasts] rock back and forth as she passionately humps your sticky digits. When you slip a third inside, she lets out a delighted squeal. Her anus is stretched considerably around your fingers, making for quite a sight!");
 	output("\n\nWhen you start finger fucking her [embry.ass], [embry.name] can’t hold out any longer, and her whole body convulses with delight.");
-	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [pc.cock] jerks and messily shoots white, sticky ropes of spunk all over the side of the bench, firingly wildly in the air.");
+	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [embry.cock] jerks and messily shoots white, sticky ropes of spunk all over the side of the bench, firingly wildly in the air.");
 	//{if Embry.hasPussy:
 	if(embry.hasVagina()) output(" Her cute, pink pussy spasmically squirts [embry.girlCum] everywhere. She makes an utter mess!");
 	//PC does not like peen and she does not have a pussy.
 	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined && !embry.hasVagina()) output(" She cums long and hard with your fingers buried in her [embry.anus].");
 	output(" When her climax subsides, you remove your fingers.");
 
-	output("\n\nAfter creaming herself, [embry.name] is left utterly spaced out and quivering on the table. You press {your [pc.cock]/the girthy strap on} between her bare buttocks, and rub {your [pc.cockHead]/the head of the artificial phallus} against her lubed up pucker. When you press your hips forward, she lets out a rapturous moan, and your {purple} prick slides into her [embry.asshole].");
+	output("\n\nAfter creaming herself, [embry.name] is left utterly spaced out and quivering on the table. You press ");
+	if(pc.hasCock()) output("your [pc.cock]");
+	else output("the girthy strap on");
+	output(" between her bare buttocks, and rub ");
+	if(pc.hasCock()) output("your [pc.cockHead]");
+	else output("the head of the artificial phallus");
+	output(" against her lubed up pucker. When you press your hips forward, she lets out a rapturous moan, and your ");
+	if(!pc.hasCock()) output("purple ");
+	output("prick slides into her [embry.asshole].");
 
 	// if PC.hasCock:
 	if(pc.hasCock())
@@ -2549,7 +2589,7 @@ function embryAnalSex():void
 		output("\n\nInch by inch, you bury yourself inside of [embry.name]’s [embry.butt]. Her narrow insides hotly clench around your [pc.cock]. Your [pc.cockHead] is soon rubbing deep inside of her bowels. Her warm confines delectably grip and squeeze your sensitive length, and it’s all you can do not to immediately blow your load inside her [embry.ass]!");
 		pc.cockChange();
 		output("\n\nYou bite your lower lip, and press your hips forward against [embry.name]’s plush buttocks. You press hard against them, your [pc.cockHead] dribbling your pre-cum inside of her, and she lets out a sweet moan. Grabbing her [embry.hips] firmly in hand, you let your carnal instincts guide you, and grind lustily against her [embry.ass].");
-		output("\n\nLewd, wet smacking noises fill the air as you liberally fuck [embry.name]’s butt. Your hips slap against hers under her frilly skirt, and her naughty tunnel eagerly welcomes your thrusting [pc.cockSimple]. As you plow her you can see her lusty expression in the mirror and her [embry.breasts] jiggling against the table, adding further passion to your fevered thrusts.");
+		output("\n\nLewd, wet smacking noises fill the air as you liberally fuck [embry.name]’s butt. Your hips slap against hers under her frilly skirt, and her naughty tunnel eagerly welcomes your thrusting [pc.cockNounSimple]. As you plow her you can see her lusty expression in the mirror and her [embry.breasts] jiggling against the table, adding further passion to your fevered thrusts.");
 		output("\n\n[embry.name] rocks with you in unconcious rhythm, crying out with pleasure as you have your way with her cute, plushy ass. You moan as your [pc.cockHead] caresses her tight inner walls, and they deliciously spasm and clench around you. Her butt wrings your [pc.cock], squeezing it for all it’s worth, and you shudder with pleasure. In that split second, you know you’re going to blow!");
 		output("\n\nYou seize her [embry.hips] and with one last powerful thrust, you bury your [pc.cockHead] deep inside of her ");
 		if(embry.analVirgin)
@@ -2562,7 +2602,7 @@ function embryAnalSex():void
 		output("\n\n[embry.name] cries out with delight as you ");
 		if(pc.cumQ() <= 3) output("shoot blanks into her butt - maybe rest a while and refill.");
 		else output("liberally fill her with your [pc.cum]");
-		output(". She shudders uncontrollably, her [embry.asshole] clenching your [pc.cockSimple], and she trembles in ecstasy.");
+		output(". She shudders uncontrollably, her [embry.asshole] clenching your [pc.cockNounSimple], and she trembles in ecstasy.");
 		//PCLIKESPEEN & embry.hasCock:
 		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [pc.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		else if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
@@ -2649,10 +2689,11 @@ function embryAnalSex():void
 		output("\n\n<i>\"U-um, my butt feels kind of sore, but I feel really, REALLY happy.</i>” Your simii lover’s fingers trail across your naked [pc.chestSimple], drawing cute little circles. “<i>... I loved having you inside of me. And I’m glad you’re the one who took, you know, my virginity - at least of my butt,</i>” she blushes.");
 	}
 	// else
-	else output("\n\n<i>\"I always love having you inside of my butt. It’s a litss your naked [pc.chestSimple], drawing cute little circles. <i>\"Um, anytime you want to bend me over and have your way with me, I’m f-fine with that, okay?</i> she shyly offers.");
+	else output("\n\n<i>\"I always love having you inside of my butt.</i>” Your simii lover's fingers trail across your naked [pc.chestSimple], drawing cute little circles. <i>\"Um, anytime you want to bend me over and have your way with me, I’m f-fine with that, okay?</i> she shyly offers.");
 	output("\n\nYou return to the bar with a smile.");
 	flags["GOTTEN_TO_FUCK_EMBRYBUTT"] = 1;
 	if(!pc.hasCock()) flags["SEEN_MONKEY_STRAPON"] = 1;
+	flags["SEXED_EMBRY"] = 1;
 	processTime(45);
 	pc.orgasm();
 	clearMenu();
@@ -2669,9 +2710,9 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	{
 		output("After [embry.name]’s shift is up, she’s immediately upon you, wrapping her arms around your neck. She litters your cheeks with kisses - she’s clearly in an amorous mood.");
 		output("\n\n“<i>... W-we should go back to my place!</i>” the pink haired girl is somehow simultaneously shy and assertive. You head back to the Capella, making out on the ship’s elevator on the way up, and then against her cabin room door.");
-		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [embry.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.");
+		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [embry.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.\n\n");
 	}
-	output("\n\nYou lustily slide your fingers down the top of her ");
+	output("You lustily slide your fingers down the top of her ");
 	if(embry.vaginalVirgin) output("evening dress - then swiftly yank it down along with her strapless bra");
 	else output("[embry.armor], then swiftly pull it down, and throw away her [embry.upperUndergarment]");
 	output(". Her brazenly exposed breasts spill out ");
@@ -2681,7 +2722,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	output("\n\nFor you, her [embry.nipples] are like a red flag to a bull. You seize one between your lips, suckling on it. Your simii lover delightedly moans. Her slender hands wrap around your neck. She pulls you into her [embry.breasts].");
 	output("\n\n<i>\"M-more...</i>” she breathily sighs. You tease her [embry.nipple] between your teeth, lips, and tongue. She shivers with delight underneath you. Her [embry.legs] are parted");
 	//frontcock:
-	if(!pc.isTaur() && pc.hasCock()) output(", and your [embry.cock] is rubbing against her clothed sex.");
+	if(!pc.isTaur() && pc.hasCock()) output(", and your [pc.cock] is rubbing against her clothed sex.");
 	else if(!pc.isTaur() && pc.hasVagina()) output(", and your lower belly is rubbing against her clothed sex.");
 	else output(".");
 
@@ -2739,7 +2780,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		if(embry.vaginalVirgin) output("unfamiliar ");
 		output("delight.");
 		output("\n\nThe monkey girl instinctively lifts her [embry.hips] up to meet yours, moaning lewdly as your turgid shaft grinds against her [embry.pussy].");
-		output("\n\n<i>\"P-please, I want you inside of me--!<i> she whimpers, desperately pulling at your back. You press the purple head against her ");
+		output("\n\n<i>\"P-please, I want you inside of me--!</i>\" she whimpers, desperately pulling at your back. You press the purple head against her ");
 		if(embry.vaginalVirgin) output("virgin ");
 		output("mound, rubbing it up and down, before pressing your weight forward. It slowly sinks inside of her tender folds.");
 		// Embry’s a virgin
@@ -2818,7 +2859,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		output("\n\nAs you rub your [pc.cock] back and forth, it caresses [embry.name]’s [embry.clit], protected behind her puffy lips. She trembles with ");
 		if(embry.vaginalVirgin) output("unfamiliar ");
 		output("delight. The monkey girl instinctively lifts her [embry.hips] up to meet yours, moaning lewdly as your turgid shaft grinds against her [embry.pussy].");
-		output("\n\n<i>\"P-please, I want you inside of me--!<i> she whimpers, desperately pulling at your back. You press your [pc.cockHead] against her ");
+		output("\n\n<i>\"P-please, I want you inside of me--!</i>\" she whimpers, desperately pulling at your back. You press your [pc.cockHead] against her ");
 		if(embry.vaginalVirgin) output("virgin ");
 		output("mound, rubbing it up and down, before pressing your weight forward.");
 		// [embry.name] is a virgin
@@ -2829,7 +2870,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 			output("\n\nYou decide to trust her. ");
 		}
 		else output("\n\n");
-		output("You slowly sink your [pc.cockSimple] inside of her slick yet narrow tunnel. It squeezes your achingly hard length with impossible tightness. Every inch inside her is an effort - she’s so tight you feel like you’ll cum before your cock bottoms out!");
+		output("You slowly sink your [pc.cockNounSimple] inside of her slick yet narrow tunnel. It squeezes your achingly hard length with impossible tightness. Every inch inside her is an effort - she’s so tight you feel like you’ll cum before your cock bottoms out!");
 		pc.cockChange();
 		output("\n\nDistracting yourself, you bite your lip hard, and try to focus on anything other than her divine tightness utterly wringing your [pc.cockNoun]. When your [pc.hips] finally meet hers, you tremble involuntarily with delight.");
 		output("\n\nYou feel the touch of slender fingers dancing along your cheeks. Looking down, you see [embry.name] gazing up at you ");
@@ -2843,7 +2884,9 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		output(" You keep moving against her, your [pc.cockNoun] delving deeper with each rhythmic push.");
 
 		output("\n\nSoon she is lifting her hips to meet your powerful thrusts and rocking in ecstasy against you. She spreads her [embry.thighs] wider apart, desperate to take you deeper. Her body is arched willingly into yours and she is answering your thrusting hips with her own.");
-		output("\n\nSuddenly her supple body is trembling against you and she lets out a sweet pleasured cry. Her narrow {virgin} pussy grips you with incredible tightness, squeezing your [pc.cockSimple] with surprising force. Her [embry.hipsLight] quake against yours as she gushes around your length.");
+		output("\n\nSuddenly her supple body is trembling against you and she lets out a sweet pleasured cry. Her narrow ");
+		if(embry.vaginalVirgin) output("virgin ");
+		output("pussy grips you with incredible tightness, squeezing your [pc.cockNounSimple] with surprising force. Her [embry.hipsLight] quake against yours as she gushes around your length.");
 		output("\n\nSeized by a rush of sensation so intense you can’t contain it, you give one last final thrust. You spill your [pc.cum] deep inside of her in staccato spasms, painting her ");
 		if(embry.vaginalVirgin) output("virgin");
 		else output("fertile");
@@ -2858,12 +2901,12 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		// Embry’s a virgin
 		if(embry.vaginalVirgin)
 		{
-			output("\n\n<i>\"You’re my first,<i> she happily whispers, “<i>... My first lover, and my first love. I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
+			output("\n\n<i>\"You’re my first,</i>\" she happily whispers, “<i>... My first lover, and my first love. I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
 		}
 		// else
 		else
 		{
-			output("\n\n<i>\"I love you so much,<i> she happily whispers, “<i>... I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
+			output("\n\n<i>\"I love you so much,</i>\" she happily whispers, “<i>... I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
 		}
 		output("\n\nAfterwards you lie in each other’s arms. [embry.name] nuzzles into the nook of your arm, wrapping herself around you - her slender legs are intertwined with yours.");
 	}
@@ -2871,8 +2914,10 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] == undefined)
 	{
 		output("\n\n<b>Vaginal sex unlocked!</b>");
+		flags["EMBRY_VAGINAL_SEX_UNLOCKED"] = 1;
 	}
 	output("\n\nYou return to the bar with a smile.");
+	flags["SEXED_EMBRY"] = 1;
 	processTime(45);
 	pc.orgasm();
 	clearMenu();
