@@ -502,7 +502,7 @@ function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):void
 	output("\n\n“<i>You want this, too, don’t you?</i>” Nehzara asks, flashing you a fierce smile that shows off her brilliant teeth. “<i>It’s been so long since I saw a cock standing erect for me, just like that...</i>” ");
 	if(pc.biggestCockLength() <= 4) output("Her eyebrows rise a little. “<i>Though I wonder if your species substitutes size with passion.</i>”");
 	else if(pc.biggestCockLength() <= 10) output("She nods approvingly. “<i>And I look forward to feeling that fullness inside me again.</i>”");
-	else if(pc.biggestCockLength() <= 16) output("She licks her lips as she appraises your package. “<i>Can’t say the drone was that big, though. I look forward to seeing if you know how to use all of it.</i>”");
+	else if(pc.biggestCockVolume() <= 800) output("She licks her lips as she appraises your package. “<i>Can’t say the drone was that big, though. I look forward to seeing if you know how to use all of it.</i>”");
 	else 
 	{
 		output("She seems to think something over for a moment, and then shakes her head. “<i>There’s no way I can even take that much... women of your species must be very impressive, indeed.");
