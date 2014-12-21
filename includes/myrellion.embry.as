@@ -2206,7 +2206,7 @@ function blowjorbsFromEmbry():void
 	output("\n\nHer blue eyes lock onto yours, and she sensuously slips your throbbing glans into her mouth. Your sensitive dick flesh presses against her wet tongue, and she lets out a muffled moan. The taste of your tip is far more intense than your shaft, and she’s intoxicated by it.");
 
 	output("\n\nActing on instinct, she greedily sucks on your [pc.cockHead], eager to savor your intense, salty flavor. Your [pc.cock] aches with pleasure as you watch her mindlessly slurp on it. You groan and press your tip against her tongue. Your broiling, [pc.cumFlavor] pre-cum liberally drools onto her tastebuds.");
-	output("\n\n[embry.name] pulls off your [pc.cockLight] and stares at it. It seems she’s trying to process what just happened. She notices the bead of [pc.cumColor] on your [pc.cockHead], and flushes. “<i>... I... I’m doing a good job?</i>” she sounds surprised and validated.");
+	output("\n\n[embry.name] pulls off your [pc.cock] and stares at it. It seems she’s trying to process what just happened. She notices the bead of [pc.cumColor] on your [pc.cockHead], and flushes. “<i>... I... I’m doing a good job?</i>” she sounds surprised and validated.");
 	output("\n\nShe presses her lips as a kiss around the head of your cock, and sucks on it. Her slender fingers wrap around your base as she eagerly nurses it for more of your [pc.cum]. She tries to take more of your turgid length into her mouth, and her pink lips slowly slide down your shaft.");
 	output("\n\nYou moan and loll your head back. Even though she’s inexperienced, her carnal hunger for your [pc.cock] and your [pc.cum] has you all worked up. The sight of her pink head bobbing back and forward on your shaft and the feeling of her sucking you off is simply mind blowing.");
 	output("\n\n[embry.name] is moaning a little bit as she slides her soft lips up and down your dick and you can feel her breath against you in warm, little puffs. She seems a bit out of it, her eyes half- closed, only partly focused. She doesn’t seem aware of anything around her, and she’s totally lost in servicing you.");
@@ -2819,7 +2819,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 
 		output("\n\nSuddenly her supple body is trembling against you and she lets out a sweet pleasured cry. Her narrow ");
 		if(embry.vaginalVirgin) output("virgin ");
-		output("pussy grips you with incredible tightness, squeezing your strap-on cock with surprising force. Her [embry.hipsLight] quake against yours as she gushes around your length.");
+		output("pussy grips you with incredible tightness, squeezing your strap-on cock with surprising force. Her [embry.hips] quake against yours as she gushes around your length.");
 
 		// if pc.hasPussy = true)
 		if(pc.hasVagina()) 
@@ -2886,7 +2886,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		output("\n\nSoon she is lifting her hips to meet your powerful thrusts and rocking in ecstasy against you. She spreads her [embry.thighs] wider apart, desperate to take you deeper. Her body is arched willingly into yours and she is answering your thrusting hips with her own.");
 		output("\n\nSuddenly her supple body is trembling against you and she lets out a sweet pleasured cry. Her narrow ");
 		if(embry.vaginalVirgin) output("virgin ");
-		output("pussy grips you with incredible tightness, squeezing your [pc.cockNounSimple] with surprising force. Her [embry.hipsLight] quake against yours as she gushes around your length.");
+		output("pussy grips you with incredible tightness, squeezing your [pc.cockNounSimple] with surprising force. Her [embry.hips] quake against yours as she gushes around your length.");
 		output("\n\nSeized by a rush of sensation so intense you can’t contain it, you give one last final thrust. You spill your [pc.cum] deep inside of her in staccato spasms, painting her ");
 		if(embry.vaginalVirgin) output("virgin");
 		else output("fertile");
