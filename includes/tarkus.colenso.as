@@ -138,6 +138,12 @@ function askColensoAboutWork():void
 	userInterface.showName("\nCOLENSO");
 	author("Nonesuch");
 	output("You ask if he’s got any work available.");
+	//Hotfix for broke-ass shit
+	if(flags["HAND_SOS_CONSOLE_EXPLODED"] == 1 || flags["SEXBOT_FACTORY_DISABLED"] == 1)
+	{
+		if(flags["SEXBOT_QUEST_STATUS"] == 1) flags["SEXBOT_QUEST_STATUS"] = 2;
+	}
+
 	//PC not encountered a sexbot:
 	if(flags["MET_SEXBOTS_ON_TARKUS"] == undefined) 
 	{
@@ -678,6 +684,7 @@ function leftConsole():void
 			currentLocation = "256";
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 			flags["SEXBOT_FACTORY_DISABLED"] = 1;
+			flags["SEXBOT_QUEST_STATUS"] = 2;
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 			return;
