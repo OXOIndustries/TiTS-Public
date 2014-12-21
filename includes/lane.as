@@ -1042,12 +1042,14 @@ function payTheLaneTax():void
 		flags["LANE_MALE_SEXED"] = 1;
 
 		availScenes.push(suckLanesDick);
+		availScenes.push(fuckedByMaleLane);
 	}
 	else
 	{
 		flags["LANE_FEMALE_SEXED"] = 1;
 
 		availScenes.push(munchLanesCarpet);
+		availScenes.push(fuckedByFemLane);
 	}
 }
 
@@ -1264,169 +1266,485 @@ function fuckedByMaleLane():void
 	if (pc.biggestTitSize() >= 3) outputText("\n\nHis hands reach up and roughly grope at your [pc.chest]. He exhales in excitement at what he finds; his tongue lolls out and licks along your bare shoulder while his hands go to town on the fat of your breasts. <i>“I don’t think I’ll ever be satisfied with a girl of my own species again. Not with a pair of tits like these.”</i> He pinches and pokes at your soft, plushy skin, leaving marks on you. His claws round about your mounds, meeting in your cleavage, and then switch boobs, crossing his arms across you.");
 	if (pc.biggestTitSize() >= 18) outputText(" They barely get very far, though – your massive breasts take up far too much space for him to reach very well. But, from the way his hips jack a little harder against you, he’s perfectly okay with that.");
 
-	outputText("\n\nHis claws click on your [pc.nipples], squeezing them tightly. <i>“And these, these are unique. I’m told you have these all your life?”</i> You shudder as he mistreats them. It makes you so much hornier, but his insensitivity makes it more painful than you’d appreciate. <i>“I don’t even know the first thing about them. You’ll have to walk me through their intricacies someday. It’ll be a learning experience for both of us, I’m sure.”</i>[if (pc.hasNippleCunts = true) His claws sink into your sensitive [pc.nipples] as he fondles them, eliciting a familiar groan from you. <i>“I don’t think having an extra pair of cunts is normal, either, but who am I to say in this universe of ours?”</i>][if {hasDickNipples = true) His claws scratch and grip along your [pc.nipples] as he fondles them, eliciting a familiar moan from you. <i>“Is having a pair of extra dicks a ‘thing’ with your species? Should I be jealous? Was I born the wrong species?”</i>]");
+	outputText("\n\nHis claws click on your [pc.nipples], squeezing them tightly. <i>“And these, these are unique. I’m told you have these all your life?”</i> You shudder as he mistreats them. It makes you so much hornier, but his insensitivity makes it more painful than you’d appreciate. <i>“I don’t even know the first thing about them. You’ll have to walk me through their intricacies someday. It’ll be a learning experience for both of us, I’m sure.”</i>");
+	if (pc.hasFuckableNipples()) outputText(" His claws sink into your sensitive [pc.nipples] as he fondles them, eliciting a familiar groan from you. <i>“I don’t think having an extra pair of cunts is normal, either, but who am I to say in this universe of ours?”</i>");
+	else if (pc.hasNippleCocks()) outputText(" His claws scratch and grip along your [pc.nipples] as he fondles them, eliciting a familiar moan from you. <i>“Is having a pair of extra dicks a ‘thing’ with your species? Should I be jealous? Was I born the wrong species?”</i>");
 
-	outputText("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagorass], you whimper in need. <i>“You sound... needy.</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
+	outputText("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagOrAss], you whimper in need. <i>“You sound... needy.</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
 
 	outputText("\n\n<i>“You!”</i> you should through clenched teeth and pressed lungs. <i>“I need you, master Lane! Please, I need you inside me!”</i>");
 
-You feel him rear his pelvis away from you. <i>“If that’s what you need.”</i> He reaches back with one hand and feels between you both, gripping onto his cock, and then aligns it with your [pc.vagorass]. He slowly begins to feed it into you, centimeter by agonizing centimeter. You’d thought his penetration would calm the fires of your lust, but it only feeds them!
+	outputText("\n\nYou feel him rear his pelvis away from you. <i>“If that’s what you need.”</i> He reaches back with one hand and feels between you both, gripping onto his cock, and then aligns it with your [pc.vagOrAss]. He slowly begins to feed it into you, centimeter by agonizing centimeter. You’d thought his penetration would calm the fires of your lust, but it only feeds them!");
 
-Having him inside you again is the most wonderful, pleasurable feeling you can imagine, but it doesn’t make you want it any less. He teases you by going slowly; you take action and thrust back, shoving more of his now gorgeously thick dick into your waiting hole. He gasps out in surprise and clicks his tongue playfully. <i>“You’re so eager! I hope you’re not thinking of taking advantage of your master’s hospitality.”</i> His voice is low and he’s trying to sound serious, but his tone is light-hearted, and he doesn’t squeeze or press you any harder. <i>“You know what they say about rabbits and turtles, or whatever.”</i>
+	outputText("\n\nHaving him inside you again is the most wonderful, pleasurable feeling you can imagine, but it doesn’t make you want it any less. He teases you by going slowly; you take action and thrust back, shoving more of his now gorgeously thick dick into your waiting hole. He gasps out in surprise and clicks his tongue playfully. <i>“You’re so eager! I hope you’re not thinking of taking advantage of your master’s hospitality.”</i> His voice is low and he’s trying to sound serious, but his tone is light-hearted, and he doesn’t squeeze or press you any harder. <i>“You know what they say about rabbits and turtles, or whatever.”</i>");
 
-<i>“Speaking of rabbits, let’s fuck like a pair,”</i> you say huskily, and back your ass up some more, squeezing some more of him into you. He only laughs and begins his own thrusting, cramming his dick into your [pc.vagorass], filling the room with the sound of his thick shaft plowing past your [if (pc.hasVagina = true)vulva and into your wet, waiting depths][if (pc.hasVagina = false)[pc.asshole] and hinting at poking into your stomach].
+	outputText("\n\n<i>“Speaking of rabbits, let’s fuck like a pair,”</i> you say huskily, and back your ass up some more, squeezing some more of him into you. He only laughs and begins his own thrusting, cramming his dick into your [pc.vagOrAss], filling the room with the sound of his thick shaft plowing past your");
+	if (pc.hasVagina()) outputText(" vulva and into your wet, waiting depths");
+	else outputText(" [pc.asshole] and hinting at poking into your stomach.");
 
-Your head lowers and you relax. Your master is back inside you again – Lane wanted to fuck you, so you wanted to be fucked, and you’re getting what you wanted. You nearly don’t notice when his hands let go of your body and roughly grip onto the sheets on either side of your face. He pulls away, withdrawing from you, making you whimper at the sudden chill around your junk, and then he roughly thrusts back in.
+	outputText("\n\nYour head lowers and you relax. Your master is back inside you again – Lane wanted to fuck you, so you wanted to be fucked, and you’re getting what you wanted. You nearly don’t notice when his hands let go of your body and roughly grip onto the sheets on either side of your face. He pulls away, withdrawing from you, making you whimper at the sudden chill around your junk, and then he roughly thrusts back in.");
 
-The room is filled with the squelching of your mixing juices and the slapping of his hips against yours as he fucks you like he were running a marathon. You can’t help but smile as he goes at it; your [pc.vagorass] spreads invitingly around his tool, sucking him in and resisting when he tries to pull away. His breath starts coming out raggedly, with shuttering exhales and long inhales; it washes down your back in a warm wave, and you absolutely love it.
+	outputText("\n\nThe room is filled with the squelching of your mixing juices and the slapping of his hips against yours as he fucks you like he were running a marathon. You can’t help but smile as he goes at it; your [pc.vagOrAss] spreads invitingly around his tool, sucking him in and resisting when he tries to pull away. His breath starts coming out raggedly, with shuttering exhales and long inhales; it washes down your back in a warm wave, and you absolutely love it.");
 
-<i>“Is this what you had in mind?”</i> Lane asks you. His voice comes out unevenly between his thrusts. <i>“Pressed into my bed, getting fucked like an animal by your master? Do you want my cum inside you, and to come back for seconds when it leaks out?”</i>
+	outputText("\n\n<i>“Is this what you had in mind?”</i> Lane asks you. His voice comes out unevenly between his thrusts. <i>“Pressed into my bed, getting fucked like an animal by your master? Do you want my cum inside you, and to come back for seconds when it leaks out?”</i>");
 
-<i>“Yeeeeeesssssss~”</i> you moan languidly. You spread your legs wider, giving him more space to fuck you with. You wish his cock could get thicker, to split you wider, to give you <i>more</i> of him. His desires are yours, and you want nothing more than to be fucked by Lane and have him shoot his warm lizard load inside of you.
+	outputText("\n\n<i>“Yeeeeeesssssss~”</i> you moan languidly. You spread your legs wider, giving him more space to fuck you with. You wish his cock could get thicker, to split you wider, to give you <i>more</i> of him. His desires are yours, and you want nothing more than to be fucked by Lane and have him shoot his warm lizard load inside of you.");
 
-<i>“You’re a good bitch.”</i> He gets off of you and stands back onto his feet, never letting himself pull out. He smacks onto your [pc.ass] with both hands again, turning the [pc.skinfurScales] redder than before. With his new leverage and grip, he resumes pounding you into the fabric.
+	outputText("\n\n<i>“You’re a good bitch.”</i> He gets off of you and stands back onto his feet, never letting himself pull out. He smacks onto your [pc.ass] with both hands again, turning the [pc.skinfurScales] redder than before. With his new leverage and grip, he resumes pounding you into the fabric.");
 
-[if (pc.hasCock = true)Your [pc.cock] is as hard as you’ve ever felt it and is leaking your precum at an alarming rate, squashed between your body and the bed[if (pc.biggestCockArea >= 10). Your [cock biggest] has wedged itself beautifully [if (pc.biggestTitSize >= 3)between your [pc.chest]][if (pc.biggestTitSize <= 2)against your [pc.chest]] and you feel yourself inadvertently fucking yourself while Lane fucks you. He’s so talented![pg]][if (pc.biggestCockArea <= 9). It’s trapped underneath your gut, getting rubbed raw by your skin and the fabric of the bed, but it just hurts so good! You won’t last much longer like this![pg]]][if (pc.hasVagina = true)Y[if (pc.hasCock = true)et, despite how good your dick feels, it can’t possibly compare to y]our lucky, spoiled [pc.vagina][if (pc.hasCock = true). It] feels absolutely amazing with your master’s cock plowing into it; every time he pulls away leaves you teased and wanting for him again, and you’re fed and satisfied every time he thrusts back home. Your muscles ripple and squeeze in delight as his smooth dick <i>just</i> brushes against all the best spots inside you, making you squirm and slack-jawed as his each thrust claims you individually.][if (pc.gender == 0)You clench your ass with his every inward thrust, trying to make the sensation last as long as you can, but it’s all a vain effort. Without genitals to release with, you can’t help but feel your release build and build and build, and have nowhere to go at the end of it. It’s torturous and maddening, and you love every second of it. Only Lane can make you feel so wonderfully contradictory!]
+	if (pc.hasCock())
+	{
+		outputText("\n\nYour [pc.cock] is as hard as you’ve ever felt it and is leaking your precum at an alarming rate, squashed between your body and the bed");
+		// This was an area call- it didn't make much sense
+		if (pc.biggestCockLength() >= 12) 
+		{
+			outputText(". Your [cock biggest] has wedged itself beautifully");
+			if (pc.biggestTitSize() >= 3) outputText(" between your [pc.chest]");
+			else if (pc.biggestTitSize() <= 2) outputText(" against your [pc.chest]");
+			outputText(" and you feel yourself inadvertently fucking yourself while Lane fucks you. He’s so talented!");
+		}
+		else
+		{
+			outputText(". It’s trapped underneath your gut, getting rubbed raw by your skin and the fabric of the bed, but it just hurts so good! You won’t last much longer like this!");
+		}
+	}
+	if (pc.hasVagina())
+	{
+		outputText("\n\nY");
+		if (pc.hasCock()) outputText("et, despite how good your dick feels, it can’t possibly compare to y");
+		outputText("our lucky, spoiled [pc.vagina]");
+		if (pc.hasCock()) outputText(". It");
+		outputText(" feels absolutely amazing with your master’s cock plowing into it; every time he pulls away leaves you teased and wanting for him again, and you’re fed and satisfied every time he thrusts back home. Your muscles ripple and squeeze in delight as his smooth dick <i>just</i> brushes against all the best spots inside you, making you squirm and slack-jawed as his each thrust claims you individually.");
+	}
+	if (!pc.hasVagina() && !pc.hasCock()) outputText(" You clench your ass with his every inward thrust, trying to make the sensation last as long as you can, but it’s all a vain effort. Without genitals to release with, you can’t help but feel your release build and build and build, and have nowhere to go at the end of it. It’s torturous and maddening, and you love every second of it. Only Lane can make you feel so wonderfully contradictory!");
 
-His grip gets tighter, and he drags his claws over your [pc.skinfurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagorass]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.
+	outputText("\n\nHis grip gets tighter, and he drags his claws over your [pc.skinfurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagOrAss]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.");
 
-He bucks thrice more, then he grunts, and then you feel a magnificent warmth spread inside you, shooting [if (pc.hasVagina = true)deep into your waiting cunny and towards your patient womb][if (pc.hasVagina = false)far into your large intestine and finding its way deeper, towards your hungry belly. You hope he’ll provide for it next time]. You try to hold back your own orgasm, but Lane wanted to cum inside you, so you wanted him to cum inside you, [if (pc.gender != 0)and now that you have what you want, your floodgates burst open. [if (pc.hasCock = true)[pc.eachCock] sprays your cum all over your stomach[if (pc.biggestCockArea >= 10); across your [pc.chest]; onto your chin;] and all over his bed, soaking the sheets in the proof of your eagerness for your union.][if (pc.hasVagina = true)[if (pc.hasCock = true)[pg]]A[if (pc.hasCock = true)t the same time, a]ll at once, your [pc.vagina] squeezes on Lane’s impressive, godlike dick in sequential waves, coaxing his cum from his sensitive base to his tip and working what you get deeper inside of you. Your [pc.girlcum] sprays out onto him, wetting him at his own crotch and tainting his bedsheets even more. With every pass your cunt makes at milking him, the knowledge that it’s your master’s dick that’s inside you provokes another, smaller orgasm, until your poor genitals exhaust themselves.]][if (pc.gender == 0)but now that you have what you want... you’re just so <i>close</i> to your release, but no amount of humping the bedsheets or fucking against Lane is going to give you what you need! You bite your tongue hard enough to hurt as you try to frantically recall what an orgasm felt like before you lost your genitals. The bloom of warmth radiating from your crotch; the tension unfolding from your body; the way all your muscles writhe and then relax at the same time... you feel something akin to it as you feel Lane’s warm, heavenly cum seep deeper and deeper into you, but it’s just not enough.]
+	outputText("\n\nHe bucks thrice more, then he grunts, and then you feel a magnificent warmth spread inside you, shooting");
+	if (pc.hasVagina()) outputText(" deep into your waiting cunny and towards your patient womb");
+	else outputText(" far into your large intestine and finding its way deeper, towards your hungry belly. You hope he’ll provide for it next time");
+	outputText(". You try to hold back your own orgasm, but Lane wanted to cum inside you, so you wanted him to cum inside you,");
+	if (pc.hasVagina() || pc.hasCock()) 
+	{
+		outputText(" and now that you have what you want, your floodgates burst open.");
+		if (pc.hasCock())
+		{
+			outputText(" [pc.EachCock] sprays your cum all over your stomach");
+			if (pc.biggestCockLength() >= 8) outputText("; across your [pc.chest]; onto your chin; and all over his bed, soaking the sheets in the proof of your eagerness for your union.");
+			if (pc.hasVagina()) outputText("\n\n");
+		}
+		else outputText(" ");
 
-Lane flops back down onto your body and tries to catch his breath. You sigh in [if (pc.gender == 0)half-]delight; you’ll remember this day forever, and you hope you’ll have many more days to remember in the future. His body feels good against yours: warm, smooth, and tight in all the right places. His breath bats against your ear, and soon his tongue is there instead, licking you affectionately.
+		if (pc.hasVagina())
+		{
+			outputText("A");
+			if (pc.hasCock()) outputText("t the same time, a");
+			outputText("ll at once, your [pc.vagina] squeezes on Lane’s impressive, godlike dick in sequential waves, coaxing his cum from his sensitive base to his tip and working what you get deeper inside of you. Your [pc.girlcum] sprays out onto him, wetting him at his own crotch and tainting his bedsheets even more. With every pass your cunt makes at milking him, the knowledge that it’s your master’s dick that’s inside you provokes another, smaller orgasm, until your poor genitals exhaust themselves.");
+		}
+	}
+	else
+	{
+		outputText(" but now that you have what you want... you’re just so <i>close</i> to your release, but no amount of humping the bedsheets or fucking against Lane is going to give you what you need! You bite your tongue hard enough to hurt as you try to frantically recall what an orgasm felt like before you lost your genitals. The bloom of warmth radiating from your crotch; the tension unfolding from your body; the way all your muscles writhe and then relax at the same time... you feel something akin to it as you feel Lane’s warm, heavenly cum seep deeper and deeper into you, but it’s just not enough.");
+	}
 
-<i>“You’re such a good cumdump,”</i> he says. At first, you sort of object to the phrase, but, being a cumdump is what Lane wants, so you want to be his cumdump. <i>“I think we made a great decision, making you into what you are, don’t you think? This is so much more rewarding for us both.”</i>
+	outputText("\n\nLane flops back down onto your body and tries to catch his breath. You sigh in ");
+	if (!pc.hasCock() && !pc.hasVagina()) outputText("half-");
+	outputText("delight; you’ll remember this day forever, and you hope you’ll have many more days to remember in the future. His body feels good against yours: warm, smooth, and tight in all the right places. His breath bats against your ear, and soon his tongue is there instead, licking you affectionately.");
 
-You nod, whispering your agreement, your thanks, and your praise. You don’t stop praising him and his ‘ability to perform’ for a solid minute and a half – you try your best to encourage him for another round, even as his cock starts flagging inside your [pc.vagorass]. Occasionally you feel a twitch from him, which excites you, but soon enough, he goes soft and his cock starts retreating into him once more.
+	outputText("\n\n<i>“You’re such a good cumdump,”</i> he says. At first, you sort of object to the phrase, but, being a cumdump is what Lane wants, so you want to be his cumdump. <i>“I think we made a great decision, making you into what you are, don’t you think? This is so much more rewarding for us both.”</i>");
 
-He hoists himself off of you and back onto his feet. You turn around, looking to his receding penis, thinking that maybe you could try to fellate him some more... but you only see the tapered tip, and soon it’s swallowed away by his slit. You frown, and he sees it. <i>“Don’t worry, [pc.name]. You’ve done such an excellent job that you’ll be back on it soon enough, I promise.”</i>
+	outputText("\n\nYou nod, whispering your agreement, your thanks, and your praise. You don’t stop praising him and his ‘ability to perform’ for a solid minute and a half – you try your best to encourage him for another round, even as his cock starts flagging inside your [pc.vagOrAss]. Occasionally you feel a twitch from him, which excites you, but soon enough, he goes soft and his cock starts retreating into him once more.");
 
-He turns to one of the dressers on the side of the room, and pulls out a fresh, complete set of the same airy clothes he always wears. <i>“But for now, I’m afraid we both have work to do. I can’t make fucking my living unless I fuck everybody, and I only have one special slut in my life.”</i> He winks at you, and you practically melt on the spot. He laughs light-heartedly. <i>“Put on your clothes, [pc.name], and get back out there. You have some money to make.”</i>
+	outputText("\n\nHe hoists himself off of you and back onto his feet. You turn around, looking to his receding penis, thinking that maybe you could try to fellate him some more... but you only see the tapered tip, and soon it’s swallowed away by his slit. You frown, and he sees it. <i>“Don’t worry, [pc.name]. You’ve done such an excellent job that you’ll be back on it soon enough, I promise.”</i>");
 
-And then he leaves you alone in his room. You lay there for another minute, reflecting on what he just said, about how you were special to him. You smile to yourself, but you know he’s right in that you still have things to do. With some effort, you peel away from his bed and reach for your [pc.armor], scattered across his floor.
+	outputText("\n\nHe turns to one of the dressers on the side of the room, and pulls out a fresh, complete set of the same airy clothes he always wears. <i>“But for now, I’m afraid we both have work to do. I can’t make fucking my living unless I fuck everybody, and I only have one special slut in my life.”</i> He winks at you, and you practically melt on the spot. He laughs light-heartedly. <i>“Put on your clothes, [pc.name], and get back out there. You have some money to make.”</i>");
 
-Another minute or two later, you’re presentable again, and you leave his hut, energized.
-// Reduce lust to 0
-// If PC is sexless, reduce lust to 20
-// Place PC one square outside of Lane’s Plane
+	outputText("\n\nAnd then he leaves you alone in his room. You lay there for another minute, reflecting on what he just said, about how you were special to him. You smile to yourself, but you know he’s right in that you still have things to do. With some effort, you peel away from his bed and reach for your [pc.armor], scattered across his floor.");
+
+	outputText("\n\nAnother minute or two later, you’re presentable again, and you leave his hut, energized.");
+
+	processTime(60);
+
+	if (pc.hasVagina()) pc.loadInCunt(lane);
+	else pc.loadInAss(lane);
+
+	lane.orgasm();
+	pc.orgasm();
+
+	if (!pc.hasCock() && !pc.hasVagina()) pc.lust(20);
+
+	clearMenu();
+	addButton(0, "Next", move, ERROR);
 }
 
+// From the doc:
+// 		I may have gotten a little ambitious with this one
+// http://i.imgur.com/JedndTn.gif
 function fuckedByFemLane():void
 {
-	Lane roughly shoves you in your chest, knocking you off your feet and onto your ass onto her bed. Before you can rub the sore spot she had hit, she has your [pc.hair] in her hand, gripping you tight enough to pay attention. <i>“We’re going to have some fun,”</i> she says. That makes you shiver. <i>“Before we begin, I need some... encouragement. Show me how enthusiastic you are for me.”</i>
+	clearOutput();
 
-She pulls you forward by your hair, until your nose presses hard against the scales of her lower belly. The glowing underneath her thicker skin is less pronounced, but so close, you can practically taste her with her scent. She tilts your head until your lips are pressed against her soft, pliable, sensitive (and more than a little tasty) Daynarian cunt. She’s clearly aroused enough, but she wants you to excite her, so that’s what you want too.
+	outputText("Lane roughly shoves you in your chest, knocking you off your feet and onto your ass onto her bed. Before you can rub the sore spot she had hit, she has your [pc.hair] in her hand, gripping you tight enough to pay attention. <i>“We’re going to have some fun,”</i> she says. That makes you shiver. <i>“Before we begin, I need some... encouragement. Show me how enthusiastic you are for me.”</i>");
 
-She moans out once you pucker your [pc.lips] and slide them over her own. She sways and swings her hips, putting on a bit of a dance for you as you go down on her. You tentatively raise your hands to grope onto her hips, but she swats both of them away with her free hand. <i>“Just your mouth, pet. I want to feel what you’re capable of.”</i> You moan out and acquiesce.
+	outputText("\n\nShe pulls you forward by your hair, until your nose presses hard against the scales of her lower belly. The glowing underneath her thicker skin is less pronounced, but so close, you can practically taste her with her scent. She tilts your head until your lips are pressed against her soft, pliable, sensitive (and more than a little tasty) Daynarian cunt. She’s clearly aroused enough, but she wants you to excite her, so that’s what you want too.");
 
-It doesn’t take much doing for her to get absolutely soaked, coating your tongue in her lubricant. She’s as horny as she’s probably going to be already – maybe you had left her a little pent up? You’ll be sure to give your mistress more attention to prevent that. Either way, the foreplay probably isn’t what she’s after: if her welcoming pussy isn’t hint enough, then the way she humps against your face and constantly run her hands through your [pc.hair] is telltale enough.
+	outputText("\n\nShe moans out once you pucker your [pc.lips] and slide them over her own. She sways and swings her hips, putting on a bit of a dance for you as you go down on her. You tentatively raise your hands to grope onto her hips, but she swats both of them away with her free hand. <i>“Just your mouth, pet. I want to feel what you’re capable of.”</i> You moan out and acquiesce.");
 
-The sound of her moaning out pleasurably joins the wet kisses and licks you’re giving her mound. <i>“That’s right, pet,”</i> she says as you work. [if {tongue length is ‘normal}You dig into her as far as you can, but you know you’re [pc.tongue] isn’t quite long enough to reach her sensitive G-spot deep inside her. You compensate as much as you can by working your lips against her labia, knowing what they do for her too.][if {tongue length is ‘long’}Your [pc.tongue] reaches all the way to her cervix with a little bit left to spare. Every pass the tip of your tongue makes over her G-spot, she clenches hard on your head, which, with her claws, hurts quite a bit. But, she wants you to keep going, so you want to keep going, in spite of the pain.][if {tongue length is ‘super long’}You know how much your mistress likes it when you stuff her cunt full of your [pc.tongue], and you’re not going to disappoint her. Your long, slippery muscle slips in with ease and then places itself directly on top of her G-spot. She laughs in delight and thrusts her hips forward, and you don’t stop laying in more and more tongue, packing her full even when your tongue starts layering on top of itself.]
+	outputText("\n\nIt doesn’t take much doing for her to get absolutely soaked, coating your tongue in her lubricant. She’s as horny as she’s probably going to be already – maybe you had left her a little pent up? You’ll be sure to give your mistress more attention to prevent that. Either way, the foreplay probably isn’t what she’s after: if her welcoming pussy isn’t hint enough, then the way she humps against your face and constantly run her hands through your [pc.hair] is telltale enough.");
 
-Her body rocks in a wavy motion, from her ankles all the way to her neck, as she fucks your face some more. She loves what you’re doing with what you’re given, and you love doing it because she loves it. Her body starts to quiver a bit, signaling an impending orgasm, when she quickly shoves you back. <i>“You’re such a good cuntlicker, [pc.name],” she praises. You smile goofily. <i>“As good as your pretty [pc.lips] are, and as much as I could get off on them again and again and again, I want something a bit more substantial from you.”</i>
+	outputText("\n\nThe sound of her moaning out pleasurably joins the wet kisses and licks you’re giving her mound. <i>“That’s right, pet,”</i> she says as you work.");
+	if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && !pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) outputText(" You dig into her as far as you can, but you know you’re [pc.tongue] isn’t quite long enough to reach her sensitive G-spot deep inside her. You compensate as much as you can by working your lips against her labia, knowing what they do for her too.");
+	else if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) outputText(" You know how much your mistress likes it when you stuff her cunt full of your [pc.tongue], and you’re not going to disappoint her. Your long, slippery muscle slips in with ease and then places itself directly on top of her G-spot. She laughs in delight and thrusts her hips forward, and you don’t stop laying in more and more tongue, packing her full even when your tongue starts layering on top of itself.")
+	else if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) outputText(" Your [pc.tongue] reaches all the way to her cervix with a little bit left to spare. Every pass the tip of your tongue makes over her G-spot, she clenches hard on your head, which, with her claws, hurts quite a bit. But, she wants you to keep going, so you want to keep going, in spite of the pain.");
 
-She raises her webbed foot and presses it against your collarbone, where she had shoved you before, and kicks you backward, onto the bed. As soon as your back hits the softness of her quilt, she’s flopped down on top of you, pinning your body down with her own. The soft heaviness of her breasts against your [pc.chest] is the best vice you could have asked for.
+	outputText("\n\nHer body rocks in a wavy motion, from her ankles all the way to her neck, as she fucks your face some more. She loves what you’re doing with what you’re given, and you love doing it because she loves it. Her body starts to quiver a bit, signaling an impending orgasm, when she quickly shoves you back. <i>“You’re such a good cuntlicker, [pc.name],” she praises. You smile goofily. <i>“As good as your pretty [pc.lips] are, and as much as I could get off on them again and again and again, I want something a bit more substantial from you.”</i>");
 
-[if (pc.biggestTitSize <= 5)Lane gently cups your face with her hands and leans in for a kiss. You reciprocate gladly – and, despite her aggression so far, her kiss is loving, passionate, and caring; neither of you hesitate to swap spit, pressing your tongues together. You melt into her embrace, letting yourself get absorbed into her in more ways than one. Lane’s thigh slips in between your own, rubbing gently at [if (pc.hasCock = true)[pc.eachCock]][if (pc.hasVagina = true)your [pc.vagina]], stimulating it and making you readier than you thought you were. Lane’s gentle kissing and fervent-yet-considerate rocking against your body has caught you off-guard, and you love it.][if (pc.biggestTitSize >= 6)Lane’s earlier aggression keeps up as she tops you on her bed. Her hands slap next to your head on either side, making you flinch; before you can right yourself, Lane’s lips are on yours, claiming and dominating you with her mouth. Your mouth is full of her swatting tongue, beating yours down into submission. Her body grinds yours into the bed; her heavy breasts, inferior to yours, squashing your better pair flat, which awkwardly bends her upper back upward but she’s insistent on bettering you. Her thigh worms in between yours, where she practically knees you in the crotch in her passion; it’s <i>definitely</i> stimulating, at least.</i>]
+	outputText("\n\nShe raises her webbed foot and presses it against your collarbone, where she had shoved you before, and kicks you backward, onto the bed. As soon as your back hits the softness of her quilt, she’s flopped down on top of you, pinning your body down with her own. The soft heaviness of her breasts against your [pc.chest] is the best vice you could have asked for.");
 
-She breaks away from you, panting, breathless from the intense makeout sassion. [if (pc.biggestTitSize <= 5)<i>“You’re such a beautiful creature, [pc.name].”</i> You blush at the undue praise – you didn’t even kiss <i>her,</i> she kissed <i>you</i>. <i>“I love what you’ve become and what our relationship is.”</i> Your heart nearly leaps into your throat, but she keeps avoiding the context you’re after. <i>“You’re such a good toy. And I like to treat my toys well. I think you’re going to enjoy this.”</i>][if (pc.biggestTitSize >= 6)<i>“You hot big-tittied bitch,”</i> she says, her eyes drills and boring into yours. She’s talking dirty, but her tone is serious. <i>“You think you’re better off just because your tits are bigger than mine.”</i> Is she jealous of your [pc.chest]? You open your mouth to respond, but she keeps going. <i>“I’m going to fuck you into the dirt. I can’t promise it’ll be good for you. I want you to look into breast reduction when we’re done here – I can’t have my pets walking around like they’re better than me.”</i>]
+	if (pc.biggestTitSize() <= 5) 
+	{
+		outputText("\n\nLane gently cups your face with her hands and leans in for a kiss. You reciprocate gladly – and, despite her aggression so far, her kiss is loving, passionate, and caring; neither of you hesitate to swap spit, pressing your tongues together. You melt into her embrace, letting yourself get absorbed into her in more ways than one. Lane’s thigh slips in between your own, rubbing gently at");
+		if (pc.hasCock() || pc.hasVagina())
+		{
+			if (pc.hasCock()) outputText(" [pc.eachCock]");
+			else if (pc.hasVagina()) outputText(" [pc.eachVagina]");
+			outputText(", stimulating it and making you readier than you thought you were. Lane’s gentle kissing and fervent-yet-considerate rocking against your body has caught you off-guard, and you love it.");
+		}
+		else
+		{
+			outputText(" your groin.")
+		}
+	}
+	else
+	{
+		outputText("\n\nLane’s earlier aggression keeps up as she tops you on her bed. Her hands slap next to your head on either side, making you flinch; before you can right yourself, Lane’s lips are on yours, claiming and dominating you with her mouth. Your mouth is full of her swatting tongue, beating yours down into submission. Her body grinds yours into the bed; her heavy breasts, inferior to yours, squashing your better pair flat, which awkwardly bends her upper back upward but she’s insistent on bettering you. Her thigh worms in between yours, where she practically knees you in the crotch in her passion; it’s <i>definitely</i> stimulating, at least.</i>");
+	}
 
-She leans back, pressing her hips down onto yours. Her hands travel up your stomach and onto your [pc.chest], [if (pc.biggestTitSize <= 5)kneading and caressing them between her skilled, webbed fingers][if (pc.biggestTitSize >= 6)harshly squeezing onto them between her unforgiving and jealous claws]. She toys with your [pc.nipples] with her index fingers, experimentally flicking them and watching them bounce back. <i>“These are awfully unique, too.”</i> She pinches them between her fingers, tugging them upward. You wince at the rough treatment, and she [if (pc.biggestTitSize <= 5)eases up. She hadn’t realized just how sensitive they really were][if (pc.biggestTitSize >= 6)tugs harder. When you sputter in pain, she grins and relaxes your tits, only to tug even harder]. <i>“They must be awfully sensitive. You’ll have to walk me through their intricacies some other time.”</i>[if (pc.hasNippleCunts = true) She notices that your nipples look awfully familiar, and she sticks a finger into the open tunnel of your left nipple cunt. When you make a distinctly feminine gasp, she realizes right away what they are. <i>“Huh,”</i> she says – and nothing else.][if {hasDickNipples = true} She grips onto your elongated, masculine nipples. She recognizes their distinct shape right away and knows exactly what she’s doing when she pinches their veins and tubes tightly. <i>“These look fun,”</i> she remarks, <i>“but having sex with your chest would be a little weird, even for an alien. Hell, we might give it a try someday... but not today.”</i>]
+	outputText("\n\nShe breaks away from you, panting, breathless from the intense makeout sassion.");
+	if (pc.biggestTitSize() <= 5) outputText(" <i>“You’re such a beautiful creature, [pc.name].”</i> You blush at the undue praise – you didn’t even kiss <i>her,</i> she kissed <i>you</i>. <i>“I love what you’ve become and what our relationship is.”</i> Your heart nearly leaps into your throat, but she keeps avoiding the context you’re after. <i>“You’re such a good toy. And I like to treat my toys well. I think you’re going to enjoy this.”</i>");
+	else outputText(" <i>“You hot big-tittied bitch,”</i> she says, her eyes drills and boring into yours. She’s talking dirty, but her tone is serious. <i>“You think you’re better off just because your tits are bigger than mine.”</i> Is she jealous of your [pc.chest]? You open your mouth to respond, but she keeps going. <i>“I’m going to fuck you into the dirt. I can’t promise it’ll be good for you. I want you to look into breast reduction when we’re done here – I can’t have my pets walking around like they’re better than me.”</i>");
 
-[if (pc.hasCock = true)Her weight bears down on you, and your [pc.cock] is pressed flat, pointed towards your stomach with her body. It’s turned purple with how aroused it is and yet it’s veins are pinched shut by Lane’s devilish hips.][if (pc.hasCock = false)She touches her cunt down on your[if (pc.hasVagina = true)s][if (pc.hasVagina = false) empty pelvis, meeting nothing but skin]. The feeling of her warm sex wetly meeting your body so suddenly makes you bite your lip. She keeps her body still, not stimulating you any further.] Your hands grip onto the bedsheets; she had commanded you not to use your hands, and you desperately wait for her to rescind her order. <i>“Would you like me to fuck you, [pc.name]?”</i>
+	outputText("\n\nShe leans back, pressing her hips down onto yours. Her hands travel up your stomach and onto your [pc.chest],");
+	if (pc.biggestTitSize() <= 5) outputText(" kneading and caressing them between her skilled, webbed fingers");
+	else outputText(" harshly squeezing onto them between her unforgiving and jealous claws");
+	outputText(". She toys with your [pc.nipples] with her index fingers, experimentally flicking them and watching them bounce back. <i>“These are awfully unique, too.”</i> She pinches them between her fingers, tugging them upward. You wince at the rough treatment, and she");
+	if (pc.biggestTitSize() <= 5) outputText(" eases up. She hadn’t realized just how sensitive they really were");
+	else outputText(" tugs harder. When you sputter in pain, she grins and relaxes your tits, only to tug even harder");
+	outputText(". <i>“They must be awfully sensitive. You’ll have to walk me through their intricacies some other time.”</i>");
+	if (pc.hasFuckableNipples()) outputText(" She notices that your nipples look awfully familiar, and she sticks a finger into the open tunnel of your left nipple cunt. When you make a distinctly feminine gasp, she realizes right away what they are. <i>“Huh,”</i> she says – and nothing else.");
+	if (pc.hasNippleCocks()) outputText(" She grips onto your elongated, masculine nipples. She recognizes their distinct shape right away and knows exactly what she’s doing when she pinches their veins and tubes tightly. <i>“These look fun,”</i> she remarks, <i>“but having sex with your chest would be a little weird, even for an alien. Hell, we might give it a try someday... but not today.”</i>");
 
-<i>“Yes!”</i> you bark out loudly.
+	if (pc.hasCock()) 
+	{
+		outputText("\n\nHer weight bears down on you, and your [pc.cock] is pressed flat, pointed towards your stomach with her body. It’s turned purple with how aroused it is and yet it’s veins are pinched shut by Lane’s devilish hips.");
+	}
+	else
+	{
+		outputText("\n\nShe touches her cunt down on your");
+		if (pc.hasVagina()) outputText("s");
+		else outputText(" empty pelvis, meeting nothing but skin");
+		outputText(". The feeling of her warm sex wetly meeting your body so suddenly makes you bite your lip. She keeps her body still, not stimulating you any further.] Your hands grip onto the bedsheets; she had commanded you not to use your hands, and you desperately wait for her to rescind her order. <i>“Would you like me to fuck you, [pc.name]?”</i>");
+	}
 
-<i>“Ooh, such passion!”</i> She slides her cunny up your body just a little bit[if (pc.hasCock = true), leaving a slimy trail along the shaft of your cock][if (pc.gender == 2), the heat of her vulva radiating just enough to tease your engorged [pc.clit]]. <i>“You don’t waste any time getting to your point. I like that.”</i>[if (pc.biggestCockArea <= 69) She slides her pussy all the way up until she’s perched just above your tip. <i>“Well then, let’s not make you wait any longer, hmm?”</i>][if (pc.biggestCockArea >= 70) She leans forward, resting your [pc.cock] between your stomach and hers. She fits it between her heavy, smooth boobs, the tip pointed [if (pc.averageCockLength <= 14)right towards your face][if (pc.averageCockLength >= 15)well above your head). <i>“This isn’t going to fit into me, [pc.name]. You should look into fixing that someday. But that doesn’t mean we can’t still have some fun.”</i>]
-// PC is male/herm and will fit
-She lifts herself with her knees just enough to fit you inside her, and, with a sharp drop, she engulfs you to your base in one swing. You moan out, feeling your [pc.cock] inside her familiar tunnel and you submerge yourself in the sensation of her oddly-lined walls sucking on you pleasurably, yanking you deeper and deeper into her. <i>“That’s it,”</i> she says encouragingly. <i>“You’re back where you belong, [pc.name]. Inside your beloved mistress. That’s where you should be.”</i> And you agree!
+	outputText("\n\n<i>“Yes!”</i> you bark out loudly.");
 
-From her position, she does a minimal amount of thrusting, but she rocks back and forth on top of you, swinging your dick around inside her. Admittedly, it probably gives her more pleasure than it gives you, but you’re nonetheless not going to complain. [if (pc.hasBalls = true)The heat of her ass tickles the tip of your [pc.sack], making them tense up beneath her. ]<i>“Would you like to shoot a hot load inside your mistress, [pc.name]?”</i> She leans back, displaying her abdomen to you. Her bloodflow illuminates her lower torso neatly, practically outlining just where your hot load would be going. <i>“Do you want to feel your cum going into your Daynarian queen?”</i>
+	// Cock selection shit.
+	var selCock:int = pc.cockThatFits(lane.vaginalCapacity(0));
+	var cockTooBig:Boolean = false;
 
-You grunt your approval and thrust deeper into her, spurred on by her words. She coos out and keeps grinding her snatch onto your pelvis. <i>“That’s it, fuck me good. Prove to me that you love me.”</i> She begins kneading at her titflesh, squishing them together and enhancing her cleavage for you. Her long, thin tongue snakes out and starts licking the salt off the top of her boobs.
+	if (selCock == -1) 
+	{
+		selCock = pc.biggesetCockIndex();
+		cockTooBig = true;
+	}
 
-Despite you having to do most of the work for your own pleasure, it’s absolutely paying off. Whether it’s because of the base, primal act of what you’re doing, or because you’re doing it with your mistress, you feel your release building up in your loins – perhaps a little sooner than you had hoped. Your [pc.cock] pierces into her with every thrust you can manage[if (pc.hasBalls = true) and your [pc.balls] jiggle every time you slap into her]. You look at her belly, trying to see if you could spot the outline of yourself through the glowing of Lane’s veins.[if (pc.biggestCockArea >= 60)[if (pc.biggestCockArea <= 69) To your surprise, you do! Lane’s abdomen bulges out slightly every time you thrust your well-endowed cock into her. She’s moaning like a horny whore, so you know you’re not hurting her with your tool, thank goodness.]][if (pc.biggestCockArea <= 59) Unfortunately, you’re not quite endowed enough for something quite that kinky. Maybe she wouldn’t mind if you packed on another inch...]
+	outputText("\n\n<i>“Ooh, such passion!”</i> She slides her cunny up your body just a little bit");
+	if (pc.hasCock()) outputText(", leaving a slimy trail along the shaft of your cock");
+	else if (pc.hasVagina()) outputText(", the heat of her vulva radiating just enough to tease your engorged [pc.clit]");
+	outputText(". <i>“You don’t waste any time getting to your point. I like that.”</i>");
+	if (pc.hasCock())
+	{
+		if (!cockTooBig) outputText(" She slides her pussy all the way up until she’s perched just above your tip. <i>“Well then, let’s not make you wait any longer, hmm?”</i>");
+		else
+		{
+			outputText(" She leans forward, resting your [pc.cock] between your stomach and hers. She fits it between her heavy, smooth boobs, the tip pointed");
+			if (pc.cocks[selCock].cLength() <= 14) outputText(" right towards your face");
+			else outputText(" well above your head");
+			outputText(". <i>“This isn’t going to fit into me, [pc.name]. You should look into fixing that someday. But that doesn’t mean we can’t still have some fun.”</i>]");
+		}
+	}
 
-Her grin evaporates to a more focused expression ad her eyes become heavily lidded. Her hands leave her bouncing breasts and tightly grip onto the quilt you’re lying on, and she uses it to anchor herself to you and keep you from thrusting out of her. You moan pleadingly, but she doesn’t care. You’re forced to fight against her to keep up.
+	// PC is male/herm and will fit
+	if (!cockTooBig)
+	{
+		outputText("\n\nShe lifts herself with her knees just enough to fit you inside her, and, with a sharp drop, she engulfs you to your base in one swing. You moan out, feeling your [pc.cock " + selCock + "] inside her familiar tunnel and you submerge yourself in the sensation of her oddly-lined walls sucking on you pleasurably, yanking you deeper and deeper into her. <i>“That’s it,”</i> she says encouragingly. <i>“You’re back where you belong, [pc.name]. Inside your beloved mistress. That’s where you should be.”</i> And you agree!");
 
-Your focus is torn between the sensations you have and the sensations you want, and it makes the sex a little wanting on your end. Lane, however, speeds up her breathing, her jaw hanging open. The flashing lights from all over her body begin to pick up their pace, practically turning her body into a strobe light. She starts whimpering like a kitten and the grip her vagina has on your [pc.cock] tightens, massaging you from your base to your tip, urging out every drop of juice you have.
+		outputText("\n\nFrom her position, she does a minimal amount of thrusting, but she rocks back and forth on top of you, swinging your dick around inside her. Admittedly, it probably gives her more pleasure than it gives you, but you’re nonetheless not going to complain.");
+		if (pc.balls > 0) outputText(" )The heat of her ass tickles the tip of your [pc.sack], making them tense up beneath her.");
+		outputText(" <i>“Would you like to shoot a hot load inside your mistress, [pc.name]?”</i> She leans back, displaying her abdomen to you. Her bloodflow illuminates her lower torso neatly, practically outlining just where your hot load would be going. <i>“Do you want to feel your cum going into your Daynarian queen?”</i>");
 
-Before you can give her what she wants, she orgasms. She presses hard onto your dick and keeps totally still; you can feel her cunt working overtime to deposit any fluids it gets into her, though you stubbornly don’t give her any. That’s hardly for lack of trying, though[if (pc.hasBalls = true): your [pc.balls] begin to ache from the teasing and the frustrating lack of stimulation. She wants your load, and you’d be happy to give it, but she’s not giving you much to work with].[if (pc.hasVagina = true) To say nothing of your lonely [pc.vagina], clenching at nothing and wishing it got the same attention your mistress’s was getting. You’re soaked[if (pc.hasBalls = true) beneath your [pc.sack]], and you doubt it’s about to get any better.]
+		outputText("\n\nYou grunt your approval and thrust deeper into her, spurred on by her words. She coos out and keeps grinding her snatch onto your pelvis. <i>“That’s it, fuck me good. Prove to me that you love me.”</i> She begins kneading at her titflesh, squishing them together and enhancing her cleavage for you. Her long, thin tongue snakes out and starts licking the salt off the top of her boobs.");
 
-She rocks her hips gently, stimulating herself a little more each time. You can feel your cock getting squeezed and soaked inside her, and you’re <i>so very close</i>, but she’s just not helping you over the edge.[if (cocks >= 2) [pc.eachCock] protest against her abusive vulva, each of them just as hard, but none of them are half as stimulated as the one inside your scaly mistress.] You just hope she doesn’t –
+		outputText("\n\nDespite you having to do most of the work for your own pleasure, it’s absolutely paying off. Whether it’s because of the base, primal act of what you’re doing, or because you’re doing it with your mistress, you feel your release building up in your loins – perhaps a little sooner than you had hoped. Your [pc.cock " + selCock + "] pierces into her with every thrust you can manage");
+		if (pc.balls > 0) outputText(" and your [pc.balls] jiggle every time you slap into her");
+		outputText(". You look at her belly, trying to see if you could spot the outline of yourself through the glowing of Lane’s veins.");
+		if (pc.cocks[selCock].volume() >= lane.vaginalCapacity(0) * 0.75) outputText(" To your surprise, you do! Lane’s abdomen bulges out slightly every time you thrust your well-endowed cock into her. She’s moaning like a horny whore, so you know you’re not hurting her with your tool, thank goodness.");
+		else outputText(" Unfortunately, you’re not quite endowed enough for something quite that kinky. Maybe she wouldn’t mind if you packed on another inch...");
 
-She leans forward again, bringing her eyes close to yours. You wonder if you had done something wrong, and that she wasn’t letting you cum as retribution. She smiles a warm, genuine smile, and that helps ease your tension somewhat. <i>“You still haven’t cum, [pc.name],”</i> she says in a song-song-like voice. <i>“Is something the matter? Could it be... you’re not sexually interested in your mistress anymore?”</i>
+		outputText("\n\nHer grin evaporates to a more focused expression ad her eyes become heavily lidded. Her hands leave her bouncing breasts and tightly grip onto the quilt you’re lying on, and she uses it to anchor herself to you and keep you from thrusting out of her. You moan pleadingly, but she doesn’t care. You’re forced to fight against her to keep up.");
 
-You shake your head, but you bite your lip. You’re as sexually attracted to Lane as the day you met her, but you can’t just up and say she’s not helping you get off. <i>“Kaithrit got your tongue?”</i> She presses her body onto yours without letting your [pc.cock] slip free from her cunt. Her vaginal walls still cling to you, but not nearly as aggressively as before. <i>“The Kaithrit can have your tongue, then.[if {tongue is ‘super long’} As long as it gives it back later – no way am I letting some bitch Kaithrit hog all of that tongue to itself.] For now, I’ll settle with having your eyes.”</i>
+		outputText("\n\nYour focus is torn between the sensations you have and the sensations you want, and it makes the sex a little wanting on your end. Lane, however, speeds up her breathing, her jaw hanging open. The flashing lights from all over her body begin to pick up their pace, practically turning her body into a strobe light. She starts whimpering like a kitten and the grip her vagina has on your [pc.cock " + selCock + "] tightens, massaging you from your base to your tip, urging out every drop of juice you have.");
 
-Her tassels flare open slowly, and your vision begins swimming with the lights of her beating blood mixing with her glassy piercings and swirling tattoos on her thin membranes. Her eyes open wide, very wide, and they begin changing their colors as well. Effortlessly, your body goes numb and relaxes, sinking into her subconscious grip willingly. Your raging hard-on doesn’t flag at all, however.
+		outputText("\n\nBefore you can give her what she wants, she orgasms. She presses hard onto your dick and keeps totally still; you can feel her cunt working overtime to deposit any fluids it gets into her, though you stubbornly don’t give her any. That’s hardly for lack of trying, though");
+		if (pc.balls > 0) outputText(": your [pc.balls] begin to ache from the teasing and the frustrating lack of stimulation. She wants your load, and you’d be happy to give it, but she’s not giving you much to work with");
+		outputText(".");
+		if (pc.hasVagina()) 
+		{
+			outputText(" To say nothing of your lonely [pc.vagina], clenching at nothing and wishing it got the same attention your mistress’s was getting. You’re soaked");
+			if (pc.balls > 0) outputText(" beneath your [pc.sack]");
+			outputText(", and you doubt it’s about to get any better.");
+		}
 
-<i>“You’d do anything for your mistress, wouldn’t you, [pc.name]?”</i> she says sweetly. You barely have the thought in your head to answer. <i>“You love mistress Lane so very much. Of course you’d do anything for her.”</i> Of course you would. You love Lane, after all. You wouldn’t hesitate to give her anything you could. <i>“Then, would you cum for your mistress? You mistress wants you to cum inside her. Go ahead and let it all out, [pc.name]. Spill your seed into her.”</i>
+		outputText("\n\nShe rocks her hips gently, stimulating herself a little more each time. You can feel your cock getting squeezed and soaked inside her, and you’re <i>so very close</i>, but she’s just not helping you over the edge.");
+		if (pc.cocks.length >= 2) outputText(" [pc.eachCock] protest against her abusive vulva, each of them just as hard, but none of them are half as stimulated as the one inside your scaly mistress.");
+		outputText(" You just hope she doesn’t –");
 
-The release that had been evading you all this time suddenly comes rocketing through your cock[if (pc.hasVagina = true) and gushing out your cunt]. [if (pc.cumQ <= 349)You sigh as your [pc.cum] finally spills from your aching dick and into Lane’s impatient honeypot. She coos out every time she feels a fresh spurt and gently slides her hips over yours, sucking out all your cum and letting her vagina drink it all, deep inside her. By the time you’re done, there isn’t a drop left from you, and all of it has tucked neatly inside Lane’s body.][if (cumHigh = true)Lane moans in approval as your cum sinks into her body. The teasing had left you pent up! You cum and you cum inside her, and you hear every splurge of juice shooting into her as well as you can feel it. Lane whispers encouragement as you deposit as many loads as you can, and her thirsty honeypot takes it all in. Her muscles work overtime to make sure nothing escapes, and they succeed, barely.][if (pc.cumQ >= 1000)Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinfurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.] [if (pc.hasBalls = true)The aching in your [pc.balls] drains with every jet you unleash into your willing and wanting mistress, until the discomfort in them is nothing but a distant memory. [if (pc.hasVagina = true)And, despite the total lack of attention, y]][if (pc.hasVagina = true)[if (pc.hasBalls = false)Y]our [pc.vagina] clenches at nothing and spasms in delight, as though it had been filled by the perfect dick and had been given the royal treatment. You shake your hips as you feel a sort of fiery sensation reaching as far as your lower belly inside you. You’re surprised, but at the same time, your mistress told you to cum, so you came.]
-// PC is male/herm and will not fit
-She rocks her body forwards, and you feel her every smooth, delectable scale slide over the underside of your [pc.cock]. The bit that’s trapped between your [pc.chest] and her cleavage is surrounded by warm flesh on all sides[if (pc.biggestTitSize >= 3), and it’s treated to a double-titfuck, making it the luckiest dick in the universe, according to you]. You feel her wet box tickle along the base of your dick as she draws herself up, and with her every motion, the skin of your penis is dragged along with her. [if (pc.averageCockLength <= 14)You could easily lean your head forward and take yourself into your mouth if you wanted, and she could do the same, but maybe your mistress has other plans.][if (pc.averageCockLength >= 15)Your [pc.cockHead] is well beyond your [pc.lips], making it impossible to give yourself head from this position, but that’s not to say your mouth is <i>useless</i>. Still, you wait for your mistress’s move before you make your own.]
+		outputText("\n\nShe leans forward again, bringing her eyes close to yours. You wonder if you had done something wrong, and that she wasn’t letting you cum as retribution. She smiles a warm, genuine smile, and that helps ease your tension somewhat. <i>“You still haven’t cum, [pc.name],”</i> she says in a song-song-like voice. <i>“Is something the matter? Could it be... you’re not sexually interested in your mistress anymore?”</i>");
 
-She gently rocks her body from side to side, grinding your tool between your bodies. Its veins and tubes are pinched between you, making it throb almost painfully; you can see it visibly expand with each heartbeat. Whatever you feel, it’s all exquisite and you hope it goes on forever.
+		outputText("\n\nYou shake your head, but you bite your lip. You’re as sexually attracted to Lane as the day you met her, but you can’t just up and say she’s not helping you get off. <i>“Kaithrit got your tongue?”</i> She presses her body onto yours without letting your [pc.cock " + selCock +"] slip free from her cunt. Her vaginal walls still cling to you, but not nearly as aggressively as before. <i>“The Kaithrit can have your tongue, then.");
+		if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) outputText(" As long as it gives it back later – no way am I letting some bitch Kaithrit hog all of that tongue to itself.");
+		outputText(" For now, I’ll settle with having your eyes.”</i>");
 
-Lane’s hands go to her breasts, pushing them together around your [pc.cock]. You have so much you’d like to touch – yourself, her, her breasts, her sides, her ass[if (pc.hasBalls = true), your balls][if (pc.hasVagina = true), your cunt]... but you keep them obediently at your sides. Lane’s eyes lock onto yours, and they narrow seductively as their colors begin to change. <i>“You’re a very good toy, [pc.name],”</i> she tells you, almost lovingly. <i>“I’ll give you a break. You can touch me however you like.”</i>
+		outputText("\n\nHer tassels flare open slowly, and your vision begins swimming with the lights of her beating blood mixing with her glassy piercings and swirling tattoos on her thin membranes. Her eyes open wide, very wide, and they begin changing their colors as well. Effortlessly, your body goes numb and relaxes, sinking into her subconscious grip willingly. Your raging hard-on doesn’t flag at all, however.");
 
-Your hands work faster than your mouth, and you’re groping her in different places all over as your tongue fumbles with your thanks. She laughs, and then coos as you poke, prod and massage all the right spots on her scales. You feel and rub along her back, gently trailing your fingers along her ribs, to the small of her back and the swell of her ass. You’re eager, but you try to keep composed and restrained.
+		outputText("\n\n<i>“You’d do anything for your mistress, wouldn’t you, [pc.name]?”</i> she says sweetly. You barely have the thought in your head to answer. <i>“You love mistress Lane so very much. Of course you’d do anything for her.”</i> Of course you would. You love Lane, after all. You wouldn’t hesitate to give her anything you could. <i>“Then, would you cum for your mistress? You mistress wants you to cum inside her. Go ahead and let it all out, [pc.name]. Spill your seed into her.”</i>");
 
-Your [pc.cock] grows harder as you work her. It insistently keeps [if (pc.averageCockLength <= 14)prodding your mistress in the chin][if (pc.averageCockLength >= 15)smacking your mistress in the cheek], wanting to rise upright but her body keeps it cushioned in its soft, warm prison. She seems to enjoy seeing you so hard, and she doesn’t do much for your own pleasure. She does, however, keep grinding her snatch against the underside of your dick, deriving as much pleasure for herself as she can.[if (pc.hasBalls = true) Her juices drip and trail down the rest of your length, pooling in the union of your cock and your [pc.sack]. Its ticklish and it makes them draw upward pleasurably.][if (pc.hasVagina = true) [pg]Lane keeps her tail tucked in between your legs, and you can feel the heat of her tail radiate just enough to tickle your own quivering feminine sex.[if (pc.hasBalls = false) The juices from her own leaking cunt trail from down the rest of your length and onto your [pc.clit], mingling with your own girly secretions.] You clench your thighs, idly wishing for something to penetrate you. Lane’s tail swishes lazily behind her – she does not grant your unspoken wish.]
+		outputText("\n\nThe release that had been evading you all this time suddenly comes rocketing through your cock");
+		if (pc.hasVagina()) outputText(" and gushing out your cunt");
+		outputText(".");
+		if (pc.cumQ() <= 349) outputText(" You sigh as your [pc.cum] finally spills from your aching dick and into Lane’s impatient honeypot. She coos out every time she feels a fresh spurt and gently slides her hips over yours, sucking out all your cum and letting her vagina drink it all, deep inside her. By the time you’re done, there isn’t a drop left from you, and all of it has tucked neatly inside Lane’s body.");
+		else if (pc.cumQ() >= 600) outputText(" Lane moans in approval as your cum sinks into her body. The teasing had left you pent up! You cum and you cum inside her, and you hear every splurge of juice shooting into her as well as you can feel it. Lane whispers encouragement as you deposit as many loads as you can, and her thirsty honeypot takes it all in. Her muscles work overtime to make sure nothing escapes, and they succeed, barely.");
+		else if (pc.cumQ() >= 2500) outputText("Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinfurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.");
+		if (pc.balls > 0)
+		{
+			outputText(" The aching in your [pc.balls] drains with every jet you unleash into your willing and wanting mistress, until the discomfort in them is nothing but a distant memory.");
+			if (pc.hasVagina()) outputText(" And, despite the total lack of attention, y");
+		}
+		else
+		{
+			if (pc.hasVagina()) outputText(" Y");
+		}
+		if (pc.hasVagina()) outputText("our [pc.vagina] clenches at nothing and spasms in delight, as though it had been filled by the perfect dick and had been given the royal treatment. You shake your hips as you feel a sort of fiery sensation reaching as far as your lower belly inside you. You’re surprised, but at the same time, your mistress told you to cum, so you came.");
+	}
+	else if (pc.hasCock() && cockTooBig)
+	{
+		// PC is male/herm and will not fit
+		outputText("\n\nShe rocks her body forwards, and you feel her every smooth, delectable scale slide over the underside of [pc.oneCock]. The bit that’s trapped between your [pc.chest] and her cleavage is surrounded by warm flesh on all sides");
+		if (pc.biggestTitSize() >= 3) outputText(", and it’s treated to a double-titfuck, making it the luckiest dick in the universe, according to you");
+		outputText(". You feel her wet box tickle along the base of your dick as she draws herself up, and with her every motion, the skin of your penis is dragged along with her.");
+		if (pc.canSelfSuck()) outputText(" You could easily lean your head forward and take yourself into your mouth if you wanted, and she could do the same, but maybe your mistress has other plans.");
+		else if (pc.biggestCockLength() >= 26) outputText(" Your [pc.cockHead] is well beyond your [pc.lips], making it impossible to give yourself head from this position, but that’s not to say your mouth is <i>useless</i>. Still, you wait for your mistress’s move before you make your own.");
 
-<i>“You’re so hard, [pc.name],”</i> she comments. She makes a display of taking a few heavy breaths on you, stimulating you, but the only pleasure you’re getting from her pleasuring herself on you. <i>“Won’t you do something about it?”</i> You’re unsure how to reply, other than to keep squeezing her ass. You look at her (player.averageCockLength >= 15)around your long dick] inquisitively – once your eyes meet hers, you feel a sense of calmness wash over you while the lights of her body tunnel your vision. <i>“You have needs too, [pc.name]. Living with a penis this... prodigious must be trying. I can’t imagine there are a lot of cunts out there that can take it.”</i> She pauses, then grins a sinister, toothy grin. <i>“Maybe not consensually, anyway.”</i>
+		outputText("\n\nShe gently rocks her body from side to side, grinding your tool between your bodies. Its veins and tubes are pinched between you, making it throb almost painfully; you can see it visibly expand with each heartbeat. Whatever you feel, it’s all exquisite and you hope it goes on forever.");
 
-As you watch and listen, her body keeps moving, rubbing at all your best spots on your massive dick. It’s taken until now for a bead of your [pc.cum] to travel up your shaft and hang from your [pc.cockHead], [if (pc.averageCockLength <= 14)splashing down onto your chin][if (pc.averageCockLength >= 15)dripping down somewhere above you and onto her quilt]. <i>“Pleasure yourself, [pc.name],”</i> she says, not-too-subtly. <i>“Your mistress wants to see it. Use your mouth on yourself. You must have gotten a lot of practice by now. You can be honest with your mistress.”</i>
+		outputText("\n\nLane’s hands go to her breasts, pushing them together around your [pc.cock]. You have so much you’d like to touch – yourself, her, her breasts, her sides, her ass");
+		if (pc.balls > 0) outputText(", your balls");
+		if (pc.hasVagina()) outputText(", your cunt");
+		outputText("... but you keep them obediently at your sides. Lane’s eyes lock onto yours, and they narrow seductively as their colors begin to change. <i>“You’re a very good toy, [pc.name],”</i> she tells you, almost lovingly. <i>“I’ll give you a break. You can touch me however you like.”</i>");
 
-You decide to pleasure yourself, with or without Lane’s go-ahead or initiative. You crane your neck upward, [if (pc.averageCockLength <= 14)and slip your [pc.cockHead] past your lips. Your own taste, somewhat familiar, coats your tastebuds in an instant, along with your leaking pre. The pleasure you get from finally having your glans stimulated with tongue as gentle, caring, and familiar as yours, inflates your vas deferens with more of your impatient precum.[if (pc.cumQ >= 1000) You’re very aware that the few drops that land in your mouth are merely the drizzle before the hurricane.]][if (pc.averageCockLength >= 15)and slide your [pc.tongue] out to coat and pleasure the skin of your shaft. You feel the rigid, thick muscle under the thin layer of skin beat and bloat with your heart, and finally feeling something wet and warm pleasure your tool makes it lurch with excitement. You can see your vas deferens, nearly hidden against Lane’s body, inflate with your impatient precum, and you can hear it splurt and drip onto her bed above you.[if (pc.cumQ >= 1000) You really hope Lane isn’t going to mind the mess you make when you unload. Your penis size isn’t the only thing ‘prodigious’ about you.]]
+		outputText("\n\nYour hands work faster than your mouth, and you’re groping her in different places all over as your tongue fumbles with your thanks. She laughs, and then coos as you poke, prod and massage all the right spots on her scales. You feel and rub along her back, gently trailing your fingers along her ribs, to the small of her back and the swell of her ass. You’re eager, but you try to keep composed and restrained.");
 
-To your relief, you hear your mistress giggle above you. She drags her body in broader strokes against you, and her breathing starts getting a little shallower as she watches you. <i>“That’s it,”</i> she says, cheering you on softly. <i>“Let me see you work your own cock, you fucking size-queen. Let’s see how good you are with your own equipment.”</i> She rolls her hips forward, then languidly slides them back down, forcefully pushing her crotch against your thick tube. She winces and moans out <i>“yeeeeeessssss”</i> as she goes, her eyes watching your mouth’s every movement.
+		outputText("\n\n[pc.eachCock] grow");
+		if (pc.cocks.length == 1) outputText("s");
+		outputText(" harder as you work her.");
+		if (pc.cocks.length == 1) outputText(" It");
+		else outputText(" One of them");
+		outputText(" insistently keeps");
+		if (pc.biggestCockLength() <= 14) outputText(" prodding your mistress in the chin");
+		else outputText(" smacking your mistress in the cheek");
+		outputText(", wanting to rise upright but her body keeps");
+		if (pc.cocks.length == 1) outputText(" it");
+		else outputText(" them");
+		outputText(" cushioned in its soft, warm prison. She seems to enjoy seeing you so hard, and she doesn’t do much for your own pleasure. She does, however, keep grinding her snatch against the underside of your dick, deriving as much pleasure for herself as she can.");
+		if (pc.balls > 0) outputText(" Her juices drip and trail down the rest of your length, pooling in the union of your cock and your [pc.sack]. Its ticklish and it makes them draw upward pleasurably.");
+		if (pc.hasVagina())
+		{
+			outputText("\n\nLane keeps her tail tucked in between your legs, and you can feel the heat of her tail radiate just enough to tickle your own quivering feminine sex.");
+			if (pc.balls == 0) outputText(" The juices from her own leaking cunt trail from down the rest of your length and onto your [pc.clit], mingling with your own girly secretions.");
+			outputText(" You clench your thighs, idly wishing for something to penetrate you. Lane’s tail swishes lazily behind her – she does not grant your unspoken wish.");
+		}
 
-You keep up your licking and sucking, encouraged by your mistress’s words. [if (pc.averageCockLength <= 14)You lean forward further, stuffing as much dick into your mouth as you can. Giving yourself a blowjob is a unique, wonderful feeling combing the best of having your dick sucked and the sexy, slutty feeling of having a warm, fat dick in your mouth. It’s exacerbated, perhaps, by your mistress lying atop you and enhancing your experience.][if (pc.averageCockLength >= 15)You cover as much of your shaft as you can with your [pc.tongue][if {tongue is ‘long’ or ‘super long’}, which isn’t a daunting task – you can reach all the way to your base and all the way to your tip in just a pass]. You pucker your [pc.lips] and kiss the fat, hard bit of muscle directly in front of you repeatedly, giving yourself hickeys on your straining tool. Lane seems to love watching you pleasure yourself, and you love that she’s loving it, making every lick, kiss, and rub a new delight to all five of your senses in new and exciting ways.]
+		outputText("\n\n<i>“You’re so hard, [pc.name],”</i> she comments. She makes a display of taking a few heavy breaths on you, stimulating you, but the only pleasure you’re getting from her pleasuring herself on you. <i>“Won’t you do something about it?”</i> You’re unsure how to reply, other than to keep squeezing her ass. You look at her");
+		if (pc.biggestCockLength() >= 15) outputText(" around your long dick");
+		outputText(" inquisitively – once your eyes meet hers, you feel a sense of calmness wash over you while the lights of her body tunnel your vision. <i>“You have needs too, [pc.name]. Living with a penis this... prodigious must be trying. I can’t imagine there are a lot of cunts out there that can take it.”</i> She pauses, then grins a sinister, toothy grin. <i>“Maybe not consensually, anyway.”</i>");
 
-<i>“You’re a good pet,”</i> Lane says through staggered breaths. Her masturbating herself against your cock grows frantic, and her scaly boobs hang loose and low, surrounding your [pc.cock] rather than smothering it. <i>“You do exactly as you’re told~”</i> With that, her body tenses and she takes a long, deep breath through her clenched teeth. You feel the same wetness from before begin to flood down the shaft of your dick and pool at your groin[if (pc.hasBalls = true), glazing over each of your [pc.balls] and dripping off them towards the quilt beneath you][if (pc.hasVagina = true)[if (pc.hasBalls = false), dripping down across your [pc.vagina], soaking your [pc.clit] and drenching your thighs in more than your own femcum]]. <i>“Cum with me, [pc.name],”</i> she demands. She’s barely able to form the words. <i>“Let me see what that cock is capable of!”</i>
+		outputText("\n\nAs you watch and listen, her body keeps moving, rubbing at all your best spots on your massive dick. It’s taken until now for a bead of your [pc.cum] to travel up your shaft and hang from your [pc.cockHead],");
+		if (pc.biggestCockLength() <= 14) outputText(" splashing down onto your chin");
+		else outputText(" dripping down somewhere above you and onto her quilt");
+		outputText(". <i>“Pleasure yourself, [pc.name],”</i> she says, not-too-subtly. <i>“Your mistress wants to see it. Use your mouth on yourself. You must have gotten a lot of practice by now. You can be honest with your mistress.”</i>");
 
-You don’t hesitate to ‘do as your told,’ and, almost before you’re even ready, you feel your [pc.cum] surging through you, burning a trail up your massive shaft. [if (pc.cumQ <= 349)[if (pc.averageCockLength <= 14)The taste of your bloated [pc.cockHead] is accompanied by your personal cream, immediately coating your tongue and puffing out your cheeks. Without hesitation, you swallow – you hope your mistress will get an even bigger kick out of it. The load in your mouth is replaced with two more, neither of them as large as the first. You make a show of swishing it around in your mouth for her before you gulp it down as well.][if (pc.averageCockLength >= 15)Your cum shoots from your [pc.cockHead], bursting out in a few ropes over your head and onto Lane’s bed above you. If she’s disappointed at the mess you’re making, she’s not showing it. Your cock tenses between you for a moment, squeezing out your load – you spurt three times, the latter two hardly the size of the first combined. Your teeth clench as you try to keep from thrashing as you ride out the rest of your orgasm.]][if (pc.cumQ >= 350)[if (pc.cumQ <= 999)[if (pc.averageCockLength <= 14)Your [pc.cockHead] puffs out, pushing against your tongue and your palate, and then erupts your load directly down your throat. You barely have the time to register the orgasm and your very sudden meal before another shot replaces the first, just as voluminous as before. You try to swallow as much as you can – you don’t want to make a mess, and judging from the look on your mistress’s face, she’s getting a real thrill off seeing you struggle with it. Eventually, you fail, and your [pc.cum] leaks from your [pc.lips] in thick rivers before your load finally comes to an end.][if (pc.averageCockLength >= 15)You feel your [pc.cock] bulge and expand between you as your [pc.cum] gushes from your loins to your tip. The can hear the squelching sound of your cream spraying from your tip, landing in bulges and ropes on the fabric of her quilt. You can barely see straight through your orgasm, but you have the consciousness to hope that your mistress doesn’t mind the mess you’re making. From the look on her face as she fucks against you, urging out more of your cream with every rock of her hips, you doubt she does.]]][if (pc.cumQ >= 1000)[if (pc.averageCockLength <= 14)Your [pc.cockHead] stresses almost painfully in your mouth, and then you’re absolutely assaulted by your own massive load of [pc.cum]. The wad that forces itself down your throat is nothing compared to the amount pooling in your cheeks, spraying out your [pc.lips], and the little hot, stinging bit that leaks out of your nose. You can barely taste it, with how much your dick is pumping into you. With your mistress pinning you down, you can’t move your cock anywhere but your face; you’d feel some discomfort from your bloating stomach and your sticky cumbath if you weren’t experiencing a full-body orgasm as the same time. Your mistress, for her part, roils her hips against your straining shaft with each pulse of cum, clearly loving watching you struggle with yourself.][if (pc.averageCockLength >= 15)Your shaft balloons sequentially with each wad of your thick [pc.cum]. When the first rockets from your [pc.cockHead] and onto your mistress’s bed above your head, you feel the second and the third surge from your groin and up your prick and burst from your straining dick with an audible, squishy pop. You can feel each surge press against your belly, and from the look on your mistress’s face, she can, too, and she loves it. But she keeps looking up at where your cum is landing; you can’t see the growing pool, but, even as she bites her lip and rides out another orgasm, you can tell she’s not looking forward to the future.]]
-// PC is female/sexless
-She leans back and, with an exaggerated motion, draws her pussy forward and over[if (pc.hasVagina = true)yours, kissing your vulva with hers][if (pc.hasVagina = true)across the blank slate of flesh that is your crotch]. She moans out and grips onto [if (pc.isBiped = true)your ankles; her claws scratch against your skin and her grip, in her passion, is tight enough to hurt a little.][if (pc.isBiped = false)the quilt; she grips onto it tight enough to rip some holes into the fabric in her passion.]
+		outputText("\n\nYou decide to pleasure yourself, with or without Lane’s go-ahead or initiative. You crane your neck upward,");
+		if (pc.biggestCockLength() <= 14) 
+		{
+			outputText(" and slip your [pc.cockHead] past your lips. Your own taste, somewhat familiar, coats your tastebuds in an instant, along with your leaking pre. The pleasure you get from finally having your glans stimulated with tongue as gentle, caring, and familiar as yours, inflates your vas deferens with more of your impatient precum.");
+			if (pc.cumQ() >= 1000) outputText(" You’re very aware that the few drops that land in your mouth are merely the drizzle before the hurricane.");
+		}
+		else
+		{
+			outputText(" and slide your [pc.tongue] out to coat and pleasure the skin of your shaft. You feel the rigid, thick muscle under the thin layer of skin beat and bloat with your heart, and finally feeling something wet and warm pleasure your tool makes it lurch with excitement. You can see your vas deferens, nearly hidden against Lane’s body, inflate with your impatient precum, and you can hear it splurt and drip onto her bed above you.");
+			if (pc.cumQ() >= 1000) outputText(" You really hope Lane isn’t going to mind the mess you make when you unload. The size of your cock isn’t the only thing ‘prodigious’ about you.");
+		}
 
-You both gasp out as she grinds on top of you.[if (pc.hasVagina = false) You really wish you had some genitals to truly emphasize the sensations, but you’ll have to do with pleasuring your mistress for now.] The heat of her body and the smoothness of her scales make the actions so much better for you. You can’t focus your eyes on any one thing, but Lane has hers focused solidly on you as she grinds her body onto yours.
+		outputText("\n\nTo your relief, you hear your mistress giggle above you. She drags her body in broader strokes against you, and her breathing starts getting a little shallower as she watches you. <i>“That’s it,”</i> she says, cheering you on softly. <i>“Let me see you work your own cock, you fucking size-queen. Let’s see how good you are with your own equipment.”</i> She rolls her hips forward, then languidly slides them back down, forcefully pushing her crotch against your thick tube. She winces and moans out <i>“yeeeeeessssss”</i> as she goes, her eyes watching your mouth’s every movement.");
 
-[if (pc.biggestTitSize <= 5)Her rocking is slow and methodical: she moves as much as she can in one swing before starting on the next, drawing as much stimulation for you both as possible. You can feel her juices drip onto you,[if (pc.hasVagina = true) mixing with your own][if (pc.hasVagina = false) soaking your crotch and lathering it across your skin]. She takes deep, heavy breaths through her nose often, and soon a sly grin crosses her face.][if (pc.biggestTitSize >= 6)Her thrusting against you is slow, but it’s hard and drawn out every time. She presses down on you as hard as she can: she grunts out in pleasure as she stimulates her labia on your [if (pc.hasVagina = true)own. It sort of hurts, the way the friction drags and pulls on your poor [pc.vagina], but your mistress is having the time of her life above you][if (pc.hasVagina = false)body. The way the friction between you pulls at your skin causes some irritation, but it’s nothing compared to knowing you’re doing right by Lane]. Her mouth opens into a large, domineering, toothy grin.]
+		outputText("\n\nYou keep up your licking and sucking, encouraged by your mistress’s words.");
+		if (pc.biggestCockLength() <= 14) outputText(" You lean forward further, stuffing as much dick into your mouth as you can. Giving yourself a blowjob is a unique, wonderful feeling combing the best of having your dick sucked and the sexy, slutty feeling of having a warm, fat dick in your mouth. It’s exacerbated, perhaps, by your mistress lying atop you and enhancing your experience.");
+		else
+		{
+			outputText(" You cover as much of your shaft as you can with your [pc.tongue]");
+			if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) || pc.hasTongueFlag(GLOBAL.FLAG_LONG)) outputText(", which isn’t a daunting task – you can reach all the way to your base and all the way to your tip in just a pass");
+			outputText(". You pucker your [pc.lips] and kiss the fat, hard bit of muscle directly in front of you repeatedly, giving yourself hickeys on your straining tool. Lane seems to love watching you pleasure yourself, and you love that she’s loving it, making every lick, kiss, and rub a new delight to all five of your senses in new and exciting ways.");
+		}
 
-<i>“You like that?”</i> Her words are punctuated with her using her body to claim yours. <i>“You like having your mistress own you with her pussy? You like being underneath her?”</i> You moan out, trying to use your words but they fall apart on your lips. <i>“Hmm... maybe I should invest in some Throbb. Give myself a nice, thick Daynarian dick. Then I could fuck you properly. [if (pc.hasVagina = false)As properly as we can, anyway. Maybe I’ll get you some Tittyblossom while I’m at it. ]Would you like that? Would you like to feel mistress Lane deep inside you, fucking you, and making you cum with her cock?</i>
+		outputText("\n\n<i>“You’re a good pet,”</i> Lane says through staggered breaths. Her masturbating herself against your cock grows frantic, and her scaly boobs hang loose and low, surrounding your [pc.cock] rather than smothering it. <i>“You do exactly as you’re told”</i> With that, her body tenses and she takes a long, deep breath through her clenched teeth. You feel the same wetness from before begin to flood down the shaft of your dick and pool at your groin");
+		if (pc.balls > 0) outputText(", glazing over each of your [pc.balls] and dripping off them towards the quilt beneath you");
+		if (pc.hasVagina() && pc.balls == 0) outputText(", dripping down across your [pc.vagina], soaking your [pc.clit] and drenching your thighs in more than your own femcum");
+		outputText(". <i>“Cum with me, [pc.name],”</i> she demands. She’s barely able to form the words. <i>“Let me see what that cock is capable of!”</i>");
 
-You still can’t manage the words, but the idea of her truly claiming you[if {PC is a virgin} and taking the one thing you can still truly give] makes you even more excited[if (pc.hasVagina = false), which makes things more frustrating]. You lift your [pc.hips] in time with her rocking against you, wanting to feel more. She doesn’t alter her rhythm at all, but from the way she starts heaving, the idea’s a little enticing to her too.
+		outputText("\n\nYou don’t hesitate to ‘do as your told,’ and, almost before you’re even ready, you feel your [pc.cum] surging through you, burning a trail up your massive shaft.");
+		if (pc.cumQ() <= 349)
+		{
+			if (pc.biggestCockLength() <= 14)
+			{
+				outputText(" The taste of your bloated [pc.cockHead] is accompanied by your personal cream, immediately coating your tongue and puffing out your cheeks. Without hesitation, you swallow – you hope your mistress will get an even bigger kick out of it. The load in your mouth is replaced with two more, neither of them as large as the first. You make a show of swishing it around in your mouth for her before you gulp it down as well.");
+			}
+			else 
+			{
+				outputText(" Your cum shoots from your [pc.cockHead], bursting out in a few ropes over your head and onto Lane’s bed above you. If she’s disappointed at the mess you’re making, she’s not showing it. Your cock tenses between you for a moment, squeezing out your load – you spurt three times, the latter two hardly the size of the first combined. Your teeth clench as you try to keep from thrashing as you ride out the rest of your orgasm.");
+			}
+		}
+		else if (pc.cumQ() <= 1000)
+		{
+			if (pc.biggestCockLength() <= 14)
+			{
+				outputText(" Your [pc.cockHead] puffs out, pushing against your tongue and your palate, and then erupts your load directly down your throat. You barely have the time to register the orgasm and your very sudden meal before another shot replaces the first, just as voluminous as before. You try to swallow as much as you can – you don’t want to make a mess, and judging from the look on your mistress’s face, she’s getting a real thrill off seeing you struggle with it. Eventually, you fail, and your [pc.cum] leaks from your [pc.lips] in thick rivers before your load finally comes to an end.");
+			}
+			else
+			{
+				outputText(" You feel your [pc.cock] bulge and expand between you as your [pc.cum] gushes from your loins to your tip. The can hear the squelching sound of your cream spraying from your tip, landing in bulges and ropes on the fabric of her quilt. You can barely see straight through your orgasm, but you have the consciousness to hope that your mistress doesn’t mind the mess you’re making. From the look on her face as she fucks against you, urging out more of your cream with every rock of her hips, you doubt she does.");
+			}
+		}
+		else
+		{
+			if (pc.biggestCockLength() <= 14)
+			{
+				outputText(" Your [pc.cockHead] stresses almost painfully in your mouth, and then you’re absolutely assaulted by your own massive load of [pc.cum]. The wad that forces itself down your throat is nothing compared to the amount pooling in your cheeks, spraying out your [pc.lips], and the little hot, stinging bit that leaks out of your nose. You can barely taste it, with how much your dick is pumping into you. With your mistress pinning you down, you can’t move your cock anywhere but your face; you’d feel some discomfort from your bloating stomach and your sticky cumbath if you weren’t experiencing a full-body orgasm as the same time. Your mistress, for her part, roils her hips against your straining shaft with each pulse of cum, clearly loving watching you struggle with yourself.");
+			}
+			else
+			{
+				outputText(" Your shaft balloons sequentially with each wad of your thick [pc.cum]. When the first rockets from your [pc.cockHead] and onto your mistress’s bed above your head, you feel the second and the third surge from your groin and up your prick and burst from your straining dick with an audible, squishy pop. You can feel each surge press against your belly, and from the look on your mistress’s face, she can, too, and she loves it. But she keeps looking up at where your cum is landing; you can’t see the growing pool, but, even as she bites her lip and rides out another orgasm, you can tell she’s not looking forward to the future.");
+			}
+		}
+	}
+	else
+	{
+		// PC is female/sexless
+		outputText("\n\nShe leans back and, with an exaggerated motion, draws her pussy forward and over");
+		if (pc.hasVagina()) outputText(" yours, kissing your vulva with hers");
+		else outputText(" across the blank slate of flesh that is your crotch");
+		outputText(". She moans out and grips onto");
+		if (pc.isBiped()) outputText(" your ankles; her claws scratch against your skin and her grip, in her passion, is tight enough to hurt a little.");
+		else outputText(" the quilt; she grips onto it tight enough to rip some holes into the fabric in her passion.");
 
-Already, Lane’s reaching her limit.[if (pc.isBiped = true) Her grip on your ankles tightens and she pulls harder on your body against you.] Her blood is glowing and flashing at faster and faster rates, matching the way she can’t seem to catch her breath as she bucks and writhes. Her teeth clench, and she tenses.
+		outputText("\n\nYou both gasp out as she grinds on top of you.");
+		if (!pc.hasVagina()) outputText(" You really wish you had some genitals to truly emphasize the sensations, but you’ll have to do with pleasuring your mistress for now.");
+		outputText(" The heat of her body and the smoothness of her scales make the actions so much better for you. You can’t focus your eyes on any one thing, but Lane has hers focused solidly on you as she grinds her body onto yours.");
 
-She tenses, and you feel a gush of feminine fluids drench you suddenly. [if (pc.hasVagina = true)Knowing that your mistress is coming, and that you’ve done your part, sets off your own orgasm, and you cum with her. You feel a pleasant burn reach from your [pc.vagina] into your spine and all over your body; your [pc.girlcum] jets from you, splashing with Lane’s, soaking both of you at the crotch. The combined smells and musks makes your head spin even harder, and with the way her lights flash, you’re seeing stars.][if (pc.hasVagina = false)Seeing your mistress coming reminds you of how that used to feel, and how you wish you hadn’t ever lost your genitals, but as it is, you have no way of joining Lane in her bliss. The heat and the irritation on your pelvis make your lusts burn hotter; you try to lift your hips and clench your [pc.ass] in an effort to get <i>something</i>, but there’s nothing you can do!
+		if (pc.biggestTitSize() <= 5)
+		{
+			outputText("\n\nHer rocking is slow and methodical: she moves as much as she can in one swing before starting on the next, drawing as much stimulation for you both as possible. You can feel her juices drip onto you,");
+			if (pc.hasVagina()) outputText(" mixing with your own");
+			else outputText(" soaking your crotch and lathering it across your skin");
+			outputText(". She takes deep, heavy breaths through her nose often, and soon a sly grin crosses her face.");
+		}
+		else
+		{
+			outputText("\n\nHer thrusting against you is slow, but it’s hard and drawn out every time. She presses down on you as hard as she can: she grunts out in pleasure as she stimulates her labia on your");
+			if (pc.hasVagina()) outputText(" own. It sort of hurts, the way the friction drags and pulls on your poor [pc.vagina], but your mistress is having the time of her life above you");
+			else outputText(" body. The way the friction between you pulls at your skin causes some irritation, but it’s nothing compared to knowing you’re doing right by Lane");
+			outputText(". Her mouth opens into a large, domineering, toothy grin.");
+		}
 
-Lane takes her time coming down from her orgasmic high. Her body twitches occasionally; her grip on [if (pc.isBiped = true)your ankles had turned vice-like in her throes, but they’re starting to ease up now that she’s calming down][if (pc.isBiped = false)her bed has turned it disheveled and uprooted the quilt from the edges of the bed. Her claws had ripped long holes in the fabric; you hope she has a spare handy]. Her eyes re-focus, and she looks down on you: face-scrunched, hips thrusting, breathing heavily, and searching for an orgasm that just doesn’t exist.
+		outputText("\n\n<i>“You like that?”</i> Her words are punctuated with her using her body to claim yours. <i>“You like having your mistress own you with her pussy? You like being underneath her?”</i> You moan out, trying to use your words but they fall apart on your lips. <i>“Hmm... maybe I should invest in some Throbb. Give myself a nice, thick Daynarian dick. Then I could fuck you properly.");
+		if (!pc.hasVagina()) outputText(" As properly as we can, anyway. Maybe I’ll get you some Tittyblossom while I’m at it. ");
+		outputText(" Would you like that? Would you like to feel mistress Lane deep inside you, fucking you, and making you cum with her cock?</i>");
 
-<i>“Poor [pc.name],”</i> she says earnestly. She hiccups happily every time you stimulate her labia. <i>“You’re so horny, but you’ve got nothing to release with. That must be a special kind of hell.”</i> She leans forward. Her heavy breasts land and rest on your [pc.chest], and she pins you still against her bed. [if (pc.biggestTitSize <= 5)<i>“It’s okay. Your mistress isn’t cruel. She can help.</i>][if (pc.biggestTitSize >= 6)<i>“I could just leave you like this... but I can’t be that mean. I couldn’t imagine a life without being able to cum.”</i>]
+		outputText("\n\nYou still can’t manage the words, but the idea of her truly claiming you");
+		if (pc.hasVagina() && pc.vaginalVirgin) outputText(" and taking the one thing you can still truly give");
+		outputText(" makes you even more excited");
+		if (!pc.hasVagina()) outputText(", which makes things more frustrating");
+		outputText(". You lift your [pc.hips] in time with her rocking against you, wanting to feel more. She doesn’t alter her rhythm at all, but from the way she starts heaving, the idea’s a little enticing to her too.");
 
-She gently grips onto your face, forcing you to look into her eyes. They immediately start changing color, and her tassels flare open suddenly. In a flash, you’re seeing a myriad of different colors and patterns, and the familiar sensation of relaxing in Lane’s all-encompassing control soothes you.
+		outputText("\n\nAlready, Lane’s reaching her limit.");
+		if (pc.isBiped()) outputText(" Her grip on your ankles tightens and she pulls harder on your body against you.");
+		outputText(" Her blood is glowing and flashing at faster and faster rates, matching the way she can’t seem to catch her breath as she bucks and writhes. Her teeth clench, and she tenses.");
 
-<i>“You’d do anything to make your mistress happy, wouldn’t you, [pc.name]?”</i> You nod dumbly. <i>“You can’t orgasm. It’s okay. That must be so hard for you.”</i> Your lust rises and becomes almost unbearable – if Lane weren’t here for you, you’re sure you would lose your mind any second now. <i>“Your mistress wants you to calm down. Forget about your lusts for now. You don’t need to cum right now.”</i> At first, you don’t know what she’s saying, but right away, you feel a distinct different in your loins as your body starts to cool. <i>“That’s right. Your aches and needs feel soothed. Your mistress has achieved orgasm, and that’s pleasure enough for you, [pc.name].”</i>
+		outputText("\n\nYou feel a gush of feminine fluids drench you suddenly.");
+		if (pc.hasVagina()) outputText(" Knowing that your mistress is coming, and that you’ve done your part, sets off your own orgasm, and you cum with her. You feel a pleasant burn reach from your [pc.vagina] into your spine and all over your body; your [pc.girlcum] jets from you, splashing with Lane’s, soaking both of you at the crotch. The combined smells and musks makes your head spin even harder, and with the way her lights flash, you’re seeing stars.");
+		else
+		{
+			outputText(" Seeing your mistress coming reminds you of how that used to feel, and how you wish you hadn’t ever lost your genitals, but as it is, you have no way of joining Lane in her bliss. The heat and the irritation on your pelvis make your lusts burn hotter; you try to lift your hips and clench your [pc.ass] in an effort to get <i>something</i>, but there’s nothing you can do!");
 
-She repeats and enforces her words for another minute. Your [pc.hips] have stopped their humping against her, and the frustrations you’ve been feeling seem to evaporate into nothing. The aching your body had to overcome its ‘disability’ begins to vanish, until there’s finally nothing left, and you feel absolutely content.]
-// Merge all scenes here
-You pant beneath your mistress as she finishes up having her way with you. Laboriously, she climbs off of you, peeling away from the sweat clinging your bodies together. [if (pc.hasCock = true)[if (pc.biggestCockArea <= 69)Your [pc.cock] slips free from her cunt as she stands; it’s still hard as a rock and stands tall in the air, but it’s softening quickly enough. ]She wobbles as she stands, adjusting her tail again and again to help her keep balance after all the wild sex.
+			outputText("\n\nLane takes her time coming down from her orgasmic high. Her body twitches occasionally; her grip on");
+			if (pc.isBiped()) outputText(" your ankles had turned vice-like in her throes, but they’re starting to ease up now that she’s calming down");
+			else outputText(" her bed has turned it disheveled and uprooted the quilt from the edges of the bed. Her claws had ripped long holes in the fabric; you hope she has a spare handy");
+			outputText(". Her eyes re-focus, and she looks down on you: face-scrunched, hips thrusting, breathing heavily, and searching for an orgasm that just doesn’t exist.");
 
-<i>“You’re an amazing toy, [pc.name],”</i> she slurs. <i>“That’ll do me for a little while yet. I think we’ve made a great decision to make you into my plaything, don’t you? I think the future’s only going to be brighter between us.”</i> You nod your agreement without getting up from your spot. Your muscles are too exhausted to lift you. [if (pc.gender == 0)You feel completely, utterly satisfied, something you haven’t felt in a long, long time. You could swear you feel exactly as if you had recently climaxed, but you don’t recall cumming – which would be a challenge, considering your lack of equipment.]
+			outputText("\n\n<i>“Poor [pc.name],”</i> she says earnestly. She hiccups happily every time you stimulate her labia. <i>“You’re so horny, but you’ve got nothing to release with. That must be a special kind of hell.”</i> She leans forward. Her heavy breasts land and rest on your [pc.chest], and she pins you still against her bed.");
+			if (pc.biggestTitSize() <= 5) outputText(" <i>“It’s okay. Your mistress isn’t cruel. She can help.</i>");
+			else outputText(" <i>“I could just leave you like this... but I can’t be that mean. I couldn’t imagine a life without being able to cum.”</i>");
 
-You hear Lane shuffle around the foot of the bed, and then to one of her dressers on the side of the room. She still can’t stand straight, but she’s walking with some determination. You turn your head, and you get an eyeful of her ass, occasionally obscured by her swishing tail. She bends at the waist, giving you a clear view of her genital slit, already swallowing her happy, satisfied cunny away from your view. Despite your exhaustion, you wonder if you can’t entice her for another round.
+			outputText("\n\nShe gently grips onto your face, forcing you to look into her eyes. They immediately start changing color, and her tassels flare open suddenly. In a flash, you’re seeing a myriad of different colors and patterns, and the familiar sensation of relaxing in Lane’s all-encompassing control soothes you.");
 
-She turns back to you[if (pc.hasCock = true) and sees your flagging erection, slowly fighting to stay erect and go another time][if (pc.hasVagina = true) and sees you idly playing with your [pc.vagina], gently rubbing at your [pc.clit] as you stare at her]. She knows the look on your face. <i>“Already? Do you love your mistress just that much?”</i> You don’t reply, and you’re too unfocused at the moment to realize what messages you’re sending her. <i>“Don’t worry, pet. We have all the time in the world to go as many times as we like.”</i>
+			outputText("\n\n<i>“You’d do anything to make your mistress happy, wouldn’t you, [pc.name]?”</i> You nod dumbly. <i>“You can’t orgasm. It’s okay. That must be so hard for you.”</i> Your lust rises and becomes almost unbearable – if Lane weren’t here for you, you’re sure you would lose your mind any second now. <i>“Your mistress wants you to calm down. Forget about your lusts for now. You don’t need to cum right now.”</i> At first, you don’t know what she’s saying, but right away, you feel a distinct different in your loins as your body starts to cool. <i>“That’s right. Your aches and needs feel soothed. Your mistress has achieved orgasm, and that’s pleasure enough for you, [pc.name].”</i>");
 
-She turns back to her dresser and pulls out an exact set of her light, thin, airy clothing, fresh and clean as could be. <i>“But,”</i> she says as she casually dresses herself (taking her time with her shirt, for your benefit), <i>“I’m afraid sucking and fucking all day doesn’t pay for my bills. We both have some work to do, [pc.name]. Take your time getting dressed, but just remember that you have some money to make.”</i>
+			outputText("\n\nShe repeats and enforces her words for another minute. Your [pc.hips] have stopped their humping against her, and the frustrations you’ve been feeling seem to evaporate into nothing. The aching your body had to overcome its ‘disability’ begins to vanish, until there’s finally nothing left, and you feel absolutely content.]");
+		}
+	}
 
-Once she slips on her pants, she leaves the room without another word, leaving you to stew a bit in your afterglow. She’s right, though – you’re not going to get anything done just lying there. You’re sure your mistress would appreciate you getting a move on.
+	// Merge all scenes here
+	outputText("\n\nYou pant beneath your mistress as she finishes up having her way with you. Laboriously, she climbs off of you, peeling away from the sweat clinging your bodies together.");
+	if (pc.hasCock() && !cockTooBig) outputText(" Your [pc.cock] slips free from her cunt as she stands; it’s still hard as a rock and stands tall in the air, but it’s softening quickly enough.");
+	outputText(" She wobbles as she stands, adjusting her tail again and again to help her keep balance after all the wild sex.");
 
-Lazily, you slip off her bed and collect your clothing. When you’re dressed and halfway presentable again, you leave her room. You see Lane sitting at her desk, nonchalantly flipping through some tabs on her codex. She doesn’t even spare you a look as you pass her by and step out into the desert planet Venar once more.
-// Reduce lust to 0
-// Place PC one square outside of Lane’s Plane
+	outputText("\n\n<i>“You’re an amazing toy, [pc.name],”</i> she slurs. <i>“That’ll do me for a little while yet. I think we’ve made a great decision to make you into my plaything, don’t you? I think the future’s only going to be brighter between us.”</i> You nod your agreement without getting up from your spot. Your muscles are too exhausted to lift you.");
+	if (!pc.hasVagina() && !pc.hasCock()) outputText(" You feel completely, utterly satisfied, something you haven’t felt in a long, long time. You could swear you feel exactly as if you had recently climaxed, but you don’t recall cumming – which would be a challenge, considering your lack of equipment.");
+
+	outputText("\n\nYou hear Lane shuffle around the foot of the bed, and then to one of her dressers on the side of the room. She still can’t stand straight, but she’s walking with some determination. You turn your head, and you get an eyeful of her ass, occasionally obscured by her swishing tail. She bends at the waist, giving you a clear view of her genital slit, already swallowing her happy, satisfied cunny away from your view. Despite your exhaustion, you wonder if you can’t entice her for another round.");
+
+	outputText("\n\nShe turns back to you");
+	if (pc.hasCock()) outputText(" and sees your flagging erection, slowly fighting to stay erect and go another time");
+	else if (pc.hasVagina()) outputText(" and sees you idly playing with your [pc.vagina], gently rubbing at your [pc.clit] as you stare at her");
+	outputText(". She knows the look on your face. <i>“Already? Do you love your mistress just that much?”</i> You don’t reply, and you’re too unfocused at the moment to realize what messages you’re sending her. <i>“Don’t worry, pet. We have all the time in the world to go as many times as we like.”</i>");
+
+	outputText("\n\nShe turns back to her dresser and pulls out an exact set of her light, thin, airy clothing, fresh and clean as could be. <i>“But,”</i> she says as she casually dresses herself - taking her time with her shirt, for your benefit - <i>“I’m afraid sucking and fucking all day doesn’t pay for my bills. We both have some work to do, [pc.name]. Take your time getting dressed, but just remember that you have some money to make.”</i>");
+
+	outputText("\n\nOnce she slips on her pants, she leaves the room without another word, leaving you to stew a bit in your afterglow. She’s right, though – you’re not going to get anything done just lying there. You’re sure your mistress would appreciate you getting a move on.");
+
+	outputText("\n\nLazily, you slip off her bed and collect your clothing. When you’re dressed and halfway presentable again, you leave her room. You see Lane sitting at her desk, nonchalantly flipping through some tabs on her codex. She doesn’t even spare you a look as you pass her by and step out into the desert planet Venar once more.");
+	
+	processTime(60);
+
+	if (pc.hasCock() && !cockTooBig) lane.loadInCunt(pc);
+	if (pc.hasCock() && cockTooBig) pc.loadInMouth(pc);
+
+	pc.orgasm();
+	lane.orgasm();
+
+	// Reduce lust to 0
+	// Place PC one square outside of Lane’s Plane
+	clearMenu();
+	addButton(0, "Next", move, ERROR);
 }
 
 function laneFullyHypnotisesYouDumbshit();void
