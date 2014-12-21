@@ -41,6 +41,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items","SynthSheath",synthSheathCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Simii",simiiCodex);
 }
 
 public function codexHomeFunction():void
@@ -73,6 +74,40 @@ public function codexHomeFunction():void
 
 	userInterface.outputCodex();
 }
+
+function simiiCodex():void
+{
+	//Species Codex Entry
+	outputCodex(header("Name: Simii"));
+	outputCodex("(From order name Simiiformes / Simians)");
+	outputCodex("\n\n<b>Demonym:</b> Simii");
+	outputCodex("\n<b>Sexes:</b> Male, Female");
+	outputCodex("\n<b>Height, Weight, Hair, And Eyes:</b> As terrans.");
+	outputCodex("\n<b>Skin:<b> Fur on their forearms and lower legs, with human-like skin everywhere else.\n\n");
+
+	outputCodex(blockHeader("Features"));
+	outputCodex("Simii are very similar in appearance to humans, as they are both part of the primate family. They have long, prehensile, monkey-like tail, and large, rounded ears that sit high on the sides of their head. All simii have a 'birthmark' similar to a lined barcode on the back of their neck.\n\n");
+	outputCodex("Their noses are somewhere between a human and a monkey's nose, slightly darker than the surrounding skin, and more button-like in appearance. Above their upper lip, they have a small monkey-like line travelling vertically upwards, stopping just before their nose.\n\n");
+	outputCodex("On their body, simii typically have soft fur on their forearms and lower legs. Some, but not all simii also have a lighter shade of fur on their upper legs, biceps, and up their sides. Their faces, torso, bellies, and groin area are typically smooth and furless (though the latter does have pubic fur).\n\n");
+	outputCodex("All simii  have hand-shaped feet that can be used to grab and manipulate objects, just like terran primates.\n\n");
+	outputCodex("Simii have an extremely strong immune system that is both a blessing and a curse.  While it kills most known viruses and bacteria upon entering their bodies, it does the same to life-saving medical drugs and transformation treatments before they can take effect.\n\n");
+	outputCodex("Simii are extremely resistant to any form of bodily change, for good or for ill, including implants.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Simii are a genetically designed species, based on terran primates. They were designed to act as stand in for humans before efficient, safe interstellar travel was invented. Their bodies were designed to be resistant to radiation damage to DNA in deep space, as well as unknown pathogens at their destination.\n\n");
+	outputCodex("While many simii still perished between Earth and their final destination, those who survived are the ancestors of the modern simii.\n\n");
+	outputCodex("The long time gap between simii colonization and human arrival gave the engineered species time to gain proper sapience and independence. After many fierce conflicts between terrans and the simii, the Terran-Space Coalition recognized them as a distinct species. Since then, humans have left the simii alone, and their relationship is much the same as with any other alien species.\n\n");
+	outputCodex("To this day, simii are still born with a barcode birthmark on the back of their neck; a holdover from when they were first designed. Since this scanning technology has become obsolete, few know about the mark's original purpose, even among the simii.\n\n");
+	outputCodex("The simii were not the only genetically altered primate species sent out by humans. These species and the simii are known collectively as 'primes'.\n\n");
+	outputCodex(blockHeader("Environs and Society"));
+	outputCodex("Simii inhabit a number of 'wild west' like colonial worlds that share no common government. They are traditional in nature, and very resistant to cultural influence. While simii deal with outsiders and treat guests warmly, they are hesitant to welcome outsiders permanently into their communities.\n\n");
+	outputCodex("Most simii cities and towns are scattered across their planets in no particular pattern, governed by local law and nothing else. Family ties run deep, and being a simii outcast is the worst form of punishment bar death.\n\n");
+	outputCodex("Simii professions are usually passed down from parent to child, with very strict gender roles.  This has lead to a number of dissatisfied simii youths finding their way into galactic society, trying to change their lot in life.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Simii have identical reproductive features to their human cousins, and do not experience the effects of oestrus.\n");
+	CodexManager.viewedEntry("Simii");
+
+}
+
 
 function synthSheathCodex():void
 {
