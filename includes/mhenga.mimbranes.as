@@ -4656,7 +4656,10 @@ public function feedMimbranesWithPussy():void
 	output(" little interest in foreplay and");
 	if (attachedMimbranes() > 1) output(" are");
 	else output(" is");
-	output(" more than capable of exaggerating your stimulation when they aren’t trying to hide. Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices");
+	output(" more than capable of exaggerating your stimulation when ");
+	if(attachedMimbranes() > 1) output("they aren’t");
+	else output("it isn't");
+	output(" trying to hide. Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices");
 	if (pc.wetness() <= 1) output(" dripping");
 	else if (pc.wetness() == 2) output(" flowing");
 	else if (pc.wetness() <= 3) output(" gushing");
