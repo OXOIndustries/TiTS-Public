@@ -1104,18 +1104,18 @@ public function joyCoMagicMilker7Sucks():void
 {
 	clearOutput();
 	var milkProduced:Number = pc.milkQ();
-	output("Grabbing the Magic-Milker 7, a product of Joyco, in your hand, you can't help but marvel at the sleek, engineered surface. Two small, clear cups hang down from the glittering orb on umbilicals of polished metal, dangling limply, though you know they'll spring to life as soon as you push the button on the central ball.");
+	output("Grabbing the Magic-Milker 7, a product of JoyCo, in your hand, you can't help but marvel at the sleek, engineered surface. Two small, clear cups hang down from the glittering orb on umbilicals of polished metal, dangling limply, though you know they'll spring to life as soon as you push the button on the central ball.");
 	//No Top
 	if(!pc.isChestGarbed()) output("\n\nYour " + pc.allBreastsDescript() + " are already bare to the world, and your [pc.nipples] have grown hard and a little crinkly from the chill. You're not going to get any more ready for a quick, machine-assisted milking.");
 	//Has Top
 	else output("\n\nYou peel your [pc.upperGarments] away from your " + pc.allBreastsDescript() + " and shiver as your [pc.nipples] immediately perk up, crinkling in the chill air. There's nothing between you and a quick, machine-assisted milking now.");
 	//Intro Pt II
-	output("\n\nThe button audibly clicks under your thumb, and the miniaturized milker whirrs. Like someone waking from a long, the machine's tubes writhe and lift, barely coordinated. After a few seconds of this, they lift the cups up before you.");
+	output("\n\nThe button audibly clicks under your thumb, and the miniaturized milker whirrs. Like someone waking from a long sleep, the machine's tubes writhe and lift, barely coordinated. After a few seconds of this, they lift the cups up before you.");
 	if(pc.totalBreasts() > 2) output(" A hatch on the Magic-Milker's main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cups emerge to compliment the original pair, one for every single one of your breasts.");
 	output(" The ");
 	if(pc.totalBreasts() > 2) output("many ");
 	output("milkers arrange themselves so that they're hovering a scant few inches from your soon to be sucked nipples and pause as if considering their options or calculating something.");
-	output("\n\nYou sigh in anticipatory boredom; nothing slows the passage of time like waiting for a pleasant activity. In this came, time seems to be slogging through molasses, though only a few seconds have passed. The Magic-Milker 7 activates just as you're inhaling a breath of fresh air, the cups snapping forward");
+	output("\n\nYou sigh in anticipatory boredom; nothing slows the passage of time like waiting for a pleasant activity. In this case, time seems to be slogging through molasses, though only a few seconds have passed. The Magic-Milker 7 activates just as you're inhaling a breath of fresh air, the cups snapping forward");
 	if(pc.nipplesPerBreast > 1 || pc.nippleLength() > 1 || pc.nippleWidth() > 1.5) 
 	{
 		output(", expanding as they go to ");
@@ -1124,12 +1124,12 @@ public function joyCoMagicMilker7Sucks():void
 		else output("fat areolae");
 	}
 	output(". They feel warm and wet on your [pc.skinFurScales] hissing softly as they suck down against you, forming a perfect seal.");
-	output("\n\nGasping, you let go of the machine and cup yourself, feeling your [pc.nipples] hardening from gentle, almost imperceptible vacuum. It's enough to support the weight of the whirring device as it activates, but the spherical device is only getting started. Rising to a higher-pitched whine, the milker smoothly cranks the suction up until your [pc.nipples] start swelling, immensely hard");
+	output("\n\nGasping, you let go of the machine and cup yourself, feeling your [pc.nipples] hardening from the gentle, almost imperceptible vacuum. It's enough to support the weight of the whirring device as it activates, but the spherical device is only getting started. Rising to a higher-pitched whine, the milker smoothly cranks the suction up until your [pc.nipples] start swelling, immensely hard");
 	if(pc.canMilkSquirt()) output(" and already dripping [pc.milkNoun]");
 	else if(pc.milkFullness >= 50) output(" and glossy with barely-leaking [pc.milkNoun]");
 	output(".");
 	if(pc.totalBreasts() > 2) output(" With all the tubes hanging off your front, you find yourself wondering if this is what a cow feels like.");
-	output("\n\nThe pump pulls tighter and tighter until it hits some kind of predefined vacuum-ceiling. Then, it starts stuttering the tugs into a staccato rhythm designed to maximum lactic stimulation. ");
+	output("\n\nThe pump pulls tighter and tighter until it hits some kind of predefined vacuum-ceiling. Then, it starts stuttering the tugs into a staccato rhythm designed to maximize lactic stimulation. ");
 	//No new PG
 	//Teats B' Dry Yo
 	if(milkProduced < 100)
@@ -1185,8 +1185,8 @@ public function joyCoMagicMilker7Sucks():void
 		else if(milkProduced <= 1000)
 		{
 			output("It makes your [pc.nipples] swell up a moment before they finally let down, gushing steady streams [pc.milk], filling the cups while leaking drops from the tips. The flow seems steady and reliable, above terran norms by a decent amount.");
-			output("\n\nYou groan at the intensity of the sensations you're presented with, cupping your [pc.chest] behind the device and squeezing to coax out more, shuddering at each exquisite spurt of [pc.milk] only to have the next well up before you finish. Reveling in the act of giving and producing becomes your entire focus, and you it subsume you while the device whisks your body's juice away. On the back side of the milker, a [pc.milkColor] bag has emerged. It hangs against your [pc.belly], half full and only getting fuller.");
-			if(pc.hasCock()) output(" Down south, [pc.OneCock] has risen up from below, throbbing with hot desire and pressing against the bag, pinning it to your body while it expands.");
+			output("\n\nYou groan at the intensity of the sensations you're presented with, cupping your [pc.chest] behind the device and squeezing to coax out more, shuddering at each exquisite spurt of [pc.milk] only to have the next well up before you finish. Reveling in the act of giving and producing becomes your entire focus, and it subsumes you while the device whisks your body's juice away. On the rear of the milker, a [pc.milkColor] bag has emerged. It hangs against your [pc.belly], half full and only getting fuller.");
+			if(pc.hasCock()) output(" Down south, [pc.oneCock] has risen up, throbbing with hot desire and pressing against the bag, pinning it to your body while it expands.");
 			output(" You whimper and tremble. Being milked is too damned good.");
 			pc.lust(50+rand(10));
 		}
