@@ -300,8 +300,10 @@ function shipMenu():Boolean {
 	else if(shipLocation == "SHIP HANGAR") {
 		setLocation("SHIP\nINTERIOR","MHEN'GA","SYSTEM: ARA ARA");
 	}
-	else if(shipLocation == "201") setLocation("SHIP\nINTERIOR","TARKUS","SYSTEM: REDACTED");
-	else if(shipLocation == "500") setLocation("SHIP\nINTERIOR","NEW TEXAS","SYSTEM: NYE");
+	else if(shipLocation == "201") setLocation("SHIP\nINTERIOR","PLANET: TARKUS","SYSTEM: REDACTED");
+	else if(shipLocation == "500") setLocation("SHIP\nINTERIOR","PLANET: NEW TEXAS","SYSTEM: NYE");
+	else if(shipLocation == "500") setLocation("SHIP\nINTERIOR","PLANET: NEW TEXAS","SYSTEM: NYE");
+	else if(shipLocation == "600") setLocation("SHIP\nINTERIOR","PLANET: MYRELLION","SYSTEM: SINDATHU");
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.addButton(8,"Crew",crew);

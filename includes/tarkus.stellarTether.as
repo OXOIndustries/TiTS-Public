@@ -357,7 +357,7 @@ function liftStationEngineeringDeckBonusFunc():Boolean
 		clearOutput();
 		author("Savin");
 		showBust("TAMTAM");
-		showName"\nTAM");
+		showName("\nTAM");
 		output("You quietly push open the door to Engineering, leading with your [pc.rangedWeapon], wary of ambush. A short, curved flight of stairs take you down just below the surface, into a room full of gently-rumbling machines, powering the Lift Station... but not the lift, you see. You take a moment to scan the room before your eyes alight on the lift control panel, currently blinking red... and right below it sits Tam.");
 		output("\n\nThe cat-girl is currently hunched over a workbench, desperately working on the damaged wolf-drone, also named Tam. Apparently. She doesn't seem to notice you, or care if she does. For the first time, you're able to get a good look at the crazy kitty: she's slim but buxom, as is common for her race, with a pair of EE-cups hanging heavily inside her greasy T-shirt, swaying free with her every motion. She's got a nice, rounded ass, currently sticking straight up in the air as she works, guarded by nothing put a pair of low-riding jean shorts that are doing a poor job of keeping her modest, and a pair of swishing pink tails. It wouldn't take much to just yank those shorts down and have your way with her... and without any drones left, you doubt she could stop you.");
 		clearMenu();
