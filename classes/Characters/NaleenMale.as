@@ -149,6 +149,10 @@
 			this.createCock();
 			this.cocks[0].cLengthRaw = 8;
 			this.cocks[1].cLengthRaw = 8;
+			this.cocks[0].cockColor = "purple";
+			this.cocks[0].cType = GLOBAL.TYPE_SNAKE;
+			this.cocks[1].cockColor = "purple";
+			this.cocks[1].cType = GLOBAL.TYPE_SNAKE;
 			//Goo is hyper friendly!
 			this.elasticity = 1.4;
 			//Fertility is a % out of 100. 

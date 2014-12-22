@@ -133,6 +133,7 @@
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].type = GLOBAL.TYPE_BEE;
+			this.vaginas[0].vaginaColor = "black and gold";
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;

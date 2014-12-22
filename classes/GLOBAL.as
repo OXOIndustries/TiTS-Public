@@ -575,6 +575,7 @@
 			TYPE_LEITHAN,
 			TYPE_BEE,
 			TYPE_SYNTHETIC,
+			TYPE_LAPINARA,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

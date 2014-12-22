@@ -125,6 +125,8 @@
 			this.createCock();
 			this.cocks[0].cLengthRaw = 6;
 			this.cocks[0].cThicknessRatioRaw = 1.75;
+			this.cocks[0].cockColor = "black";
+			this.cocks[0].cType = GLOBAL.TYPE_BEE;
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 6;
@@ -183,7 +185,11 @@
 			combatZilMale.tallness = 60 + rand(7);
 			combatZilMale.cocks[0].cLengthRaw = 4 + rand(5);
 			combatZilMale.long = "The male zil you're fighting would stand roughly " + combatZilMale.displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + combatZilMale.num2Text(combatZilMale.longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
-			if(rand(2) == 0) combatZilMale.long += ", though some areas are striped in bright yellow";
+			if(rand(2) == 0) 
+			{
+				combatZilMale.long += ", though some areas are striped in bright yellow";
+				combatZilMale.cocks[0].cockColor = "gold";
+			}
 			combatZilMale.long += ".";
 			
 			kGAMECLASS.foes.push(combatZilMale);

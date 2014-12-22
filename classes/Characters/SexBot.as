@@ -206,6 +206,7 @@
 				combatSexbot.createVagina();
 				combatSexbot.vaginas[0].wetness(3,true);
 				combatSexbot.vaginas[0].looseness(2,true);
+				combatSexbot.vaginas[0].vaginaColor = "black";
 			}
 			else
 			{

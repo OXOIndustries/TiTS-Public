@@ -42,6 +42,9 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr.png", mimeType = "image/png")]
+		public var Bust_ZEPHYR:Class;
 	}
 
 }

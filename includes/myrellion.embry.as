@@ -448,7 +448,7 @@ function callWaitress():void
 	// MERGE ALL
 	output("\n\n[embry.name] is wearing a [embry.armor].");
 	if(embry.armor is PeasantDress) output(" She’s all puff and frill.");
-	else if(embry.armor is WaitressUniform) output(" The skimpy fetish outfit really showcases her feminine assets, specifically, her glorious [embry.cupSize]s.");
+	else if(embry.armor is WaitressUniform) output(" The skimpy fetish outfit really showcases her feminine assets, specifically, her glorious [embry.breastCupSize]s.");
 	embryMenu();
 }
 
@@ -599,11 +599,11 @@ function embryAppearance():void
 	output("\n\nThe most noticeable thing about her is her mid-length pink hair. It’s a little wavy and cascades down the side of her face, the other side tucked between one of her large simii ears. She has a lacy maid-like headpiece with a tiny black bow on each side.");
 	output("\n\nLike every simii, [embry.name] has a button shaped nose, slightly darker compared to the rest of her skin, a trait of her species.");
 	output("\n\nHer sky-blue eyes are framed by long, dark lashes that add to her feminine appeal. A touch of dark eyeshadow has been meticulously applied. She is also wearing light pink glossy lipstick. Her nose is cute and small, much like the rest of her.");
-	output("\n\nShe is wearing a lace collar with frilled edges around her slender neck. It’s cute, chic, and oddly conspicuous.");
-
+	
 	//if Embry.armor = PeasantDress
 	if(embry.armor is PeasantDress)
 	{
+		output("\n\nShe is wearing a lace collar with frilled edges around her slender neck. It’s cute, chic, and oddly conspicuous.");
 		output("\n\nFrom her neck right down to her toes, everything is covered by a peasant-style dress. It’s white with black trimming and frills. From the waist to the hem, the dress is rippled, giving it a very traditional look.");
 		output("\n\nIt’s hard to discern her figure underneath under so much puff. ");
 		if(embry.biggestTitSize() < 1) output("Her breasts are non existent, and she doesn’t have much curve to speak of other than what the dress gives her.");
@@ -799,7 +799,7 @@ function talkToEmbryAboutOmarii():void
 	clearOutput();
 	showSimii();
 	output("You ask her about Omorii, her home planet, and what it’s like there.");
-	output("\n\nEmbry brushes back her hair, and lets out a huff. “<i>... Not that exciting, really. It’s the galactic boonies. Some people think it’s ‘authentic frontier living,’ but that’s a nice way of saying ‘nobody in their right mind lives here’.</i>”");
+	output("\n\n[embry.name] brushes back her hair, and lets out a huff. “<i>... Not that exciting, really. It’s the galactic boonies. Some people think it’s ‘authentic frontier living,’ but that’s a nice way of saying ‘nobody in their right mind lives here’.</i>”");
 	output("\n\n<i>\"Most of the planet is white, I mean, like, </i> really<i> white. It’s all like bleached ivory; the mountains, deserts, and grass. Most off-worlders can’t handle it without wearing eye protection. There’s settlements all over the planet, but each one has it’s own laws.</i>”");
 	output("\n\nYou ask how they deal with law breakers if they skip town, and [embry.name] smiles. “<i>... We don’t. There’s lots of bandits living between our settlements, all tough as nails. Simii are wary of offworlders, because most of them are on Omorii to hide from the authorities.</i>”");
 	output("\n\nIf life is so tough on Omorii, you ask, how does anyone survive there?");
@@ -934,18 +934,19 @@ function tipEmbry():void
 	clearOutput();
 	showSimii();
 	output("How much do you tip her?");
-	//[1 Credit] [10 Credits] [500 Credits] [2000 Creds] [5000 Credits]
-	if(pc.credits >= 1) addButton(0,"1 Credit",tipEmbryASecondCreditYooCheapskate,undefined,"1 Credit","Tip her a single credit.");
-	else addDisabledButton(0,"1 Cred","1 Credit","You don't have enough cash for that.");
-	if(pc.credits >= 10) addButton(1,"10 Creds",tipEmbryTenCredits,undefined,"10 Creds","Tip her ten credits.");
-	else addDisabledButton(1,"10 Creds","10 Creds","You don't have enough cash for that.");
-	if(pc.credits >= 500) addButton(2,"500",tipEmbryFiveHunnahDorrah,undefined,"500 Creds","Tip her a whopping 500 credits.");
-	else addDisabledButton(2,"500","500 Creds","You don't have 500 creds to tip.");
-	if(pc.credits >= 2000) addButton(3,"2000",tipEmbryTwoThousandHundredDarrus,undefined,"2000 Creds","Tip her a whopping 2000 credits.");
-	else addDisabledButton(3,"2000","2000 Creds","You don't have 2000 creds to tip.");
+	clearMenu();
+	//[1 Credit] [10 Credits] [500 Credits] [2000 Credits] [5000 Credits]
+	if(pc.credits >= 1) addButton(0,"1C",tipEmbryASecondCreditYooCheapskate,undefined,"1 Credit","Tip her a single credit.");
+	else addDisabledButton(0,"1C","1 Credit","You don't have enough cash for that.");
+	if(pc.credits >= 10) addButton(1,"10C",tipEmbryTenCredits,undefined,"10 Credits","Tip her ten credits.");
+	else addDisabledButton(1,"10C","10 Credits","You don't have enough cash for that.");
+	if(pc.credits >= 500) addButton(2,"500C",tipEmbryFiveHunnahDorrah,undefined,"500 Credits","Tip her a whopping 500 credits.");
+	else addDisabledButton(2,"500C","500 Credits","You don't have 500 creds to tip.");
+	if(pc.credits >= 2000) addButton(3,"2000C",tipEmbryTwoThousandHundredDarrus,undefined,"2000 Credits","Tip her a whopping 2000 credits.");
+	else addDisabledButton(3,"2000C","2000 Credits","You don't have 2000 creds to tip.");
 	
-	if(pc.credits >= 5000) addButton(4,"5000",tipEmrbyFiveThousandCredits,undefined,"5000","Tip her a whopping 5,000 credits.");
-	else addDisabledButton(4,"5000","5000 Creds","You don't have 5000 creds to spare.");
+	if(pc.credits >= 5000) addButton(4,"5000C",tipEmrbyFiveThousandCredits,undefined,"5000 Credits","Tip her a whopping 5,000 credits.");
+	else addDisabledButton(4,"5000C","5000 Credits","You don't have 5000 creds to spare.");
 	addButton(14,"Back",callWaitress);
 }
 
@@ -1166,8 +1167,8 @@ function witnessEmbrysGirlTF():void
 	processTime(10);
 	//[Hold Her] [Look Away] 
 	clearMenu();
-	addButton(0,"Hold Her",holdEmbryDuringFirstTFLoverMode);
-	addButton(1,"Look Away",lookAwayFromEmbrysLoverTF);
+	addButton(0,"Hold Her",holdEmbryDuringFirstTFLoverMode,undefined,"Hold Her","Hold the girl.");
+	addButton(1,"Look Away",lookAwayFromEmbrysLoverTF,undefined,"Look Away","Look away from her transformation. She'll probably notice you averting your gaze however. If you want to watch her change, this is the wrong option to take.");
 }
 
 // Hold Her
@@ -1457,8 +1458,6 @@ function chooseANewNameEmbryFinal():void
 //Third Transition Approach
 function thirdEmbryTransitionApproach():void
 {
-	embry.createVagina();
-	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined) embry.removeCock(0,1);
 	clearOutput();
 	showSimii();
 	//Lover 
@@ -1492,6 +1491,8 @@ function thirdEmbryTransitionApproach():void
 	// if EmbryRelationship != 3 or Declined/Turned away from first transition.
 	else
 	{
+		embry.createVagina();
+		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined) embry.removeCock(0,1);
 		output("You sit down at an unoccupied table at the bar, and look around for [embry.name]. She’s serving another customer, but when she spots you, the simii’s eyes light up.");
 		output("\n\nShe takes the order, then practically skips over to you. <i>\"Oh, hey. I was hoping you’d come in!</i>” she chirpily tells you. The look in her eyes tells you that something very good has happened.");
 		output("\n\nYou don’t have to wait long to find out. Suddenly, the pink haired waitress is wrapping her slender arms around your neck, and hugging you tight. She brings her [embry.lips] to your ear.");
@@ -1564,7 +1565,9 @@ function doneWivGlassesChatGuvnah():void
 	{
 		output("\n\nYou ask [embry.name] if she’s sure about getting rid of her simii cock, and she nods. <i>\"Yeah. I want to transform completely and leave my old body behind. It’s always been my dream to be a 100 per cent girl, with no more bulges in my underwear.</i>”");
 	}
-	output("\n\nShe hooks her thumbs underneath the sides of her fluffy, pink pajama pants, and slides them down her [embry.legs]. She then slips off her [embry.lowerUndergarment], exposing her naked butt and [embry.cock]. She places the canister against her loins.");
+	output("\n\nShe hooks her thumbs underneath the sides of her fluffy, pink pajama pants, and slides them down her [embry.legs]. She then slips off her [embry.lowerUndergarment], exposing her naked butt");
+	if(embry.hasCock()) output(" and [embry.cock]");
+	output(". She places the canister against her loins.");
 	output("\n\n[embry.name] does not hesistate, immediately administering the treatment. There’s the familiar hiss of air and her body breaks out in a sweat. Her cheeks flush and she puts the canister aside. You grab her hand and squeeze it tight.");
 	output("\n\n<i>\"B-between my legs, it feels really weird...</i>” she tells you. She spreads her legs and you look between them.");
 	//doesnotlikePeen:
@@ -1574,6 +1577,10 @@ function doneWivGlassesChatGuvnah():void
 	else output("\n\nIt doesn’t stay that way for long. A");
 	output(" crease begins to form. The fold dips inwards and the flesh around it puffs up. Two pink labial lips push out from the newly formed slit, and [embry.name] lets out a small moan.");
 	output("\n\nShe reaches down and rubs at her virgin snatch. Parting it with her fingers, you see her pearly pink clit push out, only to be covered by a small fleshy fold. You can see every inch of her blossoming flower. She even has a hymen protecting her pristine, unspoiled pussy.");
+
+	embry.createVagina();
+	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined) embry.removeCock(0,1);
+
 	output("\n\n<i>\"I-is it there? I can’t see...</i>” She nervously asks, her [embry.thighs] lewdly spread, and her [embry.pussy] exposed to you. You nod, grabbing a hand mirror, and passing it to her. She slides it between her [embry.legs].");
 	output("\n\n<i>\"O-oh, ohmygosh... oh--!</i>” [embry.name] pokes and prods her [embry.pussy] with her fingers. Tears well up in her eyes once more. <i>\"It’s--this--I can’t...</i>” she’s choked up. When she begins to cry again, this time from happiness, you pull her into your arms and gently stroke her hair.");
 	output("\n\n<i>\"Nobody can call me a boy ever again... I can have </i>babies<i>, even! Y-you know, if I want to...</i>” she sobs, clinging tightly to you. <i>\"A-and it’s all thanks to you. I... I just don’t even have the WORDS for what you’ve given me... how much this means...</i>”");
@@ -1673,7 +1680,7 @@ function spendTimeWithEmbry():void
 		clearMenu();
 		addButton(0,"Monogamous",monogamousEmbry,undefined,"Monogamous","You’re a faithful, monogamous person... it’s just you keep getting jumped by horny aliens.");
 		addButton(1,"OpenRelationship",openRelationshipWithKiro,false,"OpenRelationship","You believe in only being romantically involved with one person, but both of you being free to sleep with whoever you choose. Sex and love are seperate things.");
-		addButton(2,"Polyamorous",openRelationshipWithKiro,true,"Polyamorous","You believe in only being romantically involved with one person, but both of you being free to sleep with whoever you choose. Sex and love are seperate things.");
+		addButton(2,"Polyamorous",openRelationshipWithKiro,true,"Polyamorous","You believe in having many lovers, both sexually and romantically. ");
 		addButton(3,"Harem Alpha",haremAlphaStuff,undefined,"Harem Alpha","You believe in having your own personal harem of lovers, with [embry.name] as a member, and you as the Alpha in charge.");
 		//openrelationship.tooltip: You believe in only being romantically involved with one person, but both of you being free to sleep with whoever you choose. Sex and love are seperate things.
 		//polyamorous.tooltip: You believe in having many lovers, both sexually and romantically. 
@@ -2041,7 +2048,10 @@ function loversSceneOneOff():void
 	output("\n\nWhen it gets late, you suggest returning to the DMZ, and [embry.name] squeezes your hand. <i>\"J-just one more place, okay--?</i>” she pleads. You follow her lead, and she stops outside of a large looking hotel. She brushes back one of her bangs and takes a deep breath.");
 	output("\n\n<i>\"I, um, that is... I-I want to get a room--!</i>” she nervously exclaims, all the while looking at you with an imploring gaze. “<i>... I-I mean, I want... you... I want you to... And I, um... I-I had a speech, and I’ve forgotten it--!</i>”");
 	output("\n\n[embry.name] takes a deep breath, trying to compose herself, and she squeezes your hands.");
-	output("\n\n“<i>... I-I </i>love<i> you-!</i>” she stammers out, and looks {up/down} at you {through her glasses} with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
+	output("\n\n“<i>... I-I </i>love<i> you-!</i>” she stammers out, and looks ");
+	if(pc.tallness > embry.tallness + 3) output("up ");
+	else if(pc.tallness < embry.tallness - 3) output("down ");
+	output("at you {through her glasses} with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
 	output("\n\n<i>\"And, because I love you... I want you, no one else, to be my first... a-and take my virginity,</i>” her cheeks flush, and she looks down at your hands. “<i>... I want my first time to be with the " + pc.mf("man","woman") + " I love...</i>”");
 
 	//[ILoveYou] [Kiss Her] [DontLoveYou]
@@ -2094,7 +2104,7 @@ function IHeartAndKissHer():void
 	if(silly) output("\n\n<i>\"MOOOORE?! YOU WANT SOME MORE---?!!</i>” you roar, and she squeaks in surprise.");
 
 	output("\n\nYou happily indulge her request, and before you know it you’re booking a room in the hotel. You both make out in the elevator on the way up, feverishly making out against the wall, and then against the hotel room door.");
-	output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [pc.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.");
+	output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name]. She’s stripping off your [pc.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.");
 	//=[Next]=
 	//[[ SEE SEX MENU (Vaginal Sex Scene) FOR THE REST ]]
 	flags["EMBRY_VAGINAL_SEX_UNLOCKED"] = 1;
@@ -2192,7 +2202,7 @@ function blowjorbsFromEmbry():void
 	output("\n\nThe monkey girl jumps back a little, eyes wide. “<i>... ");
 	if(flags["GOTTEN_AN_EMBRY_BJ"] == undefined) output("You liked that");
 	else output("Did you like that");
-	output("?</i>” she breathily asks, looking at you for confirmation. You nod and urge her to continue. She leans forward and gives your [pc.sheathe] another tentative lick. You twitch and stiffen, but this time she doesn’t leap back.");
+	output("?</i>” she breathily asks, looking at you for confirmation. You nod and urge her to continue. She leans forward and gives your [pc.sheath] another tentative lick. You twitch and stiffen, but this time she doesn’t leap back.");
 
 	output("\n\nThe underside of your [pc.cock] is getting slick with her saliva. Her cute laps grow longer and more steady. Soon her pink tongue is intimately caressing every inch of your shaft. You groan with pleasure, thoroughly appreciating her efforts.");
 
@@ -2201,7 +2211,7 @@ function blowjorbsFromEmbry():void
 	if(flags["GOTTEN_AN_EMBRY_BJ"] == undefined) output(". Like it was something I always wanted and didn’t even know it");
 	output(",</i>” she rambles. One of her slender hands reaches up and brushes her hair behind her ear. <i>\"I can’t even think straight, and it ... it makes me </i>happy<i>. Sorry, does that make sense?</i>”");
 
-	output("\n\nShe pauses and gives your [pc.cock] a longing look. Her eyes are dilated with lust, and her breathing is short and shallow. You order her to keep licking, and she delightedly shivers. Her fingers wrap around your [pc.sheathe], and she brings your [pc.cockHead] up to her pink lips.");
+	output("\n\nShe pauses and gives your [pc.cock] a longing look. Her eyes are dilated with lust, and her breathing is short and shallow. You order her to keep licking, and she delightedly shivers. Her fingers wrap around your [pc.sheath], and she brings your [pc.cockHead] up to her pink lips.");
 
 	output("\n\nHer blue eyes lock onto yours, and she sensuously slips your throbbing glans into her mouth. Your sensitive dick flesh presses against her wet tongue, and she lets out a muffled moan. The taste of your tip is far more intense than your shaft, and she’s intoxicated by it.");
 
@@ -2436,7 +2446,7 @@ function breastMassageScene4Embrah():void
 	{
 		output("\n\nEvery time you’re forceful with her, [embry.name] shivers with delight. You get a little rougher, tugging at her [embry.nipples]. She shakily cries out, and quivers madly in your lap. <i>\"O-oh god! I-If you keep doing that, my mind is gonna--I’m gonna--!</i> she babbles.");
 		output("\n\nYou squeeze [embry.name]’s [embry.breasts] and pinch her [embry.nipples]. The monkey girl lets out a strangled cry, and her hips quiver madly. She thoroughly creams herself in your lap and trembles in your arms.");
-		output("\n\nYou keep teasing her tits, and deliberately prolong her orgasm. Every time she comes down, you tweak her [embry.nipples], or suckle onher neck, making her tremble and spasm once more. You keep her like that for several minutes until you finally let her come back down, utterly and gloriously spent.");
+		output("\n\nYou keep teasing her tits, and deliberately prolong her orgasm. Every time she comes down, you tweak her [embry.nipples], or suckle on her neck, making her tremble and spasm once more. You keep her like that for several minutes until you finally let her come back down, utterly and gloriously spent.");
 		output("\n\n<i>\"O-oh... oh wow... that was...</i>” The pink haired monkey girl falls back against you, unable to finish her sentence. She’s limply lying against you, her whole body coated in a thin sheen of sweat.");
 	}
 	output("\n\n[embry.name] turns her head around, and presses her soft, pink lips against yours. You passionately kiss, your tongues dancing with each other, enjoying the afterglow together. When you finally pull apart, she reaches up and strokes your cheek, and affectionately stares into your eyes.");
@@ -2570,7 +2580,7 @@ function embryAnalSex():void
 	//{if Embry.hasPussy:
 	if(embry.hasVagina()) output(" Her cute, pink pussy spasmically squirts [embry.girlCum] everywhere. She makes an utter mess!");
 	//PC does not like peen and she does not have a pussy.
-	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined && !embry.hasVagina()) output(" She cums long and hard with your fingers buried in her [embry.anus].");
+	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] == undefined && !embry.hasVagina()) output(" She cums long and hard with your fingers buried in her [embry.asshole].");
 	output(" When her climax subsides, you remove your fingers.");
 
 	output("\n\nAfter creaming herself, [embry.name] is left utterly spaced out and quivering on the table. You press ");
@@ -2710,10 +2720,10 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	{
 		output("After [embry.name]’s shift is up, she’s immediately upon you, wrapping her arms around your neck. She litters your cheeks with kisses - she’s clearly in an amorous mood.");
 		output("\n\n“<i>... W-we should go back to my place!</i>” the pink haired girl is somehow simultaneously shy and assertive. You head back to the Capella, making out on the ship’s elevator on the way up, and then against her cabin room door.");
-		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [embry.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.\n\n");
+		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [pc.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.\n\n");
 	}
 	output("You lustily slide your fingers down the top of her ");
-	if(embry.vaginalVirgin) output("evening dress - then swiftly yank it down along with her strapless bra");
+	if(spentTime) output("evening dress - then swiftly yank it down along with her strapless bra");
 	else output("[embry.armor], then swiftly pull it down, and throw away her [embry.upperUndergarment]");
 	output(". Her brazenly exposed breasts spill out ");
 	if(embry.vaginalVirgin) output("over the silky fabric ");
@@ -2731,7 +2741,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	output("\n\nYour pink haired lover is putty in your hands; the slightest caress of her pale pink buds makes her shiver with delight and her whole body to squirm. Her breathing hitches, and she desperately presses her glistening, beautifully-formed breasts into your hands.");
 
 	output("\n\n“<i>...M-my panties...</i>” she breathily whimpers. You nod and slide your hands up her ");
-	if(embry.vaginalVirgin) output("silky skirt");
+	if(spentTime) output("silky skirt");
 	else output("hemline");
 	output(", feeling out for her ");
 	if(embry.vaginalVirgin) output("underwear");
@@ -2840,13 +2850,13 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		// First time / Virgin
 		if(embry.vaginalVirgin)
 		{
-			output("\n\n<i>\"You’re my first,<i> she happily whispers, “<i>... My first lover, and my first love. I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
+			output("\n\n<i>\"You’re my first,</i>\" she happily whispers, “<i>... My first lover, and my first love. I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
 			embry.vaginalVirgin = false;
 		}
 		// else
 		else
 		{
-			output("\n\n<i>\"I love you so much,<i> she happily whispers, “<i>... I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
+			output("\n\n<i>\"I love you so much,</i>\" she happily whispers, “<i>... I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
 		}
 		output("\n\nAfterwards you lie in each other’s arms. [embry.name] nuzzles into the nook of your arm, wrapping herself around you - her slender legs are intertwined with yours.");
 		flags["SEEN_MONKEY_STRAPON"] = 1;
