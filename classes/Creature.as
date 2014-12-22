@@ -8071,7 +8071,7 @@
 					else if (rando == 4) descript += "animalistic ";
 					else if (rando == 5) descript += "soft-barbed ";
 					else if (rando == 6) descript += "nubby ";
-					else descript += "slithering ";
+					else descript += "feline ";
 				}
 				rando = this.rand(11);
 				if (rando == 0) noun += "dick";
