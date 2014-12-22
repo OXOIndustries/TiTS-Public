@@ -1052,7 +1052,8 @@ function appearance(target:Creature):void {
 			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() >= 2 && target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
+				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
+				else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 				else if(target.vaginas[0].wetness() >= 4)
 				{
 					output2("Occasional beads of ");
