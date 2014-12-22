@@ -134,19 +134,19 @@ package classes.GameData
 			tough2.perkDescription = "Upgrades the \"Tough\" ability from 10 to 15%.";
 			insertPerkData(tough2);
 
-			var heavyWeapons:PerkData = new PerkData();
-			heavyWeapons.classLimit = GLOBAL.CLASS_MERCENARY;
-			heavyWeapons.levelLimit = 6;
-			heavyWeapons.perkName = "Heavy Weapons";
-			heavyWeapons.perkDescription = "Increases damage from kinetic, slashing, and piercing ranged weapons by 20%.";
-			insertPerkData(heavyWeapons);
-
 			var lowTechSolutions:PerkData = new PerkData();
 			lowTechSolutions.classLimit = GLOBAL.CLASS_MERCENARY;
 			lowTechSolutions.levelLimit = 6;
 			lowTechSolutions.perkName = "Low Tech Solutions";
 			lowTechSolutions.perkDescription = "Increases damage from kinetic, slashing, and piercing melee weapons by 20%.";
 			insertPerkData(lowTechSolutions);
+
+			var heavyWeapons:PerkData = new PerkData();
+			heavyWeapons.classLimit = GLOBAL.CLASS_MERCENARY;
+			heavyWeapons.levelLimit = 6;
+			heavyWeapons.perkName = "Heavy Weapons";
+			heavyWeapons.perkDescription = "Increases damage from kinetic, slashing, and piercing ranged weapons by 20%.";
+			insertPerkData(heavyWeapons);
 
 			//Level 7
 			//Passive: Iron Will: Your physical fortitude makes up when your mental fortitude fails. Gain a bonus to Willpower saves and checks based on Physique (5:1 ratio). 
