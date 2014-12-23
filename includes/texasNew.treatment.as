@@ -1887,7 +1887,11 @@ function treatmentHourProcs():void
 							else pc.cocks[targetDick].cockColor = "pink";
 						}
 						else pc.cocks[targetDick].cockColor = "mottled pink and black";
-						if(knotted) pc.cocks[targetDick].addFlag(GLOBAL.FLAG_KNOTTED);
+						if(knotted) 
+						{
+							pc.cocks[targetDick].addFlag(GLOBAL.FLAG_KNOTTED);
+							pc.cocks[targetDick].knotMultiplier = 1.5;
+						}
 						if(nubbed) pc.cocks[targetDick].addFlag(GLOBAL.FLAG_NUBBY);
 						//Cum
 						pc.orgasm();
@@ -1946,7 +1950,11 @@ function treatmentHourProcs():void
 									else pc.cocks[x].cockColor = "pink";
 								}
 								else pc.cocks[x].cockColor = "mottled pink and black";
-								if(knotty) pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
+								if(knotty) 
+								{
+									pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
+									pc.cocks[x].knotMultiplier = 1.5;
+								}
 								if(nubby) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
 							}
 						}

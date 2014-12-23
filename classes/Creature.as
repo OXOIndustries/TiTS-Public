@@ -1380,6 +1380,10 @@
 				case "chest":
 					buffer = chestDesc();
 					break;
+				case "chestSimple":
+				case "chestNoun":
+					buffer = chestNoun();
+					break;
 				case "breastCupSize":
 					buffer = breastCup(arg2);
 					break;
@@ -8067,7 +8071,7 @@
 					else if (rando == 4) descript += "animalistic ";
 					else if (rando == 5) descript += "soft-barbed ";
 					else if (rando == 6) descript += "nubby ";
-					else descript += "slithering ";
+					else descript += "feline ";
 				}
 				rando = this.rand(11);
 				if (rando == 0) noun += "dick";
@@ -9247,7 +9251,6 @@
 
 			var temp: int;
 			var descript: String = "";
-			var noun: String = "";
 			var descripted: Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
 				temp = this.rand(10);
@@ -9283,8 +9286,16 @@
 				}
 				descripted = true;
 			}
+			if(descripted) descript += " ";
+			descript += chestNoun(rowNum);
+			return descript;
+		}
+		function chestNoun(rowNum:int = 99)
+		{
+			var noun:String = "";
+			if(rowNum == 99) rowNum = 0;
 			//Nouns!
-			temp = this.rand(14);
+			var temp = this.rand(14);
 			if (temp == 0) noun += "breasts";
 			else if (temp <= 1) {
 				if (isLactating()) noun += "udders";
@@ -9305,8 +9316,7 @@
 			} else if (temp <= 11) noun += "mammaries";
 			else if (temp <= 12) noun += "melons";
 			else noun += "mounds";
-			if (descripted) descript += " ";
-			return descript + noun;
+			return noun;
 		}
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));

@@ -143,7 +143,7 @@
 					else kGAMECLASS.output("\n\nYou're dumped on your ass when your [pc.legs] turn to jelly, going numb as they start to change.");
 					//Not plantigrade!
 					if(!target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) kGAMECLASS.output(" They quickly form into a plantigrade shape and resolve further into a very humanoid look, complete with five toes.");
-					kGAMECLASS.output(" A black encasement forms around the tip, then divides an armored incasement for your toes. Each tiny digit gleams shiny black, covered in chitinous armor.  Maneuverable joints appear wherever you would need to bend or flex. Then, the blackness travels up like a wave slippery oil. Every inch of your body below the thigh is swiftly encased in the gleaming, ebony armor, and there, the transformation stops. While you take a few experimental steps to get used to <b>your new zil-like legs</b>, a tuft of yellow fluff grows out into a soft border between you and your new legs.");
+					kGAMECLASS.output(" A black encasement forms around the tip, then divides into an armored incasement for your toes. Each tiny digit gleams shiny black, covered in chitinous armor.  Maneuverable joints appear wherever you would need to bend or flex. Then, the blackness travels up like a wave of slippery oil. Every inch of your body below the thigh is swiftly encased in the gleaming, ebony armor, and there, the transformation stops. While you take a few experimental steps to get used to <b>your new zil-like legs</b>, a tuft of yellow fluff grows out into a soft border between you and your new legs.");
 					target.clearLegFlags();
 					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_SMOOTH);

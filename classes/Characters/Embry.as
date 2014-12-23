@@ -2,6 +2,9 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.GirlyBra;
+	import classes.Items.Apparel.GirlyPanties;
+	import classes.Items.Apparel.PeasantDress;
 	
 	public class Embry extends Creature
 	{
@@ -26,9 +29,9 @@
 			this.meleeWeapon.longName = "semi-solid fist";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "placeholder";
-			this.armor.lowerUndergarment = "placeholder";
-			this.armor.upperUndergarment = "placeholder";
+			this.armor = new PeasantDress();
+			this.lowerUndergarment = new GirlyPanties();
+			this.upperUndergarment = new GirlyBra();
 			
 			this.physiqueRaw = 15;
 			this.reflexesRaw = 15;

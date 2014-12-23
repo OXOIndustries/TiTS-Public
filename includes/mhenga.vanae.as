@@ -804,11 +804,13 @@ function vanaeVictorySexIntro(scene:String):void
 			output("\n\nYou give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it.");
 			
 			// IF VANAE HUNTRESS
+			if (foes[0] is HuntressVanae)
 			{
 				output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. <i>“Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?”</i>");
 			}
 
 			// IF VANAE MAIDEN
+			else
 			{
 				output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. <i>“Y-you're serious? You're not going to eat me? What would you like me to do, then?”</i>");
 			}

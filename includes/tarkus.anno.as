@@ -3639,7 +3639,7 @@ function annoxKaedeNotRecruitedMeeting():void
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
 	clearMenu();
-	if (pc.hasCock() && (pc.cockThatFits(370) != -1) && (pc.cockThatFits(anno.vaginalCapacity()) != -1)) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
+	if (pc.hasCock() && (pc.cockThatFits(370) >= 0) && (pc.cockThatFits(anno.vaginalCapacity()) >= 0)) addButton(0, "Fuck Them", annoxKaedeFuckThem, true);
 	else addDisabledButton(0, "Fuck Them", "Fuck Them", "Requires a penis of appropriate size.");
 	addButton(1, "Service Kaede", annoxKaedeService, true);
 	addButton(2, "Watch", annoxKaedeWatch, true);
@@ -3661,7 +3661,7 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 		if (anno.vaginalCapacity() < tarVolume) tarVolume = anno.vaginalCapacity();
 		
 		selCock = pc.cockThatFits(tarVolume);
-		if(selCock < 0) output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.biggestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>")
+		if(selCock < 0) output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.smallestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>");
 	}
 
 	output("<i>“What do you say, girls?”</i> you say, indicating the rapidly-growing");

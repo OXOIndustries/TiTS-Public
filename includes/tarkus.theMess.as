@@ -296,7 +296,8 @@ function buttStretchDelsAnus():void
 	else if(timesDelilahSexed() < 5) output("pleasure and pain");
 	else output("wild pleasure");
 	output(" from her as you spear her on your [pc.cock " + x + "], thrusting deep into her writhing ass. Her back arches, voice breaking as you fuck yourself deep into her little asshole, until ");
-	if(pc.cocks[x].cLength() <= 12) output("your [pc.balls] slap against her cheeks, your shaft fully buried");
+	if(pc.cocks[x].cLength() <= 12 && pc.balls == 1) output("your [pc.balls] slaps against her cheeks, your shaft fully buried");
+	else if(pc.cocks[x].cLength() <= 12 && pc.balls > 1) output("your [pc.balls] slap against her cheeks, your shaft fully buried");
 	else if(pc.cocks[x].cLength() <= 12) output("your hips press into hers, your shaft fully buried");
 	else output("her stomach is bulging from the massive, throbbing prick buried in her, stretching her asshole until she's apt to break in half");
 	output(". She cries out, fingers digging into the edge of the bar as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");

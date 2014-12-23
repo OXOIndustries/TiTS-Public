@@ -354,7 +354,7 @@ function annoMorningHandy():void
 	
 	if (pc.isMischievous()) output("\n\n<i>“Good morning to you too,”</i> you murmur.");
 	
-	output("\n\n<i>“Aww, you made me breakfast in bed!”</i> Anno coos, her blues eyes locked onto your still-twitching cock. She quickly slips down the length of your body, and her flat tongue traces along");
+	output("\n\n<i>“Aww, you made me breakfast in bed!”</i> Anno coos, her blue eyes locked onto your still-twitching cock. She quickly slips down the length of your body, and her flat tongue traces along");
 	if (pc.tone >= 70 && pc.thickness <= 30) output(" the hard lines of your muscles");
 	else if (pc.tone >= 70) output(" the soft surface of your body");
 	else if (pc.tone < 70 && pc.thickness <= 60 && pc.femininity >= 50) output(" the delicate curves of your body");
@@ -2097,7 +2097,7 @@ function annoxKaedeFollowerMeeting():void
 function annoxKaedeAnonsBarMenu():void
 {
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "Fuck Them", annoxKaedeFuckThem, false);
+	if (pc.hasCock() && (pc.cockThatFits(370) >= 0) && (pc.cockThatFits(anno.vaginalCapacity()) >= 0)) addButton(0, "Fuck Them", annoxKaedeFuckThem, false);
 	else addDisabledButton(0, "Fuck Them", "Fuck Them", "Requires a penis.");
 	addButton(1, "Service Kaede", annoxKaedeService, false);
 	addButton(2, "Watch", annoxKaedeWatch, false)
@@ -2327,7 +2327,7 @@ function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	author("Savin");
 	showName("\nANNO");
 	showBust("ANNO");
-	output("“<i>I knew it,</i>” Anno tease, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
+	output("“<i>I knew it,</i>” Anno teases, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
 
 	if(annoDickType == 0) output("thick, footlong human cock");
 	else if(annoDickType == GLOBAL.TYPE_EQUINE) output("monolithic horsecock, as thick around as her arm and near as long as her leg, turning Anno into a veritable tripod. “<i>You like ‘em big, huh?</i>” she adds, licking her lips");
@@ -2419,7 +2419,10 @@ function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 
 	output("\n\nYou give a shuddered gasp, all your weight hard on the desk as you ride out your orgasm. Anno’s hips move ever so slightly, slight thrusts in and out of you as she milks herself through the sensory feedback running through her hardlight panties. She rests against you after a few long moments, her hips pressed into your [pc.butt] as she deactivates the strap. You feel a sudden emptiness as the cock inside you flashes out of existence, but that feeling is replaced by warmth and comfort as Anno’s hands slip around you, holding you close. She presses flush against your back, hands playing across your body, especially your [pc.chest], slipping between you and the table.");
 
-	output("\n\n“<i>That was nice,</i>” she purrs, nibbling on one of your [pc.ears]. “<i>I could get used to the feeling of my " + chars["ANNO"].cockNoun(annoDickType, false) + " deep inside that [pc.vagOrAss] of yours.</i>”");
+	output("\n\n“<i>That was nice,</i>” she purrs, nibbling on one of your [pc.ears]. “<i>I could get used to the feeling of my " + chars["ANNO"].cockNoun(annoDickType, true) + " deep inside that ");
+	if(pc.hasVagina()) output("pussy");
+	else output("asshole");
+	output(" of yours.</i>”");
 
 	output("\n\nYou murmur your agreement as Anno stands up, gives you a playful spank, and reaches for her clothes.");
 
@@ -2442,7 +2445,7 @@ function annoStraponMods():void
 	showBust("ANNO");
 	output("“<i>Oh, hey, check this out,</i>” Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. “<i>Remember these?</i>” ");
 	output("\n\nYou nod, and your lover continues. “<i>Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!</i>”");
-	output("\n\nAnno picks her panties up and slips them on over her [anno.lower Garment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
+	output("\n\nAnno picks her panties up and slips them on over her [anno.lowerGarment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
 	output("\n\nSeeing the look in your eyes, Anno giggles and grabs her hardlight erection, stroking it tenderly as she speaks. “<i>I did a little modding on this bad boy. Enhanced batteries, stronger projection filters, and a whole slew of new cock shapes and sizes. And no, I totally don’t have penis envy, why do you ask?</i>”");
 	output("\n\nShe flicks another, new dial under the power button, and the gargantuan horsedick flickers out of existence, replaced by a much more reasonably-sized canid cock, complete with a butt-busting bitch-breaker at the hilt. Anno grins, rubbing the knot with her thumb until she shivers with pleasure. Another turn of the dial, and her doggydick is replaced by a bristly kittycock, complete with rings of sensitive little bumps and nodules along the crown. She runs a finger along the bristles, arching her back and moaning as the tactile feedback sends waves of pleasure through her.");
 	output("\n\nAnno takes a step closer, giving you a lascivious wink. “<i>What do you say, next time I give you a good fucking you help me... alpha test these new mods? I promise, it’ll be the most fun QA you’ve ever done.</i>”");

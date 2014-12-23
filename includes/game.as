@@ -293,15 +293,7 @@ function sleepHeal():void
 function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	this.addButton(9,"Fly",flyMenu);
-
-	if(shipLocation == "TAVROS HANGAR") {
-		setLocation("SHIP\nINTERIOR","TAVROS STATION","SYSTEM: KALAS");
-	}
-	else if(shipLocation == "SHIP HANGAR") {
-		setLocation("SHIP\nINTERIOR","MHEN'GA","SYSTEM: ARA ARA");
-	}
-	else if(shipLocation == "201") setLocation("SHIP\nINTERIOR","TARKUS","SYSTEM: REDACTED");
-	else if(shipLocation == "500") setLocation("SHIP\nINTERIOR","NEW TEXAS","SYSTEM: NYE");
+	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.addButton(8,"Crew",crew);

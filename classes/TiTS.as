@@ -153,7 +153,7 @@
 		
 		//Fourth planet
 		include "../includes/myrellion.embassy.as";
-		//include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.embry.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.nehzara.as";
 		include "../includes/myrellion.rooms.as";
@@ -239,7 +239,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.12";
+			version = "0.5.13";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -711,6 +711,11 @@
 		public function get penny():*
 		{
 			return chars["PENNY"];
+		}
+
+		public function get embry():*
+		{
+			return chars["EMBRY"];
 		}
 
 		public function get shekka():*

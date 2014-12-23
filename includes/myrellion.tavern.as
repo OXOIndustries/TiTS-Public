@@ -5,7 +5,6 @@
 
 function goldenPeakBonusFunction():Boolean
 {
-
 	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it'd feel like home!");
 	output(" A holoscreen is set up just over the bar, showing reruns of Steph Irson: Galactic Huntress.");
 
@@ -26,6 +25,8 @@ function goldenPeakBonusFunction():Boolean
 	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
 	if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
 	else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
+	if(flags["MET_EMBRY"] == undefined) addButton(1,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
+	else addButton(1,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	return false;
 }
 

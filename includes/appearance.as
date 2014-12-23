@@ -46,7 +46,7 @@ function appearance(target:Creature):void {
 		if(target.faceType == GLOBAL.TYPE_NALEEN_FACE || target.faceType == GLOBAL.TYPE_HUMAN || target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN || target.faceType == GLOBAL.TYPE_LAPINE || target.faceType == GLOBAL.TYPE_NAGA) {
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your face is human in shape and structure, with " + target.skin(true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Under your " + target.skinFurScales(true,true) + " you have a human-shaped head with " + target.skin(true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face is fairly human in shape, but is covered in " + target.skin(true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true) + " over " + target.skin(true,true) + ".");
 			if(target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
 			else if(target.faceType == GLOBAL.TYPE_NAGA) output2(" A set of retractable, needle-like fangs sit in place of your canines and are ready to dispense their venom.");
@@ -1052,7 +1052,8 @@ function appearance(target:Creature):void {
 			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() >= 2 && target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
+				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
+				else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 				else if(target.vaginas[0].wetness() >= 4)
 				{
 					output2("Occasional beads of ");

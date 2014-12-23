@@ -141,6 +141,7 @@
 			this.vaginas[0].bonusCapacity = 10;
 			this.vaginas[0].type = GLOBAL.TYPE_RASKVEL;
 			this.vaginas[0].clits = 2;
+			this.vaginas[0].vaginaColor = "purple";
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;

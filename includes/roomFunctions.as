@@ -980,7 +980,7 @@ function tarkusScoutMenu():void
 	author("Savin");
 	showName("\nKAITHRIT\nSCOUT");
 	showBust("KAITHRIT_SCOUT");
-	if(flags["TARKUS_DESTROYED"] == undefined)
+	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
 		output("When you step up to the cat-girl, she looks up from her holoscreen and sighs. “<i>Sorry, there's not really anywhere to take a taxi to anymore.</i>”");
 		clearMenu();
