@@ -291,9 +291,17 @@ function sleepHeal():void
 
 
 function shipMenu():Boolean {
+	
+	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
+	
+	// Puppyslutmas hook :D
+	if (annoPuppyslutmasEntry())
+	{
+		return true;
+	}
+	
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	this.addButton(9,"Fly",flyMenu);
-	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.addButton(8,"Crew",crew);

@@ -59,6 +59,7 @@
 	import classes.Mapper;
 	import classes.StringUtil;
 	
+	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
 
 	//Build the bottom drawer
@@ -91,6 +92,9 @@
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/anno.follower.as";	
+		
+		// Holiday Events
+		include "../includes/event.puppyslutmas.as";
 
 		//Tavros Station
 		include "../includes/tavros.aliss.as";
@@ -769,6 +773,10 @@
 		public function get sera():*
 		{
 			return chars["SERA"];
+		}
+		public function get syri():*
+		{
+			return chars["SYRI"];
 		}
 		
 		public function get vanae():*

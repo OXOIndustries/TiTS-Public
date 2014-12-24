@@ -483,10 +483,14 @@ function pcLosesToSyriBettingHisAss():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-
-
 //Mornings!
 function approachSyriIntheMorning():void {
+	
+	if (syriPuppyslutmasEntry())
+	{
+		return;
+	}
+	
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -512,6 +516,11 @@ function approachSyriIntheMorning():void {
 	[Appearance]
 	[Leave]
 	*/
+	syriMorningMenu();
+}
+
+function syriMorningMenu():void
+{
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
 	if(flags["SYRI_TALKS"] != undefined) {
@@ -1078,8 +1087,8 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 }
 
 //Blow Her
-function blowSyriYouFukkinSlut():void {
-	clearOutput();
+function blowSyriYouFukkinSlut(postScene:Function = null):void {
+	if (postScene != null) clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
@@ -1123,7 +1132,8 @@ function blowSyriYouFukkinSlut():void {
 	pc.loadInMouth(chars["SYRI"]);
 	pc.lust(33);
 	clearMenu();
-	addButton(0,"Next",syriSexOutro);
+	if (postScene == null) addButton(0, "Next", syriSexOutro);
+	else addButton(0, "Next", postScene);
 }
 
 //Shipboard Sex Outro: Syri hits the Road
