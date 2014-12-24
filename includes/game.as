@@ -295,7 +295,7 @@ function shipMenu():Boolean {
 	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
 	// Puppyslutmas hook :D
-	if (annoPuppyslutmasEntry())
+	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
 		return true;
 	}

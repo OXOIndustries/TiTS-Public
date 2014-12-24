@@ -1,4 +1,4 @@
-function annoPuppyslutmasEntry():Boolean
+﻿function annoPuppyslutmasEntry():Boolean
 {
 	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] == undefined && checkDate(25, 12, 3))
 	{
@@ -679,7 +679,7 @@ function puppyslutmasDoDonate():void
 {
 	var dVal:Number = Number(this.userInterface.textInput.text);
 
-	if (dVal == Number.NaN || dVal <= 0)
+	if (isNaN(dVal) || dVal <= 0)
 	{
 		clearOutput();
 		output("Please enter a valid value.");
