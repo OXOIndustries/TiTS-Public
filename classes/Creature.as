@@ -1597,6 +1597,9 @@
 				case "eirs":
 					buffer = this.mf("his", "hers");
 					break;
+				case "manWoman":
+					buffer = this.mf("man", "woman");
+					break;
 				case "skinTone":
 					buffer = this.skinTone;
 					break;
