@@ -4,7 +4,7 @@
 	{
 		clearOutput();
 
-		setLocation("\nANNO");
+		showName("\nANNO");
 		author("Savin");
 		showBust("ANNO");
 		flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] = 1;
