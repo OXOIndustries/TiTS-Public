@@ -428,6 +428,7 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 
 function statusTick():void {
 	var shitToCut:Array = new Array();
+	var y:int = 0;
 	for(var x:int = this.chars["PC"].statusEffects.length-1; x >= 0; x--) 
 	{
 		//trace("Checking status effect: " + x + " of " + (this.chars["PC"].statusEffects.length-1));
@@ -452,6 +453,23 @@ function statusTick():void {
 				{
 					var pill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
+				//Condensol ends!
+				if(this.chars["PC"].statusEffects[x].storageName == "Condensol-A")
+				{
+					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+					for(y = 0; y < pc.cockTotal(); y++)
+					{
+						pc.cocks[y].cLengthRaw *= 2;
+					}
+				}
+				if(this.chars["PC"].statusEffects[x].storageName == "Condensol-B")
+				{
+					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+					for(y = 0; y < pc.cockTotal(); y++)
+					{
+						pc.cocks[y].cLengthRaw *= 4;
+					}
 				}
 				//Boobswell ends!
 				if(this.chars["PC"].statusEffects[x].storageName == "Boobswell Pads")
