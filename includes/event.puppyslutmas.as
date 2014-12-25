@@ -104,7 +104,7 @@ function annoPuppyslutmasArrive():void
 	
 	output("\n\n<i>“Am... am I?”</i> Anno mewls.");
 
-	if (pc.isHard()) output("\n\n<i>“Every girl there’s gonna be jealous of you,”</i> you say with surety.");
+	if (pc.isAss()) output("\n\n<i>“Every girl there’s gonna be jealous of you,”</i> you say with surety.");
 	
 	output("\n\nYour lover smiles up at you and presses her cheek to your [pc.chest], giving you a great big hug in return for the compliments. <i>“Shouldn’t be far from Ausaril by now. Let me just do my hair, and I’ll be all ready!”</i>");
 	
@@ -553,7 +553,8 @@ function puppyslutmasMeetSyri():void
 	}
 	else if (flags["FUCKED_SYRI_COUNT"] != undefined && flags["ANNOxSYRI_EVENT"] == undefined)
 	{
-		output("\n\n{if Syri fucked, not met with Anno: <i>“Steele! What the hell are </i>you<i> doing here?”</i> Syri beams, cutting her sister off and pulling you into a tight embrace.");
+		//if Syri fucked, not met with Anno: 
+		output("\n\n<i>“Steele! What the hell are </i>you<i> doing here?”</i> Syri beams, cutting her sister off and pulling you into a tight embrace.");
 		
 		output("\n\nYou chuckle and explain that her sister invited you along to be her date. Syri rolls her eyes and turns to Anno, saying, <i>“Picked Steele here over Kaede, did you? Well, well...”</i>");
 		
@@ -928,7 +929,7 @@ function puppyslutmasDanceWithAnno():void
 	author("Savin");
 	pPartyLocation();
 
-	output("\n\n<i>“Shall we?”</i> you ask, extending an arm to");
+	output("<i>“Shall we?”</i> you ask, extending an arm to");
 	if (pPartner() == "Anno") output(" your date");
 	else output(" your date’s snowy-haired sister");
 	output(".");
@@ -1386,7 +1387,7 @@ function puppyslutmasMeetTheDornasHue():void
 	}
 	else
 	{
-		output("\n\n{if AnnoDate: Anno stops to hug Kaede, her sister, and her parents. <i>“Merry Christmas, everyone. See you all soon - especially you, Syri. Write more often!”</i>");
+		output("\n\nAnno stops to hug Kaede, her sister, and her parents. <i>“Merry Christmas, everyone. See you all soon - especially you, Syri. Write more often!”</i>");
 	
 		output("\n\nMr. Dorna plants an hand on Syri’s shoulder, adding, <i>“And write us. Send a holo-message. No more going a year or more without a word from you!”</i>");
 		
