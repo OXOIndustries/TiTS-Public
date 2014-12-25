@@ -1205,7 +1205,7 @@ function lookAwayFromEmbrysLoverTF():void
 {
 	clearOutput();
 	showSimii();
-	output("You respectfully look away, and wait until she’s done transitioning. There’s the noise of her administering the solution, and a crying out. All through her transition, you don’t look once, waiting until she’s finished.");
+	output("You respectfully look away, and wait until she’s done transitioning. There’s the hiss of the solution being administered, and then Embry cries out. All through her transition, you don’t look once, waiting until she’s finished.");
 	output("\n\nWhen you finally turn back around, she’s lying on the bed, and looks completely different. Her shoulders have completely lost their masculine breadth, her curves are more shapely, and her body is more plush and soft. Her rump is round and girlish, and there’s a delicious dipping curve between her shoulderblades and her butt.");
 	output("\n\nYou look up at her face, and notice her pink lips have become fuller and her cheeks rounder. Her face is definitely less harsh, and instead of androgynous, it now looks unmistakably feminine. Even her dark lashes are fuller and longer. Her hair length hasn’t changed, but the rest certainly has.");
 	output("\n\nShe now has a small pair of A cup breasts. Even though they’re not very big, the simii girl seems thrilled, and presses them together with a delighted expression on her face.");
