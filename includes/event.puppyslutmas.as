@@ -30,6 +30,8 @@
 		clearMenu();
 		addButton(0, "Sure", annoPuppyslutmasYe, undefined, "Sure", "That sounds like fun. Take Anno to Ausaril and meet the Dorna family.");
 		addButton(1, "Nope", annoPuppyslutmasNope, undefined, "Nope", "You've got better things to do.");
+		
+		processTime(10);
 		return true;
 	}
 	return false;
@@ -39,7 +41,7 @@ function annoPuppyslutmasNope():void
 {
 	clearOutput();
 
-	setLocation("\nANNO");
+	showName("\nANNO");
 	author("Savin");
 	showBust("ANNO");
 
@@ -48,6 +50,8 @@ function annoPuppyslutmasNope():void
 	output("\n\nThe happy wagging of Anno’s tail dies instantly, and her smile fades. <i>“Right. Uh, yeah, you’re right. Sorry, I don’t know what I was thinking.”</i>");
 	
 	output("\n\nAnno slips out of your lap and heads for the door. <i>“Talk to you later I guess. I’ll give Kaede a call, see if I can swing a pickup next time we’re on-world.”</i>");
+	
+	processTime(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -58,7 +62,7 @@ function annoPuppyslutmasYe():void
 	flags["PUPPYSLUTMAS_2014"] = "Anno";
 
 	clearOutput();
-	setLocation("\nANNO");
+	showName("\nANNO");
 	author("Savin");
 	showBust("ANNO");
 
@@ -68,6 +72,8 @@ function annoPuppyslutmasYe():void
 	
 	output("\n\nAnno scoots out of your cabin, her booty and tail wiggling happily as she goes. You give her a few moments to get her family’s address plugged in before heading to the bridge and dropping into the captain’s chair. You angle your vessel towards the local Warp Gate and hit the throttle, starting your journey towards Ausaril...");
 
+	processTime(10);
+	
 	clearMenu();
 	addButton(0, "Next", annoPuppyslutmasArrive);
 }
@@ -75,9 +81,11 @@ function annoPuppyslutmasYe():void
 function annoPuppyslutmasArrive():void
 {
 	clearOutput();
-	setLocation("\nANNO");
+	showName("\nANNO");
 	author("Savin");
 	showBust("ANNO");
+	
+	hideMinimap();
 
 	processTime(360);
 
@@ -102,6 +110,8 @@ function annoPuppyslutmasArrive():void
 	
 	output("\n\nYou give her a nod and head back to the cockpit, making the final preparations for landing.");
 
+	processTime(10);
+	
 	clearMenu();
 	addButton(0, "Next", puppyslutmasArrive);
 }
@@ -112,7 +122,7 @@ function syriPuppyslutmasEntry():Boolean
 	{
 		clearOutput();
 
-		setLocation("\nSYRI");
+		showName("\nSYRI");
 		author("Savin");
 		showBust("SYRI");
 		flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] = 1;
@@ -138,6 +148,8 @@ function syriPuppyslutmasEntry():Boolean
 		addButton(0, "Sure", syriPuppyslutmasYe, undefined, "Sure", "Accompany Syri to her parent's Christmas gala. You might even be able to heal old wounds. Or at least keep Syri from getting too drunk.");
 		addButton(1, "Nope", syriPuppyslutmasNope, undefined, "Nope", "Syri should stay away. No need to re-open old wounds.");
 
+		processTime(10);
+		
 		return true;
 	}
 	return false;
@@ -147,7 +159,7 @@ function syriPuppyslutmasNope():void
 {
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI");
 
@@ -166,6 +178,8 @@ function syriPuppyslutmasNope():void
 	output("\n\nShe laughs and slaps you on the back. <i>“Anyway. C’mon, let’s talk about something else...");
 	if (pc.lust() >= 33) output(" Or at least let me drown my sorrows in that sweet ass of yours, Steele!");
 	output("”</i>");
+	
+	processTime(10);
 
 	// [Syri's Morning Menu here]
 	syriMorningMenu();
@@ -177,7 +191,7 @@ function syriPuppyslutmasYe():void
 
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI");
 
@@ -194,6 +208,8 @@ function syriPuppyslutmasYe():void
 	
 	output("\n\nYou follow Syri up to the bridge and watch her tap some coordinates into the nav console. Once she does, you engage the autopilot and let your ship guide you up off the surface of Mhen’ga and towards the local Warp Gate.");
 
+	processTime(10);
+	
 	clearMenu();
 	addButton(0, "Next", syriPuppyslutmasUnderway);
 }
@@ -201,8 +217,10 @@ function syriPuppyslutmasYe():void
 function syriPuppyslutmasUnderway():void
 {
 	clearOutput();
+	
+	hideMinimap();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI");
 
@@ -227,7 +245,7 @@ function syriPuppyslutmasUnderway():void
 	output("\n\n<i>“Sure,”</i> she grins. <i>“I’m not gonna give my mother the satisfaction of seeing me in some pretty princess dress. Besides, anything without pants makes me feel all weird. So, uh, whadda ya think?”</i>");
 
 	//[Go For Dress] [Go For Suit] [Blow Her]
-	clearOutput();
+	clearMenu();
 	addButton(0, "Dress", syriWearTheDamnDress, undefined, "Go for the Dress", "Urge Syri to wear something more feminine.");
 	addButton(1, "Suit", syriWearTheTux, undefined, "Go for the Tux", "Tell Syri you like her style.");
 	addButton(2, "Blow Her", syriFuckClothesSuckDicks, undefined, "Blow Her", "Syri looks better without any clothes at all... help her take her mind off the party for a while.");
@@ -237,7 +255,7 @@ function syriWearTheDamnDress():void
 {
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI");
 
@@ -281,7 +299,7 @@ function syriWearTheTux():void
 {
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI");
 
@@ -311,7 +329,7 @@ function syriFuckClothesSuckDicks():void
 {
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI_NUDE");
 
@@ -328,7 +346,7 @@ function syriPuppyslutmasPostBeejay():void
 {
 	clearOutput();
 
-	setLocation("\nSYRI");
+	showName("\nSYRI");
 	author("Savin");
 	showBust("SYRI_NUDE");
 
@@ -361,7 +379,10 @@ function pSyriClothes():String
 
 function pPartyLocation():void
 {
-	setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: ???");
+	if (silly)
+		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: SNOUP DU'OGG");
+	else
+		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: EKYRA");
 }
 
 function puppyslutmasArrive():void
@@ -379,12 +400,16 @@ function puppyslutmasArrive():void
 	output("\n\nYou land, and taking your partner’s hand, step out of your ship into the garage. A small flight of stairs leads from the front of the dock up to a terrace entrance, where you can make your grand entrance.");
 
 	clearMenu();
-	addButton(0, "Stairs")
+	addButton(0, "Stairs", puppyslutmasStairs)
 }
 
 function puppyslutmasStairs():void
 {
 	clearOutput();
+	
+	author("Savin");
+	showName("OFFICE\nCOMPLEX");
+	showBust(pPartner().toUpperCase());
 
 	output("You take " + pPartner() + "’s hand and makes your ascent.");
 	if (pPartner() == "Anno") output(" Anno pulls up her long skirt with practiced grace, easily following you up despite her trail of silky garments and high heels.");
@@ -610,21 +635,38 @@ function puppyslutmasDrinks():void
 
 	output("You motion your train of ausar babes over towards the punch bowl. They follow you eagerly, and you quickly find yourself pouring glasses of a dark red punch that smells much more boozy than what you're used to from your father's functions. Even if that's not your scene, there's champagne and wine in easy access from a few tux-wearing attendants manning a portable bar. ");
 
-	if (pc.isSmashed())
+	if (pSmashed())
 	{
 		output("\n\n<i>“SHOTS!”</i> you cheer, ordering one of the waiters to bring out the good stuff. It takes some encouragement, but he eventually delivers a platter of shot glasses full of a clear, amber liquor.");
 
 		output("\n\n<i>“SHOTS SHOT SHOTS!”</i> the girls cheer back as you pass the drinks out. You're drawing more than a few gazes by now, but fuck it: it's party time! You and your friends all knock back your drinks, grinning and laughing as the burning booze goes down. <i>“WHOO!”</i>");
 	}
-	else if (pc.isDrunk()) output("\n\n<i>“Bottoms up, girls!”</i> you cheer, knocking your glass back. Your gaggle of inebriated ausar giggle and drink up. Almost in unison, you and the girls finish your glasses and find your cheeks all flushing red.");
+	else if (pDrunk()) output("\n\n<i>“Bottoms up, girls!”</i> you cheer, knocking your glass back. Your gaggle of inebriated ausar giggle and drink up. Almost in unison, you and the girls finish your glasses and find your cheeks all flushing red.");
 	else output("\n\n<i>“Cheers,”</i> you say, raising your glass to the girls. They answer the toast in turn, all smiles and wagging tails. You drink deep, knocking back your glass with relish, and ending with a sharp intake of breath. Whew, that was stronger than you were expecting!");
 
-	// Check dis shit yo.
-	pc.imbibeAlchohol(30);
-
+	// Might wanna fuck this off and just go to a flat like number of drinks, considering how the rest of this plays out.
+	//pc.imbibeAlcohol(30);
+	if (flags["PUPPYSLUTMAS_2014_DRINKS"] == undefined) flags["PUPPYSLUTMAS_2014_DRINKS"] = 0;
+	flags["PUPPYSLUTMAS_2014_DRINKS"]++;
+	
 	processTime(5);
 
 	puppyslutmasPartyMenu();
+}
+
+function pBuzzed():Boolean
+{
+	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1;
+}
+
+function pDrunk():Boolean
+{
+	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 2;
+}
+
+function pSmashed():Boolean
+{
+	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 4;
 }
 
 function puppyslutmasCharity():void
@@ -709,7 +751,9 @@ function puppyslutmasDoDonate():void
 	pc.addNice(pKind);
 
 	clearOutput();
-	output("A non-descript thank you note flashes across your codex, confirming your donation of " + dVal + " credits. Closely followed by another confirmation message debiting the credits from your account.");
+	output("A non-descript thank you note flashes across your codex, confirming your donation of " + dVal + " credits.");
+	
+	this.removeInput();
 
 	processTime(5);
 
@@ -728,17 +772,17 @@ function puppyslutmasChatSyri():void
 	output("<i>“Enjoying the party so far?”</i> you ask your raven-haired companion.");
 	
 	if (pSyriClothes() == "Tux") output("\n\n<i>“It’s not as bad as I expected,”</i> she admits, leaning against the nearby railing. <i>“It used to be nothing but old farts and my sister prancing around between their legs. Heh, I guess with some friends around, it’s more bearable.”</i>");
-	else if (!pc.isDrunk() && !pc.isHammered())
+	else if (!pDrunk() && !pSmashed())
 	{
 		output("\n\n<i>“Ugh,”</i> Syri grumbles. <i>“I feel like I’m fuckin’ cross-dressing here. And people are </i>staring<i> at me...”</i>");
 	
 		output("\n\n<i>“They’re staring because you’re pretty,”</i> you tell your date, putting a hand on her bare shoulder. Syri just grumbles and avoids your gaze.");
 	}
-	else if (pc.isDrunk() && !pc.isHammered())
+	else if (pDrunk() && !pSmashed())
 	{
 		output("\n\n<i>“Eh, it’s getting better. Ply me with more liquor and I might even smile some,”</i> she chuckles, giving you a rueful little grin.");
 	}
-	else if (pc.isHammered())
+	else if (pSmashed())
 	{
 		output("\n\n<i>“Ish great,”</i> Syri slurrs, leaning heavily against you. <i>“I haven’ ‘ad thish mush free boosh in forever!”</i>");
 	
@@ -746,13 +790,13 @@ function puppyslutmasChatSyri():void
 	}
 	
 	output("\n\nAfter a moment’s hesitation, you ask her if she’s ready to face her parents inside. Your answer is a");
-	if (!pc.hasStatusEffect("Alcohol")) 
+	if (!pBuzzed()) 
 	{
 		output(" very definite <i>“No. I need a fuckin’ drink before I deal with them...");
 		if (pPartner() == "Syri") output(" Fuck, I’m terrified, Steele. I shouldn’t be, but damn. I don’t even know what the hell to say anymore.");
 		output("”</i>");
 	}
-	else if (!pc.isHammered())
+	else if (pSmashed())
 	{
 		output(" thunderous <i>“Fuck yeah! I'm ready for this shit. C'mon, let's go!”</i>");
 	}
@@ -779,7 +823,7 @@ function puppyslutmasChatAnno():void
 	
 	output("\n\nShe answers with a playful giggle, squeezing tight against you. <i>“Grand!”</i> she answers, tail swishing. <i>“I might be a scientist, but sometimes it’s nice to get out in high society for a change! Especially with friends,”</i> she adds, slipping an arm through yours and Kaede’s.");
 	
-	if (!pc.isDrunk())
+	if (!pDrunk())
 	{
 		output("\n\n<i>“That said, I wouldn’t mind a drink or two before we go on to the dance floor. I’m not a bad dancer, but with all these people around... well, I’m only a </i>little<i> nervous.”</i>");
 	}
@@ -1085,7 +1129,7 @@ function puppyslutmasDanceWithSyri():void
 		if (flags["FUCKED_SYRI_COUNT"] != undefined)
 		{
 			output(" Her ass grinds against your [pc.crotch]");
-			if (pc.crotchGarbed()) output(" through your armor");
+			if (pc.isCrotchGarbed()) output(" through your armor");
 			output(", driving you wild with sensation");
 		}
 	}
@@ -1162,7 +1206,7 @@ function puppyslutmasDornasArrive():void
 	output(" parents.”</i>");
 	
 	output("\n\n");
-	if (pc.isDrunk()) output("<i>“Fine, fine,”</i> Syri groans. <i>“Ugh. Let’s get this over with before I pussy out.”</i>");
+	if (pDrunk()) output("<i>“Fine, fine,”</i> Syri groans. <i>“Ugh. Let’s get this over with before I pussy out.”</i>");
 	else output("<i>“Ugh, I don’t think I’m drunk enough for this,”</i> Syri complains - though she nevertheless follows her twin’s lead.");
 	
 	output("\n\nYou fall in step behind the ausar girls, following them through the dispersing crowd towards a door marked <i>“Staff”</i> in English, Ausari, and Kaithrin. An ausar in a penguin suit nods politely to Anno and pulls the door open for her, admitting your little group to the back of stage. You’ve barely walked a dozen paces before you see Mr. and Mrs. Dorna again, walking towards your group from a side hall. Anno grabs her dress and takes off running towards her parents, who welcome her with open arms and smiles from ear to canid ear.");
@@ -1363,7 +1407,7 @@ function puppyslutmasMeetTheDornasHue():void
 
 function puppyslutmasMeetTheDornasHueSyri():void
 {
-	clearMenu();
+	clearOutput();
 
 	author("Savin");
 	pPartyLocation();
@@ -1413,6 +1457,8 @@ function puppyslutmasMeetTheDornasHueAnno():void
 	
 	output("\n\nYou give her a wink, and a spank on the behind to get her moving. The pair of you scramble out of bed and get your gear together. Time to decide what’s next on your adventure!");
 
+	currentLocation = "SHIP INTERIOR";
+	
 	processTime(360);
 
 	clearMenu();
