@@ -1,6 +1,7 @@
 /*Embry: the Clumsy Simii Waitress
 Also a transgirl, if you look under her dress. Help her transition, or don't!
 Written by JimThermic, edited by Frogapus
+**AA note, this is terribly written, horribly edited, I love it. Stop using the word glorious
 
 Embry Outline
 
@@ -164,7 +165,7 @@ Femininity rises to 100
 
 Transition #3 Effects
 Embry gets a terran pussy.
-Depending on player's answer in a relationship approach scene, she loses or keeps her simii cock.
+Depending on player's answer in a relationship approach scene, she loses or keeps her simii penis.
 
 
 Flag Notes
@@ -937,7 +938,7 @@ function tipEmbry():void
 	clearMenu();
 	//[1 Credit] [10 Credits] [500 Credits] [2000 Credits] [5000 Credits]
 	if(pc.credits >= 1) addButton(0,"1C",tipEmbryASecondCreditYooCheapskate,undefined,"1 Credit","Tip her a single credit.");
-	else addDisabledButton(0,"1C","1 Credit","You don't have enough cash for that.");
+	else addDisabledButton(0,"1C","1 Credit","You don't have any cash.");
 	if(pc.credits >= 10) addButton(1,"10C",tipEmbryTenCredits,undefined,"10 Credits","Tip her ten credits.");
 	else addDisabledButton(1,"10C","10 Credits","You don't have enough cash for that.");
 	if(pc.credits >= 500) addButton(2,"500C",tipEmbryFiveHunnahDorrah,undefined,"500 Credits","Tip her a whopping 500 credits.");
@@ -2247,7 +2248,7 @@ function blowjorbsFromEmbry():void
 	output("\n\n<i>\"Your cum... i-it’s wonderful... is it supposed to taste this good...?</i>\" she breathily asks, gathering more up and dreamily licking it off her fingers. She seems to have trouble putting words together, and simply licks up all your offered cream.");
 	output("\n\nBoth of you bask in the afterglow, and she clambers up your side to snuggle against you. She utterly reeks of your cum, and you’re sure she’ll need a long, hard shower to get rid of it. Her fingers trail across your chest, and draw delicious little circles.");
 	output("\n\n<i>\"I-I really liked sucking your cock... and having your stuff all over me.</i>” [embry.name] nuzzles into you, and looks up at you with honest, blue eyes. <i>\"Doing that for you felt so right, and made me feel all shivery. Um... if you want to do that again... anytime at all... I’d </i>really<i> like that,</i>” she blushes.");
-	output("\n\nYou notice her fingers occasionally move in the direction of [pc.oneCockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
+	output("\n\nYou notice her fingers occasionally move in the direction of [pc.cockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
 	output("\n\nYou stagger back to the bar with a smile.");
 	flags["GOTTEN_AN_EMBRY_BJ"] = 1;
 	flags["SEXED_EMBRY"] = 1;
