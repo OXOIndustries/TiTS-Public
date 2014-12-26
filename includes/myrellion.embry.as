@@ -1,4 +1,4 @@
-﻿/*Embry: the Clumsy Simii Waitress
+/*Embry: the Clumsy Simii Waitress
 Also a transgirl, if you look under her dress. Help her transition, or don't!
 Written by JimThermic, edited by Frogapus
 
@@ -2186,7 +2186,7 @@ function blowjorbsFromEmbry():void
 	else if(embry.biggestTitSize() <= 3) output(" tiny breasted");
 	else output(" round breasted");
 	output(" girl ");
-	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerUnderGarments]. She then ");
+	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerGarment]. She then ");
 	output("slowly kisses down your belly. She peppers your [pc.skinFurScales] with shy, devoted little pecks. Cute, wet smacking noises fill the air.");
 	output("\n\nSoon, [embry.name]’s lips find their way to the cusp of your cock, and the kissing stops. You look down and see her staring at it wide eyed in wonder. Her baby blue eyes are fixated on it, and she’s eagerly breathing in your musky scent.");
 	output("\n\n“<i>... ");
