@@ -8463,10 +8463,11 @@
 					else if (rando == 2) descript += "voluminous";
 					else descript += "distended";
 				} else if (cocks[cockNum].thickness() > 3.5) {
-					rando = this.rand(4);
+					rando = this.rand(5);
 					if (rando == 0) descript += "inhumanly distended";
 					else if (rando == 1) descript += "bloated";
 					else if (rando == 2) descript += "mammoth";
+					else if (rando == 3) descript += "virgin splitting";
 					else descript += "monstrously thick";
 				}
 			}
@@ -8487,11 +8488,12 @@
 			//Length 1/3 chance
 			else if (this.rand(3) == 0) {
 				if (l < 3) {
-					rando = this.rand(4);
+					rando = this.rand(5);
 					if (rando == 0) descript = "little";
 					else if (rando == 1) descript = "toy-sized";
 					else if (rando == 2) descript = "mini";
 					else if (rando == 3) descript = "budding";
+					else if (rando == 4) descript += "wee";
 					else descript = "tiny";
 				} else if (l < 5) {
 					rando = this.rand(2);
@@ -8528,7 +8530,7 @@
 					else if (rando == 1) descript = "giant";
 					else descript = "arm-length";
 				} else if (l < 50) {
-					rando = this.rand(7);
+					rando = this.rand(8);
 					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "towering";
@@ -8537,6 +8539,7 @@
 						else if (rando == 3) descript = "imposing";
 						else if (rando == 4) descript = "prodigious";
 						else if (rando == 5) descript = "hyper";
+						else if (rando == 6) descript += "damn big";
 						else descript = "massive";
 					}
 				} else if (l < 100) {
@@ -8553,7 +8556,7 @@
 						else descript = "monumental";
 					}
 				} else {
-					rando = this.rand(6);
+					rando = this.rand(8);
 					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
@@ -8561,6 +8564,8 @@
 						else if (rando == 2) descript = "movement-impairing";
 						else if (rando == 3) descript = "floor-dragging";
 						else if (rando == 4) descript = "extremely hyper";
+						else if (rando == 5) descript += "virgin destroying";
+						else if (rando == 6) descript += "small asteroid sized";
 						else descript = "monumental";
 					}
 				}
