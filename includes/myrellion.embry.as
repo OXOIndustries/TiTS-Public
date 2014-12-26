@@ -2877,7 +2877,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		if(embry.vaginalVirgin)
 		{
 			output("\n\nYour [pc.cockHead] presses against her intact hymen. You push forward, making it quick. [embry.name] lets out a sharp, pained noise, and her fingers dig into your back. Her body tenses up and you stop to ask your pink haired lover if she’s okay.");
-			output("\n\n<i>\"I-I’m o-okay, it just stung a lot...</i>” she’s visibly wincing and her muscles are tightened around your [pc.cockHeadNoun]. After a few deep breaths, she looks up at you with a big, bright smile. It’s strained a little, but genuine nonetheless. “<i>... Keep going, I’m okay now.</i>”");
+			output("\n\n<i>\"I-I’m o-okay, it just stung a lot...</i>” she’s visibly wincing and her muscles are tightened around your [pc.cockHead]. After a few deep breaths, she looks up at you with a big, bright smile. It’s strained a little, but genuine nonetheless. “<i>... Keep going, I’m okay now.</i>”");
 			output("\n\nYou decide to trust her. ");
 		}
 		else output("\n\n");
