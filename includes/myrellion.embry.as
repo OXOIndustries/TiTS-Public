@@ -1658,7 +1658,7 @@ function spendTimeWithEmbry():void
 		processTime(3);
 		//[ForYou] [Journey] [Adventure] [TheDrinks] [Sex]
 		clearMenu();
-		addButton(0,"For You",tellEmbrahYourHereForHer,undefined,"For You","You're here for Embry.");
+		addButton(0,"For You",tellEmbrahYourHereForHer,undefined,"For You","You're here for [embry.name].");
 		addButton(1,"Journey",journeyStuffForEmbry,undefined,"Journey","Tell her about the journey you're on.");
 		addButton(2,"Adventure",adventureWithEmbryTalk,undefined,"Adventure","Tell her you're out on the rush looking for adventure.");
 		addButton(3,"TheDrinks",theDrinksEmbryTHEDRINKS,undefined,"TheDrinks","Tell her that you're here for a drink.");
@@ -1951,7 +1951,7 @@ function lookingForSexEmbry():void
 function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
 {
 	output("\n\nShe looks up at the roof with a reminiscent look in her eyes. “<i>... You know... there’s a big mine not far from where I used to live, back on Omorii. It’s owned by Steele Industrial Technology and Production, but run and operated by locals. We call it the ‘Big Steele’ mine.</i>”");
-	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.fullname]. Small galaxy, huh?</i>”");
+	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.name] Steele. Small galaxy, huh?</i>”");
 	output("\n\nYou spend some more time chatting, and before you know it, it’s getting late. You walk [embry.name] back to her ship, where she earnestly thanks you for the date, and kisses you goodnight.");
 	output("\n\nYou walk back to the bar with a smile on your face.");
 	processTime(21);
