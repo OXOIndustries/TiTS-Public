@@ -2235,10 +2235,10 @@ function blowjorbsFromEmbry():void
 	else output("stroke the sensitive skin between your member and your anus");
 	output(". You feverishly press against her ministering fingers, and needily move to bury more of your cock down her gullet.");
 
-	output("\n\nInstead of baulking, [embry.name] lets out a muffled moan of pleasure as you grind your [pc.cockNoun] against her face. She pulls you in and redoubles her efforts; desperate to satisfy you and savor your delicious [pc.cumNoun].");
+	output("\n\nInstead of baulking, [embry.name] lets out a muffled moan as you grind your [pc.cockNoun] against her face. She pulls you in and redoubles her efforts; desperate to satisfy and savor your delicious [pc.cumNoun].");
 	output("\n\nPressure builds as thunderous spasms seize your body, and you grab her head firmly in your hands. With a shuddering groan, you unload your [pc.cum] inside of her warm, wet mouth. Spasmic gushes of your liquid love surge up your shaft and blissfully unload in her gullet. You reel with each burst, filling her mouth with your hot cream.");
-	output("\n\nShe gurgles noisily and happily, and her eyes flutter back. A primal moan resounds from her throat, and she pumps your pulsating length for every last drop. Your [pc.cumColor] sperm mixes with her saliva and drools down her chin and cheeks. Her brain is utterly out to lunch - completely overcome by the taste and smell of your musky, [pc.cumFlavor] jism.");
-	output("\n\nWhen you pull back, the sight of [embry.name] is glorious - her cheeks and chin are completely splattered with your sticky [pc.cumNoun], and her eyes are utterly spaced out. Her pink lips are coated in your sperm, and your thick, musky smell is all over her face, making her utterly reek of sex.");
+	output("\n\nShe gurgles noisily and happily, and her eyes flutter back. A primal moan resounds from her throat, and she pumps your pulsating length for every last drop. Your [pc.cumColor] sperm mixes with her saliva and drools down her chin and cheeks. Her brain is utterly out to lunch - completely overcome with need from the taste and smell of your musky, [pc.cumFlavor] jism.");
+	output("\n\nWhen you pull back, the sight of [embry.name] fills you with a strange triumph - her cheeks and chin are utterly splattered with your sticky [pc.cumNoun], and she is completely spaced out, her eyes stare off into a seed induced bliss. Her pink lips are coated in your sperm, and your thick, musky smell is all over her face, making her utterly reek of sex.");
 	output("\n\nHer ");
 	if(embry.biggestTitSize() < 1) output("flat");
 	else if(embry.biggestTitSize() < 3) output("modest");
