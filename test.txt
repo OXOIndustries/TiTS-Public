@@ -12,6 +12,7 @@
 * \[pc.short\]                 - [pc.short]
 * \[pc.name\]                  - [pc.name]
 * \[pc.race\]                  - [pc.race]
+* \[pc.manWoman\]              - [pc.manWoman]
 * \[pc.armor\]                 - [pc.armor]
 * \[pc.lowerUndergarment\]     - [pc.lowerUndergarment]
 * \[pc.upperUndergarment\]     - [pc.upperUndergarment]
