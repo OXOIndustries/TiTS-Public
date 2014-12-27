@@ -401,8 +401,7 @@ function drunkenCowgirlBoy():void
 	showBigT();
 	author("JimThermic");
 	pc.imbibeAlcohol(60);
-	var x:int = -1;
-	if(pc.hasVagina()) pc.cuntThatFits(700);
+	var x:int = pc.cuntThatFits(400);
 
 	output("\"<i>");
 	if(!pc.isTreated()) output("Whoa there, cowboy. How about we knock back a few drinks and see where things go from there?");
@@ -425,7 +424,7 @@ function drunkenCowgirlBoy():void
 	if(x >= 0) output("between your [pc.thighs] and");
 	else output("between your [pc.ass] and");
 	output(" against your ");
-	if(x >= 0) output("pc.vagina " + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(". You shiver with delight as it flares against your ");
 	if(x >= 0) output("silky lips");
@@ -436,16 +435,16 @@ function drunkenCowgirlBoy():void
 	if(x >= 0) output("silky [pc.pussyColor] folds");
 	else output("[pc.skinColor] rump");
 	output(". Tee is moaning out loud and rocking to your sensuous rhythm, his powerful hands upon your waist. Suddenly you feel a gooey surge against your ");
-	if(x >= 0) output("pc.vagina " + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(", and you flush with delight - seems the bull is enjoying himself!");
 
 	output("\n\nGyrating your hips in slow, insistent circles, you smear your ");
-	if(x >= 0) output("pc.vagina " + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(" with his slick bull cream. Once you’re thoroughly lubed up with his warm, lumpy cum, he eases himself inside of you. Inch by inch, you feel Tee’s glorious stallion filling you up, and your [pc.thighs] tremble with delight.");
-	if(x >= 0) pc.cuntChange(x,700);
-	else pc.buttChange(700);
+	if(x >= 0) pc.cuntChange(x,400);
+	else pc.buttChange(400);
 
 	output("\n\nWhen his awesome tip bottoms out inside of your ");
 	if(x >= 0) output("snatch");
@@ -470,7 +469,7 @@ function drunkenCowgirlBoy():void
 	else if(x >= 0) output("trembled and drenched his sheath in your [pc.girlCum]");
 	else output("trembled and came around his glorious length");
 	output(". You’re a helpless traveller on the sea of lust, bouncing wildly in his lap and letting out pleasured cries as he as he feverishly pistons your ");
-	if(x >= 0) output("pc.vagina " + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(" from below. Your insides clench and ripple around his thick manhood, bringing him to his peak.");
 	output("\n\nWithout warning, Tee tightly grabs your waist and slams you down onto him, his flaring tip spewing potent bull seed ");
@@ -483,13 +482,13 @@ function drunkenCowgirlBoy():void
 	output(". The searing heat fills you up and you squeal shrilly in delight, cumming spastically once more around his pulsating prick.");
 
 	output("\n\nHis incredible girth seals up your ");
-	if(x >= 0) output("pc.vagina " + x + "]");
+	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(" leaving nowhere for his wildly spurting spunk to go. Soon you’re bloated with his seed, your stomach swelling to accommodate it until your belly is ");
 	if(!pc.hasPregnancy()) output("full and round. You delightedly sigh and rub the [pc.skinFurScales] of your stomach - it’s like you’re pregnant with Tee’s baby.");
 	else output("even bigger than before. You delightedly sigh and rub the [pc.skinFurScales] of your stomach - it’s like you’re pregnant with several children instead of one!");
 	output("\n\nIn your shared post orgasmic haze, you passionately make out for a while, totally plugged up on his lap. When the new texan governor pulls you off, his lumpy cream gushes out from your dilated ");
-	if(x >= 0) output("pc.vaginaNoun " + x + "]");
+	if(x >= 0) output("[pc.vaginaNoun " + x + "]");
 	else output("[pc.assholeNoun]");
 	output(". The sensation of glorious release pushes you over the brink. You cry out and climax once more, his steamy semen unloading from your well-worn ");
 	if(x >= 0) output("snatch");
