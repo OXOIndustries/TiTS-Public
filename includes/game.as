@@ -355,9 +355,9 @@ function flyMenu():void {
 
 function flyTo(arg:String):void {
 	
-	if (flags["SUPRESS TRAVEL EVENT"] == 1)
+	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
-		flags["SUPRESS TRAVEL EVENT"] = 0;
+		flags["SUPRESS TRAVEL EVENTS"] = 0;
 	}
 	else
 	{
