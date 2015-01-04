@@ -615,20 +615,34 @@ public function processTime(arg:int):void {
 	var tightnessChanged:Boolean = false;
 	if(pc.ballFullness < 100) pc.cumProduced(arg);
 	var productionFactor:Number = 100/(1920) * ((pc.libido() * 3 + 100)/100);
-	
 	//Double time
 	if(pc.hasPerk("Extra Ardor")) productionFactor *= 2;
-	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
 	productionFactor *= 4;
-	
 	//Half time.
 	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
-	
-	//Actually apply lust.
-	pc.lust(arg * productionFactor);
-	
+
+	//Used to establish a cap
+	var lustCap:Number = Math.round(pc.lustMax() * .75);
+	//Not going over lustcap? Proceed as normal.
+	if(pc.lust() + arg*productionFactor < lustCap)
+	{
+		trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
+		//Actually apply lust.
+		pc.lust(arg * productionFactor);
+	}
+	//Already over the lustcap? Slowly reduce current lust.
+	else if(pc.lust() > lustCap)
+	{
+		pc.lust(-1 * arg * productionFactor / 4)
+	}
+	//Gonna hit the cap? Change to cap.
+	else
+	{
+		pc.lustRaw = lustCap;
+	}
+		
 	//Top off shields
 	pc.shieldsRaw = pc.shieldsMax();
 	
