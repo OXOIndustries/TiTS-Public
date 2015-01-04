@@ -125,6 +125,13 @@
 			kGAMECLASS.clearOutput();
 			kGAMECLASS.author("Alkahest");
 			var pc:Creature = kGAMECLASS.pc;
+			if(target < 0)
+			{
+				kGAMECLASS.output("OI, A FUKKIN' ERROR HAPPENED. SOMEHOW THE GAME IS TRYING TO TRANSFORM A DICK THAT DOESN'T EXIST. PLEASE BUG REPORT THIS THROUGH THE BUG REPORTS LINKS ON FENOXO.COM IN THE SIDEBAR.");
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
+				return;
+			}
 			//<You GigantoDong>
 			if(pc.cocks[target].cLength() > 18)
 			{

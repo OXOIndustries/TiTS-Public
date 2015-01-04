@@ -3380,10 +3380,11 @@ function givePennyAHossCawk():void
 		else output("\n\nYou look at Penny’s big heavy balls dangling underneath her shaft and at the rubbery sack dangling from the sheath over top of them. Licking your lips, you reach down and heft Penny’s pendulous orbs, gently massaging and rolling the supple flesh in your hand. Reaching for the opening of the sex-toy’s fake ballsack, you tug at the rubbery skin and are surprised to find it far more elastic than you would have guessed. You tug and pull, then tug some more, and finally, Penny’s nuts plop into the rubbery skin of the sheath to hang heavily from her groin.");
 		output("\n\nAs you reach the bottom, Penny shudders in orgasm; a gout of cum blasts out of the seam around her crotch, painting her amber fur a shimmering glistering white. Penny slumps over in her chair the rubbery sheath lays flush with her groin; the huge, heavy balls sway back and forth with every slight shift she makes. “<i>Oh what was that, mate? I feel so weird down there, you know?</i>”");
 	}
+	
 	processTime(5);
 	pc.lust(7);
 	clearMenu();
-
+	
 	addButton(0,"Next",pennyGrowsAHorseCockPart2);
 }
 
@@ -3458,6 +3459,7 @@ function pennyGrowsAHorseCockPart2():void
 		//unlock codex!
 		CodexManager.unlockEntry("SynthSheath");
 	}
+	pc.destroyItem(new HorseCock());
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
