@@ -183,7 +183,7 @@ function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		output("\n\n<i>BANG</i> goes the bathroom door.");
 		output("\n\nOh, shit, what <i>is</i> that!? You stumble away from the door and grab your [pc.rangedWeapon] and level it at the door. As you’re going for your weapon, though, you notice something huge and firm in your pack that wasn’t there before. You fish it out, and find yourself blinking at... an egg?");
 
-		if(CodexManager.entryUnlocked("Cunt Snake")) output(" A cunt-snake egg, at that!");
+		if(CodexManager.entryUnlocked("Cunt Snakes")) output(" A cunt-snake egg, at that!");
 		if(pc.hasCuntTail()) output(" When the hell did you lay that?");
 		else if(flags["SEXED_SHADE"] != undefined && pc.hasCock()) output("Did Shade lay that? And if so, why do you have it?");
 		else output("What the <i>fuck</i>!?");

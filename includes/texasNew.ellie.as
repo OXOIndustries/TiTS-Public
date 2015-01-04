@@ -127,10 +127,10 @@ function ellieMenu(display:Boolean = true):void
 	if(display) 
 	{
 		//Codex locked:
-		if(!CodexManager.entryUnlocked("Leithan")) 
+		if(!CodexManager.entryUnlocked("Leitha")) 
 		{
-			output("\n\nAs you contemplate what to say, your Codex beeps that it’s identified Ellie’s species - Leithans. <b>New Codex entry unlocked.</b>");
-			CodexManager.unlockEntry("Leithan");
+			output("\n\nAs you contemplate what to say, your Codex beeps that it’s identified Ellie’s species - Leitha. <b>New Codex entry unlocked.</b>");
+			CodexManager.unlockEntry("Leitha");
 		}
 		if(flags["MET_ELLIE"] == undefined) flags["MET_ELLIE"] = 1;
 		//Repeat Greetings
@@ -345,7 +345,7 @@ function talkToEllieAboutPheromones():void
 
 	output("\n\n<i>“I guess I’m a little bit worse than average, though,”</i> Ellie admits, watching your reaction with keen interest, her twin-pupiled eyes wandering across your flushed body. <i>“The Treatment does funny things to non-humans. It makes ausars into big, angry puppies; turns rahn libido up so high they just can’t pry themselves off of any cock they can find, like they’re </i>hungry<i> for it... and me? I guess it decided every day was breeding season, and I’m always putting out these sweet little pheromones... which really just means I get to </i>put out<i> more for the bulls that get a whiff of them!”</i>");
 
-	output("\n\nShe grins, clearly proud of her talent for chemical seduction. <i>“Of course, none of the bulls can get me pregnant no matter how much my body’s begging for it. Leithans don’t breed right with anybody not from our planet: no matter how fertile you are, if you aren’t leithan, you just can’t knock us up. Or get knocked up by us. Good thing there were a whole bunch of us that came to New Texas way back, or we’d be in trouble!”</i>");
+	output("\n\nShe grins, clearly proud of her talent for chemical seduction. <i>“Of course, none of the bulls can get me pregnant no matter how much my body’s begging for it. Leitha don’t breed right with anybody not from our planet: no matter how fertile you are, if you aren’t leithan, you just can’t knock us up. Or get knocked up by us. Good thing there were a whole bunch of us that came to New Texas way back, or we’d be in trouble!”</i>");
 
 	output("\n\n<i>“So, you can’t breed with other races? Not even after getting Treated?”</i>");
 

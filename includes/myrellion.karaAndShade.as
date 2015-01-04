@@ -240,7 +240,7 @@ function helpDisKaraSlut(finishedDrink:Boolean = false):void
 	output("\n\nShe gives you a small but friendly nod as you approach. A single serpentine tail slithers up from behind her, covered in green scales rather than the usual kaithrit fur and ending in a wet-looking opening.");
 	if(pc.hasCuntTail()) output(" Your cunt-tail twitches at the sight of it, as if it can sense a kindred spirit.");
 	//if Codex: Cunt snake unlocked:
-	if(CodexManager.entryUnlocked("Cunt Snake")) output(" You can easily recognize an attached cunt snake when you see it.");
+	if(CodexManager.entryUnlocked("Cunt Snakes")) output(" You can easily recognize an attached cunt snake when you see it.");
 	output("\n\nWhat do you do? ");
 
 	processTime(3);

@@ -30,7 +30,7 @@ function encounterCuntSnakeOnJungleLand():void {
 	
 	// If we put the unlock method call below the regular output, I can make the unlockEntry() method output something when it actually does the Unlock,
 	// if we wanna do that.
-	CodexManager.unlockEntry("Cunt Snake");
+	CodexManager.unlockEntry("Cunt Snakes");
 	
 	clearMenu();
 	addButton(0,"Next",startCombat,"cunt snake");

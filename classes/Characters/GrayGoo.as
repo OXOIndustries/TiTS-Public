@@ -184,7 +184,7 @@
 			combatGrayGoo.sexualPreferences.setRandomPrefs(3 + rand(3));
 			
 			// Codex shit
-			CodexManager.unlockEntry("Gray Goo");
+			CodexManager.unlockEntry("Gray Goos");
 			combatGrayGoo.credits = 50+rand(200);
 			/*if (rand(3) == 0)
 			{
