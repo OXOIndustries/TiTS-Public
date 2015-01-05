@@ -5019,7 +5019,7 @@
 			//if arg == -1, mLs produced by biggest row.
 			if(arg == -1)
 			{
-				capacity = (400 + biggestTitSize() / 2 * 100) * milkStorageMultiplier;
+				capacity = (400 + breastRows[biggestTitRow()].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
 			}
 			//if arg == 99, total mLs produced by all rows
 			else if(arg == 99)
@@ -5027,7 +5027,7 @@
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					capacity += (400 + breastRows[x].breastRating() / 2 * 100);
+					capacity += (400 + breastRows[x].breastRatingRaw / 2 * 100);
 				}
 				capacity *= milkStorageMultiplier;
 			}
