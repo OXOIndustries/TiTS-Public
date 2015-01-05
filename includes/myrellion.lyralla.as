@@ -30,81 +30,165 @@ Doesn’t like auto-translators. Is teaching herself English to better function 
 */
 
 //Room Appearance Blurbs
-//Unmet
-	A four-armed woman sits behind a cheap-looking desk, shuffling papers this way and that with one robotic hand. She keeps stealing glances at {Juro/the nearby kui-tan}.{ She must be Lyralla, the gold myr ambassador he told you about.}
 
-//Met
-	Lyralla is sitting behind her desk looking busy as always. You aren’t sure how she does it, but she manages to flash you a friendly glance with her red, cybernetic eye.
-Approaching Lyralla
-First Time
-	The short walk up to her desk gives you plenty of time to get a feel for the four-armed diplomat. Her most striking feature - or features - are her cybernetics, starting with a glowing red eye and including an ill-fitting, terran-style robotic arm. Her other three limbs are intact, three slim arms wrapped in polished chitin, delicately shifting a sea of paperwork into organized, book-sized atolls.
-	For clothes, she sports a gleaming white robe that’s fastened by a gold-embossed belt. The top hangs open casually, almost indecently, exposing far more amber titflesh than it has any right to.
-	The ambassador{, Lyralla,} notices your stare at that exact moment. She smiles warmly despite your roving eyes and extends a hand, diplomatically drawing your eyes away from her immodest canyon of cleavage. “Hello, and on behalf of the Council of Queens, allow me to extend you a warm welcome to our troubled planet, offworlder. My name is Lyralla.”
-	You pause before realizing that she’s speaking near-fluent English - you aren’t just hearing an auto-translated version of her native tongue relayed by the microsurgeons in your blood. “You speak English?” The disbelieving statement is out before you have time to think about.
-	Lyralla nods serenely while tugging her robe into a more modest position. The garment doesn’t look like it was made for an individual with so much up top, though you can’t imagine an ambassador being given anything less than the finest clothing a species has to offer.
-	“Of course. What kind of ambassador would I be if I did not learn the most common galactic tongues?” She makes a clicking noise against the roof of her mouth. “A cursory examination of public records reveals mistranslations as a serious contributor in over two dozen recent conflicts among your peoples.” Her artificial eye audibly whirrs as it focuses on you, its organic mate black and silent. “If I am to be the connecting tunnel between my people and the galaxy as a whole, then I am going to do everything I can to ensure that the supports are built on strong foundations, not shifting sands.”
-	You cock your head. “A tunnel?”
-Grinning now, she offers, “I believe a bridge may be a more apt metaphor. Our people dwell below ground and have less experience with such structures. I still have much to learn - your name, for instance.”
-You {introduce yourself and shake her hand, a gesture she seems to already have adapted to./introduce yourself as Captain [pc.name] Steele and strike a ludicrously exagerrated pose./tersely inform her of your name.}
-She places her lower arms’ elbows on the desk and interlaces her fingers, resting her chin upon them as she smiles up at you. “An interesting name for an interesting [pc.man]. Tell me, what can a I do for you?”
-//Menu
-Repeat
-	Lyralla gives you a friendly wave with her robotic arm as you approach, trusting her remaining organic ones to set aside the paperwork and tablets she had been examining. “{I was reviewing ancient histories. It’s amazing how many times you went to war without provoking extinction level events!/I was just reviewing a proposed trade agreement. Word is getting out about our honey. Some place called New Texas seems to want to exchange surplus grain for it. They’ll even provide us with the milkers!/Comma splices! Comma splices everywhere! How can Ambassador Juro butcher your language so casually? Language is an art unto itself! Surely he can see that.” She snorts and tosses one last tablet away. “Sometimes I have to wonder how he got his position./I was just looking over a proposal from KihaCorp. They’d like to use our likeness for a V.I. I think the Council will have to pass a ruling on this one./Did you know that pointing the innermost finger at some varieties of ausar is considered insulting in the same way that terrans regard upraised middle digits? There’s so much to learn!/I just got word that a small trading fleet will be stopping by. I wonder if all the food in the U.G.C. is as bland as that stuff Juro eats./There’s so much out there... more than I ever imagined. Maybe someday, once the reds are taken care of, I’ll get a chance to see your universe./I’ve just come across a wonderful word: canoodling. It means hugging and kissing, but together, all in one small set of syllables. It is... elegant and touching. My people do not have such a term.}” She smiles warmly at you. “Is there something I can help you with, [pc.name]?”
+function lyrallasBonus():Boolean
+{
+	//Unmet
+	if(flags["MET_LYRALLA"] == undefined)
+	{
+		output("\n\nA four-armed woman sits behind a cheap-looking desk, shuffling papers this way and that with one robotic hand. She keeps stealing glances at ");
+		if(flags["MET_JURO"] != undefined) output("Juro");
+		else output("the nearby kui-tan");
+		output(".");
+		if(flags["TALKED_WITH_JIRO_ABOUT_AMBASSADOR"] != undefined && flags["MET_LYRALLA"] == undefined) output(" She must be Lyralla, the gold myr ambassador he told you about.");
+	}
+	//Met
+	else output("\n\nLyralla is sitting behind her desk looking busy as always. You aren’t sure how she does it, but she manages to flash you a friendly glance with her red, cybernetic eye.");
 
-Back From A Previous Menu
-	Lyralla shrugs, her metallic shoulder clicking audibly. “Is there something else you need then? It is nice to practice my linguistics on someone aside from Juro.”
+	return false;
+}
 
-Appearance
-	Lyralla is a gold myr first and foremost, and that means she has the same antennae poking up out of her black, bob-cut hair as the rest of her species. One is shorter than the other, its tip seared off by fire and healed imperfectly. Just below it is her injured eye. U.G.C. medics have fitted her with a prosthetic, but it’s a clunky, general purpose model. The iris glows red and whirrs noisily when focusing, lending its user a disconcertingly menacing air. It looks disturbingly out of place on the ambassador’s otherwise cheery face. The other eye is a solid black sphere, an unmistakable reminder that you’re looking at an alien.
-	Her body is covered in a white, gold-trimmed robe that hangs loosely everywhere but around her bust. Lyralla’s breasts are a few sizes too big for such a garment, tugging the neckline down until “plunging” seems a conservative estimate of its state. Four voluminous sleeves hang around her slender limbs. The cuffs only reach about halfway down her forearms, revealing plenty of gleaming chitin and shiny chrome.
-	One of her arms, the upper left, is clearly artificial. It has none of the feminine grace of its three sisters, all hard metal and synthetic tendons. You recognize it as a Reaper Armaments model, the kind of prosthetic favored by the military, used to get dismembered soldiers back into fighting shape. Word has it that some marines have undergone voluntarily limb replacement surgeries in order to benefit from the enhanced strength and recoil compensation afforded by these robotic arms. Lyralla can be seen frowning at hers from time to time, but she uses it as naturally as her other three hands.
-	Her desk blocks any sight of the rest of her most of the time, but there’s no hiding the big bump of her ant-like abdomen, hanging out the back of a specially cut hole in her silky robe to dangle over the back of her stool. Similarly, whenever she shifts position, you can hear {the metallic clinking of her two prosthetic legs/metallic clinking, indicating she has at least one prosthetic below the waist}.
+//Approaching Lyralla
+function approachingLyralla(backFromMenu:Boolean = false):void
+{
+	clearOutput();
+	//First Time
+	if(flags["MET_LYRALLA"] == undefined)
+	{
+		output("The short walk up to her desk gives you plenty of time to get a feel for the four-armed diplomat. Her most striking feature - or features - are her cybernetics, starting with a glowing red eye and including an ill-fitting, terran-style robotic arm. Her other three limbs are intact, three slim arms wrapped in polished chitin, delicately shifting a sea of paperwork into organized, book-sized atolls.");
+		output("\n\nFor clothes, she sports a gleaming white robe that’s fastened by a gold-embossed belt. The top hangs open casually, almost indecently, exposing far more amber titflesh than it has any right to.");
+		output("\n\nThe ambassador");
+		if(flags["TALKED_WITH_JIRO_ABOUT_AMBASSADOR"] != undefined) output(", Lyralla,");
+		output(" notices your stare at that exact moment. She smiles warmly despite your roving eyes and extends a hand, diplomatically drawing your eyes away from her immodest canyon of cleavage. “<i>Hello, and on behalf of the Council of Queens, allow me to extend you a warm welcome to our troubled planet, offworlder. My name is Lyralla.</i>”");
+		output("\n\nYou pause before realizing that she’s speaking near-fluent English - you aren’t just hearing an auto-translated version of her native tongue relayed by the microsurgeons in your blood. “<i>You speak English</i>?” The disbelieving statement is out before you have time to think about.");
+		output("\n\nLyralla nods serenely while tugging her robe into a more modest position. The garment doesn’t look like it was made for an individual with so much up top, though you can’t imagine an ambassador being given anything less than the finest clothing a species has to offer.");
+		output("\n\n“<i>Of course. What kind of ambassador would I be if I did not learn the most common galactic tongues?</i>” She makes a clicking noise against the roof of her mouth. “<i>A cursory examination of public records reveals mistranslations as a serious contributor in over two dozen recent conflicts among your peoples.</i>” Her artificial eye audibly whirrs as it focuses on you, its organic mate black and silent. “<i>If I am to be the connecting tunnel between my people and the galaxy as a whole, then I am going to do everything I can to ensure that the supports are built on strong foundations, not shifting sands.</i>”");
+		output("\n\nYou cock your head. “<i>A tunnel?</i>”");
+		output("\n\nGrinning now, she offers, “<i>I believe a bridge may be a more apt metaphor. Our people dwell below ground and have less experience with such structures. I still have much to learn - your name, for instance.</i>”");
+		output("\n\nYou ");
+		if(pc.isNice()) output("introduce yourself and shake her hand, a gesture she seems to already have adapted to.");
+		else if(pc.Mischievous()) output("introduce yourself as Captain [pc.name] Steele and strike a ludicrously exagerrated pose.");
+		else output("tersely inform her of your name.");
+		output("\n\nShe places her lower arms’ elbows on the desk and interlaces her fingers, resting her chin upon them as she smiles up at you. “<i>An interesting name for an interesting [pc.man]. Tell me, what can a I do for you?</i>”");
+	}
+	//Back From A Previous Menu
+	else if(backFromMenu)
+	{
+		output("Lyralla shrugs, her metallic shoulder clicking audibly. “<i>Is there something else you need then? It is nice to practice my linguistics on someone aside from Juro.</i>”");
+	}
+	//Repeat
+	else
+	{
+		output("Lyralla gives you a friendly wave with her robotic arm as you approach, trusting her remaining organic ones to set aside the paperwork and tablets she had been examining. “<i>");
+		if(rand(8) == 0) output("I was reviewing ancient histories. It’s amazing how many times you went to war without provoking extinction level events!");
+		else if(rand(7) == 0) output("I was just reviewing a proposed trade agreement. Word is getting out about our honey. Some place called New Texas seems to want to exchange surplus grain for it. They’ll even provide us with the milkers!");
+		else if(rand(6) == 0) output("Comma splices! Comma splices everywhere! How can Ambassador Juro butcher your language so casually? Language is an art unto itself! Surely he can see that.</i>” She snorts and tosses one last tablet away. “<i>Sometimes I have to wonder how he got his position.");
+		else if(rand(5) == 0) output("I was just looking over a proposal from KihaCorp. They’d like to use our likeness for a VI. I think the Council will have to pass a ruling on this one.");
+		else if(rand(4) == 0) output("Did you know that pointing the innermost finger at some varieties of ausar is considered insulting in the same way that terrans regard upraised middle digits? There’s so much to learn!");
+		else if(rand(3) == 0) output("I just got word that a small trading fleet will be stopping by. I wonder if all the food in the U.G.C. is as bland as that stuff Juro eats.");
+		else if(rand(2) == 0) output("There’s so much out there... more than I ever imagined. Maybe someday, once the reds are taken care of, I’ll get a chance to see your universe.");
+		else output("I’ve just come across a wonderful word: canoodling. It means hugging and kissing, but together, all in one small set of syllables. It is... elegant and touching. My people do not have such a term.");
+		output("</i>” She smiles warmly at you. “<i>Is there something I can help you with, [pc.name]?</i>”");
+	}
+	//9999 menu
+}
 
-Talk
+//Appearance
+function lyrallaAppearance():void
+{
+	clearOutput();
+	showLyralla();
+	output("Lyralla is a gold myr first and foremost, and that means she has the same antennae poking up out of her black, bob-cut hair as the rest of her species. One is shorter than the other, its tip seared off by fire and healed imperfectly. Just below it is her injured eye. U.G.C. medics have fitted her with a prosthetic, but it’s a clunky, general purpose model. The iris glows red and whirrs noisily when focusing, lending its user a disconcertingly menacing air. It looks disturbingly out of place on the ambassador’s otherwise cheery face. The other eye is a solid black sphere, an unmistakable reminder that you’re looking at an alien.");
+	output("\n\nHer body is covered in a white, gold-trimmed robe that hangs loosely everywhere but around her bust. Lyralla’s breasts are a few sizes too big for such a garment, tugging the neckline down until “plunging” seems a conservative estimate of its state. Four voluminous sleeves hang around her slender limbs. The cuffs only reach about halfway down her forearms, revealing plenty of gleaming chitin and shiny chrome.");
+	output("\n\nOne of her arms, the upper left, is clearly artificial. It has none of the feminine grace of its three sisters, all hard metal and synthetic tendons. You recognize it as a Reaper Armaments model, the kind of prosthetic favored by the military, used to get dismembered soldiers back into fighting shape. Word has it that some marines have undergone voluntarily limb replacement surgeries in order to benefit from the enhanced strength and recoil compensation afforded by these robotic arms. Lyralla can be seen frowning at hers from time to time, but she uses it as naturally as her other three hands.");
+	output("\n\nHer desk blocks any sight of the rest of her most of the time, but there’s no hiding the big bump of her ant-like abdomen, hanging out the back of a specially cut hole in her silky robe to dangle over the back of her stool. Similarly, whenever she shifts position, you can hear the metallic clinking of her two prosthetic legs.");
+	clearMenu();
+	addButton(0,"Next",approachingLyralla,true);
+}
+
+//Talk
+function lyrallaTalkMenu():void
+{
+	clearOutput();
+	showLyralla();
 	//Bimbo
-	“I wanna like, learn some stuff about... stuff!” you announce.
+	if(pc.isBimbo()) output("“<i>I wanna like, learn some stuff about... stuff!</i>” you announce.");
 	//Bro
-	“I uh... have some questions,” you explain.
+	else if(pc.isBro()) output("“<i>I uh... have some questions,</i>” you explain.");
 	//Nice
-	“Well, I have a few questions,” you say with a friendly grin.
+	else if(pc.isNice()) output("“<i>Well, I have a few questions,</i>” you say with a friendly grin.");
 	//Mischievous
-	“I have a few things I’d like to figure out,” you smirk, “... besides your contact information.”
+	else if(pc.isMischievous()) output("“<i>I have a few things I’d like to figure out,</i>” you smirk, “<i>... besides your contact information.</i>”");
 	//Hard
-	“I have a few things I need to discuss with you,” you explain.
-	Lyralla{‘s antennae wiggle nervously. “I’m afraid you’d need to be a dignitary of some rank to have access to my diplomatic connections.” She smiles, her artificial eye twitching. Was that an attempt at a wink? “But I’d love to answer some of your more mundane questions.”/ nods eagerly. “Certainly. Sharing knowledge is my passion. It was even before I became an ambassador.”} 
+	else output("“<i>I have a few things I need to discuss with you,</i>” you explain.");
+	output("\n\nLyralla");
+	if(!pc.isBro() && !pc.isMischievous() && !pc.isNice() && pc.isMischievous()) output("‘s antennae wiggle nervously. “<i>I’m afraid you’d need to be a dignitary of some rank to have access to my diplomatic connections.</i>” She smiles, her artificial eye twitching. Was that an attempt at a wink? “<i>But I’d love to answer some of your more mundane questions.</i>”");
+	else output(" nods eagerly. “<i>Certainly. Sharing knowledge is my passion. It was even before I became an ambassador.</i>”");
 	//Topic list
-What Happened
-//Tooltip: “Ask her what happened to her and how she wound up here.”
-	You ask her how she wound up here, like this.
-	Lyralla pauses, considering for a moment. “That’s... not a question I expected, to be honest. Surely you’d want to know about how my people live, what we eat, or even how we reproduce, no?” She looks a little uncomfortable, fidgeting in her chair, a motion that only serves to make the top of her robe drift that much more open.
-	//Treated/Bimbo/Bro
-	You brazenly check out her tits until you realize that the blushing myrmedion is awaiting a response. “Uh... no?” you guess.
-	//else
-	You {struggle to not stare at her cleavage but ultimately fail. There’s just too much delicious boob on display. Still, you manage to keep enough of your oversexed wits about you to answer, “No.”/struggle to not stare at her deliciously full cleavage, barely dragging your eyes back up to her face in time to answer, “No.”/easily avoid an interplanetary incident by keeping your eyes above her neck and answering, “No.”}
-	//Merge
-	Lyralla places her lower palms together, bringing them up in front of her mouth while she tries not to blush. “Okay... if you say so. I just uh... had to be sure.” Her upper limbs reach around to tug her robe into a more chaste position.{ It’s far easier to remember that there’s a conversation now.} She shifts on her chair, her abdomen bouncing excitedly behind her. “Well, it’s kind of a crazy story. One day, I’m working at the knowledge house-” She pauses. “Perhaps library would be a more familiar term, though there are several distinct differences.”
-	You nod. So she was something of their version of a librarian.
-	“Anyway, I got word that I had been pulled for the draft. I was going to have to trade my time in the lore halls in for time in the trenches. The reds were making a big push for Kressia, and as you can imagine, we were starting to run low on able-bodied fighters.” Her metallic hand fiddles with an errant strand of obsidian hair. “They couldn’t even use me in the records department. No one ever gets shot in records.”
-	“It must have been horrible,” you {flatly }reply.
-	“There are so many words to describe hardship, and yet none of them seem correct.” Lyralla looks down at her desk. “We sat in our trenches with our guns and our axes, dreading the day that the reds would come upon us and butcher us by the hundred.” She wipes a tear from her good eye. “Every day, they’d fire hellscream missiles into our trenches. Every day we’d have to hear that awful banshee wail and dread that it would land on us.”
-	She shudders. “It turned out I would never have to fight a red. One of those missiles hit my position just before your people arrived in orbit. I only lived because Mella, one of the girls in my unit, saw it coming and tackled some of us to the ground.” Lyralla turns her head away. “She didn’t make it, but I did. Somehow I did.”
-	You look down, unsure of what to say.
-	The gold-hued cyborg goes on. “Your fleet offered medical assistance to the wounded once the cease-fire was established. I volunteered, feeling I had nothing more to live for. I might as well spare my sisters having to gamble on the generosity of aliens. I had no idea about all this.” She glances over towards Juro, a fond look on her face, but her arms are gesturing to the varied races as a whole.
-“The technology you have... it’s incredible - almost magical. And yet you barely seem aware of the daily treasures you interact with. I had resigned myself to living the rest of my life half-blind in a chair, forgotten in some dark corner, and your people gave me my life back.” She pulls the sleeve on her metal limb back, exposing the ugly prosthetic. “It may make a lot of noise and scare away any male myr, but it lets me feel something close to whole. I had given up on that.” She looks at Juro once more, red eye focusing noisily. “Now I have a galaxy’s worth of information at my fingertips and marvellous company too... so long as that red stays in her hole.”
-[The Red?]
-[Cybernetics?]
-[Juro?]
-Juro
-//Tooltip: Ask Lyralla about Juro, the U.G.C. diplomat. She appears quite fond of him.
-	“So that Juro guy... you like him?”
-	Lyralla sits bolt upright, crossing a pair of arms above and below her bosom to steady its errant jiggling. “No, of course not! Not like you mean, anyway! Our relationship is friendly, professional, and appropriate to our stations - nothing more!” Her skin turns coppery from a deep blush, and her antennae dance along with it, nervously waggling.
-	Leaning back disbelievingly, you cock your head to the side.
-	The golden diplomat glowers at you. “Look, it would be completely improper for us to have anything other than a deep and mutual respect. It doesn’t matter how handsome he is or what his race can do with their balls.” Clapping her hands over her mouth, Lyralla swivels frantically in her chair, looking for a way out. She turns back to you after a moment, her head drooping low, defeated. Even her antennae seem flat and lifeless. “He’s a good man, [pc.name]. It can’t be more than that. Not until this mess is all over. If it’s ever over.”
-	//Talk menu
+	//9999
+}
 
-Cybernetics
+//What Happened
+//Tooltip: “Ask her what happened to her and how she wound up here.”
+function whatHappenedToGetYouHereLyralla():void
+{
+	clearOutput();
+	showLyralla();
+	output("You ask her how she wound up here, like this.");
+	output("\n\nLyralla pauses, considering for a moment. “<i>That’s... not a question I expected, to be honest. Surely you’d want to know about how my people live, what we eat, or even how we reproduce, no?</i>” She looks a little uncomfortable, fidgeting in her chair, a motion that only serves to make the top of her robe drift that much more open.");
+	//Treated/Bimbo/Bro
+	if(pc.isTreated() || pc.isBimbo() || pc.isBro()) output("\n\nYou brazenly check out her tits until you realize that the blushing myrmedion is awaiting a response. “<i>Uh... no?</i>” you guess.");
+	//else
+	else
+	{
+		output("\n\nYou ");
+		if(pc.libido() >= 50 || pc.lust() >= 60) output("struggle to not stare at her cleavage but ultimately fail. There’s just too much delicious boob on display. Still, you manage to keep enough of your oversexed wits about you to answer, “<i>No.</i>”");
+		else if(pc.libido() >= 35 || pc.lust() >= 40) output("struggle to not stare at her deliciously full cleavage, barely dragging your eyes back up to her face in time to answer, “<i>No.</i>”");
+		else output("easily avoid an interplanetary incident by keeping your eyes above her neck and answering, “<i>No.</i>”");
+	}
+	//Merge
+	output("\n\nLyralla places her lower palms together, bringing them up in front of her mouth while she tries not to blush. “<i>Okay... if you say so. I just uh... had to be sure.</i>” Her upper limbs reach around to tug her robe into a more chaste position.");
+	if(pc.isBimbo() || pc.isBro() || pc.isTreated()) output(" It’s far easier to remember that there’s a conversation now.");
+	output("\n\nShe shifts on her chair, her abdomen bouncing excitedly behind her. “<i>Well, it’s kind of a crazy story. One day, I’m working at the knowledge house-</i>” She pauses. “<i>Perhaps library would be a more familiar term, though there are several distinct differences.</i>”");
+	output("\n\nYou nod. So she was something of their version of a librarian.");
+	output("\n\n“<i>Anyway, I got word that I had been pulled for the draft. I was going to have to trade my time in the lore halls in for time in the trenches. The reds were making a big push for Kressia, and as you can imagine, we were starting to run low on able-bodied fighters.</i>” Her metallic hand fiddles with an errant strand of obsidian hair. “<i>They couldn’t even use me in the records department. No one ever gets shot in records.</i>”");
+	output("\n\n“<i>It must have been horrible,</i>");
+	output("” you ");
+	if(pc.isAss()) output("flatly ");
+	output("reply.");
+	output("\n\n“<i>There are so many words to describe hardship, and yet none of them seem correct.</i>” Lyralla looks down at her desk. “<i>We sat in our trenches with our guns and our axes, dreading the day that the reds would come upon us and butcher us by the hundred.</i>” She wipes a tear from her good eye. “<i>Every day, they’d fire hellscream missiles into our trenches. Every day we’d have to hear that awful banshee wail and dread that it would land on us.</i>”");
+	output("\n\nShe shudders. “<i>It turned out I would never have to fight a red. One of those missiles hit my position just before your people arrived in orbit. I only lived because Mella, one of the girls in my unit, saw it coming and tackled some of us to the ground.</i>” Lyralla turns her head away. “<i>She didn’t make it, but I did. Somehow I did.</i>”");
+	output("\n\nYou look down, unsure of what to say.");
+	output("\n\nThe gold-hued cyborg goes on. “<i>Your fleet offered medical assistance to the wounded once the cease-fire was established. I volunteered, feeling I had nothing more to live for. I might as well spare my sisters having to gamble on the generosity of aliens. I had no idea about all this.</i>” She glances over towards Juro, a fond look on her face, but her arms are gesturing to the varied races as a whole.");
+	output("\n\n“<i>The technology you have... it’s incredible - almost magical. And yet you barely seem aware of the daily treasures you interact with. I had resigned myself to living the rest of my life half-blind in a chair, forgotten in some dark corner, and your people gave me my life back.</i>” She pulls the sleeve on her metal limb back, exposing the ugly prosthetic. “<i>It may make a lot of noise and scare away any male myr, but it lets me feel something close to whole. I had given up on that.</i>” She looks at Juro once more, red eye focusing noisily. “<i>Now I have a galaxy’s worth of information at my fingertips and marvellous company too... so long as that red stays in her hole.</i>”");
+	//[The Red?]
+	//[Cybernetics?]
+	//[Juro?]
+	//9999
+}
+
+//Juro
+//Tooltip: Ask Lyralla about Juro, the U.G.C. diplomat. She appears quite fond of him.
+function askLyrallaAboutJuro():void
+{
+	clearOutput();
+	showLyralla();
+	output("“<i>So that Juro guy... you like him?</i>”");
+	output("\n\nLyralla sits bolt upright, crossing a pair of arms above and below her bosom to steady its errant jiggling. “<i>No, of course not! Not like you mean, anyway! Our relationship is friendly, professional, and appropriate to our stations - nothing more!</i>” Her skin turns coppery from a deep blush, and her antennae dance along with it, nervously waggling.");
+	output("\n\nLeaning back disbelievingly, you cock your head to the side.");
+	output("\n\nThe golden diplomat glowers at you. “<i>Look, it would be completely improper for us to have anything other than a deep and mutual respect. It doesn’t matter how handsome he is or what his race can do with their balls.</i>” Clapping her hands over her mouth, Lyralla swivels frantically in her chair, looking for a way out. She turns back to you after a moment, her head drooping low, defeated. Even her antennae seem flat and lifeless. “<i>He’s a good man, [pc.name]. It can’t be more than that. Not until this mess is all over. If it’s ever over.</i>”");
+	//Talk menu
+	//9999
+}
+
+//Cybernetics
 //Tooltip “Ask Lyralla more about her parts. What’s it like having a metal arm and robotic eye?”
-	You steer the topic toward the cybernetic parts she has now.
+function cyberneticsDiscussionsWivLyralla():void
+{
+	clearOutput();
+	showLyralla();
+	output("You steer the topic toward the cybernetic parts she has now.");
+	
 	“What’s it like?” She holds the glittering metal up before her glowing eye. “It’s constant pain and your body never behaving like you think it should... and it’s wonderful too.” Lyralla blinks at you. “It’s a long way from perfect. The doctors haven’t gotten our nervous system perfectly mapped yet. Sometimes I wind up breaking things I mean to pick up. Other times just waking up in the morning gives me a migraine headache.” She rubs the back of her neck nervously. “All the headaches in the world are worth it, though.”
 	The ant-girl points at the sign on the far wall. “See that sign? I can read it. It says ‘No unauthorized entry.’” Lyralla beams. “This eye - ugly as it is - it lets me see better than the real one ever could. My people have poor vision. Few of my sisters would be capable of such a feat.”
 	“What about your arm? Or legs?”
