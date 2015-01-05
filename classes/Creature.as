@@ -635,10 +635,18 @@
 		public var tailType: Number = 0;
 		public function tailTypeUnlocked(newTailType:Number):Boolean
 		{
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE) return false;
 			return true;
 		}
 		public function tailTypeLockedMessage():String
 		{
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE)
+			{
+				var msg:String = "\n\nThe creature masquerading as a tail seems pretty spooked about something all of a sudden;";
+				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
+				else msg += " it's busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
+				return msg;
+			}
 			return "";
 		}
 		
