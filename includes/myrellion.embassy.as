@@ -1,6 +1,8 @@
 ﻿//The Embassy
 function theEmbassyBonusFunc():Boolean
 {
+	//JURO
+	//=======================
 	//First Time
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
 	{
@@ -12,6 +14,58 @@ function theEmbassyBonusFunc():Boolean
 		return true;
 	}
 	else addButton(0,"Juro",talkToAmbassadorJuro,undefined,"Juro","Speak with Juro, the kui-tan diplomat who greeted you when you first arrived.");
+	//=========================
+	//LYRALLA
+	//=========================
+	//Unmet
+	if(flags["MET_LYRALLA"] == undefined)
+	{
+		output("\n\nA four-armed woman sits behind a cheap-looking desk, shuffling papers this way and that with one robotic hand. She keeps stealing glances at ");
+		if(flags["MET_JURO"] != undefined) output("Juro");
+		else output("the nearby kui-tan");
+		output(".");
+		if(flags["TALKED_WITH_JIRO_ABOUT_AMBASSADOR"] != undefined && flags["MET_LYRALLA"] == undefined) output(" She must be Lyralla, the gold myr ambassador he told you about.");
+		addButton(1,"Gold Myr",approachingLyralla,undefined,"Gold Myr","Approach the gold myr diplomat.");
+	}
+	//Met
+	else 
+	{
+		//Catch Her In The Act
+		//Can proc any time after talk scenes make it clear she luuuuuvs Juro.
+		if(lyrallaAndJuroInCloset())
+		{
+			//Room note: 
+			if(flags["JURO_LYRALLA_CLOSET_SEEN"] == undefined) output("\n\nLyralla’s desk is empty, and Juro is nowhere to be found. Where could they be? You can faintly hear the occasional giggle emanating from a nearby storage closet.");
+			//Repeat:
+			else output("\n\nLyralla's desk is empty again, and Juro isn't in sight. They must have escaped to another sensuous closet rendezvous.");
+			//[Closet]
+			addButton(1,"Closet",catchLyrallaInZeAct,undefined,"Closet","Lyralla and Juro must be in there....");
+			removeButton(0);
+		}
+		else 
+		{
+			output("\n\nLyralla is sitting behind her desk looking busy as always. You aren’t sure how she does it, but she manages to flash you a friendly glance with her red, cybernetic eye.");
+			addButton(1,"Lyralla",approachingLyralla,undefined,"Lyralla","Approach the diplomat from Gildenmere.");
+		}
+	}
+	return false;
+}
+function lyrallaAndJuroInCloset():Boolean
+{
+	//Event enabled!
+	if(flags["LYRALLA_AND_JURO_RELATIONSHIP_HINTED_AT"] != undefined)
+	{
+		//Is cooldown up? If so, no go.
+		if(pc.hasStatusEffect("JuroXLyrallaCooldown")) return false;
+		//Are they still in the closet from a previous proc? If so, yes.
+		if(pc.hasStatusEffect("JuroXLyrallaActive")) return true;
+		//Not currently in the closet and no reason not to be. 1/3 chance of starting it.
+		if(rand(3) == 0)
+		{
+			pc.createStatusEffect("JuroXLyrallaActive", 0,0,0,0, true, "", "", false, 60);
+			return true;
+		}
+	}
 	return false;
 }
 
