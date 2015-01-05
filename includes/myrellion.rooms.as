@@ -25,7 +25,6 @@ import classes.RoomClass;
 
 function initializeMyrellionRooms():void 
 {
-
 	// WRT Map generation: "In" is +1 in the z axis, and out is -1
 	// N, S, E, W are the expected cardinal directions
 
@@ -36,6 +35,7 @@ function initializeMyrellionRooms():void
 	rooms["600"].planet = "PLANET: MYRELLION";
 	rooms["600"].system = "SYSTEM: SINDATHU";
 	rooms["600"].northExit = "601";
+	rooms["600"].moveMinutes = 2;
 	rooms["600"].runOnEnter = myrellionHangarBonus;
 	rooms["600"].addFlag(GLOBAL.OUTDOOR);
 	rooms["600"].addFlag(GLOBAL.SHIPHANGAR);
@@ -49,6 +49,7 @@ function initializeMyrellionRooms():void
 	rooms["601"].southExit = "600";
 	rooms["601"].northExit = "602";
 	rooms["601"].westExit = "603";
+	rooms["601"].moveMinutes = 2;
 	rooms["601"].runOnEnter = undefined;
 	rooms["601"].addFlag(GLOBAL.OUTDOOR);
 
@@ -59,6 +60,7 @@ function initializeMyrellionRooms():void
 	rooms["602"].planet = "PLANET: MYRELLION";
 	rooms["602"].system = "SYSTEM: SINDATHU";
 	rooms["602"].southExit = "601";
+	rooms["602"].moveMinutes = 2;
 	rooms["602"].runOnEnter = airFieldNorthBonus;
 	rooms["602"].addFlag(GLOBAL.OUTDOOR);
 
@@ -71,6 +73,7 @@ function initializeMyrellionRooms():void
 	rooms["603"].eastExit = "601";
 	rooms["603"].northExit = "613";
 	rooms["603"].westExit = "604";
+	rooms["603"].moveMinutes = 2;
 	rooms["603"].runOnEnter = theEmbassyBonusFunc;
 	rooms["603"].addFlag(GLOBAL.INDOOR);
 	rooms["603"].addFlag(GLOBAL.NPC);
@@ -85,6 +88,7 @@ function initializeMyrellionRooms():void
 	rooms["604"].southExit = "605";
 	rooms["604"].northExit = "612";
 	rooms["604"].westExit = "611";
+	rooms["604"].moveMinutes = 2;
 	rooms["604"].runOnEnter = undefined;
 	rooms["604"].addFlag(GLOBAL.OUTDOOR);
 
@@ -96,6 +100,7 @@ function initializeMyrellionRooms():void
 	rooms["605"].system = "SYSTEM: SINDATHU";
 	rooms["605"].northExit = "604";
 	rooms["605"].southExit = "606";
+	rooms["605"].moveMinutes = 2;
 	rooms["605"].runOnEnter = undefined;
 	rooms["605"].addFlag(GLOBAL.OUTDOOR);
 
@@ -108,6 +113,7 @@ function initializeMyrellionRooms():void
 	rooms["606"].northExit = "605";
 	rooms["606"].southExit = "607";
 	rooms["606"].eastExit = "609";
+	rooms["606"].moveMinutes = 2;
 	rooms["606"].runOnEnter = streetOutsideBarBonus;
 	rooms["606"].addFlag(GLOBAL.OUTDOOR);
  
@@ -120,6 +126,7 @@ function initializeMyrellionRooms():void
 	rooms["607"].northExit = "606";
 	rooms["607"].southExit = "608";
 	rooms["607"].eastExit = "610";
+	rooms["607"].moveMinutes = 2;
 	rooms["607"].runOnEnter = spacersRowBonusFunc;
 	rooms["607"].addFlag(GLOBAL.OUTDOOR);
 
@@ -130,6 +137,7 @@ function initializeMyrellionRooms():void
 	rooms["608"].planet = "PLANET: MYRELLION";
 	rooms["608"].system = "SYSTEM: SINDATHU";
 	rooms["608"].northExit = "607";
+	rooms["608"].moveMinutes = 2;
 	rooms["608"].runOnEnter = backAlleyBonus;
 	rooms["608"].addFlag(GLOBAL.OUTDOOR);
 
@@ -140,6 +148,7 @@ function initializeMyrellionRooms():void
 	rooms["609"].planet = "PLANET: MYRELLION";
 	rooms["609"].system = "SYSTEM: SINDATHU";
 	rooms["609"].westExit = "606";
+	rooms["609"].moveMinutes = 1;
 	rooms["609"].runOnEnter = goldenPeakBonusFunction;
 	rooms["609"].addFlag(GLOBAL.INDOOR);
 	rooms["609"].addFlag(GLOBAL.BAR);
@@ -151,6 +160,7 @@ function initializeMyrellionRooms():void
 	rooms["610"].planet = "PLANET: MYRELLION";
 	rooms["610"].system = "SYSTEM: SINDATHU";
 	rooms["610"].westExit = "607";
+	rooms["610"].moveMinutes = 1;
 	rooms["610"].runOnEnter = undefined;
 	rooms["610"].addFlag(GLOBAL.INDOOR);
  
@@ -161,6 +171,7 @@ function initializeMyrellionRooms():void
 	rooms["611"].planet = "PLANET: MYRELLION";
 	rooms["611"].system = "SYSTEM: SINDATHU";
 	rooms["611"].eastExit = "604";
+	rooms["611"].moveMinutes = 1;
 	rooms["611"].runOnEnter = undefined;
 	rooms["611"].addFlag(GLOBAL.INDOOR);
  
@@ -171,6 +182,7 @@ function initializeMyrellionRooms():void
 	rooms["612"].planet = "PLANET: MYRELLION";
 	rooms["612"].system = "SYSTEM: SINDATHU";
 	rooms["612"].southExit = "604";
+	rooms["612"].moveMinutes = 2;
 	rooms["612"].runOnEnter = undefined;
 	rooms["612"].addFlag(GLOBAL.OUTDOOR);
 
@@ -181,6 +193,7 @@ function initializeMyrellionRooms():void
 	rooms["613"].planet = "PLANET: MYRELLION";
 	rooms["613"].system = "SYSTEM: SINDATHU";
 	rooms["613"].southExit = "603";
+	rooms["613"].moveMinutes = 1;
 	rooms["613"].runOnEnter = nehzaraBonus;
 	rooms["613"].addFlag(GLOBAL.INDOOR);
 	rooms["613"].addFlag(GLOBAL.NPC);

@@ -35,6 +35,7 @@ function initializeRooms():void
 	rooms["SHIP INTERIOR"].system = "SYSTEM: ARA ARA";
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	rooms["SHIP INTERIOR"].outText = "Exit";
+	rooms["SHIP INTERIOR"].moveMinutes = 2;
 	rooms["SHIP INTERIOR"].runOnEnter = shipMenu;
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
@@ -46,6 +47,7 @@ function initializeRooms():void
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
+	rooms["HOTEL ROOM"].moveMinutes = 1;
 	rooms["HOTEL ROOM"].addFlag(GLOBAL.INDOOR);
 
 	//101. Anon's Board Hall
@@ -55,6 +57,7 @@ function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].planet = "TAVROS STATION";
 	rooms["ANON'S BOARD HALL"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
+	rooms["ANON'S BOARD HALL"].moveMinutes = 1;
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
 
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
@@ -66,6 +69,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
 	rooms["ANON'S BAR AND BOARD"].runOnEnter = anonsBarAddendums;
+	rooms["ANON'S BAR AND BOARD"].moveMinutes = 1;
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 
@@ -79,6 +83,7 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].westExit = "DARK CHRYSALIS";
 	rooms["MERCHANT'S THOROUGHFARE"].southExit = "MERCHANT'S THOROUGHFARE2";
 	rooms["MERCHANT'S THOROUGHFARE"].northExit = "110";
+	rooms["MERCHANT'S THOROUGHFARE"].moveMinutes = 2;
 	//rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
@@ -91,6 +96,7 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
 	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "BETHS BROADS";
+	rooms["MERCHANT'S THOROUGHFARE2"].moveMinutes = 2;
 	//rooms["MERCHANT'S THOROUGHFARE2"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
@@ -104,6 +110,7 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["LIFT: MERCHANT DECK"].moveMinutes = 1;
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
@@ -115,6 +122,7 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].planet = "TAVROS STATION";
 	rooms["TAVROS HANGAR"].system = "SYSTEM: KALAS";
 	rooms["TAVROS HANGAR"].westExit = "TAVROS LIFT";
+	rooms["TAVROS HANGAR"].moveMinutes = 2;
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
@@ -126,6 +134,7 @@ function initializeRooms():void
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
+	rooms["TAVROS LIFT"].moveMinutes = 1;
 	//rooms["TAVROS LIFT"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
@@ -139,6 +148,7 @@ function initializeRooms():void
 	rooms["DARK CHRYSALIS"].planet = "TAVROS STATION";
 	rooms["DARK CHRYSALIS"].system = "SYSTEM: KALAS";
 	rooms["DARK CHRYSALIS"].eastExit = "MERCHANT'S THOROUGHFARE";
+	rooms["DARK CHRYSALIS"].moveMinutes = 1;
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.INDOOR);
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	rooms["DARK CHRYSALIS"].runOnEnter = seraBonusFunction;
@@ -150,6 +160,7 @@ function initializeRooms():void
 	rooms["FUR EFFECT"].planet = "TAVROS STATION";
 	rooms["FUR EFFECT"].system = "SYSTEM: KALAS";
 	rooms["FUR EFFECT"].eastExit = "110";
+	rooms["FUR EFFECT"].moveMinutes = 1;
 	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
 	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
 	rooms["FUR EFFECT"].runOnEnter = furEffectBonusFunction;
@@ -161,6 +172,7 @@ function initializeRooms():void
 	rooms["BETHS BROADS"].planet = "TAVROS STATION";
 	rooms["BETHS BROADS"].system = "SYSTEM: KALAS";
 	rooms["BETHS BROADS"].northExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["BETHS BROADS"].moveMinutes = 1;
 	rooms["BETHS BROADS"].addFlag(GLOBAL.INDOOR);
 	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
 	rooms["BETHS BROADS"].runOnEnter = reahaBonusFunction;
@@ -172,6 +184,7 @@ function initializeRooms():void
 	rooms["MI AMOUR"].planet = "TAVROS STATION";
 	rooms["MI AMOUR"].system = "SYSTEM: KALAS";
 	rooms["MI AMOUR"].southExit = "110";
+	rooms["MI AMOUR"].moveMinutes = 1;
 	rooms["MI AMOUR"].addFlag(GLOBAL.INDOOR);
 	rooms["MI AMOUR"].addFlag(GLOBAL.NPC);
 	rooms["MI AMOUR"].runOnEnter = miAmoreBonusShit;
@@ -185,6 +198,7 @@ function initializeRooms():void
 	rooms["110"].northExit = "MI AMOUR";
 	rooms["110"].southExit = "MERCHANT'S THOROUGHFARE";
 	rooms["110"].westExit = "FUR EFFECT";
+	rooms["110"].moveMinutes = 1;
 	//rooms["110"].westExit = "DARK CHRYSALIS";
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].runOnEnter = undefined;
@@ -198,6 +212,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"].system = "SYSTEM: ARA ARA";
 	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";
 	rooms["SHIP HANGAR"].outText = "Down";
+	rooms["SHIP HANGAR"].moveMinutes = 2;
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 
@@ -210,6 +225,7 @@ function initializeRooms():void
 	rooms["SPACEPORT ELEVATOR"].inExit = "SHIP HANGAR";
 	rooms["SPACEPORT ELEVATOR"].inText = "Up";
 	rooms["SPACEPORT ELEVATOR"].eastExit = "CUSTOMS OFFICE";
+	rooms["SPACEPORT ELEVATOR"].moveMinutes = 2;
 	rooms["SPACEPORT ELEVATOR"].addFlag(GLOBAL.OUTDOOR);
 
 	//2 - Flahne’s Office
@@ -220,6 +236,7 @@ function initializeRooms():void
 	rooms["CUSTOMS OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["CUSTOMS OFFICE"].westExit = "SPACEPORT ELEVATOR";
 	rooms["CUSTOMS OFFICE"].southExit = "ESBETH'S NORTH PATH";
+	rooms["CUSTOMS OFFICE"].moveMinutes = 2;
 	rooms["CUSTOMS OFFICE"].runOnEnter = meetingFlahne;
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.NPC);
@@ -233,6 +250,7 @@ function initializeRooms():void
 	rooms["ESBETH'S NORTH PATH"].northExit = "CUSTOMS OFFICE";
 	rooms["ESBETH'S NORTH PATH"].westExit = "NORTHWEST ESBETH";
 	rooms["ESBETH'S NORTH PATH"].eastExit = "NORTH ESBETH 2";
+	rooms["ESBETH'S NORTH PATH"].moveMinutes = 2;
 	rooms["ESBETH'S NORTH PATH"].runOnEnter = bountyBoardExtra;
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
 
@@ -244,6 +262,7 @@ function initializeRooms():void
 	rooms["NORTHWEST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHWEST ESBETH"].southExit = "WEST ESBETH 1";
 	rooms["NORTHWEST ESBETH"].eastExit = "ESBETH'S NORTH PATH";
+	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
 	//5. Esbeth’s Western Path
@@ -255,6 +274,7 @@ function initializeRooms():void
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
 	rooms["WEST ESBETH 1"].northExit = "NORTHWEST ESBETH";
 	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
+	rooms["WEST ESBETH 1"].moveMinutes = 2;
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 
 	//6. Esbeth’s Western Path
@@ -265,6 +285,7 @@ function initializeRooms():void
 	rooms["WEST ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 2"].northExit = "WEST ESBETH 1";
 	rooms["WEST ESBETH 2"].southExit = "SOUTHWEST ESBETH";
+	rooms["WEST ESBETH 2"].moveMinutes = 2;
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 
 	//7. The Southwest Corner of Esbeth
@@ -275,6 +296,7 @@ function initializeRooms():void
 	rooms["SOUTHWEST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTHWEST ESBETH"].northExit = "WEST ESBETH 2";
 	rooms["SOUTHWEST ESBETH"].eastExit = "SOUTH ESBETH 1";
+	rooms["SOUTHWEST ESBETH"].moveMinutes = 2;
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
 	//8. Esbeth’s Southern Path
@@ -286,6 +308,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 1"].westExit = "SOUTHWEST ESBETH";
 	rooms["SOUTH ESBETH 1"].eastExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 1"].southExit = "SCRAPYARD MAINTENANCE";
+	rooms["SOUTH ESBETH 1"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 
 	//9. Esbeth’s Southern Path
@@ -297,6 +320,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
+	rooms["SOUTH ESBETH 2"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
 
@@ -310,6 +334,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 3"].eastExit = "SOUTHEAST ESBETH";
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
 	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
+	rooms["SOUTH ESBETH 3"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["ESBETH TRAVEL AUTHORITY"] = new RoomClass(this);
@@ -319,6 +344,7 @@ function initializeRooms():void
 	rooms["ESBETH TRAVEL AUTHORITY"].runOnEnter = esbethFastTravelOfficeBonus;
 	rooms["ESBETH TRAVEL AUTHORITY"].system = "SYSTEM: ARA ARA";
 	rooms["ESBETH TRAVEL AUTHORITY"].northExit = "SOUTH ESBETH 3";
+	rooms["ESBETH TRAVEL AUTHORITY"].moveMinutes = 1;
 	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.TAXI);
 		
@@ -330,6 +356,7 @@ function initializeRooms():void
 	rooms["SOUTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTHEAST ESBETH"].northExit = "EAST ESBETH";
 	rooms["SOUTHEAST ESBETH"].westExit = "SOUTH ESBETH 3";
+	rooms["SOUTHEAST ESBETH"].moveMinutes = 2;
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
 	//12. Esbeth’s Eastern Path
@@ -341,6 +368,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH"].southExit = "SOUTHEAST ESBETH";
 	rooms["EAST ESBETH"].eastExit = "ESBETH MEDICAL OFFICE";
 	rooms["EAST ESBETH"].northExit = "EAST ESBETH ENTRANCE";
+	rooms["EAST ESBETH"].moveMinutes = 2;
 	rooms["EAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
 	//13. Esbeth’s Eastern Path at the Entrance
@@ -352,6 +380,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH ENTRANCE"].southExit = "EAST ESBETH";
 	rooms["EAST ESBETH ENTRANCE"].northExit = "NORTHEAST ESBETH";
 	rooms["EAST ESBETH ENTRANCE"].eastExit = "EAST ESBETH EXIT";
+	rooms["EAST ESBETH ENTRANCE"].moveMinutes = 2;
 	rooms["EAST ESBETH ENTRANCE"].addFlag(GLOBAL.OUTDOOR);
 
 	//14. The Northeastern Corner of Esbeth
@@ -362,6 +391,7 @@ function initializeRooms():void
 	rooms["NORTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
+	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
 	//15. Esbeth’s Northern Path
@@ -372,6 +402,7 @@ function initializeRooms():void
 	rooms["NORTH ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["NORTH ESBETH 1"].westExit = "NORTH ESBETH 2";
 	rooms["NORTH ESBETH 1"].eastExit = "NORTHEAST ESBETH";
+	rooms["NORTH ESBETH 1"].moveMinutes = 2;
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 
 	//16. Esbeth’s Northern Path
@@ -383,6 +414,7 @@ function initializeRooms():void
 	rooms["NORTH ESBETH 2"].westExit = "ESBETH'S NORTH PATH";
 	rooms["NORTH ESBETH 2"].eastExit = "NORTH ESBETH 1";
 	rooms["NORTH ESBETH 2"].northExit = "BURT'S MAIN HALL";
+	rooms["NORTH ESBETH 2"].moveMinutes = 2;
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 
 
@@ -394,6 +426,7 @@ function initializeRooms():void
 	rooms["BURT'S MAIN HALL"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S MAIN HALL"].southExit = "NORTH ESBETH 2";
 	rooms["BURT'S MAIN HALL"].northExit = "BURT'S BACK END";
+	rooms["BURT'S MAIN HALL"].moveMinutes = 1;
 	rooms["BURT'S MAIN HALL"].runOnEnter = burtsBarFunc;
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.BAR);
@@ -405,6 +438,7 @@ function initializeRooms():void
 	rooms["BURT'S BACK END"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S BACK END"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S BACK END"].southExit = "BURT'S MAIN HALL";
+	rooms["BURT'S BACK END"].moveMinutes = 1;
 	rooms["BURT'S BACK END"].addFlag(GLOBAL.INDOOR);
 	rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	rooms["BURT'S BACK END"].runOnEnter = barBackRoomBonus;
@@ -418,6 +452,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH EXIT"].system = "SYSTEM: ARA ARA";
 	rooms["EAST ESBETH EXIT"].westExit = "EAST ESBETH ENTRANCE";
 	rooms["EAST ESBETH EXIT"].eastExit = "JUNGLE EDGE";	
+	rooms["EAST ESBETH EXIT"].moveMinutes = 2;
 	rooms["EAST ESBETH EXIT"].addFlag(GLOBAL.OUTDOOR);
 
 	//20. The Edge of the Jungle
@@ -1603,6 +1638,7 @@ function initializeRooms():void
 	rooms["201"].eastExit = "202";
 	rooms["201"].planet = "PLANET: TARKUS";
 	rooms["201"].system = "SYSTEM: REDACTED";
+	rooms["201"].moveMinutes = 2;
 	rooms["201"].addFlag(GLOBAL.INDOOR);
 	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
 	
@@ -1624,6 +1660,7 @@ function initializeRooms():void
 	rooms["NOVA MAIN DECK ELEVATOR"].southExit = "210";
 	rooms["NOVA MAIN DECK ELEVATOR"].planet = "PLANET: TARKUS";
 	rooms["NOVA MAIN DECK ELEVATOR"].system = "SYSTEM: REDACTED";
+	rooms["NOVA MAIN DECK ELEVATOR"].moveMinutes = 2;
 	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
 
@@ -1635,6 +1672,7 @@ function initializeRooms():void
 	rooms["202"].westExit = "201";
 	rooms["202"].eastExit = "203";
 	rooms["202"].northExit = "TARKUS SCOUT AUTHORITY";
+	rooms["202"].moveMinutes = 2;
 	rooms["202"].planet = "PLANET: TARKUS";
 	rooms["202"].system = "SYSTEM: REDACTED";
 	rooms["202"].addFlag(GLOBAL.INDOOR);
@@ -1644,6 +1682,7 @@ function initializeRooms():void
 	rooms["TARKUS SCOUT AUTHORITY"].description = "";
 	rooms["TARKUS SCOUT AUTHORITY"].runOnEnter = tarkusScoutAuthorityOffice;
 	rooms["TARKUS SCOUT AUTHORITY"].southExit = "202";
+	rooms["TARKUS SCOUT AUTHORITY"].moveMinutes = 1;
 	rooms["TARKUS SCOUT AUTHORITY"].planet = "PLANET: TARKUS";
 	rooms["TARKUS SCOUT AUTHORITY"].system = "SYSTEM: REDACTED";
 	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.INDOOR);
@@ -1657,6 +1696,7 @@ function initializeRooms():void
 	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
 	rooms["203"].outText = "Down";
+	rooms["203"].moveMinutes = 2;
 	rooms["203"].planet = "PLANET: TARKUS";
 	rooms["203"].system = "SYSTEM: REDACTED";
 	rooms["203"].addFlag(GLOBAL.INDOOR);
@@ -1669,6 +1709,7 @@ function initializeRooms():void
 	rooms["204"].eastExit = "205";
 	rooms["204"].inExit = "203";
 	rooms["204"].inText = "Up";
+	rooms["204"].moveMinutes = 2;
 	rooms["204"].planet = "PLANET: TARKUS";
 	rooms["204"].system = "SYSTEM: REDACTED";
 	rooms["204"].addFlag(GLOBAL.INDOOR);
@@ -1680,6 +1721,7 @@ function initializeRooms():void
 	rooms["205"].runOnEnter = undefined;
 	rooms["205"].westExit = "204";
 	rooms["205"].southExit = "206";
+	rooms["205"].moveMinutes = 2;
 	rooms["205"].planet = "PLANET: TARKUS";
 	rooms["205"].system = "SYSTEM: REDACTED";
 	rooms["205"].addFlag(GLOBAL.INDOOR);
@@ -1691,6 +1733,7 @@ function initializeRooms():void
 	rooms["206"].runOnEnter = undefined;
 	rooms["206"].northExit = "205";
 	rooms["206"].southExit = "207";
+	rooms["206"].moveMinutes = 2;
 	rooms["206"].planet = "PLANET: TARKUS";
 	rooms["206"].system = "SYSTEM: REDACTED";
 	rooms["206"].addFlag(GLOBAL.INDOOR);
@@ -1703,6 +1746,7 @@ function initializeRooms():void
 	rooms["207"].northExit = "206";
 	rooms["207"].eastExit = "208";
 	rooms["207"].westExit = "210";
+	rooms["207"].moveMinutes = 2;
 	rooms["207"].planet = "PLANET: TARKUS";
 	rooms["207"].system = "SYSTEM: REDACTED";
 	rooms["207"].addFlag(GLOBAL.INDOOR);
@@ -1715,6 +1759,7 @@ function initializeRooms():void
 	rooms["208"].eastExit = "209";
 	rooms["208"].westExit = "207";
 	rooms["208"].southExit = "305";
+	rooms["208"].moveMinutes = 2;
 	rooms["208"].planet = "PLANET: TARKUS";
 	rooms["208"].system = "SYSTEM: REDACTED";
 	rooms["208"].addFlag(GLOBAL.INDOOR);
@@ -1726,6 +1771,7 @@ function initializeRooms():void
 	rooms["209"].runOnEnter = undefined;
 	rooms["209"].westExit = "208";
 	rooms["209"].northExit = "304";
+	rooms["209"].moveMinutes = 2;
 	rooms["209"].planet = "PLANET: TARKUS";
 	rooms["209"].system = "SYSTEM: REDACTED";
 	rooms["209"].addFlag(GLOBAL.INDOOR);
@@ -1737,6 +1783,7 @@ function initializeRooms():void
 	rooms["210"].runOnEnter = BonusFunction210;
 	rooms["210"].eastExit = "207";
 	rooms["210"].westExit = "211";
+	rooms["210"].moveMinutes = 2;
 	rooms["210"].northExit = "NOVA MAIN DECK ELEVATOR";
 	rooms["210"].planet = "PLANET: TARKUS";
 	rooms["210"].system = "SYSTEM: REDACTED";
@@ -1751,6 +1798,7 @@ function initializeRooms():void
 	rooms["211"].westExit = "212";
 	rooms["211"].southExit = "215";
 	rooms["211"].northExit = "WIDGET WAREHOUSE";
+	rooms["211"].moveMinutes = 2;
 	rooms["211"].planet = "PLANET: TARKUS";
 	rooms["211"].system = "SYSTEM: REDACTED";
 	rooms["211"].addFlag(GLOBAL.INDOOR);
@@ -1764,6 +1812,7 @@ function initializeRooms():void
 	rooms["212"].westExit = "213";
 	rooms["212"].northExit = "301";
 	rooms["212"].southExit = "303";
+	rooms["212"].moveMinutes = 2;
 	rooms["212"].planet = "PLANET: TARKUS";
 	rooms["212"].system = "SYSTEM: REDACTED";
 	rooms["212"].addFlag(GLOBAL.INDOOR);
@@ -1776,6 +1825,7 @@ function initializeRooms():void
 	rooms["213"].eastExit = "212";
 	rooms["213"].westExit = "214";
 	rooms["213"].southExit = "295";
+	rooms["213"].moveMinutes = 2;
 	rooms["213"].planet = "PLANET: TARKUS";
 	rooms["213"].system = "SYSTEM: REDACTED";
 	rooms["213"].addFlag(GLOBAL.INDOOR);
@@ -1786,6 +1836,7 @@ function initializeRooms():void
 	rooms["214"].description = "West Novahome is the located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
 	rooms["214"].runOnEnter = undefined;
 	rooms["214"].eastExit = "213";
+	rooms["214"].moveMinutes = 2;
 	rooms["214"].planet = "PLANET: TARKUS";
 	rooms["214"].system = "SYSTEM: REDACTED";
 	rooms["214"].addFlag(GLOBAL.INDOOR);
@@ -2780,7 +2831,7 @@ function initializeRooms():void
 	rooms["293"].addFlag(GLOBAL.OUTDOOR);
 	rooms["293"].addFlag(GLOBAL.HAZARD);
 	
-	//#94 Factrory Square
+	//#94 Factory Square
 	rooms["294"] = new RoomClass(this);
 	rooms["294"].roomName = "FACTORY\nSQUARE";
 	rooms["294"].description = "To the south between the slabs and sickly vegetation, you can make out a large, squat, brick building, blackened with age and mouldy with ancient Raskvel graffiti. An iron radio tower looms over it. It looks wholly unpromising, but the GPS data you compiled tells you that the sexbots originate from this area, and that building is the only significant structure in the area. It’s going to be a complete pain in the ass approaching it – the wreckage and briars which surround it are thick and hostile-looking. Looking through the detritus at the dark, blocky shape you feel a profound sense of foreboding. You’d best be as prepared as possible before confronting whatever is inside, if that is your intention.";
@@ -2796,6 +2847,7 @@ function initializeRooms():void
 	rooms["295"].description = "";
 	rooms["295"].runOnEnter = auroraBonus;
 	rooms["295"].northExit = "213";
+	rooms["295"].moveMinutes = 1;
 	rooms["295"].planet = "PLANET: TARKUS";
 	rooms["295"].system = "SYSTEM: REDACTED";
 	rooms["295"].addFlag(GLOBAL.INDOOR);
@@ -2808,6 +2860,7 @@ function initializeRooms():void
 	rooms["301"].runOnEnter = messBonusFunction;
 	rooms["301"].southExit = "212";
 	rooms["301"].westExit = "302";
+	rooms["301"].moveMinutes = 1;
 	rooms["301"].planet = "PLANET: TARKUS";
 	rooms["301"].system = "SYSTEM: REDACTED";
 	rooms["301"].addFlag(GLOBAL.INDOOR);
@@ -2818,6 +2871,7 @@ function initializeRooms():void
 	rooms["302"].description = "You're in the Mess's attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you're quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that's for sure.";
 	rooms["302"].runOnEnter = barBonusFunction;
 	rooms["302"].eastExit = "301";
+	rooms["302"].moveMinutes = 1;
 	rooms["302"].planet = "PLANET: TARKUS";
 	rooms["302"].system = "SYSTEM: REDACTED";
 	rooms["302"].addFlag(GLOBAL.INDOOR);
@@ -2828,6 +2882,7 @@ function initializeRooms():void
 	rooms["303"].description = "";
 	rooms["303"].runOnEnter = steeleTechTarkusEntry;
 	rooms["303"].northExit = "212";
+	rooms["303"].moveMinutes = 1;
 	rooms["303"].planet = "PLANET: TARKUS";
 	rooms["303"].system = "SYSTEM: REDACTED";
 	rooms["303"].addFlag(GLOBAL.INDOOR);
@@ -2837,6 +2892,7 @@ function initializeRooms():void
 	rooms["304"].roomName = "DR. BADGER'S\nBIMBOTORIUM";
 	rooms["304"].description = "";
 	rooms["304"].runOnEnter = drBadgerBonusShit;
+	rooms["304"].moveMinutes = 1;
 	rooms["304"].southExit = "209";
 	rooms["304"].planet = "PLANET: TARKUS";
 	rooms["304"].system = "SYSTEM: REDACTED";
@@ -2848,6 +2904,7 @@ function initializeRooms():void
 	rooms["305"].description = "";
 	rooms["305"].runOnEnter = colensosRoomBonusFunction;
 	rooms["305"].northExit = "208";
+	rooms["305"].moveMinutes = 1;
 	rooms["305"].planet = "PLANET: TARKUS";
 	rooms["305"].system = "SYSTEM: REDACTED";
 	rooms["305"].addFlag(GLOBAL.INDOOR);
@@ -2871,6 +2928,7 @@ function initializeRooms():void
 	rooms["351"].runOnEnter = liftStationBonus;
 	rooms["351"].westExit = "350";
 	rooms["351"].eastExit = "352";
+	rooms["351"].moveMinutes = 2;
 	rooms["351"].planet = "PLANET: TARKUS";
 	rooms["351"].system = "SYSTEM: REDACTED";
 	rooms["351"].moveMinutes = 1;
@@ -2883,6 +2941,7 @@ function initializeRooms():void
 	rooms["352"].runOnEnter = liftStationEngineeringDeckBonusFunc;
 	rooms["352"].westExit = "351";
 	rooms["352"].eastExit = "353";
+	rooms["352"].moveMinutes = 2;
 	rooms["352"].planet = "PLANET: TARKUS";
 	rooms["352"].system = "SYSTEM: REDACTED";
 	rooms["352"].moveMinutes = 1;
@@ -3086,6 +3145,7 @@ function initializeRooms():void
 	rooms["WIDGET WAREHOUSE"].description = "";
 	rooms["WIDGET WAREHOUSE"].runOnEnter = widgetWarehouseBonusFuntimes;
 	rooms["WIDGET WAREHOUSE"].southExit = "211";
+	rooms["WIDGET WAREHOUSE"].moveMinutes = 1;
 	rooms["WIDGET WAREHOUSE"].planet = "PLANET: TARKUS";
 	rooms["WIDGET WAREHOUSE"].system = "SYSTEM: REDACTED";
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
@@ -3104,6 +3164,7 @@ function initializeRooms():void
 	rooms["DECK 13 AIRLOCK"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 AIRLOCK"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 AIRLOCK"].northExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 AIRLOCK"].moveMinutes = 1;
 	rooms["DECK 13 AIRLOCK"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 SECURITY CHECKPOINT"] = new RoomClass(this);
@@ -3116,6 +3177,7 @@ function initializeRooms():void
 	rooms["DECK 13 SECURITY CHECKPOINT"].eastExit = "DECK 13 ARMORY";
 	rooms["DECK 13 SECURITY CHECKPOINT"].southExit = "DECK 13 AIRLOCK";
 	rooms["DECK 13 SECURITY CHECKPOINT"].westExit = "DECK 13 ELEVATOR SHAFT";
+	rooms["DECK 13 SECURITY CHECKPOINT"].moveMinutes = 1;
 	rooms["DECK 13 SECURITY CHECKPOINT"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 ARMORY"] = new RoomClass(this);
@@ -3125,6 +3187,7 @@ function initializeRooms():void
 	rooms["DECK 13 ARMORY"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 ARMORY"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 ARMORY"].westExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 ARMORY"].moveMinutes = 1;
 	rooms["DECK 13 ARMORY"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 ELEVATOR SHAFT"] = new RoomClass(this);
@@ -3134,6 +3197,7 @@ function initializeRooms():void
 	rooms["DECK 13 ELEVATOR SHAFT"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 ELEVATOR SHAFT"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 ELEVATOR SHAFT"].eastExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 ELEVATOR SHAFT"].moveMinutes = 1;
 	rooms["DECK 13 ELEVATOR SHAFT"].addFlag(GLOBAL.INDOOR);
 	rooms["DECK 13 ELEVATOR SHAFT"].addFlag(GLOBAL.LIFT);
 
@@ -3145,6 +3209,7 @@ function initializeRooms():void
 	rooms["DECK 13 REACTOR"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	rooms["DECK 13 REACTOR"].southExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 REACTOR"].moveMinutes = 1;
 	rooms["DECK 13 REACTOR"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 VENTS"] = new RoomClass(this);
@@ -3154,6 +3219,7 @@ function initializeRooms():void
 	rooms["DECK 13 VENTS"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 VENTS"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 VENTS"].northExit = "DECK 13 SHIELD CONTROL";
+	rooms["DECK 13 VENTS"].moveMinutes = 1;
 	rooms["DECK 13 VENTS"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 SHIELD CONTROL"] = new RoomClass(this);
@@ -3163,6 +3229,7 @@ function initializeRooms():void
 	rooms["DECK 13 SHIELD CONTROL"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 SHIELD CONTROL"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 SHIELD CONTROL"].westExit = "DECK 13 SECONDARY REACTOR";
+	rooms["DECK 13 SHIELD CONTROL"].moveMinutes = 1;
 	rooms["DECK 13 SHIELD CONTROL"].addFlag(GLOBAL.INDOOR);
 
 	rooms["DECK 13 SECONDARY REACTOR"] = new RoomClass(this);
@@ -3173,6 +3240,7 @@ function initializeRooms():void
 	rooms["DECK 13 SECONDARY REACTOR"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 SECONDARY REACTOR"].eastExit = "DECK 13 SHIELD CONTROL";
 	rooms["DECK 13 SECONDARY REACTOR"].southExit = "DECK 13 REACTOR";
+	rooms["DECK 13 SECONDARY REACTOR"].moveMinutes = 1;
 	rooms["DECK 13 SECONDARY REACTOR"].addFlag(GLOBAL.INDOOR);
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -3186,6 +3254,7 @@ function initializeRooms():void
 	rooms["TEXAS CUSTOMS"].runOnEnter = customsAndCheckInOnNewTexas;
 	rooms["TEXAS CUSTOMS"].southExit = "501";
 	rooms["TEXAS CUSTOMS"].northExit = "503";
+	rooms["TEXAS CUSTOMS"].moveMinutes = 2;
 	rooms["TEXAS CUSTOMS"].planet = "PLANET: NEW TEXAS";
 	rooms["TEXAS CUSTOMS"].system = "SYSTEM: NYE";
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.INDOOR);
@@ -3196,6 +3265,7 @@ function initializeRooms():void
 	rooms["500"].description = "The landing zone on T.'s Ranch in New Texas is as rustic as you could realistically make it: from the outside, the building looks like a monstrously large barn, complete with shingled roof and bright red paint job. From the inside, though, you can see it's clearly been designed as a landing zone for private starships: the roof retracts on a pair of powerful metal arms, opening and closing to allow access. The stalls where stallions or cows might be kept have been dramatically sized up like the rest of the barn, large enough to snugly house most commercial freighters and pleasure yachts. To the west, you can see several bull-men hefting crates and moving cargo from visiting ships.";
 	rooms["500"].runOnEnter = undefined;
 	rooms["500"].westExit = "501";
+	rooms["500"].moveMinutes = 2;
 	rooms["500"].planet = "PLANET: NEW TEXAS";
 	rooms["500"].system = "SYSTEM: NYE";
 	rooms["500"].addFlag(GLOBAL.INDOOR);
@@ -3207,6 +3277,7 @@ function initializeRooms():void
 	rooms["501"].runOnEnter = undefined;
 	rooms["501"].eastExit = "500";
 	rooms["501"].northExit = "TEXAS CUSTOMS";
+	rooms["501"].moveMinutes = 2;
 	rooms["501"].planet = "PLANET: NEW TEXAS";
 	rooms["501"].system = "SYSTEM: NYE";
 	rooms["501"].addFlag(GLOBAL.INDOOR);
@@ -3219,6 +3290,7 @@ function initializeRooms():void
 	rooms["503"].southExit = "TEXAS CUSTOMS";
 	rooms["503"].eastExit = "504";
 	rooms["503"].westExit = "531";
+	rooms["503"].moveMinutes = 2;
 	rooms["503"].planet = "PLANET: NEW TEXAS";
 	rooms["503"].system = "SYSTEM: NYE";
 	rooms["503"].addFlag(GLOBAL.OUTDOOR);
@@ -3282,6 +3354,7 @@ function initializeRooms():void
 	rooms["508"].runOnEnter = undefined;
 	rooms["508"].westExit = "507";
 	rooms["508"].eastExit = "509";
+	rooms["508"].moveMinutes = 2;
 	rooms["508"].planet = "PLANET: NEW TEXAS";
 	rooms["508"].system = "SYSTEM: NYE";
 	rooms["508"].addFlag(GLOBAL.OUTDOOR);
@@ -3295,6 +3368,7 @@ function initializeRooms():void
 	rooms["509"].runOnEnter = undefined;
 	rooms["509"].westExit = "508";
 	rooms["509"].eastExit = "510";
+	rooms["509"].moveMinutes = 1;
 	rooms["509"].planet = "PLANET: NEW TEXAS";
 	rooms["509"].system = "SYSTEM: NYE";
 	rooms["509"].addFlag(GLOBAL.OUTDOOR);
@@ -3308,6 +3382,7 @@ function initializeRooms():void
 	rooms["510"].runOnEnter = randomBarnEntranceEventsFunc;
 	rooms["510"].westExit = "509";
 	rooms["510"].northExit = "511";
+	rooms["510"].moveMinutes = 2;
 	rooms["510"].planet = "PLANET: NEW TEXAS";
 	rooms["510"].system = "SYSTEM: NYE";
 	rooms["510"].addFlag(GLOBAL.OUTDOOR);
@@ -3323,6 +3398,7 @@ function initializeRooms():void
 	rooms["511"].northExit = "512";
 	rooms["511"].westExit = "515";
 	rooms["511"].eastExit = "516";
+	rooms["511"].moveMinutes = 1;
 	rooms["511"].planet = "PLANET: NEW TEXAS";
 	rooms["511"].system = "SYSTEM: NYE";
 	rooms["511"].addFlag(GLOBAL.INDOOR);
@@ -3337,6 +3413,7 @@ function initializeRooms():void
 	rooms["512"].southExit = "511";
 	rooms["512"].northExit = "513";
 	rooms["512"].westExit = "517";
+	rooms["512"].moveMinutes = 1;
 	rooms["512"].planet = "PLANET: NEW TEXAS";
 	rooms["512"].system = "SYSTEM: NYE";
 	rooms["512"].addFlag(GLOBAL.INDOOR);
@@ -3350,6 +3427,7 @@ function initializeRooms():void
 	rooms["513"].runOnEnter = randomBarnEventFunc;
 	rooms["513"].southExit = "512";
 	rooms["513"].northExit = "514";
+	rooms["513"].moveMinutes = 1;
 	rooms["513"].planet = "PLANET: NEW TEXAS";
 	rooms["513"].system = "SYSTEM: NYE";
 	rooms["513"].addFlag(GLOBAL.INDOOR);
@@ -3363,6 +3441,7 @@ function initializeRooms():void
 	rooms["514"].runOnEnter = randomBarnEventFunc;
 	rooms["514"].southExit = "513";
 	rooms["514"].westExit = "BrynnsStall";
+	rooms["514"].moveMinutes = 1;
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
 	rooms["514"].addFlag(GLOBAL.INDOOR);
@@ -3374,6 +3453,7 @@ function initializeRooms():void
 	rooms["BrynnsStall"].description = "The thick smell of sex still lingers in this stall- Brynn's chosen place of residence whenever he needs to release some tension. Which is pretty fucking often come to think about it, given how awe-inspiringly productive he is- and how much difficulty he seems to have finding proper release. Despite the essence infused so deeply into the floor and walls of the stall, the place is well kept and clean.\n\nThe sturdy bench Brynn uses as a seat is sat here, off toward the rear of the room, the leather padding covering the surface of it featuring a well-worn impression of the studs frame.";
 	rooms["BrynnsStall"].runOnEnter = brynnsStallFunc;
 	rooms["BrynnsStall"].eastExit = "514";
+	rooms["BrynnsStall"].moveMinutes = 1;
 	rooms["BrynnsStall"].planet = "PLANET: NEW TEXAS";
 	rooms["BrynnsStall"].system = "SYSTEM: NYE";
 	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
@@ -3386,6 +3466,7 @@ function initializeRooms():void
 	rooms["515"].description = "A thickly-spread layer of hay makes every step you take a rustling, shuffling affair. The walls are surprisingly modern, covered in liquid and stain resistant tile. A large, industrial-sized milking device is built into the wall to the west, but it is currently powered down and retracted. There's a padded table that a potential milkee could sit or recline upon during the process. An activation button labelled \"Moo\" is recessed next to the machinery. Its purpose seems obvious. You can leave out the door to the east.";
 	rooms["515"].runOnEnter = millieBonusShitYouFuckface;
 	rooms["515"].eastExit = "511";
+	rooms["515"].moveMinutes = 1;
 	rooms["515"].planet = "PLANET: NEW TEXAS";
 	rooms["515"].system = "SYSTEM: NYE";
 	rooms["515"].addFlag(GLOBAL.INDOOR);
@@ -3398,6 +3479,7 @@ function initializeRooms():void
 	rooms["516"].description = "Unlike most of the stalls in the Milk Barn, this one isn't closed or empty. A single auburn-haired cow is sitting on a stool near the door, dressed up in a cow-print corset, panties, and stockings, but otherwise the stall is empty. The center of the room is dominated by what looks like a padded steel vaulting horse with several holes drilled into the top. Pipes lead from the holes to drains and other machines along the walls. Looming overhead is a large, powerful-looking mechanical arm, from which dangles a huge floppy pink dildo.\n\nA sign overtop the stall reads in faded letters, \"Male Milker.\" Doesn't take a genius to figure out what that means... ";
 	rooms["516"].runOnEnter = manMilkerRoomBonusFunc;
 	rooms["516"].westExit = "511";
+	rooms["516"].moveMinutes = 1;
 	rooms["516"].planet = "PLANET: NEW TEXAS";
 	rooms["516"].system = "SYSTEM: NYE";
 	rooms["516"].addFlag(GLOBAL.INDOOR);
@@ -3410,6 +3492,7 @@ function initializeRooms():void
 	rooms["517"].description = "Hay covers every square inch of the floor, there to catch any stray fluids and be quickly cleaned away. A gleaming machine of metal and plastic has been built into the wall. It appears to be built to pop out into the stall in order to more readily service any available cows. It only has a single button that you can see - a simple green circle with a picture of a cow on its face. You don't push it, yet, but it seems the only option available to you besides leaving. At least there's a comfortable-looking table for the prospective cow to sit or lie upon.";
 	rooms["517"].runOnEnter = yancyBonusSloots;
 	rooms["517"].eastExit = "512";
+	rooms["517"].moveMinutes = 1;
 	rooms["517"].planet = "PLANET: NEW TEXAS";
 	rooms["517"].system = "SYSTEM: NYE";
 	rooms["517"].addFlag(GLOBAL.INDOOR);
@@ -3423,6 +3506,7 @@ function initializeRooms():void
 	rooms["525"].runOnEnter = undefined;
 	rooms["525"].southExit = "504";
 	rooms["525"].northExit = "526";
+	rooms["525"].moveMinutes = 1;
 	rooms["525"].planet = "PLANET: NEW TEXAS";
 	rooms["525"].system = "SYSTEM: NYE";
 	rooms["525"].addFlag(GLOBAL.OUTDOOR);
@@ -3438,6 +3522,7 @@ function initializeRooms():void
 	rooms["526"].northExit = "529";
 	rooms["526"].eastExit = "528";
 	rooms["526"].westExit = "527";
+	rooms["526"].moveMinutes = 1;
 	rooms["526"].planet = "PLANET: NEW TEXAS";
 	rooms["526"].system = "SYSTEM: NYE";
 	rooms["526"].addFlag(GLOBAL.INDOOR);
@@ -3450,6 +3535,7 @@ function initializeRooms():void
 	rooms["527"].description = "";
 	rooms["527"].runOnEnter = NTGiftShopBonusFunc;
 	rooms["527"].eastExit = "526";
+	rooms["527"].moveMinutes = 1;
 	rooms["527"].planet = "PLANET: NEW TEXAS";
 	rooms["527"].system = "SYSTEM: NYE";
 	rooms["527"].addFlag(GLOBAL.INDOOR);
@@ -3462,6 +3548,7 @@ function initializeRooms():void
 	rooms["528"].description = "";
 	rooms["528"].runOnEnter = NTBarbequeBonusFunc;
 	rooms["528"].westExit = "526";
+	rooms["528"].moveMinutes = 1;
 	rooms["528"].planet = "PLANET: NEW TEXAS";
 	rooms["528"].system = "SYSTEM: NYE";
 	rooms["528"].addFlag(GLOBAL.INDOOR);
@@ -3476,6 +3563,7 @@ function initializeRooms():void
 	rooms["529"].southExit = "526";
 	rooms["529"].northExit = "530";
 	rooms["529"].planet = "PLANET: NEW TEXAS";
+	rooms["529"].moveMinutes = 1;
 	rooms["529"].system = "SYSTEM: NYE";
 	rooms["529"].addFlag(GLOBAL.INDOOR);
 	rooms["529"].addFlag(GLOBAL.NPC);
@@ -3487,6 +3575,7 @@ function initializeRooms():void
 	rooms["530"].description = "";
 	rooms["530"].runOnEnter = bigTOfficeBonusBullshit;
 	rooms["530"].southExit = "529";
+	rooms["530"].moveMinutes = 1;
 	rooms["530"].planet = "PLANET: NEW TEXAS";
 	rooms["530"].system = "SYSTEM: NYE";
 	rooms["530"].addFlag(GLOBAL.INDOOR);
@@ -3936,6 +4025,7 @@ function initializeRooms():void
 	rooms["540"].description = "";
 	rooms["540"].runOnEnter = icedTreatsInterior;
 	rooms["540"].northExit = "507";
+	rooms["540"].moveMinutes = 1;
 	rooms["540"].planet = "PLANET: NEW TEXAS";
 	rooms["540"].system = "SYSTEM: NYE";
 	rooms["540"].addFlag(GLOBAL.INDOOR);
@@ -4030,6 +4120,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP INTERIOR"].eastExit = "KIROS SHIP ENGINEERING";
 	rooms["KIROS SHIP INTERIOR"].southExit = "KIROS SHIP AIRLOCK";
 	rooms["KIROS SHIP INTERIOR"].westExit = "KIROS SHIP TROPHYROOM";
+	rooms["KIROS SHIP INTERIOR"].moveMinutes = 1;
 	rooms["KIROS SHIP INTERIOR"].runOnEnter = undefined;
 	rooms["KIROS SHIP INTERIOR"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP INTERIOR"].system = "SYSTEM: REDACTED";
@@ -4042,6 +4133,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP INTERIOR2"].eastExit = "KIROS SHIP QUARTERS";
 	rooms["KIROS SHIP INTERIOR2"].southExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP INTERIOR2"].westExit = "KIROS SPUNK CHAMBER";
+	rooms["KIROS SHIP INTERIOR2"].moveMinutes = 1;
 	rooms["KIROS SHIP INTERIOR2"].runOnEnter = undefined;
 	rooms["KIROS SHIP INTERIOR2"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP INTERIOR2"].system = "SYSTEM: REDACTED";
@@ -4052,6 +4144,7 @@ function initializeRooms():void
 	rooms["KIROS SPUNK CHAMBER"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SPUNK CHAMBER"].description = "";
 	rooms["KIROS SPUNK CHAMBER"].eastExit = "KIROS SHIP INTERIOR2";
+	rooms["KIROS SPUNK CHAMBER"].moveMinutes = 1;
 	rooms["KIROS SPUNK CHAMBER"].runOnEnter = kirosShipWails;
 	rooms["KIROS SPUNK CHAMBER"].planet = "SHIP: LEAF"
 	rooms["KIROS SPUNK CHAMBER"].system = "SYSTEM: REDACTED";
@@ -4063,6 +4156,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
 	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
 	rooms["KIROS SHIP QUARTERS"].westExit = "KIROS SHIP INTERIOR2";
+	rooms["KIROS SHIP QUARTERS"].moveMinutes = 1;
 	rooms["KIROS SHIP QUARTERS"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP QUARTERS"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP QUARTERS"].addFlag(GLOBAL.INDOOR);
@@ -4072,6 +4166,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP ENGINEERING"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP ENGINEERING"].description = "Thrumming powerfully, the ship's power core seems to be operating within normal parameters. This room is large enough to be staffed by a crew of a dozen, perhaps, but the only staff you see are a few sets of mechanized arms that move along tracks on the ceiling, adjusting the computer systems to keep everything running fine. You thread your way through the equipment, ducking here and there to avoid the arms as they flit between whatever tasks their robotic brain assigns them to. Everything seems built to accommodate this automation, and you catch a glimpse of 'KihaCorp' stamped across some of the polished metal armatures. There are no other exits or items of note here.";
 	rooms["KIROS SHIP ENGINEERING"].westExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP ENGINEERING"].moveMinutes = 1;
 	rooms["KIROS SHIP ENGINEERING"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP ENGINEERING"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP ENGINEERING"].addFlag(GLOBAL.INDOOR);
@@ -4081,6 +4176,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i>, the captain's hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP TROPHYROOM"].moveMinutes = 1;
 	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP TROPHYROOM"].addFlag(GLOBAL.INDOOR);
@@ -4092,6 +4188,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP AIRLOCK"].northExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP AIRLOCK"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP AIRLOCK"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 1;
 	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.INDOOR);
 	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 5;
