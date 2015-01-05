@@ -379,18 +379,21 @@
 		{
 			toggleWTF();
 			
-			if (!inCombat()) 
-			{
-				this.userInterface.showBust("none");
-			}
-			
 			if (evt.currentTarget is MainButton)
 			{
 				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
+				
+				var btn:MainButton = evt.currentTarget as MainButton;
+				if (btn.func == null) return;
 			}
 			else
 			{
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			}
+			
+			if (!inCombat()) 
+			{
+				this.userInterface.showBust("none");
 			}
 			
 			if (evt.currentTarget.arg == undefined)
