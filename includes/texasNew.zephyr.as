@@ -29,9 +29,10 @@ function zephyrRoomBonus():Boolean
 	return false;
 }
 
-function showZephyrDeets():void
+function showZephyrDeets(nakkers:Boolean = false):void
 {
-	showBust("ZEPHYR");
+	if(nakkers) showBust("ZEPHYR_NUDE");
+	else showBust("ZEPHYR");
 	showName("\nZEPHYR");
 	author("Fenoxo");
 }
@@ -121,7 +122,7 @@ function zephyrSexMenu(display:Boolean = true):void
 function mutualHandJobsWithZephyr():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	//Maybe she just laughs at you if you suggest this. Or maybe mutual handjob?
 	output("You mention that you would mind helping her relieve some of the pressure that she’s undoubtedly built up... if she does the same for you.");
 	output("\n\nZephyr sighs and pats the top of her desk. “<i>Handjobs are just masturbation masquerading as something fun, but I guess its better than holding it in all day.</i>” She flicks a catch on the side of her skirt, pulling the offending fabric out of the way. She’s not wearing any panties. Her dog-cock is only partway hard, and it’s already jutting up a good seven inches or so. It’s still growing before your eyes, already leaking a strand of pre-cum down the underside. She must be really pent up!");
@@ -237,7 +238,7 @@ function mutualHandJobsWithZephyr():void
 function overDeskButtCatch():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	output("You mention that she could bend you over the desk and take you right here.");
 	output("\n\nZephyr strides around the desk with a swiftness and grace belied by her imposing form. “<i>Now you’re speaking my language.</i>” Grabbing you by the neck with one hand, she pushes you down toward the top, her unoccupied fingers releasing the clasp at the side of her skirt. You turn your head to keep the eager amazon from breaking your nose and get a good look at her crotch in the process.");
 	output("\n\nOf course, she’s not wearing any panties, not with a fat hound-sausage like that between her legs. It’d destroy panties on contact.");
@@ -315,7 +316,7 @@ function overDeskButtCatch():void
 function getFuckedByZephyrII():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	var fits:Boolean = false;
@@ -393,7 +394,7 @@ function getFuckedByZephyrII():void
 function getFuckedByZephyrIII():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	var fits:Boolean = false;
@@ -442,7 +443,7 @@ function getFuckedByZephyrIII():void
 function getFuckedByZephyrIV():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	var capacity:Number = 0;
@@ -501,7 +502,7 @@ function getFuckedByZephyrIV():void
 function getFuckedByZephyrV():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	var capacity:Number = 0;
@@ -534,7 +535,7 @@ function getFuckedByZephyrV():void
 function cleanDatZephyrCawk():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	output("You give the tall cow-woman a wink and open wide, letting her push herself into your maw. She tastes salty and a little tangy - a mix of cum");
 	if(pc.hasVagina()) output(", sweat, and your own feminine fluids");
 	else output(" and sweat");
@@ -549,7 +550,7 @@ function cleanDatZephyrCawk():void
 function dontEatZephyrCock():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	output("“<i>No.</i>”");
 	output("\n\nThunderclouds gather around Zephyr’s brows. Grabbing hold of herself just below the base, she swings it broadside into your face, splattering some of the leavings across your nose and cheek. “<i>Get the fuck out of my office, slut.</i>”");
 	output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
@@ -576,7 +577,7 @@ function leaveLikeABitchPC():void
 function snarkLeaveLikeABitch():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	output("You retort, “<i>Fine, bitch,</i>” and spin");
 	if(!pc.isNude()) output(", pulling up your gear as you walk away");
 	output(". “<i>The galaxy’s full of dicks. Most of them better than yours.</i>”");
@@ -589,7 +590,7 @@ function snarkLeaveLikeABitch():void
 function fightZephyrLikeABitch():void
 {
 	clearOutput();
-	showZephyrDeets();
+	showZephyrDeets(true);
 	output("You ball your hands into fists, regretting your complete and total lack of equipment.");
 	output("\n\nZephyr laughs and pulls a gun out of her desk. “<i>Get the fuck out of my office, bitch.</i>”");
 	output("\n\nWell... maybe you will leave.");

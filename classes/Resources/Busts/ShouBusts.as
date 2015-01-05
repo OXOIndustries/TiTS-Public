@@ -46,6 +46,8 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr_nude.png", mimeType = "image/png")]
+		public var Bust_ZEPHYR_NUDE:Class;
 	}
 
 }
