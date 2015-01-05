@@ -252,6 +252,10 @@ function sleep(outputs:Boolean = true):void {
 			
 			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
+		else if (pc.level == 7)
+		{
+			eventBuffer += "\n\n<b>You've already reached the current maximum level.</b>";
+		}
 		
 		//CELISE NIGHT TIME BEDTIMEZ
 		if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
