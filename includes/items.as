@@ -57,7 +57,7 @@ function useItem(item:ItemSlotClass):void {
 			if (!debug)
 			{
 				item.quantity--;
-				if (item.quantity <= 0)
+				if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
 				{
 					pc.inventory.splice(pc.inventory.indexOf(item), 1);
 				}
@@ -611,8 +611,17 @@ function replaceItemPicker(lootList:Array):void {
 
 function useLoot(lootList:Array):void {
 	var loot:ItemSlotClass = lootList[0];
-	lootList.splice(0,1);
 	useItem(loot);
+	
+	if (loot.quantity <= 0)
+	{
+		lootList.splice(0,1);
+	}
+	
+	if (lootList.length > 0)
+	{
+		itemCollect(lootList);
+	}
 }
 function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");

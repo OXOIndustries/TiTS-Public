@@ -269,7 +269,7 @@
 			else
 			{
 				//Wear off
-				kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>");
+				kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>\n\n");
 				kGAMECLASS.clearMenu();
 				kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 				return false;
