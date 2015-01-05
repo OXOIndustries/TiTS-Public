@@ -2799,7 +2799,7 @@ function buttTeaseText():void {
 	{
 		output("You reach your hand between your legs and grab your [pc.tailgina] then pull it under your waist and up to your stomach, you flick your [pc.tails] to let a bit of fluid drip from it. Giving your opponent a sly look you curl your tail up and take a lick, letting your [pc.tongue] probe the folds of your tail-mounted snatch for a few seconds.");
 		if(flags["TIMES_BUTT_TEASED"] > 75 && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You work your tail itself around a little bit, just enough to show off where it’s bulging around your deep-diving tongue.");
-		output(" A thin string of of [pc.girlCumVisc] fluid connects your mouth and [pc.oneTailgina] as you pull it away, flashing the moist opening towards your foe for a moment.");
+		output(" A thin string of [pc.girlCumVisc] fluid connects your mouth and [pc.oneTailgina] as you pull it away, flashing the moist opening towards your foe for a moment.");
 	}
 	//Reqs: PC has a cunt-tail, skill >25
 	else if(select == 6)

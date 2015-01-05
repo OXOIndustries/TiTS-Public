@@ -348,7 +348,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	}
 
 	//Merge
-	output("\n\nYou pull back slowly, watching the strange woman's knees quake as you stroke her sensitive inner walls with your departing [pc.cockHead " + selCock + "]. It slides nearly the whole way out, exposing your lube-dripping pole to the air for what feels like forever. You hold it there, enjoying watching your hyper-endowed lover squirm, and then you thrust with a firm, assertive stroke, burying yourself wholly inside her. This time, the going is far, far easier. She loosened up a little while you talked, the shape of her tight cunt molding around the girth of your [pc.cock " + selCock + "], yeilding to its iron-hard shape with every passing moment. Now, as you pull back for a second stroke, she's simply sinfully tight, sensuously caressing every inch of turgid cockmeat that finds its way inside her.");
+	output("\n\nYou pull back slowly, watching the strange woman's knees quake as you stroke her sensitive inner walls with your departing [pc.cockHead " + selCock + "]. It slides nearly the whole way out, exposing your lube-dripping pole to the air for what feels like forever. You hold it there, enjoying watching your hyper-endowed lover squirm, and then you thrust with a firm, assertive stroke, burying yourself wholly inside her. This time, the going is far, far easier. She loosened up a little while you talked, the shape of her tight cunt molding around the girth of your [pc.cock " + selCock + "], yielding to its iron-hard shape with every passing moment. Now, as you pull back for a second stroke, she's simply sinfully tight, sensuously caressing every inch of turgid cockmeat that finds its way inside her.");
 
 	//Optional DP fork goooo!
 	if (pc.cockTotal() > 1)
@@ -362,7 +362,7 @@ public function kirosShipChubnookiUpDaCooter():void
 		
 		kiro.buttChange(pc.cockVolume(selCock2), false, true, false);
 
-		output("\n\nYou hit something partway in, arresting your motion. At the same time, the tanuki-woman's cock throbs, and her balls quake beneath you. She cries out, \"<i>Yeeessssss!</i>\" in a long, drawn out hiss, and you hear the heavy liquid sloshing of a viscous liquid being forcefully pumped into the machinery she's docked with. Droplets of white roll out around the edges of the sleeve she's stuck inside, but the bulk seems to be disappearing deep into the tubes that hang from the device, forced to flow by sheer pressure rather than artificial suction.");
+		output("\n\nYou hit something partway in, arresting your motion. At the same time, the tanuki-woman's cock throbs, and her balls quake beneath you. She cries out, \"<i>Yeeessssss!</i>\" in a long, drawn out hiss, and you hear the heavy liquid sloshing of a viscous fluid being forcefully pumped into the machinery she's docked with. Droplets of white roll out around the edges of the sleeve she's stuck inside, but the bulk seems to be disappearing deep into the tubes that hang from the device, forced to flow by sheer pressure rather than artificial suction.");
 	}
 
 	//Merge

@@ -554,7 +554,7 @@ function fuckACuntSnake():void {
 	pc.cockChange();
 	output("\n\nYou shudder as the ripples of concurrent motion slide along your length over and over again, dragging you towards an inexorable orgasm at breakneck pace. Your grip on the snake slackens, and it uses the leverage to slide out of your grip, aided by the smooth texture of its scales. It takes little more than split second for the beast to snap the rest of its body up and around your [pc.sheath " + x + "], constricting tightly. The squeezing pressure of its serpentine length isn't quite strong enough to be painful, but it powerful enough to trap an excess of blood in your erection, making you swell bigger and harder, pulsating with powerful amounts of lust inside your fleshy, organic cocoon.");
 	
-	output("\n\nThe snake begins to move its " + foes[0].tailVaginaDescript() + " back and forth, in addition to the concentric rings of sucking pleasure that are tugging so pleasantly on your vulnerable dickskin. The addition of of a quick, constant back-and-forth motion on top of everything else is too much for you.");
+	output("\n\nThe snake begins to move its " + foes[0].tailVaginaDescript() + " back and forth, in addition to the concentric rings of sucking pleasure that are tugging so pleasantly on your vulnerable dickskin. The addition of a quick, constant back-and-forth motion on top of everything else is too much for you.");
 	if(pc.cockTotal() > 1) {
 		output("  Your other boner");
 		if(pc.cockTotal() == 2) output(" pulsates");
