@@ -4,7 +4,7 @@
 //New Room Desc
 function zephyrRoomBonus():Boolean
 {
-	showBust("ZEPHYR");
+	//showBust("ZEPHYR");
 	output("At the top of the stairs is a cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. A taxidermied bear is tucked into the corner, menacing over everything, its mouth locked in a menacing rictus grin. There’s even a furry rug, made from the hide of some local beast or varmint. The rustic atmosphere is as inescapable as a prison world.");
 
 	//Room Blurb
