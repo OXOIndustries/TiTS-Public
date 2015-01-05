@@ -1652,7 +1652,7 @@ function spendTimeWithEmbry():void
 		flags["EMBRY_SPENT_TIME_WITH"] = 3;
 		output("You decide to spend some time with [embry.name]. You hang out at the bar again after her shift is over. She looks a little embarrassed as you sit there with your drinks.");
 		output("\n\n“<i>... S-sorry if we keep ending here at the bar. There’s not really a whole lot to see or do in the DMZ, you know?</i>” The simii girl blushes, and runs her finger along the rim of her glass. <i>\"A-anyway, not important! There’s something I want to ask you.</i>”");
-		output("\n\nYou ask her what she wants to know and she peers down into her raspberry tea. <i>\"U-um... so... you’re on Myrellion, right? And you’re [pc.fullName]... the heir of the late Victor Steele, of Steele Industries? The big time mining consortium?</i>”");
+		output("\n\nYou ask her what she wants to know and she peers down into her raspberry tea. <i>\"U-um... so... you’re on Myrellion, right? And you’re [pc.name]... the heir of the late Victor Steele, of Steele Industries? The big time mining consortium?</i>”");
 		output("\n\nYou nod and she flushes, looking down so hard her chin is practically glued to her chest. Her pink hair is falling over her face and covering her flushing cheeks. “<i>...O-oh wow--! Wha-what are you even, um, doing on Myrellion--?</i>”");
 		output("\n\n<i>\"I-I mean, not to be rude, you’re a big shot trillionare play" + pc.mf("boy","girl") + ", and here you are hanging out with an awkward simii waitress... on a primitive backwater world, to boot. Why--?</i>\"");
 		processTime(3);
@@ -2840,8 +2840,13 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 			output("\n\nSwallowed by white hot bliss");
 		}
 		else output("\n\nIn the aftermath");
-		output(", you fall against her, both of you laying there in a state of complete exhaustion. You’re not sure if seconds, minutes, or hours pass. When you can finally muster up the energy to move, you fiercely kiss her, your spent [pc.cockNoun] still buried within her.");
-		output("\n\n[embry.name] moans into your lips. She pulls you closer, unwilling to let your artificial cock out of her. Your tongues lash and dance with each other and you drunkenly relish in her sweet taste.");
+		output(", you fall against her, both of you laying there in a state of complete exhaustion. You’re not sure if seconds, minutes, or hours pass. When you can finally muster up the energy to move, you fiercely kiss her");
+		if (!pc.hasVagina()) output(", your spent [pc.cockNoun] still buried within her");
+		output(".");
+		output("\n\n[embry.name] moans into your lips. She pulls you closer, unwilling to let your");
+		if (pc.hasVagina()) output(" artificial cock");
+		else output(" [pc.cock]")
+		output(" out of her. Your tongues lash and dance with each other and you drunkenly relish in her sweet taste.");
 		output("\n\nShe strokes your cheek and her fingers dance along your [pc.skinFurScales]. You pull back, and there’s the biggest, most satisfied smile on her face.");
 		if(flags["EMBRY_GLASSES"] != undefined) output(" The eyes behind those glasses");
 		else output(" Her");

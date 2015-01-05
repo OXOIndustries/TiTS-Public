@@ -650,7 +650,7 @@ function nehzeraMenu(arg):void
 		{
 			addButton(5,"Under Desk",sexUnderDeskWithNehzara,false,"Under Desk","It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs....");
 			if(pc.hasCock() && !pc.isTaur()) addButton(6,"StorageCloset",sexWivNehzaraInStorageCloset,false,"Storage Closet","You’ve got what she wants, but you know she’ll want to call the shots. Still, going along with Nehzara and letting her use you for her own pleasure could be fun for both of you.");
-			else addDisabledButton(6,"StorageCloset","Storage Closet","You not have any kind of tauric body and have a penis in order to access this scene.");
+			else addDisabledButton(6,"StorageCloset","Storage Closet","You must not have any kind of tauric body and have a penis in order to access this scene.");
 		}
 		else 
 		{

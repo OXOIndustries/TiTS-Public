@@ -204,7 +204,7 @@ function notInterestedSavinYourOCsCreepMeOut():void
 	output("\n\nHer feline ears twitch, the cool confidence rushing out of her as you get ready to go. Before you can leave, she reaches up and grabs your arm, an imploring look in her ");
 	if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output("strange");
 	else output("cybernetic");
-	output(" eyes. “<i>Come on. Please. I don’t want to get into a fight here, but that bitch isn’t going to let me get out of here without one. You’re " + pc.mf("the toughest looking son of a bitch here","most bad-ass looking babe here") + ". Somebody who can handle themselves. And I need help.</i>”");
+	output(" eyes. “<i>Come on. Please. I don’t want to get into a fight here, but that bitch isn’t going to let me get out of here without one. You’re " + pc.mf("the toughest looking son of a bitch here","the most bad-ass looking babe here") + ". Somebody who can handle themselves. And I need help.</i>”");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Alright",helpDisKaraSlut,true,"Alright","Accede to her request. The girl's obviously in trouble.");
