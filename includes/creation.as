@@ -26,6 +26,7 @@ function startCharacterCreation(e:Event = null):void
 	days = 0;
 	this.userInterface.hideTime();
 	flags = new Dictionary();
+	gameOverEvent = false;
 
 	// Codex entries
 	CodexManager.unlockedEntryList = new Array();

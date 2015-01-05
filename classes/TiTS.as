@@ -202,6 +202,7 @@
 		public var currentLocation:String;
 		public var shipLocation:String;
 		public var inSceneBlockSaving:Boolean;
+		public var gameOverEvent:Boolean;
 
 		public var parser:ParseEngine;
 
@@ -268,6 +269,7 @@
 			itemTarget = undefined;
 
 			this.inSceneBlockSaving = false;
+			gameOverEvent = false;
 			
 			eventQueue = new Array();
 			eventBuffer = "";

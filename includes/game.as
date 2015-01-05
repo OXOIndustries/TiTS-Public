@@ -626,7 +626,7 @@ public function processTime(arg:int):void {
 	//Used to establish a cap
 	var lustCap:Number = Math.round(pc.lustMax() * .75);
 	//Not going over lustcap? Proceed as normal.
-	if(pc.lust() + arg*productionFactor < lustCap)
+	if(pc.lust() + (arg * productionFactor) < lustCap)
 	{
 		trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
 		//Actually apply lust.
@@ -635,7 +635,8 @@ public function processTime(arg:int):void {
 	//Already over the lustcap? Slowly reduce current lust.
 	else if(pc.lust() > lustCap)
 	{
-		pc.lust(-1 * arg * productionFactor / 4)
+		var reduce:Number = arg * productionFactor / 4;
+		pc.lust(-reduce)
 	}
 	//Gonna hit the cap? Change to cap.
 	else
@@ -1092,7 +1093,12 @@ function milkMultiplierGainNotificationCheck():void
 	}
 }
 
-function badEnd():void {
+function badEnd():void 
+{
+	gameOverEvent = true;
+	
+	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
+	
 	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
 }
