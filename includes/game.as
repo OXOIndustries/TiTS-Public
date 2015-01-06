@@ -411,7 +411,35 @@ function flyTo(arg:String):void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
+function sneakBackYouNudist():void
+{
+	clearOutput();
+	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
+	processTime(180+rand(30));
+	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 function move(arg:String, goToMainMenu:Boolean = true):void {
+	//Prevent movement for nudists into nude-restricted zones.
+	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
+	{
+		var nudistPrevention:Boolean = false;
+		if(!pc.isChestGarbed() && pc.biggestTitSize() > 1) nudistPrevention = true;
+		if(!pc.isCrotchGarbed()) nudistPrevention = true;
+		if(nudistPrevention)
+		{
+			clearOutput();
+			output("Nudity is illegal in that location! You'll have to cover up if you want to go there.");
+			clearMenu();
+			addButton(0,"SneakBack",sneakBackYouNudist,undefined,"SneakBack","Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
+			addButton(14,"Back",mainGameMenu);
+			return;
+		}
+	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
@@ -534,7 +562,6 @@ function statusTick():void {
 		pc.statusEffects.splice(shitToCut[0],1);
 		shitToCut.splice(0,1);
 	}
-
 }
 
 public function variableRoomUpdateCheck():void

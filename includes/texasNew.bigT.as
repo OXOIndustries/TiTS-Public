@@ -47,6 +47,7 @@ function showBigT():void
 function TsDoorIsLocked():void
 {
 	clearOutput();
+	showZephyrDeets();
 	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. \"<i>You'll need to talk to me if you want to get in there, but why don't you save us both the time and just leave?</i>\"\n\nRude.");
 
 	currentLocation = "529";

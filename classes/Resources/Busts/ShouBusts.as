@@ -12,6 +12,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/aurora.png", mimeType = "image/png")]
 		public var Bust_AURORA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/bigT.png", mimeType = "image/png")]
+		public var Bust_BIGT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron.png", mimeType = "image/png")]
 		public var Bust_CAMERON:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron_nude.png", mimeType = "image/png")]

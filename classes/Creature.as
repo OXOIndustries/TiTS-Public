@@ -1547,6 +1547,12 @@
 				case "milkFlavor":
 					buffer = fluidFlavor(milkType);
 					break;
+				case "wing":
+					buffer = wingDescript();
+					break;
+				case "wings":
+					buffer = wingsDescript();
+					break;
 				case "leg":
 					buffer = leg();
 					break;
@@ -3062,6 +3068,14 @@
 			if(tailCount == 1) return tailDescript();
 			else if(tailCount > 1) return pluralize(tailDescript());
 			else return "<b>ERROR: Taildescript called with no tails present</b>";
+		}
+		public function wingDescript():String
+		{
+			return "wing";
+		}
+		public function wingsDescript():String
+		{
+			return pluralize(wingDescript());
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -5644,6 +5658,11 @@
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
+			if (type == GLOBAL.TYPE_HUMAN)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+			}
 			if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
 				cocks[slot].cockColor = "bright red";
