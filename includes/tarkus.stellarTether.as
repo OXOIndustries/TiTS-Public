@@ -349,7 +349,11 @@ function liftStationEngineeringDeckBonusFunc():Boolean
 	output("\n\nTam-Tam is ");
 	if(flags["TAM_DISABLE_METHOD"] == undefined) output("hunched over her robotic hound, desperately trying to undo the damage you've done");
 	else if(flags["TAM_DISABLE_METHOD"] == 1) output("knocked out and chained up, her wrists affixed to one of the engines by a set of chains");
-	else output("snoozing peacefully, taking herself a little cat-nap atop her damaged attack drone, enjoying the afterglow of your... intimate intervention.");
+	else 
+	{
+		if(flags["TAKEN_TAMWOLF"] == undefined) output("snoozing peacefully, taking herself a little cat-nap atop her damaged attack drone, enjoying the afterglow of your... intimate intervention.");
+		else output("snoozing peacefully, taking herself a little cat-nap on the floor, enjoying the afterglow of your... intimate intervention.");
+	}
 
 	//Upon entering, first time:
 	if(flags["TAM_DISABLE_METHOD"] == undefined)
@@ -1963,7 +1967,7 @@ function kaskaFightAI():void
 	//HP Shit
 	if(!foes[0].hasStatusEffect("Futa Lust"))
 	{
-		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0)
+		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed"))
 		{
 			NPCDisarmingShot(foes[0]);
 			return;
@@ -1973,14 +1977,18 @@ function kaskaFightAI():void
 			NPCstealthFieldActivation(foes[0]);
 			return;
 		}
-		if(pc.shields() > 0)
+		if(pc.shields() > 0 && !foes[0].hasStatusEffect("Disarmed"))
 		{
 			choices[choices.length] = shieldBustah;
 			choices[choices.length] = shieldBustah;
 		}
-		choices[choices.length] = kaskaVolleyShot;
-		choices[choices.length] = NPCOvercharge;
+		if(!foes[0].hasStatusEffect("Disarmed"))
+		{
+			choices[choices.length] = kaskaVolleyShot;
+			choices[choices.length] = NPCOvercharge;
+		}
 		if(!pc.hasStatusEffect("Blind")) choices[choices.length] = NPCFlashGrenade;
+
 	}
 	//Lust Shit
 	else
@@ -1995,7 +2003,8 @@ function kaskaFightAI():void
 		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
 	}
 	//Pick one
-	choices[rand(choices.length)]();
+	if(choices.length > 0) choices[rand(choices.length)]();
+	else enemyAttack(pc);
 }
 
 

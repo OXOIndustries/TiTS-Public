@@ -62,6 +62,12 @@ function repeatBadgerApproach():void
 
 		//[Buy Dumbfuck pills] [Leave]
 	}
+	//REPEAT GREETING NON-BIMBOIFIED BUT DITZ
+	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined && pc.hasPerk("Ditz Speech"))
+	{
+		output("The Doctor looks up as you enter, her expression changes into a faint smile at your presence. <i>“Well well, if it isn’t my special customer!”</i> She pauses for a moment as you let out a bubbly giggle and a pink fog of lust clouds your mind. <i>“It seems you've gone to the right place - then again, all bimbos tend to end up here, don't they?”</i> She licks her lips and continues. <i>“So, did you come here to do some shopping? I’ve still got those little happy pills in stock if you want them, but I'm not sure if they will do much for your, ehm, condition...”</i>");
+		pc.lust(5);
+	}
 	//REPEAT GREETING BIMBOIFIED
 	else
 	{

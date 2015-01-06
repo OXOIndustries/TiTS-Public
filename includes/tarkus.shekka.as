@@ -679,7 +679,9 @@ function noShekkaLetsNotFuck():void
 	//No
 	else if(pc.lust() < pc.lustMax())
 	{
-		output("You extricate yourself from the press of her excited body with more than a little difficulty{, fighting down the rising tide of lust within you}. <i>\"Not now, Shekka. I think we both have things we need to do be doing besides fucking ourselves silly.\"</i>");
+		output("You extricate yourself from the press of her excited body with more than a little difficulty");
+		if(pc.lust() >= 75) output(", fighting down the rising tide of lust within you");
+		output(". <i>\"Not now, Shekka. I think we both have things we need to do be doing besides fucking ourselves silly.\"</i>");
 		output("\n\nPouting, Shekka takes a deep breath, then another. <i>\"Right... right... okay, that's fine. You're definitely right.\"</i> She brushes herself down, shuddering a little bit when her hands pass over her nipples. <i>\"I should work.\"</i> She turns away from you with a disheartened sigh, flipping her welding mask back into place.");
 		processTime(1);
 		clearMenu();

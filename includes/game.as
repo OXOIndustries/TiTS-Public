@@ -489,18 +489,24 @@ function statusTick():void {
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
 				{
-					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-					for(y = 0; y < pc.cockTotal(); y++)
+					if(pc.hasCock())
 					{
-						pc.cocks[y].cLengthRaw *= 2;
+						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+						for(y = 0; y < pc.cockTotal(); y++)
+						{
+							pc.cocks[y].cLengthRaw *= 2;
+						}
 					}
 				}
 				if(pc.statusEffects[x].storageName == "Condensol-B")
 				{
-					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-					for(y = 0; y < pc.cockTotal(); y++)
+					if(pc.hasCock())
 					{
-						pc.cocks[y].cLengthRaw *= 4;
+						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+						for(y = 0; y < pc.cockTotal(); y++)
+						{
+							pc.cocks[y].cLengthRaw *= 4;
+						}
 					}
 				}
 				//Boobswell ends!
@@ -606,6 +612,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["256"].southExit = "294";
 	}
+	else rooms["256"].southExit = undefined;
 	
 	// Annos shop
 	if (!steeleTechTarkusShopAvailable())

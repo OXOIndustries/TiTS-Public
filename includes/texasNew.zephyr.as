@@ -130,8 +130,11 @@ function mutualHandJobsWithZephyr():void
 	output("\n\nYou ");
 	if(pc.isCrotchGarbed()) output("wiggle out of your [pc.lowerGarments] and ");
 	if(pc.isTaur()) output("canter over, bending so that she can get at your rear-mounted genitalia while you tend to her.");
-	else if(pc.legCount > 1) output("hop up on a clear spot on her desk{, spreading your [pc.legs] to make sure she’ll have plenty of room to access your [pc.cocks].");
-	else output("arranging your [pc.leg] to make sure you don’t knock too much of her work off.");
+	else {
+		output("hop up on a clear spot on her desk");
+		if(pc.legCount > 1) output(", spreading your [pc.legs] to make sure she’ll have plenty of room to access your [pc.cocks].");
+		else output("arranging your [pc.leg] to make sure you don’t knock too much of her work off.");
+	}
 	output(" There’s no concealing your own burgeoning stiffness or the way it makes your [pc.cocks] point toward her.");
 
 	output("\n\nZephyr licks her lips and reaches out, then stops. She checks her movement, instead grabbing you by the wrist and hauling your hand onto her growing prick.");
@@ -145,7 +148,9 @@ function mutualHandJobsWithZephyr():void
 	//horsecock
 	if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) 
 	{
-		output("\n\n“<i>Oh, somebody’s a bit of a stud, aren’t they?</i>” She caresses the medial ring{, even dipping down to tug at the sheath}. “<i>I’ve always had a soft spot for horsecocks");
+		output("\n\n“<i>Oh, somebody’s a bit of a stud, aren’t they?</i>” She caresses the medial ring");
+		if(pc.hasSheath(x)) output(", even dipping down to tug at the sheath");
+		output(". “<i>I’ve always had a soft spot for horse-cocks");
 		if(!pc.hasKnot(x)) output(", but they’re nothing without a knot.</i>” Her fingers dance in slow circles around the base. “<i>You should grow one, you know - get a nice, fat knot to really make your mares sing.</i>”");
 		else output(", especially ones with the good sense to grow a knot.</i>” Her fingers fondly dance in slow circles around the bulbous knot. “<i>Nothing makes a mare’s cunt sing like feeling that flare pressing on her in her deepest recesses while your knot locks every drop of cum inside.</i>” She shivers. “<i>If there’s no knot, why bother?</i>”");
 	}
@@ -324,14 +329,18 @@ function getFuckedByZephyrII():void
 	else if(pc.vaginalCapacity(x) >= 600) fits = true;
 	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
 
-	output("You shiver at the declaration{, juicing a little ");
-	if(pc.legCount > 1)
+	output("You shiver at the declaration");
+	if(pc.hasVagina())
 	{
-		output("between the ");
-		if(pc.hasKnees()) output("knees");
-		else output("thighs");
+		output(", juicing a little ");
+		if(pc.legCount > 1)
+		{
+			output("between the ");
+			if(pc.hasKnees()) output("knees");
+			else output("thighs");
+		}
+		else output("down below");
 	}
-	else output("down below");
 	output(". You could go for that. In fact... you wiggle your [pc.butt] back against the authoritative cow’s palm, hoping she’ll give it to you already.");
 	output("\n\n“<i>Yeah, you’re a good ");
 	if(!cow) output("bitch");
@@ -405,7 +414,7 @@ function getFuckedByZephyrIII():void
 	output("The big-dicked cow, smiling down over you, pulls back, leaving you feeling achingly empty. After having such a large member inside you, being without leaves you longing for its return. The cool air of Zephyr’s office tickles at your stretched opening.");
 	output("\n\nYou look up at her, pleading with your eyes. You aren’t sure your mouth could coordinate a request, even one as simple as ‘please’.");
 	output("\n\nThe amazon, grabbing you ");
-	if(pc.hasHair()) output("by the [pc.hairNoun]");
+	if(pc.hasHair()) output("by the [pc.hair]");
 	else output("by the neck");
 	output(", smiles down all-too knowingly. “<i>I’ll never get tired of seeing that look on a ");
 	if(cow) output("cow");
@@ -480,7 +489,7 @@ function getFuckedByZephyrIV():void
 	output("\n\nShe obliges you in spades, but not before her knot swells. It puffs up with astonishing rapidity, stretching your [pc.vagOrAss] until it seems that the whole of your being is pulled taut around it, little more than a cum-hungry condom for the cow-girl.");
 	if(x >= 0) pc.cuntChange(x,1000);
 	else pc.buttChange(1000);
-	output("\n\nThen, the warm sensation of ejaculation greets your spasming folds. Zephyr’s thick goo washes over you in pulsating arhythmic bursts, splattering against your insides, bathing them in thick later with the first few shots alone. But she doesn’t stop there. The climaxing cow’s knot may have finished growing, but she’s a long way from being done cumming. She keeps firing long, spermy lances into you well past the end of your own orgasm.");
+	output("\n\nThen, the warm sensation of ejaculation greets your spasming folds. Zephyr’s thick goo washes over you in pulsating arhythmic bursts, splattering against your insides, bathing them in thick layer with the first few shots alone. But she doesn’t stop there. The climaxing cow’s knot may have finished growing, but she’s a long way from being done cumming. She keeps firing long, spermy lances into you well past the end of your own orgasm.");
 	output("\n\nYou tremble, overwhelmed by being so filled while still sensitive from the afterglow. Your knot-tied mate collapses on top of you. Her immense breasts cushion and distribute her weight to either side of you, making the position far more bearable than it would otherwise be. She breaths huskily in your ear. Sometimes, she even moans, shooting a slightly bigger, thicker eruption than before.");
 	output("\n\nYou cry out every time she does, enjoying the moment too much to care, even when your belly ");
 	if(pc.bellyRating() < 45) output("begins to swell");
