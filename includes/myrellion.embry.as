@@ -1951,7 +1951,7 @@ function lookingForSexEmbry():void
 function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
 {
 	output("\n\nShe looks up at the roof with a reminiscent look in her eyes. “<i>... You know... there’s a big mine not far from where I used to live, back on Omorii. It’s owned by Steele Industrial Technology and Production, but run and operated by locals. We call it the ‘Big Steele’ mine.</i>”");
-	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.fullname]. Small galaxy, huh?</i>”");
+	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.name]. Small galaxy, huh?</i>”");
 	output("\n\nYou spend some more time chatting, and before you know it, it’s getting late. You walk [embry.name] back to her ship, where she earnestly thanks you for the date, and kisses you goodnight.");
 	output("\n\nYou walk back to the bar with a smile on your face.");
 	processTime(21);
@@ -1990,9 +1990,9 @@ function openRelationshipWithKiro(poly:Boolean):void
 	output(".</i>”");
 	output("\n\n<i>\"T-that said, if it’s important to you--if that’s something that makes you happy, I want you to be happy, and I want to be with you. As long as you’ll have me as your girlfriend, I don’t care who you sleep with. Is, is that weird--?</i>” she looks at you.");
 	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I can call you my " + pc.mf("boy","girl") + "friend, and I ");
-	if(!poly) output("h-have your heart");
-	else output("have a special place in your heart");
-	output("”,</i> she blushes.");
+	if(!poly) output("h-have your heart,</i>”");
+	else output("have a special place in your heart,</i>”");
+	output(" she blushes.");
 	if(poly) flags["EMBRY_LOVE_STYLE"] = "polyamory";
 	else flags["EMBRY_LOVE_STYLE"] = "open relationship";
 	embryRelationshipChoiceEpilogue();
@@ -2007,7 +2007,7 @@ function haremAlphaStuff():void
 	output("\n\n[embry.name]’s cheeks go bright red. <i>\"W-wha--why did my heart just skip a beat--?</i>” she looks confused and clutches at her chest. It takes the simii girl a moment to compose herself.");
 	output("\n\nAfter a while, she takes a deep breath, and nervously responds. <i>\"U-um... I don’t mind you being my Alpha, or being owned... if that’s something that makes you happy, I want you to be happy, and I want to be with you... no matter what it takes.</i>”");
 	output("\n\n<i>\"As long as you’ll have me as yours, I don’t mind if you sleep with others. Is, is that weird--?</i>” she gives you a searching look.");
-	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I belong to you, and I have a special place in your heart,<i> she blushes.");
+	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I belong to you, and I have a special place in your heart,</i>\" she blushes.");
 	flags["EMBRY_LOVE_STYLE"] = "harem";
 	embryRelationshipChoiceEpilogue();
 }
