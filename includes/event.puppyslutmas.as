@@ -1463,15 +1463,8 @@ function puppyslutmasMeetTheDornasHueAnno():void
 	showBust("ANNO");
 	
 	output("<b>Hours pass...</b>");
-
-	var pName:String = rooms[shipLocation].planet;
 	
-	if (pName.indexOf(":") != -1)
-		pName = pName.split(" ")[1];
-		
-	pName = StringUtil.toTitleCase(pName);
-	
-	output("\n\nYour auto-pilot beeps that you’ve returned to " + StringUtil.toTitleCase(pName) + ". Anno lazily reaches out of bed and smacks the alert button, shutting the damn thing up.");
+	output("\n\nYour auto-pilot beeps that you’ve returned to " + getPlanetName() + ". Anno lazily reaches out of bed and smacks the alert button, shutting the damn thing up.");
 	
 	output("\n\n<i>“So, what’s next?”</i> you lover asks, rolling over on top of you, pressing her big, soft chest against your own.");
 	
