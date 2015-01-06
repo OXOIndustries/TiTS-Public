@@ -1052,6 +1052,8 @@ function payTheLaneTax():void
 
 		availScenes.push(suckLanesDick);
 		availScenes.push(fuckedByMaleLane);
+		if (pc.hasCock() || !pc.hasVagina()) availScenes.push(firstTimeLaneMPCM);
+		if (pc.hasVagina()) availScenes.push(firstTimeLaneMPCFH);
 	}
 	else
 	{
@@ -1059,7 +1061,11 @@ function payTheLaneTax():void
 
 		availScenes.push(munchLanesCarpet);
 		availScenes.push(fuckedByFemLane);
+		if (pc.hasCock()) availScenes.push(firstTimeLaneFPCMH);
+		if (!pc.hasCock()) availScenes.push(firstTimeLaneFPCFGenderless);
 	}
+
+	availScenes[rand(availScenes.length)]();
 }
 
 function laneSexSelection():void
@@ -1068,18 +1074,22 @@ function laneSexSelection():void
 
 	if (lane.mf("m", "f") == "m")
 	{
-		flags["LANE_MALE_SEXED"] = 1;
+		if (flags["LANE_MALE_SEXED"] == undefined) flags["LANE_MALE_SEXED"] = 0;
+		flags["LANE_MALE_SEXED"]++;
 
 		if (pc.hasCock() || !pc.hasVagina()) availScenes.push(firstTimeLaneMPCM);
 		if (pc.hasVagina()) availScenes.push(firstTimeLaneMPCFH);
 	}
 	else
 	{
-		flags["LANE_FEMALE_SEXED"] = 1;
+		if (flags["LANE_FEMALE_SEXED"] == undefined) flags["LANE_FEMALE_SEXED"] = 0;
+		flags["LANE_FEMALE_SEXED"]++;
 
 		if (pc.hasCock()) availScenes.push(firstTimeLaneFPCMH);
 		if (!pc.hasCock()) availScenes.push(firstTimeLaneFPCFGenderless);
 	}
+
+	availScenes[rand(availScenes.length)]();
 }
 
 function suckLanesDick():void
@@ -1779,6 +1789,8 @@ function fuckedByFemLane():void
 function laneFullyHypnotisesYouDumbshit();void
 {
 	flags["LANE_FULLY_HYPNOTISED"] = 1;
+	flags["LANE_FULLY_HYPNOTISED_DAY"] = days;
+
 	clearOutput();
 	
 	// Lane fully hypnotizes the PC. Tier 5 aggression, basically. Start here after the first [=Next=] button once the PC pays for a normal hypnosis.
@@ -1811,6 +1823,8 @@ function laneFullyHypnotisesYouDumbshit();void
 	if (pc.mf("m", "f") == "f") outputText("ess");
 	outputText(" of Steele Tech, I think.”</i>");
 
+	flags["LANE_WIRE_CREDITS_DAILY"] = 1;
+
 	outputText("\n\nFrantic, you begin to explain that you haven’t actually inherited the business from your father yet. {He} listens to you ramble, but when the message is made clear, {he} tells you to stop. <i>“If you can’t afford it, just wire me what you have. I’ll trust you. You wouldn’t ever lie to me, would you, [pc.name]?”</i> You shake your head, vehemently telling {him} that you would never dream of it.");
 
 	outputText("\n\n<i>“There’s one last thing. One last thing, and then I’ll give you,”</i> {he} says, using {his} hands to frame {his} crotch, <i>“what you want.”</i> You don’t dare move or speak, listening rapturously for whatever else {he} has in mind for you. <i>“From now on, I want you to call me your " + lane.mf("master", "mistress") + ". You will no longer address me as Lane, or as " + lane.mf("mister", "missus") + " anything. I own you now, [pc.name], and I demand respect from my pets.”</i>");
@@ -1827,8 +1841,7 @@ function laneFullyHypnotisesYouDumbshit();void
 
 	//[=Next=]
 	clearMenu();
-	addButton(0, "Next", )
-
+	addButton(0, "Next", laneSexSelection);
 }
 
 // The doc had a comment that claimed this scene was for the following configuration:
@@ -2617,4 +2630,322 @@ function lanesAppearance():void
 	}
 
 	addDisabledButton(5, "Appearance");
+}
+
+function tryFollowerLaneIntervention():Boolean
+{
+	if(flags["LANE_FULLY_HYPNOTISED_DAY"] <= days - 7 && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
+	{
+		// Figure out which follower is actually gonna take lead on this.
+		var availFollowers:Array = [];
+
+		if (annoIsCrew()) availFollowers.push("Anno");
+		if (celiseIsCrew()) availFollowers.push("Celise");
+		if (daneIsCrew()) availFollowers.push("Dane");
+		if (reahaIsCrew() && reahaIsCured()) availFollowers.push("Reaha");
+
+		if (availFollowers.length > 0)
+		{
+			followerLaneIntervention(availFollowers[rand(availFollowers.length)]);
+			return true;
+		}
+	}
+	return false;
+}
+
+function lFollowerName():String
+{
+	return flags["FOLLOWER_LANE_INTERVENTION"];
+}
+
+function lFollowerMF(m:String, f:String):String
+{
+	if (flags["FOLLOWER_LANE_INTERVENTION"] == "Dane") return m;
+	return f;
+}
+
+function followerLaneIntervention(followerName:String):void
+{
+	flags["FOLLOWER_LANE_INTERVENTION"] = followerName;
+
+	clearOutput();
+	showName("\n" + followerName);
+	showBust(followerName.toUppercase());
+	author(laneAuthor);
+
+	// I woulda used something like:
+	// var tFollower:Creature = arg, tFollower.mf()
+	// through this, but I figure some of these potential followers may not always have a statblock and fuck adding one.
+
+	output("You board your ship once more, and shortly after you arrive, you’re met by " + followerName + ". You greet her");
+	if (lFollowerName() != "Dane") output(" warmly");
+	output(", but in return, you get a scrunched, perplexed look. You see in "+ lFollowerMF("his", "her") +" left hand "+ lFollowerMF("his", "her") +" own codex, its light shimmering against "+ lFollowerMF("his", "her") +" thigh dependably.");
+
+	output("\n\n<i>“We need to talk,”</i> "+ lFollowerMF("he", "she") +" says. You can’t get a good read on "+ lFollowerMF("his", "her") +" emotions; whatever is bothering "+ lFollowerMF("him", "her") +" is clearly important, but "+ lFollowerMF("he", "she") +"’s in that sort of middle-ground between");
+	if (lFollowerName() == "Dane") output(" confusion and concern");
+	else output(" angry, confused, upset, distraught, and a plethora of others");
+	output(". You pat "+ lFollowerMF("him", "her") +" on the shoulder warmly and ask "+ lFollowerMF("him", "her") +" what the problem is.");
+
+	output("\n\n" + lFollowerMF("He", "She") + " brings up "+ lFollowerMF("his", "her") +" codex, and on it is a long list of numbers. In particular, a lot of negative numbers, usually around the five-hundred area. Beside each number is a green ‘before’ and a red ‘after’ – and both of those numbers steadily shrink as the days pass by.");
+	if (lFollowerName() == "Dane") output(" <i>“Remiss as it may be to take too fine an interest in my </i>employers<i> financial situation...”</i>");
+	else output("<i>“I was looking over our financial reports,”</i>");
+	output(" "+ lFollowerMF("he", "she") +" says, holding "+ lFollowerMF("his", "her") +" voice steady and concealing "+ lFollowerMF("his", "her") +" thoughts, <i>“");
+	if (lFollowerName() == "Dane") output("but");
+	else output("and");
+	output(" I can’t help but notice a pattern");
+	if (lFollowerName() == "Dane") output(", and frankly, I'm not quite ready to jump off this gravy train just yet, Steele");
+	output(".”</i>");
+
+	output("\n\nYou already know the answer to the question "+ lFollowerMF("he", "she") +"’s not asking, but before you can explain yourself, "+ lFollowerMF("he", "she") +" pulls "+ lFollowerMF("his", "her") +" codex back. <i>“This has been going on for some time now,”</i> "+ lFollowerMF("he", "she") +" says, scrolling the page with "+ lFollowerMF("his", "her") +" finger. <i>“Five hundred credits have been disappearing from your account once a day at, coincidentally, the crack of midnight on Terra. Says here that they’ve been going to a PIN number rather than a business, so I couldn’t put a name to the benefactor.”</i> "+ lFollowerMF("He", "She") +" looks up from its glowing screen, and from the look in "+ lFollowerMF("his", "her") +" eyes, you could probably guess that she already knows your answer. <i>“Do you know anything about this?”</i>");
+
+	output("\n\n<i>“What if I did?”</i> you answer defensively, crossing your arms.");
+
+	output("\n\n<i>“It’d save us all a whole lot of trouble, for one.");
+	if (lFollowerName() == "Dane") output(" I've been in touch with a few of my contacts.");
+	else output(" I’ve already contacted the UGC about it.");
+	output(" They think we’re a victim of fraud");
+	if (lFollowerName() == "Dane") output(". I'm asking what you know before I look into this any deeper.");
+	else output(", but I’ve told them to put off their investigation until I had a chance to speak with you.");
+	output("”</i> At the threat of");
+	if (lFollowerName() == "Dane") output(" dragging Dane");
+	else output(" bringing the authorities");
+	output(" into your already convoluted mess, you avert your eyes nervously. <i>“They at least told me who the PIN number belongs to. Something about a Daynar living on the desert planet Venar? Is any of this ringing a bell?”</i>");
+
+	output("\n\nYou grit your teeth as you consider "+ lFollowerMF("his", "her") +" words and think on the implications of your next actions. You love your " lane.mf("master", "mistress") " Lane; what [lane.heShe] wants is what you want, but you’re not entirely certain someone like " + followerName + " would see it that way. You could try to confide in her how you feel about Lane and what [lane.heShe] means to you – or you could tell "+ lFollowerMF("him", "her") +" to mind her own goddamn business. "+ lFollowerMF("He", "She") +" knows who the captain of this ship is; if you told "+ lFollowerMF("him", "her") +" to fuck off, "+ lFollowerMF("he", "she") +" would, plain and simple.");
+
+	// [=Confide=][=Fuck Off=]
+	clearMenu();
+	addButton(0, "Confide", followerNameInterventionConfide);
+	addButton(1, "FuckOff", followerLaneInterventionFuckOff);
+}
+
+function followerLaneInterventionConfide():void
+{
+	clearOutput();
+	showName("\n" + lFollowerName());
+	showBust(lFollowerName().toUppercase());
+	author(laneAuthor);
+
+	output("<i>“I trust you,”</i> you tell "+ lFollowerName() +"suddenly. In response, "+ lFollowerMF("his", "her") +" eyes widen slightly");
+	if (lFollowerName() != "Celise") output(" and "+ lFollowerMF("his", "her") +" nostrils flare");
+	output("– "+ lFollowerMF("he", "she") +" knows "+ lFollowerMF("he", "she") +"’s not going to like whatever you have to tell "+ lFollowerMF("him", "her") +", but you continue anyway.");
+
+	output("\n\nYou tell "+ lFollowerMF("his", "her") +" all about Lane, and how you just wandered into [lane.hisHer] hut one day and discovered what sort of service [lane.heShe] provides. You tell "+ lFollowerName() +" about how [lane.heShe] made you so much... better! [lane.HeShe] made your senses and your confidence so much better, and your limits and your barriers turned to nothing with [lane.hisHer] help.");
+
+	output("\n\n<i>“Does this ‘Lane’ charge you five hundred credits per hypnosis?”</i>");
+
+	output("\n\n<i>“No, [lane.heShe] only charges one hundred.”</i>");
+
+	output("\n\n"+ lFollowerName() + " asks you to get to the point, and you tell "+ lFollowerMF("him", "her") +" how you came to love Lane, to adore [lane.himHer] and... and even worship [lane.himHer] a little. You tell "+ lFollowerMF("him", "her") +" how [lane.heShe] makes you feel so good, the way [lane.heShe] touches you and the way [lane.heShe] loves you. It’s become so much more than a business relationship between you two. You adore Lane so much, and you’d give so much to be with [lane.himHer], that when [lane.heShe] asked you to wire [lane.himHer] five hundred credits a day for the privilege of being his one-and-only, it almost seemed unfair to the rest of the universe that you’d get [lane.himHer] all to yourself.");
+
+	output("\n\nWhen you finish, you expect");
+	if (lFollowerName() == "Dane") output(" a barrage of questions from Dane");
+	else output(" an entire array of emotions from " + lFollowerName());
+	output("–");
+	if (lFollowerName() != "Dane") output(" happiness that you’ve found the one that makes your heart flutter;");
+	output(" acceptance that Lane means everything to you and that five-hundred credits is a minor sum");
+	if (lFollowerName() != "Dane") output("; maybe even jealousy that Lane didn’t choose "+ lFollowerMF("him", "her"));
+	output(". The expression you get – jaw slack, eyes wide, lips curled and quivering, brow furrowed – looks appalled and disgusted.");
+
+	output("\n\n<i>“[pc.name], listen very closely,”</i> "+ lFollowerMF("he", "she") +" says to you, placing both "+ lFollowerMF("his", "her") +" hands on your shoulders and forcing your eyes to lock to "+ lFollowerMF("his", "hers") +". <i>“Lane is stealing from you. [lane.HeShe] abused your trust, and now [lane.heShe]’s hypnotized you");
+	if (lFollowerName() == "Dane") output(" into being your slutty little squeeze");
+	else output(" to love [lane.himHer]");
+	output(". [lane.HeShe] took your dignity, and now [lane.heShe]’s taking your money too.”</i>");
+
+	output("\n\nYou try to insist that [lane.heShe] isn’t, but "+ lFollowerName() +"’s not having any of it. <i>“Try and think. When did you first realize you ‘loved’ this Daynar?”</i> You squint your eyes as you recall it. It was a glorious afternoon; the weather was flawless; the smell of vanilla and lavender was – <i>“Focus!”</i> "+ lFollowerMF("he", "she") +" snaps, and you think harder. You can’t remember the date, but it was shortly after one of your sessions with [lane.himHer].");
+
+	output("\n\n<i>“And what was your opinion of [lane.himHer] before that ‘session’?”</i>");
+
+	output("\n\nIt was a cloudier time, you admit, but after focusing on it a moment longer, you tell her that your opinion of Lane before that was that [lane.heShe] was an alright person, all around. [lane.HeShe] was a dependable business" + lane.mf("", "wo") + "man that ran a fair, if obscure, little business in the desert. You thought [lane.heShe] was attractive and were considering asking [lane.himHer] out on a date, or something.");
+
+	output("\n\n<i>“That’s weird, [pc.name], that you would go straight from ‘eh, [lane.heShe]’s alright,’ to ‘surrender your livelihood to [lane.himHer]’ in the space of a single session, don’t you think?”</i> You don’t have a response to that – you never really considered it that way before. <i>“[lane.HeShe] didn’t do whatever you paid [lane.himHer] to do to you, and [lane.heShe] made you [lane.hisHer] little lovesick battered-housewife " + lane.mf("cumdump", "cuntslave") +" instead that day. Do you really love [lane.himHer]?”</i> You nod your head, though "+lFollowerName()+"’s making you think thoughts you’d rather not. <i>“Has [lane.heShe] ever told you that [lane.heShe] loves you back?”</i>");
+
+	output("\n\nYou’re stricken for words at that, and your mind desperately scrambles to recall some instance where [lane.heShe] did something for you that required some sacrifice on [lane.hisHer] part. There was that one time [lane.heShe] – no, that was someone else. But at least [lane.heShe] – actually, not once has Lane given you a discount. At the very least, Lane is a good lover! But... now that you think about it, most of your bouts with [lane.himHer] involve you doing all the work. [lane.heShe]’s never wanted to go down on you... [lane.heShe]’s never even let you kiss [lane.himHer]; [lane.heShe]’s always the kisser.");
+
+	output("\n\nYou suddenly feel very itchy, particularly around");
+	if (pc.hasCock() && !pc.hasVagina()) output(" [pc.eachCock] and your [pc.asshole]");
+	else if (!pc.hasCock() && pc.hasVagina()) output(" your [pc.vagina]");
+	else if (pc.hasCock() && pc.hasVagina()) output(" your genitals, [pc.eachCock] and your [pc.vagina] each demanding attention");
+	else output(" your [pc.asshole]");
+	output(" and you have an insatiable need to go to Lane, knowing that [lane.heShe]’ll be able to scratch your itch just right. You look to "+lFollowerName()+", your eyes wide and begging. <i>“You can’t go to [lane.himHer] again, [pc.name],”</i> she says to you as calmly as she can, knowing that you’re about to freak out. <i>“[lane.HeShe]’ll only keep abusing you and stealing your money. You have to stop going to Lane, starting right now, or else [lane.heShe]’ll </i>own<i> you. Do you understand what that would mean?”</i>");
+
+	output("\n\n<i>“Tell me what I need to do,”</i> you practically beg "+lFollowerMF("him", "her")+".");
+
+	output("\n\n<i>“First, stop sending Lane your money.”</i> You reach for your own codex – but you can’t do it. You hand it to "+lFollowerName()+" and ask "+lFollowerMF("him", "her")+" to instead. Once you give "+lFollowerMF("him", "her")+" the password to your account (and promising yourself to change it when you’re finished here), "+lFollowerMF("he", "she")+" hands it back to you, the deed done. <i>“Second, don’t just not go to Lane anymore: stop thinking about [lane.himHer], stop wanting [lane.himHer], don’t call [lane.himHer], nothing. Let’s avoid even going to Tarkus if we can. [lane.HeShe]’s a bad drug, and the most effective way to wean off drugs is cold turkey.”</i>");
+
+	output("\n\n<i>“I don’t know if I can,”</i> you say, knowing how pathetic you sound.");
+
+	output("\n\n<i>“You can. If you don’t think you can believe in yourself, think about the others who");
+	if (lFollowerName() == "Dane") output(" rely");
+	else output(" believe");
+	output(" in you. We can all break whatever hold this asshole has on you.”</i>");
+	if (lFollowerName() == "Dane") output(" He squeezes your shoulder as a measure of reassurance");
+	else output(" " + lFollowerMF("He", "She") + " cups your cheeks gently, and smiles warmly at you");
+	output(". <i>“Whatever you think only [lane.heShe] can do, you can find someone else in the whole wide universe who can do it better. If you just need to blow off some steam and relieve some tension... you don’t need to pay a whole five-hundred bones and look any farther than your own ship for that.”</i> You smile back at "+lFollowerMF("him", "her")+" – you knew you brought "+lFollowerMF("him", "her")+" on your ship for a reason.");
+
+	output("\n\n"+ lFollowerName() +" is confident in your strength, and you feel some relief in confiding with "+lFollowerMF("him", "her")+" – and you thank "+lFollowerMF("him", "her")+" for her help in realizing what Lane was doing to you. <b>From now on, you <i>cannot</i> visit Lane again.</b> You’re afraid of what might happen if you do. You and "+lFollowerName()+" both figure that <b>if you can make it ten days without any contact with Lane,</b> you ought to be cleansed of [lane.hisHer] influence.");
+
+	output("\n\nYour old life starts again today.");
+
+	// The PC no longer loses 500 credits per day. ‘Detox’ begins.
+	flags["LANE_WIRE_CREDITS_DAILY"] = 0;
+	flags["LANE_DETOX_COUNTER"] = 0;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function followerLaneInterventionFuckOff():void
+{
+	clearOutput();
+	showName("\n" + lFollowerName());
+	showBust(lFollowerName().toUppercase());
+	author(laneAuthor);
+
+	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");
+
+	output("\n\n<i>“At five-hundred credits a day, I would think it’s the whole ship’s business, [pc.name].”</i> "+ lFollowerMF("He", "She") +" meets your stare unflinchingly and refuses to back down. <i>“That’s not chump change disappearing here. We could be using that for repairs or improvements");
+	if (lFollowerName() == "Dane") output("- or keeping the resident mercenary paid well enough to stick around");
+	output(".”</i>");
+
+	output("\n\n<i>“That is </i>my<i> money, "+ lFollowerName() +", not yours.”</i> You snap at "+ lFollowerMF("him", "her") +", raising your voice slightly, hearing it echo off the steel girders and walls surrounding you. <i>“What I want to do with my goddamn money isn’t your prerogative or responsibility.");
+	if (lFollowerName() == "Dane") output(" Drop it. I'll make sure there's enough money for </i>you<i> to shut the fuck up, so I suggest you get back to work. Assuming you actually still want to do your fucking job.");
+	else output(" The next chance you get, I want you to contact the UGC and tell them we’re not a victim of any sort of fraud.");
+	output(" Everything is under control, and I want you to remember that the next time you go poking your nose in someone else’s fucking affairs, least of all your </i>captain<i>, of all people.”</i>");
+
+	output("\n\nNeither of you blink or flinch, sizing each other up in the bay of your ship. You clench your fists, bracing yourself to throw down if you need to. Finally, after a tense few seconds, "+ lFollowerName() +" takes a long sigh through "+ lFollowerMF("his", "her") +" nose. "+ lFollowerMF("His", "Her") +" expression softens, from a determined poker face to something decidedly more");
+	if (lFollowerName() == "Dane") output(" defeated");
+	else output(" hopeless");
+	output(". <i>“Whatever you say,</i> Captain <i>[pc.name].”</i> "+ lFollowerMF("He", "She") +" turns and begins making "+ lFollowerMF("his", "her") +" way down the corridors of your ship, the light of "+ lFollowerMF("his", "her") +" codex flickering off the walls until she’s out of sight.");
+
+	output("\n\nYou exhale; that was close. As much as you love Lane, you’re too attached to "+ lFollowerName() + " to want to fight "+ lFollowerMF("him", "her") +". But at least now your future with your sexy Daynar "+ lane.mf("master", "mistress") +" is secure. You wonder if you should tell [lane.himHer] – maybe [lane.heShe]’ll reward you for your loyalty...");
+
+	// The PC is hypnotized for the rest of the game and is guaranteed to get the ‘Lane owns Steele Tech’ bad ending after he/she obtains their father’s fortune.
+	flags["LANE_FULLY_HYPNOTISED_FOREVER"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function processLaneDetoxEvents(minutes:Number):void
+{
+	if (flags["LANE_DETOX_COUNTER"] == undefined) return;
+
+	var oldT:Number = flags["LANE_DETOX_COUNTER"];
+	flags["LANE_DETOX_COUNTER"] += minutes;
+	var newT:Number = flags["LANE_DETOX_COUNTER"];
+
+	if (oldT < 24 * 60 && newT >= 24 * 60)
+	{
+		eventBuffer += "Your codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it a whole twenty-four hours. You specifically neglect to mention what you’ve gone twenty-four hours without.\n\nThat wasn’t so bad! Ten days ought to be a breeze if they’re all this easy. You replace your codex and continue about what you were doing, but with a more confident stride than usual.";
+	}
+	if (oldT < 48 * 60 && newT >= 48 * 60)
+	{
+		eventBuffer += "Your codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve gone cold turkey.\n\nAs easy as these past two days have been, you can’t help but feel a little guilty towards Lane. You haven’t had any sort of contact with [lane.himHer] in a while – [lane.heShe] must be worried about you by now. You consider giving [lane.himHer] a call, but you resist, placing your codex back where it belongs.";
+
+		if (!pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.createStatusEffect("Lane Detoxing Weakness", 1, 0, 0, 0, false, "Charmed", "Cutting yourself off from Lane's hypnotic treatments is taking its toll on your willpower.", false, 0);
+			pc.willpowerMod -= 1;
+		}
+	}
+	if (oldT < 72 * 60 && newT >= 72 * 60)
+	{
+		eventBuffer += "Your codex beeps. Your skin crawls just a little bit from the sound. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve promised to become clean.\n\nIt’s been getting a little harder, though. Lights seem a little duller; smells don’t entice you like they had. Your life in general seems just a little less exciting. Maybe you could ask Lane to hypnotize you into thinking – you stop yourself and, without another thought, you replace your codex and continue with your day.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 1);
+			pc.willpowerMod -= 1;
+		}
+	}
+	if (oldT < 96 * 60 && newT >= 96 * 60)
+	{
+		eventBuffer += "Your codex beeps. Your fingers scratch along its glassy surface before you grip onto it. You look down at it, and on its screen is a message from yourself, reminding you that you’re still going without La – without your ‘drug’ after all this time.\n\nYou let yourself think about Lane. It’s been four days. You can handle a little fantasy about Lane. You fondly remember the way [lane.hisHer] body glows, the way [lane.heShe] talks so casually with you about business, the way [lane.hisHer] " + lane.mf("dick", "cunt") +" felt " + lane.mf("in", "on") + " your–\n\nThe tingle of arousal snaps you out of your reverie and reminds you of what you’re fighting to avoid. You put your codex away and continue with your business, your eyes scanning the way ahead of you for something to distract you.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 1);
+			pc.willpowerMod -= 1;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 5);
+		}
+	}
+	if (oldT < 120 * 60 && newT >= 120 * 60)
+	{
+		eventBuffer += "Your codex beeps once, but your ears register it as a dull wail. You claw at your codex and bring it to your face. On it is a message from yourself, reminding you of what you had given up and what you could be experiencing <i>right now.</i>\n\nEverything reminds you of Lane somehow. The breeze reminds you of the way [lane.hisHer] breath washed over your neck as [lane.heShe] fucked you. You compare the taste of the foods you eat to the way [lane.hisHer] " + lane.mf("cock","pussy") + " tasted. The lights of the stars are nothing compared to the way the lights of [lane.hisHer] tassels glowed when [lane.heShe] worked on you.\n\nYou lick your [pc.lips] and replace your codex. You think about taking a seat and working out some new frustrations... but it wouldn’t be as good without Lane.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 2);
+			pc.willpowerMod -= 2;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 10);
+		}
+	}
+	if (oldT < 144 * 60 && newT >= 144 * 60)
+	{
+		eventBuffer += "The feel the vibration of your codex before you hear the beep. You scratch at its edges before you realize you’re even touching it. You have to re-read the message on it three times before you realize what it’s saying.\n\nNo matter how much you drink, your thirst is never quenched. For a split second, you see Lane in your mind’s eye, you at [lane.hisHer] feet, [lane.hisHer] genitals unaroused, [lane.hisHer] happy smile at your obedience cleansing your fiery nerves. You blink and chastise yourself for thinking about [lane.himHer] and promise not to do it again, and then you’re right back to your fantasies not even two minutes later.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 3);
+			pc.willpowerMod -= 3;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 15);
+		}
+	}
+	if (oldT < 168 * 60 && newT >= 168 * 60)
+	{
+		eventBuffer += "You’re hyper-aware of your surroundings, but that doesn’t make you any more conscious of them. The sound of your codex splits your ears like a jackhammer. The light of its screen burns your eyes, and the text on it berates you for your stupidity, giving up the best thing that ever happened to you.\n\nYou’re pretty sure you’re hallucinating. Every other time you turn around, you see Lane among the foliage, or as a face in the crowd. Each time you think you see [lane.himHer], your heart stops, and you nearly call out to [lane.himHer], to ask [lane.himHer] to end your torment and to beg for [lane.hisHer] forgiveness for letting yourself stray from his vices, and to fuck you like [lane.heShe] used to.\n\nFortunately for your dignity, that’s never the case, and your vision of [lane.himHer] vanishes when you stare for longer than a second.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 5);
+			pc.willpowerMod -= 5;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 20);
+		}
+	}
+	if (oldT < 192 * 60 && newT >= 192 * 60)
+	{
+		eventBuffer += "You’ve been staring at the screen of your codex for a few minutes, now. The warm glow of its screen on your eyes reminds you of Lane. Whatever endorphins the little machine gives you is peanuts compared to the real thing. The little release you manage to eke from it is interrupted by an angry message from yourself, taunting you that you had it just fine when Lane owned you, and that in surrendering your vice for a cleaner life, you’ve condemned yourself to needing it more than you ever had before.\n\nYour hallucinations have begun pervading your dreams; the last time you slept, you dreamt that you were back in Lane’s large, warm bed, snuggling underneath its sheets, naked as could be, when [lane.heShe] enters the room and silently climbs " + lane.mf("in behind you. You smile and pull your knees to your [pc.chest], spreading your [pc.ass] for his thick, wonderful cock to claim you forever again.","in front of you. You smile and lay flat on your back as she straddles your [pc.hips] and begins rocking herself back and forth, dominating you with her cunt like she used to.") + "...\n\nYou woke up on the <i>very</i> wrong side of the bed that time.";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 7);
+			pc.willpowerMod -= 7;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 30);
+		}
+	}
+	if (oldT < 216 * 60 && newT >= 216 * 60)
+	{
+		eventBuffer += "You see only bold, blasé colors: reds, browns, blacks and whites. Your vision has tunneled slightly, and you have to squint to look at your codex, to read the very harsh words you left yourself nine days ago. The beep it made hurt your ears, even though it didn’t sound any louder than a heartbeat, to you.\n\nOh well. You put your codex away and turn back to Lane, {male lane: sticking his wonderful cock back into your mouth and nursing on him gently. You feel his hands on the sides of your head as he warmly but eagerly guides you across his length. <i>“I’ve missed you, [pc.name],”</i> he says, and you’re instantly gratified. You lean forward to deepthroat him – and you feel something sharp across your soft palate./ placing your [pc.lips] back on her wonderful cunt and lapping at her honeypot like a cat with a saucer of milk. You feel her hands on the sides of your head as she gently but eagerly presses your [pc.face] deeper into her. <i>“I’ve missed you, [pc.name],”</i> she says, and your heart flutters. Your tilt your head up, to dig into her as deep as you can with your [pc.tongue] – and you feel something sharp across your palate.}\n\nYou’re snapped back to reality. You look down at where your {master/mistress} was, and find your thumb in your mouth, wet and compressed from you sucking on it. You wail in despair that it wasn’t real. {TODO: Lane planet} is only a flight away – you could easily make it real!";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.addStatusValue("Lane Detoxing Weakness", 1, 9);
+			pc.willpowerMod -= 9;
+			pc.setStatusValue("Lane Detoxing Weakness", 2, 50);
+		}
+	}
+	if (oldT < 240 * 60 && newT >= 240 * 60)
+	{
+		eventBuffer += "Your codex beeps. You look down on it, and see two new messages: one from yourself, congratulating you on making it another twenty-four hours. The other is from " + lFollowerName() + ".";
+
+		if (lFollowerName() != "Dane")
+		{
+			eventBuffer += "\n\n<i>“This is going to sound a little gushy,”</i> it starts, <i>“but I just wanted to let you know that I’m really proud of you for making it the whole ten days without breaking and going back to that Lane person. You’re a great example of what a captain ought to be, and I’ve never been happier to be a part of someone’s crew. You’re an inspiration to the rest of us, [pc.name], and I’d gladly follow you to the edge of the universe.”</i>";
+		}
+		else
+		{
+			eventBuffer += "\n\n<i>“I knew there was a reason I offered you my contract, Steele.”</i> it starts, <i>“You've proven yourself a far more capable captain than your idiot cousin could ever hope to be. You’ve only solidified the correctness of my choice again by breaking this Lanes hold over you. You’re an example of what a captain should be, Steele, and I'm glad to be a part of your crew.”</i>";
+		}
+
+		eventBuffer += "\n\nYou feel a little something in your eye when you read that message for the fourth time. You place your codex back where it belongs and continue your day with a much stronger, more confident stride than before. The name ‘Lane’ leaves nothing more than a bland taste on your tongue. <b>You are no longer hypnotized!</b>";
+
+		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
+		{
+			pc.willpowerMod += pc.statusEffectv1("Lane Detoxing Weakness");
+			pc.removeStatusEffect("Lane Detoxing Weakness");
+			flags["LANE_DETOX_COUNTER"] = undefined;
+			flags["LANE_DETOX_STATUS"] = 1;
+		}
+	}
 }

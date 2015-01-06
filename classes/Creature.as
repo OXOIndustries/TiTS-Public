@@ -2237,8 +2237,12 @@
 		}
 		public function lustMin(): Number {
 			var bonus:int = 0;
-			if(hasPerk("Drug Fucked")) bonus += 10;
-			if(hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (hasPerk("Drug Fucked")) bonus += 10;
+			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (hasStatusEffect("Lane Detoxing Weakness"))
+			{
+				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
+			}
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {

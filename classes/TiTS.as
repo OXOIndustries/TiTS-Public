@@ -132,6 +132,7 @@
 		include "../includes/tarkus.drBadger.as";
 		include "../includes/tarkus.dumbfuckBonus.as";
 		include "../includes/tarkus.grayGoo.as";
+		include "../includes/tarkus.lane.as";
 		include "../includes/tarkus.lapinara.as";
 		include "../includes/tarkus.raskvelFemaleFight.as";
 		include "../includes/tarkus.roomFunctions.as";
