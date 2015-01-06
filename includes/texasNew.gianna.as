@@ -937,7 +937,7 @@ function talkToGiannaAbootHerBodyEh():void
 		else output("sized");
 		output(" clit");
 	}
-	output(". <i>“I’m sure you can see that I look just like any other girl down there, though perhaps a little better. There are advantages to being designed, of course.”</i> Giana gasps as she spreads her labia to display the ");
+	output(". <i>“I’m sure you can see that I look just like any other girl down there, though perhaps a little better. There are advantages to being designed, of course.”</i> Gianna gasps as she spreads her labia to display the ");
 	if(gianna.vaginaColor == "pink") output("rosy");
 	else output("hidden");
 	output(" interior. A sheen of slick lubricant already gleams there. <i>“A pressurized lubricant reservoir enables me to stay this wet for days - or even squirt twenty to thirty times, depending on volume.”</i>");

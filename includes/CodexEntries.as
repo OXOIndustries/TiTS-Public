@@ -241,7 +241,7 @@ function ovirCodexEntry():void
 	outputCodex("\n<b>Weight:</b> Averages between 90 and 160 lbs.");
 	outputCodex("\n<b>Hair:</b> Human-like hair on top of head, can be brown, black, red, blonde, or green.");
 	outputCodex("\n<b>Eyes:</b> Two vertically slit, reptilian eyes. No sclera, iris dominates the eye.");
-	outputCodex("\n<b>Ears:</b> Two ear holes on each Codexside, no pronounced ears.");
+	outputCodex("\n<b>Ears:</b> Two ear holes on each side, no pronounced ears.");
 	outputCodex("\n<b>Homeworld:</b> \\\[Redacted\\\]\n\n");
 
 	outputCodex(blockHeader("Appearance"));
