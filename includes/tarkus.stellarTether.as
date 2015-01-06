@@ -3132,7 +3132,7 @@ function youWonSomePodShit():void
 	showBust("SHEKKA");
 	output("You finalize the payment and run your hands across the pod until it chimes. The tone is brief and almost musical. You'd expect to hear similar from a lift on a luxury planet. <i>\"DNA signature detected, welcome [pc.name] Steele,\"</i> a synthesized, female voice announces. A seam appears on the face of the gleaming metal, recessing itself down before sliding out of the way and into the body of the probe. Behind it, there's a simple screen with a set of coordinates.");
 	output("\n\nShekka whistles, <i>\"Guess it's a good thing you bought that, huh? She seems to recognize you.\"</i>");
-	output("\n\nYou nod while turning to your codex. The coordinates correspond to another planet linked up by the rush - one of two habitable worlds in the system. You had better head to REDACTED if you want to claim your father's legacy, but first, there is the matter of this spent pod. You don't need to lug it everywhere. You could give it to Shekka, sell it to her, or sell it back to your dad's company.");
+	output("\n\nYou nod while turning to your codex. The coordinates correspond to another planet linked up by the rush - the only habitable world in the system. You had better head to Myrellion if you want to claim your father's legacy, but first, there is the matter of this spent pod. You don't need to lug it everywhere. You could give it to Shekka, sell it to her, or sell it back to your dad's company.");
 	processTime(2);
 	flags["PLANET_3_UNLOCKED"] = 1;
 	//[SellShekka] [GiveShekka] [SellSteele]	

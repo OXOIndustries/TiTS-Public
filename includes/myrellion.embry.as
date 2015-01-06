@@ -2051,7 +2051,9 @@ function loversSceneOneOff():void
 	output("\n\n“<i>... I-I </i>love<i> you-!</i>” she stammers out, and looks ");
 	if(pc.tallness > embry.tallness + 3) output("up ");
 	else if(pc.tallness < embry.tallness - 3) output("down ");
-	output("at you {through her glasses} with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
+	output("at you ");
+	if(flags["EMBRY_GLASSES"] != undefined) output("through her glasses ");
+	output("with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
 	output("\n\n<i>\"And, because I love you... I want you, no one else, to be my first... a-and take my virginity,</i>” her cheeks flush, and she looks down at your hands. “<i>... I want my first time to be with the " + pc.mf("man","woman") + " I love...</i>”");
 
 	//[ILoveYou] [Kiss Her] [DontLoveYou]
