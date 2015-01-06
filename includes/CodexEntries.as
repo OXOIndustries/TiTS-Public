@@ -196,7 +196,7 @@ function varmintCodex():void
 	outputCodex(header("Hazard: Varmints"));
 	outputCodex("<b>Name (Singular):</b> Varmint\n");
 	outputCodex("One of the surviving native life forms on New Texas, the predatory creatures locally dubbed \"varmints\" are descendants from a much larger, more dangerous breed encountered by the settlers in their early days of colonization. Originally encountered as towering, dinosaur-like creatures with a penchant for flesh, the varmints' ancestors were nearly exterminated by overzealous colonist militias. Those that survived are of smaller, less dangerous and less intelligent sub-breeds.");
-	outputCodex("\n\nTVarmints are a silicone-based life form, roughly resembling a very large Terran dog or perhaps lizard. They are covered with rough blue skin and long, sharp spikes that make them dangerous even when not attacking directly. Their jaws are extremely powerful, and they frequently attack by knocking an opponent to the ground and rending at the throat."); 
+	outputCodex("\n\nVarmints are a silicone-based life form, roughly resembling a very large Terran dog or perhaps lizard. They are covered with rough blue skin and long, sharp spikes that make them dangerous even when not attacking directly. Their jaws are extremely powerful, and they frequently attack by knocking an opponent to the ground and rending at the throat."); 
 	outputCodex("\n\nVarmints are to be considered hostile when encountered, and may attack without provocation. Deaths caused by these creatures are very rare, but they can result in serious injury. It is advised to be armed with traveling outside city grounds on New Texas due to the widespread distribution of the varmint population.\n");
 	CodexManager.viewedEntry("Varmints");
 }
