@@ -1335,6 +1335,9 @@
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
 					break;
+				case "cockShortest":
+					buffer = cockDescript(shortestCockIndex());
+					break;
 				case "eachCockHead":
 					buffer = eachCockHead();
 					break;
@@ -8240,16 +8243,16 @@
 				}
 				rando = this.rand(11);
 				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
-				if (rando <= 1) noun += "cock";
-				if (rando <= 2) noun += "member";
-				if (rando <= 3) noun += "shaft";
-				if (rando <= 4) noun += "phallus";
-				if (rando <= 5) noun += "prick";
-				if (rando <= 6) noun += "member";
-				if (rando <= 7 && descript != "simian ") noun += "simii-cock";
-				if (rando <= 8) noun += "dick";
-				if (rando <= 9) noun += "tool";
-				if (rando <= 10) noun += "shaft";
+				else if (rando <= 1) noun += "cock";
+				else if (rando <= 2) noun += "member";
+				else if (rando <= 3) noun += "shaft";
+				else if (rando <= 4) noun += "phallus";
+				else if (rando <= 5) noun += "prick";
+				else if (rando <= 6) noun += "member";
+				else if (rando <= 7 && descript != "simian ") noun += "simii-cock";
+				else if (rando <= 8) noun += "dick";
+				else if (rando <= 9) noun += "tool";
+				else noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {

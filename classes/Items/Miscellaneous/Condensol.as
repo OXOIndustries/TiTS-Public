@@ -84,13 +84,13 @@
 				///When using without a cock:
 				if(!pc.hasCock())
 				{
-					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Maybe it was a dud, or you just don’t have to shrink.");
+					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn't do anything if you don't have a cock.");
 				}
 				else if(pc.shortestCockLength() <= 4)
 				{
 					//When using with a cock under four inches long:
 					kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch helplessly as your member shrinks and shrinks until it vanishes entirely");
-					if(pc.cockTotal() == 1) 
+					if(pc.cockTotal() == 1 && pc.balls > 0) 
 					{
 						pc.ballSizeRaw = 3;
 						pc.balls = 0;

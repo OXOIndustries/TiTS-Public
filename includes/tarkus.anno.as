@@ -3697,7 +3697,7 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 	
 	output("\n\nAfter a few moments, though, the two ausars turn their attentions to you: hand in hand, they slink over to you with big, lusty smiles, eyes entirely focused on your [pc.cocksLight]. You quickly toss your [pc.gear] aside and sit back on the edge of the bed, leaving yourself bare to the randy girls’ ministrations. Kaede’s prior nervousness is nowhere to be seen now: she even licks her lips at the sight of your manhood, and is the first of the pair of drop to her knees in front of you. Anno stands behind her for a moment, giving you a proud wink as her girlfriend wraps her fingers around your [pc.cock "+ selCock +"], giving it a tentative stroke. ");
 	
-	output("\n\n<i>“Red here’d never admit it,”</i> Anno says over her lover’s head, leaning in conspiratorially, <i>“but she was a the best little cocksucker back in college. You should see her handle three dicks at-”</i>");
+	output("\n\n<i>“Red here’d never admit it,”</i> Anno says over her lover’s head, leaning in conspiratorially, <i>“but she was the best little cocksucker back in college. You should see her handle three dicks at-”</i>");
 	
 	output("\n\nKaede goes beet red. <i>“Hey! Shut up and get down here, slut.”</i> ");
 	
