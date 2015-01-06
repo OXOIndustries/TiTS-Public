@@ -37,9 +37,10 @@ function bigTOfficeBonusBullshit():Boolean
 	return false;
 }
 
-function showBigT():void
+function showBigT(nude:Boolean = false):void
 {
-	showBust("BIGT");
+	if(nude) showBust("BIGT_NUDE");
+	else showBust("BIGT");
 	showName("\nBIG T");
 	author("Savin");
 }
@@ -299,7 +300,7 @@ function sexWithBigTMenu():void
 function bigTHasABigDDeskBlowjob():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	author("JimThermic");
 	output("Before you know it, Big T heads back to his chair, sits down, and spreads his legs. You find yourself following him, and without words, sinking down between them. ");
 	if(!pc.isTreated() && !pc.isBimbo()) output("You’ll just give him a blowjob. One blowjob and you’ll leave, right?");
@@ -378,7 +379,7 @@ function bigTHasABigDDeskBlowjob():void
 function bigTCockSuckPartII():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	author("JimThermic");
 	output("<b>--- Some Time Later ---</b>");
 	// An hour
@@ -400,7 +401,7 @@ function bigTCockSuckPartII():void
 function drunkenCowgirlBoy():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	author("JimThermic");
 	pc.imbibeAlcohol(60);
 	var x:int = pc.cuntThatFits(400);
@@ -512,7 +513,7 @@ function drunkenCowgirlBoy():void
 function pitchTOverATable():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	author("JimThermic");
 
 	var x:int = pc.cockThatFits(500);
@@ -592,7 +593,7 @@ function sexedBigT():void
 function getRiddenByBigT():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	// Decides if Tee is fucking the PC's vag or ass. Figured I'd give the girls at least one scene option to get some buttsex on. 
 	if(pc.hasVagina())
 	{
@@ -611,7 +612,7 @@ function getRiddenByBigT():void
 function getRiddenByBigWheee(target:int = -1):void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	output("All it takes is the slightest of nods. Just one tiny dip of your head and the handsome bull begins to unzip his pants. You part your lips with anticipation. A needy flush runs across your [pc.skinFurScales].");
 	output("\n\nThings get even hotter when he flops out his stupendously huge stallion cock. His pink-headed prick flares invitingly to you, beckoning you closer. You find yourself wandering forward under its spell. When you reach him, you are guided down ");
 	if(pc.hasKnees()) output("on your knees ");
@@ -717,7 +718,7 @@ function getRiddenByBigWheee(target:int = -1):void
 function bigTFucksYouEpilogue():void
 {
 	clearOutput();
-	showBigT();
+	showBigT(true);
 	author("JimThermic");
 	output("--- Some Time Later ---");
 	// An hour
