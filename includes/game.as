@@ -606,6 +606,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["256"].southExit = "294";
 	}
+	else rooms["256"].southExit = undefined;
 	
 	// Annos shop
 	if (!steeleTechTarkusShopAvailable())
