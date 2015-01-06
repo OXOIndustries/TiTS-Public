@@ -1296,7 +1296,7 @@ function treatmentHourProcs():void
 			eventBuffer += "\n\nAll the big words are just a distraction.";
 			//Brute Speech Unlock!
 			eventBuffer += "\n\n(<b>Gained Perk: Brute Speech</b> - You will now sound like more like a reticent brute in scenes that support it.)";
-			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
+			pc.createPerk("Brute Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 
 		}
 		else if(treatedHours == 48)
