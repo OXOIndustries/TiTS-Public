@@ -39,6 +39,7 @@ function initializeMyrellionRooms():void
 	rooms["600"].runOnEnter = myrellionHangarBonus;
 	rooms["600"].addFlag(GLOBAL.OUTDOOR);
 	rooms["600"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["600"].addFlag(GLOBAL.PUBLIC);
 
 	//601 - Airfield Central
 	rooms["601"] = new RoomClass(this);
@@ -52,6 +53,7 @@ function initializeMyrellionRooms():void
 	rooms["601"].moveMinutes = 2;
 	rooms["601"].runOnEnter = undefined;
 	rooms["601"].addFlag(GLOBAL.OUTDOOR);
+	rooms["601"].addFlag(GLOBAL.PUBLIC);
 
 	//602 Airfield North
 	rooms["602"] = new RoomClass(this);
@@ -63,6 +65,7 @@ function initializeMyrellionRooms():void
 	rooms["602"].moveMinutes = 2;
 	rooms["602"].runOnEnter = airFieldNorthBonus;
 	rooms["602"].addFlag(GLOBAL.OUTDOOR);
+	rooms["602"].addFlag(GLOBAL.PUBLIC);
 
 	//603 The Embassy
 	rooms["603"] = new RoomClass(this);
@@ -77,6 +80,7 @@ function initializeMyrellionRooms():void
 	rooms["603"].runOnEnter = theEmbassyBonusFunc;
 	rooms["603"].addFlag(GLOBAL.INDOOR);
 	rooms["603"].addFlag(GLOBAL.NPC);
+	rooms["603"].addFlag(GLOBAL.PUBLIC);
 
 	//604 Security Checkpoint
 	rooms["604"] = new RoomClass(this);
@@ -91,6 +95,7 @@ function initializeMyrellionRooms():void
 	rooms["604"].moveMinutes = 2;
 	rooms["604"].runOnEnter = undefined;
 	rooms["604"].addFlag(GLOBAL.OUTDOOR);
+	rooms["604"].addFlag(GLOBAL.PUBLIC);
 
 	//605 Spacer's Row, S0 (Just south of the crossroads)
 	rooms["605"] = new RoomClass(this);
@@ -103,6 +108,7 @@ function initializeMyrellionRooms():void
 	rooms["605"].moveMinutes = 2;
 	rooms["605"].runOnEnter = undefined;
 	rooms["605"].addFlag(GLOBAL.OUTDOOR);
+	rooms["605"].addFlag(GLOBAL.PUBLIC);
 
 	//606 Spacer's Row, S1 (Outside the Tavern)
 	rooms["606"] = new RoomClass(this);
@@ -116,6 +122,7 @@ function initializeMyrellionRooms():void
 	rooms["606"].moveMinutes = 2;
 	rooms["606"].runOnEnter = streetOutsideBarBonus;
 	rooms["606"].addFlag(GLOBAL.OUTDOOR);
+	rooms["606"].addFlag(GLOBAL.PUBLIC);
  
 	//607 Spacer's Row, S2 (Outside the Scout Authority)
 	rooms["607"] = new RoomClass(this);
@@ -129,6 +136,7 @@ function initializeMyrellionRooms():void
 	rooms["607"].moveMinutes = 2;
 	rooms["607"].runOnEnter = spacersRowBonusFunc;
 	rooms["607"].addFlag(GLOBAL.OUTDOOR);
+	rooms["607"].addFlag(GLOBAL.PUBLIC);
 
 	//608 Spacer's Row, S3 (Back Alley)
 	rooms["608"] = new RoomClass(this);
@@ -152,6 +160,7 @@ function initializeMyrellionRooms():void
 	rooms["609"].runOnEnter = goldenPeakBonusFunction;
 	rooms["609"].addFlag(GLOBAL.INDOOR);
 	rooms["609"].addFlag(GLOBAL.BAR);
+	rooms["609"].addFlag(GLOBAL.PUBLIC);
 
 	//610 Scout Authority
 	rooms["610"] = new RoomClass(this);
@@ -163,6 +172,7 @@ function initializeMyrellionRooms():void
 	rooms["610"].moveMinutes = 1;
 	rooms["610"].runOnEnter = undefined;
 	rooms["610"].addFlag(GLOBAL.INDOOR);
+	rooms["610"].addFlag(GLOBAL.PUBLIC);
  
 	//611 The Great Elevator
 	rooms["611"] = new RoomClass(this);
@@ -174,6 +184,7 @@ function initializeMyrellionRooms():void
 	rooms["611"].moveMinutes = 1;
 	rooms["611"].runOnEnter = undefined;
 	rooms["611"].addFlag(GLOBAL.INDOOR);
+	rooms["611"].addFlag(GLOBAL.PUBLIC);
  
 	//The Kressia Airstrip
 	rooms["612"] = new RoomClass(this);
@@ -185,6 +196,7 @@ function initializeMyrellionRooms():void
 	rooms["612"].moveMinutes = 2;
 	rooms["612"].runOnEnter = undefined;
 	rooms["612"].addFlag(GLOBAL.OUTDOOR);
+	rooms["612"].addFlag(GLOBAL.PUBLIC);
 
 	//The Red Myr Warehouse
 	rooms["613"] = new RoomClass(this);
@@ -197,4 +209,5 @@ function initializeMyrellionRooms():void
 	rooms["613"].runOnEnter = nehzaraBonus;
 	rooms["613"].addFlag(GLOBAL.INDOOR);
 	rooms["613"].addFlag(GLOBAL.NPC);
+	rooms["613"].addFlag(GLOBAL.PUBLIC);
 }

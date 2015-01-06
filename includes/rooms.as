@@ -39,6 +39,7 @@ function initializeRooms():void
 	rooms["SHIP INTERIOR"].runOnEnter = shipMenu;
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
+	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
@@ -49,6 +50,7 @@ function initializeRooms():void
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
 	rooms["HOTEL ROOM"].moveMinutes = 1;
 	rooms["HOTEL ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["HOTEL ROOM"].addFlag(GLOBAL.PRIVATE);
 
 	//101. Anon's Board Hall
 	rooms["ANON'S BOARD HALL"] = new RoomClass(this);
@@ -59,6 +61,7 @@ function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
 	rooms["ANON'S BOARD HALL"].moveMinutes = 1;
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
+	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.PUBLIC);
 
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
@@ -72,6 +75,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].moveMinutes = 1;
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
+	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.PUBLIC);
 
 	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
@@ -87,6 +91,7 @@ function initializeRooms():void
 	//rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
+	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
@@ -100,8 +105,7 @@ function initializeRooms():void
 	//rooms["MERCHANT'S THOROUGHFARE2"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
-
-
+	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.PUBLIC);
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
@@ -112,6 +116,7 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
 	rooms["LIFT: MERCHANT DECK"].moveMinutes = 1;
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
+	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.PUBLIC);
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
@@ -125,6 +130,7 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].moveMinutes = 2;
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["TAVROS HANGAR"].addFlag(GLOBAL.PUBLIC);
 	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
@@ -139,6 +145,7 @@ function initializeRooms():void
 	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.LIFTUP);
+	rooms["TAVROS LIFT"].addFlag(GLOBAL.PUBLIC);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
 
 	//107 The Dark Chrysalis
@@ -151,6 +158,7 @@ function initializeRooms():void
 	rooms["DARK CHRYSALIS"].moveMinutes = 1;
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.INDOOR);
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
+	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.PUBLIC);
 	rooms["DARK CHRYSALIS"].runOnEnter = seraBonusFunction;
 
 	//108 "FUR EFFECT" Fur Effect
@@ -163,6 +171,7 @@ function initializeRooms():void
 	rooms["FUR EFFECT"].moveMinutes = 1;
 	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
 	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
+	rooms["FUR EFFECT"].addFlag(GLOBAL.PUBLIC);
 	rooms["FUR EFFECT"].runOnEnter = furEffectBonusFunction;
 
 	//109 "BETHS BROADS" Beth's Busty Broads
@@ -175,6 +184,7 @@ function initializeRooms():void
 	rooms["BETHS BROADS"].moveMinutes = 1;
 	rooms["BETHS BROADS"].addFlag(GLOBAL.INDOOR);
 	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
+	rooms["BETHS BROADS"].addFlag(GLOBAL.PUBLIC);
 	rooms["BETHS BROADS"].runOnEnter = reahaBonusFunction;
 
 	//109 "BETHS BROADS" Beth's Busty Broads
@@ -187,6 +197,7 @@ function initializeRooms():void
 	rooms["MI AMOUR"].moveMinutes = 1;
 	rooms["MI AMOUR"].addFlag(GLOBAL.INDOOR);
 	rooms["MI AMOUR"].addFlag(GLOBAL.NPC);
+	rooms["MI AMOUR"].addFlag(GLOBAL.PUBLIC);
 	rooms["MI AMOUR"].runOnEnter = miAmoreBonusShit;
 
 	//110 MERCHANT'S THOROUGHFARE
@@ -201,6 +212,7 @@ function initializeRooms():void
 	rooms["110"].moveMinutes = 1;
 	//rooms["110"].westExit = "DARK CHRYSALIS";
 	rooms["110"].addFlag(GLOBAL.INDOOR);
+	rooms["110"].addFlag(GLOBAL.PUBLIC);
 	rooms["110"].runOnEnter = undefined;
 
 	//0. Ship Hanger
@@ -214,6 +226,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"].outText = "Down";
 	rooms["SHIP HANGAR"].moveMinutes = 2;
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SHIP HANGAR"].addFlag(GLOBAL.PUBLIC);
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 
 	//1 - Spaceport Elevator
@@ -227,6 +240,7 @@ function initializeRooms():void
 	rooms["SPACEPORT ELEVATOR"].eastExit = "CUSTOMS OFFICE";
 	rooms["SPACEPORT ELEVATOR"].moveMinutes = 2;
 	rooms["SPACEPORT ELEVATOR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SPACEPORT ELEVATOR"].addFlag(GLOBAL.PUBLIC);
 
 	//2 - Flahne’s Office
 	rooms["CUSTOMS OFFICE"] = new RoomClass(this);
@@ -240,6 +254,7 @@ function initializeRooms():void
 	rooms["CUSTOMS OFFICE"].runOnEnter = meetingFlahne;
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.NPC);
+	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.PUBLIC);
 
 	//3. Esbeth’s Northern Path
 	rooms["ESBETH'S NORTH PATH"] = new RoomClass(this);
@@ -253,6 +268,7 @@ function initializeRooms():void
 	rooms["ESBETH'S NORTH PATH"].moveMinutes = 2;
 	rooms["ESBETH'S NORTH PATH"].runOnEnter = bountyBoardExtra;
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.PUBLIC);
 
 	//4. The Northwest Corner of Esbeth
 	rooms["NORTHWEST ESBETH"] = new RoomClass(this);
@@ -264,6 +280,7 @@ function initializeRooms():void
 	rooms["NORTHWEST ESBETH"].eastExit = "ESBETH'S NORTH PATH";
 	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
@@ -276,6 +293,7 @@ function initializeRooms():void
 	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
 	rooms["WEST ESBETH 1"].moveMinutes = 2;
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["WEST ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
 	//6. Esbeth’s Western Path
 	rooms["WEST ESBETH 2"] = new RoomClass(this);
@@ -287,6 +305,7 @@ function initializeRooms():void
 	rooms["WEST ESBETH 2"].southExit = "SOUTHWEST ESBETH";
 	rooms["WEST ESBETH 2"].moveMinutes = 2;
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["WEST ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
 	//7. The Southwest Corner of Esbeth
 	rooms["SOUTHWEST ESBETH"] = new RoomClass(this);
@@ -298,6 +317,7 @@ function initializeRooms():void
 	rooms["SOUTHWEST ESBETH"].eastExit = "SOUTH ESBETH 1";
 	rooms["SOUTHWEST ESBETH"].moveMinutes = 2;
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
 	//8. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 1"] = new RoomClass(this);
@@ -310,6 +330,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 1"].southExit = "SCRAPYARD MAINTENANCE";
 	rooms["SOUTH ESBETH 1"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
 	//9. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 2"] = new RoomClass(this);
@@ -322,6 +343,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
 
 	//10. Esbeth’s Southern Path
@@ -336,6 +358,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].moveMinutes = 2;
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ESBETH TRAVEL AUTHORITY"] = new RoomClass(this);
 	rooms["ESBETH TRAVEL AUTHORITY"].roomName = "SCOUT\nAUTHORITY";
@@ -347,6 +370,7 @@ function initializeRooms():void
 	rooms["ESBETH TRAVEL AUTHORITY"].moveMinutes = 1;
 	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.TAXI);
+	rooms["ESBETH TRAVEL AUTHORITY"].addFlag(GLOBAL.PUBLIC);
 		
 	//11. The Southeast Corner of Esbeth
 	rooms["SOUTHEAST ESBETH"] = new RoomClass(this);
@@ -358,6 +382,7 @@ function initializeRooms():void
 	rooms["SOUTHEAST ESBETH"].westExit = "SOUTH ESBETH 3";
 	rooms["SOUTHEAST ESBETH"].moveMinutes = 2;
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
 	//12. Esbeth’s Eastern Path
 	rooms["EAST ESBETH"] = new RoomClass(this);
@@ -370,6 +395,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH"].northExit = "EAST ESBETH ENTRANCE";
 	rooms["EAST ESBETH"].moveMinutes = 2;
 	rooms["EAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["EAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
 	//13. Esbeth’s Eastern Path at the Entrance
 	rooms["EAST ESBETH ENTRANCE"] = new RoomClass(this);
@@ -382,6 +408,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH ENTRANCE"].eastExit = "EAST ESBETH EXIT";
 	rooms["EAST ESBETH ENTRANCE"].moveMinutes = 2;
 	rooms["EAST ESBETH ENTRANCE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["EAST ESBETH ENTRANCE"].addFlag(GLOBAL.PUBLIC);
 
 	//14. The Northeastern Corner of Esbeth
 	rooms["NORTHEAST ESBETH"] = new RoomClass(this);
@@ -393,6 +420,7 @@ function initializeRooms():void
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
 	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
 	//15. Esbeth’s Northern Path
 	rooms["NORTH ESBETH 1"] = new RoomClass(this);
@@ -404,6 +432,7 @@ function initializeRooms():void
 	rooms["NORTH ESBETH 1"].eastExit = "NORTHEAST ESBETH";
 	rooms["NORTH ESBETH 1"].moveMinutes = 2;
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
 	//16. Esbeth’s Northern Path
 	rooms["NORTH ESBETH 2"] = new RoomClass(this);
@@ -416,6 +445,7 @@ function initializeRooms():void
 	rooms["NORTH ESBETH 2"].northExit = "BURT'S MAIN HALL";
 	rooms["NORTH ESBETH 2"].moveMinutes = 2;
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
 
 	//17. Burt’s Badass Whatever
@@ -430,6 +460,7 @@ function initializeRooms():void
 	rooms["BURT'S MAIN HALL"].runOnEnter = burtsBarFunc;
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.BAR);
+	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.PUBLIC);
 
 	//"18". Burt’s Badass Whatever Part. II
 	rooms["BURT'S BACK END"] = new RoomClass(this);
@@ -454,6 +485,7 @@ function initializeRooms():void
 	rooms["EAST ESBETH EXIT"].eastExit = "JUNGLE EDGE";	
 	rooms["EAST ESBETH EXIT"].moveMinutes = 2;
 	rooms["EAST ESBETH EXIT"].addFlag(GLOBAL.OUTDOOR);
+	rooms["EAST ESBETH EXIT"].addFlag(GLOBAL.PUBLIC);
 
 	//20. The Edge of the Jungle
 	rooms["JUNGLE EDGE"] = new RoomClass(this);
@@ -1641,6 +1673,7 @@ function initializeRooms():void
 	rooms["201"].moveMinutes = 2;
 	rooms["201"].addFlag(GLOBAL.INDOOR);
 	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["201"].addFlag(GLOBAL.PUBLIC);
 	
 	/*rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
 	rooms["NOVA SHIP DECK ELEVATOR"].roomName = "NOVA:\nHANGAR DECK";
@@ -1663,6 +1696,7 @@ function initializeRooms():void
 	rooms["NOVA MAIN DECK ELEVATOR"].moveMinutes = 2;
 	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
+	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.PUBLIC);
 
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
@@ -1676,6 +1710,7 @@ function initializeRooms():void
 	rooms["202"].planet = "PLANET: TARKUS";
 	rooms["202"].system = "SYSTEM: REDACTED";
 	rooms["202"].addFlag(GLOBAL.INDOOR);
+	rooms["202"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["TARKUS SCOUT AUTHORITY"] = new RoomClass(this);
 	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHOTITY";
@@ -1687,6 +1722,7 @@ function initializeRooms():void
 	rooms["TARKUS SCOUT AUTHORITY"].system = "SYSTEM: REDACTED";
 	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.INDOOR);
 	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.TAXI);
+	rooms["TARKUS SCOUT AUTHORITY"].addFlag(GLOBAL.PUBLIC);
 
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
@@ -1700,6 +1736,7 @@ function initializeRooms():void
 	rooms["203"].planet = "PLANET: TARKUS";
 	rooms["203"].system = "SYSTEM: REDACTED";
 	rooms["203"].addFlag(GLOBAL.INDOOR);
+	rooms["203"].addFlag(GLOBAL.PUBLIC);
 
 	//#4 LOWER STAIRWELL
 	rooms["204"] = new RoomClass(this);
@@ -1713,6 +1750,7 @@ function initializeRooms():void
 	rooms["204"].planet = "PLANET: TARKUS";
 	rooms["204"].system = "SYSTEM: REDACTED";
 	rooms["204"].addFlag(GLOBAL.INDOOR);
+	rooms["204"].addFlag(GLOBAL.PUBLIC);
 
 	//#5 SHIP CORRIDOR
 	rooms["205"] = new RoomClass(this);
@@ -1725,6 +1763,7 @@ function initializeRooms():void
 	rooms["205"].planet = "PLANET: TARKUS";
 	rooms["205"].system = "SYSTEM: REDACTED";
 	rooms["205"].addFlag(GLOBAL.INDOOR);
+	rooms["205"].addFlag(GLOBAL.PUBLIC);
 	
 	//#6 GLOWING CORRIDOR
 	rooms["206"] = new RoomClass(this);
@@ -1737,6 +1776,7 @@ function initializeRooms():void
 	rooms["206"].planet = "PLANET: TARKUS";
 	rooms["206"].system = "SYSTEM: REDACTED";
 	rooms["206"].addFlag(GLOBAL.INDOOR);
+	rooms["206"].addFlag(GLOBAL.PUBLIC);
 	
 	//#7 NOVAHOME
 	rooms["207"] = new RoomClass(this);
@@ -1750,6 +1790,7 @@ function initializeRooms():void
 	rooms["207"].planet = "PLANET: TARKUS";
 	rooms["207"].system = "SYSTEM: REDACTED";
 	rooms["207"].addFlag(GLOBAL.INDOOR);
+	rooms["207"].addFlag(GLOBAL.PUBLIC);
 	
 	//#8 NOVAHOME
 	rooms["208"] = new RoomClass(this);
@@ -1763,6 +1804,7 @@ function initializeRooms():void
 	rooms["208"].planet = "PLANET: TARKUS";
 	rooms["208"].system = "SYSTEM: REDACTED";
 	rooms["208"].addFlag(GLOBAL.INDOOR);
+	rooms["208"].addFlag(GLOBAL.PUBLIC);
 	
 	//#9 EAST NOVAHOME
 	rooms["209"] = new RoomClass(this);
@@ -1775,6 +1817,7 @@ function initializeRooms():void
 	rooms["209"].planet = "PLANET: TARKUS";
 	rooms["209"].system = "SYSTEM: REDACTED";
 	rooms["209"].addFlag(GLOBAL.INDOOR);
+	rooms["209"].addFlag(GLOBAL.PUBLIC);
 	
 	//#10 NOVAHOME
 	rooms["210"] = new RoomClass(this);
@@ -1788,6 +1831,7 @@ function initializeRooms():void
 	rooms["210"].planet = "PLANET: TARKUS";
 	rooms["210"].system = "SYSTEM: REDACTED";
 	rooms["210"].addFlag(GLOBAL.INDOOR);
+	rooms["210"].addFlag(GLOBAL.PUBLIC);
 	
 	//#11 NOVAHOME
 	rooms["211"] = new RoomClass(this);
@@ -1802,6 +1846,7 @@ function initializeRooms():void
 	rooms["211"].planet = "PLANET: TARKUS";
 	rooms["211"].system = "SYSTEM: REDACTED";
 	rooms["211"].addFlag(GLOBAL.INDOOR);
+	rooms["211"].addFlag(GLOBAL.PUBLIC);
 	
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
@@ -1816,6 +1861,7 @@ function initializeRooms():void
 	rooms["212"].planet = "PLANET: TARKUS";
 	rooms["212"].system = "SYSTEM: REDACTED";
 	rooms["212"].addFlag(GLOBAL.INDOOR);
+	rooms["212"].addFlag(GLOBAL.PUBLIC);
 	
 	//#13 NOVAHOME
 	rooms["213"] = new RoomClass(this);
@@ -1829,6 +1875,7 @@ function initializeRooms():void
 	rooms["213"].planet = "PLANET: TARKUS";
 	rooms["213"].system = "SYSTEM: REDACTED";
 	rooms["213"].addFlag(GLOBAL.INDOOR);
+	rooms["213"].addFlag(GLOBAL.PUBLIC);
 	
 	//#14 WEST NOVAHOME
 	rooms["214"] = new RoomClass(this);
@@ -1840,6 +1887,7 @@ function initializeRooms():void
 	rooms["214"].planet = "PLANET: TARKUS";
 	rooms["214"].system = "SYSTEM: REDACTED";
 	rooms["214"].addFlag(GLOBAL.INDOOR);
+	rooms["214"].addFlag(GLOBAL.PUBLIC);
 
 	//#15 MAKESHIFT GANGPLANK
 	rooms["215"] = new RoomClass(this);
@@ -1851,6 +1899,7 @@ function initializeRooms():void
 	rooms["215"].planet = "PLANET: TARKUS";
 	rooms["215"].system = "SYSTEM: REDACTED";
 	rooms["215"].addFlag(GLOBAL.OUTDOOR);
+	rooms["215"].addFlag(GLOBAL.PUBLIC);
 	
 	//#16 RUST FIELDS
 	rooms["216"] = new RoomClass(this);
@@ -2865,6 +2914,7 @@ function initializeRooms():void
 	rooms["301"].system = "SYSTEM: REDACTED";
 	rooms["301"].addFlag(GLOBAL.INDOOR);
 	rooms["301"].addFlag(GLOBAL.COMMERCE);
+	rooms["301"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["302"] = new RoomClass(this);
 	rooms["302"].roomName = "THE\nMESS";
@@ -2876,6 +2926,7 @@ function initializeRooms():void
 	rooms["302"].system = "SYSTEM: REDACTED";
 	rooms["302"].addFlag(GLOBAL.INDOOR);
 	rooms["302"].addFlag(GLOBAL.BAR);
+	rooms["302"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["303"] = new RoomClass(this);
 	rooms["303"].roomName = "STEELE\nTECH";
@@ -2887,6 +2938,7 @@ function initializeRooms():void
 	rooms["303"].system = "SYSTEM: REDACTED";
 	rooms["303"].addFlag(GLOBAL.INDOOR);
 	rooms["303"].addFlag(GLOBAL.NPC);
+	rooms["303"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["304"] = new RoomClass(this);
 	rooms["304"].roomName = "DR. BADGER'S\nBIMBOTORIUM";
@@ -2898,6 +2950,7 @@ function initializeRooms():void
 	rooms["304"].system = "SYSTEM: REDACTED";
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
+	rooms["304"].addFlag(GLOBAL.PUBLIC);
 	
 	rooms["305"] = new RoomClass(this);
 	rooms["305"].roomName = "COLENSO’S\nJUNK";
@@ -2909,7 +2962,7 @@ function initializeRooms():void
 	rooms["305"].system = "SYSTEM: REDACTED";
 	rooms["305"].addFlag(GLOBAL.INDOOR);
 	rooms["305"].addFlag(GLOBAL.COMMERCE);
-
+	rooms["305"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["350"] = new RoomClass(this);
 	rooms["350"].roomName = "THE\nCHASMFALL";
@@ -3150,6 +3203,7 @@ function initializeRooms():void
 	rooms["WIDGET WAREHOUSE"].system = "SYSTEM: REDACTED";
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.COMMERCE);
+	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.PUBLIC);
 	
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -3259,6 +3313,7 @@ function initializeRooms():void
 	rooms["TEXAS CUSTOMS"].system = "SYSTEM: NYE";
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.INDOOR);
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.NPC);
+	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["500"] = new RoomClass(this);
 	rooms["500"].roomName = "LANDING\nBARN";
@@ -3270,6 +3325,7 @@ function initializeRooms():void
 	rooms["500"].system = "SYSTEM: NYE";
 	rooms["500"].addFlag(GLOBAL.INDOOR);
 	rooms["500"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["500"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["501"] = new RoomClass(this);
 	rooms["501"].roomName = "CARGO\nTHOROUGHFARE";
@@ -3281,6 +3337,7 @@ function initializeRooms():void
 	rooms["501"].planet = "PLANET: NEW TEXAS";
 	rooms["501"].system = "SYSTEM: NYE";
 	rooms["501"].addFlag(GLOBAL.INDOOR);
+	rooms["501"].addFlag(GLOBAL.PUBLIC);
 	
 	//503 New Texas - descs in bonus func
 	rooms["503"] = new RoomClass(this);
@@ -3294,6 +3351,7 @@ function initializeRooms():void
 	rooms["503"].planet = "PLANET: NEW TEXAS";
 	rooms["503"].system = "SYSTEM: NYE";
 	rooms["503"].addFlag(GLOBAL.OUTDOOR);
+	rooms["503"].addFlag(GLOBAL.PUBLIC);
 	//rooms["503"].addFlag(GLOBAL.NPC);
 	
 	//504 A Dirt Road
@@ -3307,6 +3365,7 @@ function initializeRooms():void
 	rooms["504"].planet = "PLANET: NEW TEXAS";
 	rooms["504"].system = "SYSTEM: NYE";
 	rooms["504"].addFlag(GLOBAL.OUTDOOR);
+	rooms["504"].addFlag(GLOBAL.PUBLIC);
 	//rooms["504"].addFlag(GLOBAL.NPC);
 	
 	//505 The Road
@@ -3319,6 +3378,7 @@ function initializeRooms():void
 	rooms["505"].planet = "PLANET: NEW TEXAS";
 	rooms["505"].system = "SYSTEM: NYE";
 	rooms["505"].addFlag(GLOBAL.OUTDOOR);
+	rooms["505"].addFlag(GLOBAL.PUBLIC);
 	//rooms["505"].addFlag(GLOBAL.NPC);
 	
 	//506 The Road
@@ -3331,6 +3391,7 @@ function initializeRooms():void
 	rooms["506"].planet = "PLANET: NEW TEXAS";
 	rooms["506"].system = "SYSTEM: NYE";
 	rooms["506"].addFlag(GLOBAL.OUTDOOR);
+	rooms["506"].addFlag(GLOBAL.PUBLIC);
 	//rooms["506"].addFlag(GLOBAL.NPC);
 	
 	//507 The Road
@@ -3344,6 +3405,7 @@ function initializeRooms():void
 	rooms["507"].planet = "PLANET: NEW TEXAS";
 	rooms["507"].system = "SYSTEM: NYE";
 	rooms["507"].addFlag(GLOBAL.OUTDOOR);
+	rooms["507"].addFlag(GLOBAL.PUBLIC);
 	//rooms["507"].addFlag(GLOBAL.NPC);
 	
 	//508
@@ -3358,6 +3420,7 @@ function initializeRooms():void
 	rooms["508"].planet = "PLANET: NEW TEXAS";
 	rooms["508"].system = "SYSTEM: NYE";
 	rooms["508"].addFlag(GLOBAL.OUTDOOR);
+	rooms["508"].addFlag(GLOBAL.PUBLIC);
 	//rooms["508"].addFlag(GLOBAL.NPC);
 	
 	//509
@@ -3368,10 +3431,11 @@ function initializeRooms():void
 	rooms["509"].runOnEnter = undefined;
 	rooms["509"].westExit = "508";
 	rooms["509"].eastExit = "510";
-	rooms["509"].moveMinutes = 1;
+	rooms["509"].moveMinutes = 2;
 	rooms["509"].planet = "PLANET: NEW TEXAS";
 	rooms["509"].system = "SYSTEM: NYE";
 	rooms["509"].addFlag(GLOBAL.OUTDOOR);
+	rooms["509"].addFlag(GLOBAL.PUBLIC);
 	//rooms["509"].addFlag(GLOBAL.NPC);
 	
 	//510
@@ -3386,6 +3450,7 @@ function initializeRooms():void
 	rooms["510"].planet = "PLANET: NEW TEXAS";
 	rooms["510"].system = "SYSTEM: NYE";
 	rooms["510"].addFlag(GLOBAL.OUTDOOR);
+	rooms["510"].addFlag(GLOBAL.PUBLIC);
 	//rooms["510"].addFlag(GLOBAL.NPC);
 	
 	//511
@@ -3402,6 +3467,7 @@ function initializeRooms():void
 	rooms["511"].planet = "PLANET: NEW TEXAS";
 	rooms["511"].system = "SYSTEM: NYE";
 	rooms["511"].addFlag(GLOBAL.INDOOR);
+	rooms["511"].addFlag(GLOBAL.PUBLIC);
 	//rooms["511"].addFlag(GLOBAL.NPC);
 	
 	//512
@@ -3417,6 +3483,7 @@ function initializeRooms():void
 	rooms["512"].planet = "PLANET: NEW TEXAS";
 	rooms["512"].system = "SYSTEM: NYE";
 	rooms["512"].addFlag(GLOBAL.INDOOR);
+	rooms["512"].addFlag(GLOBAL.PUBLIC);
 	rooms["512"].addFlag(GLOBAL.NPC);
 	
 	//513
@@ -3431,6 +3498,7 @@ function initializeRooms():void
 	rooms["513"].planet = "PLANET: NEW TEXAS";
 	rooms["513"].system = "SYSTEM: NYE";
 	rooms["513"].addFlag(GLOBAL.INDOOR);
+	rooms["513"].addFlag(GLOBAL.PUBLIC);
 	//rooms["513"].addFlag(GLOBAL.NPC);
 	
 	//514
@@ -3445,6 +3513,7 @@ function initializeRooms():void
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
 	rooms["514"].addFlag(GLOBAL.INDOOR);
+	rooms["514"].addFlag(GLOBAL.PUBLIC);
 	//rooms["514"].addFlag(GLOBAL.NPC);
 	
 	// Brynn's Stall
@@ -3457,6 +3526,7 @@ function initializeRooms():void
 	rooms["BrynnsStall"].planet = "PLANET: NEW TEXAS";
 	rooms["BrynnsStall"].system = "SYSTEM: NYE";
 	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
+	rooms["BrynnsStall"].addFlag(GLOBAL.PUBLIC);
 	rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
 	
 	//515
@@ -3510,6 +3580,7 @@ function initializeRooms():void
 	rooms["525"].planet = "PLANET: NEW TEXAS";
 	rooms["525"].system = "SYSTEM: NYE";
 	rooms["525"].addFlag(GLOBAL.OUTDOOR);
+	rooms["525"].addFlag(GLOBAL.PUBLIC);
 	//rooms["525"].addFlag(GLOBAL.NPC);
 
 	//526
@@ -3526,6 +3597,7 @@ function initializeRooms():void
 	rooms["526"].planet = "PLANET: NEW TEXAS";
 	rooms["526"].system = "SYSTEM: NYE";
 	rooms["526"].addFlag(GLOBAL.INDOOR);
+	rooms["526"].addFlag(GLOBAL.PUBLIC);
 	//rooms["526"].addFlag(GLOBAL.NPC);
 
 	//527
@@ -3540,6 +3612,7 @@ function initializeRooms():void
 	rooms["527"].system = "SYSTEM: NYE";
 	rooms["527"].addFlag(GLOBAL.INDOOR);
 	rooms["527"].addFlag(GLOBAL.COMMERCE);
+	rooms["527"].addFlag(GLOBAL.PUBLIC);
  
 	//528
 	//Big T.'s Barbeque Pit
@@ -3553,6 +3626,7 @@ function initializeRooms():void
 	rooms["528"].system = "SYSTEM: NYE";
 	rooms["528"].addFlag(GLOBAL.INDOOR);
 	rooms["528"].addFlag(GLOBAL.COMMERCE);
+	rooms["528"].addFlag(GLOBAL.PUBLIC);
 
 	//529
 	//Secretary's Room Description
@@ -3567,6 +3641,7 @@ function initializeRooms():void
 	rooms["529"].system = "SYSTEM: NYE";
 	rooms["529"].addFlag(GLOBAL.INDOOR);
 	rooms["529"].addFlag(GLOBAL.NPC);
+	rooms["529"].addFlag(GLOBAL.PUBLIC);
 
 	//530
 	//Big T.'s Office Description
@@ -3580,6 +3655,7 @@ function initializeRooms():void
 	rooms["530"].system = "SYSTEM: NYE";
 	rooms["530"].addFlag(GLOBAL.INDOOR);
 	rooms["530"].addFlag(GLOBAL.NPC);
+	rooms["530"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["531"] = new RoomClass(this);
 	rooms["531"].roomName = "THE\nROAD";
@@ -3590,6 +3666,7 @@ function initializeRooms():void
 	rooms["531"].planet = "PLANET: NEW TEXAS";
 	rooms["531"].system = "SYSTEM: NYE";
 	rooms["531"].addFlag(GLOBAL.OUTDOOR);
+	rooms["531"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["532"] = new RoomClass(this);
 	rooms["532"].roomName = "THE\nROAD";
@@ -3601,6 +3678,7 @@ function initializeRooms():void
 	rooms["532"].planet = "PLANET: NEW TEXAS";
 	rooms["532"].system = "SYSTEM: NYE";
 	rooms["532"].addFlag(GLOBAL.OUTDOOR);
+	rooms["532"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["533"] = new RoomClass(this);
 	rooms["533"].roomName = "THE\nROAD";
@@ -3613,6 +3691,7 @@ function initializeRooms():void
 	rooms["533"].system = "SYSTEM: NYE";
 	rooms["533"].addFlag(GLOBAL.OUTDOOR);
 	rooms["533"].addFlag(GLOBAL.NPC);
+	rooms["533"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["534"] = new RoomClass(this);
 	rooms["534"].roomName = "SHORT\nGRASS";
@@ -3625,6 +3704,7 @@ function initializeRooms():void
 	rooms["534"].planet = "PLANET: NEW TEXAS";
 	rooms["534"].system = "SYSTEM: NYE";
 	rooms["534"].addFlag(GLOBAL.OUTDOOR);
+	rooms["534"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["535"] = new RoomClass(this);
 	rooms["535"].roomName = "SHORT\nGRASS";
@@ -3635,6 +3715,7 @@ function initializeRooms():void
 	rooms["535"].planet = "PLANET: NEW TEXAS";
 	rooms["535"].system = "SYSTEM: NYE";
 	rooms["535"].addFlag(GLOBAL.OUTDOOR);
+	rooms["535"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["536"] = new RoomClass(this);
 	rooms["536"].roomName = "BUSTED\nHOVERTRACTOR";
@@ -3645,6 +3726,7 @@ function initializeRooms():void
 	rooms["536"].planet = "PLANET: NEW TEXAS";
 	rooms["536"].system = "SYSTEM: NYE";
 	rooms["536"].addFlag(GLOBAL.OUTDOOR);
+	rooms["536"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["537"] = new RoomClass(this);
 	rooms["537"].roomName = "THE\nFIELDS";
@@ -4030,6 +4112,7 @@ function initializeRooms():void
 	rooms["540"].system = "SYSTEM: NYE";
 	rooms["540"].addFlag(GLOBAL.INDOOR);
 	rooms["540"].addFlag(GLOBAL.NPC);
+	rooms["540"].addFlag(GLOBAL.PUBLIC);
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
