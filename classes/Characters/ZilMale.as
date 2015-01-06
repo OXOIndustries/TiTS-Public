@@ -31,10 +31,10 @@
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 1;
+			this.armor.defense = 0;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 4;
+			this.physiqueRaw = 3;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
 			this.intelligenceRaw = 1;

@@ -418,7 +418,7 @@ function chooseSkinTone():void
 	{
 		this.addButton(0,"Pale",applySkinTone,"pale");
 		this.addButton(1,"Fair",applySkinTone,"fair");
-		this.addButton(2,"Tanned",applySkinTone,"tanned");
+		this.addButton(2,"Tan",applySkinTone,"tan");
 		this.addButton(3,"Olive",applySkinTone,"olive");
 		this.addButton(3,"Dark",applySkinTone,"dark");
 		this.addButton(4,"Ebony",applySkinTone,"ebony");

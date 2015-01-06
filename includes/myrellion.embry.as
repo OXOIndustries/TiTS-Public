@@ -1032,14 +1032,14 @@ function tipEmbryTwoThousandHundredDarrus():void
 	// Not A Lover / if EmbryRelationship != 3
 	if(flags["EMBRY_RELATIONSHIP"] != 3)
 	{
-		output("You tip [embry.name] 500 credits, and when she sees the amount, Embry’s eyes go wide open. She’s gone into shock.");
+		output("You tip [Embry.name] 2000 credits, and when she sees the amount, [embry.name]'s eyes go wide open. She's gone into shock.");
 		output("\n\n“<i>" + pc.mf("S-s-sir","M-m-ma’am") + ", you’ve tipped me too much--!</i> she stammers, trying to hand it back. You shake your head, and she reluctantly takes it, bowing to you several times.");
 		output("\n\nIt seems the credits were more than appreciated. Her hands are trembling as she slides the considerable amount into her dress pocket.");
 	}
 	// Lover / if EmbryRelationship = 3
 	else
 	{
-		output("You hand [embry.name] 500 credits, and she almost chokes when she sees the amount. She even tries to hand it back, but you shake your head.");
+		output("You hand [embry.name] 2000 credits, and she almost chokes when she sees the amount. She even tries to hand it back, but you shake your head.");
 		output("\n\n<i>\"This, you, so much--!</i>” [embry.name] fails to form a full sentence, and looks at you with big, wide eyes. Instead of answering, you kiss her on the lips, and she slowly relaxes.");
 		output("\n\nAfter locking lips with her for a while, she flushes, and cutely bats at your chest. <i>\"Bad. You’re... you’re bad for giving me this much!</i>” Even so, she seems happy, and slides it inside her dress pocket. She also gives you one more tight hug.");
 	}
@@ -1281,7 +1281,7 @@ function approachEmbrysSecondTransition():void
 	output("\n\nEvery part of her becomes more jaw-droppingly feminine. Her nose becomes adorably small and cute. Her eyelashes become long and beautiful. Her nails extend out, and her fingertips are gorgeously petite. ");
 	output("\n\nBetween her legs, her [embry.balls] pull up and into her body. They stop just short of completely disappearing. She is left a small, soft mound just below her cock that barely rises up from between her womanly thighs.");
 	output("\n\nHer tiny, budding breasts begin blossoming. They swell before your eyes, along with her nipples and areolae. Once they have finished growing, she is left with a set of supple, well-rounded c-cups. Her nipples are perkier, and her areolae have stretched to match her new assets.");
-	output("\n\nYour lover now looks so extraordinarily gorgeous that any [pc.manWoman] would be envious to have her on [pc.hisHer] arm. [embry.name] slides her hand out of yours, and cups her ample tits.");
+	output("\n\nYour lover now looks so extraordinarily gorgeous that any " + pc.mf("man","woman") + " would be envious to have her on [pc.hisHer] arm. [embry.name] slides her hand out of yours, and cups her ample tits.");
 	output("\n\n“<i>...H-holy smokes, are these MINE?</i>” the pink-haired monkey girl stutters, jiggling her fleshy melons. <i>\"I-I’m going to need a new bra; these could poke someone’s eye out!</i>”");
 	output("\n\nYou look at Embry’s outfit on the floor, and point out she’ll probably need an entirely new wardrobe. She flushes and nods - still holding her perfectly formed breasts. You also get her a hand mirror, and she looks at herself. For a long time.");
 	output("\n\nTears run down her cheeks, and she looks at you with a trembling lip. <i>\"I--this is---this is the first time I’ve felt close to being a really </i>real<i> girl.</i> she sobs. <i>\"I mean, um, there’s still my actual sex... but I’m </i>so<i> close. I--I feel so happy!</i>”");
@@ -1951,7 +1951,7 @@ function lookingForSexEmbry():void
 function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
 {
 	output("\n\nShe looks up at the roof with a reminiscent look in her eyes. “<i>... You know... there’s a big mine not far from where I used to live, back on Omorii. It’s owned by Steele Industrial Technology and Production, but run and operated by locals. We call it the ‘Big Steele’ mine.</i>”");
-	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.fullname]. Small galaxy, huh?</i>”");
+	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.name]. Small galaxy, huh?</i>”");
 	output("\n\nYou spend some more time chatting, and before you know it, it’s getting late. You walk [embry.name] back to her ship, where she earnestly thanks you for the date, and kisses you goodnight.");
 	output("\n\nYou walk back to the bar with a smile on your face.");
 	processTime(21);
@@ -1990,9 +1990,9 @@ function openRelationshipWithKiro(poly:Boolean):void
 	output(".</i>”");
 	output("\n\n<i>\"T-that said, if it’s important to you--if that’s something that makes you happy, I want you to be happy, and I want to be with you. As long as you’ll have me as your girlfriend, I don’t care who you sleep with. Is, is that weird--?</i>” she looks at you.");
 	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I can call you my " + pc.mf("boy","girl") + "friend, and I ");
-	if(!poly) output("h-have your heart");
-	else output("have a special place in your heart");
-	output("”,</i> she blushes.");
+	if(!poly) output("h-have your heart,</i>”");
+	else output("have a special place in your heart,</i>”");
+	output(" she blushes.");
 	if(poly) flags["EMBRY_LOVE_STYLE"] = "polyamory";
 	else flags["EMBRY_LOVE_STYLE"] = "open relationship";
 	embryRelationshipChoiceEpilogue();
@@ -2007,7 +2007,7 @@ function haremAlphaStuff():void
 	output("\n\n[embry.name]’s cheeks go bright red. <i>\"W-wha--why did my heart just skip a beat--?</i>” she looks confused and clutches at her chest. It takes the simii girl a moment to compose herself.");
 	output("\n\nAfter a while, she takes a deep breath, and nervously responds. <i>\"U-um... I don’t mind you being my Alpha, or being owned... if that’s something that makes you happy, I want you to be happy, and I want to be with you... no matter what it takes.</i>”");
 	output("\n\n<i>\"As long as you’ll have me as yours, I don’t mind if you sleep with others. Is, is that weird--?</i>” she gives you a searching look.");
-	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I belong to you, and I have a special place in your heart,<i> she blushes.");
+	output("\n\nYou shake your head. [embry.name] lets out a relieved sigh and squeezes your hand. <i>\"Good. I know other girls might get mad, or not be okay, but I’m not, you know? As long as I belong to you, and I have a special place in your heart,</i>\" she blushes.");
 	flags["EMBRY_LOVE_STYLE"] = "harem";
 	embryRelationshipChoiceEpilogue();
 }
@@ -2051,7 +2051,9 @@ function loversSceneOneOff():void
 	output("\n\n“<i>... I-I </i>love<i> you-!</i>” she stammers out, and looks ");
 	if(pc.tallness > embry.tallness + 3) output("up ");
 	else if(pc.tallness < embry.tallness - 3) output("down ");
-	output("at you {through her glasses} with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
+	output("at you ");
+	if(flags["EMBRY_GLASSES"] != undefined) output("through her glasses ");
+	output("with honest, heartfelt feeling in her baby blue eyes. <i>\"You, I love you, and every time I so much as THINK of you, my heart gets all tight and I can’t breathe--!</i>”");
 	output("\n\n<i>\"And, because I love you... I want you, no one else, to be my first... a-and take my virginity,</i>” her cheeks flush, and she looks down at your hands. “<i>... I want my first time to be with the " + pc.mf("man","woman") + " I love...</i>”");
 
 	//[ILoveYou] [Kiss Her] [DontLoveYou]
@@ -2627,7 +2629,7 @@ function embryAnalSex():void
 		else output(" They");
 		output(" drip down on the floor between her legs.");
 
-		output("\n\nYou relish in the sight of [embry.noun] laying spend over the table, her skirt flipped up, and your [pc.cum] drooling from her ");
+		output("\n\nYou relish in the sight of [embry.name] laying spend over the table, her skirt flipped up, and your [pc.cum] drooling from her ");
 		if(embry.analVirgin)
 		{
 			output("deflowered anus");
@@ -2720,7 +2722,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	{
 		output("After [embry.name]’s shift is up, she’s immediately upon you, wrapping her arms around your neck. She litters your cheeks with kisses - she’s clearly in an amorous mood.");
 		output("\n\n“<i>... W-we should go back to my place!</i>” the pink haired girl is somehow simultaneously shy and assertive. You head back to the Capella, making out on the ship’s elevator on the way up, and then against her cabin room door.");
-		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name].She’s stripping off your [pc.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.\n\n");
+		output("\n\nBefore you know it, you’re falling on the bed inside with [embry.name]. She’s stripping off your [pc.gear]. You’re still hungrily kissing those pink, glossy lips, utterly unwilling to pull away. It’s as if you’ve been possessed by a desperate need for her, a fire that just can’t be quenched.\n\n");
 	}
 	output("You lustily slide your fingers down the top of her ");
 	if(spentTime) output("evening dress - then swiftly yank it down along with her strapless bra");
@@ -2856,7 +2858,6 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		if(embry.vaginalVirgin)
 		{
 			output("\n\n<i>\"You’re my first,</i>\" she happily whispers, “<i>... My first lover, and my first love. I-I could die happy right now... but I don’t want this moment to ever end...</i>”");
-			embry.vaginalVirgin = false;
 		}
 		// else
 		else
@@ -2935,6 +2936,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 	flags["SEXED_EMBRY"] = 1;
 	processTime(45);
 	pc.orgasm();
+	embry.vaginalVirgin = false;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

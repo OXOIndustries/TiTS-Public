@@ -62,6 +62,7 @@ function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].moveMinutes = 1;
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.PUBLIC);
+	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
@@ -76,6 +77,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.PUBLIC);
+	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
@@ -92,6 +94,7 @@ function initializeRooms():void
 	//rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.PUBLIC);
+	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
@@ -106,6 +109,7 @@ function initializeRooms():void
 	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.PUBLIC);
+	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
@@ -118,6 +122,7 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.PUBLIC);
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
 	//105 "TAVROS HANGAR". The Hangar
@@ -131,6 +136,7 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS HANGAR"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
@@ -146,6 +152,7 @@ function initializeRooms():void
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.LIFTUP);
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS LIFT"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
 
 	//107 The Dark Chrysalis
@@ -213,6 +220,7 @@ function initializeRooms():void
 	//rooms["110"].westExit = "DARK CHRYSALIS";
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].addFlag(GLOBAL.PUBLIC);
+	rooms["110"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["110"].runOnEnter = undefined;
 
 	//0. Ship Hanger

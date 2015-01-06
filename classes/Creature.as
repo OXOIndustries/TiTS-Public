@@ -1335,6 +1335,9 @@
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
 					break;
+				case "cockShortest":
+					buffer = cockDescript(shortestCockIndex());
+					break;
 				case "eachCockHead":
 					buffer = eachCockHead();
 					break;
@@ -1546,6 +1549,12 @@
 					break;
 				case "milkFlavor":
 					buffer = fluidFlavor(milkType);
+					break;
+				case "wing":
+					buffer = wingDescript();
+					break;
+				case "wings":
+					buffer = wingsDescript();
 					break;
 				case "leg":
 					buffer = leg();
@@ -3066,6 +3075,14 @@
 			if(tailCount == 1) return tailDescript();
 			else if(tailCount > 1) return pluralize(tailDescript());
 			else return "<b>ERROR: Taildescript called with no tails present</b>";
+		}
+		public function wingDescript():String
+		{
+			return "wing";
+		}
+		public function wingsDescript():String
+		{
+			return pluralize(wingDescript());
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -5648,6 +5665,11 @@
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
+			if (type == GLOBAL.TYPE_HUMAN)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+			}
 			if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
 				cocks[slot].cockColor = "bright red";
@@ -8225,16 +8247,16 @@
 				}
 				rando = this.rand(11);
 				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
-				if (rando <= 1) noun += "cock";
-				if (rando <= 2) noun += "member";
-				if (rando <= 3) noun += "shaft";
-				if (rando <= 4) noun += "phallus";
-				if (rando <= 5) noun += "prick";
-				if (rando <= 6) noun += "member";
-				if (rando <= 7 && descript != "simian ") noun += "simii-cock";
-				if (rando <= 8) noun += "dick";
-				if (rando <= 9) noun += "tool";
-				if (rando <= 10) noun += "shaft";
+				else if (rando <= 1) noun += "cock";
+				else if (rando <= 2) noun += "member";
+				else if (rando <= 3) noun += "shaft";
+				else if (rando <= 4) noun += "phallus";
+				else if (rando <= 5) noun += "prick";
+				else if (rando <= 6) noun += "member";
+				else if (rando <= 7 && descript != "simian ") noun += "simii-cock";
+				else if (rando <= 8) noun += "dick";
+				else if (rando <= 9) noun += "tool";
+				else noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {
