@@ -68,7 +68,7 @@ function returnToShipAfterRecruitingAnno():Boolean
 		annoFollowerHeader();
 
 		// AnnoQuest variant
-		if (flags["TARKUS_DESTROYED"] == undefined)
+		if (flags["ANNO_MISSION_OFFER"] == 3)
 		{
 			output("<i>“Hey, boss!”</i> Anno shouts over the commotion of the bustling landing strip, waving a hand over the sea of raskvel milling about around her. You wade through them over to your ship and wrap Anno up in a tight hug when you reach her. She giggles and nuzzles her cheek against your shoulder, tail going ninety miles an hour behind her. ");
 
