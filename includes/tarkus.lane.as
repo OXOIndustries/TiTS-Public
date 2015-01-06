@@ -351,10 +351,275 @@ function enterLanesShop():void
 	// Reset the "mini" flag so we'll get the full version of the effect-removal messages.
 	if (flags["HYPNO_EFFECT_SMALL_MESSAGES"] != undefined) flags["HYPNO_EFFECT_SMALL_MESSAGES"] = undefined;
 
+	if (flags["LANE_DETOX_COMPLETE"] == undefined && flags["LANE_DETOX_COUNTER"] != undefined)
+	{
+		visitLaneWhilstDetoxing();
+		return;
+	}
+	if (flags["LANE_DETOX_COMPLETE"] == 1)
+	{
+		visitLaneAfterDetoxing();
+		return;
+	}
+
 	if (flags["MET_LANE"] == undefined) discoverLanesShop();
 	else if (flags["LANE_FIRST_HYPNO"] == 1 && flags["LANE_TIMES_HYPNOTISED"] > 0 && !hasHypnosisEffect()) lanesShopFirstRepeat();
 	else if (hasMaxedLaneHypnosis()) lanesShopFullyUnder();
 	else repeatEnterLanesShop();
+}
+
+function visitLaneWhilstDetoxing():void
+{
+	clearOutput();
+
+	output("You rush into Lane’s hut with all the haste you can. You were such a fool! How could you think to leave Lane – your lover, your hunger, your <i>world!</i> There {he} sits, idly watching something on his codex, as you come barreling in, tears in your eyes and your mouth dry.");
+
+	output("\n\n{He} looks surprised to see you rush in so eagerly. <i>“[pc.name]!”</i> he shouts. He sounds halfway between relieved and upset to see you again. <i>“Where have you been? I haven’t seen you in a while... and you’ve stopped sending me your payments. I thought you had died!”</i>");
+
+	output("\n\nYou vault over {his} desk effortlessly and wrap your arms around {his} legs, burying your [pc.face] into {his} knees as you sob in delight that you’ve found your way back to your {master/mistress}. <i>“{Master/Mistress}! I...”</i> you begin, choking back your ecstatic tears. <i>“I told one of my crewmates about us, {master/mistress}. She saw my daily payments and started asking questions.”</i>");
+
+	output("\n\nLane doesn’t move a muscle. <i>“And what did this crewmate of yours say?”</i>");
+
+	output("\n\n<i>“She told me to leave you, {master/mistress}. She tried to tell me that you were stealing from me and abusing me. She convinced me to try and leave you, but... but I couldn’t! It was the darkest, most worthless time of my life, trying to tear myself from you! I won’t ever leave you again, {master/mistress}, I swear on my life!”</i>");
+
+	output("\n\nYou hiccup your tears a few times, waiting for your love to say or do something, <i>anything</i> to make you feel welcomed and that {he} wasn’t mad. Finally, after a heart-pounding eternity, you feel {his} soft, forgiving hands on your [pc.hair]. You immediately melt into {him}, feeling a relief you had never known before today. <i>“I forgive you, [pc.name],”</i> {he} says to you, and you clutch at {his} legs tighter. <i>“You’re a good [if (pc.gender == 1)boy][if (pc.gender == 2)girl][if (pc.gender == 3)girl][if (pc.gender == 0)boy]. You’ve made the right decision to come back to me.”</i>");
+
+	output("\n\nYou sigh out loud, and look up at {him}, across {his} flat stomach, {his} beautiful {chest/breasts}, and at {his} adoring eyes. <i>“Let’s make sure you never make that mistake again, [pc.name]. I want you to look deep into my eyes. Can you do that for me?”</i> You obey wordlessly, staring deep into {his} eyes as {he} flairs {his} tassels wide open for you. The familiar, safe feeling of sinking into the swirls of his tattoos and the lights of his body wash over you. <i>Good. You’re doing good.</i>");
+
+	clearMenu();
+	addButton(0, "Next", laneGonnaFuckYourDetoxinAssUp);
+}
+
+function visitLaneAfterDetoxing():void
+{
+	clearOutput();
+
+	if (pc.WQ() < 0.75)
+	{
+		if (pc.isNice())
+		{
+			output("You sigh. There {he} is. Sitting inside that little hut of {his} in the middle of the desert.");
+
+			output("\n\nYou didn’t tell Izma that you were coming here, but, as a victim of Lane’s ‘work,’ you feel you have something of a responsibility to anyone else that could potentially fall for {his} trap. Short of trying to warn the entire universe of a single Daynar that uses an ancient spiritual practice, the most surefire way to stop the problem is at its source. You enter Lane’s Plane.");
+
+			output("\n\nThere {he} sits, at {his} desk, idly thumbing through some tabs on his codex. {he} looks up when {he} hears {he} has a customer, but as soon as {he} realizes it’s you, {he} stands, looking you over concernedly. <i>“Where have you been, [pc.name]?! I’ve been worried sick! This whole time, I thought you had crashed into an asteroid, or you caught some kind of fever!”</i>");
+
+			output("\n\nYou motion for {him} to sit and take the seat across from {him}. You take a deep breath. <i>“We need to talk, you and I,”</i> you say, trying to remain composed. <i>“It’s about how you hypnotized me.”</i>");
+
+			output("\n\nLane apparently doesn’t like your non-threatening yet confident tone. As {he} sits, {he} flares his tassels wide and assaults you with the light of {his} glowing blood, mixing with the bright swirls of his tattoos and piercings. <i>“We can go deeper if you’d like.”</i> {He} snickers.");
+
+			output("\n\nYou feel a twinge of... something, deep in the back of your mind, as your eyes watch the patterns on {his} body, but you manage to swallow it back with a hard blink. You stare at {him} dead in the eye. <i>“That won’t work on me anymore, Lane.”</i>");
+
+			output("\n\nLane looks at you, confused. {He} doesn’t believe you, and flexes {his} tassels wider, but {his} efforts are lost on you. You sit in the chair, calmly waiting for {him} to stop his petty attempts to enthrall you once again. <i>“I don’t understand,”</i> {he} eventually admits. <i>“Not once, in all my years of work or in my studies, have I heard of a person ‘breaking out’.”</i>");
+
+			output("\n\n<i>“I’m honored to be the first,”</i> you say, <i>“and the last.”</i> Lane closes {his} tassels after another moment, and {he} slumps in {his} chair, knowing {he’s} been beaten. You tell {him} that you remember every last detail; how {he} made you love {him}, and how {he} used his power over you to abuse you sexually. You also remember how depleted your bank account was for a few days.");
+
+			output("\n\n<i>“Do you believe that any news is good news, Lane?”</i> {He} ponders the question, but you know {he’s} really only trying to figure out your game and what you want. <i>“How do you think the universe would react when they hear how you tried to hypnotize the heir[if (pc.gender == 2)ess][if (pc.gender == 3)ess] of Steele Tech out of [pc.his] money? That I went to you, trusting you to do an honest, reputable job, and then you abused that and tried to rob one of the richest people alive?”</i> Lane squirms in {his} seat. <i>“You may have a monopoly on hypnotism, but that won’t mean shit if your market is poisoned.”</i>");
+
+			output("\n\n<i>“Are you trying to blackmail me, [pc.name]?”</i> Lane says. <i>“That’s not very becoming of someone of your... future social standing.”</i>");
+
+			output("\n\n<i>“Considering what you’ve done to</i> me, <i>I think I’m being rather generous.”</i> You lean forward, tapping your finger on {his} codex. <i>“One sentence will be all it’ll take to ruin all those testimonials you’ve been hoarding. What if we were all hypnotized to sign it? Could you ever be trusted with anything ever again?”</i>");
+
+			output("\n\nLane breaks eye contact to glance at {his} codex. At the threat of ruining {his} reputation, {he} sighs in defeat. <i>“What do you want from me, [pc.name]?”</i>");
+
+			output("\n\nYou tap your chin as you think about it. <i>“I think five-hundred credits a day is a good start, don’t you? An eye for an eye?”</i>");
+
+			output("\n\nAt that, Lane becomes visibly upset. {He} begins to quiver in {his} seat. <i>“I can’t afford that sort of cash!”</i>");
+
+			output("\n\n<i>“Well then, you and I are going to have a problem.”</i>");
+
+			output("\n\n<i>“I’m serious, [pc.name], come on,”</i> {he} all but pleads. <i>“I specialize in</i> hypnotism, <i>and I live in a one-story mud-tent in the middle of a desert planet! At five-hundred credits a day, with the customers I get and the bills I pay, I’d be starving after a week! Please, I’m begging you–”</i> {He} clasps {his} hands together and reaches over his desk, pleading for mercy, <i>“I can do two-hundred credits. Two-hundred credits a day.”</i>");
+
+			output("\n\nYou tilt your nose up, looking down at {him} as he begs for {his} financial security. <i>“If I remember right,”</i> you say threateningly, <i>“didn’t you once say that Daynarian blood was once highly valued? Do you think a black market for it exists?”</i> You’re bluffing, but watching the color literally drain from Lane’s face is worth the visit alone. You stand. <i>“Two-hundred credits a day, Lane. After what you did to me, you should be thankful. Be sure to not miss a payment.”</i> You turn towards the door, but you stop. <i>“And – don’t ever hypnotize another person like you did to me. I’ll find out.”</i>");
+
+			output("\n\nYou hear Lane slump forward onto {his} desk as you victoriously leave {his} hut. With any luck, you won’t have to visit {him} again anytime soon. Not that you’d be welcomed with open arms, anyway.");
+
+			// Remove ‘Lane’s Plane’ from the map; the PC gains 200 credits a day for the rest of the game
+		}
+		else
+		{
+			output("There {he} is. That slippery [if {Lane is male}son of a ]bitch, sitting in that little mud-hut of {his/hers}, conning {his} next victim out of their money. You’re going to put a stop to that today.");
+
+			output("\n\nIt’s not difficult to find Lane, sitting at {his} desk as {he} lazily flips through something on his codex. {He} looks up, at first to greet a new customer into coming into {his} plane, but {his} emotion washes away the moment {he} registers you.");
+
+			output("\n\n<i>“Lane!</i> you shout, trying to sound as aggressive as you can. You march into {his} office, [if {melee weapon equipped}one hand on your [weapon]][if {no melee weapon}popping the joints in your neck] as you slap down on {his} table. You make it as obvious as you can that {he’s} in trouble and that no amount of pleading is going to stop you.");
+
+			output("\n\nLane leaps from {his} chair in response, fearful for {his} own safety, and instinctively opens {his} tassels to you. The adrenaline coursing through {his} blood speeds up {his} heart rate, making the lights of {his} body pulse brighter.");
+
+			output("\n\nAt the first flash of light from his tassels, you feel your strength begin to leave you. Stars begin to fill your vision and the fight starts to drain from your arms... but, with a hard blink and a vigorous head shake, you clear the stuffiness from your senses and start your rampage against him again. <i>“That’s not going to work on me anymore, you motherfucker!”</i>");
+
+			output("\n\n<i>“How could you break my hold on you?!”</i> {he} bellows, backing away from a mighty swing. Your {fist/[weapon]} collides harmlessly with the curtain separating his office into two. You grip onto the fabric and, with a yank, pull it from the tracks keeping it connected to the ceiling. <i>“Nobody’s ever done that before! It should have been impossible!”</i>");
+
+			output("\n\n<i>“I had some help!”</i> You swing again, and {he} just barely scrapes by again. You feel just the tiniest bit of drag from swinging so close to {his} body. <i>“You’re giving me back every last fucking credit, or so help me, I’ll pull it from your blood! Daynarian blood was worth something once, I hear!”</i>");
+
+			output("\n\nYou give up your position between {him} and the door in your chase, and you realize that {he} could just as easily make a dash out of {his} hut if {he} wanted. You don’t care – you wouldn’t mind waiting until {he} came back if {he} did, and until then, {his} hut’s probably worth something, sentimentally or otherwise.");
+
+			output("\n\n<i>“Let’s just talk this through, like a pair of reasonable adults, okay [pc.name]?”</i> {He} tries to keep {his} voice steady as {he} nimbly manages to avoid your every swing, but you’re getting closer and closer each time. <i>“We can work this out! Maybe, uh, we can –”</i> {He} makes a dive for {his} desk, digging through one of its drawers for what you can only assume is a weapon. You’re too close and {he’s} too slow: you close the gap and deliver a strong punch to {his} ribs. The satisfying sound of your [pc.skinfurScales] connecting with {his} ribs fills your ears, and {he} collapses forward, the wind knocked out of {him}.");
+
+			output("\n\n{He} winces painfully as {he} grips onto {his} side, where you had punched {him}. Remorseless, you reach forward and wrap your right arm around {his} neck and pin {his} arm behind {him} with your other, locking {him} into the sleeper hold. {He} begins to choke, {his} words sputtering before they leave {his} lips – you grip onto {him} tighter so {he} can’t even do that.");
+
+			output("\n\n<i>“This is how it’s going to work,”</i> you say to {him}. {His} free hand claws at your shins and your arms, and though {his} claws manage to draw your blood, you’re not going to give up that easily. <i>“I want you to pick up your codex, and I want you to transfer every last goddamn credit you have to me.”</i>");
+
+			output("\n\n{He} redoubles what little effort {he} can muster, trying to break your iron grip on {him}, but all it does it irritate you. <i>“Or, I can snap your neck right now, Lane, and you</i> will <i>pay me back in blood. It wouldn’t be difficult to find a black market for Daynarian blood these days.”</i>");
+
+			output("\n\nUnable to speak, Lane quickly gives up, and reaches forward for {his} codex, still on {his} desk. {He} quickly flips through the open tabs {he} had on, until {he} reaches {his} bank account. You ease your grip on {him} just enough so {he} can see what {he’s} doing – once {he} punches in {his} account number, your own, and {his} password, you hear {his} codex give off a little beep. Your own follows suit shortly after, and you know the deed is done.");
+
+			output("\n\nJust as the pulsing of Lane’s colorful blood begins to slow and wane, you release {him} entirely, letting {him} collapse forward. {He} massages at {his} neck while {he} coughs and takes deep, stuttering breaths, using the desk to support {his} weight. You look down at {him}, vulnerable as {he} is, and consider giving {him} a swift kick to the ass for good measure, but you decide against it. You’ve taken {his} money; you don’t need to take {his} dignity too, fitting as it would be.");
+
+			output("\n\n<i>“Don’t ever let me catch you doing what you did to me to anyone else,”</i> you warn. Lane turns {his} head, glancing at you over {his} shoulder, {his} expression hurt and furious, but doesn’t make another move.");
+
+			output("\n\nYou turn and leave {his} hut for the last time. You don’t think you’re welcome back there anymore anyway.");
+
+			// Remove ‘Lane’s Plane’ from the map; PC gains 12,000 credits
+		}
+
+		return;
+	}
+	else
+	{
+		output("There {he} is. That slippery [if {Lane is male}son of a ]bitch, sitting in that little mud-hut of {his/hers}, conning {his} next victim out of their money. You’re going to put a stop to that today.");
+
+		output("\n\nIt’s not difficult to find Lane, sitting at {his} desk as {he} lazily flips through something on his codex. {He} looks up, at first to greet a new customer into coming into {his} plane, but {his} emotion washes away the moment {he} registers you.");
+
+		output("\n\n<i>“Lane!</i> you shout, trying to sound as aggressive as you can. You march into {his} office, [if {melee weapon equipped}one hand on your [weapon]][if {no melee weapon}popping the joints in your neck] as you slap down on {his} table. You make it as obvious as you can that {he’s} in trouble and that no amount of pleading is going to stop you.");
+
+		output("\n\nLane leaps from {his} chair in response, fearful for {his} own safety, and instinctively opens {his} tassels to you. The adrenaline coursing through {his} blood speeds up {his} heart rate, making the lights of {his} body pulse brighter. Your first thought is to shield your eyes – but your hands suddenly become rather heavy. Your eyelids, however, are light as could be.");
+
+		output("\n\nYour ‘rampage’ against him ends as quickly as it starts. Your arms hang limp at your sides[if {melee weapon equipped} and you drop your [weapon] harmlessly] as {he} absorbs you once again. {He} still looks afraid, pressed against the far wall, but when {he} realizes why you’ve stopped, {he} peels himself away.");
+
+		output("\n\nYour mind’s voice screams at you to move, to thrash him and take back what belonged to you. You fought so hard to break away from Lane – you should be clean now! {He} should have no power over you anymore! But your body disobeys your every command, and, on its own volition, you drop to your knees, looking up at Lane helplessly.");
+
+		output("\n\nFerociously, Lane clamps both {his} hands against your head, rocking your eyes in your skull from the blow, but you don’t look away. Lane leans in close until {his} ever-changing eyes are all you see. You feel his breath blow down your neck through clenched teeth, and you feel his claws dig into the roots of your [pc.hair] painfully. <i>“You’re a very special person, [pc.name],”</i> {he} says disdainfully, forcing your head still to make sure your eyes never leave his. <i>“I’ve never heard of a person breaking out of their hypnosis before. You’re much stronger than I gave credit for.”</i>");
+
+		output("\n\nYour shoulders begin to go slack and loose in his grip. Visions of you serving him once more begin to fill your eye, and the wonderful feel of being his creeps over you. You begin to question why you had ever bothered to try and fight {him} in the first place – you know happiness when you’re with Lane. <i>“Perhaps I gave you too much leeway, giving you enough freedom to wander the stars as you like. We won’t be making that mistake again, that’s for damn sure.”</i>");
+
+		// Continue at ‘Merge’
+
+		output("\n\n<i>“Watch the swirling lights,”</i> {he} says, and it’s hard not to. Everything in your vision is moving and swimming: from the tattoos on {his} body to the lights in {his} eyes. The familiar sensation of being immersed in {him}, engrossed by {him}, overcomes you. <i>“You trust Lane. You can listen to Lane. Lane wants you to watch the swirling lights.”</i>");
+
+		output("\n\nAny resistance you thought you once had evaporates as you’re introduced to the bliss that is Lane’s hypnotism. <i>“This is all so familiar to you. You remember being where you are before.”</i> {He’s} right, and in more ways than one: although you never remember the sessions, you remember the sensations subconsciously. <i>“Familiarity is good; familiarity is safe. Lane is familiar to you. You are safe with Lane. You want to stay with Lane, because Lane is safe.”</i>");
+
+		output("\n\nHow did you never think of it that way before? Like a warm house, or a cozy bed, you’ve never felt more at-ease than with Lane. You want to nod your head, but you don’t really have the strength or the drive. You’d much rather just keep watching and listening. <i>“You don’t ever want to leave Lane again. You don’t mind giving up your life to be with Lane. The universe is unfamiliar to you; you want to stay with Lane, where it’s safe.”</i>");
+
+		output("\n\nYou have to admit, that’s a good point. In your journey to claim your inheritance, you’ve travelled different planets, met unfamiliar and dangerous plants and animals, and travelled the lonely stars. Why should you pursue such recklessness, when you could stay with Lane all your life?");
+
+		output("\n\n<i>“You’ve forgotten your birthplanet.”</i> Well, that’s silly. You were born on... on... huh. <i>“But wherever it was, it is too different now. You love the planet Venar much more.”</i> You <i>do</i> enjoy the warmth of the desert sands and the contrasting coolness of its caves...");
+
+		output("\n\n<i>“You’ve forgotten your spaceship.”</i> It was a hunk of junk anyway. <i>“Its metal hide was too unforgiving compared to the concrete of Lane’s hut. You prefer Lane’s home to your spaceship.”</i> You <i>have</i> been here enough times to know just about every little thing about it.");
+
+		output("\n\n<i>“You’ve forgotten your friends.”</i> You try to put names to faces and faces to names, but, as Lane continues to absorb you, you have the damndest time doing either. <i>“People change. People corrupt. But Lane will never change. You are comfortable with Lane because Lane will never change.”</i> You sigh in relaxation, watching Lane as {he} works his familiar, wonderful magic with you.");
+
+		output("\n\n<i>“You’ve forgotten your name.”</i> You figured that would have been a difficult thing to forget, but you’re delightfully surprised by Lane’s skill. <i>“As Lane does not call you by it, it has become unusual and unfamiliar to you. You eagerly await the day Lane will give you a new name.”</i> That’s been something you’ve been hoping for all your life. You remember, as a child, fantasizing about the most perfect name Lane will give you when {he} finally feels it’s ready.");
+
+		output("\n\n<i>“You remember living to serve Lane.”</i> All the memories you had of providing for your {master/mistress}, waiting on {him} hand and foot, and loving every last second of it, come rushing back to you. <i>“You remember surrendering to Lane physically, emotionally, and sexually, and you remember your life being perfect.”</i> You had no problems, until... until someone tried to confuse you and take that all from you. The thought that you’re almost back to your perfect life makes your heart race.");
+
+		output("\n\n<i>“You remember the taste of Lane’s [if {Lane is male}cock][if {Lane is female}cunt].”</i> It was sort of a salty, spicy taste; utterly unique to Lane, having been hidden behind {his} genital slit all {his} life, saturating itself in its own flavors, waiting for you to taste of {him}. <i>“You want to taste it again.”</i> Gods above, do you ever.");
+
+		output("\n\nLane releases {his} grip on your head and leans back in {his} chair. <i>“Pull down my pants,”</i> he commands, and you do so with trembling, excited hands. You reach for the waistband of {his} flowing, airy pants, gripping onto them and pulling them from {his} waist with ease once {he} lifts his pelvis. <i>“Remove my undergarments.”</i> You again obey, licking your lips as your fingers dig into the tight elastic of his underwear, and, teasing yourself, you pull down, slowly[if {Lane is male} revealing his long, hard, hot, smooth, magnificent, delicious pink obelisk to you, pulsing and spurting, just as excited to see you as you are to it.][if {Lane is female} revealing her puffy, juicy, wet, warm, enticing, incredible, delicious pink box to you, winking and shivering, just as ready for you as you are to it.]");
+
+		output("\n\n<i>“You may taste Lane.”</i>");
+
+		output("\n\nYou wouldn’t give it up for the world.");
+
+		clearMenu();
+		addButton(0, "Next", laneGonnaFuckYourDetoxinAssUp);
+	}
+}
+
+function laneGonnaFuckYourDetoxinAssUp():void
+{
+	clearOutput();
+	
+	output("<i>“Now, I want you to open your eyes. Don’t force them open. Just let them.”</i>");
+
+	output("\n\nYour {master/mistress} instructed you to hide behind {his} chair in the hypnosis room as he works with another client of {his}. You sit, totally naked, as you await for your further instruction.");
+
+	output("\n\nThis wouldn’t be the first time you’ve done this with your {master/mistress} to a client of {his}, but it is a relatively new idea. You are nonetheless eager to do it again; you’ve noticed some real changes in attitude in some of the clients after you’ve finished. You sit there[if (pc.hasCock = true), stroking [pc.eachCock] torturously, arousing yourself for what comes next][if (pc.isHerm = true) and][if (pc.hasVagina = true) jilling yourself, plunging your fingers into your [pc.vagina] as you await your {master’s/mistress’s} command]. You know this is a delicate procedure, but you’re just so anxious to get started!");
+
+	output("\n\nA few minutes pass. You can see the light of Lane’s blood glowing off the far walls of the room you’re in, giving you a weak light show to entertain yourself with until you’re needed. Your heart leaps into your throat when you hear your {master/mistress} say <i>“come forward, [if {Lane is male}Cocksucker][if {Lane is female}Cuntlicker].”</i>");
+
+	output("\n\nIt is both a name and one of your many occupations, since you’ve started living with Lane. You emerge from behind Lane’s chair, crawling seductively across the floor on all fours. You can see Lane’s client in the opposite chair: a pretty, raven-haired human, her eyes wide as saucers as she finds herself absolutely absorbed in Lane. This is the fourth time you’ve seen her this week – your {master’s/mistress’s} new ‘procedure’ must be working.");
+
+	output("\n\nLane already has [if {Lane is male}his long, throbbing lizard cock][if {Lane is female}her puffy, needy lizard cunt] out in display. {He} does nothing to arouse himself further and keeps {his} hands to {his} sides, allowing you to do your job. Licking your [pc.lips], you crawl up your {master’s/mistress’s} legs slowly, and, without so much as a word, lunge forward, [if {Lane is male}swallowing his cock all the way to the base – just as you’re trained, and just as he likes][if {Lane is female}plunging your tongue into her as deep as you can – just as you know she likes.]");
+
+	output("\n\n<i>“Watch closely,”</i> Lane says, not to you. <i>“This is {Cocksucker/Cuntlicker}. You are jealous of [him]. You would like for nothing more than to replace [him].”</i> That line always makes you shiver – your {master/mistress} would never replace you, would {he}? <i>“You want for nothing more than to be between Lane’s knees and pleasuring {him}.”</i>");
+
+	output("\n\nThis continues for the better part of an hour, with Lane growing more and more aroused with each command. As your mouth begins to flood with {his} {cum/girlcum}, you’re reminded of what a simple, wonderful life you live, and how you’re so fortunate to live it. You do hope this woman succumbs soon – it’d be a crime to hoard your gifts to yourself.");
+
+	badEnd();
+}
+
+function laneTakesOverTheSteeleFortune():void
+{
+	clearOutput();
+
+	output("You landed on the planet Venar less than an hour ago. You stride with confidence and a little bit of bounce – you’ve been walking on clouds ever since you’ve beaten {Jack/Jill} to your father’s inheritance and become wealthier than you honestly know what to do with. It’s been a few solar days since then, and you haven’t had a real chance to manage Steele Tech, but you’re eager to get started. There’s just one more person you want to include in the celebrations.");
+
+	output("\n\nYou approach Lane’s hut and see {him} lounging, as usual, in {his} chair, boorishly flipping through a few tabs on {his} codex to keep entertained. {He} perks up as soon as {he} hears footsteps, and {his} spirits lift as soon as {he} sees you. <i>“[pc.name]! You’re really back! I had heard rumors that... is it true? Did you really inherit Steele Tech?”</i>");
+
+	output("\n\nYou assure {him} that you have, and you are indeed the new CEO of Steele Tech Industries. Lane wastes no time in standing and practically catapulting over {his} desk to give you a great big celebratory hug. <i>“Congratulations, [pc.name]! You must be so thrilled!”</i> You don’t answer; your sheepish grin says it all. <i>“I can’t believe that the big boss of one of the most lucrative enterprises in the [b]entire[/b] universe is one of my customers! Do you have any idea what that’ll mean for my business?”</i>");
+
+	output("\n\nYou’re thrilled to see your {master/mistress} so happy for your success. You entertain {him} and ask what it means. Rather than answer, a lascivious grin spreads across {his} lips as {his} tassels slowly expand, submerging you in the glowing swirls of {his} tattoos and piercings once again. You sigh languidly, submerging yourself in the lights. <i>“It means I won’t have to live in a little mud-tent in the middle of an empty desert anymore.”</i>");
+
+	output("\n\nEven as you feel yourself beginning to slip lovingly into {his} control, you have enough sense to ask {him} what {he} means. <i>“I mean that I’m about ready for new, lucrative business opportunities, [pc.name],”</i> {he} says. {He} gently places {his} hands on the sides of your head, making sure your eyes don’t ever leave {his}, not that you intended to. <i>“I’d like to work at Steele Tech. Would you happen to have any... ‘openings’?”</i>");
+
+	output("\n\nYou pause before you realize it’s an actual question. You tell {him} that you’re in charge of the whole business – you can give {him} any job {he} wants. {His} thin lips spread even wider, bearing {his} pointed teeth. <i>“Even yours?”</i>");
+
+	output("\n\nThe question snaps you awake just slightly. Lane is asking for your job as CEO of Steele Tech Industries. That job was something you had been fighting to obtain for the past... however long, now, and with the position, the ungodly amount of money that comes with the salary. More than that, though, that position was your father’s legacy to you. As much as you love Lane and want {him} to be happy, is that really something you can forsake?");
+
+	output("\n\nLane picks up on your internal struggling and your refusal to answer. The lights of {his} body intensify, and the images swirling in your eyes devour you more thoroughly. <i>“It’s okay, [pc.name].”</i> {He} gently strokes at your cheeks, relaxing you with {his} expert caresses. <i>“You’d trust me with your life, wouldn’t you?”</i> That’s a much easier question to answer, and you nod. <i>“So then, what’s a job worth compared to your life? You can trust me with the job. In fact, you can trust me with your father’s financial inheritance. You know I’ll spend it wisely.”</i>");
+
+	output("\n\nThe voice in your head, telling you to deny Lane or at least to ask for something else, grows quieter the longer you stare at {him}. You <i>do</i> trust Lane. {He} hasn’t done you wrong yet. You even come to realize that {he} technically has more experience running a business than you do. Maybe Steele Tech would be better off in {his} soft, gentle, capable hands.");
+
+	output("\n\nYour will fractures, and you agree with Lane. You tell {him} that, if that’s what will make {him} happy, you’d gladly give {him} your position at Steele Tech, and you’re confident in {his} money management capabilities. As the words leave your mouth, the glowing on Lane’s body stops, then quickens, as {he} realizes just how close {he} is to more money and power than {he} had ever dared to fantasize about.");
+
+	output("\n\n{His} hands trail from your cheeks to your shoulders, and then {he} moves beside you, draping {his} left arm across the small of your back. <i>“You’ve made the best decision of your life,”</i> {he} assures you. You trust Lane, and if Lane says it’s true, then it’s true to you. <i>“But we can worry about the paperwork later. For now, let’s head to my room and celebrate our good fortune.”</i>");
+
+	output("\n\nAt hearing that, [if (pc.hasCock = true)[pc.eachCock] immediately begins to harden in your pants][if (pc.isHerm = true) and ][if (pc.hasVagina = true)your [pc.vagina] clenches and moistens almost immediately]. You’re still looking at Lane’s eyes, but as {he} leads you to {his} room, out of the edges of your vision, you can see [if {Lane is male}his own cock tenting his undergarment furiously][if {Lane is female}a damp patch at the crotch of her undergarment, growing with each step], proof of {his} own excitement for the new direction your lives are taking.");
+
+	output("\n\nAs you’re led past the door to {his} room, you idly wonder just what tomorrow will bring...");
+
+	clearMenu();
+	addButton(0, "Next", laneTakesOverTheSteeleFortuneII);
+}
+
+function laneTakesOverTheSteeleFortuneII():void
+{
+	clearOutput();
+
+	output("You’re underneath {Master/Mistress} Lane’s clean, massive desk, hidden completely from sight on all sides. The top is so high that you can sit straight up without any problems, and the edges are so far apart, you can lie down and still have a little bit of headroom to spare. You thank {Master/Mistress} Lane every day for it; it’d be so much harder to [if {Lane is male}suck his delicious, prodigious cock][if {Lane is female}lick her delicious, wonderful pussy] otherwise.");
+
+	output("\n\nYou press your head forward, [if {Lane is male}deepthroating him][if {Lane is female}penetrating her as deep as you can with your [pc.tongue]] for the second time that morning. Your vision is surrounded by Lane’s meaty thighs, with {his} business pants hanging off {his} calves, as usual – ever since your {Master/Mistress} gave you the official, Steele Tech-approved position of {Cocksucker/Cuntlicker}, there’s not much else you do all day, or all night, or especially on weekends and holidays. You don’t deal with anybody else; you don’t sign any papers or approve any contracts; all you do at Steele Tech is service Lane whenever {he} wants you. You don’t get many breaks, and you don’t get paid for it. You don’t even wear clothes anymore; they just get in the way of your work. You live, sleep, and eat underneath {Master/Mistress} Lane’s desk, or, if you need to be a bit more discreet, in a small cubbyhole your {Master/Mistress} graciously had built into the floor.");
+
+	output("\n\nLane shivers at your work – perfect as it always is – and you feel {his} hand press on your [pc.hair]. <i>“Is everything alright, {Mister/Miss} Lane?”</i> you hear an older, very deep male voice say on the other side of the desk.");
+
+	output("\n\n<i>“Everything is perfect,”</i> {Master/Mistress} Lane answers, and {his} words flow like honey to your ears, making you sigh through your nose. <i>“It’s just been a long, exciting morning so far.”</i>");
+
+	output("\n\nThe other male chuckles. <i>“I can sympathize. A ten-billion-credit contract between businesses is nothing to take lightly. I’ve been counting the minutes until today, myself.”</i> You hear something slide across the marble top of {Master/Mistress} Lane’s business desk. <i>“This is the final contract we’ve agreed on last week. All we need is your signature, {Mister/Miss} Lane, and the universe can enjoy a long, rewarding relationship between Steele Tech and Reaper Armaments. Take your time looking it over, of course.”</i>");
+
+	output("\n\nThen, for another few minutes, the only sounds you hear are the gentle sucking of your mouth on Lane’s genitals. Despite Lane’s calm demeanor, [if {Lane is male}his cock is harder than you’ve ever seen it, and from the way he’s gently rocking back and forth, he’s moments away from cumming][if {Lane is female}her box is wetter than you’ve ever felt it before, and from the way her legs squeeze around your head, she’s moments away from cumming]. You hear the distinct sound of pen on paper as Lane signs the contract, and in that instant, {he’s} delivering an explosive orgasm straight down your throat. Experienced as you are, you easily handle {his} entire, copious output, swallowing every drop and wanting more.");
+
+	output("\n\nThe paper slides back over the desk, and you hear the other man stand. <i>“You’ve made a great choice today, {Mister/Miss} Lane.”</i>");
+
+	output("\n\nThe hand on your head leaves your [pc.hair] and {he} leans forward in {his} seat. <i>“Likewise. Ah, forgive me for not standing.”</i> You gently clean {his cock/her cunt}, lapping up whatever juices you may have missed. <i>“I’m afraid I’ve worked my legs stiff at the golf links the other day.”</i>");
+
+	output("\n\n<i>“Think nothing of it.”</i> You feel {Master/Mistress} Lane give the male a strong, firm handshake above you as {his} genital slit slowly begins to retract and conceal {him}.");
+
+	output("\n\nYou had expected that to be it, but you actually hear the male take his seat again. <i>“If I may, I’d like to speak with you about a more personal matter.”</i>");
+
+	output("\n\nLane’s hand returns to play with your [pc.hair]. <i>“How can I help you further?”</i>");
+
+	output("\n\n<i>“I had heard a rumor that, before you had come to discover that planet of Oxonium, giving you enough wealth to buy out Steele Tech, you were a hypnotist, and that you had [pc.name] Steele as one of your clients. Is this true?”</i>");
+
+	output("\n\nLane’s hand nervously clenches at your head. <i>“Yes, that is true.”</i>");
+
+	output("\n\n<i>“I was wondering if you wouldn’t mind scheduling a personal session with my wife and I sometime within the solar month. Without going into too many details at the moment, there’s been some... trouble in paradise. I’m sure you understand.”</i>");
+
+	output("\n\nImmediately, Lane’s genital slit begins to expand, and [if {Lane is male}his cock surges from him once again, ready for another bout or three][if {Lane is female}her pussy slickens and pulls on your cleaning tongue once again, ready for another go or three]. Lane only laughs as you set to work on {him} for the third time that morning.");
+
+	output("\n\n<b>GAME OVER</b>");
+
+	badEnd();
 }
 
 function discoverLanesShop():void
