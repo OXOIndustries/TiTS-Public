@@ -1963,7 +1963,7 @@ function kaskaFightAI():void
 	//HP Shit
 	if(!foes[0].hasStatusEffect("Futa Lust"))
 	{
-		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0)
+		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed"))
 		{
 			NPCDisarmingShot(foes[0]);
 			return;
@@ -1973,14 +1973,18 @@ function kaskaFightAI():void
 			NPCstealthFieldActivation(foes[0]);
 			return;
 		}
-		if(pc.shields() > 0)
+		if(pc.shields() > 0 && !foes[0].hasStatusEffect("Disarmed"))
 		{
 			choices[choices.length] = shieldBustah;
 			choices[choices.length] = shieldBustah;
 		}
-		choices[choices.length] = kaskaVolleyShot;
-		choices[choices.length] = NPCOvercharge;
+		if(!foes[0].hasStatusEffect("Disarmed"))
+		{
+			choices[choices.length] = kaskaVolleyShot;
+			choices[choices.length] = NPCOvercharge;
+		}
 		if(!pc.hasStatusEffect("Blind")) choices[choices.length] = NPCFlashGrenade;
+
 	}
 	//Lust Shit
 	else
@@ -1995,7 +1999,8 @@ function kaskaFightAI():void
 		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
 	}
 	//Pick one
-	choices[rand(choices.length)]();
+	if(choices.length > 0) choices[rand(choices.length)]();
+	else enemyAttack(pc);
 }
 
 
