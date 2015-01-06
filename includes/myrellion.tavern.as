@@ -23,10 +23,10 @@ function goldenPeakBonusFunction():Boolean
 		else addButton(1,"Shade",shadeApproach,undefined,"Shade","Go talk to Shade, the bounty hunter you met previously.");
 	}
 	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won't watch itself!");
-	if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
-	else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
-	if(flags["MET_EMBRY"] == undefined) addButton(1,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
-	else addButton(1,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
+	//if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
+	//else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
+	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
+	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	return false;
 }
 
@@ -38,46 +38,13 @@ function showCandice():void
 	showBust("CANDICE");		
 }
 
-//[Bartender]
-//Add to bar room descript: "A perky half-ausar girl with a blonde ponytail swishing behind her back is working the bar, bouncing between customers in ways that draw your eye to the short top and tight shorts she's wearing, and all the bare flesh on display.
-function approachTheBartenderAtTheBar():void
-{
-	clearOutput();
-	showCandice();
-	output("You take a seat at the bar and flag the perky half-ausar girl working behind it down. She comes over to you a moment later, flicking a rag over her shoulder and planting her hands on her jean-short clad hips. “<i>Hey, hun. What can I getcha?</i>”");
-
-	//Bar menu
-	clearMenu();
-	if(pc.credits >= 10) addButton(0,"Chitin Cr.",buyADrinkFromCandice,"Chitin Cracker","Chitin Cracker","A local favorite, the chitin cracker is made with a local strain of fungus that grows freely in the deeper caves on Myrellion. It tastes foul to anybody but a myr and it packs enough wallop to crack a nyrea's chitin, but it'll get you drunk for next to nothing.\n\n10 Credits");
-	else addDisabledButton(0,"Chitin Cr.","Chitin Cracker","You can't afford this drink.");
-	if(pc.credits >= 15)
-	{
-		if(pc.tailCount > 0) addButton(1,"Ausar Chaser",buyADrinkFromCandice,"Ausar Chaser","Ausar Chaser","Bartender's favorite! An energy drink mixed with vodka, the ausar chaser will get you revved up and ready for action - or drunk enough to go chasing your tail after a couple shots. A few MORE shots and you might not remember you don't have a tail at all!\n\n15 Credits");
-		else addButton(1,"Ausar Chaser",buyADrinkFromCandice,"Ausar Chaser","Ausar Chaser","Bartender's favorite! An energy drink mixed with vodka, the ausar chaser will get you revved up and ready for action - or drunk enough to go chasing your tail after a couple shots.\n\n15 Credits");
-	}
-	else addDisabledButton(1,"Ausar Chaser","Ausar Chaser","You can't afford this drink.");
-	if(pc.credits >= 25) addButton(2,"Mini Rahn",buyADrinkFromCandice,"Miniature Rahn","Miniature Rahn","A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink. Though the bartender might have gone down on one beforehand to make it!\n\n25 Credits");
-	else addDisabledButton(2,"Mini Rahn","Miniature Rahn","You can't afford this drink.");
-	if(pc.credits >= 34) addButton(3,"Nyrean Knot",buyADrinkFromCandice,"Nyrean Knot","Nyrean Knot","Guaranteed to keep you in your place for a few hours: drop dead drunk on the bar's floor. Powerful, kicks like a mule, and stings like barbs going down. Only recommended for creatures with high alcohol tolerance or nothing to do tomorrow.\n\n34 Credits");
-	else addDisabledButton(3,"Nyrean Knot","Nyrean Knot","You can't afford this drink.");
-	if(pc.credits >= 100) addButton(4,"Queen'sHoney",buyADrinkFromCandice,"Queen's Honey","Queen's Honey","The Myrellion equivalent of an expensive bottle of wine, Queen's Honey is made from exactly what you might expect: the breast honey of a Gold Myr queen. The liquor made from it is as sweet as candy, expensive as hell, and as rich in taste as you need to be in cash to buy it. A favorite among the upper echelon of the Gold Myr, every bottle is unique and signed by the queen whose nectar produced it.\n\n100 Credits");
-	else addDisabledButton(4,"Queen'sHoney","Queen's Honey","You can't afford this drink.");
-	if(pc.credits >= 120) addButton(5,"Fire Pepper",buyADrinkFromCandice,"Fire Pepper","Fire Pepper","A red myr staple, this red drink has little flecks of a local pepper floating in it. This drink bites like a red myr warrioress, and may or may not be laced with some of their aphrodisiac venom to boot. So yes, it literally bites - and you'll no doubt want to find a nice, warm, red-chitined beauty to snuggle up with afterwards.\n\n120 Credits");
-	else addDisabledButton(5,"Fire Pepper","Fire Pepper","You can't afford this drink.");
-	//[Your Number] replace on repeat with: [Quickie]*/
-	addButton(9,"Your Number",bartenderFlirt,undefined,"Your Number","This bartender's cute as hell. Maybe you could hook up after her shift...?");
-	addButton(14,"Leave",mainGameMenu);
-}
-
 //Actually Buying a Drink
+//!!!!!!!!!!!!!!Embry now does this!!!!!!!!!!!!
 function buyADrinkFromCandice(drink:String):void
 {
 	clearOutput();
-	showCandice();
-	output("You give ");
-	if(flags["MET_CANDICE"] != undefined) output("Candice");
-	else output("the bartender");
-	output(" your order.");
+	showEmbry();
+	output("You give [embry.name] your order.");
 
 	output("\n\n“<i>Sure thing!</i>” she says, skipping off to fetch your drink, returning a moment later with your order. She slides a " + drink + " to you, and you spend the next few minutes ");
 	if(drink != "9999") output("nursing your drink, slowly sipping it down");
@@ -89,7 +56,7 @@ function buyADrinkFromCandice(drink:String):void
 		output("’s intense kick. Whew, that burns!");
 	}
 	output(".");
-	output("\n\nYou transfer a few credits over with your Codex to cover your tab. Once you're squared, you stand up and stagger back from the bar.");
+	output("\n\nYou transfer a few credits over with your Codex to cover your tab, and [embry.name] takes off to help another customer.");
 
 	if(drink == "Chitin Cracker")
 	{
@@ -260,9 +227,7 @@ function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	userInterface.setMapData(map);
 }
 
-
-
-function bartenderFlirt():void
+/*function bartenderFlirt():void
 {
 	author("Savin");
 	showBust("PLACEHOLDER");
@@ -289,7 +254,7 @@ function bartenderFlirt():void
 		output("\n\nCandice looks around to make sure her boss isn’t anywhere nearby, then gives you a playful wink and sets her rags down on the bar. “<i>Well... I had fun last time, and I think I could squeeze in a quick break. Sound good?</i>”");
 		output("\n\nYou nod eagerly, and are quick to follow her out of the bar's back door, down into the alleyway behind it.");
 	}
-}
+}*/
 
 //[Watch Screen]
 //STEPH IRSON 4 GO (See Steph's Doc)
