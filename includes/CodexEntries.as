@@ -19,18 +19,19 @@ public function configureCodex():void
 	// of categories that likely won't be very full for a LONG time going down that route
 	
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Ausar", ausarCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Daynar",daynarCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Galotians", galotianCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Laquines",laquineCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Leithans",leithanCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kaithrit",kaithritCodexEntry,true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Ovir",ovirCodexEntry,true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Rahn",rahnCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Simii",simiiCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","V-Ko",VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kaithrit", kaithritCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
@@ -1342,6 +1343,42 @@ function AISystemsCodexEntry():void
 	CodexManager.viewedEntry("AI Systems");
 }
 
+function thraggenCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("THRAGGEN");
+	outputCodex(header("The Thraggen"));
+	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
+	outputCodex("\n<b>Genders:</b> Male & Female");
+	outputCodex("\n<b>Height:</b> 6'0 - 7'5.");
+	outputCodex("\n<b>Hair:</b> Naturally, thraggen hair ranges in shades from silvery grey to a vibrant orange or dark red. Warriors often paint their faces and dye their hair in woad-like patterns, passed down by family line, before combat or major ceremonies.");
+	outputCodex("\n<b>Eyes:</b> Slitted, predatory eyes, usually brightly colored -- green, blue and red are the most common.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Physical Features"));
+	outputCodex("The thraggen are towering humanoids, often standing a foot or more over the human norm. Green-skinned and powerfully built, this alien race arose as apex predators on a hot jungle planet, and have evolved into a brutal warrior culture that teaches pain as pleasure -- and their biology has caught up with them. Be it by scientific error or natural phenomenon, the thraggen's ability to perceive pain is permanently diminished, and largely replaced by a powerfully sexual pleasure, which grows ever more fearsome as the warrior is injured in battle. Indeed, when a thraggen soldier is bested in battle, she is often begging for sexual release rather than mercy. Which, conveniently, has allowed warring tribes to end blood feuds with an explosion in population rather than massacre, allowing the thraggen race to expand with alarming rapidity. ");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Typical Environments"));
+	outputCodex("Though native to the hot, humid jungle world of [REDACTED], the thraggen carved out a stellar empire for themselves by “slow boating” colony ships at near-light speed in their local cluster, establishing a sizable interplanetary presence before the first U.G.C. warp gates arrived. Having no tremendous skill at terraforming, most thraggen worlds remain rugged, untempered worlds with vast uncharted wilderness between sprawling clan holds.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Thraggen reproduction follows much the same course of human breeding, with males inseminating females, usually in the heat after battle. Thraggen females will carry their child for an average of 5 months before birth, and average a single young per pregnancy.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Arising on the jungle world of [REDACTED], the thraggen survived for many millennia as hunter-gatherer tribes, hunting the towering Gryllan beasts rather than attempting agriculture, even into what would, on earth, have been analogous to the middle ages. Formed into closely-knit warrior tribes, the thraggen warred heavily against each other for territory, often resulting in clan feuds that would last for generations, and in some cases, persist to the modern day. Their early space flight was ramshackle at best, with most attempts at extraterrestrial flight merely attempts at weaponizing satellites or rapidly deploying soldiers. However, as the age of technology progressed on [REDACTED], the longer lives granted by advancing technology combined for the thraggen tendency to fuck rather than kill their enemies, began to lead to overpopulation of the homeworld. Hunting grounds became ever more precious, and the first major settlements, or clan holds, were established to secure precious land against rival tribes and upstart bands.");
+
+	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the [REDACTED] system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and settle sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds. ");
+
+	outputCodex("\n\nThe thraggen only enter the galactic stage in 227 A.C., when a U.G.C. warp gate flew into orbit around a starward thraggen world, and activated. An element of the Terran's Coalition Expeditionary Force arrived with it, eager to explore the new world -- and were immediately met with a rampaging horde of towering greenskins, descending upon them like wild animals. The bulk of the Terran force retreated, with several dozen captured and enslaved before the C.E.F. could leave the planet. By the time the Coalition returned with a full fleet to rescue the prisoners, they met -- to their horror and surprise -- an equal fleet of cobbled-together thraggen warships, with several more fleets on the way as the underestimated “brutes” co-opted the Ausar gates to unite their own worlds. ");
+
+	outputCodex("\n\nThe war that immediately bloomed turned a dozen U.G.C. worlds into smokey, wasted husks before a proper response could be mustered and a military assembled. With a friendly casualty count in excess of 50 billion, the UGC won. It was not a pleasant victory, nor a clean one. To this day, the surviving thraggen worlds exist in perpetual blockade, closely watched by an army of spy satellites for any signs of hostility.");
+
+	CodexManager.viewedEntry("Thraggen");
+}
+
 function daynarCodexEntry():void
 {
 	clearOutputCodex();
@@ -1356,7 +1393,7 @@ function daynarCodexEntry():void
 	outputCodex("\n<b>Skin:</b> Tough, leathery epidermis, covered in a layer of scales. Varying textures and shades of brown; front is smooth and light, whereas the rear is rougher and darker.")
 
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Features"));
+	outputCodex(blockHeader("Physical Features"));
 	outputCodex("Both male and female daynar have slender, trim, streamlined bodies, and from a glance it’s difficult to tell them apart. A male has a flatter, broader face, while a female’s is more angular; a male is also thicker across the chest while a female is fatter in the waist, but both of these are miniscule differences. Their hands each have four digits and their digitigrade feet each have four toes; on the end of each finger and toe is a short, stubby claw, good for puncturing and not letting go but poor for actually tearing. Each hand and foot is webbed.");
 
 	outputCodex("\n\nThey have elongated faces, their noses reaching roughly 12cm from their faces, and they are hooked downward and to a point. They have an average sense of smell. They have strong jaws, and unlike the common lizard, their cheeks are elastic, capable of ballooning slightly, like a human’s, to store food. In light of that fact, their side and rear teeth are actually flat whilst their front eight teeth- four on top and four on bottom- are sharp incisors. Their lips are typically thin and colourless, but they do have lips. Their tongues are long and wide, but thin. Their ears are little more than dark holes on the sides of their heads, resting at eye level, but despite that, they have extraordinary hearing.");
