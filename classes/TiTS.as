@@ -85,6 +85,7 @@
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
+		include "../includes/StubbedFunctions.as";
 
 		//Misc content
 		include "../includes/rivalEncounters.as";
