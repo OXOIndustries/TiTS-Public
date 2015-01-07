@@ -2804,9 +2804,9 @@ function initializeRooms():void
 	//#87 SCYTHING\nGLADE
 	rooms["287"] = new RoomClass(this);
 	rooms["287"].roomName = "SCYTHING\nGLADE";
-	rooms["287"].description = "The sharp-bladed trees are a little farther back from the path here than elsewhere, perhaps due to the sizes of the few that do grow nearby. They're easily twice as big as those around them. This could be a prime location for catching prey. You can definitely spot more than one skeleton half-buried in the rust-flaked earth around them. Safe paths lead north, east, and west from here.";
-	rooms["287"].runOnEnter = rustScytheGladeEncounters;
-	rooms["287"].northExit = "288";
+	rooms["287"].description = "The sharp-bladed trees are a little farther back from the path here than elsewhere, perhaps due to the sizes of the few that do grow nearby. They're easily twice as big as those around them. This could be a prime location for catching prey. You can definitely spot more than one skeleton half-buried in the rust-flaked earth around them.";
+	rooms["287"].runOnEnter = outsideLanesPlane;
+	rooms["287"].northExit = "LANESSHOP";
 	rooms["287"].eastExit = "286";
 	rooms["287"].westExit = "289";
 	rooms["287"].planet = "PLANET: TARKUS";
@@ -2815,6 +2815,7 @@ function initializeRooms():void
 	rooms["287"].addFlag(GLOBAL.HAZARD);
 
 	//#88 DEAD END\nGLADE
+	/*
 	rooms["288"] = new RoomClass(this);
 	rooms["288"].roomName = "DEAD END\nGLADE";
 	rooms["288"].description = "The path that you're currently walking comes to an abrupt and sudden end here, terminated by a ring of the bladed trees that loom over the edges like leering ghouls, ready to pounce on the unwary. In a way they are. You have no real desire to put their predatory instincts to the test, of course. The way south leads out of here.\n\n<b>Maybe Fen will put something here later?</b>";
@@ -2824,6 +2825,16 @@ function initializeRooms():void
 	rooms["288"].system = "SYSTEM: REDACTED";
 	rooms["288"].addFlag(GLOBAL.OUTDOOR);
 	rooms["288"].addFlag(GLOBAL.HAZARD);
+	*/
+	rooms["LANESSHOP"] = new RoomClass(this);
+	rooms["LANESSHOP"].roomName = "LANE'S\nPLANE";
+	rooms["LANESSHOP"].description = "You're inside of a reasonably well constructed hut. The interior is dressed from top to bottom with fine, lacy fabrics and thin streamers blowing in the calm breeze, making it look quite inviting and standoffish, compared to the harshness of the surrounding area. The hut looks to have three rooms, and is only one story tall.";
+	rooms["LANESSHOP"].runOnEnter = enterLanesShop;
+	rooms["LANESSHOP"].southExit = "287";
+	rooms["LANESSHOP"].planet = "PLANET: TARKUS";
+	rooms["LANESSHOP"].system = "SYSTEM: REDACTED";
+	rooms["LANESSHOP"].addFlag(GLOBAL.INDOOR);
+	rooms["LANESSHOP"].addFlag(GLOBAL.NPC);
 
 	//#89 SCYTHING\nGLADE
 	rooms["289"] = new RoomClass(this);

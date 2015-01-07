@@ -52,6 +52,22 @@ function hasLaneHypnosis():Boolean
 	return false;
 }
 
+function outsideLanesPlane():Boolean
+{
+	// Safe paths lead north, east, and west from here.
+	if (flags["MET_LANE"] == undefined)
+	{
+		output("\n\nThere's a little hut built between some of the trees to the north; if you squint just right, you can barely make out a sign above the doorway- “Lane’s Plane: Unlocking the New You”.");
+	}
+	else
+	{
+		output("\n\nLane's shop is tucked between some of the trees to the north.");
+	}
+	output(" Safe paths lead to the east and west from here.");
+	if (rustScytheGladeEncounters()) return true;
+	return false;
+}
+
 /*
 Get the players current hypnosis level
 */
@@ -370,7 +386,7 @@ function addHypnosisEffect(stat:String):Boolean
 	return alreadyUnder;
 }
 
-function enterLanesShop():void
+function enterLanesShop():Boolean
 {
 	// Reset the "mini" flag so we'll get the full version of the effect-removal messages.
 	if (flags["HYPNO_EFFECT_SMALL_MESSAGES"] != undefined) flags["HYPNO_EFFECT_SMALL_MESSAGES"] = undefined;
@@ -378,18 +394,34 @@ function enterLanesShop():void
 	if (flags["LANE_DETOX_COMPLETE"] == undefined && flags["LANE_DETOX_COUNTER"] != undefined)
 	{
 		visitLaneWhilstDetoxing();
-		return;
+		return true;
 	}
 	if (flags["LANE_DETOX_COMPLETE"] == 1)
 	{
 		visitLaneAfterDetoxing();
-		return;
+		return true;
 	}
 
-	if (flags["MET_LANE"] == undefined) discoverLanesShop();
-	else if (flags["LANE_FIRST_HYPNO"] == 1 && flags["LANE_TIMES_HYPNOTISED"] > 0 && !hasHypnosisEffect()) lanesShopFirstRepeat();
-	else if (hasMaxedLaneHypnosis()) lanesShopFullyUnder();
-	else repeatEnterLanesShop();
+	if (flags["MET_LANE"] == undefined)
+	{
+		discoverLanesShop();
+		return true;
+	}
+	else if (flags["LANE_FIRST_HYPNO"] == 1 && flags["LANE_TIMES_HYPNOTISED"] > 0 && !hasHypnosisEffect())
+	{
+		lanesShopFirstRepeat();
+		return true;
+	}
+	else if (hasMaxedLaneHypnosis())
+	{
+		lanesShopFullyUnder();
+		return true;
+	}
+	else
+	{
+		repeatEnterLanesShop();
+		return false;
+	}
 }
 
 function visitLaneWhilstDetoxing():void
@@ -692,7 +724,7 @@ function discoverLanesShop():void
 	laneHeader();
 	flags["MET_LANE"] = 1;
 
-	output("You see a large hut off the beaten pathway of the desert cave’s dirt and sands. The hut is made of hardened mud and stone, but is dressed from top to bottom with fine, lacy fabrics and thin streamers blowing in the calm breeze, making it look quite inviting and standoffish, compared to the blandness of the surrounding area. The hut looks to have three rooms, and is only one story tall. There is a sign nailed above the open, door-less doorway that reads ‘Lane’s Plane: Unlocking the New You.’ Your curiosity is piqued, and you head inside.");
+	output("Seeing such a structured tucked away between the harsh and uninviting fauna is certainly strange; your curiosity piqued, you head inside.");
 	
 	output("\n\nThe first room is really quite plain: there is a small desk to the side, made of concrete but smooth as glass, as well as a pair of chairs on either side, each with a thick, plushy cushion. A small sign on the desk details what services the store provides, but at the top, in huge, bolded letters, are the words ‘No Refunds’. A small bookcase sits behind the desk and faces the inside chair – it’s likely a secretary’s desk or something. Some potted plants, with exotic leaves and stems from parts of the world you’ve yet to explore, sit in the corners. There are no windows. The second half of the room is draped in more of those fabrics and streamers; they don’t conceal what lies beyond them, but they do obfuscate your vision enough to hide the details.");
 	
@@ -811,9 +843,24 @@ function laneShowMenu():void
 	clearMenu();
 	addButton(0, "Talk", talkToLane);
 	addButton(1, "Services", laneServices);
-	addButton(2, "Taxes", lanesTaxes);
+	addButton(2, "Taxes", payTheLaneTax);
 	addButton(5, "Appearance", lanesAppearance);
 	addButton(14, "Leave", leaveLanes);
+}
+
+function leaveLanes():void
+{
+	clearOutput();
+	laneHeader();
+	
+	output("On second thought, you decide to cut your visit to Lane’s short.");
+	output("\n\nLane seems a little dejected at your decision not to take up [lane.hisHer] offer of a little ‘treatment’ before you leave, but you make it clear that you've really got to be moving on.");
+	output("\n\nYou bid the daynar a good day and take your leave, heading back out into the wilds of Tarkus.");
+	
+	processTime(5);
+	
+	clearMenu();
+	addButton(0, "Next", move, "287");
 }
 
 function talkToLane():void
@@ -1231,7 +1278,7 @@ function laneApplyService(selectedService:String):void
 			output("<i>“You are as rigid as a stone,”</i> [lane.heShe] says sternly. <i>“As rooted as a tree. You will not sway. You will not bend. Yours is your will alone. Nobody else will impose theirs upon you. You will not compromise. You will not fall for petty tricks; you cannot be deceived. You will not let any action you take, any course you choose, be altered by someone else’s hand. You will take what you want, and you will not give what is not anyone else’s to take.”</i>");
 			break;
 
-		case default:
+		default:
 			throw new Error("Couldn't match stat selection.");
 			break;
 	}
@@ -1348,7 +1395,7 @@ function lanePostApplyEffect(selectedService:String):void
 			// Place PC one square outside of Lane’s Plane
 			// TODO: figure out where PC is gonna go.
 			clearMenu();
-			addButton(0, "Next", mainGameMenu);
+			addButton(0, "Next", move, "287");
 		}
 	}
 	else
@@ -1509,7 +1556,7 @@ function suckLanesDick():void
 	// Lust increases by 30; place the PC one square outside of Lane’s Plane
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function munchLanesCarpet():void
@@ -1593,7 +1640,7 @@ function munchLanesCarpet():void
 	processTime(30);
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function fuckedByMaleLane():void
@@ -1748,7 +1795,7 @@ function fuckedByMaleLane():void
 	if (!pc.hasCock() && !pc.hasVagina()) pc.lust(20);
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 // From the doc:
@@ -2118,7 +2165,7 @@ function fuckedByFemLane():void
 	// Reduce lust to 0
 	// Place PC one square outside of Lane’s Plane
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function laneFullyHypnotisesYouDumbshit():void
@@ -2319,7 +2366,7 @@ function firstTimeLaneMPCM():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function firstTimeLaneMPCFH():void
@@ -2458,7 +2505,7 @@ function firstTimeLaneMPCFH():void
 	lane.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function firstTimeLaneFPCMH():void
@@ -2686,7 +2733,7 @@ function firstTimeLaneFPCMH():void
 	lane.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function firstTimeLaneFPCFGenderless():void
@@ -2925,7 +2972,7 @@ function firstTimeLaneFPCFGenderless():void
 	lane.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", move, ERROR);
+	addButton(0, "Next", move, "287");
 }
 
 function lanesAppearance():void
@@ -3135,7 +3182,7 @@ function followerLaneInterventionFuckOff():void
 	clearOutput();
 	showName("\n" + lFollowerName());
 	showBust(lFollowerName().toUpperCase());
-	author(laneAuthor);
+	author("B");
 
 	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");
 

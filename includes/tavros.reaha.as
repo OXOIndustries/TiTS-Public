@@ -303,7 +303,7 @@ function beSubmissiveToReaha():void {
 	userInterface.showBust("REAHA");
 	output("The thought of that big, hard rod of latex thrusting deep into your bowels is enough to get your ");
 	if(pc.hasVagina()) output("[pc.vaginas] drooling with excitement");
-	if(pc.hasVagina && pc.hasCock()) output(" and your ");
+	if(pc.hasVagina() && pc.hasCock()) output(" and your ");
 	if(pc.hasCock()) output("[pc.cocks] rock-hard");
 	if(!pc.hasCock() && !pc.hasVagina()) output("mind racing with lewd thoughts");
 	output(". You ask Reaha to put it on and give you the rough fucking you deserve. She hesitates for a moment at your request: <i>\"A-are you sure?\"</i>");

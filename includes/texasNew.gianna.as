@@ -2865,11 +2865,11 @@ function giveGirlsOral():void
 		output("\n\nBefore long, the high-speed undulations unravel your increasingly unbalanced thoughts. Your eyes flutter closed, and your world becomes nothing but dreams of tongues filling pussies and slick hands rubbing across exquisitely smooth, unblemished flesh.");
 	}
 	processTime(10);
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	//Next
 	clearMenu();
 	addButton(0,"Next",girlyTongueVibeEpilogue);

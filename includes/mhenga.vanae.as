@@ -2352,7 +2352,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	vanaeTFScene();
 
 	output("\n\nAs your [pc.legs] tremble, she");
-	if (pc.isBiped) output(" spreads your thighs and");
+	if (pc.isBiped()) output(" spreads your thighs and");
 	output(" positions herself close to your");
 	if (isCunt) output(" naked mound");
 	else output(" [pc.ass]");
