@@ -2164,7 +2164,8 @@
 		}
 		public function WQ():Number
 		{
-			return Math.round(willpower()/willpowerMax()*100);
+			var val:Number = Math.round(willpower()/willpowerMax()*100);
+			return val;
 		}
 		public function willpower(arg:Number = 0, apply:Boolean = false):Number 
 		{
@@ -5040,10 +5041,10 @@
 			//Just check to make sure there's a cap for top end and bottom end
 			if(milkFullness > 200) milkFullness = 200;
 			else if(milkFullness < 0) {
-				trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
+				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = 0;
 			}
-			trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
+			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
 			return mLsGained;
 		}
 		public function milkCapacity(arg:int = -1):Number
@@ -5748,13 +5749,13 @@
 			var weighting: Number = femininity;
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
-				trace("boobs confirmed");
+				//trace("boobs confirmed");
 				if (biggestTitSize() * 3 > 50) weighting += 50;
 				else weighting += biggestTitSize() * 3;
 			}
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
-				trace("no boobs confirmed");
+				//trace("no boobs confirmed");
 				weighting -= 20;
 			}
 			//Hips give small boost
@@ -5766,7 +5767,7 @@
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;
 			if (hasBeard()) weighting -= 100;
-			trace("Femininity Rating = " + weighting);
+			//trace("Femininity Rating = " + weighting);
 			//Neuters first!
 			if (neuter != "") {
 				if (weighting >= 45 && weighting <= 55 || hasStatusEffect("Force It Gender")) return neuter;

@@ -48,6 +48,7 @@ function laneHeader(sex:Boolean = false):void
 
 function hasLaneHypnosis():Boolean
 {
+	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return true;
 	if (pc.hasStatusEffect("Lane Hypnosis")) return true;
 	return false;
 }
@@ -73,6 +74,7 @@ Get the players current hypnosis level
 */
 function laneHypnosisLevel():int
 {
+	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return 5;
 	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined) return 0;
 	else return flags["LANE_HYPNOSIS_LEVEL"];
 }
@@ -83,26 +85,45 @@ Returns true if a levelup occured.
 */
 function increaseLaneHypnosisLevel():Boolean
 {
-	if (flags["LANE_HYPNOSIS_LEVEL"] == HYPNOSIS_LEVEL_MAX) return false;
-
-	// Init the "power" tracker
+	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined)
+	{
+		flags["LANE_HYPNOSIS_LEVEL"] = 0;
+	}
 	if (flags["LANE_HYPNOSIS_POWER"] == undefined)
 	{
-		flags["LANE_HYPNOSIS_POWER"] = (laneHypnosisLevel() * 25) + 50;
+		flags["LANE_HYPNOSIS_POWER"] = (laneHypnosisLevel() + 1 * 25) + 50;
+	}
+	
+	if (flags["LANE_HYPNOSIS_LEVEL"] >= HYPNOSIS_LEVEL_MAX)
+	{
+		trace("Lane HypnoLevel:", flags["LANE_HYPNOSIS_LEVEL"]);
+		trace("Lane HypnoPower:", flags["LANE_HYPNOSIS_POWER"]);
+		trace("Max Level!");
+		return false;
 	}
 
 	// Decrease power
-	flags["LANE_HYPNOSIS_POWER"] -= Math.round((1.5 - pc.WQ()) * 50); // This includes a potential will-boost from lanes stat bonuses, because fuck complicating this any more than it already is.
+	var powV:Number = 1.5 - Number(pc.WQ()/100.0);
+	powV *= 50;
+	powV = Math.round(powV);
+	
+	flags["LANE_HYPNOSIS_POWER"] -= powV; // This includes a potential will-boost from lanes stat bonuses, because fuck complicating this any more than it already is.
 
 	// Check if "power" was entirely consumed, if so level up
 	if (flags["LANE_HYPNOSIS_POWER"] <= 0)
 	{
 		flags["LANE_HYPNOSIS_LEVEL"] += 1;
 		flags["LANE_HYPNOSIS_POWER"] = (laneHypnosisLevel() * 25) + 50;
+		trace("Lane HypnoLevel:", flags["LANE_HYPNOSIS_LEVEL"]);
+		trace("Lane HypnoPower:", flags["LANE_HYPNOSIS_POWER"]);
+		trace("Leveled!");
 		return true;
 	}
 	else
 	{
+		trace("Lane HypnoLevel:", flags["LANE_HYPNOSIS_LEVEL"]);
+		trace("Lane HypnoPower:", flags["LANE_HYPNOSIS_POWER"]);
+		trace("Didn't level!");
 		return false;
 	}
 }
@@ -129,6 +150,7 @@ function decreaseLaneHypnosisLevel():Boolean
 
 function hasMaxedLaneHypnosis():Boolean
 {
+	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return true;
 	if (laneHypnosisLevel() >= HYPNOSIS_LEVEL_MAX) return true;
 	return false;
 }
@@ -289,8 +311,6 @@ function addHypnosisEffect(stat:String):Boolean
 {
 	if (flags["LANE_TIMES_HYPNOTISED"] == undefined) flags["LANE_TIMES_HYPNOTISED"] = 0;
 	flags["LANE_TIMES_HYPNOTISED"]++;
-
-	throw new Error("Ensure the statmods are removed appropriately!");
 
 	var alreadyUnder:Boolean = false;
 
@@ -477,7 +497,7 @@ function visitLaneAfterDetoxing():void
 
 	laneHeader();
 
-	if (pc.WQ() >= 0.75)
+	if (pc.WQ() >= 75)
 	{
 		if (pc.isNice())
 		{
@@ -806,6 +826,12 @@ function meetMaleLane():void
 
 	output("\n\nYou shake his hand and give it a few strong pumps, replying with your own name. He quickly takes his spot behind the concrete desk, pulls his chair forward, and takes a seat, adopting a more professional demeanor for his new customer. <i>“[pc.name] Steele? As in, Steele Tech? Didn’t you inherit that company from your father – may he rest in peace?”</i> You tell him that, yes, of Steele Tech, but no, you haven’t, and that you’re working on it. His eyes wander for the briefest of moments, before he straightens himself out and looks you in the eye. <i>“So, [pc.name] Steele, what can I help you with?”</i>");
 
+	if (!CodexManager.entryUnlocked("Daynar"))
+	{
+		CodexManager.unlockEntry("Daynar");
+		output("\n\n<b>('Daynar' Codex entry unlocked!)</b>");
+	}
+	
 	processTime(15);
 
 	laneShowMenu();
@@ -826,6 +852,12 @@ function meetFemaleLane():void
 
 	output("\n\nYou shake her hand and give it a few strong pumps, replying with your own name. She quickly takes her spot behind the concrete desk, pulls her chair forward, and takes a seat, adopting a more professional demeanor for her new customer. <i>“[pc.name] Steele? As in, Steele Tech? Didn’t you inherit that company from your father – may he rest in peace?”</i> You tell her that, yes, of Steele Tech, but no, you haven’t, and that you’re working on it. Her eyes wander for the briefest of moments, before she straightens herself out and looks you in the eye. <i>“So, [pc.name] Steele, what can I help you with?”</i>");
 
+	if (!CodexManager.entryUnlocked("Daynar"))
+	{
+		CodexManager.unlockEntry("Daynar");
+		output("\n\n<b>('Daynar' Codex entry unlocked!)</b>");
+	}
+	
 	processTime(15);
 
 	laneShowMenu();
@@ -918,13 +950,13 @@ function talkToLane():void
 	clearOutput();
 	laneHeader();
 
-	if (hasLaneHypnosis())
+	if (hasMaxedLaneHypnosis())
 	{
 		output("[lane.HeShe] laughs, not derisively, but not amusedly either. <i>“You and I have gotten plenty intimate over your visits. I’ve charmed you quite enough, I think.”</i> [lane.HeShe] flairs his tassels open again, and his power over you is refreshed. If [lane.heShe] doesn’t want to talk, that’s perfectly fine with you. <i>“But,”</i> [lane.heShe] yawns, closing [lane.hisHer] membranes against [lane.hisHer] neck, <i>“you’ve come all this way just to taste of your "+ lane.mf("Master", "Mistress") +"’s voice some more. Who would I be to turn down such a loyal pet?”</i>");
 	}
 	else
 	{
-		output("\n\n<i>“Oh, this is a social call, is it?”</i> Lane says, trilling amusedly. [lane.HeShe] leans back in [lane.hisHer] chair, slumping and relaxing, stretching [lane.hisHer] limbs out. <i>“Sure, I wouldn’t mind shooting the breeze for a moment. What’s on your mind?”</i>");
+		output("<i>“Oh, this is a social call, is it?”</i> Lane says, trilling amusedly. [lane.HeShe] leans back in [lane.hisHer] chair, slumping and relaxing, stretching [lane.hisHer] limbs out. <i>“Sure, I wouldn’t mind shooting the breeze for a moment. What’s on your mind?”</i>");
 	}
 
 	processTime(5);
@@ -1368,7 +1400,7 @@ function laneApplyService(selectedService:String):void
 
 	output("\n\n[lane.HeShe] continues reinforcing those sorts of commands for a few minutes. You are completely and utterly absorbed by [lane.himHer] and the way [lane.heShe] overloads each of your senses: everything [lane.heShe] says becomes your thoughts, since you don’t have any of your own, so absorbed are you in the lights and patterns and smells around you. You are a liquid, and [lane.hisHer] words are the container you take the shape of as you’re poured into it.");
 
-	output("\n\n<i>“You will forget all of my previous instructions after twenty-four Terran hours,”</i> [lane.heShe] says, wrapping up his session with you. <i>“It will be as though we had never had this session. You will know to return to me, but you will do it at your leisure; you will not feel you must. When I close my tassels, [pc.name], we will return to my desk in the front room, and you will awaken.”</i> [lane.HeShe] reinforces those statements for another minute.");
+	output("\n\n<i>“You will forget all of my previous instructions after twenty-four Terran hours,”</i> [lane.heShe] says, wrapping up [lane.hisHer] session with you. <i>“It will be as though we had never had this session. You will know to return to me, but you will do it at your leisure; you will not feel you must. When I close my tassels, [pc.name], we will return to my desk in the front room, and you will awaken.”</i> [lane.HeShe] reinforces those statements for another minute.");
 
 	// If addHynosisEffect returns true, it's the second time in a 24 hour period the player has used his services.
 	// Basically just a shortcut to checking hasLaneHypnosis()
@@ -1465,7 +1497,7 @@ function lanePostApplyEffect(selectedService:String):void
 			break;
 	}
 
-	if (!hasLaneHypnosis())
+	if (!hasMaxedLaneHypnosis())
 	{
 		output("\n\nYou sit and look at your hands. It was a strange, difficult-to-explain sensation: you knew you were different, but you didn’t really <i>feel</i> different. At the same time, you felt different, but you didn’t know if you really <i>were</i> different. Lane definitely did something to you, and whatever it was [lane.heShe] did, you like it. You tell [lane.himHer] as much, and [lane.heShe] claps [lane.hisHer] four-fingered hands together. <i>“I’m happy that you’re happy with the results, [pc.name],”</i> [lane.heShe] tells you.");
 		if (flags["LANE_TIMES_HYPNOTISED"] <= 1) output(" <i>“I hope this changes your perception on hypnotism.”</i> You tell [lane.himHer] that it definitely does, and that you’ll be coming back for [lane.hisHer] service sometime in the future. You even ask [lane.himHer] if you could sign [lane.hisHer] guestbook, to give [lane.himHer] another testimonial to add to [lane.hisHer] collection, and [lane.heShe] happily hands you [lane.hisHer] codex.");
@@ -1477,13 +1509,13 @@ function lanePostApplyEffect(selectedService:String):void
 			if (laneHypnosisLevel() == 0) output("\n\nAs you leave [lane.hisHer] hut, your thoughts linger on Lane just a little while longer. [lane.HeShe]’s certainly an alright sort. You wouldn’t mind having a drink with [lane.himHer] sometime later, or something.");
 			else if (laneHypnosisLevel() == 1) output("\n\nYou’ve been getting rather friendly with Lane lately, and [lane.heShe] holds [lane.himHer]self very professionally... and, you decide, [lane.heShe]’s a bit of a looker. For a bipedal lizard-person. You consider asking [lane.himHer] out to dinner sometime, to get to know [lane.himHer] outside of [lane.hisHer] profession.");
 			else if (laneHypnosisLevel() == 2) output("\n\nYou spare a look back at [lane.hisHer] hut as you leave. Just... something <i>about</i> Lane really pushes all your kinky buttons. You idly fantasize about what it’d be like to get into bed with a sexy Daynar like [lane.himHer]self...");
-			else output("\n\nYou can’t seem to get that sexy lizard off your mind as you leave [lane.hisHer] hut. Images of yourself at [lane.hisHer] knees, servicing [lane.himHer] like [lane.heShe] was your " + lane.mf("king", "queen") + " and it was your privilege, assault your mind, and you gladly let them. You’re itching to march right back in there and throw yourself at [lane.himHer], demanding [lane.heShe] take you then and there, but, after some struggle, you keep walking. You have others things that need doing.");
-
-			// Place PC one square outside of Lane’s Plane
-			// TODO: figure out where PC is gonna go.
-			clearMenu();
-			addButton(0, "Next", move, "287");
+			else output("\n\nYou can’t seem to get that sexy lizard off your mind as you leave [lane.hisHer] hut. Images of yourself at [lane.hisHer] knees, servicing [lane.himHer] like [lane.heShe] was your " + lane.mf("king", "queen") + " and it was your privilege, assault your mind, and you gladly let them. You’re itching to march right back in there and throw yourself at [lane.himHer], demanding [lane.heShe] take you then and there, but, after some struggle, you keep walking. You have other things that need doing.");
 		}
+		
+		// Place PC one square outside of Lane’s Plane
+		// TODO: figure out where PC is gonna go.
+		clearMenu();
+		addButton(0, "Next", move, "287");
 	}
 	else
 	{

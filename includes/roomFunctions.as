@@ -156,6 +156,12 @@ function debugMenus():void
 		
 	}, undefined, "Test Booster", "Get some test HP boosters.");
 	
+	addButton(9, "ForceError", function():void {
+		throw new Error("This is a test error!");
+	}, undefined, "Force an Error", "Force an error to test error handling.");
+	
+	addButton(10, "ForceError2", forceAnError);
+	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
 	}, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
@@ -163,6 +169,11 @@ function debugMenus():void
 	addButton(5, "XP", function():void {
 		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
 	});
+}
+
+function forceAnError():void
+{
+	throw new Error("A test error!");
 }
 
 function quickLoot(... args):void

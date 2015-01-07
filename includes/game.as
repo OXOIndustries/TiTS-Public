@@ -676,7 +676,7 @@ public function processTime(arg:int):void {
 	//Not going over lustcap? Proceed as normal.
 	if(pc.lust() + (arg * productionFactor) < lustCap)
 	{
-		trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
+		//trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
 		//Actually apply lust.
 		pc.lust(arg * productionFactor);
 	}

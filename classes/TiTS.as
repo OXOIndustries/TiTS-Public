@@ -62,6 +62,10 @@
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.getPlanetName;
+	
+	import flash.events.UncaughtErrorEvent;
+	import flash.events.UncaughtErrorEvents;
+	import flash.display.LoaderInfo;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -239,6 +243,8 @@
 
 		public function TiTS()
 		{
+			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
+			
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
@@ -306,6 +312,20 @@
 			_perkDB = new Perks();
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
+		{
+			if (e.error is Error)
+			{
+				var ee:Error = e.error as Error;
+				
+				clearOutput();
+				output("<b>Something bad happened! Please report this message:</b>\n\n");
+				output(ee.getStackTrace(), false, false);
+				clearMenu();
+				addButton(14, "Next", mainGameMenu);
+			}
 		}
 		
 		private function init(e:Event):void

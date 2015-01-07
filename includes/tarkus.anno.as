@@ -1860,11 +1860,11 @@ function annoTalkAboutDaMission():void
 	output("<i>“Alright,”</i> you say, leaning across the counter toward the eager ausar. <i>“Let’s talk about this work of yours.”</i> ");
 	
 	output("\n\n<i>“Alright! Now we’re talking!”</i> Anno beams, waving you around the counter and booting up her holoterminal. You step up beside Anno, and are greeted by the sight of a highly detailed 3D projection of what could only be the <i>Nova</i> itself. It truly is a massive ship, now that you can see it in full: longer than a Coalition dreadnought and twice as thick around. Anno’s rigged the display to show power distribution, heat spread, and other various technical minutiae");
-	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
 	output(".");
 	
 	output("\n\n<i>“You see it, right?”</i> Anno says, jabbing a white-furred finger into the display, towards");
-	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(" the");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(" the");
 	output(" a");
 	output(" section of the ship that seems to be drawing an inordinate amount of power. <i>“Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.”</i>");
 	
@@ -2192,7 +2192,7 @@ function victoryOverSecurityDroid():void
 	output("\n\n<i>“We got ‘em first, though,”</i> you answer, ruffling the hair between her perky ears. ");
 
 	output("\n\n<i>“Yeah. We did,”</i> she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again.");
-	if (pc.IQ() >= 0.75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
+	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
 
 	genericVictory();
 }
