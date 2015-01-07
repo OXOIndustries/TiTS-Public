@@ -2787,26 +2787,22 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 			output("\n\n[embry.name] reaches for her purse and pulls out what looks like parts of a strap on. She holds them up and breathily explains, ");
 		 	output("“<i>\"I-I bought this... one of my co-workers said I’d be needing it.</i>”");
 			output("\n\nYou take the strap-on from her, grabbing it by one of the black leather straps. The shaft is purple, with an extremely smooth surface, and a head slightly wider than the shaft. It’s the perfect shape for pegging her.");
-			if(pc.hasVagina()) output(" Not only that, it’s double ended. A smaller but still sizable violet dildo faces inward, perfectly designed to be slid inside [pc.onePussy].");
+			if(pc.hasVagina()) output(" Not only that, it’s double ended. A smaller but still sizable violet dildo faces inward, perfectly designed to be slid inside [pc.onePussy].\n\n");
+		}
+		else
+		{
+			output("\n\n");
+			output("[embry.name] reaches for her purse and pulls out what looks like parts of a strap on - she came prepared. ");
 		}
 		//If pc.hasPussy = true
 		if(pc.hasVagina())
 		{
-			output("\n\n");
-			//EmbNotvaginalVirgin: 
-			if(flags["SEEN_MONKEY_STRAPON"] != undefined) output("[embry.name} then grabs the strap on.");
-			//If EmbvaginalVirgin but NotAnalVirgin:
-			else output("[embry.name] reaches for her purse and pulls out what looks like parts of a strap on - she came prepared.");
-			output(" Since you’re already wet, you slide it inside of your slick snatch. It feels so good going in, filling you up, and you sigh with pleasure. Your lover diligently does up the ties, secures your strap on, and makes sure it is properly in place.");
+			output("Since you’re already wet, you slide it inside of your slick snatch. It feels so good going in, filling you up, and you sigh with pleasure. Your lover diligently does up the ties, secures your strap on, and makes sure it is properly in place.");
 		}
 		// else // pc.hasPussy = false
 		else
 		{
-			output("\n\n");
-			if(flags["SEEN_MONKEY_STRAPON"] != undefined) output("[embry.name} then grabs the strap on.");
-			//If EmbvaginalVirgin but NotAnalVirgin:
-			else output("[embry.name] reaches for her purse and pulls out what looks like parts of a strap on - she came prepared.");
-			output(" You do up the ties, securing your strap on, and make sure it is properly in place. You now have a large headed purple phallus!");
+			output("You do up the ties, securing your strap on, and make sure it is properly in place. You now have a large-headed purple phallus!");
 		}
 		output("\n\nYou lean forward and rub the underside of your strap-on cock against her wet, velvety-soft lips. As you rub your purple phallus back and forth, it caresses [embry.name]’s [embry.clit], protected behind her puffy lips. She trembles with ");
 		if(embry.vaginalVirgin) output("unfamiliar ");

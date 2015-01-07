@@ -635,8 +635,8 @@ function nehzeraMenu(arg):void
 	else addButton(0,"Her People",talkAboutNehzarasShittyPeople,undefined,"Her People","It might be interesting to find out a little more about the Reds from their point of view.");
 	if(arg == talkToNehzaraAbootZeWar) addDisabledButton(1,"The War","The War","You just finished talking about that. Maybe a new topic?");
 	else addButton(1,"The War",talkToNehzaraAbootZeWar,undefined,"The War","A little history lesson never hurt anyone. A little information on the war might help you while on this planet. Knowledge is power, right?");
-	if(arg == talkToNehzaraAboutHerMission || arg == refuseToLickAntPussayOrClosetFuxx) addDisabledButton(2,"Her Mission","Her Mission","You just finished talking about that. Maybe a new topic?");
-	else addButton(2,"Her Mission",talkToNehzaraAboutHerMission,undefined,"Her Mission","You came here for a reason, and there’s a chance that having access to Red Myr territory could help you find the probe and fulfill your mission. This diplomat is the one who can get you access.");
+	if(arg == talkToNehzaraAboutHerMission || arg == refuseToLickAntPussayOrClosetFuxx) addDisabledButton(2,"YourMission","YourMission","You just finished talking about that. Maybe a new topic?");
+	else addButton(2,"YourMission",talkToNehzaraAboutHerMission,undefined,"YourMission","You came here for a reason, and there’s a chance that having access to Red Myr territory could help you find the probe and fulfill your mission. This diplomat is the one who can get you access.");
 	
 	if(arg == nehzarasAppearance) addDisabledButton(3,"Appearance","Appearance","You're looking at her right now!");
 	else addButton(3,"Appearance",nehzarasAppearance,undefined,"Appearance","Take a closer look at the red myr Ambassador.");
