@@ -1143,9 +1143,9 @@ function witnessEmbrysGirlTF():void
 	clearOutput();
 	showSimii();
 	output("You agree to witness for Embry, and she gives a bright smile. <i>\"R-really, you will?</i>” The monkey girl wraps her arms around your waist, and gives you a tight, warm hug. <i>\"Thank you!</i>”");
-	output("\n\nYou follow her back to her room on the Cappella, and she locks the door after you both. You notice there’s a secure medical container plastered with warning labels on the floor. She wasn’t joking when she said it was dangerous. It’s a lot more regulation than you’ve seen for any transformation drug ");
-	if(pc.isTreated()) output("besides the treatment");
-	else output("before");
+	output("\n\nYou follow her back to her room on the Cappella, and she locks the door after you both. You notice there’s a secure medical container plastered with warning labels on the floor. She wasn’t joking when she said it was dangerous. It’s a lot more regulation than you’ve seen for any transformation drug");
+	if(pc.isTreated()) output(" besides the treatment");
+	else output(" before");
 	output(".");
 
 	output("\n\nYou ask [embry.name] about it, and she picks it up. “<i>... O-oh, yeah, it’s not normal. Simii biology is really, really resistant to change. That means the drugs for body alteration have to be incredibly aggressive... persistently so.</i>”");
