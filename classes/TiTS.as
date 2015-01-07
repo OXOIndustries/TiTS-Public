@@ -667,135 +667,135 @@
 			this[name]();
 		}
 		
-		public function get pc():*
+		public function get pc():PlayerCharacter
 		{
 			return chars["PC"];
 		}
-		public function get monster():*
+		public function get monster():Creature
 		{
 			if(foes.length == 0) return chars["PC"];
 			else return foes[0];
 		}
 
-		public function get celise():*
+		public function get celise():Celise
 		{
 			return chars["CELISE"];
 		}
 
-		public function get rival():*
+		public function get rival():Rival
 		{
 			return chars["RIVAL"];
 		}
 
-		public function get enemy():*
+		public function get enemy():Creature
 		{
 			return foes[0];
 		}
 
-		public function get geoff():*
+		public function get geoff():Geoff
 		{
 			return chars["GEOFF"];
 		}
 
-		public function get flahne():*
+		public function get flahne():Flahne
 		{
 			return chars["FLAHNE"];
 		}
 
-		public function get zilpack():*
+		public function get zilpack():ZilPack
 		{
 			return chars["ZILPACK"];
 		}
 
-		public function get zil():*
+		public function get zil():ZilMale
 		{
 			return chars["ZIL"];
 		}
 
-		public function get penny():*
+		public function get penny():Penny
 		{
 			return chars["PENNY"];
 		}
 
-		public function get embry():*
+		public function get embry():Embry
 		{
 			return chars["EMBRY"];
 		}
 
-		public function get shekka():*
+		public function get shekka():Shekka
 		{
 			return chars["SHEKKA"];
 		}
 
-		public function get burt():*
+		public function get burt():Burt
 		{
 			return chars["BURT"];
 		}
 
-		public function get zilFemale():*
+		public function get zilFemale():ZilFemale
 		{
 			return chars["ZILFEMALE"];
 		}
 
-		public function get cuntsnake():*
+		public function get cuntsnake():CuntSnake
 		{
 			return chars["CUNTSNAKE"];
 		}
 		
-		public function get reaha():*
+		public function get reaha():Reaha
 		{
 			return chars["REAHA"];
 		}
 		
-		public function get dane():*
+		public function get dane():Dane
 		{
 			return chars["DANE"];
 		}
 		
-		public function get mimbrane():*
+		public function get mimbrane():Mimbrane
 		{
 			return chars["MIMBRANE"];
 		}
-		public function get anno():*
+		public function get anno():Anno
 		{
 			return chars["ANNO"];
 		}
 		
-		public function get kiro():*
+		public function get kiro():Kiro
 		{
 			return chars["KIRO"];
 		}
 		
-		public function get saendra():*
+		public function get saendra():Saendra
 		{
 			return chars["SAENDRA"];
 		}
-		public function get sera():*
+		public function get sera():Sera
 		{
 			return chars["SERA"];
 		}
-		public function get syri():*
+		public function get syri():Syri
 		{
 			return chars["SYRI"];
 		}
 		
-		public function get vanae():*
+		public function get vanae():Creature
 		{
 			return this.monster;
 		}
-		public function get vanaeMaiden():*
+		public function get vanaeMaiden():MaidenVanae
 		{
 			return chars["MAIDEN_VANAE"];
 		}
-		public function get vanaeHuntress():*
+		public function get vanaeHuntress():HuntressVanae
 		{
 			return chars["HUNTRESS_VANAE"];
 		}
-		public function get gianna():*
+		public function get gianna():Gianna
 		{
 			return chars["GIANNA"];
 		}
-		public function get brynn():*
+		public function get brynn():Brynn
 		{
 			return chars["BRYNN"];
 		}
