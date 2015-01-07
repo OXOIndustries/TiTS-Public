@@ -112,6 +112,8 @@ Decrease the PCs hypnosis level, and forces the level-up power required for the 
 */
 function decreaseLaneHypnosisLevel():Boolean
 {
+	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return false;
+
 	if (flags["LANE_HYPNOSIS_LEVEL"] > 0)
 	{
 		flags["LANE_HYPNOSIS_LEVEL"] -= 1;
@@ -137,7 +139,7 @@ function baseHypnosisWearsOff(effectToRemove:String):void
 	
 	laneHeader();
 
-	if (flags["HYPNO_EFFECT_SMALL_MESSAGES"] == undefined)
+	if (flags["HYPNO_EFFECT_OUTPUT_DONE"] == undefined)
 	{
 		if (flags["LANE_FIRST_HYPNO_RETURN"] != 2)
 		{
@@ -210,6 +212,8 @@ function baseHypnosisWearsOff(effectToRemove:String):void
 			}
 			output("\n\nYou sigh – it was fun while it lasted. You put your codex away and make a mental note to return to Lane about another boost the next time you’re in the area.");
 		}
+
+		processTime(5);
 	}
 
 	// Revert whatever stat the PC paid to increase back to normal
@@ -217,7 +221,7 @@ function baseHypnosisWearsOff(effectToRemove:String):void
 
 	// Rather than removing them all at once, the first one removed trips a flag that will change us from delivering the "full fat" messages, to a lite message.
 	// TODO: Add this small message!
-	flags["HYPNO_EFFECT_SMALL_MESSAGES"] = 1;
+	flags["HYPNO_EFFECT_OUTPUT_DONE"] = 1;
 
 	var modValue:Number = 0;
 
@@ -258,16 +262,8 @@ function baseHypnosisWearsOff(effectToRemove:String):void
 			break;
 	}
 
-	if (flags["HYPNO_EFFECT_SMALL_MESSAGES"] != undefined)
-	{
-		eventBuffer += "\n\nAnother one of Lane's hypnotic augmentations is beginning to dissipiate. You sigh – it was fun while it lasted. You put your codex away and make a mental note to return to Lane about another boost the next time you’re in the area.";
-		mainGameMenu();
-	}
-	else
-	{
-		clearMenu();
-		addButton(0, "Next", mainGameMenu);
-	}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 /*
@@ -388,6 +384,14 @@ function addHypnosisEffect(stat:String):Boolean
 
 function enterLanesShop():Boolean
 {
+	if (flags["LANE_DISABLED"] == 1)
+	{
+		output("\n\nThe inside of the shop has been cleared out, and in a hurry too. Various belongings are scattered around haphazardly, considered and evidently forgotten in Lane’s haste to clear out of here as quickly as possible.");
+		return false;
+	}
+
+	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"]) flags["LANE_HYPNOSIS_LEVEL"] = 5;
+
 	// Reset the "mini" flag so we'll get the full version of the effect-removal messages.
 	if (flags["HYPNO_EFFECT_SMALL_MESSAGES"] != undefined) flags["HYPNO_EFFECT_SMALL_MESSAGES"] = undefined;
 
@@ -434,20 +438,37 @@ function visitLaneWhilstDetoxing():void
 
 	output("\n\n[lane.HeShe] looks surprised to see you rush in so eagerly. <i>“[pc.name]!”</i> he shouts. He sounds halfway between relieved and upset to see you again. <i>“Where have you been? I haven’t seen you in a while... and you’ve stopped sending me your payments. I thought you had died!”</i>");
 
-	output("\n\nYou vault over [lane.hisHer] desk effortlessly and wrap your arms around [lane.hisHer] legs, burying your [pc.face] into [lane.hisHer] knees as you sob in delight that you’ve found your way back to your [lane.master]. <i>“[lane.Master]! I...”</i> you begin, choking back your ecstatic tears. <i>“I told one of my crewmates about us, [lane.master]. She saw my daily payments and started asking questions.”</i>");
+	output("\n\nYou vault over [lane.hisHer] desk effortlessly and wrap your arms around [lane.hisHer] legs, burying your [pc.face] into [lane.hisHer] knees as you sob in delight that you’ve found your way back to your [lane.master]. <i>“[lane.Master]! I...”</i> you begin, choking back your ecstatic tears. <i>“I told one of my crewmates about us, [lane.master]. " + lFollowerMF("He", "She") + " saw my daily payments and started asking questions.”</i>");
 
 	output("\n\nLane doesn’t move a muscle. <i>“And what did this crewmate of yours say?”</i>");
 
-	output("\n\n<i>“She told me to leave you, [lane.master]. She tried to tell me that you were stealing from me and abusing me. She convinced me to try and leave you, but... but I couldn’t! It was the darkest, most worthless time of my life, trying to tear myself from you! I won’t ever leave you again, [lane.master], I swear on my life!”</i>");
+	output("\n\n<i>“"+ lFollowerMF("He", "She") +" told me to leave you, [lane.master]. "+ lFollowerMF("He", "She") +" tried to tell me that you were stealing from me and abusing me. "+ lFollowerMF("He", "She") +" convinced me to try and leave you, but... but I couldn’t! It was the darkest, most worthless time of my life, trying to tear myself from you! I won’t ever leave you again, [lane.master],");
+	if (!silly) output(" I swear on my life!");
+	else output(" I swear on me mum!")
+	output("”</i>");
 
 	output("\n\nYou hiccup your tears a few times, waiting for your love to say or do something, <i>anything</i> to make you feel welcomed and that [lane.heShe] wasn’t mad. Finally, after a heart-pounding eternity, you feel [lane.hisHer] soft, forgiving hands on your [pc.hair]. You immediately melt into [lane.himHer], feeling a relief you had never known before today. <i>“I forgive you, [pc.name],”</i> [lane.heShe] says to you, and you clutch at [lane.hisHer] legs tighter. <i>“You’re a good [pc.boyGirl]. You’ve made the right decision to come back to me.”</i>");
 
-	output("\n\nYou sigh out loud, and look up at [lane.himHer], across [lane.hisHer] flat stomach, [lane.hisHer] beautiful " + lane.mf("chest","breasts") +", and at [lane.hisHer] adoring eyes. <i>“Let’s make sure you never make that mistake again, [pc.name]. I want you to look deep into my eyes. Can you do that for me?”</i> You obey wordlessly, staring deep into [lane.hisHer] eyes as [lane.heShe] flairs [lane.hisHer] tassels wide open for you. The familiar, safe feeling of sinking into the swirls of his tattoos and the lights of his body wash over you. <i>Good. You’re doing good.</i>");
+	output("\n\nYou sigh out loud, and look up at [lane.himHer], across [lane.hisHer] flat stomach, [lane.hisHer] beautiful " + lane.mf("chest","breasts") +", and at [lane.hisHer] adoring eyes. <i>“Let’s make sure you never make that mistake again, [pc.name]. I want you to look deep into my eyes. Can you do that for me?”</i> You obey wordlessly, staring deep into [lane.hisHer] eyes as [lane.heShe] flairs [lane.hisHer] tassels wide open for you. The familiar, safe feeling of sinking into the swirls of his tattoos and the lights of his body wash over you. <i>Good. You’re doing good....</i>");
 
-	processTime(5);
+	processTime(60);
 
 	clearMenu();
 	addButton(0, "Next", laneGonnaFuckYourDetoxinAssUp);
+}
+
+function laneHandleCredits():void
+{
+	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
+	{
+		pc.credits += 200;
+		eventBuffer += "\n\nA notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a credit transfer message; Lane has paid you 200 credits, right on time.";
+	}
+	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
+	{
+		pc.credits -= 500;
+		eventBuffer += "\n\nA notification arrives in your codex’s message box with a shirll bleep. Quickly reading it, you recognise it as an automatic payment that you’ve setup to [lane.master] Lane."
+	}
 }
 
 function visitLaneAfterDetoxing():void
@@ -456,7 +477,7 @@ function visitLaneAfterDetoxing():void
 
 	laneHeader();
 
-	if (pc.WQ() < 0.75)
+	if (pc.WQ() >= 0.75)
 	{
 		if (pc.isNice())
 		{
@@ -496,7 +517,14 @@ function visitLaneAfterDetoxing():void
 
 			output("\n\nYou hear Lane slump forward onto [lane.hisHer] desk as you victoriously leave [lane.hisHer] hut. With any luck, you won’t have to visit [lane.himHer] again anytime soon. Not that you’d be welcomed with open arms, anyway.");
 
-			// TODO: Remove ‘Lane’s Plane’ from the map; the PC gains 200 credits a day for the rest of the game
+			processTime(30);
+
+			// Remove ‘Lane’s Plane’ from the map; the PC gains 200 credits a day for the rest of the game
+			flags["LANE_PAYS_PC_ERRY_DAY"] = 1;
+			flags["LANE_DISABLED"] = 1;
+
+			clearMenu();
+			addButton(0, "Next", move, "287");
 		}
 		else
 		{
@@ -538,7 +566,12 @@ function visitLaneAfterDetoxing():void
 
 			output("\n\nYou turn and leave [lane.hisHer] hut for the last time. You don’t think you’re welcome back there anymore anyway.");
 
-			// TODO: Remove ‘Lane’s Plane’ from the map; PC gains 12,000 credits
+			// Remove ‘Lane’s Plane’ from the map; PC gains 12,000 credits
+			pc.credits += 12000;
+			flags["LANE_DISABLED"] = 1;
+
+			clearMenu();
+			addButton(0, "Next", move, "287");
 		}
 
 		return;
@@ -773,12 +806,16 @@ function meetMaleLane():void
 
 	output("\n\nYou shake his hand and give it a few strong pumps, replying with your own name. He quickly takes his spot behind the concrete desk, pulls his chair forward, and takes a seat, adopting a more professional demeanor for his new customer. <i>“[pc.name] Steele? As in, Steele Tech? Didn’t you inherit that company from your father – may he rest in peace?”</i> You tell him that, yes, of Steele Tech, but no, you haven’t, and that you’re working on it. His eyes wander for the briefest of moments, before he straightens himself out and looks you in the eye. <i>“So, [pc.name] Steele, what can I help you with?”</i>");
 
+	processTime(15);
+
 	laneShowMenu();
 }
 
 function meetFemaleLane():void
 {
 	clearOutput();
+	laneHeader();
+
 	output("<i>“Excuse me, ma’am?”</i> you call out, hoping you’ve made the right decision. The figure immediately straightens out, bumping its feet on whatever it was shuffling around, and turns around, towards the curtains. A pair of brown, scaly, webbed, four-fingered ‘hands’ reaches between the gap of the curtains and pulls them wide open: there, a sort of lizard-woman greets you, eye-to-eye, looking a little flustered that you had managed to get the drop on her.");
 
 	output("\n\n<i>“I’m sorry!”</i> she says, stepping forward and shutting the curtain behind her. <I>“This is embarrassing! I was a little distracted, and I didn’t hear you step in. You haven’t been here for too long, I hope?”</I>");
@@ -789,6 +826,8 @@ function meetFemaleLane():void
 
 	output("\n\nYou shake her hand and give it a few strong pumps, replying with your own name. She quickly takes her spot behind the concrete desk, pulls her chair forward, and takes a seat, adopting a more professional demeanor for her new customer. <i>“[pc.name] Steele? As in, Steele Tech? Didn’t you inherit that company from your father – may he rest in peace?”</i> You tell her that, yes, of Steele Tech, but no, you haven’t, and that you’re working on it. Her eyes wander for the briefest of moments, before she straightens herself out and looks you in the eye. <i>“So, [pc.name] Steele, what can I help you with?”</i>");
 
+	processTime(15);
+
 	laneShowMenu();
 }
 
@@ -796,6 +835,8 @@ function lanesShopFirstRepeat():void
 {
 	flags["LANE_FIRST_HYPNO_RETURN"] = 2;
 	clearOutput();
+	laneHeader();
+
 	output("You march right into Lane’s little hut, a hundred angry things to say to [lane.himHer] all at once. [lane.heShe]’s there, lounging at [lane.hisHer] desk and playing with [lane.hisHer] codex, and [lane.heShe] hardly seems phased at all when you start stomping into [lane.hisHer] business with a look like you’re going to rip [lane.hisHer] head off.");
 
 	output("\n\n<i>“Lane!”</i> you shout, slapping at [lane.hisHer] desk forcefully, rumbling the little knicks and knacks [lane.heShe] has placed all around it. [lane.HeShe] looks up from his codex and into your eyes, fearlessly.");
@@ -808,15 +849,21 @@ function lanesShopFirstRepeat():void
 
 	output("\n\nSheepish, you sit and apologize for your outburst. <i>“Think nothing of it,”</i> [lane.heShe] tells you. <i>“Your response was actually quite contained compared to some of my more... animate customers. Besides, if you’re here, it means you liked my business enough to get yourself into a stink over it.”</i> [lane.HeShe] leans back casually. <i>“Let’s put that all behind us. What can I do for you today?”</i>");
 
+	processTime(15);
+
 	laneShowMenu();
 }
 
 function repeatEnterLanesShop():void
 {
 	clearOutput();
+	laneHeader();
+
 	output("You approach Lane’s Plane, interested in another dose of [lane.hisHer] medicine. You enter [lane.hisHer] familiar hut and you see [lane.himHer], lazily lounging on [lane.hisHer] seat behind [lane.hisHer] desk as usual. [lane.HeShe] perks up, lifting [lane.hisHer] head at the sound of a coming customer’s footsteps, and [lane.hisHer] expression lights right up as soon as you walk into the store. <i>“Welcome again, [pc.name]!”</i> [lane.heShe] says, opening [lane.hisHer] arms warmly to greet you. <i>“Please, have a seat. To what do I owe the pleasure today? How can Lane help you in [lane.hisHer] plane?”</i>");
 
 	output("\n\n[lane.HeShe] sits there, crossing [lane.hisHer] arms patiently while you take the seat across from [lane.himHer], and waits for your response.");
+
+	processTime(5);
 
 	laneShowMenu();
 }
@@ -824,6 +871,7 @@ function repeatEnterLanesShop():void
 function lanesShopFullyUnder():void
 {
 	clearOutput();
+	laneHeader();
 	output("You approach Lane’s Plane, eager for another dose of your "+ lane.mf("master", "mistress") +"’s medicine. [lane.HisHer] hut has been taking on a rather extravagant turn lately, with all that extra money [lane.heShe]’s been siphoning from you. When you enter, you see [lane.himHer] lounging languidly, [lane.hisHer] legs spread and [lane.hisHer] chair leaned back, waiting for some other unlucky- or lucky, from your twisted, controlled perspective- customer to walk into [lane.hisHer] trap.");
 
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops his feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
@@ -834,6 +882,7 @@ function lanesShopFullyUnder():void
 	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you'll ever need.");
 
 	output("\n\n[lane.HeShe] flairs his tassels open, only for a moment, to let you taste of the sweet pleasure you’ve come to [lane.himHer] for. Teasingly, they shut again, and you’re left horny and thirsty for more of [lane.himHer]. <i>“Welcome back, my pet,”</i> [lane.heShe] says sensually, dragging a loving claw gently over your [pc.face]. <i>“Have you come to Lane for more of [lane.hisHer] magic? Or are you here to pay your ‘taxes’?”</i>");
+	processTime(15);
 
 	laneShowMenu();
 }
@@ -843,7 +892,8 @@ function laneShowMenu():void
 	clearMenu();
 	addButton(0, "Talk", talkToLane);
 	addButton(1, "Services", laneServices);
-	addButton(2, "Taxes", payTheLaneTax);
+	if (hasMaxedLaneHypnosis()) addButton(2, "Taxes", payTheLaneTax); // TODO: Confirm this is the proper check.
+	else addDisabledButton(2, "Taxes");
 	addButton(5, "Appearance", lanesAppearance);
 	addButton(14, "Leave", leaveLanes);
 }
@@ -866,6 +916,7 @@ function leaveLanes():void
 function talkToLane():void
 {
 	clearOutput();
+	laneHeader();
 
 	if (hasLaneHypnosis())
 	{
@@ -875,6 +926,8 @@ function talkToLane():void
 	{
 		output("\n\n<i>“Oh, this is a social call, is it?”</i> Lane says, trilling amusedly. [lane.HeShe] leans back in [lane.hisHer] chair, slumping and relaxing, stretching [lane.hisHer] limbs out. <i>“Sure, I wouldn’t mind shooting the breeze for a moment. What’s on your mind?”</i>");
 	}
+
+	processTime(5);
 
 	generateLaneTalkMenu();
 }
@@ -898,6 +951,7 @@ function laneTalkOccupation():void
 {
 	flags["LANE_OCCUPATION_TALK"] = 1;
 	clearOutput();
+	laneHeader();
 	output("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the Venar desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
 
 	output("\n\n<i>“Yeah, you’re right,”</i> [lane.heShe] says proudly. <i>“I know my way around the modern world about as well as anyone else, but I try to keep my house, and my business, as down-to-earth as possible. I specialize in....”</i> [lane.HeShe] pauses, tapping a claw against [lane.hisHer] chin. <i>“</i>Spiritualistic medicine<i> is one way of putting it.”</i> You ask [lane.himHer] to elaborate.");
@@ -916,6 +970,8 @@ function laneTalkOccupation():void
 
 	output("\n\n<i>“So, are you convinced?”</i> [lane.heShe] asks, opening [lane.hisHer] hands to you. <i>“Would you like to give it a try? Or is there something I can help you further with?”</i>");
 
+	processTime(15);
+
 	generateLaneTalkMenu();
 	addDisabledButton(0, "Occupation");
 }
@@ -924,6 +980,7 @@ function laneTalkDaynar():void
 {
 	flags["LANE_DAYNAR_TALK"] = 1;
 	clearOutput();
+	laneHeader();
 
 	output("You ask [lane.himHer] about his species. When you first met, [lane.heShe] introduced himself as a ‘Daynar’. <i>“That’s correct,”</i> [lane.heShe] says, crossing [lane.hisHer] arms. <i>“We’re one of the many races natively found on the planet Venar. I’m told we closely resemble a common lizard on the planet Terra.”</i> You confirm. <i>“We’re big fans of hot, dry places, like the desert we’re under. We evolved from a smaller, more... beastly, single-minded creature only a few millenniums ago. A blink of an eye, in geological terms.”</i> [lane.HeShe] scratches the top of [lane.hisHer] bald, scaly head. <i>“Our evolution was natural for the most part, until aliens like yourself started showing up and polluting our sands with your biogenetic drugs. Not that I’m complaining, myself.”</i>");
 
@@ -947,6 +1004,7 @@ function laneTalkDaynar():void
 
 	output("\n\nYou shift in your seat, uncomfortable with the sudden pressure, but you assure [lane.himHer] that you’ll do what you can. Lane leans back, relaxing. <i>“That about covers it, I think. Is there anything else I can help you with?”</i>");
 
+	processTime(20);
 	generateLaneTalkMenu();
 	addDisabledButton(1, "Daynar");
 }
@@ -955,6 +1013,7 @@ function laneTalkThemself():void
 {
 	flags["LANE_SELF_TALK"] = 1;
 	clearOutput();
+	laneHeader();
 
 	output("You ask [lane.himHer] if hypnosis is a thing that all Daynar can do. <i>“As in, is it something they just intrinsically know? No. Anyone can learn it, of course, but, as far as I know, I’m the only Daynar that bothered to take the time.”</i>");
 
@@ -980,7 +1039,7 @@ function laneTalkThemself():void
 
 	output("\n\n<i>“Now then, do you have any further questions?”</i> [lane.HeShe] leans back in [lane.hisHer] seat, waiting for your response.");
 
-
+	processTime(20);
 	generateLaneTalkMenu();
 	addDisabledButton(2, lane.mf("Him", "Her") + "self");
 }
@@ -988,6 +1047,7 @@ function laneTalkThemself():void
 function laneServices():void
 {
 	clearOutput();
+	laneHeader();
 
 	if (flags["LANE_SHOWN_SERVICES"] == undefined)
 	{
@@ -1017,6 +1077,8 @@ function laneServices():void
 		{
 			laneServicesMenu();
 		}
+
+		processTime(15);
 	}
 	else
 	{
@@ -1042,6 +1104,8 @@ function laneServices():void
 			{
 				laneServicesMenu();
 			}
+
+			processTime(5);
 		}
 		else
 		{
@@ -1056,6 +1120,8 @@ function laneServices():void
 			output("\n\nYou shake your head, salivating, eager to get started. [lane.HeShe] hands you the codex – and to your surprise, [lane.heShe]’s only charging you the standard one hundred credits. <i>“I’m a little kinder than that, though.”</i> You blink, and thank [lane.himHer] sincerely for [lane.hisHer] unprecedented generosity. <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
 
 			output("\n\nYou thank him for his ‘generosity’ again.");
+
+			processTime(10);
 
 			laneServicesMenu();
 		}
@@ -1092,6 +1158,7 @@ function laneServicesMenu():void
 function laneServicesBack():void
 {
 	clearOutput();
+	laneHeader();
 	if (!hasLaneHypnosis())
 	{
 		output("[lane.HeShe] frowns as you hand [lane.himHer] the codex. <i>“Changed your mind?”</i> You apologize, but you’re just not ready for [lane.hisHer] business today. <i>“Don’t worry, I understand. A lot of my customers, even the repeats, get the jitters sometimes. Is there anything else I can help you with, while you’re here?”</i>");
@@ -1118,15 +1185,18 @@ function laneServicesBack():void
 		clearMenu();
 		addButton(0, "Next", payTheLaneTax);
 	}
+	processTime(10);
 }
 
 function laneServicePhysique():void
 {
 	clearOutput();
+	laneHeader();
 	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your strength. You know that’s more of a physical thing, but [lane.heShe] did say <i>anything</i>, after all. <i>“I sure can,”</i> [lane.heShe] says confidently. <i>“Other customers have asked me the same question. There is a limit to how hard you can push your body without appropriate work or training, of course, but many hurdles are strictly mental. I’ve had thin, spindly little things come to me, telling me that a ten pound barbell feels like a hundred, especially when they’re in a public place like a gym. With just a little bit of my work, you’ll be pushing past your limits and setting new ones within the hour.”</i>");
 
 	output("\n\nLane certainly seems cool about it. Do you ask [lane.himHer] to improve your physique, by removing your inhibitions and your limits?");
 
+	processTime(5);
 	//[=Confirm=] [=Ehh...=]
 	clearMenu();
 	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_PHYS);
@@ -1136,10 +1206,12 @@ function laneServicePhysique():void
 function laneServiceReflexes():void
 {
 	clearOutput();
+	laneHeader();
 	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your reflexes. You’ve walked down enough streets, hiked through enough forests, and drank in enough shady bars to know that anything could get the jump on you at any time. <i>“Of course,”</i> [lane.heShe] says assuredly. <i>“You wouldn’t be the first adventurer I’ve had. I can sharpen each of your senses to be more in-tune with your surroundings: you’ll see, hear, and smell anything stalking you in the sands of Veran before they’d realize it. You’ll know exactly when you are and are not alone, and you’ll be able to react to it faster than you ever could before. I’ve been known to service more than one starship pilot, as well.”</i>");
 
 	output("\n\nLane certainly seems sure of himself. Do you ask [lane.himHer] to improve your reflexes, by attuning your senses to your environment?");
 
+	processTime(5);
 	//[=Confirm=] [=Ehh...=]
 	clearMenu();
 	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_REF);
@@ -1149,10 +1221,12 @@ function laneServiceReflexes():void
 function laneServiceAim():void
 {
 	clearOutput();
+	laneHeader();
 	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your aim. In the modern world of weaponry and warfare, the better shot is usually the victor, and you want to be sure yours counts. <i>“You bet I can,”</i> [lane.heShe] says smugly. <i>“I can give you eyesight like... I believe you call it a ‘hawk’ on Terra? While I don’t exactly improve your eyes, I can help your mind process what it is you’re seeing faster than it ever could before. Shapes, velocity, momentum, and distance will become easier for you to discern, and your marksmanship will follow suit. Although... I have to ask. Is there a marksmanship competition coming up somewhere? I’ve had a customer asking the same thing for that reason, and when the judges found out, he was disqualified for having an unfair advantage.”</i>");
 
 	output("\n\nYou tell [lane.himHer] that it’s purely personal, and [lane.heShe] nods, waving to [lane.hisHer] codex. Lane certainly seems secure about it. Do you ask [lane.himHer] to improve your aim, by sharpening your mental acuity?");
 
+	processTime(5);
 	//[=Confirm=] [=Ehh...=]
 	clearMenu();
 	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_AIM);
@@ -1162,10 +1236,12 @@ function laneServiceAim():void
 function laneServiceIntelligence():void
 {
 	clearOutput();
+	laneHeader();
 	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your intelligence. You’re... you refuse to call yourself ‘dumb’, but you admit that, sometimes, you... aren’t exactly as ‘worldly’ as you’d like. Is there anything [lane.heShe] can do to help? <i>“That’s not a problem at all,”</i> [lane.heShe] insists gently. <i>“You’re not the first to want that changed about yourself, and you won’t be the last. I can’t exactly make you ‘smarter’, per se, but I can improve your memory by streamlining the way your conscious mind recalls thoughts. Those lessons you thought you doodled through in high school will come back to you as easily as recalling your fondest childhood moment. I’ve had college students come to me asking me about it, and my skills have helped them through many cram sessions.”</i>");
 
 	output("\n\nLane certainly seems positive about it. Do you ask [lane.himHer] to improve your memory by, as he put it, ‘streamlining’ how your conscious mind recalls lessons and memories?");
 
+	processTime(5);
 	//[=Confirm=] [=Ehh...=]
 	clearMenu();
 	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_INT);
@@ -1175,10 +1251,12 @@ function laneServiceIntelligence():void
 function laneServiceWillpower():void
 {
 	clearOutput();
+	laneHeader();
 	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your willpower. Sometimes, you feel a little too meek and shy for your own personal safety, and if exploring these planets and encountering their fauna has taught you anything, it’s that having the strength to say ‘no’ can be your strongest weapon sometimes. <i>“Easily,”</i> [lane.heShe] says surely. <i>“At least three times now, I’ve had wallflowers come up to me and confess that they don’t have the spine to ask a crush out to a date, or something, and if I could help them with that. There’s nothing special about giving you the strength of will: no improved mental acuity or overcoming mental barriers. All I’m doing is giving that little voice in your head, the voice that says what you</i> really <i>feel and what you</i> really <i>want, a helping hand.”</i>");
 
 	output("\n\nLane certainly seems confident about it. Do you ask [lane.himHer] to improve your willpower, by helping your mouth say what your mind is really thinking?");
 
+	processTime(5);
 	//[=Confirm=] [=Ehh...=]
 	clearMenu();
 	addButton(0, "Confirm", laneConfirmService, HYPNO_STAT_WILL);
@@ -1188,7 +1266,9 @@ function laneServiceWillpower():void
 function laneServiceMaybeNot():void
 {
 	clearOutput();
+	laneHeader();
 	output("You frown, unsure about the whole thing, but you’re not quite ready to give the codex back to [lane.himHer]. You tap at the table as you consider what else you can ask [lane.himHer].");
+	processTime(2);
 	// Return to [=Services=] menu")
 	laneServicesMenu();
 }
@@ -1196,6 +1276,7 @@ function laneServiceMaybeNot():void
 function laneConfirmService(selectedService:String):void
 {
 	clearOutput();
+	laneHeader();
 
 	pc.credits -= 100;
 
@@ -1248,6 +1329,7 @@ function laneConfirmService(selectedService:String):void
 
 	output("\n\nLane watches you, completely enthralled and under [lane.hisHer] spell. Your mouth is dry, and you swallow – no, Lane tells you to swallow – no, <i>you</i> swallow, it was a thought you had. [lane.HeShe] takes a deep breath, remaining calm in [lane.hisHer] seat. Confident that you’re deep enough under [lane.hisHer] spell, [lane.heShe] begins the work you paid [lane.himHer] to do.");
 
+	processTime(30);
 	clearMenu();
 	addButton(0, "Next", laneApplyService, selectedService);
 }
@@ -1255,6 +1337,7 @@ function laneConfirmService(selectedService:String):void
 function laneApplyService(selectedService:String):void
 {
 	clearOutput();
+	laneHeader();
 
 	switch (selectedService)
 	{
@@ -1341,6 +1424,8 @@ function laneApplyService(selectedService:String):void
 		output("\n\n" + msgs[rand(msgs.length)]);
 	}
 
+	processTime(30);
+
 	clearMenu();
 	addButton(0, "Next", lanePostApplyEffect, selectedService);
 }
@@ -1348,6 +1433,8 @@ function laneApplyService(selectedService:String):void
 function lanePostApplyEffect(selectedService:String):void
 {
 	clearOutput();
+	laneHeader();
+
 	output("You awaken with a bit of a start. You’re a little dizzy; you’re seeing stars in your eyes and your ears are ringing and your nose is itchy. And yet... you feel amazing. You’re back at the desk in the front room, sitting in the same chair, and Lane is across from you, smiling confidently. <i>“How do you feel?”</i> [lane.heShe] asks you.");
 
 	output("\n\nYou admit that you’re mostly confused. The last thing you remember is being in Lane’s ‘hypnosis room’, following [lane.hisHer] instructions, but then... nothing, and now you’re back at [lane.hisHer] desk. And yet");
@@ -1420,6 +1507,8 @@ function lanePostApplyEffect(selectedService:String):void
 		clearMenu();
 		addButton(0, "Next", payTheLaneTax);
 	}
+
+	processTime(20);
 }
 
 function payTheLaneTax():void
@@ -1477,6 +1566,7 @@ function laneSexSelection():void
 function suckLanesDick():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane walks past you and sits on the edge of his large bed, his cock pointing towards the ceiling. <i>“I want to feel your [pc.lips] on me,”</i> he says, taking your hand and insistently pulling you towards him. <i>“I want you to swallow my cock and tell me how much better Daynarian cum tastes compared to anyone else’s.”</i>");
 
@@ -1562,6 +1652,8 @@ function suckLanesDick():void
 function munchLanesCarpet():void
 {
 	clearOutput();
+	laneHeader(true);
+
 	output("Lane walks past you and sits on the edge of her large bed, splaying her legs and displaying all of herself to you. <i>“I want that talented tongue of your inside me,”</i> she says, reaching down with one hand and spreading her already moist and welcoming cunny for you. <i>“I want you to lick me until I cum in that pretty mouth of your and I want you to thank me for the opportunity.”</i>");
 
 	output("\n\nYou don’t need any further commanding; you take a step forward and sink to your knees, eagerly placing yourself between her open knees and your mouth just inches away from her pussy. It’s similar to most other cunts you’ve seen, but with a few differences: beside her spread labia is her genital slit, which is tough and stiff when she’s unaroused, but is soft and malleable when she is. Her pink, narrow walls wink at you invitingly, waiting for you to take the plunge into her and pull you inside. Unfortunately, she has no clitoris – ");
@@ -1646,6 +1738,7 @@ function munchLanesCarpet():void
 function fuckedByMaleLane():void
 {
 	clearOutput();
+	laneHeader(true);
 	output("Lane approaches you, his cock in one hand and his other reaching out to grip onto your [pc.hair]. <i>“Have a taste, [pc.name],”</i> he says, jacking himself, his dick pointed right at your face.");
 
 	output("\n\nYou’d be glad to. You sink to your knees in front of him and lick your [pc.lips] in anticipation, gently gripping onto his waist and kneading the hard scales there. You pucker your lips, waiting for him to stop touching himself; he takes the hint and, without much warning or preparation, he thrusts forward, sliding his thin dick into your thirst throat.");
@@ -1804,6 +1897,7 @@ function fuckedByMaleLane():void
 function fuckedByFemLane():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane roughly shoves you in your chest, knocking you off your feet and onto your ass onto her bed. Before you can rub the sore spot she had hit, she has your [pc.hair] in her hand, gripping you tight enough to pay attention. <i>“We’re going to have some fun,”</i> she says. That makes you shiver. <i>“Before we begin, I need some... encouragement. Show me how enthusiastic you are for me.”</i>");
 
@@ -2174,6 +2268,7 @@ function laneFullyHypnotisesYouDumbshit():void
 	flags["LANE_FULLY_HYPNOTISED_DAY"] = days;
 
 	clearOutput();
+	laneHeader(true);
 	
 	// Lane fully hypnotizes the PC. Tier 5 aggression, basically. Start here after the first [=Next=] button once the PC pays for a normal hypnosis.
 
@@ -2205,7 +2300,7 @@ function laneFullyHypnotisesYouDumbshit():void
 	if (pc.mf("m", "f") == "f") output("ess");
 	output(" of Steele Tech, I think.”</i>");
 
-	flags["LANE_WIRE_CREDITS_DAILY"] = 1;
+	flags["PC_PAYS_LANE_ERRY_DAY"] = 1;
 
 	output("\n\nFrantic, you begin to explain that you haven’t actually inherited the business from your father yet. [lane.HeShe] listens to you ramble, but when the message is made clear, [lane.heShe] tells you to stop. <i>“If you can’t afford it, just wire me what you have. I’ll trust you. You wouldn’t ever lie to me, would you, [pc.name]?”</i> You shake your head, vehemently telling [lane.himHer] that you would never dream of it.");
 
@@ -2221,6 +2316,7 @@ function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\n[lane.HeShe] doesn’t waste any more time.");
 
+	processTime(60);
 	//[=Next=]
 	clearMenu();
 	addButton(0, "Next", laneSexSelection);
@@ -2232,6 +2328,7 @@ function laneFullyHypnotisesYouDumbshit():void
 function firstTimeLaneMPCM():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane crawls forward, paying no heed to");
 	if (pc.hasCock()) output(" [pc.eachCock]");
@@ -2372,6 +2469,7 @@ function firstTimeLaneMPCM():void
 function firstTimeLaneMPCFH():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane is quick to flop his body atop yours and roughly grip onto your [pc.fullChest]. You wince at the way his claws dig into your skin, but the feeling of him pressing himself against you is far more pleasurable than any pain he might inflict. You squeeze your legs together");
 	if (pc.hasCock()) output(", enjoying the way [pc.eachCock] grows and inflates against his warm, smooth, lower-belly scales. You get a warm spike of pleasure with every movement you both make against each other.");
@@ -2511,6 +2609,7 @@ function firstTimeLaneMPCFH():void
 function firstTimeLaneFPCMH():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane leaps onto the bed, immediately straddling your stomach. She lowers her body and kisses her snatch against your lower ribs, and she immediately shivers in desire. You nervously lift your hands, knowing you’re about to caress your goddess, but just as you feel the electric thrill of your hands on her hips, she slaps them away. <i>“I am in charge,”</i> she tells you, her tassels flared open. You moan in submission, watching the swirls and the flashing lights, physically unfulfilled but enticed. She’ll be good to you.");
 
@@ -2739,6 +2838,7 @@ function firstTimeLaneFPCMH():void
 function firstTimeLaneFPCFGenderless():void
 {
 	clearOutput();
+	laneHeader(true);
 
 	output("Lane crawls onto the bed, stalking her way across it and up your body. She moves slowly, dragging her heavy breasts and smooth front scales across your skin in a delicious, electric way that sends alights your senses. Her soft hands map the way for her as she crawls over you and drapes her body over yours; she feels along the fat of your legs and the thick of your [pc.hips], across your belly and over your [pc.chest] until she’s completely on top of you, face-to-face, her snout just centimeters from your [pc.face].");
 
@@ -2978,6 +3078,7 @@ function firstTimeLaneFPCFGenderless():void
 function lanesAppearance():void
 {
 	clearOutput();
+	laneHeader();
 
 	if (lane.mf("m", "f") == "m")
 	{
@@ -3095,6 +3196,8 @@ function followerLaneIntervention(followerName:String):void
 
 	output("\n\nYou grit your teeth as you consider "+ lFollowerMF("his", "her") +" words and think on the implications of your next actions. You love your [lane.master] Lane; what [lane.heShe] wants is what you want, but you’re not entirely certain someone like " + followerName + " would see it that way. You could try to confide in her how you feel about Lane and what [lane.heShe] means to you – or you could tell "+ lFollowerMF("him", "her") +" to mind her own goddamn business. "+ lFollowerMF("He", "She") +" knows who the captain of this ship is; if you told "+ lFollowerMF("him", "her") +" to fuck off, "+ lFollowerMF("he", "she") +" would, plain and simple.");
 
+	processTime(20);
+
 	// [=Confide=][=Fuck Off=]
 	clearMenu();
 	addButton(0, "Confide", followerLaneInterventionConfide);
@@ -3170,8 +3273,10 @@ function followerLaneInterventionConfide():void
 	output("\n\nYour old life starts again today.");
 
 	// The PC no longer loses 500 credits per day. ‘Detox’ begins.
-	flags["LANE_WIRE_CREDITS_DAILY"] = 0;
+	flags["PC_PAYS_LANE_ERRY_DAY"] = undefined;
 	flags["LANE_DETOX_COUNTER"] = 0;
+
+	processTime(30);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -3204,6 +3309,7 @@ function followerLaneInterventionFuckOff():void
 
 	// The PC is hypnotized for the rest of the game and is guaranteed to get the ‘Lane owns Steele Tech’ bad ending after he/she obtains their father’s fortune.
 	flags["LANE_FULLY_HYPNOTISED_FOREVER"] = 1;
+	processTime(30);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

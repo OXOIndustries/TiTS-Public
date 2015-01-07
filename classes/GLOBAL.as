@@ -144,6 +144,7 @@
 		public static const TYPE_GOAT:int 									= 50;
 		public static const TYPE_SYNTHETIC:int 								= 51;
 		public static const TYPE_SIMII:int 								    = 52;
+		public static const TYPE_DAYNAR:int									= 53;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -192,7 +193,11 @@
 			"Vanae",
 			"Vanae Maiden",
 			"Vanae Huntress",
-			"Leithan"
+			"Leithan",
+			"Goat",
+			"Synthetic",
+			"Simii",
+			"Daynar"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

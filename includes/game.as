@@ -298,6 +298,12 @@ function shipMenu():Boolean {
 	
 	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
+	// Lane follower hook
+	if (tryFollowerLaneIntervention())
+	{
+		return true;
+	}
+	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -471,6 +477,10 @@ function statusTick():void {
 			//TIMER OVER!
 			if(pc.statusEffects[x].minutesLeft <= 0) 
 			{
+				if (pc.statusEffects[x].storageName.indexOf("Lane's Hypnosis"))
+				{
+					baseHypnosisWearsOff(pc.statusEffects[x].storageName);
+				}
 				//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
 				if(pc.statusEffects[x].storageName == "Crabbst") 
 				{
@@ -867,6 +877,9 @@ public function processTime(arg:int):void {
 
 				// Tick up all of the attached mimbranes days since last fed
 				mimbranesIncreaseDaysSinceFed();
+				
+				// Lane monies
+				laneHandleCredits();
 			}
 		}
 		arg--;
@@ -896,6 +909,7 @@ public function processTime(arg:int):void {
 		}
 	}
 	
+	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
 }
 
