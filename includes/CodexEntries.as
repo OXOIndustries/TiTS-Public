@@ -32,6 +32,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
@@ -1376,6 +1377,8 @@ function thraggenCodexEntry():void
 
 	outputCodex("\n\nThe war that immediately bloomed turned a dozen U.G.C. worlds into smokey, wasted husks before a proper response could be mustered and a military assembled. With a friendly casualty count in excess of 50 billion, the UGC won. It was not a pleasant victory, nor a clean one. To this day, the surviving thraggen worlds exist in perpetual blockade, closely watched by an army of spy satellites for any signs of hostility.");
 
+	outputCodex("\n\n");
+
 	CodexManager.viewedEntry("Thraggen");
 }
 
@@ -1436,4 +1439,66 @@ function daynarCodexEntry():void
 	outputCodex("\n");
 
 	CodexManager.viewedEntry("Daynar");
+}
+
+function sionachCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("SIONACH");
+	outputCodex(header("The Sionach"));
+	outputCodex("<b>Name (Singular & Plural):</b> Sionach");
+	outputCodex("\n<b>Genders:</b> Male and female");
+	outputCodex("\n<b>Height:</b> 4’7” to 5’10”");
+	outputCodex("\n<b>Hair:</b> Sionach hair runs the gamut from orange, black, white, grey, browns and silvers of varying shades. In addition to scalp and pubic hair, many sionach of both genders develop what are colloquially referred to as whiskers on the cheek: three bar-like patterns of short, downy hair. In addition, all have slender, shaped patterns of fur across their otherwise hairless bodies which vary from individual to individual. Some have small strips up their legs, others have tufts on knees and elbows, and some have negligee-like patterns around the chest and buttocks. These outcroppings are always very short, barely removed from the skin, and serve more as coloration than protection. ");
+	outputCodex("\n<b>Eyes:</b> Two large eyes in the normal humanoid position. Common eye colors include amber, golden, brown, crimson and yellow-green, with rare eye colors including blues, purples and blacks. Pupils are either round or vertical slits, with an equal distribution among the population. ");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Physical Features"));
+	outputCodex("Sionach are humanoids, slightly smaller and more lithe than a terran. They stand on digitigrade legs with five-toed feet, each toe capped with a talon-like claw rather than a nail. However, most sionach keep said claws filed down to prevent injury and damage. They have a single pair of arms, ending in five-fingered hands that bear short, tough talons firmly fixed to the flesh. These are kept filed down much like the talons on their feet, for the same purpose.");
+
+	outputCodex("\n\nSionach eyes are larger than a humans, and glow with faint luminescence. They have fang-like teeth, larger and sharper than the human norm, clearly evolved for predation. Ears reminiscent of those of a fox, if writ much larger, sit on either side of their head; their mobility makes them important parts of sionach body-language. Atop a sionach's head sits a pair of horns, made of bone growths. The precise size varies widely from individual to individual; some have only small nubs, easily hidden by their hair, whilst others have much larger and more impressive horns that either grow forward, to the sides, or curl like those of rams. It's not unheard of for Sionach to file down their horns simply to make them less obvious, but this is less common than it is for the claws.");
+
+	outputCodex("\n\nSionach possess one or more tails sprouting from their rear ends; these look like fox tails, but are considerably longer, with extreme cases growing out nearly as long as their owner is tall. The precise number varies from 1 to 9 in total, and tail number is traditionally a social caste mechanism - the more tails an individual has, the higher in the social hierarchy they are. This has fallen out of favor in recent years, but particularly tail-blessed individuals still enjoy many social privileges. Sionach tails are prehensile, and exceptionally sensitive to the touch, owing to the masses of nerve endings found in them that allow them to be prehensile. These tails are so sensitive in fact, that touching or handling the tails of a sionach who hasn’t expressly given permission is considered a low form of sexual assault -- though, at the same time, tails often find a usage in sex amongst particularly connected lovers.  Additionally, though the light they cast is far too meagre to call much attention in even normal ambience, all sionach tails have luminescent glands in the tips, causing them to glow gently in the dark.");
+
+	outputCodex("\n\nSimilarly to humans, female sionach possess permanent breasts mounted on their chests. Breast size averages are smaller than current terran or ausar norms, with the norm being between a large B or C-cup; more buxom sionach are quite rare, but command an exotic beauty among their species. Breast growth modifications are quite common since their joining the U.G.C.");
+
+	outputCodex("\n\nMales possess external phalluses, which are normally concealed inside a sheath that hangs above two external testes. Like the vulpines they resemble, sionach cocks are knotted, but they lack the distinctive tapered shape of an actual vulpine phallus; instead, the sionach phallus has a distinctly reptilian shape to it, bulbous on the bottom and tapering out across a curved shafted to a pyramid-tipped head. Male phallus size is abnormally large compared to their body height, with average lengths between ten and eighteen inches. ");
+
+	outputCodex("\n\nComplex organs inside of the Sionach's torso produce a strange chemical mixture that becomes luminescent several seconds after being exposed to oxygen, creating a ghostly looking flame. This “firegas” is completely harmless, being a biological phosphorescence - essentially, it's nothing more than glowing mist, being tasteless, odourless, and having very little heat. It is believed to have evolved as a method for warding off predators, much like a leithan's bioluminescent plating. ");
+
+	outputCodex("\n\nSome chemical quirk means that a sionach's flames are always the same color and hue as his or her eyes, and it is believed that the luminescent nature of a sionach's eyes is due to related chemicals being part of their makeup. The luminescence of a sionach's tail, by comparison, is confirmed as being due to its connection the organs that produce firegas.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Typical Environments"))
+	outputCodex("Arcysus is a temperate, oceanic world with relatively little landmass. What land exists is rolling, open plains across several chains of large islands. While they had little landmass to work with, the sionach developed sea travel early, and in more modern times, sea-based construction: several of the largest cities on Arcysus are floating citadels, reaching deep beneath the surface.");
+
+	outputCodex("\n\nWhile the sionach were not the first in their system to develop space travel -- that development went to their lunar neighbors, the kui-tan -- the sionach wholeheartedly embraced the science of spaceflight soon after. This lifestyle has led to the sionach adapting quite well to interplanetary travel, and they are well respected sailors thanks to millennia of naval tradition. They have not colonized far afield, thanks to their races' small numbers and slow reproduction, but sionach ships are a common sight throughout the galaxy.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Sionach, though capable of engaging in sex whenever they choose, are only capable of reproducing once a year, during a four-week long period during which females enter a state of “heat”. During their heat, female sionach experience a marked increase in libido, and a noticeable swell in the size of the hips and buttocks, signaling their fertility.");
+
+	outputCodex("\n\nSex with a sionach male is quite an experience; their strangely-flared, bulbous phalluses are articulated to the point they can undulate and move inside their partner with an almost tentacle-like sinuousness, granting them a range of motion that approaches prehensility. Penetration is deep and intense due to the sheer size and girth of a sionach penis.");
+
+	outputCodex("\n\nDespite the fact that sionach testes can be fairly large, they are not exceptionally productive. Indeed, the average sionach produces far less semen than the human average. This is the common explanation for the sionachs' relatively low population, and the reason the species as a whole is quite hesitant to colonize other worlds -- this would spread the species dangerously thin.");
+
+	outputCodex("\n\nDespite their otherwise mammalian physiques, sionach are egg-layers, producing one or more eggs after fertilisation. The precise size of a clutch is dependant on the virility of the father; most only have one, or rarely, two at a time.");
+
+	outputCodex("\n\nOnce fertilised, the eggs grow to their full size and are ready to be delivered within four weeks, and will hatch within another eight to nine days of being laid. Infant sionach are highly dependant on their mothers, and actually nurse for an average of four years, but sometimes as long as six years, as part of their development. In a natural population control method, hormones produced by breastfeeding prohibit entering heat; only after her last clutch has been weaned can a sionach bear more clutches.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The sionach exist as part of a small, independent collaboration of races centered on their solar system. The sionach themselves evolved on the planet Arcysus, while a race known as the kui-tan are quite literally their galactic neighbors; the kui-tan homeworld, Florus, is actually the largest moon of Arcysus. The third race in their coalition is a cultural offshoot of the kaithrit species, who settled in their system with the permission of the now-spacefaring sionach and kui-tan.");
+
+	outputCodex("\n\nThe sionach are a relatively recent contact for the U.G.C. made in the last planet rush, and are still making a place for themselves, counting themselves more as nominal allies than as actual, full-fledged members. It is possible that, with time, they may unite officially or even become a full part of the U.G.C., but for now they have not expressed interest in that, and they are too small an independent power for most authorities to worry about forcing them to ally or join.  As a result, this race is not widely known throughout space just yet, though the continuing presence of sionach ships has grown over recent years.");
+
+	outputCodex("\n\nAll evidence suggests that the sionach cultural evolution was fairly standard for humanoids, with the most unusual aspect being their early contact with other sapient life from beyond their planet. As is widely documented in their own planet's histories, it was shortly after the sionach developed powerful radio receivers that they accidentally made contact with the kui-tan, who had reached a similar stage of development on their own world.");
+
+	outputCodex("\n\nIt is something of a friendly argument between the two species about who holds the more important role in their mutual histories; the sionach, for inventing the radio transmitters that allowed them to greet their lunar neighbors, of the kui-tan, for inventing the first reliable space-vessels that made physical contact between their species possible.");
+
+	outputCodex("\n\nIt's possible that it was because of this initially friendly contact with extraterrestrial life, and their own ignorance of greater culture, that the sionach were willing to extend a hand of friendship to a kaithrit colony-fleet that strayed into their system. Damaged and low on supplies due to raids and the disasters that had brought them off-course and to the sionach's system, these Kaithrit accepted that friendly offer and eventually found themselves welcomed as a third member of the now-coalition of alien species. Ceasing their nomadic wanderings, they have fully settled into the system and become an integrated part of the new culture there.");
+
+	outputCodex("\n\n");
+
+	CodexManager.viewedEntry("Sionach");
 }
