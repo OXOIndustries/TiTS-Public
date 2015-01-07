@@ -1,5 +1,7 @@
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Items.Guns.Goovolver;
+import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
 //Steele Tech Shop (Tarkus)
 //Dogsloots 'r' Us
@@ -621,7 +623,7 @@ function repairMyRustBroInjuryAnno():void
 	userInterface.showName("\nANNO");
 	output("<i>\"Can you take a look at this?\"</i> you ask, pulling your equipment off and setting it onto the counter.");
 	//if that leaves the PC bare-breasted AND PC has boobs:
-	if(pc.upperUndergarment == "" && pc.biggestTitSize() >= 1) output("\n\nAnno's eyes widen a bit as you take off your top, but she's quick to recompose herself into a businesslike demeanor as you start talking price and time. You can't shake the feeling of her eyes glancing up at your bare chest, though, and more than once her swishing tail knocks some widget or another over behind the counter.");
+	if(!(pc.upperUndergarment is EmptySlot) && pc.biggestTitSize() >= 1) output("\n\nAnno's eyes widen a bit as you take off your top, but she's quick to recompose herself into a businesslike demeanor as you start talking price and time. You can't shake the feeling of her eyes glancing up at your bare chest, though, and more than once her swishing tail knocks some widget or another over behind the counter.");
 	output("\n\n<i>\"Uh, yeah, sure,\"</i> she says, scooping your gear off the counter and into a bin beneath it. <i>\"Just be a sec, boss. Promise I won't charge you more than component costs!\"</i>");
 	output("\n\nShe hefts the bin up and vanishes into a back room behind the store. You spend the next few minutes browsing the weird techno-crap piled up in the storefront, occasionally wincing as Anno lets out a curse or clangs something metallic together, sending reverberations up your spine. Eventually, she pops back into the store, your gear looking... better. Anno wipes some grease and soot from her brow before handing it back over.");
 	output("\n\n<i>\"There ya go! Good as, uh... well, it's fixed. Try not to get sydianed again, okay?\"</i>");
@@ -3324,7 +3326,7 @@ function gigaGooPunch():void
 	
 	if (rand(4) == 0)
 	{
-		pc.createStatusEffect("Stunned", 3, 0, 0, 0, "Stun", "You are stunned and cannot act until you recover!", true, 0);
+		(pc as Creature).createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
 		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 	}
 

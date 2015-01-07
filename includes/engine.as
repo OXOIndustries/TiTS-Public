@@ -178,8 +178,8 @@ public function updatePCStats():void {
 
 	
 	this.userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	this.userInterface.playerLevel.values.text = pc.level;
-	this.userInterface.playerCredits.values.text = pc.credits;
+	this.userInterface.playerLevel.values.text = String(pc.level);
+	this.userInterface.playerCredits.values.text = String(pc.credits);
 	
 	this.userInterface.time = timeText();
 	this.userInterface.days = String(days);

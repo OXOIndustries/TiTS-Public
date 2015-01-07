@@ -807,10 +807,10 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	//Cunt change!
 	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	output("\n\nHis squared, chitinous hips slap against your [pc.butt] with echo-birthing force, jolting you against an ancient deckplate");
-	if(pc.biggestTitSize() >= 4 || pc.buttRating > 10)
+	if(pc.biggestTitSize() >= 4 || pc.buttRating() > 10)
 	{
 		output(" and sending ripples through your ");
-		if(pc.buttRating > 10) output("[pc.butt]");
+		if(pc.buttRating() > 10) output("[pc.butt]");
 		else output("[pc.chest]");
 	}
 	output(". You hold on for dear life as he mercilessly ruts you. His tail, flicking back and forth, rises up between his legs to rub against your [pc.belly] once more, smearing more of his viscous, aphrodisiac goo across. You get hotter and hotter until your ");

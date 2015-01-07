@@ -4536,6 +4536,16 @@
 			}
 			return index;
 		}
+		public function smallestCockVolume(effective: Boolean = true): Number {
+			if (cocks.length == 0) return 0;
+			var counter: Number = cocks.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (cockVolume(index, effective) > cockVolume(counter, effective)) index = counter;
+			}
+			return cockVolume(index, effective);
+		}
 		public function smallestCockIndex(effective: Boolean = true): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;

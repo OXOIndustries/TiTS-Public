@@ -593,7 +593,7 @@ function treatmentHourProcs():void
 				if(pc.hasVagina()) eventBuffer += "[pc.thighs]";
 				else eventBuffer += "cheeks";
 				eventBuffer += ".";
-				if(pc.bRows > 1) eventBuffer += "\n\nIf you the Treatment worked on more than one row, you could probably be having a wonderful titgasm by now.";
+				if(pc.breastRows.length > 1) eventBuffer += "\n\nIf you the Treatment worked on more than one row, you could probably be having a wonderful titgasm by now.";
 				//+33 lust
 				pc.lust(33);
 				pc.breastRows[0].breastRatingRaw++

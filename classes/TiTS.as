@@ -61,6 +61,7 @@
 	
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
+	import classes.Engine.Utility.getPlanetName;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -806,6 +807,10 @@
 		public function get brynn():Brynn
 		{
 			return chars["BRYNN"];
+		}
+		public function get lane():Lane
+		{
+			return chars["LANE"];
 		}
 	}
 }

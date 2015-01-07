@@ -68,7 +68,7 @@ function buyADrinkFromCandice(drink:String):void
 	{
 		pc.imbibeAlcohol(15);
 		pc.credits -= 15;
-		if(pc.race() == "ausar" || pc.race == "half-ausar") pc.energy(5);
+		if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.energy(5);
 	}
 	//[25] Miniature Rahn - 13
 	else if(drink == "Miniature Rahn")

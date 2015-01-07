@@ -786,7 +786,7 @@ function liftDownEvent():void
 		output("stars is blocked out by the rise of huge earthen cliff sides as you descend into the chasm. You step up to the glass fore of the car, squinting to see the tether station far below. You can't at first, but as time passes (and the elevator picks up speed), it comes into view. It's a large installation, circular, surrounded by a wide walkway with a lengthy bridge leading from the bottom of the lift tracks to the door of the station proper.");
 
 		output("\n\nWhat a long way down. You take a moment to catch your breath after the deadly shootout with that crazed cat-girl and her robotic friend; ");
-		if(pc.rangedWeapon.shortName != "" && pc.rangedWeapon.damageType == "GLOBAL.KINETIC") output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
+		if(pc.rangedWeapon.shortName != "" && pc.rangedWeapon.damageType == GLOBAL.KINETIC) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
 		else if(pc.rangedWeapon.shortName != "") output("you check the ammunition readings on your weapon, satisfied you're up for another encounter");
 		else output("you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]");
 		output(". Satisfied you're ready for a proper fight, you step back from the window and steel yourself from what's to come.");
@@ -2193,7 +2193,7 @@ function defeatedByKaska():void
 				if(pc.cockTotal() > 1) output("s aren't");
 				else output(" isn't");
 				output(" far behind.");
-				if(pc.crotchGarbed()) 
+				if(pc.isCrotchGarbed()) 
 				{
 					output(" You can feel your [pc.lowerGarment] slipping and sliding wetly against ");
 					if(pc.cockTotal() == 1) output("it");

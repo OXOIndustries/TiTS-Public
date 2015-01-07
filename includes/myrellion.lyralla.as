@@ -58,7 +58,7 @@ function approachingLyralla(backFromMenu:Boolean = false):void
 		output("\n\nGrinning now, she offers, “<i>I believe a bridge may be a more apt metaphor. Our people dwell below ground and have less experience with such structures. I still have much to learn - your name, for instance.</i>”");
 		output("\n\nYou ");
 		if(pc.isNice()) output("introduce yourself and shake her hand, a gesture she seems to already have adapted to.");
-		else if(pc.Mischievous()) output("introduce yourself as Captain [pc.name] Steele and strike a ludicrously exagerrated pose.");
+		else if(pc.isMischievous()) output("introduce yourself as Captain [pc.name] Steele and strike a ludicrously exagerrated pose.");
 		else output("tersely inform her of your name.");
 		output("\n\nShe places her lower arms’ elbows on the desk and interlaces her fingers, resting her chin upon them as she smiles up at you. “<i>An interesting name for an interesting [pc.man]. Tell me, what can a I do for you?</i>”");
 		flags["MET_LYRALLA"] = 1;

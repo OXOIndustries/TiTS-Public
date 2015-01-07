@@ -1,4 +1,5 @@
-﻿//Encounters
+﻿import classes.Creature;
+//Encounters
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
 function encounterASexBot():void
 {
@@ -307,7 +308,7 @@ function getDroneHacked():void
 	{
 		output("\n\nYour drone rights itself... and then turns itself to you, green light beaming out of its optical sensors. Images flicker all around it, endlessly changing images of soft flesh, breasts, ass, bulging phalluses, pink on pink, pink on brown, blue on mauve.... It’s accompanied with the moans, grunts and slurps of the extranet porn it is now helplessly streaming and projecting in ways you never thought it had the capacity to do. You bat it away, irritated, and it immediately flies back. It hovers near your shoulder, forcing the sounds and images into your head.");
 		output("\n\n<i>“I hope you enjoy this taster, insert name here.”</i> The voice of the sexbot surfs calmly to you over a chorus of gleeful squeals and orgasmic groans.");
-		pc.createStatusEffect("Porno Hacked Drone",2+rand(3),0,0,0,false,"Charmed","Your drone has been hacked to broadcast porn at you! You'll have to wait for your programming to overcome the rogue process. Hopefully it won't take too long!",true,false);
+		(pc as Creature).createStatusEffect("Porno Hacked Drone", 2 + rand(3), 0, 0, 0, false, "Charmed", "Your drone has been hacked to broadcast porn at you! You'll have to wait for your programming to overcome the rogue process. Hopefully it won't take too long!", true, 0);
 	}
 	processCombat();
 }
@@ -951,7 +952,7 @@ function dogEStyleWithSexBots():void
 	//Small:
 	if(pc.cocks[x].cLength() <= 5.5)
 	{
-		output("\n\nIt obviously doesn’t take much for the sexbot to take all of your cute " + pc("boy","girl") + " dick down to the base; indeed, you have the sneaking suspicion it actually tightened up a bit to properly glove you. The thought brings heat to your cheeks which you channel into clapping your [pc.hips] into it hard, determined to make the most out of a hole small enough for you to completely fill for once.");
+		output("\n\nIt obviously doesn’t take much for the sexbot to take all of your cute " + pc.mf("boy","girl") + " dick down to the base; indeed, you have the sneaking suspicion it actually tightened up a bit to properly glove you. The thought brings heat to your cheeks which you channel into clapping your [pc.hips] into it hard, determined to make the most out of a hole small enough for you to completely fill for once.");
 	}
 	//Average:
 	else if(pc.cocks[x].cLength() <= 12) 

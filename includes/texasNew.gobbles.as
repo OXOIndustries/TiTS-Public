@@ -54,8 +54,8 @@ public function supGobbles2014CanadaEdition():void
 	if (pc.isChestCovered()) output(" [pc.armor]");
 	else output(" arm");
 	output(". You look behind you, and find a rather slight cow-girl standing behind you with big eyes staring");
-	if (pc.height > 66) output(" up");
-	else if (pc.height < 52) output(" down");
+	if (pc.tallness > 66) output(" up");
+	else if (pc.tallness < 52) output(" down");
 	output(" at you. She can’t be much more than five feet tall, and her Treated cup-size is simply ludicrous on her small frame, a pair of GG-cups that strain her faux-moccasin bra and threaten to burst the seams at any moment. Even those gloriously over-sized melons can’t entirely distract you from what’s behind her, though: a great big plumage of feathers is sticking out from under her panties and garter belt.");
 	if (CodexManager.entryViewed("The Treatment")) output(" That’s not a normal Treatment effect, is it?");
 	else output(" Those can’t be natural, can they?");

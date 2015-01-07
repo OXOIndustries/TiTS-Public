@@ -1,4 +1,5 @@
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Items.Guns.CustomLP17;
 import classes.Items.Melee.Cutlass;
 public function answerKiroDistressCall(destination:String):void
@@ -415,7 +416,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	output("\n\n[pc.EachCock] is pulsating, trembling and twitching with need.");
 	if (pc.cockTotal() == 3) output(" Even the extra one is bobbing and bouncing, dripping all over itself and unable to contain its sympathetic lust.");
-	else if (pc.cockTotal > 3) output(" Even the extra ones are bobbing and bouncing, dripping all over themselves and unable to contain their sympathetic lusts.");
+	else if (pc.cockTotal() > 3) output(" Even the extra ones are bobbing and bouncing, dripping all over themselves and unable to contain their sympathetic lusts.");
 	output(" It doesn't help that the orgasm-addled woman in front of you is reaching back to squeeze your [pc.butt], watching you over her shoulder in between eyeroll-inducing spasms of pleasure, her tongue sliding back and forth across her lips with sensual hunger.");
 
 	output("\n\nThe lusty maid bubbles, \"<i>Mmm, you're doing so good, hero. Ooohh... OH! Right there! Keep it up! Fuck me harder, baby!</i>\" Her hands squeeze you once more, and then, she pushes hard, forcing you as deeply into her as possible. She grinds and wiggles back against you, the warmth of her alien body squishing down against your groin as she twists so that her insides are rolling your");
@@ -519,7 +520,7 @@ public function kirosShipChubnookiFucksYouGud():void
 	else if (pc.vaginaTotal() > 2) output(" another");
 	if (pc.vaginaTotal() > 1) output(" of your [pc.vaginas], fingerfucking yourself in a way that lets you press against the cock inside you, rubbing it to ease the penetration.");
 	
-	pc.cuntChange(selVag, true, true, false);
+	pc.cuntChange(selVag, (kiro as Creature).biggestCockVolume(), true, true, false);
 
 	output("\n\n\"<i>Ohhhh yesss,</i>\" the raccoon-girl gasps, \"<i>You're going to make me cum so hard. I can feel it.</i>\" She kisses you without warning, her pouty lower lip slipping over your own in advance of her probing tongue. It finds your own and begins to tangle with it, distracting you from your pace until your muscles relax and your body slides three inches down that turgid fuckpole all at once. You moan and aggressively kiss her back, not even trying to control your descent anymore. It feels too good, and you're too horny to try to master yourself any longer. You're going to let yourself be fucked as fast as your soaking-wet snatch and gravity will allow, stretching out to handle the huge insertion as you go, her pulsating head bathing your reproductive organs in a slippery-warm soup of tanuki love.");
 	

@@ -1174,7 +1174,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	}
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");
-	if (pc.legs == 2) output(" spreading your [pc.legs] wide for herself, hands braced on your knees");
+	if (pc.isBiped()) output(" spreading your [pc.legs] wide for herself, hands braced on your knees");
 	else output(" positioning herself between your [pc.legs], bracing herself on your [pc.hips]");
 	output(". You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of the probe brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... ");
 

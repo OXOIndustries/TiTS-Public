@@ -504,9 +504,9 @@ function vanaeTFScene():void
 			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.25;
 			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.25;
 			
-			if (pc.cumMultiplier < 3) pc.cumMultiplier += 0.25;
-			if (pc.cumMultiplier < 2) pc.cumMultiplier += 0.25;
-			if (pc.cumMultiplier < 1) pc.cumMultiplier += 0.25;
+			if (pc.cumMultiplier() < 3) pc.cumMultiplierRaw += 0.25;
+			if (pc.cumMultiplier() < 2) pc.cumMultiplierRaw += 0.25;
+			if (pc.cumMultiplier() < 1) pc.cumMultiplierRaw += 0.25;
 			
 			output("Your [pc.cocks]");
 			if (pc.cocks.length > 1) output(" tingle and throb");
