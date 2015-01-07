@@ -127,10 +127,10 @@ function ellieMenu(display:Boolean = true):void
 	if(display) 
 	{
 		//Codex locked:
-		if(!CodexManager.entryUnlocked("Leithan")) 
+		if(!CodexManager.entryUnlocked("Leithans")) 
 		{
 			output("\n\nAs you contemplate what to say, your Codex beeps that it’s identified Ellie’s species - Leithans. <b>New Codex entry unlocked.</b>");
-			CodexManager.unlockEntry("Leithan");
+			CodexManager.unlockEntry("Leithans");
 		}
 		if(flags["MET_ELLIE"] == undefined) flags["MET_ELLIE"] = 1;
 		//Repeat Greetings

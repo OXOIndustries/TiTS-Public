@@ -79,7 +79,7 @@ public function mainGameMenu():void {
 	this.addButton(2,"Inventory",inventory);
 	//Other standard buttons
 
-	if(this.chars["PC"].lust() < 33) {
+	if(pc.lust() < 33) {
 		if(pc.canLactate()) addButton(3,"Hand Milk",milkturbation);
 		else this.addDisabledButton(3,"Masturbate");
 	}
@@ -206,11 +206,11 @@ function rest():void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	clearOutput();
-	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
-		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax() * .2));
+	if(pc.HPRaw < pc.HPMax()) {
+		pc.HP(Math.round(pc.HPMax() * .2));
 	}
-	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) {
-		this.chars["PC"].energy(Math.round(this.chars["PC"].energyMax() * .2));
+	if(pc.energy() < pc.energyMax()) {
+		pc.energy(Math.round(pc.energyMax() * .2));
 	}
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
@@ -252,6 +252,10 @@ function sleep(outputs:Boolean = true):void {
 			
 			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
+		else if (pc.level == 7)
+		{
+			eventBuffer += "\n\n<b>You've already reached the current maximum level.</b>";
+		}
 		
 		//CELISE NIGHT TIME BEDTIMEZ
 		if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
@@ -281,12 +285,12 @@ function sleep(outputs:Boolean = true):void {
 
 function sleepHeal():void
 {
-	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
+	if (pc.HPRaw < pc.HPMax()) 
 	{
-		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
+		pc.HP(Math.round(pc.HPMax()));
 	}
 	
-	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
 
@@ -407,7 +411,35 @@ function flyTo(arg:String):void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
+function sneakBackYouNudist():void
+{
+	clearOutput();
+	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
+	processTime(180+rand(30));
+	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 function move(arg:String, goToMainMenu:Boolean = true):void {
+	//Prevent movement for nudists into nude-restricted zones.
+	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
+	{
+		var nudistPrevention:Boolean = false;
+		if(!pc.isChestGarbed() && pc.biggestTitSize() > 1) nudistPrevention = true;
+		if(!pc.isCrotchGarbed()) nudistPrevention = true;
+		if(nudistPrevention)
+		{
+			clearOutput();
+			output("Nudity is illegal in that location! You'll have to cover up if you want to go there.");
+			clearMenu();
+			addButton(0,"SneakBack",sneakBackYouNudist,undefined,"SneakBack","Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
+			addButton(14,"Back",mainGameMenu);
+			return;
+		}
+	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
@@ -429,84 +461,90 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 function statusTick():void {
 	var shitToCut:Array = new Array();
 	var y:int = 0;
-	for(var x:int = this.chars["PC"].statusEffects.length-1; x >= 0; x--) 
+	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
 	{
-		//trace("Checking status effect: " + x + " of " + (this.chars["PC"].statusEffects.length-1));
+		//trace("Checking status effect: " + x + " of " + (pc.statusEffects.length-1));
 		//If times, count dat shit down.
-		if(this.chars["PC"].statusEffects[x].minutesLeft > 0) 
+		if(pc.statusEffects[x].minutesLeft > 0) 
 		{
-			this.chars["PC"].statusEffects[x].minutesLeft--;
+			pc.statusEffects[x].minutesLeft--;
 			//TIMER OVER!
-			if(this.chars["PC"].statusEffects[x].minutesLeft <= 0) 
+			if(pc.statusEffects[x].minutesLeft <= 0) 
 			{
 				//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
-				if(this.chars["PC"].statusEffects[x].storageName == "Crabbst") 
+				if(pc.statusEffects[x].storageName == "Crabbst") 
 				{
-					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
-					this.chars["PC"].reflexesMod += this.chars["PC"].statusEffects[x].value2;
-					this.chars["PC"].aimMod += this.chars["PC"].statusEffects[x].value2;
-					this.chars["PC"].intelligenceMod += this.chars["PC"].statusEffects[x].value2;
-					this.chars["PC"].willpowerMod += this.chars["PC"].statusEffects[x].value2;
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					pc.reflexesMod += pc.statusEffects[x].value2;
+					pc.aimMod += pc.statusEffects[x].value2;
+					pc.intelligenceMod += pc.statusEffects[x].value2;
+					pc.willpowerMod += pc.statusEffects[x].value2;
 				}
 				//Horse pill gets bonus proc!
-				if(this.chars["PC"].statusEffects[x].storageName == "Horse Pill")
+				if(pc.statusEffects[x].storageName == "Horse Pill")
 				{
 					var pill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
 				}
 				//Condensol ends!
-				if(this.chars["PC"].statusEffects[x].storageName == "Condensol-A")
+				if(pc.statusEffects[x].storageName == "Condensol-A")
 				{
-					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-					for(y = 0; y < pc.cockTotal(); y++)
+					if(pc.hasCock())
 					{
-						pc.cocks[y].cLengthRaw *= 2;
+						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+						for(y = 0; y < pc.cockTotal(); y++)
+						{
+							pc.cocks[y].cLengthRaw *= 2;
+						}
 					}
 				}
-				if(this.chars["PC"].statusEffects[x].storageName == "Condensol-B")
+				if(pc.statusEffects[x].storageName == "Condensol-B")
 				{
-					eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
-					for(y = 0; y < pc.cockTotal(); y++)
+					if(pc.hasCock())
 					{
-						pc.cocks[y].cLengthRaw *= 4;
+						eventBuffer += "\n\nYou feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off.";
+						for(y = 0; y < pc.cockTotal(); y++)
+						{
+							pc.cocks[y].cLengthRaw *= 4;
+						}
 					}
 				}
 				//Boobswell ends!
-				if(this.chars["PC"].statusEffects[x].storageName == "Boobswell Pads")
+				if(pc.statusEffects[x].storageName == "Boobswell Pads")
 				{
 					//Message text, last boob size increase. 7 days later.
 					eventBuffer += "\n\nUnfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads";
-					if(pc.bRows() > 1) eventBuffer += "on your " + num2Text2(this.chars["PC"].statusEffects[x].value1+1) + " row of breasts";
+					if(pc.bRows() > 1) eventBuffer += "on your " + num2Text2(pc.statusEffects[x].value1+1) + " row of breasts";
 					eventBuffer += "!</b> You peel them off your [pc.skinFurScales] and toss them away.";
 				}
 				//Treatment finishing.
-				if(this.chars["PC"].statusEffects[x].storageName == "The Treatment")
+				if(pc.statusEffects[x].storageName == "The Treatment")
 				{
 					eventBuffer += "\n\n<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.";
 					eventBuffer += "\n\nOnce you claim you fortune, you can retire on New Texas, maybe even get your own private milker.";
 				}
-				if(this.chars["PC"].statusEffects[x].storageName == "Mead") 
+				if(pc.statusEffects[x].storageName == "Mead") 
 				{
-					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
-					this.chars["PC"].reflexesMod += this.chars["PC"].statusEffects[x].value2 * .5;
-					this.chars["PC"].aimMod += this.chars["PC"].statusEffects[x].value2 * .5;
-					this.chars["PC"].intelligenceMod += this.chars["PC"].statusEffects[x].value2 * .5;
-					this.chars["PC"].willpowerMod += this.chars["PC"].statusEffects[x].value2 * .5;
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					pc.reflexesMod += pc.statusEffects[x].value2 * .5;
+					pc.aimMod += pc.statusEffects[x].value2 * .5;
+					pc.intelligenceMod += pc.statusEffects[x].value2 * .5;
+					pc.willpowerMod += pc.statusEffects[x].value2 * .5;
 				}
-				if(this.chars["PC"].statusEffects[x].storageName == "X-Zil-rate")
+				if(pc.statusEffects[x].storageName == "X-Zil-rate")
 				{
-					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
-					trace("X-Zil-rate Expired: " + this.chars["PC"].statusEffects[x].value2);
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					trace("X-Zil-rate Expired: " + pc.statusEffects[x].value2);
 				}
-				if(this.chars["PC"].statusEffects[x].storageName == "Quivering Quasar")
+				if(pc.statusEffects[x].storageName == "Quivering Quasar")
 				{
-					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
-					trace("Quivering Quasar: " + this.chars["PC"].statusEffects[x].value2);
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					trace("Quivering Quasar: " + pc.statusEffects[x].value2);
 				}
-				if(this.chars["PC"].statusEffects[x].storageName == "Zil Sting")
+				if(pc.statusEffects[x].storageName == "Zil Sting")
 				{
-					this.chars["PC"].reflexesMod += this.chars["PC"].statusEffects[x].value1;
-					this.chars["PC"].libidoMod -= this.chars["PC"].statusEffects[x].value1;
+					pc.reflexesMod += pc.statusEffects[x].value1;
+					pc.libidoMod -= pc.statusEffects[x].value1;
 				}
 				if (pc.statusEffects[x].storageName == "Naleen Venom")
 				{
@@ -527,10 +565,9 @@ function statusTick():void {
 	while(shitToCut.length > 0)
 	{
 		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[0]].storageName + " in slot " + shitToCut[0] + " due to status effect time out.");
-		this.chars["PC"].statusEffects.splice(shitToCut[0],1);
+		pc.statusEffects.splice(shitToCut[0],1);
 		shitToCut.splice(0,1);
 	}
-
 }
 
 public function variableRoomUpdateCheck():void
@@ -575,6 +612,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["256"].southExit = "294";
 	}
+	else rooms["256"].southExit = undefined;
 	
 	// Annos shop
 	if (!steeleTechTarkusShopAvailable())
@@ -613,24 +651,39 @@ public function variableRoomUpdateCheck():void
 public function processTime(arg:int):void {
 	var x:int = 0;
 	var tightnessChanged:Boolean = false;
-	if(this.chars["PC"].ballFullness < 100) this.chars["PC"].cumProduced(arg);
-	var productionFactor:Number = 100/(1920) * ((this.chars["PC"].libido() * 3 + 100)/100);
-	
+	if(pc.ballFullness < 100) pc.cumProduced(arg);
+	var productionFactor:Number = 100/(1920) * ((pc.libido() * 3 + 100)/100);
 	//Double time
-	if(this.chars["PC"].hasPerk("Extra Ardor")) productionFactor *= 2;
-	
+	if(pc.hasPerk("Extra Ardor")) productionFactor *= 2;
 	//BOOZE QUADRUPLES TIEM!
-	if(this.chars["PC"].hasStatusEffect("X-Zil-rate") || this.chars["PC"].hasStatusEffect("Mead") || this.chars["PC"].hasStatusEffect("X-Zil-rate"))
+	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
 	productionFactor *= 4;
-	
 	//Half time.
-	else if (this.chars["PC"].hasPerk("Ice Cold")) productionFactor /= 2;
-	
-	//Actually apply lust.
-	this.chars["PC"].lust(arg * productionFactor);
-	
+	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
+
+	//Used to establish a cap
+	var lustCap:Number = Math.round(pc.lustMax() * .75);
+	//Not going over lustcap? Proceed as normal.
+	if(pc.lust() + (arg * productionFactor) < lustCap)
+	{
+		trace("Not going over lustcap. Lust: " + pc.lust() + " LustCap: " + lustCap + " Arg&Prod: " + arg*productionFactor);
+		//Actually apply lust.
+		pc.lust(arg * productionFactor);
+	}
+	//Already over the lustcap? Slowly reduce current lust.
+	else if(pc.lust() > lustCap)
+	{
+		var reduce:Number = arg * productionFactor / 4;
+		pc.lust(-reduce)
+	}
+	//Gonna hit the cap? Change to cap.
+	else
+	{
+		pc.lustRaw = lustCap;
+	}
+		
 	//Top off shields
-	this.chars["PC"].shieldsRaw = this.chars["PC"].shieldsMax();
+	pc.shieldsRaw = pc.shieldsMax();
 	
 	PregnancyManager.updatePregnancyStages(chars, arg);
 	
@@ -660,6 +713,8 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
 	variableRoomUpdateCheck();
 
+	processLaneDetoxEvents(arg);
+	
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.
@@ -736,41 +791,41 @@ public function processTime(arg:int):void {
 				treatmentHourProcs();
 			}
 			//Cunt stretching stuff
-			if(this.chars["PC"].hasVagina()) {
-				for(x = 0; x < this.chars["PC"].totalVaginas(); x++) {
+			if(pc.hasVagina()) {
+				for(x = 0; x < pc.totalVaginas(); x++) {
 					//Count da stretch cooldown or reset if at minimum.
-					if(this.chars["PC"].vaginas[x].loosenessRaw > this.chars["PC"].vaginas[x].minLooseness) this.chars["PC"].vaginas[x].shrinkCounter++;
-					else this.chars["PC"].vaginas[x].shrinkCounter = 0;
+					if(pc.vaginas[x].loosenessRaw > pc.vaginas[x].minLooseness) pc.vaginas[x].shrinkCounter++;
+					else pc.vaginas[x].shrinkCounter = 0;
 					//Reset for this cunt.
 					tightnessChanged = false;
-					if(this.chars["PC"].vaginas[x].loosenessRaw < 2) {}
-					else if(this.chars["PC"].vaginas[x].loosenessRaw <= 2 && this.chars["PC"].vaginas[x].shrinkCounter >= 200) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[x].loosenessRaw < 4 && this.chars["PC"].vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[x].loosenessRaw < 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[x].loosenessRaw >= 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
+					if(pc.vaginas[x].loosenessRaw < 2) {}
+					else if(pc.vaginas[x].loosenessRaw <= 2 && pc.vaginas[x].shrinkCounter >= 200) tightnessChanged = true;
+					else if(pc.vaginas[x].loosenessRaw < 4 && pc.vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
+					else if(pc.vaginas[x].loosenessRaw < 5 && pc.vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
+					else if(pc.vaginas[x].loosenessRaw >= 5 && pc.vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
 					if(tightnessChanged) {
-						this.chars["PC"].vaginas[x].loosenessRaw--;
+						pc.vaginas[x].loosenessRaw--;
 						eventBuffer += "\n\n<b>Your </b>";
-						if(this.chars["PC"].totalVaginas() > 1) eventBuffer += "<b>" + num2Text2(x+1) + "</b> ";
-						eventBuffer += "<b>" + this.chars["PC"].vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
+						if(pc.totalVaginas() > 1) eventBuffer += "<b>" + num2Text2(x+1) + "</b> ";
+						eventBuffer += "<b>" + pc.vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
 					}
 				}
 			}
 			//Butt stretching stuff
 			//Count da stretch cooldown or reset if at minimum.
-			if(this.chars["PC"].ass.loosenessRaw > this.chars["PC"].ass.minLooseness) this.chars["PC"].ass.shrinkCounter++;
-			else this.chars["PC"].ass.shrinkCounter = 0;
+			if(pc.ass.loosenessRaw > pc.ass.minLooseness) pc.ass.shrinkCounter++;
+			else pc.ass.shrinkCounter = 0;
 			//Reset for this cunt.
 			tightnessChanged = false;
-			if(this.chars["PC"].ass.loosenessRaw < 2) {}
-			if(this.chars["PC"].ass.loosenessRaw == 2 && this.chars["PC"].ass.shrinkCounter >= 72) tightnessChanged = true;
-			if(this.chars["PC"].ass.loosenessRaw == 3 && this.chars["PC"].ass.shrinkCounter >= 48) tightnessChanged = true;
-			if(this.chars["PC"].ass.loosenessRaw == 4 && this.chars["PC"].ass.shrinkCounter >= 24) tightnessChanged = true;
-			if(this.chars["PC"].ass.loosenessRaw == 5 && this.chars["PC"].ass.shrinkCounter >= 12) tightnessChanged = true;
+			if(pc.ass.loosenessRaw < 2) {}
+			if(pc.ass.loosenessRaw == 2 && pc.ass.shrinkCounter >= 72) tightnessChanged = true;
+			if(pc.ass.loosenessRaw == 3 && pc.ass.shrinkCounter >= 48) tightnessChanged = true;
+			if(pc.ass.loosenessRaw == 4 && pc.ass.shrinkCounter >= 24) tightnessChanged = true;
+			if(pc.ass.loosenessRaw == 5 && pc.ass.shrinkCounter >= 12) tightnessChanged = true;
 			if(tightnessChanged) {
-				this.chars["PC"].ass.loosenessRaw--;
-				if(this.chars["PC"].ass.loosenessRaw <= 4) eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
-				else eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
+				pc.ass.loosenessRaw--;
+				if(pc.ass.loosenessRaw <= 4) eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+				else eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
 			//Cunt snake pregnancy stuff
 			if(pc.hasCuntSnake() && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
@@ -798,7 +853,7 @@ public function processTime(arg:int):void {
 					chars["ALISS"].orgasm();
 				}
 				//Cunt snake tomfoolery
-				if(this.chars["PC"].hasCuntTail()) {
+				if(pc.hasCuntTail()) {
 					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;
 					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
 				}
@@ -1078,7 +1133,12 @@ function milkMultiplierGainNotificationCheck():void
 	}
 }
 
-function badEnd():void {
+function badEnd():void 
+{
+	gameOverEvent = true;
+	
+	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
+	
 	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
 }

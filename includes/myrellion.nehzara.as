@@ -224,6 +224,7 @@ function talkToNehzaraAbootZeWar():void
 	output("\n\nYou’re pretty sure the Golds would tell the story differently. History’s written by the victors, they say, and accounts probably conflict when there’s no victor yet decided. They do seem to agree on one thing, though: neither race is comfortable so long as the other survives.");
 	output("\n\nNehzara takes a breath before continuing. She’s a little more dispassionate now; that cold fire in her eyes has been replaced by a calmer and more professional clarity. “<i>The current war began with a major offensive on our part, yes, but any Gold who points to that as proof of us being the aggressor inevitably fails to mention that this war could be looked at as the result of several skirmishes which took place over </i>our<i> airspace,</i>” she continues. “<i>They were testing out new models of military craft unacceptably close to our cities.\n\nWhen we engaged and tried to see them off, our pilots came under attack. Of course, the bastards later claimed their pilots were not under orders to fire, but that’s nonsense and we all know it. We already knew they’d been developing a new delivery system for that gas of theirs. One grueling campaign later, Kressia is ours and Gildenmere is in our sights. And then you showed up.</i>” Her tone turns bitter at that last sentence, but she’s not looking directly at you: instead, her gaze is fixed firmly on a point just to your left.");
 	output("\n\nYou shrug and cross your arms over your [pc.chest], remaining silent for a moment. Nehzara meets your gaze once again, and turns her hands over upon her desk to show her palms, silently asking “<i>anything else?</i>” with her facial expression.");
+	flags["TALKED_TO_NEHZ_ABOUT_THE_WAR"] = 1;
 	processTime(7);
 	nehzeraMenu(talkToNehzaraAbootZeWar);
 }
@@ -650,7 +651,7 @@ function nehzeraMenu(arg):void
 		{
 			addButton(5,"Under Desk",sexUnderDeskWithNehzara,false,"Under Desk","It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs....");
 			if(pc.hasCock() && !pc.isTaur()) addButton(6,"StorageCloset",sexWivNehzaraInStorageCloset,false,"Storage Closet","You’ve got what she wants, but you know she’ll want to call the shots. Still, going along with Nehzara and letting her use you for her own pleasure could be fun for both of you.");
-			else addDisabledButton(6,"StorageCloset","Storage Closet","You not have any kind of tauric body and have a penis in order to access this scene.");
+			else addDisabledButton(6,"StorageCloset","Storage Closet","You must not have any kind of tauric body and have a penis in order to access this scene.");
 		}
 		else 
 		{

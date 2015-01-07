@@ -185,6 +185,22 @@ public function updatePCStats():void {
 	this.userInterface.days = String(days);
 	this.userInterface.showSceneTag();
 	
+	if ((pc as PlayerCharacter).levelUpAvailable())
+	{
+		if (gameOverEvent == true || inSceneBlockSaving == true)
+		{
+			userInterface.levelUpButton.Deactivate();
+		}
+		else
+		{
+			userInterface.levelUpButton.Activate();
+		}
+	}
+	else
+	{
+		userInterface.levelUpButton.Deactivate();
+	}
+	
 	updateNPCStats();
 }
 function timeText():String 

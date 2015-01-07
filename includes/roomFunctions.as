@@ -836,7 +836,7 @@ function randomBarnEventFunc():Boolean
 		//Ellie II
 		else if(flags["MET_ELLIE"] != undefined && rand(5) == 0)
 		{
-			output("\n\n<b>Ellie is wandering out of this stall</b> as you pass by, fiddling with the straps on her bra, which is already soaked with milk still drooling from her saucer-sized teats. \"<i>Hey, sweet-thing!</i>\" she says, wiggling on up to you in a cloud of of sex-scent.");
+			output("\n\n<b>Ellie is wandering out of this stall</b> as you pass by, fiddling with the straps on her bra, which is already soaked with milk still drooling from her saucer-sized teats. \"<i>Hey, sweet-thing!</i>\" she says, wiggling on up to you in a cloud of sex-scent.");
 			//if sex'd:
 			if(flags["ELLIE_SEXED"] != undefined) output(" \"<i>Wish I'd known you were out and about, I could have used a cute little thing to help me out instead of the rough old machine.</i>\"");
 			else output(" \"<i>Have fun in the barn! I know I did!</i>\"");

@@ -35,7 +35,7 @@
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 2;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 2;

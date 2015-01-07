@@ -191,7 +191,7 @@ function procDumbfuckStuff():void
 		if(pc.hasCock()) output("[pc.cocks]");
 		else if(pc.hasVagina()) output("[pc.vaginas]");
 		else output("[pc.nipples]");
-		output(". An orgasmic smile is spread across your face from the intensity of your boosted sensations. You could just masturbate and cum again and again and again. It'd feel soooo goood. You'd never get tired of of it!");
+		output(". An orgasmic smile is spread across your face from the intensity of your boosted sensations. You could just masturbate and cum again and again and again. It'd feel soooo goood. You'd never get tired of it!");
 	}
 	//Stuff that's appended on to announce perks
 	//GAIN EASY:

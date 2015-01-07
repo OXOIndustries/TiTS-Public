@@ -17,32 +17,48 @@ public function configureCodex():void
 	
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Zil", zilCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbrane", mimbraneCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myrmedion", myrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Venus Pitcher", venusPitcherCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snake", cuntSnakeCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Naleen", naleenCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","V-Ko",VKoCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Rahn",rahnCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goo",grayGooCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydian",sydianCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Laquine",laquineCodexEntry);
+	
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Ausar", ausarCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Daynar",daynarCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Galotians", galotianCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Laquines",laquineCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Leithans",leithanCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kaithrit",kaithritCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Ovir",ovirCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Rahn",rahnCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Simii",simiiCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","V-Ko",VKoCodex);
+
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Naleen", naleenCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae", vanaeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae: History", vanaeHistoryCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Leithan",leithanCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Kui-Tan",kuitanCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Varmints",varmintCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Zil", zilCodexEntry);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+	
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydians",sydianCodexEntry);
+	
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
+
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Simii",simiiCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
+	
+	
+	
 }
 
 public function codexHomeFunction():void
@@ -76,12 +92,66 @@ public function codexHomeFunction():void
 	userInterface.outputCodex();
 }
 
+function kaithritCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("TAMTAM");
+	outputCodex(header("Kaithrit"));
+	outputCodex("<i>Cat-girls with two tails? What's not to love? ...what do you mean they have males?</i>");
+	outputCodex("\n<b>Name (Singular & Plural):</b> Kaithrit");
+	outputCodex("\n<b>Genders:</b> Female, Male, statistically significant occurrence of hermaphroditism.");
+	outputCodex("\n<b>Height:</b> Males range from 5' to 6'2” tall. Females and hermaphrodites range from 5'6\" to 7'3\".");
+	outputCodex("\n<b>Hair:</b> Nominally, kaithrit only feature hair on their head and a fine layer of soft fur on their tails and ears. Fur and hair coloration is highly diverse; every color and hue seen on terran felines has been reported, but some have stranger colors.");
+	outputCodex("\n<b>Eyes:</b> Kaithrit have two eyes in the normal humanoid position. These eyes are typically colored amber, hazel, brown, blue, green, gray, yellow, orange, black, yellow-green, blue-green, violet, copper or gold. Kaithrit have a slightly higher predisposition towards heterochromia than other races. They possess slitted feline pupils which give them much keener low-light vision than humans.\n\n");
+	outputCodex(blockHeader("Features"));
+	outputCodex("Kaithrit have the normal structure of bipedal humanoids, with two arms and two legs as well as a single head, and fundamentally human-like faces. The hands and feet feature long, sharp-tipped nails that are capable of extending slightly to form dagger-like claws, adept at slashing and piercing, though these are hardly ideal weapons against most modern forms of armor. They have a single pair of large, feline-like triangular ears atop their heads, which are capable of swiveling and moving just like those of a terran cat. Combine this with the fact that they have two tails sprouting from their rear that are also reminiscent of a terran cat, and it's no wonder that many humans consider them to be \"space catgirls\".\n\nThe strangest aspect of kaithrit is that they all appear, to a casual glance, female. Even males - or perhaps especially males - have a feminine appearance, being dainty, fine-boned and curvaceous.Females and hermaphrodites are naturally taller than the average male, and more voluptuous - they have larger breasts and buttocks as well as wider hips - but males are easily mistaken for females unless they deliberately flaunt their masculinity. Male genitalia tends to be small, with scrotums that hold themselves snugly against the groin in tight pouches, only furthering the confusion.\n\nMale kaithrit sexual organs are typically 5\" to 7\" long and 1\" thick, and are feline in nature, presenting a shaft covered in small nodules of flesh that provide a tantalisingly soft, bristly texture. However, some kaithrit instead have bristly-textured but ultimately canine phalluses, though this is a distinct minority - this is believed to be due to traces of ausar genetics.\n\nBreast size varies depending on sex; males never grow larger than an A-cup and are normally flat chested, despite their feminine physique, with lactating males swelling to a B-cup or, at the largest, a C. Females average between a C and an F-Cup.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited"));
+	outputCodex("Although a widely scattered race that can be encountered across much of the known galaxy, with the existence of nomadic space-faring clans and families that happily establish themselves in human or ausar-created colonies alike being reliably documented, kaithrit do in fact have a homeworld. Known as Rosha, it is a lush, verdant orb that sits just slightly closer to its sun than Earth, resulting in an overall tropical and sub-tropical climate. Much of Rosha is grassland or open scrub forests, with dense jungles towards the cooler polar regions, vast mangrove swamps along the coastlines and a dense strip of arid savannas and bushland across the equators. Only at the very poles themselves do tundras and taigas form.\n\nAs a consequence, kaithrit are most comfortable in similar environments; the jungle-rich world of Mhen'gha is expected to see many of these aliens coming to settle, with its wild, lawless frontier world status sure to act as a magnet for this bold, brash species. However, Kaithrit have been seen all over the galaxy. Some of the more daring have succumbed to their wanderlust and taken to travelling through space, oftenly in clan crews, to colonise and seek their fortune abroad.\n\nThough it is true that many Kaithrit enjoy travelling through space, the truth is that the great majority of them are traditionalists unwilling to leave their home planet. Even if they do take trips to stations and other planets. After the Great Exodus, an event that marked the beginning of a new age, not many Kaithrit born on their homeworld choose to leave it.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Kaithrit reproduce in fundamentally normal mammalian style, with males impregnating females who then give birth to live young that are suckled on milk from their mammary glands. Furthering the gender confusion, males who remain in close, constant proximity to an expectant female. Pregnant kaithrit emit a steady wave of hormonal musk which can trigger a lactation response in males, swelling his breasts and allowing mother and father alike to nurse. Kaithrit pregnancy lasts approximately eight months after conception, and results in one to three kittens, though incidents of multiple births are quite low -- most pregnancies result in a single healthy child. Male hormonal balance tends to return to equilibrium faster than females, allowing them to recover from the effects of a female's pregnancy and return to their normal chest size quickly.\n\nConfirmed kaithrit crossbreeding has been documented between both humans and ausar. Human/kaithrit hybrids tend to have more human-like facial features and typically only have one tail. Ausar/kaithrit crossbreeds are most distinctive from purebred kaithrit because males and hermaphrodites typically have ausar-like phalluses, albeit usually with the typical kaithrit texturing.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The kaithrit are believed to have a rather human-like evolutionary story, beginning as tree-dwellers who, as the trees gave way to grassland, evolved towards a bipedal frame. As one may expect, the kaithrit's most distant ancestor was more feline than primate. Perhaps because of this, gender roles also evolved differently to humans; unlike human precursors, these proto-kaithrit were a matriarchal species. The females were, as they are today, bigger and stronger than the males, responsible for hunting and warring with other prides, while the males cared for the offspring. This inversion of standardised gender roles shows through in many aspects of kaithrit society; it is far more common for a female kaithrit to initiate a relationship than it is for the males, for instance.");
+	outputCodex("\n\nHigher intelligence developed in-line with other observed evolution; with bipedal locomotion freeing the hands for other uses, sapience soon followed, the kaithrit becoming masters of tools and moulders of their environment. While many aspects of their feral past were discarded on the road to civilisation, others remained, and one of these is the social dominance of female over male. Male kaithirt are seen as creators, shapers, builders and caretakers, while females are seen as warriors, pioneers, adventurers and explorers. Men are kept to the background by society, due to the belief in their passivity and frailness; while things are not quite so bad that men are 'househusbands' with no greater role in life than to get married, father daughters and look after the house while the woman earns money to support, they are encouraged to take up more intellectual or otherwise passive roles.");
+	outputCodex("\n\nIndeed, kaithrit society is in many ways stunningly sexist. Male kaithrit are forbidden to uphold matters of state or assume political roles, because it is believed they are too weak and inept to make hard, necessary decisions - indeed, this same belief holds them away from any position of power or control over others, especially over women. Society coddles them in many ways; males who commit crimes receive weaker punishment than females do, goods crafted by males attract more money, they receive better service in restaurants and stores. Indeed, it's surprising just how much they are favored - some xenobiologists and historians point to a significant difference in population ratios between males and females as the reason for these differences, with males being relatively less common than females. In some colony worlds, the lower occurrence of male births can be cause for a great deal of concern, and result in even more stringent constraints on male activity.\n\nThis is not to say that there is not a division between viewpoints on these aspects. While a distinct number of males are accepting of the impositions against their gender due to the privileges they receive, still others resent it and wish to bring their culture more in line with that of many others of the U.G.C., with true equality between the genders. This viewpoint became more popular amongst males, and even began gaining ground amongst the females after contact with other species was established, but it was the Great Exodus that caused the viewpoint to become the simmering underground faction that it is today.\n\nThe Great Exodus was the period immediately following the kaithrit’s contact with the U.G.C. The idea of other planets, people, whole other societies fascinated the kaithrit, and as a result the more daring females jumped at the chance to get a license and fly a starship to the great beyond. This was a time of great frustration for males; they were denied the rights to take the test for a license as they were deemed too frail to handle a spaceship. While this didn’t stop some males from stowing aboard visiting ships or even stealing ships for themselves, their restriction from starflight became a matter of great debate, and finally brought to light the fight for equality.\n\nOf course, it must be noted that this patronizing attitude towards males predominantly applies to the kaithrit of Rosha; offworlders, especially those who have many generations removed from the homeworld, are far less traditional.\n\n");
+	outputCodex(blockHeader("Other Notes"));
+	outputCodex("Hermaphrodites are an uncertainty in the kaithrit viewpoint of the world, and reactions can vary wildly from settlement to settlement. Perhaps as a response, hermaphroditic kaithrit have always been inclined towards nomadic behaviors.\n\nAs noted above, kaithrits have feline-like tails, with two to a specimen. These tails are functionally prehensile, if too weak in most cases to use for wielding weapons. An entire social strata exists within kaithrit society involving them; tail body-language is an important part of understanding kaithrits and how they communicate with each other. Motions, positioning, these can all speak volumes to another kaithrit or a trained observer. Contact with a tail is a social language in its own right.  Who a kaithrit touches, how, when, and where, are all bound by distinctive aspects of kaithrit proprietary. For example, a simple looping of one tail tip around another kaithrit's tail-tip signifies a friendly acquaintance and is a polite greeting, whilst doing the same with both tails on the same side is a gesture of sibling affection and doing it with one tail on either side, so that both Kaithrits must be facing each other, is a romantic gesture similar to a cuddle. More intimate tail-touches are supposed to be kept private or to the bedroom, but may be seen as an expression of dominance in a social context.\n\nWhen dealing with aliens, a kaithrit's tail-touching often serves as an indicator of social interest; they prefer to stroke the alien's tail, if they have one, but the buttocks and thighs will suffice. A side effect of this, though, is that most tail-touching gestures they can perform are signifiers of lust or camaraderie - the equivalent of a friendly spank on the ass, for example.\n");
+	CodexManager.viewedEntry("Kaithrit");
+}
+
+function galotianCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("CELISE");
+	outputCodex(header("Galotians"));
+	outputCodex("<i>Galotians are voracious protein hunters, but they’re not truly dangerous.</i>");
+	outputCodex("\n<b>Name (Singular):</b> Galotian");
+	outputCodex("\n<b>Homeword:</b> Galotia");
+	outputCodex("\n<b>Height & Weight:</b> Highly variable");
+	outputCodex("\n<b>Coloration:</b> Highly variable, typically matches the local environs for camouflage purposes.");
+	outputCodex("\nLifespan: Indefinite. Galotians show no signs of aging or cellular degeneration.\n\n");	
+	outputCodex(blockHeader("History"));
+	outputCodex("Galotians were the first species encountered with any true shape-shifting potential. Discovered during the chaotic second Planet Rush, they were originally thought hostile predators. Early explorers fought tooth and nail to stop themselves from being enveloped in the horrifying blobs of goo that rolled out of Galotia’s swamps with little success.\n\nThese unfortunate, first victims often did not survive the curious creature’s attentions. The galotians did not understand most species’ need to be exposed to gaseous oxygen in order to remain alive. Rather than devour the resulting corpses, the living oozes spat out the lifeless bodies and lumbered away. For no explicable reason, ‘Attacks’ died away almost entirely after the first week of contact with the rest of the galaxy. Plans to declare the planet unfit for colonization were scuttled, and more and more visitors came to the wet, swampy planet, seeking riches amongst the muck.\n\nGalotia was mineral poor, unfit for most kinds of farming, and only rich in diverse, if seemingly useless life. Interest in the planet died down until only a few long-term biological survey teams remained. They observed the native galotians enveloping other creatures, sometimes for hours at a time, then releasing them, seemingly unharmed.\n\nWhile studying this phenomenon, the scientists made little progress. It wasn’t until near the end of the survey that a massive and unexpected breakthrough finally happened.\n\nA galotian, one of the native blob monsters, appeared at the edge of camp in the shape of one of the younger, shapelier researchers. It was an almost perfect simulacrum aside from its monochromatic color scheme and glistening, wet skin. The galotian even molded her body to mimic the appearance of the scientist’s nightclothes.\n\nThen, it spoke in broken ausuri, apologizing for killing an explorer nearly a year ago.\n\nThe expedition was thrown into chaos. No one had thought these seemingly simple creatures could be sapient, and the very idea of one learning a core language unaided rattled every assumption about this planet and its ecosystem.\n\nThat galotian called herself Galos, and her influence paved the way for normalizing interactions between Galotia and the rest of the galaxy. Once galotian feeding habits were understood and the gooey aliens learned how not to kill their “prey”, they became sought-after companions the galaxy over.\n\nThe troubled history of Galotia is held up across the galaxy as the original success story of long-term planetary surveys and as reason enough to continue funding studies on every survivable rush planet.\n\n");
+	outputCodex(blockHeader("Feeding Habits"));
+	outputCodex("These sentient goo creatures are widely considered one of the most empathic beings in the known galaxy. Rather than devouring plants or flesh, they use their naturally mutable shape to stimulate their prey into releasing copious amounts of sexual fluids. They see it as trading pleasure for sustenance, a kind of self-imposed biological prostitution.\n\nThe concept of rape is something they struggle with as a race. Seeking consent goes against their every base instinct, but with sufficient exposure to galactic culture, they’re more than happy to only feed from willing lovers. Galotians are prized as shipboard companions by many a lonely captain, serving as a source of company and physical intimacy in an immense, dangerous galaxy.\n\nGalotians can subsist on almost anything: protein pastes, meats, plants, or even scraps of bone. They dislike such fare, seeming to desire bringing their food sources to climax almost as much as actually harvesting the resulting fluids.\n\n");
+	outputCodex(blockHeader("Biology"));
+	outputCodex("Galotians in their natural form appear as amorphous blobs of a single color. Natives are usually pale, muted colors, designed to fit in with their environment and allow them to surprise their aqueous prey for feeding. Those living in the greater galaxy have learned to eschew such subtle thinking, picking brilliant hues from every color of the rainbow to pigment their soupy forms with and shaping themselves into ludicrously endowed female forms, the better to procure semen. Vaginal secretions are far less nutritionally dense, though some galotians have taken on male appearances and demeanors to pursue races with abundant lactation or more useful secretions.\n\nTheir cells are highly conductive multipurpose organs, capable of relaying nervous system messages as easily as shifting nutrition around. These cells are more than ready to alter their purpose on demand, swapping between multiple sets of DNA in order to rebuild themselves for a new purpose. Some older, more experienced galotians are even capable of incredible feats of self-induced bio-engineering, producing chemical and biological cocktails to permanently increase a sexual partner’s usefulness as a food source.\n\nGalotians are as adept at feeding on their own cells as easily as anything else, causing them to grow or shrink in accordance with their nutritional needs. This is effectively a double-edged sword for these liquid ladies. Since every cell effectively functions as a neuron, a lack of feeding can lead to a loss in intellect. Starving galotians can become as small as a basketball before temporarily losing sapience. Death typically occurs soon after.\n\nOn the other side of the spectrum, extremely well fed galotians can grow as large as elephants. At this size they are at their peak physically, capable of shaping their mass in impressive ways. Oddly, they do not display a marked increase in rational intelligence. The extra processing power afforded by more neuron-like cells seems almost entirely dedicated to bioengineering their own form.\n\nFew galotians ever rise above average intelligence. Most consider them a fairly dim, easily excitable race, unaware of the brilliant bioengineering that they perform at an entirely subconscious level.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Galotians reproduce entirely asexually. Asexual reproduction has many disadvantages, but these ‘goo-girls’ get around most of them by virtue of their own malleability. They only reproduce when they have a large amount of body mass, and it is at this time that they’re best able to alter their own forms, even capable of adjusting the DNA strands in different portions of their bodies.\n\nEvery galotian will spawn a half dozen daughters once she accumulates enough body mass, each with her own hand-tailored, evolutionary adaptations. The young galotians emerge fully formed and, with a portion of their mother’s memories, often retaining abilities like speech and literacy in their entirety. The loss of so much mass will bring the mother down to a few hundred pounds of weight, her daughters each easily a little heavier than the average terran.\n\nKeeping a galotian from reproducing is easy. Simply manage her food intake so that she never grows too large. Of course, the chance to feed a galotian can be difficult to turn down, particularly if one has managed to alter your sexual organs or drive in any way.\n\n");
+	outputCodex(blockHeader("Place in the U.G.C."));
+	outputCodex("Galotians do not seek traditional jobs or employment. They desire warmth, companionship, and sexual fluids. Invariably, they wind up serving as sexual companions, indentured servants, or sources of cheap genital enhancement. Many serving in long term jobs soon forget about collecting payment so long as suitable living areas and food are present.\n\nNonpayment of a galotian indentured servant has been considered a serious felony after the parliament passed the Galotian Rights Act in response to a rash of mistreated goo-girls.\n\n");
+	outputCodex(blockHeader("Backlash"));
+	outputCodex("The Church of the One God maintains that galotians, and creatures like them, are demons given flesh to tempt us in this mortal realm. Many marriages have collapsed in response to galotian immigrations. Some worlds ban them from securing residency in order to prevent the disastrous effect they can have on monogamy. Others require troubled trios to enter into counseling together. Such treatments are reported to save 90% of marriages, even if the galotian winds up living with (and servicing) both partners.");
+	CodexManager.viewedEntry("Galotians");
+}
+
 function simiiCodex():void
 {
+	clearOutputCodex();
+	userInterface.showBust("EMBRY");
 	//Species Codex Entry
-	outputCodex(header("Name: Simii"));
+	outputCodex(header("Simii"));
 	outputCodex("(From order name Simiiformes / Simians)");
-	outputCodex("\n\n<b>Demonym:</b> Simii");
+	outputCodex("\n</b>Name (Singular & Plural):<b> Simii");
 	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Height, Weight, Hair, And Eyes:</b> As terrans.");
 	outputCodex("\n<b>Skin:<b> Fur on their forearms and lower legs, with human-like skin everywhere else.\n\n");
@@ -124,8 +194,9 @@ function varmintCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Hazard: Varmints"));
+	outputCodex("<b>Name (Singular):</b> Varmint\n");
 	outputCodex("One of the surviving native life forms on New Texas, the predatory creatures locally dubbed \"varmints\" are descendants from a much larger, more dangerous breed encountered by the settlers in their early days of colonization. Originally encountered as towering, dinosaur-like creatures with a penchant for flesh, the varmints' ancestors were nearly exterminated by overzealous colonist militias. Those that survived are of smaller, less dangerous and less intelligent sub-breeds.");
-	outputCodex("\n\nTVarmints are a silicone-based life form, roughly resembling a very large Terran dog or perhaps lizard. They are covered with rough blue skin and long, sharp spikes that make them dangerous even when not attacking directly. Their jaws are extremely powerful, and they frequently attack by knocking an opponent to the ground and rending at the throat."); 
+	outputCodex("\n\nVarmints are a silicone-based life form, roughly resembling a very large Terran dog or perhaps lizard. They are covered with rough blue skin and long, sharp spikes that make them dangerous even when not attacking directly. Their jaws are extremely powerful, and they frequently attack by knocking an opponent to the ground and rending at the throat."); 
 	outputCodex("\n\nVarmints are to be considered hostile when encountered, and may attack without provocation. Deaths caused by these creatures are very rare, but they can result in serious injury. It is advised to be armed with traveling outside city grounds on New Texas due to the widespread distribution of the varmint population.\n");
 	CodexManager.viewedEntry("Varmints");
 }
@@ -133,8 +204,8 @@ function leithanCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("ELLIE");
-	outputCodex(header("Leitha"));
-	outputCodex("<b>Name:</b> Leitha");
+	outputCodex(header("Leithans"));
+	outputCodex("<b>Name (Singular):</b> Leithan");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> Leithans can range from 8'6\" to 10' tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5' at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
 	outputCodex("\n<b>Hair:</b> Most Leithans have dark, stringy hair. Black, dark yellow, and shades of gray and brown are all common.");
@@ -142,18 +213,18 @@ function leithanCodexEntry():void
 	outputCodex("\n<b>Ears:</b> Leithans have two large, sensitive ears which grow from the center of their brows, roughly two inches apart. Their ears are alert, but are soft and frequently flop back against their heads at high speeds or in emotive response. A secondary pair of ears are located where human ears are, on the sides of the head. While larger than a human's and gently tapered (some describe them as \"elfin\"), the secondary ears are for all intents and purposes without special function.\n\n");
 
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Unlike many advanced species through the galaxy, the Leitha began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is her natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species' reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators' crushing maws, giving Leithans some defense against their native hunters.\n\n");
-	outputCodex("Second, the Leitha have developed six powerful legs, allowing them unparalleled running speeds over short bursts. Leithan endurance is not above average, but their speed is usually enough to avoid or outrun danger before exhaustion sets in.\n\n");
-	outputCodex("Third, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leitha, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leitha choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.\n\n");
+	outputCodex("Unlike many advanced species through the galaxy, the Leithans began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is her natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species' reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators' crushing maws, giving Leithans some defense against their native hunters.\n\n");
+	outputCodex("Second, the Leithans have developed six powerful legs, allowing them unparalleled running speeds over short bursts. Leithan endurance is not above average, but their speed is usually enough to avoid or outrun danger before exhaustion sets in.\n\n");
+	outputCodex("Third, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithans, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.\n\n");
 	outputCodex(blockHeader("Environs"));
 	outputCodex("The Leithan homeworld, a small planet orbiting Alpha Centauri (hence the common nickname for the species, Centaurins) is a vast, cold-weather desert and shrubland for the most part, punctuated by several dozen small seas, but no proper oceans. The atmosphere is naturally very dense and humid, with a water content much higher than that of Terra or Ausaril.\n\n");
-	outputCodex("The most notable feature of the world are several species of truly titanic, flesh-consuming predators. Ranging from overly large, rudimentarily-intelligent humanoid reptiles standing six stories high to flying creatures vaguely reminiscent of mythological dragons whose wingspan can extend twenty yards in the largest cases, the Leithans arose on a world quite hostile to them, where they were regarded as little more than prey for the titan-class predators. Due to the inherent hostility of their world, many Leithans take the first flight out they can catch, and as such, the Leithan race has become one of the most widespread transplant or immigrant races throughout the galactic core. Relatively few choose to migrate to the fringe, especially during the Planet Rushes, as the Leitha are inherently skittish about danger and violence, and the rough-and-tumble nature of the frontier ill suits them.\n\n");
+	outputCodex("The most notable feature of the world are several species of truly titanic, flesh-consuming predators. Ranging from overly large, rudimentarily-intelligent humanoid reptiles standing six stories high to flying creatures vaguely reminiscent of mythological dragons whose wingspan can extend twenty yards in the largest cases, the Leithans arose on a world quite hostile to them, where they were regarded as little more than prey for the titan-class predators. Due to the inherent hostility of their world, many Leithans take the first flight out they can catch, and as such, the Leithan race has become one of the most widespread transplant or immigrant races throughout the galactic core. Relatively few choose to migrate to the fringe, especially during the Planet Rushes, as the Leithans are inherently skittish about danger and violence, and the rough-and-tumble nature of the frontier ill suits them.\n\n");
 	outputCodex(blockHeader("Reproduction"));
-	outputCodex("The Leitha propagate their race much as many reptilian species do. At certain times of the year (usually twice per year), the female will enter heat, and her body will begin producing a powerful attractive pheromone. This will cause nearby males to seek her out: due to the relative mortality of their race, most Leithan females will accept most if not all suitors to help ensure pregnancy. After a brief gestation period of about one month, she will lay a clutch of eggs, usually in her home or that of a trusted friend and caretaker. An average clutch is between four and six eggs, each of which is nearly two feet long. Eggs hatch after another month-long period, during which the mother will become highly defensive and easily agitated as her maternal instincts insist that she defend her \"nest.\"\n\n");
+	outputCodex("The Leithans propagate their race much as many reptilian species do. At certain times of the year (usually twice per year), the female will enter heat, and her body will begin producing a powerful attractive pheromone. This will cause nearby males to seek her out: due to the relative mortality of their race, most Leithan females will accept most if not all suitors to help ensure pregnancy. After a brief gestation period of about one month, she will lay a clutch of eggs, usually in her home or that of a trusted friend and caretaker. An average clutch is between four and six eggs, each of which is nearly two feet long. Eggs hatch after another month-long period, during which the mother will become highly defensive and easily agitated as her maternal instincts insist that she defend her \"nest.\"\n\n");
 	outputCodex("After the U.G.C. \"uplifted\" the Leithan race during the early stages of the Planet Rush scheme, the race's reproductive habits have changed somewhat -- especially among those living away from the homeworld. With a dramatically higher survival rate off-world, Leithan males and females have become more comfortable in being selective with their partners, and recreational sex drive has become much higher. While Leithans still have a difficult time with the concept of monogamy, and most freely move between several partners, the idea of a female allowing any male to approach her in her \"heat\" period is nearly nonexistent now.\n\n");
-	outputCodex("Unlike many sapient species, Leithans have a nearly 0% fertility rate when coupling with other species. Halfbreed Leitha are nearly unheard of, and almost always the result of genetic manipulation and non-natural fertilization. Because of this, and the higher sex drive among offworld Leithans, many Leithans of both sexes find themselves to be easy \"swingers,\" and eagerly skip the courting and dating process to open themselves up to several attractive partners of other species, since their couplings are virtually no-risk.\n\n");
+	outputCodex("Unlike many sapient species, Leithans have a nearly 0% fertility rate when coupling with other species. Halfbreed Leithans are nearly unheard of, and almost always the result of genetic manipulation and non-natural fertilization. Because of this, and the higher sex drive among offworld Leithans, many Leithans of both sexes find themselves to be easy \"swingers,\" and eagerly skip the courting and dating process to open themselves up to several attractive partners of other species, since their couplings are virtually no-risk.\n\n");
 	outputCodex(blockHeader("Culture & Society"));
-	outputCodex("Before being uplifted, the Leitha existed as a nomadic species, desperately clinging to their precarious existence in the shadows of titanic predators. Divided into small tribes scattered across the desert, Leitha bands wandered from water source to water source. Over time, their technology advanced in small but important bursts: they discovered methods of water collection from the atmosphere fairly early on, and made great strides to domesticate smaller reptilian creatures which were able to aid them in hunting and alert them against impending attack.\n\n");
+	outputCodex("Before being uplifted, the Leithans existed as a nomadic species, desperately clinging to their precarious existence in the shadows of titanic predators. Divided into small tribes scattered across the desert, Leithans bands wandered from water source to water source. Over time, their technology advanced in small but important bursts: they discovered methods of water collection from the atmosphere fairly early on, and made great strides to domesticate smaller reptilian creatures which were able to aid them in hunting and alert them against impending attack.\n\n");
 	outputCodex("Some Leithans attempted to protect themselves in high-walled cities, and because of this protection and stability, were marginally more successful and advanced than their roaming cousins when First Contact happened. Many of the walled cities had developed primitive flintlock-era firearms and cannons, with which they were able to fend off predator attacks -- one city even created primitive rockets to guard against aerial attacks. Since their uplifting by the U.G.C. in the Third Great Planet Rush, Leithan cities have become veritable fortresses against their one-time predators, and the race has eagerly adapted to the advanced technology the Confederacy brought with it. They have adapted so well, in fact, that in the modern day Leithans are valued as exceptional engineers and technicians, especially in regards to machine maintenance and robotic tech. Many top of the line drones, turrets, and unmanned vehicles are produced in Alpha Centauri or on Leithan colonies.\n\n");
 	outputCodex("Societally, Leithans are regarded as being very open, friendly, and cooperative. When teamwork and group loyalty are the biggest defense you have against being eaten by a six-story tall monster, it pays to be easy to work with. Most Leithans are highly empathetic, making them keenly aware of others' emotive states, and are most comfortable in small, close-knit groups of friends. Solitary Leithans are almost unheard of, and most revel in social activity - especially in the core words, where Leithans are constant features of nightclubs, dance halls, and just about any party they can find.\n");
 	CodexManager.viewedEntry("Leithan");
@@ -164,13 +235,13 @@ function ovirCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("ALISS");
 	outputCodex(header("Ovir"));
-	outputCodex("<b>Name:</b> Ovir");
+	outputCodex("<b>Name (Singular & Plural):</b> Ovir");
 	outputCodex("\n<b>Genders:</b> Male & Female.");
 	outputCodex("\n<b>Height:</b> Averages between 4'6\" and 6\"");
 	outputCodex("\n<b>Weight:</b> Averages between 90 and 160 lbs.");
 	outputCodex("\n<b>Hair:</b> Human-like hair on top of head, can be brown, black, red, blonde, or green.");
 	outputCodex("\n<b>Eyes:</b> Two vertically slit, reptilian eyes. No sclera, iris dominates the eye.");
-	outputCodex("\n<b>Ears:</b> Two ear holes on each Codexside, no pronounced ears.");
+	outputCodex("\n<b>Ears:</b> Two ear holes on each side, no pronounced ears.");
 	outputCodex("\n<b>Homeworld:</b> \\\[Redacted\\\]\n\n");
 
 	outputCodex(blockHeader("Appearance"));
@@ -190,7 +261,7 @@ function kuitanCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("KIRO");
 	outputCodex(header("Kui-Tan"));
-	outputCodex("<b>Name:</b> Kui-tan\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Kui-tan\n");
 	outputCodex("<b>Genders:</b> Evenly split between males and hermaphrodites.\n");
 	outputCodex("<b>Height: </b>Most adults are between 4’10” and 5’1” in height with few ever being shorter than 4’4” or taller than 5’6”.\n");
 	outputCodex("<b>Weight: </b>Similar to terrans despite their thick fur giving them a somewhat pudgy appearance.\n");
@@ -235,8 +306,8 @@ function laquineCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("KELLY","KELLY_NUDE");
-	outputCodex(header("Laquine"));
-	outputCodex("<b>Name:</b> Laquine");
+	outputCodex(header("Laquines"));
+	outputCodex("<b>Name (Singular):</b> Laquine");
 	outputCodex("\n<b>Sexes:</b> 33% Male, 33% Female, 33% Hermaphrodite");
 	outputCodex("\n<b>Height:</b> 5'6\" to 7'0\"");
 	outputCodex("\n<b>Weight:</b> 60-85 Kg");
@@ -261,7 +332,7 @@ function laquineCodexEntry():void
 	outputCodex("Medical experts have established by way of testing and observation that neither mod-transformed laquines/lucanis, nor the half-breed offspring of laquines/lucanis and other alien races, seem to be affected by the disease. This fact is carefully hidden from public consumption, an effort to minimize paranoia, conspiracy and xenophobia amongst an already suspicious and distrustful populace.\n\n");
 	outputCodex(blockHeader("Other Notes"));
 	outputCodex("Though it is not socially enforced, traditionally, laquine culture falls under a gender-based trichotomy. Females are responsible for roles that revolve around caring for the children and adults, such as being homemakers, chefs or nurses. Males are responsible for tasks that require strength or endurance as a general rule; construction work, farming, manual labor, etcetera. Hermaphrodites, finally, tend to gravitate towards the social power and intelligence-based roles, such as scientists and politicians. As stated, these roles are not socially enforced - no one would force a female laquine to not be a scientist, for example - but they are traditional and thusly stereotyped amongst this species.\n\nDespite, or perhaps because of, the size of their phallic organs, laquines usually associate ejaculate size with virility size instead. Semen quantity boosters are the primary subject of sexual spam amongst laquines, and semen-related mods are fairly common in their culture. Which is not to say that they don't also tend to take pride in the size of their male members, just that cumshot size is usually more important.\n\nThough rare, it is established fact that priapric and mammarian hyperism conditions have been documented amongst laquines, more so amongst them than amongst their lucanis kinsfolk.\n\nLaquines have been confirmed as being capable of successfully crossbreeding with lucanis, humans, khaithrit, kui-tan and ausars.\n\nLaquine/lucanis relationships still attract some controversy amongst the relevant races, even in this modern day and age.\n\nBecause they lack multiple nipples, communal nursing is the norm amongst laquines, and the average individual will have been suckled from dozens of willing milk-mothers during her or his youth. It has been theorised that this may have deliberately evolved as a social building mechanic. Perhaps as a result of this, polygamous relationships are not unheard of amongst laquines.\n");
-	CodexManager.viewedEntry("Laquine");
+	CodexManager.viewedEntry("Laquines");
 }
 
 function treatmentCodexEntry():void
@@ -336,8 +407,8 @@ public function sydianCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("SYDIAN_MALE","SYDIAN_FEMALE");
-	outputCodex(header("Sydian"));
-	outputCodex("<b>Name:</b> Sydian");
+	outputCodex(header("Sydians"));
+	outputCodex("<b>Name (Singular):</b> Sydian");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 4'6\" to 5'6\" for females and 6'3\" to 7'1\" for males.");
 	outputCodex("\n<b>Weight:</b> 90 to 160 lbs for females and 200 to 320 lbs for males.");
@@ -363,7 +434,7 @@ public function sydianCodexEntry():void
 	outputCodex("Sydians reproduce very similarly to humans. The males penetrate the females with their penis, ejaculate and potentially impregnate the female. Three months later, the female sydian lays a clutch of 3-12 eggs. Every six months or so, female sydians will enter into a sort of heat where they begin craving the lust-inducing chemicals produced by other sydians, though they do not specifically crave penetration. While in this heat, the females hair often turns a fiery orange, displaying her readiness to the rest of her village.\n\n");
 	outputCodex(blockHeader("Society"));
 	outputCodex("Sydian society is largely patriarchal. The males, much larger and more powerful, typically assume leadership roles in the villages and packs, while the females are used sent out as hunters. Some beta males look after and educate children and perform general manual labor, though others will roam the wastes alone, like lone wolves. Though cultivation is difficult for sydians, some tribes have learned to farm some rudimentary crops using stone tools.\n\nEarly communications have hinter that sydians are actually quite intelligent; early interactions have resulted in near unanimous praise for their wit, though their corrosive touch and tumultuous environment have conspired to keep them in a literal stone age. Most adult sydians have accepted this fact of life, and may even be thankful for it, some claiming technology to be holding people back from leading a happy life. A few have left Tarkus with specially tailored gloves, intent on discovering the wonders of the technology they previous consumed for sustenance.\n");
-	CodexManager.viewedEntry("Sydian");
+	CodexManager.viewedEntry("Sydians");
 }
 
 public function lapinaraCodexEntry():void
@@ -372,7 +443,7 @@ public function lapinaraCodexEntry():void
 	//Name: 
 	outputCodex(header("Lapinara"));
 	userInterface.showBust("LAPINARA","LAPINARA_2");
-	outputCodex("<b>Name:</b> Lapinara (same singular and plural)");
+	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
 	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
 	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 ft for all genders.");
 	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
@@ -395,8 +466,8 @@ public function raskVelCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("RASKVEL_MALE","RASKVEL_FEMALE","RASKVEL_MALE_NUDE","RASKVEL_FEMALE_NUDE");
-	outputCodex(header("Raskvel Codex"));
-	outputCodex("<b>Name:</b> Raskvel");
+	outputCodex(header("Raskvel"));
+	outputCodex("<b>Name (Singular & Plural):</b> Raskvel");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Average heights fall between 3’6” and 4’3”");
 	outputCodex("\n<b>Weight:</b> Somewhere between 40 and 60 pounds.");
@@ -434,12 +505,13 @@ public function grayGooCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("GRAY_GOO");
-	outputCodex(header("Hazard: the \"Grey Goo\""));
-	outputCodex("The Grey Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Grey goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault, attempt to use orgasmic fluids as an emergency alternative.");
+	outputCodex(header("Hazard: the \"Gray Goos\""));
+	outputCodex("<b>Name (Singular):</b> Gray Goo");
+	outputCodex("\n\nThe Gray Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Gray goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault, attempt to use orgasmic fluids as an emergency alternative.");
 
 	outputCodex("\n\nThey're smarter the more of them there are - blasting away at the grey goo with weapons will slowly corrupt their networked A.I. even if it only destroys a few bots. They are also susceptible to \"sensory overload,\" which may cause a temporary shutdown in their offensive programs, leaving them helpless but to beg for their necessary fluids. While the network has no specific shape, their drive for humanoid contact often leads them to adopt exaggerated humanoid figures, such as comically busty women or satyrian males in ill-conceived attempts to entice their prey. Recorded assaults generally involve a sexual harvesting, with the goos penetrating sexual orifices and molding themselves around phalluses and similar organs to stimulate orgasm.");
-	outputCodex("\n\nWhile no fatalities have yet been reported due to Grey Goo attacks, U.G.C. Scout Authority recommends explorers on Tarkus remain well-hydrated in the event of attack.\n");
-	CodexManager.viewedEntry("Gray Goo");
+	outputCodex("\n\nWhile no fatalities have yet been reported due to Gray Goo attacks, U.G.C. Scout Authority recommends explorers on Tarkus remain well-hydrated in the event of attack.\n");
+	CodexManager.viewedEntry("Gray Goos");
 }
 
 public function rahnCodexEntry():void
@@ -447,7 +519,7 @@ public function rahnCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("FLAHNE");
 	outputCodex(header("Fuu’Rahn and <prefix>’Rahn"));
-	outputCodex("<b>Name:</b> Rahn");
+	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
 	outputCodex("\n<b>Sexes:</b> “Female”");
 	outputCodex("\n<b>Height:</b> 4' to 5'8\" commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
 	outputCodex("\n<b>Weight:</b> 60 to 140 pounds.");
@@ -495,6 +567,7 @@ public function zilCodexEntry():void
 	userInterface.showBust("ZILFEMALE", "ZIL"); // ohoho lookit dis shit!
 
 	outputCodex(header("The Zil"));
+	outputCodex("<b>Name (Singular & Plural):</b> Zil");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> 5’ to 5’6” commonly. They can rarely attain heights of 6’.");
 	outputCodex("\n<b>Weight:</b> 80 to 140 pounds.");
@@ -566,6 +639,7 @@ public function ausarCodexEntry():void
 	userInterface.showBust("SYRI"); // An example of an Ausar?
 
 	outputCodex(header("The Ausar"));
+	outputCodex("<b>Name (Singular & Plural):</b> Ausar");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Varies, usually similar to humans; they commonly range from five feet to just over six, with rare specimens reaching around seven feet in height.");
 	outputCodex("\n<b>Weight:</b> Ausar are lithely built, weighing less than a human -- often from just over 100 lbs, and rarely over 200.");
@@ -614,63 +688,74 @@ public function ausarCodexEntry():void
 	CodexManager.viewedEntry("Ausar");
 }
 
-public function myrmedionCodexEntry():void
+public function goldMyrmedionCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("NONE"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
-
-	outputCodex(header("The Myrmedion"));
-	outputCodex("\n<b>Sexes:</b> Male and female.");
-	outputCodex("\n<b>Height:</b> Myr are about human height, if possibly a tad shorter on average: a male is typically about 5 ft. 2; a female 5 ft. 6, being on average somewhat taller than the males.");
-	outputCodex("\n<b>Weight:</b> For their heights, myr are heavier than humans thanks to their heavy chitinous armor plates and sturdier bone and muscle structures."); 
-	outputCodex("<b>Hair:</b> Blacks and oranges are the most common colors. Red Myr, as the name suggests, have a higher tendency toward fiery red hair while the Gold Myr have a sizable population of strawberry-blondes.");
-	outputCodex("\n<b>Eyes:</b> Myr eyes are solid black (or more rarely grey) compound eyes. They are noted to have relatively poor eyesight, and blindness and various eye problems are unusually common. ");
-	outputCodex("\n<b>Ears:</b> Myr have pointed ears, called ‘elfin’ by first contact explorers.");
-	outputCodex("\n<b>Antennae:</b> Much like the Zil race encountered earlier in the same Rush, the Myr are descendant from insects rather than mammals, and as such have highly sensitive antennae perched atop their head, used to sense airborne chemicals, vibrations, and air currents. The antennae are exceedingly sensitive to touch, and a non-verbal language seems to have arisen based on strokes and gentle tugs on these ‘feelers.’ It is hypothesized that these are acute erogenous zones, though evidence has not been collected to confirm these suspicions.");
-
-	outputCodex("\n\n");
-
+	userInterface.showBust("LYRALLA");
+	outputCodex(header("Gold Myr"));
+	outputCodex("<b>Name (Singular):</b> Gold Myrmedion");
+	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
+	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often about averaging heights around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Weight:</b> Heavy for their height thanks to numerous chitin plates and denser than average muscles and bones.");
+	outputCodex("\n<b>Arms:</b> Four narrow but strong limbs ending with three fingers and a single thumb.");
+	outputCodex("\n<b>Abdomens:</b> All gold myr have insectile abdomens, used for storing nutrition in lean times as well as reproduction in female queens.");
+	outputCodex("\n<b>Hair:</b> Blacks, oranges, and strawberry-blonde are all common.");
+	outputCodex("\n<b>Eyes:</b> Myr eyes are solid black (or more rarely grey) compound eyes. They are noted to have relatively poor eyesight, and blindness and various eye problems are unusually common.");
+	outputCodex("\n<b>Ears:</b> Myr have pointed ears, called \"elfin\" by first contact explorers.");
+	outputCodex("\n<b>Antennae:</b> A pair of insect-like antennae grow from every myr’s forehead. These highly sensitive organs are extremely sensitive to airborne vibrations and chemicals, supplementing already sensitive ears while pulling double duty as an olfactory organ.");
+	outputCodex("\n<b>Wings:</b> Females are wingless. Males have vestigial wings too small to lift their forms.\n\n");
+	outputCodex(blockHeader("Appearance and Honeypot Myr"));
+	outputCodex("Both subspecies of Myr appear bug-like in a variety of ways, but the gold especially so. Their four arms and a chitinous, rear-mounted abdomen leave them looking like walking, talking ants. That comparison is even more apt in light of a startling mutation that is only present among the gold subspecies: the honeypot gene.\n\nThe name is woefully incorrect, penned by explorers with more greed than education, but it has stuck all the same. The honeypot ‘gene’ is in fact a complicated evolutionary marvel that allows the gold myr to store excess nutrients inside their abdomens or breasts for times of scarcity - or to later share with their hungrier countrymen. The organ used for storage falls largely along gender lines. Males use their abdomen and females their breasts. Some rare females use both, and are even able to shunt mass between the two.\n\nWith sufficient nutrition they can become so swollen with their nectar they practically glow amber. Acting as living larders for the hives, these myr’s' organs swell to enormous sizes, often debilitating them due to sheer weight: so immobile, they act almost like diners in the hive cities, setting up on street corners and in specialized restaurants to provide their nectar to the populace \"straight from the tap.\"\n\nInitial examinations of report a thinner consistency than honey with a taste somewhere closer to maple syrup. Lab tests have revealed numerous mood boosting compounds in trace amounts. Large scale consumption for non-myr is not recommended by U.G.C. survey teams.\n\n");
+	outputCodex(blockHeader("Sexual Dimorphism"));
+	outputCodex("A lucky few gold myr are \"queens,\" winged females able to reproduce without medical intervention. Usually serviced by several male drones, queens have exceptionally quick reproductive cycles, giving birth to large clutches of eggs fertilized by several different fathers. Queens can live for centuries, and birth hundreds if not thousands of young gold myr over their life spans. As the name suggests, queens are highly revered by other golds, some even revered as goddesses.\n\nUntil her first pregnancy, a queen is indistinguishable from any other infertile female, but once she gestates her first clutch of eggs, she will undergo a second puberty, metamorphosing to have a second set of nutrient-lactating breasts, a larger body, and a hugely swollen abdomen. Her abdomen will slowly grow over time, gradually increasing her ability to reproduce. Queens tower over other myr, but their reproductive swelling prevents them from being able to properly defend themselves in a conflict.\n\nMales are shorter lived and winged, possessing considerably less strength than the average female due to his lighter frame. Affectionately called \"drones\" by their female counterparts, most males live in relative luxury. Those not serving a queen are so prized that can live a life of ease. Male myr are characterized by their slight, light bodies and large genitalia, with disproportionately large phalluses and testes that can swell to produce additional semen when frequently emptied, even growing so large enough to drag on the ground.\n\n");
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Myrmedions are notably covered in a partial ‘suit’ of chitin plates which protect the legs, arms, and parts of the torso and abdomen. This natural armor, combined with an average strength considerably higher than a human’s, has meant that melee combat still reigns supreme among the myr, with swords and hammers being about as common in their militaries as rifles. Due to the “world war” being fought when First Contact was made, researchers have had ample opportunity to study myr combat doctrine, which in large part resembles Napoleonic or early World War I-era tactics, including infantry lines and massed bayonet charges into melee under the cover of artillery and primitive tanks and aircraft. Myr military technology is perhaps on par with early 20th Century earth, with bolt-action or revolving cylinder powder weapons still being predominant.");
-
-	outputCodex("\n\nSupplementing their hand to hand abilities, Red Myr females have a venomous bite which, on contact, causes a mild paralysis in the victim. The venom is known to cause a ‘red heat’ sensation, inspiring rampant lust in the victim and usually putting him utterly at the mercy of the myr victor. Among Gold Myr, the venom of a Red is considered a strong but illicit aphrodisiac, taken in small quantities to induce a lethargic, horny state.");
-
-	outputCodex("\n\n");
-
-	outputCodex(blockHeader("Gender Differences &amp; Reproduction"));
-	outputCodex("Male and female myr have noticeable gender dimorphism, again tracing back to an insectile heritage. The vast majority of myr are wingless females, divided into casts of worker and warrior based on familial lineage. Females have larger hips than males and a single pair of full breasts which lactate a clear amber ‘honey’ based on the female’s nutritional state rather than her reproductive status: a well-fed female will lactate most of her excess calories out, while poorly fed ones will not lactate at all. Among the Gold Myr, most females are infertile, relying on their queens to reproduce; Red Myr, on the other hand, have a reproductive female population of about 50% and have no queens. Red Myr females lay single eggs when fertilized, which gestate for an average of six months before hatching.");
-
-	outputCodex("\n\nA very few female Gold Myr are ‘queens,’ winged females able to reproduce without medical intervention. Usually serviced by several male drones, queens have exceptionally quick reproductive cycles, giving birth to large clutches of eggs fertilized by several different fathers. Queens can live for centuries, and birth hundreds if not thousands of young Gold Myr over her life span. As the name suggests, queens are highly revered by other Golds, some even revered as goddesses.");
-
-	outputCodex("\n\nGold Myr have a second alternate female biology, called the ‘honeypot’ myr: these females possess exceedingly active breasts, so swollen with their nectar they practically glow amber. Acting as living larders for the hives, these females' breasts swell to enormous sizes, often debilitating them due to sheer weight: so immobile, they act almost like diners in the hive cities, setting up on street corners and in specialized restaurants to provide their nectar to the populace ‘straight from the tap’. Honeypots are relatively rare, perhaps one for every hundred females, but their incredible metabolism allows these few honeypots to quite efficiently feed much of the cities themselves. (Though researchers have not been able to confirm, there are apocryphal reports of some males inheriting the ‘honeypot’ gene. These reports conflict between the males either growing swollen nectar teats like females, or their testes swelling to even greater sizes as their gonads begin to produce nectar rather than sperm.)");
-
-	outputCodex("\n\nMales are shorter lived and winged, possessing considerably less strength than the average female due to his lighter frame. Affectionately called ‘drones’ by their female counterparts, most males exist in myr society to do very little other than breed: they are dearly prized by their females, and were often fought over during ancient times before intricate breeding schedules were established some hundred years before First Contact. Male myr are characterized by their slight, light bodies and massive genetalia, with disproportionately large phalluses and semen-swollen testes that often drag on the ground when not regularly used.");
-
-	outputCodex("\n\n");
-
-	outputCodex(blockHeader("Typical Environments"));
-	outputCodex("Myrellion is the sole planet inhabited by the myr race, and it is fairly Earth-like in most respects. The planet has vast desert regions across much of its land masses, with some forested regions in the far northern and southern reaches. There are few, if any, snowy or arctic areas on the planet. Hot and dry, Myrellion is generally inhospitable above ground. The myr, however, are largely subterranean, and have over the years drilled out vast complexes of underground cities that rival the splendour of even the mega-cities of Terra. Due to the world war currently under way, many once-prosperous cities on both inhabited continents have been bombed out and abandoned, straining the population of the remaining cities as they accommodate refugees.");
-
-	outputCodex("\n\n");
-
+	outputCodex("Gold myr are not known for their violent inclinations, but their resilient forms, built-in body armor, and surprising strength make them more than capable in a melee confrontation. Poor eyesight at long range diminishes their usefulness in modern, sharpshooter-heavy confrontations. The U.G.C. would have little use for them in an offensive capacity, though their multiple arms could allow them to become very useful as field medics without any cybernetic augmentation.\n\nIn the context of their civil war, the golds are biologically matched by their red foes; both share poor vision and body armor. The reds have a debilitating saliva, but there is little room for biting in a conflict dominated by melee weaponry and small arms, negating that small advantage. The real difference in fighting forces is in training. The Scarlet Federation’s troops are hardened soldiers. The gold myr are relative rookies to combat. Perhaps the only reasons they’ve held out this long have been their primitive technological know-how, larger population, and chemical weapons.\n\n");
+	outputCodex(blockHeader("Environs"));
+	outputCodex("Gold Myr arm warm-blooded and can survive in a variety of temperatures from just above freezing to 43 degrees Celsius (110 degrees F). Their home planet, Myrellion, is largely an inhospitable desert, leading them survive in below-ground settlements. Over the centuries, small cities have become incredible, subterranean mega-cities, but the war has reduced many to little more than caved-in rubble.\n\n");
 	outputCodex(blockHeader("Society"));
-	outputCodex("Myr society is divided into two different cultures, divided along racial and geographical lines: the Gold Myr and the Red Myr. Reds are characteristically more militant and violent than the Golds, with a large standing army and military tradition. Golds, in contrast, are typically quite placid and artistically-minded, and control significantly less territory and boast a smaller population. Both are rigidly matriarchal and caste-based societies, divided up into worker, warrior, and drone groups (as expected, warriors are elevated in Red Myr society while workers receive the greatest praise among the Gold Myr). Castes are traced through familial lineage, usually through the father due to the difficulty of myr reproduction.");
-
-	outputCodex("\n\nMyr have considerable trouble reproducing due to widespread infertility, tracing back to their insectile roots and the presence of ‘queens’ among their ancient ancestors, and still among Gold Myr. The vast majority of myr are female, with less than 10% of the population being male. Among the remaining populace, there are either only a handful of Gold Myr queens to go around, or in the case of the Red Myr, slightly less than half the female population is fertile at all, even without a reliance on queens for reproduction. As such, ‘breeders’ are rare and highly valued by both societies, usually becoming powerful leaders and politicians whose sway comes as much from their reproductive abilities as any savvy or natural ability in the field of statecraft.");
-
-	outputCodex("\n\n");
-
+	outputCodex("Golds are typically value individual freedom and creativity in spite of their matriarchal society. Every single living gold myr is a direct descendant of a myr queen, raised in familial schools called thollums. Outside of the recently introduced draft, they are free to discover and seek an individual calling. One function of the thollums is to allow them free training in any actively practiced discipline.\n\nThe Gilden Republic (closest approximate translation), is ruled by the Council of Queens, a governmental body made up of every myr capable of reproduction. Each queen’s power is relative to the number of her offspring, with older, more fertile queens carrying significantly more weight than their younger, inexperienced peers. This bizarre, motherhood based political system seems to work well for the gold myr.\n\nU.G.C. researchers have seen few if any signs of dissent amongst the tawny ant-people. Current theories for this vary between biological predisposition to the success of the Gilden Republic at providing for its people. Many of the Council’s laws are analogous to those of 20th century earth’s nordic model - a kind of highly regulated “cuddly capitalism”.\n\nThat isn’t to say that gold myr live a life without strife. The seemingly endless war with the reds has strained their economy to the breaking point. Rising unemployment has brought with it a surge in criminal activity and lawlessness. Usage of red myr saliva as an illicit drug/aphrodisiac is almost an epidemic all its own. Had a ceasefire not been reached, it is likely the gold myr way of life would have been entirely annihilated within the span of a year.\n\n");
 	outputCodex(blockHeader("Relationships"));
-	outputCodex("Due to the overwhelmingly female-heavy population, males are in high demand between fertile females and queens: infertile females of both races are unlikely to ever see a male in person, much less be able to copulate with him. As such, lesbian relationships are extremely common and widely accepted, with even breeder females usually taking a woman lover, since males are in such high demand they can never make proper commitments. Indeed, a marriage between male and female is quite literally unheard of in myr society, and most males are shared between several dozen females over the course of their lives. Female-female marriages, on the other hand, are quite normal, though monogamy is a relatively new concept for the myr, many of whom still fondly remember a more tribal past with great orgies centered around their precious breeders.");
-
-	outputCodex("\n\nSexuality among female myr is quite open, and most take several casual lovers - especially Red Myr warriors, who almost always keep “trench brides,” or worker females they have either captured or brought from home who serve their needs between battles. Gold Myr still practice regular public orgies as part of fertility rites led by their queens and breeder males, though they also have a higher rate of monogamous marriage than Reds do. While sex is considered highly private and personal among Red myr, and their dress and sexual mores are fairly conservative by galactic standards, Golds are quite open with their sex, even flaunting it in public: Gold myr dress is highly revealing, and there are no laws or inhibitions about public intercourse.");
-
-	outputCodex("\n\n");
-
+	outputCodex("Due to the overwhelmingly female-heavy population, males are in high demand: most normal females are unlikely to ever see a male in person, much less be able to copulate with him. As such, lesbian relationships are extremely common and widely accepted. Indeed, a marriage between male and female is quite literally unheard of in myr society; most males are shared between groups of bisexual females.\n\nFemale-female marriages, on the other hand, are a little more common, though monogamy is a relatively new concept for the myr, many of whom still fondly remember a more tribal past with great orgies centered around their precious breeders.\n\nSexuality among female myr is quite open, and most take several casual lovers. Gold myr still practice regular public orgies as part of fertility rites led by their queens and drones, though they also have a higher rate of monogamous marriage than reds do. Golds are quite open with their sex, even flaunting it in public: gold myr dress is highly revealing, and there are no laws or inhibitions about public intercourse.\n\n");
 	outputCodex(blockHeader("Technology"));
-	outputCodex("Myr technology is nearly analogous with early 20th century earth technology, with basic coal-powered electricity and gas-operated monorails having been recently installed in some of the larger hive cities. Highly primitive computers have just entered service before First Contact, using punch-tape processors and tubes. Despite their largely underground existence, the myr do have aircraft, though most have been re-purposed into transports and military craft due to the war (indeed, the current Joint Ausar Fleet base in Gildenmere, the Gold Myr capital, is a repurposed airfield). Just before First Contact, the war between Red and Gold Myr took an unexpectedly lethal turn due to the Gold Myr introducing poison gasses into the conflict, an incredibly effective deterrent against the unchecked Red Myr advance into their territory, followed by the Red Myr threatening to unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the Ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the Gold Myr the opportunity to fashion their own WMDs in response. The presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. Due to the surprisingly advanced nature of the race, and their ‘honeypot’ biology (which is seen as highly promising by Xenogen), U.G.C. diplomats have arrived on the planet and are working with both hierarchies to achieve a cease fire in the seven year war.\n");
+	outputCodex("Myr technology is nearly analogous with early 20th century earth technology, with basic coal-powered electricity and gas-operated monorails having been recently installed in some of the larger hive cities. Highly primitive computers have just entered service before First Contact, using punch-tape processors and tubes. Despite their largely underground existence, the myr do have aircraft, though most have been re-purposed into transports and military craft due to the war (indeed, the current Joint Ausar Fleet base in Gildenmere, the Gold Myr capital, is a repurposed airfield).\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gasses into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening the unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. Due to the surprisingly advanced nature of the race, and their \"honeypot\" biology (which is seen as highly promising by Xenogen), U.G.C. diplomats have arrived on the planet and are working with both hierarchies to achieve a cease fire in the seven years' war.");
+	CodexManager.viewedEntry("Gold Myrmedion");
 
-	CodexManager.viewedEntry("Myrmedion");
+}
+
+public function redMyrmedionCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("NEHZERA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
+
+	outputCodex(header("Red Myr"));
+	outputCodex("<b>Name (Singular):</b> Red Myrmedion");
+	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
+	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, often about averaging heights around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Weight:</b> Quite heavy for their height thanks to numerous chitin plates in addition to muscles and bones that are far denser than the humanoid average.");
+	outputCodex("\n<b>Arms:</b> Four narrow but strong limbs ending with three fingers and a single thumb.");
+	outputCodex("\n<b>Abdomens:</b> Red myr have evolved away from insectile abdomens. Some members of the species have small, vestigial abdomens, but most have shed them completely.");
+	outputCodex("\n<b>Hair:</b> Blacks, oranges, and reds are all common.");
+	outputCodex("\n<b>Eyes:</b> Myr eyes are solid black (or more rarely gray) compound eyes. They are noted to have relatively poor eyesight. Blindness and various eye problems are unusually common.");
+	outputCodex("\n<b>Ears:</b> Myr have pointed ears, called \"elfin\" by first contact explorers.");
+	outputCodex("\n<b>Antennae:</b> A pair of insect-like antennae grow from every myr’s forehead, which pick up airborne vibrations and chemicals to supplement already keen ears while pulling double duty as an olfactory organ. The antennae are exceedingly sensitive to touch, and a non-verbal language seems to have developed based on subtle movements and rubbing the antennae together.");
+	outputCodex("\n<b>Wings:</b> Females are wingless. Males have vestigial wings too small to lift their forms.\n\n");
+
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Like their gold cousins, the red myr are insectile in nature and appearance, though they are much more human-like than the golds: most reds lack insectile abdomens, they possess only two arms, and they lack the dramatic distinction between \"queens\" and common, infertile members of the species. Red and gold myr even have their genitalia located in different places, with reds' located between the legs.");
+	outputCodex("\n\nThe most obvious physical trait of red myr is their natural chitin armor, which is thicker than that of the gold myr and considerably heavier, affording them superior protection. The covering of chitin is not consistent between all members of the species, with some limiting their plating to the limbs, while others have elaborate corset-like plates around the chest and back.");
+	outputCodex("\n\nThe reasons for the extreme divergence in this species is currently unknown, though speculation points towards extensive interbreeding with another high-population native race, the nyrea, and the great distance between gold and red heartlands. Xenobiologists and anthropologists are interested in finding the progenitor race that originated the different species of myr, though both red and gold seem uninterested in researching their shared past and have stonewalled scientific inquiries.\n\n");
+	outputCodex(blockHeader("Sexual Dimorphism & Reproduction"));
+	outputCodex("Male and female red myr have noticeable gender dimorphism, again tracing back to an insectile heritage. The vast majority of red myr are wingless females. Most are infertile, and incapable of reproduction. Red myr do, however, have a significantly higher percentage of fertile females compared to golds, as they lack the massively productive queens to ensure the continuation of their species. Population statistics declassified by Federation High Command indicate that somewhere between thirty and forty-five percent of red myr females are fertile. Still, the numerical advantage was clearly and overwhelmingly with the gold myr before the start of the war. Red myr females lay single eggs or small clutches of no more than four when fertilized, which gestate for an average of six months before hatching.\n\nWhile they do not possess the \"honeypot\" gene of the gold myr, most female red myr are capable of limited lactation if well fed, storing excess calories in the breasts until needed. Compared to gold myr, reds have smaller bust sizes on average, usually between a C and E cup, though this size can vary wildly during a single myr's lifetime depending on her nutritional intake.\n\nUnlike with the gold myr, nursing and lactation is considered highly private and personal between red myr, and to do so in public is highly frowned upon. Generally speaking, nursing is reserved for children and very close lovers, and is a sign of the highest affection between two red myr.\n\nMales are shorter-lived and winged, possessing considerably less strength than the average female due to his lighter frame. Affectionately called \"drones\" by their female counterparts, most males exist in red myr society to do very little other than breed: they are dearly prized by their females, and were often fought over during ancient times before intricate breeding schedules were established some hundred years before First Contact.");
+	outputCodex("\n\nMale myr are characterized by their slight, lithe bodies and massive genetalia, with disproportionately large phalli and semen-swollen testes that often drag on the ground when not regularly used -- though due to their high demand, this is rarely an issue. Due to the extreme conditions imposed by the war, even drones were pressed into service by the Scarlet Federation, though they were legally barred from combat duties. Most served as nurses, administrators, and factory workers, freeing more females up to fight.\n\nThese newfound demands of labor have, reportedly, began an accelerated male rights movement, similar in nature to the women's rights movement of 20th century Earth. Little information about the movement is available, however, due to the lack of contact with male red myr: few have been available for interview or commentary.\n\n");
+	outputCodex(blockHeader("Combat"));
+	outputCodex("Myr are notably covered in a partial \"suit\" of chitin plates which protect the legs, arms, and in some specimens, parts of the torso. This natural armor, combined with an average strength considerably higher than a human's and poor eyesight, has meant that melee combat still reigns supreme among the red myr, with axes and hammers being about as common in the Federation military as rifles.\n\nUnlike the gold myr, who had a very small standing military and little combat experience before the start of the global conflict, the Scarlet Federation began the war with highly trained, veteran soldiers -- most of whom had experience fighting large city-states of nyrea in addition to being trained by veterans of the unification conflicts that preceded the Federation's formation. Some U.G.C. sources have speculated that the Federation may have been in conflict with other, as yet unknown civilizations in the northern and western reaches of the planet for generations.\n\nMilitary tactics and technology among the red myr are significantly more advanced than those of the golds, and for the most part are reliant upon massed infantry charges supported by heavy artillery when fighting above ground, or on chemical weapons and phalanx-style shield walls when underground. Red myr weapons technology primarily employs smokeless gunpowder in revolvers, lever- and bolt-action rifles, and primitive air-cooled automatic weapons.\n\nSupplementing their hand-to-hand abilities, red myr females have venomous saliva which, on contact, causes a mild paralysis in the victim. The venom is known to cause a \"red heat\" sensation, inspiring rampant lust in the victim and usually putting him utterly at the mercy of the myr victor. Among gold myr, the venom of a red is considered a strong but illicit aphrodisiac, taken in small quantities to induce a lethargic, horny state.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited"));
+	outputCodex("Myrellion is the sole planet inhabited by the myr race, and it is fairly Earth-like in most respects. The planet has vast desert regions across much of its land masses, with some forested regions in the far northern and southern reaches. There are few if any snowy areas on the planet beyond the poles. Hot and dry, Myrellion is generally inhospitable above ground. The myr, however, are largely subterranean, and have over the years drilled out vast complexes of underground cities that rival the splendor of even the mega-cities of Terra. Due to the world war currently under way, many once-prosperous cities on both inhabited continents have been bombed out and abandoned, straining the population of the remaining cities as they accommodate refugees.\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("The Scarlet Federation touts a dramatically different social doctrine than that of the Gilden Republic. While the golds value freedom and creativity, the reds value discipline, hard work, and collective effort. The concept of free will is understood and appreciated by the red myr; it is believed by most to be second-best to the freedom granted through self-mastery. Though not all red myr follow this doctrine, the end result is a society that is truly and monumentally well ordered: hierarchies are well-established and held up for public scrutiny, unemployment is virtually non-existent, and civil disorder is next to unheard of, even during the darkest hours of the war.\n\nThe Scarlet Federation is primarily a military organization, and the red myr are effectively ruled by a junta of generals collectively called the High Command who took power after several unification conflicts brought the scattered red myr city-states under collective control. Military service is considered a sacred civil duty, and the ability to vote and serve public office is restricted to veterans only. Before the war, the Federation military was volunteer-only, though the press of seven years of war has necessitated a draft, much as it has among the gold myr.\n\nRed myr society is highly nationalistic and collectivist, promoting cooperation and national unity. Social power is held almost exclusively by the military, veterans, and the Federation High Command. Most national industries are government-supported private corporations, while citizens are free to create smaller private businesses.\n\nWhile the society endorsed by the Gilden Republic was on the verge of collapse under the strain the war, Federation society thrived thanks to vast acquisitions of land and resources heralded by their military victories. However, the strain of the war was felt heavily on the red myr population, which began the conflict significantly smaller than that of the gold, and has dwindled dangerously due to losses during the campaign. Had the infantry invasion of Gildenmere been launched, U.G.C. scientists suggest incurred casualties could have rendered the red myr population unviable -- too small to avoid genetic damage due to inbreeding and leaving them highly vulnerable to disease or mutation.\n\nRelationships: Due to the overwhelmingly female-heavy population, males are in high demand: most infertile females are unlikely to ever see a male in person, much less be able to copulate with him. As such, lesbian relationships are extremely common and widely accepted. Indeed, a marriage between male and female is quite literally unheard of in myr society; most males are shared between groups of bisexual females.\n\nRed myr sexual norms are difficult for some outsiders to comprehend, even to natives of Myrellion. Most red myr are open about their sexuality, and have little inhibition from doting on lovers and public displays of affection. However, unlike the gold myr, reds are highly averse to public nudity and blatant sex acts. Social norms dictate that sex is to be done in private seclusion with trusted lovers: there is no shame in the act, but rather it is deemed too personal and emotional to share with strangers.\n\nThe advent of casual sex is only a very recent phenomenon spurred on by the war. While monogamy is uncommon among the myr, relationships were expected to be devoted and deep. This attitude changed during the war, thanks to the concept of \"trench wives\" -- females that soldiers have either captured or brought from home who serve their needs between battles. These relationships are based on lust and physical pleasure, and have (some say alarmingly) disrupted the polyamorous partnerships more common in years past. The trench wife phenomenon is seen as a necessary evil by most red officers, as the Federation simply does not have the resources to deal with the sheer number of prisoners taken during the war. Allowing soldiers to keep their own captives, and insisting that they care for them, is seen as a more humanitarian than prison camps and puts the brunt of the administrative needs (food, shelter, etc.) on the shoulders of individual unit commanders.\n\n");
+	outputCodex(blockHeader("Technology"));
+	outputCodex("Myr technology is nearly analogous with early 20th century Earth, with electric engines and lights being common everywhere but the most remote villages and outposts. Federation military tech was relatively advanced compared to the golds' at the start of the war, though the Gilden Republic has made great strides to close the gap. The machine gun had only recently come into service at the start of the war, leading to the massive death tolls during the conflict.\n\nLike their gold counterparts, the red myr possess primitive aircraft, though they are largely forced to use captured gold airfields due to the short range of their craft and the remoteness of their original territory. That said, the Federation is perhaps more reliant on aircraft than the golds, and they make use of heavy air transports to move supplies and soldiers throughout the occupied continent rather than using traditional tunnel crawlers or ground craft.\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gases into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening the unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. This has caused some consternation on the part of the Federation, who saw themselves as on the brink of a final victory, and now are being largely ignored by the off-worlders in favor of the more alluring gold myr. Xenogen Biotech has, however, made preliminary inquiries into the reds' lust venom while other parties have expressed interest in exporting red myr labor (either reds themselves or selections of their many, many gold myr prisoners of war).\n");
+	CodexManager.viewedEntry("Red Myrmedion");
 }
 
 public function mimbraneCodexEntry():void
@@ -680,8 +765,8 @@ public function mimbraneCodexEntry():void
 
 	outputCodex(header("Mimbranes"));
 	outputCodex(blockHeader("- (Graft, Epidel, Second Skin)\n"));
-
-	outputCodex("<b>Sex:</b> Asexual");
+	outputCodex("<b>Name (Singular):</b> Mimbrane");
+	outputCodex("\n<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");
 	outputCodex("\n<b>Length:</b> 6 to 36 square inches. The parasite’s ability to distribute its mass to control its surface area can usually put it anywhere between six and thirty six square inches.");
 	outputCodex("\n<b>Weight:</b> 100 to 340 grams (0.2 - 0.75 pounds)");
@@ -784,13 +869,14 @@ public function mimbraneCodexEntry():void
 	
 	outputCodex("\n\nContacting an anesthesiologist is the best approach to removing Mimbrane from an individual. The parasite’s need to respire makes it susceptible to being knocked out and easily removed. There is rarely any lasting damage to hosts.\n");
 
-	CodexManager.viewedEntry("Mimbrane");
+	CodexManager.viewedEntry("Mimbranes");
 }
 
 function venusPitcherCodexEntry():void {
 	clearOutputCodex();
 	userInterface.showBust("VENUSPITCHER","VENUS_PITCHER_ELDER");
 	outputCodex(header("Venus Pitchers"));
+	outputCodex("<b>Name (Singular):</b> Venus Pitcher");
 	outputCodex("\n<b>Sexes:</b> Hermaphrodite");
 	outputCodex("\n<b>Height:</b> Three to fifteen feet above the ground, depending on age.");
 	outputCodex("\n<b>Weight:</b> Hundreds of pounds including their subterranean bulbs.");
@@ -817,7 +903,7 @@ function venusPitcherCodexEntry():void {
 	outputCodex("\n\nMales are prized more as food sources than reproductive partners. They typically produce larger volumes of protein and are more susceptible to the venus pitcher's appearance, making them more common but necessary prey.");
 	outputCodex("Elder venus pitchers will typically hypnotize males to return to them as a steady supply of food. Particularly skilled ones may find their protein harem lining up waiting for their turn. If a female can be hypnotized, they will implant suggestions to visit many different pitchers, allowing them to breed and combine DNA from multiple plants.\n");
 	
-	CodexManager.viewedEntry("Venus Pitcher");
+	CodexManager.viewedEntry("Venus Pitchers");
 }
 
 function cuntSnakeCodexEntry():void
@@ -826,9 +912,9 @@ function cuntSnakeCodexEntry():void
 	userInterface.showBust("CUNTSNAKE");
 
 	outputCodex(header("Cunt Snakes"));
-	outputCodex(blockHeader("\n - (Parasite Pussies, Cock Constrictors, etc...)"));
-	
-	outputCodex("<b>Sexes:</b> Asexual, though often referred to with feminine pronouns for obvious reasons.");
+	outputCodex("(Parasite Pussies, Cock Constrictors, etc...)");
+	outputCodex("\n<b>Name (Singular):</b> Cunt Snake");
+	outputCodex("\n<b>Sexes:</b> Asexual, though often referred to with feminine pronouns for obvious reasons.");
 	outputCodex("\n<b>Height:</b> One to six inches.");
 	outputCodex("\n<b>Length:</b> Most frequently between two and six feet long. Exceptional specimens can grow up to eight or ten feet long on a world with large enough host creatures.");
 	outputCodex("\n<b>Weight:</b> Five to forty pounds, depending on size.");
@@ -851,7 +937,7 @@ function cuntSnakeCodexEntry():void
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Intelligence"));
-	outputCodex("Cunt snakes are not sentient.");
+	outputCodex("Cunt snakes are not sapient in the traditional sense.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Feeding"));
@@ -868,7 +954,7 @@ function cuntSnakeCodexEntry():void
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Since the snakes have only a single sex, they do not reproduce in the typical way. Every cunt snake has a storehouse of inactive, extra DNA sequences left to it by its ancestors. It will instinctively integrate attributes from its host creature along with a selection of its own active and stored genes into each egg it produces, along with a storehouse of extra genes. The cunt snake progeny will undoubted have vaginas similar to the kind female host creatures would have, as well as other biological adaptations. Eggs are only created when the creature is gaining plenty of nutrients (blood and sperm - what?! Not mixed together!).\n");
 
-	CodexManager.viewedEntry("Cunt Snake");
+	CodexManager.viewedEntry("Cunt Snakes");
 }
 
 function naleenCodexEntry():void
@@ -877,7 +963,8 @@ function naleenCodexEntry():void
 	userInterface.showBust("NALEEN","NALEEN_MALE");
 
 	outputCodex(header("The Naleen"));
-	outputCodex("<b>Sexes:</b> Male & Female");
+	outputCodex("<b>Name (Singular & Plural):</b> Naleen");
+	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Most Naleen rise about six feet from the ground, though their full length is often more than twice that from tail to brow.");
 	outputCodex("\n<b>Weight:</b> A fully grown Naleen could easily weigh several hundred pounds.");
 	outputCodex("\n<b>Hair:</b> Naleen arms and bellies are covered in a thin fur, usually black, orange, green, or tiger-striped. Their hair grows in a matching color to their body fur, and is worn long, and often braided.");
@@ -910,9 +997,10 @@ function vanaeCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
 	outputCodex(header("The Vanae"));
-	outputCodex(blockHeader("\n - 'Vah-nay'"));
+	outputCodex("'Vah-nay'");
+	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
 	//Taxonym: Vanae
-	outputCodex("<b>Genders:</b> Female");
+	outputCodex("\n<b>Genders:</b> Female");
 	outputCodex("\n<b>Height:</b> 5'2\" - 5'6\"");
 	outputCodex("\n<b>Weight:</b> 55 - 62 kg");
 	outputCodex("\n<b>Skin:</b> Snow white with special markings of a single, bioluminescent color (Most to least common: Indigo, violet, pink, dark red, blue or black).");
@@ -1034,12 +1122,11 @@ function vanaeHistoryCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
 	outputCodex(header("The Vanae"));
-	outputCodex(blockHeader("\n - 'Vah-nay'"));
+	outputCodex("'Vah-nay'");
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Addendum: History"));
-
-	outputCodex("\n\nThe origin story of the vanae and sacae has a nugget of truth to it in that they did indeed \"fall from the sky\". Both species are not native inhabitants of Mhen'ga and actually come from a far-off world.");
+	outputCodex("The origin story of the vanae and sacae has a nugget of truth to it in that they did indeed \"fall from the sky\". Both species are not native inhabitants of Mhen'ga and actually come from a far-off world.");
 	outputCodex("\n\nBoth species started as a single race known as the octalia, originating from an oceanic planet in a neighbouring sector. The octalians had bodies adapted for living under extreme pressure and in almost pitch black darkness - the reason both races have white skin and bio-luminescence. The octalia hunted prey by luring them in the darkness.");
 	outputCodex("\n\nAt some point in the history of the octalia, a spacefaring mission was attempted. For unknown reasons the ship crashed on Mhen'ga. The male members were wiped out, leaving only the females to survive. The female crew, blind and struggling in the new environment, were raped by species such as the naleen.");
 	outputCodex("\n\nOctalian genes are incredibly dominant, and the gender chromosomes are only carried by the same gender of their race (Only males carry the octalian Y chromosome template). Without male octalia or a similarly strong male species to impregnate them, the female crew gave birth to only female octalian children.");
@@ -1260,8 +1347,8 @@ function daynarCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
 	outputCodex(header("The Daynar"));
-
-	outputCodex("<b>Genders:</b> Male & Female");
+	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
+	outputCodex("\n<b>Genders:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Males - 5' 9\" ft, Females - 5' 7\"");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");

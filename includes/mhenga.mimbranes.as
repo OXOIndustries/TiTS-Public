@@ -257,6 +257,17 @@ public function hasFeedableMimbranes():Boolean
 	return false;
 }
 
+public function feedCost(effectName:String, feedCost:int):void
+{
+	var pDays:int = pc.statusEffectv2(effectName);
+	var pFeeds:int = pc.statusEffectv3(effectName);
+	
+	var nFeedCount:int = Math.min(0, pFeeds - feedCost);
+	
+	resetMimbraneEffects(effectName);
+	if (nFeedCount > 0) feedAMimbrane(effectName, nFeedCount);
+}
+
 /**
  * "Feed" any available mimbranes that are eligible to recieve ~nutrition~
  * target selects the "grouping" that feeding will apply to; "all" or "regular"
@@ -2450,7 +2461,7 @@ public function encounterMimbrane():void
 		output("\n\nWhat appears to be a large, flowing sheet has careened into the ground where you once stood. Speechless awe is the best you can respond as you eye the strange, oily square creature below you. Most of its body can’t possibly be more than half an inch thick! Your codex snaps you back to your senses with a shark beep.");
 		output("\n\n“<i>A Mimbrane has been detected in the immediate vicinity. This is a parasitic species that relies less on physical attacks and more on its aphrodisiac secretions along its epidermis to overpower opponents. Seek medical assistance immediately should you fall to one of these creatures.</i>”");
 		output("\n\nThere’s little time for you to consider this information further; the creature’s recovered from its embarrassing fumble. It shakes its body furiously, clearing away the dirt and dust to reveal its smooth, flawless sheen. That’s not all the shake did you realize as the same mesmerizing aroma ambushes your senses. The parasite chirps angrily at you, ready to fight!");
-		CodexManager.unlockEntry("Mimbrane");
+		CodexManager.unlockEntry("Mimbranes");
 	}
 	else
 	// Repeat encounters
@@ -2954,7 +2965,8 @@ public function playerMimbraneSpitAttack():void
 			{
 				// Faiure effects
 				// Cost "feeds"
-				pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+				//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+				feedCost(eligibleMimbranes[ii], 5);
 
 				// Raises player lust
 				pc.lust(5);
@@ -3286,7 +3298,8 @@ public function mimbraneCombatInterference():Boolean
 			if (rand(10) == 0) // 1 in 10 [(0-9)]
 			{
 				// Cost "feeds"
-				pc.setStatusValue(eligibleMimbranes[i], 3, pc.statusEffectv3(eligibleMimbranes[i]) - 3);
+				//pc.setStatusValue(eligibleMimbranes[i], 3, pc.statusEffectv3(eligibleMimbranes[i]) - 3);
+				feedCost(eligibleMimbranes[i], 3);
 
 				// Raises player lust
 				pc.lust(2);

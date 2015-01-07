@@ -2273,7 +2273,7 @@ Class Name: FurryBra
 ShortName: Furry Bra
 LongName: Furry bra
 thisDescription: furry bra
-thisTooltip: A furry bra made of of synthetic animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.
+thisTooltip: A furry bra made of synthetic animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.
 
 
 Black Lace Bra
@@ -2349,7 +2349,7 @@ Class Name: FurryPanties
 ShortName: Furry Panties
 LongName: Furry panties
 thisDescription: furry panties
-thisTooltip: A pair of panties made of of synthetic animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.
+thisTooltip: A pair of panties made of synthetic animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.
 
 Black Lace Panties
 // See "White Bra" for comment. 

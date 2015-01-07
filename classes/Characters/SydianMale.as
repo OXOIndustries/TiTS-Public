@@ -171,7 +171,7 @@
 			kGAMECLASS.userInterface.showBust("SYDIAN_MALE");
 			kGAMECLASS.userInterface.showName("FIGHT:\nSYDIAN MALE");
 			
-			CodexManager.unlockEntry("Sydian");
+			CodexManager.unlockEntry("Sydians");
 			
 			combatSydianMale.sexualPreferences.setRandomPrefs(2 + rand(3));
 			combatSydianMale.cocks[0].cLengthRaw = 9 + rand(4);

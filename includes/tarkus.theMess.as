@@ -93,7 +93,7 @@ function approachDCLTrap():void
 	//Slut Training
 	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You're the perfect person to show her how it's done...");
-	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be an trappy, non anal virgin so that you can show Delilah how it's done.");
+	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be a trappy, non anal virgin so that you can show Delilah how it's done.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -119,7 +119,7 @@ function approachDCLBooty():void
 	//Slut Training
 	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You're the perfect person to show her how it's done...");
-	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be an trappy, non anal virgin so that you can show Delilah how it's done.");
+	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be a trappy, non anal virgin so that you can show Delilah how it's done.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

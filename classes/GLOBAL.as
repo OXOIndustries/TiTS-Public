@@ -654,6 +654,9 @@
 		public static const LIFTDOWN:int 								= 13;
 		public static const TAXI:int    								= 14;
 		public static const PUBLIC:int 									= 15;
+		public static const PRIVATE:int									= 16;
+		public static const FAPPING_ILLEGAL:int							= 17;
+		public static const NUDITY_ILLEGAL:int							= 18;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

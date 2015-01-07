@@ -635,10 +635,18 @@
 		public var tailType: Number = 0;
 		public function tailTypeUnlocked(newTailType:Number):Boolean
 		{
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE) return false;
 			return true;
 		}
 		public function tailTypeLockedMessage():String
 		{
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE)
+			{
+				var msg:String = "\n\nThe creature masquerading as a tail seems pretty spooked about something all of a sudden;";
+				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
+				else msg += " it's busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
+				return msg;
+			}
 			return "";
 		}
 		
@@ -1327,6 +1335,9 @@
 				case "cockSmallest":
 					buffer = cockDescript(smallestCockIndex());
 					break;
+				case "cockShortest":
+					buffer = cockDescript(shortestCockIndex());
+					break;
 				case "eachCockHead":
 					buffer = eachCockHead();
 					break;
@@ -1538,6 +1549,12 @@
 					break;
 				case "milkFlavor":
 					buffer = fluidFlavor(milkType);
+					break;
+				case "wing":
+					buffer = wingDescript();
+					break;
+				case "wings":
+					buffer = wingsDescript();
 					break;
 				case "leg":
 					buffer = leg();
@@ -1926,6 +1943,7 @@
 		}
 		//HP
 		public function HP(arg: Number = 0): Number {
+			if(kGAMECLASS.easy && arg < 0) arg *= .5;
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;
@@ -1997,6 +2015,7 @@
 		}
 		public function lustDamage(arg:Number = 0):Number
 		{
+			if(kGAMECLASS.easy && arg > 0) arg *= .5;
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
 			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
@@ -2227,8 +2246,12 @@
 		}
 		public function lustMin(): Number {
 			var bonus:int = 0;
-			if(hasPerk("Drug Fucked")) bonus += 10;
-			if(hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (hasPerk("Drug Fucked")) bonus += 10;
+			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (hasStatusEffect("Lane Detoxing Weakness"))
+			{
+				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
+			}
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -2365,6 +2388,7 @@
 			return temp;
 		}
 		public function shields(arg: Number = 0): Number {
+			if(kGAMECLASS.easy && arg < 0) arg *= .5;
 			shieldsRaw += arg;
 			if (shieldsRaw > shieldsMax())
 				shieldsRaw = shieldsMax();
@@ -3051,6 +3075,14 @@
 			if(tailCount == 1) return tailDescript();
 			else if(tailCount > 1) return pluralize(tailDescript());
 			else return "<b>ERROR: Taildescript called with no tails present</b>";
+		}
+		public function wingDescript():String
+		{
+			return "wing";
+		}
+		public function wingsDescript():String
+		{
+			return pluralize(wingDescript());
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -5011,7 +5043,7 @@
 			//if arg == -1, mLs produced by biggest row.
 			if(arg == -1)
 			{
-				capacity = (400 + biggestTitSize() / 2 * 100) * milkStorageMultiplier;
+				capacity = (400 + breastRows[biggestTitRow()].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
 			}
 			//if arg == 99, total mLs produced by all rows
 			else if(arg == 99)
@@ -5019,7 +5051,7 @@
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					capacity += (400 + breastRows[x].breastRating() / 2 * 100);
+					capacity += (400 + breastRows[x].breastRatingRaw / 2 * 100);
 				}
 				capacity *= milkStorageMultiplier;
 			}
@@ -5633,6 +5665,11 @@
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
+			if (type == GLOBAL.TYPE_HUMAN)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+			}
 			if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
 				cocks[slot].cockColor = "bright red";
@@ -8210,16 +8247,16 @@
 				}
 				rando = this.rand(11);
 				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
-				if (rando <= 1) noun += "cock";
-				if (rando <= 2) noun += "member";
-				if (rando <= 3) noun += "shaft";
-				if (rando <= 4) noun += "phallus";
-				if (rando <= 5) noun += "prick";
-				if (rando <= 6) noun += "member";
-				if (rando <= 7 && descript != "simian ") noun += "simii-cock";
-				if (rando <= 8) noun += "dick";
-				if (rando <= 9) noun += "tool";
-				if (rando <= 10) noun += "shaft";
+				else if (rando <= 1) noun += "cock";
+				else if (rando <= 2) noun += "member";
+				else if (rando <= 3) noun += "shaft";
+				else if (rando <= 4) noun += "phallus";
+				else if (rando <= 5) noun += "prick";
+				else if (rando <= 6) noun += "member";
+				else if (rando <= 7 && descript != "simian ") noun += "simii-cock";
+				else if (rando <= 8) noun += "dick";
+				else if (rando <= 9) noun += "tool";
+				else noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {

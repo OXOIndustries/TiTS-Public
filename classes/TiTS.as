@@ -132,6 +132,7 @@
 		include "../includes/tarkus.drBadger.as";
 		include "../includes/tarkus.dumbfuckBonus.as";
 		include "../includes/tarkus.grayGoo.as";
+		include "../includes/tarkus.lane.as";
 		include "../includes/tarkus.lapinara.as";
 		include "../includes/tarkus.raskvelFemaleFight.as";
 		include "../includes/tarkus.roomFunctions.as";
@@ -158,11 +159,13 @@
 		//Fourth planet
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.lyralla.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.nehzara.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
 		include "../includes/myrellion.tavern.as";
+
 		
 		public var chars:Object;
 		public var foes:Array;
@@ -202,6 +205,7 @@
 		public var currentLocation:String;
 		public var shipLocation:String;
 		public var inSceneBlockSaving:Boolean;
+		public var gameOverEvent:Boolean;
 
 		public var parser:ParseEngine;
 
@@ -268,6 +272,7 @@
 			itemTarget = undefined;
 
 			this.inSceneBlockSaving = false;
+			gameOverEvent = false;
 			
 			eventQueue = new Array();
 			eventBuffer = "";
@@ -375,18 +380,21 @@
 		{
 			toggleWTF();
 			
-			if (!inCombat()) 
-			{
-				this.userInterface.showBust("none");
-			}
-			
 			if (evt.currentTarget is MainButton)
 			{
 				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
+				
+				var btn:MainButton = evt.currentTarget as MainButton;
+				if (btn.func == null) return;
 			}
 			else
 			{
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			}
+			
+			if (!inCombat()) 
+			{
+				this.userInterface.showBust("none");
 			}
 			
 			if (evt.currentTarget.arg == undefined)

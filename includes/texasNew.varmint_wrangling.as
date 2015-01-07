@@ -337,7 +337,7 @@ function lassoAVarmint():void
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		//Will this down the fucker
-		if(damage - foes[0].defense() >= foes[0].HP()) output(" <b>You snag the varmintg by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
+		if(damage - foes[0].defense() >= foes[0].HP()) output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
 		//Naw, he's still up
 		else
 		{

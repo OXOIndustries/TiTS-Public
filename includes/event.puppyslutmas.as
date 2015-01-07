@@ -374,6 +374,10 @@ function pPartner():String
 
 function pSyriClothes():String
 {
+	if (flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"] == undefined)
+	{
+		flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"] = "Tux";
+	}
 	return flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"];
 }
 
@@ -416,7 +420,7 @@ function puppyslutmasStairs():void
 	else if (pSyriClothes() == "Dress") output(" Syri curses under her breath and clutches the hem of her skirt, teetering on every step thanks to her high heels. <i>“Fuck this and fuck you and fuck everything,”</i> she mumbles, squeezing your hand painfully hard to steady herself on her ascent.");
 	else output(" Syri gives your hand an affectionate squeeze and follows you up, trying to hide her nervousness behind a smile.");
 	
-	output("\n\nThe terrace above looks like a glistening oasis compared to the sandy deserts surrounding the city. All green and verdant, with carefully grown grass and trees lining the single concrete path from the stairs to the sweeping glass doors leading inside. Several ausar, and a few humans and races, are gathered outside, mingling quietly. Music wafts out from the doors over the terrace, a familiar Christmas jingle played by what sounds like a string quartet. There might not be any snow on Ausaril this time of year (or ever, probably), but there’s plenty of winter cheer at least. A huge stuffed Santa figure is standing beside the door with his mitten-covered hands clasped around a large electronic device to allow the wealthy guests to anonymously give their donations.");
+	output("\n\nThe terrace above looks like a glistening oasis compared to the sandy deserts surrounding the city. All green and verdant, with carefully grown grass and trees lining the single concrete path from the stairs to the sweeping glass doors leading inside. Several ausar, and a few humans and other races, are gathered outside, mingling quietly. Music wafts out from the doors over the terrace, a familiar Christmas jingle played by what sounds like a string quartet. There might not be any snow on Ausaril this time of year (or ever, probably), but there’s plenty of winter cheer at least. A huge stuffed Santa figure is standing beside the door with his mitten-covered hands clasped around a large electronic device to allow the wealthy guests to anonymously give their donations.");
 	
 	output("\n\n");
 	if (pPartner() == "Syri")
@@ -561,6 +565,7 @@ function puppyslutmasMeetSyri():void
 		output("\n\nAnno blushes. <i>“Hey, [pc.name] was right there! We’re, uh, you know... living together now.”</i>");
 		
 		output("\n\nSyri’s eyes go wide at that, but she quickly recovers and says, <i>“Well, that’s... that’s good! Good for you two!”</i>");
+		flags["ANNOxSYRI_EVENT"] = 1;
 	}
 	else if (flags["FUCKED_SYRI_COUNT"] != undefined && flags["ANNOxSYRI_EVENT"] != undefined)
 	{
@@ -953,7 +958,9 @@ function puppyslutmasDanceWithAnno():void
 	output("\n\nYou find a bit of clear floor and turn to your");
 	if (haveFuckedAnno() && annoIsCrew()) output(" lover");
 	else output(" dance partner");
-	output(", putting a hand on her waist, the other on her bare shoulder. Anno mirrors your movements, stepping close enough to you that you can feel the gentle heat radiating off her body, the tips of her breasts so close to your [pc.chest] that it’s a force of will not to step that little bit closer, pressing them between you.");
+	output(", putting a hand on her waist, the other on her");
+	if (pSyriClothes() == "Dress") output(" bare");
+	output(" shoulder. Anno mirrors your movements, stepping close enough to you that you can feel the gentle heat radiating off her body, the tips of her breasts so close to your [pc.chest] that it’s a force of will not to step that little bit closer, pressing them between you.");
 	
 	output("\n\nAnno smiles radiantly at you, murmuring <i>“I’ll let you take the lead, boss.”</i>");
 	
@@ -972,13 +979,19 @@ function puppyslutmasDanceWithAnno():void
 	}
 	else
 	{
-		output(" You have to admit, the two cute ausar ");
+		output(" You have to admit, the two cute ausar");
 		// Confirm dis- p. sure the only way you're gonna know for sure they're packin heat is if the PC has fucked them.
 		if (flags["FUCKED_SYRI_COUNT"] != undefined && flags["KAEDE_FUCKED"] != undefined)
 		{
-			output("dick");
+			output(" dick-");
 		}
-		output("girls in their beautiful dresses might make a lovely couple, the way they hold onto each other and nervously try to avoid stepping on each others’ toes.");
+		else
+		{
+			output(" ");
+		}
+		output("girls"); 
+		if (pSyriClothes() == "Dress") output(" in their beautiful dresses");
+		output(" might make a lovely couple, the way they hold onto each other and nervously try to avoid stepping on each others’ toes.");
 	}
 	output(" They’re quite cute together, and seeing where your gaze has gone, Anno flashes you a little smile");
 	
@@ -1048,7 +1061,10 @@ function puppyslutmasDanceWithKaede():void
 	
 	output("\n\nYou cast a glance over Kaede’s shoulder as the next tune starts up, and catch sight of Anno and Syri through the pressing crowd of other ausar.");
 	if (pSyriClothes() == "Tux") output(" Though the twins look an awful lot alike any other day, they’re a stunning pair tonight. Anno, in her silky purple gown with her snowy hair cascading around her shoulders, and Syri in her trim tux holding back her feminine curves, they could easily pass for a real couple if you didn’t know better.");
-	else output(" With your date in her slim black dress, the twins really are a stunning pair tonight. They look like they belong together, Anno’s glamorous gown a perfectly contrast to the form-fitting black of Syri’s, taking full advantage of both girls’ figures.");
+	else
+	{
+		output(" With your date in her slim black dress, the twins really are a stunning pair tonight. They look like they belong together, Anno’s glamorous gown a perfectly contrast to the form-fitting black of Syri’s, taking full advantage of both girls’ figures.");
+	}
 	output(" More than a few envious eyes are on the twins tonight.");
 	
 	output("\n\n<i>“They’re cute, huh?”</i> Kaede whispers, just loud enough for you to hear. You chuckle and nod.");
@@ -1067,7 +1083,7 @@ function puppyslutmasDanceWithKaede():void
 	output(",”</i> she says, leaning in and planting a kiss");
 	if (flags["KAEDE_FUCKED"] != undefined) output(" full on your lips");
 	else output(" on your cheek");
-	output(" before slipping out of your grasp");
+	output(" before slipping out of your grasp.");
 
 	processTime(45);
 
@@ -1341,7 +1357,7 @@ function puppyslutmasMeetTheDornasHue():void
 		output("\n\nHe huffs, but does as he’s told. <i>“I was only holding it... Ehem, anyway, it’s good to see you all taking to the frontier - even if it’s perhaps a touch more dangerous than I’d like. You’re all paving the way for the progress of civilization.”</i>");
 	}
 	
-	output("\n\nMr. Dorna nods sagely, theand follow-up cut short as drinks and appetizers start coming in. A couple of proper chefs march out from a side room, each with a belt of cutlery slung on his ore her, and make their way to the central kitchen. The waiters still clustered around your section of the table take your orders and deliver them to the pair of chefs before scooting off again into the shadows.");
+	output("\n\nMr. Dorna nods sagely, the follow-up cut short as drinks and appetizers start coming in. A couple of proper chefs march out from a side room, each with a belt of cutlery slung on his ore her, and make their way to the central kitchen. The waiters still clustered around your section of the table take your orders and deliver them to the pair of chefs before scooting off again into the shadows.");
 	
 	output("\n\nThe conversation picks up again after that, leading towards Kaede and how long it’s been since the Dornas saw her last and how’s her father and the like. While the rest of the group is talking, you feel a hand slip onto your [pc.leg] beneath the table. You look over just in time to see "+ pPartner() +" slump against you, resting her cheek on your shoulder. Her tail flicks across your [pc.butt] through the gap in the back of your chair, playfully teasing you.");
 	
@@ -1447,8 +1463,8 @@ function puppyslutmasMeetTheDornasHueAnno():void
 	showBust("ANNO");
 	
 	output("<b>Hours pass...</b>");
-
-	output("\n\nYour auto-pilot beeps that you’ve returned to " + StringUtil.toTitleCase(shipLocation) + ". Anno lazily reaches out of bed and smacks the alert button, shutting the damn thing up.");
+	
+	output("\n\nYour auto-pilot beeps that you’ve returned to " + getPlanetName() + ". Anno lazily reaches out of bed and smacks the alert button, shutting the damn thing up.");
 	
 	output("\n\n<i>“So, what’s next?”</i> you lover asks, rolling over on top of you, pressing her big, soft chest against your own.");
 	

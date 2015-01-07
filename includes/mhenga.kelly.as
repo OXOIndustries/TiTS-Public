@@ -83,10 +83,10 @@ function kellysOfficeBonusFunction():Boolean
 			//1st Time:
 			output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\" Though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
 			//If no Laquine entry in codex:
-			if(!CodexManager.entryUnlocked("Laquine"))
+			if(!CodexManager.entryUnlocked("Laquines"))
 			{
 				output("\n\nYour codex gives a beep, signalling that Kelly is a member of an alien race. Stealthily, you check it out and skim the summary; Kelly here is a member of a race of rabbit-like anthro aliens known as the Laquines. They're most well-known for their high rate of hermaphroditism, and their rabbit-like breeding abilities, though in recent decades a mysterious \"sterility plague\" has been afflicting the race.");
-				CodexManager.unlockEntry("Laquine");
+				CodexManager.unlockEntry("Laquines");
 			}
 			output("\n\nHer fingers tap away at the keyboard, and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?\"</i>");
 			
@@ -99,7 +99,7 @@ function kellysOfficeBonusFunction():Boolean
 		}
 		else
 		{
-			CodexManager.unlockEntry("Laquine");
+			CodexManager.unlockEntry("Laquines");
 			output("\n\nKelly is at her usual position behind the receptionist counter, idly going over her work. She sees you entering and smiles, giving you a friendly wave, before getting back to work.");
 			addButton(0,"Kelly",kellyOfficeApproach);
 		}
@@ -377,7 +377,7 @@ public function kellyAtTheBar():void
 function approachKellyAtTheBar():void
 {
 	clearOutput();
-	CodexManager.unlockEntry("Laquine");
+	CodexManager.unlockEntry("Laquines");
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
@@ -2350,7 +2350,7 @@ function keepGoingWithFuckingHyperModeKelly():void
 		//CumQuantity=Normal:
 		if(pc.cumQ() < 500)
 		{
-			output("\n\nYour semen vanishes into the rapacious void that is the horny laquine's pussy, swallowed without a trace it was ever there... at least, externally. Kelly moans as you empty yourself inside of her. <i>\"Oh, yes!\"</i> she wails even as her own quad clenches and her cocks distend, erupting in twin cannons of jizz that send honey spraying all over, flooding her bedding, spraying against the underside of her boobs, and puddling in a great sticky pool on the floor. The air is filled with the sweet scent of her jizz, so strong it's overpowering, even as she sighs in release. <i>\"Mmm, that hit the spot.... Oh, don't worry, {pc.Name}; It doesn't matter if you don't shoot much cum. All we gotta do is make you shoot a bunch of times and it'll all add up,\"</i> she giggles, rubbing her belly.");
+			output("\n\nYour semen vanishes into the rapacious void that is the horny laquine's pussy, swallowed without a trace it was ever there... at least, externally. Kelly moans as you empty yourself inside of her. <i>\"Oh, yes!\"</i> she wails even as her own quad clenches and her cocks distend, erupting in twin cannons of jizz that send honey spraying all over, flooding her bedding, spraying against the underside of her boobs, and puddling in a great sticky pool on the floor. The air is filled with the sweet scent of her jizz, so strong it's overpowering, even as she sighs in release. <i>\"Mmm, that hit the spot.... Oh, don't worry, [pc.name]; It doesn't matter if you don't shoot much cum. All we gotta do is make you shoot a bunch of times and it'll all add up,\"</i> she giggles, rubbing her belly.");
 		}
 		//CumQuantity=High:
 		else if(pc.cumQ() <= 2000)
@@ -3852,7 +3852,7 @@ function getDPedByKelly():void
 	else output("drapes your [pc.legs] over her shoulders");
 	output(" for support and moves to caress your butt. Reverently she squeezes each luscious cheek in turn, and then gently spreads them apart before leaning down, her tongue worming out once again.");
 
-	output("\n\nFor anyone else, the position might be awkward, but it poses no problem to Kelly and her prehensile tongue. Like a perverse limb it reaches under your taint and then upwards, sliding teasingly through the canyon of your buttock cleavage before starting to circle your rosebud. Ticklishly she strokes you, rolling the pointed tip around and around, before she starts to push insistently at it and begin to press her way inside. Deeper and deeper into your ass it sinks, wriggling and squirming inside of you as it lubes you, pistoning gently in and out to facilitate its descent before Kelly pulls it free of your now-slick back passage. She swallows it back down, smacking her lips, even as she starts to rise from her kneeling position, still holding your ass off of the bed.");
+	output("\n\nFor anyone else, the position might be awkward, but it poses no problem to Kelly and her prehensile tongue. Like a perverse limb it reaches under your taint and then upwards, sliding teasingly through the canyon of your buttock cleavage before starting to circle your rosebud. Ticklishly she strokes you, rolling the pointed tip around and around, before she starts to push insistently at it and begins to press her way inside. Deeper and deeper into your ass it sinks, wriggling and squirming inside of you as it lubes you, pistoning gently in and out to facilitate its descent before Kelly pulls it free of your now-slick back passage. She swallows it back down, smacking her lips, even as she starts to rise from her kneeling position, still holding your ass off of the bed.");
 
 	//Kind:
 	if(pc.isNice())
@@ -3873,8 +3873,8 @@ function getDPedByKelly():void
 		output("\n\n<i>\"But teasing you is such fun,\"</i> she giggles. <i>\"Oh, alright, I suppose I'm ready to get it down, too.\"</i> she says. From the tone of her voice, it's clearly not a hard choice for her to make.");
 	}
 
-	output("\n\nLicking her lips in anticipation, the laquine slides her hips closer, tantalisingly rubbing her twin shafts against your inner thighs. She holds you there, letting her footlong cocks drool syrupy-sweet precum onto your flesh with each pulse of her heartbeat, then takes aim at your ");
-	if(y < 0) output("pussy and ass");
+	output("\n\nLicking her lips in anticipation, the laquine slides her hips closer, tantalisingly rubbing her twin shafts against your inner thighs. She holds you there, letting her footlong cocks drool syrupy-sweet precum onto your flesh with each pulse of her heartbeat, then takes aim at ");
+	if(y < 0) output("your pussy and ass");
 	else if(pc.totalVaginas() == 2) output("both of your pussies");
 	else output("two of your " + num2Text(pc.totalVaginas()) + " cunts");
 	output(". <i>\"Hope you’re ready for this, honey. Because I can’t hold back any more!\"</i> she exclaims, smiling. Her first shaft pierces your [pc.vagina " + x + "] with a wet squelch. Saliva, honeyed pre and your own [pc.girlCum] mingling to form a potent lubricant, perfect for the flared tip demanding entrance within your confines.");
@@ -3887,7 +3887,7 @@ function getDPedByKelly():void
 
 	output("\n\n<i>\"Ah!... Honey, if you keep holding me like that....\"</i> she trails off into a moan of her own. By the time you feel her hips flush against yours, you’re both a panting mess. Kelly strokes your cheek lovingly as you move your [pc.legs] to wrap around her, securing her in place and ensuring she can’t get away.");
 
-	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly where I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you waiting as you conform to the shape of her pricks, tongues dancing as the flame of your lusts threaten to consume you.");
+	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly where I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you waiting as you conform to the shape of her pricks, tongues dancing as the flames of your lusts threaten to consume you.");
 
 	output("\n\nWith a wet pop, Kelly frees her mouth of yours, tongue lolling momentarily, still linked to yours by a thin strand of saliva. Panting so heavily that her breasts jiggle hypnotically before your eyes, she pushes herself fully upright from where she was sprawled across your belly. A hand reaches down to your hip and pulls you closer to the edge of the bed, adjusting your position to better suit her needs.");
 
@@ -3973,7 +3973,11 @@ function getDPedByKelly():void
 
 		output("\n\n<b>Later....</b>");
 
-		output("\n\nEventually, the two of you wake and Kelly helps you clean off, squeezing out most of the honey she stuffed you with in the process. Some of it's a little stubborn, remaining firmly packed in your wombs despite your best efforts, but the resultant belly-chub isn't enough to interfere with putting your [pc.top] back on. Kelly smiles once you're dressed and playfully pets your slightly bulging stomach. <i>\"Good thing I take contraception seriously, or you'd be pregnant twice over,\"</i> she giggles, then steps in to kiss you affectionately. <i>\"Mmm... don't be a stranger, hear?\"</i> she purrs once she's released your lips, tongue darting out to affectionately flick the tip of your nose before she steps away.");
+		output("\n\nEventually, the two of you wake and Kelly helps you clean off, squeezing out most of the honey she stuffed you with in the process. Some of it's a little stubborn, remaining firmly packed in your wombs despite your best efforts");
+		if (pc.isChestGarbed()) output(", but the resultant belly-chub isn't enough to interfere with putting your [pc.upperGarment] back on");
+		else output(", but the resultant belly-chub doesn't hinder you too much in your quest to collect your [pc.gear]");
+		output(".");
+		output(" Kelly smiles once you're ready and playfully pets your slightly bulging stomach. <i>\"Good thing I take contraception seriously, or you'd be pregnant twice over,\"</i> she giggles, then steps in to kiss you affectionately. <i>\"Mmm... don't be a stranger, hear?\"</i> she purrs once she's released your lips, tongue darting out to affectionately flick the tip of your nose before she steps away.");
 
 		output("\n\nSaying your goodbyes, you return to the ship.");
 	}

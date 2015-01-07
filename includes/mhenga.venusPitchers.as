@@ -17,7 +17,7 @@ import classes.PregnancyData;
 function encounterRegularTentaclePitcherYouGay():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
-	CodexManager.unlockEntry("Venus Pitcher");
+	CodexManager.unlockEntry("Venus Pitchers");
 	//*First Time
 	if(flags["TIMES_MET_VENUS_PITCHER"] == undefined)
 	{		
@@ -517,7 +517,7 @@ function tentacleJamAftermath(knockUpPass:Number = 0):void {
 function elderVenusPitcherEncounter():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
-	CodexManager.unlockEntry("Venus Pitcher");
+	CodexManager.unlockEntry("Venus Pitchers");
 	//*First Time
 	if (flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;

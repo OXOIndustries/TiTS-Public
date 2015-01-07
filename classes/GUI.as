@@ -493,10 +493,17 @@
 				throw new Error("Couldn't find module \"" + module + "\"");
 			}
 			
-			// Update some button states
+			// Update some button states			
 			if ((classes.kGAMECLASS.pc as PlayerCharacter).levelUpAvailable())
 			{
-				this.levelUpButton.Activate();
+				if (titsClassPtr.gameOverEvent == true || titsClassPtr.inSceneBlockSaving == true)
+				{
+					this.levelUpButton.Deactivate();
+				}
+				else
+				{
+					this.levelUpButton.Activate();
+				}
 			}
 			else
 			{

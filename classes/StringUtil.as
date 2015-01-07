@@ -38,7 +38,10 @@ package  classes
 		 */
 		public static function capitalize(value:String):String
 		{
-			return value.charAt(0).toUpperCase() + value.substr(1);
+			var nStr:String = "";
+			nStr += value.charAt(0).toUpperCase();
+			nStr += value.substr(1).toLowerCase();
+			return nStr;
 		}
 	}
 
