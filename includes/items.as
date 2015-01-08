@@ -945,8 +945,8 @@ function takeItem(args:Array):void
 	// See if we can place a new stack in the inventory
 	if (pc.inventory.length < pc.inventorySlots() && item.quantity > 0)
 	{
-		pc.ShipStorageInventory.push(item);
-		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+		pc.inventory.push(item);
+		pc.ShipStorageInventory.splice(pc.ShipStorageInventory.indexOf(item), 1);
 	}
 	else if (item.quantity > 0)
 	{
