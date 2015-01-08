@@ -108,6 +108,7 @@
 		include "../includes/tavros.celise.as";
 		include "../includes/tavros.jade.as";
 		include "../includes/tavros.reaha.as";
+		include "../includes/tavros.reaha.expansion.as";
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
 		include "../includes/tavros.shelly.as";
@@ -444,6 +445,12 @@
 		public function showName(name:String):void
 		{
 			userInterface.showName(name);
+		}
+		
+		public function addNextButton(func:Function):void
+		{
+			clearMenu();
+			addButton(0, "Next", func);
 		}
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void

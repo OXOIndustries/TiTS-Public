@@ -3337,7 +3337,7 @@ function initializeRooms():void
 	rooms["500"] = new RoomClass(this);
 	rooms["500"].roomName = "LANDING\nBARN";
 	rooms["500"].description = "The landing zone on T.'s Ranch in New Texas is as rustic as you could realistically make it: from the outside, the building looks like a monstrously large barn, complete with shingled roof and bright red paint job. From the inside, though, you can see it's clearly been designed as a landing zone for private starships: the roof retracts on a pair of powerful metal arms, opening and closing to allow access. The stalls where stallions or cows might be kept have been dramatically sized up like the rest of the barn, large enough to snugly house most commercial freighters and pleasure yachts. To the west, you can see several bull-men hefting crates and moving cargo from visiting ships.";
-	rooms["500"].runOnEnter = undefined;
+	rooms["500"].runOnEnter = reahaMoosAboutNewTexas;
 	rooms["500"].westExit = "501";
 	rooms["500"].moveMinutes = 2;
 	rooms["500"].planet = "PLANET: NEW TEXAS";
