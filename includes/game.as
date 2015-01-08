@@ -317,6 +317,8 @@ function shipMenu():Boolean {
 			this.addButton(8,"Crew",crew);
 		}
 	}
+	if (hasShipStorage()) addButton(5, "Storage", shipStorageMenuRoot);
+	else addDisabledButton(5, "Storage");
 	return false;
 }
 

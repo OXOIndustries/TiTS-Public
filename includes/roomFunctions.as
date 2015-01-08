@@ -160,7 +160,11 @@ function debugMenus():void
 		throw new Error("This is a test error!");
 	}, undefined, "Force an Error", "Force an error to test error handling.");
 	
-	addButton(10, "ForceError2", forceAnError);
+	addButton(10, "ShipStorage", function():void {
+		flags["SHIP_STORAGE_WARDROBE"] = 10;
+		flags["SHIP_STORAGE_EQUIPMENT"] = 10;
+		flags["SHIP_STORAGE_CONSUMABLES"] = 10;
+	});
 	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
@@ -169,11 +173,6 @@ function debugMenus():void
 	addButton(5, "XP", function():void {
 		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
 	});
-}
-
-function forceAnError():void
-{
-	throw new Error("A test error!");
 }
 
 function quickLoot(... args):void

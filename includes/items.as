@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.DataManager.Serialization.ItemSaveable;
 import classes.ItemSlotClass;
 import classes.StorageClass;
 import classes.StringUtil;
@@ -674,4 +675,316 @@ function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
 		}
 	}
 	return false;
+}
+
+function hasShipStorage():Boolean
+{
+	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) return true;
+	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined) return true;
+	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined) return true;
+	return false;
+}
+
+function shipStorageMenuRoot():void
+{
+	clearMenu();
+	
+	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
+	else addDisabledButton(0, "Wardrobe");
+	
+	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined) addButton(1, "Equipment", shipStorageMenuType, "EQUIPMENT");
+	else addDisabledButton(1, "Equipment");
+	
+	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined) addButton(2, "Consumables", shipStorageMenuType, "CONSUMABLES");
+	else addDisabledButton(2, "Consumables");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+
+const STORAGE_MODE_TAKE:uint = 1 << 0;
+const STORAGE_MODE_STORE:uint = 1 << 1;
+
+var _shipStorageMode:uint = STORAGE_MODE_TAKE;
+
+function shipStorageMenuType(type:String):void
+{
+	clearOutput();
+	
+	var items:Array = outputStorageListForType(type);
+	
+	clearMenu();
+	
+	if (_shipStorageMode == STORAGE_MODE_STORE)
+	{
+		items = getListOfType(pc.inventory, type);
+	}
+	
+	populateTakeMenu(items, type);
+}
+
+function shipStorageMode(args:Array):void
+{
+	_shipStorageMode = args[0];
+	shipStorageMenuType(args[1])
+}
+
+function populateTakeMenu(items:Array, type:String, func:Function = null):void
+{
+	var maxPerPage:int = 10;
+	var pgIdx:int = 0;
+	
+	if (func == null)
+	{
+		if (_shipStorageMode == STORAGE_MODE_STORE) func = storeItem;
+		if (_shipStorageMode == STORAGE_MODE_TAKE) func = takeItem;
+	}
+	
+	for (var i:int = 0; i < items.length; i++)
+	{
+		var btnIdx:int = i % maxPerPage;
+		pgIdx = i / maxPerPage;
+		var pgOset:int = 15 * pgIdx;
+		
+		addItemButton(btnIdx + pgIdx, items[i], func, [items[i], type]);
+	}
+	
+	var menuInserts:int = 0;
+	
+	do
+	{
+		if (_shipStorageMode != STORAGE_MODE_TAKE) addButton((menuInserts * 15) + 10, "Take", shipStorageMode, [STORAGE_MODE_TAKE, type], "Take from Ship Storage", "Take items from storage and place them in your inventory.");
+		else
+		{
+			addDisabledButton((menuInserts * 15) + 10, "Take");
+		}
+		if (_shipStorageMode != STORAGE_MODE_STORE) addButton((menuInserts * 15) + 11, "Store", shipStorageMode, [STORAGE_MODE_STORE, type], "Take from Inventory", "Take items from your inventory and place them in your ships storage.");
+		else
+		{
+			addDisabledButton((menuInserts * 15) + 11, "Store");
+		}
+		
+		addButton((menuInserts * 15) + 14, "Back", shipStorageMenuRoot);
+		menuInserts++;
+	} while (menuInserts < pgIdx);
+}
+
+function getListOfType(from:Array, type:String):Array
+{
+	var items:Array = [];
+	
+	for (var i:int = 0; i < from.length; i++)
+	{
+		var item:ItemSlotClass = from[i] as ItemSlotClass;
+		
+		switch (type)
+		{
+			case "WARDROBE":
+				if (InCollection(item.type, GLOBAL.ARMOR, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT, GLOBAL.CLOTHING))
+				{
+					items.push(item);
+				}
+				break;
+				
+			case "EQUIPMENT":
+				if (InCollection(item.type, GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON, GLOBAL.SHIELD, GLOBAL.ACCESSORY, GLOBAL.GADGET))
+				{
+					items.push(item);
+				}
+				break;
+				
+			case "CONSUMABLES":
+				if (InCollection(item.type, GLOBAL.PILL, GLOBAL.FOOD, GLOBAL.POTION, GLOBAL.DRUG))
+				{
+					items.push(item);
+				}
+				break;
+				
+			default:
+				break;
+		}
+	}
+	
+	return items;
+}
+
+function outputStorageListForType(type:String):Array
+{
+	var items:Array = getListOfType(pc.ShipStorageInventory, type);
+	
+	output("<b>" + StringUtil.toTitleCase(type) + " Storage:</b>\n");
+	
+	if (items.length == 0) output("\nNothing stored!");
+	else
+	{
+		for (var i:int = 0; i < items.length; i++)
+		{
+			var item:ItemSlotClass = items[i];
+			
+			output("\n");
+			if (item.stackSize > 1) output(item.quantity + "x ");
+			output(StringUtil.toTitleCase(item.longName));
+		}
+	}
+	
+	output("\n\n<b>You have " + String(Math.max(0, flags["SHIP_STORAGE_" + type] - items.length)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+
+	return items;
+}
+
+function storeItem(args:Array):void
+{
+	clearOutput();
+	
+	var item:ItemSlotClass = args[0];
+	var type:String = args[1];
+	
+	// See if we can merge it into a stack
+	if (item.stackSize > 1)
+	{
+		for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
+		{
+			var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
+			if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			{
+				if (sItem.quantity + item.quantity <= sItem.stackSize)
+				{
+					sItem.quantity += item.quantity;
+					item.quantity = 0;
+					pc.inventory.splice(pc.inventory.indexOf(item), 1);
+				}
+				else
+				{
+					var diff:int = sItem.stackSize - sItem.quantity;
+					sItem.quantity = sItem.stackSize;
+					item.quantity -= diff;					
+				}
+			}
+		}
+	}
+	
+	// If we're this far in, we couldn't fit everything into an existing stack.
+	// See if we can place a new stack in the inventory
+	if (pc.ShipStorageInventory.length < flags["SHIP_STORAGE_" + type] && item.quantity > 0)
+	{
+		pc.ShipStorageInventory.push(item);
+		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
+	else if (item.quantity > 0)
+	{
+		// If we're THIS far in, we couldn't fit the item in at all.
+		output("There isn't enough room to store your item.");
+		
+		clearMenu();
+		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ships storage with one in your inventory.");
+		addButton(1, "Back", shipStorageMenuType, type);
+	}
+	
+	shipStorageMenuType(type);
+	return;
+}
+
+function replaceInStorage(args:Array):void
+{
+	var invItem:ItemSlotClass = args[0];
+	var type:String = args[1];
+	
+	clearMenu();
+	for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
+	{
+		addItemButton(i, pc.ShipStorageInventory[i], doStorageReplace, [invItem, pc.ShipStorageInventory[i], type]);
+	}
+}
+
+function doStorageReplace(args:Array):void
+{
+	var invItem:ItemSlotClass = args[0];
+	var tarItem:ItemSlotClass = args[1];
+	var type:String = args[2];
+	
+	pc.inventory.splice(pc.inventory.indexOf(invItem), 1);
+	pc.ShipStorageInventory.push(invItem);
+	
+	pc.ShipStorageInventory.splice(pc.ShipStorageInventory.indexOf(tarItem), 1);
+	pc.inventory.push(invItem);
+	
+	shipStorageMenuType(type);
+}
+
+function takeItem(args:Array):void
+{
+	clearOutput();
+	
+	var item:ItemSlotClass = args[0];
+	var type:String = args[1];
+	
+	// See if we can merge it into a stack
+	if (item.stackSize > 1)
+	{
+		for (var i:int = 0; i < pc.inventory.length; i++)
+		{
+			var sItem:ItemSlotClass = pc.inventory[i] as ItemSlotClass;
+			if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			{
+				if (sItem.quantity + item.quantity <= sItem.stackSize)
+				{
+					sItem.quantity += item.quantity;
+					item.quantity = 0;
+					pc.ShipStorageInventory.splice(pc.ShipStorageInventory.indexOf(item), 1);
+				}
+				else
+				{
+					var diff:int = sItem.stackSize - sItem.quantity;
+					sItem.quantity = sItem.stackSize;
+					item.quantity -= diff;					
+				}
+			}
+		}
+	}
+	
+	// If we're this far in, we couldn't fit everything into an existing stack.
+	// See if we can place a new stack in the inventory
+	if (pc.inventory.length < pc.inventorySlots() && item.quantity > 0)
+	{
+		pc.ShipStorageInventory.push(item);
+		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
+	else if (item.quantity > 0)
+	{
+		// If we're THIS far in, we couldn't fit the item in at all.
+		output("There isn't enough room to take your item.");
+		
+		clearMenu();
+		addButton(0, "Switch", replaceInInventory, [item, type], "Switch Items", "Switch an item in your inventory with one in your ships storage.");
+		addButton(1, "Back", shipStorageMenuType, type);
+		return;
+	}
+	
+	shipStorageMenuType(type);
+}
+
+function replaceInInventory(args:Array):void
+{
+	var invItem:ItemSlotClass = args[0];
+	var type:String = args[1];
+	
+	clearMenu();
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
+		addItemButton(i, pc.inventory[i], doInventoryReplace, [invItem, pc.inventory[i], type]);
+	}
+}
+
+function doInventoryReplace(args:Array):void
+{
+	var invItem:ItemSlotClass = args[0];
+	var tarItem:ItemSlotClass = args[1];
+	var type:String = args[2];
+	
+	pc.ShipStorageInventory.splice(pc.ShipStorageInventory.indexOf(invItem), 1);
+	pc.inventory.push(invItem);
+	
+	pc.inventory.splice(pc.inventory.indexOf(tarItem), 1);
+	pc.ShipStorageInventory.push(invItem);
+	
+	shipStorageMenuType(type);
 }
