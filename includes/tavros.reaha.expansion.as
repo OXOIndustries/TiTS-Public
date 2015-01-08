@@ -25,7 +25,7 @@ function reahaAddiction(addict:int = 0):int
 	{
 		flags["REAHA_ADDICTION"] += addict;
 
-		if (flags["REAHA_ADDICTION"] < 0) flags["REAHA_ADDICTION"] = 0;
+		if (flags["REAHA_ADDICTION"] < 1) flags["REAHA_ADDICTION"] = 1; // TODO: Require final addiction cure shit to be done before it can hit 0.
 		else if (flags["REAHA_ADDICTION"] > REAHA_ADDICTION_MAX) flags["REAHA_ADDICTION"] = REAHA_ADDICTION_MAX;
 	}
 	return flags["REAHA_ADDICTION"];
@@ -35,6 +35,13 @@ function reahaAddicted():Boolean
 {
 	if (flags["REAHA_ADDICTION_CURED"] == undefined) return true;
 	return false;
+}
+
+function reahaAddictionTherapyAvailable():Boolean
+{
+	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false;
+	if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) return false;
+	return true;
 }
 
 function reahaHeader():void
@@ -885,4 +892,209 @@ function reahaTalkHerLife():void
 	processTime(10);
 
 	showReahaTalkMenu(reahaTalkHerLife);
+}
+
+function reahaAddictionTherapy():void
+{
+	clearOutput();
+	reahaHeader();
+
+	flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] = days;
+
+	reahaAddiction(-5);
+	reahaConfidence(5);
+
+	output("\n\n<i>“Time to work on getting rid of");
+	if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" those");
+	else output(" that");
+	output(", you say, pointing to the pleasure patch");
+	if (reahaAddiction() > REAHA_ADDICTION_LOW) output("es");
+	output(" stuck like stickers on Reaha’s thigh.");
+	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" She winces as if threatened, shifting her leg to cover the other, hiding the patches from sight. <i>“I-If you say so...”</i>");
+	else if (reahaConfidence() <= REAHA_CONFIDENCE_HIGH) output(" She takes a deep breath to center herself, then gives you a resolute nod. <i>“Alright, [pc.name]. Let’s do this.”</i>");
+	else output(" Reaha nods eagerly, her little tail swishing. <i>“My favorite part of the day! Let’s do this, [pc.name].”</i>");
+	
+	output("\n\nYou put a reassuring hand on Reaha’s shoulder and give her a gentle push towards her bed. She sits back at your command and");
+	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" bites her lip nervously, locking her legs together until you manually reach in and spread them apart, revealing the coating of patches on her inner thighs and the drooling, over-stimulated gash of her sex.");
+	else if (reahaConfidence() <= REAHA_CONFIDENCE_HIGH) output(" Reaha slowly spreads her legs apart, letting you see just how many patches she’s wearing -- fewer than you remember, certainly, though her pussy is still rose-red and glistening with moisture, brought on by the chemical stimulation bleeding into her skin.");
+	else
+	{
+		output(" spreads her legs, showing off the");
+		if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" handful of patches");
+		else output(" lonely patch");
+		output(" still sticking to her, as well as her much more... normal looking cunt. Though to your delight, it’s still nice and aroused... though not, you think, from any chemical interference.");
+	}
+	output(" Reaha blushes a little");
+	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" and grins down at you");
+	output(" as you stare between her legs.");
+	
+	output("\n\nYou plant your hands on Reaha’s knees");
+	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" to keep them spread despite her nervousness");
+	output(" and lock eyes with her. <i>“You ready?”</i>");
+	
+	output("\n\n");
+	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output("Tentatively");
+	else output("Eagerly");
+	output(", Reaha nods. tapping the");
+	if (reahaAddiction() <= REAHA_ADDICTION_LOW) output(" lone patch");
+	else output(" the highest patch");
+	output(" on her inner thigh. You reach in, fingers teasing up her tender skin until she lets out a little gasp, body making one big, tit-jiggling quake that carries through from bubble butt to heaving bosom. Your fingers find the lip of the target pad, and you ply a single");
+	if (9999 == 0) output(" nail");
+	else if (9999 == 1) output(" claw");
+	else output(" digit");
+	output(" to peel it off. You give it one swift rip, yanking it off to a loud gasp of pain from the cow, and a sudden reddening of the skin where the patch was, soaking up the last remnants of its drugs. Reaha groans, scratching at the place the patch was.");
+	if (reahaAddiction() > REAHA_ADDICTION_LOW)
+	{
+		output(" You repeat the process, yanking off several more patches until she’s squirming under your fingertips, her thighs clearing up quickly.");
+		if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" You give her a little push onto her back and raise her legs up, just enough to get a view of her big butt and several more patches tacked on there, which you rip off with equal zeal.");
+		output(" By the time you’re done, she’s almost entirely devoid of her pleasure patches, clearing up her thick thighs enough for you to give them a friendly rub from knee to crotch without brushing more than a single patch on either side.");
+	}
+	
+	output("\n\n<i>“Feel alright?”</i> you ask, patting");
+	if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" a");
+	else output(" the");
+	output(" red-tinged square of thigh.");
+	
+	output("\n\n<i>“It tingles,”</i> she admits, a bit sheepishly.");
+	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" <i>“I feel... weird. Kind of empty,”</i> Reaha adds, fidgeting. She barely waits a minute before reaching over towards her box of pleasure patches, and you have to swat her hand away from them. She recoils, making a sound somewhere between an alarmed squeal and a moo, before looking bashfully down between her legs.");
+	
+	output("\n\n<i>“That’s alright,”</i> you say, stroking her thigh. <i>“I’m going to make you feel just as good as with those patches on.”</i>");
+
+	processTime(20);
+	pc.lust(33);
+
+	if (pc.hasCock()) addNextButton(reahaAddictionTherapyDickwielder);
+	else addNextButton(reahaAddictionTherapyNoWingWang);
+}
+
+function reahaAddictionTherapyDickwielder():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("You give your busty bovine companion a reassuring smile and a gentle push onto her back, planting her on the bed with her legs already nice and spread for you, her cunt glistening with her ever-present excitement. You lean in on it, letting your [pc.tongue] play out across your cow’s thigh, licking up the bare, patch-reddened flesh. She shudders at your lightest touch, moaning when you near the musky, sweet delta of her crotch. You lick up and across the lip of her labia, eliciting a back-arching mewl of pleasure from Reaha as you make your way up to her big, blatant clit. ");
+	
+	output("\n\n");
+	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output("Reaha’s much, much too sensitive to go straight for the prize, though. You trace your [pc.tongue] around the swell of it, leaving butterfly kisses on the cow-girl’s crotch. The lips of her pussy, though, are open game for your attentions. You nibble at the loose, thick folds on offer, letting your tongue sample the honeypot between them. Reaha gives a little girlish squeal when your tongue probes into her; her legs clench tight around you, gripping you tight as you start to really eat her out.");
+	else output("With Reaha’s reliance on patches already down, you feel confident enough to actually go in and tease her clit. She’d have lost her mind on more than a light touch before, but now as you caress the swell of it with your tongue, she just moans and shudders, legs wrapping around you to draw you in further. <i>“Not... not too much,”</i> she groans, her back arching as you lick and kiss on her. Giving her a knowing wink, you plant your lips flush on Reaha’s pleasure-buzzer and give it a gentle, long suckle like you might to one of her milky teats. You slowly make your way down from her clit after that, letting your [pc.tongue] probe between the loose, heavy lips of her pussy and into the sweet honeypot hidden between them.}");
+	
+	output("\n\nReaha shivers at your touch, her wide hips moving to meet your probing [pc.tongue], urging you deeper into her wide, slick channel. Her muscles wring and squeeze on your tongue, searching for a big, thick cock to spread themselves wide on; instead, you lick and caress them, showering her vaginal walls with loving attention.");
+	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" As usual");
+	else if (reahaAddiction() = REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
+	else output(" Still, even after you’ve nearly broken her need for patches");
+	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reahaMilk] and her thighs in fem-spunk. ");
+	
+	output("\n\nYou keep going, slowing down as Reaha’s body starts to calm itself. She’s breathing hard, already a sopping wet mess just from a little oral attention. You slip out from between the cow-girl’s legs, licking up some of the sundry moisture from her curvaceous body as you meander up to lock eyes with her. ");
+	
+	output("\n\n<i>“Just as good without the patches, huh?”</i> you ask, locking your lips over one of her big, bovine teats and drawing forth a little trickle of milk for yourself. ");
+	
+	output("\n\n");
+	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output("<i>“I can... I can feel the difference,”</i> Reaha admits, cupping the tit underneath your lips. <i>“Everything’s less... intense, I guess? But you make it feel amazing anyway.”</i>");
+	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output("<i>“I can barely feel the difference,”</i> Reaha giggles, smiling down at you. <i>“Some of me knows it would be better with them, but with you... you already make me feel amazing anyway.”</i>");
+	output("<i>“Better!”</i> she grins, wiggling under your wandering fingers. <i>“It’s like... like I can finally feel for myself now. Like I’m not getting everything all muddied up and confused. And I wouldn’t miss a beat of your lovemaking for the world.”</i>");
+	
+	output("\n\nYou pull yourself off her teat and smile at the compliment.");
+	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" Reaha, in turn, leans down and plants a quick, affectionate kiss on your [pc.lips].");
+	output(" <i>“What do you say about round two?”</i>");
+	
+	output("\n\nYou crawl up overtop her, looming over Reaha as you crawl into the bed with her. She squirms under you, moisture beading on her big teats. You lean in and give them each one long lick, lapping up the stray droplets of [reaha.milkNoun] -- and making the cow-girl shudder at the sensation of your [pc.tongue] on her. Reaha grins up at you, cradling her arms under her bust as if to put them on display for you. Clearly she likes it when you play with her... ");
+	
+	output("\n\nYou grab one of her breasts, planting your hand on the soft, jiggly milk-bag and giving it a gentle squeeze. Your fingers all but vanish into it, enveloped by Reaha’s boobflesh -- and a little squirt of [reaha.milkNoun] that trickles into the trenches left by your grasp. The cow-girl lets out a low, throaty moo as you massage her titflesh, switching from one boob to the other, gently squeezing and kneading until Reaha’s crying out her pleasure. That’s better. You shift your grip down, abandoning her ample rack for the soft, spankable swell of her behind and hefting it into the air. With a little effort, you’re able to flip the thickset bovine onto all fours, giving her up-turned rump a little smack for emphasis. She squeals, but ends up wiggling her hips and raising her tail out of the way invitingly. You slip down onto your [pc.knees] behind her, spreading her big, tattooed cheeks to get a good look at her pussy. She’s still nice and drenched, and you easily are able to slide a few fingers into her to the hilt, stirring her up until she’s groaning and your digits are nice and slathered with her excitement. Before you’re done, Reaha’s bucking her hips back on your hand, trying to take you fast and deep.");
+	
+	output("\n\nBut you’ve got better plans than just a finger-fucking. You pull out before she can get too into it and spend the next few moments slathering up your [pc.cock], coating it with Reaha’s own lube until it glistens. Once you’re satisfied, you let your prick drop into the spread valley between the cow-slut’s cheeks, planting a hand on each of them and digging in. She gives you a lurid little moan, shifting her own hips until you feel the wet, hot hole of her cunt rubbing against your [pc.cockHead]. You don’t hesitate to dive into her, letting your own [pc.hips] carry you into the easily-parting folds of Reaha’s sex, straight down");
+	if (pc.biggestCockVolume() <= reaha.vaginalCapacity()) output(" to the hilt");
+	else output(" to the very end of her passage, as deep as she can possibly take your massive cock");
+	output(" in one long, slow thrust.");
+	reaha.cuntChange(0, pc.biggestCockVolume(), false, false, false);
+	pc.cockChange();
+	
+	output("\n\nShe moans when you enter her, drawing out into a bellowing <i>“Mooooo!”</i> as you start to fuck her. Knowing Reaha, you don’t bother taking it easy at first, but just start to piston your hips into her silken slit, thrusting hard and fast right from the get-go. You give her a spank right on the anchor tattoo, enjoying the sight of it jiggling in response, and the feeling of her walls contracting hard around your cock. She might be built to take ‘em, but damned if Reaha can’t grip down when she wants to! Another swat makes her squeal and lose track of her arms, flopping down onto the bed with her ass in the air. Even better. One last swat for good measure, hard enough to make her whole ass jiggle, before you get back to the task at hand. Every thrust now brings a cry or groan of pleasure to the cow-girl’s lips, wordless screams of pleasure as you pound her cunt. ");
+	
+	output("\n\nThat’s what you like to hear! You move faster, hammering into her; every thrust brings a sticky squirt of fem-cum out of her, splattering onto your thighs and [pc.legs]. Looking over the cow-girl’s shoulders, you see you’re having a similar effect on her <i>other</i> squirters: big, dark wet patches are spreading from her swollen teats as she reflexively lactates, spraying [reaha.milkNoun] onto her sheets. ");
+	
+	output("\n\n<i>“Good girl,”</i> you tell her, reaching forward and grabbing her tits. She moos as you grab and knead them, giving her udders a loving squeeze until they squirt a nice, thick stream over your fingers. Your praise seems to kick off something inside the busty bovine, though: you’ve barely cleared a half-dozen more thrusts before you feel her pussy contract, gripping vice-tight around you and flooding itself with heat and wetness. Her muscles squeeze and squirm around you, milking you like the skilled whore she is, drawing you into orgasm with her! You give the cow-girl a few more deep thrusts before your last bits of control are wrested from you, and your senses are overwhelmed by the feeling of cum churning in your [pc.balls], ready for release. With one last cry of primal pleasure, you slam yourself");
+	if (pc.biggestCockVolume() > reaha.vaginalCapacity()) output(" as deep as Reaha can take you");
+	else output(" to hilt into Reaha");
+	output(" and bust your nut, [pc.cumNoun] shooting through your stiff prick and into the deepest depths of the cow-girl’s pussy. Your spunk mixes with hers, flooding back out around your [pc.cock] in a wet, murky mix that drools down Reaha’s thighs as you slow your pace. Reaha recovers over a minute or so of groans and mewling whimpers, her whole body quivering with the aftershocks brought on by your rough handling. ");
+	
+	output("\n\n");
+	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you after you’ve pulled out and given her a few affectionate pats.");
+	else output("<i>“I definitely feel better now,”</i> Reaha admits, giving a contented little groan as you pull out of her. <i>“If I can still feel like </i>this<i>... maybe I can make it without the patches.”</i>");
+
+	processTime(60);
+
+	reaha.loadInCunt(pc);
+
+	reaha.orgasm();
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function reahaAddictionTherapyNoWingWang():void
+{
+	clearOutput();
+	reahaHeader();
+
+	var hardLight:Boolean = pc.lowerUndergarment.hardLightEquipped;
+
+	output("You give your busty bovine companion a reassuring smile as you");
+	if (hardLight) output(" reach down and flick the tiny button on the hip of your [pc.lowerUnderGarment], letting your hardlight strapon spring to life.");
+	else output(" reach over to the leather belt and strapon cock hanging from her bedpost. You shimmey into the strapon belt and tighten it over your [pc.hips], leaving yourself with a floppy, nearly footlong cock dangling from your [pc.crotch].");
+	output(" Reaha’s gaze drops to your strapon, and you instantly recognize the growing, hungry look in her eyes. ");
+	
+	output("\n\nYou reach up and give the cow-girl a little push onto her back, planting her on the bed with her legs already nice and spread for you, her cunt glistening with her ever-present excitement. You lean in on it, letting your [pc.tongue] play out across your cow’s thigh, licking up the bare, patch-reddened flesh. She shudders at your lightest touch, moaning when you near the musky, sweet delta of her crotch. You lick up and across the lip of her labia, eliciting a back-arching mewl of pleasure from Reaha as you make your way up to her big, blatant clit. ");
+	
+	output("\n\n");
+	if (reahaAddiction() > REAHA_ADDICTION_MID) output("Reaha’s much, much too sensitive to go straight for the prize, though. You trace your [pc.tongue] around the swell of it, leaving butterfly kisses on the cow-girl’s crotch. The lips of her pussy, though, are open game for your attentions. You nibble at the loose, thick folds on offer, letting your tongue sample the honeypot between them. Reaha gives a little girlish squeal when your tongue probes into her; her legs clench tight around you, gripping you tight as you start to really eat her out.");
+	else output("With Reaha’s reliance on patches already down, you feel confident enough to actually go in and tease her clit. She’d have lost her mind on more than a light touch before, but now as you caress the swell of it with your tongue, she just moans and shudders, legs wrapping around you to draw you in further. <i>“Not... not too much,”</i> she groans, her back arching as you lick and kiss on her. Giving her a knowing wink, you plant your lips flush on Reaha’s pleasure-buzzer and give it a gentle, long suckle like you might to one of her milky teats. You slowly make your way down from her clit after that, letting your [pc.tongue] probe between the loose, heavy lips of her pussy and into the sweet honeypot hidden between them.");
+	
+	output("\n\nReaha shivers at your touch, her wide hips moving to meet your probing [pc.tongue], urging you deeper into her wide, slick channel. Her muscles wring and squeeze on your tongue, searching for a big, thick cock to spread themselves wide on; instead, you lick and caress them, showering her vaginal walls with loving attention.");
+	if (reahaAddiction() > REAHA_ADDICTION_MID) output(" As usual");
+	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
+	else output(" Still, even after you’ve nearly broken her need for patches");
+	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reaha.milkNoun] and her thighs in fem-spunk. ");
+	
+	output("\n\nYou keep going, slowing down as Reaha’s body starts to calm itself. She’s breathing hard, already a sopping wet mess just from a little oral attention. You slip out from between the cow-girl’s legs, licking up some of the sundry moisture from her curvaceous body as you meander up to lock eyes with her. ");
+	
+	output("\n\n<i>“Just as good without the patches, huh?”</i> you ask, locking your lips over one of her big, bovine teats and drawing forth a little trickle of milk for yourself. ");
+	
+	output("\n\n");
+	if (reahaAddiction() > REAHA_ADDICTION_MID) output("<i>“I can... I can feel the difference,”</i> Reaha admits, cupping the tit underneath your lips. <i>“Everything’s less... intense, I guess? But you make it feel amazing anyway.”</i>");
+	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output("<i>“I can barely feel the difference,”</i> Reaha giggles, smiling down at you. <i>“Some of me knows it would be better with them, but with you... you already make me feel amazing anyway.”</i>");
+	else output("<i>“Better!”</i> she grins, wiggling under your wandering fingers. <i>“It’s like... like I can finally feel for myself now. Like I’m not getting everything all muddied up and confused. And I wouldn’t miss a beat of your lovemaking for the world.”</i>");
+	
+	output("\n\nYou pull yourself off her teat and smile at the compliment.");
+	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" Reaha, in turn, leans down and plants a quick, affectionate kiss on your [pc.lips].");
+	output(" <i>“What do you say about round two?”</i>");
+	
+	output("\n\nYou shift up onto the bed and plant your arms beside Reaha, looming over her as your [pc.hips] shift slightly, bringing your strapon to bear. She shudders as it brushes her slick thigh, but you feel her legs spread a little wider around you, clearing the way for your");
+	if (!hardLight) output(" thick, plastic cock");
+	else output(" glowing hardlight schlong");
+	output(" to penetrate her. The crown of your strapon brushes the soaked lips of Reaha’s pussy");
+	if (hardLight) output(", sending an electric shock of pleasure through the neural feedback of your hardlight");
+	else output(", making the cow gasp as her folds are parted ever-so-slightly around the head of the plastic shaft");
+	output(". You lean in, pulling yourself in close to the pretty cow and planting a kiss on her cheek. She blushes, moaning lightly as you start to slide your [pc.hips] forward into her cunt. ");
+	reaha.cuntChange(200, false, false, false); // 9999, 9999!!!!11
+	
+	output("\n\nKnowing Reaha, you don’t bother to go gently on her. You quickly slam your strap hilt-deep into her cavernous cunt, wrenching a scream of ecstasy from the cow-girl’s lips. Her back arches, legs clamping around your pistoning hips as you start to pound away at her cunt. The pleasure works its way through her body in the span of half a dozen thrusts, and you’re soon rewarded with a geyser of [reaha.milkNoun] spurting up from her tits. The first squirt catches you square on the face, making you yelp and sputter as the cow coats you in [reaha.milkNoun]. You grab her tits, giving the two fleshy orbs a rough squeeze that redoubles the fountain of [reaha.milkNoun] coming from them, which rains back down on you and Reaha. Before long, you’re both utterly coated in moisture; all you can do is grab one of her teats and try and contain the flow. Reaha takes the other, cupping her other breast up to her mouth and suckling from it. The added sensation of [reaha.milkNoun] trickling through her nipples and lips teasing and caressing them. ");
+	
+	processTime(60);
+
+	output("\n\nThe stream of [reaha.milkNoun] into your mouth only grows stronger as you fuck her, swelling in intensity every time your strapon slams home into the cow’s welcoming, wet channel. A few more thrusts and you can feel her cumming again; her muscles go wild around your hammering strapon, trying to draw it in, to milk it of cum that simply won’t come.");
+	if (hardLight)
+	{
+		output(" However, the neural feedback from your hardlight cock might just make you cum anyway. Her pussy’s so wet, and squirms around your strapon in the most amazing ways... soon there’s no stopping you, and with a cry of pleasure you find yourself spiraling over the edge, clinging to the cow as your pound her, and yourself, through orgasm.");
+		pc.orgasm();
+	}
+	output(" You slowly start to slow your pace as Reaha recovers, her whole body quivering with the aftershocks brought on by your rough handling. She clings to you, arms and legs, moaning softly as she rides out the end of her orgasm.");
+	reaha.orgasm();
+	
+	output("\n\n");
+	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you.");
+	else output("<i>“I definitely feel better now,”</i> Reaha admits, giving a contented little groan as you pull out of her. <i>“If I can still feel like </i>this<i>... maybe I can make it without the patches.”</i>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

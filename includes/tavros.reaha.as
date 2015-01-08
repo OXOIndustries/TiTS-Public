@@ -54,10 +54,10 @@ function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(do
 		else addButton(3, "Talk", talkWithFollowerReaha);
 	}
 	else addDisabledButton(3, "Talk");
-	if (flags["REAHA_TALK_ADDICTION_CURE"] == undefined) addDisabledButton(4, "Addiction");
+	if (reahaAddictionTherapyAvailable()) addDisabledButton(4, "Addiction");
 	else
 	{
-		addButton(4, "Addiction", , undefined, "Addiction Therapy", "");
+		addButton(4, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
 	}
 	addButton(10,"Appearance",reahaFollowerAppearance);
 	addButton(14,"Back",crew);
