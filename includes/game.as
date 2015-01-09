@@ -727,6 +727,11 @@ public function processTime(arg:int):void {
 
 	processLaneDetoxEvents(arg);
 	
+	if (tryProcDommyReahaTime(arg))
+	{
+		eventQueue.push(reahaDommyFuxTime);
+	}
+	
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.

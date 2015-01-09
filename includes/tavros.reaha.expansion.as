@@ -982,7 +982,7 @@ function reahaAddictionTherapyDickwielder():void
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" As usual");
 	else if (reahaAddiction() = REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
 	else output(" Still, even after you’ve nearly broken her need for patches");
-	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reahaMilk] and her thighs in fem-spunk. ");
+	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reaha.milkNoun] and her thighs in fem-spunk. ");
 	
 	output("\n\nYou keep going, slowing down as Reaha’s body starts to calm itself. She’s breathing hard, already a sopping wet mess just from a little oral attention. You slip out from between the cow-girl’s legs, licking up some of the sundry moisture from her curvaceous body as you meander up to lock eyes with her. ");
 	
@@ -1097,4 +1097,278 @@ function reahaAddictionTherapyNoWingWang():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+function reahaBreastMilkIceCream():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("You step up to your");
+	if (!reaha.isTreated()) output(" soft little");
+	else output(" big, strong");
+	output(" cow-girl and ask if she’d be up for a frozen treat. ");
+	
+	output("\n\nShe grins. <i>“Sure! That’d be nice,");
+	if (!reahaFree()) output(" [pc.master]");
+	else output(" [pc.name]");
+	output(",”</i> she says, taking your hand when you offer it and following you off the ship. She follows you on through customs,");
+	if (reaha.isTreated()) output(" grinning to herself");
+	else output(" blushing");
+	output(" as her");
+	if (9999 == 0) output(" nude and voluptuous");
+	else output(" voluptuous");
+	output(" form catches the eye of every bull working in the landing barn. You make a quick pit-stop in customs, checking");
+	if (!pc.hasEquippedWeapon()) output(" in with Amma");
+	else output(" your weapons and signing in with Amma");
+	output(".");
+	
+	output("\n\nThe cow-girl gives you a playful wink when she sees you with your companion");
+	if (flags["REAHA_ICE_CREAM_TIMES"] != undefined) output(".");
+	else
+	{
+		output(", and Ogram laughs, <i>“Ha! Finally gave in and got your own, huh, " + pc.mf("buddy", "beautiful") + "? Can’t say I blame you!”</i>");
+	
+		output("\n\n<i>“Oggy!”</i> Amma snaps, giving him a look. ");
+	
+		output("\n\n<i>“Heh. Sorry,”</i> he says with an apologetic shrug.");
+		if (!reaha.isTreated()) output(" Reaha fidgets visibly under the sudden attention, especially from Ogram.");
+		else
+		{
+			output("\n\nReaha leans over Og’s desk, towering over the seated bull-man and licking her lips. <i>“Maybe somebody ought to go ahead and </i>get<i> you, huh? You’d make a cute pet.”</i>");
+			output("\n\nYou quickly intervene, grabbing Reaha by the tail and yanking her away from Og’s desk before she can try and molest him.");
+		}
+	}
+		
+	output("\n\nThe two of you quickly make your way out of the customs office and out into the New Texan main street. From there, it’s a hop and a skip to the Iced Teats shop. You usher Reaha up into the storefront, into the refreshing coolness of the shop.");
+	if flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
+	
+	output("\n\n<i>“Hello! Welcome to Iced Teats, <i>“My name is");
+	if (!yammiIsOwned()) output(" Yammi");
+	else output(" Salire");
+	output("!  What can I get for you today?”</i> the girl behind the counter chirps happily, indicating the large flavor list behind her.  <i>“We have cones, bowls, or frozen feasts, in any combination of flavors you prefer!”</i>");
+	
+	output("\n\nThat’s nice and all, but you’d rather get a cone of your own favorite flavor. Reaha flavor.");
+	
+	output("\n\n");
+	if (!yammiIsOwned()) output("Yammi");
+	else output("Salire");
+	output("’s eyes go wide at the suggestion. <i>“That’s... uh, well, I mean...”</i> ");
+	
+	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a credit chit on the counter. ");
+	
+	output("\n\n<i>“Well,”</i>");
+	if (!yammiIsOwned()) output(" Yammi");
+	else output(" Salire");
+	output(" says, pursing her lips, <i>“I guess that’ll be alright.”</i> ");
+	
+	output("\n\nShe pops one of the glass stalls open and turns to Reaha. <i>“Climb on in, miss. The machines will take care of the rest.”</i>");
+	
+	output("\n\nYour pet bovine gives you a reproachful look as she’s ushered up into the milking machine. Clearly she thought <i>she</i> was going to be getting the treat. Whoops.");
+	if (!yammiIsOwned()) output(" Yammi");
+	else output(" Salire");
+	output(" gives her a little boost up into the stall and closes the door behind her, leaving Reaha to sit herself down inside. A few robotic arms come down from the stall’s ceiling once she’s down, quickly cupping her hefty, [reaha.milkNoun]-laden boobs and affixing a pair of suckers to them.");
+	
+	output("\n\n<i>“C-c-coooooooold!”</i> Reaha shrieks as the ice cream machine activates, rumbling as it sucks a creamy load of [reaha.milkNoun] from the cow-girl’s tits, passing it through a flash-freezer and into the dispenser. You take a cone");
+	if (!yammiIsOwned()) output(" Yammi");
+	output(" Salire");
+	output(" offers you and twist the nozzle on the machine, grinning as you’re rewarded with a nice, tall cone of ice cream. The machine pumps Reaha for a few seconds longer than it needs to, making sure to give the cow a nice, full draining before releasing her. The stall pops open as you take the first lick, and Reaha staggers down, cupping her hands around her nipples and shivering. ");
+	
+	output("\n\nYum. Tastes just like [reaha.milkNoun]!");
+
+	processTime(20);
+	pc.credits -= 20;
+	pc.lust(5);
+	reaha.lust(5);
+
+	//[Share] [Be Greedy]
+	clearMenu();
+	addButton(0, "Share", reahaBreastMilkIceCreamShare);
+	addButton(1, "Greedy", reahaBreastMilkIceCreamGreedy);
+}
+
+function reahaBreastMilkIceCreamGreedy():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("You thank");
+	if (!yammiIsOwned()) output(" Yammi");
+	else output(" Salire");
+	output(" for the special treat and take Reaha by the hand, leading her back to the ship while you slurp down your delicious, oh-so-sweet ice cream cone. You quickly return to your ship, whereupon");
+	if (pc.isNice()) output(" you give Reaha an appreciative pat on the head and thank her for dessert.");
+	else if (pc.isMischievious()) output(" you slurp out the graham cracker cone and hang it on one of Reaha's horns, letting the cow-girl deal with it.");
+	else output(" you poke Reaha in the belly hard enough to make her gasp. While her gob's open, you plant the graham cracker cone between her lips and saunter off.");
+
+	processTime(5);
+
+	addNextButton(mainGameMenu);
+}
+
+function reahaBreastMilkIceCreamShare():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("<i>“C’mere, Reaha,”</i> you say, waving your shivering cow-girl over. She approaches warily, still rubbing her breasts to warm them back up. You give her a slight smile and extend the cone to her. <i>“Have a taste. It’s good!”</i>");
+	
+	output("\n\nShe looks between you and");
+	if (!yammiIsOwned()) output(" Yammi");
+	else output(" Salire");
+	output(" before taking the cone and giving it a long lick with her big, flat tongue.");
+	
+	output("\n\n<i>“Mmm! Hey, that’s not bad!”</i> Reaha giggles, taking another lick. Her previous discontent evaporates as she enjoys her own frozen treat. You have to remind her to share, and after a bit of maneuvering, find yourself licking on one side of the cone as Reaha takes the other, bringing your lips closer and closer together until you’re kissing around the last bites of her sweet [reaha.milkNoun]-flavored ice cream. Reaha makes a little mooing sound as your lips brush hers, and you soon find that she’s more than willing to let you make up for the trick with a little well-timed tongue play, easily melting into your arms as your accidental kiss turns into a full-on makeout session in the ice cream parlor. ");
+	
+	output("\n\n");
+	if (!yammiIsOwned()) output("Yammi");
+	else output("Salire");
+	output(" has to cough to get your attention, saying, <i>“Um, can you, uh, maybe not do that here? Sorry!”</i>");
+	
+	output("\n\nYou and Reaha both laugh and quickly excuse yourselves back to your ship.");
+
+	processTime(10);
+
+	addNextButton(mainGameMenu);
+}
+
+function tryProcDommyReahaTime(tMinutes:Number):Boolean
+{
+	if (!reahaIsCrew()) return false;
+	if (currentLocation != "SHIP INTERIOR") return false; // Only care about processTime calls onboard the ship
+	if (!reahaFree()) return false; // Free only
+	if (!pc.hasCock()) return false; // No cock? Fuck off.
+
+	// Init flag.
+	if (flags["REAHA_LAST_DOMMY_FUCK"] == undefined) flags["REAHA_LAST_DOMMY_FUCK"] = days - 2;
+	if (days - flags["REAHA_LAST_DOMMY_FUCK"] > 0) return false; // Once per day at most.
+	
+	// 5% chance per hour on ship? -> 0.84% per minute
+	var tChance:Number = (tMinutes / 60.0) * 5;
+
+	// Cap to 33% per "event"?
+	if (tChance > 33) tChance = 33;
+
+	if (rand(100) < tChance)
+	{
+		flags["REAHA_LAST_DOMMY_FUCK"] = days;
+		return true;
+	}
+	return false;
+}
+
+function reahaDommyFuxTime():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("With a yawn, you set down your data slate and get up to stretch, mind wandering toward");
+	if (hours < 9) output(" breakfast");
+	else if (hours < 15) output(" lunch");
+	else output(" dinner");
+	output(". That sounds like a plan. You slip out of your cabin, making your way down towards what passes for your galley. The food replicator chirps to life as you approach, asking what you’d like to drink. As you flip through the (admittedly basic) menu, you hear a pair of bare feet padding up behind you. Looking over your shoulder, you see the familiar, curvaceous form of Reaha sidling up behind you, tits pressing into your back as she looks at what’s on screen. ");
+	
+	output("\n\n<i>“Oh, getting thirsty, [pc.name]? How about a little milk instead -- fresh from the tap!”</i>");
+	
+	output("\n\nAs she says it, Reaha presses herself closer to you, letting you feel just how FULL her tits are, <i>way</i> bigger and jigglier than normal, like a pair of dumbbells on your back. You groan under the sudden weight -- seeing you quaver, Reaha gives you a little push, just enough to have you flop onto the deck, twisting around so your back’s against the replicator. ");
+	
+	output("\n\n<i>“You don’t need this futzy old thing,”</i> she teases, flipping the humming device off with a flick of her fluffy tail. <i>“After all, what did you buy me for?”</i> ");
+	
+	output("\n\nGiggling, the cow-girl slips down over you, straddling your [hips] and flipping her strawberry hair back, hands running between her small horns and through her long locks. As she does so, she gives her shoulders a little wiggle, which translates into her massive mammaries swinging like pendulums over you, drawing dangerously close to your mouth.");
+	
+	output("\n\n<i>“Open wide, "+ pc.mf(master,mistress) + "!”</i> Reaha teases, pushing your head back against the bulkhead in expectation of her encroaching teat.");
+
+	clearMenu();
+	addButton(0, "Fuck Off", reahaDommyFuxTimeFuckOff);
+	addButton(1, "Wait...", reahaDommyFuxTimeWait);
+}
+
+function reahaDommyFuxTimeFuckOff():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("<i>“The fuck are you doing!?”</i> you finally manage to say, swatting Reaha’s hand off. <i>“Bad cow!”</i>");
+	
+	output("\n\n<i>“B-but-”</i>");
+	
+	output("\n\n<i>“OFF! NOW!”</i> you command, glowering at the lusty bovine as she scrambles off you, meekly hustling away. ");
+	
+	output("\n\nWell then. You brush yourself off and flip the replicator back on. You’ll have to <i>“punish”</i> Reaha for getting so uppity later. In the meantime, though, what’s on tap...");
+
+	addNextButton(mainGameMenu);
+}
+
+function reahaDommyFuxTimeWait():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("Your jaw slackens at the sight of the monstrously large cow-tit jiggling so close to your face. Grinning giddily, Reaha forges ahead, pushing the pink tip of her teat straight into your mouth. The tip of your tongue traces across one of her prominent nipples as it encroaches in, making the cow-girl shudder as you take her swollen, needy nipple. Instinctively, your hands wrap around Reaha’s bum, holding the giggling cow steady as she just about crushes you under the sheer weight of milky boobflesh.");
+	if (reahaAddiction() > REAHA_ADDICTION_MID) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!?");
+	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!? Looks like Reaha’s having a serious regression.");
+	else if (reahaAddiction() > 0) output(" // if Low Addiction: You only feel a few patches on her hind-end, but more than there should be. Somebody’s regressing...”</i>");
+	
+	output("\n\nReaha shudders and groans as your fingers brush her patch-coated flesh, tits quivering over your face. <i>“Mmm, careful, captain... you might make me squirt!”</i> ");
+	
+	output("\n\nYou hesitate a moment, not sure how to proceed until Reaha whispers huskily, surprisingly assertively, <i>“Make me squirt!”</i> ");
+	
+	output("\n\n");
+	if (reahaAddiction() < REAHA_ADDICTION_HIGH) output("Chewing Reaha out for her excess will have to wait. For now, though... ");
+	output("You dig your fingers into that delicious cow ass, tongue swirling around the thick, engorged nipple in your mouth. You’re immediately rewarded with a thick, sticky dampness in your groin as the cow’s cunt contracts and spasms, looking for a dick to milk as it instinctively starts to drool its obscene juices across your lap; her tits join in a moment later, the pleasure spreading through her body so powerfully that her tits start lactating before you can really suckle them, a thin trickle of [reaha.milkNoun] squirting into your waiting mouth and across the deck.");
+	
+	output("\n\n<i>“More... give me more!”</i> the cow moans, rocking in your grip, grinding her slick pussy across your");
+	if (!pc.isNude()) output(" [pc.gear]");
+	else
+	{
+		output(" bare flesh, smearing her slime across the steadily-hardening shaft");
+		if (pc.cocks.length > 1) output("s");
+		output(" of your [pc.cocks]");
+	}
+	output(". You oblige, squeezing her ample asscheeks until the supple flesh seems to be pouring through your fingers, hands sinking into the cow’s cushiony backside, which only serves to increase the flow of [reaha.milkNoun] and cunny-drool escaping the lusty bovine. You lean back against the deactivated replicator, content to alternatively massage Reaha’s patch-coated ass and swallow the growing stream of [reaha.milkNoun] pouring into your mouth from her overactive tit, helping it along with a gentle suckle here, a tender nibble there. ");
+	
+	output("\n\nYour cow’s back arches as she grinds against you, harder and faster with every passing moment until she’s moaning and cumming just from that little stimulation. She barely holds back a scream as her pussy squirts and tits gush their [reaha.milkNoun] load, drenching you with her sexual fluids as she continues to ride your prone form, powerful hips pounding you into the deck until it almost hurts. ");
+	
+	output("\n\nWhen her orgasm subsides, she’s left panting, gasping for breath, resting her head against yours. You’re both already smeared in a combination of sticky, musky cunt-juice and [reaha.milkNoun], surrounded by a thick aroma of sex and sweet cream. Yet you know Reaha’s never satisfied with just one... ");
+	
+	output("\n\n<i>“I want you,”</i> she moans, sodden box rubbing against your [pc.cocks]. She plants a kiss on your lips, long and passionate, arms wrapping around your neck to hold you tight. <i>“Please.”</i>");
+	
+	output("\n\nYou return the kiss, hand moving around her wide hip to the soaked patch between her legs, easily parting to folds of her excited sex. She stifles a moan into your mouth as your hand slips into her, vanishing into the hot, quivering depths of her vag. Reaha returns your advance with equal ardor, leaning back until she’s taking your whole forearm like a great big cock. Her hips start to move, grinding down your arm until it’s half-buried inside her cavernous, bovine cunt, then off again until your thumb’s brushing the over-sensitive bud of her clit; you can tell she nearly cums on the spot at that touch, and her juices start running freely again, trickling down your arm to splatter on your [pc.groin].");
+	
+	output("\n\nAs she moves, you decide to tend to yourself. The sight of your lusty cow-girl going crazy with her ardor overtop you is too much to hold back on, and your [pc.cocks]");
+	if (pc.cocks.length == 1) output(" is");
+	else output(" are");
+	if (!pc.isNude()) output(" straining against your armor, painfully in need of room to breathe");
+	else output(" flopping wildly beneath Reaha’s prodigious bottom");
+	output(". With the hand not currently buried deep in cow-pussy, you fish out [pc.oneCock] and give it a much-needed rub-down, slathering it up with the bountiful supply of cow-juice and [reaha.milkNoun] on tap, using Reaha’s own fluids as an impromptu lube. That done, all you need to do is angle your tool upwards into the bouncing mass of cow-butt riding your arm, and it’s soon swallowed up into the expansive mounds of Reaha’s buttcrack, squeezed together as tight as a virgin’s pussy in the throes of her ecstasy. ");
+	
+	output("\n\nReaha gives a gasp of surprise as she feels your warm, wet schlong slip into her crack, grinding up against her ass; that gasp turns into a lascivious grin as she starts to move her hips faster, fist-fucking herself deeper onto your arm until you can feel your knuckles brushing up against the lips of her cervix. That first touch sets her off again, and with an uncontainable scream, Reaha cums again, flooding you a second time with [reaha.milkNoun] and fem-cum. You nearly drown in the sudden rush of her sweet cream, even as your arm is soaked and your [pc.cock] is caught in the vice-like grip of her quaking, bouncing ass as she rides you through her orgasm. ");
+	
+	output("\n\nEven that’s not enough to satisfy the blissed-out cow, so high on her patches that she can’t even bring herself to pause after cumming, just pulling your drenched fist out of her slit and grabbing the real prize: your [pc.cock]. ");
+	
+	output("\n\n<i>“I </i>need<i> you,”</i> she whimpers, pumping your shaft as she shifts forward, angling her pussy to hang over your crown, ready to drop down on your rod. You answer her by switching to the other teat, tapping a fresh source of sweet [reaha.milkNoun] even as your hands, still slathered with her cum, pull her down onto your cock. Reaha gives a delighted squeal as your cock plunges into her wide, ready hole, spearing her to the hilt in one easy motion. A second passes, both your bodies frozen in bliss as you revel in the sensation of penetration, feeling the cow’s vaginal muscles react to your sudden intrusion, squirming and squeezing along every inch of your [pc.cock]. The moment passes as you find Reaha’s arms wrapping around your neck, squeezing your head into her prodigious bust as she starts to move her hips, riding the [pc.cock] buried deep inside her. ");
+	
+	output("\n\nShe moans loudly, voice breaking into a bovine moo as her over-sensitive body quakes with pleasure, her flesh jiggling obscenely with her every moment as she crests up, and falls back on your rod. Your fingers play up across her tender skin, teasing the base of her tail or the insides of her sodden thighs until she’s bucking and crying out, cumming already! Your breath catches in your throat as her cunny clamps down hard on your [pc.cock], her juices spurting out around the deep-buried member as she rides out her second orgasm, [reaha.hips] only moving faster as her cries of pleasure reach a crescendo. You hold the quivering cow tight as she cums, drenching your [pc.groin] in a sudden flood of juicy excitement. ");
+	
+	output("\n\nPanting, chest heaving against your face, Reaha only has a few moments to recover before a whine of need escapes her lips as the lust-drug surging through her body reasserts itself. Moaning, Reaha starts shifting her hips, but only slowly, as though she’s too exhausted from her orgasmic exertions to continue fucking you. You grin up at the tuckered-out, needy cow, and gently lower her onto her back, spreading her thick thighs around your [pc.hips]. Reaha moos, biting her lip with anticipation, arms locked around her massive milkers as you adjust yourself onto your [pc.knees], spreading the cow nice and wide before you finally give it to her. Now it’s your turn!");
+	
+	output("\n\nSo soon after cumming, Reaha’s snatch is a sodden box completely open to your cock, still thick with her own natural lube. You skip the slow stuff and start hammering your hips into the still-recovering cow-girl and immediately tear a cry of pleasure from her trembling lips as you pound your [pc.cock] into her [reaha.cunt]. ");
+	
+	output("\n\n<i>“Aaaah! Not so rough!”</i> Reaha cries, clutching at her tits as you hammer her squirting, wet cunt. You don’t buy her pleas for a moment, though: Reaha likes it just as hard as you can manage. Between deep thrusts, you reach up and pull the cow’s hands away from her teats, letting you back at those sweet, succulent mounds of boobflesh. [reaha.milkNoun] drools out around your groping digits, slathering them in her sweet lactic bounty until you draw them back, and up to her mouth. Between lewd gasps and mooing moans, Reaha obediently parts her lips and accepts your [reaha.milkNoun]-coated digits, suckling them as gently as if they were her own heavy-laden nipples. You shudder at the feeling of her big, bovine tongue slurping and lapping on your fingers, cleaning you until you’re sure you’re sparkling. Even then, you leave yourself lodged in Reaha’s mouth, giving her something to busy her mouth on as you fuck her pussy raw. ");
+	
+	output("\n\nSpurred on by her over-sensitizing lust-drugs, Reaha’s soon cumming again, slathering your [pc.cock] in even more of her seemingly limitless juices. This time, though, you’re close enough to cum with her, feeling that familiar tightness in your [pc.balls] moments before you lose control. You grab the cow-girl’s flanks for support and let loose, jackhammering her quim as hard as you possibly can until a wave of release hits you, and your [pc.cumNoun] floods into Reaha’s cooch. She gives a delighted squeal as you unload into her, biting her lip to stifle her cries of pleasure. You keep thrusting all through it, fucking your seed deep into the cow-slut. She takes it eagerly, wrapping her legs around your hips and drawing you in. ");
+	
+	output("\n\nWhen you finally finish, you find yourself with your [pc.cock] buried");
+	if (pc.biggestCockVolume() <= reaha.vaginalCapacity()) output(" to the hilt");
+	else output(" deep");
+	output(" in the cow, still throbbing and leaking the last trickles of your orgasm into her sodden box. Her thighs are a mess of fem-cum and your own spooge, mixing into a musky, murky lake that’s formed under her upturned ass. With an exhausted gasp, you let your head sink in between Reaha’s pillowy tits, resting in the valley of her cleavage. ");
+	
+	output("\n\nYou look up to Reaha, but find the busty bovine’s eyes closed, her mouth ever so slightly agape. She’s snoring softly, her pussy twitching gently around your still-buried member, unconsciously responding to your presence. You slowly pull out of her, admiring your handiwork as a little of your seed trickles out of her well-fucked pussy, before gathering up your [pc.gear] and staggering off, thirst quenched.");
+
+	processTime(30);
+
+	reaha.loadInCunt(pc);
+	reaha.orgasm();
+	pc.orgasm();
+
+	addNextButton(mainGameMenu);
 }

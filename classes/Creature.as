@@ -3,6 +3,8 @@
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.Items.Melee.Fists;
+	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
@@ -2318,6 +2320,10 @@
 				trace("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
 				return 0;
 			}
+		}
+		public function hasEquippedWeapon():Boolean
+		{
+			return (meleeWeapon != Rock || rangedWeapon != Rock);
 		}
 		public function hasEnergyWeapon():Boolean
 		{

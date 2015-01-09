@@ -10,3 +10,8 @@ function daneIsCrew():Boolean
 {
 	return false;
 }
+
+function yammiIsOwned():Boolean
+{
+	return false;
+}
