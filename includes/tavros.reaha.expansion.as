@@ -1485,3 +1485,158 @@ function reahaMilkTalkChocolac():void
 	processTime(20);
 	addNextButton(mainGameMenu);
 }
+
+function reahaBootOffShip():void
+{
+	clearOutput();
+	reahaHeader();
+
+	if (shipLocation == "500")
+	{
+		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave, {if PC is Kind: <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright? // if Misch: <i>“Guess what?");
+		
+		output("\n\n<i>“What?”</i> she says, blinking at you.");
+		
+		output("\n\n<i>“You’re off the crew! Get out!”</i> //elseif Hard: <i>“Pack your bags. You’re staying here.”</i>}");
+		
+		output("\n\nReaha stares at you for a second, her big blue eyes growing wide. <i>“Wh-what...”</i> she mumbles. <i>“You can’t leave me here! I don’t belong here, they’ll make me take the Treatment or... or my mother will find me! Pleasepleaseplease don’t leave me, I’ll be a good cow I promise.”</i>");
+		
+		output("\n\nReaha’s sudden and uncharacteristic passion takes you off guard. She clearly doesn’t want to stay on New Texas...");
+
+		processTime(5);
+
+		//[Nevermind] [Go to Tavros] [New Texas]
+		clearMenu();
+		addButton(0, "Nevermind", reahaBootOffShipNevermind);
+		//if (pc.credits >= 50) {applies to tavros-kickoff}
+		addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", "Tell Reaha to go to Tavros Station. She'll probably go hang out at Beth's again, knowing her.");
+		//else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You'd need to afford for Reaha's transport to Tavros....")
+		if (9999 == 0) addButton(2, "New Texas", reahaBootOffShipNewTexas, undefined, "Stay on New Texas", "Tell Reaha she's stuck here on New Texas, damned be the consequences.");
+	}
+	else
+	{
+		flags["REAHA_IS_CREW"] = 2;
+		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
+		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
+		else if (pc.isMischievious())
+		{
+			output(" <i>“Guess what?”</i>");
+		
+			output("\n\n<i>“What?”</i> she says, blinking at you.");
+		
+			output("\n\n<i>“You’re off the crew! Get out!”</i>");
+		}
+		else output(" <i>“Pack your bags. You’re staying here.”</i>");
+		
+		output("\n\nReaha’s expectant smile fades, but she nods with understanding. <i>“Alright, if that’s what you want. I’ll");
+		if (shipLocation == "TAVROS HANGAR") output(" wait here on Tavros");
+		else output(" catch a cab to Tavros");
+		output(" and wait for you. Is that okay?”</i>");
+		
+		output("\n\nYou nod. Sounds perfect. She quickly and silently gathers her scant possessions -- not much more than a Magic Milker and some sex toys");
+		if (reahaAddicted()) output(", plus her boxes of pleasure patches");
+		output(". She gets out of the ship");
+		if (shipLocation != "TAVROS HANGAR") output(" as soon as the taxi arrives");
+		else output(" and down onto the garage floor");
+		output(", stopping just long enough to say goodbye before she goes.");
+
+		processTime(15);
+		addNextButton(mainGameMenu);
+	}
+}
+
+function reahaBootOffShipNevermind():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("<i>“Nevermind, then,”</i> you shrug. <i>“You can stay, for now.”</i>");
+	
+	output("\n\nReaha sighs with relief and hops up into your arms. <i>“Thankyouthankyou thankyou,”</i> she babbles, squeezing you tight. You almost think she’s on the verge of tears when she says, <i>“I don’t want to leave...”</i> ");
+	
+	output("\n\nYou pat the distressed cow on the head until she calms down enough to stop hugging you");
+	if (pc.isNice()) output(", apologizing for the stress");
+	output(". Once she’s calmed, you send Reaha back to her quarters. You suppose you’ll have to clear out your vessel some other way.");
+
+	processTime(5);
+	addNextButton(mainGameMenu);
+}
+
+function reahaBootOffShipGo2Tavros():void
+{
+	clearOutput();
+	reahahEader();
+
+	pc.credits -= 50;
+
+	flags["REAHA_IS_CREW"] = 2;
+
+	output("<i>“Alright, alright, I’ll get you a taxi to Tavros,”</i> you say, patting Reaha on the head. <i>“You don’t have to stay on New Texas.”</i>");
+	
+	output("\n\nReaha gives a sigh of relief, her shoulders slumping heavily. <i>“Thanks... I’d rather stay with you, but anywhere’s better than New Texas.”</i> ");
+	
+	output("\n\nYou nod your understanding, and pull out your Codex, starting to make the arrangements while Reaha backs up her scant belongings -- not much more than a Magic Milker and some sex toys");
+	if (reahaAddicted()) output(", plus her boxes of pleasure patches");
+	output(". It isn’t long before you’re able to find a taxi service for her, and send her on her way to Tavros. ");
+	
+	output("\n\n<i>“I’ll see you see, I guess,");
+	if (reahaFree()) output(" [pc.name]");
+	else output(" [pc.master]");
+	output(",”</i> Reaha says as she’s getting aboard the taxi");
+	if (reahaConfidence() > REAHA_CONFIDENCE_HIGH) output(", stopping just long enough to give you a hug before she goes");
+	output(".");
+
+	processTime(15):
+	addNextButton(mainGameMenu);
+}
+
+function reahaBootOffShipNewTexas():void
+{
+	clearOutput();
+	reahaHeader();
+
+	flags["REAHA_IS_CREW"] = 3;
+
+	output("<i>“Knock it off, Reaha, you’re staying,”</i> you insist. You can all but see her heart fall, and she lets out a pathetic whimper as you send her to collect her things. You tell her she’ll be fine -- this is her homeworld, after all. Nothing seems to cheer her up, though, and she looks on the verge of tears by the time you send her down the gangplank into the landing barn. ");
+	
+	output("\n\n<i>“I... I guess I’ll see you again. Probably all stupid and Treated,”</i> Reaha says, avoiding your eyes as she descends. <i>“Bye...”</i>");
+
+	processTime(15);
+	addNextButton(mainGameMenu);
+}
+
+function reahaBackAtBeths():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("<i>“Reaha, what’re you doing here?”</i> you ask, indicating the dark, smoky interior of Beth’s whorehouse. ");
+	
+	output("\n\n");
+	if (reahaConfidence() < REAHA_CONFIDENCE_LOW) output(" The cow-girl fidgets nervously, avoiding your gaze. <i>“Everyone kept looking at me funny everywhere else. Probably because I’m naked and all. Besides, they can’t do anything to me here, right?”</i>");
+	else output(" Reaha shrugs lightly. <i>“I got tired of everybody staring at me. And groping. And asking for milk. I’ve been drained dry every day since I came back. It’s like they’ve never seen a cowgirl around here before...");
+
+	processTime(5);
+
+	//[Rejoin Crew] [Leave]
+	clearMenu();
+	addButton(0, "Rejoin Crew", reahaBackAtBethsRejoin);
+	addButton(1, "Leave", mainGameMenu);
+}
+
+function reahaBackAtBethsRejoin():void
+{
+	clearOutput();
+	reahaHeader();
+
+	flags["REAHA_IS_CREW"] = 1;
+	output("You roll your eyes and take a seat beside the cow-girl. <i>“Ready to get on out of here?”</i>");
+	
+	output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha immediately hops into your arms, hugging you tight. <i>“Yay! I-I mean, uh, yes master. Ready whenever you want me back...”</i>");
+	
+	output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags. She grabs her one, small satchel from under her seat and says she’ll meet you back aboard ship. You send her off with a playful swat on the rear, making her anchor tattoo jiggle obscenely as she scampers off. ");
+
+	processTime(15);
+
+	addNextButton(mainGameMenu);
+}
