@@ -2323,7 +2323,7 @@
 		}
 		public function hasEquippedWeapon():Boolean
 		{
-			return (meleeWeapon != Rock || rangedWeapon != Rock);
+			return (!(meleeWeapon is Rock) || !(rangedWeapon is Rock));
 		}
 		public function hasEnergyWeapon():Boolean
 		{

@@ -1,5 +1,5 @@
 const REAHA_CONFIDENCE_LOW:int = 15;
-const REAHA_CONFIDENCE_MID:int = 40;
+const REAHA_CONFIDENCE_MED:int = 40;
 const REAHA_CONFIDENCE_HIGH:int = 65;
 function reahaConfidence(conf:int = 0):int
 {
@@ -118,7 +118,7 @@ function reahaFirstTalk():void
 		}
 	}
 	else if (pc.isNice()) output(" <i>“I’d have thought you’d be overjoyed to be home again, after all you’ve been through.”</i>");
-	else if (pc.isMischievious()) output(" <i>“What, did you and your parents not get along?”</i>");
+	else if (pc.isMischievous()) output(" <i>“What, did you and your parents not get along?”</i>");
 	else output(" <i>“Got out of your agrarian shithole as fast as you could, huh?”</i>");
 	
 	output("\n\nShe sighs. <i>“No, I... seeing home again was nice,");
@@ -626,7 +626,7 @@ function reahaTalkGeneMods():void
 	output("\n\n<i>“And that?”</i> you ask, pointing to the strawberry-tipped tuft at the end of her swishing tail.");
 	
 	output("\n\n<i>“I dunno. I got talked into it when I got my breast mods. The guy said it would help me keep my balance with all the front weight, but... well, it’s cute at least! I’m just glad I didn’t let him talk me into getting hooves. Yuck!");
-	if (pc.hasLegFlag(GLOBAL.HOOVES)) output(" Uh. No offense...");
+	if (pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Uh. No offense...");
 	output("”</i>");
 
 	processTime(10);
@@ -705,7 +705,7 @@ function reahaTalkGeneModsWhyComfort():void
 	output(".");
 	
 	output("\n\nShe sighs. <i>“It is, but... thanks, I guess. I didn’t know what I was getting myself into, but I asked for everything that’s happened to me. I get that.");
-	if (reahaConfidence() >= REAHA_CONFIDENCE_MID) output(" But I’m glad I have someone like you to make all of this less awful. I couldn’t have wished for a better [pc.master].");
+	if (reahaConfidence() >= REAHA_CONFIDENCE_MED) output(" But I’m glad I have someone like you to make all of this less awful. I couldn’t have wished for a better [pc.master].");
 	output("”</i>");
 	
 	output("\n\nYou pull Reaha into a hug. One that she gladly accepts. <i>“I’m sorry, [pc.master]. I didn’t mean to be a big downer. I’m probably terrible to talk to, right? C’mon, let’s talk about something else... or maybe I could get you a glass of milk?");
@@ -779,7 +779,7 @@ function reahaTalkGeneModsBefore():void
 		{
 			output("<i>“Sorry, [pc.name],”</i> Reaha says with a little shrug of her shoulders. <i>“I deleted them after I showed them to you. I decided I didn't need any more reminders of who I was.");
 			if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" I like who I am now... thanks to you.");
-			else if reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" I know I should have asked permission first, but... I just wanted them gone. I want to be me now.");
+			else if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" I know I should have asked permission first, but... I just wanted them gone. I want to be me now.");
 			output("”</i>");
 
 			processTime(2);
@@ -824,7 +824,7 @@ function reahaTalkGeneModsBeforeOld():void
 	}
 	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH)
 	{
-		if (reahaAddicted() output(", even if I’m an addict and a one-time whore");
+		if (reahaAddicted()) output(", even if I’m an addict and a one-time whore");
 	}
 	output(". That’s all.”</i>");
 
@@ -848,7 +848,7 @@ function reahaTalkGeneModsBeforeNew():void
 	
 	output("\n\n");
 	if (pc.isNice()) output("<i>“You did a good job, then,”</i> you answer, returning her smile.");
-	else if (pc.isMischievious()) output("<i>“You’re the cutest cow in the galaxy,”</i> you tease, rubbing one of her nub horns.");
+	else if (pc.isMischievous()) output("<i>“You’re the cutest cow in the galaxy,”</i> you tease, rubbing one of her nub horns.");
 	else output("<i>“You did alright,”</i> you say, patting her head a little firmer. <i>“Managed to get me to buy you, didn’t you?”</i>");
 
 	processTime(3);
@@ -863,7 +863,7 @@ function reahaTalkHerLife():void
 
 	output("<i>“So, what did you do between leaving New Texas and");
 	if (pc.isNice()) output("... well, you know");
-	else if (pc.isMischievious()) output(" turning into a cute little cow");
+	else if (pc.isMischievous()) output(" turning into a cute little cow");
 	else output(" getting sold into slavery");
 	output("?”</i>");
 	
@@ -882,7 +882,7 @@ function reahaTalkHerLife():void
 	output("\n\nShe grimaces. <i>“They told me I wasn’t allowed to use certain kinds of modifications that I wanted. I had the money for them, at least the first set I wanted to get, but the doctors told me I couldn’t. Things like chest enhancers, some of the ones that got rid of my muscle, made me nice and soft. I understand why, but that doesn’t mean I have to like it. So I didn’t sign back on after my two years were up.");
 	
 	output("\n\n<i>“It wasn’t long after that that I ended up getting pinched by debt collectors. After having to wait so long, I guess I got kind of wild with my mods. I got addicted to taking them, just kept spending more and more until I was just PERFECT... and several thousand in debt. I guess I spent just under a year working for Beth Carver before you");
-	if (reahaConfidence() < REAHA_CONFIDENCE_MID) output(" bought me");
+	if (reahaConfidence() < REAHA_CONFIDENCE_MED) output(" bought me");
 	else if (reahaConfidence() < REAHA_CONFIDENCE_HIGH) output(" got me out of there ");
 	else output(" rescued me");
 	output(".”</i>");
@@ -980,7 +980,7 @@ function reahaAddictionTherapyDickwielder():void
 	
 	output("\n\nReaha shivers at your touch, her wide hips moving to meet your probing [pc.tongue], urging you deeper into her wide, slick channel. Her muscles wring and squeeze on your tongue, searching for a big, thick cock to spread themselves wide on; instead, you lick and caress them, showering her vaginal walls with loving attention.");
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" As usual");
-	else if (reahaAddiction() = REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
+	else if (reahaAddiction() >= REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
 	else output(" Still, even after you’ve nearly broken her need for patches");
 	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reaha.milkNoun] and her thighs in fem-spunk. ");
 	
@@ -1047,11 +1047,11 @@ function reahaAddictionTherapyNoWingWang():void
 	output("\n\nYou reach up and give the cow-girl a little push onto her back, planting her on the bed with her legs already nice and spread for you, her cunt glistening with her ever-present excitement. You lean in on it, letting your [pc.tongue] play out across your cow’s thigh, licking up the bare, patch-reddened flesh. She shudders at your lightest touch, moaning when you near the musky, sweet delta of her crotch. You lick up and across the lip of her labia, eliciting a back-arching mewl of pleasure from Reaha as you make your way up to her big, blatant clit. ");
 	
 	output("\n\n");
-	if (reahaAddiction() > REAHA_ADDICTION_MID) output("Reaha’s much, much too sensitive to go straight for the prize, though. You trace your [pc.tongue] around the swell of it, leaving butterfly kisses on the cow-girl’s crotch. The lips of her pussy, though, are open game for your attentions. You nibble at the loose, thick folds on offer, letting your tongue sample the honeypot between them. Reaha gives a little girlish squeal when your tongue probes into her; her legs clench tight around you, gripping you tight as you start to really eat her out.");
+	if (reahaAddiction() > REAHA_ADDICTION_MED) output("Reaha’s much, much too sensitive to go straight for the prize, though. You trace your [pc.tongue] around the swell of it, leaving butterfly kisses on the cow-girl’s crotch. The lips of her pussy, though, are open game for your attentions. You nibble at the loose, thick folds on offer, letting your tongue sample the honeypot between them. Reaha gives a little girlish squeal when your tongue probes into her; her legs clench tight around you, gripping you tight as you start to really eat her out.");
 	else output("With Reaha’s reliance on patches already down, you feel confident enough to actually go in and tease her clit. She’d have lost her mind on more than a light touch before, but now as you caress the swell of it with your tongue, she just moans and shudders, legs wrapping around you to draw you in further. <i>“Not... not too much,”</i> she groans, her back arching as you lick and kiss on her. Giving her a knowing wink, you plant your lips flush on Reaha’s pleasure-buzzer and give it a gentle, long suckle like you might to one of her milky teats. You slowly make your way down from her clit after that, letting your [pc.tongue] probe between the loose, heavy lips of her pussy and into the sweet honeypot hidden between them.");
 	
 	output("\n\nReaha shivers at your touch, her wide hips moving to meet your probing [pc.tongue], urging you deeper into her wide, slick channel. Her muscles wring and squeeze on your tongue, searching for a big, thick cock to spread themselves wide on; instead, you lick and caress them, showering her vaginal walls with loving attention.");
-	if (reahaAddiction() > REAHA_ADDICTION_MID) output(" As usual");
+	if (reahaAddiction() > REAHA_ADDICTION_MED) output(" As usual");
 	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" No matter how much you wean Reaha from her patches");
 	else output(" Still, even after you’ve nearly broken her need for patches");
 	output(", Reaha’s sensitivity gets the better of her. She gives a little yelping cry as you find a particularly tender place in her pussy, and you’re suddenly flooded by a deluge of fem-cum, splattering across your face. You redouble your efforts as Reaha cums, helping her ride out her orgasm with loving licks and short kisses across her lips. Her hips buck and her whole body quivers, tits shaking and squirting onto her, slathering her chest in [reaha.milkNoun] and her thighs in fem-spunk. ");
@@ -1061,7 +1061,7 @@ function reahaAddictionTherapyNoWingWang():void
 	output("\n\n<i>“Just as good without the patches, huh?”</i> you ask, locking your lips over one of her big, bovine teats and drawing forth a little trickle of milk for yourself. ");
 	
 	output("\n\n");
-	if (reahaAddiction() > REAHA_ADDICTION_MID) output("<i>“I can... I can feel the difference,”</i> Reaha admits, cupping the tit underneath your lips. <i>“Everything’s less... intense, I guess? But you make it feel amazing anyway.”</i>");
+	if (reahaAddiction() > REAHA_ADDICTION_MED) output("<i>“I can... I can feel the difference,”</i> Reaha admits, cupping the tit underneath your lips. <i>“Everything’s less... intense, I guess? But you make it feel amazing anyway.”</i>");
 	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output("<i>“I can barely feel the difference,”</i> Reaha giggles, smiling down at you. <i>“Some of me knows it would be better with them, but with you... you already make me feel amazing anyway.”</i>");
 	else output("<i>“Better!”</i> she grins, wiggling under your wandering fingers. <i>“It’s like... like I can finally feel for myself now. Like I’m not getting everything all muddied up and confused. And I wouldn’t miss a beat of your lovemaking for the world.”</i>");
 	
@@ -1076,7 +1076,7 @@ function reahaAddictionTherapyNoWingWang():void
 	if (hardLight) output(", sending an electric shock of pleasure through the neural feedback of your hardlight");
 	else output(", making the cow gasp as her folds are parted ever-so-slightly around the head of the plastic shaft");
 	output(". You lean in, pulling yourself in close to the pretty cow and planting a kiss on her cheek. She blushes, moaning lightly as you start to slide your [pc.hips] forward into her cunt. ");
-	reaha.cuntChange(200, false, false, false); // 9999, 9999!!!!11
+	reaha.cuntChange(0, 200, false, false, false); // 9999, 9999!!!!11
 	
 	output("\n\nKnowing Reaha, you don’t bother to go gently on her. You quickly slam your strap hilt-deep into her cavernous cunt, wrenching a scream of ecstasy from the cow-girl’s lips. Her back arches, legs clamping around your pistoning hips as you start to pound away at her cunt. The pleasure works its way through her body in the span of half a dozen thrusts, and you’re soon rewarded with a geyser of [reaha.milkNoun] spurting up from her tits. The first squirt catches you square on the face, making you yelp and sputter as the cow coats you in [reaha.milkNoun]. You grab her tits, giving the two fleshy orbs a rough squeeze that redoubles the fountain of [reaha.milkNoun] coming from them, which rains back down on you and Reaha. Before long, you’re both utterly coated in moisture; all you can do is grab one of her teats and try and contain the flow. Reaha takes the other, cupping her other breast up to her mouth and suckling from it. The added sensation of [reaha.milkNoun] trickling through her nipples and lips teasing and caressing them. ");
 	
@@ -1141,7 +1141,7 @@ function reahaBreastMilkIceCream():void
 	}
 		
 	output("\n\nThe two of you quickly make your way out of the customs office and out into the New Texan main street. From there, it’s a hop and a skip to the Iced Teats shop. You usher Reaha up into the storefront, into the refreshing coolness of the shop.");
-	if flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
+	if (flags["REAHA_ICE_CREAM_TIMES"] == undefined) output(" Reaha’s eyes go wide as she sees the girls trapped in glass cases, their teats strapped to suction devices to draw out their milk.");
 	
 	output("\n\n<i>“Hello! Welcome to Iced Teats, <i>“My name is");
 	if (!yammiIsOwned()) output(" Yammi");
@@ -1197,7 +1197,7 @@ function reahaBreastMilkIceCreamGreedy():void
 	else output(" Salire");
 	output(" for the special treat and take Reaha by the hand, leading her back to the ship while you slurp down your delicious, oh-so-sweet ice cream cone. You quickly return to your ship, whereupon");
 	if (pc.isNice()) output(" you give Reaha an appreciative pat on the head and thank her for dessert.");
-	else if (pc.isMischievious()) output(" you slurp out the graham cracker cone and hang it on one of Reaha's horns, letting the cow-girl deal with it.");
+	else if (pc.isMischievous()) output(" you slurp out the graham cracker cone and hang it on one of Reaha's horns, letting the cow-girl deal with it.");
 	else output(" you poke Reaha in the belly hard enough to make her gasp. While her gob's open, you plant the graham cracker cone between her lips and saunter off.");
 
 	processTime(5);
@@ -1275,7 +1275,7 @@ function reahaDommyFuxTime():void
 	
 	output("\n\nGiggling, the cow-girl slips down over you, straddling your [hips] and flipping her strawberry hair back, hands running between her small horns and through her long locks. As she does so, she gives her shoulders a little wiggle, which translates into her massive mammaries swinging like pendulums over you, drawing dangerously close to your mouth.");
 	
-	output("\n\n<i>“Open wide, "+ pc.mf(master,mistress) + "!”</i> Reaha teases, pushing your head back against the bulkhead in expectation of her encroaching teat.");
+	output("\n\n<i>“Open wide, "+ pc.mf("master","mistress") + "!”</i> Reaha teases, pushing your head back against the bulkhead in expectation of her encroaching teat.");
 
 	clearMenu();
 	addButton(0, "Fuck Off", reahaDommyFuxTimeFuckOff);
@@ -1304,7 +1304,7 @@ function reahaDommyFuxTimeWait():void
 	reahaHeader();
 
 	output("Your jaw slackens at the sight of the monstrously large cow-tit jiggling so close to your face. Grinning giddily, Reaha forges ahead, pushing the pink tip of her teat straight into your mouth. The tip of your tongue traces across one of her prominent nipples as it encroaches in, making the cow-girl shudder as you take her swollen, needy nipple. Instinctively, your hands wrap around Reaha’s bum, holding the giggling cow steady as she just about crushes you under the sheer weight of milky boobflesh.");
-	if (reahaAddiction() > REAHA_ADDICTION_MID) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!?");
+	if (reahaAddiction() > REAHA_ADDICTION_MED) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!?");
 	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!? Looks like Reaha’s having a serious regression.");
 	else if (reahaAddiction() > 0) output(" // if Low Addiction: You only feel a few patches on her hind-end, but more than there should be. Somebody’s regressing...”</i>");
 	
@@ -1432,7 +1432,7 @@ function reahaMilkTalkHoneydew():void
 	output("\n\nSuddenly, Reaha winces as the first pleasurable pangs of change wash over her. <i>“I feel it... welling up inside me...”</i> she groans, cupping her enormous breasts, almost defensively. Her knees buckle, and she gives a startled <i>“Moo!”</i> as she topples back onto the bed, her whole body jiggling from the impact. ");
 	
 	output("\n\n<i>“Ahhh! It’s coming!”</i> Reaha moans, fingers rushing to her pert teats and starting to squeeze. <i>“D-do you want the first sip,");
-	if (!reahaFree()) outptu(" [pc.master]");
+	if (!reahaFree()) output(" [pc.master]");
 	else output(" [pc.name]");
 	output("?”</i>");
 	
@@ -1459,7 +1459,7 @@ function reahaMilkTalkChocolac():void
 
 	reaha.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 
-	pc.destroyItem(new ChocoLac());
+	pc.destroyItem(new Chocolac());
 
 	output("You take the white-and-brown vial of ChocoLac from your pack and hand it to the busty cow. She takes it, looking over the label. <i>“Oooh! Chocolate milk! I guess it doesn’t hurt to save a step and get it straight from the tap, does it? Alright, let’s see...”</i>");
 	
@@ -1518,7 +1518,7 @@ function reahaBootOffShip():void
 		flags["REAHA_IS_CREW"] = 2;
 		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
 		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
-		else if (pc.isMischievious())
+		else if (pc.isMischievous())
 		{
 			output(" <i>“Guess what?”</i>");
 		
@@ -1565,7 +1565,7 @@ function reahaBootOffShipNevermind():void
 function reahaBootOffShipGo2Tavros():void
 {
 	clearOutput();
-	reahahEader();
+	reahaHeader();
 
 	pc.credits -= 50;
 
@@ -1586,7 +1586,7 @@ function reahaBootOffShipGo2Tavros():void
 	if (reahaConfidence() > REAHA_CONFIDENCE_HIGH) output(", stopping just long enough to give you a hug before she goes");
 	output(".");
 
-	processTime(15):
+	processTime(15);
 	addNextButton(mainGameMenu);
 }
 
