@@ -1372,3 +1372,116 @@ function reahaDommyFuxTimeWait():void
 
 	addNextButton(mainGameMenu);
 }
+
+function reahaMilkTalk():void
+{
+	clearOutput();
+	reahaHeader();
+
+	output("<i>“So... you mentioned being alright with changing what you lactate,”</i> you say, eyeing the");
+	if (9999 == 0) output(" topless");
+	output(" cow’s buxom chest, a tiny bead of [reahaMilk] cresting the peaks of her swollen teats. It’s hard not to lick your lips at the thought of the sweet taste. ");
+	
+	output("\n\nReaha shifts her weight a bit, avoiding your eyes.");
+	if (!reahaFree()) output(" <i>“I guess. If that’s what your want, [pc.master]”</i>");
+	else
+	{
+		output(" <i>“Yeah, if you want.");
+		if (flags["REAHA_MILK_CHANGED"] != undefined) output(" I’ve already changed it anyway, after all.");
+		output(" I got myself into this mess by gene-modding, trying to be the best cow-girl I could be, but... if you’re paying for it, I guess I don’t mind.");
+	}
+
+	output("\n\nGood. Now, what to do about Reaha’s milk...");
+
+	processTime(2);
+
+	// [Give Honeydew] [Give ChocoLac]
+	if (pc.hasItem(new Honeydew()))
+	{
+		if (reaha.milkType != GLOBAL.FLUID_TYPE_HONEY) addButton(0, "Honeydew", reahaMilkTalkHoneydew, undefined, "Give Honeydew", "Give Reaha some Honeydew.");
+		else addDisabledButton(0, "Honeydew", "Give Honeydew", "Reaha is already producing honey-milk!");
+	}
+	else addDisabledButton(0, "Honeydew", "Give Honeydew", "You could probably give Reaha some Honeydew if you had any to hand.");
+
+	if (pc.hasItem(new Chocolac()))
+	{
+		if (reaha.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) addButton(1, "Chocolac", reahaMilkTalkChocolac, undefined, "Give Chocolac", "Give Reaha some Chocolac.");
+		else addDisabledButton(0, "Chocolac", "ChocoLac", "Reaha is already producing chocolate-milk!");
+	}
+	else addDisabledButton(1, "Chocolac", "You could probably give Reaha some Chocolac if you had any to hand.");
+
+	addButton(14, "Back", showReahaTalkMenu);
+}
+
+function reahaMilkTalkHoneydew():void
+{
+	clearOutput();
+	reahaHeader();
+
+	if (flags["REAHA_MILK_CHANGED"] == undefined) flags["REAHA_MILK_CHANGED"] = 0;
+	flags["REAHA_MILK_CHANGED"]++;
+
+	reaha.milkType = GLOBAL.FLUID_TYPE_HONEY;
+
+	pc.destroyItem(new Honeydew());
+
+	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s XenoGen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
+	
+	output("\n\nWith practiced skill, Reaha twists the top of the jar off and dumps the viscous yellow goop out right onto the top of one of her tips. She shudders at the sudden chill, but quickly starts to spread the thick gel across her breasts, rubbing it into the soft skin with slow, circular motions until both her tits are colored yellow, completely coated. ");
+	
+	output("\n\nSuddenly, Reaha winces as the first pleasurable pangs of change wash over her. <i>“I feel it... welling up inside me...”</i> she groans, cupping her enormous breasts, almost defensively. Her knees buckle, and she gives a startled <i>“Moo!”</i> as she topples back onto the bed, her whole body jiggling from the impact. ");
+	
+	output("\n\n<i>“Ahhh! It’s coming!”</i> Reaha moans, fingers rushing to her pert teats and starting to squeeze. <i>“D-do you want the first sip,");
+	if (!reahaFree()) outptu(" [pc.master]");
+	else output(" [pc.name]");
+	output("?”</i>");
+	
+	output("\n\nYou wouldn’t miss it. You grab one of the cow-girl’s tits, bringing the [reaha.nipple] up to your lips just in time to catch the first beads of her new honey-milk. A thick, creamy drop rolls out of her engorged teat and onto the tip of your tongue. You almost wince at the sheer, overwhelming sweetness of it -- it’s nearly too much to bear. Still, you latch yourself onto Reaha’s breast as the full force of her mutated lactation comes on, following that first trickle with a steady stream of honey into your waiting mouth. Thankfully, the thickness of her honey-milk keeps the volume from overwhelming you, but you still struggle to swallow all of it as you suckle -- Reaha certainly produces quite a bit in those milkers of hers! And they seem <i>bigger</i> now, swollen with her suddenly much thicker lactic bounty. ");
+	
+	output("\n\nYou wouldn’t have even noticed Reaha’s orgasm if it wasn’t for the low, bovine moo she lets out and the suddenly more forceful rush of honey into your mouth -- you struggle to swallow it all down, and even then, find some spewing down your chin, backing up until you look like you’re drooling it. With a pleasured gasp, Reaha collapses back onto her bed, her tit popping out of your mouth with a wet squelch. ");
+	
+	output("\n\n<i>“Moo,”</i> she moans quietly. One glance at the blissed-out look on the cow-girl’s face tells you that she’s out of commission for a little while. Wiping a bit of honey from your cheeks");
+	if (pc.beardLength > 0) output(", which is no easy task thanks to your [pc.beard] getting stuck with it");
+	output(", you leave Reaha to get used to her new lactation.");
+
+	processTime(15);
+
+	addNextButton(mainGameMenu);
+}
+
+function reahaMilkTalkChocolac():void
+{
+	clearOutput();
+	reahaHeader();
+
+	if (flags["REAHA_MILK_CHANGED"] == undefined) flags["REAHA_MILK_CHANGED"] = 0;
+	flags["REAHA_MILK_CHANGED"]++;
+
+	reaha.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
+
+	pc.destroyItem(new ChocoLac());
+
+	output("You take the white-and-brown vial of ChocoLac from your pack and hand it to the busty cow. She takes it, looking over the label. <i>“Oooh! Chocolate milk! I guess it doesn’t hurt to save a step and get it straight from the tap, does it? Alright, let’s see...”</i>");
+	
+	output("\n\nWith practiced skill, Reaha twists the top of the bottle off and scoops out the ice-cream-like nanomachine cream, rubbing it between her hands before slathering it onto her tits. She shivers at the sudden, cold touch on her sensitive tits, but dutifully fights through it, spreading the rich, thick cream across her teats until they’re well and truly slathered with it, covering every inch of supple boobflesh. ");
+	
+	output("\n\nSuddenly, Reaha winces as the first pleasurable pangs of change wash over her. <i>“I feel it... welling up inside me...”</i> she groans, cupping her enormous breasts, almost defensively. Her knees buckle, and she gives a startled <i>“Moo!”</i> as she topples back onto the bed, her whole body jiggling from the impact. ");
+	
+	output("\n\n<i>“Ahhh! It’s coming!”</i> Reaha moans, fingers rushing to her pert teats and starting to squeeze. <i>“D-do you want the first sip,");
+	if (!reahaFree()) output(" [pc.master]");
+	else output(" [pc.name]");
+	output("?”</i>");
+	
+	output("\n\nYou wouldn’t miss it. You grab one of the cow-girl’s tits, bringing the [reaha.nipple] up to your lips just in time to catch the first spurt of creamy chocolate that spurts from her nipples, straight into your waiting gob. Thick, sweet, and oh-so-rich. Delicious! You wrap your lips around one of her swollen milkers, latching onto the tit as her nanomachine-induced lactation kicks into overdrive. Your mouth is quickly flooded by a surge of sweet chocolate milk, flowing just as fast as you can swallow, keeping your cheeks bloated with the sheer volume of her rich, boobalicious bounty. Even her breasts seem to be getting larger, swelling to accommodate the overactive glands inside them, spurred on by the treatment she’s rubbed into herself.");
+	if (silly) output(" Maybe she shouldn’t have used the whole jar?");
+	
+	output("\n\nYou wouldn’t have even noticed Reaha’s orgasm if it wasn’t for the low, bovine moo she lets out and the suddenly more forceful rush of chocolate milk into your mouth -- you struggle to swallow it all down, and even then, find some spilling down your chin, backing up until you look like you’re drooling it. With a pleasured gasp, Reaha collapses back onto her bed, her tit popping out of your mouth with a wet squelch. ");
+	
+	output("\n\n<i>“Moo,”</i> she moans quietly. One glance at the blissed-out look on the cow-girl’s face tells you that she’s out of commission for a little while. You flick a bit of chocolate milk from your chin, wiping the rest off on your");
+	if (!pc.isNude()) output(" sleeve");
+	else output(" arm");
+	output(", looking down at the spreading puddle of it on the floor. Delightful. Giving Reaha a pat on the tit, you leave her to get used to her new lactation.");
+
+	processTime(20);
+	addNextButton(mainGameMenu);
+}
