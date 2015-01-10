@@ -1,6 +1,7 @@
-﻿/*Embry: the Clumsy Simii Waitress
+/*Embry: the Clumsy Simii Waitress
 Also a transgirl, if you look under her dress. Help her transition, or don't!
 Written by JimThermic, edited by Frogapus
+**AA note, this is terribly written, horribly edited, I love it. Stop using the word glorious
 
 Embry Outline
 
@@ -164,7 +165,7 @@ Femininity rises to 100
 
 Transition #3 Effects
 Embry gets a terran pussy.
-Depending on player's answer in a relationship approach scene, she loses or keeps her simii cock.
+Depending on player's answer in a relationship approach scene, she loses or keeps her simii penis.
 
 
 Flag Notes
@@ -957,7 +958,7 @@ function tipEmbry():void
 	clearMenu();
 	//[1 Credit] [10 Credits] [500 Credits] [2000 Credits] [5000 Credits]
 	if(pc.credits >= 1) addButton(0,"1C",tipEmbryASecondCreditYooCheapskate,undefined,"1 Credit","Tip her a single credit.");
-	else addDisabledButton(0,"1C","1 Credit","You don't have enough cash for that.");
+	else addDisabledButton(0,"1C","1 Credit","You don't have any cash.");
 	if(pc.credits >= 10) addButton(1,"10C",tipEmbryTenCredits,undefined,"10 Credits","Tip her ten credits.");
 	else addDisabledButton(1,"10C","10 Credits","You don't have enough cash for that.");
 	if(pc.credits >= 500) addButton(2,"500C",tipEmbryFiveHunnahDorrah,undefined,"500 Credits","Tip her a whopping 500 credits.");
@@ -1164,7 +1165,7 @@ function witnessEmbrysGirlTF():void
 	output("You agree to witness for Embry, and she gives a bright smile. <i>\"R-really, you will?</i>” The monkey girl wraps her arms around your waist, and gives you a tight, warm hug. <i>\"Thank you!</i>”");
 	output("\n\nYou follow her back to her room on the Cappella, and she locks the door after you both. You notice there’s a secure medical container plastered with warning labels on the floor. She wasn’t joking when she said it was dangerous. It’s a lot more regulation than you’ve seen for any transformation drug");
 	if(pc.isTreated()) output(" besides the treatment");
-	else output("before");
+	else output(" before");
 	output(".");
 
 	output("\n\nYou ask [embry.name] about it, and she picks it up. “<i>... O-oh, yeah, it’s not normal. Simii biology is really, really resistant to change. That means the drugs for body alteration have to be incredibly aggressive... persistently so.</i>”");
@@ -1225,7 +1226,7 @@ function lookAwayFromEmbrysLoverTF():void
 {
 	clearOutput();
 	showSimii();
-	output("You respectfully look away, and wait until she’s done transitioning. There’s the noise of her administering the solution, and a crying out. All through her transition, you don’t look once, waiting until she’s finished.");
+	output("You respectfully look away, and wait until she’s done transitioning. There’s the hiss of the solution being administered, and then Embry cries out. All through her transition, you don’t look once, waiting until she’s finished.");
 	output("\n\nWhen you finally turn back around, she’s lying on the bed, and looks completely different. Her shoulders have completely lost their masculine breadth, her curves are more shapely, and her body is more plush and soft. Her rump is round and girlish, and there’s a delicious dipping curve between her shoulderblades and her butt.");
 	output("\n\nYou look up at her face, and notice her pink lips have become fuller and her cheeks rounder. Her face is definitely less harsh, and instead of androgynous, it now looks unmistakably feminine. Even her dark lashes are fuller and longer. Her hair length hasn’t changed, but the rest certainly has.");
 	output("\n\nShe now has a small pair of A cup breasts. Even though they’re not very big, the simii girl seems thrilled, and presses them together with a delighted expression on her face.");
@@ -1678,7 +1679,7 @@ function spendTimeWithEmbry():void
 		processTime(3);
 		//[ForYou] [Journey] [Adventure] [TheDrinks] [Sex]
 		clearMenu();
-		addButton(0,"For You",tellEmbrahYourHereForHer,undefined,"For You","You're here for Embry.");
+		addButton(0,"For You",tellEmbrahYourHereForHer,undefined,"For You","You're here for [embry.name].");
 		addButton(1,"Journey",journeyStuffForEmbry,undefined,"Journey","Tell her about the journey you're on.");
 		addButton(2,"Adventure",adventureWithEmbryTalk,undefined,"Adventure","Tell her you're out on the rush looking for adventure.");
 		addButton(3,"TheDrinks",theDrinksEmbryTHEDRINKS,undefined,"TheDrinks","Tell her that you're here for a drink.");
@@ -2208,7 +2209,7 @@ function blowjorbsFromEmbry():void
 	else if(embry.biggestTitSize() <= 3) output(" tiny breasted");
 	else output(" round breasted");
 	output(" girl ");
-	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerUnderGarments]. She then ");
+	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerGarment]. She then ");
 	output("slowly kisses down your belly. She peppers your [pc.skinFurScales] with shy, devoted little pecks. Cute, wet smacking noises fill the air.");
 	output("\n\nSoon, [embry.name]’s lips find their way to the cusp of your cock, and the kissing stops. You look down and see her staring at it wide eyed in wonder. Her baby blue eyes are fixated on it, and she’s eagerly breathing in your musky scent.");
 	output("\n\n“<i>... ");
@@ -2257,10 +2258,10 @@ function blowjorbsFromEmbry():void
 	else output("stroke the sensitive skin between your member and your anus");
 	output(". You feverishly press against her ministering fingers, and needily move to bury more of your cock down her gullet.");
 
-	output("\n\nInstead of baulking, [embry.name] lets out a muffled moan of pleasure as you grind your [pc.cockNoun] against her face. She pulls you in and redoubles her efforts; desperate to satisfy you and savor your delicious [pc.cumNoun].");
+	output("\n\nInstead of baulking, [embry.name] lets out a muffled moan as you grind your [pc.cockNoun] against her face. She pulls you in and redoubles her efforts; desperate to satisfy and savor your delicious [pc.cumNoun].");
 	output("\n\nPressure builds as thunderous spasms seize your body, and you grab her head firmly in your hands. With a shuddering groan, you unload your [pc.cum] inside of her warm, wet mouth. Spasmic gushes of your liquid love surge up your shaft and blissfully unload in her gullet. You reel with each burst, filling her mouth with your hot cream.");
-	output("\n\nShe gurgles noisily and happily, and her eyes flutter back. A primal moan resounds from her throat, and she pumps your pulsating length for every last drop. Your [pc.cumColor] sperm mixes with her saliva and drools down her chin and cheeks. Her brain is utterly out to lunch - completely overcome by the taste and smell of your musky, [pc.cumFlavor] jism.");
-	output("\n\nWhen you pull back, the sight of [embry.name] is glorious - her cheeks and chin are completely splattered with your sticky [pc.cumNoun], and her eyes are utterly spaced out. Her pink lips are coated in your sperm, and your thick, musky smell is all over her face, making her utterly reek of sex.");
+	output("\n\nShe gurgles noisily and happily, and her eyes flutter back. A primal moan resounds from her throat, and she pumps your pulsating length for every last drop. Your [pc.cumColor] sperm mixes with her saliva and drools down her chin and cheeks. Her brain is utterly out to lunch - completely overcome with need from the taste and smell of your musky, [pc.cumFlavor] jism.");
+	output("\n\nWhen you pull back, the sight of [embry.name] fills you with a strange triumph - her cheeks and chin are utterly splattered with your sticky [pc.cumNoun], and she is completely spaced out, her eyes stare off into a seed induced bliss. Her pink lips are coated in your sperm, and your thick, musky smell is all over her face, making her utterly reek of sex.");
 	output("\n\nHer ");
 	if(embry.biggestTitSize() < 1) output("flat");
 	else if(embry.biggestTitSize() < 3) output("modest");
@@ -2269,7 +2270,7 @@ function blowjorbsFromEmbry():void
 	output("\n\n<i>\"Your cum... i-it’s wonderful... is it supposed to taste this good...?</i>\" she breathily asks, gathering more up and dreamily licking it off her fingers. She seems to have trouble putting words together, and simply licks up all your offered cream.");
 	output("\n\nBoth of you bask in the afterglow, and she clambers up your side to snuggle against you. She utterly reeks of your cum, and you’re sure she’ll need a long, hard shower to get rid of it. Her fingers trail across your chest, and draw delicious little circles.");
 	output("\n\n<i>\"I-I really liked sucking your cock... and having your stuff all over me.</i>” [embry.name] nuzzles into you, and looks up at you with honest, blue eyes. <i>\"Doing that for you felt so right, and made me feel all shivery. Um... if you want to do that again... anytime at all... I’d </i>really<i> like that,</i>” she blushes.");
-	output("\n\nYou notice her fingers occasionally move in the direction of [pc.oneCockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
+	output("\n\nYou notice her fingers occasionally move in the direction of [pc.cockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
 	output("\n\nYou stagger back to the bar with a smile.");
 	flags["GOTTEN_AN_EMBRY_BJ"] = 1;
 	flags["SEXED_EMBRY"] = 1;
@@ -2898,7 +2899,7 @@ function vagisilSexForEmbry(spentTime:Boolean = false):void
 		if(embry.vaginalVirgin)
 		{
 			output("\n\nYour [pc.cockHead] presses against her intact hymen. You push forward, making it quick. [embry.name] lets out a sharp, pained noise, and her fingers dig into your back. Her body tenses up and you stop to ask your pink haired lover if she’s okay.");
-			output("\n\n<i>\"I-I’m o-okay, it just stung a lot...</i>” she’s visibly wincing and her muscles are tightened around your [pc.cockHeadNoun]. After a few deep breaths, she looks up at you with a big, bright smile. It’s strained a little, but genuine nonetheless. “<i>... Keep going, I’m okay now.</i>”");
+			output("\n\n<i>\"I-I’m o-okay, it just stung a lot...</i>” she’s visibly wincing and her muscles are tightened around your [pc.cockHead]. After a few deep breaths, she looks up at you with a big, bright smile. It’s strained a little, but genuine nonetheless. “<i>... Keep going, I’m okay now.</i>”");
 			output("\n\nYou decide to trust her. ");
 		}
 		else output("\n\n");

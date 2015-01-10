@@ -1616,6 +1616,9 @@
 				case "eirs":
 					buffer = this.mf("his", "hers");
 					break;
+				case "manWoman":
+					buffer = this.mf("man", "woman");
+					break;
 				case "skinTone":
 					buffer = this.skinTone;
 					break;
@@ -8262,18 +8265,19 @@
 				if (!simple) {
 					descript += "simian ";
 				}
+				//Hey retards wrong random selection stack logic Doh! data type is rounding, comparator op, hence GLOBAL.TYPE_BEE works
 				rando = this.rand(11);
-				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
-				else if (rando <= 1) noun += "cock";
-				else if (rando <= 2) noun += "member";
-				else if (rando <= 3) noun += "shaft";
-				else if (rando <= 4) noun += "phallus";
-				else if (rando <= 5) noun += "prick";
-				else if (rando <= 6) noun += "member";
-				else if (rando <= 7 && descript != "simian ") noun += "simii-cock";
-				else if (rando <= 8) noun += "dick";
-				else if (rando <= 9) noun += "tool";
-				else noun += "shaft";
+				if (rando == 0 && descript != "simian ") noun += "simii-dick";
+				if (rando == 1) noun += "cock";
+				if (rando == 2) noun += "member";
+				if (rando == 3) noun += "shaft";
+				if (rando == 4) noun += "phallus";
+				if (rando == 5) noun += "prick";
+				if (rando == 6) noun += "member";
+				if (rando == 7 && descript != "simian ") noun += "simii-cock";
+				if (rando == 8) noun += "dick";
+				if (rando == 9) noun += "tool";
+				if (rando == 10) noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {
@@ -8600,7 +8604,7 @@
 						else descript = "monumental";
 					}
 				} else {
-					rando = this.rand(6);
+					rando = this.rand(8);
 					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
@@ -8608,6 +8612,8 @@
 						else if (rando == 2) descript = "movement-impairing";
 						else if (rando == 3) descript = "floor-dragging";
 						else if (rando == 4) descript = "extremely hyper";
+						else if (rando == 5) descript += "virgin destroying";
+						else if (rando == 6) descript += "small asteroid sized";
 						else descript = "monumental";
 					}
 				}
