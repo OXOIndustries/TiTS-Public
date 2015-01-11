@@ -191,7 +191,7 @@ function initializeMyrellionRooms():void
 	//The Kressia Airstrip
 	rooms["612"] = new RoomClass(this);
 	rooms["612"].roomName = "KRESSIA\nAIRSTRIP";
-	rooms["612"].description = "The airstrip set behind the embassy is completely locked down by red myr troops, all in dark crimson trench coats with gas masks on. A handful of pioneers and cargo hover-loaders are being directed onto and off of a heavy-duty cargo plane sitting on the tarmac, its engines running and ready to take off. A red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.";
+	rooms["612"].description = "The airstrip set behind the embassy is completely locked down by red myr troops, all in dark crimson trench coats with gas masks on. A handful of pioneers and cargo hover-loaders are being directed onto and off of a heavy-duty cargo plane sitting on the tarmac, its engines running and ready to take off.";
 	rooms["612"].planet = "PLANET: MYRELLION";
 	rooms["612"].system = "SYSTEM: SINDATHU";
 	rooms["612"].southExit = "604";
@@ -904,6 +904,7 @@ function initializeMyrellionRooms():void
 	rooms["803"].runOnEnter = kressiaGatesBonus;
 	rooms["803"].addFlag(GLOBAL.INDOOR);
 	rooms["803"].addFlag(GLOBAL.PUBLIC);
+	rooms["803"].addFlag(GLOBAL.CAVE);
 
 
 	//Street R12
@@ -918,6 +919,7 @@ function initializeMyrellionRooms():void
 	rooms["804"].runOnEnter = undefined;
 	rooms["804"].addFlag(GLOBAL.INDOOR);
 	rooms["804"].addFlag(GLOBAL.PUBLIC);
+	rooms["804"].addFlag(GLOBAL.CAVE);
 
 	//Street P12
 	rooms["805"] = new RoomClass(this);
@@ -932,6 +934,7 @@ function initializeMyrellionRooms():void
 	rooms["805"].runOnEnter = undefined;
 	rooms["805"].addFlag(GLOBAL.INDOOR);
 	rooms["805"].addFlag(GLOBAL.PUBLIC);
+	rooms["805"].addFlag(GLOBAL.CAVE);
 
 	//Street N12
 	rooms["806"] = new RoomClass(this);
@@ -944,6 +947,7 @@ function initializeMyrellionRooms():void
 	rooms["806"].runOnEnter = undefined;
 	rooms["806"].addFlag(GLOBAL.INDOOR);
 	rooms["806"].addFlag(GLOBAL.PUBLIC);
+	rooms["806"].addFlag(GLOBAL.CAVE);
 
 	//Street L12
 	rooms["807"] = new RoomClass(this);
@@ -958,6 +962,7 @@ function initializeMyrellionRooms():void
 	rooms["807"].runOnEnter = undefined;
 	rooms["807"].addFlag(GLOBAL.INDOOR);
 	rooms["807"].addFlag(GLOBAL.PUBLIC);
+	rooms["807"].addFlag(GLOBAL.CAVE);
 
 	//Street J12
 	rooms["808"] = new RoomClass(this);
@@ -970,6 +975,7 @@ function initializeMyrellionRooms():void
 	rooms["808"].runOnEnter = undefined;
 	rooms["808"].addFlag(GLOBAL.INDOOR);
 	rooms["808"].addFlag(GLOBAL.PUBLIC);
+	rooms["808"].addFlag(GLOBAL.CAVE);
 
 	//Street H12
 	rooms["809"] = new RoomClass(this);
@@ -983,6 +989,7 @@ function initializeMyrellionRooms():void
 	rooms["809"].runOnEnter = undefined;
 	rooms["809"].addFlag(GLOBAL.INDOOR);
 	rooms["809"].addFlag(GLOBAL.PUBLIC);
+	rooms["809"].addFlag(GLOBAL.CAVE);
 
 	//Street H14
 	rooms["810"] = new RoomClass(this);
@@ -996,6 +1003,7 @@ function initializeMyrellionRooms():void
 	rooms["810"].runOnEnter = undefined;
 	rooms["810"].addFlag(GLOBAL.INDOOR);
 	rooms["810"].addFlag(GLOBAL.PUBLIC);
+	rooms["810"].addFlag(GLOBAL.CAVE);
 	//Insert JimT's vendor outdoors here
 
 	//Street H16
@@ -1010,6 +1018,7 @@ function initializeMyrellionRooms():void
 	rooms["811"].runOnEnter = undefined;
 	rooms["811"].addFlag(GLOBAL.INDOOR);
 	rooms["811"].addFlag(GLOBAL.PUBLIC);
+	rooms["811"].addFlag(GLOBAL.CAVE);
  
 	//Street H18
 	rooms["812"] = new RoomClass(this);
@@ -1023,6 +1032,7 @@ function initializeMyrellionRooms():void
 	rooms["812"].runOnEnter = undefined;
 	rooms["812"].addFlag(GLOBAL.INDOOR);
 	rooms["812"].addFlag(GLOBAL.PUBLIC);
+	rooms["812"].addFlag(GLOBAL.CAVE);
 	//Insert Ted's Queenshit here
 	
 	//Street H20
@@ -1036,6 +1046,7 @@ function initializeMyrellionRooms():void
 	rooms["813"].runOnEnter = undefined;
 	rooms["813"].addFlag(GLOBAL.INDOOR);
 	rooms["813"].addFlag(GLOBAL.PUBLIC);
+	rooms["813"].addFlag(GLOBAL.CAVE);
 
 	//Street J20
 	rooms["814"] = new RoomClass(this);
@@ -1048,6 +1059,7 @@ function initializeMyrellionRooms():void
 	rooms["814"].runOnEnter = undefined;
 	rooms["814"].addFlag(GLOBAL.INDOOR);
 	rooms["814"].addFlag(GLOBAL.PUBLIC);
+	rooms["814"].addFlag(GLOBAL.CAVE);
 
 	//Street L20
 	rooms["815"] = new RoomClass(this);
@@ -1061,6 +1073,7 @@ function initializeMyrellionRooms():void
 	rooms["815"].runOnEnter = undefined;
 	rooms["815"].addFlag(GLOBAL.INDOOR);
 	rooms["815"].addFlag(GLOBAL.PUBLIC);
+	rooms["815"].addFlag(GLOBAL.CAVE);
  
 	//Street N20
 	rooms["816"] = new RoomClass(this);
@@ -1073,6 +1086,7 @@ function initializeMyrellionRooms():void
 	rooms["816"].runOnEnter = n20StreetBonusFunc;
 	rooms["816"].addFlag(GLOBAL.INDOOR);
 	rooms["816"].addFlag(GLOBAL.PUBLIC);
+	rooms["816"].addFlag(GLOBAL.CAVE);
 
 	//Street P20
 	rooms["817"] = new RoomClass(this);
@@ -1085,6 +1099,7 @@ function initializeMyrellionRooms():void
 	rooms["817"].runOnEnter = undefined;
 	rooms["817"].addFlag(GLOBAL.INDOOR);
 	rooms["817"].addFlag(GLOBAL.PUBLIC);
+	rooms["817"].addFlag(GLOBAL.CAVE);
  
 	//Street P18
 	rooms["818"] = new RoomClass(this);
@@ -1097,6 +1112,7 @@ function initializeMyrellionRooms():void
 	rooms["818"].runOnEnter = undefined;
 	rooms["818"].addFlag(GLOBAL.INDOOR);
 	rooms["818"].addFlag(GLOBAL.PUBLIC);
+	rooms["818"].addFlag(GLOBAL.CAVE);
 
 	//Street P16
 	rooms["819"] = new RoomClass(this);
@@ -1110,6 +1126,7 @@ function initializeMyrellionRooms():void
 	rooms["819"].runOnEnter = undefined;
 	rooms["819"].addFlag(GLOBAL.INDOOR);
 	rooms["819"].addFlag(GLOBAL.PUBLIC);
+	rooms["819"].addFlag(GLOBAL.CAVE);
 	//Something something shopdescript here
 
 	//Street P14
@@ -1123,6 +1140,7 @@ function initializeMyrellionRooms():void
 	rooms["820"].runOnEnter = undefined;
 	rooms["820"].addFlag(GLOBAL.INDOOR);
 	rooms["820"].addFlag(GLOBAL.PUBLIC);
+	rooms["820"].addFlag(GLOBAL.CAVE);
 
 	//Street L22
 	rooms["821"] = new RoomClass(this);
@@ -1135,6 +1153,7 @@ function initializeMyrellionRooms():void
 	rooms["821"].runOnEnter = undefined;
 	rooms["821"].addFlag(GLOBAL.INDOOR);
 	rooms["821"].addFlag(GLOBAL.PUBLIC);
+	rooms["821"].addFlag(GLOBAL.CAVE);
 
 	//Park Path N16
 	rooms["822"] = new RoomClass(this);
@@ -1149,6 +1168,7 @@ function initializeMyrellionRooms():void
 	rooms["822"].runOnEnter = undefined;
 	rooms["822"].addFlag(GLOBAL.INDOOR);
 	rooms["822"].addFlag(GLOBAL.PUBLIC);
+	rooms["822"].addFlag(GLOBAL.CAVE);
 
 	//Part Path L18
 	rooms["823"] = new RoomClass(this);
@@ -1161,6 +1181,7 @@ function initializeMyrellionRooms():void
 	rooms["823"].runOnEnter = undefined;
 	rooms["823"].addFlag(GLOBAL.INDOOR);
 	rooms["823"].addFlag(GLOBAL.PUBLIC);
+	rooms["823"].addFlag(GLOBAL.CAVE);
 
 	//Park Path J16
 	rooms["824"] = new RoomClass(this);
@@ -1173,6 +1194,7 @@ function initializeMyrellionRooms():void
 	rooms["824"].runOnEnter = undefined;
 	rooms["824"].addFlag(GLOBAL.INDOOR);
 	rooms["824"].addFlag(GLOBAL.PUBLIC);
+	rooms["824"].addFlag(GLOBAL.CAVE);
 
 	//Park Path L14
 	rooms["825"] = new RoomClass(this);
@@ -1185,6 +1207,7 @@ function initializeMyrellionRooms():void
 	rooms["825"].runOnEnter = undefined;
 	rooms["825"].addFlag(GLOBAL.INDOOR);
 	rooms["825"].addFlag(GLOBAL.PUBLIC);
+	rooms["825"].addFlag(GLOBAL.CAVE);
 
 	//Fallen Statue
 	rooms["826"] = new RoomClass(this);
@@ -1197,4 +1220,5 @@ function initializeMyrellionRooms():void
 	rooms["826"].runOnEnter = undefined;
 	rooms["826"].addFlag(GLOBAL.INDOOR);
 	rooms["826"].addFlag(GLOBAL.PUBLIC);
+	rooms["826"].addFlag(GLOBAL.CAVE);
 }
