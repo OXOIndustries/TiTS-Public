@@ -199,6 +199,7 @@ function initializeMyrellionRooms():void
 	rooms["612"].runOnEnter = DMZKressiaAirstrip;
 	rooms["612"].addFlag(GLOBAL.OUTDOOR);
 	rooms["612"].addFlag(GLOBAL.PUBLIC);
+	rooms["612"].addFlag(GLOBAL.PLANE);
 
 	//The Red Myr Warehouse
 	rooms["613"] = new RoomClass(this);
@@ -863,6 +864,7 @@ function initializeMyrellionRooms():void
 	rooms["800"].runOnEnter = kressiaAirfieldBonus;
 	rooms["800"].addFlag(GLOBAL.OUTDOOR);
 	rooms["800"].addFlag(GLOBAL.PUBLIC);
+	rooms["800"].addFlag(GLOBAL.PLANE);
 
 	//801 Airport (Checkpoint), 2F
 	rooms["801"] = new RoomClass(this);

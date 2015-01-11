@@ -32,6 +32,7 @@
 		public static const room_forest_mask:int		= 1<<20;
 		public static const room_jungle_mask:int		= 1<<21;
 		public static const room_desert_mask:int		= 1<<22;
+		public static const room_plane_mask:int			= 1<<23;
 
 		private var roomsObj:Object;
 
@@ -213,6 +214,10 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.TAXI))
 			{
 				map[x][y][z] |= room_taxi_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.PLANE))
+			{
+				map[x][y][z] |= room_plane_mask;
 			}
 			
 			if (this.mapDebug) trace("Finished room ", targetRoom)
