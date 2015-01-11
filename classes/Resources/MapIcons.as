@@ -53,6 +53,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/map/map_taxi.svg", mimeType = "image/svg")]
 		public static var Map_Taxi:Class;
 		
+		[Embed(source = "../../assets/icons/map/map_plane.svg", mimeType = "image/svg")]
+		public static var Map_Plane:Class;
+		
 	}
 
 }
