@@ -434,7 +434,7 @@
 						
 						if (roomFlags & Mapper.current_locaton_mask)
 						{
-						tarSprite.setColour(UIStyleSettings.gMapPCLocationRoomColourTransform);
+							tarSprite.setColour(UIStyleSettings.gMapPCLocationRoomColourTransform);
 						}
 						else if (roomFlags & Mapper.room_indoor_mask)
 						{
@@ -447,6 +447,18 @@
 						else if (roomFlags & Mapper.room_cave_mask)
 						{
 							tarSprite.setColour(UIStyleSettings.gMapCaveRoomFlagColourTransform);
+						}
+						else if (roomFlags & Mapper.room_forest_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapForestRoomFlagColourTransform);
+						}
+						else if (roomFlags & Mapper.room_jungle_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapJungleRoomFlagColourTransform);
+						}
+						else if (roomFlags & Mapper.room_desert_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapDesertRoomFlagColourTransform);
 						}
 						else // Catch-all for any room that doesn't have a flag set.
 						{
