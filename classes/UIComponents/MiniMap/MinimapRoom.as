@@ -56,19 +56,33 @@
 			
 			for (i = 0; i < MiniMap.ICON_NAMES.length; i++)
 			{
-				var classType:Class = getDefinitionByName(String(MiniMap.ICON_NAMES[i])) as Class;
+				var classType:Class = MapIcons[MiniMap.ICON_NAMES[i]];
 				_icons[i] = new classType();
 				_icons[i].name = String(MiniMap.ICON_NAMES[i]);
 				this.addChild(_icons[i]);
 				_icons[i].visible = false;
-			}
-			
-			// Redo the loop so we can get proper positioning values -- once all the objects are added, we'll have the proper max width/height to work with
-			// I think this might be a little bugged atm -- TODO
-			for (i = 0; i < MiniMap.ICON_NAMES.length; i++)
-			{
-				_icons[i].x = (this.width - _icons[i].width) / 2;
-				_icons[i].y = (this.height - _icons[i].height) / 2;
+				
+				_icons[i].transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
+				
+				var tHeight:Number = _sizeY - 8;
+				var tWidth:Number = _sizeY - 8;
+				var ratio:Number = tHeight / tWidth;
+				
+				if (_icons[i].width * ratio > _icons[i].height)
+				{
+					ratio = tWidth / _icons[i].width;
+				}
+				else
+				{
+					ratio = tHeight / _icons[i].height;
+				}
+				
+				_icons[i].width *= ratio;
+				_icons[i].height *= ratio;
+				
+				
+				_icons[i].x = (_sizeX - _icons[i].width) / 2;
+				_icons[i].y = (_sizeY - _icons[i].height) / 2;
 			}
 		}
 		
