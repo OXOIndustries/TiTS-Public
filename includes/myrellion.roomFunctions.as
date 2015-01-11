@@ -123,7 +123,6 @@ function DMZKressiaAirstrip():Boolean
 	return false;
 }
 
-
 function aeroplaneFlightShit(kressia:Boolean = true):void
 {
 	clearOutput();
@@ -157,4 +156,26 @@ function aeroplaneFlightShit(kressia:Boolean = true):void
 	processTime(30+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+function gildenmereElevatorBottomBonus():Boolean
+{
+	if(!pc.hasKeyItem("Gildenmere Pass"))
+	{
+		//Elevator with no pass:
+		clearOutput();
+		output("A pair of gold myr guards ask to see your clearance to visit the city. When you explain that you have none, they turn you away. You’ll have to ask ");
+		if(flags["MET_LYRALLA"] == undefined) output("Lyralla");
+		else output("their diplomat");
+		output(" for one.");
+		currentLocation = "611";
+  		var map2:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map2);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	//Elevator with pass:
+	else output("You flash the pass Lyralla gave you to the guards. They nod and gesture to the elevator. You can go to greater Gildenmere at your leisure.");
+	return false;
 }

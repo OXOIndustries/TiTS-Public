@@ -229,7 +229,7 @@ function initializeMyrellionRooms():void
 	rooms["700"].inExit = "611";
 	rooms["700"].inText = "Up";
 	rooms["700"].moveMinutes = 1;
-	rooms["700"].runOnEnter = undefined;
+	rooms["700"].runOnEnter = gildenmereElevatorBottomBonus;
 	rooms["700"].addFlag(GLOBAL.INDOOR);
 	rooms["700"].addFlag(GLOBAL.PUBLIC);
 	rooms["700"].addFlag(GLOBAL.CAVE);

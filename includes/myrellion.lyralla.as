@@ -148,6 +148,8 @@ function lyrallaTalkMenu(functionFrom = undefined):void
 	}
 	if(functionFrom == talkToLyrallaAboutZeWar) addDisabledButton(3,"The War","The War","You just talked about this.");
 	else addButton(3,"The War",talkToLyrallaAboutZeWar,undefined,"The War","Ask her what she thinks about the war as a whole.");
+	if(!pc.hasKeyItem("Gildenmere Pass")) addButton(4,"Request Pass",askLyrallaForAPussyPass,undefined,"Request Pass","Request a pass that will let you enter the gold myr city, Gildenmere.");
+	else addDisabledButton(4,"Request Pass","Request Pass","You already have a pass.")
 	addButton(14,"Back",approachingLyralla,true);
 }
 
@@ -729,6 +731,58 @@ function juroXLyrallPartV():void
 	pc.createStatusEffect("JuroXLyrallaCooldown", 0,0,0,0, true, "", "", false, 1000);
 	pc.lust(2);
 	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Pass Request
+//Actual ask Lyralla
+function askLyrallaForAPussyPass():void
+{
+	clearOutput();
+	showLyralla();
+	output("“<i>");
+	if(pc.isBimbo()) output("Can I go visit your city? I bet it’s totally rad!");
+	else if(pc.isNice()) output("Can I get a pass to visit your city?");
+	else if(pc.isMischievous()) output("So what’s a [pc.guy] gotta do to get a look at one of these underground cities?");
+	else output("I need a pass to enter your city.");
+	output("</i>”");
+	output("\n\nLyralla coal-black eyes twinkle. “<i>Oh, are you going to be a tourist now? Another visitor down to visit The Honeypot?</i>” The name has the ring of a proper place. She smiles a little more broadly. “<i>You realize that our society is far more libertine than at the UGC’s core, yes? It is not uncommon for my people to walk about totally uncovered, nor is it frowned upon to share physical affection in public.</i>”");
+	//Been to new texas & bimbo
+	if(pc.isBimbo() && flags["NEW_TEXAN_CUSTOMS_MET"] != undefined)
+	{
+		output("\n\n“<i>Like, just cause the core is all prudish doesn’t... uh...</i>” You blink a few times to buy time to try to finish the rest of the sentence, then give up entirely. “<i>The words got all tangled up in my head! I... um... I’ve been places where fucking in public is totally cool. I’ll like it there!</i>”");
+	}
+	//Been to new texas
+	else if(flags["NEW_TEXAN_CUSTOMS_MET"] != undefined) output("\n\n“<i>Please, Lyralla. Whatever it’s like here, it can’t be as openly sexual as new texas. The whole planet smells like fucking.</i>” You grin a little wider. “<i>I think I can handle the sight of a few pairs of breasts or a canoodling couple.</i>”");
+	//Nice + Mischiev
+	else if(pc.isNice() || pc.isMischievous())
+	{
+		output("\n\n“<i>Thank’s for the warning. It seems like everywhere I go, everyone’s a gone a little sex-crazy.");
+		if(pc.isMischievous()) output(" There must be something in the air out here on the rim!");
+		output(" The last fringe world I explored had ");
+		//sexbots unlocked
+		if(flags["MET_SEXBOTS_ON_TARKUS"] != undefined) output("roving sex-bots that would rape you on sight and ");
+		output("little scaly creatures obsessed with breeding. I can probably handle seeing a few gold myr bouncing around in the nude.</i>”");
+	}
+	//Hard
+	else output("\n\n“<i>You really ought to dispense with the warning. Anybody brave enough to fly out here isn’t going to be afraid of seeing a little T and A. In fact, a lot of people flew out here for it. So why don’t you make with the rubber stamping so I can be on my way.</i>”");
+	output("\n\nLyralla purses her lips");
+	if(!pc.isBimbo() && flags["NEW_TEXAN_CUSTOMS_MET"] == undefined && pc.isAss()) output(", brows knitted with irritation");
+	output(". “<i>Very well. Please be aware that while you are in our city local law supersedes UGC legislation... at least until the Council approves integration measures.</i>” She hands you a pamphlet with one of her biological arms. “<i>The details are in there, but just try not to rape anyone, kill anybody, or steal anything.</i>” She smiles. “<i>Our languages have similar enough words for those concepts.</i>”");
+	output("\n\nYou pocket the pamphlet. “<i>");
+	if(pc.isBimbo()) output("Sure thing!");
+	else if(pc.isNice()) output("Thanks for the heads up.");
+	else if(pc.isMischievous()) output("It’ll be tough to go a few hours without murdering anyone, but I think I’ll manage.");
+	else output("Shouldn’t be a problem.");
+	output("</i>”");
+	output("\n\nThe gold ambassador ");
+	if(!pc.isBimbo() && pc.isMischievous()) output("sighs. “<i>You’re lucky I can pick up on sarcasm.</i>”");
+	else output("nods. “<i>Good. Stay out of trouble.</i>”");
+	output(" She pulls a card out of her desk and hands it to you. It’s little more than a printed pass on some sweet-scented cardstock. You probably could’ve whipped one of these up with your ship’s computer if you wanted.");
+	output("\n\n<b>You can now enter the city of Gildenmere.</b>");
+	processTime(3);
+	pc.createKeyItem("Gildenmere Pass",0,0,0,0);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
