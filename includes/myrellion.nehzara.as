@@ -352,7 +352,7 @@ function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	else
 	{
 		output("You ");
-		if(pc.legs > 1) output("take a step forward");
+		if(pc.legCount > 1) output("take a step forward");
 		else output("slide yourself forward");
 		output(" to stand just before Nehzara’s desk. “<i>Someone looks stressed,</i>” you begin, looking her in the eye. “<i>");
 		if(pc.isNice()) output("Perhaps there’s something I could do to help?</i>”");

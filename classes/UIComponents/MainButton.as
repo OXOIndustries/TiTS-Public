@@ -294,6 +294,16 @@ package classes.UIComponents
 			setColour(FOREGROUND_BUTTON);
 		}
 		
+		public function setDisabled():void
+		{
+			this.alpha = 0.3;
+		}
+		
+		public function setActive():void
+		{
+			this.alpha = 1.0;
+		}
+		
 		private function setColour(type:int):void
 		{
 			var clrTrans:ColorTransform = new ColorTransform();

@@ -1,5 +1,7 @@
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Items.Guns.Goovolver;
+import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
 //Steele Tech Shop (Tarkus)
 //Dogsloots 'r' Us
@@ -621,7 +623,7 @@ function repairMyRustBroInjuryAnno():void
 	userInterface.showName("\nANNO");
 	output("<i>\"Can you take a look at this?\"</i> you ask, pulling your equipment off and setting it onto the counter.");
 	//if that leaves the PC bare-breasted AND PC has boobs:
-	if(pc.upperUndergarment == "" && pc.biggestTitSize() >= 1) output("\n\nAnno's eyes widen a bit as you take off your top, but she's quick to recompose herself into a businesslike demeanor as you start talking price and time. You can't shake the feeling of her eyes glancing up at your bare chest, though, and more than once her swishing tail knocks some widget or another over behind the counter.");
+	if(!(pc.upperUndergarment is EmptySlot) && pc.biggestTitSize() >= 1) output("\n\nAnno's eyes widen a bit as you take off your top, but she's quick to recompose herself into a businesslike demeanor as you start talking price and time. You can't shake the feeling of her eyes glancing up at your bare chest, though, and more than once her swishing tail knocks some widget or another over behind the counter.");
 	output("\n\n<i>\"Uh, yeah, sure,\"</i> she says, scooping your gear off the counter and into a bin beneath it. <i>\"Just be a sec, boss. Promise I won't charge you more than component costs!\"</i>");
 	output("\n\nShe hefts the bin up and vanishes into a back room behind the store. You spend the next few minutes browsing the weird techno-crap piled up in the storefront, occasionally wincing as Anno lets out a curse or clangs something metallic together, sending reverberations up your spine. Eventually, she pops back into the store, your gear looking... better. Anno wipes some grease and soot from her brow before handing it back over.");
 	output("\n\n<i>\"There ya go! Good as, uh... well, it's fixed. Try not to get sydianed again, okay?\"</i>");
@@ -1858,11 +1860,11 @@ function annoTalkAboutDaMission():void
 	output("<i>“Alright,”</i> you say, leaning across the counter toward the eager ausar. <i>“Let’s talk about this work of yours.”</i> ");
 	
 	output("\n\n<i>“Alright! Now we’re talking!”</i> Anno beams, waving you around the counter and booting up her holoterminal. You step up beside Anno, and are greeted by the sight of a highly detailed 3D projection of what could only be the <i>Nova</i> itself. It truly is a massive ship, now that you can see it in full: longer than a Coalition dreadnought and twice as thick around. Anno’s rigged the display to show power distribution, heat spread, and other various technical minutiae");
-	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
 	output(".");
 	
 	output("\n\n<i>“You see it, right?”</i> Anno says, jabbing a white-furred finger into the display, towards");
-	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(" the");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(" the");
 	output(" a");
 	output(" section of the ship that seems to be drawing an inordinate amount of power. <i>“Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.”</i>");
 	
@@ -2190,7 +2192,7 @@ function victoryOverSecurityDroid():void
 	output("\n\n<i>“We got ‘em first, though,”</i> you answer, ruffling the hair between her perky ears. ");
 
 	output("\n\n<i>“Yeah. We did,”</i> she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again.");
-	if (pc.IQ() >= 0.75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
+	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
 
 	genericVictory();
 }
@@ -3324,7 +3326,7 @@ function gigaGooPunch():void
 	
 	if (rand(4) == 0)
 	{
-		pc.createStatusEffect("Stunned", 3, 0, 0, 0, "Stun", "You are stunned and cannot act until you recover!", true, 0);
+		(pc as Creature).createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
 		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 	}
 

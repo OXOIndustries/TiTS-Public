@@ -61,6 +61,11 @@
 	
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
+	import classes.Engine.Utility.getPlanetName;
+	
+	import flash.events.UncaughtErrorEvent;
+	import flash.events.UncaughtErrorEvents;
+	import flash.display.LoaderInfo;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -84,6 +89,7 @@
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
+		include "../includes/StubbedFunctions.as";
 
 		//Misc content
 		include "../includes/rivalEncounters.as";
@@ -102,6 +108,7 @@
 		include "../includes/tavros.celise.as";
 		include "../includes/tavros.jade.as";
 		include "../includes/tavros.reaha.as";
+		include "../includes/tavros.reaha.expansion.as";
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
 		include "../includes/tavros.shelly.as";
@@ -237,6 +244,8 @@
 
 		public function TiTS()
 		{
+			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
+			
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
@@ -304,6 +313,20 @@
 			_perkDB = new Perks();
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
+		{
+			if (e.error is Error)
+			{
+				var ee:Error = e.error as Error;
+				
+				clearOutput();
+				output("<b>Something bad happened! Please report this message:</b>\n\n");
+				output(ee.getStackTrace(), false, false);
+				clearMenu();
+				addButton(14, "Next", mainGameMenu);
+			}
 		}
 		
 		private function init(e:Event):void
@@ -422,6 +445,12 @@
 		public function showName(name:String):void
 		{
 			userInterface.showName(name);
+		}
+		
+		public function addNextButton(func:Function):void
+		{
+			clearMenu();
+			addButton(0, "Next", func);
 		}
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -806,6 +835,10 @@
 		public function get brynn():Brynn
 		{
 			return chars["BRYNN"];
+		}
+		public function get lane():Lane
+		{
+			return chars["LANE"];
 		}
 	}
 }

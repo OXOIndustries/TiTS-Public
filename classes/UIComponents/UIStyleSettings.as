@@ -59,6 +59,7 @@ package classes.UIComponents
 			UIStyleSettings._gCodexLinkFormatter = null;
 			UIStyleSettings._gMapIndoorRoomFlagColourTransform = null;
 			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapCaveRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
 			UIStyleSettings._gHighlightColourTransform = null;
@@ -114,6 +115,10 @@ package classes.UIComponents
 		public static var gFallbackRoomColour:uint			= 0x000000; // Obvious colour to highlight rooms without flags.
 		public static var gIndoorRoomFlagColour:uint 		= 0x333E52;
 		public static var gOutdoorRoomFlagColour:uint		= 0x77797A;
+		public static var gCaveRoomFlagColour:uint 			= 0x332225;
+		public static var gDesertRoomFlagColour:uint		= 0xD6BB8D;
+		public static var gForestRoomFlagColour:uint		= 0x3F704C; //Greenish
+		public static var gJungleRoomFlagColour:uint 		= 0x184925; //Darker/Greener!
 		
 		// Font Faces
 		
@@ -858,7 +863,49 @@ package classes.UIComponents
 			}
 			return UIStyleSettings._gMapOutdoorRoomFlagColourTransform;
 		}
-		
+
+		private static var _gMapCaveRoomFlagColourTransform:ColorTransform;
+		public static function get gMapCaveRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapCaveRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapCaveRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapCaveRoomFlagColourTransform.color = UIStyleSettings.gCaveRoomFlagColour;
+			}
+			return UIStyleSettings._gMapCaveRoomFlagColourTransform;
+		}
+
+		private static var _gMapForestRoomFlagColourTransform:ColorTransform;
+		public static function get gMapForestRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapForestRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapForestRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapForestRoomFlagColourTransform.color = UIStyleSettings.gForestRoomFlagColour;
+			}
+			return UIStyleSettings._gMapForestRoomFlagColourTransform;
+		}
+		private static var _gMapDesertRoomFlagColourTransform:ColorTransform;
+		public static function get gMapDesertRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapDesertRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapDesertRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapDesertRoomFlagColourTransform.color = UIStyleSettings.gDesertRoomFlagColour;
+			}
+			return UIStyleSettings._gMapDesertRoomFlagColourTransform;
+		}
+		private static var _gMapJungleRoomFlagColourTransform:ColorTransform;
+		public static function get gMapJungleRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapJungleRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapJungleRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapJungleRoomFlagColourTransform.color = UIStyleSettings.gJungleRoomFlagColour;
+			}
+			return UIStyleSettings._gMapJungleRoomFlagColourTransform;
+		}
+
 		private static var _gMapPCLocationRoomColourTransform:ColorTransform;
 		public static function get gMapPCLocationRoomColourTransform():ColorTransform
 		{

@@ -2152,7 +2152,7 @@ public function friendlyMimbraneEvents():void
 
 				msg = "A bizarre stirring in your [pc.lowerGarment] catches your attention. Your [pc.cock] is attempting to poke out into the open air, pushed along by a particularly curious Mimbrane.";
 				if (pc.isNice()) msg += " It’s a little embarrassing, but no one seems to notice. You politely ask the parasite to stow back away, to which it cheerily chirps its compliance.";
-				else if (pc.ismiscievous()) msg += " It’s actually quite amusing seeing your trouser snake soaking in the scenery. You let it bob around freely for a while before it eventually returns to its lair.";
+				else if (pc.isMischievous()) msg += " It’s actually quite amusing seeing your trouser snake soaking in the scenery. You let it bob around freely for a while before it eventually returns to its lair.";
 				else msg += " You huff angrily, grabbing the cock and shoving it back into your clothes. You don’t have the patience for such irritations.";
 
 				messageArray.push(msg);
@@ -2292,9 +2292,9 @@ public function friendlyMimbraneEvents():void
 				if (pc.hasDickNipples() && pc.lust() >= 50)
 				{
 					msg = "Your [pc.nipples] suddenly project their inner dicks, creating a";
-					if (pc.breastCount() == 2) msg += " pair";
-					else if (pc.breastCount() == 3) msg += " trio";
-					else if (pc.breastCount() > 3) msg += " multitude";
+					if (pc.totalBreasts() == 2) msg += " pair";
+					else if (pc.totalBreasts() == 3) msg += " trio";
+					else if (pc.totalBreasts() > 3) msg += " multitude";
 					msg += " of tents in your [pc.upperUndergarment]. For a moment you try to figure out what could happening, but when the chest-mounted cocks start to squeak and chirp, you know exactly what’s going on."
 
 					messageArray.push(msg);

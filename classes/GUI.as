@@ -917,6 +917,16 @@
 			_buttonTray.setButtonPurple(slot);
 		}
 		
+		public function setButtonDisabled(slot:int):void
+		{
+			_buttonTray.setButtonDisabled(slot);
+		}
+		
+		public function setButtonActive(slot:int):void
+		{
+			_buttonTray.setButtonActive(slot);
+		}
+		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{

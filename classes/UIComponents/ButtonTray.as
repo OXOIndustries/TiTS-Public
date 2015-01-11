@@ -312,6 +312,16 @@
 			_buttons[i].setPurple();
 		}
 		
+		public function setButtonDisabled(i:int):void
+		{
+			_buttons[i].setDisabled();
+		}
+		
+		public function setButtonActive(i:int):void
+		{
+			_buttons[i].setActive();
+		}
+		
 		/**
 		 * Clears the state of any ghost buttons displayed, resetting the button elements back to the information 
 		 * stored in the backing data.

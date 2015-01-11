@@ -26,9 +26,10 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 */
 
 //1: TEXT FUNCTIONS
-public function output(words:String, markdown:Boolean = false):void 
+public function output(words:String, markdown:Boolean = false, parse:Boolean = true):void 
 {
-	this.userInterface.outputBuffer += doParse(words, markdown);
+	if (parse) this.userInterface.outputBuffer += doParse(words, markdown);
+	else this.userInterface.outputBuffer += words;
 	this.userInterface.output();
 }
 
@@ -178,8 +179,8 @@ public function updatePCStats():void {
 
 	
 	this.userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	this.userInterface.playerLevel.values.text = pc.level;
-	this.userInterface.playerCredits.values.text = pc.credits;
+	this.userInterface.playerLevel.values.text = String(pc.level);
+	this.userInterface.playerCredits.values.text = String(pc.credits);
 	
 	this.userInterface.time = timeText();
 	this.userInterface.days = String(days);

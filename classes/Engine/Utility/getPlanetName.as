@@ -1,4 +1,4 @@
-package classes.Engine 
+package classes.Engine.Utility
 {
 	import classes.kGAMECLASS;
 	import classes.StringUtil;
@@ -9,7 +9,7 @@ package classes.Engine
 	 */
 	public function getPlanetName():String
 	{
-		var pName:String = kGAMECLASS.rooms[shipLocation].planet;
+		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].planet;
 
 		if (pName.indexOf(":") != -1)
 			pName = pName.split(" ")[1];

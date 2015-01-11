@@ -83,3 +83,71 @@ function backAlleyBonus():Boolean
 	return false;
 }
 
+function kressiaGatesBonus():Boolean
+{
+	if(flags["MET_LIEVE"] == undefined) output("from which can be heard a series of very soft moans and giggles");
+	else output("and you can hear Lieve having a bit of fun inside");
+	output(".");
+
+	//first time:
+	if(flags["LIEVE_INVITE"] == undefined)
+	{
+		output("\n\nAs you're passing by, a young woman with short, almost punkish purple hair pokes her head out of firing port. \"<i>Hey you!</i>\" she calls, \"<i>Come talk to me if you're going out there. You don't want to be heading into the trenches blind.</i>\"");
+		output("\n\nBefore you can answer, she pops back into the bunker, pulled in by a pair of gold-chitined hands. Giggles echo out through the port after her.");
+		flags["LIEVE_INVITE"] = 1;
+	}
+	return false;
+}
+function n20StreetBonusFunc():Boolean
+{
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You'd be tempted to offer to help if you had any idea what the hell that behemoth even is.");
+	return false;
+}
+
+function kressiaAirfieldBonus():Boolean
+{
+	addButton(0,"Enter Plane",aeroplaneFlightShit,false,"Enter Plane","Hop on a plane for a quick trip back to the DMZ.");
+	return false;
+}
+
+function DMZKressiaAirstrip():Boolean
+{
+	addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
+	return false;
+}
+
+
+function aeroplaneFlightShit(kressia:Boolean = true):void
+{
+	clearOutput();
+	//Intro to Kressia via Aeroplane
+	if(kressia)
+	{
+		output("The plane ride is short, but bumpy. You");
+		if(flags["RODE_AIRPLANE"] == undefined)
+		{
+			output("'ve never ridden on an old-school airplane before");
+			flags["RODE_AIRPLANE"] = 1;
+		}
+		else output("never get used to these old-school airplanes");
+		output(". The plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.");
+		output("\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable...");
+		output("\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
+		currentLocation = "800";
+  		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
+	}
+	//[Next]
+	//Intro to DMZ via Aeroplane
+	//Add [To DMZ] to airfield
+	else
+	{
+		output("You hop onto a diplomatically-marked plane idling on the runway, bound for the Demilitarized Zone deep in Republic territory. It's only a few minutes of waiting before the captain arrives and the rest of the seats fill up with red myr troops and other offworlders heading back to their ships. The plane takes off punctually, sending you hurtling through the sky towards your destination.\n\nThe plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable....\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
+		currentLocation = "612";
+  		var map2:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map2);
+	}
+	processTime(30+rand(10));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

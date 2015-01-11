@@ -552,7 +552,7 @@ function catchVaginalFromAlex():void {
 	alexNameBustDiplay();
 	showBust("ALEX_NUDE");
 	var x:int = pc.cuntThatFits(20);
-	if(x < 0) x = rand(pc.cuntTotal());
+	if(x < 0) x = rand(pc.vaginas.length);
 	output("You smile down at Alex and ");
 	//if naga:
 	if(pc.isNaga()) output("slither onto the bed to ");

@@ -652,7 +652,6 @@ function obligatorySavinTailPegging():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
 	author("Savin");
-	var x:int = pc
 	output("Oh, she'll make it up to you alright. You loom over the fallen kitty-naga, licking your lips as you visually feast on her buxom, serpentine body: eyes following the soft, wide curves of her wide hips, along her flat, taut belly and its thin diamond of white fur in a sea of orange, up to the great swells of her oh-so-soft breasts, each heaving with her quickened breath, clearly aroused by your lustful stares. One of her slender hands slips down her supple form to the conjoinment of her humanoid and naga halves, fingertips teasing the shimmering slit of her sex, two slipping in with such smooth, silky ease that you feel yourself drawn in, sitting down to the naleen's level and straddling her broad flanks, your ");
 	if(pc.hasVagina()) output("[pc.vaginas]");
 	if(pc.hasCock() && pc.hasVagina()) output(" and ");

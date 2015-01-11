@@ -933,12 +933,12 @@ function talkToGiannaAbootHerBodyEh():void
 	else 
 	{
 		output(", barely concealing a gumball-");
-		if(gianna.vaginaColor == "pink") output("pink");
+		if(gianna.vaginaColor() == "pink") output("pink");
 		else output("sized");
 		output(" clit");
 	}
 	output(". <i>“I’m sure you can see that I look just like any other girl down there, though perhaps a little better. There are advantages to being designed, of course.”</i> Gianna gasps as she spreads her labia to display the ");
-	if(gianna.vaginaColor == "pink") output("rosy");
+	if(gianna.vaginaColor() == "pink") output("rosy");
 	else output("hidden");
 	output(" interior. A sheen of slick lubricant already gleams there. <i>“A pressurized lubricant reservoir enables me to stay this wet for days - or even squirt twenty to thirty times, depending on volume.”</i>");
 	output("\n\n<i>“That’s uhhh...”</i> you stumble for words as the ");
@@ -2865,11 +2865,11 @@ function giveGirlsOral():void
 		output("\n\nBefore long, the high-speed undulations unravel your increasingly unbalanced thoughts. Your eyes flutter closed, and your world becomes nothing but dreams of tongues filling pussies and slick hands rubbing across exquisitely smooth, unblemished flesh.");
 	}
 	processTime(10);
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
-	pc.orgasm;
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	//Next
 	clearMenu();
 	addButton(0,"Next",girlyTongueVibeEpilogue);
@@ -3746,7 +3746,7 @@ function savinTriesToWriteGiannaButtfux():void
 	if(giannaPersonality() >= 70)
 	{
 		output("<i>“If you like it, better use it,”</i> she answers, squeezing her cheeks together around a few of your far-wandering digits. ");
-		if(gianna.buttRating < 15) output("The way she moves, it doesn’t take much to imagine a lot more silicone on her backside and your [pc.cockBiggest] buried between her jiggling, squeezing cheeks. You get a little jolt of excitement just thinking about it. ");
+		if(gianna.buttRating() < 15) output("The way she moves, it doesn’t take much to imagine a lot more silicone on her backside and your [pc.cockBiggest] buried between her jiggling, squeezing cheeks. You get a little jolt of excitement just thinking about it. ");
 		output("<i>“What do you say I take you somewhere a little more comfortable, " + pc.mf("stud","babe") + "? I want to show you what my ass can really do.”</i>");
 	}
 	else if(giannaPersonality() >= 30)

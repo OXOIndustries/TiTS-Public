@@ -5,6 +5,17 @@
 		if(flags["TALK_TO_LADY_1ST"] == undefined) addButton(0,"Woman",talkToBrothelLady);
 		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0,"Woman",talkToBrothelLadyRepeat);
 	}
+
+	if (reahaAtBeths())
+	{
+		author("Savin");
+
+		output("\n\nReaha is sitting quietly near the dance stage, watching with wide eyes as a ");
+		output(RandomInCollection("ausar", "kaithrit", "human", "leithan", "rahn"));
+		output(" girl shakes her stuff for the crowd. The little cow perks up when she sees you, flashing you a hopeful smile.");
+
+		addButton(0, "Reaha", reahaBackAtBeths);
+	}
 }
 
 function reahaIsCrew():Boolean
@@ -13,19 +24,39 @@ function reahaIsCrew():Boolean
 	return false;
 }
 
+function reahaAtBeths():Boolean
+{
+	if (flags["REAHA_IS_CREW"] == 2) return true;
+	return false;
+}
+
+function reahaAtNewTexas():Boolean
+{
+	if (flags["REAHA_IS_CREW"] == 3) return true;
+	return false;
+}
+
+function reahaFree():Boolean
+{
+	if (flags["REAHA_FREE"] == 1) return true;
+	return false;
+}
+
 //1. FOLLOWER STUFF
 //Reaha (Approach Shipboard)
-function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday():void {
-	clearOutput();
-	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(doOutput:Boolean = true):void {
+	if (doOutput)
+	{
+		clearOutput();
+		author("Savin");
+		userInterface.showName("\nREAHA");
+		userInterface.showBust("REAHA");
 
-	output("You make your way down to Reaha's quarters, and find her door open. Standing shirtless, the huge-breasted cow-girl looks up from the bucket of milk she's busily filling up, her tail swishing faster as you approach.");
+		output("You make your way down to Reaha's quarters, and find her door open. Standing shirtless, the huge-breasted cow-girl looks up from the bucket of milk she's busily filling up, her tail swishing faster as you approach.");
 
-	if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"Hey, [pc.name]. What's up?\"</i>  Reaha says, flashing you a bright smile.");
-	else output("\n\n<i>\"" + pc.mf("Master","Mistress") + "?\"</i>  she says, looking at you expectantly.");
-
+		if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"Hey, [pc.name]. What's up?\"</i>  Reaha says, flashing you a bright smile.");
+		else output("\n\n<i>\"" + pc.mf("Master","Mistress") + "?\"</i>  she says, looking at you expectantly.");
+	}
 	/*[Talk]
 	[Get Milk]
 	[Give Item]
@@ -40,10 +71,27 @@ function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday():
 	addButton(0,"Get Milk",getAGlassOfMilkFromReapersCowsona);
 	if(pc.lust() >= 33) addButton(2,"Sex",sexWithFollowerReaha);
 	else addDisabledButton(2,"Sex");
-	addButton(4,"Appearance",reahaFollowerAppearance);
+	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] != undefined)
+	{
+		if (flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] == undefined) addButton(3, "Talk", talkWithFollowerReaha, "Talk", "Ask Reaha about her reaction to New Texas. You're probably in for a pretty long talk from the otherwise closed-mouth cow.");
+		else addButton(3, "Talk", talkWithFollowerReaha);
+	}
+	else addDisabledButton(3, "Talk");
+	if (reahaAddictionTherapyAvailable()) addDisabledButton(4, "Addiction");
+	else
+	{
+		addButton(4, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
+	}
+	if (shipLocation != "500" || flags["MET_YAMMI"] == undefined) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you knew of a local ice cream parlor....")
+	else if (pc.credits < 20) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you could afford a trip to the local ice cream parlor...."); 
+	else if (!InCollection(reaha.milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK)) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only your resident " + reaha.fluidNoun(reaha.milkType) + "-dispenser could produce something more amenable to creating icy, creamy treats....");
+	else addButton(5, "Ice Cream", reahaBreastMilkIceCream, undefined);
+
+	if (shipLocation == "500") addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She's your property, anyway.");
+	else addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
+
+	addButton(10,"Appearance",reahaFollowerAppearance);
 	addButton(14,"Back",crew);
-
-
 }
 
 //Get Milk
@@ -178,24 +226,27 @@ function suckleFollowerReahasTits():void {
 }
 
 //Sex
-function sexWithFollowerReaha():void {
-	clearOutput();
-	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
-	output("You give the cow-slut a little push up against the nearest wall, watching as her teats harden to pinpoint peaks as you lean in close; cupping one of her huge orbs, your other hand caressing her flared hip.");
-	//If Free:
-	if(flags["REAHA_FREE"] == 1) 
+function sexWithFollowerReaha(doOutput:Boolean = true):void {
+	if (doOutput)
 	{
-		output("\n\nReaha giggles, back arching at your welcome advances. <i>\"Well, you know how to tell a girl you're ready, don't you? Come on, ");
-		if(pc.tallness <= 68) output(pc.mf("handsome","cutie"));
-		else output(pc.mf("big boy","big girl"));
-		output(", I'm all yours!\"</i>");
-	}
-	// else if NotFree:
-	else
-	{
-		output("\n\nReaha's cheek turns sharply aside as you grope her over-sexed body, your slightest touches making her wet enough that you can see her cunt glistening in the dim cabin lights. <i>\"J-just fuck me already,\"</i>  she groans, drawing a sharp breath as your fingers play across her prominent clit.");
+		clearOutput();
+		author("Savin");
+		userInterface.showName("\nREAHA");
+		userInterface.showBust("REAHA");
+		output("You give the cow-slut a little push up against the nearest wall, watching as her teats harden to pinpoint peaks as you lean in close; cupping one of her huge orbs, your other hand caressing her flared hip.");
+		//If Free:
+		if(flags["REAHA_FREE"] == 1) 
+		{
+			output("\n\nReaha giggles, back arching at your welcome advances. <i>\"Well, you know how to tell a girl you're ready, don't you? Come on, ");
+			if(pc.tallness <= 68) output(pc.mf("handsome","cutie"));
+			else output(pc.mf("big boy","big girl"));
+			output(", I'm all yours!\"</i>");
+		}
+		// else if NotFree:
+		else
+		{
+			output("\n\nReaha's cheek turns sharply aside as you grope her over-sexed body, your slightest touches making her wet enough that you can see her cunt glistening in the dim cabin lights. <i>\"J-just fuck me already,\"</i>  she groans, drawing a sharp breath as your fingers play across her prominent clit.");
+		}
 	}
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Titjob",titjobFromSlaveCow);
@@ -303,7 +354,7 @@ function beSubmissiveToReaha():void {
 	userInterface.showBust("REAHA");
 	output("The thought of that big, hard rod of latex thrusting deep into your bowels is enough to get your ");
 	if(pc.hasVagina()) output("[pc.vaginas] drooling with excitement");
-	if(pc.hasVagina && pc.hasCock()) output(" and your ");
+	if(pc.hasVagina() && pc.hasCock()) output(" and your ");
 	if(pc.hasCock()) output("[pc.cocks] rock-hard");
 	if(!pc.hasCock() && !pc.hasVagina()) output("mind racing with lewd thoughts");
 	output(". You ask Reaha to put it on and give you the rough fucking you deserve. She hesitates for a moment at your request: <i>\"A-are you sure?\"</i>");

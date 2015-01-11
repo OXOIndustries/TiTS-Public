@@ -629,7 +629,7 @@ function celiseSleezeLactation():void {
 	if(pc.hasVagina() && pc.hasCock()) output(" and ");
 	if(pc.hasCock()) output("clenches down on [pc.oneCock], sending ribs of wet tightness up and down");
 	output("; you groan as you cum, ");
-	if(pc.isSquirter || pc.hasCock()) output("jetting");
+	if(pc.isSquirter() || pc.hasCock()) output("jetting");
 	else output("guttering");
 	output(" yet more fluid into the insatiable, warm slime.");
 	if(pc.hasDickNipples()) output(" Your dick nipples tense and ejaculate again at the same time, spouting [pc.milk] in uncontrolled gouts into her mouths, and you throw your head back, squealing with joy as you are clenched in a multiple-point orgasm.");

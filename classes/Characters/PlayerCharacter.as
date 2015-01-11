@@ -62,5 +62,7 @@ package classes.Characters
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake();
 			return this.tryKnockUp(cumFrom, 4);
 		}
+		
+		public var ShipStorageInventory:Array = [];
 	}
 }

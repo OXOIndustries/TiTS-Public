@@ -181,6 +181,8 @@ function initializeMyrellionRooms():void
 	rooms["611"].planet = "PLANET: MYRELLION";
 	rooms["611"].system = "SYSTEM: SINDATHU";
 	rooms["611"].eastExit = "604";
+	rooms["611"].outExit = "700";
+	rooms["611"].outText = "Down";
 	rooms["611"].moveMinutes = 1;
 	rooms["611"].runOnEnter = undefined;
 	rooms["611"].addFlag(GLOBAL.INDOOR);
@@ -194,7 +196,7 @@ function initializeMyrellionRooms():void
 	rooms["612"].system = "SYSTEM: SINDATHU";
 	rooms["612"].southExit = "604";
 	rooms["612"].moveMinutes = 2;
-	rooms["612"].runOnEnter = undefined;
+	rooms["612"].runOnEnter = DMZKressiaAirstrip;
 	rooms["612"].addFlag(GLOBAL.OUTDOOR);
 	rooms["612"].addFlag(GLOBAL.PUBLIC);
 
@@ -210,4 +212,989 @@ function initializeMyrellionRooms():void
 	rooms["613"].addFlag(GLOBAL.INDOOR);
 	rooms["613"].addFlag(GLOBAL.NPC);
 	rooms["613"].addFlag(GLOBAL.PUBLIC);
+
+	//=========================================//
+	//     GILDENMERE ROOMS. 700-799 reserved  //
+	//=========================================//
+	rooms["700"] = new RoomClass(this);
+	rooms["700"].roomName = "GREAT\nELEVATOR";
+	rooms["700"].description = "The elevator isn’t an enclosed chamber like those you’d encounter in a ship, skyscraper, or space station. Instead, it’s a simple platform with hinged rails that are mechanically raised just before the car begins to move. A control panel on the west side of the platform houses the big, obvious command buttons. Most are gold, but there is a large red one. It’s purpose is obvious, even with indecipherable alien script. You hope you won't have to hit the emergency stop.";
+	rooms["700"].planet = "PLANET: MYRELLION";
+	rooms["700"].system = "SYSTEM: SINDATHU";
+	rooms["700"].eastExit = "703";
+	rooms["700"].northExit = "705";
+	rooms["700"].southExit = "701";
+	rooms["700"].westExit = "707";
+	rooms["700"].inExit = "611";
+	rooms["700"].inText = "Up";
+	rooms["700"].moveMinutes = 1;
+	rooms["700"].runOnEnter = undefined;
+	rooms["700"].addFlag(GLOBAL.INDOOR);
+	rooms["700"].addFlag(GLOBAL.PUBLIC);
+	rooms["700"].addFlag(GLOBAL.CAVE);
+
+	rooms["701"] = new RoomClass(this);
+	rooms["701"].roomName = "MUSHROOM\nPARK";
+	rooms["701"].description = "Mushrooms of all shapes and sizes grow wildly around the main lift. Most are huge, tree-sized growths that cast a flickering blue incandescence over the surrounding area. The obsidian paver stones beneath you glitter entrancingly from the otherworldly light. A clear north-south path is maintained through the park to allow for shipment to and from the massive elevator at the core. You could follow it south out of the park.";
+	rooms["701"].planet = "PLANET: MYRELLION";
+	rooms["701"].system = "SYSTEM: SINDATHU";
+	rooms["701"].eastExit = "702";
+	rooms["701"].northExit = "700";
+	rooms["701"].southExit = "709";
+	rooms["701"].westExit = "708";
+	rooms["701"].moveMinutes = 2;
+	rooms["701"].runOnEnter = undefined;
+	rooms["701"].addFlag(GLOBAL.INDOOR);
+	rooms["701"].addFlag(GLOBAL.PUBLIC);
+	rooms["701"].addFlag(GLOBAL.CAVE);
+
+	rooms["702"] = new RoomClass(this);
+	rooms["702"].roomName = "MUSHROOM\nPARK";
+	rooms["702"].description = "The stalk of a giant mushroom overshadows a number of backless benches in this part of the park. There’s no pavestones here, just hard earth packed by the foot traffic of hundreds of gold myr. Right now a group of younglings are here as well, gathered around the gigantic stalk as part of a biology lesson. The great elevator lies northwest, the park wrapping around it to the north and west.";
+	rooms["702"].planet = "PLANET: MYRELLION";
+	rooms["702"].system = "SYSTEM: SINDATHU";
+	rooms["702"].northExit = "703";
+	rooms["702"].westExit = "701";
+	rooms["702"].moveMinutes = 3;
+	rooms["702"].runOnEnter = undefined;
+	rooms["702"].addFlag(GLOBAL.INDOOR);
+	rooms["702"].addFlag(GLOBAL.PUBLIC);
+	rooms["702"].addFlag(GLOBAL.CAVE);
+	
+	//703 - Mushroom Park
+	rooms["703"] = new RoomClass(this);
+	rooms["703"].roomName = "MUSHROOM\nPARK";
+	rooms["703"].description = "Gleaming onyx pavestones bridge between the otherworldly beauty of Gildenmere’s mushroom park and the smoothly-rounded shapes of the greater city’s structures. The air is comfortably warm and a little humid, spiced with surprisingly pleasant aromas from the mushrooms’ benign spores. At least... you hope they’re benign. The myr don’t seem to mind them, enjoying them the same way that one might a fragrant flower’s pollen. Your codex isn’t chirping any warnings.";
+	rooms["703"].planet = "PLANET: MYRELLION";
+	rooms["703"].system = "SYSTEM: SINDATHU";
+	rooms["703"].southExit = "702";
+	rooms["703"].northExit = "704";
+	rooms["703"].westExit = "700";
+	rooms["703"].eastExit = "741";
+	rooms["703"].moveMinutes = 2;
+	rooms["703"].runOnEnter = undefined;
+	rooms["703"].addFlag(GLOBAL.INDOOR);
+	rooms["703"].addFlag(GLOBAL.PUBLIC);
+	rooms["703"].addFlag(GLOBAL.CAVE);
+
+	//704 - Mushroom Park
+	rooms["704"] = new RoomClass(this);
+	rooms["704"].roomName = "MUSHROOM\nPARK";
+	rooms["704"].description = "A carpet of small toadstools devours the hard packed earth here. They’re so densely packed that you can’t see a single mote of brown of the blue-tinged fungus. Passing myr pay them no mind, running and jumping on them as a terran would grass, clearly enjoying the springy, organic rug. The elevator up to the DMZ and airstrip is just southwest of here, ensconced securely in this beauteous park.";
+	rooms["704"].planet = "PLANET: MYRELLION";
+	rooms["704"].system = "SYSTEM: SINDATHU";
+	rooms["704"].southExit = "703";
+	rooms["704"].westExit = "705";
+	rooms["704"].moveMinutes = 3;
+	rooms["704"].runOnEnter = undefined;
+	rooms["704"].addFlag(GLOBAL.INDOOR);
+	rooms["704"].addFlag(GLOBAL.PUBLIC);
+	rooms["704"].addFlag(GLOBAL.CAVE);
+	
+	//705 - Mushroom Park
+	rooms["705"] = new RoomClass(this);
+	rooms["705"].roomName = "MUSHROOM\nPARK";
+	rooms["705"].description = "Two twenty foot mushrooms cross over the onyx-paved roadway that bridges the city to the central elevator shaft. Their caps bend vertically where they press against one another; they’ve grown so close together that it’s difficult to tell them apart. Pairs of gold myr often pass below the fungal arch, their expressions hopeful and their mannerisms animated. Perhaps they’re excited at a chance to join a galactic fraternity, or simply pleased that nuclear apocalypse has been temporarily avoided. You can enter the great elevator to the south.";
+	rooms["705"].planet = "PLANET: MYRELLION";
+	rooms["705"].system = "SYSTEM: SINDATHU";
+	rooms["705"].eastExit = "704";
+	rooms["705"].westExit = "706";
+	rooms["705"].southExit = "700";
+	rooms["705"].northExit = "743";
+	rooms["705"].moveMinutes = 2;
+	rooms["705"].runOnEnter = undefined;
+	rooms["705"].addFlag(GLOBAL.INDOOR);
+	rooms["705"].addFlag(GLOBAL.PUBLIC);
+	rooms["705"].addFlag(GLOBAL.CAVE);
+	
+	//706 - Mushroom Park
+	rooms["706"] = new RoomClass(this);
+	rooms["706"].roomName = "MUSHROOM\nPARK";
+	rooms["706"].description = "Were you on terra, or any other number of human-inhabited worlds, a place like this would be deep in the shade, dark and forgotten. On Myrmedion, the glowing mushrooms provide all the light you’d ever need. A dense grove of these would be the brightest spot for miles. As it is, you’re pretty sure this is the best-lit spot in the park thanks. The gold myr seem to agree. Swing sets have been anchored into the undersides of the glowing caps for their young to play in, though you see more than one grown adult making use of them as well.";
+	rooms["706"].planet = "PLANET: MYRELLION";
+	rooms["706"].system = "SYSTEM: SINDATHU";
+	rooms["706"].eastExit = "705";
+	rooms["706"].southExit = "707";
+	rooms["706"].moveMinutes = 3;
+	rooms["706"].runOnEnter = undefined;
+	rooms["706"].addFlag(GLOBAL.INDOOR);
+	rooms["706"].addFlag(GLOBAL.PUBLIC);
+	rooms["706"].addFlag(GLOBAL.CAVE);
+	
+	//707 - Mushroom Park
+	//Beetles covered in glowy spores.
+	rooms["707"] = new RoomClass(this);
+	rooms["707"].roomName = "MUSHROOM\nPARK";
+	rooms["707"].description = "Swarms of beetles zip above the onyx pavers, heading to any number of bioluminescent mushrooms. Their whole bodies glow, painted with the same bluish-purple ambiance as the surrounding fungal life. Sometimes, they’ll form incredible patterns in the air in response to some stimulus beyond your perception - maybe air currents? Most myr pay them no mind, but here and there you can see an occasional awestruck smile.";
+	rooms["707"].planet = "PLANET: MYRELLION";
+	rooms["707"].system = "SYSTEM: SINDATHU";
+	rooms["707"].northExit = "706";
+	rooms["707"].southExit = "708";
+	rooms["707"].eastExit = "700";
+	rooms["707"].westExit = "742";
+	rooms["707"].moveMinutes = 2;
+	rooms["707"].runOnEnter = undefined;
+	rooms["707"].addFlag(GLOBAL.INDOOR);
+	rooms["707"].addFlag(GLOBAL.PUBLIC);
+	rooms["707"].addFlag(GLOBAL.CAVE);
+	
+	//708 - Mushroom Park
+	//public orgy spot.
+	rooms["708"] = new RoomClass(this);
+	rooms["708"].roomName = "MUSHROOM\nPARK";
+	rooms["708"].description = "There are fewer large mushrooms here than in other parts of the park. The largest isn’t even very bright, bent nearly to the ground in a way that shields this area from curious onlookers. The ground is uneven with deep, foot-shaped furrows. You suspect this place was once wet enough to render the dirt into mud, and some great disturbance took place. At the very least, a large number of myr congregated in this locale.";
+	rooms["708"].planet = "PLANET: MYRELLION";
+	rooms["708"].system = "SYSTEM: SINDATHU";
+	rooms["708"].northExit = "707";
+	rooms["708"].eastExit = "701";
+	rooms["708"].moveMinutes = 3;
+	rooms["708"].runOnEnter = undefined;
+	rooms["708"].addFlag(GLOBAL.INDOOR);
+	rooms["708"].addFlag(GLOBAL.PUBLIC);
+	rooms["708"].addFlag(GLOBAL.CAVE);
+
+	//709 - South Road
+	rooms["709"] = new RoomClass(this);
+	rooms["709"].roomName = "SOUTH\nROAD";
+	rooms["709"].description = "A smooth-walled building with multiple ovoid towers looms over this street to the east. A blood-red banner wraps around the top of one, tied off like a gigantic bandage. A newly added holographic display writes its purpose plain in floating, glowing letters in the sky: it’s a hospital, or what passes for one around here. On the other side of the black-paved path is a more severe, but just as graceful, building. No glowing signs declare what function it serves.";
+	rooms["709"].planet = "PLANET: MYRELLION";
+	rooms["709"].system = "SYSTEM: SINDATHU";
+	rooms["709"].northExit = "701";
+	rooms["709"].southExit = "710";
+	rooms["709"].moveMinutes = 2;
+	rooms["709"].runOnEnter = undefined;
+	rooms["709"].addFlag(GLOBAL.INDOOR);
+	rooms["709"].addFlag(GLOBAL.PUBLIC);
+	rooms["709"].addFlag(GLOBAL.CAVE);
+
+	//710 - Irellia’s Way
+	rooms["710"] = new RoomClass(this);
+	rooms["710"].roomName = "IRELLIA'S\nWAY";
+	rooms["710"].description = "Polished granite stones provide the surface for this east-west thoroughfare. A few rumbling, primitive vehicles trundle by, but most of the traffic on the subterranean highway is done by bare, chitinous feet. An impressive palace stands a ways down to the road to the west, the dwelling place of Queen Irellia. Other, more mundane homes occupy the rest of the street’s south side.";
+	rooms["710"].planet = "PLANET: MYRELLION";
+	rooms["710"].system = "SYSTEM: SINDATHU";
+	rooms["710"].northExit = "709";
+	rooms["710"].eastExit = "711";
+	rooms["710"].westExit = "733";
+	rooms["710"].moveMinutes = 2;
+	rooms["710"].runOnEnter = undefined;
+	rooms["710"].addFlag(GLOBAL.INDOOR);
+	rooms["710"].addFlag(GLOBAL.PUBLIC);
+	rooms["710"].addFlag(GLOBAL.CAVE);
+	
+	//711 Irellia’s Way
+	rooms["711"] = new RoomClass(this);
+	rooms["711"].roomName = "IRELLIA'S\nWAY";
+	rooms["711"].description = "A carefully tended-to garden of various mushrooms lines the way north to a pair of crystalline double doors. A newly-installed holo-projector reads, “Hospital.” The gold myr aren’t wasting any time in picking up technology from the rest of the universe. More mundane dwellings line the south side of the street, carved from hollowed out stalagmites or stone that has somehow been molded into smoothly rounded domes.";
+	rooms["711"].planet = "PLANET: MYRELLION";
+	rooms["711"].system = "SYSTEM: SINDATHU";
+	rooms["711"].westExit = "710";
+	rooms["711"].eastExit = "712";
+	rooms["711"].moveMinutes = 2;
+	rooms["711"].runOnEnter = undefined;
+	rooms["711"].addFlag(GLOBAL.INDOOR);
+	rooms["711"].addFlag(GLOBAL.PUBLIC);
+	rooms["711"].addFlag(GLOBAL.CAVE);
+	
+	//712 Irellia’s\nWay
+	rooms["712"] = new RoomClass(this);
+	rooms["712"].roomName = "IRELLIA'S\nWAY";
+	rooms["712"].description = "Foot traffic along this east-west thoroughfare is impressively dense, perhaps due to the hostpital located just to the north. You do seem to be in a particularly nice part of the city. Many of the dwellings on the south side of the road are decorated with well-tended fungii or elaborate paintwork. Even the hostpital structure to the north is painted a matte white. If it were not so obviously rough and porous, you could almost mistake it for the kind of composite buildings favored in the core.";
+	rooms["712"].planet = "PLANET: MYRELLION";
+	rooms["712"].system = "SYSTEM: SINDATHU";
+	rooms["712"].westExit = "711";
+	rooms["712"].eastExit = "713";
+	rooms["712"].moveMinutes = 2;
+	rooms["712"].runOnEnter = undefined;
+	rooms["712"].addFlag(GLOBAL.INDOOR);
+	rooms["712"].addFlag(GLOBAL.PUBLIC);
+	rooms["712"].addFlag(GLOBAL.CAVE);
+	
+	//713 Fortress\nColumn
+	rooms["713"] = new RoomClass(this);
+	rooms["713"].roomName = "FORTRESS\nCOLUMN";
+	rooms["713"].description = "A naturally-formed column stretches up from this street corner all the way to the roof of Gildenmere’s immense cavern. The flowing stone is riddled with parapets and barred windows, more than a few of which contain rifles and primitive artillery pieces. Such a strongpoint would be hard for invaders to take, and still harder to wipe out. Bringing down a support that size would be no easy task without high-grade explosives, and doing so would risk burying invader and defender alike in millions of tons of rock.\n\nIrellia’s Way leads west from here. Crystamere Road heads north.";
+	rooms["713"].planet = "PLANET: MYRELLION";
+	rooms["713"].system = "SYSTEM: SINDATHU";
+	rooms["713"].westExit = "712";
+	rooms["713"].northExit = "714";
+	rooms["713"].moveMinutes = 2;
+	rooms["713"].runOnEnter = undefined;
+	rooms["713"].addFlag(GLOBAL.INDOOR);
+	rooms["713"].addFlag(GLOBAL.PUBLIC);
+	rooms["713"].addFlag(GLOBAL.CAVE);
+	
+	//714 Crystamere Road
+	rooms["714"] = new RoomClass(this);
+	rooms["714"].roomName = "CRYSTAMERE\nROAD";
+	rooms["714"].description = "This particular road is paved with hundreds upon thousands of glittering crystals of all shapes and sizes, fitted together with almost perfect precision, presenting a smooth unbroken face. Some kind of exotic jade mortar pins them all together (and prevents you from snagging yourself a shiny souvenir). It’s for the best. You aren’t sure what you’d do with such a prize anyhow - maybe barter with a primitive rube for a magical potion?\n\nA side road splits off towards the east where a number of weapon-wieldings soldiers have set up a checkpoint. You’d have to get closer to see what they’re about.";
+	rooms["714"].planet = "PLANET: MYRELLION";
+	rooms["714"].system = "SYSTEM: SINDATHU";
+	rooms["714"].southExit = "713";
+	rooms["714"].northExit = "715";
+	rooms["714"].eastExit = "740";
+	rooms["714"].moveMinutes = 2;
+	rooms["714"].runOnEnter = undefined;
+	rooms["714"].addFlag(GLOBAL.INDOOR);
+	rooms["714"].addFlag(GLOBAL.PUBLIC);
+	rooms["714"].addFlag(GLOBAL.CAVE);
+	
+	//715 Crystamere Road
+	rooms["715"] = new RoomClass(this);
+	rooms["715"].roomName = "CRYSTAMERE\nROAD";
+	rooms["715"].description = "The naturally occurring mushrooms that light much of the city are in sparse numbers here, leaving much of the gemstone street in shadow. The massive hospital building to the west doesn’t help much either. Somehow it manages to block out all the light from the mushroom grove near the great elevator without providing any of its own. A few street lamps have been placed to keep visibility up, but you’d still rather there be more available light.";
+	rooms["715"].planet = "PLANET: MYRELLION";
+	rooms["715"].system = "SYSTEM: SINDATHU";
+	rooms["715"].southExit = "714";
+	rooms["715"].northExit = "716";
+	rooms["715"].moveMinutes = 2;
+	rooms["715"].runOnEnter = undefined;
+	rooms["715"].addFlag(GLOBAL.INDOOR);
+	rooms["715"].addFlag(GLOBAL.PUBLIC);
+	rooms["715"].addFlag(GLOBAL.CAVE);
+	
+	//716 Crystamere Road
+	rooms["716"] = new RoomClass(this);
+	rooms["716"].roomName = "CRYSTAMERE\nROAD";
+	rooms["716"].description = "There’s plenty of traffic here thanks to the intersection of two different streets. The crystal-lined Crystamere Road meets with an unlabelled avenue paved in black, volcanic rock. You could follow the sable street toward the mushroom gardens and the mammoth elevator at its heart, or stick on the glittering, north-south thoroughfare. This far away, you can really enjoy what a feat of engineering that elevator is. These primitive insect-people built such a thing without knowledge of lasers, antigravity sleds, or high-quality alloys.";
+	rooms["716"].planet = "PLANET: MYRELLION";
+	rooms["716"].system = "SYSTEM: SINDATHU";
+	rooms["716"].southExit = "715";
+	rooms["716"].northExit = "717";
+	rooms["716"].westExit = "741";
+	rooms["716"].moveMinutes = 2;
+	rooms["716"].runOnEnter = undefined;
+	rooms["716"].addFlag(GLOBAL.INDOOR);
+	rooms["716"].addFlag(GLOBAL.PUBLIC);
+	rooms["716"].addFlag(GLOBAL.CAVE);
+	
+	//717 Crystamere Road
+	rooms["717"] = new RoomClass(this);
+	rooms["717"].roomName = "CRYSTAMERE\nROAD";
+	rooms["717"].description = "This part of the city is low on light but high on foot traffic. Luckily, the pavement itself is made from thousands of glittering stones painstakingly interlocked together, so what little illumination does make it here is reflected into gentle, soft-hued rainbows of every color. Many of the buildings here have small pots with glowing mushrooms or window planters to help brighten the mood. One building to the west stands out from the rest, built of U.G.C. prefabricated panels and lit by a brilliant sign that reads, “Gene’s Mods”. Another offworlder must have moved in.";
+	rooms["717"].planet = "PLANET: MYRELLION";
+	rooms["717"].system = "SYSTEM: SINDATHU";
+	rooms["717"].southExit = "716";
+	rooms["717"].northExit = "718";
+	rooms["717"].moveMinutes = 2;
+	rooms["717"].runOnEnter = undefined;
+	rooms["717"].addFlag(GLOBAL.INDOOR);
+	rooms["717"].addFlag(GLOBAL.PUBLIC);
+	rooms["717"].addFlag(GLOBAL.CAVE);
+	
+	//718 Crystamere Road
+	//East checkpoint
+	rooms["718"] = new RoomClass(this);
+	rooms["718"].roomName = "CRYSTAMERE\nROAD";
+	rooms["718"].description = "A interborough boulevard forks off from Crystamere Road toward a barricade to the east. You’d have to get closer to make out the details, but it looks like the local military forces have a checkpoint erected for some reason or another. There’s no shortage of shops along the glittering thoroughfare, but there's a serious lack of shopping in your immediate area. You do see an open store a little ways to the south, though it doesn’t match the local architecture in the slightest.";
+	rooms["718"].planet = "PLANET: MYRELLION";
+	rooms["718"].system = "SYSTEM: SINDATHU";
+	rooms["718"].southExit = "717";
+	rooms["718"].northExit = "719";
+	rooms["718"].eastExit = "739";
+	rooms["718"].moveMinutes = 2;
+	rooms["718"].runOnEnter = undefined;
+	rooms["718"].addFlag(GLOBAL.INDOOR);
+	rooms["718"].addFlag(GLOBAL.PUBLIC);
+	rooms["718"].addFlag(GLOBAL.CAVE);
+	
+	//719 City Walls
+	rooms["719"] = new RoomClass(this);
+	rooms["719"].roomName = "CRYSTAMERE\nROAD";
+	rooms["719"].description = "Crystamere Road and Halcyon Way come together alongside the edge of the city, marked by a cavern wall that arcs up into a darkness broken only by small patches of glowing lichen. A smaller, myr-made wall blocks travel to the east. The latter is covered in crude scrawlings in characters you can’t comprehend, not even with your augmented auto translators. Whatever scripts are at use here have not yet been uploaded to the galactic lexicons.";
+	rooms["719"].planet = "PLANET: MYRELLION";
+	rooms["719"].system = "SYSTEM: SINDATHU";
+	rooms["719"].southExit = "718";
+	rooms["719"].westExit = "720";
+	rooms["719"].moveMinutes = 2;
+	rooms["719"].runOnEnter = undefined;
+	rooms["719"].addFlag(GLOBAL.INDOOR);
+	rooms["719"].addFlag(GLOBAL.PUBLIC);
+	rooms["719"].addFlag(GLOBAL.CAVE);
+
+	//720 Halcyon Way
+	rooms["720"] = new RoomClass(this);
+	rooms["720"].roomName = "HALCYON\nWAY";
+	rooms["720"].description = "Halcyon way butts directly against the edge of the city’s cavern wall, leaving it feeling dark and cramped, like the arched stone could cave in on you at any second. The luminous mushrooms that light much of the rest of the city are sparse here. Small bits of glowing lichen are a pale substitute. On the south side of the roadway stands a shop with a rickety-looking awning but a well-painted sign: Underground Outfitters.";
+	rooms["720"].planet = "PLANET: MYRELLION";
+	rooms["720"].system = "SYSTEM: SINDATHU";
+	rooms["720"].eastExit = "719";
+	rooms["720"].westExit = "721";
+	rooms["720"].moveMinutes = 2;
+	rooms["720"].runOnEnter = undefined;
+	rooms["720"].addFlag(GLOBAL.INDOOR);
+	rooms["720"].addFlag(GLOBAL.PUBLIC);
+	rooms["720"].addFlag(GLOBAL.CAVE);
+
+	//721 Halcyon Way
+	rooms["721"] = new RoomClass(this);
+	rooms["721"].roomName = "HALCYON\nWAY";
+	rooms["721"].description = "Plenty of large-breasted myr are on the streets here, even the occasional male, clad in fine silken loincloths and shoulder pieces bearing elaborate designs. There’s no disguising the looks of wanton desire the nearby females favor them with. Fluttering in the breeze, colorful tapestries adorn a spiraling house of stone, each emblazoned with a variety of runes. Together, they spell out “Royal Attire,” a clothing shop. It must be quite the popular locale to draw crowds like this.";
+	rooms["721"].planet = "PLANET: MYRELLION";
+	rooms["721"].system = "SYSTEM: SINDATHU";
+	rooms["721"].eastExit = "720";
+	rooms["721"].westExit = "722";
+	rooms["721"].moveMinutes = 2;
+	rooms["721"].runOnEnter = undefined;
+	rooms["721"].addFlag(GLOBAL.INDOOR);
+	rooms["721"].addFlag(GLOBAL.PUBLIC);
+	rooms["721"].addFlag(GLOBAL.CAVE);
+
+	//722 Dawngate Square
+	rooms["722"] = new RoomClass(this);
+	rooms["722"].roomName = "DAWNGATE\nSQUARE";
+	rooms["722"].description = "An path of pure black intersects with Halcyon way, surrounded by a hexagon paved in gold-hued bricks. They don’t have the shining glamor of true gold, but the appearance is close enough to be magnificent all the same. Four mushrooms of immense size lie just beyond the edge of the ring, bathing it all in a brilliant, blue glow. A quartet of statues, each depicting a bare-breasted queen, stand in the center. They lactate thick streams of water into an incessantly bubbling fountain. The locals pay it no mind, but almost every rusher you spot spends a little time gawking.";
+	rooms["722"].planet = "PLANET: MYRELLION";
+	rooms["722"].system = "SYSTEM: SINDATHU";
+	rooms["722"].eastExit = "721";
+	rooms["722"].westExit = "723";
+	rooms["722"].southExit = "743";
+	rooms["722"].moveMinutes = 2;
+	rooms["722"].runOnEnter = undefined;
+	rooms["722"].addFlag(GLOBAL.INDOOR);
+	rooms["722"].addFlag(GLOBAL.PUBLIC);
+	rooms["722"].addFlag(GLOBAL.CAVE);
+	
+	//723 Halcyon Way
+	rooms["723"] = new RoomClass(this);
+	rooms["723"].roomName = "HALCYON\nWAY";
+	rooms["723"].description = "You nearly trip over a hole in the otherwise well-maintained road. Looking around, you spot others like it, places where the paving is crushed or peeled out of the way. Further south is a gutted crater of a building, the few surviving walls scorching black by flame or blown open by concussive force. A bomb went off here not long ago. The myr try their best to ignore or avoid it, but they cannot hide the fear in their inky, alien eyes.";
+	rooms["723"].planet = "PLANET: MYRELLION";
+	rooms["723"].system = "SYSTEM: SINDATHU";
+	rooms["723"].eastExit = "722";
+	rooms["723"].westExit = "724";
+	rooms["723"].moveMinutes = 2;
+	rooms["723"].runOnEnter = undefined;
+	rooms["723"].addFlag(GLOBAL.INDOOR);
+	rooms["723"].addFlag(GLOBAL.PUBLIC);
+	rooms["723"].addFlag(GLOBAL.CAVE);
+
+	//724 Halcyon Way
+	rooms["724"] = new RoomClass(this);
+	rooms["724"].roomName = "HALCYON\nWAY";
+	rooms["724"].description = "A rattle-trap vehicle trundles by, coughing more smoke than asthmatic chain-smoker. The crowd parts nervously before it, unused to cars at this point in their technological development. The roadway doesn’t even have sidewalks, designed only for foot traffic. There is a restaurant to the south, or what passes a restaurant here, anyway. Its signage is a statue of positively elephantine proportions. It’s a myr, but one whose breasts are wildly outsized. Behind it is an abdomen big enough to immobilize a greater creature.";
+	rooms["724"].planet = "PLANET: MYRELLION";
+	rooms["724"].system = "SYSTEM: SINDATHU";
+	rooms["724"].eastExit = "723";
+	rooms["724"].westExit = "725";
+	rooms["724"].moveMinutes = 2;
+	rooms["724"].runOnEnter = undefined;
+	rooms["724"].addFlag(GLOBAL.INDOOR);
+	rooms["724"].addFlag(GLOBAL.PUBLIC);
+	rooms["724"].addFlag(GLOBAL.CAVE);
+	
+	//725 A City Corner
+	rooms["725"] = new RoomClass(this);
+	rooms["725"].roomName = "CITY\nCORNER";
+	rooms["725"].description = "This corner splits between Halcyon Way to the east Girella’s Avenue to the south. Both roads are thick with myr, but the crowds south have far more off-worlders mixed in. There’s not much to see here but a cavern wall and the back side of a building.";
+	rooms["725"].planet = "PLANET: MYRELLION";
+	rooms["725"].system = "SYSTEM: SINDATHU";
+	rooms["725"].eastExit = "724";
+	rooms["725"].southExit = "726";
+	rooms["725"].moveMinutes = 2;
+	rooms["725"].runOnEnter = undefined;
+	rooms["725"].addFlag(GLOBAL.INDOOR);
+	rooms["725"].addFlag(GLOBAL.PUBLIC);
+	rooms["725"].addFlag(GLOBAL.CAVE);
+	
+	//726 Girella’s Avenue
+	rooms["726"] = new RoomClass(this);
+	rooms["726"].roomName = "CITY\nCORNER";
+	rooms["726"].description = "Girella’s Avenue intersects with another, westward-travelling road here. The latter leads toward another section of the city, but a wartime checkpoint has been established a short ways down it. You doubt they’ll let you through if you head that way. Girella’s Avenue comes to an end to the north at the corner of another street. Maybe you’ll have more luck that way.";
+	rooms["726"].planet = "PLANET: MYRELLION";
+	rooms["726"].system = "SYSTEM: SINDATHU";
+	rooms["726"].northExit = "725";
+	rooms["726"].southExit = "727";
+	rooms["726"].westExit = "738";
+	rooms["726"].moveMinutes = 2;
+	rooms["726"].runOnEnter = undefined;
+	rooms["726"].addFlag(GLOBAL.INDOOR);
+	rooms["726"].addFlag(GLOBAL.PUBLIC);
+	rooms["726"].addFlag(GLOBAL.CAVE);
+
+	//727 Girella’s Avenue
+	rooms["727"] = new RoomClass(this);
+	rooms["727"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["727"].description = "More streetlamps burn here than anywhere else in the city, bathing the region in so much yellowish-white glow that you can almost forget the luminescent blue that’s so common everywhere else. You have to blink a few times to adjust to the brightness. Once you do, you realize why there are so many lights set up here - a club of some sort is positioned to the west. Maybe the lights attract myr like moths to a flame, or perhaps they’ve been set up to make surface races more comfortable.";
+	rooms["727"].planet = "PLANET: MYRELLION";
+	rooms["727"].system = "SYSTEM: SINDATHU";
+	rooms["727"].northExit = "726";
+	rooms["727"].southExit = "728";
+	rooms["727"].moveMinutes = 2;
+	rooms["727"].runOnEnter = undefined;
+	rooms["727"].addFlag(GLOBAL.INDOOR);
+	rooms["727"].addFlag(GLOBAL.PUBLIC);
+	rooms["727"].addFlag(GLOBAL.CAVE);
+	
+	//728 Girella’s Avenue
+	rooms["728"] = new RoomClass(this);
+	rooms["728"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["728"].description = "A great number of streetlamps have been set up to the north to draw attention to a club of some sort. There’s also a black-paved road to the east, leading towards a mushroom garden and the towering elevator at the center of it. A residential stalactite blocks travel west. It’s a huge, almost palatial thing, but so many voices come from the open windows that it must be used as some kind of communal dwelling.";
+	rooms["728"].planet = "PLANET: MYRELLION";
+	rooms["728"].system = "SYSTEM: SINDATHU";
+	rooms["728"].northExit = "727";
+	rooms["728"].southExit = "729";
+	rooms["728"].eastExit = "742";
+	rooms["728"].moveMinutes = 2;
+	rooms["728"].runOnEnter = undefined;
+	rooms["728"].addFlag(GLOBAL.INDOOR);
+	rooms["728"].addFlag(GLOBAL.PUBLIC);
+	rooms["728"].addFlag(GLOBAL.CAVE);
+	
+	//729
+	rooms["729"] = new RoomClass(this);
+	rooms["729"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["729"].description = "A rigid fence of crystal blocks off an open field to the east. A number of unusual posts and strange markings marr the area. You think it might be used for some kind of sport. The adjoining structure is a massive affair - one of the largest in the city. It too hides behind a fence. The entrance must be elsewhere. Girella’s Avenue continues north and south.";
+	rooms["729"].planet = "PLANET: MYRELLION";
+	rooms["729"].system = "SYSTEM: SINDATHU";
+	rooms["729"].northExit = "728";
+	rooms["729"].southExit = "730";
+	rooms["729"].moveMinutes = 2;
+	rooms["729"].runOnEnter = undefined;
+	rooms["729"].addFlag(GLOBAL.INDOOR);
+	rooms["729"].addFlag(GLOBAL.PUBLIC);
+	rooms["729"].addFlag(GLOBAL.CAVE);
+	
+	//730
+	rooms["730"] = new RoomClass(this);
+	rooms["730"].roomName = "GIRELLA'S\nAVENUE";
+	rooms["730"].description = "A score of military ants, obvious in their uniforms, march past to the west, toward a military checkpoint that’s been set up to gate off another section of the city. Nearby civilians look on with a mixture of respect and fear, the horrors of war a long ways from forgotten. A crystal fence blocks off the building to the east. Girella’s Avenue ends a little ways to the south where it intersects with another road.";
+	rooms["730"].planet = "PLANET: MYRELLION";
+	rooms["730"].system = "SYSTEM: SINDATHU";
+	rooms["730"].northExit = "729";
+	rooms["730"].southExit = "731";
+	rooms["730"].westExit = "734";
+	rooms["730"].moveMinutes = 2;
+	rooms["730"].runOnEnter = undefined;
+	rooms["730"].addFlag(GLOBAL.INDOOR);
+	rooms["730"].addFlag(GLOBAL.PUBLIC);
+	rooms["730"].addFlag(GLOBAL.CAVE);
+
+	//731
+	rooms["731"] = new RoomClass(this);
+	rooms["731"].roomName = "CITY\nCORNER";
+	rooms["731"].description = "The polished granite of Irellia’s Way butts squarely against Girella’s avenue directly underfoot. An imposing, palatial structure of polished white stone and shaped columns towers over everything to the south. You can see the entrance a short ways east of here. A fluttering, alien bug rests on the crystal fence to the northeast, regarding you.";
+	rooms["731"].planet = "PLANET: MYRELLION";
+	rooms["731"].system = "SYSTEM: SINDATHU";
+	rooms["731"].northExit = "730";
+	rooms["731"].eastExit = "732";
+	rooms["731"].moveMinutes = 2;
+	rooms["731"].runOnEnter = undefined;
+	rooms["731"].addFlag(GLOBAL.INDOOR);
+	rooms["731"].addFlag(GLOBAL.PUBLIC);
+	rooms["731"].addFlag(GLOBAL.CAVE);
+
+	//732 IRELLIA’S\nWAY
+	rooms["732"] = new RoomClass(this);
+	rooms["732"].roomName = "IRELLIA'S\nWAY";
+	rooms["732"].description = "The street is incredibly crowded here. Myr of every age, shape, and size push past you on their way to the buildings on either side of the road. The one to the south is the more important of the two, a grand facade of polished white and handworked architecture. There’s no sign or placard, but it’s obvious that the place is home to one of the queens. A pair of guards stand by the entrance, looking coolly in your direction. On the north, there’s a wide-open crystal gate with the word “thollum” inscibed on the sides.";
+	rooms["732"].planet = "PLANET: MYRELLION";
+	rooms["732"].system = "SYSTEM: SINDATHU";
+	rooms["732"].westExit = "731";
+	rooms["732"].eastExit = "733";
+	rooms["732"].northExit = "735";
+	rooms["732"].moveMinutes = 2;
+	rooms["732"].runOnEnter = undefined;
+	rooms["732"].addFlag(GLOBAL.INDOOR);
+	rooms["732"].addFlag(GLOBAL.PUBLIC);
+	rooms["732"].addFlag(GLOBAL.CAVE);
+
+	//733 IRELLIA’S\nWAY
+	rooms["733"] = new RoomClass(this);
+	rooms["733"].roomName = "IRELLIA'S\nWAY";
+	rooms["733"].description = "A palace for Queen Irellia rises up to the south, but there’s no entrance to it from where you’re standing now. You’d have to follow the road west towards the severe looking guards if you wanted to get in. North, behind a fence of glittering crystal, is a similarly large structure, though this one is far more plain. Young myr run about in front of it or read from old-style books, like the cavemen on Terra must have.";
+	rooms["733"].planet = "PLANET: MYRELLION";
+	rooms["733"].system = "SYSTEM: SINDATHU";
+	rooms["733"].westExit = "732";
+	rooms["733"].eastExit = "710";
+	rooms["733"].moveMinutes = 2;
+	rooms["733"].runOnEnter = undefined;
+	rooms["733"].addFlag(GLOBAL.INDOOR);
+	rooms["733"].addFlag(GLOBAL.PUBLIC);
+	rooms["733"].addFlag(GLOBAL.CAVE);
+	
+	//734 SOUTHWEST\nCHECKPOINT
+	rooms["734"] = new RoomClass(this);
+	rooms["734"].roomName = "SOUTHWEST\nCHECKPOINT";
+	rooms["734"].description = "A blockade, complete with tank traps, armed guards, and floodlights, sits astride the road. Guards armed with spears and shields are stopping and checking everyone that goes by, even frisking most of them. At the sight of you, their antennae twitch, and weapons are readied. You get the impression that offworlders aren’t welcome in that part of the city. You’ll have to head back east.";
+	rooms["734"].planet = "PLANET: MYRELLION";
+	rooms["734"].system = "SYSTEM: SINDATHU";
+	rooms["734"].eastExit = "730";
+	rooms["734"].moveMinutes = 2;
+	rooms["734"].runOnEnter = undefined;
+	rooms["734"].addFlag(GLOBAL.INDOOR);
+	rooms["734"].addFlag(GLOBAL.PUBLIC);
+	rooms["734"].addFlag(GLOBAL.CAVE);
+	
+	//735 THOLLUM\nFOYER
+	rooms["735"] = new RoomClass(this);
+	rooms["735"].roomName = "THOLLUM\nFOYER";
+	rooms["735"].description = "As soon as you step inside, this building makes its purpose clear, be it from the childish drawings on the wall to the colorful, educational murals that sprawl across the floor. Young myr run by the dozen, followed by haggard-looking adults. Elsewhere, adolescents sit on benches together, reading from books. Some of them even hold hands while doing so. Thinking back, a second set of hands would’ve been nice to have in your school days. One of the classrooms is open to the east, and a broad door on the north side leads out to a field.";
+	rooms["735"].planet = "PLANET: MYRELLION";
+	rooms["735"].system = "SYSTEM: SINDATHU";
+	rooms["735"].southExit = "732";
+	rooms["735"].northExit = "736";
+	rooms["735"].eastExit = "737";
+	rooms["735"].moveMinutes = 1;
+	rooms["735"].runOnEnter = undefined;
+	rooms["735"].addFlag(GLOBAL.INDOOR);
+	rooms["735"].addFlag(GLOBAL.PUBLIC);
+	
+	//736 THOLLUM\nYARD
+	rooms["736"] = new RoomClass(this);
+	rooms["736"].roomName = "THOLLUM\nYARD";
+	rooms["736"].description = "The thollum’s yard isn’t much of a yard. Grass doesn’t really grow this deep underground, but the hardy ant-people of Myrellion do just fine all the same. A carpet of soft-capped mushrooms has grown over the whole area. These ones don’t glow, but they are spongy and tough enough to endure the hundred or so myr children currently playing. Some of them are playing a game involving a spherical rocks and white, wood-like shields. It’s very physical and reminiscent of a more medieval form of rugby.";
+	rooms["736"].planet = "PLANET: MYRELLION";
+	rooms["736"].system = "SYSTEM: SINDATHU";
+	rooms["736"].southExit = "735";
+	rooms["736"].moveMinutes = 1;
+	rooms["736"].runOnEnter = undefined;
+	rooms["736"].addFlag(GLOBAL.INDOOR);
+	rooms["736"].addFlag(GLOBAL.PUBLIC);
+	rooms["736"].addFlag(GLOBAL.CAVE);
+	
+	//737 THOLLUM\nCLASSROOM
+	rooms["737"] = new RoomClass(this);
+	rooms["737"].roomName = "THOLLUM\nCLASSROOM";
+	rooms["737"].description = "This place is obviously a classroom in spite of its missing desks. Instead, the myr have arranged a number of cushions on the floor around a thin sand pit. A long-handled cane lies next to it with a rake. They must use that instead of a holoboard or even a chalkboard. Educational posters on the wall show warnings about everything “chitin itch” to how to identify Scarlet Federation landmines.";
+	rooms["737"].planet = "PLANET: MYRELLION";
+	rooms["737"].system = "SYSTEM: SINDATHU";
+	rooms["737"].westExit = "735";
+	rooms["737"].moveMinutes = 1;
+	rooms["737"].runOnEnter = undefined;
+	rooms["737"].addFlag(GLOBAL.INDOOR);
+	rooms["737"].addFlag(GLOBAL.PUBLIC);
+	
+	//738 NORTHWEST\nCHECKPOINT
+	rooms["738"] = new RoomClass(this);
+	rooms["738"].roomName = "NORTHWEST\nCHECKPOINT";
+	rooms["738"].description = "A half-dozen soldiers block the way west on this road. They aren’t particularly alert; guarding a road all day will do that to a person - man or myr, but they’re still checking every passerby for appropriate documentation. A glance at some of the signs they’ve set up tells all you need to know. Off-worlders aren’t welcome to leave this part of the city without dispensation from the neighboring queen. From the sound of it, Queen Girella is a tad xenophobic.";
+	rooms["738"].planet = "PLANET: MYRELLION";
+	rooms["738"].system = "SYSTEM: SINDATHU";
+	rooms["738"].eastExit = "726";
+	rooms["738"].moveMinutes = 2;
+	rooms["738"].runOnEnter = undefined;
+	rooms["738"].addFlag(GLOBAL.INDOOR);
+	rooms["738"].addFlag(GLOBAL.PUBLIC);
+	rooms["738"].addFlag(GLOBAL.CAVE);
+
+	//739 Northeast Checkpoint
+	rooms["739"] = new RoomClass(this);
+	rooms["739"].roomName = "NORTHEAST\nCHECKPOINT";
+	rooms["739"].description = "Uniformed gold myr obstruct the road to the east, blocking it with parked vehicles bearing an exceeding foreign crest. You aren’t sure if it’s a symbol of their armed forces, a queen’s sigil, or something else entirely. Nor do you think you’ll get to find out what it’s for; they’re only letting myr pass through the checkpoint. Offworlders like yourself aren’t welcome. Well, at least you can head west back onto the glittering path of Crystamere Road.";
+	rooms["739"].planet = "PLANET: MYRELLION";
+	rooms["739"].system = "SYSTEM: SINDATHU";
+	rooms["739"].westExit = "718";
+	rooms["739"].moveMinutes = 2;
+	rooms["739"].runOnEnter = undefined;
+	rooms["739"].addFlag(GLOBAL.INDOOR);
+	rooms["739"].addFlag(GLOBAL.PUBLIC);
+	rooms["739"].addFlag(GLOBAL.CAVE);
+	
+	//740 Southeast Checkpoint
+	rooms["740"] = new RoomClass(this);
+	rooms["740"].roomName = "SOUTHEAST\nCHECKPOINT";
+	rooms["740"].description = "Ant-girls wielding swords and wicked-looking hammers bar passage to the east. Unlike their civilian countrywomen, they’re dressed to the nines in well-fit, military uniforms. The other myr don’t pay them much mind, even when they’re stopped and asked to present proof of citizenship. One stern look in your direction tells you all you need to know: they won’t let aliens pass. You’re restricted to this part of the city.";
+	rooms["740"].planet = "PLANET: MYRELLION";
+	rooms["740"].system = "SYSTEM: SINDATHU";
+	rooms["740"].westExit = "714";
+	rooms["740"].moveMinutes = 2;
+	rooms["740"].runOnEnter = undefined;
+	rooms["740"].addFlag(GLOBAL.INDOOR);
+	rooms["740"].addFlag(GLOBAL.PUBLIC);
+	rooms["740"].addFlag(GLOBAL.CAVE);
+	
+	//741 Black-Paved Path
+	rooms["741"] = new RoomClass(this);
+	rooms["741"].roomName = "BLACK-PAVED\nPATH";
+	rooms["741"].description = "This onyx roadway links the elevator at the center of the mushroom park to another glittering road a ways to the east. What few buildings to the north face this street seem to be smaller, private dwellings, but to the south, a medical structure of interlinked, rounded spires looms. At its base, a pair of crystal doors swing, frequented by wounded or sicked myr.";
+	rooms["741"].planet = "PLANET: MYRELLION";
+	rooms["741"].system = "SYSTEM: SINDATHU";
+	rooms["741"].westExit = "703";
+	rooms["741"].eastExit = "716";
+	rooms["741"].moveMinutes = 2;
+	rooms["741"].runOnEnter = undefined;
+	rooms["741"].addFlag(GLOBAL.INDOOR);
+	rooms["741"].addFlag(GLOBAL.PUBLIC);
+	rooms["741"].addFlag(GLOBAL.CAVE);
+
+	//742 Black-Paved Path
+	rooms["742"] = new RoomClass(this);
+	rooms["742"].roomName = "BLACK-PAVED\nPATH";
+	rooms["742"].description = "This sable street bridges Girella’s Avenue and the elevator at the center of this part of the city. If you look far into the cavern, you can see other similar elevators, likely linking up to some of the other airfields that make up the DMZ. Large numbers of Myr are streaming to the northwest, towards a number of bright lights. South of here, there’s a crystal fence around a yard of mushrooms. It reminds you of an alien version of a football field.";
+	rooms["742"].planet = "PLANET: MYRELLION";
+	rooms["742"].system = "SYSTEM: SINDATHU";
+	rooms["742"].westExit = "728";
+	rooms["742"].eastExit = "707";
+	rooms["742"].moveMinutes = 2;
+	rooms["742"].runOnEnter = undefined;
+	rooms["742"].addFlag(GLOBAL.INDOOR);
+	rooms["742"].addFlag(GLOBAL.PUBLIC);
+	rooms["742"].addFlag(GLOBAL.CAVE);
+	
+	//743 Black-Paved Path
+	rooms["743"] = new RoomClass(this);
+	rooms["743"].roomName = "BLACK-PAVED\nPATH";
+	rooms["743"].description = "Groups of gold myr soldiers, resplendent with their freshly issued military garb and gleaming weapons, march past you, heading north on their way to wall. Some bear fear in their inky eyes, but others brows are furrowed with determination. You can’t say that you envy them. Trench combat isn’t a fate you’d wish on anyone - well... maybe your cousin. The city gates lie north, the great elevator to the south.";
+	rooms["743"].planet = "PLANET: MYRELLION";
+	rooms["743"].system = "SYSTEM: SINDATHU";
+	rooms["743"].northExit = "722";
+	rooms["743"].southExit = "705";
+	rooms["743"].moveMinutes = 2;
+	rooms["743"].runOnEnter = undefined;
+	rooms["743"].addFlag(GLOBAL.INDOOR);
+	rooms["743"].addFlag(GLOBAL.PUBLIC);
+	rooms["743"].addFlag(GLOBAL.CAVE);
+	
+
+	//=========================================//
+	//     KRESSIA ROOMS. 800-899 reserved  //
+	//=========================================//
+
+	//Room Descriptions: Kressia
+	//800 Airfield
+	rooms["800"] = new RoomClass(this);
+	rooms["800"].roomName = "\nAIRSTRIP";
+	rooms["800"].description = "The airfield in Kressia is much like the one you saw at the DMZ, a wide open tarmac full of military-colored, armed aircraft. Between you and the terminal are several armed guards, more red-chitined myrmedion with rifles resting on their shoulder. Unlike those found at the DMZ, though, these women have their masks slung on their belts, revealing actually quite attractive faces etched with stern expressions. Behind them sits a huge, glass-domed building - the access down to Kressia.\n\nA few red myr civilians gather up passengers for the next flight out, while others usher you towards the terminal to the west.";
+	rooms["800"].planet = "PLANET: MYRELLION";
+	rooms["800"].system = "SYSTEM: SINDATHU";
+	rooms["800"].westExit = "801";
+	rooms["800"].moveMinutes = 3;
+	rooms["800"].runOnEnter = kressiaAirfieldBonus;
+	rooms["800"].addFlag(GLOBAL.OUTDOOR);
+	rooms["800"].addFlag(GLOBAL.PUBLIC);
+
+	//801 Airport (Checkpoint), 2F
+	rooms["801"] = new RoomClass(this);
+	rooms["801"].roomName = "AIRPORT\n2F";
+	rooms["801"].description = "The inside of the airfield terminal is more of the same from the outside: armed guards standing around, passively watching the crowd going in and out. You're shuffled into a line and your documents examined, treated just like any other myr coming through. After a short check, you're cleared to come and go from the city.\n\nTo the west lies several long elevator shafts down to the city proper. Stepping a little closer, you can see the dizzying drop down to the hollowed-out depths that support the myr city. Dozens of tiny lights flicker in the darkness, a field of tiny yellow specks in the distance.\n\nThe tarmac doors are to the east, opening and closing in quick succession as uniformed myr soldiers and wealthy-looking civilians of both colors come and go.";
+	rooms["801"].planet = "PLANET: MYRELLION";
+	rooms["801"].system = "SYSTEM: SINDATHU";
+	rooms["801"].eastExit = "800";
+	rooms["801"].outExit = "802";
+	rooms["801"].outText = "Down";
+	rooms["801"].moveMinutes = 3;
+	rooms["801"].runOnEnter = undefined;
+	rooms["801"].addFlag(GLOBAL.INDOOR);
+	rooms["801"].addFlag(GLOBAL.PUBLIC);
+
+	//Airport (Lobby), 1F
+	rooms["802"] = new RoomClass(this);
+	rooms["802"].roomName = "AIRPORT\n1F";
+	rooms["802"].description = "This building is a wide open, gorgeously adorned terminal that looks like it might belong more in Old Earth's roaring twenties than the spartan alien city deep underground. Light streams down from huge chandeliers, and the few armed guards around are vastly overwhelmed by streams of both red and gold myr coming and going from the surface, plus more than a few U.G.C. scouts and pioneers lounging around in cafes and on benches.\n\nA huge glass dome makes up the ceiling, giving anyone with the desire to look a particularly impressive view of the huge, hollowed-out shaft that connects Kressia to the surface. You can see many elevators coming down and going up and going down, all packed with people.";
+	rooms["802"].planet = "PLANET: MYRELLION";
+	rooms["802"].system = "SYSTEM: SINDATHU";
+	rooms["802"].westExit = "804";
+	rooms["802"].inExit = "801";
+	rooms["802"].inText = "Up";
+	rooms["802"].moveMinutes = 2;
+	rooms["802"].runOnEnter = undefined;
+	rooms["802"].addFlag(GLOBAL.INDOOR);
+	rooms["802"].addFlag(GLOBAL.PUBLIC);
+ 
+	//Kressia Gates
+	rooms["803"] = new RoomClass(this);
+	rooms["803"].roomName = "KRESSIA\nGATES";
+	rooms["803"].description = "The gates that separate Kressia from the trenchlines outside are newly erected, sliding gates supporting rolls of concertina wire. A couple of soldiers are standing to either side, each with a full trench coat and gas mask set. The rest of the city looms large to the north. To the south, through the gates, you see a heavy concrete bunker facing the trenches.\n\nSeeing you about, the guards offer to open the gates and let you by.\n\nA huge concrete bunker stands between the gates and the trenches, bristling with weapons bolted into the firing ports. A door stands open near you,";
+	rooms["803"].planet = "PLANET: MYRELLION";
+	rooms["803"].system = "SYSTEM: SINDATHU";
+	//rooms["803"].westExit = "9999";
+	rooms["803"].northExit = "821";
+	rooms["803"].moveMinutes = 2;
+	rooms["803"].runOnEnter = kressiaGatesBonus;
+	rooms["803"].addFlag(GLOBAL.INDOOR);
+	rooms["803"].addFlag(GLOBAL.PUBLIC);
+
+
+	//Street R12
+	rooms["804"] = new RoomClass(this);
+	rooms["804"].roomName = "\nSTREET";
+	rooms["804"].description = "A long street connects a bustling city square to the airfield. Several strange, boxy-looking primitive vehicles zip by you on the road. Most are open-faced,carrying myr of both colors wearing goggles and caps to protect their eyes and feelers. The city center lies to the west of you, and the terminal entrance to the east.";
+	rooms["804"].planet = "PLANET: MYRELLION";
+	rooms["804"].system = "SYSTEM: SINDATHU";
+	rooms["804"].eastExit = "802";
+	rooms["804"].westExit = "805";
+	rooms["804"].moveMinutes = 2;
+	rooms["804"].runOnEnter = undefined;
+	rooms["804"].addFlag(GLOBAL.INDOOR);
+	rooms["804"].addFlag(GLOBAL.PUBLIC);
+
+	//Street P12
+	rooms["805"] = new RoomClass(this);
+	rooms["805"].roomName = "\nSTREET";
+	rooms["805"].description = "A T-bone intersection in the road connects three streets in front of a row of apartments and a colorfully-adorned candy store. The street sign indicates the city airfield lies to the east, and the road to Gildenmere to the south.";
+	rooms["805"].planet = "PLANET: MYRELLION";
+	rooms["805"].system = "SYSTEM: SINDATHU";
+	rooms["805"].eastExit = "804";
+	rooms["805"].westExit = "806";
+	rooms["805"].southExit = "820";
+	rooms["805"].moveMinutes = 2;
+	rooms["805"].runOnEnter = undefined;
+	rooms["805"].addFlag(GLOBAL.INDOOR);
+	rooms["805"].addFlag(GLOBAL.PUBLIC);
+
+	//Street N12
+	rooms["806"] = new RoomClass(this);
+	rooms["806"].roomName = "\nSTREET";
+	rooms["806"].description = "Civilian traffic here is starting to give way to Federation military presence. While the military seems to be trying to keep to themselves here in town, you can see a few sandbag redoubts up ahead as well as parked armored cars bearing heavy machineguns on turrets. They seem to be defending a northern tunnel that branches off further west.\n\nSeveral Federation infantrymen and officers are walking to and fro here. Whenever they see them, gold myr pedestrians cross to the other side of the street.";
+	rooms["806"].system = "SYSTEM: SINDATHU";
+	rooms["806"].eastExit = "805";
+	rooms["806"].westExit = "807";
+	rooms["806"].moveMinutes = 2;
+	rooms["806"].runOnEnter = undefined;
+	rooms["806"].addFlag(GLOBAL.INDOOR);
+	rooms["806"].addFlag(GLOBAL.PUBLIC);
+
+	//Street L12
+	rooms["807"] = new RoomClass(this);
+	rooms["807"].roomName = "\nSTREET";
+	rooms["807"].description = "The street here is largely devoid of anybody. The locals of Kressia seem to avoid the area, leaving the street barren. Those that do have to come this way hurry past a huge, wrought iron gate to the north, built into the edge of the bowl-like Kressia cavern. A smaller tunnel leads off beyond the gate towards a large manor house built in its own, smaller cavern. Several cars, including a few painted in a military fashion, are parked along the tunnel walls, and a handful of soldiers are walking to and from the mansion.";
+	rooms["807"].system = "SYSTEM: SINDATHU";
+	rooms["807"].eastExit = "806";
+	rooms["807"].westExit = "808";
+	rooms["807"].southExit = "825";
+	//rooms["807"].northExit = "9999";
+	rooms["807"].moveMinutes = 2;
+	rooms["807"].runOnEnter = undefined;
+	rooms["807"].addFlag(GLOBAL.INDOOR);
+	rooms["807"].addFlag(GLOBAL.PUBLIC);
+
+	//Street J12
+	rooms["808"] = new RoomClass(this);
+	rooms["808"].roomName = "\nSTREET";
+	rooms["808"].description = "Civilian traffic here is starting to give way to Federation military presence. While the military seems to be trying to keep to themselves here in town, you can see a few sandbag redoubts up ahead as well as parked armored cars bearing heavy machineguns on turrets. They seem to be defending a northern tunnel that branches off further east.\n\nSeveral small, posh-looking shops are set up along the street here, including watchmakers and dressmakers and a trendy cafe that seems to be attracting several wealthy gold myr.";
+	rooms["808"].system = "SYSTEM: SINDATHU";
+	rooms["808"].eastExit = "807";
+	rooms["808"].westExit = "809";
+	rooms["808"].moveMinutes = 2;
+	rooms["808"].runOnEnter = undefined;
+	rooms["808"].addFlag(GLOBAL.INDOOR);
+	rooms["808"].addFlag(GLOBAL.PUBLIC);
+
+	//Street H12
+	rooms["809"] = new RoomClass(this);
+	rooms["809"].roomName = "\nSTREET";
+	rooms["809"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.";
+	rooms["809"].system = "SYSTEM: SINDATHU";
+	rooms["809"].eastExit = "808";
+	rooms["809"].southExit = "810";
+	//rooms["809"].northExit = "9999";
+	rooms["809"].moveMinutes = 2;
+	rooms["809"].runOnEnter = undefined;
+	rooms["809"].addFlag(GLOBAL.INDOOR);
+	rooms["809"].addFlag(GLOBAL.PUBLIC);
+
+	//Street H14
+	rooms["810"] = new RoomClass(this);
+	rooms["810"].roomName = "\nSTREET";
+	rooms["810"].description = "The street here is lined with shops, varying from \"expensive\" to \"decadent.\"";
+	rooms["810"].system = "SYSTEM: SINDATHU";
+	//rooms["810"].westExit = "9999";
+	rooms["810"].southExit = "811";
+	rooms["810"].northExit = "809";
+	rooms["810"].moveMinutes = 2;
+	rooms["810"].runOnEnter = undefined;
+	rooms["810"].addFlag(GLOBAL.INDOOR);
+	rooms["810"].addFlag(GLOBAL.PUBLIC);
+	//Insert JimT's vendor outdoors here
+
+	//Street H16
+	rooms["811"] = new RoomClass(this);
+	rooms["811"].roomName = "\nSTREET";
+	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the west leads into the city park, called \"Queen's Solace.\"";
+	rooms["811"].system = "SYSTEM: SINDATHU";
+	rooms["811"].eastExit = "824";
+	rooms["811"].southExit = "812";
+	rooms["811"].northExit = "810";
+	rooms["811"].moveMinutes = 2;
+	rooms["811"].runOnEnter = undefined;
+	rooms["811"].addFlag(GLOBAL.INDOOR);
+	rooms["811"].addFlag(GLOBAL.PUBLIC);
+ 
+	//Street H18
+	rooms["812"] = new RoomClass(this);
+	rooms["812"].roomName = "\nSTREET";
+	rooms["812"].description = "More Federation soldiers are standing around here, perhaps a squad's worth, all armed. They seem fairly relaxed, though, and give you friendly nods as you pass by. Still, most gold myr who come by avoid the guards here, scurrying by with eyes down at their feet.";
+	rooms["812"].system = "SYSTEM: SINDATHU";
+	//rooms["812"].westExit = "9999";
+	rooms["812"].southExit = "813";
+	rooms["812"].northExit = "811";
+	rooms["812"].moveMinutes = 2;
+	rooms["812"].runOnEnter = undefined;
+	rooms["812"].addFlag(GLOBAL.INDOOR);
+	rooms["812"].addFlag(GLOBAL.PUBLIC);
+	//Insert Ted's Queenshit here
+	
+	//Street H20
+	rooms["813"] = new RoomClass(this);
+	rooms["813"].roomName = "\nSTREET";
+	rooms["813"].description = "The corner of the street here is built into the side of the cave, with jagged rock overlooking the road. Electric lights flicker dimly over a short, aborted tunnel that seems to have intended to go westward. A sign indicates that a new shopping mall would be here next year, followed by another sign that says construction is canceled due to the declaration of war.\n\nThe city gates lie to the south-east, and the airfield to the northeast, a directional sign points out.";
+	rooms["813"].system = "SYSTEM: SINDATHU";
+	rooms["813"].eastExit = "814";
+	rooms["813"].northExit = "812";
+	rooms["813"].moveMinutes = 2;
+	rooms["813"].runOnEnter = undefined;
+	rooms["813"].addFlag(GLOBAL.INDOOR);
+	rooms["813"].addFlag(GLOBAL.PUBLIC);
+
+	//Street J20
+	rooms["814"] = new RoomClass(this);
+	rooms["814"].roomName = "\nSTREET";
+	rooms["814"].description = "This street is narrow and almost completely devoid of traffic. Nobody seems to want to venture too close to the city gates, likely because of the Federation garrison there. Some graffiti decorates the smaller shops here, many of which have closed.";
+	rooms["814"].system = "SYSTEM: SINDATHU";
+	rooms["814"].eastExit = "815";
+	rooms["814"].westExit = "813";
+	rooms["814"].moveMinutes = 2;
+	rooms["814"].runOnEnter = undefined;
+	rooms["814"].addFlag(GLOBAL.INDOOR);
+	rooms["814"].addFlag(GLOBAL.PUBLIC);
+
+	//Street L20
+	rooms["815"] = new RoomClass(this);
+	rooms["815"].roomName = "\nSTREET";
+	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen's Solace city park, and east towards Kressia's airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
+	rooms["815"].system = "SYSTEM: SINDATHU";
+	rooms["815"].eastExit = "816";
+	rooms["815"].northExit = "823";
+	rooms["815"].westExit = "814";
+	rooms["815"].moveMinutes = 2;
+	rooms["815"].runOnEnter = undefined;
+	rooms["815"].addFlag(GLOBAL.INDOOR);
+	rooms["815"].addFlag(GLOBAL.PUBLIC);
+ 
+	//Street N20
+	rooms["816"] = new RoomClass(this);
+	rooms["816"].roomName = "\nSTREET";
+	rooms["816"].description = "The street here is largely dominated by a parked Federation army vehicle that looks like a cross between a tank and a fuel trunk, and reeks of promethium. A handful of red myr troops are huddled around the vehicle, squabbling over how to repair it.";
+	rooms["816"].system = "SYSTEM: SINDATHU";
+	rooms["816"].eastExit = "817";
+	rooms["816"].westExit = "815";
+	rooms["816"].moveMinutes = 2;
+	rooms["816"].runOnEnter = n20StreetBonusFunc;
+	rooms["816"].addFlag(GLOBAL.INDOOR);
+	rooms["816"].addFlag(GLOBAL.PUBLIC);
+
+	//Street P20
+	rooms["817"] = new RoomClass(this);
+	rooms["817"].roomName = "\nSTREET";
+	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Grafitti on the walls condemns the Federation occupation, and the war in general.";
+	rooms["817"].system = "SYSTEM: SINDATHU";
+	rooms["817"].northExit = "818";
+	rooms["817"].westExit = "816";
+	rooms["817"].moveMinutes = 2;
+	rooms["817"].runOnEnter = undefined;
+	rooms["817"].addFlag(GLOBAL.INDOOR);
+	rooms["817"].addFlag(GLOBAL.PUBLIC);
+ 
+	//Street P18
+	rooms["818"] = new RoomClass(this);
+	rooms["818"].roomName = "\nSTREET";
+	rooms["818"].description = "A large building to the east advertises a \"thollum,\" a titanic domed structure that reaches several stories high, almost half way up to the ceiling of the great cavern. Several marble statues stand proudly along the steps up to the doors, many carrying books or scrolls.";
+	rooms["818"].system = "SYSTEM: SINDATHU";
+	rooms["818"].northExit = "819";
+	rooms["818"].southExit = "817";
+	rooms["818"].moveMinutes = 2;
+	rooms["818"].runOnEnter = undefined;
+	rooms["818"].addFlag(GLOBAL.INDOOR);
+	rooms["818"].addFlag(GLOBAL.PUBLIC);
+
+	//Street P16
+	rooms["819"] = new RoomClass(this);
+	rooms["819"].roomName = "\nSTREET";
+	rooms["819"].description = "This street has a small footpath branching off towards a city park, labeled \"Queen's Solace.\" A lot of gold myr are hanging around here, coming and going from several housing blocks off to the east and north.";
+	rooms["819"].system = "SYSTEM: SINDATHU";
+	rooms["819"].northExit = "820";
+	rooms["819"].southExit = "818";
+	rooms["819"].westExit = "826";
+	rooms["819"].moveMinutes = 2;
+	rooms["819"].runOnEnter = undefined;
+	rooms["819"].addFlag(GLOBAL.INDOOR);
+	rooms["819"].addFlag(GLOBAL.PUBLIC);
+	//Something something shopdescript here
+
+	//Street P14
+	rooms["820"] = new RoomClass(this);
+	rooms["820"].roomName = "\nSTREET";
+	rooms["820"].description = "This street connects the main thoroughfair in the north with the road to the city gates down south. A sign indicates Kressia's airfield lies to the northeast, and the city park to the southwest.";
+	rooms["820"].system = "SYSTEM: SINDATHU";
+	rooms["820"].northExit = "805";
+	rooms["820"].southExit = "819";
+	rooms["820"].moveMinutes = 2;
+	rooms["820"].runOnEnter = undefined;
+	rooms["820"].addFlag(GLOBAL.INDOOR);
+	rooms["820"].addFlag(GLOBAL.PUBLIC);
+
+	//Street L22
+	rooms["821"] = new RoomClass(this);
+	rooms["821"].roomName = "\nSTREET";
+	rooms["821"].description = "The edge of the bowl-like cavern that Kressia lies in approaches, culminating in a long, windling tunnel leading south. A pair of a large, wrought-iron gates covered in concertina wire have been erected south of you, and several Scarlet Federation soldiers patrol the road. While they've gone to great lengths to disguise them, you can see a few pillboxes tucked into nearby alleyways, or sandbagged machinegun nests in the windows of an abandoned apartment building.";
+	rooms["821"].system = "SYSTEM: SINDATHU";
+	rooms["821"].northExit = "815";
+	rooms["821"].southExit = "803";
+	rooms["821"].moveMinutes = 2;
+	rooms["821"].runOnEnter = undefined;
+	rooms["821"].addFlag(GLOBAL.INDOOR);
+	rooms["821"].addFlag(GLOBAL.PUBLIC);
+
+	//Park Path N16
+	rooms["822"] = new RoomClass(this);
+	rooms["822"].roomName = "\nSTREET";
+	rooms["822"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A busker is playing some strange wind instrument to herself, and several small children are traipsing about under a caregiver's supervision.";// {9999Red Myr TF'd: Seeing you coming, the women gather up the children and scoot them off before you get too close.}
+	rooms["822"].system = "SYSTEM: SINDATHU";
+	rooms["822"].northExit = "825";
+	rooms["822"].southExit = "823";
+	rooms["822"].eastExit = "826";
+	rooms["822"].westExit = "824";
+	rooms["822"].moveMinutes = 2;
+	rooms["822"].runOnEnter = undefined;
+	rooms["822"].addFlag(GLOBAL.INDOOR);
+	rooms["822"].addFlag(GLOBAL.PUBLIC);
+
+	//Part Path L18
+	rooms["823"] = new RoomClass(this);
+	rooms["823"].roomName = "\nSTREET";
+	rooms["823"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A large fountain stands here, depicting several gold myr women with huge breasts spraying arcs of water rather than nectar. A few off-duty Federation soldiers are standing near it, giggling to each other and pointing at the statues' tits.";
+	rooms["823"].system = "SYSTEM: SINDATHU";
+	rooms["823"].northExit = "822";
+	rooms["823"].southExit = "815";
+	rooms["823"].moveMinutes = 2;
+	rooms["823"].runOnEnter = undefined;
+	rooms["823"].addFlag(GLOBAL.INDOOR);
+	rooms["823"].addFlag(GLOBAL.PUBLIC);
+
+	//Park Path J16
+	rooms["824"] = new RoomClass(this);
+	rooms["824"].roomName = "\nSTREET";
+	rooms["824"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making them most of the fungal gardens and quiet ambiance.";
+	rooms["824"].system = "SYSTEM: SINDATHU";
+	rooms["824"].westExit = "811";
+	rooms["824"].eastExit = "822";
+	rooms["824"].moveMinutes = 2;
+	rooms["824"].runOnEnter = undefined;
+	rooms["824"].addFlag(GLOBAL.INDOOR);
+	rooms["824"].addFlag(GLOBAL.PUBLIC);
+
+	//Park Path L14
+	rooms["825"] = new RoomClass(this);
+	rooms["825"].roomName = "\nSTREET";
+	rooms["825"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several gold myr are gathered around, reading a variety of books and taking turns reading passages aloud.";
+	rooms["825"].system = "SYSTEM: SINDATHU";
+	rooms["825"].northExit = "807";
+	rooms["825"].southExit = "822";
+	rooms["825"].moveMinutes = 2;
+	rooms["825"].runOnEnter = undefined;
+	rooms["825"].addFlag(GLOBAL.INDOOR);
+	rooms["825"].addFlag(GLOBAL.PUBLIC);
+
+	//Fallen Statue
+	rooms["826"] = new RoomClass(this);
+	rooms["826"].roomName = "\nSTREET";
+	rooms["826"].description = "You can see that a statue once stood here, some sort of towering marble monument that stretched up to the heights of the cavern. A pair of stone hands still grasp the craggy top of the cavern, chiseled off from the wrists down. Its feet still stand on a wide pedestal, surrounded by rubble and what you assume to be some sort of police line, cordoning it off. Graffiti has been sprayed over the marble in spite of the warnings, which your translator quickly shifts to messages like \"Fuck the Reds!\" and \"Go home Federation!\"\n\nSeveral gold myr are milling around, sitting in benches and reading. A few military police stand in the background, mostly out of sight but keeping an eye on the statue for possible vandalism.";
+	rooms["826"].system = "SYSTEM: SINDATHU";
+	rooms["826"].westExit = "822";
+	rooms["826"].eastExit = "819";
+	rooms["826"].moveMinutes = 2;
+	rooms["826"].runOnEnter = undefined;
+	rooms["826"].addFlag(GLOBAL.INDOOR);
+	rooms["826"].addFlag(GLOBAL.PUBLIC);
 }

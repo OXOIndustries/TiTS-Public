@@ -218,8 +218,10 @@ package classes.Items.Miscellaneous
 			//chicks
 			if(arg == 0)
 			{
+				//Sin gets max boobs
+				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
 				//Boobs from EE to JJ
-				pc.setStatusValue("Treated",1,9 + rand(22));
+				else pc.setStatusValue("Treated",1,9 + rand(22));
 				//Horn size result - 1 to 3"
 				pc.setStatusValue("Treated",2,1 + rand(3));
 				//Lip Bonus 0-2

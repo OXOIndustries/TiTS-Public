@@ -132,7 +132,7 @@ function enemyAphrodisiacDarts():void
 			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-woman.");
 			else output("\nYour [pc.nipples] harden as you idly consider forcing her to lick you while suckling on her twin clits.");
 		}
-		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawMf("rut","heat") + " that you have have a hard time suppressing.");
+		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
 		else if(pc.lust() < 75) output("\n" + pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
 		else if(pc.lust() < 85) output("\nYou stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
 		else if(pc.lust() < 95) 
@@ -691,8 +691,8 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 	else output(num2Text(pc.legCount + 2));
 	output(" and giving the little raskvel a perfect view of your [pc.butt]. A moment later, you feel a pair of small hands groping you, squeezing your ass appreciatively as she coos in delight.");
 	//If small hips:
-	if(pc.hipRating < 10) output(" <i>\"Not much for a rask, but... it'll do, I guess,\"</i>");
-	else if(pc.hipRating < 20) output(" <i>\"Mmm, a " + pc.mf("boy","girl") + " with big ol' hips... you off worlders know how to build 'em just like us!\"</i>");
+	if(pc.hipRating() < 10) output(" <i>\"Not much for a rask, but... it'll do, I guess,\"</i>");
+	else if(pc.hipRating() < 20) output(" <i>\"Mmm, a " + pc.mf("boy","girl") + " with big ol' hips... you off worlders know how to build 'em just like us!\"</i>");
 	else output(" <i>\"Daaaamn, those hips. I can't wait to sink my fingers into these babies,\"</i>");
 	output(" the raskvel grins, giving you a sharp swat on the behind that makes your flesh jiggle. You feel her deft handsplaying across your [pc.skinFurScales], slowly peeling your [pc.gear] off, tossing them carelessly aside before giving your bared ass a little squeeze and a spank as she circles around you, fingers brushing along your side until you shiver in anticipation of what's to come.");
 	output("\n\nThe little raskven spends nearly a minute winding her way around your body, caressing and teasing your [pc.skinFurScales], reaching around to squeeze a [pc.nipple]");

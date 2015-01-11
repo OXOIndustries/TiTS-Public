@@ -2367,7 +2367,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 		if (damage == 0)
 		{
 			textRands = [
-				"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. <i>“All you're doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore >= 5) ? "[pc.race]" : "outsider") + "!”</i> she exclaims.",
+				"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. <i>“All you're doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore() >= 5) ? "[pc.race]" : "outsider") + "!”</i> she exclaims.",
 				"You utterly fail to entice the huntress. You barely dodge an attack that causes you to cease your efforts. You're going to have to do better, or try something else...",
 				"The alien huntress seems to be getting into it, moving towards you... only to swipe her spear at your head. You barely duck in time. Seems she didn't go for it at all!"
 			];
@@ -2728,7 +2728,7 @@ function crotchTeaseText(target:Creature):void {
 		}
 		else output(" “<i>But I thought another color on the inside would look even nicer.</i>”");
 		//[pc.girlCum == honey]
-		if(pc.girlCum == GLOBAL.FLUID_TYPE_HONEY) 
+		if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) 
 		{
 			output("\n\n“<i>I even cum honey now");
 			if(pc.vaginas[0].wetness() >= 3) output(", a lot more than most zil even");
@@ -2846,7 +2846,7 @@ function buttTeaseText():void {
 		if(pc.isCrotchGarbed()) output(", slide down your clothing,");
 		output(" and bounce your [pc.butt] up and down hypnotically");
 		//Big butts = extra text + higher success
-		if(pc.buttRating >= 10) {
+		if(pc.buttRating() >= 10) {
 			output(", making it jiggle delightfully.  Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
 		}
 		//Small butts = less damage, still high success

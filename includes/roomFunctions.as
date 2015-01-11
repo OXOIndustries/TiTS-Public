@@ -156,6 +156,16 @@ function debugMenus():void
 		
 	}, undefined, "Test Booster", "Get some test HP boosters.");
 	
+	addButton(9, "ForceError", function():void {
+		throw new Error("This is a test error!");
+	}, undefined, "Force an Error", "Force an error to test error handling.");
+	
+	addButton(10, "ShipStorage", function():void {
+		flags["SHIP_STORAGE_WARDROBE"] = 10;
+		flags["SHIP_STORAGE_EQUIPMENT"] = 10;
+		flags["SHIP_STORAGE_CONSUMABLES"] = 10;
+	});
+	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
 	}, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");

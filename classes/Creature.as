@@ -3,6 +3,8 @@
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.Items.Melee.Fists;
+	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
@@ -1614,6 +1616,9 @@
 				case "eirs":
 					buffer = this.mf("his", "hers");
 					break;
+				case "manWoman":
+					buffer = this.mf("man", "woman");
+					break;
 				case "skinTone":
 					buffer = this.skinTone;
 					break;
@@ -2164,7 +2169,8 @@
 		}
 		public function WQ():Number
 		{
-			return Math.round(willpower()/willpowerMax()*100);
+			var val:Number = Math.round(willpower()/willpowerMax()*100);
+			return val;
 		}
 		public function willpower(arg:Number = 0, apply:Boolean = false):Number 
 		{
@@ -2317,6 +2323,10 @@
 				trace("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
 				return 0;
 			}
+		}
+		public function hasEquippedWeapon():Boolean
+		{
+			return (!(meleeWeapon is Rock) || !(rangedWeapon is Rock));
 		}
 		public function hasEnergyWeapon():Boolean
 		{
@@ -4536,6 +4546,16 @@
 			}
 			return index;
 		}
+		public function smallestCockVolume(effective: Boolean = true): Number {
+			if (cocks.length == 0) return 0;
+			var counter: Number = cocks.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (cockVolume(index, effective) > cockVolume(counter, effective)) index = counter;
+			}
+			return cockVolume(index, effective);
+		}
 		public function smallestCockIndex(effective: Boolean = true): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
@@ -5030,10 +5050,10 @@
 			//Just check to make sure there's a cap for top end and bottom end
 			if(milkFullness > 200) milkFullness = 200;
 			else if(milkFullness < 0) {
-				trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
+				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = 0;
 			}
-			trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
+			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
 			return mLsGained;
 		}
 		public function milkCapacity(arg:int = -1):Number
@@ -5738,13 +5758,13 @@
 			var weighting: Number = femininity;
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
-				trace("boobs confirmed");
+				//trace("boobs confirmed");
 				if (biggestTitSize() * 3 > 50) weighting += 50;
 				else weighting += biggestTitSize() * 3;
 			}
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
-				trace("no boobs confirmed");
+				//trace("no boobs confirmed");
 				weighting -= 20;
 			}
 			//Hips give small boost
@@ -5756,7 +5776,7 @@
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;
 			if (hasBeard()) weighting -= 100;
-			trace("Femininity Rating = " + weighting);
+			//trace("Femininity Rating = " + weighting);
 			//Neuters first!
 			if (neuter != "") {
 				if (weighting >= 45 && weighting <= 55 || hasStatusEffect("Force It Gender")) return neuter;
@@ -8245,18 +8265,19 @@
 				if (!simple) {
 					descript += "simian ";
 				}
+				//Hey retards wrong random selection stack logic Doh! data type is rounding, comparator op, hence GLOBAL.TYPE_BEE works
 				rando = this.rand(11);
-				if (rando <= 0 && descript != "simian ") noun += "simii-dick";
-				else if (rando <= 1) noun += "cock";
-				else if (rando <= 2) noun += "member";
-				else if (rando <= 3) noun += "shaft";
-				else if (rando <= 4) noun += "phallus";
-				else if (rando <= 5) noun += "prick";
-				else if (rando <= 6) noun += "member";
-				else if (rando <= 7 && descript != "simian ") noun += "simii-cock";
-				else if (rando <= 8) noun += "dick";
-				else if (rando <= 9) noun += "tool";
-				else noun += "shaft";
+				if (rando == 0 && descript != "simian ") noun += "simii-dick";
+				if (rando == 1) noun += "cock";
+				if (rando == 2) noun += "member";
+				if (rando == 3) noun += "shaft";
+				if (rando == 4) noun += "phallus";
+				if (rando == 5) noun += "prick";
+				if (rando == 6) noun += "member";
+				if (rando == 7 && descript != "simian ") noun += "simii-cock";
+				if (rando == 8) noun += "dick";
+				if (rando == 9) noun += "tool";
+				if (rando == 10) noun += "shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {
@@ -8583,7 +8604,7 @@
 						else descript = "monumental";
 					}
 				} else {
-					rando = this.rand(6);
+					rando = this.rand(8);
 					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
@@ -8591,6 +8612,8 @@
 						else if (rando == 2) descript = "movement-impairing";
 						else if (rando == 3) descript = "floor-dragging";
 						else if (rando == 4) descript = "extremely hyper";
+						else if (rando == 5) descript += "virgin destroying";
+						else if (rando == 6) descript += "small asteroid sized";
 						else descript = "monumental";
 					}
 				}

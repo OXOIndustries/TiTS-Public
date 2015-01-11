@@ -3,6 +3,7 @@ import classes.Characters.GigaGoo;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
 import classes.Characters.Kiro;
+import classes.Characters.Lane;
 import classes.Characters.MaidenVanae;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.GunTurrets;
@@ -270,6 +271,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["EMBRY"] == undefined))
 	{
 		chars["EMBRY"] = new Embry();
+	}
+	if (!justUpdate || (justUpdate && chars["LANE"] == undefined))
+	{
+		chars["LANE"] = new Lane();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)
