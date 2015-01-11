@@ -59,6 +59,7 @@ package classes.UIComponents
 			UIStyleSettings._gCodexLinkFormatter = null;
 			UIStyleSettings._gMapIndoorRoomFlagColourTransform = null;
 			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapCaveRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
 			UIStyleSettings._gHighlightColourTransform = null;
@@ -114,6 +115,7 @@ package classes.UIComponents
 		public static var gFallbackRoomColour:uint			= 0x000000; // Obvious colour to highlight rooms without flags.
 		public static var gIndoorRoomFlagColour:uint 		= 0x333E52;
 		public static var gOutdoorRoomFlagColour:uint		= 0x77797A;
+		public static var gCaveRoomFlagColour:uint 			= 0x330000; //FF9900
 		
 		// Font Faces
 		
@@ -858,7 +860,18 @@ package classes.UIComponents
 			}
 			return UIStyleSettings._gMapOutdoorRoomFlagColourTransform;
 		}
-		
+
+		private static var _gMapCaveRoomFlagColourTransform:ColorTransform;
+		public static function get gMapCaveRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapCaveRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapCaveRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapCaveRoomFlagColourTransform.color = UIStyleSettings.gCaveRoomFlagColour;
+			}
+			return UIStyleSettings._gMapCaveRoomFlagColourTransform;
+		}
+
 		private static var _gMapPCLocationRoomColourTransform:ColorTransform;
 		public static function get gMapPCLocationRoomColourTransform():ColorTransform
 		{

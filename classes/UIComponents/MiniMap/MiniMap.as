@@ -444,6 +444,10 @@
 						{
 							tarSprite.setColour(UIStyleSettings.gMapOutdoorRoomFlagColourTransform);
 						}
+						else if (roomFlags & Mapper.room_cave_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapCaveRoomFlagColourTransform);
+						}
 						else // Catch-all for any room that doesn't have a flag set.
 						{
 							tarSprite.setColour(UIStyleSettings.gMapFallbackColourTransform);

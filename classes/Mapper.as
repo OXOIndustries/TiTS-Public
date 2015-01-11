@@ -25,9 +25,10 @@
 		public static const room_quest_mask:int			= 1<<13;
 		public static const room_ship_mask:int			= 1<<14;
 		public static const room_outdoor_mask:int		= 1<<15; // I don't want to lean on assuming INDOOR = !OUTDOOR because we might end up with other variations etc.
-		public static const room_indoor_mask:int		= 1 << 16;
-		public static const room_hazard_mask:int		= 1 << 17;
-		public static const room_taxi_mask:int		= 1 << 18;
+		public static const room_indoor_mask:int		= 1<<16;
+		public static const room_hazard_mask:int		= 1<<17;
+		public static const room_taxi_mask:int			= 1<<18;
+		public static const room_cave_mask:int			= 1<<19;
 
 		private var roomsObj:Object;
 
@@ -138,7 +139,11 @@
 			}
 			
 			// Inside/Outside flags applied to the rooms
-			if (roomsObj[targetRoom].hasFlag(GLOBAL.INDOOR))
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.CAVE))
+			{
+				map[x][y][z] |= room_cave_mask;
+			}
+			else if (roomsObj[targetRoom].hasFlag(GLOBAL.INDOOR))
 			{
 				map[x][y][z] |= room_indoor_mask;
 			}
@@ -146,7 +151,6 @@
 			{
 				map[x][y][z] |= room_outdoor_mask;
 			}
-			
 			// Special flags applied to the rooms
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.COMMERCE))
 			{

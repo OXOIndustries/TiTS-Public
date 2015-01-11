@@ -662,6 +662,7 @@
 		public static const PRIVATE:int									= 16;
 		public static const FAPPING_ILLEGAL:int							= 17;
 		public static const NUDITY_ILLEGAL:int							= 18;
+		public static const CAVE:int									= 19;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
