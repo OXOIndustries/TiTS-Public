@@ -1,6 +1,5 @@
 package classes.UIComponents 
 {
-	import classes.StatBarBig;
 	import classes.StatBarSmall;
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;

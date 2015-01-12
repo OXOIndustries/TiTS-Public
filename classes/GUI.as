@@ -50,7 +50,6 @@
 	import classes.UIComponents.ContentModules.LevelUpStatsModule;
 
 	import classes.StatBarSmall;
-	import classes.StatBarBig;
 	import classes.UIComponents.SideBarComponents.StatBar;
 
 	//Build the bottom drawer

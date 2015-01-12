@@ -33,9 +33,11 @@ package classes.UIComponents.SideBarComponents
 		private var _tCurrent:Number = 0;
 		private var _tGoal:Number = 0;
 		
-		private var _barFrames:Number = 1.0 / 48;
-		private var _glowFrames:Number = 1.0 / 24;
+		private var _barFrames:Number = 1.0 / (1.5 * 24);
+		private var _glowFrames:Number = 1.0 / (3.0 * 24);
 		private var _valueGlow:GlowFilter;
+		
+		private var _tickGlow:Boolean = false;
 		
 		public function set caption(v:String):void
 		{
@@ -74,7 +76,11 @@ package classes.UIComponents.SideBarComponents
 		{
 			if (visible == false) return;
 			
-			if (_valueGlow.alpha > 0) _valueGlow.alpha -= 0.01;
+			if (_valueGlow.alpha > 0 && _tickGlow) 
+			{
+				_valueGlow.alpha -= _glowFrames;
+				_values.filters = [_valueGlow]
+			}
 			
 			var cScale:Number = _progressBar.scaleX;
 			var tScale:Number;
@@ -116,6 +122,7 @@ package classes.UIComponents.SideBarComponents
 			_valueGlow.blurY = 10;
 			_valueGlow.strength = 2;
 			_valueGlow.alpha = 0;
+			_valueGlow.color = 0xFF0000;
 			
 			if (_desiredMode == "BIG")
 			{
@@ -241,7 +248,16 @@ package classes.UIComponents.SideBarComponents
 		
 		public function clearGlow():void
 		{
+			if (_tickGlow == false) 
+			{
+				_tickGlow = true;
+			}
+		}
+		
+		public function removeGlow():void
+		{
 			_valueGlow.alpha = 0;
+			_values.filters = [_valueGlow];
 		}
 		
 		public function resetBar():void
@@ -252,6 +268,7 @@ package classes.UIComponents.SideBarComponents
 			_tGoal = 0;
 			_tMax = 100;
 			_valueGlow.alpha = 0;
+			_values.filters = [_valueGlow];
 		}
 		
 		public function setMax(arg:Number):void
@@ -281,6 +298,7 @@ package classes.UIComponents.SideBarComponents
 				
 				_tGoal = arg;
 				_valueGlow.alpha = 1.0;
+				_values.filters = [_valueGlow];
 			}
 		}
 		
@@ -289,13 +307,16 @@ package classes.UIComponents.SideBarComponents
 			return _tGoal;
 		}
 		
-		public function updateBar(value:*, max:Number = Number.NaN):void
+		public function updateBar(newValue:*, max:Number = Number.NaN):void
 		{
 			setMax(max);
 			
-			if (getGoal() != value)
+			trace("Goal:", _tGoal, "Value:", newValue);
+			
+			if (_tGoal != newValue)
 			{
-				setGoal(value);
+				setGoal(newValue);
+				_tickGlow = false;
 			}
 		}
 	}

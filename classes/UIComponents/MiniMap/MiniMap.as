@@ -45,11 +45,11 @@
 		/* Each room only deals with the links it has to neighbours in the East + South direction (Right + Down)
 		 * Ergo, we need to work out which directionality a one way link is; target to neighbour or vice versa, hence the 2 flags for directionality.
 		 */
-		public static const LINK_PASSAGE = 0; // 2 way connection
-		public static const LINK_TARGET2NEIGHBOUR = 1; // 1 Way connection from current room to other
-		public static const LINK_NEIGHBOUR2TARGET = 2; // 1 Way connection from other to current room
-		public static const LINK_LOCKED = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
-		public static const LINKS_MAX = 4;
+		public static const LINK_PASSAGE:uint = 0; // 2 way connection
+		public static const LINK_TARGET2NEIGHBOUR:uint = 1; // 1 Way connection from current room to other
+		public static const LINK_NEIGHBOUR2TARGET:uint = 2; // 1 Way connection from other to current room
+		public static const LINK_LOCKED:uint = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
+		public static const LINKS_MAX:uint = 4;
 		
 		public static const LINK_NAMES:Array = new Array("Map_Passage", "Map_Oneway", "Map_Oneway_Invert", "Map_Lock");
 		public static const LINK_ROTATE:Array = new Array(true, true, true, false);

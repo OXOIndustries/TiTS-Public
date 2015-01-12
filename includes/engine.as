@@ -2,7 +2,6 @@ import flash.events.MouseEvent;
 import flash.ui.Mouse;
 
 import classes.StatBarSmall;
-import classes.StatBarBig;
 	
 //Table of Contents
 //0. PARSER
