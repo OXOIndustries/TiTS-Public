@@ -51,7 +51,7 @@
 		public static const LINK_LOCKED = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
 		public static const LINKS_MAX = 4;
 		
-		public static const LINK_NAMES:Array = new Array("map_passage", "map_oneway", "map_oneway_invert", "map_lock");
+		public static const LINK_NAMES:Array = new Array("Map_Passage", "Map_Oneway", "Map_Oneway_Invert", "Map_Lock");
 		public static const LINK_ROTATE:Array = new Array(true, true, true, false);
 		
 		// Display & Child object settings

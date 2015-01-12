@@ -3,6 +3,7 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.utils.getDefinitionByName;
+	import classes.Resources.MapIcons;
 	/**
 	 * ...
 	 * @author Gedan
@@ -33,7 +34,7 @@
 			
 			for (var i:int = 0; i < MiniMap.LINK_NAMES.length; i++)
 			{
-				var classType:Class = getDefinitionByName(String(MiniMap.LINK_NAMES[i])) as Class;
+				var classType:Class = MapIcons[MiniMap.LINK_NAMES[i]] as Class;
 				_linkIcons[i] = new classType();
 				
 				if (_rotated == true && MiniMap.LINK_ROTATE[i] == true)
