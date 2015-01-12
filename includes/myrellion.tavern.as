@@ -27,6 +27,8 @@ function goldenPeakBonusFunction():Boolean
 	//else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
 	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
 	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
+	//Add Liliana's shit to the bar.
+	lilianaBonusShits();
 	return false;
 }
 
