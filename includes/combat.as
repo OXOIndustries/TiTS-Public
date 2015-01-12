@@ -736,7 +736,10 @@ public function processCombat():void
 			if(pc.hasStatusEffect("Drone Down")) {
 				output("Your drone shudders to life, lifting back into the air and circling your target helpfully. ");
 				pc.removeStatusEffect("Drone Down");
+				//Reboot clears hack!
+				if(pc.hasStatusEffect("Porno Hacked Drone")) pc.removeStatusEffect("Porno Hacked Drone");
 			}
+			//ATTACK!
 			droneAttack(foes[flags["DRONE_TARGET"]]);
 			return;
 		}
@@ -749,8 +752,14 @@ public function processCombat():void
 			}
 			else 
 			{
-				output("\n\n");
-				droneAttack(foes[flags["DRONE_TARGET"]]);
+				//Hacked drone no attack.
+				if(pc.hasStatusEffect("Porno Hacked Drone")) {}
+				//No hack? Attack!
+				else
+				{
+					output("\n\n");
+					droneAttack(foes[flags["DRONE_TARGET"]]);
+				}
 			}
 		}
 	}

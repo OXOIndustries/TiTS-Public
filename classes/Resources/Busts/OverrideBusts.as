@@ -10,12 +10,15 @@ package classes.Resources.Busts
 		public var Bust_ALEX:Class;*/
 		
 		/**/
-		[Embed(source = "../../../assets/images/npcs/gianna.png", mimeType = "image/png")]
-		public var Bust_GIANNA:Class;
+		//[Embed(source = "../../../assets/images/npcs/gianna.png", mimeType = "image/png")]
+		//public var Bust_GIANNA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
+		public var Bust_HAND_SO:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/juro.png", mimeType = "image/png")]
 		public var Bust_JURO:Class;
 

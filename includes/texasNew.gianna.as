@@ -77,7 +77,9 @@ public function giannaAWOL(arg:int = 0):Boolean
 public function giannaDisplay():void
 {
 	showName("\nGIANNA");
-	showBust("GIANNA_NUDE");
+	if(gianna.biggestTitSize() <= 9) showBust("GIANNA_NUDE");
+	else if(gianna.biggestTitSize() <= 18) showBust("GIANNA_MEDIUM_NUDE");
+	else showBust("GIANNA_LARGE_NUDE");
 	author("Fenoxo");
 }
 
@@ -1460,7 +1462,6 @@ public function giannaSiliconeDistributionDisplay():void
 public function increaseGiannaBoobs(siliconeUsed:int):void
 {
 	clearOutput();
-	giannaDisplay();
 	giannaAvailableSilicone(-siliconeUsed);
 	//C->E
 	if(gianna.biggestTitSize() <= 3)
@@ -1548,6 +1549,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 		output("\n\nYou chuckle warmly in response while she climbs to her feet. What now?");
 		gianna.breastRows[0].breastRatingRaw = 41;
 	}
+	giannaDisplay();
 	processTime(5);
 	pc.lust(5);
 	giannaBodyModMenu(false);
@@ -1557,7 +1559,6 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 public function decreaseGiannaBoobs(siliconeReturned:int):void
 {
 	clearOutput();
-	giannaDisplay();
 	giannaAvailableSilicone(siliconeReturned);
 	//M->GG
 	if(gianna.biggestTitSize() >= 41)
@@ -1652,6 +1653,7 @@ public function decreaseGiannaBoobs(siliconeReturned:int):void
 		output("\n\nThe rest of her chest follows suit. Where once the android had a big, rounded bosom, she’s now shifting towards having a pair of pear-shaped boobs, perfectly sized to be just about a handful of tit. <i>“There,”</i> Gianna gasps and shuts off her pump. <i>“C-cups. Big enough to remind everyone that I’m a girl, small enough not to get in the way, and the perfect thing to entice a bull that wants to try something different from the usual mountainous melons.”</i> She pinches a nipple and gasps in delight. <i>“I might have made them more sensitive to account for their small size.... What’s next?”</i>");
 		gianna.breastRows[0].breastRatingRaw = 3;
 	}
+	giannaDisplay();
 	processTime(3);
 	giannaBodyModMenu(false);
 }
