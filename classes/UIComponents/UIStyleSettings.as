@@ -560,6 +560,108 @@ package classes.UIComponents
 			return UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter;
 		}
 		
+		private static var _gBigStatBarBackTextFormat:TextFormat;
+		public static function get gBigStatBarBackTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gBigStatBarBackTextFormat == null)
+			{
+				_gBigStatBarBackTextFormat = new TextFormat();
+				_gBigStatBarBackTextFormat.size = 48;
+				_gBigStatBarBackTextFormat.color = UIStyleSettings.gBackgroundColour;
+				_gBigStatBarBackTextFormat.align = TextFormatAlign.LEFT;
+				_gBigStatBarBackTextFormat.leading = -5;
+				_gBigStatBarBackTextFormat.kerning = true;
+				_gBigStatBarBackTextFormat.bold = false;
+				_gBigStatBarBackTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gBigStatBarBackTextFormat;
+		}
+		
+		private static var _gSmallStatBarBackTextFormat:TextFormat;
+		public static function get gSmallStatBarBackTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSmallStatBarBackTextFormat == null)
+			{
+				_gSmallStatBarBackTextFormat = new TextFormat();
+				_gSmallStatBarBackTextFormat.size = 33;
+				_gSmallStatBarBackTextFormat.color = UIStyleSettings.gBackgroundColour;
+				_gSmallStatBarBackTextFormat.align = TextFormatAlign.LEFT;
+				_gSmallStatBarBackTextFormat.leading = -5;
+				_gSmallStatBarBackTextFormat.kerning = true;
+				_gSmallStatBarBackTextFormat.bold = false;
+				_gSmallStatBarBackTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gSmallStatBarBackTextFormat;
+		}
+		
+		private static var _gBigStatBarFrontTextFormat:TextFormat;
+		public static function get gBigStatBarFrontTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gBigStatBarFrontTextFormat == null)
+			{
+				_gBigStatBarFrontTextFormat = new TextFormat();
+				_gBigStatBarFrontTextFormat.size = 48;
+				_gBigStatBarFrontTextFormat.color = UIStyleSettings.gForegroundColour;
+				_gBigStatBarFrontTextFormat.align = TextFormatAlign.LEFT;
+				_gBigStatBarFrontTextFormat.leading = -5;
+				_gBigStatBarFrontTextFormat.kerning = true;
+				_gBigStatBarFrontTextFormat.bold = false;
+				_gBigStatBarFrontTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gBigStatBarFrontTextFormat;
+		}
+		
+		private static var _gSmallStatBarFrontTextFormat:TextFormat;
+		public static function get gSmallStatBarFrontTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSmallStatBarFrontTextFormat == null)
+			{
+				_gSmallStatBarFrontTextFormat = new TextFormat();
+				_gSmallStatBarFrontTextFormat.size = 33;
+				_gSmallStatBarFrontTextFormat.color = UIStyleSettings.gForegroundColour;
+				_gSmallStatBarFrontTextFormat.align = TextFormatAlign.LEFT;
+				_gSmallStatBarFrontTextFormat.leading = -5;
+				_gSmallStatBarFrontTextFormat.kerning = true;
+				_gSmallStatBarFrontTextFormat.bold = false;
+				_gSmallStatBarFrontTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gSmallStatBarFrontTextFormat;
+		}
+		
+		private static var _gBigStatBarValueFormat:TextFormat;
+		public static function get gBigStatBarValueFormat():TextFormat
+		{
+			if (UIStyleSettings._gBigStatBarValueFormat == null)
+			{
+				_gBigStatBarValueFormat = new TextFormat();
+				_gBigStatBarValueFormat.size = 30;
+				_gBigStatBarValueFormat.color = 0xFFFFFF;
+				_gBigStatBarValueFormat.align = TextFormatAlign.RIGHT;
+				_gBigStatBarValueFormat.leading = -5;
+				_gBigStatBarValueFormat.kerning = true;
+				_gBigStatBarValueFormat.bold = true;
+				_gBigStatBarValueFormat.font = "Lato";
+			}
+			return UIStyleSettings._gBigStatBarValueFormat;
+		}
+		
+		private static var _gSmallStatBarValueFormat:TextFormat;
+		public static function get gSmallStatBarValueFormat():TextFormat
+		{
+			if (UIStyleSettings._gSmallStatBarValueFormat == null)
+			{
+				_gSmallStatBarValueFormat = new TextFormat();
+				_gSmallStatBarValueFormat.size = 21;
+				_gSmallStatBarValueFormat.color = 0xFFFFFF;
+				_gSmallStatBarValueFormat.align = TextFormatAlign.RIGHT;
+				_gSmallStatBarValueFormat.leading = -3.5;
+				_gSmallStatBarValueFormat.kerning = true;
+				_gSmallStatBarValueFormat.bold = true;
+				_gSmallStatBarValueFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSmallStatBarValueFormat;
+		}
+		
 		private static var _gPerkHeaderLabelTextFormat:TextFormat;
 		public static function get gPerkHeaderLabelTextFormat():TextFormat
 		{

@@ -51,6 +51,7 @@
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
+	import classes.UIComponents.SideBarComponents.StatBar;
 
 	//Build the bottom drawer
 	public class GUI extends MovieClip
@@ -601,21 +602,21 @@
 		// use data binding from UI element -> engine variable
 		
 		// Access methods to RSB items
-		public function get playerShields():StatBarBig { return _rightSideBar.shieldBar; }
-		public function get playerHP():StatBarBig { return _rightSideBar.hpBar; }
-		public function get playerLust():StatBarBig { return _rightSideBar.lustBar; }
-		public function get playerEnergy():StatBarBig { return _rightSideBar.energyBar; }
+		public function get playerShields():StatBar { return _rightSideBar.shieldBar; }
+		public function get playerHP():StatBar { return _rightSideBar.hpBar; }
+		public function get playerLust():StatBar { return _rightSideBar.lustBar; }
+		public function get playerEnergy():StatBar { return _rightSideBar.energyBar; }
 		
-		public function get playerPhysique():StatBarSmall { return _rightSideBar.physiqueBar; }
-		public function get playerReflexes():StatBarSmall { return _rightSideBar.reflexesBar; }
-		public function get playerAim():StatBarSmall { return _rightSideBar.aimBar; }
-		public function get playerIntelligence():StatBarSmall { return _rightSideBar.intelligenceBar; }
-		public function get playerWillpower():StatBarSmall { return _rightSideBar.willpowerBar; }
-		public function get playerLibido():StatBarSmall { return _rightSideBar.libidoBar; }
+		public function get playerPhysique():StatBar { return _rightSideBar.physiqueBar; }
+		public function get playerReflexes():StatBar { return _rightSideBar.reflexesBar; }
+		public function get playerAim():StatBar { return _rightSideBar.aimBar; }
+		public function get playerIntelligence():StatBar { return _rightSideBar.intelligenceBar; }
+		public function get playerWillpower():StatBar { return _rightSideBar.willpowerBar; }
+		public function get playerLibido():StatBar { return _rightSideBar.libidoBar; }
 		
-		public function get playerLevel():StatBarSmall { return _rightSideBar.levelBar; }
-		public function get playerXP():StatBarSmall { return _rightSideBar.xpBar; }
-		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
+		public function get playerLevel():StatBar { return _rightSideBar.levelBar; }
+		public function get playerXP():StatBar { return _rightSideBar.xpBar; }
+		public function get playerCredits():StatBar { return _rightSideBar.creditsBar; }
 		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
 		
 		// Access to LSB items
@@ -627,13 +628,13 @@
 		public function set planetText(v:String):void { _leftSideBar.locationBlock.planetText.text = v; }
 		public function set systemText(v:String):void { _leftSideBar.locationBlock.systemText.text = v; }
 		
-		public function get monsterShield():StatBarBig { return _leftSideBar.encounterShield; }
-		public function get monsterHP():StatBarBig { return _leftSideBar.encounterHp; }
-		public function get monsterLust():StatBarBig { return _leftSideBar.encounterLust; }
-		public function get monsterEnergy():StatBarBig { return _leftSideBar.encounterEnergy; }
-		public function get monsterLevel():StatBarSmall { return _leftSideBar.encounterLevel; }
-		public function get monsterRace():StatBarSmall { return _leftSideBar.encounterRace; }
-		public function get monsterSex():StatBarSmall { return _leftSideBar.encounterSex; }
+		public function get monsterShield():StatBar { return _leftSideBar.encounterShield; }
+		public function get monsterHP():StatBar { return _leftSideBar.encounterHp; }
+		public function get monsterLust():StatBar { return _leftSideBar.encounterLust; }
+		public function get monsterEnergy():StatBar { return _leftSideBar.encounterEnergy; }
+		public function get monsterLevel():StatBar { return _leftSideBar.encounterLevel; }
+		public function get monsterRace():StatBar { return _leftSideBar.encounterRace; }
+		public function get monsterSex():StatBar { return _leftSideBar.encounterSex; }
 		public function set monsterStatusEffects(statusEffectsArray:Array):void { _leftSideBar.encounterStatusEffects.updateDisplay(statusEffectsArray); }
 		
 		public function get time():String { return _leftSideBar.timeText.text; }

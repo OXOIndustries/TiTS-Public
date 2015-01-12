@@ -6,6 +6,7 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import classes.UIComponents.SideBarComponents.StatBar;
 	
 	/**
 	 * Container class for "Advancement" stats. Can probably get away with not generalizing this.
@@ -18,13 +19,13 @@ package classes.UIComponents.SideBarComponents
 		private var _advancementHeaderText:TextField;
 		private var _advancementHeaderUnderline:Sprite;
 		
-		private var _levelBar:StatBarSmall;
-		private var _xpBar:StatBarSmall;
-		private var _creditsBar:StatBarSmall;
+		private var _levelBar:StatBar;
+		private var _xpBar:StatBar;
+		private var _creditsBar:StatBar;
 		
-		public function get levelBar():StatBarSmall { return _levelBar; }
-		public function get xpBar():StatBarSmall { return _xpBar; }
-		public function get creditsBar():StatBarSmall { return _creditsBar; }
+		public function get levelBar():StatBar { return _levelBar; }
+		public function get xpBar():StatBar { return _xpBar; }
+		public function get creditsBar():StatBar { return _creditsBar; }
 		
 		public function AdvancementBlock() 
 		{
@@ -81,38 +82,30 @@ package classes.UIComponents.SideBarComponents
 		 */
 		private function BuildStatBlock():void
 		{
-			_levelBar = new StatBarSmall();
-			_levelBar.background.x = -180;
-			_levelBar.bar.visible = false;
-			_levelBar.masks.labels.text = "LEVEL";
-			_levelBar.noBar = true;
-			_levelBar.values.text = "1";
-			_levelBar.y = 4;
+			_levelBar = new StatBar(StatBar.MODE_NOBAR);
 			_barContainer.addChild(_levelBar);
+			_levelBar.caption = "LEVEL";
+			_levelBar.value = "1";
+			_levelBar.y = 4;
 			
-			_xpBar = new StatBarSmall();
-			_xpBar.background.x = -1 * (1 - 50 / 500) * 180;
-			_xpBar.bar.width = (50 / 500) * 180;
-			_xpBar.masks.labels.text = "XP";
-			_xpBar.values.text = "50 / 1000";
-			_xpBar.y = Math.floor(_levelBar.y + 30);
+			_xpBar = new StatBar(StatBar.MODE_SMALL);
 			_barContainer.addChild(_xpBar);
+			_xpBar.caption = "XP";
+			_xpBar.value = "50 / 1000";
+			_xpBar.y = Math.floor(_levelBar.y + 30);
 			
-			_creditsBar = new StatBarSmall();
-			_creditsBar.background.x = -180;
-			_creditsBar.bar.visible = false;
-			_creditsBar.masks.labels.text = "CREDITS";
-			_creditsBar.noBar = true;
-			_creditsBar.values.text = "9001";
-			_creditsBar.y = Math.floor(_xpBar.y + 30);
+			_creditsBar = new StatBar(StatBar.MODE_NOBAR);
 			_barContainer.addChild(_creditsBar);
+			_creditsBar.caption = "CREDITS";
+			_creditsBar.value = "9001";
+			_creditsBar.y = Math.floor(_xpBar.y + 30);
 		}
 		
 		public function removeGlows():void
 		{
-			_levelBar.clearGlo();
-			_xpBar.clearGlo();
-			_creditsBar.clearGlo();
+			_levelBar.clearGlow();
+			_xpBar.clearGlow();
+			_creditsBar.clearGlow();
 		}
 		
 		public function resetItems():void

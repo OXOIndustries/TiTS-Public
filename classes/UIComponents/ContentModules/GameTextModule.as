@@ -9,7 +9,6 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.UIStyleSettings;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	import classes.Bar;
 	
 	/**
 	 * ...

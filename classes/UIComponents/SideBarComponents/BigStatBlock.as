@@ -22,15 +22,15 @@ package classes.UIComponents.SideBarComponents
 		private var _combatStatsHeaderUnderline:Sprite;
 		private var _barContainer:Sprite;
 		
-		private var _shieldBar:StatBarBig;
-		private var _hpBar:StatBarBig;
-		private var _lustBar:StatBarBig;
-		private var _energyBar:StatBarBig;
+		private var _shieldBar:StatBar;
+		private var _hpBar:StatBar;
+		private var _lustBar:StatBar;
+		private var _energyBar:StatBar;
 		
-		public function get shieldBar():StatBarBig { return _shieldBar; }
-		public function get hpBar():StatBarBig { return _hpBar; }
-		public function get lustBar():StatBarBig { return _lustBar; }
-		public function get energyBar():StatBarBig { return _energyBar; }
+		public function get shieldBar():StatBar { return _shieldBar; }
+		public function get hpBar():StatBar { return _hpBar; }
+		public function get lustBar():StatBar { return _lustBar; }
+		public function get energyBar():StatBar { return _energyBar; }
 		
 		public function BigStatBlock(leftAlign:Boolean = false, headerText:String = "COMBAT STATS") 
 		{
@@ -95,28 +95,21 @@ package classes.UIComponents.SideBarComponents
 		 * @param	prevBarY
 		 * @return
 		 */
-		private function barFactory(masksText:String, valueText:String, prevBarY:int = 0, inverse:Boolean = false):StatBarBig
+		private function barFactory(masksText:String, valueText:String, prevBarY:int = 0, inverse:Boolean = false):StatBar
 		{
-			var bar:StatBarBig = new StatBarBig();
+			var bar:StatBar = new StatBar(StatBar.MODE_BIG);
 			
-			if (!inverse)
+			if (inverse)
 			{
-				bar.background.x = -150;
-				bar.bar.width = 30;
-			}
-			else
-			{
-				//bar.background.x = -1 * (1 - 25 / 100) * 180;
-				//bar.bar.width = (25 / 100) * 180;
-				bar.background.x = -150;
-				bar.bar.width = 30;
 				bar.highBad = true;
 			}
 			
-			bar.masks.labels.text = masksText;
-			bar.values.text = valueText;
-			bar.y = Math.floor(prevBarY + 3);
 			_barContainer.addChild(bar);
+			
+			bar.caption = masksText;
+			bar.value = valueText;
+			bar.y = Math.floor(prevBarY + 3);
+			
 			return bar;
 		}
 		
@@ -134,10 +127,10 @@ package classes.UIComponents.SideBarComponents
 		
 		public function removeGlows():void
 		{
-			_shieldBar.clearGlo();
-			_hpBar.clearGlo();
-			_lustBar.clearGlo();
-			_energyBar.clearGlo();
+			_shieldBar.clearGlow();
+			_hpBar.clearGlow();
+			_lustBar.clearGlow();
+			_energyBar.clearGlow();
 		}
 		
 		public function resetItems():void

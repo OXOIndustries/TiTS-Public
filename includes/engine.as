@@ -163,24 +163,23 @@ public function updatePCStats():void {
 	else
 		this.userInterface.setGuiPlayerNameText("");
 
-	updateStatBar(this.userInterface.playerShields,pc.shields(),pc.shieldsMax());
+	userInterface.playerShields.updateBar(pc.shields(),pc.shieldsMax());
 
-	updateStatBar(this.userInterface.playerHP,pc.HP(),pc.HPMax());
-	updateStatBar(this.userInterface.playerLust,pc.lust(),pc.lustMax());
-	updateStatBar(this.userInterface.playerEnergy,pc.energy(),pc.energyMax());
+	userInterface.playerHP.updateBar(pc.HP(),pc.HPMax());
+	userInterface.playerLust.updateBar(pc.lust(),pc.lustMax());
+	userInterface.playerEnergy.updateBar(pc.energy(),pc.energyMax());
 	
-	updateStatBar(this.userInterface.playerPhysique,pc.physique(),pc.physiqueMax());	
-	updateStatBar(this.userInterface.playerReflexes,pc.reflexes(),pc.reflexesMax());
-	updateStatBar(this.userInterface.playerAim,pc.aim(),pc.aimMax());
-	updateStatBar(this.userInterface.playerIntelligence,pc.intelligence(),pc.intelligenceMax());
-	updateStatBar(this.userInterface.playerWillpower,pc.willpower(),pc.willpowerMax());
-	updateStatBar(this.userInterface.playerLibido, pc.libido(), pc.libidoMax());
-	updateStatBar(this.userInterface.playerXP, pc.XP(), pc.XPMax());
-
+	this.userInterface.playerPhysique.updateBar(pc.physique(),pc.physiqueMax());	
+	this.userInterface.playerReflexes.updateBar(pc.reflexes(),pc.reflexesMax());
+	this.userInterface.playerAim.updateBar(pc.aim(),pc.aimMax());
+	this.userInterface.playerIntelligence.updateBar(pc.intelligence(),pc.intelligenceMax());
+	this.userInterface.playerWillpower.updateBar(pc.willpower(),pc.willpowerMax());
+	this.userInterface.playerLibido.updateBar(pc.libido(), pc.libidoMax());
+	userInterface.playerXP.updateBar(pc.XP(), pc.XPMax());
 	
 	this.userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	this.userInterface.playerLevel.values.text = String(pc.level);
-	this.userInterface.playerCredits.values.text = String(pc.credits);
+	this.userInterface.playerLevel.value = String(pc.level);
+	this.userInterface.playerCredits.value = String(pc.credits);
 	
 	this.userInterface.time = timeText();
 	this.userInterface.days = String(days);
@@ -226,25 +225,25 @@ function timeText():String
 
 function updateNPCStats():void {
 	if(foes.length >= 1) {
-		updateStatBar(this.userInterface.monsterShield, foes[0].shields(),  foes[0].shieldsMax());
-		updateStatBar(this.userInterface.monsterHP,     foes[0].HP(),       foes[0].HPMax());
-		updateStatBar(this.userInterface.monsterLust,   foes[0].lust(),     foes[0].lustMax());
-		updateStatBar(this.userInterface.monsterEnergy, foes[0].energy(),   foes[0].energyMax());
+		userInterface.monsterShield.updateBar(foes[0].shields(),  foes[0].shieldsMax());
+		userInterface.monsterHP.updateBar(foes[0].HP(),       foes[0].HPMax());
+		userInterface.monsterLust.updateBar(foes[0].lust(),     foes[0].lustMax());
+		userInterface.monsterEnergy.updateBar(foes[0].energy(),   foes[0].energyMax());
 		
-		this.userInterface.monsterLevel.values.text = String(foes[0].level);
-		this.userInterface.monsterRace.values.text = StringUtil.toTitleCase(foes[0].originalRace);
+		this.userInterface.monsterLevel.value = String(foes[0].level);
+		this.userInterface.monsterRace.value = StringUtil.toTitleCase(foes[0].originalRace);
 		if(foes[0].hasCock()) {
 			if(foes[0].hasVagina())	
-				this.userInterface.monsterSex.values.text = "Herm";
-			else this.userInterface.monsterSex.values.text = "Male";
+				this.userInterface.monsterSex.value = "Herm";
+			else this.userInterface.monsterSex.value = "Male";
 		}
-		else if(foes[0].hasVagina()) this.userInterface.monsterSex.values.text = "Female";
-		else this.userInterface.monsterSex.values.text = "???";
+		else if(foes[0].hasVagina()) this.userInterface.monsterSex.value = "Female";
+		else this.userInterface.monsterSex.value = "???";
 		
 		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
 }
-function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
+function updateStatBar(arg:MovieClip, value = undefined, max = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
 	if(max != undefined) 
 		arg.setMax(max);

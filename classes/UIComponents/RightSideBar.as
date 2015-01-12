@@ -14,6 +14,7 @@ package classes.UIComponents
 	import fl.transitions.easing.Regular;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
+	import classes.UIComponents.SideBarComponents.StatBar;
 	
 	/**
 	 * Should maybe extend a base SideBar but whatevs, makes the code much neater for shared shit.
@@ -41,21 +42,21 @@ package classes.UIComponents
 		// The idea is UI gets seperated from game logic entirely. All UI cares about is values in Creatures.
 		public function get nameText():TextField { return this._nameText; }
 		
-		public function get shieldBar():StatBarBig { return _combatStatBlock.shieldBar; }
-		public function get hpBar():StatBarBig { return _combatStatBlock.hpBar; }
-		public function get lustBar():StatBarBig { return _combatStatBlock.lustBar; }
-		public function get energyBar():StatBarBig { return _combatStatBlock.energyBar; }
+		public function get shieldBar():StatBar { return _combatStatBlock.shieldBar; }
+		public function get hpBar():StatBar { return _combatStatBlock.hpBar; }
+		public function get lustBar():StatBar { return _combatStatBlock.lustBar; }
+		public function get energyBar():StatBar { return _combatStatBlock.energyBar; }
 		
-		public function get physiqueBar():StatBarSmall { return _coreStatBlock.physiqueBar; }
-		public function get reflexesBar():StatBarSmall { return _coreStatBlock.reflexesBar; }
-		public function get aimBar():StatBarSmall { return _coreStatBlock.aimBar; }
-		public function get intelligenceBar():StatBarSmall { return _coreStatBlock.intelligenceBar; }
-		public function get willpowerBar():StatBarSmall { return _coreStatBlock.willpowerBar; }
-		public function get libidoBar():StatBarSmall { return _coreStatBlock.libidoBar; }
+		public function get physiqueBar():StatBar { return _coreStatBlock.physiqueBar; }
+		public function get reflexesBar():StatBar { return _coreStatBlock.reflexesBar; }
+		public function get aimBar():StatBar { return _coreStatBlock.aimBar; }
+		public function get intelligenceBar():StatBar { return _coreStatBlock.intelligenceBar; }
+		public function get willpowerBar():StatBar { return _coreStatBlock.willpowerBar; }
+		public function get libidoBar():StatBar { return _coreStatBlock.libidoBar; }
 		
-		public function get levelBar():StatBarSmall { return _advancementBlock.levelBar; }
-		public function get xpBar():StatBarSmall { return _advancementBlock.xpBar; }
-		public function get creditsBar():StatBarSmall { return _advancementBlock.creditsBar; }
+		public function get levelBar():StatBar { return _advancementBlock.levelBar; }
+		public function get xpBar():StatBar { return _advancementBlock.xpBar; }
+		public function get creditsBar():StatBar { return _advancementBlock.creditsBar; }
 		
 		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
 		

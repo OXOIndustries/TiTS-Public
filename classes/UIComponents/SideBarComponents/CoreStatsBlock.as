@@ -19,19 +19,19 @@ package classes.UIComponents.SideBarComponents
 		private var _coreStatsHeaderText:TextField;
 		private var _barContainer:Sprite;
 		
-		private var _physiqueBar:StatBarSmall;
-		private var _reflexesBar:StatBarSmall;
-		private var _aimBar:StatBarSmall;
-		private var _intelligenceBar:StatBarSmall;
-		private var _willpowerBar:StatBarSmall;
-		private var _libidoBar:StatBarSmall;
+		private var _physiqueBar:StatBar;
+		private var _reflexesBar:StatBar;
+		private var _aimBar:StatBar;
+		private var _intelligenceBar:StatBar;
+		private var _willpowerBar:StatBar;
+		private var _libidoBar:StatBar;
 		
-		public function get physiqueBar():StatBarSmall { return _physiqueBar; }
-		public function get reflexesBar():StatBarSmall { return _reflexesBar; }
-		public function get aimBar():StatBarSmall { return _aimBar; }
-		public function get intelligenceBar():StatBarSmall { return _intelligenceBar; }
-		public function get willpowerBar():StatBarSmall { return _willpowerBar; }
-		public function get libidoBar():StatBarSmall { return _libidoBar; }
+		public function get physiqueBar():StatBar { return _physiqueBar; }
+		public function get reflexesBar():StatBar { return _reflexesBar; }
+		public function get aimBar():StatBar { return _aimBar; }
+		public function get intelligenceBar():StatBar { return _intelligenceBar; }
+		public function get willpowerBar():StatBar { return _willpowerBar; }
+		public function get libidoBar():StatBar { return _libidoBar; }
 		
 		public function CoreStatsBlock() 
 		{
@@ -88,15 +88,13 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_coreStatsHeaderText);
 		}
 		
-		private function barFactory(barText:String, value:int, max:int, prevBarY:int = 0):StatBarSmall
+		private function barFactory(barText:String, value:int, max:int, prevBarY:int = 0):StatBar
 		{
-			var bar = new StatBarSmall();
-			bar.y = Math.floor(prevBarY + 4);
-			bar.masks.labels.text = barText;
-			bar.bar.width = (value / max) * 180;
-			bar.background.x = -1 * ( 1 - value / max) * 180;
-			bar.values.text = value;
+			var bar:StatBar = new StatBar(StatBar.MODE_SMALL);
 			_barContainer.addChild(bar);
+			bar.y = Math.floor(prevBarY + 4);
+			bar.caption = barText;
+			bar.value = value;
 			return bar;
 		}
 		
@@ -113,12 +111,12 @@ package classes.UIComponents.SideBarComponents
 		
 		public function removeGlows():void
 		{
-			_physiqueBar.clearGlo();
-			_reflexesBar.clearGlo();
-			_aimBar.clearGlo();
-			_intelligenceBar.clearGlo();
-			_willpowerBar.clearGlo();
-			_libidoBar.clearGlo();
+			_physiqueBar.clearGlow();
+			_reflexesBar.clearGlow();
+			_aimBar.clearGlow();
+			_intelligenceBar.clearGlow();
+			_willpowerBar.clearGlow();
+			_libidoBar.clearGlow();
 		}
 		
 		public function resetItems():void
