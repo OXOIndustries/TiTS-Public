@@ -8604,7 +8604,7 @@
 						else descript = "monumental";
 					}
 				} else {
-					rando = this.rand(8);
+					rando = this.rand(6);
 					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
@@ -8612,8 +8612,8 @@
 						else if (rando == 2) descript = "movement-impairing";
 						else if (rando == 3) descript = "floor-dragging";
 						else if (rando == 4) descript = "extremely hyper";
-						else if (rando == 5) descript += "virgin destroying";
-						else if (rando == 6) descript += "small asteroid sized";
+						//else if (rando == 5) descript += "virgin destroying";
+						//else if (rando == 6) descript += "small asteroid sized";
 						else descript = "monumental";
 					}
 				}
