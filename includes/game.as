@@ -659,6 +659,22 @@ public function variableRoomUpdateCheck():void
 	
 	if (flags["BRYNN_MET_TODAY"] == 1) rooms["BrynnsStall"].removeFlag(GLOBAL.NPC);
 	else rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
+	//Pitchers on Mhen'ga
+	if(flags["ROOM_80_PITCHER_MET"] == 1)
+	{
+		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_65_PITCHER_MET"] == 1)
+	{
+		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_61_PITCHER_MET"] == 1)
+	{
+		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
 }
 
 public function processTime(arg:int):void {

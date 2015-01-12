@@ -55,6 +55,9 @@ package classes.Resources
 		
 		[Embed(source = "../../assets/icons/map/map_plane_old.svg", mimeType = "image/svg")]
 		public static var Map_Plane:Class;
+
+		[Embed(source = "../../assets/icons/map/map_plant_bulb.svg", mimeType = "image/svg")]
+		public static var Map_Plant_Bulb:Class;
 		
 	}
 

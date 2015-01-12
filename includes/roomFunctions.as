@@ -341,6 +341,8 @@ public function jungleDeepEncounters():Boolean {
 			elderVenusPitcherEncounter();
 			flags["JUNGLE_STEP"] = 0;
 			flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
+			flags["ROOM_80_PITCHER_MET"] = 1;
+			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
 			return true;
 		}
 		//in this room and da chick awake.
@@ -348,6 +350,8 @@ public function jungleDeepEncounters():Boolean {
 			elderVenusPitcherEncounter();
 			flags["JUNGLE_STEP"] = 0;
 			flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
+			flags["ROOM_65_PITCHER_MET"] = 1;
+			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
 			return true;
 		}
 		//in this room and da chick awake.
@@ -355,6 +359,8 @@ public function jungleDeepEncounters():Boolean {
 			elderVenusPitcherEncounter();
 			flags["JUNGLE_STEP"] = 0;
 			flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
+			flags["ROOM_61_PITCHER_MET"] = 1;
+			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
 			return true;
 		}
 	}
