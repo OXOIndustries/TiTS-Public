@@ -2270,7 +2270,7 @@ public function blowjorbsFromEmbry():void
 	output("\n\n<i>\"Your cum... i-it’s wonderful... is it supposed to taste this good...?</i>\" she breathily asks, gathering more up and dreamily licking it off her fingers. She seems to have trouble putting words together, and simply licks up all your offered cream.");
 	output("\n\nBoth of you bask in the afterglow, and she clambers up your side to snuggle against you. She utterly reeks of your cum, and you’re sure she’ll need a long, hard shower to get rid of it. Her fingers trail across your chest, and draw delicious little circles.");
 	output("\n\n<i>\"I-I really liked sucking your cock... and having your stuff all over me.</i>” [embry.name] nuzzles into you, and looks up at you with honest, blue eyes. <i>\"Doing that for you felt so right, and made me feel all shivery. Um... if you want to do that again... anytime at all... I’d </i>really<i> like that,</i>” she blushes.");
-	output("\n\nYou notice her fingers occasionally move in the direction of [pc.cockNoun], or to touch her now clean cheeks, before snapping back self consciously.");
+	output("\n\nYou notice her fingers occasionally move in the direction of your [pc.cocks], or to touch her now clean cheeks, before snapping back self consciously.");
 	output("\n\nYou stagger back to the bar with a smile.");
 	flags["GOTTEN_AN_EMBRY_BJ"] = 1;
 	flags["SEXED_EMBRY"] = 1;
