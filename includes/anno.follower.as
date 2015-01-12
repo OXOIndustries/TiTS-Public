@@ -21,27 +21,27 @@ ANNOxKAEDE_INTRODUCED : PC has been introduced by Anno to Kaede
  */
 
 // Anno has been recruited and is currently on the players ship.
-function annoIsCrew():Boolean
+public function annoIsCrew():Boolean
 {
 	if (flags["ANNO_CREWMEMBER"] == 1) return true;
 	return false;
 }
 
 // Annos recruitment process hasn't yet been completed
-function annoNotRecruited():Boolean
+public function annoNotRecruited():Boolean
 {
 	if (flags["ANNO_CREWMEMBER"] == undefined) return true;
 	return false;
 }
 
 // Anno has been recruited but isn't currently on the players ship
-function annoNotCrew():Boolean
+public function annoNotCrew():Boolean
 {
 	if (flags["ANNO_CREWMEMBER"] == 2) return true;
 	return false;
 }
 
-function annoFollowerHeader():void
+public function annoFollowerHeader():void
 {
 	author("Savin");
 	showBust("ANNO");
@@ -49,7 +49,7 @@ function annoFollowerHeader():void
 }
 
 // Hook this into Tarkus' ship hangar room
-function returnToShipAfterRecruitingAnno():Boolean
+public function returnToShipAfterRecruitingAnno():Boolean
 {
 	// Fixup missed flags.
 	// Not doing it as a save updater. Basically, tell people to go back to Tarkus if Anno is missing, and it should trigger the stuff that they've missed appropriately.
@@ -137,7 +137,7 @@ function returnToShipAfterRecruitingAnno():Boolean
 	return false;
 }
 
-function annoFollowerApproach():void
+public function annoFollowerApproach():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -166,7 +166,7 @@ function annoFollowerApproach():void
 	annoFollowerMenu();
 }
 
-function annoFollowerMenu():void
+public function annoFollowerMenu():void
 {
 	annoFollowerHeader();
 	
@@ -202,7 +202,7 @@ function annoFollowerMenu():void
 	addButton(14, "Back", crew);
 }
 
-function annoSleepWithIntroduce():void
+public function annoSleepWithIntroduce():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -220,7 +220,7 @@ function annoSleepWithIntroduce():void
 	addButton(1, "No", annoSleepWithPlsNoDogslootsInMyBedIDontWantDogslootFurAllUpInMyShit);
 }
 
-function annoSleepWithPlsNoDogslootsInMyBedIDontWantDogslootFurAllUpInMyShit():void
+public function annoSleepWithPlsNoDogslootsInMyBedIDontWantDogslootFurAllUpInMyShit():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -237,7 +237,7 @@ function annoSleepWithPlsNoDogslootsInMyBedIDontWantDogslootFurAllUpInMyShit():v
 	addButton(0, "Next", sleep)
 }
 
-function annoSleepWithSureICanDealWithDogslootFurAllInMyMouthInTheMorning():void
+public function annoSleepWithSureICanDealWithDogslootFurAllInMyMouthInTheMorning():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -258,7 +258,7 @@ function annoSleepWithSureICanDealWithDogslootFurAllInMyMouthInTheMorning():void
 	addButton(0, "Next", sleep);
 }
 
-function annoSleepToggleOn():void
+public function annoSleepToggleOn():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -277,7 +277,7 @@ function annoSleepToggleOn():void
 	addButton(0, "Next", annoFollowerMenu);
 }
 
-function annoSleepToggleOff():void
+public function annoSleepToggleOff():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -295,7 +295,7 @@ function annoSleepToggleOff():void
 	addButton(0, "Next", annoFollowerMenu);
 }
 
-function annoSleepSexyTimes():void
+public function annoSleepSexyTimes():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -319,7 +319,7 @@ function annoSleepSexyTimes():void
 	sleep(false);
 }
 
-function annoMorningRouter():void
+public function annoMorningRouter():void
 {
 	flags["ANNO_SLEEPWITH_DOMORNING"] = undefined;
 
@@ -327,7 +327,7 @@ function annoMorningRouter():void
 	else annoMorningShower();
 }
 
-function annoMorningHandy():void
+public function annoMorningHandy():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -372,7 +372,7 @@ function annoMorningHandy():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoMorningShower():void
+public function annoMorningShower():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -407,7 +407,7 @@ function annoMorningShower():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerBootOff():void
+public function annoFollowerBootOff():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -432,7 +432,7 @@ function annoFollowerBootOff():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoAtAnonsAddendum():void
+public function annoAtAnonsAddendum():void
 {
 	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
@@ -455,7 +455,7 @@ function annoAtAnonsAddendum():void
 	}
 }
 
-function annoFindingALostPooch():void
+public function annoFindingALostPooch():void
 {
 	if (flags["ANNOxKAEDE_LAST_DAY"] == undefined) flags["ANNOxKAEDE_LAST_DAY"] = days - 8;
 
@@ -483,7 +483,7 @@ function annoFindingALostPooch():void
 	addButton(1, "Not Now", annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur);
 }
 
-function annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur():void
+public function annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -500,7 +500,7 @@ function annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur():vo
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
+public function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -522,7 +522,7 @@ function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerBuyMenu():void
+public function annoFollowerBuyMenu():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -539,7 +539,7 @@ function annoFollowerBuyMenu():void
 }
 
 // Updates and configures Annos inventory depending on how she ended up on the players ship
-function annoFollowerInventoryCheck():void
+public function annoFollowerInventoryCheck():void
 {
 	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
@@ -585,7 +585,7 @@ function annoFollowerInventoryCheck():void
 	anno.typesBought = [GLOBAL.ALL];
 }
 
-function annoFollowerSellMenu():void
+public function annoFollowerSellMenu():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -599,7 +599,7 @@ function annoFollowerSellMenu():void
 	sellItem();
 }
 
-function annoFollowerTalkMenu(doOut:Boolean = true):void
+public function annoFollowerTalkMenu(doOut:Boolean = true):void
 {
 	if (doOut)
 	{
@@ -647,7 +647,7 @@ function annoFollowerTalkMenu(doOut:Boolean = true):void
 	addButton(14, "Back", annoFollowerMenu);
 }
 
-function annoFollowerTalkAkkadi():void
+public function annoFollowerTalkAkkadi():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -690,7 +690,7 @@ function annoFollowerTalkAkkadi():void
 	processTime(10+rand(5));
 }
 
-function annoFollowerTalkFamily():void
+public function annoFollowerTalkFamily():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -713,7 +713,7 @@ function annoFollowerTalkFamily():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerTalkVictor():void
+public function annoFollowerTalkVictor():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -736,7 +736,7 @@ function annoFollowerTalkVictor():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerTalkStudies():void
+public function annoFollowerTalkStudies():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -760,7 +760,7 @@ function annoFollowerTalkStudies():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerTalkRelationships():void
+public function annoFollowerTalkRelationships():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -792,7 +792,7 @@ function annoFollowerTalkRelationships():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerTalkSteeleTech():void
+public function annoFollowerTalkSteeleTech():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -816,7 +816,7 @@ function annoFollowerTalkSteeleTech():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerTalkEntertainment():void
+public function annoFollowerTalkEntertainment():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -847,7 +847,7 @@ function annoFollowerTalkEntertainment():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerRemoveUniform():void
+public function annoFollowerRemoveUniform():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -873,7 +873,7 @@ function annoFollowerRemoveUniform():void
 	annoFollowerSexMenu();
 }
 
-function annoFollowerWearUniform():void
+public function annoFollowerWearUniform():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -898,7 +898,7 @@ function annoFollowerWearUniform():void
 	annoFollowerSexMenu();
 }
 
-function annoFollowerTalkContacts():void
+public function annoFollowerTalkContacts():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -916,7 +916,7 @@ function annoFollowerTalkContacts():void
 	processTime(5+rand(3));
 }
 
-function annoFollowerEarScritches():void
+public function annoFollowerEarScritches():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -935,7 +935,7 @@ function annoFollowerEarScritches():void
 	addButton(1, "Tease", annoFollowerEarScritchesTease);
 }
 
-function annoFollowerEarScritchesSex():void
+public function annoFollowerEarScritchesSex():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -945,7 +945,7 @@ function annoFollowerEarScritchesSex():void
 	annoFollowerSexMenu();
 }
 
-function annoFollowerEarScritchesTease():void
+public function annoFollowerEarScritchesTease():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -966,7 +966,7 @@ function annoFollowerEarScritchesTease():void
 	addButton(0, "Next", annoFollowerMenu);
 }
 
-function annoFollowerSexMenu():void
+public function annoFollowerSexMenu():void
 {
 	clearMenu();
 
@@ -1012,7 +1012,7 @@ function annoFollowerSexMenu():void
 	addButton(14, "Back", annoFollowerMenu);
 }
 
-function annoFollowerTailjobSex():void
+public function annoFollowerTailjobSex():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1082,7 +1082,7 @@ function annoFollowerTailjobSex():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerSuckAndFuckSex():void
+public function annoFollowerSuckAndFuckSex():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1171,7 +1171,7 @@ function annoFollowerSuckAndFuckSex():void
 	addButton(0, "Next", annoFollowerSuckAndFuckSexPartII);
 }
 
-function annoFollowerSuckAndFuckSexPartII():void
+public function annoFollowerSuckAndFuckSexPartII():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1246,7 +1246,7 @@ function annoFollowerSuckAndFuckSexPartII():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerAnalSex():void
+public function annoFollowerAnalSex():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1347,7 +1347,7 @@ function annoFollowerAnalSex():void
 }
 
 // Buttchange in the core function that leads to this could result in an unintentional target-cock switch at this point if we don't pass the index along
-function annoFollowerAnalSexCum(selCock:int):void
+public function annoFollowerAnalSexCum(selCock:int):void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1378,7 +1378,7 @@ function annoFollowerAnalSexCum(selCock:int):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerAnalSexAnnoOnTop(selCock:int):void
+public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1419,7 +1419,7 @@ function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerEatDatDogslootOut():void
+public function annoFollowerEatDatDogslootOut():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1515,7 +1515,7 @@ function annoFollowerEatDatDogslootOut():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerSixtyNineSex():void
+public function annoFollowerSixtyNineSex():void
 {
 	clearOutput();
 	annoFollowerMenu();
@@ -1605,7 +1605,7 @@ function annoFollowerSixtyNineSex():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerShowerSex():void
+public function annoFollowerShowerSex():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1723,7 +1723,7 @@ function annoFollowerShowerSex():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerSpecialGear():void
+public function annoFollowerSpecialGear():void
 {
 	annoFollowerHeader();
 	
@@ -1748,7 +1748,7 @@ function annoFollowerSpecialGear():void
 	addButton(14, "Back", annoFollowerMenu);
 }
 
-function annoFollowerSpecialGearHerGun():void
+public function annoFollowerSpecialGearHerGun():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1769,7 +1769,7 @@ function annoFollowerSpecialGearHerGun():void
 	}
 }
 
-function annoFollowerSpecialGearGrayGoo():void
+public function annoFollowerSpecialGearGrayGoo():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1822,7 +1822,7 @@ function annoFollowerSpecialGearGrayGoo():void
 	addButton(1, "Nope", annoFollowerMenu);
 }
 
-function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
+public function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1870,7 +1870,7 @@ function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
 	addButton(1, "Leave", mainGameMenu);
 }
 
-function annoFollowerGoozookaTesting():void
+public function annoFollowerGoozookaTesting():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1901,7 +1901,7 @@ function annoFollowerGoozookaTesting():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerFirstTimeOnMhenga():void
+public function annoFollowerFirstTimeOnMhenga():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -1962,7 +1962,7 @@ function annoFollowerFirstTimeOnMhenga():void
 	addButton(0, "Next", annoFollowerFirstTimeOnMhengaPartII);
 }
 
-function annoFollowerFirstTimeOnMhengaPartII():void
+public function annoFollowerFirstTimeOnMhengaPartII():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -2029,7 +2029,7 @@ function annoFollowerFirstTimeOnMhengaPartII():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoFollowerAppearance():void
+public function annoFollowerAppearance():void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -2049,7 +2049,7 @@ function annoFollowerAppearance():void
 	addDisabledButton(10, "Appearance");
 }
 
-function annoxKaedeFollowerMeeting():void
+public function annoxKaedeFollowerMeeting():void
 {
 	clearOutput();
 	author("Savin");
@@ -2094,7 +2094,7 @@ function annoxKaedeFollowerMeeting():void
 	annoxKaedeAnonsBarMenu();
 }
 
-function annoxKaedeAnonsBarMenu():void
+public function annoxKaedeAnonsBarMenu():void
 {
 	clearMenu();
 	if (pc.hasCock() && (pc.cockThatFits(370) >= 0) && (pc.cockThatFits(anno.vaginalCapacity()) >= 0)) addButton(0, "Fuck Them", annoxKaedeFuckThem, false);
@@ -2107,7 +2107,7 @@ function annoxKaedeAnonsBarMenu():void
 
 //Fuck Anno WITH SCIENCE
 //PC must be wearing a Hardlight Strapon. Add [Pitch Strapon] to sex menu
-function fuckAnnoWithScienceYoFukkinLadyBoi():void
+public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 {
 	clearOutput();
 	author("Savin");
@@ -2185,7 +2185,7 @@ function fuckAnnoWithScienceYoFukkinLadyBoi():void
 
 //Anno Buys a Strapon
 //PC visits Aliss’s shop while Anno’s on the crew. Anno doesn’t already own a strapon. Anno’s been sex’d.
-function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
+public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 {
 	author("Savin");
 	showBust("ANNO","ALISS");
@@ -2275,7 +2275,7 @@ function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 
 //In Soviet Ausaril, Science Fucks YOU
 //Anno owns a strapon. Add [Take Strapon] to her sex menu. 
-function getFuckedByAnnoStraponsSavinYouSlut():void
+public function getFuckedByAnnoStraponsSavinYouSlut():void
 {
 	clearOutput();
 	output("You take a step up to Anno and rest a hand on her hip. “<i>What do you say you slip on those panties of yours, huh?</i>”");
@@ -2321,7 +2321,7 @@ function getFuckedByAnnoStraponsSavinYouSlut():void
 }
 
 //{Combine}
-function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
+public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 {
 	clearOutput();
 	author("Savin");
@@ -2437,7 +2437,7 @@ function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 
 //Strapon Modification
 //Anno owns a strapon. Add [Strapon Mods] to her menu.
-function annoStraponMods():void
+public function annoStraponMods():void
 {
 	clearOutput();
 	author("Savin");

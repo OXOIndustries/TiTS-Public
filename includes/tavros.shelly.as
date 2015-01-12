@@ -1,6 +1,6 @@
 ﻿import classes.Items.Miscellaneous.SmallEgg;
 
-function shellyDisplay():void
+public function shellyDisplay():void
 {
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) userInterface.showName("BUNNY\nWOMAN");
 	else userInterface.showName("\nSHELLY");
@@ -9,7 +9,7 @@ function shellyDisplay():void
 }
 
 //First encounter
-function ShellyBlurb():void
+public function ShellyBlurb():void
 {
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) {
 		output("\n\nAs you enter the bar you notice a new addition to the bar's normal clientele, a lone woman stands near the back wall, trying to get the attention of passersby. A closer look reveals her to have tall bunny ears atop her head and a slightly distended belly.");
@@ -23,7 +23,7 @@ function ShellyBlurb():void
 }
 
 //[add option “investigate” to list of possible bar happenings]
-function investigateSlashShelly():void
+public function investigateSlashShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -57,7 +57,7 @@ function investigateSlashShelly():void
 }
 
 //Talk
-function talkToShelly():void
+public function talkToShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -80,7 +80,7 @@ function talkToShelly():void
 }
 
 //Assist
-function assistShellyLaying():void
+public function assistShellyLaying():void
 {
 	flags["ASSISTED_SHELLY_WITH_LAYING"] = 1;
 	clearOutput();
@@ -121,7 +121,7 @@ public function getShellyPregContainer():PregnancyPlaceholder
 }
 
 //Sex
-function sexWithShelly():void
+public function sexWithShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -179,7 +179,7 @@ function sexWithShelly():void
 }
 
 //Outside
-function humanoidsCumOutsideShelly():void
+public function humanoidsCumOutsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -193,7 +193,7 @@ function humanoidsCumOutsideShelly():void
 }
 
 //Inside
-function humanoidsCumInsideShelly():void
+public function humanoidsCumInsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -209,7 +209,7 @@ function humanoidsCumInsideShelly():void
 }
 
 //Taur
-function taursCumOutsideShelly():void
+public function taursCumOutsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -222,7 +222,7 @@ function taursCumOutsideShelly():void
 }
 
 //Inside
-function taursCumInsideShelly():void
+public function taursCumInsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
@@ -241,7 +241,7 @@ function taursCumInsideShelly():void
 	omniShellyEpilogueBlurb();
 }
 
-function omniShellyEpilogueBlurb():void
+public function omniShellyEpilogueBlurb():void
 {
 	//if first time: 
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined)

@@ -1,7 +1,7 @@
 ﻿//First Run-in
 //Office Description
 
-function juliansOffice():void {
+public function juliansOffice():void {
 	//Addendum to Office Description
 	if(flags["MET_DR_HASWELL"] == undefined) 
 	{
@@ -16,7 +16,7 @@ function juliansOffice():void {
 	}	
 }
 
-function approachJulianRouter():void {
+public function approachJulianRouter():void {
 	setLocation("DR. JULIAN\nS. HASWELL",rooms[currentLocation].planet,rooms[currentLocation].system);
 	//First Meeting
 	if(flags["MET_DR_HASWELL"] == undefined) 
@@ -65,7 +65,7 @@ function approachJulianRouter():void {
 
 
 //Introduction
-function introductionToJulian():void {
+public function introductionToJulian():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	flags["MET_DR_HASWELL"] = 1;
@@ -111,7 +111,7 @@ function introductionToJulian():void {
 }
 
 //Repeat Capture Mission Offer [No Captures Yet]
-function julianFirstOfferRepeat():void {
+public function julianFirstOfferRepeat():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("Julian smiles when he realizes you want his attention once more. \"<i>Come back for the job after all then? That doesn't surprise me, there's a fortune to be made on the backs of unwashed savages like the zil.</i>\"  His vertically slit eyes narrow in your direction. \"<i>Just like before, take the capture box and use it on one you've subdued. One thousand credits, easy as that, unless you still have some sort of hangup?</i>\"  His gaze twinkles with cold, unshared mirth.");
@@ -123,7 +123,7 @@ function julianFirstOfferRepeat():void {
 }
 
 //Accept Zil Capture Mission
-function acceptZilCapMission():void {
+public function acceptZilCapMission():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] = 1;
@@ -138,7 +138,7 @@ function acceptZilCapMission():void {
 }
 
 //Decline Zil Capture Mission
-function declinedZilCaptureMission():void {
+public function declinedZilCaptureMission():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	//Bimbo
@@ -159,7 +159,7 @@ function declinedZilCaptureMission():void {
 
 
 //Approach After Bagging A Zil
-function zilBaggedApproach():void {
+public function zilBaggedApproach():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("\"<i>Ahhh, there's the intrepid " + pc.mfn("hunter","huntress","hunter") + ",</i>\"  Julian says as he rises from his chair to greet you. He gives you a friendly handshake, admitting, \"<i>Your work shaved months off my own. I already have a few products nearing general release testing, if you'll believe that!</i>\"  He beams, proud of his progress. \"<i>You can talk to Kelly if you'd like to try any of them. I've told given her clearance to sell them to you at a reduced rate as thanks for your work.</i>\"");
@@ -196,7 +196,7 @@ function zilBaggedApproach():void {
 	addButton(1,"Decline",declineDrHaswellsRepeatMission);
 }
 
-function repeatSecondHarnessOffer():void {
+public function repeatSecondHarnessOffer():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("Julian offhandedly gestures at the capture harness. <i>\"The harness is there if you want some work. The choice is yours.\"</i>");
@@ -208,7 +208,7 @@ function repeatSecondHarnessOffer():void {
 
 
 //Decline Repeat Zil Mission
-function declineDrHaswellsRepeatMission():void {
+public function declineDrHaswellsRepeatMission():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("You decline the offer for now.");
@@ -218,7 +218,7 @@ function declineDrHaswellsRepeatMission():void {
 }
 
 //Accept Repeat Zil Mission
-function acceptRepeatZilMission():void {
+public function acceptRepeatZilMission():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("Picking up the familiar, compact harness, you nod to Julian.");
@@ -233,7 +233,7 @@ function acceptRepeatZilMission():void {
 
 //Approach After Bagging The Final Zil
 //Could really use something similar to the previous display of what was being done with them, but I'm not feeling it atm.
-function finalZilCaptureTurnInEpilogue():void {
+public function finalZilCaptureTurnInEpilogue():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
 	output("Julian bounds up out of his chair. \"<i>There's my favorite contractor! I trust you found the wilds to your liking, yes?</i>\"  He shakes his head, dismissing his own question. \"<i>That doesn't matter. What does matter is the raft of useful genetic material you've brought in! The drones dropped your zil off and I got ");
@@ -251,7 +251,7 @@ function finalZilCaptureTurnInEpilogue():void {
 }
 
 //Using the Capture Harness
-function useTheCaptureHarness():void {
+public function useTheCaptureHarness():void {
 	clearOutput();
 	output("You thumb the single activation switch on the capture harness and toss the suddenly beeping cube in the direction of your fallen foe. Halfway there, it unfurls into a mass of whip-like, black tentacles. Before you can finish blinking in surprise, the zil is completely enmeshed in a web of restraints. A small, red-blinking square on " + foes[0].mf("his","her") + " chest glows angrily, and you wonder just what you're supposed to do now.");
 	output("\n\nThat question is answered by the high-pitched whine of atmospheric engines. A sleek, metallic probe a little bigger than a jet-bike zips into the area and dangles a magnetic anchor, snapping it onto the square plate at the center of the harness. Looking very much like an insect in a spider's trap, the zil is reeled in closer. The probe extends a number of intricately worked \"legs\" to wrap around its acquisition and immediately zips off, leaving you alone with your thoughts.");

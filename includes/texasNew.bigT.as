@@ -12,7 +12,7 @@ Hints at a big Treatment factory hidden under the Ranch House (secret door behin
 He remembers the Alamo.*/
 
 //Room Description
-function bigTOfficeBonusBullshit():Boolean
+public function bigTOfficeBonusBullshit():Boolean
 {
 	output("The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat's study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair.");
 	//if T isn't dead/broken:
@@ -37,7 +37,7 @@ function bigTOfficeBonusBullshit():Boolean
 	return false;
 }
 
-function showBigT(nude:Boolean = false):void
+public function showBigT(nude:Boolean = false):void
 {
 	if(nude) showBust("BIGT_NUDE");
 	else showBust("BIGT");
@@ -45,7 +45,7 @@ function showBigT(nude:Boolean = false):void
 	author("Savin");
 }
 
-function TsDoorIsLocked():void
+public function TsDoorIsLocked():void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -61,7 +61,7 @@ function TsDoorIsLocked():void
 
 //Intro / First Time Meeting
 //Lock the door into T's office until after having spoken with the seccy. outside, set up a meet&greet.
-function introToBigTSeeMeAfterClass():void
+public function introToBigTSeeMeAfterClass():void
 {
 	clearOutput();
 	showBigT();
@@ -81,7 +81,7 @@ function introToBigTSeeMeAfterClass():void
 	bigTMenu();
 }
 
-function bigTMenu():void
+public function bigTMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToBigT,talkToBigT);
@@ -91,7 +91,7 @@ function bigTMenu():void
 }
 
 //Repeat Intro
-function repeatBigTApproach():void
+public function repeatBigTApproach():void
 {
 	clearOutput();
 	showBigT();
@@ -100,7 +100,7 @@ function repeatBigTApproach():void
 }
 
 //Talk Scenes!
-function talkToBigT(currentScene):void
+public function talkToBigT(currentScene):void
 {
 	clearMenu();
 	if(currentScene == talkWithBigTAboutNudeTexas) addDisabledButton(0,"New Texas","New Texas","You just finished that conversation.");
@@ -126,7 +126,7 @@ function talkToBigT(currentScene):void
 
 //New Texas
 //Talk with Big T. about New Texas itself
-function talkWithBigTAboutNudeTexas():void
+public function talkWithBigTAboutNudeTexas():void
 {
 	clearOutput();
 	showBigT();
@@ -144,7 +144,7 @@ function talkWithBigTAboutNudeTexas():void
 
 //The Treatment
 //Ask for the Governor's perspective on the galaxy-famous Treatment. 
-function theTreatmentFromBigTsPerspective():void
+public function theTreatmentFromBigTsPerspective():void
 {
 	clearOutput();
 	showBigT();
@@ -186,7 +186,7 @@ function theTreatmentFromBigTsPerspective():void
 //Old Colony
 //Locked behind the Treatment dialogue
 //Ask Big T. about the original New Texas colony.
-function oldColonyBigTTalk():void
+public function oldColonyBigTTalk():void
 {
 	clearOutput();
 	showBigT();
@@ -205,7 +205,7 @@ function oldColonyBigTTalk():void
 //Tee Family
 //Ask Big T. about his family
 //Gated behind Old Colony talk
-function bigTFamiryTalk():void
+public function bigTFamiryTalk():void
 {
 	clearOutput();
 	showBigT();
@@ -248,7 +248,7 @@ function bigTFamiryTalk():void
 // A certain number of times having sex with Tee, he asks you to be his beau and stay on New Texas with him. Since he's a man of means, and NT is pretty chill, it's an invitation to live in the lap of luxury (literally) with Tee for the rest of your days.
 
 //Sex Menu
-function sexWithBigTMenu():void
+public function sexWithBigTMenu():void
 {
 	clearOutput();
 	showBigT();
@@ -297,7 +297,7 @@ function sexWithBigTMenu():void
 }
 
 //Desk BJ
-function bigTHasABigDDeskBlowjob():void
+public function bigTHasABigDDeskBlowjob():void
 {
 	clearOutput();
 	showBigT(true);
@@ -376,7 +376,7 @@ function bigTHasABigDDeskBlowjob():void
 	clearMenu();
 	addButton(0,"Next",bigTCockSuckPartII);
 }
-function bigTCockSuckPartII():void
+public function bigTCockSuckPartII():void
 {
 	clearOutput();
 	showBigT(true);
@@ -398,7 +398,7 @@ function bigTCockSuckPartII():void
 // Must be able to vaginally or anally take Big T's cock.
 // Big T's cock is 24 inches long and about six inches wide. Fuckhuge bullcock.
 //700
-function drunkenCowgirlBoy():void
+public function drunkenCowgirlBoy():void
 {
 	clearOutput();
 	showBigT(true);
@@ -510,7 +510,7 @@ function drunkenCowgirlBoy():void
 
 //Pitch T
 //Pitch Big T over table.
-function pitchTOverATable():void
+public function pitchTOverATable():void
 {
 	clearOutput();
 	showBigT(true);
@@ -582,7 +582,7 @@ function pitchTOverATable():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function sexedBigT():void
+public function sexedBigT():void
 {
 	if(flags["SEXED_BIG_T"] == undefined) flags["SEXED_BIG_T"] = 0;
 	flags["SEXED_BIG_T"]++;
@@ -590,7 +590,7 @@ function sexedBigT():void
 
 //Get Ridden
 // Option to choose Vaginal or Anal Sex for this scene if PC has a vagina. 
-function getRiddenByBigT():void
+public function getRiddenByBigT():void
 {
 	clearOutput();
 	showBigT(true);
@@ -609,7 +609,7 @@ function getRiddenByBigT():void
 
 }
 
-function getRiddenByBigWheee(target:int = -1):void
+public function getRiddenByBigWheee(target:int = -1):void
 {
 	clearOutput();
 	showBigT(true);
@@ -715,7 +715,7 @@ function getRiddenByBigWheee(target:int = -1):void
 	addButton(0,"Next",bigTFucksYouEpilogue);
 }
 
-function bigTFucksYouEpilogue():void
+public function bigTFucksYouEpilogue():void
 {
 	clearOutput();
 	showBigT(true);

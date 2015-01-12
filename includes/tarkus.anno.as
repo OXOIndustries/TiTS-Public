@@ -10,19 +10,19 @@ import classes.Items.Miscellaneous.GrayMicrobots;
 // DECK13_GRAY_PRIME_DECISION: PC choice on how to resolve Gray Prime shit. Undefined == not happend, 1 == Give Cyberware, 2 == Wipe Bots, 3 == Fought
 // ANNO_MISSION_OFFER: Stage of the Deck 13 quest. Undefined == Not started, 1 == Offered, 2 == In progress (Actually on Deck13), 3 == Gray Prime resolved
 
-function annoSexed(arg:int = 0):int {
+public function annoSexed(arg:int = 0):int {
 	if(flags["ANNO_SEXED"] == undefined) flags["ANNO_SEXED"] = 0;
 	if(arg != 0) flags["ANNO_SEXED"] += arg;
 	return flags["ANNO_SEXED"];
 }
 
-function haveFuckedAnno():Boolean
+public function haveFuckedAnno():Boolean
 {
 	if (flags["ANNO_SEXED"] == undefined) return false;
 	return true;
 }
 
-function steeleTechTarkusShopAvailable():Boolean
+public function steeleTechTarkusShopAvailable():Boolean
 {
 	if (pc.hasStatusEffect("ST Tarkus Closed")) return false;
 	if (flags["ANNO_CREWMEMBER"] == 1) return false;
@@ -30,7 +30,7 @@ function steeleTechTarkusShopAvailable():Boolean
 	return false;
 }
 
-function steeleTechTarkusOutsideFunction():Boolean
+public function steeleTechTarkusOutsideFunction():Boolean
 {
 	variableRoomUpdateCheck();
 	if (steeleTechTarkusShopAvailable())
@@ -45,7 +45,7 @@ function steeleTechTarkusOutsideFunction():Boolean
 	return false;
 }
 
-function steeleTechTarkusEntry():Boolean
+public function steeleTechTarkusEntry():Boolean
 {
 	if (steeleTechTarkusShopAvailable())
 	{
@@ -75,7 +75,7 @@ function steeleTechTarkusEntry():Boolean
 
 //Outside Descriptor
 //output("Set into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window into the shop shows stacks of salvaged tech from the wastes outside, mostly old machine parts, though there are a few weapons and useful bits with glowing holo-price tags hovering over them.");
-function steeleTechBonusFunction():Boolean
+public function steeleTechBonusFunction():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
@@ -99,7 +99,7 @@ function steeleTechBonusFunction():Boolean
 }
 
 //[Ausar] (Meeting Anno)
-function meetingAnno():void
+public function meetingAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -121,7 +121,7 @@ function meetingAnno():void
 }
 
 //[Memo]
-function annosMemo():void
+public function annosMemo():void
 {
 	clearOutput();
 	author("Savin");
@@ -137,7 +137,7 @@ function annosMemo():void
 }
 
 //[Knew my Dad?]
-function didAnnoyKnowYourDad():void
+public function didAnnoyKnowYourDad():void
 {
 	clearOutput();
 	author("Savin");
@@ -173,7 +173,7 @@ function didAnnoyKnowYourDad():void
 	firstTimeAnnoTalks();
 }
 
-function firstTimeAnnoTalks():void
+public function firstTimeAnnoTalks():void
 {
 	clearMenu();
 	author("Savin");
@@ -190,7 +190,7 @@ function firstTimeAnnoTalks():void
 }
 
 //[Discount?]
-function soAboutDatDiscountSlut():void
+public function soAboutDatDiscountSlut():void
 {
 	shopkeep = chars["ANNO"];
 	chars["ANNO"].keeperBuy = "<i>\"So, about that discount...\"</i>\n\n<i>\"Of course. Right this way, " + pc.mf("Mr.","Ms") + " Steele,\"</i> Anno says, guiding you to the register.\n";
@@ -199,7 +199,7 @@ function soAboutDatDiscountSlut():void
 }
 
 //Repeat Encounters
-function repeatAnnoApproach():void
+public function repeatAnnoApproach():void
 {
 	clearOutput();
 	author("Savin");
@@ -218,7 +218,7 @@ function repeatAnnoApproach():void
 	annoMainMenu();
 }
 
-function annoMainMenu():void
+public function annoMainMenu():void
 {
 	//[Buy] [Sell] [Talk] [Repair Gear] [Ear Scratches]
 	clearMenu()
@@ -236,7 +236,7 @@ function annoMainMenu():void
 
 
 //Buy
-function buyFromDatDogslut():void
+public function buyFromDatDogslut():void
 {
 	author("Savin");
 	userInterface.showBust("ANNO");
@@ -250,7 +250,7 @@ function buyFromDatDogslut():void
 	else annoShopSetup();
 	buyItem();
 }
-function annoShopSetup():void
+public function annoShopSetup():void
 {
 	author("Savin");
 	userInterface.showBust("ANNO");
@@ -269,7 +269,7 @@ function annoShopSetup():void
 }
 
 //Test Drive
-function testDriveArmorsForShit():void
+public function testDriveArmorsForShit():void
 {
 	clearOutput();
 	author("Savin");
@@ -302,7 +302,7 @@ function testDriveArmorsForShit():void
 }
 
 //No
-function noAnnoSexPlz():void
+public function noAnnoSexPlz():void
 {
 	clearOutput();
 	author("Savin");
@@ -316,7 +316,7 @@ function noAnnoSexPlz():void
 }
 
 //Sure
-function sureAnnoWeShotLetsFuck():void
+public function sureAnnoWeShotLetsFuck():void
 {
 	clearOutput();
 	author("Savin");
@@ -334,7 +334,7 @@ function sureAnnoWeShotLetsFuck():void
 }
 
 //Do Nothing
-function doNothingWhileAnnoShoots():void
+public function doNothingWhileAnnoShoots():void
 {
 	clearOutput();
 	author("Savin");
@@ -349,7 +349,7 @@ function doNothingWhileAnnoShoots():void
 
 //Grope Her
 //Requires shot with her before.
-function gropeAnnoShoots():void
+public function gropeAnnoShoots():void
 {
 	clearOutput();
 	author("Savin");
@@ -370,7 +370,7 @@ function gropeAnnoShoots():void
 
 //Take Your Shot!
 // PC has to make a Ranged Attack Roll, just like in Syri's game, though with a nasty penalty thanks to Anno's ministrations.
-function takeYourShot(easy:Boolean = false):void
+public function takeYourShot(easy:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -396,7 +396,7 @@ function takeYourShot(easy:Boolean = false):void
 	addButton(0,"Next",annoShootsResults,easy);
 }
 
-function annoShootsResults(easy:Boolean = false):void
+public function annoShootsResults(easy:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -487,7 +487,7 @@ function annoShootsResults(easy:Boolean = false):void
 
 //Snuggle
 //Tooltip: Be nice to the cute lil' pooch and let her snuggle up on your lap for a little nap. She said anything, after all...//One time +Kind}
-function snuggleWithAnnoAfterWhuppinHerAss():void
+public function snuggleWithAnnoAfterWhuppinHerAss():void
 {
 	clearOutput();
 	author("Savin");
@@ -510,7 +510,7 @@ function snuggleWithAnnoAfterWhuppinHerAss():void
 	addButton(0,"Next",snuggleWithAnnoAfterWhuppinHerAss2);
 }
 
-function snuggleWithAnnoAfterWhuppinHerAss2():void
+public function snuggleWithAnnoAfterWhuppinHerAss2():void
 {
 	clearOutput();
 	author("Savin");
@@ -526,7 +526,7 @@ function snuggleWithAnnoAfterWhuppinHerAss2():void
 //Tooltip: Teach her what happens to cheaters. Put Anno in a collar and parade her around Nova. Who knows what might happen...
 //Arth! Arth Arth!
 //One time +Hard}
-function petPlayForAnnoAfterCheating():void
+public function petPlayForAnnoAfterCheating():void
 {
 	clearOutput();
 	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined)
@@ -566,7 +566,7 @@ function petPlayForAnnoAfterCheating():void
 }
 
 //Back to Shop
-function takeYourPetBackToTheShop():void
+public function takeYourPetBackToTheShop():void
 {
 	clearOutput();
 	author("Savin");
@@ -583,7 +583,7 @@ function takeYourPetBackToTheShop():void
 }
 
 //Public Use Puppy
-function publicUsePuppyAnno():void
+public function publicUsePuppyAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -614,7 +614,7 @@ function publicUsePuppyAnno():void
 
 //Repair Gear
 //{PC must have a Rust Monster Debuff active}
-function repairMyRustBroInjuryAnno():void
+public function repairMyRustBroInjuryAnno():void
 {
 	//Cost: ~50 Creds? 
 	clearOutput();
@@ -636,7 +636,7 @@ function repairMyRustBroInjuryAnno():void
 }
 
 //Ear Scratches
-function earScritchesForAnno():void
+public function earScritchesForAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -666,7 +666,7 @@ function earScritchesForAnno():void
 }
 
 //Sex
-function sexWIthAnnoPostTease():void
+public function sexWIthAnnoPostTease():void
 {
 	clearOutput();
 	author("Savin");
@@ -683,7 +683,7 @@ function sexWIthAnnoPostTease():void
 }
 
 //Tease
-function teaseAnno():void
+public function teaseAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -700,7 +700,7 @@ function teaseAnno():void
 }
 
 //Talk
-function talkToAnnoAboutShitz():void
+public function talkToAnnoAboutShitz():void
 {
 	clearOutput();
 	author("Savin");
@@ -717,7 +717,7 @@ function talkToAnnoAboutShitz():void
 	annoTalkMenu();
 }
 
-function annoTalkMenu():void
+public function annoTalkMenu():void
 {
 	clearMenu();
 	showBust("ANNO");
@@ -765,7 +765,7 @@ function annoTalkMenu():void
 }
 
 //Anno
-function askAbootAnnoz():void
+public function askAbootAnnoz():void
 {
 	clearOutput();
 	author("Savin");
@@ -811,7 +811,7 @@ function askAbootAnnoz():void
 }
 
 //[Tell Her]
-function tellAnnoAboutSyri():void
+public function tellAnnoAboutSyri():void
 {
 	clearOutput();
 	author("Savin");
@@ -838,7 +838,7 @@ function tellAnnoAboutSyri():void
 }
 
 //[Don't]
-function dontTellAnnoAboutSyri():void
+public function dontTellAnnoAboutSyri():void
 {
 	clearOutput();
 	author("Savin");
@@ -852,7 +852,7 @@ function dontTellAnnoAboutSyri():void
 }
 
 //End Talk
-function endAnnoSyriTalk():void
+public function endAnnoSyriTalk():void
 {
 	output("\n\nYou thank Anno for talking, and quickly find yourself pulled into a tight hug. <i>\"Thanks for caring, boss. Most billionaire CEO's wouldn't give a lil' nobody like me the time of day.\"</i>");
 	output("\n\nRuffling Anno's hair, you let her get back to work.");
@@ -861,7 +861,7 @@ function endAnnoSyriTalk():void
 }
 
 //{NEW SYRI TALK OPTION: "Anno"}
-function syriTalksAboutAnno():void
+public function syriTalksAboutAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -892,7 +892,7 @@ function syriTalksAboutAnno():void
 }
 
 //Novahome
-function novaHomeTalk():void
+public function novaHomeTalk():void
 {
 	clearOutput();
 	author("Savin");
@@ -925,7 +925,7 @@ function novaHomeTalk():void
 }
 
 //The Locals
-function talkToSyriAboutTheLocals():void
+public function talkToSyriAboutTheLocals():void
 {
 	clearOutput();
 	author("Savin");
@@ -968,7 +968,7 @@ function talkToSyriAboutTheLocals():void
 }
 
 //Anyone Special?
-function anyoneSpecial():void
+public function anyoneSpecial():void
 {
 	clearOutput();
 	author("Savin");
@@ -1007,7 +1007,7 @@ function anyoneSpecial():void
 }
 
 //Threeway?
-function threeWayAnno():void
+public function threeWayAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -1022,7 +1022,7 @@ function threeWayAnno():void
 }
 
 //Into Girls?
-function intoGirlsAnno():void
+public function intoGirlsAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -1039,7 +1039,7 @@ function intoGirlsAnno():void
 }
 
 //Into Dickgirls?
-function intoDickgirlsAnno():void
+public function intoDickgirlsAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -1056,7 +1056,7 @@ function intoDickgirlsAnno():void
 }
 
 //How's Business
-function howsBusiness():void
+public function howsBusiness():void
 {
 	clearOutput();
 	author("Savin");
@@ -1088,7 +1088,7 @@ function howsBusiness():void
 
 //Appearance
 //{Unlocked after sexed at least once}
-function annoAppearance():void
+public function annoAppearance():void
 {
 	clearOutput();
 	author("Savin");
@@ -1107,7 +1107,7 @@ function annoAppearance():void
 }
 
 //Face Fuck
-function faceFuckAnno():void
+public function faceFuckAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -1186,7 +1186,7 @@ function faceFuckAnno():void
 }
 
 //Fuck Her
-function fuckAnnoAfterBeeJay():void
+public function fuckAnnoAfterBeeJay():void
 {
 	clearOutput();
 	author("Savin");
@@ -1254,7 +1254,7 @@ function fuckAnnoAfterBeeJay():void
 //Get Slurped
 ///{Va-jay-jay-type characters} Slurp-rise!
 //[13:21] <Fenoxo> @Savin to stretch out F/F, I suggest some full body massage that turns into her jamming her nose into your cunt in licking, then scissoring, then sixtynining up the mess
-function getSlurpedOnByAnnoz():void
+public function getSlurpedOnByAnnoz():void
 {
 	clearOutput();
 	author("Savin");
@@ -1318,7 +1318,7 @@ function getSlurpedOnByAnnoz():void
 //Anal
 //Note to Fen: If she doesn't already, Anno needs a tight, virgin asshole (right where it belongs). This scene can take her anal virginity, after which she'd be a little looser, but still tight as hell.
 //{PC must have a cock that fits in Anno's heiny-hole} + 50%
-function putItInAnnosButtYouSloot():void
+public function putItInAnnosButtYouSloot():void
 {
 	clearOutput();
 	author("Savin");
@@ -1385,7 +1385,7 @@ function putItInAnnosButtYouSloot():void
 }
 
 //Cum
-function cumInYerAusarShapedButtslot():void
+public function cumInYerAusarShapedButtslot():void
 {
 	clearOutput();
 	author("Savin");
@@ -1412,7 +1412,7 @@ function cumInYerAusarShapedButtslot():void
 }
 
 //Anno on Top
-function cumWithAnnoOnTop():void
+public function cumWithAnnoOnTop():void
 {
 	clearOutput();
 	author("Savin");
@@ -1450,7 +1450,7 @@ function cumWithAnnoOnTop():void
 }
 
 // {PC Must have a Grey Goo Sample on-hand}
-function beginTheGoozookeningHas():void
+public function beginTheGoozookeningHas():void
 {
 	clearOutput();
 	author("Savin");
@@ -1498,7 +1498,7 @@ function beginTheGoozookeningHas():void
 	addButton(1, "Nope", annoMainMenu);
 }
 
-function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
+public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -1548,7 +1548,7 @@ function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	addButton(1, "Leave", mainGameMenu);
 }
 
-function goozookaRaepsForAnnoButts():void
+public function goozookaRaepsForAnnoButts():void
 {
 	clearOutput();
 	author("Savin");
@@ -1575,7 +1575,7 @@ function goozookaRaepsForAnnoButts():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function insideSteeleTechPostPlanetCrack():Boolean
+public function insideSteeleTechPostPlanetCrack():Boolean
 {
 	clearOutput();
 	author("Savin");
@@ -1607,7 +1607,7 @@ function insideSteeleTechPostPlanetCrack():Boolean
 
 //Meeting Anno First Time AFTER PlanetCrack
 //[Ausar]
-function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWithThisFunctionName():void
+public function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWithThisFunctionName():void
 {
 	clearOutput();
 	author("Savin");
@@ -1628,7 +1628,7 @@ function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWithThisF
 }
 
 //{PC has met Anno before, first time back in the shop:}
-function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
+public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 {
 	author("Savin");
 	showBust("ANNO");
@@ -1660,7 +1660,7 @@ function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	addButton(1, "Hold Up", holdOnAnno,undefined,"Hold Up","You aren't ready to take her on as crew just yet.")
 }
 
-function joinCrewPlanetCrackerVersion():void
+public function joinCrewPlanetCrackerVersion():void
 {
 	clearOutput();
 
@@ -1685,7 +1685,7 @@ function joinCrewPlanetCrackerVersion():void
 	addButton(2, "She Wants It", joinCrewPlanetCrackerVersionSheWantsIt, undefined, "She Wants It", "Play on Anno's desires. She wants off this rock, and you want the cute little ausar bitch aboard your ship. Everybody wins.");
 }
 
-function joinCrewPlanetCrackerVersionHelpHer():void
+public function joinCrewPlanetCrackerVersionHelpHer():void
 {
 	clearOutput();
 
@@ -1715,7 +1715,7 @@ function joinCrewPlanetCrackerVersionHelpHer():void
 	addButton(0, "Next", move, "212");
 }
 
-function joinCrewPlanetCrackerVersionSheWantsIt():void
+public function joinCrewPlanetCrackerVersionSheWantsIt():void
 {
 	clearOutput();
 
@@ -1759,7 +1759,7 @@ function joinCrewPlanetCrackerVersionSheWantsIt():void
 }
 
 //Hold On
-function holdOnAnno():void
+public function holdOnAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -1772,7 +1772,7 @@ function holdOnAnno():void
 	annoMainMenu();
 }
 
-function joinCrewPlanetFineVersion():void
+public function joinCrewPlanetFineVersion():void
 {
 	clearOutput();
 	author("Savin");
@@ -1818,7 +1818,7 @@ function joinCrewPlanetFineVersion():void
 	annoTalkMenu();
 }
 
-function joinCrewMissionComplete():void
+public function joinCrewMissionComplete():void
 {
 	clearOutput();
 	author("Savin");
@@ -1850,7 +1850,7 @@ function joinCrewMissionComplete():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoTalkAboutDaMission():void
+public function annoTalkAboutDaMission():void
 {
 	clearOutput();
 	author("Savin");
@@ -1886,7 +1886,7 @@ function annoTalkAboutDaMission():void
 	addButton(1, "Not Yet", annoMissionNotYet)
 }
 
-function annoMissionNotYet():void
+public function annoMissionNotYet():void
 {
 	clearOutput();
 	author("Savin");
@@ -1901,7 +1901,7 @@ function annoMissionNotYet():void
 	addButton(0, "Next", annoTalkMenu);
 }
 
-function annoMissionImIn():void
+public function annoMissionImIn():void
 {
 	clearOutput();
 	author("Savin");
@@ -1921,7 +1921,7 @@ function annoMissionImIn():void
 	addButton(0, "Next", move, "DECK 13 AIRLOCK");
 }
 
-function annoBonusCombatAttackShit():void
+public function annoBonusCombatAttackShit():void
 {
 	// If anno isn't grappled
 	if (!foes[0].hasStatusEffect("AnnoGrapple"))
@@ -1966,7 +1966,7 @@ function annoBonusCombatAttackShit():void
 	}
 }
 
-function annoSensorLinkBuff():void
+public function annoSensorLinkBuff():void
 {
 	output("\nAnno levels her left wrist at");
 	if (foes[0].plural) output(" one of");
@@ -1979,7 +1979,7 @@ function annoSensorLinkBuff():void
 	pc.aimMod += 5;
 }
 
-function annoHPBoost():void
+public function annoHPBoost():void
 {
 	output("\nAnno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!");
 
@@ -1992,7 +1992,7 @@ function annoHPBoost():void
 	pc.createStatusEffect("HP Boost CD", 5, 0, 0, 0, true, "", "", true, 0);
 }
 
-function annoRegularAttack(bonusDamage:int = 0):void
+public function annoRegularAttack(bonusDamage:int = 0):void
 {
 	output("\nAnno levels her holdout pistol and fires off a quick shot");
 
@@ -2012,7 +2012,7 @@ function annoRegularAttack(bonusDamage:int = 0):void
 	output("\n");
 }
 
-function deck13AirlockFunc():Boolean
+public function deck13AirlockFunc():Boolean
 {
 	if (flags["DECK13_AIRLOCK_ENTERED"] == undefined)
 	{
@@ -2050,7 +2050,7 @@ function deck13AirlockFunc():Boolean
 	}
 }
 
-function annoSpaceSuits():void
+public function annoSpaceSuits():void
 {
 	clearOutput();
 	author("Savin");
@@ -2063,7 +2063,7 @@ function annoSpaceSuits():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13SecurityFunc():Boolean
+public function deck13SecurityFunc():Boolean
 {
 	if (flags["DECK13_SECURITY_ENTERED"] == undefined)
 	{
@@ -2091,14 +2091,14 @@ function deck13SecurityFunc():Boolean
 	}
 }
 
-function securityDroidAI():void
+public function securityDroidAI():void
 {
 	if (!pc.hasStatusEffect("Blind") && rand(5) == 0) securityDroidFlashbang();
 	else if (!foes[0].hasStatusEffect("Blind") && !foes[0].hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot();
 	else securityDroidLaserBarrage();
 }
 
-function securityDroidLaserBarrage():void
+public function securityDroidLaserBarrage():void
 {
 	//Laser Barrage
 	//Lots of moderate laser attacks
@@ -2114,7 +2114,7 @@ function securityDroidLaserBarrage():void
 	processCombat();
 }
 
-function securityDroidChargeShot():void
+public function securityDroidChargeShot():void
 {
 	//Charge Shot
 	//Two moderate laser shots (as above) + one HEAVY one
@@ -2141,7 +2141,7 @@ function securityDroidChargeShot():void
 	processCombat();
 }
 
-function securityDroidFlashbang():void
+public function securityDroidFlashbang():void
 {
 	// Flashbang
 	// Blind, possibly Stun attack
@@ -2159,7 +2159,7 @@ function securityDroidFlashbang():void
 	processCombat();
 }
 
-function lossToSecurityDroid():void
+public function lossToSecurityDroid():void
 {
 	// PC and Anno Lose to the Droid
 	clearOutput();
@@ -2177,7 +2177,7 @@ function lossToSecurityDroid():void
 	addDisabledButton(0, "Game Over", "Game Over", "Roll credits etc.");
 }
 
-function victoryOverSecurityDroid():void
+public function victoryOverSecurityDroid():void
 {
 	// PC and Anno Wreck the Droids
 	clearOutput();
@@ -2197,7 +2197,7 @@ function victoryOverSecurityDroid():void
 	genericVictory();
 }
 
-function deck13ArmoryFunc():Boolean
+public function deck13ArmoryFunc():Boolean
 {
 	if (flags["DECK13_ARMORY_ENTERED"] == undefined)
 	{
@@ -2270,7 +2270,7 @@ function deck13ArmoryFunc():Boolean
 	return false;
 }
 
-function deck13ArmoryPickLocks():void
+public function deck13ArmoryPickLocks():void
 {
 	clearOutput();
 	author("Savin");
@@ -2293,7 +2293,7 @@ function deck13ArmoryPickLocks():void
 	deck13ArmoryEntry();
 }
 
-function deck13BoostAnno():void
+public function deck13BoostAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -2309,7 +2309,7 @@ function deck13BoostAnno():void
 	deck13ArmoryEntry();
 }
 
-function deck13GetBoosted():void
+public function deck13GetBoosted():void
 {
 	clearOutput();
 	author("Savin");
@@ -2321,7 +2321,7 @@ function deck13GetBoosted():void
 	deck13ArmoryEntry();
 }
 
-function deck13ArmoryEntry():void
+public function deck13ArmoryEntry():void
 {
 	if (flags["ANNO_MISSION_OFFER"] == 2)
 	{
@@ -2343,7 +2343,7 @@ function deck13ArmoryEntry():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13WeaponRacks():void
+public function deck13WeaponRacks():void
 {
 	clearOutput();
 	author("Savin");
@@ -2372,7 +2372,7 @@ function deck13WeaponRacks():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-function deck13Robots():void
+public function deck13Robots():void
 {
 	clearOutput();
 	author("Savin");
@@ -2383,7 +2383,7 @@ function deck13Robots():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13ElevatorFunc():Boolean
+public function deck13ElevatorFunc():Boolean
 {
 	if (flags["DECK13_COMPLETE"] == undefined)
 	{
@@ -2404,7 +2404,7 @@ function deck13ElevatorFunc():Boolean
 	}
 }
 
-function deck13ReactorRoomFunc():Boolean
+public function deck13ReactorRoomFunc():Boolean
 {
 	variableRoomUpdateCheck();
 	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
@@ -2420,7 +2420,7 @@ function deck13ReactorRoomFunc():Boolean
 	return false;
 }
 
-function deck13VentAccessShaftFunc():Boolean
+public function deck13VentAccessShaftFunc():Boolean
 {
 	//First time PC attempts access
 	output("<i>“Alright, let’s see what we’ve got here,”</i> Anno says, grabbing the loose panel hanging off of the hull. <i>“Might be able to squeeze through all the wires. Heh, reminds me of working on the warp gates back at Akkadi. For such huge fucking things, you’d be amazed how cramped they are. Wires everywhere, have to bend over all the time when you’re working. Not that I mind bending over for work, if you know what I mean,”</i> she says with a wink, yanking the panel off and tossing it up against the wall. It clangs and clatters as it drops, the sound echoing through the chamber. ");
@@ -2435,7 +2435,7 @@ function deck13VentAccessShaftFunc():Boolean
 	return true;
 }
 
-function deck13ShieldControlFunc():Boolean
+public function deck13ShieldControlFunc():Boolean
 {
 	if (flags["DECK13_SHIELD_CONTROL_ENTERED"] == undefined)
 	{
@@ -2505,7 +2505,7 @@ function deck13ShieldControlFunc():Boolean
 	}
 }
 
-function grayPrimeAI():void
+public function grayPrimeAI():void
 {
 	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks.
 
@@ -2551,7 +2551,7 @@ function grayPrimeAI():void
 }
 
 //Goo Sword
-function grayPrimeGooSword():void
+public function grayPrimeGooSword():void
 {
 	//One heavy physical attack
 	output("The gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.");
@@ -2571,7 +2571,7 @@ function grayPrimeGooSword():void
 }
 
 //Goo Grapple
-function grayPrimeGooGrapple():void
+public function grayPrimeGooGrapple():void
 {
 	//Restrain attack. Inflicts Lust over time.
 	output("Suddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!");
@@ -2594,12 +2594,12 @@ function grayPrimeGooGrapple():void
 	}
 }
 
-function grayPrimeEscapeGrapple():void
+public function grayPrimeEscapeGrapple():void
 {
 	output("Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. <i>“Damn it. Why won’t you just go down!”</i> she shrieks. <i>“I don’t want to kill you, but if you won’t surrender, then I swear I will! What I’m doing is too important!”</i>");
 }
 
-function grayPrimeFailEscape():void
+public function grayPrimeFailEscape():void
 {
 	switch (pc.statusEffectv1("Grappled"))
 	{
@@ -2644,7 +2644,7 @@ function grayPrimeFailEscape():void
 }
 
 //Force Punch
-function grayPrimeForcePunch():void
+public function grayPrimeForcePunch():void
 {
 	//One moderate physical, chance of knockdown
 	output("The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward you for what’s going to be a world-rocking punch!");
@@ -2671,7 +2671,7 @@ function grayPrimeForcePunch():void
 }
 
 //Lustful Clones
-function grayPrimeLustfulClones():void
+public function grayPrimeLustfulClones():void
 {
 	//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
 	output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
@@ -2689,14 +2689,14 @@ function grayPrimeLustfulClones():void
 }
 
 //Clone Tease Attack
-function grayPrimeCloneLustAttack():void
+public function grayPrimeCloneLustAttack():void
 {
 	output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
 	pc.lustDamage(foes[0].statusEffectv1("Gooclones"));
 }
 
 //Attack Clone
-function grayPrimeAttackLustClone():void
+public function grayPrimeAttackLustClone():void
 {
 	clearOutput();
 	output("You leap forward and punch one of the lust clones teasing you. She gives a terrified gasp as you attack her, though one hit is easily enough to splatter her brainpan across the deck. The lifeless goo corpse collapses into the sea of gray, absorbed back into the mass.\n");
@@ -2712,7 +2712,7 @@ function grayPrimeAttackLustClone():void
 }
 
 //Attack on Anno
-function grayPrimeAttackAnno():void
+public function grayPrimeAttackAnno():void
 {
 	//Chance to disable help from Anno for a turn
 	output("The goo turns her attention from you to your companion. Anno takes an unsure step back, leveling her gun at the goo and firing as it advances. The goo-girl dodges with inhuman ability, crumbling to dust where Anno shoots, only to reform inches from the ausar!");
@@ -2730,7 +2730,7 @@ function grayPrimeAttackAnno():void
 	}	
 }
 
-function grayPrimeAnnoGrapple():void
+public function grayPrimeAnnoGrapple():void
 {
 	output("Anno struggles against the gray goo's assault, trying to escape her death-grasp.\n");
 
@@ -2740,14 +2740,14 @@ function grayPrimeAnnoGrapple():void
 	else foes[0].addStatusValue("AnnoGrapple", 1, 1);
 }
 
-function grayPrimeAnnoEscape():void
+public function grayPrimeAnnoEscape():void
 {
 	output("\nAnno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.\n");
 	foes[0].removeStatusEffect("AnnoGrapple");
 	foes[0].removeStatusEffect("AnnoEscape");
 }
 
-function victoryOverGrayPrime():void
+public function victoryOverGrayPrime():void
 {
 	// HP Victory
 	if (foes[0].HP() <= 1 && (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined || flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2))
@@ -2816,7 +2816,7 @@ function victoryOverGrayPrime():void
 	}
 }
 
-function lossToGrayPrime():void
+public function lossToGrayPrime():void
 {
 	clearOutput();
 	author("Savin");
@@ -2888,7 +2888,7 @@ function lossToGrayPrime():void
 	addDisabledButton(0, "GAME OVER", "Game Over", "Roll end credits.");
 }
 
-function deck13Breach():void
+public function deck13Breach():void
 {
 	clearOutput();
 	author("Savin");
@@ -2901,7 +2901,7 @@ function deck13Breach():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13Shields():void
+public function deck13Shields():void
 {
 	clearOutput();
 	author("Savin");
@@ -2917,7 +2917,7 @@ function deck13Shields():void
 	addButton(1, "Leave", mainGameMenu);
 }
 
-function deck13TurnOnShields():void
+public function deck13TurnOnShields():void
 {
 	clearOutput();
 	author("Savin");
@@ -2933,7 +2933,7 @@ function deck13TurnOnShields():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13GooSample():void
+public function deck13GooSample():void
 {
 	clearOutput();
 	author("Savin");
@@ -2946,7 +2946,7 @@ function deck13GooSample():void
 	quickLoot(new GrayMicrobots());
 }
 
-function deck13SecondaryReactorFunc():Boolean
+public function deck13SecondaryReactorFunc():Boolean
 {
 	author("Savin");
 
@@ -2969,7 +2969,7 @@ function deck13SecondaryReactorFunc():Boolean
 	}
 }
 
-function deck13FinalFormIntro():void
+public function deck13FinalFormIntro():void
 {
 	clearOutput();
 	author("Savin");
@@ -3001,7 +3001,7 @@ function deck13FinalFormIntro():void
 	deck13GrayPrimeTalkMenu();
 }
 
-function deck13GrayPrimeTalkMenu():void
+public function deck13GrayPrimeTalkMenu():void
 {
 	clearMenu();
 	addButton(0, "Her Crew", deck13GrayPrimeTalkCrew);
@@ -3021,7 +3021,7 @@ function deck13GrayPrimeTalkMenu():void
 	}
 }
 
-function deck13GrayPrimeTalkCrew():void
+public function deck13GrayPrimeTalkCrew():void
 {
 	clearOutput();
 	author("Savin");
@@ -3069,7 +3069,7 @@ function deck13GrayPrimeTalkCrew():void
 	removeButton(0);
 }
 
-function deck13GrayPrimeTalkNova():void
+public function deck13GrayPrimeTalkNova():void
 {
 	clearOutput();
 	author("Savin");
@@ -3086,7 +3086,7 @@ function deck13GrayPrimeTalkNova():void
 	removeButton(1);
 }
 
-function deck13GrayPrimeTalkWork():void
+public function deck13GrayPrimeTalkWork():void
 {
 	clearOutput();
 	author("Savin");
@@ -3115,7 +3115,7 @@ function deck13GrayPrimeTalkWork():void
 	removeButton(2);
 }
 
-function deck13GrayPrimeTalkGoo():void
+public function deck13GrayPrimeTalkGoo():void
 {
 	clearOutput();
 	author("Savin");
@@ -3140,7 +3140,7 @@ function deck13GrayPrimeTalkGoo():void
 	removeButton(3);
 }
 
-function deck13GrayPrimeTalkDone():void
+public function deck13GrayPrimeTalkDone():void
 {
 	clearOutput();
 	author("Savin");
@@ -3160,7 +3160,7 @@ function deck13GrayPrimeTalkDone():void
 	addButton(3, "Anno?", deck13DecisionAskAnno, undefined, "Ask Anno", "Ask Anno what she thinks.");
 }
 
-function deck13DecisionBodies():void
+public function deck13DecisionBodies():void
 {
 	clearOutput();
 	author("Savin");
@@ -3198,7 +3198,7 @@ function deck13DecisionBodies():void
 	addButton(0, "Next", deck13BackAtTheShop);
 }
 
-function deck13DecisionGoo():void
+public function deck13DecisionGoo():void
 {
 	clearOutput();
 	author("Savin");
@@ -3262,7 +3262,7 @@ function deck13DecisionGoo():void
 	addButton(0, "Next", deck13BackAtTheShop);
 }
 
-function deck13DecisionAskAnno():void
+public function deck13DecisionAskAnno():void
 {
 	clearOutput();
 	author("Savin");
@@ -3278,7 +3278,7 @@ function deck13DecisionAskAnno():void
 	removeButton(3);
 }
 
-function deck13DecisionStopHer():void
+public function deck13DecisionStopHer():void
 {
 	clearOutput();
 	author("Savin");
@@ -3302,7 +3302,7 @@ function deck13DecisionStopHer():void
 	addButton(0, "Next", startCombat, "gigagoo")
 }
 
-function gigaGooAI():void
+public function gigaGooAI():void
 {
 	if (rand(3) == 0)
 	{
@@ -3319,7 +3319,7 @@ function gigaGooAI():void
 }
 
 //Goo Punch
-function gigaGooPunch():void
+public function gigaGooPunch():void
 {
 	//One moderate physical attack, no dodge chance. Chance to stun.
 	output("\nNova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later.");
@@ -3336,7 +3336,7 @@ function gigaGooPunch():void
 }
 
 //Sword Thrust
-function gigaGooSwordThrust():void
+public function gigaGooSwordThrust():void
 {
 	//One MASSIVE physical hit.
 	output("\nNova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
@@ -3356,7 +3356,7 @@ function gigaGooSwordThrust():void
 }
 
 //Cage Rattle
-function gigaGooCageRattle():void
+public function gigaGooCageRattle():void
 {
 	//Several light physical attacks, chance of knockdown in failed Reflex save. 
 	output("\nNova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down.");
@@ -3382,7 +3382,7 @@ function gigaGooCageRattle():void
 	}
 }
 
-function loseToGigaGoo():void
+public function loseToGigaGoo():void
 {
 	clearOutput();
 	author("Savin");
@@ -3397,7 +3397,7 @@ function loseToGigaGoo():void
 	addDisabledButton(0, "Game Over", "GAME OVER", "Roll end credits etc.");
 }
 
-function victoryOverGigaGoo():void
+public function victoryOverGigaGoo():void
 {
 	clearOutput();
 	author("Savin");
@@ -3427,7 +3427,7 @@ function victoryOverGigaGoo():void
 	addButton(0, "Next", deck13BackAtTheShop);
 }
 
-function deck13BackAtTheShop():void
+public function deck13BackAtTheShop():void
 {
 	clearOutput();
 	author("Savin");
@@ -3467,7 +3467,7 @@ function deck13BackAtTheShop():void
 	addButton(1, "No", annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin);
 }
 
-function annoPostQuestSexytimes():void
+public function annoPostQuestSexytimes():void
 {
 	clearOutput();
 	author("Savin");
@@ -3571,7 +3571,7 @@ function annoPostQuestSexytimes():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
+public function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 {
 	clearOutput();
 	author("Savin");
@@ -3587,7 +3587,7 @@ function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoxKaedeNotRecruitedMeeting():void
+public function annoxKaedeNotRecruitedMeeting():void
 {
 	clearOutput();
 	author("Savin");
@@ -3648,7 +3648,7 @@ function annoxKaedeNotRecruitedMeeting():void
 	addButton(14, "Leave", annoxKaedeLeave);
 }
 
-function annoxKaedeFuckThem(inShop:Boolean = true):void
+public function annoxKaedeFuckThem(inShop:Boolean = true):void
 {
 	clearOutput();
 	author("Savin");
@@ -3807,7 +3807,7 @@ function annoxKaedeFuckThem(inShop:Boolean = true):void
 	addButton(1, "Kaede Creampie", annoxKaedeFuckThemCreampie, selCock);
 }
 
-function annoxKaedeFuckThemAnnoFacial(selCock:int):void
+public function annoxKaedeFuckThemAnnoFacial(selCock:int):void
 {
 	clearOutput();
 	author("Savin");
@@ -3821,7 +3821,7 @@ function annoxKaedeFuckThemAnnoFacial(selCock:int):void
 	annoxKaedeFuckThemCombine();
 }
 
-function annoxKaedeFuckThemCreampie(selCock:int):void
+public function annoxKaedeFuckThemCreampie(selCock:int):void
 {
 	clearOutput();
 	author("Savin");
@@ -3835,7 +3835,7 @@ function annoxKaedeFuckThemCreampie(selCock:int):void
 	annoxKaedeFuckThemCombine();
 }
 
-function annoxKaedeFuckThemCombine():void
+public function annoxKaedeFuckThemCombine():void
 {
 	output("\n\nWith both your lovers covered with cum, you all but collapse atop them, panting hard in your orgasmic afterglow. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
@@ -3852,7 +3852,7 @@ function annoxKaedeFuckThemCombine():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoxKaedeService(inShop:Boolean = true):void
+public function annoxKaedeService(inShop:Boolean = true):void
 {
 	clearOutput();
 	author("Savin");
@@ -3933,7 +3933,7 @@ function annoxKaedeService(inShop:Boolean = true):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoxKaedeWatch(inShop:Boolean = true):void
+public function annoxKaedeWatch(inShop:Boolean = true):void
 {
 	clearOutput();
 	author("Savin");
@@ -4003,7 +4003,7 @@ function annoxKaedeWatch(inShop:Boolean = true):void
 	addButton(1, "Facial", annoxKaedeWatchFacial);
 }
 
-function annoxKaedeWatchHandsFree():void
+public function annoxKaedeWatchHandsFree():void
 {
 	clearOutput();
 	author("Savin");
@@ -4019,7 +4019,7 @@ function annoxKaedeWatchHandsFree():void
 	annoxKaedeWatchCombine();
 }
 	
-function annoxKaedeWatchFacial():void
+public function annoxKaedeWatchFacial():void
 {
 	clearOutput();
 	author("Savin");
@@ -4039,7 +4039,7 @@ function annoxKaedeWatchFacial():void
 	annoxKaedeWatchCombine();
 }
 
-function annoxKaedeWatchCombine():void
+public function annoxKaedeWatchCombine():void
 {
 	output("\n\n<i>“You’re evil!”</i> Kaede groans, still panting after her anal ravaging. ");
 	
@@ -4112,7 +4112,7 @@ function annoxKaedeWatchCombine():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoxKaedeLeave(inShop:Boolean = true):void
+public function annoxKaedeLeave(inShop:Boolean = true):void
 {
 	clearOutput();
 	author("Savin");

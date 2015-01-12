@@ -1,7 +1,7 @@
 ﻿import classes.Creature;
 //Encounters
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
-function encounterASexBot():void
+public function encounterASexBot():void
 {
 	foes = new Array();
 	chars["SEXBOT"].prepForCombat();
@@ -109,7 +109,7 @@ function encounterASexBot():void
 }
 
 //No/lust < 30:
-function turnDownRobotSexuals(newScreen:Boolean = false):void
+public function turnDownRobotSexuals(newScreen:Boolean = false):void
 {
 	if(newScreen) {
 		clearOutput();
@@ -138,7 +138,7 @@ function turnDownRobotSexuals(newScreen:Boolean = false):void
 }
 
 //Yes: 
-function voluntaryFuckSexBot():void
+public function voluntaryFuckSexBot():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -156,7 +156,7 @@ function voluntaryFuckSexBot():void
 }
 
 
-function yesToRobotSexBotFirstTime():void
+public function yesToRobotSexBotFirstTime():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -174,7 +174,7 @@ function yesToRobotSexBotFirstTime():void
 	addButton(0,"Next",loseToSexBotRouter);
 }
 
-function sexbotAI():void
+public function sexbotAI():void
 {
 	sexBotDisplay();
 	if(foes[0].hasStatusEffect("Shield Recharge")) 
@@ -218,7 +218,7 @@ function sexbotAI():void
 
 //Electropulse
 //(Procs if PC still has shields)
-function sexBotElectropulseAttack():void
+public function sexBotElectropulseAttack():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -251,7 +251,7 @@ function sexBotElectropulseAttack():void
 
 //Disable ranged weapon
 //(Procs if PC does not have shields and has fired at the sexbot)
-function disablePCGunz():void
+public function disablePCGunz():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -262,7 +262,7 @@ function disablePCGunz():void
 
 //Recharge shield
 //(Procs if Sexbot has lost shields)
-function shieldRegeneration():void
+public function shieldRegeneration():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -293,7 +293,7 @@ function shieldRegeneration():void
 
 //Hack drone
 //(Procs if PC has a drone)
-function getDroneHacked():void
+public function getDroneHacked():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -314,7 +314,7 @@ function getDroneHacked():void
 }
 
 //Standard attack
-function standardRobosexualAttack():void
+public function standardRobosexualAttack():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -327,7 +327,7 @@ function standardRobosexualAttack():void
 
 //Grapple
 //(Procs if PC has lost shields) 	
-function grappleWithASexbot():void
+public function grappleWithASexbot():void
 {
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
@@ -376,7 +376,7 @@ function grappleWithASexbot():void
 }
 
 //PC wins
-function defeatTheSexBot():void
+public function defeatTheSexBot():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -410,7 +410,7 @@ function defeatTheSexBot():void
 }
 
 //Loss Scenes
-function loseToSexBotRouter():void
+public function loseToSexBotRouter():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -434,7 +434,7 @@ function loseToSexBotRouter():void
 		
 //Female Bot
 //PC has dick
-function loseToSexBotAndHaveADick():void
+public function loseToSexBotAndHaveADick():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -545,7 +545,7 @@ function loseToSexBotAndHaveADick():void
 }
 
 //PC female
-function femalePCsGetBangedByAFemBot():void
+public function femalePCsGetBangedByAFemBot():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -621,7 +621,7 @@ function femalePCsGetBangedByAFemBot():void
 
 //Malebot
 //PC Male
-function malebotDefeatsMalePCs():void
+public function malebotDefeatsMalePCs():void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -690,7 +690,7 @@ function malebotDefeatsMalePCs():void
 }
 
 //PC has vagina
-function loseToManBotWhenHavingAPussy():void
+public function loseToManBotWhenHavingAPussy():void
 {
 	clearOutput();
 	sexBotDisplay();
@@ -807,7 +807,7 @@ function loseToManBotWhenHavingAPussy():void
 //Win Scenes
 //Consentacles
 //Requires: Vagina
-function consentaclesVictoryWithDannySexBot():void
+public function consentaclesVictoryWithDannySexBot():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -879,7 +879,7 @@ function consentaclesVictoryWithDannySexBot():void
 }
 
 //Blowjob
-function blowjobVictoryFromSexbot():void
+public function blowjobVictoryFromSexbot():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -936,7 +936,7 @@ function blowjobVictoryFromSexbot():void
 
 //Dog E
 //Requires: Female sexbot, dick
-function dogEStyleWithSexBots():void
+public function dogEStyleWithSexBots():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -1046,7 +1046,7 @@ public function sexBotDisplay():void
 	else userInterface.showName("\nSEXBOT");
 }
 
-function scanASexbot():void
+public function scanASexbot():void
 {
 	clearOutput();
 	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined) flags["SEXBOTS_SCANNED_FOR_COLENSO"] = 0;

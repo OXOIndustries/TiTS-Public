@@ -6,11 +6,11 @@ import classes.Items.Melee.Shortsword;
 import classes.Items.Melee.Machette;
 import classes.Items.Melee.Warhammer;
 //Outside?
-function outsideCarlsShop():void {
+public function outsideCarlsShop():void {
 	//output("\n\nThere sits a small, humble building that is relatively unassuming given the larger works around the colony. Its fairly squat in appearance with a pair of industrialized steam stacks poking out from the roof, giving off the odd puff of heat to prove that some form of industry is going inside. Given the gaudy, faux-neon sign upfront with the vague image of a pistol, you can only assume it’s a gunsmith’s - something reaffirmed by the name of the shop that barely fits within the sign: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>.");
 	output("\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front declares: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.");
 }
-function carlsShopDescription():void {
+public function carlsShopDescription():void {
 	author("Magic Ted");
 	userInterface.showBust("CARL");
 	if(flags["MET_CARL"] == undefined)
@@ -32,7 +32,7 @@ function carlsShopDescription():void {
 
 
 //Inside
-function insideCarlsShop():void {
+public function insideCarlsShop():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -64,7 +64,7 @@ function insideCarlsShop():void {
 	addButton(14, "Leave", mainGameMenu);
 }
 //Chat
-function carlTalkMenu():void
+public function carlTalkMenu():void
 {
 	clearMenu();
 	author("Magic Ted");
@@ -78,7 +78,7 @@ function carlTalkMenu():void
 
 }
 //About him
-function chatWithCrazyCarlAboutHim():void
+public function chatWithCrazyCarlAboutHim():void
 {	
 	clearOutput();
 	author("Magic Ted");
@@ -100,7 +100,7 @@ function chatWithCrazyCarlAboutHim():void
 }
 
 //About store
-function aboutCrazyCarlsStore():void {
+public function aboutCrazyCarlsStore():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -119,7 +119,7 @@ function aboutCrazyCarlsStore():void {
 }
 
 //About Dad
-function aboutThePCsDad():void {
+public function aboutThePCsDad():void {
 	//*Available after About Carl*
 	clearOutput();
 	author("Magic Ted");
@@ -133,7 +133,7 @@ function aboutThePCsDad():void {
 }
 
 //About that robot
-function aboutTheRobotFromCrazyCarl():void {
+public function aboutTheRobotFromCrazyCarl():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -222,7 +222,7 @@ function aboutTheRobotFromCrazyCarl():void {
 }
 
 //Flirt
-function flirtWithCarl():void {
+public function flirtWithCarl():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -237,7 +237,7 @@ function flirtWithCarl():void {
 }
 
 //Shop
-function crazyCarlShop():void {
+public function crazyCarlShop():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -259,7 +259,7 @@ function crazyCarlShop():void {
 	addButton(14,"Back",insideCarlsShop); 
 }
 
-function warhammerBuyTalk():void
+public function warhammerBuyTalk():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -275,7 +275,7 @@ function warhammerBuyTalk():void
 	else addDisabledButton(0,"Buy");
 	addButton(14,"Back",crazyCarlShop);
 }
-function machetteBuyTalk():void
+public function machetteBuyTalk():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -290,7 +290,7 @@ function machetteBuyTalk():void
 	else addDisabledButton(0,"Buy");
 	addButton(14,"Back",crazyCarlShop);
 }
-function shortswordBuyTalk():void
+public function shortswordBuyTalk():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -310,7 +310,7 @@ function shortswordBuyTalk():void
 }
 
 //[Hammer Pistol]
-function hammerPistolBuyTalk():void {
+public function hammerPistolBuyTalk():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -332,7 +332,7 @@ function hammerPistolBuyTalk():void {
 }
 
 //[Magnum Pistol]
-function magnumPistolBuyTalk():void {
+public function magnumPistolBuyTalk():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -351,7 +351,7 @@ function magnumPistolBuyTalk():void {
 }
 
 //[Las branded affordable Laser Pistol]
-function lasPistolBuyTalk():void {
+public function lasPistolBuyTalk():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -370,7 +370,7 @@ function lasPistolBuyTalk():void {
 }
 
 //[Las branded affordable Laser Pistol]
-function shockerBuyTalk():void {
+public function shockerBuyTalk():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -387,7 +387,7 @@ function shockerBuyTalk():void {
 	addButton(14,"Back",crazyCarlShop);
 }
 
-function buyFromCarl(arg:String = "ERROR"):void {
+public function buyFromCarl(arg:String = "ERROR"):void {
 	var cost:int = 0;
 	if(arg == "shock pistol")
 	{
@@ -431,7 +431,7 @@ function buyFromCarl(arg:String = "ERROR"):void {
 	addButton(0,"Next",crazyCarlShop);
 }
 
-function lootWarhammer():void {
+public function lootWarhammer():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new Warhammer();
@@ -443,7 +443,7 @@ function lootWarhammer():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootMachette():void {
+public function lootMachette():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new Machette();
@@ -455,7 +455,7 @@ function lootMachette():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootShortsword():void {
+public function lootShortsword():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new Shortsword();
@@ -467,7 +467,7 @@ function lootShortsword():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootShockPistol():void {
+public function lootShockPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new TheShocker();
@@ -479,7 +479,7 @@ function lootShockPistol():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootLaserPistol():void {
+public function lootLaserPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new LaserPistol();
@@ -492,7 +492,7 @@ function lootLaserPistol():void {
 	itemCollect(foundLootItems);
 }
 
-function lootMagnumPistol():void {
+public function lootMagnumPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new MagnumPistol();
@@ -504,7 +504,7 @@ function lootMagnumPistol():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootHammerPistol():void {
+public function lootHammerPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new HammerPistol();
@@ -517,7 +517,7 @@ function lootHammerPistol():void {
 	itemCollect(foundLootItems);
 }
 
-function lootZKRifle():void {
+public function lootZKRifle():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new ZKRifle();
@@ -530,7 +530,7 @@ function lootZKRifle():void {
 	itemCollect(foundLootItems);
 }
 //[ZK Rifle]
-function zkRifleCarlTalk():void {
+public function zkRifleCarlTalk():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -548,7 +548,7 @@ function zkRifleCarlTalk():void {
 }
 
 //[Sell?]
-function sellToCarl():void {
+public function sellToCarl():void {
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
@@ -572,7 +572,7 @@ If the PC loses the fight, it’s a game over. But a soft-game over, as it just 
 Being a robot, an industrial robot at that, it is not susceptible to lust attacks. Not sure what its weakness/etc would be, though. Standard robot template? *Wavey arms*/
 
 //Intro
-function carlsEncounterStart():Boolean {
+public function carlsEncounterStart():Boolean {
 	if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined && flags["ROBOT_QUEST_COMPLETE"] == undefined)
 	{
 		clearOutput();
@@ -602,7 +602,7 @@ function carlsEncounterStart():Boolean {
 	}
 }
 
-function fightMachina():void {
+public function fightMachina():void {
 	flags["JUNGLE_STEP"] = 0;
 	startCombat("machina");
 }
@@ -614,7 +614,7 @@ Mechanics
 AI: No lust attacks, immune to lust. Uses normal attacks, spinner at a 30-40% chance and the weld-gun n repair at a 30% chance after it goes under 50%. Suicide is only at under 10%~ and is a surefire thing. The encounter ends if it fails. (And ends normally by HP, otherwise.)
 */
 
-function machinaAI():void {
+public function machinaAI():void {
 	userInterface.showBust("MACHINA");
 	userInterface.showName("\nMACHINA");
 	if(foes[0].HP() <= foes[0].HPMax() * .1) suicideBullshit();
@@ -629,7 +629,7 @@ function machinaAI():void {
 }
 
 //Normal
-function machinaAttackNormal():void {
+public function machinaAttackNormal():void {
 	output("The machine jerks towards you, zig-zagging unexpectedly as it closes in - one of the grasping appendages reaches out to club at you!\n");
 	foes[0].physique(5);
 	attack(foes[0],pc,false,0);
@@ -637,7 +637,7 @@ function machinaAttackNormal():void {
 }
 
 //Spinner
-function theSpinner():void {
+public function theSpinner():void {
 	output("You hear a loud whir from the corrupt machine before it jerks forwards, coming at you as the main body starts to rotate. Not too soon after it is spinning at a blur of a pace, appendages sprawled outwards and in range of you! Watch out!\n");
 	//*Up to seven normal damage attacks.*
 	foes[0].meleeWeapon.damage -= 3;
@@ -663,7 +663,7 @@ function theSpinner():void {
 }
 
 //Weld-gun
-function weldGunAttack():void {
+public function weldGunAttack():void {
 	output("One of the machine’s appendages raises upwards and flattens out in the span of half a second, and molten-red flames burst out and fly across the arena at you! The intense heat only lasts for a moment, however, as the modified welder immediately overheats.");
 	var damage:int = 10+rand(5);
 	genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
@@ -671,7 +671,7 @@ function weldGunAttack():void {
 }
 
 //Repair!
-function botRepairGo():void {
+public function botRepairGo():void {
 	//*On the turn before*
 	if(!foes[0].hasStatusEffect("Repair Queued"))
 	{
@@ -695,7 +695,7 @@ function botRepairGo():void {
 }
 
 //Suicide bullshit
-function suicideBullshit():void {
+public function suicideBullshit():void {
 	output("Rattled and damaged, even smoking somewhere, the machina wobbles closer to the earth. You relax a bit, thinking that this might be the robot’s final ‘death throes’. You’re quick to go back on the alert as the machine reaches into the brush with a grasping appendage, pulling out... a weapon?! You are not sure what sort it is, too dirty and masked by plants, but you don’t have a lot of time to figure out. The thick firearm explodes out in short order, sending a massive pellet your way!\n\n");
 
 	//insert miss chances, damage, etc
@@ -744,7 +744,7 @@ function suicideBullshit():void {
 //Victory!
 //SHIT YEAH I PRESS THAT BUTTON
 //looks kinda like a jelly fish
-function pushButtanOnMagicTedsFireRobot():void {
+public function pushButtanOnMagicTedsFireRobot():void {
 	author("Magic Ted");
 	userInterface.showBust("MACHINA");
 	userInterface.showName("\nMACHINA");
@@ -757,7 +757,7 @@ function pushButtanOnMagicTedsFireRobot():void {
 }
 
 //Defeat, bad end...
-function ohShitLoseToRobot():void {
+public function ohShitLoseToRobot():void {
 	author("Magic Ted");
 	userInterface.showBust("MACHINA");
 	userInterface.showName("\nMACHINA");

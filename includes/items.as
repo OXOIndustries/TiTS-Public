@@ -6,7 +6,7 @@ import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
 
-function useItem(item:ItemSlotClass):void {
+public function useItem(item:ItemSlotClass):void {
 	if (item.isUsable == false)
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
@@ -68,7 +68,7 @@ function useItem(item:ItemSlotClass):void {
 }
 
 // A call with just an item will 
-function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
+public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
 	// If we're looking at an equippable item, equip it
 	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
@@ -120,7 +120,7 @@ function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, using
 	else processCombat();
 }
 
-function shop(keeper:Creature):void {
+public function shop(keeper:Creature):void {
 	if(keeper is Geoff) {
 		mainGameMenu();
 		return;
@@ -159,7 +159,7 @@ function shop(keeper:Creature):void {
 	this.addButton(14,"Back",mainGameMenu);
 }
 
-function buyItem():void {
+public function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
 	var temp:Number = 0;
@@ -188,7 +188,7 @@ function buyItem():void {
 	this.addButton(14,"Back",shop,shopkeep);
 }
 
-function buyItemGo(arg:ItemSlotClass):void {
+public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	output("You purchase " + arg.description  + " for " + num2Text(price) + " credits.\n\n");
@@ -204,7 +204,7 @@ function buyItemGo(arg:ItemSlotClass):void {
 	itemCollect(purchasedItems);
 }
 
-function sellItem():void {
+public function sellItem():void {
 	clearOutput();
 	output(shopkeep.keeperSell);
 	this.clearMenu();
@@ -223,7 +223,7 @@ function sellItem():void {
 	this.addButton(14,"Back",shop,shopkeep);
 }
 
-function sellItemGo(arg:ItemSlotClass):void {
+public function sellItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	pc.credits += price;
@@ -234,20 +234,20 @@ function sellItemGo(arg:ItemSlotClass):void {
 	this.addButton(0,"Next",sellItem);
 }
 
-function getSellPrice(keeper:Creature,basePrice:Number):Number {
+public function getSellPrice(keeper:Creature,basePrice:Number):Number {
 	var sellPrice:Number = basePrice * keeper.buyMarkdown * pc.sellMarkup;
 	if(pc.hasPerk("Supply And Demand")) sellPrice *= 1.1;
 	sellPrice = Math.round(sellPrice);
 	return sellPrice;
 }
-function getBuyPrice(keeper:Creature,basePrice:Number):Number {
+public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	var buyPrice:Number = basePrice * keeper.sellMarkup * pc.buyMarkdown;
 	if(pc.hasPerk("Supply And Demand")) buyPrice *= .95;
 	buyPrice = Math.round(buyPrice);
 	return buyPrice;
 }
 
-function generalInventoryMenu():void
+public function generalInventoryMenu():void
 {
 	clearOutput();
 	var x:int = 0;
@@ -368,7 +368,7 @@ function generalInventoryMenu():void
 	this.addButton(14,"Back",mainGameMenu);
 }
 
-function combatInventoryMenu():void
+public function combatInventoryMenu():void
 {
 	clearOutput2();
 	clearGhostMenu();
@@ -385,7 +385,7 @@ function combatInventoryMenu():void
 	addButton(14, "Back", combatMainMenu);
 }
 
-function inventory():void 
+public function inventory():void 
 {
 	if (!inCombat())
 	{
@@ -398,7 +398,7 @@ function inventory():void
 }
 
 
-function unequip(arg:String, next:Boolean = true):void 
+public function unequip(arg:String, next:Boolean = true):void 
 {
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
@@ -436,7 +436,7 @@ function unequip(arg:String, next:Boolean = true):void
 }
 
 // atm, no equippable items have a stacksize > 1, so there is never a possibility that we'd have to split an item stack to equip an item the player holds in their inventory.
-function equipItem(arg:ItemSlotClass):void {
+public function equipItem(arg:ItemSlotClass):void {
 	var targetItem:ItemSlotClass;
 	var removedItem:ItemSlotClass;
 
@@ -587,7 +587,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	}
 }
 
-function discardItem(lootList:Array):void {
+public function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").");
 	lootList.splice(0,1);
@@ -596,7 +596,7 @@ function discardItem(lootList:Array):void {
 	else this.addButton(0,"Next",lootScreen);
 }
 
-function replaceItemPicker(lootList:Array):void {
+public function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("What will you replace?");
 	this.clearMenu();
@@ -610,7 +610,7 @@ function replaceItemPicker(lootList:Array):void {
 	this.addButton(14,"Back",itemCollect,true);
 }
 
-function useLoot(lootList:Array):void {
+public function useLoot(lootList:Array):void {
 	var loot:ItemSlotClass = lootList[0];
 	useItem(loot);
 	
@@ -624,14 +624,14 @@ function useLoot(lootList:Array):void {
 		itemCollect(lootList);
 	}
 }
-function abandonLoot(lootList:Array):void {
+public function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
 	this.clearMenu();
 	this.addButton(0,"Next",lootScreen);
 }
 
-function replaceItemGo(args:Array):void 
+public function replaceItemGo(args:Array):void 
 {
 	var indice:int = args[0];
 	var lootList:Array = args[1];
@@ -646,7 +646,7 @@ function replaceItemGo(args:Array):void
 		this.addButton(0,"Next",lootScreen);
 }
 
-function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
+public function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
 	var mergeCounter:int = 0;
 	
 	if (target.inventory.length >= 0 && target.inventory.length < target.inventorySlots())
@@ -677,7 +677,7 @@ function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
 	return false;
 }
 
-function hasShipStorage():Boolean
+public function hasShipStorage():Boolean
 {
 	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) return true;
 	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined) return true;
@@ -685,7 +685,7 @@ function hasShipStorage():Boolean
 	return false;
 }
 
-function shipStorageMenuRoot():void
+public function shipStorageMenuRoot():void
 {
 	clearMenu();
 	
@@ -706,7 +706,7 @@ const STORAGE_MODE_STORE:uint = 1 << 1;
 
 var _shipStorageMode:uint = STORAGE_MODE_TAKE;
 
-function shipStorageMenuType(type:String):void
+public function shipStorageMenuType(type:String):void
 {
 	clearOutput();
 	
@@ -722,13 +722,13 @@ function shipStorageMenuType(type:String):void
 	populateTakeMenu(items, type);
 }
 
-function shipStorageMode(args:Array):void
+public function shipStorageMode(args:Array):void
 {
 	_shipStorageMode = args[0];
 	shipStorageMenuType(args[1])
 }
 
-function populateTakeMenu(items:Array, type:String, func:Function = null):void
+public function populateTakeMenu(items:Array, type:String, func:Function = null):void
 {
 	var maxPerPage:int = 10;
 	var pgIdx:int = 0;
@@ -768,7 +768,7 @@ function populateTakeMenu(items:Array, type:String, func:Function = null):void
 	} while (menuInserts < pgIdx);
 }
 
-function getListOfType(from:Array, type:String):Array
+public function getListOfType(from:Array, type:String):Array
 {
 	var items:Array = [];
 	
@@ -807,7 +807,7 @@ function getListOfType(from:Array, type:String):Array
 	return items;
 }
 
-function outputStorageListForType(type:String):Array
+public function outputStorageListForType(type:String):Array
 {
 	var items:Array = getListOfType(pc.ShipStorageInventory, type);
 	
@@ -831,7 +831,7 @@ function outputStorageListForType(type:String):Array
 	return items;
 }
 
-function storeItem(args:Array):void
+public function storeItem(args:Array):void
 {
 	clearOutput();
 	
@@ -883,7 +883,7 @@ function storeItem(args:Array):void
 	return;
 }
 
-function replaceInStorage(args:Array):void
+public function replaceInStorage(args:Array):void
 {
 	var invItem:ItemSlotClass = args[0];
 	var type:String = args[1];
@@ -895,7 +895,7 @@ function replaceInStorage(args:Array):void
 	}
 }
 
-function doStorageReplace(args:Array):void
+public function doStorageReplace(args:Array):void
 {
 	var invItem:ItemSlotClass = args[0];
 	var tarItem:ItemSlotClass = args[1];
@@ -910,7 +910,7 @@ function doStorageReplace(args:Array):void
 	shipStorageMenuType(type);
 }
 
-function takeItem(args:Array):void
+public function takeItem(args:Array):void
 {
 	clearOutput();
 	
@@ -962,7 +962,7 @@ function takeItem(args:Array):void
 	shipStorageMenuType(type);
 }
 
-function replaceInInventory(args:Array):void
+public function replaceInInventory(args:Array):void
 {
 	var invItem:ItemSlotClass = args[0];
 	var type:String = args[1];
@@ -974,7 +974,7 @@ function replaceInInventory(args:Array):void
 	}
 }
 
-function doInventoryReplace(args:Array):void
+public function doInventoryReplace(args:Array):void
 {
 	var invItem:ItemSlotClass = args[0];
 	var tarItem:ItemSlotClass = args[1];

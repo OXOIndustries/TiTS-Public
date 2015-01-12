@@ -35,7 +35,7 @@ Repeating occurence
 
 
 
-function anonsBarWaitressAddendum():void {
+public function anonsBarWaitressAddendum():void {
 	if(flags["SEEN_SELLESY"] == undefined)
 	{
 		flags["SEEN_SELLESY"] = 1;
@@ -57,7 +57,7 @@ function anonsBarWaitressAddendum():void {
 }
 
 
-function anonsBarWaitressApproach():void {
+public function anonsBarWaitressApproach():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -94,7 +94,7 @@ function anonsBarWaitressApproach():void {
 
 //*********************************
 //1B. “First Drink”
-function firstDrinkFromSellesy(first:Boolean = true):void {
+public function firstDrinkFromSellesy(first:Boolean = true):void {
 	author("Mr. Writer");
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -132,14 +132,14 @@ function firstDrinkFromSellesy(first:Boolean = true):void {
 	else genderlessEpilogueForSellesy();
 }
 
-function genderlessEpilogueForSellesy():void {
+public function genderlessEpilogueForSellesy():void {
 	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured \"thank you.\"");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //[FOR MALES/HERMS] [See parentheses for editions which must be made based on character]
-function firstTimeWithSellesyForCocks():void {
+public function firstTimeWithSellesyForCocks():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -163,7 +163,7 @@ function firstTimeWithSellesyForCocks():void {
 	addButton(0,"Next",sellesyPostDrinkEpilogue);
 }
 //[FOR FEMALES]
-function firstTimeWithSellesyForVagoos():void {
+public function firstTimeWithSellesyForVagoos():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -178,7 +178,7 @@ function firstTimeWithSellesyForVagoos():void {
 
 //**************************
 //2B. “Having a drink”
-function repeatDrinkyDrink():void {
+public function repeatDrinkyDrink():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -190,7 +190,7 @@ function repeatDrinkyDrink():void {
 
 //*********
 //“After Drinking”
-function sellesyPostDrinkEpilogue():void {
+public function sellesyPostDrinkEpilogue():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -207,7 +207,7 @@ function sellesyPostDrinkEpilogue():void {
 	addButton(14,"Leave",mainGameMenu);
 }
 
-function stayWithSellesy():void {
+public function stayWithSellesy():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -242,7 +242,7 @@ function stayWithSellesy():void {
 }
 
 //[TITJOB - For Males/Herms any size cock]
-function titJobFromSellesy():void {
+public function titJobFromSellesy():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -300,7 +300,7 @@ function titJobFromSellesy():void {
 
 //
 //[TRIPLE FOOTJOB - For Males/Herms with BIG dicks, too big for her maximum of 24" length, 3"wide.] 
-function tripleFootjob():void {
+public function tripleFootjob():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
 	userInterface.showBust("SELLESY");
@@ -342,7 +342,7 @@ function tripleFootjob():void {
 //-F and H only, require vaginal wetness at least 2 higher than minimum
 //-quadruped-ready
 //-unavailable if balls > 18”
-function sellesyTribadismIsBadYoByZ():void
+public function sellesyTribadismIsBadYoByZ():void
 {
 	clearOutput();
 	author("Zeikfried");
@@ -613,7 +613,7 @@ function sellesyTribadismIsBadYoByZ():void
 //Sellesy-female scene 2 - 69(or not)
 //-F and U only
 //-off-limits to quadrupeds and nudists
-function ladyType69WithSellesy():void
+public function ladyType69WithSellesy():void
 {
 	clearOutput();
 	author("Zeikfried");

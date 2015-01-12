@@ -281,13 +281,13 @@ this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 */
 
-function showEmbry():void
+public function showEmbry():void
 {
 	showName("\nEMBRY");
 	showBust("EMBRY");
 	author("JimThermic");
 }
-function showSimii():void
+public function showSimii():void
 {
 	showEmbry();
 }
@@ -296,7 +296,7 @@ function showSimii():void
 //Meeting
 
 //First time
-function callWaitress():void
+public function callWaitress():void
 {
 	clearOutput();
 	showEmbry();
@@ -454,7 +454,7 @@ function callWaitress():void
 }
 
 
-function embryMenu():void
+public function embryMenu():void
 {
 	clearMenu();
 	//[Appearance] [Order] [Talk] [Tip] [Spend Time] 
@@ -499,7 +499,7 @@ function embryMenu():void
 }
 
 // Thank
-function thankSimiiSecondTime():void
+public function thankSimiiSecondTime():void
 {
 	clearOutput();
 	showSimii();
@@ -514,7 +514,7 @@ function thankSimiiSecondTime():void
 
 // Joke
 // + to Mischief. 
-function jokeAtEmbry():void
+public function jokeAtEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -527,7 +527,7 @@ function jokeAtEmbry():void
 
 // Mock
 // + to Hard
-function mockEmbryYouAss():void
+public function mockEmbryYouAss():void
 {
 	clearOutput();
 	showSimii();
@@ -539,7 +539,7 @@ function mockEmbryYouAss():void
 }
 
 // MERGE
-function secondTimeEmbryMeetingContinuation():void
+public function secondTimeEmbryMeetingContinuation():void
 {
 	output("\n\nSadly, in her attempt to leave, she doesn’t watch where she’s going, and collides into a myr customer. Both of them are sent sprawling to the floor. [embry.name] lands with her butt in the air, her long skirt flipped up to her ears.");
 	output("\n\nIt’s hard not to notice the girly panties flashed at you and her cute butt poking up in the air. There’s something off, though, between her leg. You realise she has a modest bulge where her female parts should be!");
@@ -557,7 +557,7 @@ function secondTimeEmbryMeetingContinuation():void
 }
 
 // Promise
-function promiseNotToTellNobodyAboutDatShemale():void
+public function promiseNotToTellNobodyAboutDatShemale():void
 {
 	clearOutput();
 	showSimii();
@@ -571,7 +571,7 @@ function promiseNotToTellNobodyAboutDatShemale():void
 
 // Don’t Promise
 // Gain Hard Points.
-function dontPromiseEmbryJackShit():void
+public function dontPromiseEmbryJackShit():void
 {
 	clearOutput();
 	showSimii();
@@ -586,7 +586,7 @@ function dontPromiseEmbryJackShit():void
 }
 
 //Appearance
-function embryAppearance():void
+public function embryAppearance():void
 {
 	clearOutput();
 	showSimii();
@@ -625,7 +625,7 @@ function embryAppearance():void
 }
 
 //Order
-function orderSumtinFrumEmbrah():void
+public function orderSumtinFrumEmbrah():void
 {
 	clearOutput();
 	showSimii();
@@ -655,7 +655,7 @@ function orderSumtinFrumEmbrah():void
 }
 
 //Talk 
-function talkToEmbry():void
+public function talkToEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -711,7 +711,7 @@ function talkToEmbry():void
 }
 
 //Embry
-function talkToEmbryAboutEmbry():void
+public function talkToEmbryAboutEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -726,7 +726,7 @@ function talkToEmbryAboutEmbry():void
 }
 
 //Simii
-function talkToEmbryAbootHerSpecies():void
+public function talkToEmbryAbootHerSpecies():void
 {
 	clearOutput();
 	showSimii();
@@ -744,7 +744,7 @@ function talkToEmbryAbootHerSpecies():void
 
 //Waitressing
 // Unlocks Myrellion topic.
-function waitressingWithEmbryTalk():void
+public function waitressingWithEmbryTalk():void
 {
 	clearOutput();
 	showSimii();
@@ -760,7 +760,7 @@ function waitressingWithEmbryTalk():void
 }
 
 //Myrellion
-function myrellionDiscussionWithEmbry():void
+public function myrellionDiscussionWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -775,7 +775,7 @@ function myrellionDiscussionWithEmbry():void
 }
 
 //Rocks
-function talkToEmbryAboutHerRocks():void
+public function talkToEmbryAboutHerRocks():void
 {
 	clearOutput();
 	flags["EMBRY_TALKED_ABOUT_ROCKS"] = 1;
@@ -789,7 +789,7 @@ function talkToEmbryAboutHerRocks():void
 }
 
 //Sewing
-function talkToEmbryAbootSewing():void
+public function talkToEmbryAbootSewing():void
 {
 	clearOutput();
 	showSimii();
@@ -814,7 +814,7 @@ function talkToEmbryAbootSewing():void
 
 //Omorii 
 // Unlocks ‘Family’ topic
-function talkToEmbryAboutOmarii():void
+public function talkToEmbryAboutOmarii():void
 {
 	flags["EMBRY_TALKED_ABOUT_OMARII"] = 1;
 	clearOutput();
@@ -832,7 +832,7 @@ function talkToEmbryAboutOmarii():void
 }
 
 //Family
-function talkToEmbryAboutHerFamiry():void
+public function talkToEmbryAboutHerFamiry():void
 {
 	clearOutput();
 	showSimii();
@@ -848,7 +848,7 @@ function talkToEmbryAboutHerFamiry():void
 }
 
 //Transitioning
-function talkToEmbryAboutTransitioning():void
+public function talkToEmbryAboutTransitioning():void
 {
 	clearOutput();
 	showSimii();
@@ -873,7 +873,7 @@ function talkToEmbryAboutTransitioning():void
 
 //Writing
 // Unlocks ‘Experience’ topic.
-function talkToEmbryAboutWriting():void
+public function talkToEmbryAboutWriting():void
 {
 	clearOutput();
 	showSimii();
@@ -895,7 +895,7 @@ function talkToEmbryAboutWriting():void
 
 //Experience
 // Locked off if embryRelationship = 3
-function talkToEmbryAboutExperience():void
+public function talkToEmbryAboutExperience():void
 {
 	clearOutput();
 	showSimii();
@@ -910,7 +910,7 @@ function talkToEmbryAboutExperience():void
 }
 
 // I Like You
-function iLikeYouEmbry():void
+public function iLikeYouEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -925,7 +925,7 @@ function iLikeYouEmbry():void
 }
 
 // Just Curious
-function justCuriousEmbry():void
+public function justCuriousEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -934,7 +934,7 @@ function justCuriousEmbry():void
 }
 
 // MERGE
-function justCuriousOrLikeEmbryWhateverFollowup():void
+public function justCuriousOrLikeEmbryWhateverFollowup():void
 {
 	output("\n\n“<i>... Um... that isn’t to say I won’t answer you though. I mean, since you’re interested.</i>” She peeks up at you through her bubblegum fringe, blinking at you shyly.");
 	output("\n\n<i>\"My experience is... none at all. Whatsoever. I’ve never been kissed, or even really hugged. So... yeah. I guess nobody wants to?</i>” she shrugs shyly. <i>\"I mean, I’m kind of stuck between sexes, so I’m not sure who’d go for... you know... this. What I am.</i>”");
@@ -950,7 +950,7 @@ function justCuriousOrLikeEmbryWhateverFollowup():void
 // Cannot tip any more if she’s already completed her transition. It’s just easier this way.
 // Every donation gives nice points.
 
-function tipEmbry():void
+public function tipEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -972,7 +972,7 @@ function tipEmbry():void
 }
 
 //1 Credit
-function tipEmbryASecondCreditYooCheapskate():void
+public function tipEmbryASecondCreditYooCheapskate():void
 {
 	clearOutput();
 	showSimii();
@@ -996,7 +996,7 @@ function tipEmbryASecondCreditYooCheapskate():void
 }
 
 //10 Credits
-function tipEmbryTenCredits():void
+public function tipEmbryTenCredits():void
 {
 	clearOutput();
 	showSimii();
@@ -1020,7 +1020,7 @@ function tipEmbryTenCredits():void
 }
 
 //500 Credits
-function tipEmbryFiveHunnahDorrah():void
+public function tipEmbryFiveHunnahDorrah():void
 {
 	clearOutput();
 	showSimii();
@@ -1046,7 +1046,7 @@ function tipEmbryFiveHunnahDorrah():void
 }
 
 
-function tipEmbryTwoThousandHundredDarrus():void
+public function tipEmbryTwoThousandHundredDarrus():void
 {
 	clearOutput();
 	showSimii();
@@ -1072,7 +1072,7 @@ function tipEmbryTwoThousandHundredDarrus():void
 }
 
 //5000 Credits
-function tipEmrbyFiveThousandCredits():void
+public function tipEmrbyFiveThousandCredits():void
 {
 	clearOutput();
 	showSimii();
@@ -1109,7 +1109,7 @@ function tipEmrbyFiveThousandCredits():void
 
 //Lover Version
 // if EmbryRelationship = 3
-function firstTransitionForEmbry():void
+public function firstTransitionForEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1135,7 +1135,7 @@ function firstTransitionForEmbry():void
 }
 
 //Decline
-function declineToWitnessEmbrysStuff():void
+public function declineToWitnessEmbrysStuff():void
 {
 	clearOutput();
 	showSimii();
@@ -1158,7 +1158,7 @@ function declineToWitnessEmbrysStuff():void
 }
 
 //Witness
-function witnessEmbrysGirlTF():void
+public function witnessEmbrysGirlTF():void
 {
 	clearOutput();
 	showSimii();
@@ -1193,7 +1193,7 @@ function witnessEmbrysGirlTF():void
 }
 
 // Hold Her
-function holdEmbryDuringFirstTFLoverMode():void
+public function holdEmbryDuringFirstTFLoverMode():void
 {
 	clearOutput();
 	showSimii();
@@ -1222,7 +1222,7 @@ function holdEmbryDuringFirstTFLoverMode():void
 
 // Look Away
 // If you look away, it also counts as ‘declined to witness’, and you don’t get to see her following TF scenes.
-function lookAwayFromEmbrysLoverTF():void
+public function lookAwayFromEmbrysLoverTF():void
 {
 	clearOutput();
 	showSimii();
@@ -1236,7 +1236,7 @@ function lookAwayFromEmbrysLoverTF():void
 }
 
 // MERGE
-function embryLoverTFEpilogue():void
+public function embryLoverTFEpilogue():void
 {
 	output("\n\n“<i>... I-I-I have boobs, and </i>cleavage<i>--!</i>” she excitedly cries, and continues to press them together as much as she can. “<i>... I can wear a bra, and not feel silly... and, oh my god, do I have CURVES? I need a mirror--!!</i>” she jumps up, then topples over towards you. Her body is weakened from transition stress, and her leg muscles have changed on her.");
 	output("\n\nYou catch the naked monkey girl in your arms. The second her tiny new breasts press against your chest, she lets out a loud moan, and goes bright red. “<i>... O-o-oh--oh wow, my nipples... they’re really sensitive...</i>” she murmurs. Her body is squirming, and even the slightest caress of her new buds makes her tremble with delight. <i>\"Ahnnn--! Is, is this normal?</i>”");
@@ -1250,7 +1250,7 @@ function embryLoverTFEpilogue():void
 //Not Lover / Lover & Declined To Witness
 // if EmbryRelationship != 3, or refused to witness/turned away in the Lover Scene variant.
 //Played on next approach if flags["DIDNT_WATCH_EMBRY_TF"] == 1;
-function notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain():void
+public function notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain():void
 {
 	clearOutput();
 	showSimii();
@@ -1284,7 +1284,7 @@ function notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain():void
 }
 
 //Second Transition Approach
-function approachEmbrysSecondTransition():void
+public function approachEmbrysSecondTransition():void
 {
 	clearOutput();
 	showSimii();
@@ -1314,7 +1314,7 @@ function approachEmbrysSecondTransition():void
 }
 
 //New Outfit / Name Change Scene
-function newOutFitSlashNameChanguuuuu():void
+public function newOutFitSlashNameChanguuuuu():void
 {
 	clearOutput();
 	showSimii();
@@ -1350,7 +1350,7 @@ function newOutFitSlashNameChanguuuuu():void
 }
 
 //=[Tell Embry]=
-function tellEmbryAboutAMangyMutt():void
+public function tellEmbryAboutAMangyMutt():void
 {
 	clearOutput();
 	showSimii();
@@ -1362,7 +1362,7 @@ function tellEmbryAboutAMangyMutt():void
 }
 
 //=[Ignore]=
-function ignoreDatAusarAndEmbrysAss():void
+public function ignoreDatAusarAndEmbrysAss():void
 {
 	clearOutput();
 	showSimii();
@@ -1373,7 +1373,7 @@ function ignoreDatAusarAndEmbrysAss():void
 }
 
 //=[Confront Them]=
-function confrontDatSlovenlyAusar():void
+public function confrontDatSlovenlyAusar():void
 {
 	clearOutput();
 	showSimii();
@@ -1407,7 +1407,7 @@ function confrontDatSlovenlyAusar():void
 }
 
 // Merge
-function literallyAnyOtherFunctionName():void
+public function literallyAnyOtherFunctionName():void
 {
 	output("\n\n<i>\"T-thank you. Again. I owe you so much, and I don’t think I can ever repay you. Literally, in fact,</i>” she sighs, and continues. <i>\"I don’t make enough as a waitress to come even close! What you’ve done means the </i>world<i> to me.</i>”");
 	output("\n\nEmbry toys with the tip of her tail, and then gives you a meaningful look. “<i>... Actually, now that I’m almost entirely a girl, I was thinking about changing my name. You know, from Embry. Something a bit more feminine, you know--? Make a fresh start of things.</i>”");
@@ -1427,7 +1427,7 @@ function literallyAnyOtherFunctionName():void
 }
 
 //= [Any Name But Embry] =
-function pickEmbrysNewName(arg:String = ""):void
+public function pickEmbrysNewName(arg:String = ""):void
 {
 	clearOutput();
 	showSimii();
@@ -1438,7 +1438,7 @@ function pickEmbrysNewName(arg:String = ""):void
 }
 
 //=[Stay As Embry]=
-function stayAsEmbry():void
+public function stayAsEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1451,7 +1451,7 @@ function stayAsEmbry():void
 	chooseANewNameEmbryFinal();
 }
 //=[Your Call]=
-function youPickYerNameBabe():void
+public function youPickYerNameBabe():void
 {
 	clearOutput();
 	showSimii();
@@ -1463,7 +1463,7 @@ function youPickYerNameBabe():void
 }
 
 // Merge
-function chooseANewNameEmbryFinal():void
+public function chooseANewNameEmbryFinal():void
 {
 	output("\n\nShe leans over, and ");
 	if(flags["EMBRY_RELATIONSHIP"] != 3) output("kisses you on the cheek.");
@@ -1477,7 +1477,7 @@ function chooseANewNameEmbryFinal():void
 }
 
 //Third Transition Approach
-function thirdEmbryTransitionApproach():void
+public function thirdEmbryTransitionApproach():void
 {
 	clearOutput();
 	showSimii();
@@ -1526,7 +1526,7 @@ function thirdEmbryTransitionApproach():void
 }
 
 //=[Hnng, Glasses!]=
-function hunnnnnnnngGlasses():void
+public function hunnnnnnnngGlasses():void
 {
 	clearOutput();
 	showSimii();
@@ -1560,7 +1560,7 @@ function hunnnnnnnngGlasses():void
 //=[Fair Enough]=
 // No unique dialogue for Fair Enough. Just skips straight to merge.
 // MERGE
-function doneWivGlassesChatGuvnah():void
+public function doneWivGlassesChatGuvnah():void
 {
 	clearOutput();
 	showSimii();
@@ -1617,7 +1617,7 @@ function doneWivGlassesChatGuvnah():void
 
 //Spend Time
 // Only an option after finding out she’s trans.
-function spendTimeWithEmbry():void
+public function spendTimeWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1711,7 +1711,7 @@ function spendTimeWithEmbry():void
 }
 
 //Acquaintances
-function beAcquaintancesWithEmbry():void
+public function beAcquaintancesWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1725,7 +1725,7 @@ function beAcquaintancesWithEmbry():void
 }
 
 //Just Friends
-function justBeFriendsWivEmbrah():void
+public function justBeFriendsWivEmbrah():void
 {
 	clearOutput();
 	showSimii();
@@ -1740,7 +1740,7 @@ function justBeFriendsWivEmbrah():void
 }
 
 //Fuck Buddies
-function beFuckBuddiesWithEmbry():void
+public function beFuckBuddiesWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1757,7 +1757,7 @@ function beFuckBuddiesWithEmbry():void
 
 //Kiss Her
 // ‘Lover’ flag. Changes the Tip dialogue. Set EmbryRelationship = 3 (Lovers)
-function kissEmbry():void
+public function kissEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1810,7 +1810,7 @@ function kissEmbry():void
 }
 
 // Like Cock
-function likeCockForEmbry():void
+public function likeCockForEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1825,7 +1825,7 @@ function likeCockForEmbry():void
 }
 
 // Dislike Cock
-function dislikeCockEmbry():void
+public function dislikeCockEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1843,7 +1843,7 @@ function dislikeCockEmbry():void
 }
 
 // Agree
-function agreeToGetRidOfCock():void
+public function agreeToGetRidOfCock():void
 {
 	clearOutput();
 	showSimii();
@@ -1853,7 +1853,7 @@ function agreeToGetRidOfCock():void
 }
 
 // Alternatives!
-function talkToEmbryAboutAlternatives():void
+public function talkToEmbryAboutAlternatives():void
 {
 	clearOutput();
 	showSimii();
@@ -1867,7 +1867,7 @@ function talkToEmbryAboutAlternatives():void
 }
 
 // MERGE 
-function mergeSomeShitTogetherIunno(agreed:Boolean = false):void
+public function mergeSomeShitTogetherIunno(agreed:Boolean = false):void
 {
 	output("\n\n");
 	if(agreed) output("You nod, and you both");
@@ -1881,7 +1881,7 @@ function mergeSomeShitTogetherIunno(agreed:Boolean = false):void
 }
 
 //=[AllTheTime]=
-function allTheTimeAlcoholismDRINKDRINKSHOTSHOTSSHOTS():void
+public function allTheTimeAlcoholismDRINKDRINKSHOTSHOTSSHOTS():void
 {
 	clearOutput();
 	showSimii();
@@ -1890,7 +1890,7 @@ function allTheTimeAlcoholismDRINKDRINKSHOTSHOTSSHOTS():void
 }
 
 //=[Occasionally]=
-function occasionallyIDrinKEmbry():void
+public function occasionallyIDrinKEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1899,7 +1899,7 @@ function occasionallyIDrinKEmbry():void
 }
 
 //=[DontDrink]=
-function IDontDrinkEmbry():void
+public function IDontDrinkEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1908,7 +1908,7 @@ function IDontDrinkEmbry():void
 }
 
 // Merge
-function drinkEpilogueWithSimii():void
+public function drinkEpilogueWithSimii():void
 {
 	output("\n\n<i>\"We simii can’t really get tipsy off regular alcohol anyway - our body breaks it down too fast. If you ever end up in a tavern on Omorii, my home planet, the drinks there knock most off-worlder’s socks off,</i>” she tells you, sipping her raspberry tea. “<i>... A lot of simii bartenders will still serve it to travellers, though, because they find it funny to watch.</i>”");
 	output("\n\n“<i>... Wouldn’t they die of alcohol poisoning?</i>” you ask. If it’s that powerful, they’d probably need their stomach - or stomachs - pumped afterwards.");
@@ -1920,7 +1920,7 @@ function drinkEpilogueWithSimii():void
 }
 
 //=[For You]= 
-function tellEmbrahYourHereForHer():void
+public function tellEmbrahYourHereForHer():void
 {
 	clearOutput();
 	showSimii();
@@ -1931,7 +1931,7 @@ function tellEmbrahYourHereForHer():void
 }
 
 //=[Journey]=
-function journeyStuffForEmbry():void
+public function journeyStuffForEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1940,7 +1940,7 @@ function journeyStuffForEmbry():void
 }
 
 //=[Adventure]=
-function adventureWithEmbryTalk():void
+public function adventureWithEmbryTalk():void
 {
 	clearOutput();
 	showSimii();
@@ -1950,7 +1950,7 @@ function adventureWithEmbryTalk():void
 }
 
 //=[TheDrinks]=
-function theDrinksEmbryTHEDRINKS():void
+public function theDrinksEmbryTHEDRINKS():void
 {
 	clearOutput();
 	showSimii();
@@ -1959,7 +1959,7 @@ function theDrinksEmbryTHEDRINKS():void
 }
 
 //=[Sex]=
-function lookingForSexEmbry():void
+public function lookingForSexEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1969,7 +1969,7 @@ function lookingForSexEmbry():void
 }
 
 // MERGE ALL
-function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
+public function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
 {
 	output("\n\nShe looks up at the roof with a reminiscent look in her eyes. “<i>... You know... there’s a big mine not far from where I used to live, back on Omorii. It’s owned by Steele Industrial Technology and Production, but run and operated by locals. We call it the ‘Big Steele’ mine.</i>”");
 	output("\n\n<i>\"Most people who aren’t farmers on Omorii are miners. One of my uncles - my father’s brother - is actually a foreman in the mine. And here I am, talking to [pc.name]. Small galaxy, huh?</i>”");
@@ -1981,7 +1981,7 @@ function mergeSomeEmbryStuffIDontEvenKnowAnymore():void
 }
 
 //=[Monogamous]=
-function monogamousEmbry():void
+public function monogamousEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -1995,7 +1995,7 @@ function monogamousEmbry():void
 }
 
 //=[Open Relationship or Polyamorous]=
-function openRelationshipWithKiro(poly:Boolean):void
+public function openRelationshipWithKiro(poly:Boolean):void
 {
 	clearOutput();
 	showSimii();
@@ -2020,7 +2020,7 @@ function openRelationshipWithKiro(poly:Boolean):void
 }
 
 //=[Harem Alpha]=
-function haremAlphaStuff():void
+public function haremAlphaStuff():void
 {
 	clearOutput();
 	showSimii();
@@ -2033,7 +2033,7 @@ function haremAlphaStuff():void
 	embryRelationshipChoiceEpilogue();
 }
 
-function embryRelationshipChoiceEpilogue():void
+public function embryRelationshipChoiceEpilogue():void
 {
 	output("\n\nAfter a little way, the two of you part ways, leaving you to walk back to the bar with a smile.");
 	processTime(22);
@@ -2043,7 +2043,7 @@ function embryRelationshipChoiceEpilogue():void
 
 //Lovers, After Third Transition (Once Off)
 // Once-off date after third and final transition. Must be lover and have watched all the talk topics. Must have seen all the other ‘spend time’ events. Does not matter if transitions were witnessed or not.
-function loversSceneOneOff():void
+public function loversSceneOneOff():void
 {
 	clearOutput();
 	showSimii();
@@ -2088,7 +2088,7 @@ function loversSceneOneOff():void
 //=[I Love You]= 
 // D’awww.
 // if she’s shorter or equally as tall as you
-function IWubWoo():void
+public function IWubWoo():void
 {
 	clearOutput();
 	showSimii();
@@ -2105,7 +2105,7 @@ function IWubWoo():void
 }
 
 //=[Kiss Her]=
-function kissEmbryWhyNot():void
+public function kissEmbryWhyNot():void
 {
 	clearOutput();
 	showSimii();
@@ -2115,7 +2115,7 @@ function kissEmbryWhyNot():void
 }
 
 // MERGE I<3Y & KISS HER
-function IHeartAndKissHer():void
+public function IHeartAndKissHer():void
 {
 	output("\n\nYou pull your mouth away from that of your pink haired lover. Her eyes are deliciously spaced out. She runs her fingers along your chest, looking completely lost on what to say next.");
 	output("\n\n<i>\"Uhm... that was... y-yeah, I liked that,</i>” she blushes, and then looks up at you ");
@@ -2136,7 +2136,7 @@ function IHeartAndKissHer():void
 	addButton(0,"Next",vagisilSexForEmbry,true);
 }
 
-function iDontLoveYouEmbry():void
+public function iDontLoveYouEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -2154,7 +2154,7 @@ function iDontLoveYouEmbry():void
 }
 
 //Sex Scenes
-function embrySexMenu():void
+public function embrySexMenu():void
 {
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Blowjob",blowjorbsFromEmbry,undefined,"Blowjob","Get a blowjob from Embry.");
@@ -2181,7 +2181,7 @@ function embrySexMenu():void
 //Blowjob
 // PC must have cock.
 // There are bracketed sections with first time dialogue and alternative dialogue for repeat scenes.
-function blowjorbsFromEmbry():void
+public function blowjorbsFromEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -2283,7 +2283,7 @@ function blowjorbsFromEmbry():void
 //Cunnilingus
 // PC must have a pussy
 // There are bracketed sections with first time dialogue and alternative dialogue for repeat scenes.
-function cunnilingusWithEmbry():void
+public function cunnilingusWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -2343,7 +2343,7 @@ function cunnilingusWithEmbry():void
 //Analingus
 // You just need an ass, son, that’s all. Fucking neuters.
 // There are bracketed sections with first time dialogue and alternative dialogue for repeat scenes.
-function analingusWithEmbry():void
+public function analingusWithEmbry():void
 {
 	clearOutput();
 	showSimii();
@@ -2411,7 +2411,7 @@ function analingusWithEmbry():void
 
 //Breast Massage
 // [embry.name] must have transitioned at least once / She must have breasts
-function breastMassageScene4Embrah():void
+public function breastMassageScene4Embrah():void
 {
 	clearOutput();
 	showSimii();
@@ -2483,7 +2483,7 @@ function breastMassageScene4Embrah():void
 
 //Anal Sex
 // [embry.name] must have undergone her second transition.
-function embryAnalSex():void
+public function embryAnalSex():void
 {
 	clearOutput();
 	showSimii();
@@ -2735,7 +2735,7 @@ function embryAnalSex():void
 
 //Vaginal Sex
 // This scene is first viewed through a ‘Spend Time’ scene. The repeat / non virgin version is accessed through the normal sex menu.
-function vagisilSexForEmbry(spentTime:Boolean = false):void
+public function vagisilSexForEmbry(spentTime:Boolean = false):void
 {
 	clearOutput();
 	// If seen Embry’s Vaginal Sex ‘Spend Time’ scene/ [embry.name] is not a virgin / Accessing through sex menu

@@ -3,7 +3,7 @@
 // Flags:
 // TIMES_LOST_TO_ZIL  : TODO - FIXME
 
-function maleZilEncounter():void {
+public function maleZilEncounter():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("FIGHT\nZIL");
 	//[First Time]
@@ -40,7 +40,7 @@ Combat Techniques:
 */
 
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
-function zilMaleAI():void {
+public function zilMaleAI():void {
 	//Physical attacks
 	//trace("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
 	//trace("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
@@ -61,7 +61,7 @@ function zilMaleAI():void {
 
 
 //Crotch Grind:
-function zilCrotchGrind():void {
+public function zilCrotchGrind():void {
 	output("Zipping forward, the zil brings his ");
 	if(foes[0].lust() < 33) output("sensitive");
 	else if(foes[0].lust() <= 66) output("stiff");
@@ -82,7 +82,7 @@ function zilCrotchGrind():void {
 }
 
 //Pheromone Fan:
-function zilPheromoneFan():void {
+public function zilPheromoneFan():void {
 	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air your direction. He floats up high and flies erratically enough that you doubt you could hit him. There's nothing to do but try and hold your breath!");
 	//{Moderate toughness check pass}
 	if(pc.physique() + rand(20) + 1 > 20) {
@@ -106,7 +106,7 @@ function zilPheromoneFan():void {
 
 //Honey Drip:
 //Fly by pre-cum dripping!
-function zilHoneyDrip():void {
+public function zilHoneyDrip():void {
 	output("Zipping high into the air, the Zil begins to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
 	pc.lust(5+pc.libido()/20);
 	processCombat();
@@ -116,7 +116,7 @@ function zilHoneyDrip():void {
 //3x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
 //Flurry of Blows:
 //5x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
-function flurryOfBlows():void {
+public function flurryOfBlows():void {
 	output("The zil launches a flurry of blows in your direction!\n");
 	attack(foes[0],pc,true,1);
 	output("\n");
@@ -126,7 +126,7 @@ function flurryOfBlows():void {
 }
 //Flying Spinkick:
 //Stuns the PC.
-function zilFlyingSpinKickSingle():void {
+public function zilFlyingSpinKickSingle():void {
 	var target:Creature = pc;
 	var attacker:Creature = foes[0];
 	output("An irritated snarl crosses the alien's smooth lips, and he launches himself towards you. His body pivots in mid-air, accelerated by his wings, and he snaps his heel out towards your face at the last second.");
@@ -172,7 +172,7 @@ function zilFlyingSpinKickSingle():void {
 	
 //Zip-Drop:
 //Grabs and drops you (lightish PCs only)
-function zilDrop():void {
+public function zilDrop():void {
 	output("The zil lowers his shoulder and charges at you, but it's a feint! He diverts at the last second and makes to grab you under the arms as he passes.");
 	if (combatMiss(foes[0],pc)) 
 	{
@@ -207,7 +207,7 @@ function zilDrop():void {
 }
 //Harden:
 //Buffs kinetic defenses?
-function zilHardenSingle():void {
+public function zilHardenSingle():void {
 	output("Closing his onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 	foes[0].resistances[GLOBAL.KINETIC] *= .8;
 	foes[0].resistances[GLOBAL.SLASHING] *= .8;
@@ -216,7 +216,7 @@ function zilHardenSingle():void {
 }
 	
 //*Win Scenes:
-function winVsZil():void {
+public function winVsZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//{HP:} 
@@ -268,7 +268,7 @@ function winVsZil():void {
 }
 
 //*Butt Fuck Him
-function buttfuckDefeatedZil():void {
+public function buttfuckDefeatedZil():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -394,7 +394,7 @@ function buttfuckDefeatedZil():void {
 
 //*Ride His Cock
 //To cumfinity, and beyond!
-function rideDatZilCawk():void {
+public function rideDatZilCawk():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -533,7 +533,7 @@ function rideDatZilCawk():void {
 
 //*Footjob scene - Req's humanlike feetsies
 //(By Miesha)
-function giveTheZilAFootjob():void {
+public function giveTheZilAFootjob():void {
 	clearOutput();
 	author("Miesha");
 	userInterface.showBust("ZIL");
@@ -567,7 +567,7 @@ function giveTheZilAFootjob():void {
 //(By Alkahest) (If this needs to be edited, I will do so. Lemme know your opinion plz)
 //Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 //Reqs loss suck some.
-function alkahestsForeskinOralPlay():void {
+public function alkahestsForeskinOralPlay():void {
 	clearOutput();	
 	author("Alkahest");
 	userInterface.showBust("ZIL");
@@ -669,7 +669,7 @@ function alkahestsForeskinOralPlay():void {
 }
 
 //{IF DICK}
-function foreskinWorshipCumWithDick():void {
+public function foreskinWorshipCumWithDick():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -712,7 +712,7 @@ function foreskinWorshipCumWithDick():void {
 	//{ENDIF}
 }
 //{IF PUSSY}
-function foreskinWorshipWithPussyCum():void {
+public function foreskinWorshipWithPussyCum():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -722,7 +722,7 @@ function foreskinWorshipWithPussyCum():void {
 }
 
 //{IF NIPPLECOCKS}
-function foreskinWorshipWithNippleCocks():void {
+public function foreskinWorshipWithNippleCocks():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -739,17 +739,17 @@ function foreskinWorshipWithNippleCocks():void {
 
 //{END PLAYER ORGASMY STUFF HERE}
 //(If you came on the zil)
-function foreskinPlayJizzOnZil():void {
+public function foreskinPlayJizzOnZil():void {
 	output("\n\nYou take in the appearance of your conquered foe with a sigh of satisfaction. He’s coated from head to toe in a mixture of his golden cum and your own emissions. He lays curled up in a post-orgasmic haze, fingering both his asshole and foreskin, smearing the sweet milky mixture of your and his sexual fluids all over his body, periodically pausing to suck the fluids from his fingers.");
 	zilForeSkinPlayOutro();
 }
 //(If you did not come on the zil)
-function didntCumOnZilForeskinPlay():void {
+public function didntCumOnZilForeskinPlay():void {
 	output("\n\nYou look at your defeated enemy with a satisfied smirk. The little wasp-boy lays curled up on the ground in a post orgasmic haze, idly fingering his foreskin and asshole.");
 	zilForeSkinPlayOutro();
 }
 
-function zilForeSkinPlayOutro():void {
+public function zilForeSkinPlayOutro():void {
 	//{COMBINED}
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -759,7 +759,7 @@ function zilForeSkinPlayOutro():void {
 	genericVictory();
 }
 //*Tailcock Peg Him
-function tailCockPegTheZil():void {
+public function tailCockPegTheZil():void {
 
 	clearOutput();
 	userInterface.showBust("ZIL");
@@ -822,7 +822,7 @@ function tailCockPegTheZil():void {
 	genericVictory();
 }
 
-function zilLossRouter():void {
+public function zilLossRouter():void {
 	if(flags["TIMES_LOST_TO_ZIL"] == undefined) flags["TIMES_LOST_TO_ZIL"] = 1;
 	else flags["TIMES_LOST_TO_ZIL"]++;
 	var choices:Array = new Array();
@@ -839,7 +839,7 @@ function zilLossRouter():void {
 
 //Loss Scenes:
 //*Swallow.
-function swallowDatZilCockCauseJooLost():void {
+public function swallowDatZilCockCauseJooLost():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] == undefined) flags["TIMES_LOSS_SUCKED_ZIL_MALE"] = 1;
@@ -879,7 +879,7 @@ function swallowDatZilCockCauseJooLost():void {
 }
 
 //*Get Bred.
-function getBredByZil():void {
+public function getBredByZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	if(pc.HP() <= 0) {
@@ -1001,7 +1001,7 @@ function getBredByZil():void {
 	genericLoss();
 }
 //*Get tailpussy fucked.
-function getTailPussyFuckedByZil():void {
+public function getTailPussyFuckedByZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	if(pc.HP() <= 0) output("Falling over from from the beating you've taken");
@@ -1100,7 +1100,7 @@ function getTailPussyFuckedByZil():void {
 	pc.loadInCuntTail(chars["ZIL"]);
 	addButton(0,"Next",tailPussyFuckZilEpilogue);
 }
-function tailPussyFuckZilEpilogue():void {
+public function tailPussyFuckZilEpilogue():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
@@ -1111,7 +1111,7 @@ function tailPussyFuckZilEpilogue():void {
 	genericLoss();
 }
 //*Apparently Dudes Can't Peg Other Dudes:
-function zilSticksItInYourBoot():void {
+public function zilSticksItInYourBoot():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//(HP Loss) 
@@ -1209,7 +1209,7 @@ function zilSticksItInYourBoot():void {
 	
 //The Zil Pretend to be Helia
 //Not for pussy virgins or folks with no pussy who are buttvirgins.
-function theZilPretendToBeHelia():void {
+public function theZilPretendToBeHelia():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//(Lose by HP)

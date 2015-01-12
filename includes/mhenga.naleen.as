@@ -14,7 +14,7 @@
 // TIMES_MET_NALEEN             : Total number of PC's encounters with Naleen.
 // TIMES_LOSS_DOMMED_BY_NALEEN  : Times the PC has been dominated by Naleed after losing in combat.
 
-function naleenSexed(won:Boolean = true):void {
+public function naleenSexed(won:Boolean = true):void {
 	if (won)
 	{
 		if(flags["TIMES_WINSEXED_NALEEN"] == undefined) flags["TIMES_WINSEXED_NALEEN"] = 0;
@@ -27,13 +27,13 @@ function naleenSexed(won:Boolean = true):void {
 	}
 }
 
-function totalNaleenSexCount():int {
+public function totalNaleenSexCount():int {
 	if(flags["TIMES_WINSEXED_NALEEN"] == undefined) flags["TIMES_WINSEXED_NALEEN"] = 0;
 	if(flags["TIMES_LOSS_DOMMED_BY_NALEEN"] == undefined) flags["TIMES_LOSS_DOMMED_BY_NALEEN"] = 0;
 	return flags["TIMES_LOSS_DOMMED_BY_NALEEN"] + flags["TIMES_WINSEXED_NALEEN"];
 }
 
-function encounterNaleen():void {
+public function encounterNaleen():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("FIGHT:\nNALEEN");
 	author("Savin");
@@ -79,7 +79,7 @@ function encounterNaleen():void {
 
 //Double Attack
 // two light physical attacks.
-function naleenDoubleAttack():void {
+public function naleenDoubleAttack():void {
 	author("Savin");
 	output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
 	attack(foes[0],pc,false,0);
@@ -89,7 +89,7 @@ function naleenDoubleAttack():void {
 
 //Constrict
 //Grapple, must struggle to escape. Damage over time if fail.
-function naleenConstrict():void {
+public function naleenConstrict():void {
 	author("Savin");
 	if(!pc.hasStatusEffect("Naleen Coiled"))
 	{
@@ -126,7 +126,7 @@ function naleenConstrict():void {
 	processCombat();
 }
 
-function naleenStruggle():void {
+public function naleenStruggle():void {
 	clearOutput();
 	author("Savin");
 	if(pc.hasPerk("Escape Artist"))
@@ -158,7 +158,7 @@ function naleenStruggle():void {
 //Bite Attack (Paralytic Venom)
 //Low chance of use; increases with foe HP drop or if foe is constricted. 
 //REQ'S NO SHIELDS!
-function biteAttack():void {
+public function biteAttack():void {
 	author("Savin");
 	var attacker:Creature = foes[0];
 	output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost seen the glint of venom on her fangs!");
@@ -186,7 +186,7 @@ function biteAttack():void {
 	processCombat();
 }
 
-function naleenAI():void {
+public function naleenAI():void {
 	//Low chance of constrict and bite. Bite only when unshielded. 
 	//High bite chance once constricted and unshielded.
 	if(pc.statusEffectv1("Round") % 5 == 0) naleenConstrict();
@@ -199,7 +199,7 @@ function naleenAI():void {
 }
 
 //PC loses like a bitch
-function pcLosesToNaleenLiekABitch():void {
+public function pcLosesToNaleenLiekABitch():void {
 	author("Savin");
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -227,7 +227,7 @@ function pcLosesToNaleenLiekABitch():void {
 }
 
 //Dick Version -- Naleen's personal fuckstick
-function naleenFucksBoysScene():void {
+public function naleenFucksBoysScene():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -303,7 +303,7 @@ function naleenFucksBoysScene():void {
 }
 
 //No Dick Version: Revenge of the Tail-pegging
-function ohNoNoCawkNaleenLoss():void {
+public function ohNoNoCawkNaleenLoss():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -359,7 +359,7 @@ function ohNoNoCawkNaleenLoss():void {
 }
 
 //PC Defeats Kitty-Naga
-function beatDatCatNaga():void {
+public function beatDatCatNaga():void {
 	author("Savin");
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -411,7 +411,7 @@ Breastfeed (if Milky TiTS)
 */
 
 //Titfuck
-function naleenTitFuck():void {
+public function naleenTitFuck():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -460,7 +460,7 @@ function naleenTitFuck():void {
 //Breastfeed
 // Needs Breastmilky-PC
 //Actual milk too. Lactating latex won't cut it.
-function feedDatNaleenSumMilk():void {
+public function feedDatNaleenSumMilk():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -521,7 +521,7 @@ function feedDatNaleenSumMilk():void {
 
 //Bend Her Over (+DP)
 //{For PCs with 1+ dicks}
-function bendNaleenOver():void {
+public function bendNaleenOver():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -647,7 +647,7 @@ function bendNaleenOver():void {
 }
 //Tail-pegging
 //Requires at least a cunt or dick.
-function obligatorySavinTailPegging():void {
+public function obligatorySavinTailPegging():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -738,7 +738,7 @@ function obligatorySavinTailPegging():void {
 	addButton(0,"Next",tailpeggingNaleenPartII);
 }
 
-function tailpeggingNaleenPartII():void {
+public function tailpeggingNaleenPartII():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -751,7 +751,7 @@ function tailpeggingNaleenPartII():void {
 //Naleen Night-time Cuddles
 //Requires the PC to have fought the naleen at least five times. Chance to encounter when the PC is in the forest in the late afternoon -> night time. Chance = Fatigue / 2?
 //Proc at 11 PM in the jungle!
-function naleenNightCuddles():void {
+public function naleenNightCuddles():void {
 	author("Savin");
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -771,7 +771,7 @@ function naleenNightCuddles():void {
 	addButton(1,"No",noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo);
 }
 //No, thanks
-function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
+public function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -785,7 +785,7 @@ function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
 }
 	
 //Awesome!
-function yesSnuggleWifZatNaleen():void {
+public function yesSnuggleWifZatNaleen():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -834,7 +834,7 @@ function yesSnuggleWifZatNaleen():void {
 }
 
 //[NEXT]
-function finishNaleenSnuggles():void {
+public function finishNaleenSnuggles():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
@@ -866,7 +866,7 @@ function finishNaleenSnuggles():void {
  //Naleen - PC Victory Scene 
 //(Get Blown)
 //[if(pc.libido >= 60) “You could give into your lust and force the defeated naleen to blow you, although her unusual lower-half might lead to unintended mishaps.”] 
-function pcGetsABlowjobThatTurnsIntoButtSmex():void
+public function pcGetsABlowjobThatTurnsIntoButtSmex():void
 {
 	clearOutput();
 	userInterface.showBust("NALEEN");
@@ -886,7 +886,7 @@ function pcGetsABlowjobThatTurnsIntoButtSmex():void
 	clearMenu();
 	addButton(0,"Next",naleenReverseBJPart2);
 }
-function naleenReverseBJPart2():void
+public function naleenReverseBJPart2():void
 {
 	clearOutput();
 	userInterface.showBust("NALEEN");
@@ -907,7 +907,7 @@ function naleenReverseBJPart2():void
 	clearMenu();
 	addButton(0,"Next",naleenReverseBJPart3);
 }
-function naleenReverseBJPart3():void
+public function naleenReverseBJPart3():void
 {
 	clearOutput();
 	userInterface.showBust("NALEEN");
@@ -930,7 +930,7 @@ function naleenReverseBJPart3():void
 	addButton(0,"Next",naleenReverseBJPart4);
 }
 
-function naleenReverseBJPart4():void
+public function naleenReverseBJPart4():void
 {
 	clearOutput();
 	userInterface.showBust("NALEEN");

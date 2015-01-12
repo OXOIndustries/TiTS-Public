@@ -31,7 +31,7 @@ Doesn’t like auto-translators. Is teaching herself English to better function 
 
 //Room Appearance Blurbs
 
-function showLyralla():void
+public function showLyralla():void
 {
 	showName("\nLYRALLA");
 	showBust("LYRALLA");
@@ -39,7 +39,7 @@ function showLyralla():void
 }
 
 //Approaching Lyralla
-function approachingLyralla(backFromMenu:Boolean = false):void
+public function approachingLyralla(backFromMenu:Boolean = false):void
 {
 	clearOutput();
 	showLyralla();
@@ -85,7 +85,7 @@ function approachingLyralla(backFromMenu:Boolean = false):void
 	lyrallaMainMenu();
 }
 
-function lyrallaMainMenu():void
+public function lyrallaMainMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",lyrallaAppearance);
@@ -94,7 +94,7 @@ function lyrallaMainMenu():void
 }
 
 //Appearance
-function lyrallaAppearance():void
+public function lyrallaAppearance():void
 {
 	clearOutput();
 	showLyralla();
@@ -107,7 +107,7 @@ function lyrallaAppearance():void
 }
 
 //Talk
-function lyrallaTalks():void
+public function lyrallaTalks():void
 {
 	clearOutput();
 	showLyralla();
@@ -128,7 +128,7 @@ function lyrallaTalks():void
 	lyrallaTalkMenu();
 }
 
-function lyrallaTalkMenu(functionFrom = undefined):void
+public function lyrallaTalkMenu(functionFrom = undefined):void
 {
 	clearMenu();
 	//What Happened
@@ -156,7 +156,7 @@ function lyrallaTalkMenu(functionFrom = undefined):void
 
 //What Happened
 //Tooltip: “Ask her what happened to her and how she wound up here.”
-function whatHappenedToGetYouHereLyralla():void
+public function whatHappenedToGetYouHereLyralla():void
 {
 	clearOutput();
 	showLyralla();
@@ -200,7 +200,7 @@ function whatHappenedToGetYouHereLyralla():void
 
 //Juro
 //Tooltip: Ask Lyralla about Juro, the U.G.C. diplomat. She appears quite fond of him.
-function askLyrallaAboutJuro():void
+public function askLyrallaAboutJuro():void
 {
 	clearOutput();
 	showLyralla();
@@ -216,7 +216,7 @@ function askLyrallaAboutJuro():void
 
 //Cybernetics
 //Tooltip “Ask Lyralla more about her parts. What’s it like having a metal arm and robotic eye?”
-function cyberneticsDiscussionsWivLyralla():void
+public function cyberneticsDiscussionsWivLyralla():void
 {
 	clearOutput();
 	showLyralla();
@@ -237,7 +237,7 @@ function cyberneticsDiscussionsWivLyralla():void
 
 //The Red?
 //Tooltip: Ask Lyralla about the red ambassador - the one she seems pissed off at.
-function talkToLyrallaAboutTheRed():void
+public function talkToLyrallaAboutTheRed():void
 {
 	clearOutput();
 	showLyralla();
@@ -254,7 +254,7 @@ function talkToLyrallaAboutTheRed():void
 //Her Job
 //Tooltip: Ask her why she was chosen as an ambassador.
 //Unlocks her queen
-function talkToLyrallaAboutHerJob():void
+public function talkToLyrallaAboutHerJob():void
 {
 	clearOutput();
 	showLyralla();
@@ -308,7 +308,7 @@ function talkToLyrallaAboutHerJob():void
 //Her Queen
 //Unlocked by learning about how she got her job.
 //Tooltip: Ask about Lyralla’s Queen
-function talkToLyrallaAboutHerQueen():void
+public function talkToLyrallaAboutHerQueen():void
 {
 	clearOutput();
 	showLyralla();
@@ -337,7 +337,7 @@ function talkToLyrallaAboutHerQueen():void
 
 //Meet Her?
 //Tooltip: Ask if you can meet her queen.
-function askToMeetLyrallasQueen():void
+public function askToMeetLyrallasQueen():void
 {
 	clearOutput();
 	showLyralla();
@@ -364,7 +364,7 @@ function askToMeetLyrallasQueen():void
 }
 //Pry
 //Tooltip: Try to get the ant-girl to fess up to whatever her Queen is up to!
-function pryIntoLyrallasQueensButthole():void
+public function pryIntoLyrallasQueensButthole():void
 {
 	clearOutput();
 	showLyralla();
@@ -402,7 +402,7 @@ function pryIntoLyrallasQueensButthole():void
 
 //Nah
 //Tooltip: Nah!
-function nahIDontWannaKnowShitBoutYoKinkyQueen():void
+public function nahIDontWannaKnowShitBoutYoKinkyQueen():void
 {
 	clearOutput();
 	showLyralla();
@@ -414,7 +414,7 @@ function nahIDontWannaKnowShitBoutYoKinkyQueen():void
 }
 
 //Her Name
-function askAboutHerQueensName():void
+public function askAboutHerQueensName():void
 {
 	clearOutput();
 	showLyralla();
@@ -438,7 +438,7 @@ function askAboutHerQueensName():void
 
 //Uhhh wha?
 //Make it simple - please!
-function ImDumbTellMeHowAntNamesWork():void
+public function ImDumbTellMeHowAntNamesWork():void
 {
 	clearOutput();
 	showLyralla();
@@ -458,7 +458,7 @@ function ImDumbTellMeHowAntNamesWork():void
 
 //The War
 //Tooltip: Ask her what she thinks about the war as a whole.
-function talkToLyrallaAboutZeWar():void
+public function talkToLyrallaAboutZeWar():void
 {
 	clearOutput();
 	showLyralla();
@@ -477,7 +477,7 @@ function talkToLyrallaAboutZeWar():void
 	addButton(0,"Well...",wellLyrallaThatSoundsKindaOneSided,undefined,"Well...","Could the golds have shot first? Myr are supposed to be short-sighted subterranean creatures. Wouldn’t ones that wanted to fly be extreme eccentrics?")
 }
 
-function justAgreeWithLyrallaToGetMoreInfo():void
+public function justAgreeWithLyrallaToGetMoreInfo():void
 {
 	clearOutput();
 	showLyralla();
@@ -500,7 +500,7 @@ function justAgreeWithLyrallaToGetMoreInfo():void
 
 //Well...
 //Could the golds have shot first? Myr are supposed to be short-sighted subterranean creatures. Wouldn’t ones that wanted to fly be extreme eccentrics?
-function wellLyrallaThatSoundsKindaOneSided():void
+public function wellLyrallaThatSoundsKindaOneSided():void
 {
 	clearOutput();
 	showLyralla();
@@ -514,7 +514,7 @@ function wellLyrallaThatSoundsKindaOneSided():void
 }
 
 //Yes
-function beATotalAsshole():void
+public function beATotalAsshole():void
 {
 	clearOutput();
 	showLyralla();
@@ -527,7 +527,7 @@ function beATotalAsshole():void
 }
 
 //No
-function noDontBeAnAsshole():void
+public function noDontBeAnAsshole():void
 {
 	clearOutput();
 	showLyralla();
@@ -542,7 +542,7 @@ function noDontBeAnAsshole():void
 //Can proc any time after talk scenes make it clear she luuuuuvs Juro.
 
 //Closer:
-function catchLyrallaInZeAct():void
+public function catchLyrallaInZeAct():void
 {
 	clearOutput();
 	showLyralla();
@@ -561,7 +561,7 @@ function catchLyrallaInZeAct():void
 
 //[Peek In]
 //Peek in
-function peekIntoTheClosetAndWatchAntSmex():void
+public function peekIntoTheClosetAndWatchAntSmex():void
 {
 	clearOutput();
 	showLyralla();
@@ -587,7 +587,7 @@ function peekIntoTheClosetAndWatchAntSmex():void
 	addButton(0,"Next",juroXLyrallPartII);
 }
 
-function juroXLyrallPartII():void
+public function juroXLyrallPartII():void
 {
 	clearOutput();
 	showLyralla();
@@ -603,7 +603,7 @@ function juroXLyrallPartII():void
 	clearMenu();
 	addButton(0,"Next",juroXLyrallPartIII);
 }
-function juroXLyrallPartIII():void
+public function juroXLyrallPartIII():void
 {
 	clearOutput();
 	showLyralla();
@@ -625,7 +625,7 @@ function juroXLyrallPartIII():void
 	addButton(0,"Next",juroXLyrallPartIV);
 }
 
-function juroXLyrallPartIV():void
+public function juroXLyrallPartIV():void
 {
 	clearOutput();
 	showLyralla();
@@ -715,7 +715,7 @@ function juroXLyrallPartIV():void
 	addButton(0,"Next",juroXLyrallPartV);
 }
 
-function juroXLyrallPartV():void
+public function juroXLyrallPartV():void
 {
 	clearOutput();
 	showLyralla();
@@ -737,7 +737,7 @@ function juroXLyrallPartV():void
 
 //Pass Request
 //Actual ask Lyralla
-function askLyrallaForAPussyPass():void
+public function askLyrallaForAPussyPass():void
 {
 	clearOutput();
 	showLyralla();

@@ -1,6 +1,6 @@
 ﻿//Kelly works at Xenogen from 6AM till 5PM. Impliment a way to lock down the xenogen building when she's not there.
 
-function showKellyName():void
+public function showKellyName():void
 {
 	if(flags["KELLY_MET"] == undefined) userInterface.showName("BUNNY\nGIRL");
 	else userInterface.showName("\nKELLY");
@@ -31,7 +31,7 @@ public function tempNudeOff():void
 }
 
 //Appearance
-function kellyAppearance():void {
+public function kellyAppearance():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -67,7 +67,7 @@ function kellyAppearance():void {
 
 //At Xenogen Research Labs
 //In The XRL Reception Hall
-function kellysOfficeBonusFunction():Boolean
+public function kellysOfficeBonusFunction():Boolean
 {
 	if(hours >= 6 && hours < 17)
 	{
@@ -116,7 +116,7 @@ function kellysOfficeBonusFunction():Boolean
 }
 
 //Approach
-function kellyOfficeApproach():void {
+public function kellyOfficeApproach():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -141,7 +141,7 @@ function kellyOfficeApproach():void {
 	kellysOfficeMenu();
 }	
 
-function kellysOfficeMenu():void {
+public function kellysOfficeMenu():void {
 	clearMenu();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -156,7 +156,7 @@ function kellysOfficeMenu():void {
 }
 
 //[=No=]
-function dontRegisterInKellysOffice():void {
+public function dontRegisterInKellysOffice():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -170,7 +170,7 @@ function dontRegisterInKellysOffice():void {
 }
 
 //[=Yes=]
-function registerAtKellysOffice():void {
+public function registerAtKellysOffice():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -186,7 +186,7 @@ function registerAtKellysOffice():void {
 }
 
 //Talk
-function talkToKellyInOffice(display:Boolean = true):void {
+public function talkToKellyInOffice(display:Boolean = true):void {
 	if(display)
 	{
 		clearOutput();
@@ -207,7 +207,7 @@ function talkToKellyInOffice(display:Boolean = true):void {
 }
 
 //Herself
-function talkToKellyAboutHerself():void
+public function talkToKellyAboutHerself():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -228,7 +228,7 @@ function talkToKellyAboutHerself():void
 }
 
 //Role at XRL
-function talkToKellyAboutHerRoleAtXenogen():void
+public function talkToKellyAboutHerRoleAtXenogen():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -245,7 +245,7 @@ function talkToKellyAboutHerRoleAtXenogen():void
 }
 
 //Working Here
-function talkToKellyAboutWorkingHere():void {
+public function talkToKellyAboutWorkingHere():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -261,7 +261,7 @@ function talkToKellyAboutWorkingHere():void {
 }
 
 //Flirt
-function flirtWithKellyInTheOffice():void {
+public function flirtWithKellyInTheOffice():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -281,7 +281,7 @@ function flirtWithKellyInTheOffice():void {
 }
 
 //[=Wait=]
-function dontFlirtWithKelly():void {
+public function dontFlirtWithKelly():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -293,7 +293,7 @@ function dontFlirtWithKelly():void {
 }
 
 //[=FlirtAnyway=]
-function flirtWithKellyAnyway():void {
+public function flirtWithKellyAnyway():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -334,7 +334,7 @@ function flirtWithKellyAnyway():void {
 	clearMenu();
 	addButton(0,"Next",flirtWithKellyAnywayPartII);
 }
-function flirtWithKellyAnywayPartII():void {
+public function flirtWithKellyAnywayPartII():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -374,7 +374,7 @@ public function kellyAtTheBar():void
 }
 
 //Approach
-function approachKellyAtTheBar():void
+public function approachKellyAtTheBar():void
 {
 	clearOutput();
 	CodexManager.unlockEntry("Laquines");
@@ -411,7 +411,7 @@ function approachKellyAtTheBar():void
 }
 
 //[=Yes=]
-function yesKellyDickChicksAreATurnOff():void
+public function yesKellyDickChicksAreATurnOff():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -424,7 +424,7 @@ function yesKellyDickChicksAreATurnOff():void
 	addButton(0,"Next",mainGameMenu);
 }
 //[=No=]
-function noKellyIFuckingLoveDickgirls():void
+public function noKellyIFuckingLoveDickgirls():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -452,7 +452,7 @@ function noKellyIFuckingLoveDickgirls():void
 	kellyBarMenu();
 }
 
-function kellyBarMenu():void
+public function kellyBarMenu():void
 {
 	clearMenu();
 	userInterface.showBust("KELLY");
@@ -467,7 +467,7 @@ function kellyBarMenu():void
 //Confession
 //Requires Kelly has >=50 Attraction//
 //Plays instead of Approach//
-function kellyConfessesHerAffectionForYouAt():void
+public function kellyConfessesHerAffectionForYouAt():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -542,7 +542,7 @@ function kellyConfessesHerAffectionForYouAt():void
 }
 
 //[=Hot=]
-function hugeCockLacquinesAreHottKelly():void
+public function hugeCockLacquinesAreHottKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -560,7 +560,7 @@ function hugeCockLacquinesAreHottKelly():void
 }
 
 //[=Thankful=]
-function thankfulForKellyConfessions():void
+public function thankfulForKellyConfessions():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -574,7 +574,7 @@ function thankfulForKellyConfessions():void
 }
 
 //[=Dunno=]
-function dunnoAboutGiantLaquineCocksKelly():void
+public function dunnoAboutGiantLaquineCocksKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -587,7 +587,7 @@ function dunnoAboutGiantLaquineCocksKelly():void
 }
 
 //All options join here.
-function endOfLoppeConfession():void
+public function endOfLoppeConfession():void
 {
 	userInterface.showBust("KELLY");
 	showKellyName();
@@ -606,7 +606,7 @@ function endOfLoppeConfession():void
 }
 
 //[=Yes=]
-function sureGiveMeCumCoffeeKelly():void
+public function sureGiveMeCumCoffeeKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -621,7 +621,7 @@ function sureGiveMeCumCoffeeKelly():void
 }
 
 //[=No=]
-function noHotCofeeCheatsPleaseKelly():void
+public function noHotCofeeCheatsPleaseKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -639,7 +639,7 @@ function noHotCofeeCheatsPleaseKelly():void
 }
 
 //Talk
-function talkToKellyAtBar():void
+public function talkToKellyAtBar():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -660,7 +660,7 @@ function talkToKellyAtBar():void
 	kellyBarTalkOptions();
 }
 
-function kellyBarTalkOptions():void
+public function kellyBarTalkOptions():void
 {
 	clearMenu();
 	userInterface.showBust("KELLY");
@@ -673,7 +673,7 @@ function kellyBarTalkOptions():void
 }
 
 //About Her
-function talkToKelly():void
+public function talkToKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -691,7 +691,7 @@ function talkToKelly():void
 }
 
 //[=KissHer=]
-function kissKellyForSecrets():void
+public function kissKellyForSecrets():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -727,7 +727,7 @@ function kissKellyForSecrets():void
 }
 
 //[=Tease=]
-function teaseKellyPostKiss():void
+public function teaseKellyPostKiss():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -741,7 +741,7 @@ function teaseKellyPostKiss():void
 	addDisabledButton(0,"About Her");
 }
 //[=Flatter=]
-function flatterKellyPostKiss():void
+public function flatterKellyPostKiss():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -758,7 +758,7 @@ function flatterKellyPostKiss():void
 }
 
 //[=Tease=]
-function teaseKellyAfterFlattering():void
+public function teaseKellyAfterFlattering():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -770,7 +770,7 @@ function teaseKellyAfterFlattering():void
 	addButton(0,"Next",waitKellyOutAfterFlattering);
 }
 //[=Playful=]
-function playfulKellyAfterFlattering():void
+public function playfulKellyAfterFlattering():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -783,7 +783,7 @@ function playfulKellyAfterFlattering():void
 }
 
 //[=WaitOut=] //No text, just proceed.
-function waitKellyOutAfterFlattering():void
+public function waitKellyOutAfterFlattering():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -802,7 +802,7 @@ function waitKellyOutAfterFlattering():void
 }
 
 //Mods
-function talkToKellyAboutHerMods():void
+public function talkToKellyAboutHerMods():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -816,7 +816,7 @@ function talkToKellyAboutHerMods():void
 }
 
 //[=Yes=]
-function yesHandsOnModAnalysisIsTheWayToGoKelly():void
+public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -944,7 +944,7 @@ function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 }
 
 //[=Confident=]
-function confidentLoppeWillLetYouPoundHerShitTillShesLoose():void
+public function confidentLoppeWillLetYouPoundHerShitTillShesLoose():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -969,7 +969,7 @@ function confidentLoppeWillLetYouPoundHerShitTillShesLoose():void
 }
 
 //[=Confident=]
-function beConfidentAboutNailingKellySheDoOOOOOO():void
+public function beConfidentAboutNailingKellySheDoOOOOOO():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -994,7 +994,7 @@ function beConfidentAboutNailingKellySheDoOOOOOO():void
 	addButton(0,"Next",getKellyOff,true);
 }
 
-function getKellyOff(newScreen:Boolean = false):void
+public function getKellyOff(newScreen:Boolean = false):void
 {
 	if(newScreen) clearOutput();
 	else output("\n\n");
@@ -1156,7 +1156,7 @@ function getKellyOff(newScreen:Boolean = false):void
 }
 
 //[=No=]
-function noJackingKellyOffToTestMods():void
+public function noJackingKellyOffToTestMods():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1167,7 +1167,7 @@ function noJackingKellyOffToTestMods():void
 	kellyModsEpilogue();
 }
 
-function kellyModsEpilogue(clearScreen:Boolean = false):void
+public function kellyModsEpilogue(clearScreen:Boolean = false):void
 {
 	if(clearScreen) clearOutput();
 	else output("\n\n");
@@ -1187,7 +1187,7 @@ function kellyModsEpilogue(clearScreen:Boolean = false):void
 }
 
 //Zil Fetish
-function askKellyAboutHerZilFetish():void
+public function askKellyAboutHerZilFetish():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1250,7 +1250,7 @@ function askKellyAboutHerZilFetish():void
 }
 
 //[=Refuse=]
-function refuseToGoKellysLoveNest():void
+public function refuseToGoKellysLoveNest():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1265,7 +1265,7 @@ function refuseToGoKellysLoveNest():void
 }
 
 //[=Sex=]
-function chooseToGoToKellysLovenest():void
+public function chooseToGoToKellysLovenest():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1282,7 +1282,7 @@ function chooseToGoToKellysLovenest():void
 }
 
 //Share Meal
-function shareAMealWithKelly():void
+public function shareAMealWithKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1334,7 +1334,7 @@ function shareAMealWithKelly():void
 	}
 }
 
-function kellyShopping():void
+public function kellyShopping():void
 {
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
@@ -1363,7 +1363,7 @@ function kellyShopping():void
 }
 
 //[=Refuse=]
-function refuseKellysDinnerFirstTimeInvite():void
+public function refuseKellysDinnerFirstTimeInvite():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1388,7 +1388,7 @@ function refuseKellysDinnerFirstTimeInvite():void
 }
 
 //[=Refuse=]
-function doubleRefuseKellyDinnerYouAsshat():void
+public function doubleRefuseKellyDinnerYouAsshat():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1403,7 +1403,7 @@ function doubleRefuseKellyDinnerYouAsshat():void
 }
 
 //[=Accept=]
-function helpKellyOutDinnerDate():void
+public function helpKellyOutDinnerDate():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1418,7 +1418,7 @@ function helpKellyOutDinnerDate():void
 }
 
 //[=No=]
-function noToChoiceAtEndOfKellyShopping():void
+public function noToChoiceAtEndOfKellyShopping():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
@@ -1432,7 +1432,7 @@ function noToChoiceAtEndOfKellyShopping():void
 }
 
 //[=GetComfy=]
-function getComfyAfterKellyShopping():void
+public function getComfyAfterKellyShopping():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1446,7 +1446,7 @@ function getComfyAfterKellyShopping():void
 	kellyDinnerPrepGogo();
 }
 
-function kellyDinnerPrepGogo():void
+public function kellyDinnerPrepGogo():void
 {
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
@@ -1473,7 +1473,7 @@ function kellyDinnerPrepGogo():void
 }
 
 //[=UseHers=]
-function useKellysHoneyForCooking():void
+public function useKellysHoneyForCooking():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1609,7 +1609,7 @@ function useKellysHoneyForCooking():void
 }
 
 //[=Yes=]
-function haveKellyServeAfterUsingHerHoney():void
+public function haveKellyServeAfterUsingHerHoney():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1632,7 +1632,7 @@ function haveKellyServeAfterUsingHerHoney():void
 }
 
 //[=ServeHer=]
-function serveKellyDindinsAfterUsingHerHoney():void
+public function serveKellyDindinsAfterUsingHerHoney():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1660,7 +1660,7 @@ function serveKellyDindinsAfterUsingHerHoney():void
 }
 
 //[=No=]
-function noServingFoodAfterKellyUsesHerCum():void
+public function noServingFoodAfterKellyUsesHerCum():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1677,7 +1677,7 @@ function noServingFoodAfterKellyUsesHerCum():void
 }
 
 //All rejoin here//
-function eatingWithKellysHoneyForSeasoning():void
+public function eatingWithKellysHoneyForSeasoning():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1731,7 +1731,7 @@ function eatingWithKellysHoneyForSeasoning():void
 }
 
 //[=Refuse=]
-function refuseDesertFromKellysWang():void
+public function refuseDesertFromKellysWang():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1774,7 +1774,7 @@ function refuseDesertFromKellysWang():void
 }
 
 //[=HelpHer=]
-function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
+public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -1978,7 +1978,7 @@ function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 }
 
 //[=HelpHer=]
-function helpKellyCleanUpAfterDindinsWithNormalHoney():void
+public function helpKellyCleanUpAfterDindinsWithNormalHoney():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2022,7 +2022,7 @@ function helpKellyCleanUpAfterDindinsWithNormalHoney():void
 }
 
 //[=Relax=]
-function relaxAfterEatingRegularHoneyMealWithKelly():void
+public function relaxAfterEatingRegularHoneyMealWithKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2034,7 +2034,7 @@ function relaxAfterEatingRegularHoneyMealWithKelly():void
 }
 
 //Both choices join here
-function postMealEpilogue():void
+public function postMealEpilogue():void
 {
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
@@ -2048,7 +2048,7 @@ function postMealEpilogue():void
 }
 
 //Flirt
-function flirtWithKellyUnknown():void
+public function flirtWithKellyUnknown():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2063,7 +2063,7 @@ function flirtWithKellyUnknown():void
 }
 
 //[=Aggressive=]
-function aggressiveFlirtingWithKelly():void
+public function aggressiveFlirtingWithKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2091,7 +2091,7 @@ function aggressiveFlirtingWithKelly():void
 }
 
 //[=Mischievous=]
-function mischievouslyFlirtingWithKelly():void
+public function mischievouslyFlirtingWithKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2121,7 +2121,7 @@ function mischievouslyFlirtingWithKelly():void
 }
 
 //Both options rejoin here//
-function kellyBarFlirtContinuation():void
+public function kellyBarFlirtContinuation():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2145,7 +2145,7 @@ function kellyBarFlirtContinuation():void
 	//Display sex options//
 	kellyBarSexMenu();
 }
-function kellyBarSexMenu():void
+public function kellyBarSexMenu():void
 {
 	clearMenu();
 	userInterface.showBust("KELLY_NUDE");
@@ -2172,7 +2172,7 @@ function kellyBarSexMenu():void
 //Sex Scenes
 //Hyperplay
 //Requires Affection >=50% & PC has a dick.
-function kellyHyperPlayAwwwYiss():void
+public function kellyHyperPlayAwwwYiss():void
 {
 	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2309,7 +2309,7 @@ function kellyHyperPlayAwwwYiss():void
 }
 
 //[=KeepGoing=]
-function keepGoingWithFuckingHyperModeKelly():void
+public function keepGoingWithFuckingHyperModeKelly():void
 {
 	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2412,7 +2412,7 @@ function keepGoingWithFuckingHyperModeKelly():void
 }
 
 //[=AddHandjob=]
-function addAHandjobToKellyHyperFuckPlay():void
+public function addAHandjobToKellyHyperFuckPlay():void
 {
 	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2471,7 +2471,7 @@ function addAHandjobToKellyHyperFuckPlay():void
 }
 
 //Both variants go to new page and display following text//
-function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
+public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 {
 	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2503,7 +2503,7 @@ function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 
 //Do Kelly's Ass
 //Naturally, PC needs a dick.
-function doKellyInTheBumBUMBUMMMMMMMM():void
+public function doKellyInTheBumBUMBUMMMMMMMM():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2648,7 +2648,7 @@ function doKellyInTheBumBUMBUMMMMMMMM():void
 }
 
 //[=GetGlazed=]
-function getGlazedWhileButtFuckingTheHoneyBunny():void
+public function getGlazedWhileButtFuckingTheHoneyBunny():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2767,7 +2767,7 @@ function getGlazedWhileButtFuckingTheHoneyBunny():void
 }
 
 //[=DeepFuck=]
-function deepFuckKellysButthole():void
+public function deepFuckKellysButthole():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2981,7 +2981,7 @@ function deepFuckKellysButthole():void
 
 //Oral Her
 //If coming from <i>\"Share a Meal\"</i> automatically go to one of the variants, skipping the setup completely.
-function oralHer():void
+public function oralHer():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -2996,7 +2996,7 @@ function oralHer():void
 }
 
 //Kelly's Cocks
-function kellysCocksGetBLOWN():void
+public function kellysCocksGetBLOWN():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3140,7 +3140,7 @@ function kellysCocksGetBLOWN():void
 }
 
 //[=DrinkAll=]
-function drinkAllOfKellysSpoo():void
+public function drinkAllOfKellysSpoo():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3178,7 +3178,7 @@ function drinkAllOfKellysSpoo():void
 
 //Go to appropriate/selected "Kelly gives the PC oral" sex scene//
 //[=Splatter=]
-function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
+public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3292,7 +3292,7 @@ function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 }
 
 //Kelly's Cunny
-function eatOutKellysQuoteUnquoteCunny():void
+public function eatOutKellysQuoteUnquoteCunny():void
 {
 	pc.girlCumInMouth(chars["KELLY"]);
 	clearOutput();
@@ -3541,7 +3541,7 @@ function eatOutKellysQuoteUnquoteCunny():void
 }
 
 //[=Nap=]
-function takeANapAfterNiceCunnilingus():void
+public function takeANapAfterNiceCunnilingus():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3576,7 +3576,7 @@ function takeANapAfterNiceCunnilingus():void
 }
 
 //[=Masturbate=]
-function masturbateAfterKellyLingus():void
+public function masturbateAfterKellyLingus():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3620,7 +3620,7 @@ function masturbateAfterKellyLingus():void
 //MISCHIEVOUS RESULTS:
 //CLOTHED
 //[=Nap=]
-function mischievousNapAfterCunnilingateKelly():void
+public function mischievousNapAfterCunnilingateKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3639,7 +3639,7 @@ function mischievousNapAfterCunnilingateKelly():void
 }
 
 //[=Masturbate=]
-function mischievousMasturbateAfterCunnilingateKelly():void {
+public function mischievousMasturbateAfterCunnilingateKelly():void {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
@@ -3672,7 +3672,7 @@ function mischievousMasturbateAfterCunnilingateKelly():void {
 }
 //NUDE
 //[=Nap=]
-function nudeNapAfterKellyCunnilingus():void
+public function nudeNapAfterKellyCunnilingus():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3696,7 +3696,7 @@ function nudeNapAfterKellyCunnilingus():void
 }
 
 //[=Masturbate=]
-function kellyNudeMasturbateAfterCunnilingate():void
+public function kellyNudeMasturbateAfterCunnilingate():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3733,7 +3733,7 @@ function kellyNudeMasturbateAfterCunnilingate():void
 }
 
 //HARD RESULTS
-function kellyCunnilingusHardEndingNap():void
+public function kellyCunnilingusHardEndingNap():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -3767,7 +3767,7 @@ function kellyCunnilingusHardEndingNap():void
 
 //Get DPed
 //Requires player at least one vagina/
-function getDPedByKelly():void
+public function getDPedByKelly():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -4001,7 +4001,7 @@ function getDPedByKelly():void
 }
 
 //Get Double-stuffed (canceled by QB/LD, open to rewrite)
-function getDoubleStuffedByKellyCancelled():void
+public function getDoubleStuffedByKellyCancelled():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -4185,7 +4185,7 @@ function getDoubleStuffedByKellyCancelled():void
 }
 
 //Get Blown
-function getBlownByKelly(noIntro:Boolean = false):void
+public function getBlownByKelly(noIntro:Boolean = false):void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
@@ -4297,7 +4297,7 @@ function getBlownByKelly(noIntro:Boolean = false):void
 }
 
 //Get Licked
-function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
+public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 {
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");

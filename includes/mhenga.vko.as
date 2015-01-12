@@ -24,7 +24,7 @@ Offers a once an hour shield booster item that restores up to 30 shields.
 
 //Medical Office Description
 //Approaching V-Ko
-function mhengaMedicalThingerBonusFunc():void {
+public function mhengaMedicalThingerBonusFunc():void {
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
 	//Never seen a nursedroid before
@@ -34,7 +34,7 @@ function mhengaMedicalThingerBonusFunc():void {
 	addButton(0,"Nursedroid",approachVKo);
 }
 
-function approachVKo(showShit:Boolean = true):void {
+public function approachVKo(showShit:Boolean = true):void {
 	if(showShit) clearOutput();
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
@@ -77,14 +77,14 @@ function approachVKo(showShit:Boolean = true):void {
 	addButton(14,"Back",mainGameMenu);
 }
 
-function vkoSupplies():void
+public function vkoSupplies():void
 {
 	shopkeep = chars["VKO"];
 	buyItem();
 }
 
 //Disease Examination:
-function getDiseaseProbedYo():void
+public function getDiseaseProbedYo():void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -163,7 +163,7 @@ function getDiseaseProbedYo():void
 }
 
 //Negatory during exam:
-function turnDownTreatment():void
+public function turnDownTreatment():void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -175,7 +175,7 @@ function turnDownTreatment():void
 }
 
 //Treat Disease
-function treatDisease(diseaseName:String = ""):void
+public function treatDisease(diseaseName:String = ""):void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -195,7 +195,7 @@ function treatDisease(diseaseName:String = ""):void
 }
 
 //Remove Cunt Snake
-function removeParasite(name:String):void
+public function removeParasite(name:String):void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -207,7 +207,7 @@ function removeParasite(name:String):void
 	addButton(0,"Next",removeParasiteII, name);
 }
 
-function removeParasiteII(name:String):void {
+public function removeParasiteII(name:String):void {
 	clearOutput();
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
@@ -250,7 +250,7 @@ function removeParasiteII(name:String):void {
 }
 
 //Healing
-function getHealedByVKo():void {
+public function getHealedByVKo():void {
 	clearOutput();
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
@@ -267,7 +267,7 @@ function getHealedByVKo():void {
 }
 
 //Paying for healing
-function payVKoForHealing(cost:int):void
+public function payVKoForHealing(cost:int):void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -294,7 +294,7 @@ function payVKoForHealing(cost:int):void
 	approachVKo(false);
 }
 //Negatory to healing:
-function turnDownVKoHealing():void
+public function turnDownVKoHealing():void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -304,7 +304,7 @@ function turnDownVKoHealing():void
 }
 
 //Custom Inputs
-function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
+public function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -318,14 +318,14 @@ function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
 	addButton(14,"Back",backOutOfVKoTextEntrance);
 }
 
-function backOutOfVKoTextEntrance():void
+public function backOutOfVKoTextEntrance():void
 {
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	approachVKo();
 }
 
-function parseVKoCustomInputs():void
+public function parseVKoCustomInputs():void
 {
 	var toParse:String = this.userInterface.textInput.text;
 	toParse = toParse.toLowerCase();
@@ -363,7 +363,7 @@ function parseVKoCustomInputs():void
 }
 
 //Stress Relief (Dicks)
-function stressReliefGo():void
+public function stressReliefGo():void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -500,7 +500,7 @@ function stressReliefGo():void
 	approachVKo(false);
 }
 //Stress Relief (Pussies)
-function VKoStressReliefForLadyginas():void
+public function VKoStressReliefForLadyginas():void
 {
 	var x:int = rand(pc.totalVaginas());
 	clearOutput();
@@ -591,7 +591,7 @@ function VKoStressReliefForLadyginas():void
 
 //Electro Therapy
 //For all genders. I just hope you won’t ever let PC’s become nippleless.
-function vKoElectroTherapy():void
+public function vKoElectroTherapy():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
@@ -605,7 +605,7 @@ function vKoElectroTherapy():void
 }
 
 //[=Disagree=]
-function declineElectroStim():void
+public function declineElectroStim():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
@@ -617,7 +617,7 @@ function declineElectroStim():void
 }
 
 //[=Agree=]
-function agreeToElectroStim():void
+public function agreeToElectroStim():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
@@ -886,7 +886,7 @@ function agreeToElectroStim():void
 
 //Breast Pump (Stress relief for milky breasts)
 //Requires players with lactating boobs.
-function VKOBreastPumpFunction():void {
+public function VKOBreastPumpFunction():void {
 	clearOutput();
 	author("LukaDoc & QB");
 	userInterface.showBust("VKO");
@@ -911,7 +911,7 @@ function VKOBreastPumpFunction():void {
 }
 
 //[=Disagree=]
-function declineToGetYourBreastVKOPumped():void
+public function declineToGetYourBreastVKOPumped():void
 {
 	clearOutput();
 	author("LukaDoc & QB");
@@ -924,7 +924,7 @@ function declineToGetYourBreastVKOPumped():void
 }
 
 //[=Agree=]
-function agreeToVKoBoobSucks():void
+public function agreeToVKoBoobSucks():void
 {
 	clearOutput();
 	author("LukaDoc & QB");

@@ -5,7 +5,7 @@ public var lightsOutFailureFunction:Function;
 
 public var lightsArray:Array;
 
-function startLightsOut(victoryFunction:Function = null, failureFunction:Function = null):void
+public function startLightsOut(victoryFunction:Function = null, failureFunction:Function = null):void
 {
 	clearOutput();
 	showName("MANUAL\nOVERRIDE");

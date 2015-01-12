@@ -1,13 +1,13 @@
 ﻿import classes.Items.Miscellaneous.BBQToGo;
 
-function newTexasEmail():void
+public function newTexasEmail():void
 {
 	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 	eventBuffer += "\n\n<b>New Email!</b>\nCome on out to New Texas, Partner!\nFrom: Benjamin Tiberius Tee (NoReply@NewTexas.gov)\nTo: [pc.name]@SteeleTech.corp\n\n<i>This message opens with a 3D masthead depicting rolling green hills that stretch off into the beautiful blue horizon. Several incredibly chesty woman are cavorting across the field, each dressed in a cow-pattern leotard that hugs her almost inhumanly ample curves just right...</i>\n\nHowdy, " + pc.mf("Mr.","Mz.") + " [pc.name] Steele!\n\nMy name is Benjamin Tee, but you and yours can call me Big T. I'm the governor of New Texas, and I'd like to invite you and your crew to our beautiful planet! Enjoy fresh-from-the-tap milk and ice cream, relax in rolling fields unspoiled by civilization, and meet the most beautiful women the galaxy has to offer!\n\nAttached to this message are coordinates and exclusive landing access codes for my personal ranch. Speaking for all of New Texas: we hope to see you soon, partner!\n\n<i>Giddy-on-up to New Texas!</i>\n-Governor Benjamin Tiberius Tee";
 }
 
 //Landing on New Texas (First Time)
-function landOnNewTexas():void
+public function landOnNewTexas():void
 {
 	if(flags["LANDED_ON_TEXAS"] == undefined)
 	{
@@ -28,7 +28,7 @@ function landOnNewTexas():void
 
 //output("\n\nCustoms & Check-in");
 //output("\n\nRoom Description");
-function customsAndCheckInOnNewTexas():Boolean
+public function customsAndCheckInOnNewTexas():Boolean
 {
 	clearOutput();
 	author("Savin");
@@ -65,7 +65,7 @@ function customsAndCheckInOnNewTexas():Boolean
 }
 
 //Customs Officer (First Time)
-function approachCustomsFirstTime():void
+public function approachCustomsFirstTime():void
 {
 	clearOutput();
 	author("Savin");
@@ -87,7 +87,7 @@ function approachCustomsFirstTime():void
 }
 
 //No Way!
-function noWayTexasJose():void
+public function noWayTexasJose():void
 {
 	clearOutput();
 	author("Savin");
@@ -103,7 +103,7 @@ function noWayTexasJose():void
 }
 
 //No Weapons
-function noWeaponsInTexasHoss():void
+public function noWeaponsInTexasHoss():void
 {
 	clearOutput();
 	author("Savin");
@@ -117,7 +117,7 @@ function noWeaponsInTexasHoss():void
 }
 
 //Disarm
-function disarmMeHoss():void
+public function disarmMeHoss():void
 {
 	clearOutput();
 	author("Savin");
@@ -130,7 +130,7 @@ function disarmMeHoss():void
 	//{No weapons resumes here}
 	customsPassFinale();
 }
-function customsPassFinale():void
+public function customsPassFinale():void
 {
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n“<i>Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...</i>” He shudders a little bit, barely muting a curse. “<i>Uh, real soon.</i>”");
@@ -141,7 +141,7 @@ function customsPassFinale():void
 }
 
 //Visitor Desk (First Time)
-function visitorDeskApproach():void
+public function visitorDeskApproach():void
 {
 	clearOutput();
 	author("Savin");
@@ -178,7 +178,7 @@ function visitorDeskApproach():void
 }
 
 //output("\n\nTrying to Go Through Customs while Armed");
-function customsFucksYourShitUp():void
+public function customsFucksYourShitUp():void
 {
 	currentLocation = "TEXAS CUSTOMS";
 	var map:* = mapper.generateMap(currentLocation);
@@ -195,7 +195,7 @@ function customsFucksYourShitUp():void
 }
 
 //Ogram (Repeat)
-function repeatOgramApproach():void
+public function repeatOgramApproach():void
 {
 	clearOutput();
 	author("Savin");
@@ -237,7 +237,7 @@ function repeatOgramApproach():void
 }
 
 //Rearm
-function rearmAtOgram():void
+public function rearmAtOgram():void
 {
 	clearOutput();
 	author("Savin");
@@ -252,7 +252,7 @@ function rearmAtOgram():void
 }
 
 //Disarm (Repeat)
-function getDisarmedRepeat():void
+public function getDisarmedRepeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -267,7 +267,7 @@ function getDisarmedRepeat():void
 }
 
 //Talk
-function talkToOggy(display:Boolean = false):void
+public function talkToOggy(display:Boolean = false):void
 {
 	if(display)
 	{
@@ -287,7 +287,7 @@ function talkToOggy(display:Boolean = false):void
 }
 
 //The Treatment
-function talkToOggyAbootTreatManz():void
+public function talkToOggyAbootTreatManz():void
 {
 	clearOutput();
 	author("Savin");
@@ -308,7 +308,7 @@ function talkToOggyAbootTreatManz():void
 }
 
 //Current Job
-function oggysCurrentJob():void
+public function oggysCurrentJob():void
 {
 	clearOutput();
 	author("Savin");
@@ -335,7 +335,7 @@ function oggysCurrentJob():void
 }
 
 //Old Job
-function oggysOldJob():void
+public function oggysOldJob():void
 {
 	clearOutput();
 	author("Savin");
@@ -355,7 +355,7 @@ function oggysOldJob():void
 }
 
 //Amma
-function askOggyAboutAmma():void
+public function askOggyAboutAmma():void
 {
 	clearOutput();
 	author("Savin");
@@ -375,7 +375,7 @@ function askOggyAboutAmma():void
 }
 
 //Sex
-function askOggyForSex():void
+public function askOggyForSex():void
 {
 	clearOutput();
 	author("Savin");
@@ -410,7 +410,7 @@ function askOggyForSex():void
 }
 
 //Amma (Repeat)
-function approachDatCowGalRepeat():void
+public function approachDatCowGalRepeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -434,7 +434,7 @@ function approachDatCowGalRepeat():void
 
 
 //Talk
-function talkToAmma(display:Boolean = false):void
+public function talkToAmma(display:Boolean = false):void
 {
 	if(display)
 	{
@@ -457,7 +457,7 @@ function talkToAmma(display:Boolean = false):void
 }
 
 //The Treatment
-function askAmmaAbootZeTreatManz():void
+public function askAmmaAbootZeTreatManz():void
 {
 	clearOutput();
 	author("Savin");
@@ -481,7 +481,7 @@ function askAmmaAbootZeTreatManz():void
 }
 
 //Who’s in Charge?
-function whosInCharge():void
+public function whosInCharge():void
 {
 	clearOutput();
 	author("Savin");
@@ -522,7 +522,7 @@ function whosInCharge():void
 }
 
 //Herself
-function askAmmaAboutHerSelf():void
+public function askAmmaAboutHerSelf():void
 {
 	clearOutput();
 	author("Savin");
@@ -545,7 +545,7 @@ function askAmmaAboutHerSelf():void
 }
 
 //Ogram
-function askAmmaAboutOgram():void
+public function askAmmaAboutOgram():void
 {
 	clearOutput();
 	author("Savin");
@@ -563,7 +563,7 @@ function askAmmaAboutOgram():void
 }
 
 //Sex
-function sexChatWithAmma():void
+public function sexChatWithAmma():void
 {
 	clearOutput();
 	author("Savin");
@@ -599,7 +599,7 @@ function sexChatWithAmma():void
 //Ogram and Amma Sex
 //Spitroast Amma
 //PC needs teh cock
-function spitRoastAmmoOnYerDicks():void
+public function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
@@ -651,7 +651,7 @@ function spitRoastAmmoOnYerDicks():void
 }
 
 //Worship Bullcock
-function worshipZeBullCawk():void
+public function worshipZeBullCawk():void
 {
 	clearOutput();
 	showBust("OGRAM","AMMA");
@@ -729,7 +729,7 @@ function worshipZeBullCawk():void
 }
 
 //Use Machine
-function useDaMilkar():void
+public function useDaMilkar():void
 {
 	clearOutput();
 	author("Savin");
@@ -770,7 +770,7 @@ function useDaMilkar():void
 }
 
 //No Thanks
-function FirstManMilkUseNoThanks():void
+public function FirstManMilkUseNoThanks():void
 {
 	clearOutput();
 	author("Savin");
@@ -786,7 +786,7 @@ function FirstManMilkUseNoThanks():void
 }
 
 //Okay
-function okayEllieYaCuntLetsMilkMeFirstTime():void
+public function okayEllieYaCuntLetsMilkMeFirstTime():void
 {
 	clearOutput();
 	author("Savin");
@@ -847,7 +847,7 @@ function okayEllieYaCuntLetsMilkMeFirstTime():void
 
 //Use w/o Carrie
 //Tell Carrie you can get yourself situated.
-function useTheMilkerWithoutCarrieYaSkag():void
+public function useTheMilkerWithoutCarrieYaSkag():void
 {
 	clearOutput();
 	author("Savin");
@@ -872,7 +872,7 @@ function useTheMilkerWithoutCarrieYaSkag():void
 }
 
 //Prostate Abuse Whoo!
-function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
+public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 {
 	clearOutput();
 	author("Savin");
@@ -985,7 +985,7 @@ function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 }
 
 //Yes
-function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
+public function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 {
 	var x:int = 2;
 	x += Math.round(amount/100);
@@ -1017,7 +1017,7 @@ function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 }
 
 //No
-function noIDontWantToSellBabies():void
+public function noIDontWantToSellBabies():void
 {
 	clearOutput();
 	author("Savin");
@@ -1039,7 +1039,7 @@ function noIDontWantToSellBabies():void
 
 
 //[Food]
-function getFoodAtBigTs():void
+public function getFoodAtBigTs():void
 {
 	clearOutput();
 	author("Savin");
@@ -1081,7 +1081,7 @@ function getFoodAtBigTs():void
 }
 
 //Food Chosen (Except BBQ To-GO / Special Order)
-function orderUp(order:String = ""):void
+public function orderUp(order:String = ""):void
 {
 	clearOutput();
 	author("Savin");
@@ -1124,7 +1124,7 @@ function orderUp(order:String = ""):void
 }
 
 //BBQ To-GO
-function bbqToGo():void
+public function bbqToGo():void
 {
 	clearOutput();
 	author("Savin");
@@ -1138,7 +1138,7 @@ function bbqToGo():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function lootBBQ():void {
+public function lootBBQ():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new BBQToGo();
@@ -1154,7 +1154,7 @@ function lootBBQ():void {
 //“<i>Special Order</i>”
 //Requires feminine PC with the Treatment, Fluid Addiction, Bimbofication, etc. 
 //Tooltip: You bet that chef’s got a nice, thick member that needs some relief, all pent up in those tight pants of his... and you bet it’d taste great with a little of his home cooking...
-function specialOrdersForTreatedGals():void
+public function specialOrdersForTreatedGals():void
 {
 	author("Savin");
 	showBust("HERMAN");
@@ -1186,7 +1186,7 @@ function specialOrdersForTreatedGals():void
 
 //Grand Teh
 //[Watch Screen]
-function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerATreatedCowGirlForShitsAndGigglesWhyIsThisFunctionNameSoLong():void
+public function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerATreatedCowGirlForShitsAndGigglesWhyIsThisFunctionNameSoLong():void
 {
 	clearOutput();
 	showName("STEPH\nIRSON");
@@ -1215,7 +1215,7 @@ function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerATreatedC
 	addButton(0,"Next",stephIrsonEp3Pt2);
 }
 
-function stephIrsonEp3Pt2():void
+public function stephIrsonEp3Pt2():void
 {
 	clearOutput();
 	author("Savin");
@@ -1240,7 +1240,7 @@ function stephIrsonEp3Pt2():void
 	addButton(0,"Next",stephIrsonEp3Pt3);
 }
 
-function stephIrsonEp3Pt3():void
+public function stephIrsonEp3Pt3():void
 {
 	clearOutput();
 	author("Savin");

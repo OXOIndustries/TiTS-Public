@@ -11,7 +11,7 @@
 //*Jungle Snakes
 //The ones on the first jungle planet, [NOTHING HERE, FOLKS].
 //*Encounter a Cunt Snake
-function encounterCuntSnakeOnJungleLand():void {
+public function encounterCuntSnakeOnJungleLand():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("FIGHT:\nCUNTSNAKE");
 	//[First Time]
@@ -44,7 +44,7 @@ function encounterCuntSnakeOnJungleLand():void {
 //	AI: Use paralyzing venom every four rounds (after previous bite has worn off!), uses trip often if target is not paralyzed. Also bites aphrodisiac venom.
 	//THIS MONSTER IS IMMUNE TO LUST ATTACKS!
 
-function cuntSnakeAI():void {
+public function cuntSnakeAI():void {
 	//Dicks get extra venoms
 	if(pc.hasCock() && rand(3) == 0) {
 		if(rand(4) == 0) paralyzingVenom();
@@ -71,7 +71,7 @@ function cuntSnakeAI():void {
 
 //*Paralyzing Venom
 //Used every fifth turn
-function paralyzingVenom():void {
+public function paralyzingVenom():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("FIGHT:\nCUNTSNAKE");
 	output("The snake coils up, then flashes out at you with mouth open and fangs exposed.");
@@ -106,7 +106,7 @@ function paralyzingVenom():void {
 }
 
 //*Aphrodisiac Venom
-function aphrodisiacBite():void {
+public function aphrodisiacBite():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("FIGHT:\nCUNTSNAKE");
 	output("The snake coils up, then flashes out at you with mouth open and fangs exposed. ");
@@ -136,7 +136,7 @@ function aphrodisiacBite():void {
 }
 
 //*Trip
-function NPCTripAttackGo(attacker:Creature,target:Creature):void {
+public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("FIGHT:\nCUNTSNAKE");
 	output("Your foe contorts its body inward and abruptly snaps its tail around like a whip, directed at your [pc.feet]! ");
@@ -186,7 +186,7 @@ function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 }
 
 //*Slap
-function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
+public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("FIGHT:\nCUNTSNAKE");
 	output("Coiling its body like a spring, the cunt snake launches its body towards you!");
@@ -237,14 +237,14 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 //	One in three chance of being "tailed" for dicked folks.
 //	One in five chance of being tailed for ladies.
 
-function loseToCuntSnake():void {
+public function loseToCuntSnake():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
 	if(pc.hasCock()) getSuckedOffByACuntSnakeAfterLosing();
 	else loseToCuntSnakeAndDontGetSucked();
 }
 
-function cuntSnakeLossEpilogueTailChances():void {
+public function cuntSnakeLossEpilogueTailChances():void {
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
 	if(!pc.hasCuntTail())
@@ -270,7 +270,7 @@ function cuntSnakeLossEpilogueTailChances():void {
 }
 
 //*Get Sucked Off By Snake Loss
-function getSuckedOffByACuntSnakeAfterLosing():void {
+public function getSuckedOffByACuntSnakeAfterLosing():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -346,7 +346,7 @@ function getSuckedOffByACuntSnakeAfterLosing():void {
 //*No Dicks To Suck
 //Pass out or schlick/finger into unconsciousness.
 //Reqs !taur OR dicknips or cuntnips, or cunttail, or dicktail
-function loseToCuntSnakeAndDontGetSucked():void {
+public function loseToCuntSnakeAndDontGetSucked():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -467,7 +467,7 @@ function loseToCuntSnakeAndDontGetSucked():void {
 }
 
 //*Get a Cunt Tail
-function getACuntTail():void {
+public function getACuntTail():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -500,7 +500,7 @@ function getACuntTail():void {
 }
 
 //*Defeat Jungle Cunt Snake
-function defeatACuntSnake():void {
+public function defeatACuntSnake():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -522,7 +522,7 @@ function defeatACuntSnake():void {
 }
 
 //*Let It Go
-function leaveIt():void {
+public function leaveIt():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -531,7 +531,7 @@ function leaveIt():void {
 }
 
 //*Kill It
-function killACuntSnake():void {
+public function killACuntSnake():void {
 	clearOutput();
 	output("You finish off creature off quickly and kick the body away.\n\n");
 	genericVictory();
@@ -539,7 +539,7 @@ function killACuntSnake():void {
 
 //*Use it as masturbation aid
 //No hoarses.
-function fuckACuntSnake():void {
+public function fuckACuntSnake():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -596,7 +596,7 @@ function fuckACuntSnake():void {
 //The tail also has a chance of producing offspring the next day after being fed.
 	
 //*Cunt tail birthing
-function giveBirthThroughCuntTail():void {
+public function giveBirthThroughCuntTail():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -638,7 +638,7 @@ function giveBirthThroughCuntTail():void {
 }
 
 //*Hide It
-function hideYoEggYo():void {
+public function hideYoEggYo():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");
@@ -649,7 +649,7 @@ function hideYoEggYo():void {
 	addButton(0,"Next",mainGameMenu);
 }
 //*Take It
-function takeYoEggYo():void {
+public function takeYoEggYo():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
 	userInterface.showName("\nCUNTSNAKE");

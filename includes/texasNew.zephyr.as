@@ -2,7 +2,7 @@
 //output("“<i>At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?</i>”</i> she asks, looking up from her work, <i>\"He’d be happy to see you. Go on through.</i>”;");
 
 //New Room Desc
-function zephyrRoomBonus():Boolean
+public function zephyrRoomBonus():Boolean
 {
 	//showBust("ZEPHYR");
 	output("At the top of the stairs is a cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. A taxidermied bear is tucked into the corner, menacing over everything, its mouth locked in a menacing rictus grin. There’s even a furry rug, made from the hide of some local beast or varmint. The rustic atmosphere is as inescapable as a prison world.");
@@ -29,7 +29,7 @@ function zephyrRoomBonus():Boolean
 	return false;
 }
 
-function showZephyrDeets(nakkers:Boolean = false):void
+public function showZephyrDeets(nakkers:Boolean = false):void
 {
 	if(nakkers) showBust("ZEPHYR_NUDE");
 	else showBust("ZEPHYR");
@@ -38,7 +38,7 @@ function showZephyrDeets(nakkers:Boolean = false):void
 }
 
 //Approach
-function approachZephyr(approached:Boolean = false):void
+public function approachZephyr(approached:Boolean = false):void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -88,7 +88,7 @@ function approachZephyr(approached:Boolean = false):void
 }
 
 //Sex
-function zephyrSexMenu(display:Boolean = true):void
+public function zephyrSexMenu(display:Boolean = true):void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -119,7 +119,7 @@ function zephyrSexMenu(display:Boolean = true):void
 }
 
 //Mutual HJs
-function mutualHandJobsWithZephyr():void
+public function mutualHandJobsWithZephyr():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -240,7 +240,7 @@ function mutualHandJobsWithZephyr():void
 }
 
 //Overdesk Catch It In Yer VagOrButt [Unfinished]
-function overDeskButtCatch():void
+public function overDeskButtCatch():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -318,7 +318,7 @@ function overDeskButtCatch():void
 	addButton(0,"Next",getFuckedByZephyrII);
 }
 
-function getFuckedByZephyrII():void
+public function getFuckedByZephyrII():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -400,7 +400,7 @@ function getFuckedByZephyrII():void
 	addButton(0,"Next",getFuckedByZephyrIII);
 }
 
-function getFuckedByZephyrIII():void
+public function getFuckedByZephyrIII():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -449,7 +449,7 @@ function getFuckedByZephyrIII():void
 	addButton(0,"Next",getFuckedByZephyrIV);
 }
 
-function getFuckedByZephyrIV():void
+public function getFuckedByZephyrIV():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -508,7 +508,7 @@ function getFuckedByZephyrIV():void
 	addButton(0,"Next",getFuckedByZephyrV);
 }
 
-function getFuckedByZephyrV():void
+public function getFuckedByZephyrV():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -541,7 +541,7 @@ function getFuckedByZephyrV():void
 	flags["SEXED_ZEPHYR"] = 1;
 }
 //[Clean it]
-function cleanDatZephyrCawk():void
+public function cleanDatZephyrCawk():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -556,7 +556,7 @@ function cleanDatZephyrCawk():void
 }
 
 //[Don’t]
-function dontEatZephyrCock():void
+public function dontEatZephyrCock():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -571,7 +571,7 @@ function dontEatZephyrCock():void
 	
 }
 //Leave
-function leaveLikeABitchPC():void
+public function leaveLikeABitchPC():void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -583,7 +583,7 @@ function leaveLikeABitchPC():void
 }
 
 //Snarky leave
-function snarkLeaveLikeABitch():void
+public function snarkLeaveLikeABitch():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -596,7 +596,7 @@ function snarkLeaveLikeABitch():void
 	addButton(0,"Next",mainGameMenu);
 }
 //Fight
-function fightZephyrLikeABitch():void
+public function fightZephyrLikeABitch():void
 {
 	clearOutput();
 	showZephyrDeets(true);
@@ -609,7 +609,7 @@ function fightZephyrLikeABitch():void
 }
 
 //Talk
-function talkToZephyr():void
+public function talkToZephyr():void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -622,7 +622,7 @@ function talkToZephyr():void
 }
 
 //Treatment?
-function talkToZephyrAbootZeTreatmentEh():void
+public function talkToZephyrAbootZeTreatmentEh():void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -658,7 +658,7 @@ function talkToZephyrAbootZeTreatmentEh():void
 } 
 
 //Her Job?
-function zephyrsShittasticJobstory():void
+public function zephyrsShittasticJobstory():void
 {
 	clearOutput();
 	showZephyrDeets();

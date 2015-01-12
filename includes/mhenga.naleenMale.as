@@ -15,7 +15,7 @@ Intro
 */
 
 //First Time:
-function naleenMaleEncounter():void
+public function naleenMaleEncounter():void
 {
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -64,7 +64,7 @@ Baldness: Dislikes!
 Long hair: Kinda likes!
 */
 
-function naleenMaleAI():void {
+public function naleenMaleAI():void {
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
 	showName("FIGHT:\nNALEEN MALE");
@@ -92,7 +92,7 @@ function naleenMaleAI():void {
 
 //Normal Attack
 //instead of a double attack, this one uses a more powerful single blow.
-function naleenDudeAttack():void {
+public function naleenDudeAttack():void {
 	output("The naleen quickly slithers your way, using his serpentine body to gain altitude and maul with a vicious downward strike!\n");
 	//{standard dodge/miss messages}
 	//Hit: You manage to fall in a defensive stance just in time, yelping in pain as you are forcibly struck by his razor-sharp claws.
@@ -102,7 +102,7 @@ function naleenDudeAttack():void {
 
 //Constrict
 //Grapple, must struggle to escape. If the Naleen’s HP is <= 75%: Randomly apply a dose of poison. He will ONLY poison when you are held within his coils.
-function naleenDudeConstrict():void {
+public function naleenDudeConstrict():void {
 	author("Savin");
 	if(!pc.hasStatusEffect("Naleen Coiled"))
 	{
@@ -142,7 +142,7 @@ function naleenDudeConstrict():void {
 //Bite Attack (Paralytic Venom)
 //Low chance of use; increases with foe HP drop or if foe is constricted. 
 //REQ'S NO SHIELDS!
-function biteAttackDudeleen():void {
+public function biteAttackDudeleen():void {
 	author("Savin");
 	var attacker:Creature = foes[0];
 	output("His coils tighten ever so slightly, further immobilising you. With a menacing growl he exposes his fangs and ");
@@ -165,7 +165,7 @@ function biteAttackDudeleen():void {
 //If PC is shielded, deal some damage to the Naleen too.
 //Deals Heavy Damage, is a bit easier to avoid than his claws.
 //Meant to hurt the PC’s health rather than their shields. Is there a way to amplify HP damage and reduce shield’s damage?
-function dudeNaleenPounce():void {
+public function dudeNaleenPounce():void {
 	output("With a snarl ending in a hiss, he launches to the air. He strikes at you with claw and fang in a mighty pounce!");
 	var damage:int = 0;
 	var sDamage:Array = new Array();
@@ -196,7 +196,7 @@ function dudeNaleenPounce():void {
 }
 
 //Victory
-function defeatAMaleNaleen():void {
+public function defeatAMaleNaleen():void {
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
@@ -230,7 +230,7 @@ function defeatAMaleNaleen():void {
 	addButton(14,"Leave",leaveDefeatedDudeleen);
 }
 
-function leaveDefeatedDudeleen():void {
+public function leaveDefeatedDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -245,7 +245,7 @@ function leaveDefeatedDudeleen():void {
 
 //Ride Him
 //Requires PC has at least one vagina and not taur
-function rideDudeleensWithAPussaaaaah():void {
+public function rideDudeleensWithAPussaaaaah():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -452,7 +452,7 @@ function rideDudeleensWithAPussaaaaah():void {
 }
 
 //[=Release=]
-function releaseNaleenAfterLadyWins():void {
+public function releaseNaleenAfterLadyWins():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -464,7 +464,7 @@ function releaseNaleenAfterLadyWins():void {
 }
 
 //[=Leave=]
-function leaveTheDudeNaleenAfterLadyWins():void {
+public function leaveTheDudeNaleenAfterLadyWins():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -477,7 +477,7 @@ function leaveTheDudeNaleenAfterLadyWins():void {
 
 //Get Blown
 //Requires PC has at least one penis
-function getBlownByDudeleen():void {
+public function getBlownByDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -560,7 +560,7 @@ function getBlownByDudeleen():void {
 }
 
 //[=Ignore=] 
-function ignoreDasNaga():void {
+public function ignoreDasNaga():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -631,7 +631,7 @@ function ignoreDasNaga():void {
 }
 
 //[=LetGo=]
-function letThatNaleenBoyPussyGo():void {
+public function letThatNaleenBoyPussyGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -643,7 +643,7 @@ function letThatNaleenBoyPussyGo():void {
 }
 
 //[=Refuse=]
-function refuseToLetTheNaleenGo():void {
+public function refuseToLetTheNaleenGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -659,7 +659,7 @@ function refuseToLetTheNaleenGo():void {
 
 
 //[=Handjob=]
-function handjobThatDudeleen():void {
+public function handjobThatDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -700,7 +700,7 @@ function handjobThatDudeleen():void {
 }
 
 //[=Ass=] 
-function getTakenInTheAssByDudeleen():void {
+public function getTakenInTheAssByDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -788,7 +788,7 @@ function getTakenInTheAssByDudeleen():void {
 }
 
 //[=CuntTail=]
-function cuntailOnDudeleen():void {
+public function cuntailOnDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -839,14 +839,14 @@ function cuntailOnDudeleen():void {
 }
 
 
-function loseToDudeleenRouter():void {
+public function loseToDudeleenRouter():void {
 	if(!pc.hasCuntTail()) loseToDudeleenSex();
 	else reverseFuckNaleenCuntTailGo();
 }
 
 //Defeat Sex
 //If you don’t have a pussy, he just ass-fucks you. They’ll be largely similar for the most part.
-function loseToDudeleenSex(tailIntro:Boolean = false):void {
+public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
@@ -1091,7 +1091,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 
 //Reverse Rape
 //Can only happen if the PC has a cunt-tail. Two or more gives you an alt version.
-function reverseFuckNaleenCuntTailGo():void {
+public function reverseFuckNaleenCuntTailGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -1136,7 +1136,7 @@ function reverseFuckNaleenCuntTailGo():void {
 	}
 }
 
-function resistLossRape():void {
+public function resistLossRape():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
@@ -1147,7 +1147,7 @@ function resistLossRape():void {
 }
 
 //[=Feed=]
-function feedYourCuntTailWithDudeleen():void {
+public function feedYourCuntTailWithDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");

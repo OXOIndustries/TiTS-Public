@@ -5,7 +5,7 @@
 // SEXED_GEOFF    : TODO: FIXME
 // 
 
-function scrapyardMaintenance():void {
+public function scrapyardMaintenance():void {
 	author("Nonesuch");
 	if(flags["SCRAPYARD_SEEN"] == undefined) {
 		flags["SCRAPYARD_SEEN"] = 1;
@@ -30,10 +30,10 @@ function scrapyardMaintenance():void {
 	this.addButton(1,"Sell",sellToArtie);
 }
 
-function sellToArtie():void {
+public function sellToArtie():void {
 	sellItem();
 }
-function buyFromGeoff():void {
+public function buyFromGeoff():void {
 	clearOutput();
 	author("Nonesuch");
 	userInterface.showBust("GEOFF");
@@ -63,7 +63,7 @@ function buyFromGeoff():void {
 }
 
 //Talk
-function talkToGeoff():void {
+public function talkToGeoff():void {
 	clearOutput();
 	author("Nonesuch");
 	userInterface.showBust("GEOFF");
@@ -92,7 +92,7 @@ function talkToGeoff():void {
 	}
 }
 
-function flirtWithGeoff():void {
+public function flirtWithGeoff():void {
 	clearOutput();
 	author("Nonesuch");
 	output("You smile suggestively and ask if he’s that good with his hands, perhaps he could give you a personal demonstration?");
@@ -187,7 +187,7 @@ function flirtWithGeoff():void {
 }
 
 //Sex: 
-function GeoffRepeatFuck():void {
+public function GeoffRepeatFuck():void {
 	clearOutput();
 	author("Nonesuch");
 	userInterface.showBust("GEOFF_NUDE");

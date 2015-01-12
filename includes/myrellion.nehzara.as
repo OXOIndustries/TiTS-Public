@@ -44,7 +44,7 @@ Kaizer finally finishes a TiTS submission and then proceeds to jerk it to things
 ???
 Profit and buy penny stocks*/
 
-function showNehzara():void
+public function showNehzara():void
 {
 	showBust("NEHZARA");
 	if(flags["MET_NEHZARA"] == undefined) showName("RED\nMYR");
@@ -53,7 +53,7 @@ function showNehzara():void
 }
 
 //Room Description
-function nehzaraBonus():Boolean
+public function nehzaraBonus():Boolean
 {
 	author("Kaizer_Z");
 	//(First Time)
@@ -89,7 +89,7 @@ function nehzaraBonus():Boolean
 }
 
 //[Guards]
-function nehzaraGuardsFirstTimeMeetingStuff():void
+public function nehzaraGuardsFirstTimeMeetingStuff():void
 {
 	//Special: Wanna Feel?
 	//Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
@@ -126,7 +126,7 @@ function nehzaraGuardsFirstTimeMeetingStuff():void
 }
 
 //[Nehzara]
-function approachNehzara4Repeats():void
+public function approachNehzara4Repeats():void
 {
 	clearOutput();
 	showNehzara();
@@ -136,7 +136,7 @@ function approachNehzara4Repeats():void
 }
 
 //[Appearance]
-function nehzarasAppearance():void
+public function nehzarasAppearance():void
 {
 	clearOutput();
 	showNehzara();
@@ -160,7 +160,7 @@ function nehzarasAppearance():void
 
 //Talk: Her People
 //Tooltip: It might be interesting to find out a little more about the Reds from their point of view.
-function talkAboutNehzarasShittyPeople():void
+public function talkAboutNehzarasShittyPeople():void
 {
 	clearOutput();
 	showNehzara();
@@ -206,7 +206,7 @@ function talkAboutNehzarasShittyPeople():void
 
 //Talk: The War
 //Tooltip: A little history lesson never hurt anyone. A little information on the war might help you while on this planet. Knowledge is power, right?
-function talkToNehzaraAbootZeWar():void
+public function talkToNehzaraAbootZeWar():void
 {
 	clearOutput();
 	showNehzara();
@@ -231,7 +231,7 @@ function talkToNehzaraAbootZeWar():void
 
 //Talk: Her History
 //Tooltip: Wars and politics are interesting and all, but what about the woman in front of you? You could ask how she got here, and why.
-function talkToNehzaraAboutHistory():void
+public function talkToNehzaraAboutHistory():void
 {
 	clearOutput();
 	showNehzara();
@@ -263,7 +263,7 @@ function talkToNehzaraAboutHistory():void
 
 //Talk: Trench Wives?
 //Tooltip: Wait... trench wives? There’s an unusual term, and she said something about “<i>war trophies.</i>” You could ask her to elaborate on that.
-function trenchWives():void
+public function trenchWives():void
 {
 	clearOutput();
 	showNehzara();
@@ -305,7 +305,7 @@ function trenchWives():void
 
 //Talk: Your Mission
 //Tooltip: You came here for a reason, and there’s a chance that having access to Red Myr territory could help you find the probe and fulfill your mission. This diplomat is the one who can get you access.
-function talkToNehzaraAboutHerMission():void
+public function talkToNehzaraAboutHerMission():void
 {
 	clearOutput();
 	showNehzara();
@@ -336,7 +336,7 @@ function talkToNehzaraAboutHerMission():void
 //Sex: Under Desk
 //Tooltip: It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs...
 //{From Mission Talk}
-function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
+public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
 	showNehzara();
@@ -440,7 +440,7 @@ function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 
 //Sex: Storage Closet
 //Tooltip: You’ve got what she wants, but you know she’ll want to call the shots. Still, going along with Nehzara and letting her use you for her own pleasure could be fun for both of you.
-function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):void
+public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
 	showNehzara();
@@ -517,7 +517,7 @@ function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):void
 	addButton(0,"Next",nehzaraClosetPartII);
 }
 
-function nehzaraClosetPartII():void
+public function nehzaraClosetPartII():void
 {
 	clearOutput();
 	showNehzara();
@@ -592,7 +592,7 @@ function nehzaraClosetPartII():void
 }
 
 //{(Merge:)}
-function closetFuckFinaleWithNehzara():void
+public function closetFuckFinaleWithNehzara():void
 {
 	clearOutput();
 	showNehzara();
@@ -609,7 +609,7 @@ function closetFuckFinaleWithNehzara():void
 
 //Talk: Refuse
 //Tooltip: Tell her that you’d rather not, and that you have other things to offer her.
-function refuseToLickAntPussayOrClosetFuxx():void
+public function refuseToLickAntPussayOrClosetFuxx():void
 {
 	clearOutput();
 	showNehzara();
@@ -627,7 +627,7 @@ function refuseToLickAntPussayOrClosetFuxx():void
 	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);	
 }
 
-function nehzeraMenu(arg):void
+public function nehzeraMenu(arg):void
 {
 	clearMenu();
 	//[Her People] [The War] [Your Mission] [Appearance]
@@ -666,7 +666,7 @@ function nehzeraMenu(arg):void
 
 //Special: Wanna Feel?
 //Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
-function wannaFeelABellyYouAntSlutWhoreBitchNazi():void
+public function wannaFeelABellyYouAntSlutWhoreBitchNazi():void
 {
 	clearOutput();
 	showNehzara();
@@ -678,7 +678,7 @@ function wannaFeelABellyYouAntSlutWhoreBitchNazi():void
 	addButton(1,"Ignore",ignoreBellyRubs,undefined,"Ignore","Continue on with business as usual.");
 }
 
-function ignoreBellyRubs():void
+public function ignoreBellyRubs():void
 {
 	clearOutput();
 	showNehzara();
@@ -688,7 +688,7 @@ function ignoreBellyRubs():void
 
 //[Wanna Feel?]
 //Tooltip: She may not be able to bear children, but that doesn’t mean she can’t have the chance to experience the wonder of new life taking shape. You could offer to let her feel it and see what it’s like.
-function heyAntHitlerWannaFeel():void
+public function heyAntHitlerWannaFeel():void
 {
 	clearOutput();
 	showNehzara();
@@ -713,7 +713,7 @@ function heyAntHitlerWannaFeel():void
 
 //Special: A Warrior’s Honor
 //Procs randomly (maybe 20% chance) one time when entering the warehouse/office room of the map. Only procs if the PC has met Nehzara, Lyralla, and Juro at least once, and has sexed Nehzara.
-function nehzarasWarriorHonor():void
+public function nehzarasWarriorHonor():void
 {
 	clearOutput();
 	showNehzara();
@@ -734,7 +734,7 @@ function nehzarasWarriorHonor():void
 }
 
 //[Nehzara & Lt.]
-function nehzaraAndLTFollowupToHonor():void
+public function nehzaraAndLTFollowupToHonor():void
 {
 	clearOutput();
 	showNehzara();
@@ -755,7 +755,7 @@ function nehzaraAndLTFollowupToHonor():void
 
 //Leave
 //Tooltip: Tell Nehzara you’ve got places to be, and get out.
-function leaveNehzara():void
+public function leaveNehzara():void
 {
 	clearOutput();
 	showNehzara();

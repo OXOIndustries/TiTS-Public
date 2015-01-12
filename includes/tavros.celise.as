@@ -5,15 +5,15 @@
 // TIMES_CELISE_IN_BALLS : TODO - FIXME
 // 
 
-function celiseIsCrew():Boolean {
+public function celiseIsCrew():Boolean {
 	return (flags["RECRUITED_CELISE"] > 0 && flags["CELISE_ONBOARD"] > 0);
 }
-function celiseIsFollower():Boolean {
+public function celiseIsFollower():Boolean {
 	return (flags["RECRUITED_CELISE"] > 0);
 }
 
 //Crewmember Celise’s Screen
-function celiseFollowerInteractions():void {
+public function celiseFollowerInteractions():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -35,7 +35,7 @@ function celiseFollowerInteractions():void {
 }
 
 //Leave Crewmember Celise’s Screen
-function leaveCelisesMenu():void {
+public function leaveCelisesMenu():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -44,7 +44,7 @@ function leaveCelisesMenu():void {
 	this.addButton(0,"Next",celiseFollowerInteractions);
 }
 
-function celiseFeedingRouter():void {
+public function celiseFeedingRouter():void {
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Male Feeding",dudesFeedCelise);
 	else addDisabledButton(0,"Male Feeding");
@@ -58,7 +58,7 @@ function celiseFeedingRouter():void {
 }
 
 //Feed Celise (M)
-function dudesFeedCelise():void {
+public function dudesFeedCelise():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -96,7 +96,7 @@ function dudesFeedCelise():void {
 }
 
 //Say Nothing
-function feedCeliseSayNothing():void {
+public function feedCeliseSayNothing():void {
 	//Pick one of the following scenes. If cum production is low, go in is not considered. If cum production is high, suck out is not considered. Low is considered less than a liter. High is consider more than five liters.
 	if(pc.cumQ() < 1000) {
 		if(rand(2) == 0) celiseDoesSomeAnalMilking();
@@ -114,7 +114,7 @@ function feedCeliseSayNothing():void {
 }
 
 //Suck Out
-function celiseSucksYouDry():void {
+public function celiseSucksYouDry():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -233,7 +233,7 @@ function celiseSucksYouDry():void {
 }
 
 //Anal Milking
-function celiseDoesSomeAnalMilking():void {
+public function celiseDoesSomeAnalMilking():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -323,7 +323,7 @@ function celiseDoesSomeAnalMilking():void {
 }
 
 //Inside Milking
-function celiseGoesInYerBallsYo():void {
+public function celiseGoesInYerBallsYo():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -341,7 +341,7 @@ function celiseGoesInYerBallsYo():void {
 	this.addButton(1,"No, Suck Me",celiseSucksYouDry);
 	this.addButton(2,"No, Milk Me",celiseDoesSomeAnalMilking);
 }
-function yepGetInMyBallsUBitch():void {
+public function yepGetInMyBallsUBitch():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -416,7 +416,7 @@ function yepGetInMyBallsUBitch():void {
 	this.addButton(0,"Next",celiseInBallsFinalEnding);
 }
 
-function celiseInBallsFinalEnding():void {
+public function celiseInBallsFinalEnding():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -451,7 +451,7 @@ function celiseInBallsFinalEnding():void {
 //Feed Celise (F)
 //D-d-double MASSIVE Penetration. Waddle walk ftw.
 //By Savin
-function feedCeliseBySavin():void {
+public function feedCeliseBySavin():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -519,7 +519,7 @@ Good on her, keeping the ship nice and sparkly.*/
 
 //Celise Sleaze
 //Requirements: PC C-cup or above, lactates, and has junk of some kind
-function celiseSleezeLactation():void {
+public function celiseSleezeLactation():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -749,7 +749,7 @@ Scene
 //requires that the PC not be sexless, and be humanoid in shape*/
 
 //Intro
-function celiseOffersToBeYourBedSenpai():void {
+public function celiseOffersToBeYourBedSenpai():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -762,7 +762,7 @@ function celiseOffersToBeYourBedSenpai():void {
 }
 
 //Don’t let her in
-function dontLetCeliseInForBed():void {
+public function dontLetCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -783,7 +783,7 @@ function dontLetCeliseInForBed():void {
 }
 
 //Let her in
-function letCeliseInForBed():void {
+public function letCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -810,7 +810,7 @@ function letCeliseInForBed():void {
 }
 
 //Don’t be naked
-function sleepWithCeliseNotNaked():void {
+public function sleepWithCeliseNotNaked():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -825,7 +825,7 @@ function sleepWithCeliseNotNaked():void {
 }
 
 //Be naked
-function sleepWithCeliseNaked(disrobe:Boolean = true):void {
+public function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -859,7 +859,7 @@ function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 }
 
 //Don’t let her drain you
-function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
+public function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");
@@ -871,7 +871,7 @@ function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 
 //Let her drain you
 //sexy times
-function getDrainedSexyTimes():void {
+public function getDrainedSexyTimes():void {
 	clearOutput();
 	author("TheDarkMaster");
 	this.userInterface.showBust("CELISE");

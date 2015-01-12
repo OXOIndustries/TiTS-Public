@@ -76,7 +76,7 @@ public function goAheadAndDumbfuck():void
 //After Orgasm Procs
 //Stored in: "Dumbfuck Orgasm Procced" in v1.
 //Probably going to be done via an event queue-like system. Add to Q AFTER time passage.
-function procDumbfuckStuff():void
+public function procDumbfuckStuff():void
 {
 	clearOutput();
 	//Small sneeze - 1 cum

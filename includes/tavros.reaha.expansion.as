@@ -1,7 +1,7 @@
 const REAHA_CONFIDENCE_LOW:int = 15;
 const REAHA_CONFIDENCE_MED:int = 40;
 const REAHA_CONFIDENCE_HIGH:int = 65;
-function reahaConfidence(conf:int = 0):int
+public function reahaConfidence(conf:int = 0):int
 {
 	if (flags["REAHA_CONFIDENCE"] == undefined) flags["REAHA_CONFIDENCE"] = 0;
 	if (conf != 0)
@@ -18,7 +18,7 @@ const REAHA_ADDICTION_LOW:int = 15;
 const REAHA_ADDICTION_MED:int = 40;
 const REAHA_ADDICTION_HIGH:int = 65;
 const REAHA_ADDICTION_MAX:int = 100;
-function reahaAddiction(addict:int = 0):int
+public function reahaAddiction(addict:int = 0):int
 {
 	if (flags["REAHA_ADDICTION"] == undefined) flags["REAHA_ADDICTION"] = REAHA_ADDICTION_MAX;
 	if (addict != 0)
@@ -31,27 +31,27 @@ function reahaAddiction(addict:int = 0):int
 	return flags["REAHA_ADDICTION"];
 }
 
-function reahaAddicted():Boolean
+public function reahaAddicted():Boolean
 {
 	if (flags["REAHA_ADDICTION_CURED"] == undefined) return true;
 	return false;
 }
 
-function reahaAddictionTherapyAvailable():Boolean
+public function reahaAddictionTherapyAvailable():Boolean
 {
 	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false;
 	if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) return false;
 	return true;
 }
 
-function reahaHeader():void
+public function reahaHeader():void
 {
 	showName("\nREAHA");
 	author("Savin");
 	showBust("REAHA");
 }
 
-function reahaMoosAboutNewTexas():Boolean
+public function reahaMoosAboutNewTexas():Boolean
 {
 	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined)
 	{
@@ -82,13 +82,13 @@ function reahaMoosAboutNewTexas():Boolean
 	return false;
 }
 
-function talkWithFollowerReaha():void
+public function talkWithFollowerReaha():void
 {
 	if (flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] == undefined) reahaFirstTalk();
 	else reahaRegularTalk();
 }
 
-function reahaFirstTalk():void
+public function reahaFirstTalk():void
 {
 	clearOutput();
 	showName("\nREAHA");
@@ -163,7 +163,7 @@ function reahaFirstTalk():void
 	approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(false);
 }
 
-function reahaRegularTalk():void
+public function reahaRegularTalk():void
 {
 	clearOutput();
 	reahaHeader();
@@ -179,7 +179,7 @@ function reahaRegularTalk():void
 	showReahaTalkMenu();
 }
 
-function showReahaTalkMenu(func:Function = null):void
+public function showReahaTalkMenu(func:Function = null):void
 {
 	clearMenu();
 
@@ -206,7 +206,7 @@ function showReahaTalkMenu(func:Function = null):void
 	else addDisabledButton(4, "Her Life");
 }
 
-function reahaTalkTreatment():void
+public function reahaTalkTreatment():void
 {
 	clearOutput();
 	reahaHeader();
@@ -267,7 +267,7 @@ function reahaTalkTreatment():void
 	}
 }
 
-function reahaTalkTreatmentBitterness():void
+public function reahaTalkTreatmentBitterness():void
 {
 	if (flags["REAHA_TALK_TREATMENT_CHOICE"] == undefined)
 	{
@@ -288,7 +288,7 @@ function reahaTalkTreatmentBitterness():void
 	showReahaTalkMenu(reahaTalkTreatment);
 }
 
-function reahaTalkTreatmentComfort():void
+public function reahaTalkTreatmentComfort():void
 {
 	if (flags["REAHA_TALK_TREATMENT_CHOICE"] == undefined)
 	{
@@ -315,7 +315,7 @@ function reahaTalkTreatmentComfort():void
 	showReahaTalkMenu(reahaTalkTreatment);
 }
 
-function reahaTalkNewTexas():void
+public function reahaTalkNewTexas():void
 {
 	clearOutput();
 	reahaHeader();
@@ -351,7 +351,7 @@ function reahaTalkNewTexas():void
 	}
 }
 
-function reahaTalkNewTexasEw():void
+public function reahaTalkNewTexasEw():void
 {
 	clearOutput();
 	reahaHeader();
@@ -375,7 +375,7 @@ function reahaTalkNewTexasEw():void
 	addNextButton(reahaTalkNewTexasII);
 }
 
-function reahaTalkNewTexasNatural():void
+public function reahaTalkNewTexasNatural():void
 {
 	clearOutput();
 	reahaHeader();
@@ -405,7 +405,7 @@ function reahaTalkNewTexasNatural():void
 	addNextButton(reahaTalkNewTexasII);
 }
 
-function reahaTalkNewTexasManUp():void
+public function reahaTalkNewTexasManUp():void
 {
 	clearOutput();
 	reahaHeader();
@@ -428,7 +428,7 @@ function reahaTalkNewTexasManUp():void
 	addNextButton(reahaTalkNewTexasII);
 }
 
-function reahaTalkNewTexasII():void
+public function reahaTalkNewTexasII():void
 {
 	clearOutput();
 	reahaHeader();
@@ -463,7 +463,7 @@ function reahaTalkNewTexasII():void
 	showReahaTalkMenu(reahaTalkNewTexas);
 }
 
-function reahaTalkAddiction():void
+public function reahaTalkAddiction():void
 {
 	clearOutput();
 	reahaHeader();
@@ -514,7 +514,7 @@ function reahaTalkAddiction():void
 	addButton(2, "I Like", reahaTalkAddictionILike, undefined, "I Like Them", "Tell Reaha you like her just the way she is: drooling with lust and covered in patches.");
 }
 
-function reahaTalkAddictionSorry():void
+public function reahaTalkAddictionSorry():void
 {
 	clearOutput();
 	reahaHeader();
@@ -532,7 +532,7 @@ function reahaTalkAddictionSorry():void
 	showReahaTalkMenu(reahaTalkAddiction);
 }
 
-function reahaTalkAddictionCure():void
+public function reahaTalkAddictionCure():void
 {
 	clearOutput();
 	reahaHeader();
@@ -593,7 +593,7 @@ function reahaTalkAddictionCure():void
 	}
 }
 
-function reahaTalkAddictionILike():void
+public function reahaTalkAddictionILike():void
 {
 	clearOutput();
 	reahaHeader();
@@ -608,7 +608,7 @@ function reahaTalkAddictionILike():void
 	showReahaTalkMenu(reahaTalkAddiction);
 }
 
-function reahaTalkGeneMods():void
+public function reahaTalkGeneMods():void
 {
 	clearOutput();
 	reahaHeader();
@@ -639,7 +639,7 @@ function reahaTalkGeneMods():void
 	else addButton(2, "Before?", reahaTalkGeneModsBefore, undefined, "Looks Before Mods?", "You ask Reaha if you can see those pics of her before her modification again.");
 }
 
-function reahaTalkGeneModsExpensive():void
+public function reahaTalkGeneModsExpensive():void
 {
 	clearOutput();
 	reahaHeader();
@@ -657,7 +657,7 @@ function reahaTalkGeneModsExpensive():void
 	showReahaTalkMenu(reahaTalkGeneMods);
 }
 
-function reahaTalkGeneModsWhy():void
+public function reahaTalkGeneModsWhy():void
 {
 	clearOutput();
 	reahaHeader();
@@ -684,7 +684,7 @@ function reahaTalkGeneModsWhy():void
 	addButton(1, "Rebuke", reahaTalkGeneModsWhyRebuke);
 }
 
-function reahaTalkGeneModsWhyComfort():void
+public function reahaTalkGeneModsWhyComfort():void
 {
 	clearOutput();
 	reahaHeader();
@@ -717,7 +717,7 @@ function reahaTalkGeneModsWhyComfort():void
 	showReahaTalkMenu(reahaTalkGeneMods);
 }
 
-function reahaTalkGeneModsWhyRebuke():void
+public function reahaTalkGeneModsWhyRebuke():void
 {
 	clearOutput();
 	reahaHeader();
@@ -739,7 +739,7 @@ function reahaTalkGeneModsWhyRebuke():void
 	showReahaTalkMenu(reahaTalkGeneMods);
 }
 
-function reahaTalkGeneModsBefore():void
+public function reahaTalkGeneModsBefore():void
 {
 	clearOutput();
 	reahaHeader();
@@ -801,7 +801,7 @@ function reahaTalkGeneModsBefore():void
 	}
 }
 
-function reahaTalkGeneModsBeforeOld():void
+public function reahaTalkGeneModsBeforeOld():void
 {
 	clearOutput();
 	reahaHeader();
@@ -833,7 +833,7 @@ function reahaTalkGeneModsBeforeOld():void
 	showReahaTalkMenu(reahaTalkGeneMods);
 }
 
-function reahaTalkGeneModsBeforeNew():void
+public function reahaTalkGeneModsBeforeNew():void
 {
 	clearOutput();
 	reahaHeader();
@@ -856,7 +856,7 @@ function reahaTalkGeneModsBeforeNew():void
 	showReahaTalkMenu(reahaTalkGeneMods);
 }
 
-function reahaTalkHerLife():void
+public function reahaTalkHerLife():void
 {
 	clearOutput();
 	reahaHeader();
@@ -894,7 +894,7 @@ function reahaTalkHerLife():void
 	showReahaTalkMenu(reahaTalkHerLife);
 }
 
-function reahaAddictionTherapy():void
+public function reahaAddictionTherapy():void
 {
 	clearOutput();
 	reahaHeader();
@@ -967,7 +967,7 @@ function reahaAddictionTherapy():void
 	else addNextButton(reahaAddictionTherapyNoWingWang);
 }
 
-function reahaAddictionTherapyDickwielder():void
+public function reahaAddictionTherapyDickwielder():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1032,7 +1032,7 @@ function reahaAddictionTherapyDickwielder():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function reahaAddictionTherapyNoWingWang():void
+public function reahaAddictionTherapyNoWingWang():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1099,7 +1099,7 @@ function reahaAddictionTherapyNoWingWang():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function reahaBreastMilkIceCream():void
+public function reahaBreastMilkIceCream():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1187,7 +1187,7 @@ function reahaBreastMilkIceCream():void
 	addButton(1, "Greedy", reahaBreastMilkIceCreamGreedy);
 }
 
-function reahaBreastMilkIceCreamGreedy():void
+public function reahaBreastMilkIceCreamGreedy():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1205,7 +1205,7 @@ function reahaBreastMilkIceCreamGreedy():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaBreastMilkIceCreamShare():void
+public function reahaBreastMilkIceCreamShare():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1231,7 +1231,7 @@ function reahaBreastMilkIceCreamShare():void
 	addNextButton(mainGameMenu);
 }
 
-function tryProcDommyReahaTime(tMinutes:Number):Boolean
+public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
 	if (!reahaIsCrew()) return false;
 	if (currentLocation != "SHIP INTERIOR") return false; // Only care about processTime calls onboard the ship
@@ -1256,7 +1256,7 @@ function tryProcDommyReahaTime(tMinutes:Number):Boolean
 	return false;
 }
 
-function reahaDommyFuxTime():void
+public function reahaDommyFuxTime():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1282,7 +1282,7 @@ function reahaDommyFuxTime():void
 	addButton(1, "Wait...", reahaDommyFuxTimeWait);
 }
 
-function reahaDommyFuxTimeFuckOff():void
+public function reahaDommyFuxTimeFuckOff():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1298,7 +1298,7 @@ function reahaDommyFuxTimeFuckOff():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaDommyFuxTimeWait():void
+public function reahaDommyFuxTimeWait():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1373,7 +1373,7 @@ function reahaDommyFuxTimeWait():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaMilkTalk():void
+public function reahaMilkTalk():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1413,7 +1413,7 @@ function reahaMilkTalk():void
 	addButton(14, "Back", showReahaTalkMenu);
 }
 
-function reahaMilkTalkHoneydew():void
+public function reahaMilkTalkHoneydew():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1449,7 +1449,7 @@ function reahaMilkTalkHoneydew():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaMilkTalkChocolac():void
+public function reahaMilkTalkChocolac():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1486,7 +1486,7 @@ function reahaMilkTalkChocolac():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaBootOffShip():void
+public function reahaBootOffShip():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1545,7 +1545,7 @@ function reahaBootOffShip():void
 	}
 }
 
-function reahaBootOffShipNevermind():void
+public function reahaBootOffShipNevermind():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1562,7 +1562,7 @@ function reahaBootOffShipNevermind():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaBootOffShipGo2Tavros():void
+public function reahaBootOffShipGo2Tavros():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1590,7 +1590,7 @@ function reahaBootOffShipGo2Tavros():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaBootOffShipNewTexas():void
+public function reahaBootOffShipNewTexas():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1605,7 +1605,7 @@ function reahaBootOffShipNewTexas():void
 	addNextButton(mainGameMenu);
 }
 
-function reahaBackAtBeths():void
+public function reahaBackAtBeths():void
 {
 	clearOutput();
 	reahaHeader();
@@ -1624,7 +1624,7 @@ function reahaBackAtBeths():void
 	addButton(1, "Leave", mainGameMenu);
 }
 
-function reahaBackAtBethsRejoin():void
+public function reahaBackAtBethsRejoin():void
 {
 	clearOutput();
 	reahaHeader();

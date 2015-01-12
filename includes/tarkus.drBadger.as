@@ -3,7 +3,7 @@
 //There’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.
 //[Add button for “Doc Badger’s Shack” to options menu for location]
 
-function drBadgerMenu():void
+public function drBadgerMenu():void
 {
 	shopkeep = chars["DRBADGER"];
 	//Unlock dumbfuck codex
@@ -17,7 +17,7 @@ function drBadgerMenu():void
 }
 
 //PC Enters Doc Badger’s Shack
-function drBadgerBonusShit():Boolean
+public function drBadgerBonusShit():Boolean
 {
 	author("Abe E. Seedy");
 	//Prep shop stuff!
@@ -49,7 +49,7 @@ function drBadgerBonusShit():Boolean
 	return false;
 }
 
-function repeatBadgerApproach():void
+public function repeatBadgerApproach():void
 {
 	clearOutput();
 	userInterface.showBust("DRBADGER");
@@ -80,7 +80,7 @@ function repeatBadgerApproach():void
 }
 
 //YES
-function yesImAHeroHurhurDurhurGurhurhurhurShit():void
+public function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 {
 	clearOutput();
 	userInterface.showBust("DRBADGER");
@@ -97,7 +97,7 @@ function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 }
 
 //NO
-function noImNotAHeroYouFuckingBimboDoctor():void
+public function noImNotAHeroYouFuckingBimboDoctor():void
 {
 	clearOutput();
 	userInterface.showBust("DRBADGER");
@@ -114,7 +114,7 @@ function noImNotAHeroYouFuckingBimboDoctor():void
 }
 
 //I’M A HERO
-function heyDocImAHero():void
+public function heyDocImAHero():void
 {
 	clearOutput();
 	userInterface.showBust("DRBADGER");
@@ -396,7 +396,7 @@ function heyDocImAHero():void
 }
 
 //I’M JUST HERE TO SHOP
-function heyDocImJustHereToShop():void
+public function heyDocImJustHereToShop():void
 {
 	clearOutput();
 	userInterface.showBust("DRBADGER");

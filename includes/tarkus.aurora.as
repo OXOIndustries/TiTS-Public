@@ -36,7 +36,7 @@ Interior
     rooms["AURORA’S SHOP"].addFlag(GLOBAL.COMMERCE);
 */
 
-function auroroMessInRoomText():void
+public function auroroMessInRoomText():void
 {
 	if(flags["TARKUS_DESTROYED"] != undefined && flags["MET_AURORA"] != undefined)
 	{
@@ -45,7 +45,7 @@ function auroroMessInRoomText():void
 	}
 }
 
-function approachAuroraPostTarkusBoom():void
+public function approachAuroraPostTarkusBoom():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -74,7 +74,7 @@ function approachAuroraPostTarkusBoom():void
 	//Menu calls show up already since this is called within the normal approachAurora
 }
 
-function auroraBonus():Boolean
+public function auroraBonus():Boolean
 {
 	output("The cavernous room is dimly lit with swaying, hanging lamps similar to a gloomy and moonlit night on a much more <i>habitable</i> world, still bright enough to make out vague details. The room isn’t a comfortable one, claustrophobic with the stacks of shelves, boxes and half-ruined devices haphazardly placed about with little rhyme or reason, or the signs of damaged hull that seem especially prevalent here, making it hard to get around. If that wasn’t enough to make you on edge, the thick, heady scent of char permeates the room, making your senses reel and head dizzy as you try to keep it all together.");
 	if(!pc.isCrotchGarbed())
@@ -101,14 +101,14 @@ function auroraBonus():Boolean
 	return false;
 }
 
-function auroraBust():void
+public function auroraBust():void
 {
 	userInterface.showName("\nAURORA");
 	userInterface.showBust("AURORA");
 }
 
 //Aurora
-function approachAurora():void
+public function approachAurora():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -177,7 +177,7 @@ function approachAurora():void
 	auroraBaseMenu();
 }
 
-function auroraBaseMenu(disabledButton:int = -1):void
+public function auroraBaseMenu(disabledButton:int = -1):void
 {
 	clearMenu();
 	if(disabledButton == 0) addDisabledButton(0,"Shop");
@@ -195,7 +195,7 @@ function auroraBaseMenu(disabledButton:int = -1):void
 }
 
 //Talk
-function talkToAurora():void
+public function talkToAurora():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -207,7 +207,7 @@ function talkToAurora():void
 	auroraTalkMenu();
 }
 
-function auroraTalkMenu(disabledButton:int = -1):void
+public function auroraTalkMenu(disabledButton:int = -1):void
 {
 	clearMenu();
 	if(flags["TARKUS_DESTROYED"] == undefined)
@@ -239,7 +239,7 @@ function auroraTalkMenu(disabledButton:int = -1):void
 }
 
 //About her
-function askAuroraAboutHerself():void
+public function askAuroraAboutHerself():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -255,7 +255,7 @@ function askAuroraAboutHerself():void
 }
 
 //About work
-function askAuroraAboutWork():void
+public function askAuroraAboutWork():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -272,7 +272,7 @@ function askAuroraAboutWork():void
 }
 
 //About Raskvel
-function askAuroraAboutRaskvel():void
+public function askAuroraAboutRaskvel():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -285,7 +285,7 @@ function askAuroraAboutRaskvel():void
 }
 
 //About species
-function askAuroraAboutHerSpecies():void
+public function askAuroraAboutHerSpecies():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -309,7 +309,7 @@ function askAuroraAboutHerSpecies():void
 }
 
 //About Novahome
-function askAuroraAboutNovahome():void
+public function askAuroraAboutNovahome():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -331,7 +331,7 @@ function askAuroraAboutNovahome():void
 //====================
 //How are you?
 //Tooltip: You could ask her how she’s doing - her life had quite the upheaval recently.
-function howIsAuroraPostSplosion():void
+public function howIsAuroraPostSplosion():void
 {
 	clearOutput();
 	author("Magic_Ted");
@@ -347,7 +347,7 @@ function howIsAuroraPostSplosion():void
 
 //How’d you make it?
 //Tooltip; Aurora had a practically outdoors workshop and spent plenty of time flying around the planet - how’d she make it back?
-function howdAuroraSurviveSplosions():void
+public function howdAuroraSurviveSplosions():void
 {
 	clearOutput();
 	author("Magic_Ted");
@@ -365,7 +365,7 @@ function howdAuroraSurviveSplosions():void
 
 //What happened to the ship?
 //Tooltip: How’s this bucket doing? You don’t recall her being space-capable.
-function whatHappenedToZeShip():void
+public function whatHappenedToZeShip():void
 {
 	clearOutput();
 	author("Magic_Ted");
@@ -385,7 +385,7 @@ function whatHappenedToZeShip():void
 
 //What now?
 //Tooltip: What are you going to do now?
-function whatNowBrownCow():void
+public function whatNowBrownCow():void
 {
 	clearOutput();
 	author("Magic_Ted");
@@ -403,7 +403,7 @@ function whatNowBrownCow():void
 
 //Look around
 // Basically a catch all for one off MAD SCIENCE! jokes and such that the PC couldn’t rightfully fit in their pocket. Like a howitzer. Or a death ray laser gun that is simply way to illegal and prone to murderous explosions. Or a pocket watch.
-function lookAroundAurorasShop():void
+public function lookAroundAurorasShop():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -416,7 +416,7 @@ function lookAroundAurorasShop():void
 
 }
 
-function lookAroundShopMenu(disabledButton:int = -1):void
+public function lookAroundShopMenu(disabledButton:int = -1):void
 {
 	clearMenu();
 	if(disabledButton == 0) addDisabledButton(0,"Raygun");
@@ -433,7 +433,7 @@ function lookAroundShopMenu(disabledButton:int = -1):void
 }
 
 //Ray gun looking thing
-function aurorasRayGunThing():void
+public function aurorasRayGunThing():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -450,7 +450,7 @@ function aurorasRayGunThing():void
 }
 
 //Cannon looking thing
-function aurorasCannonThing():void
+public function aurorasCannonThing():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -463,7 +463,7 @@ function aurorasCannonThing():void
 }
 
 //Pocketwatch looking thing
-function aurorasPocketWatchThing():void
+public function aurorasPocketWatchThing():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -477,7 +477,7 @@ function aurorasPocketWatchThing():void
 	lookAroundShopMenu(2);
 }
 //That aircraft
-function aurorasAircraftThing():void
+public function aurorasAircraftThing():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -492,7 +492,7 @@ function aurorasAircraftThing():void
 }
 
 //Glowing cylinder
-function aurorasGlowingCylinder():void
+public function aurorasGlowingCylinder():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -509,7 +509,7 @@ function aurorasGlowingCylinder():void
 
 //Shop
 // This is all an outright copy of how Carl’s shop works, minus the quest. Base screen, item layout with tooltips, character chatter, purchase button. Maybe the tooltip could be placed in the chatter portion instead of before, but that’s pedantic stuff. Prices and actual stats are up to you, of course, Fenoxo. As always we pretend we care about vague game balance and have a mind for it. :3
-function shopAtAuroras():void
+public function shopAtAuroras():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -542,7 +542,7 @@ function shopAtAuroras():void
 }
 
 
-function lootRocketHammer():void {
+public function lootRocketHammer():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new RocketHammer();
@@ -554,7 +554,7 @@ function lootRocketHammer():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootElectrogun():void {
+public function lootElectrogun():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new Electrogun();
@@ -566,7 +566,7 @@ function lootElectrogun():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootProtectiveJacket():void {
+public function lootProtectiveJacket():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new ProtectiveJacket();
@@ -578,7 +578,7 @@ function lootProtectiveJacket():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootTrashArmor():void {
+public function lootTrashArmor():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new TrashArmor();
@@ -590,7 +590,7 @@ function lootTrashArmor():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function lootAimEye():void {
+public function lootAimEye():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new AimEyepiece();
@@ -602,7 +602,7 @@ function lootAimEye():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
-function buyFromAurora(arg:String = "ERROR"):void {
+public function buyFromAurora(arg:String = "ERROR"):void {
 	var cost:int = 0;
 	if(arg == "RocketHammer")
 	{
@@ -637,7 +637,7 @@ function buyFromAurora(arg:String = "ERROR"):void {
 }
 
 //Rocket Hammer
-function rocketHammerDescription():void
+public function rocketHammerDescription():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -659,7 +659,7 @@ function rocketHammerDescription():void
 }
 
 //Electrogun
-function electrogunStuffAtAuroras():void
+public function electrogunStuffAtAuroras():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -678,7 +678,7 @@ function electrogunStuffAtAuroras():void
 }
 
 //Choppy-thing
-function choppyBecauseWarhammer40kDidntDoThisAlready():void
+public function choppyBecauseWarhammer40kDidntDoThisAlready():void
 {
 	clearOutput();
 	//Tooltip
@@ -691,7 +691,7 @@ function choppyBecauseWarhammer40kDidntDoThisAlready():void
 }
 
 //Protective Jacket
-function protectiveJacketFromAurora():void
+public function protectiveJacketFromAurora():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -713,7 +713,7 @@ function protectiveJacketFromAurora():void
 }
 
 //Trash Armor
-function trashArmor():void
+public function trashArmor():void
 {
 	clearOutput();
 	author("Magic Ted");
@@ -738,7 +738,7 @@ function trashArmor():void
 //Aim assist eyepiece
 //A squat little thing, placed on your eye like half of a pair of glasses. It operates as a targeting assist, hooking up with the muzzle of a ranged weapon and giving you some flexibility of being able to aim without glaring down the sight of the weapon. The lack of depth perception means it’s only useful shooting across your living room, however.
 
-function aimAssistEyepiece():void
+public function aimAssistEyepiece():void
 {
 	clearOutput();
 	author("Magic Ted");

@@ -1,7 +1,7 @@
 ﻿//Greeting
 //Store Description
 
-function seraBonusFunction():Boolean
+public function seraBonusFunction():Boolean
 {
 	if(flags["MET_SERA"] == undefined)
 	{
@@ -23,7 +23,7 @@ function seraBonusFunction():Boolean
 }
 
 //Actual Intro Stuff
-function approachSera():void {
+public function approachSera():void {
 	userInterface.showName("\nSERA");
 	userInterface.showBust("SERA");
 	if(flags["MET_SERA"] == undefined)
@@ -57,7 +57,7 @@ function approachSera():void {
 	seraMenu();
 }
 
-function seraMenu():void {
+public function seraMenu():void {
 	clearMenu();
 	userInterface.showName("\nSERA");
 	userInterface.showBust("SERA");
@@ -79,7 +79,7 @@ function seraMenu():void {
 }
 
 //Appearance
-function seraAppearance():void
+public function seraAppearance():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
@@ -95,7 +95,7 @@ function seraAppearance():void
 }
 
 //Why Is Sera Pissed Off?
-function talkToSeraAboutWhyShesPissedOff():void
+public function talkToSeraAboutWhyShesPissedOff():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
@@ -113,7 +113,7 @@ function talkToSeraAboutWhyShesPissedOff():void
 }
 
 //Sex
-function seraSexMenu(display:Boolean = false):void {
+public function seraSexMenu(display:Boolean = false):void {
 	if(display)
 	{
 		clearOutput();
@@ -162,7 +162,7 @@ public function timesFuckedSera():int
 	return flags["SERA FUCKED PCS TAILCUNT"] + flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"];
 }
 
-function letSeraFuckYou():void
+public function letSeraFuckYou():void
 {
 	flags["FUCKED SERA"] = 1;
 	initSeraFuckFlags();
@@ -186,7 +186,7 @@ function letSeraFuckYou():void
 }
 
 //Get Tail Used
-function getTailUsedBySera():void
+public function getTailUsedBySera():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
@@ -267,7 +267,7 @@ function getTailUsedBySera():void
 
 //Get Rode and Pegged/Fucked
 //Sera goes 100% crazy femdom on you. I forgot the pegging, sorry Savin.
-function getRodeFemdomStyleBySera():void {
+public function getRodeFemdomStyleBySera():void {
 	clearOutput();
 	userInterface.showName("\nSERA");
 	userInterface.showBust("SERA");
@@ -380,7 +380,7 @@ function getRodeFemdomStyleBySera():void {
 
 //Get Giant Dick Urethrally Tail-filled while eating her out
 //You get the gist
-function getGiantDickTailfilledWhileEatingSeraOut():void
+public function getGiantDickTailfilledWhileEatingSeraOut():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
@@ -452,7 +452,7 @@ function getGiantDickTailfilledWhileEatingSeraOut():void
 	
 //(Catch) Double (TRIPLE!?) Penetration
 //Savin-sama-dono-chan
-function catchEverythingInYoButtBySavinForSeraDogcock():void {
+public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nSERA");

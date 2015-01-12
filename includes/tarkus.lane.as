@@ -35,7 +35,7 @@ Check if the player is subject to Lane's illicit hypnosis effect.
 All of the stat-boosting effects will have unique names, so that they can co-exist, but each will create/bump this effect up as a hidden marker where appropriate.
 */
 
-function laneHeader(sex:Boolean = false):void
+public function laneHeader(sex:Boolean = false):void
 {
 	showName("\nLANE");
 	if (flags["MET_LANE"] == 1)
@@ -46,14 +46,14 @@ function laneHeader(sex:Boolean = false):void
 	author("B");
 }
 
-function hasLaneHypnosis():Boolean
+public function hasLaneHypnosis():Boolean
 {
 	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return true;
 	if (pc.hasStatusEffect("Lane Hypnosis")) return true;
 	return false;
 }
 
-function outsideLanesPlane():Boolean
+public function outsideLanesPlane():Boolean
 {
 	// Safe paths lead north, east, and west from here.
 	if (flags["MET_LANE"] == undefined)
@@ -72,7 +72,7 @@ function outsideLanesPlane():Boolean
 /*
 Get the players current hypnosis level
 */
-function laneHypnosisLevel():int
+public function laneHypnosisLevel():int
 {
 	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return 5;
 	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined) return 0;
@@ -83,7 +83,7 @@ function laneHypnosisLevel():int
 Figure out the level-up mechanic for hypnosis levels. Uses weights based on the PCs current hypnosis level versus the PCs willpower.
 Returns true if a levelup occured.
 */
-function increaseLaneHypnosisLevel():Boolean
+public function increaseLaneHypnosisLevel():Boolean
 {
 	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined)
 	{
@@ -131,7 +131,7 @@ function increaseLaneHypnosisLevel():Boolean
 /*
 Decrease the PCs hypnosis level, and forces the level-up power required for the next hypnosis level to reset back to the default for the *new* lower level.
 */
-function decreaseLaneHypnosisLevel():Boolean
+public function decreaseLaneHypnosisLevel():Boolean
 {
 	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return false;
 
@@ -148,14 +148,14 @@ function decreaseLaneHypnosisLevel():Boolean
 	}
 }
 
-function hasMaxedLaneHypnosis():Boolean
+public function hasMaxedLaneHypnosis():Boolean
 {
 	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return true;
 	if (laneHypnosisLevel() >= HYPNOSIS_LEVEL_MAX) return true;
 	return false;
 }
 
-function baseHypnosisWearsOff(effectToRemove:String):void
+public function baseHypnosisWearsOff(effectToRemove:String):void
 {
 	clearOutput();
 	
@@ -297,7 +297,7 @@ const HYPNO_STAT_INT:String = "Intelligence";
 const HYPNO_STAT_AIM:String = "Aim";
 const HYPNO_STAT_WILL:String = "Willpower";
 
-function hasHypnosisEffect():Boolean
+public function hasHypnosisEffect():Boolean
 {
 	if (pc.hasStatusEffect("Lane's Hypnosis - Physique")) return true;
 	if (pc.hasStatusEffect("Lane's Hypnosis - Reflexes")) return true;
@@ -307,7 +307,7 @@ function hasHypnosisEffect():Boolean
 	return false;
 }
 
-function addHypnosisEffect(stat:String):Boolean
+public function addHypnosisEffect(stat:String):Boolean
 {
 	if (flags["LANE_TIMES_HYPNOTISED"] == undefined) flags["LANE_TIMES_HYPNOTISED"] = 0;
 	flags["LANE_TIMES_HYPNOTISED"]++;
@@ -402,7 +402,7 @@ function addHypnosisEffect(stat:String):Boolean
 	return alreadyUnder;
 }
 
-function enterLanesShop():Boolean
+public function enterLanesShop():Boolean
 {
 	if (flags["LANE_DISABLED"] == 1)
 	{
@@ -448,7 +448,7 @@ function enterLanesShop():Boolean
 	}
 }
 
-function visitLaneWhilstDetoxing():void
+public function visitLaneWhilstDetoxing():void
 {
 	clearOutput();
 
@@ -477,7 +477,7 @@ function visitLaneWhilstDetoxing():void
 	addButton(0, "Next", laneGonnaFuckYourDetoxinAssUp);
 }
 
-function laneHandleCredits():void
+public function laneHandleCredits():void
 {
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
@@ -491,7 +491,7 @@ function laneHandleCredits():void
 	}
 }
 
-function visitLaneAfterDetoxing():void
+public function visitLaneAfterDetoxing():void
 {
 	clearOutput();
 
@@ -654,7 +654,7 @@ function visitLaneAfterDetoxing():void
 	}
 }
 
-function laneGonnaFuckYourDetoxinAssUp():void
+public function laneGonnaFuckYourDetoxinAssUp():void
 {
 	clearOutput();
 
@@ -687,7 +687,7 @@ function laneGonnaFuckYourDetoxinAssUp():void
 	badEnd();
 }
 
-function laneTakesOverTheSteeleFortune():void
+public function laneTakesOverTheSteeleFortune():void
 {
 	clearOutput();
 
@@ -729,7 +729,7 @@ function laneTakesOverTheSteeleFortune():void
 	addButton(0, "Next", laneTakesOverTheSteeleFortuneII);
 }
 
-function laneTakesOverTheSteeleFortuneII():void
+public function laneTakesOverTheSteeleFortuneII():void
 {
 	clearOutput();
 
@@ -770,7 +770,7 @@ function laneTakesOverTheSteeleFortuneII():void
 	badEnd();
 }
 
-function discoverLanesShop():void
+public function discoverLanesShop():void
 {
 	clearOutput();
 
@@ -792,7 +792,7 @@ function discoverLanesShop():void
 	addButton(1, "Female", laneGenderSelect, "female");
 }
 
-function laneGenderSelect(g:String):void
+public function laneGenderSelect(g:String):void
 {
 	if (g == "male")
 	{
@@ -810,7 +810,7 @@ function laneGenderSelect(g:String):void
 	}
 }
 
-function meetMaleLane():void
+public function meetMaleLane():void
 {
 	clearOutput();
 
@@ -837,7 +837,7 @@ function meetMaleLane():void
 	laneShowMenu();
 }
 
-function meetFemaleLane():void
+public function meetFemaleLane():void
 {
 	clearOutput();
 	laneHeader();
@@ -863,7 +863,7 @@ function meetFemaleLane():void
 	laneShowMenu();
 }
 
-function lanesShopFirstRepeat():void
+public function lanesShopFirstRepeat():void
 {
 	flags["LANE_FIRST_HYPNO_RETURN"] = 2;
 	clearOutput();
@@ -886,7 +886,7 @@ function lanesShopFirstRepeat():void
 	laneShowMenu();
 }
 
-function repeatEnterLanesShop():void
+public function repeatEnterLanesShop():void
 {
 	clearOutput();
 	laneHeader();
@@ -900,7 +900,7 @@ function repeatEnterLanesShop():void
 	laneShowMenu();
 }
 
-function lanesShopFullyUnder():void
+public function lanesShopFullyUnder():void
 {
 	clearOutput();
 	laneHeader();
@@ -919,7 +919,7 @@ function lanesShopFullyUnder():void
 	laneShowMenu();
 }
 
-function laneShowMenu():void
+public function laneShowMenu():void
 {
 	clearMenu();
 	addButton(0, "Talk", talkToLane);
@@ -930,7 +930,7 @@ function laneShowMenu():void
 	addButton(14, "Leave", leaveLanes);
 }
 
-function leaveLanes():void
+public function leaveLanes():void
 {
 	clearOutput();
 	laneHeader();
@@ -945,7 +945,7 @@ function leaveLanes():void
 	addButton(0, "Next", move, "287");
 }
 
-function talkToLane():void
+public function talkToLane():void
 {
 	clearOutput();
 	laneHeader();
@@ -964,7 +964,7 @@ function talkToLane():void
 	generateLaneTalkMenu();
 }
 
-function generateLaneTalkMenu():void
+public function generateLaneTalkMenu():void
 {
 	clearMenu();
 	
@@ -979,7 +979,7 @@ function generateLaneTalkMenu():void
 	addButton(14, "Back", laneShowMenu);
 }
 
-function laneTalkOccupation():void
+public function laneTalkOccupation():void
 {
 	flags["LANE_OCCUPATION_TALK"] = 1;
 	clearOutput();
@@ -1008,7 +1008,7 @@ function laneTalkOccupation():void
 	addDisabledButton(0, "Occupation");
 }
 
-function laneTalkDaynar():void
+public function laneTalkDaynar():void
 {
 	flags["LANE_DAYNAR_TALK"] = 1;
 	clearOutput();
@@ -1041,7 +1041,7 @@ function laneTalkDaynar():void
 	addDisabledButton(1, "Daynar");
 }
 
-function laneTalkThemself():void
+public function laneTalkThemself():void
 {
 	flags["LANE_SELF_TALK"] = 1;
 	clearOutput();
@@ -1076,7 +1076,7 @@ function laneTalkThemself():void
 	addDisabledButton(2, lane.mf("Him", "Her") + "self");
 }
 
-function laneServices():void
+public function laneServices():void
 {
 	clearOutput();
 	laneHeader();
@@ -1160,7 +1160,7 @@ function laneServices():void
 	}
 }
 
-function laneServicesMenu():void
+public function laneServicesMenu():void
 {
 	clearMenu();
 
@@ -1187,7 +1187,7 @@ function laneServicesMenu():void
 	//[=Physique=] [=Reflexes=] [=Aim=] [=Intelligence=] [=Willpower=] [=Back=]
 }
 
-function laneServicesBack():void
+public function laneServicesBack():void
 {
 	clearOutput();
 	laneHeader();
@@ -1220,7 +1220,7 @@ function laneServicesBack():void
 	processTime(10);
 }
 
-function laneServicePhysique():void
+public function laneServicePhysique():void
 {
 	clearOutput();
 	laneHeader();
@@ -1235,7 +1235,7 @@ function laneServicePhysique():void
 	addButton(1, "Maybe Not...", laneServiceMaybeNot);
 }
 
-function laneServiceReflexes():void
+public function laneServiceReflexes():void
 {
 	clearOutput();
 	laneHeader();
@@ -1250,7 +1250,7 @@ function laneServiceReflexes():void
 	addButton(1, "Maybe Not...", laneServiceMaybeNot);
 }
 
-function laneServiceAim():void
+public function laneServiceAim():void
 {
 	clearOutput();
 	laneHeader();
@@ -1265,7 +1265,7 @@ function laneServiceAim():void
 	addButton(1, "Maybe Not...", laneServiceMaybeNot);
 }
 
-function laneServiceIntelligence():void
+public function laneServiceIntelligence():void
 {
 	clearOutput();
 	laneHeader();
@@ -1280,7 +1280,7 @@ function laneServiceIntelligence():void
 	addButton(1, "Maybe Not...", laneServiceMaybeNot);
 }
 
-function laneServiceWillpower():void
+public function laneServiceWillpower():void
 {
 	clearOutput();
 	laneHeader();
@@ -1295,7 +1295,7 @@ function laneServiceWillpower():void
 	addButton(1, "Maybe Not...", laneServiceMaybeNot);
 }
 
-function laneServiceMaybeNot():void
+public function laneServiceMaybeNot():void
 {
 	clearOutput();
 	laneHeader();
@@ -1305,7 +1305,7 @@ function laneServiceMaybeNot():void
 	laneServicesMenu();
 }
 
-function laneConfirmService(selectedService:String):void
+public function laneConfirmService(selectedService:String):void
 {
 	clearOutput();
 	laneHeader();
@@ -1366,7 +1366,7 @@ function laneConfirmService(selectedService:String):void
 	addButton(0, "Next", laneApplyService, selectedService);
 }
 
-function laneApplyService(selectedService:String):void
+public function laneApplyService(selectedService:String):void
 {
 	clearOutput();
 	laneHeader();
@@ -1462,7 +1462,7 @@ function laneApplyService(selectedService:String):void
 	addButton(0, "Next", lanePostApplyEffect, selectedService);
 }
 
-function lanePostApplyEffect(selectedService:String):void
+public function lanePostApplyEffect(selectedService:String):void
 {
 	clearOutput();
 	laneHeader();
@@ -1543,7 +1543,7 @@ function lanePostApplyEffect(selectedService:String):void
 	processTime(20);
 }
 
-function payTheLaneTax():void
+public function payTheLaneTax():void
 {
 	clearOutput();
 
@@ -1571,7 +1571,7 @@ function payTheLaneTax():void
 	availScenes[rand(availScenes.length)]();
 }
 
-function laneSexSelection():void
+public function laneSexSelection():void
 {
 	var availScenes:Array = [];
 
@@ -1595,7 +1595,7 @@ function laneSexSelection():void
 	availScenes[rand(availScenes.length)]();
 }
 
-function suckLanesDick():void
+public function suckLanesDick():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -1681,7 +1681,7 @@ function suckLanesDick():void
 	addButton(0, "Next", move, "287");
 }
 
-function munchLanesCarpet():void
+public function munchLanesCarpet():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -1767,7 +1767,7 @@ function munchLanesCarpet():void
 	addButton(0, "Next", move, "287");
 }
 
-function fuckedByMaleLane():void
+public function fuckedByMaleLane():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -1926,7 +1926,7 @@ function fuckedByMaleLane():void
 // From the doc:
 // 		I may have gotten a little ambitious with this one
 // http://i.imgur.com/JedndTn.gif
-function fuckedByFemLane():void
+public function fuckedByFemLane():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -2294,7 +2294,7 @@ function fuckedByFemLane():void
 	addButton(0, "Next", move, "287");
 }
 
-function laneFullyHypnotisesYouDumbshit():void
+public function laneFullyHypnotisesYouDumbshit():void
 {
 	flags["LANE_FULLY_HYPNOTISED"] = 1;
 	flags["LANE_FULLY_HYPNOTISED_DAY"] = days;
@@ -2357,7 +2357,7 @@ function laneFullyHypnotisesYouDumbshit():void
 // The doc had a comment that claimed this scene was for the following configuration:
 // 		Lane is Male, PC is Male or Genderless.
 // However, the scene made a reference to the PCs cervix. So, yeah.
-function firstTimeLaneMPCM():void
+public function firstTimeLaneMPCM():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -2498,7 +2498,7 @@ function firstTimeLaneMPCM():void
 	addButton(0, "Next", move, "287");
 }
 
-function firstTimeLaneMPCFH():void
+public function firstTimeLaneMPCFH():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -2638,7 +2638,7 @@ function firstTimeLaneMPCFH():void
 	addButton(0, "Next", move, "287");
 }
 
-function firstTimeLaneFPCMH():void
+public function firstTimeLaneFPCMH():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -2867,7 +2867,7 @@ function firstTimeLaneFPCMH():void
 	addButton(0, "Next", move, "287");
 }
 
-function firstTimeLaneFPCFGenderless():void
+public function firstTimeLaneFPCFGenderless():void
 {
 	clearOutput();
 	laneHeader(true);
@@ -3107,7 +3107,7 @@ function firstTimeLaneFPCFGenderless():void
 	addButton(0, "Next", move, "287");
 }
 
-function lanesAppearance():void
+public function lanesAppearance():void
 {
 	clearOutput();
 	laneHeader();
@@ -3147,7 +3147,7 @@ function lanesAppearance():void
 	addDisabledButton(5, "Appearance");
 }
 
-function tryFollowerLaneIntervention():Boolean
+public function tryFollowerLaneIntervention():Boolean
 {
 	if(flags["LANE_FULLY_HYPNOTISED_DAY"] <= days - 7 && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
 	{
@@ -3168,18 +3168,18 @@ function tryFollowerLaneIntervention():Boolean
 	return false;
 }
 
-function lFollowerName():String
+public function lFollowerName():String
 {
 	return flags["FOLLOWER_LANE_INTERVENTION"];
 }
 
-function lFollowerMF(m:String, f:String):String
+public function lFollowerMF(m:String, f:String):String
 {
 	if (flags["FOLLOWER_LANE_INTERVENTION"] == "Dane") return m;
 	return f;
 }
 
-function followerLaneIntervention(followerName:String):void
+public function followerLaneIntervention(followerName:String):void
 {
 	flags["FOLLOWER_LANE_INTERVENTION"] = followerName;
 
@@ -3236,7 +3236,7 @@ function followerLaneIntervention(followerName:String):void
 	addButton(1, "FuckOff", followerLaneInterventionFuckOff);
 }
 
-function followerLaneInterventionConfide():void
+public function followerLaneInterventionConfide():void
 {
 	clearOutput();
 	showName("\n" + lFollowerName());
@@ -3314,7 +3314,7 @@ function followerLaneInterventionConfide():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function followerLaneInterventionFuckOff():void
+public function followerLaneInterventionFuckOff():void
 {
 	clearOutput();
 	showName("\n" + lFollowerName());
@@ -3347,7 +3347,7 @@ function followerLaneInterventionFuckOff():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function processLaneDetoxEvents(minutes:Number):void
+public function processLaneDetoxEvents(minutes:Number):void
 {
 	if (flags["LANE_DETOX_COUNTER"] == undefined) return;
 

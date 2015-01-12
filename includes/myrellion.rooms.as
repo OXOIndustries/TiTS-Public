@@ -23,7 +23,7 @@ import classes.RoomClass;
 //  Holy shit, that fucked the formatting //
 //========================================//
 
-function initializeMyrellionRooms():void 
+public function initializeMyrellionRooms():void 
 {
 	// WRT Map generation: "In" is +1 in the z axis, and out is -1
 	// N, S, E, W are the expected cardinal directions

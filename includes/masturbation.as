@@ -2,7 +2,7 @@
 import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
 
-function availableFaps(roundTwo:Boolean = false):Array
+public function availableFaps(roundTwo:Boolean = false):Array
 {
 	var faps:Array = new Array();
 	var fap:FapCommandContainer;
@@ -124,7 +124,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	return faps;
 }
 
-function selectRandomFap(faps:Array):void
+public function selectRandomFap(faps:Array):void
 {
 	// Don't allow milk scenes to be selected randomly
 	var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
@@ -135,7 +135,7 @@ function selectRandomFap(faps:Array):void
 	filtFaps[rand(filtFaps .length)].execute();
 }
 
-function masturbateMenu(roundTwo:Boolean = false):void {
+public function masturbateMenu(roundTwo:Boolean = false):void {
 	this.clearMenu();
 	var aborted:Boolean = false;
 	//Masturbation prevention
@@ -265,7 +265,7 @@ function masturbateMenu(roundTwo:Boolean = false):void {
 //Tailcock Fapping w/ Celise
 //By Savin
 //{Accessed from Masturbate menu whilst shipboard}
-function tailCockCeliseFaps():void {
+public function tailCockCeliseFaps():void {
 	clearOutput();
 	author("Savin");
 	output("God damn you're horny.");
@@ -295,7 +295,7 @@ function tailCockCeliseFaps():void {
 }
 
 //Vaginal Fap
-function vaginalFap():void {
+public function vaginalFap():void {
 	clearOutput();
 	output("You ");
 	if(pc.isNude()) output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being nude.");
@@ -397,7 +397,7 @@ function vaginalFap():void {
 
 
 //Single Dick Fap
-function singleDickFap():void {
+public function singleDickFap():void {
 	clearOutput();
 	clearList();
 	if(pc.isNude() || (pc.armor.shortName == "" && pc.lowerUndergarment.shortName == "")) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
@@ -536,7 +536,7 @@ function singleDickFap():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
-function multiCockFap():void {
+public function multiCockFap():void {
 	clearOutput();
 	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
 	if(!pc.isNude()) {
@@ -786,7 +786,7 @@ function multiCockFap():void {
 }
 
 //*Tailingus
-function tailingusFapReqsCuntTail():void {
+public function tailingusFapReqsCuntTail():void {
 	clearOutput();
 	output("Figuring that you may as well blow off some steam while you have time, you shuck out of your gear and arrange it in a nearby pile, careful with your possessions even though you’re planning on getting some lewd self-satisfaction in. Your [pc.tail] curls ");
 	if(pc.isTaur()) output("up your back and shoulder to place itself against your [pc.chest]");
@@ -821,7 +821,7 @@ function tailingusFapReqsCuntTail():void {
 }
 //*Cunt tail fap replacement B
 //Not 4 Hoarses.
-function cuntTailFapScene():void {
+public function cuntTailFapScene():void {
 	clearOutput();
 	var x:int = pc.cockThatFits(pc.tailCuntCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -881,7 +881,7 @@ function cuntTailFapScene():void {
 }
 
 //Gettin' Ready
-function milkturbation():void
+public function milkturbation():void
 {
 	clearOutput();
 	var milked:Boolean = false;
@@ -1355,7 +1355,7 @@ public function joyCoMagicMilker7Sucks():void
 }
 
 
-function removeBoobswellPads():void
+public function removeBoobswellPads():void
 {
 	clearOutput();
 	author("Fenoxo");

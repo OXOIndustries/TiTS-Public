@@ -12,7 +12,7 @@ import classes.StatBarBig;
 //4. MOVEMENTS
 
 
-function doParse(script:String, markdown=false):String 
+public function doParse(script:String, markdown=false):String 
 {
 	return parser.recursiveParser(script, markdown);
 }
@@ -100,7 +100,7 @@ public function author(arg:String):void
 }
 
 
-function upperCase(str:String):String {
+public function upperCase(str:String):String {
 	var firstChar:String = str.substr(0,1);
 	var restOfString:String = str.substr(1,str.length);
 	return firstChar.toUpperCase()+restOfString.toLowerCase();
@@ -132,28 +132,28 @@ public function possessive(str:String):String {
 	return str;
 }
 
-function leftBarClear():void {
+public function leftBarClear():void {
 	this.userInterface.leftBarClear();
 }
-function hidePCStats():void {
+public function hidePCStats():void {
 	this.userInterface.hidePCStats()
 }
-function showPCStats():void {
+public function showPCStats():void {
 	this.userInterface.showPCStats()
 }
-function showNPCStats():void {
+public function showNPCStats():void {
 	this.userInterface.showNPCStats()
 }
-function hideNPCStats():void {
+public function hideNPCStats():void {
 	this.userInterface.hideNPCStats()
 }
-function showMinimap():void {
+public function showMinimap():void {
 	this.userInterface.showMinimap();
 }
-function hideMinimap():void {
+public function hideMinimap():void {
 	this.userInterface.hideMinimap();
 }
-function deglow():void 
+public function deglow():void 
 {
 	this.userInterface.deglow()
 }	
@@ -203,7 +203,7 @@ public function updatePCStats():void {
 	
 	updateNPCStats();
 }
-function timeText():String 
+public function timeText():String 
 {
 	var buffer:String = ""
 	
@@ -223,7 +223,7 @@ function timeText():String
 	return buffer;
 }
 
-function updateNPCStats():void {
+public function updateNPCStats():void {
 	if(foes.length >= 1) {
 		userInterface.monsterShield.updateBar(foes[0].shields(),  foes[0].shieldsMax());
 		userInterface.monsterHP.updateBar(foes[0].HP(),       foes[0].HPMax());
@@ -243,7 +243,7 @@ function updateNPCStats():void {
 		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
 }
-function updateStatBar(arg:MovieClip, value = undefined, max = undefined):void {
+public function updateStatBar(arg:MovieClip, value = undefined, max = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
 	if(max != undefined) 
 		arg.setMax(max);
@@ -263,19 +263,19 @@ public function setLocation(title:String, planet:String = "Error Planet", system
 }
 
 //3. UTILITY FUNCTIONS
-function rand(max:Number):Number
+public function rand(max:Number):Number
 {
 	return int(Math.random()*max);
 }
 
-function clearList():void {
+public function clearList():void {
 	list = new Array();
 }
 var list:Array = new Array();
-function addToList(arg):void {
+public function addToList(arg):void {
 	list[list.length] = arg;
 }
-function formatList():String {
+public function formatList():String {
 	var stuff:String = "";
 	if(list.length == 1) return list[0];
 	for(var x:int = 0; x < list.length; x++) {

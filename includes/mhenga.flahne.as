@@ -19,25 +19,25 @@ NO BELLY BUTTON!*/
 // FLAHNE_TALKED_ABOUT_CUMSLUTPENNY : Player has seen the one-off scene about Flahne discussing pennys cumsluttery
 // 
 
-function flahneNameDisplay():void
+public function flahneNameDisplay():void
 {
 	if(flags["MET_FLAHNE"] == undefined) userInterface.showName("GEL\nWOMAN");
 	else userInterface.showName("\nFLAHNE");
 }
 
-function flahneFuckCounter(arg:int = 0):Number {
+public function flahneFuckCounter(arg:int = 0):Number {
 	if(flags["FLAHNE_SEXED"] == undefined) flags["FLAHNE_SEXED"] = 0;
 	if(arg != 0) flags["FLAHNE_SEXED"] += arg;
 	return flags["FLAHNE_SEXED"];
 }
 
-function flahneDickOut():Boolean {
+public function flahneDickOut():Boolean {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) return true;
 	return false;
 }
 
 //Meeting Her:
-function meetingFlahne(outputT:Boolean = true):void {
+public function meetingFlahne(outputT:Boolean = true):void {
 	userInterface.showBust("FLAHNE");
 	CodexManager.unlockEntry("Rahn");
 	flahneNameDisplay();
@@ -98,7 +98,7 @@ function meetingFlahne(outputT:Boolean = true):void {
 }
 
 //Talk to Flahne
-function talkToFlahne():void {
+public function talkToFlahne():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -120,7 +120,7 @@ function talkToFlahne():void {
 }
 	
 //Her Race
-function talkToFlahneAboutHerRace():void {
+public function talkToFlahneAboutHerRace():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -163,7 +163,7 @@ function talkToFlahneAboutHerRace():void {
 }
 //[Let it Out] [Keep In] Redirects to followups for Ovipositor discussion.
 //Ovipositor Out
-function pushDatOvipositorOut():void {
+public function pushDatOvipositorOut():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -176,7 +176,7 @@ function pushDatOvipositorOut():void {
 }
 
 //Ovipositor In
-function ovipositorInFlahne():void {
+public function ovipositorInFlahne():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -190,7 +190,7 @@ function ovipositorInFlahne():void {
 }
 
 //Her Subrace
-function flahnesSubRace():void {
+public function flahnesSubRace():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -208,7 +208,7 @@ function flahnesSubRace():void {
 }
 
 //Her Ovipositor
-function flahnesOvipositor():void {
+public function flahnesOvipositor():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -230,7 +230,7 @@ function flahnesOvipositor():void {
 }
 
 //Keep Ovipositor In
-function keepDatOvipositorIn():void {
+public function keepDatOvipositorIn():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -246,7 +246,7 @@ function keepDatOvipositorIn():void {
 }
 //[Watch/Don’t]
 //Don’t Watch Ovi Go Away
-function dontWatchOvipositorGoAway():void {
+public function dontWatchOvipositorGoAway():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -261,7 +261,7 @@ function dontWatchOvipositorGoAway():void {
 	this.addButton(0,"Next",talkToFlahne);
 }
 //Watch Ovi Go Away
-function watchFlahne():void {
+public function watchFlahne():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -286,7 +286,7 @@ function watchFlahne():void {
 }
 
 //Pop Ovi Out
-function popOviOut():void {
+public function popOviOut():void {
 	clearOutput();
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 1;
 	this.userInterface.showBust("FLAHNE");
@@ -305,7 +305,7 @@ function popOviOut():void {
 }
 
 //About Ovipositor
-function aboutDatOvipositorOut():void {
+public function aboutDatOvipositorOut():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -329,7 +329,7 @@ function aboutDatOvipositorOut():void {
 }
 
 //The Locals
-function theLocals():void {
+public function theLocals():void {
 	clearOutput();
 	this.userInterface.showBust("FLAHNE");
 	flahneNameDisplay();
@@ -370,7 +370,7 @@ function theLocals():void {
 }
 
 //Sex Menu
-function flahneSexMenu(display:Boolean = true):void {
+public function flahneSexMenu(display:Boolean = true):void {
 	if(display) {
 		clearOutput();
 		//Not yet sexed
@@ -438,7 +438,7 @@ function flahneSexMenu(display:Boolean = true):void {
 
 //Bend her Over (Dickwielders; Savin wrote dis)
 //don’t forget to italicize the dialogue when you code -Z
-function bendFlahneOver():void {
+public function bendFlahneOver():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("FLAHNE_NUDE");
@@ -541,7 +541,7 @@ function bendFlahneOver():void {
 //lacking in brevity and variety - it’s just ‘she puts it in your butt and comes’ in 1400 words of bloat
 //also totally incompatible with quadrupeds despite being about anal sex -Z
 //also needs italics tags
-function rahnSuppository():void {
+public function rahnSuppository():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("FLAHNE_NUDE");
@@ -605,7 +605,7 @@ function rahnSuppository():void {
 //Get Box Munched
 //You suggest that Flahne could take a few licks and see just how long it would take to get to your center... Turns out its 3 bites.
 //also incompatible with quadrupeds -Z
-function flahneMunchesBoxesMetalBawkses():void {
+public function flahneMunchesBoxesMetalBawkses():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	output("Pulling Flahne close, you whisper your request into her ear. The woman blushes, but then smiles coyly. <i>“I don’t mind - I can get you nice and wet,”</i>  she returns, rubbing the membranous skin of her lips and drawing her hand away with a strand of moisture to prove her point. She rubs it into your cheek softly, trailing the sweet fluid to your lips, before speaking again. <i>“Just... let me lock these doors and then we’ll have our fun.”</i>  She pulls away, her hand lingering on your face until the last, and then walks to each door, proofing it against intrusion.");
@@ -754,7 +754,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 //Desk Munchies
 //Requires rahn race discussion has taken place
 //Crawl under Flahne’s desk and service her while she deals with other folks.
-function flahneDeskMunchies():void {
+public function flahneDeskMunchies():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
@@ -802,7 +802,7 @@ function flahneDeskMunchies():void {
 
 //Eat Out
 //If she has a dong, surprise desk bukkake drip.
-function eatFlahneOutUnderDesk():void {
+public function eatFlahneOutUnderDesk():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
@@ -884,7 +884,7 @@ function eatFlahneOutUnderDesk():void {
 }
 
 //Suck&Swallow
-function flahneGetsSuckedAndSwallowed():void {
+public function flahneGetsSuckedAndSwallowed():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
@@ -929,7 +929,7 @@ function flahneGetsSuckedAndSwallowed():void {
 }
 
 //Play&Spray
-function playAndSpray():void {
+public function playAndSpray():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
@@ -1023,7 +1023,7 @@ function playAndSpray():void {
 //Written by Gardeford1
 //Autofelatio option:
 //requires ovipositor OK’d, ovipositor out
-function fuckAndSuckWithFlahne():void {
+public function fuckAndSuckWithFlahne():void {
 	clearOutput();
 	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
@@ -1089,7 +1089,7 @@ function fuckAndSuckWithFlahne():void {
 
 
 //Female: hugz
-function flahneExhibitionHugsGirls():void {
+public function flahneExhibitionHugsGirls():void {
 	clearOutput();
 	author("Gardeford");
 	userInterface.showBust("FLAHNE_NUDE");
@@ -1169,7 +1169,7 @@ function flahneExhibitionHugsGirls():void {
 }
 
 //Male: If I fits, you sits
-function flahneIfMalesFitTheySitExhibitionism():void {
+public function flahneIfMalesFitTheySitExhibitionism():void {
 	clearOutput();
 	author("Gardeford");
 	userInterface.showBust("FLAHNE_NUDE");

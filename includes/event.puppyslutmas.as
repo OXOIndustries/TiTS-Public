@@ -1,4 +1,4 @@
-﻿function annoPuppyslutmasEntry():Boolean
+﻿public function annoPuppyslutmasEntry():Boolean
 {
 	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_ANNO_OFFER"] == undefined && checkDate(25, 12, 3))
 	{
@@ -37,7 +37,7 @@
 	return false;
 }
 
-function annoPuppyslutmasNope():void
+public function annoPuppyslutmasNope():void
 {
 	clearOutput();
 
@@ -57,7 +57,7 @@ function annoPuppyslutmasNope():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function annoPuppyslutmasYe():void
+public function annoPuppyslutmasYe():void
 {
 	flags["PUPPYSLUTMAS_2014"] = "Anno";
 
@@ -78,7 +78,7 @@ function annoPuppyslutmasYe():void
 	addButton(0, "Next", annoPuppyslutmasArrive);
 }
 
-function annoPuppyslutmasArrive():void
+public function annoPuppyslutmasArrive():void
 {
 	clearOutput();
 	showName("\nANNO");
@@ -116,7 +116,7 @@ function annoPuppyslutmasArrive():void
 	addButton(0, "Next", puppyslutmasArrive);
 }
 
-function syriPuppyslutmasEntry():Boolean
+public function syriPuppyslutmasEntry():Boolean
 {
 	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] == undefined && checkDate(25, 12, 3))
 	{
@@ -155,7 +155,7 @@ function syriPuppyslutmasEntry():Boolean
 	return false;
 }
 
-function syriPuppyslutmasNope():void
+public function syriPuppyslutmasNope():void
 {
 	clearOutput();
 
@@ -185,7 +185,7 @@ function syriPuppyslutmasNope():void
 	syriMorningMenu();
 }
 
-function syriPuppyslutmasYe():void
+public function syriPuppyslutmasYe():void
 {
 	flags["PUPPYSLUTMAS_2014"] = "Syri";
 
@@ -214,7 +214,7 @@ function syriPuppyslutmasYe():void
 	addButton(0, "Next", syriPuppyslutmasUnderway);
 }
 
-function syriPuppyslutmasUnderway():void
+public function syriPuppyslutmasUnderway():void
 {
 	clearOutput();
 	
@@ -251,7 +251,7 @@ function syriPuppyslutmasUnderway():void
 	addButton(2, "Blow Her", syriFuckClothesSuckDicks, undefined, "Blow Her", "Syri looks better without any clothes at all... help her take her mind off the party for a while.");
 }
 
-function syriWearTheDamnDress():void
+public function syriWearTheDamnDress():void
 {
 	clearOutput();
 
@@ -295,7 +295,7 @@ function syriWearTheDamnDress():void
 	addButton(0, "Next", puppyslutmasArrive);
 }
 
-function syriWearTheTux():void
+public function syriWearTheTux():void
 {
 	clearOutput();
 
@@ -325,7 +325,7 @@ function syriWearTheTux():void
 	addButton(0, "Next", puppyslutmasArrive);
 }
 
-function syriFuckClothesSuckDicks():void
+public function syriFuckClothesSuckDicks():void
 {
 	clearOutput();
 
@@ -342,7 +342,7 @@ function syriFuckClothesSuckDicks():void
 	blowSyriYouFukkinSlut(syriPuppyslutmasPostBeejay);
 }
 
-function syriPuppyslutmasPostBeejay():void
+public function syriPuppyslutmasPostBeejay():void
 {
 	clearOutput();
 
@@ -367,12 +367,12 @@ function syriPuppyslutmasPostBeejay():void
 	addButton(0, "Next", puppyslutmasArrive);
 }
 
-function pPartner():String
+public function pPartner():String
 {
 	return flags["PUPPYSLUTMAS_2014"];
 }
 
-function pSyriClothes():String
+public function pSyriClothes():String
 {
 	if (flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"] == undefined)
 	{
@@ -381,7 +381,7 @@ function pSyriClothes():String
 	return flags["PUPPYSLUTMAS_2014_SYRI_CLOTHES"];
 }
 
-function pPartyLocation():void
+public function pPartyLocation():void
 {
 	if (silly)
 		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: SNOUP DU'OGG");
@@ -389,7 +389,7 @@ function pPartyLocation():void
 		setLocation("OFFICE\nCOMPLEX", "PLANET: AUSARIL", "SYSTEM: EKYRA");
 }
 
-function puppyslutmasArrive():void
+public function puppyslutmasArrive():void
 {
 	clearOutput();
 
@@ -407,7 +407,7 @@ function puppyslutmasArrive():void
 	addButton(0, "Stairs", puppyslutmasStairs)
 }
 
-function puppyslutmasStairs():void
+public function puppyslutmasStairs():void
 {
 	clearOutput();
 	
@@ -450,7 +450,7 @@ function puppyslutmasStairs():void
 	}
 }
 
-function puppyslutmasMeetAnno():void
+public function puppyslutmasMeetAnno():void
 {
 	clearOutput();
 
@@ -531,7 +531,7 @@ function puppyslutmasMeetAnno():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasMeetSyri():void
+public function puppyslutmasMeetSyri():void
 {
 	clearOutput();
 
@@ -600,7 +600,7 @@ function puppyslutmasMeetSyri():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasPostGreets():void
+public function puppyslutmasPostGreets():void
 {
 	clearOutput();
 
@@ -617,7 +617,7 @@ function puppyslutmasPostGreets():void
 	puppyslutmasPartyMenu();
 }
 
-function puppyslutmasPartyMenu():void
+public function puppyslutmasPartyMenu():void
 {
 	clearMenu();
 	addButton(0, "Drinks", puppyslutmasDrinks, undefined, "Drinks", "Get your booze on.");
@@ -631,7 +631,7 @@ function puppyslutmasPartyMenu():void
 	addButton(4, "Dance", puppyslutmasDance, undefined, "Dance", "Take the girls onto the dance floor. Won't be much reason to come back out to the Terrace once you're there.");
 }
 
-function puppyslutmasDrinks():void
+public function puppyslutmasDrinks():void
 {
 	clearOutput();
 
@@ -660,22 +660,22 @@ function puppyslutmasDrinks():void
 	puppyslutmasPartyMenu();
 }
 
-function pBuzzed():Boolean
+public function pBuzzed():Boolean
 {
 	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1;
 }
 
-function pDrunk():Boolean
+public function pDrunk():Boolean
 {
 	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 2;
 }
 
-function pSmashed():Boolean
+public function pSmashed():Boolean
 {
 	return flags["PUPPYSLUTMAS_2014_DRINKS"] >= 4;
 }
 
-function puppyslutmasCharity():void
+public function puppyslutmasCharity():void
 {
 	clearOutput();
 
@@ -704,7 +704,7 @@ function puppyslutmasCharity():void
 	addButton(1, "Skip", puppyslutmasPostGreets, undefined, "Skip Donating", "Casually avoid donating anything.");
 }
 
-function puppyslutmasDonate():void
+public function puppyslutmasDonate():void
 {
 	clearOutput();
 
@@ -723,7 +723,7 @@ function puppyslutmasDonate():void
 	//PC gets Kindness for every 1,000C given. 
 }
 
-function puppyslutmasDoDonate():void
+public function puppyslutmasDoDonate():void
 {
 	var dVal:Number = Number(this.userInterface.textInput.text);
 
@@ -767,7 +767,7 @@ function puppyslutmasDoDonate():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasChatSyri():void
+public function puppyslutmasChatSyri():void
 {
 	clearOutput();
 
@@ -817,7 +817,7 @@ function puppyslutmasChatSyri():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasChatAnno():void
+public function puppyslutmasChatAnno():void
 {
 	clearOutput();
 
@@ -844,7 +844,7 @@ function puppyslutmasChatAnno():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasChatKaede():void
+public function puppyslutmasChatKaede():void
 {
 	clearOutput();
 
@@ -868,7 +868,7 @@ function puppyslutmasChatKaede():void
 	addButton(0, "Next", puppyslutmasPostGreets);
 }
 
-function puppyslutmasDance():void
+public function puppyslutmasDance():void
 {
 	clearOutput();
 
@@ -926,7 +926,7 @@ function puppyslutmasDance():void
 	addButton(2, "Syri", puppyslutmasDanceWithSyri, undefined, "Dance with Syri", "Ask Syri to dance.");
 }
 
-function puppyslutmasDanceWithAnno():void
+public function puppyslutmasDanceWithAnno():void
 {
 	clearOutput();
 
@@ -1015,7 +1015,7 @@ function puppyslutmasDanceWithAnno():void
 	//[Next]
 }
 
-function puppyslutmasDanceWithKaede():void
+public function puppyslutmasDanceWithKaede():void
 {
 	clearOutput();
 
@@ -1091,7 +1091,7 @@ function puppyslutmasDanceWithKaede():void
 	addButton(0, "Next", puppyslutmasDornasArrive);
 }
 
-function puppyslutmasDanceWithSyri():void
+public function puppyslutmasDanceWithSyri():void
 {
 	clearOutput();
 
@@ -1185,7 +1185,7 @@ function puppyslutmasDanceWithSyri():void
 	addButton(0, "Next", puppyslutmasDornasArrive);
 }
 
-function puppyslutmasDornasArrive():void
+public function puppyslutmasDornasArrive():void
 {
 	clearOutput();
 
@@ -1301,7 +1301,7 @@ function puppyslutmasDornasArrive():void
 	addButton(0, "Next", puppyslutmasMeetTheDornasHue);
 }
 
-function puppyslutmasMeetTheDornasHue():void
+public function puppyslutmasMeetTheDornasHue():void
 {
 	clearOutput();
 
@@ -1422,7 +1422,7 @@ function puppyslutmasMeetTheDornasHue():void
 	processTime(60);
 }
 
-function puppyslutmasMeetTheDornasHueSyri():void
+public function puppyslutmasMeetTheDornasHueSyri():void
 {
 	clearOutput();
 
@@ -1454,7 +1454,7 @@ function puppyslutmasMeetTheDornasHueSyri():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function puppyslutmasMeetTheDornasHueAnno():void
+public function puppyslutmasMeetTheDornasHueAnno():void
 {
 	clearOutput();
 

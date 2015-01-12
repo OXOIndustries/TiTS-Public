@@ -14,7 +14,7 @@ PC Defeat*/
 
 
 //Faux Cow Farmer
-function fauxCowFarmerBonus():Boolean
+public function fauxCowFarmerBonus():Boolean
 {
 	//{1st Time Room Add}
 	if(flags["MET_CAMERON"] == undefined)
@@ -31,7 +31,7 @@ function fauxCowFarmerBonus():Boolean
 	return false;
 }
 
-function approachFarmer():void
+public function approachFarmer():void
 {
 	clearOutput();
 	//Farmer (First time)
@@ -86,7 +86,7 @@ function approachFarmer():void
 }
 
 //Nah
-function dontHelpCameron():void
+public function dontHelpCameron():void
 {
 	clearOutput();
 	author("Savin");
@@ -99,7 +99,7 @@ function dontHelpCameron():void
 }
 
 //Help
-function helpCameronBeAGiantSlut():void
+public function helpCameronBeAGiantSlut():void
 {
 	clearOutput();
 	author("Savin");
@@ -123,7 +123,7 @@ function helpCameronBeAGiantSlut():void
 //Turn in Varmint
 //Give Cam all of your collected varmints. 
 //Probably should keep track of these done
-function turnInAVarmint():void
+public function turnInAVarmint():void
 {
 	clearOutput();
 	author("Savin");
@@ -152,7 +152,7 @@ function turnInAVarmint():void
 }
 //Flirt
 //See if Farmer Cam would be up for a proverbial roll in the hay. 
-function flirtWithCameron():void
+public function flirtWithCameron():void
 {
 	clearOutput();
 	author("Savin");
@@ -196,7 +196,7 @@ function flirtWithCameron():void
 }
 
 //Fuck Him
-function fuckCameronsButt():void
+public function fuckCameronsButt():void
 {
 	clearOutput();
 	author("Savin");
@@ -243,7 +243,7 @@ function fuckCameronsButt():void
 }
 
 //Rim Him First
-function rimHimFirst():void
+public function rimHimFirst():void
 {
 	clearOutput();
 	author("Savin");
@@ -267,7 +267,7 @@ function rimHimFirst():void
 }
 
 //Fuck Him
-function fuckCamsButt(camCame:Boolean = false):void
+public function fuckCamsButt(camCame:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -300,7 +300,7 @@ function fuckCamsButt(camCame:Boolean = false):void
 
 //
 //Varmint Combat Encounter
-function varmintProc():void
+public function varmintProc():void
 {
 	author("Savin");
 	showName("FIGHT:\nVARMINT");
@@ -321,7 +321,7 @@ function varmintProc():void
 //Varmints don't have Health, and they're immune to LUST. Rather, they have "Resistance" which degrades as you lasso them. Eventually, you'll get them down and tie them. 
 
 //PC uses "Lasso" -- based on AIM
-function lassoAVarmint():void
+public function lassoAVarmint():void
 {
 	clearOutput();
 	//Set drone target
@@ -355,7 +355,7 @@ function lassoAVarmint():void
 	processCombat();
 }
 
-function varmintAI():void
+public function varmintAI():void
 {
 	//Maul
 	//Powerful attack against prone targets
@@ -371,7 +371,7 @@ function varmintAI():void
 
 //Leap Attack
 //Moderate melee, chance to knock prone
-function leapAttackFromVarmint():void
+public function leapAttackFromVarmint():void
 {
 	output("The varmint leaps at you with its slavering jaws agape, teeth bared!");
 	if(!combatMiss(foes[0],pc))
@@ -395,7 +395,7 @@ function leapAttackFromVarmint():void
 
 //Maul
 //Powerful attack against prone targets
-function getMauledBiyaaaaatch():void
+public function getMauledBiyaaaaatch():void
 {
 	output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
 	var damage:int = 40+rand(6);
@@ -408,7 +408,7 @@ function getMauledBiyaaaaatch():void
 
 //Ram
 //Powerful attack, chance to stun
-function varmintRamAttack():void
+public function varmintRamAttack():void
 {
 	output("The varmint lunges at you with its horns, slamming them ");
 	if(combatMiss(foes[0],pc) && !combatMiss(foes[0],pc)) output("just past you, digging them into the ground.");
@@ -431,7 +431,7 @@ function varmintRamAttack():void
 }
 
 //PC Victory
-function pcVictoryVsVarmints():void
+public function pcVictoryVsVarmints():void
 {
 	author("Savin");
 	showName("FIGHT:\nVARMINT");
@@ -461,7 +461,7 @@ function pcVictoryVsVarmints():void
 }
 
 //PC Defeat
-function pcLosesToVarmint():void
+public function pcLosesToVarmint():void
 {
 	clearOutput();
 	author("Savin");
@@ -474,7 +474,7 @@ function pcLosesToVarmint():void
 	addButton(0,"Next",pcLosesToVarmint2);
 }
 
-function pcLosesToVarmint2():void
+public function pcLosesToVarmint2():void
 {
 	clearOutput();
 	author("Savin");
@@ -493,7 +493,7 @@ function pcLosesToVarmint2():void
 	genericLoss();
 }
 
-function varmintRoomsBonus():Boolean
+public function varmintRoomsBonus():Boolean
 {
 	if (flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if (flags["FIELDS_STEP"] == undefined) flags["FIELDS_STEP"] = 1;
@@ -514,7 +514,7 @@ function varmintRoomsBonus():Boolean
 	return false;
 }
 
-function takeSilicone():void
+public function takeSilicone():void
 {
 	clearOutput();
 	quickLoot(new Silicone());

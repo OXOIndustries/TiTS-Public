@@ -17,7 +17,7 @@ import classes.RoomClass;
 	rooms[""].addFlag(GLOBAL.HAZARD);
 	*/
 
-function initializeRooms():void 
+public function initializeRooms():void 
 {
 
 	// clear out the rooms object, and re-initialize it.

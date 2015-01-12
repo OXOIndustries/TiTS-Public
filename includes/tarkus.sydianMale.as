@@ -1,4 +1,4 @@
-﻿function encounterMaleSydian():void
+﻿public function encounterMaleSydian():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
@@ -35,7 +35,7 @@
 //Combat Description
 //AI
 //Like zil, prioritizes lust attacks until damaged.
-function sydianMaleAI():void
+public function sydianMaleAI():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
@@ -78,7 +78,7 @@ function sydianMaleAI():void
 //Attacks
 
 //Degrade - ignores armor for the rest of combat
-function rustBroDegrade():void
+public function rustBroDegrade():void
 {
 	output("The sydian artfully spins his tail at you, the multiple antennae at its tip pointed directly at you!");
 	if(combatMiss(foes[0],pc)) output(" You manage to hop back, and his tail only catches air!");
@@ -101,7 +101,7 @@ function rustBroDegrade():void
 }
 
 //Grope - after degrade, deals lust damage
-function sydianMaleGropesYou():void
+public function sydianMaleGropesYou():void
 {
 	foes[0].removeStatusEffect("Use Grope Next");
 	output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
@@ -118,7 +118,7 @@ function sydianMaleGropesYou():void
 }
 
 //Antennae Tickle - raises lust, less damage than grope
-function sydianAntennaeTickle():void
+public function sydianAntennaeTickle():void
 {
 	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the food long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
 	pc.lustDamage(10+rand(5));
@@ -126,7 +126,7 @@ function sydianAntennaeTickle():void
 }
 
 //Lick - high lust raise, only used if own lust is high
-function sydianLickAttack():void
+public function sydianLickAttack():void
 {
 	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva. He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
 	pc.lustDamage(15+rand(5));
@@ -134,7 +134,7 @@ function sydianLickAttack():void
 }
 //Tackle
 //Does light damage, but if it hits, a heavy attack follows
-function sydianTackleAttack():void
+public function sydianTackleAttack():void
 {
 	output("The sydian lowers his shoulder and charges! ");
 	if(combatMiss(foes[0],pc)) output("You dive out of the way at the last second, avoiding it.");
@@ -150,7 +150,7 @@ function sydianTackleAttack():void
 
 //Trip
 //Gives penalties to attack and defense until PC spends a round on the stand action.
-function tripAttack():void
+public function tripAttack():void
 {
 	output(foes[0].capitalA + monster.short + " tries to trip you! ");
 	if(pc.reflexes()/2 + rand(20) + 1 >= foes[0].physique()/2 + 10) output("You neatly hop over the misguided attempt.");
@@ -166,7 +166,7 @@ function tripAttack():void
 
 //Hammer Punch
 //High damage, only used after trip or tackle
-function hammerPunch():void
+public function hammerPunch():void
 {
 	output("The sydian follows through with a heavy punch!");
 	if(combatMiss(foes[0],pc) && !pc.hasStatusEffect("Trip"))
@@ -186,7 +186,7 @@ function hammerPunch():void
 }
 
 //Bodyslam
-function bodySlamByBros():void
+public function bodySlamByBros():void
 {
 	if(combatMiss(foes[0],pc)) output("The injured sydian tries to grab hold of you, but he just can't manage to get you.");
 	else
@@ -204,7 +204,7 @@ function bodySlamByBros():void
 
 
 //Win Menu
-function beatUpARustMonster():void
+public function beatUpARustMonster():void
 {
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
 	author("LukaDoc");
@@ -252,7 +252,7 @@ function beatUpARustMonster():void
 }
 
 //[=Leave=]
-function chooseToLeaveBeatenRustBro():void
+public function chooseToLeaveBeatenRustBro():void
 {
 	clearOutput();
 	author("LukaDoc");
@@ -272,7 +272,7 @@ function chooseToLeaveBeatenRustBro():void
 	output("\n\n");
 	genericVictory();
 }
-function spankHPBeatenRustBro():void
+public function spankHPBeatenRustBro():void
 {
 	clearOutput();
 	author("LukaDoc");
@@ -289,7 +289,7 @@ function spankHPBeatenRustBro():void
 }
 
 //Dudes Buttfukk
-function dudesButtFuckInATotallyNonGayWay():void
+public function dudesButtFuckInATotallyNonGayWay():void
 {
 	var x:int = pc.cockThatFits(foes[0].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -387,7 +387,7 @@ function dudesButtFuckInATotallyNonGayWay():void
 }
 
 //Chicks Go For A Ride
-function chicksRideASydian():void
+public function chicksRideASydian():void
 {
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
@@ -470,7 +470,7 @@ function chicksRideASydian():void
 }
 
 //Cum Inside You
-function takeRustBroCumInside(arg:int = 0):void
+public function takeRustBroCumInside(arg:int = 0):void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -489,7 +489,7 @@ function takeRustBroCumInside(arg:int = 0):void
 	genericVictory();
 }
 //Cum Outside
-function takeRustBroCumOutside(arg:int = 0):void
+public function takeRustBroCumOutside(arg:int = 0):void
 {
 	var x:int = arg;
 	clearOutput();
@@ -504,7 +504,7 @@ function takeRustBroCumOutside(arg:int = 0):void
 }
 //Have a Drink on Me (Victory Blow the Sydian)
 //frogapus (threw in some snowballing, too. If it’s not your thing, feel free to drop it)
-function haveADrinkOnMeWithSnowBallsMrRustBro():void
+public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -564,14 +564,14 @@ function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	genericVictory();
 }
 
-function lazySavinToes():String
+public function lazySavinToes():String
 {
 	if(pc.legType == GLOBAL.TYPE_HUMAN) return "toes";
 	else return pc.foot();
 }
 
 //Peg & Footjerb a Rustmonster With Your Cocktail
-function greatFootjerbSavin():void
+public function greatFootjerbSavin():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -625,7 +625,7 @@ function greatFootjerbSavin():void
 }
 
 //Hungry Hungry Tailgina
-function hungryhungryTailginasThirst():void
+public function hungryhungryTailginasThirst():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -744,7 +744,7 @@ function hungryhungryTailginasThirst():void
 	pc.loadInCuntTail(chars["SYDIANMALE"]);
 }
 
-function loseToSydianMaleRouter():void
+public function loseToSydianMaleRouter():void
 {
 	var choices:Array = new Array();
 	if(pc.hasVagina()) choices[choices.length] = pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs;
@@ -758,7 +758,7 @@ function loseToSydianMaleRouter():void
 //Loss Scenes
 //Choose whatever fits at random!
 //Vaginas Get Plowed Wide-Open After Aphrodisiacs
-function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
+public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
@@ -840,14 +840,14 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	genericLoss();
 }
 
-function applyRustBroStatus():void
+public function applyRustBroStatus():void
 {
 	if(!pc.hasStatusEffect("Rusted Emitters")) pc.createStatusEffect("Rusted Emitters", 0, 0, 0, 0, false, "DefenseDown", "Your shield emitters have been damaged by sydian secretions, reducing your shield maximum by 25%. You'll need to find someone in Novahome to repair them to get back to full strength.", false, 0);
 }
 
 
 //Dickwielders Get Pegged And Tailstroked Until They Cum
-function getPeggedToOrgasmByRustBro():void
+public function getPeggedToOrgasmByRustBro():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
@@ -939,7 +939,7 @@ function getPeggedToOrgasmByRustBro():void
 }
 
 //Mouthful of Pennies (Male loss, Blowjob for the Rust Monster)
-function mouthfulOfPenniesByFrogalog():void
+public function mouthfulOfPenniesByFrogalog():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");

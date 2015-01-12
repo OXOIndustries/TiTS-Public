@@ -14,28 +14,28 @@
 	 */
 	public class MiniMap extends Sprite
 	{
-		public static const DISPLAY_MODE_SMALL = 0;
-		public static const DISPLAY_MODE_LARGE = 1;
-		public static const DISPLAY_MODE_HYBRID = 2;
-		private static const MAX_DISPLAY_MODES = 2;
+		public static const DISPLAY_MODE_SMALL:uint = 0;
+		public static const DISPLAY_MODE_LARGE:uint = 1;
+		public static const DISPLAY_MODE_HYBRID:uint = 2;
+		private static const MAX_DISPLAY_MODES:uint = 2;
 		
-		public static const SCALE_MODE_FIXED = 0;
-		public static const SCALE_MODE_NUMBER = 1;
-		public static const SCALE_MODE_SIZE = 2;
-		private static const MAX_SCALE_MODES = 2;
+		public static const SCALE_MODE_FIXED:uint = 0;
+		public static const SCALE_MODE_NUMBER:uint = 1;
+		public static const SCALE_MODE_SIZE:uint = 2;
+		private static const MAX_SCALE_MODES:uint = 2;
 		
-		public static const ICON_SHIP = 0;
-		public static const ICON_QUEST = 1;
-		public static const ICON_OBJECTIVE = 2;
-		public static const ICON_NPC = 3;
-		public static const ICON_MEDICAL = 4;
-		public static const ICON_DOWN = 5;
-		public static const ICON_UP = 6;
-		public static const ICON_COMMERCE = 7;
-		public static const ICON_BAR = 8;
-		public static const ICON_TAXI = 9;
-		public static const ICON_PLANE = 10;
-		public static const ICONS_MAX = 11;
+		public static const ICON_SHIP:uint = 0;
+		public static const ICON_QUEST:uint = 1;
+		public static const ICON_OBJECTIVE:uint = 2;
+		public static const ICON_NPC:uint = 3;
+		public static const ICON_MEDICAL:uint = 4;
+		public static const ICON_DOWN:uint = 5;
+		public static const ICON_UP:uint = 6;
+		public static const ICON_COMMERCE:uint = 7;
+		public static const ICON_BAR:uint = 8;
+		public static const ICON_TAXI:uint = 9;
+		public static const ICON_PLANE:uint = 10;
+		public static const ICONS_MAX:uint = 11;
 		
 		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically... but the code I found to do it looks a) awful b) is russian... maybe later? maybe.
 		// Basically, this is the list of linkage class names for the icons symbols in the FLA's library, which we're going to use to build icons in the correct order -- you might notice that they're in the same order as the integer flags up ^ there... the integer flags are used as array indexes to find the proper classname.

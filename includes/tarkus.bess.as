@@ -171,7 +171,7 @@ bessHairStyle: "a backwards slick"
 //Bess-13 Scenes
 //Finding Bess-13
 //Room Descriptor Addition
-function findingBessBonusFunc():Boolean
+public function findingBessBonusFunc():Boolean
 {
 	if(flags["BESS_IN_RUBBLE"] == 0) output("\n\nThere is a strange silver glint over in a large pile of junk. It is completely out of place with the rusted rubbish surrounding it. Maybe it is something valuable?");
 	//[ Silver Object ]
@@ -179,7 +179,7 @@ function findingBessBonusFunc():Boolean
 }
 
 //Silver Object {If clicked on}
-function findASilverObject():void
+public function findASilverObject():void
 {
 	clearOutput();
 	output("You abandon caution for curiosity and inch closer towards the silvery object.");
@@ -201,7 +201,7 @@ function findASilverObject():void
 }
 
 //Either Choice
-function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String = "female"):void
+public function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String = "female"):void
 {
 	clearOutput();
 	output("On closer examination, it definitely looks like a " + bessesStartingSexHahaThatsNotHowYouWriteAPossessive + " foot. The real question though is if you want to dig this thing up and see what it is...?");
@@ -295,7 +295,7 @@ function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:String =
 }
 
 //Dig It Up
-function digUpAFukkinSexbat():void
+public function digUpAFukkinSexbat():void
 {
 	clearOutput();
 	output("Curiosity gets the better of you as you decide to dig it up. Getting rid of all the junk on top of it is a quick and easy process.");
@@ -348,7 +348,7 @@ function digUpAFukkinSexbat():void
 
 //Taking him/her to the Ship
 //Take On Ship
-function takeBessToZeShip():void
+public function takeBessToZeShip():void
 {
 	clearOutput();
 	if (bess.hasVagina())
@@ -372,7 +372,7 @@ function takeBessToZeShip():void
 }
 
 //[Next]
-function plugBessesFatAssInPartII():void
+public function plugBessesFatAssInPartII():void
 {
 	clearOutput();
 	output("Your Codex bleeps at you when the unit is apparently finished charging. You finish your drink and head back down to the cargo bay.");
@@ -415,7 +415,7 @@ function plugBessesFatAssInPartII():void
 	decisionTimeForBessMenu();
 }
 
-function decisionTimeForBessMenu():void
+public function decisionTimeForBessMenu():void
 {
 	clearMenu();
 	addButton(0,"KeepOnShip",keepBessYouSloot);
@@ -428,7 +428,7 @@ function decisionTimeForBessMenu():void
 }
 
 //Sell Off
-function sellOfBessDatWhore():void
+public function sellOfBessDatWhore():void
 {
 	clearOutput();
 	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your Bess-13 unit.");
@@ -447,7 +447,7 @@ function sellOfBessDatWhore():void
 }
 
 //Hand To Authorities
-function handBessOverToAuthorities():void
+public function handBessOverToAuthorities():void
 {
 	clearOutput();
 	output("Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You’re surprised a U.G.C. official is actually going out of their way to Tarkus to pick up a sex bot.");
@@ -462,7 +462,7 @@ function handBessOverToAuthorities():void
 }
 
 //Release 
-function releaseBessBenWhatever():void
+public function releaseBessBenWhatever():void
 {
 	clearOutput();
 	output("You tell the " + bess.fm("female","male") + " synthetic that [bess.heShe] is free to do as she pleases, and that you are not [bess.hisHer] [Master]. It seems like the right thing to do.");
@@ -478,7 +478,7 @@ function releaseBessBenWhatever():void
 }
  
 //Dump Them
-function dumpTheBessBot():void
+public function dumpTheBessBot():void
 {
 	clearOutput();
 	output("Rather than keep the silver android, you decide that it’s best just to kick [bess.himHer] off your ship and let [bess.himHer] aimlessly wander Tarkus now that you’ve activated [bess.himHer]. Someone else can deal with [bess.himHer] - it’s just too much trouble.");
@@ -493,7 +493,7 @@ function dumpTheBessBot():void
 }
 
 //Tavros Station
-function waitAtTavrosBess():void
+public function waitAtTavrosBess():void
 {
 	clearOutput();
 	output("You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.");
@@ -507,7 +507,7 @@ function waitAtTavrosBess():void
 }
 
 //Keep [bess.HimHer] - Leads to Tutorial Section.
-function keepBessYouSloot():void
+public function keepBessYouSloot():void
 {
 	clearOutput();
 	//Tutorial / Configure 
@@ -526,7 +526,7 @@ function keepBessYouSloot():void
 	addButton(0,"Next",nameBessForRealsies);
 }
 
-function nameBessForRealsies():void
+public function nameBessForRealsies():void
 {
 	clearOutput();
 	output("What do you decide to name her?");
@@ -535,7 +535,7 @@ function nameBessForRealsies():void
 	//(Default Name: {if (bess.gender = female) <i>“Bess”</i>}{else: <i>“Ben”</i>}");
 }
 
-function nameBessProcessing():void
+public function nameBessProcessing():void
 {
 	if(this.userInterface.textInput.text == "") {
 		output("<b>You must input a name.</b>");
@@ -548,7 +548,7 @@ function nameBessProcessing():void
 }
 
 //Entered name becomes string value [Bess]
-function nameBessResult():void
+public function nameBessResult():void
 {
 	clearOutput();
 	output("<i>\"Thank you for my name, [Master]. I am now called [Bess]!\”</i></i> [Bess] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>\"I look forward to servicing your reproductive needs in the near future.\”</i></i>");
@@ -709,7 +709,7 @@ Some Story Events: Varies.
 */
 
 //Bess/Ben’s Room
-function followerBessRoom():void
+public function followerBessRoom():void
 {
 	//if (Bess/Ben Event 11 completed)
 	if(flags["9999"] == 0)
@@ -748,7 +748,7 @@ function followerBessRoom():void
 }
 
 //Greeting Dialogues
-function approachFollowerBess():void
+public function approachFollowerBess():void
 {
 	// Dialogues initiated by hitting the [Bess] button under companions. Or if they has a button under the normal ship stuff. Wherever you place it - just probably not in their room for story/sex consistency reasons.
 	clearOutput();
@@ -904,7 +904,7 @@ function approachFollowerBess():void
 }
 
 //Appearance
-function bessAppearance():void
+public function bessAppearance():void
 {
 	clearOutput();
 	output("As you look at [Bess][bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. " + bess.fm("Her cheeks flush","He politely coughs") + " as you look [bess.himHer] over from head to toe.");
@@ -981,7 +981,7 @@ Intimate Sex
 */
 
 //Functions
-function bessFunctions():void
+public function bessFunctions():void
 {
 	clearOutput();
 	if (flags["BESS_LOVER_STATUS"] == "domme" || flags["BESS_LOVER_STATUS"] == "domme")
@@ -1021,7 +1021,7 @@ function bessFunctions():void
 }
 
 //Titles
-function talkToBessAboutTitles():void
+public function talkToBessAboutTitles():void
 {
 	clearOutput();
 	output("<i>\"Which one?\"</i>");
@@ -1035,7 +1035,7 @@ function talkToBessAboutTitles():void
 }
 
 //[Bess]'s Name
-function changeBess
+public function changeBess
 
 [Bess] peers at you as you suggest changing [bess.himsHer] name. [bess.heShe]'s clearly not comfortable with the idea.
 

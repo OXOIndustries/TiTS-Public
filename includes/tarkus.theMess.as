@@ -1,4 +1,4 @@
-﻿function messBonusFunction():Boolean
+﻿public function messBonusFunction():Boolean
 {
 	if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] == undefined) addButton(0,"Order Food",orderFoodFromTheMess,undefined,"Order Food","Order some food from this \"fine\" establishment.");
 	else addDisabledButton(0,"Order Food","Order Food","No way are you doing that again. The service is terrible and the food looks even worse.");
@@ -7,7 +7,7 @@
 	
 	return false;
 }
-function barBonusFunction():Boolean
+public function barBonusFunction():Boolean
 {
 	//Bartender (Time 0-4)
 	if(timesDelilahSexed() < 5) output("\n\nYou see a svelte, dusky-skinned girl moving behind the bar, dressed it a tight cocktail dress that nicely hugs her rounded ass, showing it off behind the see-through bar. More than one randy customer reaches over to smack that ass as she works, nearly making her spill every other drink she tries to pour!");
@@ -20,7 +20,7 @@ function barBonusFunction():Boolean
 }
 //Order Food
 //{One-time option}
-function orderFoodFromTheMess():void
+public function orderFoodFromTheMess():void
 {
 	clearOutput();
 	author("Savin");
@@ -35,7 +35,7 @@ function orderFoodFromTheMess():void
 }
 
 //[Bartender; First Time]
-function approachDCLTrap():void
+public function approachDCLTrap():void
 {
 	clearOutput();
 	author("Savin");
@@ -98,7 +98,7 @@ function approachDCLTrap():void
 }
 
 //[Free Booty?]
-function approachDCLBooty():void
+public function approachDCLBooty():void
 {
 	clearOutput();
 	author("Savin");
@@ -124,7 +124,7 @@ function approachDCLBooty():void
 }
 
 //[Drink]
-function getADrinkFromDCLsButt():void {
+public function getADrinkFromDCLsButt():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nDELILAH");
@@ -145,7 +145,7 @@ function getADrinkFromDCLsButt():void {
 }
 
 //Quivering Quasar
-function quiveringQuasar():void
+public function quiveringQuasar():void
 {
 	//{Temporarily Increases Physique value, small random chance to blind yourself on any given turn}
 	clearOutput();
@@ -175,7 +175,7 @@ function quiveringQuasar():void
 }
 
 //Sex on a Meteor
-function sexOnAMeteor():void
+public function sexOnAMeteor():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
@@ -206,7 +206,7 @@ function sexOnAMeteor():void
 }
 
 //Beer (like, 1 cred)
-function haveABeer():void
+public function haveABeer():void
 {
 	clearOutput();
 	processTime(5);
@@ -223,7 +223,7 @@ function haveABeer():void
 }
 
 //[Sex; PC must have a dick]
-function buttStretchDelsAnus():void
+public function buttStretchDelsAnus():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
@@ -321,7 +321,7 @@ function buttStretchDelsAnus():void
 }
 
 //[Face Sitting]
-function sitOnDelilahsFace():void
+public function sitOnDelilahsFace():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
@@ -400,14 +400,14 @@ function sitOnDelilahsFace():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function timesDelilahAteOut(arg:int = 0):int
+public function timesDelilahAteOut(arg:int = 0):int
 {
 	if(flags["TIMES_ATE_DELILAH_OUT"] == undefined) flags["TIMES_ATE_DELILAH_OUT"] = 0;
 	flags["TIMES_ATE_DELILAH_OUT"] += arg;
 	timesDelilahSexed(arg);
 	return flags["TIMES_ATE_DELILAH_OUT"];
 }
-function timesDelilahSexed(arg:int = 0):int
+public function timesDelilahSexed(arg:int = 0):int
 {
 	if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] == undefined) flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] = 0;
 	flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] += arg;
@@ -415,7 +415,7 @@ function timesDelilahSexed(arg:int = 0):int
 }
 
 //Steph Irson, Galactic Huntress
-function stephIrsonEpisodeTwo():void
+public function stephIrsonEpisodeTwo():void
 {
 	var x:int = 0;
 	if(pc.hasCock()) x = pc.smallestCockIndex();
@@ -451,7 +451,7 @@ function stephIrsonEpisodeTwo():void
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisodeTwoDashTwo);
 }
-function stephIrsonEpisodeTwoDashTwo():void
+public function stephIrsonEpisodeTwoDashTwo():void
 {
 	clearOutput();
 	author("Savin");
@@ -518,7 +518,7 @@ function stephIrsonEpisodeTwoDashTwo():void
 //Slut Training
 //{Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
 //Tooltip: Delilah needs to learn how to properly service her clients with that tight little ass of hers. You're the perfect person to show her how it's done...}
-function delilahSlutTraining():void
+public function delilahSlutTraining():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
@@ -589,7 +589,7 @@ function delilahSlutTraining():void
 	//Pass ~1 hr
 }
 
-function delSlutTraining2():void
+public function delSlutTraining2():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");

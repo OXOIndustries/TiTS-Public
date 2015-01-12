@@ -2,7 +2,7 @@
 //By Nonesuch
 
 //Adjecent room
-function colensosAdjacentRoomStuff():Boolean
+public function colensosAdjacentRoomStuff():Boolean
 {
 	//First: 
 	if(flags["BEEN_TO_COLENSOS"] == undefined)
@@ -13,7 +13,7 @@ function colensosAdjacentRoomStuff():Boolean
 	return false;
 }
 
-function colensoMenu():void
+public function colensoMenu():void
 {
 	clearMenu();
 	//[Buy] [Sell] [Prophylactics] [Rumours] [Work]
@@ -28,7 +28,7 @@ function colensoMenu():void
 }
 
 
-function colensosRoomBonusFunction():Boolean
+public function colensosRoomBonusFunction():Boolean
 {
 	shopkeep = chars["COLENSO"];
 	if(flags["SEXBOT_QUEST_STATUS"] == 3)
@@ -69,7 +69,7 @@ function colensosRoomBonusFunction():Boolean
 	
 }
 
-function approachColenso():void
+public function approachColenso():void
 {
 	clearOutput();
 	userInterface.showBust("COLENSO");
@@ -80,7 +80,7 @@ function approachColenso():void
 }
 
 //Prophylactics
-function askColensoAbootProphylactics():void
+public function askColensoAbootProphylactics():void
 {
 	//Cheese and overlay the buy menu with dis shit
 	buyItem();
@@ -97,7 +97,7 @@ function askColensoAbootProphylactics():void
 //Prophylactic wears off: You pause. It feels like a pressure in your sinuses has lifted; it takes you a few moments to work out a smell you were barely aware of has dissipated. The prophylactic you were using has worn off.
 
 //Rumours
-function colensoRumorMillGo():void
+public function colensoRumorMillGo():void
 {
 	clearOutput();
 	userInterface.showBust("COLENSO");
@@ -131,7 +131,7 @@ function colensoRumorMillGo():void
 }
 
 //Work
-function askColensoAboutWork():void
+public function askColensoAboutWork():void
 {
 	clearOutput();
 	userInterface.showBust("COLENSO");
@@ -212,7 +212,7 @@ function askColensoAboutWork():void
 //https://docs.google.com/document/d/1SyHJzOsIFoMIpxwioZd6Oa3pb0m-PmGo6-HP3uEVNt0/edit#heading=h.t49agzqf9360
 
 //Sell Hand So 
-function sellHandSo():void
+public function sellHandSo():void
 {
 	clearOutput();
 	userInterface.showBust("COLENSO");
@@ -234,7 +234,7 @@ function sellHandSo():void
 }
 
 //If PC destroyed it/Keep Hand So 
-function destroyedHandSo():void
+public function destroyedHandSo():void
 {
 	clearOutput();
 	userInterface.showBust("COLENSO");
@@ -260,7 +260,7 @@ function destroyedHandSo():void
 }
 
 
-function sexbotQuestRoom2():Boolean
+public function sexbotQuestRoom2():Boolean
 {
 	author("Nonesuch");
 	if(flags["SEXBOT_QUEST_STATUS"] < 2 && flags["HAND_SOS_ROBOT_DESTROYED"] == undefined && flags["HAND_SO_TALKED_DOWN"] == undefined)
@@ -295,7 +295,7 @@ function sexbotQuestRoom2():Boolean
 	}
 }
 
-function factoryIntroPage2():void
+public function factoryIntroPage2():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -311,7 +311,7 @@ function factoryIntroPage2():void
 }
 
 //No 
-function noTalkPlease():void
+public function noTalkPlease():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -325,7 +325,7 @@ function noTalkPlease():void
 }
 
 //Yes 
-function yesIllTALKTOTHEHAND():void
+public function yesIllTALKTOTHEHAND():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -345,7 +345,7 @@ function yesIllTALKTOTHEHAND():void
 }
 
 //End This 
-function pcIsGonnaEndHandSo():void
+public function pcIsGonnaEndHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -360,7 +360,7 @@ function pcIsGonnaEndHandSo():void
 }
 
 //Go On 
-function tellMeMoreAboutHowInsaneYouAreHandSo():void
+public function tellMeMoreAboutHowInsaneYouAreHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -380,7 +380,7 @@ function tellMeMoreAboutHowInsaneYouAreHandSo():void
 }
 
 //No 
-function noIWontBeYourBitchHandSo():void
+public function noIWontBeYourBitchHandSo():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -394,7 +394,7 @@ function noIWontBeYourBitchHandSo():void
 }
 
 //Yes 
-function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
+public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	clearOutput();
 	author("Nonesuch");
 	output("There is something very persuasive about this AI and some of the things she’s said - delivered in that kind, patient tone of hers - touch you. Would it really be so bad to hand over control of the galaxy to an intelligence that does not and cannot want anything but to bring happiness to everyone? Certainly she couldn’t possibly do a worse job than organics have historically. Not breaking eye contact with the vast, green pupils above you, you take out your GPS scanner and codex. The guardian robot clanks around and, again with a gentleness belying its bulk, takes them off you. Hand So smiles at you happily.");
@@ -425,7 +425,7 @@ function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 }
 
 //Reason
-function reasonWithHandSoJerkiness():void
+public function reasonWithHandSoJerkiness():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -472,7 +472,7 @@ function reasonWithHandSoJerkiness():void
 //Fight texts
 //Note: Immune to lust.
 
-function firewallAI():void
+public function firewallAI():void
 {
 	//Standard attack
 	if(rand(3) <= 1) enemyAttack(foes[0]);
@@ -482,7 +482,7 @@ function firewallAI():void
 	else flameThrowerAttack(pc);
 }
 
-function electropulseAttack(target:Creature):void
+public function electropulseAttack(target:Creature):void
 {
 	if(target == pc)
 	{
@@ -493,7 +493,7 @@ function electropulseAttack(target:Creature):void
 	processCombat();
 }
 
-function flameThrowerAttack(target:Creature):void
+public function flameThrowerAttack(target:Creature):void
 {
 	if(target == pc)
 	{
@@ -526,7 +526,7 @@ function flameThrowerAttack(target:Creature):void
 }
 
 //PC loses
-function pcLosesToHanSoSosBot():void
+public function pcLosesToHanSoSosBot():void
 {
 	author("Nonesuch");
 	output("You fall, battered and broken, to the concrete floor. Panic rises through you, pricking your tear ducts as the Firewall looms over you. No dammit, you can’t lose, you have to stop this crazy AI! You feebly grasp and push at the robot’s implacable arms as it gently picks you up. You may as well be trying to change the course of a cruise liner as it carries you across the room with one arm, carefully picking through your pockets with the other.");
@@ -573,7 +573,7 @@ function pcLosesToHanSoSosBot():void
 }
 
 //PC wins
-function pcWinsVsHanSoSosTool():void
+public function pcWinsVsHanSoSosTool():void
 {
 	author("Nonesuch");
 	output("The Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
@@ -587,7 +587,7 @@ function pcWinsVsHanSoSosTool():void
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
-function backAfterWreckingHanSoSosShit():void
+public function backAfterWreckingHanSoSosShit():void
 {
 	currentLocation = "256";
 	//Beat the robot and not blown the console yet?
@@ -619,7 +619,7 @@ function backAfterWreckingHanSoSosShit():void
 }
 
 //Control Post
-function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
+public function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -652,7 +652,7 @@ function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
-function acquireHandSo():void
+public function acquireHandSo():void
 {
 	pc.createKeyItem("Hand So's Data Bead",0,0,0,0);
 	flags["HAND_SO_LOOTED"] = 1;
@@ -661,7 +661,7 @@ function acquireHandSo():void
 
 //Left
 //(Only available if So still there)
-function leftConsole():void
+public function leftConsole():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -706,7 +706,7 @@ function leftConsole():void
 	addButton(1,"Destroy",destroyHandsSoNooneWillCare,undefined,"Destroy","Destroy this troublesome AI.")
 }
 
-function destroyHandsSoNooneWillCare():void
+public function destroyHandsSoNooneWillCare():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -717,7 +717,7 @@ function destroyHandsSoNooneWillCare():void
 	addButton(0,"Next",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }
 
-function takeHandSoWithYouForMagicalSpaceAdventures():void
+public function takeHandSoWithYouForMagicalSpaceAdventures():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -729,7 +729,7 @@ function takeHandSoWithYouForMagicalSpaceAdventures():void
 
 //Right
 //(Only available if the building isn’t freaking exploding)
-function goToZeRightConsolePeasant():void
+public function goToZeRightConsolePeasant():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -745,7 +745,7 @@ function goToZeRightConsolePeasant():void
 	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }
 
-function sexbotControlBahtanPush(buttonPushed:int = 0):void
+public function sexbotControlBahtanPush(buttonPushed:int = 0):void
 {
 	clearOutput();
 	author("Nonesuch");

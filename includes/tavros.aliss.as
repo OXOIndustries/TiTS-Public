@@ -2,7 +2,7 @@
 //By Third
 
 //First time enter
-function miAmoreBonusShit():Boolean
+public function miAmoreBonusShit():Boolean
 {
 	author("Third");
 	userInterface.showBust("ALISS");
@@ -41,7 +41,7 @@ function miAmoreBonusShit():Boolean
 }
 
 //Upper Body
-function upperBodyAlice():void
+public function upperBodyAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -70,7 +70,7 @@ function upperBodyAlice():void
 	addButton(14,"Back",mainGameMenu);
 }
 
-function purchaseSomethingFromAliss(purchaseItem:*):void
+public function purchaseSomethingFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
@@ -90,13 +90,13 @@ function purchaseSomethingFromAliss(purchaseItem:*):void
 	itemCollect(foundLootItems);
 }
 
-function getAlissPrice(zeItem:*):Number
+public function getAlissPrice(zeItem:*):Number
 {
 	return Math.round(zeItem.basePrice * 1.5);
 }
 
 //Plain Bra
-function plainBraOptions():void
+public function plainBraOptions():void
 {
 	clearOutput();
 	author("Third");
@@ -113,7 +113,7 @@ function plainBraOptions():void
 }
 
 //Try On
-function tryOnBraAlice():void
+public function tryOnBraAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -139,7 +139,7 @@ function tryOnBraAlice():void
 }
 
 //Lacy Bra
-function lacyBraAliss():void
+public function lacyBraAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -156,7 +156,7 @@ function lacyBraAliss():void
 }
 
 //Try On
-function tryTheLacyBraAlice():void
+public function tryTheLacyBraAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -178,7 +178,7 @@ function tryTheLacyBraAlice():void
 }
 
 //Sports/Swim Bra
-function sportsSwimBraAliss():void
+public function sportsSwimBraAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -195,7 +195,7 @@ function sportsSwimBraAliss():void
 }
 
 //Try On
-function tryOnTheSwimBraAlice():void
+public function tryOnTheSwimBraAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -220,7 +220,7 @@ function tryOnTheSwimBraAlice():void
 }
 
 //Corset
-function tellMeAboutYerCorsetAlice():void
+public function tellMeAboutYerCorsetAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -237,7 +237,7 @@ function tellMeAboutYerCorsetAlice():void
 }
 
 //Try On
-function tryDatCorsetOnAlice():void
+public function tryDatCorsetOnAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -263,7 +263,7 @@ function tryDatCorsetOnAlice():void
 }
 
 //Underbust Corset
-function underbustCorsetOptionsAliss():void
+public function underbustCorsetOptionsAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -280,7 +280,7 @@ function underbustCorsetOptionsAliss():void
 }
 
 //Try On
-function tryOnDisUnderBoobCorsetThingAliss():void
+public function tryOnDisUnderBoobCorsetThingAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -305,7 +305,7 @@ function tryOnDisUnderBoobCorsetThingAliss():void
 }
 
 //Babydoll
-function babydollsAtAliss():void
+public function babydollsAtAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -322,7 +322,7 @@ function babydollsAtAliss():void
 }
 
 //Try On
-function tryOnTheBabydollAliss():void
+public function tryOnTheBabydollAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -347,7 +347,7 @@ function tryOnTheBabydollAliss():void
 }
 
 //Pasties
-function pastiesAndAliss():void
+public function pastiesAndAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -364,7 +364,7 @@ function pastiesAndAliss():void
 }
 
 //Try On
-function tryOnPastiesAliss():void
+public function tryOnPastiesAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -388,7 +388,7 @@ function tryOnPastiesAliss():void
 }
 
 //Undershirt
-function undershirtWithAliss():void
+public function undershirtWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -405,7 +405,7 @@ function undershirtWithAliss():void
 }
 
 //Try On
-function tryOnAnUndershirtAliss():void
+public function tryOnAnUndershirtAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -428,7 +428,7 @@ function tryOnAnUndershirtAliss():void
 }
 
 //Shibari Top
-function shibariTopForAliss():void
+public function shibariTopForAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -444,7 +444,7 @@ function shibariTopForAliss():void
 }
 
 //Try On
-function tryOnAShibariTopAliss():void
+public function tryOnAShibariTopAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -468,7 +468,7 @@ function tryOnAShibariTopAliss():void
 }
 
 //Lower Body
-function lowerBodyAlice():void
+public function lowerBodyAlice():void
 {
 	clearOutput();
 	author("Third");
@@ -494,7 +494,7 @@ function lowerBodyAlice():void
 }
 
 //Plain Panties
-function alissPlainPantiesForNerds():void
+public function alissPlainPantiesForNerds():void
 {
 	clearOutput();
 	author("Third");
@@ -512,7 +512,7 @@ function alissPlainPantiesForNerds():void
 }
 
 //Try On
-function tryOnHardlightPantiesAliss():void
+public function tryOnHardlightPantiesAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -535,7 +535,7 @@ function tryOnHardlightPantiesAliss():void
 }
 
 //Thong
-function thongWithAliss():void
+public function thongWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -553,7 +553,7 @@ function thongWithAliss():void
 }
 
 //Try On
-function tryOnTheThong():void
+public function tryOnTheThong():void
 {
 	clearOutput();
 	author("Third");
@@ -576,7 +576,7 @@ function tryOnTheThong():void
 }
 
 //Boyshorts
-function boyShortsWithAliss():void
+public function boyShortsWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -594,7 +594,7 @@ function boyShortsWithAliss():void
 }
 
 //Try On
-function tryOnBoyShortsAliss():void
+public function tryOnBoyShortsAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -617,7 +617,7 @@ function tryOnBoyShortsAliss():void
 }
 
 //Boxers
-function boxersWithAliss():void
+public function boxersWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -634,7 +634,7 @@ function boxersWithAliss():void
 }
 
 //Try On
-function tryOnBoxersAliss():void
+public function tryOnBoxersAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -657,7 +657,7 @@ function tryOnBoxersAliss():void
 }
 
 //Stocking Set
-function stockingSetWithAliss():void
+public function stockingSetWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -675,7 +675,7 @@ function stockingSetWithAliss():void
 }
 
 //Try On
-function tryOnTheStockingsAliss():void
+public function tryOnTheStockingsAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -697,7 +697,7 @@ function tryOnTheStockingsAliss():void
 }
 
 //Shibari Bottom
-function shibariBottomAliss():void
+public function shibariBottomAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -714,7 +714,7 @@ function shibariBottomAliss():void
 }
 
 //Try On
-function tryOnShibariBottoms():void
+public function tryOnShibariBottoms():void
 {
 	clearOutput();
 	author("Third");
@@ -737,7 +737,7 @@ function tryOnShibariBottoms():void
 }
 
 //Hardlight
-function hardLightDiscussion(arg:*):void
+public function hardLightDiscussion(arg:*):void
 {
 	clearOutput();
 	author("Third");
@@ -754,7 +754,7 @@ function hardLightDiscussion(arg:*):void
 	addButton(14,"Back",lowerBodyAlice);
 }
 
-function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
+public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
@@ -779,7 +779,7 @@ function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 
 //Sexytimes
 //(When Aliss' lust reaches 10, the next time the PC asks her to model an outfit, it triggers this scene.)
-function alissSexyTimes():void
+public function alissSexyTimes():void
 {
 	clearOutput();
 	author("Third");
@@ -803,7 +803,7 @@ function alissSexyTimes():void
 }
 
 //Help
-function helpAlissWithSexyTiems():void
+public function helpAlissWithSexyTiems():void
 {
 	clearOutput();
 	author("Third");
@@ -829,7 +829,7 @@ function helpAlissWithSexyTiems():void
 }
 
 //Question
-function questionAlissAboutHerHorsecock():void
+public function questionAlissAboutHerHorsecock():void
 {
 	clearOutput();
 	author("Third");
@@ -845,7 +845,7 @@ function questionAlissAboutHerHorsecock():void
 }
 
 //Nope
-function nopeDafuqOut():void
+public function nopeDafuqOut():void
 {
 	clearOutput();
 	author("Third");
@@ -862,7 +862,7 @@ function nopeDafuqOut():void
 
 //Sex Ahoy!
 //Fuck Her Slutty Ass
-function fuckDatBitchesSluttyAss():void
+public function fuckDatBitchesSluttyAss():void
 {
 	//Should go for the largest cock that will fit (we'll say... an area of 100? she's had some practice)
 	var x:int = pc.cockThatFits(chars["ALISS"].analCapacity());
@@ -898,7 +898,7 @@ function fuckDatBitchesSluttyAss():void
 }
 
 //Condom
-function condomWithAliss(x:int = -1):void
+public function condomWithAliss(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
@@ -915,7 +915,7 @@ function condomWithAliss(x:int = -1):void
 }
 
 //No Condom
-function noCondomsAlissYerASlut(x:int = -1):void
+public function noCondomsAlissYerASlut(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
@@ -930,7 +930,7 @@ function noCondomsAlissYerASlut(x:int = -1):void
 }
 
 //Condom and No-Condom meet here
-function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
+public function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
 {
 	output("\n\n\"<i>Mmm, you just look good enough to eat... but here I am, all bound up and at your mercy,</i>\" Aliss says, making a show of struggling at the lingerie binding her. \"<i>Whatever am I to do?</i>\" Smiling, you sidle up behind her, wrapping an arm around her large tail and lifting it. Her asshole, plump and delicious, glistens before you, seemingly dripping with natural lubricant. You run a finger around its puckered edge, watching as Aliss squirms away from your touch.");
 	output("\n\nDelicately, you press your thumb inside her depths. It's quickly enveloped inside her warm, wet ass. Her walls squeeze you tight. With how tight, wet and warm it is, it actually reminds you more of a proper woman's pussy than anything else. Your thumb presses further inside, searching for that magical spot. When Aliss suddenly tenses up, nearly pulling away from your grip, you know you've hit it. That magical prostate spot. You muse to yourself that it must be even more sensitive for her, since her testicles are also internal. Pressure in just the right spot must drive her <i>crazy</i>. You'll have to keep that in mind, you tell yourself.");
@@ -1033,12 +1033,12 @@ function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
 	else addButton(0,"Next",alissButtFuxEnd,x);
 }
 
-function alissButtFuckEndWithCondom(x:int = -1):void
+public function alissButtFuckEndWithCondom(x:int = -1):void
 {
 	alissButtFuxEnd(x,true);
 }
 
-function alissButtFuxEnd(x:int = -1, condom:Boolean = false):void
+public function alissButtFuxEnd(x:int = -1, condom:Boolean = false):void
 {
 	clearOutput();
 	author("Third");
@@ -1074,7 +1074,7 @@ function alissButtFuxEnd(x:int = -1, condom:Boolean = false):void
 }
 
 //Offer Pussy, But No One Plays Females in TiTS Geez What Are You Doing
-function offerPussyYouSloot():void
+public function offerPussyYouSloot():void
 {
 	clearOutput();
 	author("Third");
@@ -1151,7 +1151,7 @@ function offerPussyYouSloot():void
 	addButton(0,"Next",takeItInZeCoochFromAlissFinal,x);
 }
 
-function takeItInZeCoochFromAlissFinal(x:int = 0):void
+public function takeItInZeCoochFromAlissFinal(x:int = 0):void
 {
 	clearOutput();
 	author("Third");
@@ -1174,7 +1174,7 @@ function takeItInZeCoochFromAlissFinal(x:int = 0):void
 }
 
 //Offer Ass, Because You're Slutty McButtslut
-function offerAlissYourAss():void
+public function offerAlissYourAss():void
 {
 	clearOutput();
 	author("Third");
@@ -1299,7 +1299,7 @@ function offerAlissYourAss():void
 	addButton(0,"Next",offerAlissYourAssPart2);
 }
 
-function offerAlissYourAssPart2():void
+public function offerAlissYourAssPart2():void
 {
 	clearOutput();
 	author("Third");
@@ -1325,7 +1325,7 @@ function offerAlissYourAssPart2():void
 }
 
 //Suck Her Off, You Cum Addict You
-function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
+public function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 {
 	clearOutput();
 	author("Third");
@@ -1386,7 +1386,7 @@ function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 }
 
 //Swallow
-function swallowAlissSpunk():void
+public function swallowAlissSpunk():void
 {
 	clearOutput();
 	author("Third");
@@ -1408,7 +1408,7 @@ function swallowAlissSpunk():void
 }
 
 //On You
-function takeALoadInDaFaceFromAliss():void
+public function takeALoadInDaFaceFromAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -1427,7 +1427,7 @@ function takeALoadInDaFaceFromAliss():void
 }
 
 //On Her
-function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
+public function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 {
 	clearOutput();
 	author("Third");
@@ -1445,7 +1445,7 @@ function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function fuckedAliss():void
+public function fuckedAliss():void
 {
 	if(flags["TIMES_SEXED_ALISS"] == undefined) flags["TIMES_SEXED_ALISS"] = 0;
 	flags["TIMES_SEXED_ALISS"]++;
@@ -1453,7 +1453,7 @@ function fuckedAliss():void
 
 //Aliss
 //(Open's Aliss' options.)
-function alissDiscussionsInsteadOfPanties():void
+public function alissDiscussionsInsteadOfPanties():void
 {
 	clearOutput();
 	author("Third");
@@ -1480,7 +1480,7 @@ function alissDiscussionsInsteadOfPanties():void
 //Sex
 //(If Aliss' lust is over 30)
 //Fen note: bumped this to 40 for reasons.
-function sexWithAlissFromMainMenu():void 
+public function sexWithAlissFromMainMenu():void 
 {
 	clearOutput();
 	author("Third");
@@ -1509,7 +1509,7 @@ function sexWithAlissFromMainMenu():void
 }
 
 //Talk
-function talkToAliss():void
+public function talkToAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -1531,7 +1531,7 @@ function talkToAliss():void
 	addButton(14,"Back",alissDiscussionsInsteadOfPanties);
 }
 
-function talkToAlissAboutOvier():void
+public function talkToAlissAboutOvier():void
 {
 	clearOutput();
 	author("Third");
@@ -1550,7 +1550,7 @@ function talkToAlissAboutOvier():void
 }
 
 //Mi Amour
-function miAmourTalkWithAliss():void
+public function miAmourTalkWithAliss():void
 {
 	clearOutput();
 	author("Third");
@@ -1568,7 +1568,7 @@ function miAmourTalkWithAliss():void
 
 //Chameleon Silk
 //(Unlocked after Mi Amour conversation)
-function chameleonSilkTalkWithAlissYouSlut():void
+public function chameleonSilkTalkWithAlissYouSlut():void
 {
 	clearOutput();
 	author("Third");
@@ -1585,7 +1585,7 @@ function chameleonSilkTalkWithAlissYouSlut():void
 
 //Libido
 //(PC must have sexed up Aliss)
-function talkToAlissAboutLibido():void
+public function talkToAlissAboutLibido():void
 {
 	clearOutput();
 	author("Third");
@@ -1604,7 +1604,7 @@ function talkToAlissAboutLibido():void
 
 //Exhibitionism
 //(Unlocked via Libido; talk with Aliss about her exhibitionism, can unlock the ability to watch Aliss via a stream & toy with her)
-function exhibitionismTalkWithAliss():void
+public function exhibitionismTalkWithAliss():void
 {
 	clearOutput();
 	author("Third");

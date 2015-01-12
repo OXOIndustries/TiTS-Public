@@ -141,7 +141,7 @@ public function encounterVanae(isHuntress:Boolean):void
 	}
 }
 
-function vanaeAI():void
+public function vanaeAI():void
 {
 	vanaeHeader("FIGHT: VANAE\n");
 	var camoUsed:Boolean = false;
@@ -230,7 +230,7 @@ function vanaeAI():void
 	// camoFunc(true) updates the effect, camoFunc(false) will apply it/refresh it
 }
 
-function vanaeSpearStrike():void
+public function vanaeSpearStrike():void
 {
 	//Effect: Light physical damage, stun chance. Extra damage against tripped or stunned opponents. Small crit chance - higher against tripped or stunned opponents.
 	if(foes[0].hasStatusEffect("Disarmed"))
@@ -284,7 +284,7 @@ function vanaeSpearStrike():void
 	processCombat();
 }
 
-function vanaeTailSwipe():void
+public function vanaeTailSwipe():void
 {
 	// Effect: Small Damage if hit, trip if connect. Vanae always attempts either a grapple or a melee strike on a tripped opponent. Small crit chance.
 	
@@ -323,7 +323,7 @@ function vanaeTailSwipe():void
 	processCombat();
 }
 
-function vanaeGrapple():void
+public function vanaeGrapple():void
 {
 	// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
 	
@@ -362,7 +362,7 @@ function vanaeGrapple():void
 	processCombat();
 }
 
-function vanaeWaitWhilstGrappled():void
+public function vanaeWaitWhilstGrappled():void
 {
 	// [Don't Struggle] 
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
@@ -371,7 +371,7 @@ function vanaeWaitWhilstGrappled():void
 	pc.lustDamage(16 + rand(8));
 }
 
-function vanaeEscapeGrapple():void
+public function vanaeEscapeGrapple():void
 {
 	// [Successful Escape]: 
 	output("You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
@@ -383,7 +383,7 @@ function vanaeEscapeGrapple():void
 	pc.removeStatusEffect("Stunned");
 }
 
-function vanaeMilkSquirtBreasts():void
+public function vanaeMilkSquirtBreasts():void
 {
 	output("Suddenly, the");
 	if (foes[0] is MaidenVanae) output(" girlish");
@@ -415,7 +415,7 @@ function vanaeMilkSquirtBreasts():void
 	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
 }
 
-function vanaeSpiralKick():void
+public function vanaeSpiralKick():void
 {
 	output("Suddenly, the lithe huntress is making a dash at you. Before you know what she's doing, she twirls and launches herself in the air like a sideways top - her foot arching at");
 	if (pc.tallness <= 80) output(" your head");
@@ -439,7 +439,7 @@ function vanaeSpiralKick():void
 	// Effect: Low hit chance. On hit, does large damage and auto-stun (if PC can be stunned). 
 }
 
-function vanaeCamoflage(justUpdate:Boolean = true):void
+public function vanaeCamoflage(justUpdate:Boolean = true):void
 {
 	if (foes[0].hasStatusEffect("Camouflage"))
 	{
@@ -484,7 +484,7 @@ function vanaeCamoflage(justUpdate:Boolean = true):void
 	// Effect: When she does this move, her dodge and hit rate increases. It lasts for three rounds, including the one used to activate it. If she uses this move when it is already active, the timer is refreshed.
 }
 
-function vanaeTFScene():void
+public function vanaeTFScene():void
 {
 	// These paragraphs are to be inserted wherever there is a part that says // (TF SCENE). Didn't want to keep copy and pasting it. Played in scenes where the Vanae would spray the PC's genitals with body altering amounts of her milk.
 	if (!pc.hasCock() && !pc.hasVagina()) return;
@@ -561,7 +561,7 @@ function vanaeTFScene():void
 	}
 }
 
-function vanaeHeader(preName:String):void
+public function vanaeHeader(preName:String):void
 {
 	if (foes[0] is MaidenVanae)
 	{
@@ -576,7 +576,7 @@ function vanaeHeader(preName:String):void
 	author("Jim T");
 }
 
-function vanaePCVictory():void
+public function vanaePCVictory():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -724,7 +724,7 @@ function vanaePCVictory():void
 	addButton(14, "Leave", noThanksTentaSlutImOut);
 }
 
-function noThanksTentaSlutImOut():void
+public function noThanksTentaSlutImOut():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -741,7 +741,7 @@ function noThanksTentaSlutImOut():void
 	genericVictory();
 }
 
-function vanaeVictorySexIntro(scene:String):void
+public function vanaeVictorySexIntro(scene:String):void
 {
 	// Clicking on any Sex Option
 	clearOutput();
@@ -953,7 +953,7 @@ function vanaeVictorySexIntro(scene:String):void
 	addButton(0, "Next", functor, arg);
 }
 
-function vanaeMaidenTakeVirginity():void
+public function vanaeMaidenTakeVirginity():void
 {
 	var selCock:int = pc.cockThatFits(217);
 	var pcWonFight:Boolean = false;
@@ -1083,7 +1083,7 @@ function vanaeMaidenTakeVirginity():void
 	else genericLoss();
 }
 
-function vanaeMaidenCunnilingus():void
+public function vanaeMaidenCunnilingus():void
 {
 	var pcWonFight:Boolean = false;
 	
@@ -1162,7 +1162,7 @@ function vanaeMaidenCunnilingus():void
 	else genericLoss();
 }
 
-function vanaeHuntressVaginalSex():void
+public function vanaeHuntressVaginalSex():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -1264,7 +1264,7 @@ function vanaeHuntressVaginalSex():void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressTitfuck():void
+public function vanaeHuntressTitfuck():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -1314,7 +1314,7 @@ function vanaeHuntressTitfuck():void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressEatsPCCunt():void
+public function vanaeHuntressEatsPCCunt():void
 {
 	// PC must have pussy and front/mid genitals.
 	clearOutput();
@@ -1354,7 +1354,7 @@ function vanaeHuntressEatsPCCunt():void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntress69(selScene:String):void
+public function vanaeHuntress69(selScene:String):void
 {
 	// selScene == 69bj or 69cunni
 	var isBj:Boolean;
@@ -1464,7 +1464,7 @@ function vanaeHuntress69(selScene:String):void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressTentaSex(selScene:String):void
+public function vanaeHuntressTentaSex(selScene:String):void
 {
 	// selScene == tentacunt or tentabutt
 	var isButt:Boolean;
@@ -1602,7 +1602,7 @@ function vanaeHuntressTentaSex(selScene:String):void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressSquirNJerk():void
+public function vanaeHuntressSquirNJerk():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -1668,7 +1668,7 @@ function vanaeHuntressSquirNJerk():void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressMilkBath():void
+public function vanaeHuntressMilkBath():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -1742,7 +1742,7 @@ function vanaeHuntressMilkBath():void
 	addButton(0, "Next", vanaeHuntressPostVictoryScene);
 }
 
-function vanaeHuntressPostVictoryScene():void
+public function vanaeHuntressPostVictoryScene():void
 {
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
@@ -1783,7 +1783,7 @@ function vanaeHuntressPostVictoryScene():void
 	genericVictory();
 }
 
-function vanaeHuntressPCDefeat():void
+public function vanaeHuntressPCDefeat():void
 {
 	clearOutput();
 	vanaeHeader("DEFEAT:\nVANAE ");
@@ -1876,7 +1876,7 @@ function vanaeHuntressPCDefeat():void
 	options[rand(options.length)]();
 }
 
-function vanaeHuntressPCDefeatCuntFux():void
+public function vanaeHuntressPCDefeatCuntFux():void
 {
 	// Must have Cock
 	// Max girth 4 inches
@@ -2009,7 +2009,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatMilkbath():void
+public function vanaeHuntressPCDefeatMilkbath():void
 {
 	// Any sex, no requisites.
 	if (!pc.hasCock() && !pc.hasVagina())
@@ -2117,7 +2117,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatSquirtNJerk():void
+public function vanaeHuntressPCDefeatSquirtNJerk():void
 {
 	// Must have Cock
 	// Min Girth 0.5 inch
@@ -2189,7 +2189,7 @@ function vanaeHuntressPCDefeatSquirtNJerk():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatTitfux():void
+public function vanaeHuntressPCDefeatTitfux():void
 {
 	// Must have Cock
 	// Max girth 4 inches
@@ -2276,7 +2276,7 @@ function vanaeHuntressPCDefeatTitfux():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatCunnilingus():void
+public function vanaeHuntressPCDefeatCunnilingus():void
 {
 	// Must have Vagina
 
@@ -2334,7 +2334,7 @@ function vanaeHuntressPCDefeatCunnilingus():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatTentafux():void
+public function vanaeHuntressPCDefeatTentafux():void
 {
 	// All but Neuter. 
 	// Two versions - one vag, one ass. If pc.hasPussy, randomly choose between ass or vag. If male, only choose ass.
@@ -2496,7 +2496,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	genericLoss();
 }
 
-function vanaeMaidenPCDefeat():void
+public function vanaeMaidenPCDefeat():void
 {
 
 	clearOutput();
@@ -2545,7 +2545,7 @@ function vanaeMaidenPCDefeat():void
 	options[rand(options.length)](); // How the fuck did I miss this??!
 }
 
-function vanaeMaidenPCDefeatTakeVirginity():void
+public function vanaeMaidenPCDefeatTakeVirginity():void
 {
 	// PC Virginities taken: +1 (If you want to take a tally of 'achievements')
 	// Must have Cock
@@ -2592,7 +2592,7 @@ function vanaeMaidenPCDefeatTakeVirginity():void
 	vanaeMaidenTakeVirginity();
 }
 
-function vanaeMaidenPCDefeatCunnilingus():void
+public function vanaeMaidenPCDefeatCunnilingus():void
 {
 	output("\n\nThe virgin huntress lies back on the ground and spreads her [monster.thighs]. She bashfully exposes the vulnerable pink-tinted skin of her inner loins to you, letting you drink it up with your hungry eyes.");
 

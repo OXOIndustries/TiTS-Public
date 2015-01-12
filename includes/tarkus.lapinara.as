@@ -5,7 +5,7 @@
 //**All Lapinara have a ⅓ chance of dropping a strange white carrot.
 
 //Finding a Lapinara:
-function encounterALapinara():void
+public function encounterALapinara():void
 {
 	foes = new Array();
 	chars["LAPINARAFEMALE"].prepForCombat();
@@ -32,7 +32,7 @@ function encounterALapinara():void
 	addButton(0,"Next",startCombatLight);
 }
 
-function lapinaraBust():void
+public function lapinaraBust():void
 {
 	if(foes[0].hairColor == "silver") userInterface.showBust("LAPINARA_2");
 	else userInterface.showBust("LAPINARA");
@@ -41,7 +41,7 @@ function lapinaraBust():void
 //Combat Description:
 //**Combat stats to be determined by Fen.
 
-function lapinaraAI():void
+public function lapinaraAI():void
 {
 	lapinaraBust();
 	if(rand(3) == 0) lapinaraHornCharge();
@@ -50,7 +50,7 @@ function lapinaraAI():void
 }
 
 //Horn Charge:
-function lapinaraHornCharge():void
+public function lapinaraHornCharge():void
 {
 	//Dodge: 
 	if(combatMiss(foes[0],pc)) output("The lapinara charges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
@@ -85,7 +85,7 @@ function lapinaraHornCharge():void
 
 
 //Punch:
-function lapinaraFalconPunch():void
+public function lapinaraFalconPunch():void
 {
 	var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
 	var randomizer = (rand(31)+ 85)/100;
@@ -101,7 +101,7 @@ function lapinaraFalconPunch():void
 }
 
 //Bite:
-function lapinaraBite():void
+public function lapinaraBite():void
 {
 	var damage:int = 5 + foes[0].physique()/2;
 	var randomizer = (rand(31)+ 85)/100;
@@ -143,13 +143,13 @@ Exotic body shapes: Kinda likes!
 
 //Sex Scenes:
 //Egg Implantation (lapinara wins):
-function loseToFemaleLapinara():void
+public function loseToFemaleLapinara():void
 {
 	if(!pc.hasVagina() || (pc.hasCock() && rand(2) == 0)) loseToLapinaraAndGetEggplantedDudesAndNeuters();
 	else loseToLapinaraAndGetEggplantedChicks();
 }
 
-function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
+public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 {
 	author("WorldOfDrakan");
 	lapinaraBust();
@@ -198,7 +198,7 @@ function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 }
 
 //(Female/Herm Variant)
-function loseToLapinaraAndGetEggplantedChicks():void
+public function loseToLapinaraAndGetEggplantedChicks():void
 {
 	author("WorldOfDrakan");
 	lapinaraBust();
@@ -245,7 +245,7 @@ function loseToLapinaraAndGetEggplantedChicks():void
 	genericLoss();
 }
 
-function defeatDatLapinara():void
+public function defeatDatLapinara():void
 {
 	author("WorldOfDrakan");
 	lapinaraBust();
@@ -289,7 +289,7 @@ function defeatDatLapinara():void
 
 //Cunt Tail Fuck (PC Wins):
 //**Requires a cunt tail, obviously.
-function cuntTailFuckLapinaraParasitic():void
+public function cuntTailFuckLapinaraParasitic():void
 {
 	clearOutput();
 	author("WorldOfDrakan");
@@ -309,7 +309,7 @@ function cuntTailFuckLapinaraParasitic():void
 	genericVictory();
 }
 
-function targetLapinaraSex(targetFunc):void
+public function targetLapinaraSex(targetFunc):void
 {
 	if(pc.cockTotal() == 1) targetFunc(0);
 	else
@@ -325,7 +325,7 @@ function targetLapinaraSex(targetFunc):void
 	}
 }
 
-function lapinaraButtfuckSelector(cockNum:int = 0):void
+public function lapinaraButtfuckSelector(cockNum:int = 0):void
 {
 	if(pc.cocks[x].cLength() > 20) hotdoggingALapinara(cockNum);
 	else buttFuckALapinara(cockNum);
@@ -333,7 +333,7 @@ function lapinaraButtfuckSelector(cockNum:int = 0):void
 
 //Buttfuck (PC Wins):
 //**Requires penis.
-function buttFuckALapinara(cockNum:int = 0):void
+public function buttFuckALapinara(cockNum:int = 0):void
 {
 	clearOutput();
 	author("WorldOfDrakan");
@@ -369,7 +369,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 
 //(Dick Too Big Variant (Hotdogging))
 //**Cock/Biggest cock must be more than 20 inches in length.
-function hotdoggingALapinara(cockNum:int = 0):void
+public function hotdoggingALapinara(cockNum:int = 0):void
 {
 	clearOutput();
 	author("WorldOfDrakan");
@@ -397,7 +397,7 @@ function hotdoggingALapinara(cockNum:int = 0):void
 }
 
 //Get Licked (PC Wins):
-function getLickedByLapinara():void
+public function getLickedByLapinara():void
 {
 	clearOutput();
 	author("WorldOfDrakan");
@@ -425,7 +425,7 @@ function getLickedByLapinara():void
 
 //Get Blown (PC Wins):
 //**Requires penis.
-function getBlownByLapinara(cockNum:int = 0):void
+public function getBlownByLapinara(cockNum:int = 0):void
 {
 	var x:int = cockNum;
 	if(x < 0) x = pc.biggestCockIndex();

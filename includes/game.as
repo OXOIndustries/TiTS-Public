@@ -159,7 +159,7 @@ public function showPerksList():void
 	}
 }
 
-function crew(counter:Boolean = false):Number {
+public function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
 		this.clearMenu();
@@ -201,7 +201,7 @@ function crew(counter:Boolean = false):Number {
 	}
 	return count;
 }
-function rest():void {
+public function rest():void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
@@ -219,7 +219,7 @@ function rest():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
-function sleep(outputs:Boolean = true):void {
+public function sleep(outputs:Boolean = true):void {
 	
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
@@ -283,7 +283,7 @@ function sleep(outputs:Boolean = true):void {
 	else this.addButton(0,"Next",mainGameMenu);
 }
 
-function sleepHeal():void
+public function sleepHeal():void
 {
 	if (pc.HPRaw < pc.HPMax()) 
 	{
@@ -294,7 +294,7 @@ function sleepHeal():void
 }
 
 
-function shipMenu():Boolean {
+public function shipMenu():Boolean {
 	
 	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
@@ -322,7 +322,7 @@ function shipMenu():Boolean {
 	return false;
 }
 
-function flyMenu():void {
+public function flyMenu():void {
 	clearOutput();
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
 	{
@@ -365,7 +365,7 @@ function flyMenu():void {
 	this.addButton(14,"Back",mainGameMenu);
 }
 
-function flyTo(arg:String):void {
+public function flyTo(arg:String):void {
 	
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
@@ -420,7 +420,7 @@ function flyTo(arg:String):void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
-function sneakBackYouNudist():void
+public function sneakBackYouNudist():void
 {
 	clearOutput();
 	output("You meticulously make your way back to the ship using every ounce of subtlety you possess. It takes way longer than you would have thought thanks to a couple of near-misses, but you make it safe and sound to the interior of your craft.");
@@ -432,7 +432,7 @@ function sneakBackYouNudist():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function move(arg:String, goToMainMenu:Boolean = true):void {
+public function move(arg:String, goToMainMenu:Boolean = true):void {
 	//Prevent movement for nudists into nude-restricted zones.
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
@@ -467,7 +467,7 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 	mainGameMenu();
 }
 
-function statusTick():void {
+public function statusTick():void {
 	var shitToCut:Array = new Array();
 	var y:int = 0;
 	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
@@ -921,7 +921,7 @@ public function processTime(arg:int):void {
 	updatePCStats();
 }
 
-function boobswellStuff(time:Number = 0):void
+public function boobswellStuff(time:Number = 0):void
 {
 	//Message text, boob size+. Every 6 hours or so.
 	//Every minute = .003 breastRating. = 5.5 hours per cup size.
@@ -963,7 +963,7 @@ function boobswellStuff(time:Number = 0):void
 }
 
 //Notes about milk gain increases
-function milkGainNotes():void
+public function milkGainNotes():void
 {
 	var x:int = 0;
 	//Cross 75% milk fullness +1 cup
@@ -1031,7 +1031,7 @@ function milkGainNotes():void
 	}
 }
 
-function lactationUpdateHourTick():void
+public function lactationUpdateHourTick():void
 {
 	//These are easy since they proc with time passage and can be added to event buffer.
 	//Milk Multiplier crosses a 10 point threshold while dropping
@@ -1096,7 +1096,7 @@ function lactationUpdateHourTick():void
 }
 
 //Milk Multiplier crosses a 10 point threshold from raising
-function milkMultiplierGainNotificationCheck():void
+public function milkMultiplierGainNotificationCheck():void
 {
 	//kGAMECLASS cheat to cheat these messages into the event buffer? Or pass event buffer as an argument? Regardless, seems the cleanest way to keep it from interrupting the scene it gets called in.
 	//30
@@ -1155,7 +1155,7 @@ function milkMultiplierGainNotificationCheck():void
 	}
 }
 
-function badEnd():void 
+public function badEnd():void 
 {
 	gameOverEvent = true;
 	

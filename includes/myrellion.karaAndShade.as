@@ -80,13 +80,13 @@ Kara rewards PC with credits, bugs out of the bar.
 Adventure 1: A Damsel in Distress, you say?
 */
 
-function showKara():void
+public function showKara():void
 {
 	author("Savin");
 	showName("\nKARA");
 	showBust("KARA");
 }
-function showShade():void
+public function showShade():void
 {
 	author("Savin");
 	showName("\nSHADE");
@@ -94,7 +94,7 @@ function showShade():void
 }
 
 //Play on entering the bar. Possibly first time entering the bar. 
-function karaFirstTimeBarStuff():void
+public function karaFirstTimeBarStuff():void
 {
 	clearOutput();
 	showCandice();
@@ -110,7 +110,7 @@ function karaFirstTimeBarStuff():void
 //[{Drink}]
 //Don’t charge PC for it.
 //Individual tooltips for drinks go here.
-function firstTimeBuyADrinkForKaraShits():void
+public function firstTimeBuyADrinkForKaraShits():void
 {
 	clearOutput();
 	showCandice();
@@ -128,7 +128,7 @@ function firstTimeBuyADrinkForKaraShits():void
 //[Ignore Her]
 //Back to bar main menu.
 //Ignore the cat-girl and enjoy your free drink. 
-function ignoreDisBitch():void
+public function ignoreDisBitch():void
 {
 	clearOutput();
 	showCandice();
@@ -141,7 +141,7 @@ function ignoreDisBitch():void
 }
 
 //[Go Over]
-function goOverToKaraSloot():void
+public function goOverToKaraSloot():void
 {
 	clearOutput();
 	showKara();
@@ -177,7 +177,7 @@ function goOverToKaraSloot():void
 
 //[Why?]
 //Why does she need you to distract somebody? What’re you getting yourself into here?
-function whyShouldIHelpDisFukkinSavinWithHisQuest():void
+public function whyShouldIHelpDisFukkinSavinWithHisQuest():void
 {
 	clearOutput();
 	showKara();
@@ -196,7 +196,7 @@ function whyShouldIHelpDisFukkinSavinWithHisQuest():void
 
 //[Not Interested]
 //Refuse her request.
-function notInterestedSavinYourOCsCreepMeOut():void
+public function notInterestedSavinYourOCsCreepMeOut():void
 {
 	clearOutput();
 	showKara();
@@ -213,7 +213,7 @@ function notInterestedSavinYourOCsCreepMeOut():void
 
 //[Still No]
 //Leave
-function stillSayNoToKaraYouGiganticFuckingAsshole():void
+public function stillSayNoToKaraYouGiganticFuckingAsshole():void
 {
 	clearOutput();
 	output("You shake your head and step away from the cat-girl, leaving her to her fate.");
@@ -224,7 +224,7 @@ function stillSayNoToKaraYouGiganticFuckingAsshole():void
 
 //[Okay]
 //Help Kara
-function helpDisKaraSlut(finishedDrink:Boolean = false):void
+public function helpDisKaraSlut(finishedDrink:Boolean = false):void
 {
 	clearOutput();
 	showKara();
@@ -255,7 +255,7 @@ function helpDisKaraSlut(finishedDrink:Boolean = false):void
 //[Back Off]
 //Back to bar menu
 //Forget it. Kara’s in trouble, but that’s her problem.
-function backOfAndScrewOverKaraYouAsshat():void
+public function backOfAndScrewOverKaraYouAsshat():void
 {
 	clearOutput();
 	showShade();
@@ -268,7 +268,7 @@ function backOfAndScrewOverKaraYouAsshat():void
 
 //[Tell About Kara]
 //Betray Kara and tell the mystery cat-girl where she’s at.
-function tellAboutKara():void
+public function tellAboutKara():void
 {
 	clearOutput();
 	showShade();
@@ -289,7 +289,7 @@ function tellAboutKara():void
 
 //[No Thanks]
 //Refuse the bounty hunter’s offer. You’re out of here. 
-function turnDownAChanceToCaptureKara():void
+public function turnDownAChanceToCaptureKara():void
 {
 	clearOutput();
 	showShade();
@@ -303,7 +303,7 @@ function turnDownAChanceToCaptureKara():void
 }
 //[It’s a Deal]
 //Take Shade up on her offer and go after Kara.
-function itsADealToBetrayKaraSloots():void
+public function itsADealToBetrayKaraSloots():void
 {
 	clearOutput();
 	showBust("KARA","SHADE");
@@ -326,7 +326,7 @@ function itsADealToBetrayKaraSloots():void
 
 //[Flirt]
 //Flirt with the cat-girl hunter. Who knows, you might get laid AND paid!
-function flirtWithShade():void
+public function flirtWithShade():void
 {
 	clearOutput();
 	showShade();
@@ -351,7 +351,7 @@ function flirtWithShade():void
 }
 
 //[Sorry, No]
-function sorryNoIDontWantToGetLaidShade():void
+public function sorryNoIDontWantToGetLaidShade():void
 {
 	clearOutput();
 	showShade();
@@ -364,7 +364,7 @@ function sorryNoIDontWantToGetLaidShade():void
 }
 
 //[Sure]
-function sureIWantSomeShadePussayTailFuckYes():void
+public function sureIWantSomeShadePussayTailFuckYes():void
 {
 	clearOutput();
 	showShade();
@@ -410,7 +410,7 @@ function sureIWantSomeShadePussayTailFuckYes():void
 //[Trip and Fall]
 //Yes, from all the way BACK UP THERE, JESUS I NEED A FLOWCHART
 //Trip and make a mess right in front of the huntress; try and distract her with some good old-fashioned stoogery. 
-function tripAndFallOnShade():void
+public function tripAndFallOnShade():void
 {
 	clearOutput();
 	showBust("KARA","SHADE");
@@ -433,7 +433,7 @@ function tripAndFallOnShade():void
 
 //[Yes]
 //Kara + PC vs Shade fight
-function karaAndPCVersusShadeFightIntroduction():void
+public function karaAndPCVersusShadeFightIntroduction():void
 {
 	clearOutput();
 	author("Savin");
@@ -447,7 +447,7 @@ function karaAndPCVersusShadeFightIntroduction():void
 
 //[No]
 //Take PC outside the bar, pass 10 minutes.
-function fuckThisShiiitImNotGettingInACatNDogFight():void
+public function fuckThisShiiitImNotGettingInACatNDogFight():void
 {
 	clearOutput();
 	showName("FUCK\nTHIS!");
@@ -466,7 +466,7 @@ function fuckThisShiiitImNotGettingInACatNDogFight():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function karaAndShadeUnfinished():Boolean
+public function karaAndShadeUnfinished():Boolean
 {
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined || flags["KARA_DEFEATED_WITH_SHADE"] != undefined || flags["LOST_TO_SHADE_WITH_KARA"] != undefined) return false;
 	if(flags["DISTRACTED_SHADE"] != undefined) return false;
@@ -479,7 +479,7 @@ function karaAndShadeUnfinished():Boolean
 
 //Last Chance
 //If PC didn’t help Kara. Play when leaving the bar.
-function lastChanceForHelpingKara():void
+public function lastChanceForHelpingKara():void
 {
 	clearOutput();
 	author("Savin");
@@ -510,7 +510,7 @@ function lastChanceForHelpingKara():void
 
 //[Leave]
 //Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you. 
-function fuckDisBarShit():void
+public function fuckDisBarShit():void
 {
 	clearOutput();
 	author("Savin");
@@ -522,7 +522,7 @@ function fuckDisBarShit():void
 }
 
 //[Help Shade]
-function helpShadeOutLastChance():void
+public function helpShadeOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
@@ -539,7 +539,7 @@ function helpShadeOutLastChance():void
 }
 
 //[Help Kara]
-function helpKaraOutLastChance():void
+public function helpKaraOutLastChance():void
 {
 	clearOutput();
 	author("Savin");
@@ -555,7 +555,7 @@ function helpKaraOutLastChance():void
 	addButton(0,"Next",startCombat,"Shade");
 }
 
-function karaQuestTurninNeeded():Boolean
+public function karaQuestTurninNeeded():Boolean
 {
 	if(flags["KARA_PAID_YOU"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return true;
@@ -567,7 +567,7 @@ function karaQuestTurninNeeded():Boolean
 
 //Quest Complete - Meet Kara in the Back Alley
 //Add [Kara] to the Back Alley room menu. 
-function meetUpWithKaraInTheBackAlley():void
+public function meetUpWithKaraInTheBackAlley():void
 {
 	showKara();
 	output("\n\n“<i>You’re here,</i>” Kara says, taking a step out of the shadows and lowers the hood down to her shoulders, letting her cobalt-blue cat ears peek out at you.");
@@ -585,7 +585,7 @@ function meetUpWithKaraInTheBackAlley():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function shadeAI():void
+public function shadeAI():void
 {
 	var target:Creature = pc;
 	if(pc.statusEffectv1("Round") <= 1)
@@ -637,7 +637,7 @@ function shadeAI():void
 	processCombat();
 }
 
-function karaAI():void
+public function karaAI():void
 {
 	if(foes[0].hasStatusEffect("Force Edge Cooldown") && rand(2) == 0)
 	{
@@ -673,7 +673,7 @@ function karaAI():void
 //Fight! Shade vs Kara
 //PC can be fighting one or the other of them.
 //Should probably run this every round so the pistol can get updated.
-function buildShadeAndKaraFight(helpingKara:Boolean = false):void
+public function buildShadeAndKaraFight(helpingKara:Boolean = false):void
 {
 	showName("FIGHT:\nSHADE & KARA");
 	if(!helpingKara) showBust("KARA","SHADE");
@@ -694,7 +694,7 @@ function buildShadeAndKaraFight(helpingKara:Boolean = false):void
 	}	
 }
 
-function shadeDesc(helpingKara:Boolean):void
+public function shadeDesc(helpingKara:Boolean):void
 {
 	if(helpingKara) foes[0].long += "You’re fighting Shade";
 	else foes[0].long += "Beside you stands Shade";
@@ -702,7 +702,7 @@ function shadeDesc(helpingKara:Boolean):void
 	if(helpingKara && foes[0].rangedWeapon is HoldOutPistol) foes[0].long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
 	else foes[0].long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
 }
-function karaDesc(helpingKara:Boolean):void
+public function karaDesc(helpingKara:Boolean):void
 {
 	if(!helpingKara) foes[0].long += "You’re fighting Kara";
 	else foes[0].long += "Beside you stands Kara";
@@ -711,7 +711,7 @@ function karaDesc(helpingKara:Boolean):void
 
 //Kara’s Abilities
 //Plasma Pistol (Basic Ranged)
-function karaPlasmaShot(target:Creature):void
+public function karaPlasmaShot(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -736,7 +736,7 @@ function karaPlasmaShot(target:Creature):void
 }
 
 //Force Edge (High-damage melee attack, moderate cooldown)
-function karaHitsWivASwordChuck(target:Creature):void
+public function karaHitsWivASwordChuck(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -763,7 +763,7 @@ function karaHitsWivASwordChuck(target:Creature):void
 }
 
 //Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
-function karaDoesChargeShot(target:Creature):void
+public function karaDoesChargeShot(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -798,7 +798,7 @@ function karaDoesChargeShot(target:Creature):void
 }
 
 //Stimulant Boost (Herself and Allies by 25%; 1/encounter)
-function karaStimulantBoost():void
+public function karaStimulantBoost():void
 {
 	output("Kara flips a button on the holoband on her wrist, causing a small device hidden on her hip to beep. She winces as a stream of stimulants pump into her.");
 	if(foes[0] is Shade) 
@@ -811,7 +811,7 @@ function karaStimulantBoost():void
 
 //Shade’s Abilities
 //Arc Caster (Basic Ranged)
-function shadeUsesArcCaster(target:Creature):void
+public function shadeUsesArcCaster(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -838,7 +838,7 @@ function shadeUsesArcCaster(target:Creature):void
 }
 
 //Holdout Pistol (Backup Ranged)
-function shadeShootHoldoutPistol(target:Creature):void
+public function shadeShootHoldoutPistol(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -864,7 +864,7 @@ function shadeShootHoldoutPistol(target:Creature):void
 
 //Shoot First (First round)
 //Shade gets off an extra shot in Turn 1, UNLESS the PC also has Shoot First. 
-function shootFirstFromtShade(target:Creature):void
+public function shootFirstFromtShade(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -876,7 +876,7 @@ function shootFirstFromtShade(target:Creature):void
 }
 
 //Gas Grenade (Reduces Reflexes and Aim)
-function gasGrenadesFromShade(target:Creature):void
+public function gasGrenadesFromShade(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -901,7 +901,7 @@ function gasGrenadesFromShade(target:Creature):void
 }
 
 //Disarming Shot
-function disarmingShotFromShade():void
+public function disarmingShotFromShade():void
 {
 	var attacker:Creature;
 	attacker = foes[0];
@@ -918,7 +918,7 @@ function disarmingShotFromShade():void
 }
 
 //Tazer - stuns
-function tazerForShade(target:Creature):void
+public function tazerForShade(target:Creature):void
 {
 	var attacker:Creature;
 	if(target == pc) attacker = foes[0];
@@ -951,7 +951,7 @@ function tazerForShade(target:Creature):void
 
 //Quickdraw (Free action) - end of enemyAI
 //if PC is immune to electricity after getting shot by the Arc Caster
-function shadeQuickdraws(target:Creature):void
+public function shadeQuickdraws(target:Creature):void
 {
 	//if she’s disarmed from her Arc Caster
 	if(foes[0].hasStatusEffect("Disarmed") && foes[0].rangedWeapon is ArcCaster)
@@ -968,7 +968,7 @@ function shadeQuickdraws(target:Creature):void
 
 //Combat End
 // PC + Kara defeat Shade
-function pcAndKaraBeatShade():void
+public function pcAndKaraBeatShade():void
 {
 	showBust("KARA","SHADE");
 	showName("KARA\n& SHADE");
@@ -987,7 +987,7 @@ function pcAndKaraBeatShade():void
 }
 
 //PC + Shade defeat Kara
-function pcAndShadeBeatKara():void
+public function pcAndShadeBeatKara():void
 {
 	showBust("KARA","SHADE");
 	showName("KARA\n& SHADE");
@@ -1006,7 +1006,7 @@ function pcAndShadeBeatKara():void
 }
 
 //PC + Kara Defeated
-function loseWithKaraYouSlut():void
+public function loseWithKaraYouSlut():void
 {
 	showBust("KARA","SHADE");
 	showName("KARA\n& SHADE");
@@ -1027,7 +1027,7 @@ function loseWithKaraYouSlut():void
 }
 
 //PC + Shade Defeated
-function pcAndShadeDefeated():void
+public function pcAndShadeDefeated():void
 {
 	clearOutput();
 	showBust("KARA","SHADE");
@@ -1045,7 +1045,7 @@ function pcAndShadeDefeated():void
 //Shade starts straddling the PC. Still wearing her undies, no bra or clothes.
 //[Cunt Tail Fuck]
 //Shade queens the PC, uses her tailcunt on [pc.cock " + x + "].
-function cuntTailShadeFux():void
+public function cuntTailShadeFux():void
 {
 	clearOutput();
 	showShade();
@@ -1107,7 +1107,7 @@ function cuntTailShadeFux():void
 
 //[Take Hardlight]
 //vagOrAss. PC gives tailcunt oral. 
-function takeShadesHardlightPenisInYerBoot():void
+public function takeShadesHardlightPenisInYerBoot():void
 {
 	clearOutput();
 	showShade();
@@ -1159,7 +1159,7 @@ function takeShadesHardlightPenisInYerBoot():void
 
 //[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 //PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-function rimAndWankOrLickAndWankWhoKnowsSloot():void
+public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 {
 	clearOutput();
 	showShade();
@@ -1231,7 +1231,7 @@ function rimAndWankOrLickAndWankWhoKnowsSloot():void
 }
 
 //{Combine All}
-function shadePostCoitusHangouts():void
+public function shadePostCoitusHangouts():void
 {
 	clearOutput();
 	showShade();
@@ -1265,7 +1265,7 @@ function shadePostCoitusHangouts():void
 }
 
 //[Go]
-function shouldIShadeOrShouldIGo():void
+public function shouldIShadeOrShouldIGo():void
 {
 	clearOutput();
 	showShade();
@@ -1280,7 +1280,7 @@ function shouldIShadeOrShouldIGo():void
 }
 
 //[Stay]
-function stayWithShade():void
+public function stayWithShade():void
 {
 	clearOutput();
 	showShade();
@@ -1292,7 +1292,7 @@ function stayWithShade():void
 	addButton(0,"Next",recoverWithShade);
 }
 
-function recoverWithShade():void
+public function recoverWithShade():void
 {
 	clearOutput();
 	showShade();
@@ -1314,7 +1314,7 @@ function recoverWithShade():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function shadeQuestNeedsTurnIn():Boolean
+public function shadeQuestNeedsTurnIn():Boolean
 {
 	if(flags["KARA_DEFEATED_WITH_SHADE"] != undefined)
 	{
@@ -1322,7 +1322,7 @@ function shadeQuestNeedsTurnIn():Boolean
 	}
 	return false;
 }
-function shadeAtTheBar():Boolean
+public function shadeAtTheBar():Boolean
 {
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
@@ -1332,7 +1332,7 @@ function shadeAtTheBar():Boolean
 
 //First Time Repeat - Captured Kara (One Time)
 //+20,000 Credits
-function getPaidByShade4Kara():void
+public function getPaidByShade4Kara():void
 {
 	clearOutput();
 	showShade();
@@ -1347,7 +1347,7 @@ function getPaidByShade4Kara():void
 	shadeMenu();
 }
 
-function shadeApproach():void
+public function shadeApproach():void
 {	
 	clearOutput();
 	showShade();
@@ -1371,7 +1371,7 @@ function shadeApproach():void
 	}
 }
 
-function shadeMenu():void
+public function shadeMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToShadeAbootStuff,undefined,"Talk","Chat up Shade.");
@@ -1382,7 +1382,7 @@ function shadeMenu():void
 }
 
 //Appearance
-function shadeAppearance():void
+public function shadeAppearance():void
 {
 	clearOutput();
 	showShade();
@@ -1394,7 +1394,7 @@ function shadeAppearance():void
 }
 
 //Sex
-function askShade4Sex():void
+public function askShade4Sex():void
 {
 	clearOutput();
 	showShade();
@@ -1436,7 +1436,7 @@ function askShade4Sex():void
 }
 
 //Talk
-function talkToShadeAbootStuff():void
+public function talkToShadeAbootStuff():void
 {
 	clearOutput();
 	showShade();
@@ -1445,7 +1445,7 @@ function talkToShadeAbootStuff():void
 	shadeTalkMenu(talkToShadeAbootStuff);
 }
 
-function shadeTalkMenu(arg):void
+public function shadeTalkMenu(arg):void
 {
 	clearMenu();
 	//Family
@@ -1482,7 +1482,7 @@ function shadeTalkMenu(arg):void
 }
 
 //Tail Cunt
-function talkToShadeAboutTailCunt():void
+public function talkToShadeAboutTailCunt():void
 {
 	clearOutput();
 	showShade();
@@ -1501,7 +1501,7 @@ function talkToShadeAboutTailCunt():void
 
 //Kui-Tan Doc
 //Gated behind the Tailcunt talk; PC must have completed KaraQuest 2.
-function kuitanDoc():void
+public function kuitanDoc():void
 {
 	clearOutput();
 	showShade();
@@ -1517,7 +1517,7 @@ function kuitanDoc():void
 
 //Her Ship
 //PC must have been to Shade’s ship (ie, prolly fucked her).
-function talkAboutShadesShip():void
+public function talkAboutShadesShip():void
 {
 	clearOutput();
 	output("“<i>That’s a killer ship you’ve got, you know.</i>”");
@@ -1539,7 +1539,7 @@ function talkAboutShadesShip():void
 }
 
 //Family
-function talkToShadeAboutHerFamily():void
+public function talkToShadeAboutHerFamily():void
 {
 	clearOutput();
 	showShade();
@@ -1577,7 +1577,7 @@ function talkToShadeAboutHerFamily():void
 }
 
 //Lightning Gear
-function lightningGearShadeTalk():void
+public function lightningGearShadeTalk():void
 {
 	clearOutput();
 	showShade();
@@ -1593,7 +1593,7 @@ function lightningGearShadeTalk():void
 
 //Runes
 //Must have talked about Lightning Gear and Family first
-function runesYouTurdShade():void
+public function runesYouTurdShade():void
 {
 	clearOutput();
 	showShade();
@@ -1634,7 +1634,7 @@ function runesYouTurdShade():void
 }
 
 //Set to 1 on insemination. Counts up every hour. Resets on its own after a week.
-function inseminateShadesCuntTail():void
+public function inseminateShadesCuntTail():void
 {
 	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
 	flags["SHADES_CUNTTAIL_FED"] = 1;
@@ -1643,7 +1643,7 @@ function inseminateShadesCuntTail():void
 //Tailcunt Oviposition
 //Unlock after PC’s boned Shade’s tailcunt. Now it can get preggers! 
 //Play near/at the end of Tailcuntpreggers time, at the end of any Talk scene. If no scene triggered any time near due date, egg is laid without PC intervention. 
-function tailCuntOvipositionForShade():void
+public function tailCuntOvipositionForShade():void
 {
 	clearOutput();
 	showShade();
@@ -1659,7 +1659,7 @@ function tailCuntOvipositionForShade():void
 
 //Let Her Go
 //Let Shade take care of business.
-function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
+public function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
 {
 	clearOutput();
 	showShade();
@@ -1675,7 +1675,7 @@ function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
 
 //Go With
 //Ask Shade if she needs any help. Or at least, would like some company while she lays.
-function goWithShadeToTakeCareOfBusinessYuSlut():void
+public function goWithShadeToTakeCareOfBusinessYuSlut():void
 {
 	clearOutput();
 	showShade();
@@ -1700,7 +1700,7 @@ function goWithShadeToTakeCareOfBusinessYuSlut():void
 	addButton(0,"Next",helpShadeLayHerEgg2);
 }
 
-function helpShadeLayHerEgg2():void
+public function helpShadeLayHerEgg2():void
 {
 	clearOutput();
 	showShade();
@@ -1718,7 +1718,7 @@ function helpShadeLayHerEgg2():void
 	addButton(0,"Next",helpShadeLayHerEgg3);
 }
 
-function helpShadeLayHerEgg3():void
+public function helpShadeLayHerEgg3():void
 {
 	clearOutput();
 	showShade();
@@ -1748,7 +1748,7 @@ function helpShadeLayHerEgg3():void
 }
 
 //[Go]
-function skipTownAfterHelpingThisSlootLayEggs():void
+public function skipTownAfterHelpingThisSlootLayEggs():void
 {
 	clearOutput();
 	output("You hop out of Shade’s bed and start gathering your [pc.gear]. The kaithrit shrugs and lies back, watching you until you’re ready to go.");
@@ -1759,7 +1759,7 @@ function skipTownAfterHelpingThisSlootLayEggs():void
 }
 
 //[Stay]
-function stayWithShadeAfterLayingAnEgg():void
+public function stayWithShadeAfterLayingAnEgg():void
 {
 	clearOutput();
 	showShade();
@@ -1769,7 +1769,7 @@ function stayWithShadeAfterLayingAnEgg():void
 	clearMenu();
 	addButton(0,"Next",stayWithShadeAfterLayingAnEgg2);
 }
-function stayWithShadeAfterLayingAnEgg2():void
+public function stayWithShadeAfterLayingAnEgg2():void
 {
 	clearOutput();
 	showShade();

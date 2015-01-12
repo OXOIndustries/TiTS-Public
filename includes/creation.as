@@ -2,7 +2,7 @@
 import flash.events.Event;
 
 
-function creationRouter(e:Event = null):void {
+public function creationRouter(e:Event = null):void {
 	if(chars["PC"].short.length >= 1) {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
 		this.userInterface.confirmNewCharacter();
@@ -13,7 +13,7 @@ function creationRouter(e:Event = null):void {
 	}
 }
 
-function startCharacterCreation(e:Event = null):void 
+public function startCharacterCreation(e:Event = null):void 
 {
 	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
@@ -55,7 +55,7 @@ function startCharacterCreation(e:Event = null):void
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 }
 
-function confirmRaceChoice(race:String = "human"):void {
+public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
 	if(race == "human") {
 		output("A purely human heritage would give Victor's child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There's really not much more to say about such a choice.");
@@ -76,7 +76,7 @@ function confirmRaceChoice(race:String = "human"):void {
 	this.addButton(1,"No",startCharacterCreation);
 }
 
-function chooseStartingRace(race:String = "human"):void {
+public function chooseStartingRace(race:String = "human"):void {
 	clearOutput();
 	pc.removeCocks();
 	pc.removeVaginas();
@@ -163,7 +163,7 @@ function chooseStartingRace(race:String = "human"):void {
 	this.userInterface.textInput.maxChars = 12;
 }
 
-function setStartingSex(sex:int = 1):void {
+public function setStartingSex(sex:int = 1):void {
 	var race:String = "human";
 	if(pc.originalRace != "human") race = pc.originalRace.substring(5);
 	if(this.userInterface.textInput.text == "") {
@@ -252,7 +252,7 @@ function setStartingSex(sex:int = 1):void {
 }
 
 //Choose Height:
-function chooseHeight():void {
+public function chooseHeight():void {
 	clearOutput();
 	setLocation("CHOOSING\nHEIGHT","PLANET: TERRA","SYSTEM: SOL");
 	output("The doctor asks <i>“So, you’re going to have a </i>");
@@ -272,7 +272,7 @@ function chooseHeight():void {
 	this.addButton(14,"Back",startCharacterCreation);
 }
 
-function applyHeight():void {
+public function applyHeight():void {
 	var fail:Boolean = false;
 	if(isNaN(Number(this.userInterface.textInput.text))) {
 		clearOutput();
@@ -308,7 +308,7 @@ function applyHeight():void {
 	chooseThickness();
 }
 
-function chooseThickness():void {
+public function chooseThickness():void {
 	clearOutput();
 	setLocation("CHOOSING\nTHICKNESS","PLANET: TERRA","SYSTEM: SOL");
 	output("Marking his pad, he chuckles and clears his throat. The doctor asks, <i>“How thickset should " + pc.mf("he","she") + " be? Please note that I’m not referring to weight so much as the broadness of their overall frame - hips and shoulders, you know.”</i>");
@@ -324,7 +324,7 @@ function chooseThickness():void {
 	this.addButton(14,"Back",chooseHeight);
 }
 
-function applyThickness(arg:Number):void {
+public function applyThickness(arg:Number):void {
 	var fail:Boolean = false;
 	pc.thickness = arg;
 	if(stage.contains(this.userInterface.textInput)) 
@@ -332,7 +332,7 @@ function applyThickness(arg:Number):void {
 	chooseHairColor();
 }
 //Hair Color:
-function chooseHairColor():void {
+public function chooseHairColor():void {
 	clearOutput();
 	setLocation("SELECTING HAIR\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great,”</i> he says absently, entering the information with his stylus. <i>“I thought of asking for " + pc.mf("his","her") + " adult weight in pounds, but knowing you, you would have taken me seriously. Obviously, your kitchen staff will be the ones who control that.”</i> He clears his throat, sombering slightly. <i>“How about hair color? We could do black, like yours was, or any of the other natural colors pretty easily.”</i>");
@@ -366,14 +366,14 @@ function chooseHairColor():void {
 	this.addButton(14,"Back",chooseThickness);
 }
 
-function applyHairColor(arg:String = "black") {
+public function applyHairColor(arg:String = "black") {
 	pc.hairColor = arg;
 	pc.furColor = arg;
 	chooseEyeColor();
 }
 
 //Eye Color:
-function chooseEyeColor() {
+public function chooseEyeColor() {
 	clearOutput();
 	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“I thought you’d choose " + pc.hairColor + ", boss. How about eye color? Got anything in mind?”</i> The doctor glances up from his tablet and awaits Victor’s response.");
@@ -396,12 +396,12 @@ function chooseEyeColor() {
 	this.addButton(14,"Back",chooseHairColor);
 }
 
-function applyeEyeColor(eyeColor:String = "brown"):void {
+public function applyeEyeColor(eyeColor:String = "brown"):void {
 	pc.eyeColor = eyeColor;
 	chooseSkinTone();
 }
 
-function chooseSkinTone():void
+public function chooseSkinTone():void
 {
 	clearOutput();
 	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
@@ -425,7 +425,7 @@ function chooseSkinTone():void
 	}
 	this.addButton(14,"Back",chooseEyeColor);
 }
-function applySkinTone(skinTone:String = "pale"):void {
+public function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
 	if(pc.hasCock())
 	{
@@ -442,7 +442,7 @@ function applySkinTone(skinTone:String = "pale"):void {
 }
 
 //Boob Size:
-function chooseBreastSize():void {
+public function chooseBreastSize():void {
 	clearOutput();
 	setLocation("SELECTING\nBREAST SIZE","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Breasts?”</i>");
@@ -475,7 +475,7 @@ function chooseBreastSize():void {
 	this.addButton(14,"Back",chooseSkinTone);
 }
 
-function applyBreastSize(size:int = 0):void {
+public function applyBreastSize(size:int = 0):void {
 	pc.breastRows[0].breastRatingRaw = size;
 	if(pc.femininity < 50) {
 		if(pc.biggestTitSize() >= 1) pc.femininity += 10;
@@ -488,7 +488,7 @@ function applyBreastSize(size:int = 0):void {
 }
 
 //Junk Size (Males/Futas)
-function chooseYourJunkSize():void {
+public function chooseYourJunkSize():void {
 	clearOutput();
 	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
 	output("The doctor smiles knowingly and moves on, <i>“Alright, now what about the penis? It looks like we could pretty easily have it be anywhere from ");
@@ -528,7 +528,7 @@ function chooseYourJunkSize():void {
 	this.addButton(14,"Back",chooseBreastSize);
 }
 
-function applyJunkSize(arg:int = 0):void {
+public function applyJunkSize(arg:int = 0):void {
 	pc.cocks[0].cLengthRaw = arg;
 	pc.cocks[0].cThicknessRatioRaw = 1;
 	if (pc.originalRace ==  "half-kaithrit") {
@@ -541,7 +541,7 @@ function applyJunkSize(arg:int = 0):void {
 }
 
 //Vaginal Capabilities
-function chooseYourVagina():void {
+public function chooseYourVagina():void {
 	clearOutput();
 	setLocation("SELECT VAGINAL\nTRAITS","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Alright, I can specialize the vagina for capacity, extra lubrication, both, or neither. If we do both, the effects won’t be as pronounced as focusing on a single choice. I know that’s probably not the first thing you want to think about as a dad, but if the kid is gonna be taking after you, it’d be wise to tweak up at least one of those.”</i> The doctor looks at Victor expectantly.");
@@ -556,23 +556,23 @@ function chooseYourVagina():void {
 		this.addButton(14,"Back",chooseBreastSize);
 }
 
-function upgradeCapacity():void {
+public function upgradeCapacity():void {
 	pc.vaginas[0].loosenessRaw += 1;
 	pc.vaginas[0].bonusCapacity += 20;
 	chooseSexualGift();
 }
-function upgradeLubricants():void {
+public function upgradeLubricants():void {
 	pc.vaginas[0].wetnessRaw += 2;
 	chooseSexualGift();
 }
-function fullyUpgradeCunt():void {
+public function fullyUpgradeCunt():void {
 	pc.vaginas[0].wetnessRaw++;
 	pc.vaginas[0].bonusCapacity += 10;
 	chooseSexualGift();
 }
 
 //Sexual Gift
-function chooseSexualGift():void {
+public function chooseSexualGift():void {
 	clearOutput();
 	setLocation("CHOOSING A\nSEXUAL GIFT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great!”</i> Your personal physician notes your choice and says, <i>“This is one of the tougher choices future parents have to make. We can work some tweaks into your successor’s genome that’ll give them a bit of a gift, if you know what I mean - even beyond the choices you’ve made so far. The downside is that we can only safely insert one of these options into your child's genome.”</i>");
@@ -662,7 +662,7 @@ function chooseSexualGift():void {
 	
 }
 
-function applySexualGift(arg:String = "none"):void {
+public function applySexualGift(arg:String = "none"):void {
 	if(arg == "virile") {
 		pc.cumQualityRaw += 1.15;
 		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
@@ -715,7 +715,7 @@ function applySexualGift(arg:String = "none"):void {
 }
 
 //Pick a Physical Affinity
-function chooseAPhysicalAffinity():void {
+public function chooseAPhysicalAffinity():void {
 	clearOutput();
 	setLocation("CHOOSING AN\nAFFINITY","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Grrrreat,”</i> the doctor muses as he checks your selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
@@ -729,12 +729,12 @@ function chooseAPhysicalAffinity():void {
 	this.addButton(14,"Back",chooseSexualGift);
 }
 
-function applyAffinity(arg:String = "intelligence"):void {
+public function applyAffinity(arg:String = "intelligence"):void {
 	pc.affinity = arg;
 	chooseHowPCIsRaised();
 }
 //How is the pc raised?
-function chooseHowPCIsRaised():void {
+public function chooseHowPCIsRaised():void {
 	clearOutput();
 	pc.physiqueRaw = 3;
 	pc.reflexesRaw = 3;
@@ -761,7 +761,7 @@ function chooseHowPCIsRaised():void {
 	this.addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
-function applyUpbringing(arg:int = 0):void {
+public function applyUpbringing(arg:int = 0):void {
 	//Pampered
 	if(arg == 0) {
 		pc.willpowerRaw--;
@@ -795,7 +795,7 @@ function applyUpbringing(arg:int = 0):void {
 	chooseAlignment();
 }
 
-function chooseAlignment():void {
+public function chooseAlignment():void {
 	clearOutput();
 	//Neutral neutral. Filthy neutrals.
 	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
@@ -808,12 +808,12 @@ function chooseAlignment():void {
 	this.addButton(14,"Back",chooseHowPCIsRaised);
 }
 
-function alignConfirm(arg:int):void {
+public function alignConfirm(arg:int):void {
 	pc.personality = arg;
 	chooseClass();
 }
 	
-function chooseClass():void {
+public function chooseClass():void {
 	clearOutput();
 	showPCStats();
 	pc.maxOutHP();
@@ -827,7 +827,7 @@ function chooseClass():void {
 	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
 	this.addButton(14,"Back",chooseAlignment);
 }
-function classConfirm(arg:int = 0):void {
+public function classConfirm(arg:int = 0):void {
 	clearOutput();
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
 	if(arg == GLOBAL.CLASS_SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
@@ -867,7 +867,7 @@ public function setClass(arg:int = 0):void {
 }
 
 //Tutorial Skip Option
-function tutorialSkipOption():void {
+public function tutorialSkipOption():void {
 	clearOutput();
 	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
@@ -879,7 +879,7 @@ function tutorialSkipOption():void {
 }
 
 //Death of a Great Man
-function tutorialIntro():void {
+public function tutorialIntro():void {
 	clearOutput();
 	setLocation("PRESENT\nDAY","TAVROS STATION","SYSTEM: KALAS");
 	pc.removeStatusEffect("In Creation");
@@ -892,7 +892,7 @@ function tutorialIntro():void {
 	this.addButton(0,"Next",tutorialIntro2);
 }
 
-function tutorialIntro2():void {
+public function tutorialIntro2():void {
 	clearOutput();
 	setLocation("THE\nFUNERAL","TAVROS STATION","SYSTEM: KALAS");
 	output("The funeral is closed casket with no viewing, which is expected given the shape Dad was in the last time you saw him. His body was riddled with the lines of age and marked with liver spots and pre-cancerous lumps, and he didn’t want to be remembered that way. Thankfully, the ceremony is swift and fairly small. There are only family and friends here, though you wager a large amount of the ‘family’ is distant relations hoping to catch some of the inheritance.");
@@ -904,7 +904,7 @@ function tutorialIntro2():void {
 	this.addButton(0,"Next",tutorialIntro3);
 }
 
-function tutorialIntro3():void {
+public function tutorialIntro3():void {
 	clearOutput();
 	setLocation("THE\nWILL","TAVROS STATION","SYSTEM: KALAS");
 	output("You follow the lawyer’s brisk stride with a bit of difficulty. He’s a samarin; long-limbed, yellow-skinned, and not overly inclined to slow his walk for your comfort. He also talks the entire way.");
@@ -934,7 +934,7 @@ function tutorialIntro3():void {
 	this.addButton(0,"Next",tutorialIntro4);
 }
 
-function tutorialIntro4():void {
+public function tutorialIntro4():void {
 	clearOutput();
 	setLocation("THE\nWILL","TAVROS STATION","SYSTEM: KALAS");
 	output("The next room is empty, save for a comfy looking, leather recliner. You actually recognize it as one of your father’s favorites. The arm rests are only a little more worn than you remember. A holo projector protrudes from the ceiling, aimed at the empty space in front of the chair. With nothing else to do, you seat yourself. The projector kicks on and your Dad’s face appears.");
@@ -965,7 +965,7 @@ function tutorialIntro4():void {
 	this.addButton(0,"Open Door",openDoorToTutorialCombat);
 }
 //The Introduction of Celise (Goo Girl)
-function openDoorToTutorialCombat():void {
+public function openDoorToTutorialCombat():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -979,7 +979,7 @@ function openDoorToTutorialCombat():void {
 	this.addButton(0,"Next",startCombat,"celise");
 }
 
-function celiseAI():void {
+public function celiseAI():void {
 	//Round 1:
 	if(pc.statusEffectv1("Round") == 1) {
 		output("Well, that didn’t work! She seems completely immune to normal physical attacks.");
@@ -1011,7 +1011,7 @@ function celiseAI():void {
 }
 
 //Win
-function defeatCelise():void {
+public function defeatCelise():void {
 	pc.removeStatusEffect("Round");
 	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
 	this.userInterface.showBust("CELISE");
@@ -1027,7 +1027,7 @@ function defeatCelise():void {
 	this.addButton(1,"Feed Celise",takeCelise);
 }
 
-function skipCeliseOption():void
+public function skipCeliseOption():void
 {
 	clearOutput();
 	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
@@ -1041,7 +1041,7 @@ function skipCeliseOption():void
 	addButton(1, "Take Her", takeCeliseSkip);
 }
 
-function takeCeliseSkip():void
+public function takeCeliseSkip():void
 {
 	flags["RECRUITED_CELISE"] = 1;
 	flags["CELISE_ONBOARD"] = 1;
@@ -1049,7 +1049,7 @@ function takeCeliseSkip():void
 }
 
 //Ignore Celise
-function ignoreCelise():void {
+public function ignoreCelise():void {
 	clearOutput();
 	setLocation("KEYS","TAVROS STATION","SYSTEM: KALAS");
 	output("You ignore the hand and pull free, grabbing the keys as you step out to inspect your ship.");
@@ -1058,7 +1058,7 @@ function ignoreCelise():void {
 	this.addButton(0,"Next",checkOutYourShip);
 }
 //Feed Celise [Male]
-function takeCelise():void {
+public function takeCelise():void {
 	pc.removeStatusEffect("Round");  // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
 	this.userInterface.showBust("CELISE");
@@ -1134,7 +1134,7 @@ function takeCelise():void {
 }
 
 //Take Celise on As A Crew Member
-function takeCeliseAsACrewMember():void {
+public function takeCeliseAsACrewMember():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -1154,7 +1154,7 @@ function takeCeliseAsACrewMember():void {
 }
 
 //Check Out Your Ship
-function checkOutYourShip():void {
+public function checkOutYourShip():void {
 	clearOutput();
 	setLocation("SHIP\nHANGAR","TAVROS STATION","SYSTEM: KALAS");
 	output("A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.");
@@ -1168,7 +1168,7 @@ function checkOutYourShip():void {
 	this.addButton(0,"Next",getFoodAndDrink);
 }
 //Go Get Food and a Drink
-function getFoodAndDrink():void {
+public function getFoodAndDrink():void {
 	//Meet your rival
 	clearOutput();
 	setLocation("ANON'S\nBAR","TAVROS STATION","SYSTEM: KALAS");
@@ -1181,7 +1181,7 @@ function getFoodAndDrink():void {
 	this.addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );	
 }
 
-function jackJillSkip():void
+public function jackJillSkip():void
 {
 	clearOutput();
 	setLocation("ANON'S\nBAR", "TAVROS STATION", "SYSTEM: KALAS");
@@ -1192,7 +1192,7 @@ function jackJillSkip():void
 	addButton(1, "Female", function():void { setRivalGender(3); ohShitGameStarts(); } );
 }
 
-function setRivalGender(sex:int = 0):void
+public function setRivalGender(sex:int = 0):void
 {
 	if(sex == 1) {
 		chars["RIVAL"].short = "Jack";
@@ -1228,7 +1228,7 @@ function setRivalGender(sex:int = 0):void
 	}
 }
 //Rival Spills the Beans
-function rivalSpillsTheBeans() {
+public function rivalSpillsTheBeans() {
 	clearOutput();
 	
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
@@ -1254,7 +1254,7 @@ function rivalSpillsTheBeans() {
 	this.addButton(0,"Next",ohShitGameStarts);
 }
 //Wake to Find Rival Left in the Night
-function ohShitGameStarts():void {
+public function ohShitGameStarts():void {
 	clearOutput();
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
 	userInterface.showName(chars["RIVAL"].short.toUpperCase());
@@ -1278,7 +1278,7 @@ function ohShitGameStarts():void {
 		this.addButton(0,"Next",mainGameMenu);
 	
 }
-function demoOver():void {
+public function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
 	output("This concludes the full TiTS introductory sequence.  Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
@@ -1286,6 +1286,6 @@ function demoOver():void {
 	this.addButton(0,"Appearance",appearanceTest);
 }
 
-function appearanceTest():void {
+public function appearanceTest():void {
 	appearance(pc);
 }

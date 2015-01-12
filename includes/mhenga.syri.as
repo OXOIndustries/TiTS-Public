@@ -9,17 +9,17 @@
 // SYRI_BETTING_STORAGE			: Stores credit bet or 9001 if ass betting.
 // SYRI_TALKS 					: Stores what talk scene to display next in the sequence. Scene 1 never repeats. YAY!
 
-function showSyriName():void
+public function showSyriName():void
 {
 	if(flags["MET_SYRI"] == undefined) userInterface.showName("AUSAR\nGIRL");
 	else userInterface.showName("\nSYRI");
 }
 
-function syriIsCrew():Boolean {
+public function syriIsCrew():Boolean {
 	return false;
 }
 
-function syriGamesStart():void {
+public function syriGamesStart():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -67,7 +67,7 @@ function syriGamesStart():void {
 }
 
 //Not Today
-function notTodayDogslut():void {
+public function notTodayDogslut():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -80,7 +80,7 @@ function notTodayDogslut():void {
 }
 
 //[Bet X]
-function betSyriCredits(amount:int = 0):void {
+public function betSyriCredits(amount:int = 0):void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -103,7 +103,7 @@ function betSyriCredits(amount:int = 0):void {
 }
 
 //[Bet yourself]
-function betYourselfAgainstSyri():void {
+public function betYourselfAgainstSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -149,7 +149,7 @@ function betYourselfAgainstSyri():void {
 	}
 }
 
-function syriGameRouting():void {
+public function syriGameRouting():void {
 	var won:Boolean = false;
 	var misses:int = 0;
 	if(rangedCombatMiss(pc,chars["SYRI"])) misses++;
@@ -197,7 +197,7 @@ function syriGameRouting():void {
 }
 
 //PC Wins the Shoot, Betting for Sex
-function pcBeatsSyriWhenSexBet():void {
+public function pcBeatsSyriWhenSexBet():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -220,7 +220,7 @@ function pcBeatsSyriWhenSexBet():void {
 	addButton(3,"Uh, Nevermind",nevermindSyri,undefined,"Uh, Nevermind","On second thought, you'll pass on claiming your winnings this time.");
 }
 
-function nevermindSyri():void
+public function nevermindSyri():void
 {
 	clearOutput();
 	showSyriName();
@@ -233,7 +233,7 @@ function nevermindSyri():void
 
 //Fuck Her Butt
 //Req's any dick! Handles big dongs A-okay.
-function victoryFuckSyrisBunghole():void {
+public function victoryFuckSyrisBunghole():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -309,7 +309,7 @@ function victoryFuckSyrisBunghole():void {
 }
 
 //Ride Her Cock
-function rideSyrisCockYouWinner():void {
+public function rideSyrisCockYouWinner():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -367,7 +367,7 @@ function rideSyrisCockYouWinner():void {
 }
 
 //PC Wins the Shoot, Betting for Creds
-function winForCredits():void {
+public function winForCredits():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -386,7 +386,7 @@ function winForCredits():void {
 }
 
 //PC Loses the Shoot, Betting for Creds
-function pcLosesToSyriCredBetting():void {
+public function pcLosesToSyriCredBetting():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -407,7 +407,7 @@ function pcLosesToSyriCredBetting():void {
 }
 
 //PC Loses the Shoot, Betting for Sex
-function pcLosesToSyriBettingHisAss():void {
+public function pcLosesToSyriBettingHisAss():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -484,7 +484,7 @@ function pcLosesToSyriBettingHisAss():void {
 }
 
 //Mornings!
-function approachSyriIntheMorning():void {
+public function approachSyriIntheMorning():void {
 	
 	if (syriPuppyslutmasEntry())
 	{
@@ -519,7 +519,7 @@ function approachSyriIntheMorning():void {
 	syriMorningMenu();
 }
 
-function syriMorningMenu():void
+public function syriMorningMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
@@ -533,7 +533,7 @@ function syriMorningMenu():void
 }
 
 //[Leave]
-function leaveMorningSyri():void {
+public function leaveMorningSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -545,7 +545,7 @@ function leaveMorningSyri():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function talkToSyriRouter():void {
+public function talkToSyriRouter():void {
 	//[Talk] 1 (Talks play in order; Talk 1 does NOT repeat after)
 	if(flags["SYRI_TALKS"] == undefined) {
 		flags["SYRI_TALKS"] = 1;
@@ -566,7 +566,7 @@ function talkToSyriRouter():void {
 }
 
 //[Talk] 1 (Talks play in order; Talk 1 does NOT repeat after)
-function syriTalkOne():void {
+public function syriTalkOne():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -587,7 +587,7 @@ function syriTalkOne():void {
 }
 
 //Shoot her Down
-function shootSyriDown():void {
+public function shootSyriDown():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -604,7 +604,7 @@ function shootSyriDown():void {
 }
 
 //Sure, why not?
-function sureBeFuckFriendsWithSyri():void {
+public function sureBeFuckFriendsWithSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -619,7 +619,7 @@ function sureBeFuckFriendsWithSyri():void {
 }
 
 //Talk 2
-function talkToSyriNumber2():void {
+public function talkToSyriNumber2():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -646,7 +646,7 @@ function talkToSyriNumber2():void {
 }
 
 //Talk 3
-function syriTalkThree():void {
+public function syriTalkThree():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -672,7 +672,7 @@ function syriTalkThree():void {
 }
 
 //Sci-Fi
-function tellSyriYouReadScifi():void {
+public function tellSyriYouReadScifi():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -682,7 +682,7 @@ function tellSyriYouReadScifi():void {
 }
 
 //Fantasy
-function tellSyriYouReadFantasy():void {
+public function tellSyriYouReadFantasy():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -691,7 +691,7 @@ function tellSyriYouReadFantasy():void {
 	syriBookTalkEpilogue();
 }
 //Romance
-function tellSyriYouReadRomance():void {
+public function tellSyriYouReadRomance():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -701,7 +701,7 @@ function tellSyriYouReadRomance():void {
 }
 
 //Mystery
-function tellSyriYouReadMystery():void {
+public function tellSyriYouReadMystery():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -710,7 +710,7 @@ function tellSyriYouReadMystery():void {
 	syriBookTalkEpilogue();
 }
 //Books? Pfft.
-function tellSyriYoureIlliterate():void {
+public function tellSyriYoureIlliterate():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -721,7 +721,7 @@ function tellSyriYoureIlliterate():void {
 }
 
 //(Recombine)
-function syriBookTalkEpilogue():void {
+public function syriBookTalkEpilogue():void {
 	output("\n\nWith dozens of good books exchanged, you feel practically enlightened and ready to expand your mind when you get the chance to crack open a good book.");
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
@@ -730,7 +730,7 @@ function syriBookTalkEpilogue():void {
 }
 
 //Talk 4
-function talkToSyriNumber4():void {
+public function talkToSyriNumber4():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
 	showSyriName();
@@ -762,7 +762,7 @@ function talkToSyriNumber4():void {
 }
 
 //[Sex] 
-function syriSexMenu(outputs:Boolean = true):void {
+public function syriSexMenu(outputs:Boolean = true):void {
 	if(outputs) {
 		clearOutput();
 		userInterface.showBust("SYRI_NUDE");
@@ -828,7 +828,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 }
 
 //Reverse Cowgirl
-function syriReverseCowgirlConsensualization():void {
+public function syriReverseCowgirlConsensualization():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -890,7 +890,7 @@ function syriReverseCowgirlConsensualization():void {
 }
 
 //Missionary
-function missionaryWithTheDogDickedSlutSyri():void {
+public function missionaryWithTheDogDickedSlutSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -947,7 +947,7 @@ function missionaryWithTheDogDickedSlutSyri():void {
 }
 
 //Get Vag Fucked
-function getVagFukkedBySyri():void {
+public function getVagFukkedBySyri():void {
 	var x:int = pc.cuntThatFits(chars["SYRI"].cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
@@ -1012,7 +1012,7 @@ function getVagFukkedBySyri():void {
 }
 
 //Catch Anal
-function catchAnalFromSyriIfYouDontUseACondom():void {
+public function catchAnalFromSyriIfYouDontUseACondom():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -1087,7 +1087,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 }
 
 //Blow Her
-function blowSyriYouFukkinSlut(postScene:Function = null):void {
+public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 	if (postScene != null) clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -1137,7 +1137,7 @@ function blowSyriYouFukkinSlut(postScene:Function = null):void {
 }
 
 //Shipboard Sex Outro: Syri hits the Road
-function syriSexOutro():void {
+public function syriSexOutro():void {
 	processTime(120+rand(60));
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
@@ -1161,7 +1161,7 @@ function syriSexOutro():void {
 
 //Don't Go
 //{High libido/lust PCs}
-function dontGoAwayYouKnotCunt():void {
+public function dontGoAwayYouKnotCunt():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -1183,7 +1183,7 @@ function dontGoAwayYouKnotCunt():void {
 
 //Sure
 //Alternative:
-function sureUseMyShowerAndClogTheDrainWithDogHair():void {
+public function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -1205,7 +1205,7 @@ function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 }
 
 //Appearance
-function syriAppearance():void {
+public function syriAppearance():void {
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
@@ -1262,11 +1262,11 @@ function syriAppearance():void {
 //New Stuff:
 //Part 1: "Up My Pussy"
 
-function syriFriendsWithBenefits():Boolean 
+public function syriFriendsWithBenefits():Boolean 
 {
 	return flags["SYRI_TALKS"] != undefined;
 }
-function rideSyriInYerCoochYaWinner():void
+public function rideSyriInYerCoochYaWinner():void
 {
 	//Bust: naked/sex Syri throughout//
 	//Processing: Lust +20//
@@ -1388,7 +1388,7 @@ function rideSyriInYerCoochYaWinner():void
 
 //[Keep Going]
 //Processing: If PC attitude is Nice, change it 3(?) points toward Mischievous.//
-function syriVagFuckKeepGoing():void
+public function syriVagFuckKeepGoing():void
 {
 	clearOutput();
 	author("FireDrops");
@@ -1418,7 +1418,7 @@ function syriVagFuckKeepGoing():void
 
 //[Insist]
 //Processing: If PC's attitude is not already Hard, change it 3 points toward Hard.//
-function insistOnCoochFucksSyri():void
+public function insistOnCoochFucksSyri():void
 {
 	clearOutput();
 	author("FireDrops");
@@ -1449,7 +1449,7 @@ function insistOnCoochFucksSyri():void
 
 //Part 2: all vaginal paths merge here
 //Processing: Time passes. (I believe the comparable scenes are randomly 35-45 minutes.)//
-function allVaginalPathsMergeHere():void
+public function allVaginalPathsMergeHere():void
 {
 	clearOutput();
 	author("FireDrops");
@@ -1576,7 +1576,7 @@ function allVaginalPathsMergeHere():void
 }
 
 //Part 3: Vaginal sex wrap up
-function syriVagSexWrapupLikeHERDICKOOOOHSNAP():void
+public function syriVagSexWrapupLikeHERDICKOOOOHSNAP():void
 {
 	clearOutput();
 	author("FireDrops");
@@ -1609,7 +1609,7 @@ function syriVagSexWrapupLikeHERDICKOOOOHSNAP():void
 
 //Part 4: [Give Butt]
 //Processing: Time advances.//
-function giveHerYerButt():void
+public function giveHerYerButt():void
 {
 	clearOutput();
 	author("FireDrops");

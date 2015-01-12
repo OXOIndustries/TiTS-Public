@@ -8,7 +8,7 @@
 //Most Gray Goo attacks are Lust based or Grapple/Restraint attacks. They deal no physical damage. If the PC buys some kind of EMP grenade, could be an instant-win attack.
 
 //Encountering the Gray Goo
-function encounterDasGooGray():void
+public function encounterDasGooGray():void
 {
 	clearOutput();
 	author("Savin");
@@ -31,7 +31,7 @@ function encounterDasGooGray():void
 //{Main Screen Turn On:}
 //You're fighting the Gray Goo!
 
-function grayGooAI():void
+public function grayGooAI():void
 {
 	//Always grapple if possible!
 	if(pc.hasStatusEffect("Grappled")) grayGooRestrain();
@@ -50,7 +50,7 @@ function grayGooAI():void
 }
 
 //Basic Attack: Teases
-function grayGooTeaseAttackGo():void
+public function grayGooTeaseAttackGo():void
 {
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
@@ -69,7 +69,7 @@ function grayGooTeaseAttackGo():void
 }
 
 //Restrain Attack
-function grayGooRestrain():void
+public function grayGooRestrain():void
 {
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
@@ -110,7 +110,7 @@ function grayGooRestrain():void
 }
 
 //Reformat
-function grayGooReformatting():void
+public function grayGooReformatting():void
 {
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
@@ -125,7 +125,7 @@ function grayGooReformatting():void
 
 //Harden
 //{Increase armor for a few turns}
-function grayGooHarden():void
+public function grayGooHarden():void
 {
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
@@ -144,7 +144,7 @@ function grayGooHarden():void
 
 }
 //[Do Nothing]
-function dontDoAnythingFromHardenAttack():void
+public function dontDoAnythingFromHardenAttack():void
 {
 	clearOutput();
 	userInterface.showBust("GRAY_GOO");
@@ -159,7 +159,7 @@ function dontDoAnythingFromHardenAttack():void
 }
 
 //[Quickie] (Masculine) {PC -Lust, Goo -Lust, Goo +HP}
-function quickieAfterGooHarden():void
+public function quickieAfterGooHarden():void
 {
 	clearOutput();
 	userInterface.showBust("GRAY_GOO");
@@ -182,14 +182,14 @@ function quickieAfterGooHarden():void
 	processCombat();
 }
 
-function loseToGrayGooRouter():void
+public function loseToGrayGooRouter():void
 {
 	if((pc.hasCock() || pc.hasVagina()) && rand(2) == 0) bodySuitedKirbuDefeat();
 	else pcDefeatByGooBitch();
 }
 
 //PC Victory
-function pcDefeatsGrayGooInTheNameOfLove():void
+public function pcDefeatsGrayGooInTheNameOfLove():void
 {
 	author("Savin");
 	userInterface.showBust("GRAY_GOO");
@@ -230,7 +230,7 @@ function pcDefeatsGrayGooInTheNameOfLove():void
 
 //Reprogram
 //{Requirement: Tech Specialist /or/ INT of 20+}
-function reprogramGrayGoosForYerPleasure():void
+public function reprogramGrayGoosForYerPleasure():void
 {
 	clearOutput();
 	author("Savin");
@@ -255,7 +255,7 @@ function reprogramGrayGoosForYerPleasure():void
 
 //Heal Me
 //{Needs less than max HP}
-function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
+public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("GRAY_GOO");
@@ -270,7 +270,7 @@ function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 }
 
 //Take a Sample
-function takeASampleOfTheGrayGoo():void {
+public function takeASampleOfTheGrayGoo():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("GRAY_GOO");
@@ -285,7 +285,7 @@ function takeASampleOfTheGrayGoo():void {
 	genericVictory();
 }
 
-function getSomeGrayGoo():void {
+public function getSomeGrayGoo():void {
 	clearOutput();
 	output("That gray vial of microbots is still here.\n\n");
 	var foundLootItems:Array = new Array();
@@ -300,7 +300,7 @@ function getSomeGrayGoo():void {
 
 //Multicock Victory
 //{PC has 2+ cocks}
-function multiCockMayhem():void
+public function multiCockMayhem():void
 {
 	clearOutput();
 	author("Savin");
@@ -351,7 +351,7 @@ function multiCockMayhem():void
 }
 
 //Mutual Masturbation
-function mutualGooMasturbation():void
+public function mutualGooMasturbation():void
 {
 	clearOutput();
 	author("Savin");
@@ -404,7 +404,7 @@ function mutualGooMasturbation():void
 
 //Divide and Conquer (Goo Splits in half, double-teams)
 //{PC needs a ladyhole}
-function divideAndConquerGinasWithGoos():void
+public function divideAndConquerGinasWithGoos():void
 {
 	clearOutput();
 	author("Savin");
@@ -476,7 +476,7 @@ function divideAndConquerGinasWithGoos():void
 //PC Defeat
 //PC gets Body-Suited and Fucked in Every Hole
 //{Omni-gender. In soviet Tarkus, goo wear you.}
-function pcDefeatByGooBitch():void
+public function pcDefeatByGooBitch():void
 {
 	author("Savin");
 	userInterface.showBust("GRAY_GOO");
@@ -582,7 +582,7 @@ function pcDefeatByGooBitch():void
 
 //PC Defeated
 //Body-suited, one-on-one, cock and cunt variations. Random chance between applicable scenes on defeat.
-function bodySuitedKirbuDefeat():void
+public function bodySuitedKirbuDefeat():void
 {
 	author("Kirbu");
 	userInterface.showBust("GRAY_GOO");
@@ -614,7 +614,7 @@ function bodySuitedKirbuDefeat():void
 }
 
 //Cock Variant
-function cockVariantForGrayGooKirbutashis():void
+public function cockVariantForGrayGooKirbutashis():void
 {
 	clearOutput();
 	author("Kirbu");
@@ -669,7 +669,7 @@ function cockVariantForGrayGooKirbutashis():void
 }
 
 //Cunt Variant
-function gooGooEnvelopsCunts():void
+public function gooGooEnvelopsCunts():void
 {
 	clearOutput();
 	author("Kirbu");

@@ -14,7 +14,7 @@ import classes.PregnancyData;
 //Venus Pitchers Codex
 
 //Meet Regular Venus Pitcher
-function encounterRegularTentaclePitcherYouGay():void {
+public function encounterRegularTentaclePitcherYouGay():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
 	CodexManager.unlockEntry("Venus Pitchers");
@@ -52,7 +52,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 	}
 }
 
-function venusRepeatRefuse():void {
+public function venusRepeatRefuse():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -63,7 +63,7 @@ function venusRepeatRefuse():void {
 }
 
 //*Approach and Fall In
-function venusRepeatFallIn():void {
+public function venusRepeatFallIn():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -80,7 +80,7 @@ function venusRepeatFallIn():void {
 }
 
 //*Repeat Pistil (Cunt)
-function repeatPistilScene():void {
+public function repeatPistilScene():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -97,7 +97,7 @@ function repeatPistilScene():void {
 }
 	
 //*Repeat Stamen (Dick)
-function repeatStamenScene():void {
+public function repeatStamenScene():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -115,7 +115,7 @@ function repeatStamenScene():void {
 }
 
 //*Don't Help Her
-function dontHelpVenusPitcher():void {
+public function dontHelpVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -144,7 +144,7 @@ function dontHelpVenusPitcher():void {
 }
 
 //[Nope]
-function noVenusPitcherPlz():void {
+public function noVenusPitcherPlz():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -154,7 +154,7 @@ function noVenusPitcherPlz():void {
 }
 
 //*First time entering a pitcher plant!
-function firstTimeVenusEntrance(tricked:Boolean = false):void {
+public function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -249,7 +249,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 }
 
 //[Stamen]
-function requestStamenFirstTime():void {
+public function requestStamenFirstTime():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -264,7 +264,7 @@ function requestStamenFirstTime():void {
 	addButton(0,"Next",tentacleJamTime,true);
 }
 //[Pistil]
-function requestPistilFirstTime():void {
+public function requestPistilFirstTime():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -281,7 +281,7 @@ function requestPistilFirstTime():void {
 	
 //*Tentacle Jam
 //{no new PG}
-function tentacleJamTime(stamen:Boolean = true):void {
+public function tentacleJamTime(stamen:Boolean = true):void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -477,7 +477,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	addButton(0,"Next",tentacleJamAftermath,knockUpPass);
 }
 
-function tentacleJamAftermath(knockUpPass:Number = 0):void {
+public function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -514,7 +514,7 @@ function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	
 
 //*Elder Pitcher Plant Encounter
-function elderVenusPitcherEncounter():void {
+public function elderVenusPitcherEncounter():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
 	CodexManager.unlockEntry("Venus Pitchers");
@@ -592,7 +592,7 @@ function elderVenusPitcherEncounter():void {
 
 
 //[No]
-function noRepeatElderVenusPitcher():void {
+public function noRepeatElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -601,7 +601,7 @@ function noRepeatElderVenusPitcher():void {
 	addButton(0,"Next",mainGameMenu);
 }
 //[Yes]
-function yesRepeatElderVenusPitcher():void {
+public function yesRepeatElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -612,7 +612,7 @@ function yesRepeatElderVenusPitcher():void {
 }
 
 //{Agree to stay}
-function agreeToStayForRepeatVenusLovings():void {
+public function agreeToStayForRepeatVenusLovings():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -623,7 +623,7 @@ function agreeToStayForRepeatVenusLovings():void {
 }
 
 //[MERGE]
-function repeatVenusPitcherHypnoGo():void {
+public function repeatVenusPitcherHypnoGo():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
 	output("\n\nA sneeze erupts from your nose out of nowhere, but by now, you’re used to sneezing in the presence of these beauteous ladies. Something about their spores just tickles your nose, but at the same time, they do make it quite easy to sit there and stare, watching supple, female form twist and writhe for nothing more than your amusement. Arousal builds within you, unchecked by restraint as her words come true, giving you another reason to watch her fingertips mesmerizingly slide across her breasts.");
@@ -676,7 +676,7 @@ function repeatVenusPitcherHypnoGo():void {
 }
 
 //[Look Away]
-function lookAwayFromElderVenusPitcher():void {
+public function lookAwayFromElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -686,7 +686,7 @@ function lookAwayFromElderVenusPitcher():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function watchElderVenusPitcher():void {
+public function watchElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -756,7 +756,7 @@ function watchElderVenusPitcher():void {
 	elderVenusFuckSelect();
 }
 
-function elderVenusFuckSelect():void {
+public function elderVenusFuckSelect():void {
 	var choices:Array = new Array();
 	if(pc.hasCock()) choices[choices.length] = elderVenusPitchersDickplay;
 	if(pc.hasVagina()) choices[choices.length] = elderVenusPitchersPlayWithCooches;
@@ -769,7 +769,7 @@ function elderVenusFuckSelect():void {
 }
 
 //{Dicks}
-function elderVenusPitchersDickplay():void {
+public function elderVenusPitchersDickplay():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -861,7 +861,7 @@ function elderVenusPitchersDickplay():void {
 }
 
 //{Vagina!}
-function elderVenusPitchersPlayWithCooches():void {
+public function elderVenusPitchersPlayWithCooches():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -935,7 +935,7 @@ function elderVenusPitchersPlayWithCooches():void {
 
 
 //{Dicknipples}
-function elderVenusPitcherDickNipplePlay():void {
+public function elderVenusPitcherDickNipplePlay():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -1017,7 +1017,7 @@ function elderVenusPitcherDickNipplePlay():void {
 }
 
 //{Milky Nipples}
-function milkyElderPitcherPlantPlay():void {
+public function milkyElderPitcherPlantPlay():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -1070,7 +1070,7 @@ function milkyElderPitcherPlantPlay():void {
 }
 
 //{Tailcock}
-function elderPitcherPlantTailCockPlay():void {
+public function elderPitcherPlantTailCockPlay():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -1124,7 +1124,7 @@ function elderPitcherPlantTailCockPlay():void {
 }
 	
 //{Tailcunt}
-function elderVenusPitcherPlaysWithTailcunts():void {
+public function elderVenusPitcherPlaysWithTailcunts():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -1162,7 +1162,7 @@ function elderVenusPitcherPlaysWithTailcunts():void {
 }
 
 //{Epilogues}
-function elderVenusPitcherEpilogue():void {
+public function elderVenusPitcherEpilogue():void {
 	clearOutput();
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");

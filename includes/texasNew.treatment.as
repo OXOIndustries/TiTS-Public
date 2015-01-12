@@ -22,7 +22,7 @@ v3 hour counter
 
 
 
-function treatmentHourProcs():void
+public function treatmentHourProcs():void
 {
 	pc.addStatusValue("The Treatment",3,1);
 	var treatedHours:int = pc.statusEffectv3("The Treatment");
@@ -2372,7 +2372,7 @@ function treatmentHourProcs():void
 	}
 }
 
-function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
+public function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
 {
 	if(!pc.hasVagina()) return 0;
 
@@ -2383,7 +2383,7 @@ function cuntsBelowWetnessThreshold(threshold:Number = 0):Number
 	}
 	return counter;
 }
-function setMinimumWetness(arg:int = 0):void
+public function setMinimumWetness(arg:int = 0):void
 {
 	if(!pc.hasVagina()) return;
 
@@ -2394,7 +2394,7 @@ function setMinimumWetness(arg:int = 0):void
 	return;
 }
 
-function treatedVagNote(butt:Boolean = false):void
+public function treatedVagNote(butt:Boolean = false):void
 {
 	if(!butt && pc.hasVagina())
 	{

@@ -23,7 +23,7 @@ import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
 import classes.Util.RandomInCollection;
 
-function mhengaShipHangarFunc():Boolean
+public function mhengaShipHangarFunc():Boolean
 {
 	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
 	{
@@ -33,7 +33,7 @@ function mhengaShipHangarFunc():Boolean
 	return false;
 }
 
-function xenogenOutsideBlurb():Boolean
+public function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();
 	if(hours < 6 || hours >= 17)
@@ -47,7 +47,7 @@ function xenogenOutsideBlurb():Boolean
 	return false;
 }
 
-function hangarBonus():Boolean 
+public function hangarBonus():Boolean 
 {
 	trace("this", this);
 	// trace("this.titsClassPtr.move,", this.titsClassPtr.move);
@@ -76,7 +76,7 @@ public function tavrosHangarStuff():Boolean
 	return false;
 }
 
-function liftMove(destination:String):void {
+public function liftMove(destination:String):void {
 	move(destination,false);
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
@@ -84,7 +84,7 @@ function liftMove(destination:String):void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function debugMenus():void
+public function debugMenus():void
 {
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
@@ -175,7 +175,7 @@ function debugMenus():void
 	});
 }
 
-function quickLoot(... args):void
+public function quickLoot(... args):void
 {
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -184,7 +184,7 @@ function quickLoot(... args):void
 	itemCollect(args);
 }
 
-function bountyBoardExtra():Boolean
+public function bountyBoardExtra():Boolean
 {
 	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
 	var openQuests:int = 0;
@@ -193,7 +193,7 @@ function bountyBoardExtra():Boolean
 	addButton(0,"Bulletins",checkOutBountyBoard);
 	return false;
 }
-function checkOutBountyBoard():void
+public function checkOutBountyBoard():void
 {
 	clearOutput();
 	output("The bounty board is covered in simple leaflets, papers, all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
@@ -215,7 +215,7 @@ function checkOutBountyBoard():void
 	addButton(0,"Next",mainGameMenu);
 }
 	
-function barBackRoomBonus():Boolean
+public function barBackRoomBonus():Boolean
 {
 	if(flags["KELLY_MET"] == 1 && (hours >= 17 || hours < 6)) kellyAtTheBar();
 	return false;
@@ -232,7 +232,7 @@ Naleen, Cuntsnake, Venus Pitchers
 Deep Jungle Biome:
 Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 */
-function jungleEncounterChances():Boolean {
+public function jungleEncounterChances():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else {
@@ -260,7 +260,7 @@ function jungleEncounterChances():Boolean {
 	return false;
 }
 
-function jungleMiddleEncounters():Boolean {
+public function jungleMiddleEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else {
@@ -297,7 +297,7 @@ function jungleMiddleEncounters():Boolean {
 	return false;
 }
 
-function findOxoniumOnMhenga():Boolean {
+public function findOxoniumOnMhenga():Boolean {
 	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
 		output("\n\nThere is a vertical striation running up through the rock wall of a different mineral, something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
 	}
@@ -313,7 +313,7 @@ function findOxoniumOnMhenga():Boolean {
 	return false;
 }
 
-function claimMhengaOxonium():void {
+public function claimMhengaOxonium():void {
 	clearOutput();
 	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. There amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");
 	
@@ -326,7 +326,7 @@ function claimMhengaOxonium():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function jungleDeepEncounters():Boolean {
+public function jungleDeepEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else {
@@ -392,7 +392,7 @@ function jungleDeepEncounters():Boolean {
 	return false;
 }
 
-function mhengaVanaeCombatZone():Boolean
+public function mhengaVanaeCombatZone():Boolean
 {
 	if (flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if (flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
@@ -434,7 +434,7 @@ function mhengaVanaeCombatZone():Boolean
 	return false;
 }
 
-function mhengaThickMist2RoomFunc():Boolean
+public function mhengaThickMist2RoomFunc():Boolean
 {
 	clearOutput();
 	
@@ -448,7 +448,7 @@ function mhengaThickMist2RoomFunc():Boolean
 	return mhengaVanaeCombatZone();
 }
 
-function mhengaUthraBirch():Boolean
+public function mhengaUthraBirch():Boolean
 {
 	if (flags["UTHRA HARVEST DAY"] == undefined || flags["UTHRA HARVEST DAY"] + 2 <= days)
 	{
@@ -468,7 +468,7 @@ function mhengaUthraBirch():Boolean
 	return false;
 }
 
-function mhengaHarvestUthra():void
+public function mhengaHarvestUthra():void
 {
 	clearOutput();
 	flags["UTHRA HARVEST DAY"] = days;
@@ -483,7 +483,7 @@ function mhengaHarvestUthra():void
 	//addButton(0, "Next", mainGameMenu);
 }
 
-function mhengaVanaeFernDamage():Boolean
+public function mhengaVanaeFernDamage():Boolean
 {
 	if (rand(3) == 0 || pc.armor is EmptySlot)
 	{
@@ -521,7 +521,7 @@ function mhengaVanaeFernDamage():Boolean
 	return mhengaVanaeCombatZone();
 }
 
-function mhengaVanaeAbandonedCamp():Boolean
+public function mhengaVanaeAbandonedCamp():Boolean
 {
 	output("You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates");
 	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined) output(" and bodies");
@@ -536,7 +536,7 @@ function mhengaVanaeAbandonedCamp():Boolean
 	return false;
 }
 
-function fastTravelToEsbeth():void
+public function fastTravelToEsbeth():void
 {
 	clearOutput();
 	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you've got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
@@ -549,7 +549,7 @@ function fastTravelToEsbeth():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function sleepInRuinedCamp():void
+public function sleepInRuinedCamp():void
 {
 	clearOutput();
 	if(flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined)
@@ -609,7 +609,7 @@ function sleepInRuinedCamp():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function mhengaSalvageFromCamp():void
+public function mhengaSalvageFromCamp():void
 {
 	clearOutput();
 	
@@ -632,7 +632,7 @@ function mhengaSalvageFromCamp():void
 	}
 }
 
-function mhengaThickMistRoom1():Boolean
+public function mhengaThickMistRoom1():Boolean
 {
 	output("The mist is incredibly thick here, obscuring almost everything around you. Every noise seems sharper and more imposing as you crunch blindly about, occasionally knocking into a tree or branch. Your");
 	if (!pc.armor is EmptySlot) output(" [pc.armor]");
@@ -642,7 +642,7 @@ function mhengaThickMistRoom1():Boolean
 	return mhengaVanaeCombatZone();
 }
 
-function anonsBarAddendums():Boolean {
+public function anonsBarAddendums():Boolean {
 	
 	if (saendraBarAddendum())
 	{
@@ -657,7 +657,7 @@ function anonsBarAddendums():Boolean {
 	return false;
 }
 
-function firstTimeOnTarkusBonus():Boolean
+public function firstTimeOnTarkusBonus():Boolean
 {
 	if(flags["BEEN_ON_TARKUS"] == undefined)
 	{
@@ -670,21 +670,21 @@ function firstTimeOnTarkusBonus():Boolean
 	return returnToShipAfterRecruitingAnno();
 }
 
-function BonusFunction210():Boolean
+public function BonusFunction210():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
 	output("\n\nThe cargo elevator seems to be working down here - it's doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
 	return false;
 }
 
-function bonusFunction213():Boolean
+public function bonusFunction213():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
 	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red \'X\' spraypainted across it.");
 	return false;
 }
 
-function novaShipHangarElevator():Boolean
+public function novaShipHangarElevator():Boolean
 {
 	if (flags["DECK13_COMPLETE"] == undefined)
 	{
@@ -697,7 +697,7 @@ function novaShipHangarElevator():Boolean
 	return false;
 }
 
-function novaMainDeckElevator():Boolean
+public function novaMainDeckElevator():Boolean
 {
 	if (flags["DECK13_COMPLETE"] == undefined)
 	{
@@ -711,7 +711,7 @@ function novaMainDeckElevator():Boolean
 	return false;
 }
 
-function novaElevatorControlPanel():void
+public function novaElevatorControlPanel():void
 {
 	clearOutput();
 	author("Gedan");
@@ -732,7 +732,7 @@ function novaElevatorControlPanel():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-function newTexasRoadFirstTime():Boolean
+public function newTexasRoadFirstTime():Boolean
 {
 	if(!pc.hasStatusEffect("Disarmed")) 
 	{
@@ -754,12 +754,12 @@ function newTexasRoadFirstTime():Boolean
 	return false;
 }
 
-function manMilkerRoomBonusFunc():Boolean
+public function manMilkerRoomBonusFunc():Boolean
 {
 	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
 	return false;
 }
-function NTGiftShopBonusFunc():Boolean
+public function NTGiftShopBonusFunc():Boolean
 {
 	//First Time Entering the Shop
 	if(flags["SEEN_ELLIES_SHOP"] == undefined)
@@ -779,7 +779,7 @@ function NTGiftShopBonusFunc():Boolean
 }
 
 //Big T.’s Barbeque Pit
-function NTBarbequeBonusFunc():Boolean
+public function NTBarbequeBonusFunc():Boolean
 {
 	clearOutput();
 	author("Savin");
@@ -796,7 +796,7 @@ function NTBarbequeBonusFunc():Boolean
 	return false;
 }
 
-function randomBarnEntranceEventsFunc():Boolean 
+public function randomBarnEntranceEventsFunc():Boolean 
 {
 	// Gonnae splice gobbles in here so it can be handled separately
 	if (gobblesAvailable() && rand(3) == 0 && flags["GOBBLES_SEXYTIMES_STARTED"] == undefined)
@@ -814,7 +814,7 @@ function randomBarnEntranceEventsFunc():Boolean
 	return false;
 }
 
-function randomBarnEventFunc():Boolean
+public function randomBarnEventFunc():Boolean
 {
 	var retVal:Boolean = false;
 	
@@ -897,14 +897,14 @@ function randomBarnEventFunc():Boolean
 	return retVal;
 }
 
-function vanaeWarningBot():Boolean
+public function vanaeWarningBot():Boolean
 {
 	output("\n\n<b>A small, sleek drone bearing the U.G.C. Peacekeeper emblem is hovering here, puttering around in a small circle.</b> When you approach, the drone intones in a clearly mechanical voice: “<i>Peacekeeper Inoue has posted the following safety advisory: beyond this point, the southern area of jungle is classified as a level four threat and is to be avoided if at all possible.</i>”");
 	addButton(0,"Drone",talkToWarningDrone);
 	return false;
 }
 
-function talkToWarningDrone():void
+public function talkToWarningDrone():void
 {
 	clearOutput();
 	author("Savin");
@@ -918,7 +918,7 @@ function talkToWarningDrone():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function esbethFastTravelOfficeBonus():Boolean
+public function esbethFastTravelOfficeBonus():Boolean
 {
 	//Codex locked:
 	if(!CodexManager.entryUnlocked("Leithan")) 
@@ -932,7 +932,7 @@ function esbethFastTravelOfficeBonus():Boolean
 	return false;
 }
 
-function mhengaScoutAuthority():void
+public function mhengaScoutAuthority():void
 {
 	//I call him Tanis in my head, and he likes coffee. And he keeps a nerf gun under his desk for office wars. >>; That is my story for him and I'm sticking to it.
 	clearOutput();
@@ -958,7 +958,7 @@ function mhengaScoutAuthority():void
 	}
 }
 
-function mhengaTaxiToXenogen():void
+public function mhengaTaxiToXenogen():void
 {
 	clearOutput();
 	showBust("TANIS");
@@ -976,7 +976,7 @@ function mhengaTaxiToXenogen():void
 
 //Tarkus U.G.C. Scout Authority
 //Add to the flight deck of the Nova, 2 spaces east of the LZ. 
-function tarkusScoutAuthorityOffice():Boolean
+public function tarkusScoutAuthorityOffice():Boolean
 {
 	output("What was once the crew chief’s office overlooking the flight deck has been converted into a U.G.C. scout base, complete with maps and star charts hanging from the walls and a massive board map dominating the center, with landmarks and racial analysis printouts scattered over it. Behind the chief’s desk sits a buxom kaithrit with her bright orange hair pulled back into a long ponytail.");
 	addButton(0,"Scout",tarkusScoutMenu,undefined,"Scout","Talk to the scout about security transportation to different parts of the planet.");
@@ -984,7 +984,7 @@ function tarkusScoutAuthorityOffice():Boolean
 	return false;
 }
 
-function tarkusScoutMenu():void
+public function tarkusScoutMenu():void
 {
 	clearOutput();
 	author("Savin");
@@ -1013,7 +1013,7 @@ function tarkusScoutMenu():void
 	}
 }
 
-function remoteTarkusScoutMenu():void
+public function remoteTarkusScoutMenu():void
 {
 	clearOutput();
 	output("You jab in a few commands, and a moment later, a holographic kaithrit appears onscreen. “<i>Need a lift?</i>” she offers.");
@@ -1024,7 +1024,7 @@ function remoteTarkusScoutMenu():void
 	tarkusTransitMenu();
 }
 
-function tarkusTransitMenu():void
+public function tarkusTransitMenu():void
 {
 	clearMenu();
 	if(pc.credits >= 80) addButton(0,"Novahome",tarkusFlyTo,"TARKUS SCOUT AUTHORITY","Novahome","Secure a lift to Novahome for the low low price of 80 credits.");
@@ -1045,7 +1045,7 @@ function tarkusTransitMenu():void
 
 
 //{Destination -- X Credits}
-function tarkusFlyTo(arg:String):void
+public function tarkusFlyTo(arg:String):void
 {
 	clearOutput();
 	author("Savin");
@@ -1072,7 +1072,7 @@ function tarkusFlyTo(arg:String):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function eastTransitStationBonus():Boolean
+public function eastTransitStationBonus():Boolean
 {
 	if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
 	{
@@ -1087,7 +1087,7 @@ function eastTransitStationBonus():Boolean
 	return false;
 }
 
-function fixCommsOnTarkus():void
+public function fixCommsOnTarkus():void
 {
 	clearOutput();
 	output("A few well placed kinetic repairs knock the crust loose from the antennas. The screen lights up. Perfect!");

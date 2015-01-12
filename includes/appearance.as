@@ -1,5 +1,5 @@
 ﻿import classes.Creature;
-function pcAppearance(e:MouseEvent = null):void 
+public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (!userInterface.appearanceButton.isActive)
 	{
@@ -19,7 +19,7 @@ function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
-function appearance(target:Creature):void {
+public function appearance(target:Creature):void {
 	clearOutput2();
 	var rando:int = 0;
 	var feedVal:int;

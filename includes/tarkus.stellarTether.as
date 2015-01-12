@@ -1,5 +1,5 @@
 ﻿//{If Dungeon not completed, add:}
-function chasmfallBonusFunction():Boolean
+public function chasmfallBonusFunction():Boolean
 {
 	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
 	{
@@ -33,7 +33,7 @@ function chasmfallBonusFunction():Boolean
 }
 
 //[Approach]
-function approachUGCTroopers():void
+public function approachUGCTroopers():void
 {
 	clearOutput();
 	showName("U.G.C.\nTROOPERS");
@@ -65,7 +65,7 @@ function approachUGCTroopers():void
 }
 
 //[Can I Help?]
-function canIHelpWithShittyJamesBondIntroductions():void
+public function canIHelpWithShittyJamesBondIntroductions():void
 {
 	clearOutput();
 	showName("U.G.C.\nTROOPERS");
@@ -81,7 +81,7 @@ function canIHelpWithShittyJamesBondIntroductions():void
 }
 
 //[The Mission]
-function askAUGCTroopAboutStellarTetherMission():void {
+public function askAUGCTroopAboutStellarTetherMission():void {
 	clearOutput();
 	showName("HORACE\nDECKER");
 	author("Savin");
@@ -97,7 +97,7 @@ function askAUGCTroopAboutStellarTetherMission():void {
 }
 
 //The Lift Station: Forward
-function liftStationBonus():Boolean
+public function liftStationBonus():Boolean
 {
 	//Text on Entering, First Time:
 	if(flags["FOUGHT_TAM"] == undefined)
@@ -130,7 +130,7 @@ function liftStationBonus():Boolean
 	return false;
 }
 
-function tamtamtamtamtamtamAI():void
+public function tamtamtamtamtamtamAI():void
 {
 	showBust("TAMTAM","TAMWOLF");
 	showName("FIGHT:\nTAM DRONES");
@@ -168,7 +168,7 @@ function tamtamtamtamtamtamAI():void
 
 //Volley Attack
 //LOTS of low-damage, low-accuracy kinetic attacks.
-function turretVolleyAttackMotherFucker():void
+public function turretVolleyAttackMotherFucker():void
 {
 	output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it's working: duck and weave as you might, there's a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
 	if(foes[0].hasStatusEffect("Turret Aimhacks"))
@@ -203,7 +203,7 @@ function turretVolleyAttackMotherFucker():void
 
 //Laser Sight Shot
 //One high-accuracy laser shot
-function laserSightShot():void
+public function laserSightShot():void
 {
 	output("Ducking and weaving through the storm of bullets headed your way, you see the cat-girl standing stock still, a holographic scope appearing over the barrel of her laser pistol. <i>\"Heads up!\"</i> she grins, leveling the gun right at you.");
 	//Miss:
@@ -228,7 +228,7 @@ function laserSightShot():void
 
 //Shoot Faster!
 //Tam buffs her drones: +Accuracy for Volley Attack next round.
-function shootFasterAttack():void
+public function shootFasterAttack():void
 {
 	output("Amid the hail of incoming gunfire, you see the pink-haired cat-girl duck down behind the desk, fiddling with the holoband around her wrist. As she does so, laser sights appear beneath the turrets, all tracking towards you. Incoming!");
 	foes[0].createStatusEffect("Turret Aimhacks",0,0,0,0,true,"","",true,0);
@@ -237,7 +237,7 @@ function shootFasterAttack():void
 
 //Bang Bang!
 //Tam launches a thermal disruptor!
-function thermalDisruptorFromTam():void
+public function thermalDisruptorFromTam():void
 {
 	output("Out of the corner of your eye, you catch sight of the cat-girl loading a big shell into what looks like a wrist-launcher. Oh, shit.");
 	output("\n\n<i>\"Hope you didn't need your FACE!\"</i> she cheers, leveling her wrist at you and firing!");
@@ -270,7 +270,7 @@ function thermalDisruptorFromTam():void
 }
 
 //Tam-Tam, Phase 2
-function tamtamPhaseTwoLetsGo():void
+public function tamtamPhaseTwoLetsGo():void
 {
 	//{Play when the Turret Fight reaches half its normal health}
 	output("You're slowly tearing through the turrets. The foyer has certainly seen better days: it's littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you're making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
@@ -290,7 +290,7 @@ function tamtamPhaseTwoLetsGo():void
 //New Attacks!
 //Tamwolf Bite
 //One powerful Piercing attack
-function tamwolfBiteGogogogogogo():void
+public function tamwolfBiteGogogogogogo():void
 {
 	output("The gunfire dies down, but just enough to give the great big robo-dog Tam-wolf a clear shot at you. With a fearsome digital growl, the cyberhound launches itself at you for a savage mauling!");
 	//Miss:
@@ -313,7 +313,7 @@ function tamwolfBiteGogogogogogo():void
 	
 //Tamwolf Oil Slick (ew!)
 //Blind attack. Watch out!
-function tamwolfOilslick():void
+public function tamwolfOilslick():void
 {
 	output("Beneath the wall of turrets, the cyberhound Tam-wolf spins around, positioning his back to you and hiking a leg. Oh, for fuck's...");
 	//Miss:
@@ -328,7 +328,7 @@ function tamwolfOilslick():void
 }
 
 //Tam-Tam: Player Victory!
-function tamtamGetsPunkedByPCs():void
+public function tamtamGetsPunkedByPCs():void
 {
 	author("Savin");
 	showBust("TAMTAM");
@@ -340,7 +340,7 @@ function tamtamGetsPunkedByPCs():void
 }
 
 //Lift Station: Engineering Deck
-function liftStationEngineeringDeckBonusFunc():Boolean
+public function liftStationEngineeringDeckBonusFunc():Boolean
 {
 	author("Savin");
 	if(flags["TAM_DISABLE_METHOD"] == undefined) output("RED, preventing you from descending.");
@@ -374,7 +374,7 @@ function liftStationEngineeringDeckBonusFunc():Boolean
 }
 
 //Knock Out
-function knockOutTamtam():void
+public function knockOutTamtam():void
 {
 	clearOutput();
 	author("Savin");
@@ -392,7 +392,7 @@ function knockOutTamtam():void
 }
 
 //Fuck Her
-function fuckTamTamIntoUnconscitude():void
+public function fuckTamTamIntoUnconscitude():void
 {
 	clearOutput();
 	author("Savin");
@@ -423,7 +423,7 @@ function fuckTamTamIntoUnconscitude():void
 }
 
 //Use the Wrench
-function wrenchTamtamsCooch():void
+public function wrenchTamtamsCooch():void
 {
 	clearOutput();
 	author("Savin");
@@ -444,7 +444,7 @@ function wrenchTamtamsCooch():void
 }
 
 //Dick Fuck
-function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
+public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 {
 	clearOutput();
 	author("Savin");
@@ -501,7 +501,7 @@ function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 
 //[Take Tam-Wolf]
 //Once Tam-Tam is knocked out or incapacitated via smexing.
-function takeTamWulf():void
+public function takeTamWulf():void
 {
 	clearOutput();
 	author("Savin");
@@ -521,7 +521,7 @@ function takeTamWulf():void
 }
 
 //No
-function dontTakeTamWulf():void
+public function dontTakeTamWulf():void
 {
 	clearOutput();
 	author("Savin");
@@ -534,7 +534,7 @@ function dontTakeTamWulf():void
 
 //Yes
 //{If PC is a Tech Specialist w/ Drone}
-function yesTechSpecialistsTakeTamWulf():void
+public function yesTechSpecialistsTakeTamWulf():void
 {
 	clearOutput();
 	author("Savin");
@@ -608,7 +608,7 @@ function yesTechSpecialistsTakeTamWulf():void
 //Tooltip: Tam-wolf is a state of the art Fenris attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal, intelligent, and alert, you new robotic friend is the closest thing you can get to a real attack dog these days. He's replaced your original attack drone, giving you a powerful, bitey friend in battle.
 
 //Tam-Tam Bad End: The Crew's Pet Pooch
-function tamtamBadEndPetPooch():void
+public function tamtamBadEndPetPooch():void
 {
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
@@ -656,7 +656,7 @@ function tamtamBadEndPetPooch():void
 
 }
 
-function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
+public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 {
 	days += 94;
 	processTime(rand(2400));
@@ -746,7 +746,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 //Shit Gets Real, Here
 //{First time PC tries to leave the engineering room}
 //Fen note: Actually play overtop of the normal room descriptions in the next room. Horray, cheezing! ...also the other room
-function bombAlertBonusFunction():Boolean
+public function bombAlertBonusFunction():Boolean
 {
 	if(flags["TARKUS_BOMB_TIMER"] == undefined)
 	{
@@ -774,7 +774,7 @@ function bombAlertBonusFunction():Boolean
 }
 
 //[Lift Down] (First time: prepare for ass-assination)
-function liftDownEvent():void
+public function liftDownEvent():void
 {
 	pc.energy(75);
 	clearOutput();
@@ -864,7 +864,7 @@ You press your back to the edge of the cart, and ride it the rest of the way dow
 
 //Security Checkpoint / Rocket Pod Encounter
 
-function coreWalkWayBonus():Boolean
+public function coreWalkWayBonus():Boolean
 {
 	if(flags["ROCKET_PODS_ENCOUNTERED"] == undefined)
 	{
@@ -906,7 +906,7 @@ function coreWalkWayBonus():Boolean
 	return false;
 }
 
-function goUpTarkusLift():void
+public function goUpTarkusLift():void
 {
 	clearOutput();
 	pc.energy(75);
@@ -923,7 +923,7 @@ function goUpTarkusLift():void
 //Hack Turrets
 //{Fuck you and your Codex, Fen}
 //{PC needs to pass a moderate INT check for this shit}
-function hackTheRocketPodsOnTarkus():void
+public function hackTheRocketPodsOnTarkus():void
 {
 	clearOutput();
 	author("Savin");
@@ -951,7 +951,7 @@ function hackTheRocketPodsOnTarkus():void
 
 //Sneak By
 //This reminds you of the time you snuck by the guards on Antaris VII.
-function sneakByZeTurrets():void
+public function sneakByZeTurrets():void
 {
 	clearOutput();
 	author("Savin");
@@ -971,7 +971,7 @@ function sneakByZeTurrets():void
 
 //MAIN SCREEN TURN ON:
 //You're fighting a battery of rocket pods! (Level: 4)
-function rocketPodAI():void
+public function rocketPodAI():void
 {
 	author("Savin");
 	showName("ROCKET\nPODS");
@@ -980,7 +980,7 @@ function rocketPodAI():void
 }
 
 //Primary Attack: ROCKET (duh)
-function rocketPodRocketAttk():void
+public function rocketPodRocketAttk():void
 {
 	//Count as one HEAVY physical attack, but has a low to-hit chance.
 	output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");
@@ -1002,7 +1002,7 @@ function rocketPodRocketAttk():void
 }
 
 //Ability 2: SHIELDS UP!
-function shieldsUp():void
+public function shieldsUp():void
 {
 	//1 time per encounter, re-charges 50% of shields once they drop.
 	output("The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!");
@@ -1012,14 +1012,14 @@ function shieldsUp():void
 }
 
 //PC Victory vs Rocket Pods
-function pcBeatsRocketPods():void
+public function pcBeatsRocketPods():void
 {
 	output("With a mighty KABOOM, the last rocket turret explodes in a hail of shrapnel and sparks. You heave a sigh of relief as silence again reigns in the rift. Can only spare a few moments to catch your breath, though, before you have to push on: there's a bomb that needs defusing!\n\n");
 	genericVictory();
 }
 
 //PC Loss vs Rocket Pods
-function pcLosesToRocketPods():void
+public function pcLosesToRocketPods():void
 {
 	output("Rockets pummel into the ground around you, Closer and closer, blasting you off your feet, bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the void around Tarkus' core. Your corpse will have to rest amongst the floating strata.");
 	output("\n\n<b>GAME OVER</b>");
@@ -1049,7 +1049,7 @@ Room Description: Platinum Deposit
 The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot. {A glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus. // There's an empty crate here, where the pirates were storing their mined platinum. You're sure nobody will begrudge you your reward...}
 */
 
-function spessPirateCaptainFightFightGoTimeBonus():Boolean
+public function spessPirateCaptainFightFightGoTimeBonus():Boolean
 {
 	if(flags["STARTED_KHORGAN_FIGHT"] == undefined)
 	{
@@ -1060,7 +1060,7 @@ function spessPirateCaptainFightFightGoTimeBonus():Boolean
 	return false;
 }
 
-function PlatinumSuperBonusFunction():Boolean
+public function PlatinumSuperBonusFunction():Boolean
 {
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN");
@@ -1081,7 +1081,7 @@ function PlatinumSuperBonusFunction():Boolean
 }
 
 //Captain Boss Fight: Introduction
-function pirateCaptainBossFightIntro():void
+public function pirateCaptainBossFightIntro():void
 {
 	clearOutput();
 	author("Savin");
@@ -1107,7 +1107,7 @@ function pirateCaptainBossFightIntro():void
 //% of cover = 2 HP.
 //% of cover = % chance cover will take the hit instead of PC.
 
-function khorganSuitAI():void
+public function khorganSuitAI():void
 {
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN");
@@ -1144,7 +1144,7 @@ function khorganSuitAI():void
 
 //Mining Laser Barrage
 //Several medium-damage attacks
-function miningLaserBarrage():void
+public function miningLaserBarrage():void
 {
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
 	var damage:int = 0;
@@ -1175,7 +1175,7 @@ function miningLaserBarrage():void
 	processCombat();
 }
 
-function coverPercent():Number
+public function coverPercent():Number
 {
 	if(currentLocation == "KHORGAN_LEFT_COVER")
 	{
@@ -1192,7 +1192,7 @@ function coverPercent():Number
 	return 9000;
 }
 
-function coverDamage(damage:int):void
+public function coverDamage(damage:int):void
 {
 	var coverNuked:Boolean = false;
 	var coverRemaining:Number = -1;
@@ -1230,7 +1230,7 @@ function coverDamage(damage:int):void
 	else output(" (-" + damage/2 + "% Cover)");
 }
 
-function coverUpdateDisplay():void
+public function coverUpdateDisplay():void
 {
 	var coverRemaining:Number = 0;
 	if(currentLocation == "KHORGAN_LEFT_COVER") coverRemaining = flags["KHORGAN_LEFT_COVER"];
@@ -1249,7 +1249,7 @@ function coverUpdateDisplay():void
 
 //Mining Laser Charge Shot
 //One MEGA attack, low accuracy
-function miningLaserSuperShot():void
+public function miningLaserSuperShot():void
 {
 	output("With a roar of rage, the captain thrusts her laser-bearing arm forward and fires, one huge, continuous stream of laser fire that shears into the steel platform, tearing into what little cover you can find.");
 	if(rangedCombatMiss(foes[0],pc))
@@ -1278,7 +1278,7 @@ function miningLaserSuperShot():void
 
 //Crate Throw
 // Medium damage, chance to cause knockdown or stun or something
-function crateThrow():void
+public function crateThrow():void
 {
 	output("The captain stops her seemingly endless barrage of laser fire to stomp over and pick up a nearby crate, obviously quite full as her suit works hard to heft it up over her head. With a loud hydraulic hiss, the suit hurls the crate straight at you!");
 	//Miss:
@@ -1309,7 +1309,7 @@ function crateThrow():void
 	processCombat();
 }
 
-function khorganMechBonusMenu():void
+public function khorganMechBonusMenu():void
 {
 	if(currentLocation == "KHORGAN_RIGHT_COVER")
 	{
@@ -1327,7 +1327,7 @@ function khorganMechBonusMenu():void
 		addDisabledButton(10,"Move Left","Move Left","There's no more floating platforms to your left. You'll have to move right!");
 	}
 }
-function moveRight():void
+public function moveRight():void
 {
 	clearOutput();
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
@@ -1335,7 +1335,7 @@ function moveRight():void
 	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_RIGHT_COVER";
 	processCombat();
 }
-function moveLeft():void
+public function moveLeft():void
 {
 	clearOutput();
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
@@ -1345,7 +1345,7 @@ function moveLeft():void
 }
 
 //Missile Incoming!
-function missileIncoming():void
+public function missileIncoming():void
 {
 	//ULTRA HEAVY DAMAGE
 	//Turn 1: 
@@ -1385,7 +1385,7 @@ function missileIncoming():void
 }
 
 //Captain Phase 1: PC Victorious
-function victoriousVsCaptainOrcButt():void
+public function victoriousVsCaptainOrcButt():void
 {
 	clearOutput();
 	author("Savin");
@@ -1422,7 +1422,7 @@ function victoriousVsCaptainOrcButt():void
 
 
 //Demand Surrender
-function demandSurrenderFromPirate():void
+public function demandSurrenderFromPirate():void
 {
 	//Tooltip: She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.}
 	clearOutput();
@@ -1441,7 +1441,7 @@ function demandSurrenderFromPirate():void
 
 //Surrender Yourself
 //{Tooltip: She's right. You don't have a chance...}
-function surrenderToCapnKhorgath():void
+public function surrenderToCapnKhorgath():void
 {
 	clearOutput();
 	author("Savin");
@@ -1459,7 +1459,7 @@ Captain Boss Fight: Part 2
 //This part is a straight-up combat encounter. She focuses primarily on lust attacks in this form: she wants the PC as her brood slave, not dead. Captain has great physical defenses, but is vulnerable to LUST attacks. (ie, Reverse of last time)
 */
 
-function actualKhorganAI():void
+public function actualKhorganAI():void
 {
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN");
@@ -1475,7 +1475,7 @@ function actualKhorganAI():void
 
 //Cutlass Strike
 //Basic physical attack
-function captainCutlassAttk():void
+public function captainCutlassAttk():void
 {
 	output("The captain rushes at you, swinging her force cutlass in a brutal arc. You dodge the blow, but find another heading toward you almost immediately, trying to get through your still-staggered guard.");
 	//If Miss:
@@ -1494,7 +1494,7 @@ function captainCutlassAttk():void
 
 //Roundhouse Kick
 //Physical, chance to knockdown
-function roundHouseKickFromCapn():void
+public function roundHouseKickFromCapn():void
 {
 	output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
 	//If Miss: 
@@ -1518,7 +1518,7 @@ function roundHouseKickFromCapn():void
 
 //Crotch-Face-Smash
 //Heavy lust attack
-function crotchFaceSmash():void
+public function crotchFaceSmash():void
 {
 	output("Amid a flurry of sword-swings, Captain Khorgan reaches out, grabbing your head and forcing you to your [pc.knees] with a mighty grunt. You give a gasp as your [pc.face] is thrust into the growing damp patch on her crotch, put face to face with her burning battle-lust.");
 	//Success:
@@ -1537,7 +1537,7 @@ function crotchFaceSmash():void
 
 //Motorboat
 //Basic lust attack
-function motorboatedByASpork():void
+public function motorboatedByASpork():void
 {
 	output("You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [pc.face] between her massive tits.");
 	//Success: 
@@ -1553,7 +1553,7 @@ function motorboatedByASpork():void
 
 //She Gets off on it!?
 //Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
-function gettingOffOnZePain():void
+public function gettingOffOnZePain():void
 {
 	output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
 	output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
@@ -1564,7 +1564,7 @@ function gettingOffOnZePain():void
 }
 
 //Captain Fight Phase 2: PC Victorious
-function youBeatUpAnOrcWaytoGo():void
+public function youBeatUpAnOrcWaytoGo():void
 {
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN");
@@ -1608,7 +1608,7 @@ function youBeatUpAnOrcWaytoGo():void
 }
 
 //Leave
-function leaveDatThragginBootayBehind():void
+public function leaveDatThragginBootayBehind():void
 {
 	clearOutput();
 	author("Savin");
@@ -1621,7 +1621,7 @@ function leaveDatThragginBootayBehind():void
 
 //Dick Fuck
 //It from Defeat menu: 
-function dickFuckDatThraggenCoochie():void
+public function dickFuckDatThraggenCoochie():void
 {
 	clearOutput();
 	author("Savin");
@@ -1678,7 +1678,7 @@ function dickFuckDatThraggenCoochie():void
 
 //Lesbos- gardeford can into helping
 //Gardeford wrote dis! :D
-function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
+public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 {
 	clearOutput();
 	showBust("CAPTAIN_KHORGAN_NUDE");
@@ -1750,7 +1750,7 @@ function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 
 //Captain Khorgan's Broodmare Badend
 //{If PC loses in the Mecha Fight}
-function loseToCaptainKhorganBadEnd():void
+public function loseToCaptainKhorganBadEnd():void
 {
 	clearOutput();
 	author("Savin");
@@ -1815,7 +1815,7 @@ function loseToCaptainKhorganBadEnd():void
 
 //Post Combat Captain
 //Since she doesn't actually disappear when you win.
-function approachCaptainPostDefeat():void
+public function approachCaptainPostDefeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -1849,7 +1849,7 @@ function approachCaptainPostDefeat():void
 	addButton(14,"Leave",leaveDaCapnRepeat);
 }
 
-function leaveDaCapnRepeat():void
+public function leaveDaCapnRepeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -1861,7 +1861,7 @@ function leaveDaCapnRepeat():void
 }
 
 //Spoils of War: Taking the Platinum
-function takeZePlatinumAwwwwyiss():void
+public function takeZePlatinumAwwwwyiss():void
 {
 	clearOutput();
 	author("Savin");
@@ -1884,7 +1884,7 @@ Laser LMG with underslung automatic slug-gun.
 Uses last-based attacks until the PC takes her below 80% health, then goes ALL GUNSHOTS. Now she shoots until she gets horny, then gets all sexual.
 Bomb Room Description*/
 
-function bombRoomBonusFunc():Boolean
+public function bombRoomBonusFunc():Boolean
 {
 	author("Fenoxo");
 	showBust("KASKA");
@@ -1923,7 +1923,7 @@ function bombRoomBonusFunc():Boolean
 
 //Kaska meeting
 //Starts playing upon entering her room post bomb descriptions
-function meetUpWithKaskaZeBossSloot():void
+public function meetUpWithKaskaZeBossSloot():void
 {
 	author("Fenoxo");
 	showBust("KASKA");
@@ -1946,7 +1946,7 @@ function meetUpWithKaskaZeBossSloot():void
 
 /*KASKA FIGHT!
 Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks.*/
-function kaskaFightAI():void
+public function kaskaFightAI():void
 {
 	author("Fenoxo");
 	showBust("KASKA");
@@ -2010,7 +2010,7 @@ function kaskaFightAI():void
 
 //Shield-Buster
 //Five shots from her laser with the intention of wrecking shields.
-function shieldBustah():void
+public function shieldBustah():void
 {
 	output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n\n");
 	rangedAttack(foes[0],pc,true,1);
@@ -2027,7 +2027,7 @@ function shieldBustah():void
 
 //Volley
 //Four shots from each gun with heightened miss chance.
-function kaskaVolleyShot():void
+public function kaskaVolleyShot():void
 {
 	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
 	rangedAttack(foes[0],pc,true,1);
@@ -2055,7 +2055,7 @@ function kaskaVolleyShot():void
 //Always used at 50% Lust.
 //Futa Lust
 //Toss aside the gun and approach the PC, and show engorging phallus or bend over to show bubble butt and hot, wet gash.
-function kaskaFutaLusts():void
+public function kaskaFutaLusts():void
 {
 	output("Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.");
 	output("\n\n<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop. It bounces off the deck, clattering noisily before ricochetting into a crate thanks to the zero-G. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>");
@@ -2068,7 +2068,7 @@ function kaskaFutaLusts():void
 }
 //Tittygrapple
 //Grapples the PC, forcing his or her head into her tits for multiround squishes.
-function tittyGrapple():void
+public function tittyGrapple():void
 {
 	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.\n\n<b>You are grappled!</b>");
 	pc.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
@@ -2076,7 +2076,7 @@ function tittyGrapple():void
 }
 
 //Do Nothing
-function doNothingWhileTittyGrappled():void
+public function doNothingWhileTittyGrappled():void
 {
 	output("\nKaska grins as she feels you go limp against her");
 	if(pc.hasCock()) output(" but hard somewhere else");
@@ -2093,7 +2093,7 @@ function doNothingWhileTittyGrappled():void
 }
 
 //Failed Strugle
-function failToStruggleKaskaBoobs():void
+public function failToStruggleKaskaBoobs():void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
 	pc.lustDamage(10+rand(5));
@@ -2104,7 +2104,7 @@ function failToStruggleKaskaBoobs():void
 
 //Pinch Nipple
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
-function pinchKaskaNipple():void
+public function pinchKaskaNipple():void
 {
 	clearOutput();
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
@@ -2116,7 +2116,7 @@ function pinchKaskaNipple():void
 }
 //Crate Tease
 //Recline and splay legs on a nearby crate. Only used at very high lust as Kaska isn't normally that submissive about it.
-function crateTeaseFromKaska():void
+public function crateTeaseFromKaska():void
 {
 	output("Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>");
 	pc.lustDamage(8+rand(10));
@@ -2124,7 +2124,7 @@ function crateTeaseFromKaska():void
 }
 //Futasnuggle
 //Kaska gets in close and grinds herself against the PC along with an ear-lick.
-function futaSnuggleAttack():void
+public function futaSnuggleAttack():void
 {
 	output("Kaska feigns a kick one way before reversing and coming up inside your guard. Her toned body wraps briefly around your own, ");
 	if(pc.armor.shortName == "") output("leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]");
@@ -2138,7 +2138,7 @@ function futaSnuggleAttack():void
 
 //Highkick
 //Kaska kicks the PC's weapons away and then rests her heel on the PC's shoulder. Basically 1 round disarm + lust attack.
-function kaskaHighKick():void
+public function kaskaHighKick():void
 {
 	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
 	pc.lustDamage(3+rand(4));
@@ -2149,7 +2149,7 @@ function kaskaHighKick():void
 }
 
 //Defeated by Kaska: Not Turned On
-function defeatedByKaska():void
+public function defeatedByKaska():void
 {
 	author("Fenoxo");
 	showBust("KASKA");
@@ -2277,7 +2277,7 @@ function defeatedByKaska():void
 	}
 }
 
-function kaskaBadEndPartDues():void
+public function kaskaBadEndPartDues():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2448,7 +2448,7 @@ function kaskaBadEndPartDues():void
 	addButton(0,"Next",kaskaBadEndPartIII);
 }
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
-function kaskaBadEndPartIII():void
+public function kaskaBadEndPartIII():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2467,7 +2467,7 @@ function kaskaBadEndPartIII():void
 }
 
 //Defeat Kaska
-function defeatKaska():void
+public function defeatKaska():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2508,7 +2508,7 @@ function defeatKaska():void
 }
 
 //Leave
-function leaveKaskaPostCombat():void
+public function leaveKaskaPostCombat():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2524,7 +2524,7 @@ function leaveKaskaPostCombat():void
 //	Kaska is floating in place, anchored to the deck by her boots but completely unconscious. Ropes of her jizz float in a cloud around her, to say nothing of the thick smears of it that drench her skin, face, and hair.
 
 //Repeat Conscious Approach
-function approachUnfuckedKaska():void
+public function approachUnfuckedKaska():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2548,7 +2548,7 @@ function approachUnfuckedKaska():void
 }
 
 //Victory Dicksex
-function victoryKaskaDicksex():void
+public function victoryKaskaDicksex():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2644,7 +2644,7 @@ function victoryKaskaDicksex():void
 
 //Victory Cuntsex
 //Make her eat you out. Probably a shortie. Suck mah dick.
-function makeKaskaSuchYerCoochLikeABaws():void
+public function makeKaskaSuchYerCoochLikeABaws():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2739,7 +2739,7 @@ function makeKaskaSuchYerCoochLikeABaws():void
 }
 
 //Approaching Active Bomb
-function activeBombApproach():void {
+public function activeBombApproach():void {
 	clearOutput();
 	author("Fenoxo");
 	showName("\nBOMB");
@@ -2759,7 +2759,7 @@ function activeBombApproach():void {
 }
 
 //Disarming It
-function attemptToDisarmTheBomb():void
+public function attemptToDisarmTheBomb():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2780,13 +2780,13 @@ function attemptToDisarmTheBomb():void
 		addButton(0,"Next",lightsOutBombPrep);
 	}
 }
-function lightsOutBombPrep():void
+public function lightsOutBombPrep():void
 {
 	startLightsOut(disarmedTarkusBomb,failedToDisarmTarkusBomb);
 }
 
 //OH SHIT SON U DON BLU IT UP
-function failedToDisarmTarkusBomb():void
+public function failedToDisarmTarkusBomb():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2796,7 +2796,7 @@ function failedToDisarmTarkusBomb():void
 	clearMenu();
 }
 //Succeed at Light's Out
-function disarmedTarkusBomb():void
+public function disarmedTarkusBomb():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2808,7 +2808,7 @@ function disarmedTarkusBomb():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function bombExplodes():void
+public function bombExplodes():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2881,7 +2881,7 @@ function bombExplodes():void
 	flags["TARKUS_BOMB_TIMER"] = -1;
 }
 
-function planetAsplodeWhileInNova():void
+public function planetAsplodeWhileInNova():void
 {
 	currentLocation = "201";
 	var map:* = mapper.generateMap(currentLocation);
@@ -2900,7 +2900,7 @@ function planetAsplodeWhileInNova():void
 	addButton(0,"Next",planetAsplodeWhileInNovaPartIII);
 }
 
-function planetAsplodeWhileInNovaPartIII():void
+public function planetAsplodeWhileInNovaPartIII():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -2919,7 +2919,7 @@ function planetAsplodeWhileInNovaPartIII():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function bombStatusUpdate():void
+public function bombStatusUpdate():void
 {
 	if(flags["TARKUS_BOMB_TIMER"] == 120) eventBuffer += "\n\n<b>There's only two hours left to disarm the bomb!</b>";
 	if(flags["TARKUS_BOMB_TIMER"] == 90) eventBuffer += "\n\n<b>There's only an hour and a half left to disarm the bomb!</b>";
@@ -2932,7 +2932,7 @@ function bombStatusUpdate():void
 //Dungeon Done, Bosses Molestered, Bomb Disarmed
 //Play when PC goes back topside, play when stepping out of the elevator.
 //This assumes the PC won't be able to re-visit the dungeon. Which, logically, you wouldn't be since the place would be back to operating as usual. 
-function victoryCelebrationPCIsAwesomeGuyFuntimes():void
+public function victoryCelebrationPCIsAwesomeGuyFuntimes():void
 {
 	clearOutput();
 	author("Savin");
@@ -2953,7 +2953,7 @@ function victoryCelebrationPCIsAwesomeGuyFuntimes():void
 
 //Sod the Quest: Fucking off w/o Disarming the Bomb
 //PC must have defeated TamTam
-function fuckOffWithoutDisarmingTheBomb():void
+public function fuckOffWithoutDisarmingTheBomb():void
 {
 	clearOutput();
 	author("Savin");
@@ -2973,7 +2973,7 @@ function fuckOffWithoutDisarmingTheBomb():void
 }
 
 //Rival In Shekka's!
-function roomOutsideShekkasBonus():Boolean
+public function roomOutsideShekkasBonus():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output("The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus' surface. Before you can get to the windswept junkyards, you'll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.");
 	else output("The section of deck upon which you now stand was undoubtedly the busiest place in all of Novahome back before the planet blew. Now, huge blast doors close off the way to the south, and while foot traffic is still high, the press of raskvel bodies is significantly abated. The massive, central corridor leads east and west from here.");
@@ -2993,7 +2993,7 @@ function roomOutsideShekkasBonus():Boolean
 
 //Walking In, Middeal
 //Overwrites all other bonus bits.
-function shekkaMidDeal():void
+public function shekkaMidDeal():void
 {
 	author("Fenoxo");
 	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
@@ -3035,7 +3035,7 @@ function shekkaMidDeal():void
 }
 
 //Too Poor To Buy Probe
-function tooPoorToBuyTheProbe():void
+public function tooPoorToBuyTheProbe():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3055,7 +3055,7 @@ function tooPoorToBuyTheProbe():void
 }
 
 //16,000 Bid
-function bid16k():void
+public function bid16k():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3091,7 +3091,7 @@ function bid16k():void
 }
 
 //20,000+ Bid
-function bidVariable(arg:Number = 20000):void
+public function bidVariable(arg:Number = 20000):void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3116,7 +3116,7 @@ function bidVariable(arg:Number = 20000):void
 }
 
 //Platinum
-function payWithYourPlatinumPremiumCard():void
+public function payWithYourPlatinumPremiumCard():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3133,7 +3133,7 @@ function payWithYourPlatinumPremiumCard():void
 }
 
 //Bid Winning Epilogue
-function youWonSomePodShit():void
+public function youWonSomePodShit():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3152,7 +3152,7 @@ function youWonSomePodShit():void
 }
 
 //Sell to Shekka
-function sellDatPodToShekka():void
+public function sellDatPodToShekka():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3176,7 +3176,7 @@ function sellDatPodToShekka():void
 }
 
 //Sold:
-function processSellToShekkaTransaction():void
+public function processSellToShekkaTransaction():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3190,7 +3190,7 @@ function processSellToShekkaTransaction():void
 }
 
 //Give to Shekka +Niceguy
-function giveTheProbeToShekkaForNuttin():void
+public function giveTheProbeToShekkaForNuttin():void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -3217,7 +3217,7 @@ function giveTheProbeToShekkaForNuttin():void
 }
 
 //Sell to Steeletech
-function sellThePodToSteeleTech():void
+public function sellThePodToSteeleTech():void
 {
 	clearOutput();
 	output("A quickly-written missive later, you're offered 20,000 by your father's company. Do you take it or do something else with it?");
@@ -3226,7 +3226,7 @@ function sellThePodToSteeleTech():void
 	addButton(1,"Options",youWonSomePodShit,undefined,"Options","Back up and consider your options.");
 }
 
-function actuallySellToSteeleTech():void
+public function actuallySellToSteeleTech():void
 {
 	clearOutput();
 	output("The 20,000 credits come immediately, sent as an advance for services rendered. A company delegate will be by the shop to take the probe in a few hours.");

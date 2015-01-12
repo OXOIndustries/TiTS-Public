@@ -26,7 +26,7 @@ Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 [Catch Anal]
 [Bail Once More]*/
 
-function alexNameBustDiplay():void {
+public function alexNameBustDiplay():void {
 	userInterface.showBust("ALEX");
 	if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) userInterface.showName("\nALEX");
 	else userInterface.showName("PRETTY\nBOY");
@@ -40,7 +40,7 @@ public function getAlexPregContainer():PregnancyPlaceholder
 }
 
 //FIRST TIME INTRO
-function alexManHermIntro():void {
+public function alexManHermIntro():void {
 	if(flags["FUCKED_ALEX"] == undefined && flags["MET_ALEX"] == undefined) output("\n\nYour attention is drawn by a tall and very pretty... Man? Woman? A very pretty person leaning against the bar, clad in baggy pants tucked into boots and a strip of cloth wrapped tightly around their very flat chest. That combined with the close-cropped hair and slight but noticeable muscle tone makes you want to say it’s a man, but their lithe, narrow waist and flared hips imply otherwise. Before you can make a call, the person in question flashes you a brilliant smile your way and beckons you over.");
 	else if(flags["FUCKED_ALEX"] == undefined && flags["LAST_MINUTE_ALEX_BACK_OUT"] == undefined) output("\n\nIt looks like that androgynous man from before is around again.");
 	else 
@@ -54,7 +54,7 @@ function alexManHermIntro():void {
 	addButton(1,"Androgyne",approachAlex);
 }
 
-function approachAlex():void {
+public function approachAlex():void {
 	if(flags["MET_ALEX"] == undefined) approachAlexTheFirstTime();
 	else if(flags["FUCKED_ALEX"] == undefined && flags["LAST_MINUTE_ALEX_BACK_OUT"] == undefined) repeatApproachAlex();
 	else approachAlexAfterHavingSexOrAlmostHavingSex();
@@ -65,7 +65,7 @@ function approachAlex():void {
 //	(Add “Androgyne” button when standing around the bar and go to repeat intro)
 
 //[Yes]
-function approachAlexTheFirstTime():void {
+public function approachAlexTheFirstTime():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -82,7 +82,7 @@ function approachAlexTheFirstTime():void {
 }
 
 //[Flirt]
-function flirtWithAlex():void {
+public function flirtWithAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -123,7 +123,7 @@ function flirtWithAlex():void {
 //(GO TO SEX)
 
 //[No]
-function noToAlyxSex():void {
+public function noToAlyxSex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -139,7 +139,7 @@ function noToAlyxSex():void {
 }
 
 //[What are you?]
-function askAlexWhatHeIs():void {
+public function askAlexWhatHeIs():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -168,7 +168,7 @@ function askAlexWhatHeIs():void {
 //(GO TO SEX)
 
 //[Yes]
-function thatsEnoughAlex():void {
+public function thatsEnoughAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -179,7 +179,7 @@ function thatsEnoughAlex():void {
 }
 
 //[Bail]
-function bailOnAlex():void {
+public function bailOnAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -191,7 +191,7 @@ function bailOnAlex():void {
 
 
 //REPEAT INTRO (you didn’t tap that)
-function repeatApproachAlex():void {
+public function repeatApproachAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -215,7 +215,7 @@ function repeatApproachAlex():void {
 }
 
 //[Bail Again]
-function bailOnAlexAgain():void {
+public function bailOnAlexAgain():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -230,7 +230,7 @@ function bailOnAlexAgain():void {
 }
 
 //REPEAT INTRO (You tapped that (or bailed at the last minute))
-function approachAlexAfterHavingSexOrAlmostHavingSex():void {
+public function approachAlexAfterHavingSexOrAlmostHavingSex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -249,7 +249,7 @@ function approachAlexAfterHavingSexOrAlmostHavingSex():void {
 //(GO TO SEX)
 
 //[Talk]
-function talkToAlex():void {
+public function talkToAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -268,7 +268,7 @@ function talkToAlex():void {
 }
 
 //SEX (FUCKING FINALLY)
-function alexSexMenu(display:Boolean = true):void {
+public function alexSexMenu(display:Boolean = true):void {
 	if(display) 
 	{
 		clearOutput();
@@ -407,7 +407,7 @@ function alexSexMenu(display:Boolean = true):void {
 
 //[Pitch Vaginal]
 //(Available to all dickhavers)
-function pitchIntoAlexsBoyPussy():void {
+public function pitchIntoAlexsBoyPussy():void {
 	clearOutput();
 	author("RadicalBroseph");
 	alexNameBustDiplay();
@@ -546,7 +546,7 @@ function pitchIntoAlexsBoyPussy():void {
 
 //[Catch Vaginal]
 //(Shoutout to all the cunthavers)
-function catchVaginalFromAlex():void {
+public function catchVaginalFromAlex():void {
 	clearOutput();
 	author("RadicalBroseph");
 	alexNameBustDiplay();
@@ -703,7 +703,7 @@ function catchVaginalFromAlex():void {
 
 //[Frottage]
 //(Dickhavers again (Fun variant for herms if I get to it))
-function frottageWithAlex():void {
+public function frottageWithAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -1006,7 +1006,7 @@ function frottageWithAlex():void {
 
 //[Catch Anal]
 //(Fun for everyone)
-function catchAnalFromAlex():void {
+public function catchAnalFromAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
@@ -1151,7 +1151,7 @@ function catchAnalFromAlex():void {
  	addButton(0,"Next",mainGameMenu);
 }
 //[Bail Once More]
-function bailOutOnAlex():void {
+public function bailOutOnAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	userInterface.showName("\nALEX");

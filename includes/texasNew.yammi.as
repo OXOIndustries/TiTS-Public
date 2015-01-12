@@ -2,14 +2,14 @@
 
 
 //Since Yammi can be removed from the shop later, making this so I only have to change stuff once.
-function yammiShopDisplay():void
+public function yammiShopDisplay():void
 {
 	showName("\nYAMMI");
 	showBust("YAMMI");
 	author("Lady Jenn");
 }
 
-function icedTeatsExteriorBonusFunc():Boolean
+public function icedTeatsExteriorBonusFunc():Boolean
 {
 	author("Lady Jenn");
 	output("\n\nTo the south, a colorful building boasts an illuminated signboard proudly displaying the title: Iced Teats Frozen Treats and Confectionery Company. Beneath it is the catch line: The number one supplier in female-based frozen sweets. All flavors harvested fresh from the breast, guaranteed safe for any humanoid or similar entity! Above all this is an image of a fetching pink skinned woman with bright crimson hair, dressed in barely enough clothing to contain her assets. She is reclined comfortably and holding a bowl of what appears to be ice cream, which is cleverly animated to cascade slowly through a number of appetizing colors.");
@@ -17,7 +17,7 @@ function icedTeatsExteriorBonusFunc():Boolean
 	return false;
 }
 
-function icedTreatsInterior():Boolean
+public function icedTreatsInterior():Boolean
 {
 	yammiShopDisplay();
 	showName("ICED\nTEATS");
@@ -45,7 +45,7 @@ function icedTreatsInterior():Boolean
 	}
 }
 
-function yammiRepeatMenu(outputS:Boolean = true):void
+public function yammiRepeatMenu(outputS:Boolean = true):void
 {
 	if(outputS)
 	{
@@ -65,7 +65,7 @@ function yammiRepeatMenu(outputS:Boolean = true):void
 }
 
 //Questions
-function questionsForYammi():void
+public function questionsForYammi():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -82,7 +82,7 @@ function questionsForYammi():void
 }
 
 //Choose ‘Cone’
-function orderAYammiCone():void
+public function orderAYammiCone():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -92,7 +92,7 @@ function orderAYammiCone():void
 }
 
 //Choose Bowl
-function orderAYammiBowl():void
+public function orderAYammiBowl():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -102,7 +102,7 @@ function orderAYammiBowl():void
 }
 
 //Choose Feast
-function orderAYammiFeast():void
+public function orderAYammiFeast():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -112,7 +112,7 @@ function orderAYammiFeast():void
 }
 
 //Preparing to get ice cream
-function preparingToGetIceCream(servingType:String = "cone"):void
+public function preparingToGetIceCream(servingType:String = "cone"):void
 {
 	yammiShopDisplay();
 	output("\n\nYou examine the selection before you, each device containing a woman with her tits wrapped in a net of straps ready to surrender her flavored breast milk for your snacking pleasure. Various tubes and devices are in place to feed them, please them, and clean them. As you examine the flavor tags on each machine, the occupant watches you from inside; some are expectant, some a bit tired, and some look pleading, their massive melons overfull.");
@@ -129,7 +129,7 @@ function preparingToGetIceCream(servingType:String = "cone"):void
 }
 
 //Gewinfruit
-function gewinFruit(servingType:String = "cone"):void
+public function gewinFruit(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -184,7 +184,7 @@ function gewinFruit(servingType:String = "cone"):void
 }
 
 //Yokto
-function getYokto(servingType:String = "cone"):void
+public function getYokto(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -239,7 +239,7 @@ function getYokto(servingType:String = "cone"):void
 }
 
 //Blitzaberry
-function blitzaberryCone(servingType:String = "cone"):void
+public function blitzaberryCone(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -288,7 +288,7 @@ function blitzaberryCone(servingType:String = "cone"):void
 }
 
 //Strawberry
-function strawberryIcedCream(servingType:String = "cone"):void
+public function strawberryIcedCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -346,7 +346,7 @@ function strawberryIcedCream(servingType:String = "cone"):void
 }
 
 //Jumbijumbi
-function JumbijumbiCream(servingType:String = "cone"):void
+public function JumbijumbiCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -398,7 +398,7 @@ function JumbijumbiCream(servingType:String = "cone"):void
 }
 
 //Darginut
-function darginutIcedCream(servingType:String = "cone"):void
+public function darginutIcedCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -453,7 +453,7 @@ function darginutIcedCream(servingType:String = "cone"):void
 }
 
 //Chocolate
-function chocolateIcedCream(servingType:String = "cone"):void
+public function chocolateIcedCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -511,7 +511,7 @@ function chocolateIcedCream(servingType:String = "cone"):void
 }
 
 //Flameberks
-function flameberksIcedCream(servingType:String = "cone"):void
+public function flameberksIcedCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -568,7 +568,7 @@ function flameberksIcedCream(servingType:String = "cone"):void
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
 
-function askYammiAbootIceCream():void
+public function askYammiAbootIceCream():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -586,7 +586,7 @@ function askYammiAbootIceCream():void
 }
 
 //Girls
-function askYammiAbootZeGurls():void
+public function askYammiAbootZeGurls():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -608,7 +608,7 @@ function askYammiAbootZeGurls():void
 }
 
 //Company
-function askYammiAboutTheCompany():void
+public function askYammiAboutTheCompany():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -626,7 +626,7 @@ function askYammiAboutTheCompany():void
 }
 
 //Yammi
-function askHerAboutHerself():void
+public function askHerAboutHerself():void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -644,7 +644,7 @@ function askHerAboutHerself():void
 }
 
 //Sex
-function askyammiAboutSex():void
+public function askyammiAboutSex():void
 {
 	clearOutput();
 	yammiShopDisplay();

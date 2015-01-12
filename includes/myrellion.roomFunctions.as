@@ -1,10 +1,10 @@
 ﻿//Landing on Myrellion, First Time
-function myrellionHangarBonus():Boolean
+public function myrellionHangarBonus():Boolean
 {
 	return false;
 }
 
-function airFieldNorthBonus():Boolean
+public function airFieldNorthBonus():Boolean
 {
 	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
 	{
@@ -13,7 +13,7 @@ function airFieldNorthBonus():Boolean
 	return false;
 }
 
-function flyToMyrellion():void
+public function flyToMyrellion():void
 {
 	if(flags["VISITED_MYRELLION"] == undefined)
 	{
@@ -56,7 +56,7 @@ function flyToMyrellion():void
 	}
 }
 
-function streetOutsideBarBonus():Boolean
+public function streetOutsideBarBonus():Boolean
 {
 	if(karaQuestTurninNeeded()) output(" <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
 	if(karaAndShadeUnfinished())
@@ -66,13 +66,13 @@ function streetOutsideBarBonus():Boolean
 	}
 	return false;
 }
-function spacersRowBonusFunc():Boolean
+public function spacersRowBonusFunc():Boolean
 {
 	if(karaQuestTurninNeeded()) output(" <b>where Kara is hiding</b>");
 	output(".");
 	return false;
 }
-function backAlleyBonus():Boolean
+public function backAlleyBonus():Boolean
 {
 	if(karaQuestTurninNeeded()) 
 	{
@@ -83,7 +83,7 @@ function backAlleyBonus():Boolean
 	return false;
 }
 
-function kressiaGatesBonus():Boolean
+public function kressiaGatesBonus():Boolean
 {
 	if(flags["MET_LIEVE"] == undefined) output("from which can be heard a series of very soft moans and giggles");
 	else output("and you can hear Lieve having a bit of fun inside");
@@ -98,20 +98,20 @@ function kressiaGatesBonus():Boolean
 	}
 	return false;
 }
-function n20StreetBonusFunc():Boolean
+public function n20StreetBonusFunc():Boolean
 {
 	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You'd be tempted to offer to help if you had any idea what the hell that behemoth even is.");
 	return false;
 }
 
-function kressiaAirfieldBonus():Boolean
+public function kressiaAirfieldBonus():Boolean
 {
 	output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
 	addButton(0,"Enter Plane",aeroplaneFlightShit,false,"Enter Plane","Hop on a plane for a quick trip back to the DMZ.");
 	return false;
 }
 
-function DMZKressiaAirstrip():Boolean
+public function DMZKressiaAirstrip():Boolean
 {
 	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined) {
 		output("\n\nYou'll need clearance to visit Kressia before you can depart. You should check with the red myr diplomat on station.")
@@ -123,7 +123,7 @@ function DMZKressiaAirstrip():Boolean
 	return false;
 }
 
-function aeroplaneFlightShit(kressia:Boolean = true):void
+public function aeroplaneFlightShit(kressia:Boolean = true):void
 {
 	clearOutput();
 	//Intro to Kressia via Aeroplane
@@ -158,7 +158,7 @@ function aeroplaneFlightShit(kressia:Boolean = true):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function gildenmereElevatorBottomBonus():Boolean
+public function gildenmereElevatorBottomBonus():Boolean
 {
 	if(!pc.hasKeyItem("Gildenmere Pass"))
 	{

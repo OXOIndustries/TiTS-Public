@@ -7,7 +7,7 @@
 // HIT_A_ZILGIRL            : TODO - FIXME
 
 //Female zil Encounter
-function femzilEncounter(forceFriendly:Boolean = false):void {
+public function femzilEncounter(forceFriendly:Boolean = false):void {
 	pc.lust(4);
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
@@ -83,7 +83,7 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 }
 
 //Leave (Must pass an Easy Int check, penalized by high Libido, to break away from zil Pheromones)
-function tryToLeaveFemzil():void {
+public function tryToLeaveFemzil():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -100,7 +100,7 @@ function tryToLeaveFemzil():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function submitToFriendlyZil():void {
+public function submitToFriendlyZil():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -110,7 +110,7 @@ function submitToFriendlyZil():void {
 	zilConsensualSexMenu();
 }
 //Fight
-function fightDatFriendlyFemzil():void {
+public function fightDatFriendlyFemzil():void {
 	flags["FOUGHT_FEMZIL_LAST_TIME"] = 1;
 	clearOutput();
 	author("Savin");
@@ -127,7 +127,7 @@ function fightDatFriendlyFemzil():void {
 
 
 //[Fight Her]
-function fightHostileZil():void {
+public function fightHostileZil():void {
 	clearOutput();
 	author("Zeikfried");
 	userInterface.showBust("ZILFEMALE");
@@ -138,7 +138,7 @@ function fightHostileZil():void {
 }
 
 //[Leave]
-function leaveHostileZil():void {
+public function leaveHostileZil():void {
 	clearOutput();
 	author("Zeikfried");
 	userInterface.showBust("ZILFEMALE");
@@ -197,7 +197,7 @@ function leaveHostileZil():void {
 
 //Submit - need a transition here (still to do)
 //something to bridge the gap between the intro and the loss sex, like a sneak attack with aphrodisiacs
-function submitToFemzil():void {
+public function submitToFemzil():void {
 	//route to loss scenes!
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
@@ -208,7 +208,7 @@ function submitToFemzil():void {
 }
 
 //AI: Throws darts most turns (25% chance to toss a Lustbang); any turn the PC uses a melee weapon, she'll counter with her Stinger attack. Once she gets down to half health, she'll start mixing Stingers into her normal combat routine, about 25% of the time. 
-function zilGirlAI():void {
+public function zilGirlAI():void {
 	if(flags["HIT_A_ZILGIRL"] != undefined) {
 		flags["HIT_A_ZILGIRL"] = undefined;
 		zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKiddingSheStingsYou();
@@ -223,7 +223,7 @@ function zilGirlAI():void {
 }
 
 //Dart Throw:
-function zilFemaleDartThrow():void {
+public function zilFemaleDartThrow():void {
 	author("Savin");
 	//Light physical + light poison damage/ DOT
 	output("Pursing her black lips in anger, the zil girl leans back and lets fly with a red-tipped dart, sending it right at you!");
@@ -265,7 +265,7 @@ function zilFemaleDartThrow():void {
 }
 
 //Pheromone Fan:
-function pheromoneFanFromZilFemale():void {
+public function pheromoneFanFromZilFemale():void {
 	author("Savin");
 	output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously. You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
 	//{Moderate toughness check pass}
@@ -289,7 +289,7 @@ function pheromoneFanFromZilFemale():void {
 
 //LustBang:
 //Lust grenade; chance to blind for 1d3 turns
-function lustBangOut():void {
+public function lustBangOut():void {
 	output("The zil girl dances away from you, just out of reach before grabbing one of the vials off her belt and throwing it at the ground just in front of you!");
 	
 	//If Speed is higher and passes check:
@@ -317,7 +317,7 @@ function lustBangOut():void {
 	
 //Dart Barrage:
 //3x standard attacks with heightened miss chance. Doesn't miss if PC is blinded. Always follows up a LustBang, even if it failed to blind.
-function flurryOfFemBlows():void {
+public function flurryOfFemBlows():void {
 	author("Savin");
 	output("The zil launches a barrage of darts in your direction!\n");
 	rangedAttack(foes[0],pc,true,1);
@@ -328,7 +328,7 @@ function flurryOfFemBlows():void {
 }
 
 //Stinger:
-function zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKiddingSheStingsYou():void {
+public function zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKiddingSheStingsYou():void {
 	author("Savin");
 	//Counter-melee / last resort. Light physical,medium lust, slows victim
 	output("Leaping at you, the zil girl spins around and dives ass-first toward you, her deadly stinger on full display!");
@@ -354,7 +354,7 @@ function zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKidd
 }
 		
 //Harden:
-function zilFemHarden():void {
+public function zilFemHarden():void {
 	author("Savin");
 	//Buffs kinetic defenses?
 	output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
@@ -365,7 +365,7 @@ function zilFemHarden():void {
 }
 
 //Get Honey
-function getHoney():void {
+public function getHoney():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
@@ -391,7 +391,7 @@ function getHoney():void {
 	addButton(14,"Nah",noSexForMeThen);
 }
 
-function getSomeHoney():void {
+public function getSomeHoney():void {
 	clearOutput();
 	output("That vial of honey is still here.\n\n");
 	var foundLootItems:Array = new Array();
@@ -404,7 +404,7 @@ function getSomeHoney():void {
 }
 
 //Nah
-function noSexForMeThen():void {
+public function noSexForMeThen():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -416,7 +416,7 @@ function noSexForMeThen():void {
 }
 
 //SEX OPTIONS
-function zilConsensualSexMenu():void {
+public function zilConsensualSexMenu():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	//For Dickmeisters:
@@ -452,7 +452,7 @@ function zilConsensualSexMenu():void {
 }
 //SuckleFuck
 // zillette goes for a buttsex ride while PC suckles some honey from her tits.
-function suckleFuckZilFemaleYouSuckleFucker():void {
+public function suckleFuckZilFemaleYouSuckleFucker():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -494,7 +494,7 @@ function suckleFuckZilFemaleYouSuckleFucker():void {
 }
 
 //Missionary
-function missionaryWithAZilGirl():void {
+public function missionaryWithAZilGirl():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -537,7 +537,7 @@ function missionaryWithAZilGirl():void {
 }
 	
 //Footjob
-function footjobFromFemzil():void {
+public function footjobFromFemzil():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -584,7 +584,7 @@ function footjobFromFemzil():void {
 }
 
 //Not Likely
-function dontLickABitchClean():void {
+public function dontLickABitchClean():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -601,7 +601,7 @@ function dontLickABitchClean():void {
 
 //Lick Clean
 //(+Lust)
-function lickABitchCleanYouBitch():void {
+public function lickABitchCleanYouBitch():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -627,7 +627,7 @@ function lickABitchCleanYouBitch():void {
 }
 
 //No Can Do
-function noThanksZilLadyImSpent():void {
+public function noThanksZilLadyImSpent():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -638,7 +638,7 @@ function noThanksZilLadyImSpent():void {
 }
 	
 //Sixty Nine (Female)
-function sixtyNineZil():void {
+public function sixtyNineZil():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -688,7 +688,7 @@ function sixtyNineZil():void {
 }
 	
 //Trib & Suck
-function tribAndSuckZil():void {
+public function tribAndSuckZil():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -734,7 +734,7 @@ function tribAndSuckZil():void {
 	addButton(0,"Next",zilFemaleTribbingEpilogue);
 }
 
-function zilFemaleTribbingEpilogue():void {
+public function zilFemaleTribbingEpilogue():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showBust("ZILFEMALE");
@@ -765,7 +765,7 @@ function zilFemaleTribbingEpilogue():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function girlZilLossRouter():void {
+public function girlZilLossRouter():void {
 	var choices:Array = new Array();
 	var select:int = 0;
 	choices[choices.length] = forceyFaceSittingFromFemzil;
@@ -779,7 +779,7 @@ function girlZilLossRouter():void {
 //Loss Scenes
 //Ladies Get Forced to Suckle and Then Cunnilingate While Repeatedly Stung (DONE) (-F)(edited)
 //Yowch! -Fen idear
-function forceCunnilstingus():void {
+public function forceCunnilstingus():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	//clearOutput();
@@ -896,7 +896,7 @@ function forceCunnilstingus():void {
 	
 //Dudes Get Rode and Stang in the Taint repeatedly!? Maybe. [DONE] (-F) [edited]
 //Requires dick that'll fit!
-function dudesGetStangRoad():void {
+public function dudesGetStangRoad():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	// clearOutput();
@@ -1137,7 +1137,7 @@ function dudesGetStangRoad():void {
 
 //Forcey Face Sitting [DONE][edited]
 //-Fen
-function forceyFaceSittingFromFemzil():void {
+public function forceyFaceSittingFromFemzil():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	// clearOutput();
@@ -1234,7 +1234,7 @@ function forceyFaceSittingFromFemzil():void {
 
 //Win Menu
 //-Fen
-function defeatHostileZil():void {
+public function defeatHostileZil():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	//{HP}
@@ -1289,7 +1289,7 @@ function defeatHostileZil():void {
 }
 
 //Force Her To Lick YOUR Honeypot (DONE -F) (edited)
-function forceFemzilToLickYourHoneypot():void {
+public function forceFemzilToLickYourHoneypot():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
@@ -1368,7 +1368,7 @@ function forceFemzilToLickYourHoneypot():void {
 //Dose and Masturbate Her With Her Own Sex Drugs (open to all) - done Z
 //requires having fought a hostile female zil once already
 //kind of evil
-function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
+public function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
@@ -1416,7 +1416,7 @@ function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 //kind of evil
 //var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 //if(x < 0 || pc.cockTotal() == 0) x = -1;
-function numbPussyFuck(dick:Boolean = true):void {
+public function numbPussyFuck(dick:Boolean = true):void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
@@ -1509,7 +1509,7 @@ function numbPussyFuck(dick:Boolean = true):void {
 //Smother Her In Dick [DONE](edited)
 //-Fen idea
 //Everyone wanted me to write this first, so here goes.
-function smotherDatBeeSlutInDickYo():void {
+public function smotherDatBeeSlutInDickYo():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");

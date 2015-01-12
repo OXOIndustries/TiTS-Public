@@ -2533,7 +2533,7 @@ public function encounterMimbrane():void
 //Combat Techniques
 //Fighting Notes: Mimbranes should have high evades but low HP. Mimbranes that are attached to the PC will go into their neglected states for the duration of the fight (See Unlockable Effects)
 //AI: Uses Lust Cloud every two rounds after previous cloud effect has worn off. If PC <60 lust, uses Spit. If PC ≥ 60, will use Smother frequently. HP attacks are less frequent when PC ≥75 lust
-function mimbraneAI():void
+public function mimbraneAI():void
 {
 	// Continue the smother stuff
 	if (pc.hasStatusEffect("Mimbrane Smother"))
@@ -2700,7 +2700,7 @@ public function mimbraneLustCloud():void
 
 //Smother
 //Constricts. Heavy lust damage every turn until free.
-function mimbraneSmother():void
+public function mimbraneSmother():void
 {
 	if (!pc.hasStatusEffect("Mimbrane Smother"))
 	{
@@ -2788,7 +2788,7 @@ public function mimbraneSpit():void
 
 //Scratch
 //Light HP attack
-function mimbraneScratch():void
+public function mimbraneScratch():void
 {
 	output("Sharp, miniature barbs form along the underside of the parasite, as it glides towards you.\n\n");
 	attack(foes[0], pc, false, 0);
@@ -2797,7 +2797,7 @@ function mimbraneScratch():void
 
 //Trip
 //Moderate HP attack
-function mimbraneTrip():void
+public function mimbraneTrip():void
 {
 	output("The Mimbrane divebombs you again. Just as it closes in on you, the parasite contorts it body into a half circle, aiming for your [pc.leg].");
 

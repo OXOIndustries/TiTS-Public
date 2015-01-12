@@ -310,7 +310,7 @@ public function cumInTurkeyslutsCunt():void
 //TiTSgiving, Year 1 (Part 2)
 
 //If the PC hasn't done TiTSgiving 1 (Canadian Thanksgiving) already, play that first. Then let the PC encounter this event after ~a day if they at least milked her. The event is repeatable, and lasts after the holidays. Randomly procs in the squares around the entrance to the Milkbarn, same as last time. (ie, PC has to unlock Canada during the holidays, but after that, she'll show up whenever.)
-function canadaTheTurkeyRepeats():void
+public function canadaTheTurkeyRepeats():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -362,7 +362,7 @@ function canadaTheTurkeyRepeats():void
 }
 
 //[Not Now]
-function notNowGobblesIDontWantToGoForRound2():void
+public function notNowGobblesIDontWantToGoForRound2():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -374,7 +374,7 @@ function notNowGobblesIDontWantToGoForRound2():void
 }
 
 //[Milk Her]
-function milkGobblesRepeat():void
+public function milkGobblesRepeat():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -429,7 +429,7 @@ function milkGobblesRepeat():void
 }
 
 //Fuck Her
-function fuckAmeriturkeyGobbleButt():void
+public function fuckAmeriturkeyGobbleButt():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -486,7 +486,7 @@ function fuckAmeriturkeyGobbleButt():void
 }
 
 //No // {No Cock Version}
-function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
+public function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -518,7 +518,7 @@ function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
 
 //[Finish]
 //That’s enough for now. Tell Canada to go trade in that bucket of syrup. You’ll see her later.
-function goTradeYerBucketOSyrupFuckYallImOut():void
+public function goTradeYerBucketOSyrupFuckYallImOut():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -533,7 +533,7 @@ function goTradeYerBucketOSyrupFuckYallImOut():void
 
 //[Cuddle]
 //Stay with Canada for a little while longer. There’s nothing like spending the afterglow wrapped in your lover’s arms, is there? 
-function cuddleWithCanadaWenchesWooWooWooWooWoo():void
+public function cuddleWithCanadaWenchesWooWooWooWooWoo():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -590,7 +590,7 @@ function cuddleWithCanadaWenchesWooWooWooWooWoo():void
 
 //Just Snuggle
 //No sex this time. 
-function justSnuggleWithGobblesUSloot():void
+public function justSnuggleWithGobblesUSloot():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -604,7 +604,7 @@ function justSnuggleWithGobblesUSloot():void
 
 //Butt Baste
 //Slide your cock into the warm, welcoming embrace of her plug-stretched ass. 
-function buttBasteDatTurkey():void
+public function buttBasteDatTurkey():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -634,7 +634,7 @@ function buttBasteDatTurkey():void
 
 //Pussy Gobble
 //Ask Canada to show her gratitude by taking you on a pussy-eating ride. 
-function pussyGobble():void
+public function pussyGobble():void
 {
 	clearOutput();
 	gobblesHeader();
@@ -659,14 +659,14 @@ function pussyGobble():void
 	finishGobblesStuff();
 }
 
-function abandonGobblesIMeanFinishGobbles():void
+public function abandonGobblesIMeanFinishGobbles():void
 {
 	clearOutput();
 	finishGobblesStuff();
 }
 
 //Finish connects here]
-function finishGobblesStuff():void
+public function finishGobblesStuff():void
 {
 	output("You struggle to your [pc.feet] and gather up your gear, stopping just long enough to ruffle Canada’s hair and give her a long, wet kiss on the lips");
 	if(pc.hasStatusEffect("CreamedOnGobbleFace")) output(", tasting yourself still hot on her pillowy angel bows");
@@ -681,7 +681,7 @@ function finishGobblesStuff():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function gobblesRepeatSexEndCleanup():void
+public function gobblesRepeatSexEndCleanup():void
 {
 	//Track if sexed with newGobbles
 	if(flags["REPEAT_GOBBLES_MILKED"] == undefined) flags["REPEAT_GOBBLES_MILKED"] = 1;

@@ -11,7 +11,7 @@ Ram-like horns. Something like the ones in here (warning gayfursmut): http://www
 Used to be into Theater before he grew up and got a job. Still holding out hope that he can get a job offworld as a holo actor.*/
 
 //Yancy & His Slutmilker
-function yancyBonusSloots():Boolean
+public function yancyBonusSloots():Boolean
 {
 	showBust("YANCY");
 	//Unmet
@@ -34,7 +34,7 @@ function yancyBonusSloots():Boolean
 }
 
 //Approach Variations
-function approachYancyYouFaggot():void
+public function approachYancyYouFaggot():void
 {
 	clearOutput();
 	showName("\nYANCY");
@@ -106,7 +106,7 @@ function approachYancyYouFaggot():void
 }
 
 //Get Milked
-function getMilkedByYancyYaSloot():void
+public function getMilkedByYancyYaSloot():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -285,7 +285,7 @@ function getMilkedByYancyYaSloot():void
 }
 
 //Treated Blowjoerbs + milkin’
-function treatedBlowjoerbsAndMilking():void
+public function treatedBlowjoerbsAndMilking():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -310,7 +310,7 @@ function treatedBlowjoerbsAndMilking():void
 	clearMenu();
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartII);
 }
-function treatedPCsSuckYancysDickForMilkPartII():void
+public function treatedPCsSuckYancysDickForMilkPartII():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -340,7 +340,7 @@ function treatedPCsSuckYancysDickForMilkPartII():void
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartIII);
 }
 
-function treatedPCsSuckYancysDickForMilkPartIII():void
+public function treatedPCsSuckYancysDickForMilkPartIII():void
 {
 	clearOutput();
 	showName("\nYANCY");
@@ -407,7 +407,7 @@ function treatedPCsSuckYancysDickForMilkPartIII():void
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartIV);
 }
 
-function treatedPCsSuckYancysDickForMilkPartIV():void
+public function treatedPCsSuckYancysDickForMilkPartIV():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -427,7 +427,7 @@ function treatedPCsSuckYancysDickForMilkPartIV():void
 }
 
 //Treated PCs Get Fucked & Milked
-function treatedPCsGetCuntFilledAndMilkedPtI():void
+public function treatedPCsGetCuntFilledAndMilkedPtI():void
 {
 	clearOutput();
 	var x:int = pc.cuntThatFits(400);
@@ -481,7 +481,7 @@ function treatedPCsGetCuntFilledAndMilkedPtI():void
 	addButton(0,"Next",treatedPCsGetCuntFilledAndMilkedPtII);
 }
 
-function treatedPCsGetCuntFilledAndMilkedPtII():void
+public function treatedPCsGetCuntFilledAndMilkedPtII():void
 {
 	clearOutput();
 	showName("\nYANCY");
@@ -536,7 +536,7 @@ function treatedPCsGetCuntFilledAndMilkedPtII():void
 	addButton(0,"Next",treatedPCsGetCuntFilledAndMilkedPtIII);
 }
 
-function treatedPCsGetCuntFilledAndMilkedPtIII():void
+public function treatedPCsGetCuntFilledAndMilkedPtIII():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -566,7 +566,7 @@ function treatedPCsGetCuntFilledAndMilkedPtIII():void
 }
 
 //Untreated Milked & Fucked
-function untreatedMilkedAndFucked():void
+public function untreatedMilkedAndFucked():void
 {
 	clearOutput();
 	author("JimThermic");
@@ -706,7 +706,7 @@ function untreatedMilkedAndFucked():void
 	addButton(0,"Next",untreatedMilkedAndFuckedII);
 }
 
-function untreatedMilkedAndFuckedII():void
+public function untreatedMilkedAndFuckedII():void
 {
 	clearOutput();
 	author("JimThermic");
@@ -741,7 +741,7 @@ function untreatedMilkedAndFuckedII():void
 
 //Untreated Milked + SuckHimOff
 // By JimT
-function untreatedGirlsSuckYancyOffAndShit():void
+public function untreatedGirlsSuckYancyOffAndShit():void
 {
 	clearOutput();
 	author("JimThermic");
@@ -792,7 +792,7 @@ function untreatedGirlsSuckYancyOffAndShit():void
 
 //Untreated Titjob
 // By JimT
-function untreatedTittyFucksForYancy():void
+public function untreatedTittyFucksForYancy():void
 {
 	clearOutput();
 	showName("\nYANCY");
@@ -829,7 +829,7 @@ function untreatedTittyFucksForYancy():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function tittyFuckingYancyUntreatedEpilogue():void
+public function tittyFuckingYancyUntreatedEpilogue():void
 {
 	clearOutput();
 	showBust("YANCY");
@@ -852,7 +852,7 @@ function tittyFuckingYancyUntreatedEpilogue():void
 //Yancy Buttfucking (Treated or Untreated)
 //Tooltip (1st Time): You can’t deny that you’d like to see {the bull’s cock // that big, nubby cock of his} bouncing while you fucked Yancy’s ass to the beat of the milkers. Ask him if he feels the same way... you never know!
 //Tooltip (Repeat): Fuck Yancy’s ass to the beat of the milkers draining your tits. 
-function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
+public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 {
 	clearOutput();
 	var x:int = pc.cockThatFits(700);
@@ -960,7 +960,7 @@ function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function milkResultDisplay():void
+public function milkResultDisplay():void
 {
 	output("\n\nA holodisplay on the wall proudly broadcasts this session's productivity: <b> ");
 	var milkAmount:Number = pc.lactationQ(99);

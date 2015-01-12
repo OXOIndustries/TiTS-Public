@@ -1,4 +1,4 @@
-﻿function reahaBonusFunction():void
+﻿public function reahaBonusFunction():void
 {
 	if(flags["REAHA_IS_CREW"] == undefined) {
 		author("Savin")
@@ -18,25 +18,25 @@
 	}
 }
 
-function reahaIsCrew():Boolean
+public function reahaIsCrew():Boolean
 {
 	if(flags["REAHA_IS_CREW"] == 1) return true;
 	return false;
 }
 
-function reahaAtBeths():Boolean
+public function reahaAtBeths():Boolean
 {
 	if (flags["REAHA_IS_CREW"] == 2) return true;
 	return false;
 }
 
-function reahaAtNewTexas():Boolean
+public function reahaAtNewTexas():Boolean
 {
 	if (flags["REAHA_IS_CREW"] == 3) return true;
 	return false;
 }
 
-function reahaFree():Boolean
+public function reahaFree():Boolean
 {
 	if (flags["REAHA_FREE"] == 1) return true;
 	return false;
@@ -44,7 +44,7 @@ function reahaFree():Boolean
 
 //1. FOLLOWER STUFF
 //Reaha (Approach Shipboard)
-function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(doOutput:Boolean = true):void {
+public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(doOutput:Boolean = true):void {
 	if (doOutput)
 	{
 		clearOutput();
@@ -95,7 +95,7 @@ function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(do
 }
 
 //Get Milk
-function getAGlassOfMilkFromReapersCowsona():void {
+public function getAGlassOfMilkFromReapersCowsona():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -136,7 +136,7 @@ function getAGlassOfMilkFromReapersCowsona():void {
 }
 
 //Rough Milking
-function roughMilkingFollowerReaha():void {
+public function roughMilkingFollowerReaha():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -177,7 +177,7 @@ function roughMilkingFollowerReaha():void {
 }
 
 //Stop
-function stopRoughMilkingReaha():void {
+public function stopRoughMilkingReaha():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -190,7 +190,7 @@ function stopRoughMilkingReaha():void {
 }
 
 //Suckle
-function suckleFollowerReahasTits():void {
+public function suckleFollowerReahasTits():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -226,7 +226,7 @@ function suckleFollowerReahasTits():void {
 }
 
 //Sex
-function sexWithFollowerReaha(doOutput:Boolean = true):void {
+public function sexWithFollowerReaha(doOutput:Boolean = true):void {
 	if (doOutput)
 	{
 		clearOutput();
@@ -257,7 +257,7 @@ function sexWithFollowerReaha(doOutput:Boolean = true):void {
 }
 
 //Titjob
-function titjobFromSlaveCow():void {
+public function titjobFromSlaveCow():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -302,7 +302,7 @@ function titjobFromSlaveCow():void {
 }
 
 //Ride Strapon
-function rideFollowerReahasStrapon():void {
+public function rideFollowerReahasStrapon():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -347,7 +347,7 @@ function rideFollowerReahasStrapon():void {
 }
 
 //Submissive
-function beSubmissiveToReaha():void {
+public function beSubmissiveToReaha():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -411,7 +411,7 @@ function beSubmissiveToReaha():void {
 }
 
 //Dominant
-function dominantReahaAss():void {
+public function dominantReahaAss():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -454,7 +454,7 @@ function dominantReahaAss():void {
 }
 
 //Tie Her Up & Fuck Her Butt
-function tieUpReahaAndFuckHerButt():void {
+public function tieUpReahaAndFuckHerButt():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -497,7 +497,7 @@ function tieUpReahaAndFuckHerButt():void {
 }
 
 //Appearance
-function reahaFollowerAppearance():void {
+public function reahaFollowerAppearance():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nREAHA");
@@ -513,7 +513,7 @@ function reahaFollowerAppearance():void {
 //2. PRE-FOLLOWER STUFF
 
 
-function talkToBrothelLady():void
+public function talkToBrothelLady():void
 {
 	clearOutput();
 	author("Savin");
@@ -543,7 +543,7 @@ function talkToBrothelLady():void
 	brothelMainMenu();
 }
 
-function brothelMainMenu():void {
+public function brothelMainMenu():void {
 	clearMenu();
 	addButton(0,"Cow-slut Sex",ReahaBrothelSexMenu);
 	addButton(1,"Contract",buyYourselfACowslut);
@@ -551,7 +551,7 @@ function brothelMainMenu():void {
 	addButton(14,"Leave",mainGameMenu);
 }
 
-function talkToBrothelLadyRepeat():void
+public function talkToBrothelLadyRepeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -562,7 +562,7 @@ function talkToBrothelLadyRepeat():void
 	brothelMainMenu();
 }
 
-function ReahaBrothelSexMenu():void
+public function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
@@ -592,7 +592,7 @@ function ReahaBrothelSexMenu():void
 
 
 
-function askAboutBusinessLikeASir():void
+public function askAboutBusinessLikeASir():void
 {
 	clearOutput();
 	author("Savin");
@@ -609,7 +609,7 @@ function askAboutBusinessLikeASir():void
 //EXPANSION TIME BITCHES.
 //Gettin' you a find slab of MARBLED BEEF
 //*sunglasses* YEEEEEEEEEAHHHHHHHHH
-function buyYourselfACowslut():void
+public function buyYourselfACowslut():void
 {
 	author("Savin");
 	clearOutput();
@@ -626,7 +626,7 @@ function buyYourselfACowslut():void
 }
 
 
-function noCowslutsForYou():void
+public function noCowslutsForYou():void
 {
 	author("Savin");
 	clearOutput();
@@ -639,7 +639,7 @@ function noCowslutsForYou():void
 }
 
 
-function buyCowslutsForYou():void
+public function buyCowslutsForYou():void
 {
 	author("Savin");
 	clearOutput();
@@ -667,7 +667,7 @@ function buyCowslutsForYou():void
 }
 
 
-function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():void
+public function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():void
 {
 	author("Savin");
 	clearOutput();
@@ -683,7 +683,7 @@ function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():void
 
 
 
-function oneTimeReahaBlammy():void
+public function oneTimeReahaBlammy():void
 {
 	author("Savin");
 	clearOutput();
@@ -698,7 +698,7 @@ function oneTimeReahaBlammy():void
 }
 
 
-function reahaISFREEEEEEE():void
+public function reahaISFREEEEEEE():void
 {
 	//BRINGS YOU BACK TO THE SHIP. TAKE NOTE, FUCKNOXO
 	author("Savin");
@@ -730,7 +730,7 @@ function reahaISFREEEEEEE():void
 }
 
 
-function reahaWantsToKnowWhatsUp():void
+public function reahaWantsToKnowWhatsUp():void
 {
 	currentLocation = "SHIP INTERIOR";
 	var map:* = mapper.generateMap(currentLocation);
@@ -755,7 +755,7 @@ function reahaWantsToKnowWhatsUp():void
 
 }
 	
-function fuckReahasPussyintheBrothel():void
+public function fuckReahasPussyintheBrothel():void
 //Fuck Reaha's Pussy in the Brothel
 {
 	clearOutput();
@@ -803,7 +803,7 @@ function fuckReahasPussyintheBrothel():void
 }
 
 
-function RideReahasStraponAtTheBrothel():void
+public function RideReahasStraponAtTheBrothel():void
 //Ride Reaha's strapon at the brothel!
 {
 	clearOutput();

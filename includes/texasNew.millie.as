@@ -1,7 +1,7 @@
 ﻿//Millie’s Milker
 
 //Room Appearance Texts
-function millieBonusShitYouFuckface():Boolean
+public function millieBonusShitYouFuckface():Boolean
 {
 	//Not yet introduced
 	if(flags["MET_MILLIE"] == undefined)
@@ -34,7 +34,7 @@ function millieBonusShitYouFuckface():Boolean
 	}
 	return false;
 }
-function approachMillie():void
+public function approachMillie():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -102,7 +102,7 @@ function approachMillie():void
 	millieMenu();
 }
 
-function millieMenu():void
+public function millieMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",millieAppearance);
@@ -133,7 +133,7 @@ function millieMenu():void
 
 
 //Leave First Time
-function leaveMillieFirstTime():void
+public function leaveMillieFirstTime():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -148,7 +148,7 @@ function leaveMillieFirstTime():void
 }
 
 //Appearance
-function millieAppearance():void
+public function millieAppearance():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -166,7 +166,7 @@ function millieAppearance():void
 }
 
 //Solo Milking
-function soloMilkingFromMillieAttempt():void
+public function soloMilkingFromMillieAttempt():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -178,7 +178,7 @@ function soloMilkingFromMillieAttempt():void
 }
 
 //Get Milked
-function getMilkedWithMillie():void
+public function getMilkedWithMillie():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -220,7 +220,7 @@ function getMilkedWithMillie():void
 	//[Milkers] [Feed Her]
 }
 //Milkers
-function useTheMilkersMillie():void
+public function useTheMilkersMillie():void
 {
 	clearOutput();
 	showBust("MILLIE");
@@ -279,7 +279,7 @@ function useTheMilkersMillie():void
 	addButton(0,"Next",millieMilkersPartDues);
 }
 
-function millieMilkersPartDues():void
+public function millieMilkersPartDues():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -395,7 +395,7 @@ function millieMilkersPartDues():void
 }
 
 //Next - post milking
-function millieMilkingFinale():void
+public function millieMilkingFinale():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -490,7 +490,7 @@ function millieMilkingFinale():void
 
 
 //Fuck Millie
-function fuckMillie():void
+public function fuckMillie():void
 {
 	clearOutput();
 	showName("\nMILLIE");
@@ -542,7 +542,7 @@ function fuckMillie():void
 }
 
 //No
-function cockTeaseMillie():void
+public function cockTeaseMillie():void
 {
 	clearOutput();
 	showBust("MILLIE");
@@ -562,7 +562,7 @@ function cockTeaseMillie():void
 
 
 //Yeaaaah
-function yeahMillieLetsFuck():void
+public function yeahMillieLetsFuck():void
 {
 	clearOutput();
 	var x:int = pc.cockThatFits(1000);
@@ -700,7 +700,7 @@ function yeahMillieLetsFuck():void
 	addButton(0,"Next",millieFuckFinale,cumQ);
 }
 
-function millieFuckFinale(cumQ:Number):void
+public function millieFuckFinale(cumQ:Number):void
 {
 	clearOutput();
 	var x:int = pc.cockThatFits(1000);
@@ -742,7 +742,7 @@ function millieFuckFinale(cumQ:Number):void
 }
 
 //Treatment-Light Milking
-function treatmentTryouts():void
+public function treatmentTryouts():void
 {
 	clearOutput();
 	showBust("MILLIE_NUDE");
@@ -817,7 +817,7 @@ function treatmentTryouts():void
 	addButton(0,"Next",millieMilkersPartDues);
 }
 
-function milliePersonallyDrainsYerTiTS():void
+public function milliePersonallyDrainsYerTiTS():void
 {
 	clearOutput();
 	showBust("MILLIE_NUDE");
@@ -957,7 +957,7 @@ function milliePersonallyDrainsYerTiTS():void
 	addButton(0,"Next",millieSucksTitsVol2);
 }
 
-function millieSucksTitsVol2():void
+public function millieSucksTitsVol2():void
 {
 	clearOutput();
 	showName("\nMILLIE");

@@ -23,7 +23,7 @@ Sells a hoverboard (reduces movement times) and other gadgets
 */
 
 //Widget Warehouse Description\
-function widgetWarehouseBonusFuntimes():Boolean
+public function widgetWarehouseBonusFuntimes():Boolean
 {
 	output("Reddish dust filters down from the improvised rafters of this small, warehouse-like structure. The door snaps shut behind you with the audible hiss you'd expect from a high-efficiency starship hatch in spite of its placement in a ramshackle hut. Ancient, rusted bins and buckets are stacked into wobbly pillars, each holding mechanical parts, circuits and devices in far better shape than themselves. The light from a dozen fixtures of various designs and luminances shines off the stored machine parts brightly enough to make you shield your eyes as you look around. Leaning against the far wall like an exhausted soldier is an improvised workbench. Why, its middle is built on the back of a torso from a hollowed-out construction droid.");
 	output("\n\nThere can be no doubt; you're in an engineer's workshop.");
@@ -51,7 +51,7 @@ function widgetWarehouseBonusFuntimes():Boolean
 	return false;
 }
 
-function approachShekka():void
+public function approachShekka():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -97,7 +97,7 @@ function approachShekka():void
 	shekkaMainMenu();
 }
 
-function shekkaMainMenu():void
+public function shekkaMainMenu():void
 {
 	shopkeep = chars["SHEKKA"];
 	chars["SHEKKA"].keeperBuy = "<i>\"I'd like to buy something,\"</i> you offer. <i>\"What have you got for sale?\"</i>\n\nShekka spreads her arms to encompass her entire shop. <i>\"Just about anything you see is for sale, but you probably don't have much interest in buying your gadgets by the part. I've got a few items that seem pretty popular among you rushers. One second.\"</i> She fiddles with a slim, sparking device atop her workbench to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>\"There we go!\"</i>\n";
@@ -125,7 +125,7 @@ function shekkaMainMenu():void
 	addButton(14,"Back",mainGameMenu);
 }
 
-function fixMyEmittersShekka():void
+public function fixMyEmittersShekka():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -144,7 +144,7 @@ function fixMyEmittersShekka():void
 	addButton(1,"No",turnDownEmitterFixingFromShekka,undefined,"No","Turn down getting your emitters fixed for right now.");
 }
 
-function shekkaActuallyFixesEmitters():void
+public function shekkaActuallyFixesEmitters():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -162,7 +162,7 @@ function shekkaActuallyFixesEmitters():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-function turnDownEmitterFixingFromShekka():void
+public function turnDownEmitterFixingFromShekka():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -177,7 +177,7 @@ function turnDownEmitterFixingFromShekka():void
 }
 
 //Appearance Screen
-function shekkaAppearance():void
+public function shekkaAppearance():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -194,7 +194,7 @@ function shekkaAppearance():void
 }
 
 //Talk
-function talkToShekka():void
+public function talkToShekka():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -248,7 +248,7 @@ function talkToShekka():void
 }
 
 //Tarkus
-function talkToShekkaAboutTarkus():void
+public function talkToShekkaAboutTarkus():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -298,7 +298,7 @@ function talkToShekkaAboutTarkus():void
 }
 
 //Raskvel
-function talkToShekkaAboutRaskvel():void
+public function talkToShekkaAboutRaskvel():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -397,7 +397,7 @@ function talkToShekkaAboutRaskvel():void
 
 //Her Plan
 //Unlocked via "Raskvel"
-function shekkasPlanDiscussion():void
+public function shekkasPlanDiscussion():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -467,7 +467,7 @@ function shekkasPlanDiscussion():void
 
 //Novahome
 //Unlocked via "Tarkus"
-function talkToShekkaAboutNovahome():void
+public function talkToShekkaAboutNovahome():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -515,7 +515,7 @@ function talkToShekkaAboutNovahome():void
 
 //The Wastes
 //Unlocked after talking about Tarkus
-function talkToShekkaAboutTheWastes():void
+public function talkToShekkaAboutTheWastes():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -555,7 +555,7 @@ function talkToShekkaAboutTheWastes():void
 
 //Her Shop
 //Unlocked after asking about the Nova{home}
-function talkToShekkaAboutHerShop():void
+public function talkToShekkaAboutHerShop():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -590,7 +590,7 @@ function talkToShekkaAboutHerShop():void
 
 //Her
 //Unlocked after asking about her shop.
-function talkToShekkaAboutHerself():void
+public function talkToShekkaAboutHerself():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -654,14 +654,14 @@ function talkToShekkaAboutHerself():void
 }
 
 //Yes -> Sex Menu
-function yesShekkaLetsFuck():void
+public function yesShekkaLetsFuck():void
 {
 	//Sex menu hooo!
 	shekkaSexMenu();
 	//Cut back button if some catch-all scenes get added (Here's looking at you, Savin)
 	addButton(14,"Back",approachShekka);
 }
-function noShekkaLetsNotFuck():void
+public function noShekkaLetsNotFuck():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -702,7 +702,7 @@ function noShekkaLetsNotFuck():void
 
 //The Mess
 //Always available.
-function talkToShekkaAboutTheMess():void
+public function talkToShekkaAboutTheMess():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -730,7 +730,7 @@ function talkToShekkaAboutTheMess():void
 }
 
 //Flirt -> Sex
-function shekkaFlirtSexMenu():void
+public function shekkaFlirtSexMenu():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
@@ -781,7 +781,7 @@ function shekkaFlirtSexMenu():void
 	addButton(14,"Back",approachShekka);
 }
 
-function shekkaSexMenu():void
+public function shekkaSexMenu():void
 {
 	clearMenu();
 	if(pc.hasCock())
@@ -814,7 +814,7 @@ function shekkaSexMenu():void
 
 
 //Bend Her Over Her Workbench And Make Her Work It
-function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
+public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -997,7 +997,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	addButton(0,"Next",mainGameMenu);
 }
 //Tribadism Around A Vibrating Tail
-function tailbadism():void
+public function tailbadism():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -1060,7 +1060,7 @@ function tailbadism():void
 }
 
 //Next
-function shekkaGrindsFinish():void
+public function shekkaGrindsFinish():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -1096,7 +1096,7 @@ function shekkaGrindsFinish():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function fuckedShekka():void
+public function fuckedShekka():void
 {
 	if(flags["TIMES_SEXED_SHEKKA"] == undefined) flags["TIMES_SEXED_SHEKKA"] = 0;
 	flags["TIMES_SEXED_SHEKKA"]++;
@@ -1105,7 +1105,7 @@ function fuckedShekka():void
 //Big Dick Ear Shenanigans
 //big dick requirement in tandem with a minimum height requirement of around 5’6\"</i> (5-6 feet)
 //Requires 500mLs fo cum
-function hugeEarShekkaFaps():void
+public function hugeEarShekkaFaps():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -1192,7 +1192,7 @@ function hugeEarShekkaFaps():void
 }
 
 //{next page}
-function pageTwoOfShekkaStuffs():void
+public function pageTwoOfShekkaStuffs():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -1235,7 +1235,7 @@ function pageTwoOfShekkaStuffs():void
 	addButton(0,"Next",pageThreeOfShekkaStuffs);
 }
 
-function pageThreeOfShekkaStuffs():void
+public function pageThreeOfShekkaStuffs():void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA_NUDE");
@@ -1283,7 +1283,7 @@ function pageThreeOfShekkaStuffs():void
 
 
 //MilkQ over 1000
-function shekkaMilkDranking():void
+public function shekkaMilkDranking():void
 {
 	clearOutput();
 	//By Tanini
@@ -1305,7 +1305,7 @@ function shekkaMilkDranking():void
 }
 
 
-function shekkaMilkDrankingPartII():void
+public function shekkaMilkDrankingPartII():void
 {
 	clearOutput();
 	//By Tanini
@@ -1419,7 +1419,7 @@ function shekkaMilkDrankingPartII():void
 //Shekka's fuckfest: you think this is a game!?
 //opening
 //choose [robots] from sex menu
-function chooseShekkasSexBats():void
+public function chooseShekkasSexBats():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1456,7 +1456,7 @@ function chooseShekkasSexBats():void
 
 }
 //Nah
-function nahNoSexbotsForMeShekka():void
+public function nahNoSexbotsForMeShekka():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1468,7 +1468,7 @@ function nahNoSexbotsForMeShekka():void
 }
 
 //You bet
-function youBetIllSexbotWithYouShekka():void
+public function youBetIllSexbotWithYouShekka():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1501,7 +1501,7 @@ function youBetIllSexbotWithYouShekka():void
 		sticky: causes 5 lust points, shekka chooses vibrate
 		Forfiet: automatic loss whenever pressed.*/
 
-function sexBotMenu1(arg:int = 0):void
+public function sexBotMenu1(arg:int = 0):void
 {
 	clearMenu();
 	if(arg == 0) addDisabledButton(0,"Vibrate");
@@ -1538,7 +1538,7 @@ function sexBotMenu1(arg:int = 0):void
 	}
 }
 
-function sexbotRound(arg:int = 0):Number
+public function sexbotRound(arg:int = 0):Number
 {
 	if(!pc.hasStatusEffect("Shekka_Sexbot_Round")) pc.createStatusEffect("Shekka_Sexbot_Round",0,0,0,0,true,"","",false,0);
 	else if(arg != 0) pc.addStatusValue("Shekka_Sexbot_Round",1,arg);
@@ -1546,7 +1546,7 @@ function sexbotRound(arg:int = 0):Number
 }
 
 //Press go
-function pressGoForFirstGenShekkaSaxbots():void
+public function pressGoForFirstGenShekkaSaxbots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1564,7 +1564,7 @@ function pressGoForFirstGenShekkaSaxbots():void
 }
 
 //Vibrate: 
-function vibrateFirstGenSaxbots():void
+public function vibrateFirstGenSaxbots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1584,7 +1584,7 @@ function vibrateFirstGenSaxbots():void
 }
 
 	//smooth:
-function smoothSexbotFirstGen():void
+public function smoothSexbotFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1604,7 +1604,7 @@ function smoothSexbotFirstGen():void
 }
 
 //warm: 
-function warmSexbotFirstGen():void
+public function warmSexbotFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1621,7 +1621,7 @@ function warmSexbotFirstGen():void
 }
 
 //tickle
-function sexbotTickleFirstGen():void
+public function sexbotTickleFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1641,7 +1641,7 @@ function sexbotTickleFirstGen():void
 }
 
 //chill: 
-function chillOutShekkaFirstGen():void
+public function chillOutShekkaFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1660,7 +1660,7 @@ function chillOutShekkaFirstGen():void
 	sexBotMenu1(4);
 }
 //wet: 
-function wetShekkaFirstGen():void
+public function wetShekkaFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1680,7 +1680,7 @@ function wetShekkaFirstGen():void
 }
 
 //stimulate: 
-function stimulateShekkaWithFirstGenSaxbot():void
+public function stimulateShekkaWithFirstGenSaxbot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1700,7 +1700,7 @@ function stimulateShekkaWithFirstGenSaxbot():void
 }
 
 //drill: 
-function drillShekkaWithFirstGenSaxbot():void
+public function drillShekkaWithFirstGenSaxbot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1720,7 +1720,7 @@ function drillShekkaWithFirstGenSaxbot():void
 }
 
 //hard: 
-function hardSexbotOnShekkaFirstGen():void
+public function hardSexbotOnShekkaFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1737,7 +1737,7 @@ function hardSexbotOnShekkaFirstGen():void
 }
 
 //sticky: 
-function stickyUpShekkaFirstGen():void
+public function stickyUpShekkaFirstGen():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1760,7 +1760,7 @@ function stickyUpShekkaFirstGen():void
 }
 
 //Pc wins
-function pcBeatsShekkaAtSexbots():void
+public function pcBeatsShekkaAtSexbots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1783,7 +1783,7 @@ function pcBeatsShekkaAtSexbots():void
 }
 
 //Pc loses
-function pcLosesToShekkasSaxbots():void
+public function pcLosesToShekkasSaxbots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1807,7 +1807,7 @@ function pcLosesToShekkasSaxbots():void
 //Fuckfest II: The fuckening
 //Opening
 //Choose [round 2] from sex menu.
-function shekkaSexbotsMarkTwo():void
+public function shekkaSexbotsMarkTwo():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1851,7 +1851,7 @@ function shekkaSexbotsMarkTwo():void
 	Naleen: 10 points, shekka chooses horse 
 	Lizard: 10 points, shekka chooses human
 	goo: 15 lust points, shekka chooses ausar*/
-function sexBotMenu2(arg:int = 0):void
+public function sexBotMenu2(arg:int = 0):void
 {
 	clearMenu();
 	if(arg == 0) addDisabledButton(0,"Ausar");
@@ -1890,7 +1890,7 @@ function sexBotMenu2(arg:int = 0):void
 
 
 //Press go
-function pressGoForUpgradedSexbots():void
+public function pressGoForUpgradedSexbots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1908,7 +1908,7 @@ function pressGoForUpgradedSexbots():void
 }
 
 //Ausar: 
-function giveDemAusarCocksAWhorlOnShekkasSexBawts():void
+public function giveDemAusarCocksAWhorlOnShekkasSexBawts():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1929,7 +1929,7 @@ function giveDemAusarCocksAWhorlOnShekkasSexBawts():void
 
 
 //Tentacle: 
-function tentacleShekkaSaxbotMkII():void
+public function tentacleShekkaSaxbotMkII():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1949,7 +1949,7 @@ function tentacleShekkaSaxbotMkII():void
 }
 
 //Kaithrit:
-function kaithritShekkaSaxbot():void
+public function kaithritShekkaSaxbot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1969,7 +1969,7 @@ function kaithritShekkaSaxbot():void
 }
 
 //Human: 
-function humanShekkaSaxbot():void
+public function humanShekkaSaxbot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -1986,7 +1986,7 @@ function humanShekkaSaxbot():void
 }
 
 //Horse: 
-function horseShekkaSaxbot():void
+public function horseShekkaSaxbot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2006,7 +2006,7 @@ function horseShekkaSaxbot():void
 }
 
 //Anemone: 
-function shekkaAnemoneBot():void
+public function shekkaAnemoneBot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2026,7 +2026,7 @@ function shekkaAnemoneBot():void
 }
 
 //Mendova: 
-function mendovaShekkaBot():void
+public function mendovaShekkaBot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2049,7 +2049,7 @@ function mendovaShekkaBot():void
 }
 
 //Naleen: 
-function naleenSexBotLetsGo():void
+public function naleenSexBotLetsGo():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2069,7 +2069,7 @@ function naleenSexBotLetsGo():void
 }
 
 //Lizard: 
-function lizardShekkaBot():void
+public function lizardShekkaBot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2089,7 +2089,7 @@ function lizardShekkaBot():void
 }
 
 //goo: 
-function gooShekkaBot():void
+public function gooShekkaBot():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2109,7 +2109,7 @@ function gooShekkaBot():void
 }
 
 //Pc wins
-function pcWinsVsNewShekkaBots():void
+public function pcWinsVsNewShekkaBots():void
 {
 	clearOutput();
 	author("Gardeford");
@@ -2134,7 +2134,7 @@ function pcWinsVsNewShekkaBots():void
 }
 
 //Pc loses
-function pcLosesToNewShekkaBots():void
+public function pcLosesToNewShekkaBots():void
 {
 	clearOutput();
 	author("Gardeford");

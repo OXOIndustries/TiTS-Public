@@ -172,7 +172,6 @@
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
 		include "../includes/myrellion.tavern.as";
-
 		
 		public var chars:Object;
 		public var foes:Array;

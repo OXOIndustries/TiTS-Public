@@ -1,5 +1,5 @@
 ﻿//The Embassy
-function theEmbassyBonusFunc():Boolean
+public function theEmbassyBonusFunc():Boolean
 {
 	//JURO
 	//=======================
@@ -50,7 +50,7 @@ function theEmbassyBonusFunc():Boolean
 	}
 	return false;
 }
-function lyrallaAndJuroInCloset():Boolean
+public function lyrallaAndJuroInCloset():Boolean
 {
 	//Event enabled!
 	if(flags["LYRALLA_AND_JURO_RELATIONSHIP_HINTED_AT"] != undefined)
@@ -69,14 +69,14 @@ function lyrallaAndJuroInCloset():Boolean
 	return false;
 }
 
-function juroDisplay():void
+public function juroDisplay():void
 {
 	author("Savin");
 	showBust("JURO");
 	showName("AMBASSADOR\nJURO");
 }
 
-function approachUGCRepOnMyrel():void
+public function approachUGCRepOnMyrel():void
 {
 	clearOutput();
 	juroDisplay();
@@ -94,7 +94,7 @@ function approachUGCRepOnMyrel():void
 }
 
 //Repeat Talk, Ambassador Juro
-function talkToAmbassadorJuro():void
+public function talkToAmbassadorJuro():void
 {
 	clearOutput();
 	juroDisplay();
@@ -102,7 +102,7 @@ function talkToAmbassadorJuro():void
 	jurosTalkMenu(talkToAmbassadorJuro);
 }
 
-function jurosTalkMenu(currentFunc):void
+public function jurosTalkMenu(currentFunc):void
 {
 	clearMenu();
 	//The Myr
@@ -123,7 +123,7 @@ function jurosTalkMenu(currentFunc):void
 
 //The Myr
 //Ask Juro about the natives of the planet
-function talkToJuroAbootTheNatives():void
+public function talkToJuroAbootTheNatives():void
 {
 	clearOutput();
 	juroDisplay();
@@ -143,7 +143,7 @@ function talkToJuroAbootTheNatives():void
 
 //The Fleet
 //Ask Juro about the armed fleet waiting in orbit
-function talkToJuroAboutZeFleet():void
+public function talkToJuroAboutZeFleet():void
 {
 	clearOutput();
 	juroDisplay();
@@ -155,7 +155,7 @@ function talkToJuroAboutZeFleet():void
 
 //Ambassadors
 //Ask Juro about his fellow ambassadors
-function talkToJuroAboutHisAmbassadors():void
+public function talkToJuroAboutHisAmbassadors():void
 {
 	clearOutput();
 	juroDisplay();
@@ -173,7 +173,7 @@ function talkToJuroAboutHisAmbassadors():void
 
 //Kui-Tan
 //You have to admit, it seems strange that a relatively new race would be given a position as important as U.G.C. Ambassador. 
-function talkWithJuroAbootHisRace():void
+public function talkWithJuroAbootHisRace():void
 {
 	clearOutput();
 	juroDisplay();
@@ -190,7 +190,7 @@ function talkWithJuroAbootHisRace():void
 
 //[Myr Women]
 //So what you mean is... the kui-tan are here to steal myrellion’s women?
-function myrWomenTalkWithKuitanJuro():void
+public function myrWomenTalkWithKuitanJuro():void
 {
 	clearOutput();
 	juroDisplay();

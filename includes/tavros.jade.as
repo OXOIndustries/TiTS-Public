@@ -19,7 +19,7 @@ Pussy is very elastic AND wet, giving her a good capacity.
 //The sign declared this store to be "Fur Effect," and you can see why. Your [pc.feet] sink ankle-deep into thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.
 
 //Jade Addition
-function furEffectBonusFunction():Boolean {
+public function furEffectBonusFunction():Boolean {
 	if(flags["JADE_NIPPLE_TF_QUEUED"] == 1)
 	{
 		jadeUsesNippleMod();
@@ -43,7 +43,7 @@ function furEffectBonusFunction():Boolean {
 //NORMAL JADE
 
 //Jade Approach
-function approachJade():void {
+public function approachJade():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -91,7 +91,7 @@ function approachJade():void {
 }
 
 //Appearance
-function jadeAppearance():void 
+public function jadeAppearance():void 
 {
 	clearOutput();
 	userInterface.showBust("JADE");
@@ -121,7 +121,7 @@ function jadeAppearance():void
 
 
 //Talk
-function talkToJade(display:Boolean = true):void {
+public function talkToJade(display:Boolean = true):void {
 	if(display)
 	{
 		clearOutput();
@@ -143,7 +143,7 @@ function talkToJade(display:Boolean = true):void {
 }
 
 //Her Race
-function talkToJadeAboutHerRace():void {
+public function talkToJadeAboutHerRace():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -171,7 +171,7 @@ function talkToJadeAboutHerRace():void {
 }
 //Talk menu with no text.
 //Why Furry?
-function talkWithJadeAboutHerFurFetish():void {
+public function talkWithJadeAboutHerFurFetish():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -195,7 +195,7 @@ function talkWithJadeAboutHerFurFetish():void {
 }
 	
 //Her Shop
-function askJadeAboutHerShop():void {
+public function askJadeAboutHerShop():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -207,7 +207,7 @@ function askJadeAboutHerShop():void {
 	removeButton(2);
 }
 //Her... Breasts
-function askJadeAboutHerBigOlTatas():void {
+public function askJadeAboutHerBigOlTatas():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -232,7 +232,7 @@ function askJadeAboutHerBigOlTatas():void {
 
 //Sex
 //Unlocked by having the breasts discussion
-function jadeSexMenu(display:Boolean = true):void {
+public function jadeSexMenu(display:Boolean = true):void {
 	if(display)
 	{
 		clearOutput();
@@ -302,7 +302,7 @@ function jadeSexMenu(display:Boolean = true):void {
 
 //Gropegasm
 //Omnigendered scene. PC stays closed and gropes the panda-girl to earthshaking orgasm after orgasm, leaving her with a puddle of pussy-juice and a serious tit-obsession
-function jadeGetsAGropeGasm():void {
+public function jadeGetsAGropeGasm():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -377,14 +377,14 @@ function jadeGetsAGropeGasm():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function sexedJade():void {
+public function sexedJade():void {
 	if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined) flags["GOTTEN_INTIMATE_WITH_JADE"] = 0;
 	flags["GOTTEN_INTIMATE_WITH_JADE"]++;
 }
 
 //Pandalicious Titfuck
 //Requires a penis
-function titfuckJade():void {
+public function titfuckJade():void {
 	if(flags["TITFUCKED_JADE"] == undefined) flags["TITFUCKED_JADE"] = 1;
 	else flags["TITFUCKED_JADE"]++;
 	clearOutput();
@@ -524,7 +524,7 @@ function titfuckJade():void {
 }
 
 //Furious Face-Sitting
-function sitOnjadesFace():void {
+public function sitOnjadesFace():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
@@ -590,7 +590,7 @@ function sitOnjadesFace():void {
 
 //Talk: Nipples
 //Must have received the insight.
-function talkToJadeAboutHerNipples():void {
+public function talkToJadeAboutHerNipples():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -686,7 +686,7 @@ function talkToJadeAboutHerNipples():void {
 }
 
 //[=No=]
-function turnDownJadeNips():void {
+public function turnDownJadeNips():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -704,7 +704,7 @@ function turnDownJadeNips():void {
 }
 
 //[=GiveCredits=]
-function giveCredits():void {
+public function giveCredits():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -732,7 +732,7 @@ function giveCredits():void {
 
 //Jade uses mod
 //Starts as soon as Jade has her mods and PC enters her shop.
-function jadeUsesNippleMod():void {
+public function jadeUsesNippleMod():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -798,7 +798,7 @@ function jadeUsesNippleMod():void {
 }
 
 //Help Her
-function helpJadeWithHerNewNipples():void {
+public function helpJadeWithHerNewNipples():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -813,7 +813,7 @@ function helpJadeWithHerNewNipples():void {
 	addButton(0,"Next",jadesNippleTFEpilogue,true);
 }
 //Watch
-function watchJadesNewNipplesMolestHer():void {
+public function watchJadesNewNipplesMolestHer():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -828,7 +828,7 @@ function watchJadesNewNipplesMolestHer():void {
 }
 //Epilogue
 //Both options rejoin here.
-function jadesNippleTFEpilogue(helped:Boolean = false):void {
+public function jadesNippleTFEpilogue(helped:Boolean = false):void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -865,7 +865,7 @@ function jadesNippleTFEpilogue(helped:Boolean = false):void {
 
 //SuckNipples
 //No requirement.
-function suckJadesTentacleNipplesYouWeirdo():void {
+public function suckJadesTentacleNipplesYouWeirdo():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -920,7 +920,7 @@ function suckJadesTentacleNipplesYouWeirdo():void {
 }
 //BoobToBoob
 //PC needs to be at least C-cup, or however much you feel is fair Fen.
-function boobToBoobSexathon():void {
+public function boobToBoobSexathon():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
@@ -1086,7 +1086,7 @@ function boobToBoobSexathon():void {
 	addButton(0,"Next",epilogueOfNippleOnNippleJadeSex);
 }
 
-function epilogueOfNippleOnNippleJadeSex():void {
+public function epilogueOfNippleOnNippleJadeSex():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");

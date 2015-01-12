@@ -9,7 +9,7 @@
 // BURT_ZIL_TALK                : Number of times PC has asked burt about the zil. Currently undefined -through- 3
 // TIMES_THREE_D_SURPRISE_SEXED : TODO - FIXME
 
-function burtsBarFunc():void {
+public function burtsBarFunc():void {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
 	if(hours >= 12) {
 		//{Hasn't bet against Syri yet}
@@ -47,7 +47,7 @@ function burtsBarFunc():void {
 	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
 }
 
-function burtapproach():void {
+public function burtapproach():void {
 	if(flags["MET_BURT"] == undefined) {
 		approachBurtFirstTime();
 		flags["MET_BURT"] = 1;
@@ -56,7 +56,7 @@ function burtapproach():void {
 }
 
 //First Visit
-function approachBurtFirstTime():void {
+public function approachBurtFirstTime():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -69,7 +69,7 @@ function approachBurtFirstTime():void {
 }
 
 //Repeat
-function repeatBurtApproach():void {
+public function repeatBurtApproach():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -82,7 +82,7 @@ function repeatBurtApproach():void {
 	burtBarMenu();
 }
 
-function burtBarMenu():void {
+public function burtBarMenu():void {
 	//[Drink]		[Talk]		[Sex]*		[Shop]**	[Leave]
 	//* Only appears as an option if the PC has a Lust higher than 20.
 	//** Appears as [Collectables?] until the PC first visits the shop menu.
@@ -97,7 +97,7 @@ function burtBarMenu():void {
 }
 
 //Drink
-function burtDrinkMenu():void {
+public function burtDrinkMenu():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -118,7 +118,7 @@ function burtDrinkMenu():void {
 }
 
 //Talk
-function talkToDisBurtGuey():void {
+public function talkToDisBurtGuey():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -135,7 +135,7 @@ function talkToDisBurtGuey():void {
 }
 
 //Sex
-function burtSex():void {
+public function burtSex():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
@@ -166,7 +166,7 @@ function burtSex():void {
 
 
 //[Next]
-function burtFirstTimeSexPartI():void {
+public function burtFirstTimeSexPartI():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -189,7 +189,7 @@ function burtFirstTimeSexPartI():void {
 }
 
 //Yes
-function yesIWantYerCrazyHoarseWeinerBurt():void {
+public function yesIWantYerCrazyHoarseWeinerBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -202,7 +202,7 @@ function yesIWantYerCrazyHoarseWeinerBurt():void {
 	burtSexMenu();
 }
 
-function burtSexMenu():void {
+public function burtSexMenu():void {
 	this.clearMenu();
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
@@ -227,7 +227,7 @@ function burtSexMenu():void {
 
 
 //No, Sorry
-function noRoboHorseWeinersHere():void {
+public function noRoboHorseWeinersHere():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -241,7 +241,7 @@ function noRoboHorseWeinersHere():void {
 }
 
 //Shop
-function BurtShopCollectables():void {
+public function BurtShopCollectables():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -275,13 +275,13 @@ function BurtShopCollectables():void {
 	this.addButton(14,"Back",burtapproach);
 }
 
-function burtPurchase(arg:int = 0) {
+public function burtPurchase(arg:int = 0) {
 	if(pc.inventory[arg].shortName != "ZilRation" && pc.inventory[arg].shortName != "ZilHoney") burtRefusesYourItemYouHobo(arg);
 	else burtMakesAPurchase(arg);
 }
 
 //Purchase
-function burtMakesAPurchase(arg:int = 0):void {
+public function burtMakesAPurchase(arg:int = 0):void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -301,7 +301,7 @@ function burtMakesAPurchase(arg:int = 0):void {
 }
 
 //Refuse
-function burtRefusesYourItemYouHobo(arg:int = 0):void {
+public function burtRefusesYourItemYouHobo(arg:int = 0):void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -313,7 +313,7 @@ function burtRefusesYourItemYouHobo(arg:int = 0):void {
 }
 
 //Leave
-function leaveBurt():void {
+public function leaveBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -331,7 +331,7 @@ function leaveBurt():void {
 //This machine rendered brew comes in a black can with a pair of white crossed crab claws over a blue prize ribbon on the label. It’s hard to find something cheaper than Crabbst Blue Ribbon Mead, this stuff will fuck you up.
 
 //Scene
-function crabbstBlueRibbonPurchase():void {
+public function crabbstBlueRibbonPurchase():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -373,7 +373,7 @@ function crabbstBlueRibbonPurchase():void {
 //Mead
 //Tooltip
 //This pale yellow alcohol is made by fermenting watered down honey. It’s good, but not great. 
-function buyMeadFromBurt():void {
+public function buyMeadFromBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -416,7 +416,7 @@ function buyMeadFromBurt():void {
 //X-Zil-rate
 //Tooltip
 //This gold bottle is quite possibly the best mead in the known universe, made from the lactated honey and extruded venom of the Zil, and carefully brewed by Burt himself. It has been known to have adverse affects on Galotians.
-function burtXilErAte():void {
+public function burtXilErAte():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -448,7 +448,7 @@ function burtXilErAte():void {
 }
 
 //Him
-function askBurtAboutHimself():void {
+public function askBurtAboutHimself():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -505,7 +505,7 @@ function askBurtAboutHimself():void {
 //Mead Hall
 //Note
 //This is a place where authors of other characters in the Badass Mead Hall can have gossip about them listed.
-function talkToBurtAboutMeadHall():void {
+public function talkToBurtAboutMeadHall():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -538,7 +538,7 @@ function talkToBurtAboutMeadHall():void {
 //Zil
 //Note
 //This is a place where game info regarding the Zil can be offered up in the future.
-function talkToBurtAboutDeseZilGueys():void {
+public function talkToBurtAboutDeseZilGueys():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -573,7 +573,7 @@ function talkToBurtAboutDeseZilGueys():void {
 //Work
 //Note
 //This is a place where authors of future sections can list hints about quests and easter eggs in the game, in the form of bar gossip.
-function talkToBurtAboutWork():void {
+public function talkToBurtAboutWork():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -588,7 +588,7 @@ function talkToBurtAboutWork():void {
 
 //Sex-----------------------------------------------------------------------------------------------------------------------
 //Give a BJ
-function giveBurtABJ():void {
+public function giveBurtABJ():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -603,7 +603,7 @@ function giveBurtABJ():void {
 	this.addButton(0,"Next",giveBurtABJPartII);
 }
 
-function giveBurtABJPartII():void {
+public function giveBurtABJPartII():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -623,7 +623,7 @@ function giveBurtABJPartII():void {
 }
 
 //Get a Oral
-function getOralFromBurt():void {
+public function getOralFromBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -805,7 +805,7 @@ function getOralFromBurt():void {
 }
 
 //Anal
-function burtsWeinerInYourButt():void {
+public function burtsWeinerInYourButt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -881,7 +881,7 @@ function burtsWeinerInYourButt():void {
 }
 
 //Vaginal
-function burtSticksItInThePCsVajayjay():void {
+public function burtSticksItInThePCsVajayjay():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -982,7 +982,7 @@ function burtSticksItInThePCsVajayjay():void {
 }
 
 //Handjob
-function giveBurtAHandyYouSlooooooooooot():void {
+public function giveBurtAHandyYouSlooooooooooot():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1002,7 +1002,7 @@ function giveBurtAHandyYouSlooooooooooot():void {
 	this.addButton(0,"Next",burtHandyPartDeux);
 }
 
-function burtHandyPartDeux():void {
+public function burtHandyPartDeux():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1026,7 +1026,7 @@ function burtHandyPartDeux():void {
 }
 
 //Rimjob
-function lickBurtsAssholeYouFilthyButtlicker():void {
+public function lickBurtsAssholeYouFilthyButtlicker():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1061,7 +1061,7 @@ function lickBurtsAssholeYouFilthyButtlicker():void {
 }
 
 //Titfuck
-function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
+public function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1095,7 +1095,7 @@ function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 }
 
 //Tailfuck - Req's cunttail
-function tailFuckBurtBecauseWhyNot():void {
+public function tailFuckBurtBecauseWhyNot():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1116,7 +1116,7 @@ function tailFuckBurtBecauseWhyNot():void {
 
 //Random Sex Exit------------------------------------------------------------------------------------------------------
 //NOTE: If you think the Three-Dee rape scene is too intense, and it is possible to have it only happen once, that might be the best way to go about it.
-function randomBurtSexExit():void {
+public function randomBurtSexExit():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1168,7 +1168,7 @@ function randomBurtSexExit():void {
 	}
 }
 
-function threeDSurprise():void {
+public function threeDSurprise():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
@@ -1217,7 +1217,7 @@ function threeDSurprise():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
-function stephIrsonBountHunterEpisodeOne():void {
+public function stephIrsonBountHunterEpisodeOne():void {
 	//[Watch Viewscreen]
 	clearOutput();
 	author("Savin");
@@ -1277,7 +1277,7 @@ function stephIrsonBountHunterEpisodeOne():void {
 	clearMenu();
 	addButton(0,"Next",stephIrsonEpisodeOnePartTwo);
 }
-function stephIrsonEpisodeOnePartTwo():void
+public function stephIrsonEpisodeOnePartTwo():void
 {
 	clearOutput();
 	author("Savin");

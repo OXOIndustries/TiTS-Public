@@ -62,12 +62,12 @@ Fetishes: She dislikes breasts, but a flat chest does normal lust damage. She li
 
 
 //Attacks
-function goblinGadgeteerAI():void
+public function goblinGadgeteerAI():void
 {
 
 }
 //Net launcher
-function netLauncher():void
+public function netLauncher():void
 {
 	//(Tries to entangle the PC, being entangled means you can only wait or try to free yourself, it also gives a negative to your dodge. You can free yourself with either reflexes or physique.)
 	output("A small cannon opens up in her artificial arm, and she fires a net at you! ");
@@ -86,7 +86,7 @@ function netLauncher():void
 }
 	
 //Gas grenade
-function goblinGassGrenade():void
+public function goblinGassGrenade():void
 {
 	//(Tries to poison the PC. A poisoned PC takes damage every turn of combat. She does not use this power once the PC has already been poisoned.)
 	output("She grabs a small metal tube off her belt and throws it at you. When it strikes the ground something inside shatters and green smoke billows out around you.\n");
@@ -103,7 +103,7 @@ function goblinGassGrenade():void
 
 //Needle gun
 //(Lust attack. Feel free to change the evasion stuff, I'm not sure exactly what the balance should be here.)
-function goblinNeedleGun():void
+public function goblinNeedleGun():void
 {
 	output("The gadgeteer draws a strange pistol, and fires an odd dart in your direction with a soft pop. ");
 	//Shield: 
@@ -127,7 +127,7 @@ function goblinNeedleGun():void
 }
 
 //Stun stick
-function stunStickGobboAttak():void
+public function stunStickGobboAttak():void
 {
 	//(Damaging attack, which does extra damage to shields.
 	output("She suddenly lets out a cry and charges you with a strange bar with a rubber grip.");
@@ -180,7 +180,7 @@ function stunStickGobboAttak():void
 //Ideas:
 //Use her own stunstick (deactivated) on her ass.
 //Paralyze her with her stunstick.
-function defeatDasGobboSloot():void
+public function defeatDasGobboSloot():void
 {
 	//if (defeated with damage)
 	if(foes[0].hp() < 1) output("The gadgeteer gives an abrupt squeak of pain, and falls backwards. She desperately tries to pull herself back up using her artificial arm, but falls back down after a moment. Too injured to continue fighting, she looks up at you with an indignant pout and asks you what happens next.");
@@ -195,7 +195,7 @@ function defeatDasGobboSloot():void
 //Aphrodisiac rape
 //Inject her with her own aphrodisiac so she sexes you on your terms. Requires the PC have a sex.
 //The PC finds a switch on her belt that drops out some darts of aphrodisiac
-function aphrodisiacDinner():void
+public function aphrodisiacDinner():void
 {
 	clearOutput();
 	output("You push the defeated goblin girl over with your [pc.foot] and take a look at what she's got on her belt. One long pouch with a stylized erect penis on it catches your eye and you pop the thing open. A set of darts with a pink liquid loaded in them come tumbling out onto the ground next to the two of you. You pick up one of the small needles and consider its contents, then turn to the goblin with a ");
@@ -238,7 +238,7 @@ function aphrodisiacDinner():void
 }
 
 //if (PC has a cock that fits AND choose dick if herm)
-function aphrodisiacFitCockFits():void
+public function aphrodisiacFitCockFits():void
 {
 	var x:int = pc.cockThatFits(chars["GOBLIN_GADGETEER"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -263,7 +263,7 @@ function aphrodisiacFitCockFits():void
 }
 
 //Vaginaed PC variation: tribadism
-function goblinTribadism():void
+public function goblinTribadism():void
 {
 	clearOutput();
 	output("The little girl jumps into your arm, eagerly pushing her nethers against your own in desperation. You laugh at her helpless motions while also struggling a bit under her weight. Whether in pity for her state or eager for some action yourself, you lower the both of your bodies to ground and lift up your leg, giving the green slut access to what she desperately wants. Instantly she rushes her sloping wet pussy forward, and grinds it with great force against your eagerly waiting [pc.vaginas].");
@@ -287,7 +287,7 @@ Intros
 
 //Butt/vagina violation with stun stick
 //PC can be anything for this scene
-function getViolatedWithStunStick():void
+public function getViolatedWithStunStick():void
 {
 	clearOutput();
 	//Goblin looms over your defeated form, taunts the PC a bit. She strips the PC and then takes out her stun stick

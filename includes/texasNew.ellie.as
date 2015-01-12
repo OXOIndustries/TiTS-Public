@@ -3,7 +3,7 @@
 //Nephelee has the following stat:
 //NephAffect: Ranges from 0-100. Translates 2:1 as a bonus to her store discount -- at 100%, she grants the PC a 50% discount. 
 
-function nephAffection(arg:Number = 0):Number
+public function nephAffection(arg:Number = 0):Number
 {
 	//Initialize the flag.
 	if(flags["NEPH_AFFECTION"] == undefined) flags["NEPH_AFFECTION"] = 0;
@@ -19,14 +19,14 @@ function nephAffection(arg:Number = 0):Number
 	return flags["NEPH_AFFECTION"];
 }
 
-function ellieApproachButtonSetup():void
+public function ellieApproachButtonSetup():void
 {
 	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",ellieMenu,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
 	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she's selling.");
 }
 
 //Meeting Ellie ([Shopkeeper])
-function meetingEllie():void
+public function meetingEllie():void
 {
 	clearOutput();
 	author("Savin");
@@ -75,7 +75,7 @@ function meetingEllie():void
 }
 
 //Yes
-function yesEllieLetsHaveSexAsSoonAsWeMeet():void
+public function yesEllieLetsHaveSexAsSoonAsWeMeet():void
 {
 	clearOutput();
 	author("Savin");
@@ -91,7 +91,7 @@ function yesEllieLetsHaveSexAsSoonAsWeMeet():void
 
 
 //Meh
-function mehYourTiTSDontScareMeOffworlder():void {
+public function mehYourTiTSDontScareMeOffworlder():void {
 	clearOutput();
 	author("Savin");
 	showBust("ELLIE");
@@ -104,7 +104,7 @@ function mehYourTiTSDontScareMeOffworlder():void {
 }
 
 //Don’t Like Girls
-function iDontLikeGirlsYaBitch():void
+public function iDontLikeGirlsYaBitch():void
 {
 	clearOutput();
 	author("Savin");
@@ -119,7 +119,7 @@ function iDontLikeGirlsYaBitch():void
 }
 
 //From all:
-function ellieMenu(display:Boolean = true):void
+public function ellieMenu(display:Boolean = true):void
 {
 	author("Savin");
 	showBust("ELLIE");
@@ -155,7 +155,7 @@ function ellieMenu(display:Boolean = true):void
 	addButton(14,"Back",mainGameMenu);
 }
 
-function sellToEllie():void
+public function sellToEllie():void
 {
 	clearOutput();
 	author("Savin");
@@ -166,7 +166,7 @@ function sellToEllie():void
 	addButton(14,"Back",ellieMenu);
 }
 
-function elliesShopSetup():void
+public function elliesShopSetup():void
 {
 	shopkeep = chars["ELLIE"];
 	//Reset purchase prices
@@ -258,7 +258,7 @@ output("\n\nYou take out the bottled dose of leithan milk Ellie gave you and dri
 
 //Ellie’s Menu: Talk
 //All Ellie talk scenes grant a one-time +5 to Affection.
-function talkToEllieYaFuckingSkank():void
+public function talkToEllieYaFuckingSkank():void
 {
 	clearOutput();
 	author("Savin");
@@ -279,7 +279,7 @@ function talkToEllieYaFuckingSkank():void
 	buildEllieTalkMenu();
 }
 
-function buildEllieTalkMenu():void
+public function buildEllieTalkMenu():void
 {
 	clearMenu();
 	author("Savin");
@@ -295,7 +295,7 @@ function buildEllieTalkMenu():void
 
 
 //Her Race
-function talkToEllieAboutHerRace():void
+public function talkToEllieAboutHerRace():void
 {
 	clearOutput();
 	author("Savin");
@@ -324,7 +324,7 @@ function talkToEllieAboutHerRace():void
 }
 
 //Pheromones
-function talkToEllieAboutPheromones():void
+public function talkToEllieAboutPheromones():void
 {
 	clearOutput();
 	author("Savin");
@@ -372,7 +372,7 @@ function talkToEllieAboutPheromones():void
 }
 
 //The Treatment
-function talkToEllieAboutTreatment():void
+public function talkToEllieAboutTreatment():void
 {
 	clearOutput();
 	author("Savin");
@@ -431,7 +431,7 @@ function talkToEllieAboutTreatment():void
 }
 
 //New Texas
-function talkToEllieAboutNewTexas():void
+public function talkToEllieAboutNewTexas():void
 {
 	clearOutput();
 	author("Savin");
@@ -465,7 +465,7 @@ function talkToEllieAboutNewTexas():void
 }
 
 //Ellie’s Menu: Suckle
-function suckleDatCowtaurTeat():void
+public function suckleDatCowtaurTeat():void
 {
 	clearOutput();
 	author("Savin");
@@ -516,7 +516,7 @@ function suckleDatCowtaurTeat():void
 
 //No
 //PC gets no Lust relief.
-function turnDownDatLustReliefFroMElliebuns():void
+public function turnDownDatLustReliefFroMElliebuns():void
 {
 	clearOutput();
 	author("Savin");
@@ -550,7 +550,7 @@ function turnDownDatLustReliefFroMElliebuns():void
 //Get Handy
 //PC has a dick
 //Multiple orgasms? Multiple orgasms!
-function getAHandyFromEllie():void
+public function getAHandyFromEllie():void
 {
 	clearOutput();
 	author("Savin");
@@ -591,7 +591,7 @@ function getAHandyFromEllie():void
 
 //Get Fingered
 //PC ain’t got a dick
-function getFingerByEllieDuringMilkDrinking():void
+public function getFingerByEllieDuringMilkDrinking():void
 {
 	clearOutput();
 	author("Savin");
@@ -633,7 +633,7 @@ function getFingerByEllieDuringMilkDrinking():void
 
 //Public Use 4 Bulls
 //Only option for taurs that don’t have a big dick! Only available for taurs, too.
-function publicUseForBullsByCentaurians():void
+public function publicUseForBullsByCentaurians():void
 {
 	clearOutput();
 	author("Savin");
@@ -732,7 +732,7 @@ function publicUseForBullsByCentaurians():void
 //Ellie’s Menu: Sex
 //Any sex scene gives +10 Affection. 
 //Kind of like with Sera, when you hit the <i>“sex”</i> button, Ellie will choose the scene appropriate for the PC: If the PC has a big dick, she’ll let them pound her pussy. If they’re a TAUR with a dick, they get to mount her. If they have a little dick, she’ll let them fuck her ass. Finally, if the PC doesn’t have a dick of any kind, she’ll mount THEM and pound their [vagOrAss] in with her tail. There’s a special scene for the first time the PC qualifies as having a <i>“little dick”</i> (less than 12 inches).
-function ellieSexScene():void
+public function ellieSexScene():void
 {
 	clearOutput();
 	author("Savin");
@@ -796,7 +796,7 @@ function ellieSexScene():void
 }
 
 //Vaginal (Big Dick)
-function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName():void
+public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName():void
 {
 	clearOutput();
 	author("Savin");
@@ -836,7 +836,7 @@ function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBi
 }
 
 //Little Dick, First Time
-function littleDicksGetToPlayForTheFirstTime():void
+public function littleDicksGetToPlayForTheFirstTime():void
 {
 	clearMenu();
 	author("Savin");
@@ -863,7 +863,7 @@ function littleDicksGetToPlayForTheFirstTime():void
 
 
 //Anal (Little Dick Repeat)
-function littleDicksGetToGoRoundTwo():void
+public function littleDicksGetToGoRoundTwo():void
 {
 	clearOutput();
 	author("Savin");
@@ -897,7 +897,7 @@ function littleDicksGetToGoRoundTwo():void
 }
 
 //Mount Her (Centaurs, any dick size)
-function centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception():void
+public function centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception():void
 {
 	clearOutput();
 	author("Savin");
@@ -931,7 +931,7 @@ function centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception():void
 }
 
 //Get Tailpegged (F/ForN)
-function getTailPeggedByTaurBitches():void
+public function getTailPeggedByTaurBitches():void
 {
 	clearOutput();
 	author("Savin");

@@ -44,7 +44,7 @@ Is Asian. Has Asian last name: Inoue
 // PENNY_TIMES_OVER_DESK_FUCKED         : TODO - FIXME
 // ZIL_PROBLEM_DEALT_WITH               : TODO - FIXME
 
-function pennyAffection(arg:int = 0):Number {
+public function pennyAffection(arg:int = 0):Number {
 	if(flags["PENNY_AFFECTION"] == undefined) flags["PENNY_AFFECTION"] = 0;
 	if(arg != 0) flags["PENNY_AFFECTION"] += arg;
 	if(flags["PENNY_AFFECTION"] > 100) flags["PENNY_AFFECTION"] = 100;
@@ -52,11 +52,11 @@ function pennyAffection(arg:int = 0):Number {
 	return arg;
 }
 
-function pennysOffice():void {
+public function pennysOffice():void {
 	pennyRoomDesc();
 }
 
-function showPennyName():void
+public function showPennyName():void
 {
 	if(flags["MET_PENNY"] == undefined) userInterface.showName("POLICE\nWOMAN");
 	else userInterface.showName("\nPENNY");
@@ -64,7 +64,7 @@ function showPennyName():void
 
 //First Encounter
 //Appended to room description!
-function pennyRoomDesc():void {
+public function pennyRoomDesc():void {
 	this.userInterface.showBust("PENNY");
 	showPennyName();
 	
@@ -137,7 +137,7 @@ function pennyRoomDesc():void {
 }
 
 //[Need Help?]
-function askPennyIfSheNeedsHelp():void {
+public function askPennyIfSheNeedsHelp():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -155,7 +155,7 @@ function askPennyIfSheNeedsHelp():void {
 }
 
 //[Get an Intercom]
-function getAnIntercom():void {
+public function getAnIntercom():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -168,7 +168,7 @@ function getAnIntercom():void {
 }
 
 //[Fuck Them]
-function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
+public function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -186,7 +186,7 @@ function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 }
 
 //[Explain]
-function explainWhyYoureAHugeSlut():void {
+public function explainWhyYoureAHugeSlut():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -199,7 +199,7 @@ function explainWhyYoureAHugeSlut():void {
 }
 
 //[Flirt Off]
-function flirtySlutPCsTellPennyFlirts():void {
+public function flirtySlutPCsTellPennyFlirts():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -214,7 +214,7 @@ function flirtySlutPCsTellPennyFlirts():void {
 }
 
 //[Yes] (Go Get Spit-Roasted for Penny)
-function getSpitRoastedForPenny():void {
+public function getSpitRoastedForPenny():void {
 	clearOutput();
 	this.userInterface.showBust("ZIL", "ZIL");
 	output("<i>“Alright, I hope you weren’t attached to your virginity,”</i>  Penny remarks dryly as she steps out from behind the desk, giving you a good look at her lower body. Her legs are digitigrade, meaning they bend twice, like some earth animals’. Those limbs end with fluffy, sandy, fur-covered paws, unhindered by any kind of footwear. Her pants are baggy around the calves and bottoms to accommodate her unique physiology but tighten up noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it sways enticingly as you follow her into the holding area.");
@@ -330,7 +330,7 @@ function getSpitRoastedForPenny():void {
 }
 
 //[Next]
-function getFucked4PennyEpilogue():void {
+public function getFucked4PennyEpilogue():void {
 	clearOutput();
 	this.userInterface.showBust("ZIL", "ZIL");
 	output("You wake to the sound of flesh impacting flesh, the hard clap of it ringing out through the confined prison. Your jaw and [pc.vagOrAss] are both incredibly sore and dripping, though there is a palpable, satisfying tingle coming from both orifices to make it more bearable. Looking over, you see Penny entangled with one of the zil, legs splayed as she grapples with him, slapping him across the face repeatedly.");
@@ -345,7 +345,7 @@ function getFucked4PennyEpilogue():void {
 }
 
 //[Next]
-function postSexShower():void {
+public function postSexShower():void {
 	clearOutput();
 	setLocation("THE\nSHOWER",rooms[currentLocation].planet,rooms[currentLocation].system);
 	output("The shower is blessedly warm, washing away the filth of the encounter and easing the pain on your sore form. Flashes of memory play through your mind as you work, and your breathing slowly becomes heavier and more aroused as you remember the lascivious way in which you acted. You stop before you wind up on the floor masturbating, but you definitely think your libido has increased as a result.");
@@ -359,7 +359,7 @@ function postSexShower():void {
 }
 
 //[Fight Them]
-function fightDemZil():void {
+public function fightDemZil():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -378,7 +378,7 @@ function fightDemZil():void {
 	this.addButton(1,"Fight Them",seriouslyFightTheZil);
 }
 
-function seriouslyFightTheZil():void {
+public function seriouslyFightTheZil():void {
 	clearOutput();
 	this.userInterface.showBust("ZIL", "ZIL");
 	//[Fight Them (Confirmed)]
@@ -395,7 +395,7 @@ function seriouslyFightTheZil():void {
 }
 
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
-function zilpackAI():void {
+public function zilpackAI():void {
 	//Physical attacks
 	//trace("ZIL AI SHIT: " + ((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200);
 	//trace("ZIL HPMAX: " + foes[0].HPMax() + " ZIL HP: " + foes[0].HP());
@@ -415,7 +415,7 @@ function zilpackAI():void {
 }
 
 //Crotch Grind:
-function zilCrotchGrindPlural():void {
+public function zilCrotchGrindPlural():void {
 	output("Zipping forward, the zil bring their ");
 	if(foes[0].lust() < 33) output("sensitive");
 	else if(foes[0].lust() <= 66) output("stiff");
@@ -436,7 +436,7 @@ function zilCrotchGrindPlural():void {
 }
 
 //Pheromone Fan:
-function zilPheromoneFanPlural():void {
+public function zilPheromoneFanPlural():void {
 	output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There's nothing to do but try and hold your breath!");
 	//{Moderate toughness check pass}
 	if(pc.physique() + rand(20) + 1 > 20) {
@@ -460,7 +460,7 @@ function zilPheromoneFanPlural():void {
 
 //Honey Drip:
 //Fly by pre-cum dripping!
-function zilHoneyDripPlural():void {
+public function zilHoneyDripPlural():void {
 	output("Flying up into the air, the two zil begin to jack themselves off, stroking their thick, scented dongs while amber droplets drip from their thick dickskin. Their pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
 	pc.lust(5+pc.libido()/20);
 	processCombat();
@@ -468,7 +468,7 @@ function zilHoneyDripPlural():void {
 
 //Flurry of Blows:
 //5x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
-function flurryOfBlowsPlural():void {
+public function flurryOfBlowsPlural():void {
 	output("Together, the zil launch a flurry of blows in your direction!\n");
 	attack(foes[0],pc,true,1);
 	output("\n");
@@ -485,7 +485,7 @@ function flurryOfBlowsPlural():void {
 
 //Flying Spinkick:
 //Stuns the PC.
-function zilFlyingSpinKick():void {
+public function zilFlyingSpinKick():void {
 	var target:Creature = pc;
 	var attacker:Creature = foes[0];
 	output("An irritated snarl crosses the aliens' smooth lips, and they launch themselves towards you. Their bodies pivot in mid-air, accelerated by their wings, and they snap their heels out toward your face at the last second.");
@@ -527,7 +527,7 @@ function zilFlyingSpinKick():void {
 }
 //Harden:
 //Buffs kinetic defenses?
-function pluralZilHarden():void {
+public function pluralZilHarden():void {
 	output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 	foes[0].resistances[GLOBAL.KINETIC] *= .8;
 	foes[0].resistances[GLOBAL.SLASHING] *= .8;
@@ -535,7 +535,7 @@ function pluralZilHarden():void {
 	processCombat();
 }
 
-function pennyFapActions():void {
+public function pennyFapActions():void {
 	//1) 
 	if (pc.statusEffectv1("Round") == 1) 
 		output("\n\nPenny slips a furred hand under the waistband of rapidly-dampening pants as she watches the spectacle, already falling under the influence of the zils’ insidious pheromones.");
@@ -562,7 +562,7 @@ function pennyFapActions():void {
 //Lose to Zil Pair
 //By Savin
 //Get fucked from both ends until the Zil sate themselves. Penny schlicks in the corner until they’re done, then she takes em down, actually converses with them. They say forcing sex with strangers is a cultural thing, penny says she’ll kill any that try that in town, and turns them loose to tell the rest of their people (by leading them out on leashes)
-function loseToZilPair():void {
+public function loseToZilPair():void {
 	author("Savin");
 	
 	output("The onslaught of ");
@@ -603,7 +603,7 @@ function loseToZilPair():void {
 	this.addButton(0,"Next",loseToZilpackPartTwoLoseHarder);
 }
 
-function loseToZilpackPartTwoLoseHarder():void {
+public function loseToZilpackPartTwoLoseHarder():void {
 	clearOutput();
 	output("With amber seed leaking from your lips and gaping ass, you crawl away from the two zil, your own lusts seeming to regulate as the Zils calm down, finally sated. The yellow and black aliens relax against the far wall of the cell, yellow jacket grabbing you and pulling you back onto his cock as they regard the foxy police girl. You groan as the potent alien pulls you into his lap, one hand stroking his brightly colored cock as the other swirls his brother's seed around in your abused hole, readying you for round two.");
 	output("\n\n<i>“T-that's enough,”</i>  Penny groans, pulling herself up off the floor. <i>“You two bastards have had your fun, now talk.”</i>");
@@ -636,7 +636,7 @@ function loseToZilpackPartTwoLoseHarder():void {
 }
 
 //[Next]
-function finishLosingToZilYouLoser():void {
+public function finishLosingToZilYouLoser():void {
 	clearOutput();
 	output("The shower is blessedly warm, washing away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling a little calmer and more in control of your rampantly sexual urges.");
 	output("\n\nWhen you step out, the cell room is empty and the wonderful-smelling zil are gone...");
@@ -650,7 +650,7 @@ function finishLosingToZilYouLoser():void {
 }
 
 //Win to Zil Pair
-function defeatZilPair():void {
+public function defeatZilPair():void {
 	clearOutput();
 	output("The zil slump over into a pile, ");
 	if (foes[0].HP() <= 0) 
@@ -680,7 +680,7 @@ function defeatZilPair():void {
 	this.clearMenu();
 	this.addButton(0,"Next",beatPennysZilPartII);
 }
-function beatPennysZilPartII():void {
+public function beatPennysZilPartII():void {
 	clearOutput();
 	output("The shower is blessedly warm, washing away the filth of the encounter and easing your worked-up body. By the time you finish, you’re feeling much calmer and more in control of your urges.");
 	output("\n\nWhen you step out, the cell room is empty and the wonderful-smelling zil are gone....\n\n");
@@ -699,7 +699,7 @@ function beatPennysZilPartII():void {
 //Despite earlier sexiness
 	//Appearance blurb: 
 	//Actual approach:
-function approachFriendPenny(outputT:Boolean = true):void {
+public function approachFriendPenny(outputT:Boolean = true):void {
 	this.userInterface.showBust("PENNY");
 	showPennyName();
 	if(outputT) {
@@ -717,7 +717,7 @@ function approachFriendPenny(outputT:Boolean = true):void {
 }
 
 //[Sex]
-function pennySexFirstTime():void {
+public function pennySexFirstTime():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -798,7 +798,7 @@ function pennySexFirstTime():void {
 }
 
 //Male First Time Shower Sex
-function firstTimePennyShowerSex():void {
+public function firstTimePennyShowerSex():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -943,7 +943,7 @@ function firstTimePennyShowerSex():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 //Female First Time Shower Sex
-function femaleFirstTimePennyLesboz():void {
+public function femaleFirstTimePennyLesboz():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -1078,7 +1078,7 @@ function femaleFirstTimePennyLesboz():void {
 }
 
 //Huge Dick First Time Sex
-function stickAHugeDickInPennysWorld():void {
+public function stickAHugeDickInPennysWorld():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -1182,7 +1182,7 @@ function stickAHugeDickInPennysWorld():void {
 
 
 //[Species]
-function talkToPennyAboutSpecies():void {
+public function talkToPennyAboutSpecies():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1207,7 +1207,7 @@ function talkToPennyAboutSpecies():void {
 }
 
 //[Do For Fun?]
-function whatDoesPennyDoForFun():void {
+public function whatDoesPennyDoForFun():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1224,7 +1224,7 @@ function whatDoesPennyDoForFun():void {
 }
 
 //Her Youth
-function pennysYouth():void {
+public function pennysYouth():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1240,7 +1240,7 @@ function pennysYouth():void {
 }
 
 //[PC Name]
-function talkToPennyAboutYourself():void {
+public function talkToPennyAboutYourself():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1269,7 +1269,7 @@ function talkToPennyAboutYourself():void {
 }
 	
 //Girlfriend Greetings
-function approachGirlfriendPenny():void {
+public function approachGirlfriendPenny():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1372,7 +1372,7 @@ function approachGirlfriendPenny():void {
 }
 
 //Talk to Girlfriend Penny
-function talkToGirfriendPenny():void {
+public function talkToGirfriendPenny():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1402,7 +1402,7 @@ function talkToGirfriendPenny():void {
 }
 
 //[Touch Fluffy Tail]
-function touchFluffyTail():void {
+public function touchFluffyTail():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1433,7 +1433,7 @@ function touchFluffyTail():void {
 }
 
 //[Her ‘Species’]
-function askGFPennyAboutSpecies():void {
+public function askGFPennyAboutSpecies():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1466,7 +1466,7 @@ function askGFPennyAboutSpecies():void {
 }
 
 //[Happy?]
-function isGFPennyHappy():void {
+public function isGFPennyHappy():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1483,7 +1483,7 @@ function isGFPennyHappy():void {
 }
 
 //[Goals]
-function goalsForGFPenny():void {
+public function goalsForGFPenny():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1506,7 +1506,7 @@ function goalsForGFPenny():void {
 }
 
 //[WhatSheLookedLikeB4]
-function whatSheLookedLikeBFour():void {
+public function whatSheLookedLikeBFour():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1525,7 +1525,7 @@ function whatSheLookedLikeBFour():void {
 
 //[Futanari] - Option to have her go futa!
 //Requires her mentioning futa already!
-function pennyFutanariTalk():void {
+public function pennyFutanariTalk():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1660,7 +1660,7 @@ function pennyFutanariTalk():void {
 }
 
 //Get A Dick
-function growADickPenny():void {
+public function growADickPenny():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1671,7 +1671,7 @@ function growADickPenny():void {
 	this.addButton(1,"Nevermind",stayAGirlYouBitch);
 }
 //Penny Grows Her Dick NOW!
-function pennySproutsAWeiner():void {
+public function pennySproutsAWeiner():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -1705,7 +1705,7 @@ function pennySproutsAWeiner():void {
 }
 
 //Penny Turns To Big Penny
-function pennyToBigPenny():void {
+public function pennyToBigPenny():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -1741,7 +1741,7 @@ function pennyToBigPenny():void {
 }
 
 //Penny Goes Hyper Penny
-function pennyBecomesHYPERPENNY():void {
+public function pennyBecomesHYPERPENNY():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -1786,7 +1786,7 @@ function pennyBecomesHYPERPENNY():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 //Stay Girl
-function stayAGirlYouBitch():void {
+public function stayAGirlYouBitch():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1799,7 +1799,7 @@ function stayAGirlYouBitch():void {
 }
 	
 //Buy Throbb - Unlocked by futa talk, rejected or accepted
-function buySomeThrobbFrompenny():void {
+public function buySomeThrobbFrompenny():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1837,7 +1837,7 @@ function buySomeThrobbFrompenny():void {
 }
 //[Buy] [Back]
 //Transact It
-function buyThrobbTransact(amount:int = 1):void {
+public function buyThrobbTransact(amount:int = 1):void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -1857,7 +1857,7 @@ function buyThrobbTransact(amount:int = 1):void {
 	addButton(0,"Next",talkToGirfriendPenny);
 }
 
-function lootThrobb():void {
+public function lootThrobb():void {
 	clearOutput();
 	output("You have some Throbb you bought from Penny.\n\n");
 	var foundLootItems:Array = new Array();
@@ -1882,7 +1882,7 @@ function lootThrobb():void {
 }
 
 //Penny Sex Menu
-function pennySexMenu(outputT:Boolean = true):void {
+public function pennySexMenu(outputT:Boolean = true):void {
 	this.userInterface.showBust("PENNY");
 	showPennyName();
 	if (outputT)
@@ -1940,7 +1940,7 @@ function pennySexMenu(outputT:Boolean = true):void {
 }
 
 //Face Fuck Penny
-function faceFuckPenny():void {
+public function faceFuckPenny():void {
 	clearOutput();
 	var x:int = pc.biggestCockIndex();
 	userInterface.showBust("PENNY_NUDE");
@@ -2023,7 +2023,7 @@ function faceFuckPenny():void {
 }
 
 //Nah,girl
-function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll():void {
+public function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	showPennyName();
@@ -2034,7 +2034,7 @@ function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 }
 
 //Get ass fucked (Penny gotta have the D, yo)
-function getAssFuckedByPenny():void {
+public function getAssFuckedByPenny():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2134,7 +2134,7 @@ function getAssFuckedByPenny():void {
 
 //Fuck Her Butt (From Facefuck scene)
 //Read the function name in Lothar's voice.
-function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
+public function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2181,7 +2181,7 @@ function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 }
 
 //Pennilicious Pawjob
-function penniliciousPawjob():void {
+public function penniliciousPawjob():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2243,7 +2243,7 @@ function penniliciousPawjob():void {
 }
 
 //Lick Out
-function lickOutSomePennyDawg():void {
+public function lickOutSomePennyDawg():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2251,7 +2251,7 @@ function lickOutSomePennyDawg():void {
 	suckAndLickAtPennyYouDildo(false);
 }
 //Suck Off
-function suckOffPennyDawgYoMahDiggity():void {
+public function suckOffPennyDawgYoMahDiggity():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2263,7 +2263,7 @@ function suckOffPennyDawgYoMahDiggity():void {
 }
 
 //Merge suck off and lick out
-function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
+public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	output("\n\nPenny gasps, <i>“Oh, mate, you are something else.... Your mouth, god! It’s good!”</i>  She whimpers a little, coupled with a sexy wriggle atop you to press her genitals more firmly into your accomodating mouth. <i>“I guess it’s time I held up my-ooohhhh... umm, end of the bargain.”</i>  A second later, there’s soft fur tickling at [pc.oneCock], pressing down on it from both sides at once. The vixen’s supple paws push down on either side. Her pads feel heavenly against your [pc.cockBiggest], perfectly textured with their puffy, super-soft pads. Groaning into Penny’s crotch, you struggle to hold still so that her feet can properly tend to you.");
 	output("\n\n<i>“You like that, don’t you, [pc.name]? You like my foxy paws wrapping around your cock and stroking it, jacking you off with my feet,”</i>  Penny states with a sigh. Her toes interlace around your [pc.cockBiggest]");
 	if(pc.biggestCockVolume() >= 500) output(" as well as they can, given its girth");
@@ -2305,7 +2305,7 @@ function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 }
 
 //GetGroundOn
-function getGroundOnByPenny():void {
+public function getGroundOnByPenny():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2360,7 +2360,7 @@ function getGroundOnByPenny():void {
 }
 
 //Frottage
-function pennyFrottage():void {
+public function pennyFrottage():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2446,7 +2446,7 @@ function pennyFrottage():void {
 	this.addButton(0,"Next",postPennyFrottage);
 }
 
-function postPennyFrottage():void {
+public function postPennyFrottage():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2465,7 +2465,7 @@ function postPennyFrottage():void {
 //Rough Over The Desk Fuck (AKA Penny Is The Prey DOHOHOH) - UNWRITTEN
 //Bend dat bitch over a desk, make her all nervous, play with her ears till she cums and then rail her like nobodies business.
 //Needs dick that fits or strap-on
-function pennyOverTheDeskRoughFuck():void {
+public function pennyOverTheDeskRoughFuck():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2621,7 +2621,7 @@ function pennyOverTheDeskRoughFuck():void {
 }
 
 //Jack Penny off with an Onahole
-function jackinPennyOffWithAnOnahole():void {
+public function jackinPennyOffWithAnOnahole():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2749,7 +2749,7 @@ function jackinPennyOffWithAnOnahole():void {
 }
 
 //Throw It Away
-function throwPennysCumAway():void {
+public function throwPennysCumAway():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2764,7 +2764,7 @@ function throwPennysCumAway():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 //Bite It
-function bitePennysCondom():void {
+public function bitePennysCondom():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2784,7 +2784,7 @@ function bitePennysCondom():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 //FeedIt2Her
-function feedPennysCondomToHer():void {
+public function feedPennysCondomToHer():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2804,7 +2804,7 @@ function feedPennysCondomToHer():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
-function gardeFordWritesPennySmex():void {
+public function gardeFordWritesPennySmex():void {
 	clearOutput();
 	userInterface.showBust("PENNY_NUDE");
 	showPennyName();
@@ -2916,7 +2916,7 @@ function gardeFordWritesPennySmex():void {
 }
 
 //TELL HER TO CALM DOWN:
-function calmDownYouPennySlut():void {
+public function calmDownYouPennySlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY");
@@ -2928,7 +2928,7 @@ function calmDownYouPennySlut():void {
 }
 
 //HAVE FUN WITH HER:
-function teasePenny():void 
+public function teasePenny():void 
 {
 	clearOutput();
 	author("Abe E. Seedy");
@@ -2982,7 +2982,7 @@ function teasePenny():void
 }
 
 //HIDE HER ACTIONS
-function hideYourCumslutteryPennyYouSlut():void {
+public function hideYourCumslutteryPennyYouSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3009,7 +3009,7 @@ function hideYourCumslutteryPennyYouSlut():void {
 }
 
 //LET THEM WATCH
-function pennyLetThemWatchYouCumSlut():void {
+public function pennyLetThemWatchYouCumSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3042,7 +3042,7 @@ function pennyLetThemWatchYouCumSlut():void {
 }
 
 //LET THEM JOIN IN
-function letThemJoinInPennyYouSlut():void {
+public function letThemJoinInPennyYouSlut():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3080,7 +3080,7 @@ function letThemJoinInPennyYouSlut():void {
 }
 
 //USE YOUR COCKS (characters with penis and ability to produce non-zero amounts of cum only)
-function useYourCocksOnCumSluttyPenny():void {
+public function useYourCocksOnCumSluttyPenny():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3113,7 +3113,7 @@ function useYourCocksOnCumSluttyPenny():void {
 }
 
 //USE HER COCK
-function makeUseOfPennysCumSlutCock():void {
+public function makeUseOfPennysCumSlutCock():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3131,7 +3131,7 @@ function makeUseOfPennysCumSlutCock():void {
 }
 
 //FIND SOMEONE IN PUBLIC
-function findSomeonePublicToHelpPennyCumslut():void {
+public function findSomeonePublicToHelpPennyCumslut():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3151,7 +3151,7 @@ function findSomeonePublicToHelpPennyCumslut():void {
 
 
 //--TO ADD TO TALK MENU FOR CUMSLUT PENNY--
-function pennyCumslutterMenuTalk():void {
+public function pennyCumslutterMenuTalk():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3172,7 +3172,7 @@ function pennyCumslutterMenuTalk():void {
 }
 
 //CALM DOWN
-function calmDownPennyBitch4Repeats():void {
+public function calmDownPennyBitch4Repeats():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3189,7 +3189,7 @@ function calmDownPennyBitch4Repeats():void {
 
 //--TO ADD TO SEX MENU FOR CUMSLUT PENNY--
 //SELF SUCK
-function pennySelfSuckCumsluttery():void {
+public function pennySelfSuckCumsluttery():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3203,7 +3203,7 @@ function pennySelfSuckCumsluttery():void {
 }
 
 //BUKKAKE (characters with penis and ability to produce non-zero amounts of cum only)
-function bukkakePenny():void {
+public function bukkakePenny():void {
 	clearOutput();
 	author("Abe E. Seedy");
 	userInterface.showBust("PENNY_NUDE");
@@ -3236,7 +3236,7 @@ function bukkakePenny():void {
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
 }
 
-function pennyVsFlahneWhoWillOutslutWho():void
+public function pennyVsFlahneWhoWillOutslutWho():void
 {
 	clearOutput();
 	author("Abe E. Seedy");
@@ -3323,7 +3323,7 @@ function pennyVsFlahneWhoWillOutslutWho():void
 
 //Penny’s Little Pony
 //<PennyNoCock>
-function givePennyAHossCawk():void
+public function givePennyAHossCawk():void
 {
 	clearOutput();
 	showBust("PENNY_NUDE");
@@ -3388,7 +3388,7 @@ function givePennyAHossCawk():void
 	addButton(0,"Next",pennyGrowsAHorseCockPart2);
 }
 
-function pennyGrowsAHorseCockPart2():void
+public function pennyGrowsAHorseCockPart2():void
 {
 	clearOutput();
 	showBust("PENNY_NUDE");

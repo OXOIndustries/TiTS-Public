@@ -94,7 +94,7 @@ public function codexHomeFunction():void
 	userInterface.outputCodex();
 }
 
-function kaithritCodexEntry():void
+public function kaithritCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("TAMTAM");
@@ -120,7 +120,7 @@ function kaithritCodexEntry():void
 	CodexManager.viewedEntry("Kaithrit");
 }
 
-function galotianCodexEntry():void
+public function galotianCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("CELISE");
@@ -146,7 +146,7 @@ function galotianCodexEntry():void
 	CodexManager.viewedEntry("Galotians");
 }
 
-function simiiCodex():void
+public function simiiCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("EMBRY");
@@ -182,7 +182,7 @@ function simiiCodex():void
 }
 
 
-function synthSheathCodex():void
+public function synthSheathCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Item: Xenogen Biotech SynthSheath"));
@@ -192,7 +192,7 @@ function synthSheathCodex():void
 }
 
 
-function varmintCodex():void
+public function varmintCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Hazard: Varmints"));
@@ -202,7 +202,7 @@ function varmintCodex():void
 	outputCodex("\n\nVarmints are to be considered hostile when encountered, and may attack without provocation. Deaths caused by these creatures are very rare, but they can result in serious injury. It is advised to be armed with traveling outside city grounds on New Texas due to the widespread distribution of the varmint population.\n");
 	CodexManager.viewedEntry("Varmints");
 }
-function leithanCodexEntry():void
+public function leithanCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("ELLIE");
@@ -232,7 +232,7 @@ function leithanCodexEntry():void
 	CodexManager.viewedEntry("Leithan");
 }
 
-function ovirCodexEntry():void
+public function ovirCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("ALISS");
@@ -258,7 +258,7 @@ function ovirCodexEntry():void
 	CodexManager.viewedEntry("Ovir");
 }
 
-function kuitanCodexEntry():void
+public function kuitanCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("KIRO");
@@ -304,7 +304,7 @@ function kuitanCodexEntry():void
 	CodexManager.viewedEntry("Kui-Tan");
 }
 
-function laquineCodexEntry():void
+public function laquineCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("KELLY","KELLY_NUDE");
@@ -337,7 +337,7 @@ function laquineCodexEntry():void
 	CodexManager.viewedEntry("Laquines");
 }
 
-function treatmentCodexEntry():void
+public function treatmentCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("The Treatment"));
@@ -388,7 +388,7 @@ function treatmentCodexEntry():void
 
 //Dumbfuck - A Bimbo TF
 //In a nutshell, this stuff boosts minimum lust slightly, minimum libido significantly, and worsens the effects with every orgasm while it remains in your system, eventually granting a few perks.
-function dumbfuckCodexEntry():void
+public function dumbfuckCodexEntry():void
 {
 	//Codex Article:
 	clearOutputCodex();
@@ -874,7 +874,7 @@ public function mimbraneCodexEntry():void
 	CodexManager.viewedEntry("Mimbranes");
 }
 
-function venusPitcherCodexEntry():void {
+public function venusPitcherCodexEntry():void {
 	clearOutputCodex();
 	userInterface.showBust("VENUSPITCHER","VENUS_PITCHER_ELDER");
 	outputCodex(header("Venus Pitchers"));
@@ -908,7 +908,7 @@ function venusPitcherCodexEntry():void {
 	CodexManager.viewedEntry("Venus Pitchers");
 }
 
-function cuntSnakeCodexEntry():void
+public function cuntSnakeCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("CUNTSNAKE");
@@ -959,7 +959,7 @@ function cuntSnakeCodexEntry():void
 	CodexManager.viewedEntry("Cunt Snakes");
 }
 
-function naleenCodexEntry():void
+public function naleenCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("NALEEN","NALEEN_MALE");
@@ -992,7 +992,7 @@ function naleenCodexEntry():void
 	CodexManager.viewedEntry("Naleen");
 }
 
-function vanaeCodexEntry():void
+public function vanaeCodexEntry():void
 {
 	// I'm temted to look into A bookmark movement around the codex view, to link between the headers with actual clickable links (all of the "See: <section>" things here. Considering the size of the Vanae codex entry, it seems like a good idea, and it could be extended to deal with jumping between entirely different codex entries.
 
@@ -1119,7 +1119,7 @@ function vanaeCodexEntry():void
 	CodexManager.viewedEntry("Vanae");
 }
 
-function vanaeHistoryCodexEntry():void
+public function vanaeHistoryCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
@@ -1142,7 +1142,7 @@ function vanaeHistoryCodexEntry():void
 
 //Bess-13 and Ben-14 Units 
 //(Maia Series)
-function Bess13CodexEntry():void
+public function Bess13CodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("BESS");
@@ -1194,7 +1194,7 @@ function Bess13CodexEntry():void
 	CodexManager.viewedEntry("Bess13");
 }
 
-function panaraCodex():void
+public function panaraCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Panara"));
@@ -1219,7 +1219,7 @@ function panaraCodex():void
 	CodexManager.viewedEntry("Panara");
 }
 
-function branFlazinganCodex():void
+public function branFlazinganCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Bran Flazingan"));
@@ -1250,7 +1250,7 @@ function branFlazinganCodex():void
 	CodexManager.viewedEntry("Bran Flazingan");
 }
 
-function humphardIncCodex():void
+public function humphardIncCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Humphard Inc"));
@@ -1274,7 +1274,7 @@ function humphardIncCodex():void
 
 //Grav-Cuffs
 // Probably needs to go in an 'items' listing. This codex entry was written up so I don't need to keep explaining what these are in both the Bess doc & the Doctor Badger doc. They're used in sex scenes for both chars.
-function gravCuffsCodex():void
+public function gravCuffsCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Grav Cuffs"));
@@ -1290,7 +1290,7 @@ function gravCuffsCodex():void
 }
 
 // Holodom
-function holodomCodex():void
+public function holodomCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Holodom"));
@@ -1305,7 +1305,7 @@ function holodomCodex():void
 }
 
 // AI systems
-function AISystemsCodexEntry():void
+public function AISystemsCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("A Brief Overview of Synthetic Intelligences"))
@@ -1344,7 +1344,7 @@ function AISystemsCodexEntry():void
 	CodexManager.viewedEntry("AI Systems");
 }
 
-function thraggenCodexEntry():void
+public function thraggenCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("THRAGGEN");
@@ -1382,7 +1382,7 @@ function thraggenCodexEntry():void
 	CodexManager.viewedEntry("Thraggen");
 }
 
-function daynarCodexEntry():void
+public function daynarCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
@@ -1441,7 +1441,7 @@ function daynarCodexEntry():void
 	CodexManager.viewedEntry("Daynar");
 }
 
-function sionachCodexEntry():void
+public function sionachCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("SIONACH");

@@ -17,7 +17,7 @@ Uses two high caliber pistols and a two electrified blades.
 */
 
 //Approach
-function approachRivalOnMhenga():Boolean 
+public function approachRivalOnMhenga():Boolean 
 {
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined)
 	{
@@ -42,7 +42,7 @@ function approachRivalOnMhenga():Boolean
 }
 
 //Fight
-function fightYerRivalOnMhenga():void {
+public function fightYerRivalOnMhenga():void {
 	clearOutput();
 	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
 	userInterface.showName(chars["RIVAL"].short.toUpperCase());
@@ -67,7 +67,7 @@ function fightYerRivalOnMhenga():void {
 }
 
 //Insult
-function insultYourRivalOnMhenga():void {
+public function insultYourRivalOnMhenga():void {
 	clearOutput();
 	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
 	userInterface.showName(chars["RIVAL"].short.toUpperCase());
@@ -83,7 +83,7 @@ function insultYourRivalOnMhenga():void {
 }
 
 //Dane Omni-explanation
-function daneOmniExplanation():void {
+public function daneOmniExplanation():void {
 	flags["MET_DANE"] = 1;
 	flags["FOUGHT_DANE_ON_MHENGA"] = 1;
 	clearOutput();
@@ -101,7 +101,7 @@ function daneOmniExplanation():void {
 }
 
 //Wait
-function letRivalGoOnMhenga():void {
+public function letRivalGoOnMhenga():void {
 	clearOutput();
 	flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] = 1;
 	output("You let [rival.em] go. There's no sense in wasting time with a fight when [rival.ey]'s already given you what you came for. Once [rival.ey]'s gone, you root around in the brush for a moment, ignoring the scratching branches to find the data-chit. It's a little scuffed and damp dirt is plastered all over it, but it looks okay. You stand and dust it off before connecting it to your codex. The data is all there: coordinates for another planet, presumably one with another probe. All you had to do was not let your pride get the better of you.");
@@ -112,7 +112,7 @@ function letRivalGoOnMhenga():void {
 }
 
 //Dane Fight
-function daneAI():void {
+public function daneAI():void {
 	//Grappled PCs get molested
 	if(pc.hasStatusEffect("Grappled"))
 	{
@@ -139,7 +139,7 @@ function daneAI():void {
 
 //Attacks
 //Quad Strike
-function daneQuadStrike():void {
+public function daneQuadStrike():void {
 	//Swing twice, shoot twice.
 	rangedAttack(foes[0],pc,true,1);
 	output("\n");
@@ -152,7 +152,7 @@ function daneQuadStrike():void {
 }
 
 //Four-Armed Grapple
-function daneGrappleAttack():void {
+public function daneGrappleAttack():void {
 	output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
 	//Miss
 	if(combatMiss(foes[0],pc)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The four-armed Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
@@ -168,7 +168,7 @@ function daneGrappleAttack():void {
 
 //Crotch Smother
 //Grapple only. Moderate lust damage. Escaping grapple is essential.
-function daneCrotchSmother():void {
+public function daneCrotchSmother():void {
 	output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
 	output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
 	pc.lust(5+rand(7));
@@ -179,7 +179,7 @@ function daneCrotchSmother():void {
 
 //Lickitongue
 //Req's grapple, follows smother
-function daneLickitongue():void {
+public function daneLickitongue():void {
 	output("You feel something warm and wet ");
 	if(!pc.isNude()) output("worm past your [pc.lowerGarments] to ");
 	output("lick your [pc.crotch]. It flutters around expertly, ");
@@ -202,7 +202,7 @@ function daneLickitongue():void {
 }
 
 //Cross Slash
-function daneCrossSlashAttack():void {
+public function daneCrossSlashAttack():void {
 	output("Dane reaches high with both swords and brings them down crossways simultaneously!");
 	//Miss
 	if(combatMiss(foes[0],pc)) output("\nYou duck under the swings.");
@@ -222,7 +222,7 @@ function daneCrossSlashAttack():void {
 }
 
 
-function defeatDane():void
+public function defeatDane():void
 {
 	clearOutput();
 	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
@@ -240,7 +240,7 @@ function defeatDane():void
 //Losses
 //Omni Loss [Unwritten]
 //Buttfuck!
-function loseToDane():void {
+public function loseToDane():void {
 	clearOutput();
 	userInterface.showName("\nDANE");
 	userInterface.showBust("DANE_NUDE");
@@ -323,7 +323,7 @@ function loseToDane():void {
 }
 
 //[Next]
-function daneFuckEpilogue():void {
+public function daneFuckEpilogue():void {
 	clearOutput();
 	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased, but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
 	flags["LOST_TO_DANE_ON_MHENGA"] = 1;

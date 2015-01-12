@@ -1,6 +1,6 @@
 ﻿import classes.Items.Miscellaneous.HorseCock;
 
-function bonusTubeSteak():Boolean
+public function bonusTubeSteak():Boolean
 {
 	if(flags["SYNTHSHEATH_ACQUIRED"] == undefined)
 	{
@@ -12,7 +12,7 @@ function bonusTubeSteak():Boolean
 }
 
 //Raskvel + Lapinara
-function rustPlainsEncounters():Boolean {
+public function rustPlainsEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -43,7 +43,7 @@ function rustPlainsEncounters():Boolean {
 }
 
 //Goo, Sydian
-function rustCoastEncounters():Boolean {
+public function rustCoastEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -74,7 +74,7 @@ function rustCoastEncounters():Boolean {
 }
 
 //Raskvel + Saxbots + Sydians
-function rustRidgesEncounters():Boolean {
+public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -108,7 +108,7 @@ function rustRidgesEncounters():Boolean {
 	return false;
 }
 //Goos and Saxbots
-function rustScytheGladeEncounters():Boolean {
+public function rustScytheGladeEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -134,7 +134,7 @@ function rustScytheGladeEncounters():Boolean {
 }
 
 //Yes:
-function grabARubbahTube():void
+public function grabARubbahTube():void
 {
 	clearOutput();
 	author("Alkahest");

@@ -5,7 +5,7 @@
 //Wants paid off for safety!
 
 
-function encounterHostileRaskvelFemale():void
+public function encounterHostileRaskvelFemale():void
 {
 	CodexManager.unlockEntry("Raskvel");
 	userInterface.showBust("RASKVEL_FEMALE");
@@ -34,7 +34,7 @@ function encounterHostileRaskvelFemale():void
 	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks);
 }
 
-function payDatRaskCunt():void
+public function payDatRaskCunt():void
 {
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE");
@@ -48,7 +48,7 @@ function payDatRaskCunt():void
 
 
 //Combat
-function raskvelChickAI():void
+public function raskvelChickAI():void
 {
 	userInterface.showBust("RASKVEL_FEMALE");
 	userInterface.showName("RASKVEL\nFEMALE");
@@ -69,7 +69,7 @@ function raskvelChickAI():void
 	}
 }
 
-function raskvelPunch():void
+public function raskvelPunch():void
 {
 	output("Unmoved by being disarmed, the petite raskvel balls her fists and charges you.");
 	if(rangedCombatMiss(foes[0], pc))
@@ -89,7 +89,7 @@ function raskvelPunch():void
 
 //Combat Attacks
 //Aphrodisiac darts!
-function enemyAphrodisiacDarts():void
+public function enemyAphrodisiacDarts():void
 {
 	var damage:int = 0;
 	var hit:Boolean = true;
@@ -148,7 +148,7 @@ function enemyAphrodisiacDarts():void
 }
 
 //Wrenched
-function enemyWrenchAttack():void
+public function enemyWrenchAttack():void
 {
 	//Charged attack!
 	if(!foes[0].hasStatusEffect("Wrench Charge"))
@@ -191,7 +191,7 @@ function enemyWrenchAttack():void
 }
 
 //Shotgunned
-function raskvelFemShotgun():void
+public function raskvelFemShotgun():void
 {
 	output(foes[0].capitalA + foes[0].short + " presses a button on the side of her wrench, and you hear a shell slide home. A moment later she points it your way and pulls the trigger. Ka-BLAM! The report is loud enough to echo for miles.");
 	//Miss
@@ -211,7 +211,7 @@ function raskvelFemShotgun():void
 }
 
 //Tease (only vs males)
-function raskvelGirlsTeasingCockwielders():void
+public function raskvelGirlsTeasingCockwielders():void
 {
 	if(rand(4) == 0) 
 	{
@@ -253,7 +253,7 @@ function raskvelGirlsTeasingCockwielders():void
 }
 
 //Victory vs Raskvel
-function victoryVsRaskvel():void
+public function victoryVsRaskvel():void
 {
 	userInterface.showBust("RASKVEL_FEMALE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
@@ -316,7 +316,7 @@ function victoryVsRaskvel():void
 }
 
 //Doggie Style
-function raskVelBabeGetsDoggieStyled():void
+public function raskVelBabeGetsDoggieStyled():void
 {
 	//Put her on all fours, left her ass up to be supported by your cock, grab hold of those ears for good measure, and play with them.
 	clearOutput();
@@ -427,7 +427,7 @@ function raskVelBabeGetsDoggieStyled():void
 }
 
 //Huge Dick Ear Jackoff?
-function hugeDickEarJackoff():void
+public function hugeDickEarJackoff():void
 {
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
@@ -466,7 +466,7 @@ function hugeDickEarJackoff():void
 
 //Face Riding
 //Ride face and make stick tail up bum.
-function faceRidingRaskvelLadies():void
+public function faceRidingRaskvelLadies():void
 {
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
@@ -534,7 +534,7 @@ function faceRidingRaskvelLadies():void
 }
 
 //"Pay"
-function quotePayUnquoteFemRasks():void
+public function quotePayUnquoteFemRasks():void
 {
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
@@ -553,7 +553,7 @@ function quotePayUnquoteFemRasks():void
 
 
 //Loss vs Raskvel Scenes
-function defeatRoutingForFemRasks():void
+public function defeatRoutingForFemRasks():void
 {
 	var choices:Array = new Array();
 	var args:Array = new Array();
@@ -589,7 +589,7 @@ function defeatRoutingForFemRasks():void
 }
 
 //Face-Sitting Footjobs
-function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
+public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
@@ -661,7 +661,7 @@ function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 }
 
 //Tail-pegging
-function getRaskVelTailPegged(combat:Boolean = false):void
+public function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
@@ -729,7 +729,7 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 }
 
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
-function hugeDicksGetForceWorshippedByFemRaskvel():void
+public function hugeDicksGetForceWorshippedByFemRaskvel():void
 {
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
@@ -852,7 +852,7 @@ function hugeDicksGetForceWorshippedByFemRaskvel():void
 
 //Get Pegged while Double Penetrating Her
 //Double peg raskvel!
-function getPeggedWhileDoublePenetrate():void
+public function getPeggedWhileDoublePenetrate():void
 {	
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
@@ -958,7 +958,7 @@ function getPeggedWhileDoublePenetrate():void
 	genericLoss();
 }
 
-function payRaskvel():void
+public function payRaskvel():void
 {
 	if(pc.credits - 100 < 0) pc.credits = 0;
 	else pc.credits -= 100;
