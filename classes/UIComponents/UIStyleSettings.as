@@ -1093,70 +1093,70 @@ package classes.UIComponents
 			{
 				UIStyleSettings._gMainTextCSSStyleSheet = new StyleSheet();
 				
-				var defaultFormat = { 
+				var defaultFormat:Object = { 
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 5
 				};
 				
-				var good = { 
+				var good:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#00CCFF", 
 					marginRight: 5 
 				};
 				
-				var bad = { 
+				var bad:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#CC3300", 
 					marginRight: 5 
 				};
 				
-				var indifferent = { 
+				var indifferent:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#FFFFFF", 
 					marginRight: 5 
 				};
 				
-				var header = {
+				var header:Object = {
 					fontFamily: "Univers UltraCondensed",
 					fontSize: 72,
 					color: "#FFFFFF",
 					marginRight: 5
 				}
 				
-				var blockHeader = {
+				var blockHeader:Object = {
 					fontFamily: "Univers UltraCondensed",
 					fontSize: 28,
 					color: "#FFFFFF",
 					marginRight: 5
 				}
 				
-				var lockedCodexEntry = {
+				var lockedCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#CC3300",
 					marginRight: 0
 				}
 				
-				var newCodexEntry = {
+				var newCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#CCBC14",
 					marginRight: 0
 				}
 				
-				var viewedCodexEntry = {
+				var viewedCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 0
 				}
 				
-				var activeCodexEntry = {
+				var activeCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#00CCFF",
@@ -1185,70 +1185,70 @@ package classes.UIComponents
 			{
 				UIStyleSettings._gSharedStyleSheet = new StyleSheet();
 				
-				var defaultFormat = { 
+				var defaultFormat:Object = { 
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 5
 				};
 				
-				var good = { 
+				var good:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#00CCFF", 
 					marginRight: 5 
 				};
 				
-				var bad = { 
+				var bad:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#CC3300", 
 					marginRight: 5 
 				};
 				
-				var indifferent = { 
+				var indifferent:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
 					color: "#FFFFFF", 
 					marginRight: 5 
 				};
 				
-				var header = {
+				var header:Object = {
 					fontFamily: "Univers UltraCondensed",
 					fontSize: 72,
 					color: "#FFFFFF",
 					marginRight: 5
 				}
 				
-				var blockHeader = {
+				var blockHeader:Object = {
 					fontFamily: "Univers UltraCondensed",
 					fontSize: 28,
 					color: "#FFFFFF",
 					marginRight: 5
 				}
 				
-				var lockedCodexEntry = {
+				var lockedCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#CC3300",
 					marginRight: 0
 				}
 				
-				var newCodexEntry = {
+				var newCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#CCBC14",
 					marginRight: 0
 				}
 				
-				var viewedCodexEntry = {
+				var viewedCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 0
 				}
 				
-				var activeCodexEntry = {
+				var activeCodexEntry:Object = {
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#00CCFF",
