@@ -1,6 +1,5 @@
 package classes.UIComponents 
 {
-	import classes.StatBarSmall;
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;

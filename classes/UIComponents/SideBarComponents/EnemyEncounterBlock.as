@@ -1,6 +1,5 @@
 package classes.UIComponents.SideBarComponents 
 {
-	import classes.StatBarSmall;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import flash.display.Sprite;
 	import flash.events.Event;
