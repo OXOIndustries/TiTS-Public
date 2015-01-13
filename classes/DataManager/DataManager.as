@@ -624,6 +624,7 @@
 			{
 				kGAMECLASS.userInterface.hideNPCStats();
 				kGAMECLASS.userInterface.showPCStats();
+				kGAMECLASS.resetBarStates();
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
 				kGAMECLASS.userInterface.clearGhostMenu();
@@ -812,6 +813,7 @@
 		 */
 		public function executeGame():void
 		{
+			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.eventBuffer = "";
@@ -841,7 +843,6 @@
 				kGAMECLASS.pc.energy(kGAMECLASS.pc.energyMax());
 				kGAMECLASS.userInterface.hideMinimap();
 				kGAMECLASS.setClass(kGAMECLASS.pc.characterClass);
-				kGAMECLASS.updatePCStats();
 				return;
 			}
 			else if (kGAMECLASS.currentLocation != "")
@@ -849,7 +850,7 @@
 				kGAMECLASS.userInterface.setMapData(kGAMECLASS.mapper.generateMap(kGAMECLASS.currentLocation));
 				kGAMECLASS.userInterface.showMinimap();
 			}
-						
+			
 			kGAMECLASS.mainGameMenu();
 		}
 		

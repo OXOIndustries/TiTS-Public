@@ -1840,6 +1840,7 @@ public function genericLoss():void {
 	pc.removeStatusEffect("Round");
 	trace("GENERIC LOSS");
 	pc.clearCombatStatuses();
+	resetNPCBarStates();
 	trace("LOSS DONE");
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -1848,6 +1849,7 @@ public function genericLoss():void {
 public function genericVictory():void 
 {
 	pc.clearCombatStatuses();
+	resetNPCBarStates();
 	getCombatPrizes();
 }
 

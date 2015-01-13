@@ -480,7 +480,7 @@ public function statusTick():void {
 			//TIMER OVER!
 			if(pc.statusEffects[x].minutesLeft <= 0) 
 			{
-				if (pc.statusEffects[x].storageName.indexOf("Lane's Hypnosis"))
+				if (pc.statusEffects[x].storageName.indexOf("Lane's Hypnosis") != -1)
 				{
 					baseHypnosisWearsOff(pc.statusEffects[x].storageName);
 				}

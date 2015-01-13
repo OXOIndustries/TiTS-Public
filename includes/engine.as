@@ -155,34 +155,49 @@ public function hideMinimap():void {
 public function deglow():void 
 {
 	this.userInterface.deglow()
-}	
-public function updatePCStats():void {
+}
+public function resetBarStates():void
+{
+	userInterface.playerShields.updateBar(0, 100, true);
+	userInterface.playerHP.updateBar(0, 100, true);
+	userInterface.playerEnergy.updateBar(0, 100, true);
+	
+	userInterface.playerPhysique.updateBar(0, 5, true);
+	userInterface.playerReflexes.updateBar(0, 5, true);
+	userInterface.playerAim.updateBar(0, 5, true);
+	userInterface.playerIntelligence.updateBar(0, 5, true);
+	userInterface.playerWillpower.updateBar(0, 5, true);
+	userInterface.playerLibido.updateBar(0, 5, true);
+	userInterface.playerXP.updateBar(0, 500, true);
+}
+public function updatePCStats(setBars:Boolean = false):void 
+{
 	if (pc.short != "uncreated" && pc.short.length > 0)
 		this.userInterface.setGuiPlayerNameText(pc.short);
 	else
 		this.userInterface.setGuiPlayerNameText("");
 
-	userInterface.playerShields.updateBar(pc.shields(),pc.shieldsMax());
+	userInterface.playerShields.updateBar(pc.shields(),pc.shieldsMax(), setBars);
 
-	userInterface.playerHP.updateBar(pc.HP(),pc.HPMax());
-	userInterface.playerLust.updateBar(pc.lust(),pc.lustMax());
-	userInterface.playerEnergy.updateBar(pc.energy(),pc.energyMax());
+	userInterface.playerHP.updateBar(pc.HP(),pc.HPMax(), setBars);
+	userInterface.playerLust.updateBar(pc.lust(),pc.lustMax(), setBars);
+	userInterface.playerEnergy.updateBar(pc.energy(),pc.energyMax(), setBars);
 	
-	this.userInterface.playerPhysique.updateBar(pc.physique(),pc.physiqueMax());	
-	this.userInterface.playerReflexes.updateBar(pc.reflexes(),pc.reflexesMax());
-	this.userInterface.playerAim.updateBar(pc.aim(),pc.aimMax());
-	this.userInterface.playerIntelligence.updateBar(pc.intelligence(),pc.intelligenceMax());
-	this.userInterface.playerWillpower.updateBar(pc.willpower(),pc.willpowerMax());
-	this.userInterface.playerLibido.updateBar(pc.libido(), pc.libidoMax());
-	userInterface.playerXP.updateBar(pc.XP(), pc.XPMax());
+	userInterface.playerPhysique.updateBar(pc.physique(),pc.physiqueMax(), setBars);	
+	userInterface.playerReflexes.updateBar(pc.reflexes(),pc.reflexesMax(), setBars);
+	userInterface.playerAim.updateBar(pc.aim(),pc.aimMax(), setBars);
+	userInterface.playerIntelligence.updateBar(pc.intelligence(),pc.intelligenceMax(), setBars);
+	userInterface.playerWillpower.updateBar(pc.willpower(),pc.willpowerMax(), setBars);
+	userInterface.playerLibido.updateBar(pc.libido(), pc.libidoMax(), setBars);
+	userInterface.playerXP.updateBar(pc.XP(), pc.XPMax(), setBars);
 	
-	this.userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	this.userInterface.playerLevel.value = String(pc.level);
-	this.userInterface.playerCredits.value = String(pc.credits);
+	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
+	userInterface.playerLevel.value = String(pc.level);
+	userInterface.playerCredits.value = String(pc.credits);
 	
-	this.userInterface.time = timeText();
-	this.userInterface.days = String(days);
-	this.userInterface.showSceneTag();
+	userInterface.time = timeText();
+	userInterface.days = String(days);
+	userInterface.showSceneTag();
 	
 	if ((pc as PlayerCharacter).levelUpAvailable())
 	{
@@ -220,6 +235,14 @@ public function timeText():String
 	
 	buffer += minutes;
 	return buffer;
+}
+
+public function resetNPCBarStates():void
+{
+	userInterface.monsterShield.updateBar(0, 100, true);
+	userInterface.monsterHP.updateBar(0, 100, true);
+	userInterface.monsterLust.updateBar(0, 100, true);
+	userInterface.monsterEnergy.updateBar(0, 100, true);
 }
 
 public function updateNPCStats():void {

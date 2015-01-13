@@ -3,9 +3,11 @@ package classes.UIComponents.SideBarComponents
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.filters.GlowFilter;
+	import flash.geom.ColorTransform;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.UIStyleSettings;
+	import fl.motion.Color;
 	
 	/**
 	 * ...
@@ -27,14 +29,15 @@ package classes.UIComponents.SideBarComponents
 		
 		private var _progressBar:Sprite;
 		private var _maskingBar:Sprite;
+		private var _progressColor:ColorTransform;
 		
 		private var _tMin:Number = 0;
 		private var _tMax:Number = 100;
 		private var _tCurrent:Number = 0;
 		private var _tGoal:Number = 0;
 		
-		private var _barFrames:Number = 1.0 / (1.5 * 24);
-		private var _glowFrames:Number = 1.0 / (3.0 * 24);
+		private var _barFrames:Number = 1.0 / (2.0 * 24);
+		private var _glowFrames:Number = 1.0 / (4.0 * 24);
 		private var _valueGlow:GlowFilter;
 		
 		private var _tickGlow:Boolean = false;
@@ -45,10 +48,20 @@ package classes.UIComponents.SideBarComponents
 			_capFront.text = v;
 		}
 		
+		public function get caption():String
+		{
+			return _capBack.text;
+		}
+		
 		public function set value(v:*):void
 		{
 			if (!(v is String)) _values.text = String(v);
 			else _values.text = v;
+		}
+		
+		public function get value():String
+		{
+			return _values.text;
 		}
 		
 		public function disableBar():void
@@ -69,7 +82,6 @@ package classes.UIComponents.SideBarComponents
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			Build();
-			addEventListener(Event.ENTER_FRAME, update);
 		}
 		
 		private function update(e:Event):void
@@ -108,11 +120,43 @@ package classes.UIComponents.SideBarComponents
 			}
 			
 			//trace("Goal:", _tGoal, "Max:", _tMax, "Scale:", cScale);
+
+			if (_desiredMode != "NOBAR")
+			{
+				_progressBar.scaleX = cScale;
+				_maskingBar.scaleX = cScale;
+			}
 			
-			_progressBar.scaleX = cScale;
-			_maskingBar.scaleX = cScale;
+			value = String(Math.round(cScale * _tMax));
 			
-			value = String(Math.round(_tGoal * cScale));
+			if (_desiredMode == "BIG")
+			{
+				updateColor(cScale);
+			}
+		}
+		
+		private function updateColor(scaleValue:Number):void
+		{
+			var badColor:uint = 0xFF0000;
+			var goodColor:uint = 0x8D31B0;
+			var low:uint;
+			var high:uint;
+			
+			if (highBad)
+			{
+				low = goodColor;
+				high = badColor;
+			}
+			else
+			{
+				low = badColor;
+				high = goodColor;
+			}
+			
+			// Clamp 0->1
+			scaleValue = Math.min(1, Math.max(0, scaleValue));
+			_progressColor.color = Color.interpolateColor(low, high, scaleValue);
+			_progressBar.transform.colorTransform = _progressColor;
 		}
 		
 		private function Build():void
@@ -123,6 +167,10 @@ package classes.UIComponents.SideBarComponents
 			_valueGlow.strength = 2;
 			_valueGlow.alpha = 0;
 			_valueGlow.color = 0xFF0000;
+			
+			_progressColor = new ColorTransform();
+			
+			addEventListener(Event.ENTER_FRAME, update);
 			
 			if (_desiredMode == "BIG")
 			{
@@ -140,6 +188,9 @@ package classes.UIComponents.SideBarComponents
 			
 			_progressBar.scaleX = 0;
 			_maskingBar.scaleX = 0;
+			_tMax = 100;
+			_tGoal = 0;
+			_tCurrent = 0;
 		}
 		
 		private function BuildBig():void
@@ -152,6 +203,8 @@ package classes.UIComponents.SideBarComponents
 			_capBack.embedFonts = true;
 			_capBack.antiAliasType = AntiAliasType.ADVANCED;
 			_capBack.text = "HP";
+			_capBack.mouseEnabled = false;
+			_capBack.mouseWheelEnabled = false;
 			this.addChild(_capBack);
 			
 			_progressBar = new Sprite();
@@ -174,6 +227,8 @@ package classes.UIComponents.SideBarComponents
 			_capFront.embedFonts = true;
 			_capFront.antiAliasType = AntiAliasType.ADVANCED;
 			_capFront.text = "HP";
+			_capFront.mouseEnabled = false;
+			_capFront.mouseWheelEnabled = false;
 			this.addChild(_capFront);
 			
 			_capFront.mask = _maskingBar;
@@ -188,6 +243,8 @@ package classes.UIComponents.SideBarComponents
 			_values.antiAliasType = AntiAliasType.ADVANCED;
 			_values.text = "2047";
 			_values.filters = [_valueGlow];
+			_values.mouseEnabled = false;
+			_values.mouseWheelEnabled = false;
 			this.addChild(_values);
 		}
 		
@@ -307,16 +364,50 @@ package classes.UIComponents.SideBarComponents
 			return _tGoal;
 		}
 		
-		public function updateBar(newValue:*, max:Number = Number.NaN):void
+		public function updateBar(newValue:*, max:Number = Number.NaN, initBars:Boolean = false):void
 		{
-			setMax(max);
+			if (initBars)
+			{
+				setBar(newValue, max);
+				return;	
+			}
 			
-			trace("Goal:", _tGoal, "Value:", newValue);
+			setMax(max);
 			
 			if (_tGoal != newValue)
 			{
 				setGoal(newValue);
 				_tickGlow = false;
+			}
+		}
+		
+		public function setBar(newValue:*, max:Number = Number.NaN):void
+		{
+			setMax(max);
+			setGoal(newValue);
+			_valueGlow.alpha = 0.0;
+			_values.filters = [_valueGlow]
+			_tickGlow = false;
+			
+			var tScale:Number 
+			if (_tGoal == 0)
+			{
+				tScale = 0;
+			}
+			else
+			{
+				tScale = 1.0 / _tMax;
+				tScale *= _tGoal;
+			}
+			
+			_progressBar.scaleX = tScale;
+			_maskingBar.scaleX = tScale;
+			
+			value = String(newValue);
+			
+			if (_desiredMode == "BIG")
+			{
+				updateColor(tScale);
 			}
 		}
 	}
