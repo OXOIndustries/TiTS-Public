@@ -4,8 +4,6 @@
 
 	public class ParseEngine
 	{
-		import showdown.Showdown;
-
 		private var _ownerClass:*;			// main game class. Variables are looked-up in this class.
 		private var _settingsClass:*;		// global static class used for shoving conf vars around
 
@@ -647,131 +645,7 @@
 
 		}
 
-
-
-		private function getSceneSectionToInsert(inputArg:String):String
-		{
-			var argResult:String = null;
-
-
-			var argTemp:Array = inputArg.split(" ");
-			if (argTemp.length != 2)
-			{
-				return "<b>!Not actually a valid insertSection tag:!\"" + inputArg + "\"!</b>";
-			}
-			var callName:String = argTemp[0];
-			var sceneName:* = argTemp[1];
-			var callNameLower:String = argTemp[0].toLowerCase();
-
-			if (sceneParserDebug) trace("Doing lookup for sceneSection tag:", callName, " scene name: ", sceneName);
-
-			// this should have been checked before calling.
-			if (callNameLower != "insertsection")
-				throw new Error("Wat?");
-
-
-
-			if (sceneName in this.parserState)
-			{
-				if (sceneParserDebug) trace("Have sceneSection \""+sceneName+"\". Parsing and setting up menu");
-
-				buttonNum = 0;		// Clear the button number, so we start adding buttons from button 0
-
-				// Split up into multiple variables for debugging (it was crashing at one point. Separating the calls let me delineate what was crashing)
-				var tmp1:String = this.parserState[sceneName];
-				var tmp2:String = recParser(tmp1, 0);			// we have to actually parse the scene now
-				var tmp3:String = Showdown.makeHtml(tmp2)
-
-
-
-				return tmp3;			// and then stick it on the display
-
-				//if (sceneParserDebug) trace("Scene contents: \"" + tmp1 + "\" as parsed: \"" + tmp2 + "\"")
-			}
-			else
-			{
-				return "Insert sceneSection called with unknown arg \""+sceneName+"\". falling back to the debug pane";
-
-			}
-		}
-
-
-
-
-
 		private var buttonNum:Number;
-
-
-		// TODO: Make failed scene button lookups fail in a debuggable manner!
-
-		// Parser button event handler
-		// This is the event bound to all button events, as well as the function called
-		// to enter the parser's cached scenes. If you pass recursiveParser a set of scenes including a scene named
-		// "startup", the parser will not exit normally, and will instead enter the "startup" scene at the completion of parsing the
-		// input string.
-		//
-		// the passed seneName string is preferentially looked-up in the cached scene array, and if there is not a cached scene of name sceneName
-		// in the cache, it is then looked for as a member of _ownerClass.
-		// if the function name is not found in either context, an error *should* be thrown, but at the moment,
-		// it just returns to the debugPane
-		//
-		public function enterParserScene(sceneName:String):String
-		{
-
-			/*
-			if (sceneParserDebug) trace("this.parserStateContents:")
-			for (var prop in this.parserState)
-			{
-				if (sceneParserDebug) trace("this.parserState."+prop+" = "+this.parserState[prop]);
-			}
-			*/
-			var ret:String = "";
-
-			if (sceneParserDebug) trace("Entering parser scene: \""+sceneName+"\"");
-			if (sceneParserDebug) trace("Do we have the scene name? ", sceneName in this.parserState)
-			if (sceneName == "exit")
-			{
-				if (sceneParserDebug) trace("Enter scene called to exit");
-				//doNextClear(debugPane);
-
-				// TODO:
-				// This needs to change to something else anyways. I need to add the ability to
-				// tell the parser where to exit to at some point
-				_ownerClass.debugPane();
-
-			}
-			else if (sceneName in this.parserState)
-			{
-				if (sceneParserDebug) trace("Have scene \""+sceneName+"\". Parsing and setting up menu");
-				_ownerClass.menu();
-
-				buttonNum = 0;		// Clear the button number, so we start adding buttons from button 0
-
-				var tmp1:String = this.parserState[sceneName];
-				var tmp2:String = recParser(tmp1, 0);		// we have to actually parse the scene now
-				ret             = Showdown.makeHtml(tmp2)
-
-
-
-				_ownerClass.rawOutputText(ret, true);			// and then stick it on the display
-
-				//if (sceneParserDebug) trace("Scene contents: \"" + tmp1 + "\" as parsed: \"" + tmp2 + "\"")
-				if (sceneParserDebug) trace("Scene contents after markdown: \"" + ret + "\"");
-			}
-			else if (this.getObjectFromString(_ownerClass, sceneName) != null)
-			{
-				if (sceneParserDebug) trace("Have function \""+sceneName+"\" in this!. Calling.");
-				this.getObjectFromString(_ownerClass, sceneName)();
-			}
-			else
-			{
-				trace("Enter scene called with unknown arg/function \""+sceneName+"\". falling back to the debug pane");
-				_ownerClass.doNext(_ownerClass.debugPane);
-
-			}
-			return ret
-
-		}
 
 		// Parses the contents of a scene tag, shoves the unprocessed text in the scene object (this.parserState)
 		// under the proper name.
@@ -802,56 +676,6 @@
 
 		}
 
-		// Evaluates the contents of a button tag, and instantiates the relevant button
-		// Current syntax:
-		//
-		// [button function_name | Button Name]
-		// where "button" is a constant string, "function_name" is the name of the function pressing the button will call,
-		// and "Button Name" is the text that will be shown on the button.
-		// Note that the function name cannot contain spaces (actionscript requires this), and is case-sensitive
-		// "Button name" can contain arbitrary spaces or characters, excepting "]", "[" and "|"
-		private function parseButtonTag(textCtnt:String):void
-		{
-			// TODO: Allow button positioning!
-
-			var arr:Array = textCtnt.split("|")
-			if (arr.len > 2)
-			{
-				if (this._settingsClass.haltOnErrors) throw new Error("");
-				throw new Error("Too many items in button")
-			}
-
-			var buttonName:String = stripStr(arr[1]);
-			var buttonFunc:String = stripStr(arr[0].substring(arr[0].indexOf(' ')));
-			//trace("adding a button with name\"" + buttonName + "\" and function \"" + buttonFunc + "\"");
-			_ownerClass.addButton(buttonNum, buttonName, this.enterParserScene, buttonFunc);
-			buttonNum += 1;
-		}
-
-		// pushes the contents of the passed string into the scene list object if it's a scene, or instantiates the named button if it's a button
-		// command and returns an empty string.
-		// if the contents are not a button or scene contents, returns the contents.
-		private function evalForSceneControls(textCtnt:String):String
-		{
-
-
-			if (sceneParserDebug) trace("Checking for scene tags.");
-			if (textCtnt.toLowerCase().indexOf("screen") == 0)
-			{
-				if (sceneParserDebug) trace("It's a scene");
-				parseSceneTag(textCtnt);
-				return "";
-			}
-			else if (textCtnt.toLowerCase().indexOf("button") == 0)
-			{
-				if (sceneParserDebug) trace("It's a button add statement");
-				parseButtonTag(textCtnt);
-				return "";
-			}
-			return textCtnt;
-		}
-
-
 		private function isIfStatement(textCtnt:String):Boolean
 		{
 			if (textCtnt.toLowerCase().indexOf("if") == 0)
@@ -877,12 +701,7 @@
 
 			if (mainParserDebug) trace("string length = ", textCtnt.length);
 
-			if (textCtnt.toLowerCase().indexOf("insertsection") == 0)
-			{
-				if (sceneParserDebug) trace("It's a scene section insert tag!");
-				retStr = this.getSceneSectionToInsert(textCtnt)
-			}
-			else if (singleWordTagRegExp.exec(textCtnt))
+			if (singleWordTagRegExp.exec(textCtnt))
 			{
 				if (mainParserDebug) trace("It's a single word!");
 				retStr += convertSingleArg(textCtnt);
@@ -979,7 +798,6 @@
 
 
 						var tmpStr:String = textCtnt.substring(lastBracket+1, i);
-						tmpStr = evalForSceneControls(tmpStr);
 						// evalForSceneControls swallows scene controls, so they won't get parsed further now.
 						// therefore, you could *theoretically* have nested scene pages, though I don't know WHY you'd ever want that.
 
@@ -1075,10 +893,6 @@
 
 			if (parseAsMarkdown)
 			{
-				// trace("markdownificating");
-				ret = Showdown.makeHtml(ret);
-
-
 				var regexPCloseTag:RegExp = /<\/p>/gi;
 				ret = ret.replace(regexPCloseTag,"</p>\n");
 				// Finally, add a additional newline after each closing P tag, because flash only
@@ -1100,21 +914,6 @@
 			}
 			*/
 
-			// Finally, if we have a parser-based scene. enter the "startup" scene.
-			if ("startup" in this.parserState)
-			{
-				ret = enterParserScene("startup");
-
-				// HORRIBLE HACK
-				// since we're initially called via a outputText command, the content of the first page's text will be overwritten
-				// when we return. Therefore, in a horrible hack, we return the contents of mainTest.htmlText as the ret value, so
-				// the outputText call overwrites the window content with the exact same content.
-
-				// trace("Returning: ", ret);
-				_ownerClass.currentText = ret;
-
-
-			}
 			//trace(ret);
 			// trace("Maintext content @ recursiveParser = ", mainText.htmlText.length)
 			return ret

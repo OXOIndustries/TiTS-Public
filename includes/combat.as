@@ -886,7 +886,7 @@ public function rangedCombatMiss(attacker:Creature, target:Creature, overrideAtt
 	return false;
 }
 
-public function attackRouter(destinationFunc):void 
+public function attackRouter(destinationFunc:Function):void 
 {
 	// Inject the mimbrane attack shit infront of the regular attacks
 	clearOutput();
@@ -1057,7 +1057,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
 		}
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		//Apply damage reductions
@@ -1197,7 +1197,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 				if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
 			}
 			//Randomize +/- 15%
-			var randomizer = (rand(31)+ 85)/100;
+			var randomizer:Number = (rand(31)+ 85)/100;
 			damage *= randomizer;
 			var sDamage:Array = new Array();
 			//Apply damage reductions
@@ -1304,7 +1304,7 @@ public function droneDamage():int
 
 public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
 	//Randomize +/- 15%
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	var sDamage:Array = new Array();
 	//Apply damage reductions
@@ -1349,7 +1349,7 @@ public function genericDamageApply(damage:int,attacker:Creature, target:Creature
 }
 
 
-public function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC,special:String = ""):Number 
+public function HPDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC,special:String = ""):Number 
 {
 	var temp:Number = 0;
 	//Reduce damage by defense value
@@ -1379,7 +1379,7 @@ public function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.
 	return damage;
 }
 
-public function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC, special:String = ""):Array 
+public function shieldDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC, special:String = ""):Array 
 {
 	var initialDamage:Number = damage;
 	var soakedDamage:Number = 0;
@@ -1473,7 +1473,7 @@ public function teaseCrotch(target:Creature):void {
 
 //Name, long descript, lust descript, and '"
 // NO SIDEEFFECTS TO GAME DATA YO
-public function displayMonsterStatus(targetFoe):void 
+public function displayMonsterStatus(targetFoe:Creature):void 
 {
 	clearOutput();
 	if(targetFoe.HP() <= 0) {
@@ -1515,7 +1515,7 @@ public function displayMonsterStatus(targetFoe):void
 	}
 }
 
-public function showMonsterArousalFlavor(targetFoe):void 
+public function showMonsterArousalFlavor(targetFoe:Creature):void 
 {
 	if(targetFoe.lust() < 50) { 
 		return; 
@@ -2194,7 +2194,7 @@ public function wait():void {
 public function tease(target:Creature, part:String = "chest"):void {
 	var damage:Number = 0;
 	var teaseCount:Number = 0;
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	var likeAdjustments:Array = new Array();
 	var totalFactor:Number = 1;
 	var x:int = 0;
@@ -3174,7 +3174,7 @@ public function overcharge(target:Creature):void {
 		//OVER CHAAAAAARGE
 		damage *= 1.5;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target,pc.rangedWeapon.damageType);
@@ -3204,7 +3204,7 @@ public function NPCOvercharge():void {
 		//OVER CHAAAAAARGE
 		damage *= 1.75;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
@@ -3319,7 +3319,7 @@ public function properHeadbutt(attacker:Creature,target:Creature):void {
 		//Damage bonuses:
 		var damage:int = attacker.physique()/2 + attacker.level;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target);
@@ -3368,7 +3368,7 @@ public function lowBlow(target:Creature):void {
 		//Damage bonuses:
 		var damage:int = pc.damage() + pc.physique()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target);
@@ -3573,7 +3573,7 @@ public function powerStrike(target:Creature):void {
 		//OVER CHAAAAAARGE
 		damage *= 2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target,pc.meleeWeapon.damageType);
@@ -3630,7 +3630,7 @@ public function shieldHack(target:Creature):void
 	}
 	output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "! ");
 	var damage:Number = Math.round(25 + pc.level*5);
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	var sDamage:Array = new Array();
 	sDamage = shieldDamage(target,damage,GLOBAL.ELECTRIC);

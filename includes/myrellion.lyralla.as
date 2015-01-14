@@ -128,7 +128,7 @@ public function lyrallaTalks():void
 	lyrallaTalkMenu();
 }
 
-public function lyrallaTalkMenu(functionFrom = undefined):void
+public function lyrallaTalkMenu(functionFrom:Function = undefined):void
 {
 	clearMenu();
 	//What Happened

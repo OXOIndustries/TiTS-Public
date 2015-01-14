@@ -8,7 +8,7 @@
 	 */
 	public class SaveVersionUpgrader3 implements ISaveVersionUpgrader 
 	{
-		private const _newVersionValue = 4;
+		private const _newVersionValue:* = 4;
 		
 		public function SaveVersionUpgrader3() 
 		{}
@@ -21,7 +21,7 @@
 		public function upgrade(data:Object):Boolean
 		{
 			// We have go iterate over every character...
-			for (var k in data.characters)
+			for (var k:* in data.characters)
 			{
 				trace("Upgrading to V4 " + k + "...");
 				

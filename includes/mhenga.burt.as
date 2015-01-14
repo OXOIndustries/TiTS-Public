@@ -275,7 +275,7 @@ public function BurtShopCollectables():void {
 	this.addButton(14,"Back",burtapproach);
 }
 
-public function burtPurchase(arg:int = 0) {
+public function burtPurchase(arg:int = 0):void {
 	if(pc.inventory[arg].shortName != "ZilRation" && pc.inventory[arg].shortName != "ZilHoney") burtRefusesYourItemYouHobo(arg);
 	else burtMakesAPurchase(arg);
 }

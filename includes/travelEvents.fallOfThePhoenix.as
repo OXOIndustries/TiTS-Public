@@ -712,7 +712,7 @@ public function phoenixEngineeringValeriaFlirt():void
 	removeButton(1);
 }
 
-public var phoenixEngineButtons = [0, 0, 0, 0, 0];
+public var phoenixEngineButtons:Array = [0, 0, 0, 0, 0];
 
 public function phoenixEngineeringEngines(doOutput:Boolean = true):void
 {

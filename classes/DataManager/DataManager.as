@@ -111,7 +111,7 @@
 		{
 			so.clear();
 			
-			for (var prop in blob)
+			for (var prop:* in blob)
 			{
 				so.data[prop] = blob[prop];
 			}

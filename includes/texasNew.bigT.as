@@ -100,7 +100,7 @@ public function repeatBigTApproach():void
 }
 
 //Talk Scenes!
-public function talkToBigT(currentScene):void
+public function talkToBigT(currentScene:Function):void
 {
 	clearMenu();
 	if(currentScene == talkWithBigTAboutNudeTexas) addDisabledButton(0,"New Texas","New Texas","You just finished that conversation.");

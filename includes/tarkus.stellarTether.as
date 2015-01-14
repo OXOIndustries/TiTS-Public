@@ -219,7 +219,7 @@ public function laserSightShot():void
 		//OVER CHAAAAAARGE
 		damage *= 2.2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
 	}
@@ -261,7 +261,7 @@ public function thermalDisruptorFromTam():void
 		output("\"</i>");
 		var damage:int = 18;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
 
@@ -304,7 +304,7 @@ public function tamwolfBiteGogogogogogo():void
 		output(".");
 		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number  = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
 	}
@@ -994,7 +994,7 @@ public function rocketPodRocketAttk():void
 		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your feet and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
 		var damage:int = 15;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
 	}
@@ -1149,7 +1149,7 @@ public function miningLaserBarrage():void
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
 	var damage:int = 0;
 	var leftOverDamage:int = 0;
-	var randomizer = 0;
+	var randomizer:Number = 0;
 	for(var x:int = 3;x > 0;x--)
 	{
 		//Damage!
@@ -1485,7 +1485,7 @@ public function captainCutlassAttk():void
 		output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
 		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc);
 	}

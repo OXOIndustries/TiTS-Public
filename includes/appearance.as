@@ -1132,7 +1132,7 @@ public function appearance(target:Creature):void {
 		//Genderless lovun'
 		if(!pc.hasVagina() && !pc.hasCock()) output2("\n\nYou have a curious lack of any sexual endowments.");
 		//BUNGHOLIO
-		if(target.ass != undefined) {
+		if(target.ass != null) {
 			output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
 			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{

@@ -225,9 +225,9 @@ public function sexBotElectropulseAttack():void
 	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
 	var attacker:Creature = foes[0];
 	var target:Creature = pc;
-	var damTypeOverride = GLOBAL.ELECTRIC;
+	var damTypeOverride:int = GLOBAL.ELECTRIC;
 	//Randomize +/- 15%
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	var damage:int = 15;
 	damage *= randomizer;
 	var sDamage:Array = new Array();

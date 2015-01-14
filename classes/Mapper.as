@@ -79,7 +79,7 @@
 		// that means I can recurse without getting bogged down in issues related to the fact that arrays are pass
 		// by reference.
 		// also: RECURSION
-		private function processRoom(targetRoom:String, map:Vector.<Vector.<Vector.<int>>>, x:int, y:int, z:int)
+		private function processRoom(targetRoom:String, map:Vector.<Vector.<Vector.<int>>>, x:int, y:int, z:int):void
 		{
 			// clamp to map size
 			if ((x < 0 || x >= this._mapSz) || (y < 0 || y >= this._mapSz) || (z < 0 || z >= this._mapSz))
@@ -228,7 +228,7 @@
 			if (this.mapDebug) trace("Finished room ", targetRoom)
 		}
 
-		private function processRoomsIntoMap(startRoom:String, map:Vector.<Vector.<Vector.<int>>>)
+		private function processRoomsIntoMap(startRoom:String, map:Vector.<Vector.<Vector.<int>>>):void
 		{
 			var x:int;
 			var y:int;

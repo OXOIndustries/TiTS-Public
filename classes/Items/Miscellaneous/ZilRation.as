@@ -581,7 +581,7 @@
 			}
 			
 			//Ball shrinkage
-			var newBallSize = target.ballSizeRaw - 3.5;
+			var newBallSize:Number = target.ballSizeRaw - 3.5;
 			newBallSize = Math.round((rand(newBallSize / 4 * 10) / 10 + newBallSize / 4 + .5) * 10) / 10;
 			newBallSize = target.ballSizeRaw - newBallSize;
 			

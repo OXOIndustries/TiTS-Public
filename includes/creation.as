@@ -366,14 +366,14 @@ public function chooseHairColor():void {
 	this.addButton(14,"Back",chooseThickness);
 }
 
-public function applyHairColor(arg:String = "black") {
+public function applyHairColor(arg:String = "black"):void {
 	pc.hairColor = arg;
 	pc.furColor = arg;
 	chooseEyeColor();
 }
 
 //Eye Color:
-public function chooseEyeColor() {
+public function chooseEyeColor():void {
 	clearOutput();
 	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“I thought you’d choose " + pc.hairColor + ", boss. How about eye color? Got anything in mind?”</i> The doctor glances up from his tablet and awaits Victor’s response.");
@@ -1228,7 +1228,7 @@ public function setRivalGender(sex:int = 0):void
 	}
 }
 //Rival Spills the Beans
-public function rivalSpillsTheBeans() {
+public function rivalSpillsTheBeans():void {
 	clearOutput();
 	
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());

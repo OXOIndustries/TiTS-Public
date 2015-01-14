@@ -714,7 +714,7 @@ public function suicideBullshit():void {
 		//Damage bonuses:
 		var damage:int = 15 + foes[0].aim()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		//Apply damage reductions

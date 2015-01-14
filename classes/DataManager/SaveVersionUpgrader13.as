@@ -13,14 +13,14 @@ package classes.DataManager
 	 */
 	public class SaveVersionUpgrader13 implements ISaveVersionUpgrader
 	{
-		private const _newVersionValue = 14;
+		private const _newVersionValue:int = 14;
 		
 		public function SaveVersionUpgrader13() 
 		{}
 		
 		public function upgrade(data:Object):Boolean
 		{
-			for each (var char in data.characters)
+			for each (var char:int in data.characters)
 			{
 				checkItems(char);
 				checkLegFlags(char);

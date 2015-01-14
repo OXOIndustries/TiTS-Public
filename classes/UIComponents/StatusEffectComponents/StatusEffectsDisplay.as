@@ -121,7 +121,7 @@
 		/**
 		 * Build the base container for childelements. Right now, we're using self as the container (although that will change when I blow back through to setup glows.
 		 */
-		private function BuildContainer()
+		private function BuildContainer():void
 		{
 			// Position within the parent
 			this.x = _targetX + this.paddingLeft;

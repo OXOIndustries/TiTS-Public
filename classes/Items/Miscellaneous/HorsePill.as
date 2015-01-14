@@ -108,7 +108,7 @@
 		}
 		private function smallHorsePillMutations(target:Creature):void
 		{
-			var totalTFs = target.statusEffectv2("Horse Pill");
+			var totalTFs:Number = target.statusEffectv2("Horse Pill");
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
@@ -567,7 +567,7 @@
 		private function bigHorsePillMutations(target:Creature):void
 		{
 			//How many TFs? Max of 2.
-			var totalTFs = Math.floor(target.statusEffectv2("Horse Pill")/2);
+			var totalTFs:Number = Math.floor(target.statusEffectv2("Horse Pill")/2);
 			if(totalTFs < 1) totalTFs = 1;
 			//Used for holding temporary garbage
 			var x:int = 0;

@@ -167,7 +167,7 @@ package classes.UIComponents.StatusEffectComponents
 		private function BuildContentBlock():void
 		{
 			_bodyText = new TextField();
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", marginRight:1 };
+			var defaultCSSTag:Object = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", marginRight:1 };
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
 			
@@ -194,7 +194,7 @@ package classes.UIComponents.StatusEffectComponents
 		private function BuildDurationBlock():void
 		{
 			_durationText = new TextField();
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:10, color:"#FFFFFF", marginRight:1, textAlign:"center" };
+			var defaultCSSTag:Object = { fontFamily:"Lato", fontSize:10, color:"#FFFFFF", marginRight:1, textAlign:"center" };
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
 			

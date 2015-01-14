@@ -1232,7 +1232,7 @@ public function offerAlissYourAss():void
 	if(pc.ass.looseness() < 1) 
 	{
 		output("Your tight ");
-		if(pc.ass.virgin) output("virgin ");
+		if(pc.analVirgin) output("virgin ");
 		output("asshole resists, reflexively clamping shut as the invader pushes forward. Aliss gives a grunt of effort and thrusts, piercing your snug ");
 		if(!silly || !pc.hasCock()) output("rosebud");
 		else output("yaoi-hole");

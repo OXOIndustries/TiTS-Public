@@ -96,9 +96,9 @@ package classes.UIComponents
 		private function BuildContentBlock():void
 		{
 			this._bodyText = new TextField();
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", maginRight:1 };
-			var goodStat = { fontFamily:"Lato", fontSize:14, color:"#00FF00", marginRight:1 };
-			var badStat = { fontFamily: "Lato", fontSize:14, color:"#FF0000", marginRight:1 };
+			var defaultCSSTag:Object = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", maginRight:1 };
+			var goodStat:Object = { fontFamily:"Lato", fontSize:14, color:"#00FF00", marginRight:1 };
+			var badStat:Object = { fontFamily: "Lato", fontSize:14, color:"#FF0000", marginRight:1 };
 			
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
@@ -136,10 +136,10 @@ package classes.UIComponents
 			
 			this._comparisonText = new TextField();
 			
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:13, color:"#FFFFFF", maginRight:0 };
-			var goodStat = { fontFamily:"Lato", fontSize:13, color:"#00CCFF", marginRight:0 };
-			var badStat = { fontFamily: "Lato", fontSize:13, color:"#CC3300", marginRight:0 };
-			var noDiffStat = { fontFamily: "Lato", fontSize:13, color:"#FFFFFF", marginRight:0 };
+			var defaultCSSTag:Object = { fontFamily:"Lato", fontSize:13, color:"#FFFFFF", maginRight:0 };
+			var goodStat:Object = { fontFamily:"Lato", fontSize:13, color:"#00CCFF", marginRight:0 };
+			var badStat:Object = { fontFamily: "Lato", fontSize:13, color:"#CC3300", marginRight:0 };
+			var noDiffStat:Object = { fontFamily: "Lato", fontSize:13, color:"#FFFFFF", marginRight:0 };
 			
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);

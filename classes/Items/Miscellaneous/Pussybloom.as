@@ -59,7 +59,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var choices:Array = new Array();
-			var pc = target;
+			var pc:Creature = target;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Consume:
@@ -105,7 +105,7 @@
 				}
 				else if(pc.hasVagina())
 				{
-					var x = rand(pc.totalVaginas());
+					var x:int = rand(pc.totalVaginas());
 					//Hymen restoration
 					if(!pc.vaginas[x].hymen)
 					{

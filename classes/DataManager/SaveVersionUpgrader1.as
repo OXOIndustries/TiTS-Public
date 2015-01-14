@@ -8,7 +8,7 @@
 	 */
 	public class SaveVersionUpgrader1 implements ISaveVersionUpgrader 
 	{
-		private const _newVersionValue = 2;
+		private const _newVersionValue:int = 2;
 		
 		public function SaveVersionUpgrader1() 
 		{}
@@ -58,8 +58,8 @@
 			data.playerGender = "?"; // We can't easily reconstitue this, and frankly I don't even want to try. So we're just going to set *something*
 		
 			// Move flags dict to an array
-			var flags = new Array();
-			for (var k in data.flags)
+			var flags:Array = new Array();
+			for (var k:* in data.flags)
 			{
 				if (data.flags[k] != undefined)
 				{

@@ -212,7 +212,7 @@
 					}
 				}
 				
-				for each (var accs in _da)
+				for each (var accs:* in _da)
 				{
 					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
 					{

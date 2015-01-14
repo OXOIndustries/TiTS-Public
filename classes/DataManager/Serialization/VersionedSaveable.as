@@ -29,7 +29,7 @@
 			_ignoredFields.push(fieldName);
 		}
 		
-		protected var _isLoading = true;
+		protected var _isLoading:Boolean = true;
 		
 		private function isBasicType(obj:*):Boolean
 		{
@@ -235,7 +235,7 @@
 					}
 				}
 				
-				for each (var accs in _da)
+				for each (var accs:* in _da)
 				{
 					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
 					{

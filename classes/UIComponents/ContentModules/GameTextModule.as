@@ -136,7 +136,7 @@ package classes.UIComponents.ContentModules
 		public function pageUpScrollText():void
 		{
 			//Scroll if text field isn't actively selected, like a BAWS.
-			var keyTemp;
+			var keyTemp:*;
 			if (stage.focus == null) 
 			{ 
 				keyTemp = _mainText.bottomScrollV - _mainText.scrollV + 1;
@@ -146,7 +146,7 @@ package classes.UIComponents.ContentModules
 		
 		public function pageDownScrollText():void
 		{
-			var keyTemp;
+			var keyTemp:*;
 			if (stage.focus == null) 
 			{ 
 				keyTemp = _mainText.bottomScrollV - _mainText.scrollV + 1;

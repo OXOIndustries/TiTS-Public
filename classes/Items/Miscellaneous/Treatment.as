@@ -213,7 +213,7 @@ package classes.Items.Miscellaneous
 			}
 			return false;
 		}
-		function setTreatmentMode(pc:Creature,arg:int = 0):void
+		private function setTreatmentMode(pc:Creature,arg:int = 0):void
 		{
 			//chicks
 			if(arg == 0)

@@ -1,4 +1,4 @@
-const HYPNOSIS_LEVEL_MAX:int = 4;
+private const HYPNOSIS_LEVEL_MAX:int = 4;
 
 /*
 Lanes Hypnosis Mechnic
@@ -291,11 +291,11 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 /*
 Add a hypnosis effect that boosts a stat. Also creates the time-checking hidden effect that will be used to determine if we're doing special things.
 */
-const HYPNO_STAT_PHYS:String = "Physique";
-const HYPNO_STAT_REF:String = "Reflexes";
-const HYPNO_STAT_INT:String = "Intelligence";
-const HYPNO_STAT_AIM:String = "Aim";
-const HYPNO_STAT_WILL:String = "Willpower";
+private const HYPNO_STAT_PHYS:String = "Physique";
+private const HYPNO_STAT_REF:String = "Reflexes";
+private const HYPNO_STAT_INT:String = "Intelligence";
+private const HYPNO_STAT_AIM:String = "Aim";
+private const HYPNO_STAT_WILL:String = "Willpower";
 
 public function hasHypnosisEffect():Boolean
 {

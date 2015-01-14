@@ -728,7 +728,7 @@ public function karaPlasmaShot(target:Creature):void
 	{
 		var damage:int = attacker.damage(false) + attacker.aim()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
@@ -755,7 +755,7 @@ public function karaHitsWivASwordChuck(target:Creature):void
 	{
 		var damage:int = attacker.damage(true) + attacker.physique()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target);
@@ -782,7 +782,7 @@ public function karaDoesChargeShot(target:Creature):void
 		//OVER CHAAAAAARGE
 		damage *= 1.5;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
@@ -829,7 +829,7 @@ public function shadeUsesArcCaster(target:Creature):void
 	{
 		var damage:int = attacker.damage(false) + attacker.aim()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
@@ -855,7 +855,7 @@ public function shadeShootHoldoutPistol(target:Creature):void
 	{
 		var damage:int = attacker.damage(false) + attacker.aim()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target,GLOBAL.KINETIC);
@@ -938,7 +938,7 @@ public function tazerForShade(target:Creature):void
 		//The dart hits and unleashes a shock of electricity, zapping {target} for X damage and stunning {you / her}! "
 		var damage:int = 10;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
@@ -1445,7 +1445,7 @@ public function talkToShadeAbootStuff():void
 	shadeTalkMenu(talkToShadeAbootStuff);
 }
 
-public function shadeTalkMenu(arg):void
+public function shadeTalkMenu(arg:Function):void
 {
 	clearMenu();
 	//Family

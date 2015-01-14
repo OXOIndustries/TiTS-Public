@@ -106,7 +106,7 @@ public function naleenConstrict():void {
 	//Damage bonuses:
 	var damage:int = 5 + rand(5);
 	//Randomize +/- 15%
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	var sDamage:Array = new Array();
 	

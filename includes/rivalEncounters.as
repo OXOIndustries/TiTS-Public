@@ -214,7 +214,7 @@ public function daneCrossSlashAttack():void {
 		//OVER CHAAAAAARGE
 		damage *= 3;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc);
 	}

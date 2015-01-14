@@ -22,7 +22,7 @@ package classes.UIComponents.ContentModuleComponents
 		public function set selectedPerkName(v:String):void { _selectedPerkName.text = v; }
 		
 		public function get selectedPerkText():String { return _selectedPerkText.text; }
-		public function set selectedPerkText(v:String) { _selectedPerkText.text = v; }
+		public function set selectedPerkText(v:String):void { _selectedPerkText.text = v; }
 		
 		public function PerkDetailsPane() 
 		{

@@ -223,13 +223,13 @@
 		public var itemScreen:*;
 		public var lootScreen:*;
 		
-		public var useItemFunction;
+		public var useItemFunction:Function;
 		public var itemUser:Creature;
 		public var itemTarget:Creature;
 
 		public var flags:Dictionary;
 
-		public var combatStage;
+		public var combatStage:*;
 
 		// LE MAP
 		public var mapper:Mapper;

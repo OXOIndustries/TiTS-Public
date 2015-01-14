@@ -1,6 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
+import classes.Items.Miscellaneous.HorsePill;
 import classes.StorageClass;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
@@ -496,7 +497,7 @@ public function statusTick():void {
 				//Horse pill gets bonus proc!
 				if(pc.statusEffects[x].storageName == "Horse Pill")
 				{
-					var pill = new HorsePill();
+					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
 				}
 				//Condensol ends!
@@ -815,7 +816,7 @@ public function processTime(arg:int):void {
 			//Horse pill procs!
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
-				var pill = new HorsePill();
+				var pill:HorsePill = new HorsePill();
 				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
 			}	
@@ -1053,7 +1054,7 @@ public function lactationUpdateHourTick():void
 	//Milk Multiplier crosses a 10 point threshold while dropping
 	//Drops .5 an hour above 150 fullness. 1 above 200 fullness
 	//Milk Rate drops by .1 an hour above 200.
-	var originalMultiplier = pc.milkMultiplier;
+	var originalMultiplier:Number = pc.milkMultiplier;
 	//Bounty bra never loses milkMultiplier!
 	if(pc.upperUndergarment is BountyBra)
 	{

@@ -4,7 +4,7 @@
 
 //Sight blurb
 //(in the bar from 12pm equivalent to 9 pm equivalent because not everyone can be eternally awake.)
-function lilianaBonusShits():void
+public function lilianaBonusShits():void
 {
 	if(flags["MET_LILIANA"] == undefined)
 	{
@@ -18,20 +18,20 @@ function lilianaBonusShits():void
 	}
 }
 
-function showLiliana():void
+public function showLiliana():void
 {
 	author("Gardeford");
 	showName("\nLILIANA");
 	showBust("LILIANA");
 }
 
-function lilianaEncouraged():Boolean
+public function lilianaEncouraged():Boolean
 {
 	if(flags["LILIANA_NO_ARMS_ARE_COOL"] != undefined) return true;
 	if(flags["LILIANA_ARMS"] != undefined) return true;
 	return false;
 }
-function lilianaArms():Number
+public function lilianaArms():Number
 {
 	if(flags["LILIANA_ARMS"] == undefined) return 3;
 	if(flags["LILIANA_ARMS"] >= 1) return 4;
@@ -39,7 +39,7 @@ function lilianaArms():Number
 }
 
 //[Approach]
-function approachLiliana():void
+public function approachLiliana():void
 {
 	clearOutput();
 	showLiliana();
@@ -72,7 +72,7 @@ function approachLiliana():void
 	}
 }
 
-function lilianaMenu():void
+public function lilianaMenu():void
 {
 	clearMenu();
 	//[sex][talk][cuddles(at night(7pm or later) only)][later]
@@ -98,7 +98,7 @@ function lilianaMenu():void
 }
 
 //[later]
-function talkToLilianaLater():void
+public function talkToLilianaLater():void
 {
 	clearOutput();
 	showLiliana();
@@ -109,7 +109,7 @@ function talkToLilianaLater():void
 }
 
 //[Appearance]
-function lilianaAppearance():void
+public function lilianaAppearance():void
 {
 	clearOutput();
 	showLiliana();
@@ -136,7 +136,7 @@ function lilianaAppearance():void
 }
 
 //Talks
-function talkToLilianaYouBafoooooon():void
+public function talkToLilianaYouBafoooooon():void
 {
 	clearOutput();
 	showLiliana();
@@ -203,7 +203,7 @@ function talkToLilianaYouBafoooooon():void
 
 //[Encourage-stay]
 //Tooltip: encourage Liliana that she’ll be ok even without the arm.
-function encourageWhatsHerButtNotToBeRobocop():void
+public function encourageWhatsHerButtNotToBeRobocop():void
 {
 	clearOutput();
 	showLiliana();
@@ -218,7 +218,7 @@ function encourageWhatsHerButtNotToBeRobocop():void
 
 //[Encourage-arm](requires at least 2k credits to start)
 //tooltip: Encourage Lilianna to get a new arm. You guess it would cost about 2000 credits for robot arm or 6000 for real arm.
-function lilianaIsTotallyRobocopAnt():void
+public function lilianaIsTotallyRobocopAnt():void
 {
 	clearOutput();
 	showLiliana();
@@ -245,7 +245,7 @@ function lilianaIsTotallyRobocopAnt():void
 
 //[Real]
 //You tell her that you have the money for the regeneration, and aren’t going to shortchange Liliana. 
-function getARealArmBabeeeeeeeeeeee():void
+public function getARealArmBabeeeeeeeeeeee():void
 {
 	clearOutput();
 	showLiliana();
@@ -266,7 +266,7 @@ function getARealArmBabeeeeeeeeeeee():void
 }
 
 //[Robo]
-function roboArmsForAllTheLittleAntLadies():void
+public function roboArmsForAllTheLittleAntLadies():void
 {
 	clearOutput();
 	showLiliana();
@@ -287,7 +287,7 @@ function roboArmsForAllTheLittleAntLadies():void
 }
 
 //Cuddles
-function cuddleDatAntBiyooootchToSleepizzles():void
+public function cuddleDatAntBiyooootchToSleepizzles():void
 {
 	clearOutput();
 	showLiliana();
@@ -341,7 +341,7 @@ function cuddleDatAntBiyooootchToSleepizzles():void
 }
 
 //Sex
-function sexUpDatAntBitch():void
+public function sexUpDatAntBitch():void
 {
 	clearOutput();
 	showLiliana();
@@ -395,7 +395,7 @@ function sexUpDatAntBitch():void
 }
 
 //Male
-function maleFuxLiliana():void
+public function maleFuxLiliana():void
 {
 	clearOutput();
 	showLiliana();
@@ -444,7 +444,7 @@ function maleFuxLiliana():void
 }
 
 //Female
-function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople():void
+public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople():void
 {
 	clearOutput();
 	showLiliana();

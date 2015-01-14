@@ -113,17 +113,13 @@
 			return Math.round(temp * 100) / 100;
 		}
 		//FLAG CHECKIN!
-		public function hasFlag(arg = undefined):Boolean {
-			if(arg == undefined) {
-				if(cockFlags.length > 0) return true;
-				else return false;
-			}
+		public function hasFlag(arg:int):Boolean {
 			for(var x:int = 0; x < cockFlags.length;x++) {
 				if(arg == cockFlags[x]) return true;
 			}
 			return false;
 		}
-		public function addFlag(arg):void {
+		public function addFlag(arg:int):void {
 			if(!hasFlag(arg)) cockFlags[cockFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to cock of type " + cType + ".");
 		}

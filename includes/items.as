@@ -701,10 +701,10 @@ public function shipStorageMenuRoot():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-const STORAGE_MODE_TAKE:uint = 1 << 0;
-const STORAGE_MODE_STORE:uint = 1 << 1;
+private const STORAGE_MODE_TAKE:uint = 1 << 0;
+private const STORAGE_MODE_STORE:uint = 1 << 1;
 
-var _shipStorageMode:uint = STORAGE_MODE_TAKE;
+private var _shipStorageMode:uint = STORAGE_MODE_TAKE;
 
 public function shipStorageMenuType(type:String):void
 {

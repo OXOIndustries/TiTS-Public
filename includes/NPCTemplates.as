@@ -277,7 +277,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 		chars["LANE"] = new Lane();
 	}
 	// Check all characters have version information set
-	for (var prop in chars)
+	for (var prop:String in chars)
 	{
 		if (chars[prop].version == 0)
 		{

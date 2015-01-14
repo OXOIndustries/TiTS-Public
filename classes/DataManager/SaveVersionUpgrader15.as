@@ -13,7 +13,7 @@ package classes.DataManager
 	 */
 	public class SaveVersionUpgrader15 implements ISaveVersionUpgrader
 	{
-		private const _newVersionValue = 16;
+		private const _newVersionValue:int = 16;
 		
 		public function SaveVersionUpgrader15() 
 		{}

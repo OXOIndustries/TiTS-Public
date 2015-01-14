@@ -9,14 +9,14 @@ package classes.DataManager
 	 */
 	public class SaveVersionUpgrader8 implements ISaveVersionUpgrader
 	{
-		private const _newVersionValue = 9;
+		private const _newVersionValue:int = 9;
 		
 		public function SaveVersionUpgrader8() 
 		{}
 		
 		public function upgrade(data:Object):Boolean
 		{
-			for (var k in data.characters)
+			for (var k:* in data.characters)
 			{
 				trace("Upgrading " + k + " to v9...");
 				upgradeCharData(data.characters[k]);

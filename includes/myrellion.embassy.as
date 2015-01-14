@@ -102,7 +102,7 @@ public function talkToAmbassadorJuro():void
 	jurosTalkMenu(talkToAmbassadorJuro);
 }
 
-public function jurosTalkMenu(currentFunc):void
+public function jurosTalkMenu(currentFunc:Function):void
 {
 	clearMenu();
 	//The Myr

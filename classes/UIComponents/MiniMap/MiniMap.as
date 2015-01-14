@@ -264,7 +264,7 @@
 				for (numY = 0; numY < childNumY; numY++)
 				{
 					// ... Build the sprite
-					var childSprite = new MinimapRoom(childSizeX, childSizeY);
+					var childSprite:MinimapRoom = new MinimapRoom(childSizeX, childSizeY);
 					childSprite.name = String(numX) + "." + String(numY);
 					
 					_childElements[numX][numY] = childSprite;
@@ -291,7 +291,7 @@
 				
 				for (numY = 0; numY < childNumY; numY++)
 				{
-					var linkObjX = new MinimapLink(false);
+					var linkObjX:MinimapLink = new MinimapLink(false);
 					_childContainer.addChild(linkObjX);
 					
 					linkObjX.x = _childElements[numX][numY].x + (childSizeX + (childSpacing / 2));
@@ -310,7 +310,7 @@
 				
 				for (numY = 0; numY < (childNumY - 1); numY++)
 				{
-					var linkObjY = new MinimapLink(true);
+					var linkObjY:MinimapLink = new MinimapLink(true);
 					_childContainer.addChild(linkObjY);
 					
 					linkObjY.x = _childElements[numX][numY].x + (childSizeX / 2);

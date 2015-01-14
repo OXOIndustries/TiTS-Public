@@ -117,13 +117,13 @@
 		}
 		
 		//FLAG CHECKIN!
-		function hasFlag(arg):Boolean {
+		public function hasFlag(arg:int):Boolean {
 			for(var x:int = 0; x < vagooFlags.length;x++) {
 				if(arg == vagooFlags[x]) return true;
 			}
 			return false;
 		}
-		public function addFlag(arg):void {
+		public function addFlag(arg:int):void {
 			if(!hasFlag(arg)) vagooFlags[vagooFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to vagina of type " + type + ".");
 		}

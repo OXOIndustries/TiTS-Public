@@ -925,7 +925,7 @@ public function boobToBoobSexathon():void {
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
-	var x = pc.cockThatFits(chars["JADE"].vaginalCapacity());
+	var x:int = pc.cockThatFits(chars["JADE"].vaginalCapacity());
 	output("Jade's eyes visibly light up, a smile pursing her lips. <i>\"That sounds like it could be a lot of fun,\"</i>  she chortles. <i>\"All right, strip off, and let's have some fun,\"</i>  she declares happily; if the panda had a tail big enough for it, you're certain she'd be wagging it.");
 	output("\n\nYou immediately get to work on peeling off your [pc.gear]. By the time you’re done and turn to look back at Jade, she’s already stripped herself and folded her minimal clothes into a neat pile atop a nearby table.");
 	if(pc.hasCock()) output(" A stirring in your loins giving away your appreciation of her naked form.");

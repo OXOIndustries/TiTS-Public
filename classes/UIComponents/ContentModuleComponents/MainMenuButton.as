@@ -89,7 +89,7 @@
 			this.addEventListener(MouseEvent.CLICK, buttonClickHandler);
 		}
 		
-		public function buttonClickHandler(e:Event)
+		public function buttonClickHandler(e:Event):void
 		{
 			if(func == null) return;
 			if(arg == null) func();

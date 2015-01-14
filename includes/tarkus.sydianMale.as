@@ -1,4 +1,5 @@
-﻿public function encounterMaleSydian():void
+﻿import classes.Items.Miscellaneous.NoItem;
+public function encounterMaleSydian():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
@@ -177,7 +178,7 @@ public function hammerPunch():void
 	{
 		output(" He connects!");
 		var damage:int = 15 + foes[0].physique()/2;
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc);
 	}
@@ -194,7 +195,7 @@ public function bodySlamByBros():void
 		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
 		if(pc.shields() > 0) output(" Not even your shields protect you!");
 		var damage:int = 5 + foes[0].physique()/2;
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		damage = HPDamage(pc,damage,GLOBAL.KINETIC);
 		output(" (<b>" + damage + "</b>)");

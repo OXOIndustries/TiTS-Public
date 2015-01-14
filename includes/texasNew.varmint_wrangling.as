@@ -334,7 +334,7 @@ public function lassoAVarmint():void
 	{
 		damage = 20 + pc.aim()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		//Will this down the fucker
 		if(damage - foes[0].defense() >= foes[0].HP()) output(" <b>You snag the varmint by the neck! You give the lasso a tug, throwing the creature to the ground in a defeated lump.</b>");
@@ -385,7 +385,7 @@ public function leapAttackFromVarmint():void
 		}
 		var damage:int = 12;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
 	}
@@ -400,7 +400,7 @@ public function getMauledBiyaaaaatch():void
 	output("While you're on the ground, the oversized varmint leaps onto you, savaging you with its huge teeth! You're able to get an arm up in time to save your throat, but it still grabs you and shakes its head, tearing into you.");
 	var damage:int = 40+rand(6);
 	//Randomize +/- 15%
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
 	processCombat();
@@ -417,7 +417,7 @@ public function varmintRamAttack():void
 		output("into your [pc.leg], giving you a pointy, painful head-butt!");
 		var damage:int = 12+rand(6);
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 18)
 		{

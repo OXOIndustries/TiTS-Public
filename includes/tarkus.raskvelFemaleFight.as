@@ -80,7 +80,7 @@ public function raskvelPunch():void
 	{
 		var damage:int = foes[0].physique()/2;
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
 	}
@@ -181,7 +181,7 @@ public function enemyWrenchAttack():void
 			//OVER CHAAAAAARGE
 			damage *= 2;
 			//Randomize +/- 15%
-			var randomizer = (rand(31)+ 85)/100;
+			var randomizer:Number = (rand(31)+ 85)/100;
 			damage *= randomizer;
 			genericDamageApply(damage,foes[0],pc);
 		}
@@ -203,7 +203,7 @@ public function raskvelFemShotgun():void
 		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
 		//OVER CHAAAAAARGE
 		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		genericDamageApply(damage,foes[0],pc);
 	}

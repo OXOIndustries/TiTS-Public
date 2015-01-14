@@ -61,7 +61,7 @@
 		{
 			var changes:int = 0;
 			var changeLimit:int = 1;
-			var pc = target;
+			var pc:Creature = target;
 			var x:int = 0;
 			var y:int = 0;
 			var choices:Array;

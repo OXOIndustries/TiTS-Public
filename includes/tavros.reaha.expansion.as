@@ -1,6 +1,6 @@
-const REAHA_CONFIDENCE_LOW:int = 15;
-const REAHA_CONFIDENCE_MED:int = 40;
-const REAHA_CONFIDENCE_HIGH:int = 65;
+public const REAHA_CONFIDENCE_LOW:int = 15;
+public const REAHA_CONFIDENCE_MED:int = 40;
+public const REAHA_CONFIDENCE_HIGH:int = 65;
 public function reahaConfidence(conf:int = 0):int
 {
 	if (flags["REAHA_CONFIDENCE"] == undefined) flags["REAHA_CONFIDENCE"] = 0;
@@ -14,10 +14,10 @@ public function reahaConfidence(conf:int = 0):int
 	return flags["REAHA_CONFIDENCE"];
 }
 
-const REAHA_ADDICTION_LOW:int = 15;
-const REAHA_ADDICTION_MED:int = 40;
-const REAHA_ADDICTION_HIGH:int = 65;
-const REAHA_ADDICTION_MAX:int = 100;
+public const REAHA_ADDICTION_LOW:int = 15;
+public const REAHA_ADDICTION_MED:int = 40;
+public const REAHA_ADDICTION_HIGH:int = 65;
+public const REAHA_ADDICTION_MAX:int = 100;
 public function reahaAddiction(addict:int = 0):int
 {
 	if (flags["REAHA_ADDICTION"] == undefined) flags["REAHA_ADDICTION"] = REAHA_ADDICTION_MAX;
@@ -53,6 +53,8 @@ public function reahaHeader():void
 
 public function reahaMoosAboutNewTexas():Boolean
 {
+	if (!reahaIsCrew()) return false;
+	
 	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined)
 	{
 		flags["REAHA_DONE_NEWTEXAS_SPIEL"] = 1;

@@ -81,11 +81,11 @@
 			return false;			
 		}
 		public function throbbPCEffects(arg:int = 0):Boolean {
-			var pc = kGAMECLASS.chars["PC"];
+			var pc:Creature = kGAMECLASS.chars["PC"];
 			kGAMECLASS.clearOutput();
 			var changes:int = 0;
 			var changeLimit:int = 2;
-			var temp = 1;
+			var temp:* = 1;
 			if(rand(3) == 0) changeLimit++;
 			if(kGAMECLASS.flags["TIMES_THROBB_USED"] == undefined) kGAMECLASS.flags["TIMES_THROBB_USED"] = 0;
 			kGAMECLASS.flags["TIMES_THROBB_USED"]++;
@@ -208,7 +208,7 @@
 			}
 			else if (!pc.ballSizeUnlocked(newBallSize))
 			{
-				kGAMECLASS.output(pc.ballSizeLockedMessage(newBallSize));
+				kGAMECLASS.output(pc.ballSizeLockedMessage());
 			}
 			
 			//Increase cum capacity if can hold less than 3 shots a day!

@@ -6,7 +6,7 @@
 		public static const CLASS_SMUGGLER:int                               = 0;
 		public static const CLASS_MERCENARY:int                              = 1;
 		public static const CLASS_ENGINEER:int                               = 2;
-		public static const MAX_CLASSES:int							   = 3;
+		public static const MAX_CLASSES:int							   		 = 3;
 		
 		public static const CLASS_NAMES:Array = [
 			"Smuggler",

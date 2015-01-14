@@ -2,7 +2,7 @@
 {
 	public class RoomClass
 	{
-		var titsClassPtr:*;
+		private var titsClassPtr:*;
 
 		//constructor
 		public function RoomClass(titsClassPtrArg:*)
@@ -21,7 +21,7 @@
 		//Longass shit, not sure what used for yet.
 		public var description:String = "";
 		//runOnEnter holds functions that overlay the normal functioning
-		public var runOnEnter = undefined;
+		public var runOnEnter:Function = undefined;
 				
 		//Information
 		public var moveMinutes:Number = 5;
@@ -43,16 +43,16 @@
 		
 
 		//Functions
-		public function hasFlag(arg):Boolean {
+		public function hasFlag(arg:int):Boolean {
 			for(var x:int = 0; x <= roomFlags.length; x++) {
 				if(roomFlags[x] == arg) return true;
 			}
 			return false;
 		}
-		public function addFlag(arg):void {
+		public function addFlag(arg:int):void {
 			roomFlags[roomFlags.length] = arg;
 		}
-		public function removeFlag(arg):void {
+		public function removeFlag(arg:int):void {
 			for(var x:int = 0; x <= roomFlags.length; x++) {
 				if(arg == roomFlags[x]) roomFlags.splice(x,1);
 			}

@@ -8,7 +8,7 @@
 	 */
 	public class SaveVersionUpgrader2 implements ISaveVersionUpgrader
 	{
-		private const _newVersionValue = 3;
+		private const _newVersionValue:* = 3;
 		
 		public function SaveVersionUpgrader2() 
 		{}
@@ -20,7 +20,7 @@
 			// This is going to be a pain in the fucking ASSHOLE. Lube up, the hyperhorsedong is going in dry D:
 			
 			// We have go iterate over every character...
-			for (var k in data.characters)
+			for (var k:* in data.characters)
 			{
 				trace("Upgrading " + k + "...");
 				

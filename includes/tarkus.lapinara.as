@@ -58,7 +58,7 @@ public function lapinaraHornCharge():void
 	else
 	{
 		var damage:int = foes[0].meleeWeapon.damage + 8;
-		var randomizer = (rand(31)+ 85)/100;
+		var randomizer:Number = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		if(pc.shields() > 0) 
 		{
@@ -88,7 +88,7 @@ public function lapinaraHornCharge():void
 public function lapinaraFalconPunch():void
 {
 	var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	//Dodge:
 	if(combatMiss(foes[0],pc)) output("The lapinara attempts to swing at you, but you deftly dodge and deflect every punch she sends your way.");
@@ -104,7 +104,7 @@ public function lapinaraFalconPunch():void
 public function lapinaraBite():void
 {
 	var damage:int = 5 + foes[0].physique()/2;
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer:Number = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	//Dodge: 
 	if(combatMiss(foes[0],pc)) output("The lapinara lunges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
@@ -309,7 +309,7 @@ public function cuntTailFuckLapinaraParasitic():void
 	genericVictory();
 }
 
-public function targetLapinaraSex(targetFunc):void
+public function targetLapinaraSex(targetFunc:Function):void
 {
 	if(pc.cockTotal() == 1) targetFunc(0);
 	else

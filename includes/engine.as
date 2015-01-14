@@ -9,7 +9,7 @@ import flash.ui.Mouse;
 //4. MOVEMENTS
 
 
-public function doParse(script:String, markdown=false):String 
+public function doParse(script:String, markdown:Boolean = false):String 
 {
 	return parser.recursiveParser(script, markdown);
 }
@@ -70,7 +70,7 @@ public function blockHeader(words:String):String
 
 public function num2Text(number:Number):String {
 	var returnVar:String = null;
-	var numWords = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
+	var numWords:Array = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
 	if (number > 10 || int(number) != number) {
 		returnVar = "" + number;
 	} 
@@ -81,7 +81,7 @@ public function num2Text(number:Number):String {
 }
 public function num2Text2(number:int):String {
 	var returnVar:String = null;
-	var numWords = new Array("zero","first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth");
+	var numWords:Array = new Array("zero","first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth");
 	if (number > 10) {
 		returnVar = "" + number + "th";
 	} 
@@ -263,7 +263,7 @@ public function updateNPCStats():void {
 		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
 }
-public function updateStatBar(arg:MovieClip, value = undefined, max = undefined):void {
+public function updateStatBar(arg:MovieClip, value:* = undefined, max:* = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
 	if(max != undefined) 
 		arg.setMax(max);
@@ -291,8 +291,8 @@ public function rand(max:Number):Number
 public function clearList():void {
 	list = new Array();
 }
-var list:Array = new Array();
-public function addToList(arg):void {
+public var list:Array = new Array();
+public function addToList(arg:*):void {
 	list[list.length] = arg;
 }
 public function formatList():String {
