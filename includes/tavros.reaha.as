@@ -73,14 +73,14 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	else addDisabledButton(2,"Sex");
 	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] != undefined)
 	{
-		if (flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] == undefined) addButton(3, "Talk", talkWithFollowerReaha, "Talk", "Ask Reaha about her reaction to New Texas. You're probably in for a pretty long talk from the otherwise closed-mouth cow.");
-		else addButton(3, "Talk", talkWithFollowerReaha);
+		if (flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] == undefined) addButton(1, "Talk", talkWithFollowerReaha, undefined, "Talk", "Ask Reaha about her reaction to New Texas. You're probably in for a pretty long talk from the otherwise closed-mouth cow.");
+		else addButton(1, "Talk", talkWithFollowerReaha);
 	}
-	else addDisabledButton(3, "Talk");
-	if (reahaAddictionTherapyAvailable()) addDisabledButton(4, "Addiction");
+	else addDisabledButton(1, "Talk");
+	if (reahaAddictionTherapyAvailable()) addDisabledButton(3, "Addiction");
 	else
 	{
-		addButton(4, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
+		addButton(3, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");
 	}
 	if (shipLocation != "500" || flags["MET_YAMMI"] == undefined) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you knew of a local ice cream parlor....")
 	else if (pc.credits < 20) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you could afford a trip to the local ice cream parlor...."); 

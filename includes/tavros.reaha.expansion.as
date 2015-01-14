@@ -99,7 +99,7 @@ public function reahaFirstTalk():void
 
 	flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] = 1;
 
-	output("\n\n<i>“I get the feeling you’ve been to New Texas before,”</i> you say to her, by way of opening the topic");
+	output("<i>“I get the feeling you’ve been to New Texas before,”</i> you say to her, by way of opening the topic");
 	if (9999 == 0) output(", your eyes drawn to her bare, bovine body. She looks, and even acts, like the Treated cows you’ve seen on the surface");
 	output(". Reaha blinks hard, clearly surprised that you’re just trying to talk rather than fuck.");
 	
@@ -146,7 +146,7 @@ public function reahaFirstTalk():void
 	else output(" [pc.master]");
 	output(". Those bastards at the brothel tricked me, got me addicted to these stupid patches so bad I can barely even think half the time. I might as well have just fucking got Treated, for all the good running away did me.”</i>");
 	
-	if (pc.isNice()) output("\n\n<i>“Hesitantly, you reach over and plant a reassuring hand on the cow’s bare shoulder. Reaha sighs, letting out a long, chesty breath before looking up and giving you a faint little smile. <i>“I’m sorry,”</i> you tell her, not really knowing what else you can say.");
+	if (pc.isNice()) output("\n\nHesitantly, you reach over and plant a reassuring hand on the cow’s bare shoulder. Reaha sighs, letting out a long, chesty breath before looking up and giving you a faint little smile. <i>“I’m sorry,”</i> you tell her, not really knowing what else you can say.");
 	else output("\n\n<i>“That sucks, Reaha,”</i> you say.");
 	
 	output("\n\nReaha shrugs slightly. <i>“It’s not your fault,");
@@ -206,6 +206,8 @@ public function showReahaTalkMenu(func:Function = null):void
 
 	if (func != reahaTalkHerLife) addButton(4, "Her Life", reahaTalkHerLife, undefined, "Her Life", "Ask Reaha to tell you a little bit about her life before she became a slave");
 	else addDisabledButton(4, "Her Life");
+	
+	addButton(14, "Back", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday, false);
 }
 
 public function reahaTalkTreatment():void
@@ -307,7 +309,7 @@ public function reahaTalkTreatmentComfort():void
 	if (reahaFree()) output(" [pc.name]");
 	else output(" [pc.master]");
 	output(". I </i>hate<i> it, more than I ever could Beth’s place. At least they were honest in the whorehouse... well, not really, but they wore it on their lapels, ‘Oh, we’re evil sex-slavers, bwahahah.’ New Texas, though...");
-	if (reahaFree()) output(" The government -- my own FAMILY -- tried to turn me into a brainless cumslut just because I had the luck to be born with a pair of tits. They’re all complicit, every single one of them, for making slaves out of women, and for what? The U.G.C. lets them get away with it because it’s tradition!");
+	if (reahaFree()) output(" The government -- my own FAMILY -- tried to turn me into a brainless cumslut just because I had the luck to be born with a pair of tits. They’re all complicit, every single one of them, for making slaves out of women, and for what? The U.G.C. lets them get away with it because it’s tradition!</i>”");
 	else output(" This whole place, it’s some sick bastard’s sex garden, and we’re supposed to lie down -- preferably on our backs -- and just accept it? No. That’s why I ran away, [pc.master]. And why I never wanted to come back.”</i>");
 	
 	output("\n\nReaha takes a deep breath, looks at you with her big blue eyes, and steps up with her arms wide open. You take the cow-girl up on her offer, pulling her into a tight hug. Her arms clutch around your back, and the quiver in her voice as she speaks again clues you in to just how close to tears she is: <i>“Just... do whatever you came here to do, and let’s leave. Okay? I don’t want to be here a second longer, [pc.master]. This planet makes me sick!”</i>");
@@ -441,7 +443,7 @@ public function reahaTalkNewTexasII():void
 
 		output("<i>“So, how come you never told me you had sisters before?”</i>");
 		
-		output("\n\nReaha shrugs. <i>“Up till recently, I thought you bought me to");
+		output("\n\nReaha shrugs. <i>“Up ‘til recently, I thought you bought me to");
 		if (!reahaFree()) output(" suck dick");
 		else output(" be your personal milk maid");
 		output(", not talk.");
@@ -510,10 +512,13 @@ public function reahaTalkAddiction():void
 
 	// [Cure Addiction] [Sorry] [I Like 'Em]
 	clearMenu();
-	if (flags["REAHA_TALK_ADDICTION_CURE"] == undefined) addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Tell Reaha you'd like to help her out with her problem, if you can.");
+	if (flags["REAHA_TALK_ADDICTION_CURE"] == undefined)
+	{
+		addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Tell Reaha you'd like to help her out with her problem, if you can.");
+		addButton(1, "Sorry", reahaTalkAddictionSorry, undefined, "Sorry", "Tell Reaha “too bad” about that whole patch thing.");
+		addButton(2, "I Like", reahaTalkAddictionILike, undefined, "I Like Them", "Tell Reaha you like her just the way she is: drooling with lust and covered in patches.");
+	}
 	else addButton(0, "Cure", reahaTalkAddictionCure, undefined, "Cure Addiction", "Ask Reaha how she thinks she's doing with her addiction. ");
-	addButton(1, "Sorry", reahaTalkAddictionSorry, undefined, "Sorry", "Tell Reaha “too bad” about that whole patch thing.");
-	addButton(2, "I Like", reahaTalkAddictionILike, undefined, "I Like Them", "Tell Reaha you like her just the way she is: drooling with lust and covered in patches.");
 }
 
 public function reahaTalkAddictionSorry():void
@@ -875,7 +880,7 @@ public function reahaTalkHerLife():void
 	
 	output("\n\n<i>“Well, tell me about it,”</i>");
 	
-	output("\n\nReaha grins, rubbing her tattoo. <i>“Right before I turned eighteen, I hopped ship off of New Texas. Well, stowed away might be a better term for it. I sort of put myself in a box and hoped for the best. Lucky me, when the captain found me, he wasn’t too upset. I guess he understood why I’d want to get out of there. He took me all the way to Earth, no charge. Not like I could have paid him anyway -- I didn’t really have any money. Which was... sort of a problem when I got to Earth. I didn’t have any skills, and I didn’t know anything about anything other than milk and boobies, so I didn’t really know what I was going to do, until the captain said I ought to think about joining the army. He’d been in the navy, he said, and learned to pilot a ship there. ");
+	output("\n\nReaha grins, rubbing her tattoo. <i>“Right before I turned eighteen, I hopped ship off of New Texas. Well, stowed away might be a better term for it. I sort of put myself in a box and hoped for the best. Lucky me, when the captain found me, he wasn’t too upset. I guess he understood why I’d want to get out of there. He took me all the way to Earth, no charge. Not like I could have paid him anyway -- I didn’t really have any money. Which was... sort of a problem when I got to Earth. I didn’t have any skills, and I didn’t know anything about anything other than milk and boobies, so I didn’t really know what I was going to do, until the captain said I ought to think about joining the army. He’d been in the navy, he said, and learned to pilot a ship there.”</i>");
 	
 	output("\n\n<i>“Plus they’d feed, house, and pay me for a couple of years, too. That wasn’t a bad deal, either,”</i> Reaha says with a wry little chuckle. <i>“So yeah, I signed up not long after I hit Terra on a two-year contract. They put me in the infantry, seeing as I didn’t have any particular aptitudes or skills -- but I’m pretty strong and tough, or I was anyway. I didn’t really do anything special while I was in, just another grunt, you know? I was berthed on the </i>Odyssey<i> while she did a tour of the core, brand new flagship straight out of the docks. Made it up to lance corporal after a litte more more than a year. Honestly, I liked being in the army. I don’t know that I’d call it fun, but it was... it was good,”</i> Reaha says, giving you a little shrug. ");
 	
@@ -1495,11 +1500,17 @@ public function reahaBootOffShip():void
 
 	if (shipLocation == "500")
 	{
-		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave, {if PC is Kind: <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright? // if Misch: <i>“Guess what?");
+		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
+		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
+		else if (pc.isMischievous())
+		{
+			output(" <i>“Guess what?");
 		
-		output("\n\n<i>“What?”</i> she says, blinking at you.");
+			output("\n\n<i>“What?”</i> she says, blinking at you.");
 		
-		output("\n\n<i>“You’re off the crew! Get out!”</i> //elseif Hard: <i>“Pack your bags. You’re staying here.”</i>}");
+			output("\n\n<i>“You’re off the crew! Get out!”</i>");
+		}
+		else output("<i>“Pack your bags. You’re staying here.”</i>");
 		
 		output("\n\nReaha stares at you for a second, her big blue eyes growing wide. <i>“Wh-what...”</i> she mumbles. <i>“You can’t leave me here! I don’t belong here, they’ll make me take the Treatment or... or my mother will find me! Pleasepleaseplease don’t leave me, I’ll be a good cow I promise.”</i>");
 		
