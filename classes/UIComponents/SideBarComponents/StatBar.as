@@ -94,6 +94,12 @@ package classes.UIComponents.SideBarComponents
 				_values.filters = [_valueGlow]
 			}
 			
+			if (_desiredMode == "NOBAR")
+			{
+				value = String(_tGoal);
+				return;
+			}
+			
 			var cScale:Number = _progressBar.scaleX;
 			var tScale:Number;
 			if (_tGoal == 0)
@@ -373,7 +379,7 @@ package classes.UIComponents.SideBarComponents
 			}
 			
 			setMax(max);
-			
+		
 			if (_tGoal != newValue)
 			{
 				setGoal(newValue);
@@ -383,7 +389,16 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setBar(newValue:*, max:Number = Number.NaN):void
 		{
-			setMax(max);
+			if (!isNaN(max))
+			{
+				setMax(max);
+			}
+			else
+			{
+				setMax(newValue);
+				disableBar();
+			}
+			
 			setGoal(newValue);
 			_valueGlow.alpha = 0.0;
 			_values.filters = [_valueGlow]

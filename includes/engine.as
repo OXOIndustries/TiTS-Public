@@ -167,6 +167,8 @@ public function resetBarStates():void
 	userInterface.playerWillpower.updateBar(0, 5, true);
 	userInterface.playerLibido.updateBar(0, 5, true);
 	userInterface.playerXP.updateBar(0, 500, true);
+	userInterface.playerLevel.updateBar(0, 8, true);
+	userInterface.playerCredits.updateBar(0, 500, true);
 }
 public function updatePCStats(setBars:Boolean = false):void 
 {
@@ -190,8 +192,8 @@ public function updatePCStats(setBars:Boolean = false):void
 	userInterface.playerXP.updateBar(pc.XP(), pc.XPMax(), setBars);
 	
 	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	userInterface.playerLevel.value = String(pc.level);
-	userInterface.playerCredits.value = String(pc.credits);
+	userInterface.playerLevel.updateBar(pc.level, Number.NaN, setBars);
+	userInterface.playerCredits.updateBar(pc.credits, Number.NaN, setBars);
 	
 	userInterface.time = timeText();
 	userInterface.days = String(days);

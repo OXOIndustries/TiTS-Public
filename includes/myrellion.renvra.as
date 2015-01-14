@@ -11,14 +11,14 @@ Myr girls who like it are constantly all over her dick, which lacks the spines o
 Renvra is a functional hermaphrodite, but in a different way. She's only got a cock and balls, but her balls hold a pair of eggs, which she oviposits when she knots somebody. When not knotting, she cums an aphrodisiac-laden semen. Potentially, she could end up fertilizing her own eggs that way. Attack of the Clones, etc. 
 Spiky, spiny red hair cropped short. Black eyes. Big, sensitive feelers. F-cup breasts, milky.*/
 
-function showRenvra():void
+public function showRenvra():void
 {
 	showName("\nRENVRA");
 	showBust("RENVRA");
 	author("Savin");
 }
 
-function renvraBonus():Boolean
+public function renvraBonus():Boolean
 {
 	//Inside Room Descript
 	output("The storefront here is quite small, made smaller still by crates upon crates of equipment both local and futuristic stacked to the ceiling inside. Several Scarlet Federation soldiers are scurrying around, cataloguing items, talking to offworlders, and carrying heavy loads between the shop floor and the back room. A glance through the curtain shows a much, much larger chamber beyond this one, where the workers have more room to deal with the massive inflow of inventory.");
@@ -37,7 +37,7 @@ function renvraBonus():Boolean
 	return false;
 }
 
-function approachRenvra():void
+public function approachRenvra():void
 {
 	clearOutput();
 	showRenvra();
@@ -79,7 +79,7 @@ function approachRenvra():void
 	renvraMenu();
 }
 
-function renvraMenu():void
+public function renvraMenu():void
 {
 	clearMenu();
 	if(pc.lust() >= 33) 
@@ -97,7 +97,7 @@ function renvraMenu():void
 
 //Talk: Her Race
 //Ask Renvra about herself, and what exactly she is.
-function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharacter():void
+public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharacter():void
 {
 	clearOutput();
 	showRenvra();
@@ -161,7 +161,7 @@ function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharacter():vo
 //Her Sex
 //Must have fucked Renvra before.
 //Ask Renvra about her biology in particular.
-function askRenvraAbootHerSex():void
+public function askRenvraAbootHerSex():void
 {
 	clearOutput();
 	showRenvra();
@@ -185,7 +185,7 @@ function askRenvraAbootHerSex():void
 //Kids
 //PC must have a cunt. 
 //Ask Renvra what she’d think of having kids with you. Chances are, opening this line of conversation is going to end with you getting a pussyfull of venom-spunk. 
-function askRenvraAboutKids():void
+public function askRenvraAboutKids():void
 {
 	clearOutput();
 	showRenvra();
@@ -204,7 +204,7 @@ function askRenvraAboutKids():void
 }
 
 //Sell Items
-function sellItemsToRenvra():void
+public function sellItemsToRenvra():void
 {
 	clearOutput();
 	showRenvra();
@@ -224,7 +224,7 @@ function sellItemsToRenvra():void
 
 //Fuck Her
 //Unlocked via Her Race talk. Once unlocked, add [Fuck Her] to Renvra’s main menu (lust willing, of course). 
-function fuckHerYouNancy(fromRaceTalk:int = 0):void
+public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 {
 	clearOutput();
 	showRenvra();
@@ -276,7 +276,7 @@ function fuckHerYouNancy(fromRaceTalk:int = 0):void
 
 //Bend Over
 //Bend over Renvra’s desk and let her fuck your [pc.vagOrAss] with her ovipositor-cock. 
-function bendItLikeBeckhamForRenvra():void
+public function bendItLikeBeckhamForRenvra():void
 {
 	clearOutput();
 	showRenvra();
@@ -362,7 +362,7 @@ function bendItLikeBeckhamForRenvra():void
 	addButton(0,"Next",getRenvraFuckedPart2);
 }
 
-function getRenvraFuckedPart2():void
+public function getRenvraFuckedPart2():void
 {
 	clearOutput();
 	showRenvra();
@@ -415,7 +415,7 @@ function getRenvraFuckedPart2():void
 	}
 }
 
-function getEggsInShit(x:int = -1):void
+public function getEggsInShit(x:int = -1):void
 {
 	output("\n\n“<i>Brace yourself,</i>” Renvra grunts through clenched teeth, battering the growing swell of her knot against your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
@@ -475,7 +475,7 @@ function getEggsInShit(x:int = -1):void
 
 //[Take Spunk]
 //Take a load of Renvra’s aphrodisiac-laden semen right in the womb. 
-function takeAShotOJizzInZeWomb(x:int = -1):void
+public function takeAShotOJizzInZeWomb(x:int = -1):void
 {
 	clearOutput();
 	showRenvra();
@@ -504,7 +504,7 @@ function takeAShotOJizzInZeWomb(x:int = -1):void
 
 //[Take Eggs]
 //Tell Ren to pump you full of eggs instead. They’re <i>probably</i> not fertilized...
-function takeSomeEggs(x:int = -1):void
+public function takeSomeEggs(x:int = -1):void
 {
 	clearOutput();
 	showRenvra();
@@ -517,7 +517,7 @@ function takeSomeEggs(x:int = -1):void
 
 //Buttfuck Her
 //Flop Renvra’s oversized cock out of the way and sink your dick in her tight ass. 
-function buttFuckRenvra():void
+public function buttFuckRenvra():void
 {
 	clearOutput();
 	showRenvra();
