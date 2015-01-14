@@ -148,6 +148,11 @@ public function shop(keeper:Creature):void {
 		ellieMenu();
 		return;
 	}
+	if(keeper is Renvra)
+	{
+		approachRenvra();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

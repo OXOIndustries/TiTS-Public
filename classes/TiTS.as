@@ -170,6 +170,7 @@
 		include "../includes/myrellion.lyralla.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.nehzara.as";
+		include "../includes/myrellion.renvra.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
 		include "../includes/myrellion.tavern.as";
@@ -752,6 +753,11 @@
 		public function get penny():Penny
 		{
 			return chars["PENNY"];
+		}
+
+		public function get renvra():Renvra
+		{
+			return chars["RENVRA"];
 		}
 
 		public function get embry():Embry

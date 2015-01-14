@@ -1124,6 +1124,7 @@ public function initializeMyrellionRooms():void
 	rooms["819"].northExit = "820";
 	rooms["819"].southExit = "818";
 	rooms["819"].westExit = "826";
+	rooms["819"].eastExit = "827";
 	rooms["819"].moveMinutes = 2;
 	rooms["819"].runOnEnter = undefined;
 	rooms["819"].addFlag(GLOBAL.INDOOR);
@@ -1223,4 +1224,15 @@ public function initializeMyrellionRooms():void
 	rooms["826"].addFlag(GLOBAL.INDOOR);
 	rooms["826"].addFlag(GLOBAL.PUBLIC);
 	rooms["826"].addFlag(GLOBAL.CAVE);
+
+	//827 - tradin' poast
+	rooms["827"] = new RoomClass(this);
+	rooms["827"].roomName = "TRADING\nPOST";
+	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeled it as a “<i>Federation Supply and Trading Post. Offworlders, inquire within.</i>” Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
+	rooms["827"].system = "SYSTEM: SINDATHU";
+	rooms["827"].westExit = "819";
+	rooms["827"].moveMinutes = 2;
+	rooms["827"].runOnEnter = renvraBonus;
+	rooms["827"].addFlag(GLOBAL.INDOOR);
+	rooms["827"].addFlag(GLOBAL.PUBLIC);
 }

@@ -276,6 +276,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["LANE"] = new Lane();
 	}
+	if (!justUpdate || (justUpdate && chars["RENVRA"] == undefined))
+	{
+		chars["RENVRA"] = new Renvra();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
