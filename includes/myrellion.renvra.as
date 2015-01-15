@@ -1,4 +1,5 @@
-﻿/*Renvra
+﻿import classes.Characters.PlayerCharacter;
+/*Renvra
 Half-Nyrean Shopkeeper
 
 Character Notes
@@ -586,105 +587,39 @@ public function buttFuckRenvra():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*output("\n\n");
-output("\n\nPregshit");
+public function renvraEggnancyEnds(pregSlot:int):void
+{
+	clearOutput();
+	author("Savin");
+	
+	output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... Your hands grab your gut, and instantly feel something shifting just under your gravid flesh. The eggs inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. A distinct wetness pools out of your");
+	if (pregSlot == 3) output(" [pc.asshole]");
+	else output(" [pc.cunt]");
+	output(" the moment you've gotten your gear out of the way. Your back arches as pleasure washes over you, brought on by the first egg starting its lengthy journey out of your");
+	if (pregSlot == 3) output(" bowels");
+	else output(" womb");
+	output(".");
 
-output("\n\nNyrean Egg Carrying (Modified for Renvra)");
-output("\n\n//Nyrean pregnancy lasts 7+/-2 days. The PC’s belly becomes fairly gravid, and their movement speed and evasion is reduced (or whatever standard preg debuffs there are, I dunno).");
+	output("\n\nYou curl up and spread your [pc.legs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
+	if (pc.hasCock() || pc.hasVagina()) output(" You instinctively begin masturbating, unable to resist the alien pleasure.");
+	else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
+	output(" The first egg starts pushing through you, slowly but surely reaching");
+	if (pregSlot == 3) output(" your [pc.asshole]");
+	else output(" the lips of your pussy");
+	output(". The stretch is incredible, ");
+	
+	var tGape:Number;
+	
+	if (pregSlot == 3) (pc as PlayerCharacter).
+	
+	{ if not horribly ruined hole: forcing you to push like you've never pushed before to squeeze the egg through the { ring of your ass // lips of your cunt} // else if ruined: but nothing you can't handle with your incredibly well - loosened hole } . The egg squeezes out with a wet "POP," rolling out of you and onto the ground in a pool of pink nyrean fluids. 
+	}
 
-output("\n\nOther stuff we need to define a pregnancy:");
+You shiver as you lay the first egg of the clutch, dropping the egg down between your [pc.legs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut. The second egg begins its descent, refusing to let you recover after the first. Your {ass/sex} spasms and quivers as the next egg moves, and you grunt and push it out, letting the soon-to-be born nyrea join its sibling. 
 
-output("\n\nMinimum Quantity: 2");
-output("\n\nMaximum Quantity: 2");
+You spend minutes laying your nyrean eggs, dropping a clutch of two total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you'll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas' entry. They'll be helpless for several weeks, so you can't exactly leave them here. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home. 
 
+<b>{X} nyrea will soon be waiting for you back at the nursery.</b>
 
-output("\n\n//Play immediately after PC gets oviposited:");
-output("\n\n<b>Your belly is swollen with nyrea eggs, distending your gut as if you were truly pregnant.</b> Hopefully, the eggs will pass quickly. Until then, you spend the next few minutes trying to adjust yourself and your equipment to your new size. Walking just got really awkward....");
-
-output("\n\n//New Belly Descript");
-output("\n\nYour belly is bulging heavily. At first glance, people might be mistaken for thinking you’re properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, bulging with eggs as you are. ");
-
-output("\n\n//Belly Rubs! Play at random every few hours");
-output("\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your {if anal: stomach rumble // if vaginal: belly tremble}. It’s surprisingly nice to just rub your belly, enjoying the fullness of it.");
-
-output("\n\n//Belly Rubs IN PUBLIC (small chance to play in public places/town)");
-output("\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don’t have the heart to tell them you’re full of alien eggs. {if bimbo/Treated/ausar/kaithrit: Besides, people rubbing all over you feels super good!}");
-
-output("\n\n//Almost time!");
-output("\n\nYou note that your swollen belly is shifting awkwardly. The eggs clinging inside your {ass / belly} rumble and move, and you feel distinctly... wet. You doubt you’ll be carrying these eggs around with you much longer.");
-
-output("\n\n//It’s Time! (Play at end of pregnancy)");
-output("\n\nYou feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... Your hands grab your gut, and instantly feel something shifting just under your gravid flesh. The eggs inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. A distinct wetness pools out of your {[pc.asshole] // [pc.cunt]} the moment you’ve gotten your gear out of the way. Your back arches as pleasure washes over you, brought on by the first egg starting its lengthy journey out of your {bowels / womb}. ");
-
-output("\n\nYou curl up and spread your [pc.legs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses. {if PC isn’t genderless: You instinctively begin masturbating, unable to resist the alien pleasure. //else: You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.} The first egg starts pushing through you, slowly but surely reaching your {[pc.asshole] / the lips of your pussy}. The stretch is incredible, {if not horribly ruined hole: forcing you to push like you’ve never pushed before to squeeze the egg through the {ring of your ass // lips of your cunt} //else if ruined: but nothing you can’t handle with your incredibly well-loosened hole}. The egg squeezes out with a wet “<i>POP,</i>” rolling out of you and onto the ground in a pool of pink nyrean fluids. ");
-
-output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down between your [pc.legs]. You sigh in relief, your belly noticeably shrunken. But it’s not empty yet, and you soon feel another shift in your swollen gut. The second egg begins its descent, refusing to let you recover after the first. Your {ass/sex} spasms and quivers as the next egg moves, and you grunt and push it out, letting the soon-to-be born nyrea join its sibling. ");
-
-output("\n\nYou spend minutes laying your nyrean eggs, dropping a clutch of two total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you’ll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas’ entry. They’ll be helpless for several weeks, so you can’t exactly leave them here. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home. ");
-
-output("\n\n<b>{X} nyrea will soon be waiting for you back at the nursery.</b>");
-
-output("\n\nAt least, they’re three-quarters nyrea. {If Silly/Misch: Close enough for government work, right?}");
-
-
-output("\n\n");
-
-output("\n\nRenvra Impregnates the PC");
-output("\n\n//Renvra’s pregnancy lasts for 60 days. The PC’s belly becomes fairly gravid, and their movement speed and evasion is reduced (or whatever standard preg debuffs there are, I dunno).");
-
-output("\n\nMinimum Quantity: 1");
-output("\n\nMaximum Quantity: 4");
-
-output("\n\nChance of Knockup: Let’s say a base of 30%, modified for fertility?");
-
-
-output("\n\n//Play in the mornings 1-3 days after PC gets knocked up. Needs to be in a town or somewhere safe-ish/not in a vacuum, etc. ");
-output("\n\nYou feel... ill. You slump against a nearby wall, clutching at your [pc.belly]. Ugh, what the... ");
-
-output("\n\nYou double over and puke, hucking your lunch all over the ground. You spend several minutes hurling before you’re able to stand. Geez, shouldn’t your nanomachines be able to keep you from getting just a little cold or something?");
-
-output("\n\n//Repeat a couple times over the next few days. ");
-
-
-output("\n\n//Play 10 days after PC gets knocked up. Needs to be in a town or somewhere safe-ish/not in a vacuum, etc. ");
-output("\n\nYou’re not even surprised when you end up puking today. ");
-
-output("\n\nYou don’t feel <i>bad</i>, per se. But something’s fucking wrong. That’s for sure. ");
-
-output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you’re pregnant. With a clutch of part-myr, part-nyrea, and party human as well. Well look at you, Daddy’s {boy/girl}! He sure would be proud you’re well on your way to leaving your trail of galactic bastards just like your old man.");
-
-output("\n\n//A few days later... New Belly Descript 1");
-output("\n\nYour belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");
-
-output("\n\n//Several weeks later... New Belly Descript 2");
-output("\n\nYou’re really starting to show, now. Anybody who looks your way can see you’re obviously pregnant, and you’ve had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick! ");
-
-output("\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form. ");
-
-output("\n\n//Lactation Start (if none already)");
-output("\n\n//PC breasts increase 1d3 cup sizes -- permanently, if no breasts existed beforehand. ");
-output("\n\n//Scene repeats ~24 hours after lactation stops or PC breasts disappear");
-
-output("\n\nYou notice that your [pc.chest] is starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your {new }breast and squeezing out a trickle of [pc.milk] from your teat.");
-
-output("\n\n<b>It appears ");
-
-
-output("\n\n//Several weeks later... New Belly Descript 3");
-output("\n\nYou find your hands wandering to your belly more and more -- as much to support the growing weight you’re bearing as to caress the home of your unborn children.");
-
-output("\n\nYou’re so heavily showing now that you can’t go much of anywhere without people staring. It won’t be long now... maybe just a few weeks more!");
-
-output("\n\n-----");
-
-output("\n\n//Belly Rubs! Play at random every few hours after Belly 1");
-output("\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your {if anal: stomach rumble // if vaginal: belly tremble}. It’s surprisingly nice to just rub your belly, enjoying the fullness of it.");
-
-output("\n\n//Belly Rubs IN PUBLIC (small chance to play in public places/town) After Belly 1");
-output("\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don’t have the heart to tell them you’re full of alien eggs. {if bimbo/Treated/ausar/kaithrit: Besides, people rubbing all over you feels super good!}");
-
-output("\n\n----");
-
-output("\n\n//Almost time!");
-output("\n\nYou note that your swollen belly is shifting awkwardly, and you’re starting to feel very... wet. Your motherly instincts tell you that you’ll be giving birth very, very soon. ");
-*/
+At least, they're three-quarters nyrea. {If Silly/Misch: Close enough for government work, right?}
+}

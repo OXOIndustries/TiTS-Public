@@ -15,9 +15,20 @@ package classes.GameData.Pregnancy
 		private var _triggerFunc:Function = null;
 		public function set triggerFunc(v:Function):void { _triggerFunc = v; }
 		
-		public function execute():void
+		private var _useSlotArgument:Boolean = false;
+		public function get useSlotArgument():Boolean { return _useSlotArgument; }
+		public function set useSlotArgument(v:Boolean):void { _useSlotArgument = v; }
+		
+		public function execute(pregSlot:int = -1):void
 		{
-			if (_triggerFunc != null) _triggerFunc();
+			if (_useSlotArgument)
+			{
+				if (_triggerFunc != null) _triggerFunc(pregSlot);
+			}
+			else
+			{
+				if (_triggerFunc != null) _triggerFunc();
+			}
 		}
 	}
 

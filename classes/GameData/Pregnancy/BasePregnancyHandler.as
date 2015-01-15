@@ -200,7 +200,7 @@ package classes.GameData.Pregnancy
 			for (i = 0; i < triggeredPSPs.length; i++)
 			{
 				if (_debugTrace) trace("Triggered StageProgression for duration index " + triggeredPSPs[i].triggersAtDuration);
-				triggeredPSPs[i].execute();
+				triggeredPSPs[i].execute(pregSlot);
 			}
 			
 			if (newInc <= 0 && oldInc > 0)
@@ -460,16 +460,15 @@ package classes.GameData.Pregnancy
 						psp = new PregnancyStageProgression();
 						psp.triggersAtDuration = args[cIndex];
 						psp.triggerFunc = args[cIndex + 1];
+						
+						if (args.length > 2 && args[cIndex + 2] is Boolean) psp.useSlotArgument = args[cIndex + 2];
+						
 						_stageProgressions.push(psp);
 						cIndex += 2;
 					}
-					else if (args[cIndex] is Function && args[cIndex + 1] is int)
+					else
 					{
-						psp = new PregnancyStageProgression();
-						psp.triggersAtDuration = args[cIndex + 1];
-						psp.triggerFunc = args[cIndex];
-						_stageProgressions.push(psp);
-						cIndex += 2;
+						throw new Error("Incorrect initilization of a PregnancyStageProgression.");
 					}
 				}
 			}

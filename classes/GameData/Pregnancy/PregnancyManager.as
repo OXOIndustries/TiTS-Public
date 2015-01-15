@@ -2,6 +2,7 @@
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	/**
@@ -15,6 +16,7 @@
 			
 			PregnancyManager.insertNewHandler(new VenusPitcherFertilizedSeedCarrierHandler());
 			PregnancyManager.insertNewHandler(new VenusPitcherSeedCarrierPregnancyHandler());
+			PregnancyManager.insertNewHandler(new RenvraEggPregnancy());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
