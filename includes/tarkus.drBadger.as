@@ -214,6 +214,7 @@ public function heyDocImAHero():void
 		if(pc.cockTotal() > 2) output("s flow ");
 		else output(" flows ");
 		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focussed on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
+		
 		while(pc.cockTotal() > 1)
 		{
 			pc.removeCock(1,1);

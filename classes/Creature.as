@@ -5881,8 +5881,9 @@
 				//trace("ERROR: removeCock called but cocks do not exist.");
 				return;
 			}
-			if (arraySpot > cocks.length - 1) {
+			if (arraySpot > array.length - 1) {
 				//trace("ERROR: removeCock failed - array location is beyond the bounds of the array.");
+				throw new Error("removeJunk call failed. Target location to remove is out of array bounds.");
 			} else {
 				array.splice(arraySpot, totalRemoved);
 				if (array == cocks) trace("Attempted to remove " + totalRemoved + " spots from cocks.");

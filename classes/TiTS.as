@@ -322,8 +322,7 @@
 			{
 				var ee:Error = e.error as Error;
 				
-				clearOutput();
-				output("<b>Something bad happened! Please report this message:</b>\n\n");
+				output("\n\n<b>Something bad happened! Please report this message:</b>\n\n");
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				addButton(14, "Next", mainGameMenu);
