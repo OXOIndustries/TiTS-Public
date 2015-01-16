@@ -4,6 +4,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
+	import classes.GameData.StatTracking;
 	
 	/**
 	 * ...
@@ -48,11 +49,11 @@ package classes.GameData.Pregnancy.Handlers
 				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
 			}, true);
 			
-			this.addStageProgression(240, function():void {
+			this.addStageProgression(240, function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 20;
 				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
-				eventBuffer += "You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
-			});
+				kGAMECLASS.eventBuffer += "You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
+			}, true);
 			
 			_onSuccessfulImpregnation = renvraOnSuccesfulImpregnation;
 			_onSuccessfulImpregnationOutput = renvraOnSuccessfulImpregnationOutput;
@@ -67,27 +68,26 @@ package classes.GameData.Pregnancy.Handlers
 			mother.createStatusEffect("Renvra Eggs Messages Available");
 		}
 		
-		public static function renvraEggsMessageHandler(inPublicSpace:Boolean = false, minutes:Number):String
+		public static function renvraEggsMessageHandler(inPublicSpace:Boolean = false, minutes:Number = 0):void
 		{
-			if (flags["RENVRA_EGGS_MESSAGE_WEIGHT"] == undefined) flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
-			flags["RENVRA_EGGS_MESSAGE_WEIGHT"] += minutes;
+			if (kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] == undefined) kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
+			kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] += minutes;
 			
-			if (rand(360) >= flags["RENVRA_EGGS_MESSAGE_WEIGHT"])
+			if (kGAMECLASS.rand(360) >= kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"])
 			{
-				flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
+				kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
 				if (!inPublicSpace)
 				{
-					eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
-					var pSlot:int = kGAMECLASS.pc.getPregnancyOfType("RenvraEggPregnancy");
-					if (pSlot == 4) eventBuffer += " stomach rumble";
-					else eventBuffer += " belly tremble";
-					 eventBuffer += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it.";
-					}
+					kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
+					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RenvraEggPregnancy");
+					if (pSlot == 4) kGAMECLASS.eventBuffer += " stomach rumble";
+					else kGAMECLASS.eventBuffer += " belly tremble";
+					kGAMECLASS.eventBuffer += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it.";
 				}
 				else
 				{
-					eventBuffer += "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
-					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) eventBuffer += "Besides, people rubbing all over you feels super good!";
+					kGAMECLASS.eventBuffer += "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) kGAMECLASS.eventBuffer += "Besides, people rubbing all over you feels super good!";
 				}
 			}
 		}
@@ -112,7 +112,7 @@ package classes.GameData.Pregnancy.Handlers
 					kGAMECLASS.renvraEggnancyEnds(c_pregSlot);
 					RenvraEggPregnancy.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
 				}
-			})(mother, pregSlot, c_thisPtr);
+			})(mother, pregSlot, thisPtr);
 			
 			kGAMECLASS.eventQueue.push(tEventCall);
 		}

@@ -160,7 +160,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 	clearOutput();
 	
 	laneHeader();
-
+	
 	if (flags["HYPNO_EFFECT_OUTPUT_DONE"] == undefined)
 	{
 		if (flags["LANE_FIRST_HYPNO_RETURN"] != 2)
@@ -173,23 +173,23 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 			switch (effectToRemove)
 			{
-				case HYPNO_STAT_PHYS:
+				case "Lane's Hypnosis - Physique":
 					output(" You look to your hands and make a pair of tight fists. Your grip is still plenty strong, but something just feels off somehow. You look to your bicep and you flex, and you swear your arm wasn’t as big as it was a few hours ago.");
 					break;
 
-				case HYPNO_STAT_REF:
+				case "Lane's Hypnosis - Reflexes":
 					output(" You look around your feet for a pebble, or a coin, or something, and the glint of a rounded scrap of metal catches your eye. You pick it up and, without looking, toss it straight up into the air. When it passes your vision, you reach out to grab it, but you come up short, and it hits the ground in front of you.");
 					break;
 
-				case HYPNO_STAT_AIM:
+				case "Lane's Hypnosis - Aim":
 					output(" You focus your eyes on the space around you, to the dust flitting through the air before your eyes. You spot a particular speck and try to focus on it, but it soon disappears in a cloud of likewise-looking specks, and then it might as well have vanished entirely.");
 					break;
 
-				case HYPNO_STAT_INT:
+				case "Lane's Hypnosis - Intelligence":
 					output(" You start trying to do long division in your head. You recall an obscure method of doing it back in middle school – you could always get the first few steps down but then the lessons got murky the further you went, until it became just a total mess of numbers and integers. You probably could have worked it out an hour ago, but now your equation dissolves to nothing in your mind’s eye after a minute.");
 					break;
 
-				case HYPNO_STAT_WILL:
+				case "Lane's Hypnosis - Willpower":
 					output(" You place your [pc.tongue] firmly between your teeth. Lane gave you the strength of will, so if you wanted, you could probably draw blood if you bit hard enough. Just as you begin to bite yourself, the pain shocks you away from the notion, and you grunt. You don’t want to hurt yourself just to make a point to yourself, though you probably would have an hour ago.");
 					break;
 
@@ -208,23 +208,23 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 			switch (effectToRemove)
 			{
-				case HYPNO_STAT_PHYS:
+				case "Lane's Hypnosis - Physique":
 					output(" You look to your hands and make a pair of tight fists. Your grip is still plenty strong, but something just feels off somehow. You look to your bicep and you flex, and you swear your arm wasn’t as big as it was a few hours ago.");
 					break;
 
-				case HYPNO_STAT_REF:
+				case "Lane's Hypnosis - Reflexes":
 					output(" You look around your feet for a pebble, or a coin, or something, and the glint of a rounded scrap of metal catches your eye. You pick it up and, without looking, toss it straight up into the air. When it passes your vision, you reach out to grab it, but you come up short, and it hits the ground in front of you.");
 					break;
 
-				case HYPNO_STAT_AIM:
+				case "Lane's Hypnosis - Aim":
 					output(" You focus your eyes on the space around you, to the dust flitting through the air before your eyes. You spot a particular speck and try to focus on it, but it soon disappears in a cloud of likewise-looking specks, and then it might as well have vanished entirely.");
 					break;
 
-				case HYPNO_STAT_INT:
+				case "Lane's Hypnosis - Intelligence":
 					output(" You start trying to do long division in your head. You recall an obscure method of doing it back in middle school – you could always get the first few steps down but then the lessons got murky the further you went, until it became just a total mess of numbers and integers. You probably could have worked it out an hour ago, but now your equation dissolves to nothing in your mind’s eye after a minute.");
 					break;
 
-				case HYPNO_STAT_WILL:
+				case "Lane's Hypnosis - Willpower":
 					output(" You place your [pc.tongue] firmly between your teeth. Lane gave you the strength of will, so if you wanted, you could probably draw blood if you bit hard enough. Just as you begin to bite yourself, the pain shocks you away from the notion, and you grunt. You don’t want to hurt yourself just to make a point to yourself, though you probably would have an hour ago.");
 					break;
 
@@ -249,31 +249,31 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 	switch (effectToRemove)
 	{
-		case HYPNO_STAT_PHYS:
+		case "Lane's Hypnosis - Physique":
 			modValue = pc.statusEffectv1("Lane's Hypnosis - Physique");
 			pc.physiqueMod -= modValue;
 			pc.removeStatusEffect("Lane's Hypnosis - Physique");
 			break;
 
-		case HYPNO_STAT_REF:
+		case "Lane's Hypnosis - Reflexes":
 			modValue = pc.statusEffectv1("Lane's Hypnosis - Reflexes");
 			pc.reflexesMod -= modValue;
 			pc.removeStatusEffect("Lane's Hypnosis - Reflexes");
 			break;
 
-		case HYPNO_STAT_AIM:
+		case "Lane's Hypnosis - Aim":
 			modValue = pc.statusEffectv1("Lane's Hypnosis - Aim");
 			pc.aimMod -= modValue;
 			pc.removeStatusEffect("Lane's Hypnosis - Aim");
 			break;
 
-		case HYPNO_STAT_INT:
+		case "Lane's Hypnosis - Intelligence":
 			modValue = pc.statusEffectv1("Lane's Hypnosis - Intelligence");
 			pc.intelligenceMod -= modValue;
 			pc.removeStatusEffect("Lane's Hypnosis - Intelligence");
 			break;
 
-		case HYPNO_STAT_WILL:
+		case "Lane's Hypnosis - Willpower":
 			modValue = pc.statusEffectv1("Lane's Hypnosis - Willpower");
 			pc.willpowerMod -= modValue;
 			pc.removeStatusEffect("Lane's Hypnosis - Willpower");

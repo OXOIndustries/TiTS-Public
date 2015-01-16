@@ -1,7 +1,9 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.RoomClass;
 import classes.StorageClass;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
@@ -748,6 +750,15 @@ public function processTime(arg:int):void {
 	if (tryProcDommyReahaTime(arg))
 	{
 		eventQueue.push(reahaDommyFuxTime);
+	}
+	
+	// Extra special handler for Renvra's egg messages
+	if (pc.hasStatusEffect("Renvra Eggs Messages Available"))
+	{
+		var cRoom:RoomClass = rooms[currentLocation];
+		var pSpace:Boolean = cRoom.hasFlag(GLOBAL.PUBLIC);
+		
+		RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
 	}
 	
 	//loop through every minute
