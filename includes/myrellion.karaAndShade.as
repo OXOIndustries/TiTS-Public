@@ -1661,6 +1661,8 @@ public function tailCuntOvipositionForShade():void
 //Let Shade take care of business.
 public function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
 {
+	flags["SHADE_INSEMINATION_COUNTER"] = undefined;
+	
 	clearOutput();
 	showShade();
 	output("You release your lover’s arm, and she rewards you with a slight grin. “<i>Back in a while.");
@@ -1677,6 +1679,8 @@ public function takinCareOfBusinessEveryDayWithShadeSheWorksForUPS():void
 //Ask Shade if she needs any help. Or at least, would like some company while she lays.
 public function goWithShadeToTakeCareOfBusinessYuSlut():void
 {
+	flags["SHADE_INSEMINATION_COUNTER"] = undefined;
+	
 	clearOutput();
 	showShade();
 	output("“<i>Need a hand?</i>” you ask, squeezing her hand affectionately. “<i>Like you said, they’re probably mine anyway.</i>”");
