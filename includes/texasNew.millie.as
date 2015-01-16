@@ -711,7 +711,7 @@ public function millieFuckFinale(cumQ:Number):void
 	
 	if(cumQ >= 1200) output("... oh gosh, so much!</i>” She rubs her belly in awe.");
 	else output(" cum.</i>”");
-	output(" Her New Texan account comes through much thicker than before you met, and her eyes are a little glassier than normal. You suppose it can be forgiven in light of the dozens of climaxes she just endured.");
+	output(" Her New Texan accent comes through much thicker than before you met, and her eyes are a little glassier than normal. You suppose it can be forgiven in light of the dozens of climaxes she just endured.");
 
 	output("\n\nThe well-fucked cow ");
 	//Knot:
