@@ -1406,7 +1406,7 @@ public function laneApplyService(selectedService:String):void
 	// Basically just a shortcut to checking hasLaneHypnosis()
 	if (addHypnosisEffect(selectedService))
 	{
-		var msgs:Array;
+		var msgs:Array = [];
 
 		if (laneHypnosisLevel() == 0)
 		{
@@ -1441,7 +1441,7 @@ public function laneApplyService(selectedService:String):void
 				"Lane chews at [lane.hisHer] lip and [lane.hisHer] claw tacks on [lane.hisHer] chair. You’re so vulnerable, so malleable; [lane.heShe] begins to rub [lane.hisHer] knees together sensually as [lane.heShe] looks at you. <i>“You want to touch Lane, to feel along the smoothness of [lane.hisHer] front scales. You want to touch [lane.himHer] everywhere, in a sensual way.”</i> [lane.HeShe] reinforces that statement several more times, before [lane.heShe] forces [lane.himHer]self to stop."
 			];
 		}
-		else if (laneHypnosisLevel() == 3)
+		else if (laneHypnosisLevel() >= 3)
 		{
 			msgs = 
 			[
@@ -1502,7 +1502,7 @@ public function lanePostApplyEffect(selectedService:String):void
 		output("\n\nYou sit and look at your hands. It was a strange, difficult-to-explain sensation: you knew you were different, but you didn’t really <i>feel</i> different. At the same time, you felt different, but you didn’t know if you really <i>were</i> different. Lane definitely did something to you, and whatever it was [lane.heShe] did, you like it. You tell [lane.himHer] as much, and [lane.heShe] claps [lane.hisHer] four-fingered hands together. <i>“I’m happy that you’re happy with the results, [pc.name],”</i> [lane.heShe] tells you.");
 		if (flags["LANE_TIMES_HYPNOTISED"] <= 1) output(" <i>“I hope this changes your perception on hypnotism.”</i> You tell [lane.himHer] that it definitely does, and that you’ll be coming back for [lane.hisHer] service sometime in the future. You even ask [lane.himHer] if you could sign [lane.hisHer] guestbook, to give [lane.himHer] another testimonial to add to [lane.hisHer] collection, and [lane.heShe] happily hands you [lane.hisHer] codex.");
 
-		output("\n\nYou thank him for [lane.hisHer] work again, and you leave [lane.hisHer] little hut, ready to tackle the day with the new and improved you.");
+		output("\n\nYou thank [lane.himHer] for [lane.hisHer] work again, and you leave [lane.hisHer] little hut, ready to tackle the day with the new and improved you.");
 
 		if (flags["HAS_HAD_LANE_HYPNOSIS"] == 1)
 		{
@@ -1944,7 +1944,7 @@ public function fuckedByFemLane():void
 	else if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" You know how much your mistress likes it when you stuff her cunt full of your [pc.tongue], and you’re not going to disappoint her. Your long, slippery muscle slips in with ease and then places itself directly on top of her G-spot. She laughs in delight and thrusts her hips forward, and you don’t stop laying in more and more tongue, packing her full even when your tongue starts layering on top of itself.")
 	else if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" Your [pc.tongue] reaches all the way to her cervix with a little bit left to spare. Every pass the tip of your tongue makes over her G-spot, she clenches hard on your head, which, with her claws, hurts quite a bit. But, she wants you to keep going, so you want to keep going, in spite of the pain.");
 
-	output("\n\nHer body rocks in a wavy motion, from her ankles all the way to her neck, as she fucks your face some more. She loves what you’re doing with what you’re given, and you love doing it because she loves it. Her body starts to quiver a bit, signaling an impending orgasm, when she quickly shoves you back. <i>“You’re such a good cuntlicker, [pc.name],” she praises. You smile goofily. <i>“As good as your pretty [pc.lips] are, and as much as I could get off on them again and again and again, I want something a bit more substantial from you.”</i>");
+	output("\n\nHer body rocks in a wavy motion, from her ankles all the way to her neck, as she fucks your face some more. She loves what you’re doing with what you’re given, and you love doing it because she loves it. Her body starts to quiver a bit, signaling an impending orgasm, when she quickly shoves you back. <i>“You’re such a good cuntlicker, [pc.name],”</i> she praises. You smile goofily. <i>“As good as your pretty [pc.lips] are, and as much as I could get off on them again and again and again, I want something a bit more substantial from you.”</i>");
 
 	output("\n\nShe raises her webbed foot and presses it against your collarbone, where she had shoved you before, and kicks you backward, onto the bed. As soon as your back hits the softness of her quilt, she’s flopped down on top of you, pinning your body down with her own. The soft heaviness of her breasts against your [pc.chest] is the best vice you could have asked for.");
 
@@ -2946,7 +2946,7 @@ public function firstTimeLaneFPCFGenderless():void
 		else output(" crotch");
 		output(". <i>“[pc.name] – ah!”</i> she stutters, just as you slide in another few centimeters. <i>“Exactly how much tongue do you – uh... – do you have?”</i> Her voice accents with every rock of her hips on your face.");
 
-		output("\n\n<i>“Ahm nuh sthur, mithpreth,”<i> you try and answer. You don’t attempt to withdraw your tongue from the cozy, tasty new home it’s in, though you’re sure she’d get a real kick out of it.");
+		output("\n\n<i>“Ahm nuh sthur, mithpreth,”</i> you try and answer. You don’t attempt to withdraw your tongue from the cozy, tasty new home it’s in, though you’re sure she’d get a real kick out of it.");
 
 		output("\n\n<i>“Let’s find out.”</i> She shifts her body forward slightly, pulling her lips away from your own, and presses her abdomen down on your [pc.chest]. <i>“Lick as much as you can. Try not to pull out. I might just reward you if you don’t.”</i>");
 

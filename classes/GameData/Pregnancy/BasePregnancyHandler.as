@@ -464,7 +464,7 @@ package classes.GameData.Pregnancy
 						if (args.length > 2 && args[cIndex + 2] is Boolean) psp.useSlotArgument = args[cIndex + 2];
 						
 						_stageProgressions.push(psp);
-						cIndex += 2;
+						cIndex += 3;
 					}
 					else
 					{
