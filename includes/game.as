@@ -1036,8 +1036,10 @@ public function milkGainNotes():void
 			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 3.5;
 			else pc.breastRows[x].breastRatingLactationMod = 2;
 		}
+		
 		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if ";
-		if(pc.upperUndergarment is BountyBra) eventBuffer += "you weren't wearing a <b>Bounty Bra</b>, your body would be slowing down production";
+		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "it wasn't for your genetically engineered super-tits, your body would be slowing down production";
+		else if(pc.upperUndergarment is BountyBra) eventBuffer += "you weren't wearing a <b>Bounty Bra</b>, your body would be slowing down production";
 		else eventBuffer += "you don't take care of it soon, a loss of production is likely";
 		eventBuffer += ". Right now, they're swollen up to [pc.breastCupSize]s.";
 		pc.removeStatusEffect("Pending Gain Milk Note: 150");
@@ -1052,10 +1054,12 @@ public function milkGainNotes():void
 			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 4.5;
 			else pc.breastRows[x].breastRatingLactationMod = 3;
 		}
+		
 		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. ";
-		if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
-		else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
-		pc.removeStatusEffect("Pending Gain Milk Note: 200");
+if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
+else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
+pc.removeStatusEffect("Pending Gain Milk Note: 200");
 	}
 }
 

@@ -165,7 +165,7 @@
 				{
 					if(target.vaginaTypeUnlocked(x,GLOBAL.TYPE_HUMAN))
 					{
-						kGAMECLASS.output("\n\nYour [pc.vagina " + x + "] feels strange, like its entire length is squirming. The flesh of your folds and outer lips reshapes, becoming a simple slit with a pink interior and a single clit nestled within. <b>[pc.oneVagina] is now human-like</b>.");
+						kGAMECLASS.output("\n\nYour [pc.vagina " + x + "] feels strange, like its entire length is squirming. The flesh of your folds and outer lips reshapes, becoming a simple slit with a pink interior and a single clit nestled within. <b>[pc.OneVagina] is now human-like</b>.");
 						pc.lust(5+rand(3));
 						pc.libido(1);
 						changes++;
@@ -173,7 +173,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.vaginaTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.vaginaTypeLockedMessage());
 					}
 				}
 				//Breasts down to F-cup

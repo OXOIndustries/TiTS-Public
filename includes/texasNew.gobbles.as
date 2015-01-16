@@ -690,4 +690,5 @@ public function gobblesRepeatSexEndCleanup():void
 	pc.removeStatusEffect("CreamedGobbleCunt");
 	pc.removeStatusEffect("CreamedOnGobbleFace");
 	//flags["GOBBLES_SEXYTIMES_STARTED"] = 0;
+	flags["GOBBLES_COOLDOWN"] = 0;
 }

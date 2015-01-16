@@ -3498,6 +3498,7 @@ public function goozookaCannon(target:Creature):void
 			damage = 33 * target.lustDamageMultiplier();
 			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
+			output("\n");
 			output(teaseReactions(damage, target));
 			target.lustDamage(damage);
 			output(" (" + damage + ")\n");

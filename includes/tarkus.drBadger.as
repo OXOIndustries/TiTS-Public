@@ -331,6 +331,7 @@ public function heyDocImAHero():void
 		pc.legType = GLOBAL.TYPE_SUCCUBUS;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+		pc.addLegFlag(GLOBAL.FLAG_HEELS);
 	}
 	if(pc.armType != GLOBAL.TYPE_BADGER)
 	{

@@ -21,9 +21,20 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (pc.milkFullness >= 150 && pc.isLactating() && !roundTwo)
 	{
-		milkturbation();
-		return null;
-	}
+        // Super-lactation, must resist urge to fap!
+        if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk"))
+        {
+            clearOutput();
+            output("\n\n<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won't ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
+            clearMenu();
+            addButton(0,"Next",masturbateMenu,true,"Masturbate","Choose something else...");
+            addButton(1,"Milk",milkturbation,true,"Milk Anyway","Release the pressure now!");
+            addButton(14,"Back", mainGameMenu);
+        }
+        // Your will is weak, now it's milky fun tiems, yay!
+        else milkturbation();
+        return null;
+    }
 	
 	// Previous fap has moved to consumers of the faps array.
 	// This enables us to check if the LAST_FAP targetted command is available (it'll be in the array), otherwise hide repeat.
@@ -1097,7 +1108,7 @@ public function milkturbation():void
 				output("\n\nDespite being entirely left out, your [pc.vaginas] reach");
 				if(pc.vaginaTotal() == 1) output("es its");
 				else output(" their");
-				output(" own pleasure plateau. [pc.girlCum] ");
+				output(" own pleasure plateau. [pc.GirlCum] ");
 				if(pc.isSquirter())
 				{
 					if(pc.lowerUndergarment.shortName != "") output("floods your " + pc.lowerUndergarment.longName + " with sticky love");

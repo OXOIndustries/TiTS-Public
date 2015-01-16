@@ -353,12 +353,12 @@ public function callWaitress():void
 		//You spot an unoccupied table and seat yourself. A new ship has just arrived, and the bar is full of planet rushers. It seems like everyone's eager to get a drink planetside.
 		output("Despite the crowd, it's not long before someone comes up to take your order. Squeezing through the throng is a pink-haired individual. You catch sight of a brilliant blue eye staring at you from under candyfloss hair.");
 		output("\n\n'Cute'. That’s the word that immediately springs to mind. Her face is unbelievably pretty, even breathtakingly so. At first glance, she appears human, but her hair is tucked behind an ear that’s just a bit too large and oddly shaped. A pink monkey tail bobs behind her holding a small notepad.");
-		if(CodexManager.entryUnlocked("Simii")) output(" Between that and her pink furred forearms, it’s clear that she’s a simii.");
+		if(CodexManager.entryViewed("Simii")) output(" Between that and her pink furred forearms, it’s clear that she’s a simii.");
 
 		output("\n\nHer outfit has a lot of frill and puff. She’s wearing a lacy, maid-style headpiece with a black bow on either side, and a cute collar around her neck. Her peasant-style dress runs from shoulder to toe, modestly covering her slim frame. The black and white dress is very conservative by Myrellion standards, covering her surprisingly flat chest.");
 
 		// if first time meeting a Simii
-		if(!CodexManager.entryUnlocked("Simii"))
+		if(!CodexManager.entryViewed("Simii"))
 		{
 			output("\n\nHer forearms, one of the few things uncovered by her outfit, are covered in pink downy fur. Her feet are like large hands, and are just like that of a terran primate.");
 		}
@@ -378,7 +378,10 @@ public function callWaitress():void
 		else if(pc.femininity >= 60) output("feminine");
 		else output("androgynous");
 		output(" features, and her cheeks are clearly flushed. “<i>...Um, if there’s, you know... anything you want, j-just ask!</i>” she finishes, her eyes on the table.");
-
+		
+		CodexManager.unlockEntry("Simii");
+		output("\n\nYour codex beeps, informing you about the species Embry belongs to. <b>You have unlocked the entry for Simii!</b>");
+		
 		embryMenu();
 	}
 	//Second Time’
@@ -595,10 +598,18 @@ public function embryAppearance():void
 	output("she ");
 	if(flags["EMBRY_RELATIONSHIP"] != 0) output("shyly averts her gaze");
 	else output("endures your stare");
-	output(". She’s a short simii waitress, and the textbook definition of ‘cute’.");
+	output(". She’s a short");
+	if (CodexManager.entryViewed("Simii")) output(" simii");
+	output(" waitress, and the textbook definition of ‘cute’.");
 
-	output("\n\nThe most noticeable thing about her is her mid-length pink hair. It’s a little wavy and cascades down the side of her face, the other side tucked between one of her large simii ears. She has a lacy maid-like headpiece with a tiny black bow on each side.");
-	output("\n\nLike every simii, [embry.name] has a button shaped nose, slightly darker compared to the rest of her skin, a trait of her species.");
+	output("\n\nThe most noticeable thing about her is her mid-length pink hair. It’s a little wavy and cascades down the side of her face, the other side tucked between one of her large");
+	if (CodexManager.entryViewed("Simii")) output(" simii");
+	output(" ears. She has a lacy maid-like headpiece with a tiny black bow on each side.");
+	if (CodexManager.entryViewed("Simii")) output("\n\nLike every simii, ");
+	else output("\n\n"); 
+	output("[embry.name] has a button shaped nose, slightly darker compared to the rest of her skin");
+	if (CodexManager.entryViewed("Simii")) output(", a trait of her species.");
+	else output(".");
 	output("\n\nHer sky-blue eyes are framed by long, dark lashes that add to her feminine appeal. A touch of dark eyeshadow has been meticulously applied. She is also wearing light pink glossy lipstick. Her nose is cute and small, much like the rest of her.");
 	
 	//if Embry.armor = PeasantDress
@@ -2905,6 +2916,7 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 		else output("\n\n");
 		output("You slowly sink your [pc.cockNounSimple] inside of her slick yet narrow tunnel. It squeezes your achingly hard length with impossible tightness. Every inch inside her is an effort - she’s so tight you feel like you’ll cum before your cock bottoms out!");
 		pc.cockChange();
+		//embry.cuntChange(0, pc.biggestCockVolume(), false, false, false);
 		output("\n\nDistracting yourself, you bite your lip hard, and try to focus on anything other than her divine tightness utterly wringing your [pc.cockNoun]. When your [pc.hips] finally meet hers, you tremble involuntarily with delight.");
 		output("\n\nYou feel the touch of slender fingers dancing along your cheeks. Looking down, you see [embry.name] gazing up at you ");
 		if(flags["EMBRY_GLASSES"] != undefined) output("through her glasses. Her baby blue eyes are filled ");
@@ -2952,6 +2964,7 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 	output("\n\nYou return to the bar with a smile.");
 	flags["SEXED_EMBRY"] = 1;
 	processTime(45);
+	embry.loadInCunt(pc);
 	pc.orgasm();
 	embry.vaginalVirgin = false;
 	clearMenu();

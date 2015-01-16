@@ -705,14 +705,26 @@ public function appearance(target:Creature):void {
 			{
 				if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [pc.milk] but nowhere near full at the moment.");
 				else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [pc.milk] inside them now. Before long, they'll start swelling.");
-				else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [pc.milk] and noticeably swollen.")
+				else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [pc.milk] and noticeably swollen.");
 				else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [pc.milk]. You should release the pressure soon.");
-				else if(target.milkFullness < 200) output2(" Your " + target.breastDescript(0) + " are painfully swollen with [pc.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
-				else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+				else if(target.milkFullness < 200)    
+				{
+					if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk") && this.rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [pc.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+					else if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) output2(" At least you are certain your enhanced [pc.fullChest] will never stop lactating, no matter what.");
+					else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [pc.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+				}
+				else 
+				{
+					if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk") && this.rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [pc.milk] factory!</b>");
+					else if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [pc.fullChest] will never stop lactating, no matter what.");
+					else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+				}
+				
 				//Don't forget about the bras! Primarily when mentioning the slowing of milk production.
 				if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
 				{
-					if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+					if(target.upperUndergarment.shortName == "Bounty Bra" && (pc.hasPerk("Milky") && pc.hasPerk("Treated Milk"))) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+					else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
 					else output2(" Unfortunately, a bit of [pc.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
 				}
 			}

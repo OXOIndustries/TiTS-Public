@@ -572,7 +572,7 @@ public function meetUpWithKaraInTheBackAlley():void
 	showKara();
 	output("\n\n“<i>You’re here,</i>” Kara says, taking a step out of the shadows and lowers the hood down to her shoulders, letting her cobalt-blue cat ears peek out at you.");
 	//if PC fucked Shade:
-	if(flags["SEXED_SHADE"] != undefined) output("\n\n“<i>Finally! I thought you weren’t coming. Then again, maybe you </i>did<i> cum huh?");
+	if(flags["SEXED_SHADE"] != undefined) output("\n\n“<i>Finally! I thought you weren’t coming. Then again, maybe you </i>did<i> cum huh? ");
 	else output("“<i>");
 	output("Looks like I made a good call with you. You’ve more than earned your reward.</i>”");
 
@@ -1623,7 +1623,7 @@ public function runesYouTurdShade():void
 		output("a small, silver necklace out from her shirt. It looks like a vertical bar pierced by a triangle, sort of like a sideways hat.");
 		flags["SHADE_CULT_TALK"] = 1;
 	}
-	output(" “<i>I told their leader I didn’t buy into the whole gods and giants thing, but he just smiled and me and nodded, all fatherly understanding. Said belief wasn’t what mattered, but the way you behaved. He told me about their philosophy, honor in battle, wisdom before action. They preached self-empowerment and courage more than gods; hell, some of the oldest members confessed to me while I was there that </i>they<i> didn’t believe in the gods, but they liked the message. I suppose I could have picked a worse religion to fall in with than one that encouraged me to be a warrior, even trained me. Plus they had a pretty serious fetility and sex-potency undertone going on, so it didn’t hurt that I came to them with a kid on the way.</i>”");
+	output(" “<i>I told their leader I didn’t buy into the whole gods and giants thing, but he just smiled and me and nodded, all fatherly understanding. Said belief wasn’t what mattered, but the way you behaved. He told me about their philosophy, honor in battle, wisdom before action. They preached self-empowerment and courage more than gods; hell, some of the oldest members confessed to me while I was there that </i>they<i> didn’t believe in the gods, but they liked the message. I suppose I could have picked a worse religion to fall in with than one that encouraged me to be a warrior, even trained me. Plus they had a pretty serious fertility and sex-potency undertone going on, so it didn’t hurt that I came to them with a kid on the way.</i>”");
 
 	output("\n\n“<i>You talk like you stayed there for a while. Didn’t you join up just to leave?</i>”");
 

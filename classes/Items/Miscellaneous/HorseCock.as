@@ -120,6 +120,7 @@
 			}
 			return false;
 		}
+		// 9999 -- this doesn't work nagas and possibly taurs.
 		public function HorseCockHorseCockConversion(target:int = 0):void
 		{
 			kGAMECLASS.clearOutput();
@@ -166,7 +167,7 @@
 				kGAMECLASS.output("\n\nYour body grows warmer and warmer until huge, throbbing veins rise on the surface of your sheath. You squeeze and massage your big balls instinctively. Your breath catches in your chest as your newly blunted prick emerges from its leathery cocoon in the form of an enormous, black and pink-mottled horse-cock. Inch after inch of snakes out with every beat of your pounding heart, the girthy length bouncing along to the increasingly frantic biological rhythm.");
 				if(pc.hasKnot(target)) kGAMECLASS.output("\n\nYou groan as your fat knot stretches the sensitive opening of your sheath open wide, popping free and continuing up your chest with the rest of your shaft.");
 				else kGAMECLASS.output("\n\n");
-				kGAMECLASS.output("\n\nFinally, your horsey tool is fully erect at a showstopping " + pc.num2Text(Math.round(pc.cocks[target].cLength() + 4)) + ". You run your hands up and down its massive length and hug it to your body, smelling the heady scent of your own animalistic musk. It clings to <b>your new horse-cock</b> like an arousing, pheromone-dense cloud.");
+				kGAMECLASS.output("\n\nFinally, your horsey tool is fully erect at a showstopping " + pc.num2Text(Math.round(pc.cocks[target].cLength() + 4)) + "-inches. You run your hands up and down its massive length and hug it to your body, smelling the heady scent of your own animalistic musk. It clings to <b>your new horse-cock</b> like an arousing, pheromone-dense cloud.");
 				kGAMECLASS.output("\n\nYou feel your balls tense up a moment before your new cock blasts a fountain of sticky semen straight up, only to rain down upon your head. You tilt your head back and open your mouth; sticking out your tongue you catch mouthful after mouthful of potent cum and greedily gulp it down.");
 				kGAMECLASS.output("\n\nYour orgasm finally ends after what feels like an eternity. You stumble to your feet, a sticky wet mess, and watch in dazed amusement as your softening horse-cock slithers back up into its sheath to hang heavily along your thigh. You decide that you need to get a shower, covered in cum as you are");
 				if(!CodexManager.entryUnlocked("SynthSheath"))
@@ -178,6 +179,7 @@
 				kGAMECLASS.output(".");
 				pc.shiftCock(target, GLOBAL.TYPE_EQUINE);
 				pc.cocks[target].cLengthRaw += 4;
+				pc.cocks[target].cockColor = "mottled pink and black";
 			}
 			//{ifRegularCock/LargeCockles}
 			else
@@ -233,6 +235,7 @@
 					CodexManager.unlockEntry("SynthSheath");
 				}
 				pc.shiftCock(target, GLOBAL.TYPE_EQUINE);
+				pc.cocks[target].cockColor = "mottled pink and black";
 			}
 			pc.boostCum(50);
 			pc.refractoryRate++;

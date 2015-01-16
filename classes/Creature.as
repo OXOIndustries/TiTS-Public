@@ -6224,8 +6224,8 @@
 			if (descripted) desc += " ";
 			rando = this.rand(9);
 			if (rando < 4) {
-				if (balls == 4 && this.rand(2) == 0) desc += "quad";
-				else desc += "ball";
+				if (balls == 4 && this.rand(2) == 0) desc += "quad ";
+				desc += "ball";
 			}
 			if (rando >= 4 && rando < 6) desc += "testicle";
 			if (rando == 6) desc += "teste";
@@ -8271,16 +8271,24 @@
 				if (!simple) {
 					descript += "simian ";
 				}
-				//Hey retards wrong random selection stack logic Doh! data type is rounding, comparator op, hence GLOBAL.TYPE_BEE works
+				
 				rando = this.rand(11);
-				if (rando == 0 && descript != "simian ") noun += "simii-dick";
+				if (rando == 0)
+				{
+					if (descript != "simian ") noun += "simii-dick";
+					else noun += "dick";
+				}
 				if (rando == 1) noun += "cock";
 				if (rando == 2) noun += "member";
 				if (rando == 3) noun += "shaft";
 				if (rando == 4) noun += "phallus";
 				if (rando == 5) noun += "prick";
 				if (rando == 6) noun += "member";
-				if (rando == 7 && descript != "simian ") noun += "simii-cock";
+				if (rando == 7)
+				{
+					if (descript != "simian ") noun += "simii-cock";
+					else noun += "cock";
+				}
 				if (rando == 8) noun += "dick";
 				if (rando == 9) noun += "tool";
 				if (rando == 10) noun += "shaft";

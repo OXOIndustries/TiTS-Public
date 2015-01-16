@@ -183,9 +183,9 @@ public function talkWithJuroAbootHisRace():void
 	output("\n\nHe shrugs in answer, taking a moment before saying, “<i>Understand that kui-tan have some of the highest virility rates of any sapient species in the galaxy, and that both sexes have what you would consider masculine genitalia and the ability to father children. Myrellion has a dangerous lack of males, and a generations-old reproductive problem that has rendered most females sterile, and the population in a constant state of decline. An issue made dangerously clear in what I will optimistically label the aftermath of a seven year long global conflict. Even if this office succeeds in preventing the locals from obliterating themselves, it’s entirely likely that the Myr will simply die out in a few generations regardless. Mass casualties from the conflict have left both factions on the brink of permanent degradation in their genetic pools. In short, Myrellion is a prime candidate for a kui-tan colony once stability is ensured between the local governments, and given Xenogen Biotech’s mutual interest here, could be both a profitable and pleasant planet within a few generations.</i>”");
 	//[Next] [Myr Women]
 	processTime(2);
+	clearMenu();
 	addButton(0,"Next",talkToAmbassadorJuro);
-	addButton(1,"Myr Women",myrWomenTalkWithKuitanJuro,undefined,"Myr Women","So what you mean is... the kui-tan are here to steal myrellion’s women?");
-
+	addButton(1, "Myr Women", myrWomenTalkWithKuitanJuro, undefined, "Myr Women", "So what you mean is... the kui-tan are here to steal myrellion’s women?");
 }
 
 //[Myr Women]
@@ -198,7 +198,7 @@ public function myrWomenTalkWithKuitanJuro():void
 	pc.addMischievous(2);
 	output("Juro flushes darkly as you speak, quickly fidgeting with his glasses and trying to both sit down and shift his legs at the same time. “<i>Uh, well, you must understand that such an arrangement is beneficial both to the local population as well as for the kui-tan. We are best suited to helping the myr recover from their dwindling numbers, especially if Xenogen repairs the mass sterility that afflicts members of both factions. With my peoples’ help, the myr could be repopulated, or even be expanding, within the span of a generation or two.</i>”");
 	output("\n\nYou chuckle at the flustered kui-tan’s answer.");
-
+	addDisabledButton(1, "Myr Women");
 }
 
 //[Amb. Lyralla] (First Time)
