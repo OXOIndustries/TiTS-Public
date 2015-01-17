@@ -6,11 +6,11 @@ import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
 
-public function useItem(item:ItemSlotClass):void {
+public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
-		return;
+		return false;
 	}
 	if (item.quantity == 0) 
 	{
@@ -18,7 +18,7 @@ public function useItem(item:ItemSlotClass):void {
 		output("Attempted to use " + item.longName + " which had zero quantity.");
 		this.clearMenu();
 		this.addButton(14,"Back",useItemFunction);
-		return;
+		return false;
 	}
 	else 
 	{
@@ -31,6 +31,7 @@ public function useItem(item:ItemSlotClass):void {
 			// item replacement. The player can have a "full" inventory including the item they've just equipped!
 			if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 			equipItem(item);
+			return true;
 		}
 		//Else try to use a stored function!
 		else 
@@ -63,6 +64,8 @@ public function useItem(item:ItemSlotClass):void {
 					pc.inventory.splice(pc.inventory.indexOf(item), 1);
 				}
 			}
+			
+			return false;
 		}
 	}
 }
@@ -617,9 +620,14 @@ public function replaceItemPicker(lootList:Array):void {
 
 public function useLoot(lootList:Array):void {
 	var loot:ItemSlotClass = lootList[0];
-	useItem(loot);
 	
-	if (loot.quantity <= 0)
+	// Remove equipped items from the list
+	// useLoot returns true during an equip-call
+	if (useItem(loot))
+	{
+		lootList.splice(0, 1);
+	}
+	else if (loot.quantity <= 0)
 	{
 		lootList.splice(0,1);
 	}
