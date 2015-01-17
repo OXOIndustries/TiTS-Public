@@ -171,7 +171,7 @@ public function initializeRooms():void
 	//108 "FUR EFFECT" Fur Effect
 	rooms["FUR EFFECT"] = new RoomClass(this);
 	rooms["FUR EFFECT"].roomName = "SHOP:\nFUR EFFECT";
-	rooms["FUR EFFECT"].description = "The sign declared this store to be “Fur Effect,” and you can see why. Your [pc.feet] sink ankle-deep into thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.";
+	rooms["FUR EFFECT"].description = "";
 	rooms["FUR EFFECT"].planet = "TAVROS STATION";
 	rooms["FUR EFFECT"].system = "SYSTEM: KALAS";
 	rooms["FUR EFFECT"].eastExit = "110";

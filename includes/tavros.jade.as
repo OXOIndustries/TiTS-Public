@@ -20,6 +20,14 @@ Pussy is very elastic AND wet, giving her a good capacity.
 
 //Jade Addition
 public function furEffectBonusFunction():Boolean {
+	
+	output("The sign declared this store to be “Fur Effect,” and you can see why. Your");
+	if (pc.isNaga()) output(" snake-like tail sliters through");
+	else if (pc.isGoo()) output(" gooey pseudopods squish into");
+	else if (pc.legCount == 1) output(" [pc.foot] sinks ankle-deep into");
+	else output(" [pc.feet] sink ankle-deep into");
+	output(" thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.");
+	
 	if(flags["JADE_NIPPLE_TF_QUEUED"] == 1)
 	{
 		jadeUsesNippleMod();
