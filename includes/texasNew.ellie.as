@@ -250,7 +250,7 @@ output("\n\nYou ask Ellie if she happens to have any of her milk bottled up that
 output("\n\n<i>“Sorry, hun,”</i> she says with a little shrug. <i>“Haven’t been to the milk barn all that recently, and I only bottle so much. There’s usually a bull or three eager to get at the rest!”</i>");
 
 output("\n\nSeeing your disappointment, though, Ellie adds, <i>“If you want, I’d be more than happy to give you a taste straight from the tap!”</i>");
-output("\n\n{Back to main menu}");
+[Back to main menu]
 
 output("\n\n//Use");
 output("\n\nYou take out the bottled dose of leithan milk Ellie gave you and drink it down. Even though there’s not much in the bottle, the effects are still all but instantaneous: your [pc.skin] tingles and burns ever so slightly as the lusty, aphrodisiac-laden milk worms its way through you, the cold of the milk playing against the rising heat of your [pc.skin]... and your loins. {Your [pc.cock] is hard before you’ve had the chance to put the bottle away, throbbing with desperate need. What you wouldn’t give for a big, wet tauric pussy to pound it into...}");

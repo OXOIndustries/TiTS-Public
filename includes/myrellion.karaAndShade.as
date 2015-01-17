@@ -1201,7 +1201,10 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	output("\n\nShade answers it with a playful grope, sinking her fingers into your [pc.butt] until you draw a sharp, gasping breath. A glance over your shoulder shows Shade grinning, her pussy-tail swishing happily behind her as she stretches languidly out behind you, nestling her cheeks against your raised behind. You feel her tongue snake out again, this time caressing the ");
 	if(y >= 0) output("outer lips of ");
 	else output("dark, sensitive skin around ");
-	output("your [pc.vagOrAss " + y + "]. You hear a pleased little purr behind you and a thrum of vibration on the {lips/rim} of your hole as Shade’s lips press against your [pc.vagOrAss " + y + "].");
+	output("your [pc.vagOrAss " + y + "]. You hear a pleased little purr behind you and a thrum of vibration on the");
+	if (pc.hasVagina()) output(" lips");
+	else output(" rim"); 
+	output(" of your hole as Shade’s lips press against your [pc.vagOrAss " + y + "].");
 
 	output("\n\nYou moan and bite your lip, hard, as Shade’s tongue traces around your hole, licking and teasing, drawing closer and closer to the entrance. Instinctively, your fingers clutch at the pillow under your head, clawing for purchase. Your lover carries on relentlessly, dragging her tongue through the cleft of your ");
 	if(y >= 0) output("cunt");

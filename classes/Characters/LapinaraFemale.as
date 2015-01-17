@@ -23,7 +23,7 @@
 			this.originalRace = "lapinara";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You are fighting a lapinara. A typical example of the parasitic gender, according to your Codex, she stands at no more than [height] tall. From her head grows medium-length, wild {white/silver/gray} hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding.";
+			this.long = ""; // Implementation in prepForCombat
 			this.customBlock = "Somehow, the attack doesn't penetrate the lapinara's fur!";
 			this.customDodge = "The lapinara uses its small size to slip out of the way.";
 			this.plural = false;

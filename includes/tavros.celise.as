@@ -169,7 +169,9 @@ public function celiseSucksYouDry():void {
 	//{Tailcock}
 	if(pc.hasTailCock()) {
 		if(pc.tailCount == 1) {
-			output("\n\nYour [pc.tailCock] is dripping, though it is not leaking ejaculate with the fervor of your bound erection{s}. That doesn’t stop Celise from noticing the way the heated droplets of pre-cum spatter across her insubstantial skin. Almost lazily, she extends a pseudopod behind you. You cannot see the rising, gooey enclosure, but you certainly feel it when it makes contact with your trembling tailcock, spreading juice-dripping lips around your thick tailboner. Inch after inch of your throbbing, posterior phallus passes into the suckling hole, and before you know it, it’s squirting out just like your other cock");
+			output("\n\nYour [pc.tailCock] is dripping, though it is not leaking ejaculate with the fervor of your bound erection");
+			if (pc.cocks.length > 1) output("s");
+			output(". That doesn’t stop Celise from noticing the way the heated droplets of pre-cum spatter across her insubstantial skin. Almost lazily, she extends a pseudopod behind you. You cannot see the rising, gooey enclosure, but you certainly feel it when it makes contact with your trembling tailcock, spreading juice-dripping lips around your thick tailboner. Inch after inch of your throbbing, posterior phallus passes into the suckling hole, and before you know it, it’s squirting out just like your other cock");
 			if(pc.cockTotal() > 1) output("s");
 			output(".");
 		}

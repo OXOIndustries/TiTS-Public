@@ -58,6 +58,7 @@
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
+	import classes.Engine.Map.InPublicSpace;
 	
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;

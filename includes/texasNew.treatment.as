@@ -1605,7 +1605,9 @@ public function treatmentHourProcs():void
 					if(pc.cockTotal() > 1) eventBuffer += "s";
 					eventBuffer += " lengthen the whole time.";
 
-					eventBuffer += "\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of your{ to the dismay of the onlookers}. Jacking for all you’re worth, you milk every drop from your growing dick. It isn’t until it’s all over that the magnitude of what just happened sinks in.";
+					eventBuffer += "\n\nYour heartbeat hammers at your eardrums faster and faster. Your breath comes quicker. You couldn’t stop yourself if you wanted to, and you don’t. You don’t ever want this moment to stop. You " + pc.cockHead() + " lurches, and you’re cumming, spraying a puddle of [pc.cum] all over the ground in front of you";
+					if (InPublicSpace()) eventBuffer += " to the dismay of the onlookers";
+					eventBuffer += ". Jacking for all you’re worth, you milk every drop from your growing dick. It isn’t until it’s all over that the magnitude of what just happened sinks in.";
 					eventBuffer += "\n\nThe Treatment made your " + pc.cocksDescript() + " grow bigger - a full two inches bigger, by your measurements. It might not be done either. There’s still a pleasant, lingering tingle in your groin, and it’s not the normal post-orgasmic one.";
 					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) eventBuffer += " You should probably move on before someone takes issue with the lewd display.";
 				}

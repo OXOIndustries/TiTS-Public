@@ -422,7 +422,9 @@ public function millieMilkingFinale():void
 		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output("own");
 		else output("[pc.milkNoun]");
 		output(". Gasping, you squirm away, still far too sensitive after so much time hooked up to the machine. The cow stops, grabbing you a towel. “<i>Here, clean up.</i>”");
-		output("\n\nYou wipe yourself up, avoiding your sore, completely emptied tits until last, giving them as long as possible to recover from the rough treatment. Still, when you finish, you’re clean, even if the stall smells like milk{, [pc.milkNoun],} and cherries - the source of the last the obvious damp patch that Millie’s denim has acquired.");
+		output("\n\nYou wipe yourself up, avoiding your sore, completely emptied tits until last, giving them as long as possible to recover from the rough treatment. Still, when you finish, you’re clean, even if the stall smells like milk");
+		if (pc.isLactating()) output(", [pc.milkNoun],");
+		output(" and cherries - the source of the last the obvious damp patch that Millie’s denim has acquired.");
 	}
 	//Treated
 	else

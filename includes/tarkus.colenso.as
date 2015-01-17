@@ -643,8 +643,17 @@ public function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 {
 	clearOutput();
 	author("Nonesuch");
-	showBust("HAND_SO");
-	showName("HAND\nSO");
+	
+	if (flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined && flags["HAND_SO_LOOTED"] == undefined)
+	{
+		showBust("HAND_SO");
+		showName("HAND\nSO");
+	}
+	else
+	{
+		showName("CONTROL\nPOST");
+	}
+	
 	output("You are standing at the far end of Hand So’s nerve centre. The room opens out a bit here, and is arrayed on all sides with grimy windows. Through these you can see down into the large underground factory complex, replete with production lines and workshops.");
 	//Sexbots on: 
 	if(flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) output(" Dozens, maybe hundreds of sexbots are at work down there, completely oblivious to you. They are calmly going about repairing and putting together more sexbots from piles of spare parts evidently scavenged from the wastelands outside.");
@@ -653,9 +662,10 @@ public function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	output("\n\nIn front of you are two consoles. The console on the right is more prominently centred and looks like it might have something to do with the factory below.");
 	clearMenu();
 	//[PC left after defeating So/So no longer there:
-	if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined || flags["HAND_SO_LOOTED"] == 1) 
+	if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined) 
 	{
 		output(" The one on the left is silent and lifeless.");
+		addDisabledButton(0, "Left", "Left", "This console is beyond repair.");
 	}
 	//So defeated, PC immediately went here:
 	else if(flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined && flags["HAND_SOS_ROBOT_DESTROYED"] == 1) 
@@ -667,10 +677,17 @@ public function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined) 
 	{
 		if(flags["HAND_SO_LOOTED"] == undefined && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) output(" The one on the left is humming quietly. The words “Download complete. Please remove hardware” are displayed on the screen, and there is a large storage bead attached to it.");
-		else output(" The one on the left is dead and lifeless.");
+		else
+		{
+			output(" The one on the left is dead and lifeless.");
+			addDisabledButton(0, "Left", "Left", "This console seems to be destroyed.");
+		}
 		addButton(1,"Right",goToZeRightConsolePeasant,undefined,"Right","Investigate the console to the right.");
 	}
-	if(flags["HAND_SO_LOOTED"] == undefined && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) addButton(0,"Left",leftConsole,undefined,"Left","Collect the shut-down A.I.");
+	if (flags["HAND_SO_LOOTED"] == undefined && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined)
+	{
+		addButton(0,"Left",leftConsole,undefined,"Left","Collect the shut-down A.I.");
+	}
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
@@ -761,10 +778,12 @@ public function goToZeRightConsolePeasant():void
 	//[All male (becomes “some female” if on)] [All female (becomes “some male” if on)] [Shut down]
 	clearMenu();
 	if(flags["SEXBOTS_GENDER_SETTING"] != 1) addButton(0,"All Male",sexbotControlBahtanPush,1,"All Male","Set the sexbots to prioritize male appearances.");
-	if(flags["SEXBOTS_GENDER_SETTING"] == 0 || flags["SEXBOTS_GENDER_SETTING"] == undefined) addButton(1,"Reset",sexbotControlBahtanPush,0,"SplitSexes","Reset the sexbots to have even odds between males and females.");
-	if(flags["SEXBOTS_GENDER_SETTING"] != -1) addButton(1,"All Female",sexbotControlBahtanPush,-1,"All Female","Set the sexbots to prioritize female appearances.");
-	if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) addButton(2,"Shut Down",sexbotControlBahtanPush,2,"Shut Down","This should reduce the number of sexbots out there....");
-	else addButton(2,"Start Up",sexbotControlBahtanPush,2,"Start Up","Pressing this should restore the sexbots to their previous levels.");
+	if (flags["SEXBOTS_GENDER_SETTING"] != -1) addButton(1, "All Female", sexbotControlBahtanPush, -1, "All Female", "Set the sexbots to prioritize female appearances.");
+	if (flags["SEXBOTS_GENDER_SETTINGS"] == -1) addDisabledButton(1, "All Female", "All Female", "The sexbots have been set to prioritize female appearance.");
+	if (flags["SEXBOTS_GENDER_SETTING"] != 0 || flags["SEXBOTS_GENDER_SETTING"] == undefined) addButton(2, "Reset", sexbotControlBahtanPush, 0, "SplitSexes", "Reset the sexbots to have even odds between males and females.");
+	if(flags["SEXBOTS_GENDER_SETTING"] == 0) addDisabledButton(2,"Reset","Reset","The sexbots are evenly displaced between males and females.");
+	if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) addButton(3,"Shut Down",sexbotControlBahtanPush,2,"Shut Down","This should reduce the number of sexbots out there....");
+	else addButton(2,"Start Up",sexbotControlBahtanPush,3,"Start Up","Pressing this should restore the sexbots to their previous levels.");
 
 	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }
@@ -794,5 +813,6 @@ public function sexbotControlBahtanPush(buttonPushed:int = 0):void
 		}
 	}
 	clearMenu();
+	addButton(0, "Next", goToZeRightConsolePeasant);
 	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }

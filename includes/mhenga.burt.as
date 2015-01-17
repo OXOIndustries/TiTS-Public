@@ -717,11 +717,34 @@ public function getOralFromBurt():void {
 			else output("He licks across the base of [pc.eachCock], tasting the musk on your [pc.skin] as his hands pump your sensitive flesh.");
 			output(" He smirks as he looks at your flanks, saying,<i> “I don’t often play with boys like this, so forgive my inexperience.”</i> He keeps teasing and caressing [pc.eachCock], slowly working you to the edge of climax. When it looks like you are about to blow, he backs his head away and aims [pc.eachCock] at the floor as though milking a cow. He grins at you as your orgasm rips through your body, and watches as ");
 			//[if (cumNormal = true)]
-			if(pc.cumQ() <= 25) output("[pc.eachCock] twitches in his hands, splashing the floor with your [pc.cum].");
-			else if(pc.cumQ() <= 75) output("[pc.eachCock] pulses in his hands, splashing the floor and his cot with your ample [pc.cum].");
-			else if(pc.cumQ() <= 150) output("[pc.eachCock] jerks in his grip, sending pulse after pulse of your [pc.cum] splashing across the floor and his cot.");
-			else if(pc.cumQ() <= 500) output("[pc.eachCock] jerk{s} in his grip, hosing the floor and his cot with your [pc.cum].");
-			else output("[pc.eachCock] bursts like an overtaxed dam, drenching his cot in a thick [pc.cumColor] puddle as you pump out enough [pc.cum] that it could have filled a mead barrel.");
+			if (pc.cumQ() <= 25)
+			{
+				output("[pc.eachCock] twitch");
+				if (pc.cocks.length == 1) output("es");
+				output(" in his hands, splashing the floor with your [pc.cum].");
+			}
+			else if (pc.cumQ() <= 75)
+			{
+				output("[pc.eachCock] pulse");
+				if (pc.cocks.length == 1) output("s");
+				output(" in his hands, splashing the floor and his cot with your ample [pc.cum].");
+			}
+			else if (pc.cumQ() <= 150)
+			{
+				output("[pc.eachCock] jerk");
+				if (pc.cocks.length == 1) output("s");
+				output(" in his grip, sending pulse after pulse of your [pc.cum] splashing across the floor and his cot.");
+			}
+			else if (pc.cumQ() <= 500) 
+			{
+				output("[pc.eachCock] jerk");
+				if (pc.cocks.length == 1) output("s");
+				output(" in his grip, hosing the floor and his cot with your [pc.cum].");
+			}
+			else 
+			{
+				output("[pc.eachCock] bursts like an overtaxed dam, drenching his cot in a thick [pc.cumColor] puddle as you pump out enough [pc.cum] that it could have filled a mead barrel.");
+			}
 			output(" He catches his breath and smirks, asking,<i> “Was it good for you?”</i>");
 		}
 		//[if (gender = herm)]

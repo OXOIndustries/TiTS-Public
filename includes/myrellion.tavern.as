@@ -332,7 +332,8 @@ public function stephIrsonEpisode4Part3():void
 	output("\n\nBefore the Galactic Huntress and the nyrean alpha can get too far, however, her male submissive catches the camera’s attention, creeping up behind his mistress. ");
 	if(flags["MET_IRYN"] != undefined)
 	{
-		output("“<i>This is the good part,</i>” Iryn says giddily, fidgeting in {his/her} seat just enough to make {his/her} tits jiggle enticingly under {his/her} shirt. “<i>Watch this!</i>”");
+		// 9999 on these hisHer tags
+		output("“<i>This is the good part,</i>” Iryn says giddily, fidgeting in [iryn.hisHer] seat just enough to make [iryn.hisHer] tits jiggle enticingly under [iryn.hisHer] shirt. “<i>Watch this!</i>”");
 		output("\n\nOn screen, Iryn");
 	}
 	else output("The male");

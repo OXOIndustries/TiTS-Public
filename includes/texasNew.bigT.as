@@ -527,7 +527,10 @@ public function pitchTOverATable():void
 
 	output("\n\nTee’s powerful brows shoot up, not to mention the impressive bulge in his pants. \"<i>Lookin’ to ride the biggest bull about, eh? Can’t say I don’t enjoy a good cock every now and then - just ask Zephyr!</i>” he chuckles. It seems he’s on board with the idea of taking your [pc.cock " + x + "]!");
 
-	output("\n\nBoth of you start feverishly making out as you strip off each other’s gear. Once {you’re both/he’s} completely in the buff -- with the exception of his stetson -- the huge, heavyset bull bends over the desk. You run your fingers down his impressively defined back. Each muscle is so perfect and well defined - it’s quite the sight to see him bent over like this!");
+	output("\n\nBoth of you start feverishly making out as you strip off each other’s gear. Once");
+	if (!pc.isNude()) output(" you’re both");
+	else output(" he’s");
+	output(" completely in the buff -- with the exception of his stetson -- the huge, heavyset bull bends over the desk. You run your fingers down his impressively defined back. Each muscle is so perfect and well defined - it’s quite the sight to see him bent over like this!");
 
 	output("\n\nLetting your digits descend, you firmly grab his posterior in both hands. His hard asscheeks are built for thrusting and squeezing - he’s truly a perfect stallion of a man. Tee trembles as you squeeze and tease his well developed rump, clearly getting off on your forceful grip. Between his thick thighs, you can see the bull’s gigantic flat-tip horsecock beating against the desk - someone’s raring to go!");
 	output("\n\n\"<i>Oh, you’re really getting into this. I wouldn’t think you were the sort, governor,</i>” you cheekily tease. At the same time, you slip one of your fingers between his buttocks. His pucker is so large compared to your finger that it’s a cinch to slip it inside. Once you realise how easy it is, you slip in two more fingers.");

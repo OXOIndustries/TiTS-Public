@@ -2907,7 +2907,10 @@ public function planetAsplodeWhileInNovaPartIII():void
 	output("Somehow, you didn't die, and neither did the raskvel - at least not the ones onboard Novahome. With no other option save extinction, the scrappy little aliens managed to get the engines and life support on this old boat running. ");
 	if(flags["MET_DEL"] == undefined) output("A dark-skinned girl");
 	else output("Del");
-	output(" spearheaded options to keep the refugees fed{ and suitably serviced} while the hangar was cleared. You helped out where you could, anything to see the hangar and your ship operational again. An escape vector is always nice.");
+	output(" spearheaded options to keep the refugees fed");
+	// 9999 all up in dis shit
+	if (timesDelilahSexed() > 3) output(" and suitably serviced");
+	output(" while the hangar was cleared. You helped out where you could, anything to see the hangar and your ship operational again. An escape vector is always nice.");
 	output("\n\nA day later, life calmed down enough for things to get back to something approaching normal on Novahome. While deciding what to do next, you catch wind that [rival.name] is in ");
 	if(flags["MET_SHEKKA"] != undefined) output("Shekka's shop");
 	else output("a nearby shop");

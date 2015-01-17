@@ -3352,7 +3352,10 @@ public function givePennyAHossCawk():void
 	else if(penny.cocks[0].cLengthRaw <= 12)
 	{
 		output("Penny coos as she surveys the fleshy sheath held in her hands. She grins at you wryly before waggling the fleshy tube in your face. “<i>So you’re into this sort of thing huh, [pc.name]?</i>” Penny chuckles as she gives the swaying balls of the toy a gentle lick. “<i>It’s not enough for you that I’m hung like a horse, you want me to be hung like a horse!</i>” Penny giggles mirthfully at her joke before turning a lascivious grin towards you. “<i>Well, I’ll play along. I’m pretty horny right now, and my dick is aching for some attention[, [pc.name]]!</i>” You gulp as you see Penny’s foot-long, canine cock slip from her sheath to point accusingly at your face.");
-		output("\n\nYou chuckle while kneel down to take the sheath into your hands, placing the tip of Penny’s dripping cock into the opening of the toy and gently pulling down. Penny moans at the gentle pressure of the rubbery tube as it slides down her cock nearly effortlessly; it’s as though this toy was made specifically for Penny’s penis. Penny runs a hand {if Hair}through your hair{if Bald}along your head as you begin pumping the toy up and down her length. Licking her lips and hefting one of her wobbling boobs, she squeezes and pinches one of her puffy, inverted nipples.");
+		output("\n\nYou chuckle while kneeling down to take the sheath into your hands, placing the tip of Penny’s dripping cock into the opening of the toy and gently pulling down. Penny moans at the gentle pressure of the rubbery tube as it slides down her cock nearly effortlessly; it’s as though this toy was made specifically for Penny’s penis. Penny runs a hand");
+		if (pc.hairLength > 0) output(" through your hair");
+		else output(" along your head");
+		output(" as you begin pumping the toy up and down her length. Licking her lips and hefting one of her wobbling boobs, she squeezes and pinches one of her puffy, inverted nipples.");
 		output("\n\n“<i>Oh, mate, that feels really good</i>” Penny whines as the slick sex-toy marches its way down her length, edging closer to her crotch, her body writhing under your ministrations.");
 		//<PennyNoBawls>
 		if(penny.balls == 0)
