@@ -1164,6 +1164,11 @@
 				case "name":
 					buffer = short;
 					break;
+				case "fullName":
+				case "fullname":
+					buffer = short;
+					if (this is PlayerCharacter) buffer += " Steele";
+					break;
 				case "race":
 					buffer = race();
 					break;

@@ -262,7 +262,7 @@ public function sexWithBigTMenu():void
 	output("</i>\" His deep, rough voice thunders down from above. \"<i>I think there's something we can do about that, don't you--?\"</i>");
 
 	output("\n\nAs if punctuating his statement, a large, powerful hand trails down your back and ");
-	if(!pc.isTaur()) output("squeezes your [pc.assLight]. Almost by instinct, you push it into his grasp, shivering with delight as he teases your rump.");
+	if(!pc.isTaur()) output("squeezes your [pc.ass]. Almost by instinct, you push it into his grasp, shivering with delight as he teases your rump.");
 	else output("rests at the small of your back.");
 	output(" The look in his eyes speaks volumes - he clearly has plans for you.");
 
@@ -271,7 +271,7 @@ public function sexWithBigTMenu():void
 	//treated:
 	if(pc.isTreated()) output("\n\nYou're giddy with delight!");
 	else output("\n\nYour head is spinning, and you find yourself seriously entertaining the idea.");
-	output(" You, [pc.fullName], servicing the biggest bull on New Texas? And it looks like his cock is proportional to his body size....");
+	output(" You, [pc.name] Steele, servicing the biggest bull on New Texas? And it looks like his cock is proportional to his body size....");
 
 	pc.lust(15);
 	//[Desk BJ] [Drunken Cow{boy/girl}] [Pitch T] 
@@ -315,7 +315,7 @@ public function bigTHasABigDDeskBlowjob():void
 	output(" stroke your [pc.chest] and look up at Tee. His blue eyes are filled with unashamed lust as he ogles your naked form, enjoying the show you’re giving him.");
 
 	output("\n\n“<i>Hot damn, that’s a mighty fine sight--!</i>” Tee exclaims, reaching down to tweak one of your [pc.nipples]. You let out a whimpering sigh as his thick fingers squeeze and tease your sensitive nub. The man sure knows how to wrangle " + pc.mf("a young buck in!","a woman in!"));
-	output("\n\nThrowing your head back, you sigh at the feeling of his powerful digits caressing your prickled [pc.nippleColor] areola, and sending pleasure coursing through your [pc.breastsSimple].");
+	output("\n\nThrowing your head back, you sigh at the feeling of his powerful digits caressing your prickled [pc.nippleColor] areola, and sending pleasure coursing through your [pc.breasts].");
 	if(pc.isLactating()) output(" A stream of [pc.milk] excitedly squirts from your [pc.nippleNoun] and you moan with delight.");
 	else output(" The masterful bull coaxes your aching nips until they are taut and tingling.");
 
@@ -327,7 +327,7 @@ public function bigTHasABigDDeskBlowjob():void
 	output("\n\nWhen you pull back, you’re delighted to see a thin string of his glistening spunk stretching from the tip of his flat tipped stallion to your tongue. You pull back and back until it breaks and spills down your chin and chest, feeling a giddy rush of delight. You dive back for more, sucking and nursing his tip, all the while wringing his base for more of his heady cream. Every drop is heaven in liquid form, and you want more--!");
 	output("\n\nSpurred forward by lusty need, you try to slide your [pc.lips] around his massive cock head, feeling your jaws strain with the effort. The second Tee’s dick touches your tongue, you’re utterly swept up in his incredibly strong taste, and another dollop of pre erases all other thoughts. You close your eyes, utterly content to suck his mighty flat-tipped stallion, sucking and trembling as his hot sperm slides down your throat.");
 
-	output("\n\nSuddenly, you feel his powerful hands reach around behind your head. You offer no resistance as the burly bull encourages you to take his girthy member inch by inch. You moan and tremble with delight as his big, strong member fills out your narrow throat, claiming it as his and stretching to fit his incredible shape. Your [pc.thighsSimple] deliciously quiver - you’re not sure how much hotter you can get until you’re liberally creaming ");
+	output("\n\nSuddenly, you feel his powerful hands reach around behind your head. You offer no resistance as the burly bull encourages you to take his girthy member inch by inch. You moan and tremble with delight as his big, strong member fills out your narrow throat, claiming it as his and stretching to fit his incredible shape. Your [pc.thighs] deliciously quiver - you’re not sure how much hotter you can get until you’re liberally creaming ");
 	if((pc.hasCock() || pc.hasVagina()) && pc.lowerUndergarment.shortName != "") output(" in your [pc.lowerUndergarment]!");
 	else output("yourself!");
 

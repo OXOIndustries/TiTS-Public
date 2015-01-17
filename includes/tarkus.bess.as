@@ -1283,9 +1283,9 @@ There is a sound like liquid sloshing about and {suddenly [bess.hisHer] silvery 
 
 // if (pc.hasCock = true && pc.frontGenitals = true)
 {
-You're so turned on by [bess.hisHer] needy, pleasured wiggling against your groin that you {pull off your [pc.lowerGarments]} and slip [pc.oneCock] into [bess.hisHer] {if (bess.hasPussy) ""[bess.pussyLight]"}{else: "[bess.assLight]"} from behind. As you penetrate [bess.himHer] [Bess.heShe] excitedly clenching around your length your thrusting length, letting it easily slide inside of [bess.himHer]. 
+You're so turned on by [bess.hisHer] needy, pleasured wiggling against your groin that you {pull off your [pc.lowerGarments]} and slip [pc.oneCock] into [bess.hisHer] {if (bess.hasPussy) ""[bess.pussyLight]"}{else: "[bess.ass]"} from behind. As you penetrate [bess.himHer] [Bess.heShe] excitedly clenching around your length your thrusting length, letting it easily slide inside of [bess.himHer]. 
 
-You grind and rub lewdly against each other until you both reach a fevered peak, spurting your [pc.cumLight] deep inside of [bess.hisHer] {[bess.pussyLight]/[bess.assLight] as it clenches and spasms around you. [bess.HeShe] immediately collects your {limited/liberal} loads of spunk and transforms it into [bess.hisHer] synthetic milk, recycling it to swell out [bess.hisHer] orgasming udders.}
+You grind and rub lewdly against each other until you both reach a fevered peak, spurting your [pc.cumLight] deep inside of [bess.hisHer] {[bess.pussyLight]/[bess.ass] as it clenches and spasms around you. [bess.HeShe] immediately collects your {limited/liberal} loads of spunk and transforms it into [bess.hisHer] synthetic milk, recycling it to swell out [bess.hisHer] orgasming udders.}
 }
 
 {You massage [bess.hisHer] breasts until they swell up to the right size, but}{After you finish cumming,} it seems [Bess] has generated more than she needed. Like a farm animal, you squeeze and massage her drooling udders until they spurt out the unnecessary milk.
