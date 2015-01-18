@@ -708,7 +708,7 @@ public function renvraBellyrubs():void
 		{
 			eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
 			if (pc.statusEffectv1("Renvra Full Pregnancy Bellyrubs") == 3) eventBuffer += " stomach rumble";
-			else eventBuffer += " belly tremble"; "
+			else eventBuffer += " belly tremble";
 			eventBuffer += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it."
 		}
 	}
@@ -754,7 +754,7 @@ public function renvraPregnancyMessage4():void
 	eventBuffer += "\n\nYou're really starting to show, now. Anybody who looks your way can see you're obviously pregnant, and you've had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form.";
 }
 
-public function renvraPregnancymessage5():void
+public function renvraPregnancyMessage5():void
 {
 	eventBuffer += "\n\nYou find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!";
 }
@@ -800,7 +800,8 @@ public function renvraMilkyTittiesGo():void
 public function renvraFullPregnancyEnds(pregSlot:int):void
 {
 	var pData:PregnancyData = pc.pregnancyData[pregSlot];
-	var cpData:PregnancyData = new PregnancyData().loadSaveObject(pData.getSaveObject());
+	var cpData:PregnancyData = new PregnancyData();
+	cpData.loadSaveObject(pData.getSaveObject());
 	
 	clearOutput();
 	author("Savin");
@@ -849,7 +850,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		if (pData.pregnancyQuantity == 1) output(". You're left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra's seed is filled with aphrodisiacs, it's not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
 		else
 		{
-			output(", but it's not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ if (rand(10) == 0 ? "brother" : "sister " +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
+			output(", but it's not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ (rand(10) == 0 ? "brother" : "sister ") +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
 
 			if (pData.pregnancyQuantity > 2)
 			{
@@ -893,13 +894,4 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 	//Put PC back at ship tile.
 	clearMenu();
 	addButton(0, "Next", move, "SHIP INTERIOR");
-}
-
-public function renvraFullPregnancyNowheres(pData:PregnancyData):void
-{
-	
-	}
-	else
-	{
-		
 }
