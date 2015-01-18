@@ -63,6 +63,8 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function renvraOnSuccesfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
+			
 			(mother.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 30;
 			mother.bellyRatingMod += 30;
 			mother.createStatusEffect("Renvra Eggs Messages Available");
@@ -123,10 +125,10 @@ package classes.GameData.Pregnancy.Handlers
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
-			pData.reset();
+			StatTracking.track("pregnancy/renvra eggs", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			
-			StatTracking.track("pregnancy/renvra eggs");
-			StatTracking.track("pregnancy/total births");
+			pData.reset();
 		}
 		
 		override public function pregBellyFragment(target:Creature, slot:int):String

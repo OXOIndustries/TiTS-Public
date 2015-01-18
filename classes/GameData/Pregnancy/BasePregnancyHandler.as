@@ -364,10 +364,6 @@ package classes.GameData.Pregnancy
 			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
 			
 			pData.pregnancyQuantity = quantity;
-			
-			// Orgasmo
-			father.orgasm();
-			mother.orgasm();
 		}
 		
 		protected var _onSuccessfulImpregnationOutput:Function;

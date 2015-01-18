@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.PregnancyData;
 /*Renvra
 Half-Nyrean Shopkeeper
 
@@ -641,4 +642,264 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	if (silly || pc.isMischievous()) output(" Close enough for government work, right?");
 	
 	processTime(30);
+}
+
+public function renvraMessageHandler():void
+{
+	if (pc.hasStatusEffect("Renvra Full Pregnancy Almost Due"))
+	{
+		renvraAlmostDue();
+		pc.removeStatusEffect("Renvra Full Pregnancy Almost Due");
+	}
+	if (pc.hasStatusEffect("Renvra Full Pregnancy Message 5"))
+	{
+		renvraPregnancyMessage5();
+		pc.removeStatusEffect("Renvra Full Pregnancy Message 5");
+	}
+	else if (pc.hasStatusEffect("Renvra Full Pregnancy Message 4"))
+	{
+		renvraPregnancyMessage4();
+		pc.removeStatusEffect("Renvra Full Pregnancy Message 4");
+	}
+	else if (pc.hasStatusEffect("Renvra Full Pregnancy Message 3"))
+	{
+		renvraPregnancyMessage3();
+		pc.removeStatusEffect("Renvra Full Pregnancy Message 3");
+	}
+	else if (pc.hasStatusEffect("Renvra Full Pregnancy Message 2"))
+	{
+		eventQueue.push(renvraPregnancyMessage2);
+		pc.removeStatusEffect("Renvra Full Pregnancy Message 2");
+	}
+	else if (pc.hasStatusEffect("Renvra Full Pregnancy Message 1") && hours < 9 && (rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) || rooms[currentLocation].hasFlag(GLOBAL.INDOOR)))
+	{
+		eventQueue.push(renvraPregnancyMessage1);
+		pc.removeStatusEffect("Renvra Full Pregnancy Message 1");
+	}
+	else if (pc.hasStatusEffect("Renvra Milky Titties Go"))
+	{
+		if (!pc.canLactate() || pc.milkRate < 10 || pc.biggestTitSize() <= 1)
+		{
+			eventQueue.push(renvraMilkyTittiesGo);
+		}
+	}
+	
+	if (pc.hasStatusEffect("Renvra Full Pregnancy Bellyrubs"))
+	{
+		renvraBellyrubs();
+	}
+}
+
+public function renvraAlmostDue():void
+{
+	eventBuffer += "\n\nYou note that your swollen belly is shifting awkwardly, and you're starting to feel very... wet. Your motherly instincts tell you that you'll be giving birth very, very soon. ";
+}
+
+public function renvraBellyrubs():void
+{
+	if (rand(100) < 3)
+	{
+		if (InPublicSpace())
+		{
+			eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) eventBuffer += " Besides, people rubbing all over you feels super good!";
+		}
+		else
+		{
+			eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. Your children inside you shift slightly, making your";
+			if (pc.statusEffectv1("Renvra Full Pregnancy Bellyrubs") == 3) eventBuffer += " stomach rumble";
+			else eventBuffer += " belly tremble"; "
+			eventBuffer += ". It's surprisingly nice to just rub your belly, enjoying the fullness of it."
+		}
+	}
+}
+
+public function renvraPregnancyMessage1():void
+{
+	clearOutput();
+	author("Savin");
+	
+	output("You feel... ill. You slump against a nearby wall, clutching at your [pc.belly]. Ugh, what the...");
+
+	output("\n\nYou double over and puke, hucking your lunch all over the ground. You spend several minutes hurling before you're able to stand. Geez, shouldn't your nanomachines be able to keep you from getting just a little cold or something?");
+	
+	processTime(10);
+	
+	addNextButton(mainGameMenu);
+}
+
+public function renvraPregnancyMessage2():void
+{
+	clearOutput();
+	author("Savin");
+	
+	output("You're not even surprised when you end up puking today.");
+
+	output("\n\nYou don't feel <i>bad</i>, per se. But something's fucking wrong. That's for sure.");
+
+	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and party human as well. Well look at you, Daddy's [pc.boyGirl]! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
+	
+	processTime(10);
+	
+	addNextButton(mainGameMenu);
+}
+
+public function renvraPregnancyMessage3():void
+{
+	eventBuffer += "\n\nYour belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you're not getting horribly sick in the mornings anymore!";	
+}
+
+public function renvraPregnancyMessage4():void
+{
+	eventBuffer += "\n\nYou're really starting to show, now. Anybody who looks your way can see you're obviously pregnant, and you've had to adjust your [pc.gear] to make room for your bloated gut. Every so often, you feel a slight movement under your [pc.skinFurScales] as your growing young shift or move. Occasionally, you could swear you feel them kick!\n\nFrom time to time, you find your hands wandering down to your belly, idly caressing your swollen form.";
+}
+
+public function renvraPregnancymessage5():void
+{
+	eventBuffer += "\n\nYou find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!";
+}
+
+public function renvraMilkyTittiesGo():void
+{
+	var tBoobies:Boolean = false;
+	var tMilky:Boolean = false;
+	
+	if (pc.biggestTitSize() <= 1)
+	{
+		pc.breastRows[0].breastRatingRaw += rand(3) + 1;
+		tBoobies = true;
+	}
+	
+	if (!pc.canLactate())
+	{
+		tMilky = true;
+		
+		pc.milkMultiplier = 75;
+		pc.milkFullness = 75;
+		
+		if (pc.milkRate < 10)
+		{
+			pc.milkRate = 10;
+		}
+	}
+	
+	if (tBoobies == false && tMilky == false && pc.milkRate < 10)
+	{
+		pc.milkRate = 10;
+		
+		eventBuffer += "\n\nYour breasts are starting to feel a little heavier as your body prepares for its coming young. While you're already lactating, your rate of production seems to be increasing in preparation.";
+	}
+	else
+	{
+		eventBuffer += "\n\nYou notice that your [pc.chest] is starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your";
+		if (tBoobies) eventBuffer += " freshly engorged";
+		eventBuffer += " breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you're lactating now!</b>";
+	}
+}
+
+public function renvraFullPregnancyEnds(pregSlot:int):void
+{
+	var pData:PregnancyData = pc.pregnancyData[pregSlot];
+	var cpData:PregnancyData = new PregnancyData().loadSaveObject(pData.getSaveObject());
+	
+	clearOutput();
+	author("Savin");
+	
+	if (InPublicSpace() || currentLocation == "SHIP INTERIOR")
+	{
+		output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... ");
+
+		output("\n\nYour hands grab your gut, and instantly feel something shifting just under your gravid flesh. The children inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you feel your water break, a flood of wetness splashing down your thighs as your offspring get ready to come into the world!");
+
+		output("\n\nShit!");
+
+		output("\n\nYou");
+		if (currentLocation != "SHIP INTERIOR") output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
+		else output(" punch your ship to maximum LightDrive speed, and set a course for Tavros station. You've got just enough willpower left to forward an emergency medical alert to the dock, making sure an ambulance will be there when you arrive.");
+
+		output("\n\nIt isn't long before you're in an ambulance, several V-KO droids looming over you as you're carted to a medical station. The last thing you see is a mask being placed over your face, and one of the droids telling you to be calm -- you'll be fine soon.");
+
+		clearMenu();
+		addButton(0, "Next", renvraFullPregnancyPublicII, cpData);
+	}
+	else
+	{
+		output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God....");
+
+		output("\n\nYour hands grab your gut, and instantly feel something shifting just under your gravid flesh. The children inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. You feel your water break, a flood of wetness splashing down your thighs as your offspring get ready to come into the world! Your back arches as pleasure washes over you, brought on by the first shifting mass of a body starting its lengthy journey out of your womb.");
+
+		output("\n\nYou curl up and spread your [pc.legs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
+		if (pc.hasVagina() || pc.hasCock()) output(" You instinctively begin masturbating, unable to resist the alien pleasure.");
+		else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
+		output(" The first child's crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");
+		var tGape:Number;
+		
+		if (pregSlot == 3) tGape = pc.ass.looseness();
+		else tGape = pc.vaginas[pregSlot].looseness();
+		if (tGape < 5) output(" forcing you to push like you've never pushed before to squeeze the newborn through the lips of your cunt");
+		else output(" but nothing you can't handle with your incredibly well-loosened hole");
+		output(". After several minutes of screaming, grunting, and shouting... the first of your newborn children squeezes out with a wet “POP,” flopping out of you and onto the ground in a pool of pink nyrean fluids.");
+
+		output("\n\nYou shiver as you give birth");
+		if (pData.pregnancyQuantity == 1) output(" for the very first time");
+		else output(" to the first of what must be even more children");
+		output(", reaching down while you can and collecting the squalling newborn and bringing it to your breast. It cries out, thrashing its tiny, chitinous arms around until you bring its mouth to your [pc.nipple].");
+
+		output("\n\nYou sigh in relief as your first young suckles. Your belly is noticeably shrunken");
+		if (pData.pregnancyQuantity == 1) output(". You're left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra's seed is filled with aphrodisiacs, it's not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
+		else
+		{
+			output(", but it's not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ if (rand(10) == 0 ? "brother" : "sister " +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
+
+			if (pData.pregnancyQuantity > 2)
+			{
+				output("\n\nAnother follows suit");
+				if (pData.pregnancyQuantity > 3) output(", and another");
+				output(". Before long you've got your arms completely full of crying, suckling nyrean babies. You thought these were supposed to come in eggs! Gah!");
+			} 
+		}
+
+		output("\n\nAfter spending a good long while making sure each of your children is wrapped up and well-fed from your breast, you set them aside for a moment and pull out your Codex. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the newborns, and hands you a receipt before carting them back home.");
+
+		output("\n\n<b>" + pData.pregnancyQuantity + " nyrea-myr-human hybrids will soon be waiting for you back at the nursery.</b> You're going to have to find a name for whatever race you've");
+		if (StatTracking.getStat("pregnancy/renvra kids") == 0) output(" just created");
+		else output(" just added to");
+		output("!");
+	}
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function renvraFullPregnancyPublicII(pData:PregnancyData):void
+{
+	clearOutput();
+	author("Savin");
+	
+	output("<b>Hours pass...</b>");
+
+	output("\n\nYou wake up in a sterile room, feeling very... light and empty, for the first time in months! You feel great, too! ");
+
+	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have" + pData.pregnancyQuantity + " new child");
+	if (pData.pregnancyQuantity > 1) output("ren");
+	output(", who in accordance with your Emergency Medical Profile (when did you set <i>that</i> up?), have been delivered to Tavros Station's nursery.");
+
+	if (pc.isBimbo()) output("\n\nAww, you don't even get to see them!?");
+
+	output("\n\nYou dismiss the droid and grab your [pc.gear] from a nearby bin, taking the opportunity to get dressed. Whatever drug they gave you is powerful as hell, and you're more than able to walk out of the med station and return to your ship in a few minutes.");
+
+	processTime(10);
+	
+	//Put PC back at ship tile.
+	clearMenu();
+	addButton(0, "Next", move, "SHIP INTERIOR");
+}
+
+public function renvraFullPregnancyNowheres(pData:PregnancyData):void
+{
+	
+	}
+	else
+	{
+		
 }
