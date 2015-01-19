@@ -692,10 +692,11 @@ public function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
 
 public function hasShipStorage():Boolean
 {
-	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) return true;
-	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined) return true;
-	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined) return true;
-	return false;
+	if (flags["SHIP_STORAGE_WARDROBE"] == undefined) flags["SHIP_STORAGE_WARDROBE"] = 10;
+	if (flags["SHIP_STORAGE_EQUIPMENT"] == undefined) flags["SHIP_STORAGE_EQUIPMENT"] = 10;
+	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
+	
+	return true;
 }
 
 public function shipStorageMenuRoot():void
