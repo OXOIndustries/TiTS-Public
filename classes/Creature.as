@@ -1954,7 +1954,7 @@
 		}
 		//HP
 		public function HP(arg: Number = 0): Number {
-			if(kGAMECLASS.easy && arg < 0) arg *= .5;
+			if(kGAMECLASS.easy && arg < 0 && this is PlayerCharacter) arg *= .5;
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;
@@ -2026,7 +2026,7 @@
 		}
 		public function lustDamage(arg:Number = 0):Number
 		{
-			if(kGAMECLASS.easy && arg > 0) arg *= .5;
+			if(kGAMECLASS.easy && arg > 0 && this is PlayerCharacter) arg *= .5;
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
 			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
@@ -2404,7 +2404,7 @@
 			return temp;
 		}
 		public function shields(arg: Number = 0): Number {
-			if(kGAMECLASS.easy && arg < 0) arg *= .5;
+			if(kGAMECLASS.easy && arg < 0 && this is PlayerCharacter) arg *= .5;
 			shieldsRaw += arg;
 			if (shieldsRaw > shieldsMax())
 				shieldsRaw = shieldsMax();
