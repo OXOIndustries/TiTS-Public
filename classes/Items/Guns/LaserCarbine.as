@@ -37,7 +37,7 @@
 			this.basePrice = 3750;
 			this.attack = 3;
 			this.damage = 12;
-			this.damageType = GLOBAL.THERMAL;
+			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

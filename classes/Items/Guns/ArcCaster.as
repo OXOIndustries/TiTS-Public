@@ -41,7 +41,7 @@ package classes.Items.Guns
 			this.basePrice = 6700;
 			this.attack = 2;
 			this.damage = 14;
-			this.damageType = GLOBAL.LASER;
+			this.damageType = GLOBAL.ELECTRIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
