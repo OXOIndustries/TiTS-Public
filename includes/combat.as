@@ -2690,7 +2690,7 @@ public function crotchTeaseText(target:Creature):void {
 		output("\n\n“<i>");
 		if(pc.hasCock() && pc.hasVagina()) output("[pc.CumFlavor] and [pc.girlCumFlavor], two great tastes that go great together. Herm " + pc.mf("boys","girls") + " really do get the best of everything.");
 		//Male: 
-		else if(pc.hasCock()) output("Sure you don’t want some of this [pc.cumNoun] for yourself? It’s nice and [pc.cumFlavor], " + pc.mf("a real man’s spunk","high femininity: perfect for a “girl” like me") + ".");
+		else if(pc.hasCock()) output("Sure you don’t want some of this [pc.cumNoun] for yourself? It’s nice and [pc.cumFlavor], " + pc.mf("a real man’s spunk","perfect for a “girl” like me") + ".");
 		else if(pc.hasVagina()) 
 		{
 			output("Mmm, can’t get enough of that all-natural [pc.girlCumFlavor] taste. Come get some");
