@@ -5982,6 +5982,7 @@
 			//Determine race type:
 			var race: String = "human";
 			if (horseScore() >= 2) race = "part horse-morph";
+			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3) race = "half-leithan";
@@ -6043,6 +6044,7 @@
 			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
+			if (legType == GLOBAL.TYPE_CANINE) counter++;
 			return counter;
 		}
 		public function leithanScore():int {
