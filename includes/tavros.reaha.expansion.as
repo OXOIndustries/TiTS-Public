@@ -207,6 +207,13 @@ public function showReahaTalkMenu(func:Function = null):void
 	if (func != reahaTalkHerLife) addButton(4, "Her Life", reahaTalkHerLife, undefined, "Her Life", "Ask Reaha to tell you a little bit about her life before she became a slave");
 	else addDisabledButton(4, "Her Life");
 	
+	if (func == reahaMilkTalk) addDisabledButton(5, "Milk Mods");
+	else
+	{
+		if (flags["REAHA_MILKMODS_UNLOCKED"] == undefined) addDisabledButton(5, "Milk Mods", "Lactation Gene Mods", "You should discuss how Reaha ended up looking like she does first...");
+		else addButton(5, "Milk Mods", reahaMilkTalk, undefined, "Lactation Gene Mods", "Ask Reaha if she would be willing to take a few more mods...");
+	}
+	
 	addButton(14, "Back", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday, false);
 }
 
@@ -619,6 +626,8 @@ public function reahaTalkGeneMods():void
 {
 	clearOutput();
 	reahaHeader();
+	
+	flags["REAHA_MILKMODS_UNLOCKED"] = 1;
 
 	output("<i>“Tell me about these mods of yours,”</i> you ask, looking the busty bovine over from horned head to cute little toe.");
 	
@@ -1401,6 +1410,8 @@ public function reahaMilkTalk():void
 	output("\n\nGood. Now, what to do about Reaha’s milk...");
 
 	processTime(2);
+	
+	clearMenu();
 
 	// [Give Honeydew] [Give ChocoLac]
 	if (pc.hasItem(new Honeydew()))
