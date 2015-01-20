@@ -468,6 +468,12 @@ public function getEggsInShit(x:int = -1):void
 	output("\n\nRenvra releases you and turns on a heel towards the door. Finishing with your own gear, you follow her back out to the trading post’s main floor.");
 
 	//There’s a 10% chance that the PC’s going to get fertilized nyrea eggs. See Pregshit, below. 
+	if (x >= 0) pc.loadInCunt(renvra, x);
+	else pc.loadInAss(renvra);
+	
+	pc.orgasm();
+	renvra.orgasm();
+	
 	processTime(14);
 	flags["RENVRA_SEXED"] = 1;
 	pc.lust(20);
@@ -497,6 +503,14 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 	output("\n\nAs you gather your [pc.gear], Ren steps over to you, grabbing your chin and pulling you up to look her in the eye. “<i>Let’s do this again,</i>” she says, quickly pressing her lips to yours. “<i>Especially when you’ve birthed this clutch for me... I’ve got plenty more for you.</i>”");
 	output("\n\nRenvra releases you and turns on a heel towards the door. Finishing with your own gear, you follow her back out to the trading post’s main floor.");
 
+	renvra.impregnationType = "RenvraFullPregnancy";
+	if (x >= 0) pc.loadInCunt(renvra, x);
+	else pc.loadInAss(renvra);
+	renvra.impregnationType = "RenvraEggPregnancy";
+	
+	pc.orgasm();
+	renvra.orgasm();
+	
 	processTime(10);
 	pc.lust(15);
 	flags["RENVRA_SEXED"] = 1;

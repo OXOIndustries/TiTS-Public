@@ -9845,6 +9845,21 @@
 			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
 		}
 		
+		public function addPregnancyBellyMod(pregSlot:int, value:Number):void
+		{
+			var pData:PregnancyData = pregnancyData[pregSlot];
+			
+			if (pData.pregnancyType != "")
+			{
+				pData.pregnancyBellyRatingContribution += value;
+				bellyRatingMod += value;
+			}
+			else
+			{
+				trace("Attempted to add bellyRating contribution to a null pregnancy.");
+			}
+		}
+		
 		public function cuntChange(arg:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
 			//Notice for treated PCs with increased stretchiness.

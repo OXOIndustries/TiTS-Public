@@ -20,7 +20,7 @@
 	{
 		public function Renvra() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -146,7 +146,7 @@
 			this.cumMultiplierRaw = 15;
 			
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 0;
+			
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 100;
@@ -163,10 +163,7 @@
 			this.analVirgin = false;
 			//Goo is hyper friendly!
 			this.elasticity = 1;
-			//Fertility is a % out of 100. 
-			this.fertilityRaw = 0;
-			this.clitLength = .25;
-			this.pregnancyMultiplierRaw = 1;
+			this.clitLength = 0.25;
 			
 			this.breastRows[0].breastRatingRaw = 11;
 			this.nippleColor = "black";
@@ -176,6 +173,20 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+			
+			this.impregnationType = "RenvraEggPregnancy";
+			this.fertilityRaw = 1.0;
+			this.cumQualityRaw = 1.0;
+			this.pregnancyMultiplierRaw = 1;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.impregnationType = "RenvraEggPregnancy";
+			// CumQuality/Fertility are a multiplicative bonus to impregnation chance.
+			// eg a Pregnancy with 10% chance and a father with 1.0 virility == 10% chance of happening (ignoring mother fertility).
+			dataObject.cumQualityRaw = 1.0;
+			dataObject.cumQualityMod = 0.0;
 		}
 		
 	}

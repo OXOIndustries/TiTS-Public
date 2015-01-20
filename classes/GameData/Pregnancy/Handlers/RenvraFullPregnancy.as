@@ -32,26 +32,31 @@ package classes.GameData.Pregnancy.Handlers
 			
 			// First stage messages/reminders
 			addStageProgression(58 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
 				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
-					kGAMECLASS.pc.addStatsEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
+					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(56 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
 				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
-					kGAMECLASS.pc.addStatsEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
+					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(54 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
 				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
-					kGAMECLASS.pc.addStatsEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
+					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(52 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
 				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
-					kGAMECLASS.pc.addStatsEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
+					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(50 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 8);
 				if (kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 1"))
 					kGAMECLASS.pc.removeStatusEffect("Renvra Full Pregnancy Message 1");
 					
@@ -66,6 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(45 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 3"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 3", pregSlot, 0, 0, 0, true, "", "", false, 0);
 					
@@ -76,6 +82,7 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(30 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 4"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 4", pregSlot, 0, 0, 0, true, "", "", false, 0);
 					
@@ -86,11 +93,13 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(22 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Milky Titties Go"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Milky Titties Go", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, false);
 			
 			addStageProgression(14 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 5"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 5", pregSlot, 0, 0, 0, true, "", "", false, 0);
 				
@@ -101,6 +110,7 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(3 * 24 * 60, function(pregSlot:int):void {
+				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Almost Due"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Almost Due", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
@@ -183,6 +193,8 @@ package classes.GameData.Pregnancy.Handlers
 						break;
 				}
 			}
+			
+			return "";
 		}
 	}
 }
