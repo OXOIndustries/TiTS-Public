@@ -41,7 +41,7 @@
 			this.basePrice = 150;
 			this.attack = 0;
 			this.damage = 4;
-			this.damageType = GLOBAL.PIERCING;
+			this.damageType = GLOBAL.SLASHING;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
