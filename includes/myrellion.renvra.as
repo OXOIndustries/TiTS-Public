@@ -850,6 +850,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 
 		clearMenu();
 		addButton(0, "Next", renvraFullPregnancyPublicII, cpData);
+		return;
 	}
 	else
 	{
