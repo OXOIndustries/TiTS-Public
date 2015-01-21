@@ -132,7 +132,9 @@ public function celiseSucksYouDry():void {
 	output("\n\nCelise licks her jade lips with a tongue too long for her mouth, shining the already reflective mouth-pillows into a glittering polish as she watches your face, measuring the effects her motions are having on your body. <i>“You like that, huh, Captain? Feeling your [pc.cocks] getting sucked on like that must be pretty good.”</i>  Celise lets her tongue hang down into the translucent prison, wrapping it around your " + possessive(pc.cockDescript(pc.biggestCockIndex())) + " " + pc.sheathDescript(pc.biggestCockIndex()) + " into a tight ring. Then, she starts to slide it around, twisting it in quick circuits of your cock that make your overfull shaft thicken further. <i>“Ahm ghunga ‘ake ‘oo ftheel tho ‘ood!”</i>");
 	output("\n\nSlipping behind your back, Celise’s arms connect just above your spine and pull down into a tight, form-fitting seal. The definition of her fingers and knuckles fades into a smooth column of green restraint, holding you still while the suction increases. Your [pc.toes] twitch and your back arches when the vacuum pumps on your [pc.cocks] double the tug, pulling so hard that droplets of pre-cum wick out of your [pc.cockHeads] one after another to vanish directly into the galotian.");
 	
-	output("\n\nSudden motion assaults you, and the texture of the prisons around your [pc.cocks] change");
+	output("\n\nSudden motion assaults you, and the texture of the prison");
+	if (pc.cockTotal() > 1) output("s")
+	output(" around your [pc.cocks] change");
 	if(pc.cockTotal() > 1) output("s");
 	output(". Your point of view forcibly shifts to regard the ceiling, twisted that way by your hungry cum-drinking crewmate as she moves to get a better angle. You look down to see her smiling at you, tongue back in her mouth, but you can also feel a second oral organ wrapped ");
 	if(pc.balls > 0) output("just above your [pc.balls]");
@@ -357,7 +359,7 @@ public function yepGetInMyBallsUBitch():void {
 	output("\n\nAs soon as she tastes the beginnings of fluid release, Celise edges off your cock, connected by a web of glittering strands that hang from her chin to your " + pc.cockHead(pc.biggestCockIndex()) + " before breaking. Both of you sit there panting, joined together at your [pc.legs]. The goo-girl announces, <i>“It’s - ooohhh... ungh! It’s r-ready!”</i>  Her voice stutters while your hands continue to play with her immense tits, fucking her nipples while the rest of your fingers slip deeper into the emerald surface, eventually finding pleasant sinkholes of their own to plumb.");
 	output("\n\nGathering herself, Celise shudders before holding your [pc.cockBiggest] in one hand, her own thumb curling up to press against your oozing cumslit. Hot pressure can be felt probing that leaking tip, compressing and distorting into the shape of your fluid-filled cumtunnel.");
 	output("\n\n<i>“I hope you’re ready to cum,”</i>  she bubbles.");
-	output("\n\nYou start to answer, but that pressure spikes, pushing the pre-cum back through your urethra and into your balls, turned back by a wave of emerald goo that’s filling every inch of your plumbing. It doesn’t hurt at all, surprisingly, it’s more like a tingle of warm, juicy goodness that slithers inside of you, forking off to touch every single cum-producing organ in your body. Your seminial vesicles are flooded. Your prostate is plugged. ");
+	output("\n\nYou start to answer, but that pressure spikes, pushing the pre-cum back through your urethra and into your [pc.balls], turned back by a wave of emerald goo that’s filling every inch of your plumbing. It doesn’t hurt at all, surprisingly, it’s more like a tingle of warm, juicy goodness that slithers inside of you, forking off to touch every single cum-producing organ in your body. Your seminial vesicles are flooded. Your prostate is plugged. ");
 	if(pc.balls > 1) output("Even your balls grow heavy and warm. ");
 	else if(pc.balls == 1) output("Even your ball grows heavy and warm. ");
 	output("With each passing second, your sexual organs are more and more stuffed with the hungry goo-girl’s green goop until you wonder how you’ll hold it any more.");
@@ -405,7 +407,7 @@ public function yepGetInMyBallsUBitch():void {
 	else output("[pc.sack]");
 	output(" is swelling out with all the unspent cum. Before long, you’ve grown so full of jizz that you don’t think could move if you wanted to. ");
 	if(pc.balls > 0) output("Your immense, sloshing balls would keep your [pc.legs] from making contact with the ground, if at all, and the feeling of dragging them along would likely just set off a fresh orgasm.");
-	else output("Your immense, sloshing middle is so heavy that you doubt you could lift it up, and the prostate contained within is so sensitive that dragging it along the floor would probably make you pop off a fresh orgasm.");
+	else output("Your immense, sloshing middle is so heavy that you doubt you could lift it up, and the prostate contained within is so sensitive that dragging yourself along the floor would probably make you pop off a fresh orgasm.");
 	output("..");
 	pc.orgasm();
 	pc.orgasm();
@@ -422,7 +424,7 @@ public function celiseInBallsFinalEnding():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
-	output("Abruptly, you’re aware of the feeling the incredible, pleasant pleasure draining out of you, releasing the backed-up [pc.cumNoun] in a wave of ecstasy. There’s a snug tightness around [pc.eachCock] that grows tighter by the moment, and it isn’t nearly as warm or wet as the pressure you felt before. You pull your tongue back in your mouth, but you still cannot manage to suppress your pleasured moans, looking down to watch the pink surface of a condom bloating with [pc.cumColor] fluid. [pc.eachCock] is lurching powerfully, pumping out huge deluges into the beachball-sized balloon of condensed lust.");
+	output("Abruptly, you’re aware of the feeling of the incredible, pleasant pleasure draining out of you, releasing the backed-up [pc.cumNoun] in a wave of ecstasy. There’s a snug tightness around [pc.eachCock] that grows tighter by the moment, and it isn’t nearly as warm or wet as the pressure you felt before. You pull your tongue back in your mouth, but you still cannot manage to suppress your pleasured moans, looking down to watch the pink surface of a condom bloating with [pc.cumColor] fluid. [pc.eachCock] is lurching powerfully, pumping out huge deluges into the beachball-sized balloon of condensed lust.");
 	output("\n\nCelise plucks up fresh condoms to drop into herself. One after another, their wrappings open and their contents are drawn out. The discarded packaging ejects from her blobby undercarriage to land in a nearby trashcan. Your orgasm is once more arrested, redirected back inside yourself, causing you to give a high pitched whine of disappointment, but it does not last long. [pc.eachCock] has its condom pulled off, tied into a wobbling balloon, and then replaced with a fresh one. Once the new cum-receptacle is in place, your reproductive efflux is let free again.");
 	output("\n\n<i>“Fill ‘er up!”</i>  Celise giggles, stroking you encouragingly. <i>“</i>");
 	if(pc.cumQ() >= 5000) output("<i>You cum too much normally anyway.</i>");

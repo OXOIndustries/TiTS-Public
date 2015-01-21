@@ -20,7 +20,7 @@ package classes.DataManager
 		
 		public function upgrade(data:Object):Boolean
 		{
-			for each (var char:int in data.characters)
+			for each (var char:Object in data.characters)
 			{
 				checkItems(char);
 				checkLegFlags(char);
