@@ -773,6 +773,8 @@ public function processTime(arg:int):void {
 		RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
 	}
 	
+	renvraMessageHandler();
+	
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.

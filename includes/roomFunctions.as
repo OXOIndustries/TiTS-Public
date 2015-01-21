@@ -173,6 +173,10 @@ public function debugMenus():void
 	addButton(5, "XP", function():void {
 		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
 	});
+	
+	addButton(6, "Pass Time", function():void {
+		processTime(24 * 60);
+	});
 }
 
 public function quickLoot(... args):void

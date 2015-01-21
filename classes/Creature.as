@@ -9845,14 +9845,18 @@
 			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
 		}
 		
-		public function addPregnancyBellyMod(pregSlot:int, value:Number):void
+		public function addPregnancyBellyMod(pregSlot:int, value:Number, perOffspring:Boolean = true):void
 		{
 			var pData:PregnancyData = pregnancyData[pregSlot];
+			var addValue:Number = value;
+			
+			if (perOffspring) addValue *= pData.pregnancyQuantity;
 			
 			if (pData.pregnancyType != "")
 			{
-				pData.pregnancyBellyRatingContribution += value;
-				bellyRatingMod += value;
+				pData.pregnancyBellyRatingContribution += addValue;
+				bellyRatingMod += addValue;
+				trace("Adding", addValue, "bellyRating from pregnancy in slot", pregSlot);
 			}
 			else
 			{

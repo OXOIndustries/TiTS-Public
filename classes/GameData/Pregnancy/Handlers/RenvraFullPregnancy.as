@@ -29,7 +29,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 4;
-			_definedAverageLoadSize = 1250;
+			_definedAverageLoadSize = 720;
 			
 			// First stage messages/reminders
 			addStageProgression(58 * 24 * 60, function(pregSlot:int):void {
@@ -97,7 +97,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
 				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Milky Titties Go"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Milky Titties Go", pregSlot, 0, 0, 0, true, "", "", false, 0);
-			}, false);
+			}, true);
 			
 			addStageProgression(14 * 24 * 60, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 10);
@@ -116,7 +116,7 @@ package classes.GameData.Pregnancy.Handlers
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Almost Due", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
-			_onDurationEnd = onDurationEnd;
+			_onDurationEnd = RenvraFullPregnancy.onDurationEnd;
 		}
 		
 		public static function onDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void

@@ -694,9 +694,21 @@ public function renvraMessageHandler():void
 	}
 	else if (pc.hasStatusEffect("Renvra Milky Titties Go"))
 	{
-		if (!pc.canLactate() || pc.milkRate < 10 || pc.biggestTitSize() <= 1)
+		if (flags["Supress Renvra Milky Titties"] == undefined && (!pc.canLactate() || pc.milkRate < 10 || pc.biggestTitSize() <= 1))
 		{
+			flags["Supress Renvra Milky Titties"] = rand(6) + 2;
 			eventQueue.push(renvraMilkyTittiesGo);
+		}
+		else
+		{
+			if (flags["Supress Renvra Milky Titties"] > 0)
+			{
+				flags["Supress Renvra Milky Titties"]--;
+			}
+			else
+			{
+				flags["Supress Renvra Milky Titties"] = undefined;
+			}
 		}
 	}
 	
@@ -713,7 +725,7 @@ public function renvraAlmostDue():void
 
 public function renvraBellyrubs():void
 {
-	if (rand(100) < 3)
+	if (rand(100) < 2)
 	{
 		if (InPublicSpace())
 		{
@@ -753,7 +765,7 @@ public function renvraPregnancyMessage2():void
 
 	output("\n\nYou don't feel <i>bad</i>, per se. But something's fucking wrong. That's for sure.");
 
-	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and party human as well. Well look at you, Daddy's [pc.boyGirl]! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
+	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and part-human as well. Well look at you, Daddy's [pc.boyGirl]! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
 	
 	processTime(10);
 	
