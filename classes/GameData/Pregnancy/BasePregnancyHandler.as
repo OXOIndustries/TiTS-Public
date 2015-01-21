@@ -74,6 +74,7 @@ package classes.GameData.Pregnancy
 			_canFertilizeEggs = true;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 1;
+			_definedAverageLoadSize = 250;
 			
 			_stageProgressions = new Array();
 			
@@ -311,7 +312,7 @@ package classes.GameData.Pregnancy
 				if (thisPtr.debugTrace) trace("Total Pregnancy Chance as Int = " + iTotalChance);
 				if (thisPtr.debugTrace) trace("Rolled " + roll);
 				
-				if (roll > iTotalChance)
+				if (roll < iTotalChance)
 				{
 					if (thisPtr.debugTrace) trace("Preggo Confirmed!");
 					pregChanceSuccessful = true;

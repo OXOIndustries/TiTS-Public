@@ -682,14 +682,26 @@ public function variableRoomUpdateCheck():void
 
 public function processTime(arg:int):void {
 	var x:int = 0;
+	
 	var tightnessChanged:Boolean = false;
+	
 	if(pc.ballFullness < 100) pc.cumProduced(arg);
-	var productionFactor:Number = 100/(1920) * ((pc.libido() * 3 + 100)/100);
+	var productionFactor:Number = 100 / (1920) * ((pc.libido() * 3 + 100) / 100);
+	
+	// Ideally most of this character updating shit needs to be shifted into the Creature class itself
+	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
+	for (var prop:String in chars)
+	{
+		chars[prop].cumProduced(arg);
+	}
+	
 	//Double time
-	if(pc.hasPerk("Extra Ardor")) productionFactor *= 2;
+	if (pc.hasPerk("Extra Ardor")) productionFactor *= 2;
+	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
 	productionFactor *= 4;
+	
 	//Half time.
 	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
 

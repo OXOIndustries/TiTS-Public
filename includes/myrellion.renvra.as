@@ -196,9 +196,11 @@ public function askRenvraAboutKids():void
 	output("\n\n“<i>That was... easy.</i>”");
 	output("\n\nThe halfbreed in your arms snorts and slips a hand ");
 	if(!pc.armor is EmptySlot) output("under your [pc.armor]");
-	else if(pc.isCrotchGarbed()) output("under your [pc.lowerUndergament]");
+	else if(pc.isCrotchGarbed()) output("under your [pc.lowerUndergarment]");
 	else output("between your [pc.thighs]");
 	output(" and brushes her fingers along the cleft of your sex. “<i>What? You’d think you’d realize by now... I’m easy.</i>”");
+	
+	flags["RENVRA_KIDS_TALK"] = 1;
 
 	//Fem sex scene here, starting at {combine} under Fuck Her. 
 	clearMenu();

@@ -3,6 +3,7 @@
 	import classes.DataManager.Serialization.ISaveable;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import flash.utils.getQualifiedSuperclassName;
 	import flash.utils.describeType;
 	
 	/**
@@ -87,9 +88,16 @@
 					{
 						dataObject[prop.@name] = this[prop.@name];
 					}
+					// The base "Object" type will return null as its qualified superclass
+					else if (getQualifiedSuperclassName(this[prop.@name]) == null)
+					{
+						// Copy a raw "Object" type
+						dataObject[prop.@name] = this[prop.@name];
+					}
 					else
 					{
 						dataObject[prop.@name] = this[prop.@name];
+						
 						trace("Potential serialization issue with property: " + prop.@name);
 					}
 				}

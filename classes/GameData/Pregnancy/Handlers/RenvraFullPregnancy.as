@@ -29,6 +29,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 4;
+			_definedAverageLoadSize = 1250;
 			
 			// First stage messages/reminders
 			addStageProgression(58 * 24 * 60, function(pregSlot:int):void {

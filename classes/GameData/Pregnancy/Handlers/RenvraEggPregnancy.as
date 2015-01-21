@@ -28,31 +28,32 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 2;
 			_pregnancyQuantityMaximum = 2;
+			_definedAverageLoadSize = 1000;
 			
 			this.addStageProgression(8000, function(pregSlot:int):void {
-				kGAMECLASS.pc.bellyRatingMod += 10;
-				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 10;
+				kGAMECLASS.pc.bellyRatingMod += 5;
+				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 5;
 			}, true);
 			
 			this.addStageProgression(6000, function(pregSlot:int):void {
-				kGAMECLASS.pc.bellyRatingMod += 15;
-				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 15;
+				kGAMECLASS.pc.bellyRatingMod += 5;
+				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 5;
 			}, true);
 			
 			this.addStageProgression(4000, function(pregSlot:int):void {
-				kGAMECLASS.pc.bellyRatingMod += 20;
-				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
+				kGAMECLASS.pc.bellyRatingMod += 5;
+				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 5;
 			}, true);
 			
 			this.addStageProgression(2000, function(pregSlot:int):void {
-				kGAMECLASS.pc.bellyRatingMod += 20;
-				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
+				kGAMECLASS.pc.bellyRatingMod += 5;
+				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 5;
 			}, true);
 			
 			this.addStageProgression(240, function(pregSlot:int):void {
-				kGAMECLASS.pc.bellyRatingMod += 20;
-				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
-				kGAMECLASS.eventBuffer += "You note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
+				kGAMECLASS.pc.bellyRatingMod += 10;
+				(kGAMECLASS.pc.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 10;
+				kGAMECLASS.eventBuffer += "\n\nYou note that your swollen belly is shifting awkwardly. The eggs clinging inside you rumble and move, and you feel distinctly... wet. You doubt you'll be carrying these eggs around with you much longer.";
 			}, true);
 			
 			_onSuccessfulImpregnation = renvraOnSuccesfulImpregnation;
@@ -65,8 +66,8 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 			
-			(mother.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 30;
-			mother.bellyRatingMod += 30;
+			(mother.pregnancyData[pregSlot] as PregnancyData).pregnancyBellyRatingContribution += 20;
+			mother.bellyRatingMod += 20;
 			mother.createStatusEffect("Renvra Eggs Messages Available");
 		}
 		
@@ -75,10 +76,13 @@ package classes.GameData.Pregnancy.Handlers
 			if (kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] == undefined) kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
 			kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] += minutes;
 			
-			if (kGAMECLASS.rand(360) >= kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"])
+			var kRoll:Number = kGAMECLASS.rand(360);
+			var kChance:Number = kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"];
+			
+			if (kRoll < kChance)
 			{
 				kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
-				if (!inPublicSpace)
+				if (!inPublicSpace && kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22)
 				{
 					kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
 					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RenvraEggPregnancy");
@@ -88,7 +92,7 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else
 				{
-					kGAMECLASS.eventBuffer += "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
+					kGAMECLASS.eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
 					if (kGAMECLASS.pc.isBimbo() || kGAMECLASS.pc.isTreated() || kGAMECLASS.pc.race().indexOf("ausar") != -1 || kGAMECLASS.pc.race().indexOf("") != -1 ) kGAMECLASS.eventBuffer += "Besides, people rubbing all over you feels super good!";
 				}
 			}

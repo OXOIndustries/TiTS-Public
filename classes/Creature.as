@@ -5484,7 +5484,7 @@
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
 			ballFullness += (cumDelta * minutes);
 			
-			trace("AFTER FULLNESS: " + ballFullness);
+			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) ballFullness = 100;
 		}
 		public function isSquirter(arg: int = 0): Boolean {
