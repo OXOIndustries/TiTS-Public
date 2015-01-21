@@ -162,10 +162,10 @@ package classes.Items.Miscellaneous
 						
 						kGAMECLASS.output("\n\nWith each and every spurt the size of your [pc.balls] diminish. As your balls tighten it feels as if you're utterly cumming them out of existence.");
 						
-						target.ballSizeRaw -= ballSizeReduction;
+						var newBallSize:Number = target.ballSizeRaw - ballSizeReduction;
 						changes++;
 						
-						if (target.ballSizeRaw > 0)
+						if (newBallSize > 0)
 						{
 							kGAMECLASS.output(" In the end you lose");
 							if (ballSizeReduction > 5) kGAMECLASS.output(" quite a few inches");
@@ -182,6 +182,8 @@ package classes.Items.Miscellaneous
 							
 							kGAMECLASS.output(" In the end you actually do, your [pc.sack] shrinking away until you're left with a smooth patch of [pc.skinFurScales] in its place. <b>You no longer have balls!</b>");
 						}
+						
+						target.ballSizeRaw -= ballSizeReduction;
 					}
 				}
 				
