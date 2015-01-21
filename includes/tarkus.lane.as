@@ -1,4 +1,4 @@
-﻿private const HYPNOSIS_LEVEL_MAX:int = 4;
+private const HYPNOSIS_LEVEL_MAX:int = 4;
 
 /*
 Lanes Hypnosis Mechnic
