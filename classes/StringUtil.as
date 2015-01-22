@@ -19,6 +19,9 @@ package  classes
 		 */
 		public static function toTitleCase(value:String):String
 		{
+			if (value == null) return "Null String? :(";
+			if (value.length == 0) return "Length 0 String? :(";
+			
 			var w:Array = value.split(" ");
 			for (var i:int = 0; i < w.length; i++)
 			{
