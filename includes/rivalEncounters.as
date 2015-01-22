@@ -231,7 +231,7 @@ public function defeatDane():void
 	output("\n\nThe hatch closes, but you're able to see [rival.short]'s pearly teeth behind [rival.eir] smile as it does. You ");
 	if(pc.rangedWeapon.shortName == "") output("chuck a few rocks");
 	else output("crack off a few, half-hearted shots");
-	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you along with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
+	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you alone with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");
 	flags["WHUPPED_DANES_ASS_ON_MHENGA"] = 1;
 	genericVictory();
