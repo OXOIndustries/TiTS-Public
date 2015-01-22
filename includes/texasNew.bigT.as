@@ -700,7 +700,9 @@ public function getRiddenByBigWheee(target:int = -1):void
 	output(". With a deep roar, the alpha bull unloads his thick, ");
 	if(target >= 0) output("fertile seed inside of your [pc.vagina " + target + "], thick hot jets spurting out and flooding up into your eager womb.");
 	else output("gooey seed inside of your butt.");
-	output(" You cum long and hard, drenching his hardness with your [pc.girlCum], as your insides are simultaneously filled with Tee’s delectable warmth.");
+	output(" You cum long and hard,");
+	if (target >= 0) output(" drenching his hardness with your [pc.girlCum],");
+	output(" as your insides are simultaneously filled with Tee’s delectable warmth.");
 	output("\n\nBoth of you moan together, his hard muscled chest pressed against your back, trembling and spasming together for what seems like an eternity. Your ");
 	if(target >= 0) output("loins are");
 	else output("ass is");

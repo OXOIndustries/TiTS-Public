@@ -1407,7 +1407,7 @@ public function initializeRooms():void
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
 	rooms["PENNY'S OFFICE"].roomName = "U.G.C. PEACE-\nKEEPERS";
-	rooms["PENNY'S OFFICE"].description = "This interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
+	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
 	rooms["PENNY'S OFFICE"].runOnEnter = pennysOffice;
 	rooms["PENNY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";

@@ -2151,7 +2151,12 @@ public function runAway():void {
 		trace("Successful escape chance: " + difficulty + " %")
 		//Success!
 		if(rand(100) + 1 <= difficulty) {
-			if(pc.canFly()) output("Your feet leave the ground as you fly away, leaving the fight behind.")
+			if (pc.canFly()) 
+			{
+				if (pc.legCount == 1) output("Your [pc.foot] leaves");
+				else output("Your [pc.feet] leave");
+				output(" the ground as you fly away, leaving the fight behind.");
+			}
 			else output("You manage to leave the fight behind you.")
 			processTime(8);
 			pc.removeStatusEffect("Round");
@@ -2933,7 +2938,7 @@ public function chestTeaseText():void {
 			}
 			//Big TiTS!
 			else if(pc.biggestTitSize() >= 4) {
-				if(pc.isChestGarbed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
+				if(pc.isChestGarbed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little a regretfully.");
 				else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
 			}
 			//Petite ones!
