@@ -537,7 +537,7 @@ public function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.TYPE_CANINE) output2(" Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
 		else if(target.legType == GLOBAL.TYPE_NAGA) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
 		//Horse body is placed higher for readability purposes
-		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) output2(" Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) output2(" Your perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
 		else if(target.legType == GLOBAL.TYPE_DEMONIC) output2(" Your lithe legs are capped with flexible clawed feet. Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
 		else if(target.legType == GLOBAL.TYPE_BEE) output2(" Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
 		else if(target.legType == GLOBAL.TYPE_GOOEY) output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on. The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
@@ -885,6 +885,11 @@ public function appearance(target:Creature):void {
 					//List thickness
 					output2(" The knot is " + Math.round(target.cocks[0].thickness() * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
 				}
+				//Appended to knot texts!
+				if(target.cocks[0].cType == GLOBAL.TYPE_KUITAN)
+				{
+					output2(" Two smaller ones line the length of the shaft, the hallmark of the kui-tan race.");
+				}
 			}
 			//MULTICOCKS!
 			else if(target.totalCocks() > 1)
@@ -992,7 +997,12 @@ public function appearance(target:Creature):void {
 						if(target.cocks[temp].knotMultiplier > 2) output2(" The obscenely swollen lump of flesh near the base of your " + target.cockDescript(temp) + " looks almost too big for your cock.");
 						//List thickness
 						output2(" The knot is " + Math.round(target.cocks[temp].thickness() * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
-					}	
+					}
+					//Appended to knot texts!
+					if(target.cocks[temp].cType == GLOBAL.TYPE_KUITAN)
+					{
+						output2(" Two smaller ones line the length of the shaft, the hallmark of the kui-tan race.");
+					}
 					temp++;
 					rando++
 					if(rando > 3) rando = 0;

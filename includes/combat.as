@@ -2132,13 +2132,18 @@ public function runAway():void {
 
 		//Multiple NPCs? Raise difficulty class for each one!
 		difficulty += foes.length - 1;
-		if(difficulty > 5) difficulty = 5;
 		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
+		if(pc.ballSize() >= 18) difficulty++;
+		if(pc.ballSize() >= 30) difficulty++;
+
+		//Cap it
+		if(difficulty > 5) difficulty = 5;
 
 		//Lower difficulty for flight if enemy cant!
 		if(pc.canFly() && (!foes[0].canFly() || foes[0].isImmobilized())) difficulty--;
 		//Lower difficulty for immobilized foe
 		if(foes[0].isImmobilized()) difficulty--;
+		
 
 		//Set threshold value and check!
 		if(difficulty < 0) difficulty = 100;

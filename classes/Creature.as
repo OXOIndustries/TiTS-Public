@@ -1752,6 +1752,13 @@
 			if (hasCock())
 			{
 				ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
+				//'Nuki Ball Reduction
+				if(hasPerk("'Nuki Nuts") && balls > 1)
+				{
+					trace("Post-Orgasm fullness: " + ballFullness);
+					ballSizeMod -= perkv1("'Nuki Nuts");
+					setPerkValue("'Nuki Nuts",1,0);
+				}
 			}
 			
 			if (this is PlayerCharacter) 
@@ -5462,6 +5469,8 @@
 			if (quantity < 2) quantity = 2;
 			//Super high refractory raises minimum.
 			if (refractoryRate >= 50 && quantity < 15) quantity = 15;
+			//Overloaded nuki' nuts will fully drain
+			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
@@ -5496,12 +5505,26 @@
 			}
 			
 			// Why is this a loop? Just mul the final thing by total minutes. If we were firing events off that needed to be queued, or if the calculation depended on a value the algo actually changes (ie ballFullness was a part of the calc) then yeah, cycle minutes would be the /simple/ way to do it.
-			cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
+			cumDelta = refractoryRate / 60 * (ballSize() - perkv1("'Nuki Nuts") + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
 			ballFullness += (cumDelta * minutes);
 			
 			//trace("AFTER FULLNESS: " + ballFullness);
-			if (ballFullness >= 100) ballFullness = 100;
+			if (ballFullness >= 100) 
+			{
+				if(hasPerk("'Nuki Nuts") && balls > 1)
+				{
+					//Figure out a % of normal size to add based on %s.
+					var nutChange:Number = ballFullness/100 - 1;
+					//Get the actual bonus number to add.  Keep it to 2 decimals.
+					var nutBonus:Number = Math.round(ballSizeRaw * nutChange / 8 * 100)/100;
+					trace("NUT BONUS: " + nutBonus);
+					//Apply nutbonus and track in v1 of the perk
+					ballSizeMod += nutBonus;
+					addPerkValue("'Nuki Nuts",1,nutBonus);
+				}
+				ballFullness = 100;
+			}
 		}
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;
@@ -5750,6 +5773,13 @@
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+			}
+			if (type == GLOBAL.TYPE_KUITAN) {
+				cocks[slot].cockColor = "red";
+				cocks[slot].knotMultiplier = 1.3;
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
 		}
 		//PC can fly?
@@ -6000,6 +6030,8 @@
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
+			if (nukiScore() >= 4) race = "kui-tan"
+			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3) race = "half-leithan";
 			if (zilScore() >= 4) race = "zil";
@@ -6124,8 +6156,8 @@
 			if ((adjectives && this.rand(3) == 0) || forceAdjectives) {
 				if (ballFullness <= 0) desc += "painfully empty ";
 				else if (ballFullness <= 20) desc += "empty ";
-				else if (ballFullness >= 80 && ballFullness <= 100) desc += "mostly full ";
-				else if (ballFullness > 100) {
+				else if (ballFullness >= 80 && ballFullness < 100) desc += "mostly full ";
+				else if (ballFullness >= 100) {
 					var temp: int = this.rand(5);
 					if (temp == 0) desc += "full ";
 					else if (temp == 1) desc += "sloshing ";
@@ -6216,7 +6248,9 @@
 				else if (ballDiameter() < 9) desc += "soccerball-sized";
 				else if (ballDiameter() < 12) desc += "basketball-sized";
 				else if (ballDiameter() < 15) desc += "watermelon-sized";
-				else if (ballDiameter() < 18) desc += "beachball-sized";
+				else if (ballDiameter() < 25) desc += "beachball-sized";
+				else if (ballDiameter() < 40) desc += "barrel-sized";
+				else if (ballDiameter() < 60) desc += "person-sized";
 				else desc += "hideously swollen and oversized";
 				if (ballDiameter() > 1) descripted++;
 			}
@@ -8306,7 +8340,34 @@
 				if (rando == 8) noun += "dick";
 				if (rando == 9) noun += "tool";
 				if (rando == 10) noun += "shaft";
-			} else if (type == GLOBAL.TYPE_SIMII) {
+			} else if (type == GLOBAL.TYPE_KUITAN) {
+				//NOT SIMPLE? TEH WURRST
+				if (!simple) {
+					rando = this.rand(8);
+					if (rando <= 0 && type == GLOBAL.TYPE_CANINE) descript += "alien ";
+					else if (rando <= 0) descript += "bulgy ";
+					else if (rando <= 1) descript += "knot-lined ";
+					else if (rando <= 2) descript += "extra knotty ";
+					else if (rando <= 3) descript += "bestial ";
+					else if (rando <= 4) descript += "kui-tan ";
+					else if (rando <= 5) descript += "inhuman ";
+					else if (rando <= 6) descript += "exotic ";
+					else descript += "knotted ";
+				}
+				rando = this.rand(11);
+				if (rando == 0) noun += "prong";
+				else if (rando == 1) noun += "shaft";
+				else if (rando == 2) noun += "prick";
+				else if (rando == 3) noun += "shaft";
+				else if (rando == 4) noun += "cock";
+				else if (rando == 5) noun += "xeno-cock";
+				else if (rando == 6) noun += "dick";
+				else if (rando == 7) noun += "tool";
+				else if (rando == 8) noun += "member";
+				else if (rando == 9) noun += "cock";
+				else noun += "cock";
+			}
+			else if (type == GLOBAL.TYPE_SIMII) {
 				if (!simple) {
 					descript += "simian ";
 				}
