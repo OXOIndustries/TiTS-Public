@@ -1860,6 +1860,22 @@
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
 		}
+		
+		public function hasArmor():Boolean
+		{
+			return !(armor is EmptySlot);
+		}
+		
+		public function hasUpperGarment():Boolean
+		{
+			return !(upperUndergarment is EmptySlot);
+		}
+		
+		public function hasLowerGarment():Boolean
+		{
+			return !(lowerUndergarment is EmptySlot);
+		}
+		
 		//STATS!
 		//Personalities!
 		public function isNice(): Boolean {
