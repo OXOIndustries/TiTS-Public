@@ -2301,7 +2301,7 @@
 			else if (stat == "willpower") statCurrent = willpower();
 			else if (stat == "libido") statCurrent = libido();
 			else {
-				trace("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
+				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
 				return 0;
 			}
 			while (arg > 0) {
@@ -6012,6 +6012,21 @@
 		public function bovineScore():int
 		{
 			return 0;
+		}
+		public function tanukiScore(): int
+		{
+			return nukiScore();
+		}
+		public function nukiScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_KUITAN) counter++;
+			if (tailType == GLOBAL.TYPE_KUITAN && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
+			if (faceType == GLOBAL.TYPE_KUITAN) counter++;
+			if (armType == GLOBAL.TYPE_KUITAN) counter++;
+			if (legType == GLOBAL.TYPE_KUITAN) counter++;
+			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
+			return counter;
 		}
 		public function horseScore(): int
 		{
