@@ -320,6 +320,12 @@ public function appearance(target:Creature):void {
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
 		}
+		else if(target.armType == GLOBAL.TYPE_KUITAN)
+		{
+			if(target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
+			else output2(" A coat of " + pc.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
+			output2("They're softer and more supple than the finest leather.");
+		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tip your fingers.");
