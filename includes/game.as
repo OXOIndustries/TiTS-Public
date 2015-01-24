@@ -317,6 +317,8 @@ public function sleepHeal():void
 
 public function shipMenu():Boolean {
 	
+	rooms["SHIP INTERIOR"].outExit = shipLocation;
+	
 	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
 	// Lane follower hook
@@ -330,8 +332,7 @@ public function shipMenu():Boolean {
 	{
 		return true;
 	}
-	
-	rooms["SHIP INTERIOR"].outExit = shipLocation;
+
 	this.addButton(9,"Fly",flyMenu);
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
