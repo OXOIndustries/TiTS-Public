@@ -989,7 +989,7 @@ public function processTime(arg:int):void {
 	updatePCStats();
 }
 
-function nutSwellUpdates():void
+public function nutSwellUpdates():void
 {
 	if(pc.balls > 0)
 	{
@@ -1031,7 +1031,7 @@ function nutSwellUpdates():void
 	nutStatusCleanup();
 }
 
-function canShrinkNuts():Boolean
+public function canShrinkNuts():Boolean
 {
 	//Can fap it away!
 	if(pc.hasPerk("'Nuki Nuts"))
@@ -1056,7 +1056,7 @@ public function nutStatusCleanup():void
 	if((pc.balls == 0 || pc.ballDiameter() < 9) && pc.hasStatusEffect("Egregiously Endowed")) pc.removeStatusEffect("Egregiously Endowed");
 }
 
-function bigBallBadEnd():void
+public function bigBallBadEnd():void
 {
 	clearOutput();
 	author("Fenoxo");

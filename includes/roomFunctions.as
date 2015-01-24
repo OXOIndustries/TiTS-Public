@@ -94,67 +94,10 @@ public function debugMenus():void
 	
 	//addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
 	
-	addItemButton(0, new LightningDuster(), function():void {
-		output("\n\nLightning Duster.\n");
-		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new LightningDuster());
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
+	addButton(0, "GiveMilky", function():void {
+		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
+	}, undefined, "Give Milky", "Get the Milky perk.");
 	
-	addItemButton(1, new NaleenArmor(), function():void {
-		output("\n\nHorsecock get.\n");
-		
-		var foundLootItems:Array = [new HorseCock()];
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
-	
-	addItemButton(2, new TSTArmorMkII(), function():void {
-		output("\n\nNaleenscale Armor get.\n");
-		
-		var foundLootItems:Array = [new TSTArmorMkII];
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
-	
-	addButton(3, "Preggers Test", function():void {
-		processTime(800);
-		processTime(800);
-		
-		mainGameMenu();
-	});
-	
-	addButton(7, "Test Nades", function():void {
-		
-		var tNades:TestGrenade = new TestGrenade();
-		tNades.quantity = 10;
-		
-		quickLoot(tNades);
-		
-	}, undefined, "Test Grenades", "Get some testing grenades for combat stuff.");
-	
-	addButton(8, "Test HP.B", function():void {
-		
-		var tBooster:TestHPBooster = new TestHPBooster();
-		tBooster.quantity = 10;
-		
-		quickLoot(tBooster);
-		
-	}, undefined, "Test Booster", "Get some test HP boosters.");
 	
 	addButton(9, "ForceError", function():void {
 		throw new Error("This is a test error!");

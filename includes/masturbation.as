@@ -19,16 +19,21 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		return null;
 	}
 	
-	if (pc.milkFullness >= 150 && pc.isLactating() && !roundTwo)
+	if (pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
 	{
         // Super-lactation, must resist urge to fap!
         if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk"))
         {
             clearOutput();
-            output("\n\n<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won't ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
+            output("<b>You feel a strong urge to relieve the unbearable pressure your lactating mammaries are experiencing; but thanks to the enhancements to your [pc.fullChest], you are confident they won't ever stop - or even slow down - [pc.milk] production, and you find it easy to resist.</b>");
             clearMenu();
-            addButton(0,"Next",masturbateMenu,true,"Masturbate","Choose something else...");
-            addButton(1,"Milk",milkturbation,true,"Milk Anyway","Release the pressure now!");
+            addButton(0, "Next", function():void 
+			{
+				flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] = 1;
+				masturbateMenu(false);
+				flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] = undefined;
+			}, undefined, "Masturbate", "Choose something else...");
+            addButton(1,"Milk",milkturbation, undefined ,"Milk Anyway","Release the pressure now!");
             addButton(14,"Back", mainGameMenu);
         }
         // Your will is weak, now it's milky fun tiems, yay!
