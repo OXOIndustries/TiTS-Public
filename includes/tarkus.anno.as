@@ -2665,7 +2665,7 @@ public function grayPrimeForcePunch():void
 		if (rand(4) == 0)
 		{
 			output(" The blow hits you so hard you're seeing stars!");
-			pc.createStatusEffect("Trip");
+			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 		}
 	}
 }
@@ -3378,7 +3378,7 @@ public function gigaGooCageRattle():void
 	if (rand(50) <= totalDamage)
 	{
 		output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
-		pc.createStatusEffect("Trip");
+		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 	}
 }
 
