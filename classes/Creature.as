@@ -1753,11 +1753,12 @@
 			{
 				ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 				//'Nuki Ball Reduction
-				if(hasPerk("'Nuki Nuts") && balls > 1)
+				if(perkv1("'Nuki Nuts") > 0 && balls > 1 && this is PlayerCharacter)
 				{
-					trace("Post-Orgasm fullness: " + ballFullness);
+					kGAMECLASS.eventBuffer += "\n\nYour balls are back to their normal size once more. What an incredible relief!";
 					ballSizeMod -= perkv1("'Nuki Nuts");
 					setPerkValue("'Nuki Nuts",1,0);
+					kGAMECLASS.nutStatusCleanup();
 				}
 			}
 			
@@ -1766,6 +1767,7 @@
 				kGAMECLASS.mimbraneFeed("cock");
 				kGAMECLASS.mimbraneFeed("vagina");
 				StatTracking.track("sex/player/orgasms");
+				removeStatusEffect("Blue Balls");
 			}
 			else
 			{
@@ -2050,6 +2052,7 @@
 		public function lustDamage(arg:Number = 0):Number
 		{
 			if(kGAMECLASS.easy && arg > 0 && this is PlayerCharacter) arg *= .5;
+			if(hasStatusEffect("Blue Balls")) arg *= 1.25;
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
 			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
@@ -5507,8 +5510,24 @@
 			// Why is this a loop? Just mul the final thing by total minutes. If we were firing events off that needed to be queued, or if the calculation depended on a value the algo actually changes (ie ballFullness was a part of the calc) then yeah, cycle minutes would be the /simple/ way to do it.
 			cumDelta = refractoryRate / 60 * (ballSize() - perkv1("'Nuki Nuts") + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
+			
+			if(this is PlayerCharacter) trace("Pre Fullness: " + ballFullness)
+
+			//Just hit full balls!
+			if(ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			{
+				//Hit max cum - standard message
+				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
+				if(balls == 1) kGAMECLASS.eventBuffer += "is";
+				else kGAMECLASS.eventBuffer += "are";
+				kGAMECLASS.eventBuffer += " this full.";
+				if(hasPerk("'Nuki Nuts") && balls > 1) kGAMECLASS.eventBuffer += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They've already started to swell. Just make sure to empty them before they get too big!";
+				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Poison", "Take 25% more lust damage in combat!", false, 0);
+			}
+
 			ballFullness += (cumDelta * minutes);
 			
+
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
@@ -5525,6 +5544,8 @@
 				}
 				ballFullness = 100;
 			}
+
+			if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;

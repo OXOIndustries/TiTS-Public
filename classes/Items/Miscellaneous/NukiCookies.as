@@ -161,7 +161,7 @@
 				//Get drunk twice as slow and sober 4x slower
 				if(pc.nukiScore() >= 4 && rand(4) == 0 && !pc.hasPerk("'Nuki Drunk"))
 				{
-					kGAMECLASS.output("\n\nYou have a sudden desire to relax some saki, maybe a beer or two. Yeah, that’d hit the spot. You wonder if the ‘Nuki Cookies are somehow responsible. Could be a side effect? You can’t imagine anyone would make a transformation with alcohol cravings... would they?");
+					kGAMECLASS.output("\n\nYou have a sudden desire to relax with some sake, maybe a beer or two. Yeah, that’d hit the spot. You wonder if the ‘Nuki Cookies are somehow responsible. Could be a side effect? You can’t imagine anyone would make a transformation with alcohol cravings... would they?");
 					kGAMECLASS.output("\n\n(<b>Perk Gained: ‘Nuki Drunk</b> - Get drunk twice as slow and sober up four times slower.)");
 					pc.createPerk("'Nuki Drunk",0,0,0,0,"Get drunk twice as slow and sober up four times slower.");
 					changes++;
@@ -442,7 +442,7 @@
 						}
 						//Merge. No new pg
 						kGAMECLASS.output("confirms your suspicions when it starts pulling more of your [pc.cock " + x + "] inside it. You can still feel yourself in there, somewhere inside the soft flesh of your own body, but your shape is definitely changing, twisted by the nanoscale machines engineering your body.");
-						kGAMECLASS.output("\n\nYou wait patiently, feeling warmer by the second, until your body is finally ready to reveal your changed cock. It slides out of its furry scabbard, angry and red, ridged with three uninflated knots, the largest positioned at its based. When fully aroused, you’re sure that such a tool will be incredibly stimulating for any partner, and probably have a good chance of knotting you in place too. The urethra at the tip of the heart-shaped head trickles a little pre-cum in its excitement.");
+						kGAMECLASS.output("\n\nYou wait patiently, feeling warmer by the second, until your body is finally ready to reveal your changed cock. It slides out of its furry scabbard, angry and red, ridged with three uninflated knots, the largest positioned at its base. When fully aroused, you’re sure that such a tool will be incredibly stimulating for any partner, and probably have a good chance of knotting you in place too. The urethra at the tip of the heart-shaped head trickles a little pre-cum in its excitement.");
 						kGAMECLASS.output("\n\n<b>");
 						if(pc.cockTotal() > 1) kGAMECLASS.output("One of your penises");
 						else kGAMECLASS.output("Your penis");

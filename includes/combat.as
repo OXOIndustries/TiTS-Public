@@ -2133,8 +2133,8 @@ public function runAway():void {
 		//Multiple NPCs? Raise difficulty class for each one!
 		difficulty += foes.length - 1;
 		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
-		if(pc.ballSize() >= 18) difficulty++;
-		if(pc.ballSize() >= 30) difficulty++;
+		if(pc.ballDiameter() >= 9) difficulty++;
+		if(pc.ballDiameter() >= 18) difficulty++;
 
 		//Cap it
 		if(difficulty > 5) difficulty = 5;
