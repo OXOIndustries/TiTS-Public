@@ -821,6 +821,11 @@ public function getListOfType(from:Array, type:String):Array
 	return items;
 }
 
+public function getNumberOfStoredType(from:Array, type:String):int
+{
+	return getListOfType(from, type).length;
+}
+
 public function outputStorageListForType(type:String):Array
 {
 	var items:Array = getListOfType(pc.ShipStorageInventory, type);
@@ -878,7 +883,7 @@ public function storeItem(args:Array):void
 	
 	// If we're this far in, we couldn't fit everything into an existing stack.
 	// See if we can place a new stack in the inventory
-	if (pc.ShipStorageInventory.length < flags["SHIP_STORAGE_" + type] && item.quantity > 0)
+	if (getNumberOfStoredType(pc.ShipStorageInventory, type) < flags["SHIP_STORAGE_" + type] && item.quantity > 0)
 	{
 		pc.ShipStorageInventory.push(item);
 		pc.inventory.splice(pc.inventory.indexOf(item), 1);
@@ -891,6 +896,7 @@ public function storeItem(args:Array):void
 		clearMenu();
 		addButton(0, "Switch", replaceInStorage, [item, type], "Switch Items", "Switch an item in your ships storage with one in your inventory.");
 		addButton(1, "Back", shipStorageMenuType, type);
+		return;
 	}
 	
 	shipStorageMenuType(type);
@@ -903,9 +909,12 @@ public function replaceInStorage(args:Array):void
 	var type:String = args[1];
 	
 	clearMenu();
-	for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
+	
+	var items:Array = getListOfType(pc.ShipStorageInventory, type);
+	
+	for (var i:int = 0; i < items.length; i++)
 	{
-		addItemButton(i, pc.ShipStorageInventory[i], doStorageReplace, [invItem, pc.ShipStorageInventory[i], type]);
+		addItemButton(i, items[i], doStorageReplace, [invItem, items[i], type]);
 	}
 }
 
@@ -919,7 +928,7 @@ public function doStorageReplace(args:Array):void
 	pc.ShipStorageInventory.push(invItem);
 	
 	pc.ShipStorageInventory.splice(pc.ShipStorageInventory.indexOf(tarItem), 1);
-	pc.inventory.push(invItem);
+	pc.inventory.push(tarItem);
 	
 	shipStorageMenuType(type);
 }
@@ -981,10 +990,12 @@ public function replaceInInventory(args:Array):void
 	var invItem:ItemSlotClass = args[0];
 	var type:String = args[1];
 	
+	var items:Array = getListOfType(pc.inventory, type);
+	
 	clearMenu();
-	for (var i:int = 0; i < pc.inventory.length; i++)
+	for (var i:int = 0; i < items.length; i++)
 	{
-		addItemButton(i, pc.inventory[i], doInventoryReplace, [invItem, pc.inventory[i], type]);
+		addItemButton(i, items[i], doInventoryReplace, [invItem, items[i], type]);
 	}
 }
 
@@ -998,7 +1009,7 @@ public function doInventoryReplace(args:Array):void
 	pc.inventory.push(invItem);
 	
 	pc.inventory.splice(pc.inventory.indexOf(tarItem), 1);
-	pc.ShipStorageInventory.push(invItem);
+	pc.ShipStorageInventory.push(tarItem);
 	
 	shipStorageMenuType(type);
 }
