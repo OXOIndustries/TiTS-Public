@@ -725,8 +725,12 @@ public function renvraAlmostDue():void
 
 public function renvraBellyrubs():void
 {
-	if (rand(100) < 2)
-	{
+	if (flags["Renvra Full Pregnancy Bellyrub Supression"] == undefined) flags["Renvra Full Pregnancy Bellyrub Supression"] = 0;
+	
+	if (flags["Renvra Full Pregnancy Bellyrub Supression"] < days && rand(100) < 2)
+	{	
+		flags["Renvra Full Pregnancy Bellyrub Supression"] = days;
+		
 		if (InPublicSpace())
 		{
 			eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
