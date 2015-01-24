@@ -28,7 +28,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 2;
 			_pregnancyQuantityMaximum = 2;
-			_definedAverageLoadSize = 1000;
+			_definedAverageLoadSize = 720;
 			
 			this.addStageProgression(8000, function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 5;

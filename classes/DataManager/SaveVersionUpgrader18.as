@@ -3,6 +3,7 @@ package classes.DataManager
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.GameData.GameOptions;
 	import flash.net.SharedObject;
+	import classes.Util.InCollection;
 	
 	/**
 	 * ...
@@ -20,13 +21,23 @@ package classes.DataManager
 			var dEffects:Array = data.characters.PC.statusEffects;
 			data.characters.PC.statusEffects = new Array();
 			
+			var hasRenvraEggPregnancy:Boolean = false;
+			var hasRenvraFullPregnancy:Boolean = false;
+			
+			for (var ii:int = 0; ii < data.characters.PC.pregnancyData.length; ii++)
+			{
+				if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraEggPregnancy") hasRenvraEggPregnancy = true;
+				if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraFullPregnancy") hasRenvraFullPregnancy = true;
+			}
+			
 			for (var i:int = 0; i < dEffects.length; i++)
 			{
-				if (dEffects[i].storageName != "Trip")
-				{
-					data.characters.PC.statusEffects.push(dEffects[i]);
-				}
-			}
+				if (dEffects[i].storageName == "Trip") continue;
+				if (dEffects[i].storageName == "Renvra Eggs Messages Available" && !hasRenvraEggPregnancy) continue;
+				if (!hasRenvraFullPregnancy && InCollection(dEffects[i].storageName, "Revnra Full Pregnancy Message 2", "Revnra Full Pregnancy Bellyrubs", "Revnra Full Pregnancy Message 3", "Revnra Full Pregnancy Message 4", "Revnra Milky Titties Go", "Revnra Full Pregnancy Message 5", "Revnra Full Pregnancy Almost Due", "Renvra Full Pregnancy Bellyrubs")) continue;
+				
+				data.characters.PC.statusEffects.push(dEffects[i]);
+			}		
 			
 			data.version = 19;
 			data.minVersion = 19;

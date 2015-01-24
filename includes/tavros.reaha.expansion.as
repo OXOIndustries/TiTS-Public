@@ -1396,7 +1396,7 @@ public function reahaMilkTalk():void
 
 	output("<i>“So... you mentioned being alright with changing what you lactate,”</i> you say, eyeing the");
 	if (9999 == 0) output(" topless");
-	output(" cow’s buxom chest, a tiny bead of [reahaMilk] cresting the peaks of her swollen teats. It’s hard not to lick your lips at the thought of the sweet taste. ");
+	output(" cow’s buxom chest, a tiny bead of [reaha.milk] cresting the peaks of her swollen teats. It’s hard not to lick your lips at the thought of the sweet taste. ");
 	
 	output("\n\nReaha shifts her weight a bit, avoiding your eyes.");
 	if (!reahaFree()) output(" <i>“I guess. If that’s what your want, [pc.master]”</i>");

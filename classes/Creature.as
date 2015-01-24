@@ -5511,7 +5511,7 @@
 			cumDelta = refractoryRate / 60 * (ballSize() - perkv1("'Nuki Nuts") + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
 			
-			if(this is PlayerCharacter) trace("Pre Fullness: " + ballFullness)
+			//if(this is PlayerCharacter) trace("Pre Fullness: " + ballFullness)
 
 			//Just hit full balls!
 			if(ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
@@ -5545,7 +5545,7 @@
 				ballFullness = 100;
 			}
 
-			if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
+			//if(this is PlayerCharacter) trace("Post Fullness: " + ballFullness)
 		}
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;

@@ -505,9 +505,9 @@ public function statusTick():void {
 			//TIMER OVER!
 			if(pc.statusEffects[x].minutesLeft <= 0) 
 			{
-				if (pc.statusEffects[x].storageName.indexOf("Lane's Hypnosis") != -1)
+				if ((pc.statusEffects[x] as StorageClass).storageName.indexOf("Lane's Hypnosis") != -1)
 				{
-					baseHypnosisWearsOff(pc.statusEffects[x].storageName);
+					baseHypnosisWearsOff((pc.statusEffects[x] as StorageClass).storageName);
 				}
 				//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
 				if(pc.statusEffects[x].storageName == "Crabbst") 

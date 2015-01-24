@@ -101,8 +101,11 @@ package classes.GameData.Pregnancy.Handlers
 			}
 			
 			kGAMECLASS.eventQueue.push(function():void {
-					kGAMECLASS.venusPitcherLayUnfertilizedEgg();
-					VenusPitcherSeedCarrierPregnancyHandler.cleanupPregnancy(kGAMECLASS.pc);
+					if (kGAMECLASS.pc.getPregnancyOfType("VenusPitcherSeedCarrier") != null) 
+					{
+						kGAMECLASS.venusPitcherLayUnfertilizedEgg();
+						VenusPitcherSeedCarrierPregnancyHandler.cleanupPregnancy(kGAMECLASS.pc);
+					}
 				});
 		}
 		
