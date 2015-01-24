@@ -206,6 +206,11 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		}
 		output("\n\n(70 libido is required to masturbate in public spaces.)");
 		aborted = true;
+		if(pc.perkv1("'Nuki Balls") > 0) 
+		{
+			output("\n\n<b>No! You have to do this! You're getting too swollen not to!</b> You'll have to just blush and bear it!");
+			aborted = false;
+		}
 	}
 	if(aborted)
 	{

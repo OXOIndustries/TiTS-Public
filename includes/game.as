@@ -100,18 +100,36 @@ public function mainGameMenu():void {
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
-	if(this.rooms[this.currentLocation].northExit) 
-		this.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
-	if(this.rooms[this.currentLocation].eastExit) 
-		this.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
-	if(this.rooms[this.currentLocation].southExit) 
-		this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
-	if(this.rooms[this.currentLocation].westExit) 
-		this.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
-	if(this.rooms[this.currentLocation].inExit) 
-		this.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
-	if(this.rooms[this.currentLocation].outExit) 
-		this.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
+	if(pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		if(this.rooms[this.currentLocation].northExit) 
+			this.addDisabledButton(6,"North","North","You can't move - you're immobilized!");
+		if(this.rooms[this.currentLocation].eastExit) 
+			this.addDisabledButton(12,"East","East","You can't move - you're immobilized!");
+		if(this.rooms[this.currentLocation].southExit) 
+			this.addDisabledButton(11,"South","South","You can't move - you're immobilized!");
+		if(this.rooms[this.currentLocation].westExit) 
+			this.addDisabledButton(10,"West","West","You can't move - you're immobilized!");
+		if(this.rooms[this.currentLocation].inExit) 
+			this.addDisabledButton(5,rooms[currentLocation].inText,rooms[currentLocation].inText,"You can't move - you're immobilized!");
+		if(rooms[currentLocation].outExit) 
+			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can't move - you're immobilized!");
+	}
+	else
+	{
+		if(this.rooms[this.currentLocation].northExit) 
+			this.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
+		if(this.rooms[this.currentLocation].eastExit) 
+			this.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
+		if(this.rooms[this.currentLocation].southExit) 
+			this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
+		if(this.rooms[this.currentLocation].westExit) 
+			this.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
+		if(this.rooms[this.currentLocation].inExit) 
+			this.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
+		if(this.rooms[this.currentLocation].outExit) 
+			this.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
+	}
 	if(this.currentLocation == shipLocation) 
 		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
@@ -454,7 +472,10 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	}
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
+
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
+	//Huge nuts slow you down
+	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new Hoverboard())) {
 		moveMinutes -= 1;
 		if(moveMinutes < 1) moveMinutes = 1;
@@ -697,6 +718,9 @@ public function processTime(arg:int):void {
 	
 	//Double time
 	if (pc.hasPerk("Extra Ardor")) productionFactor *= 2;
+	//Huge nuts double time!
+	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
+	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
@@ -934,8 +958,10 @@ public function processTime(arg:int):void {
 		}
 		arg--;
 	}
-	//Check to see if something changed in this department
+	//Check to see if something changed in body part notices
 	milkMultiplierGainNotificationCheck();
+	nutSwellUpdates();
+
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck"))
 	{
@@ -961,6 +987,120 @@ public function processTime(arg:int):void {
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
+}
+
+function nutSwellUpdates():void
+{
+	if(pc.balls > 0)
+	{
+		//Hit basketball size >= 9
+		if(pc.ballDiameter() >= 9 && !pc.hasStatusEffect("Egregiously Endowed"))
+		{
+			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nUgh, you could really a chance to offload some [pc.cumNoun]. Your balls have reached the size of basketballs and show no signs of stopping. The squishy, sensitive mass will definitely slow your movements.";
+			//Status - Egregiously Endowed - Movement between rooms takes twice as long, and fleeing from combat is more difficult.
+			pc.createStatusEffect("Egregiously Endowed", 0,0,0,0,false,"Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
+		}
+		//Hit beachball size >= 15
+		if(pc.ballDiameter() >= 15 && !pc.hasStatusEffect("Ludicrously Endowed"))
+		{
+			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nEvery movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that they wobble from their own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal.";
+			pc.createStatusEffect("Ludicrously Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized testes cause you to gain fifty percent more lust over time.", false, 0);
+		}
+		//Hit barrel size
+		if(pc.ballDiameter() >= 25 && !pc.hasStatusEffect("Overwhelmingly Endowed"))
+		{
+			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nWhoah, this is awkward. Your nuts are practically barrel-sized! If you aren’t careful, they drag softly on the ground. Grass is no longer scenery - it’s hundreds of slender tongues tickling your nuts. Mud is an erotic massage. Even sand feels kind of good against your thickened sack, like a vigorous massage.";
+			pc.createStatusEffect("Overwhelmingly Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized testes cause you to gain twice as much lust over time.", false, 0);
+		}
+		//hit person size
+		if(pc.ballDiameter() >= 40 && !pc.hasStatusEffect("Endowment Immobilized"))
+		{
+			if(pc.balls > 1) 
+			{
+				eventBuffer += "\n\nYou strain as hard as you can, but there’s just no helping it. You’re immobilized. Your balls are just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your testes, and there’s nothing you can do about it.";
+				if(canShrinkNuts()) eventBuffer += ".. well, almost nothing. A nice, long orgasm ought to fix this!";
+				else 
+				{
+					eventQueue[eventQueue.length] = bigBallBadEnd;
+					if(pc.hasPerk("'Nuki Nuts")) eventBuffer += " If a quick fap wasn't illegal here, this would be far simpler. Too bad.";
+				}
+				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
+			}
+		}
+	}
+	nutStatusCleanup();
+}
+
+function canShrinkNuts():Boolean
+{
+	//Can fap it away!
+	if(pc.hasPerk("'Nuki Nuts"))
+	{
+		//NO FAPS!
+		if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) return false;
+		if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return false;
+		return true;
+	}
+	return false;
+}
+
+public function nutStatusCleanup():void
+{
+	if(pc.hasStatusEffect("Endowment Immobilized") && (pc.balls == 0 || pc.ballDiameter() < 40))
+	{
+		eventBuffer += "\n\nYou're no longer immobilized by your out-sized equipment!";
+		pc.removeStatusEffect("Endowment Immobilized");
+	}
+	if((pc.balls == 0 || pc.ballDiameter() < 25) && pc.hasStatusEffect("Overwhelmingly Endowed")) pc.removeStatusEffect("Overwhelmingly Endowed");
+	if((pc.balls == 0 || pc.ballDiameter() < 15) && pc.hasStatusEffect("Ludicrously Endowed")) pc.removeStatusEffect("Ludicrously Endowed");
+	if((pc.balls == 0 || pc.ballDiameter() < 9) && pc.hasStatusEffect("Egregiously Endowed")) pc.removeStatusEffect("Egregiously Endowed");
+}
+
+function bigBallBadEnd():void
+{
+	clearOutput();
+	author("Fenoxo");
+	//Dangerous area, can’t unswell:
+	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	{
+		output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
+		badEnd();
+	}
+	//Not a dangerous area:
+	else 
+	{
+		output("Eventually, you manage to get someone to pick you up and take you in for treatment. It isn’t cheap either. ");
+		if(pc.credits >= 10000)
+		{
+			pc.credits -= 10000;
+			output("Your finances are ");
+			if(pc.credits < 1000) output("completely ");
+			output("drained by your own libidinous foolishness, but at least you can move around normally again!");
+		}
+		else
+		{
+			pc.credits = 0;
+			output("Your finances aren’t capable of footing the bill, but at least the medical experimentation that pays for it all isn’t too bad.");
+			if(pc.biggestTitSize() >= 1 && rand(2) == 0 && pc.breastRows[0].breasts < 3) 
+			{
+				output("A third breast is a small price to pay, after all.");
+				pc.breastRows[0].breasts = 3;
+			}
+			else if(pc.balls < 3) 
+			{
+				output(" A trio of smaller nuts is a small price to pay, after all.");
+				pc.balls = 3;
+			}
+		}
+		pc.ballSizeRaw = 30;
+		currentLocation = "SHIP INTERIOR";
+		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
+		processTime(1382);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	
 }
 
 public function boobswellStuff(time:Number = 0):void
