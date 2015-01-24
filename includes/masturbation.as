@@ -1443,9 +1443,9 @@ public function wutwutindabuttbuttFap():void
 		else output(" them");
 		output(". You idly give [pc.oneVagina] a tantilizing stroke,");
 	}
-	if (pc.hasCock() && pc.hasVagina())
+	else if (pc.hasCock() && pc.hasVagina())
 	{
-		output("our gaze wanders over your [pc.cocks] as a trickle of arousal meanders down the inside of your thigh, only serving to remind you that there's no shortage of choices to be made when it comes to relieving a little... tension.... You give [pc.oneCock] a teasing tug with one hand and [pc.oneVagina] a tantilizing stroke with the other,");
+		output("our gaze wanders over your [pc.cocks] as a trickle of arousal meanders down the inside of your thigh, only serving to remind you that there's no shortage of choices to be made when it comes to relieving a little... tension.... You give [pc.oneCock] a teasing tug with one hand and [pc.oneVagina] a tantalizing stroke with the other,");
 	}
 	else
 	{
@@ -1500,7 +1500,7 @@ public function wutwutindabuttbuttFap():void
 
 		if (pc.ass.looseness() <= 1)
 		{
-			output("\n\nProperly prepared, you use your a solitary, lubricated finger to gingerly ply at the tight ring of your [pc.asshole], encountering plenty of resistance from your tight hole.");
+			output("\n\nProperly prepared, you use your a solitary, lubricated finger to gingerly ply at the ring of your [pc.asshole], encountering plenty of resistance in the process.");
 		}
 		else
 		{
@@ -1521,7 +1521,7 @@ public function wutwutindabuttbuttFap():void
 	else output(" slipped");
 	output(" your finger");
 	if (pc.ass.looseness() > 1) output("s");
-	output(" in all the way, the bulk of your palm now stopping any further progress as you start to work the invading digit");
+	output(" in all the way, the bulk of your palm now stopping any further progress as you start to wriggle the invading digit");
 	if (pc.ass.looseness() > 1) output("s");
 	output(" around inside your [pc.asshole]");
 	if (pc.hasCock())
@@ -1535,7 +1535,7 @@ public function wutwutindabuttbuttFap():void
 	output(".");
 	if (pc.hasVagina())
 	{
-		output("[pc.GirlCum] dribbles freely from your vacant [pc.eachVagina],");
+		output(" [pc.GirlCum] dribbles freely from [pc.eachVagina],");
 		if (pc.vaginas.length > 1) output(" each of them");
 		output(" clenching as if wrapped around");
 		if (pc.vaginas.length == 1) output(" a");
