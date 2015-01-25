@@ -94,32 +94,27 @@ public function debugMenus():void
 	
 	//addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
 	
-	addButton(0, "GiveMilky", function():void {
-		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
-	}, undefined, "Give Milky", "Get the Milky perk.");
+	addButton(0, "GiveMilky", thisIsWhyWeCantHaveNiceThings, undefined, "Give Milky", "Get the Milky perk.");
 	
+	addButton(9, "ForceError", thisIsWhyWeCantHaveNiceThings, undefined, "Force an Error", "Force an error to test error handling.");
 	
-	addButton(9, "ForceError", function():void {
-		throw new Error("This is a test error!");
-	}, undefined, "Force an Error", "Force an error to test error handling.");
+	addButton(10, "ShipStorage", thisIsWhyWeCantHaveNiceThings);
 	
-	addButton(10, "ShipStorage", function():void {
-		flags["SHIP_STORAGE_WARDROBE"] = 10;
-		flags["SHIP_STORAGE_EQUIPMENT"] = 10;
-		flags["SHIP_STORAGE_CONSUMABLES"] = 10;
-	});
+	addButton(4, "Cashmoney", thisIsWhyWeCantHaveNiceThings, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
 	
-	addButton(4, "Cashmoney", function():void {
-		pc.credits += 100000;
-	}, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
+	addButton(5, "XP", thisIsWhyWeCantHaveNiceThings);
 	
-	addButton(5, "XP", function():void {
-		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
-	});
+	addButton(6, "Pass Time", thisIsWhyWeCantHaveNiceThings);
+}
+
+public function thisIsWhyWeCantHaveNiceThings():void
+{
+	clearOutput();
 	
-	addButton(6, "Pass Time", function():void {
-		processTime(24 * 60);
-	});
+	output("This is why we can't have nice things.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function quickLoot(... args):void
