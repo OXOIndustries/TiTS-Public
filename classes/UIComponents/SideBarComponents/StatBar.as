@@ -35,6 +35,7 @@ package classes.UIComponents.SideBarComponents
 		private var _tMax:Number = 100;
 		private var _tCurrent:Number = 0;
 		private var _tGoal:Number = 0;
+		private var _strMode:Boolean = false;
 		
 		private var _barFrames:Number = 1.0 / (2.0 * 24);
 		private var _glowFrames:Number = 1.0 / (4.0 * 24);
@@ -92,6 +93,11 @@ package classes.UIComponents.SideBarComponents
 			{
 				_valueGlow.alpha -= _glowFrames;
 				_values.filters = [_valueGlow]
+			}
+			
+			if (_strMode)
+			{
+				return;
 			}
 			
 			if (_desiredMode == "NOBAR")
@@ -372,6 +378,14 @@ package classes.UIComponents.SideBarComponents
 		
 		public function updateBar(newValue:*, max:Number = Number.NaN, initBars:Boolean = false):void
 		{
+			if (newValue is String)
+			{
+				setTextValue(newValue);
+				return;
+			}
+
+			_strMode = false;
+			
 			if (initBars)
 			{
 				setBar(newValue, max);
@@ -385,6 +399,13 @@ package classes.UIComponents.SideBarComponents
 				setGoal(newValue);
 				_tickGlow = false;
 			}
+		}
+		
+		public function setTextValue(newValue:String):void
+		{
+			value = newValue;
+			disableBar();
+			_strMode = true;
 		}
 		
 		public function setBar(newValue:*, max:Number = Number.NaN):void

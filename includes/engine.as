@@ -252,15 +252,19 @@ public function updateNPCStats():void {
 		userInterface.monsterLust.updateBar(foes[0].lust(),     foes[0].lustMax());
 		userInterface.monsterEnergy.updateBar(foes[0].energy(),   foes[0].energyMax());
 		
-		this.userInterface.monsterLevel.value = String(foes[0].level);
-		this.userInterface.monsterRace.value = StringUtil.toTitleCase(foes[0].originalRace);
+		this.userInterface.monsterLevel.updateBar(String(foes[0].level));
+		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(foes[0].originalRace));
+		
+		var gText:String = "";
+		
 		if(foes[0].hasCock()) {
-			if(foes[0].hasVagina())	
-				this.userInterface.monsterSex.value = "Herm";
-			else this.userInterface.monsterSex.value = "Male";
+			if (foes[0].hasVagina()) gText = "Herm";
+			else gText = "Male";
 		}
-		else if(foes[0].hasVagina()) this.userInterface.monsterSex.value = "Female";
-		else this.userInterface.monsterSex.value = "???";
+		else if (foes[0].hasVagina()) gText = "Female";
+		else gText = "???";
+		
+		this.userInterface.monsterSex.updateBar(gText);
 		
 		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
