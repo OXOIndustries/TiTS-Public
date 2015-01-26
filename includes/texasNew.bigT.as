@@ -228,7 +228,7 @@ public function bigTFamiryTalk():void
 	output("\n\nIf the Governor picks up on the joke, he doesn't acknowledge it. \"<i>Well, I don't have any proper kids. Well, I </i>probably<i> have loads of 'em, but none I know about. 'Who's your daddy?' is a pretty hard question to answer 'round here sometimes! Ha! Only kid I've legally got is my girl Gianna. You've met her, ain't ya?</i>\"");
 
 	output("\n\nYou ");
-	if(flags["MET_GIANNA"] != undefined) output("shake your head");
+	if(flags["MET_GIANNA"] == undefined) output("shake your head");
 	else output("nod an affirmative");
 	output(". Tee smiles proudly, blowing a big ring of smoke as he says, \"<i>She's a good girl. Met her by running her over with my truck! Heck of a way to meet your daughter, don't ya reckon? Well, not my daughter then. Adopted her later, when her owner forgot about her. What kind of fella does that, has a great girl like that and just leaves her? I don't even know.</i>\"");
 

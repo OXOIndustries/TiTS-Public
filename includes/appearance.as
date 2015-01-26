@@ -299,7 +299,7 @@ public function appearance(target:Creature):void {
 		if(target.armType == GLOBAL.TYPE_AVIAN) output2(" Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
 		{
-			output2(" Small claws protrude from the tips of your figners in place of fingernails");
+			output2(" Small claws protrude from the tips of your fingers in place of fingernails");
 			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(", and your arms are covered in scales up to the shoulders");
 			output2(".");
 		}
