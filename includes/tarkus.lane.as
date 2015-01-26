@@ -171,7 +171,9 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 					
 					output("As you walk the biomes of "+ getPlanetName() +", you can’t help but feel something is a little... off. Different, from when it was just a few moments ago. You flex your ears, listening for anything out of the ordinary, but you can’t hear anything. You look down your body, for anything alien that might have attached itself to you, but you’re completely clean.");
 
-					output("\n\nFor whatever reason, you’re drawn to your codex, to know the time. It displays the time on all known and visited planets, including a clock for Terran’s time in the right hand corner. Seeing that clock there reminds you of something about Terran’s time, but what....");
+					// I don't even know what the fuck this is supposed to be implying. Considering how weird it is, and how
+					// extreneous to the actual scene, DROPPED.
+					// output("\n\nFor whatever reason, you’re drawn to your codex, to know the time. It displays the time on all known and visited planets, including a clock for Terran’s time in the right hand corner. Seeing that clock there reminds you of something about Terran time, but what....");
 
 					output("\n\nJust then, your thoughts are drawn to Lane. You recall the lizard-person’s hut in the caves of Venar, and the business [lane.heShe] runs in hypnotism, and – wait. Hypnotism?");
 
@@ -1711,7 +1713,7 @@ public function munchLanesCarpet():void
 
 	output("\n\nWith just a touch of difficulty, you withdraw your fingers from her pulling snatch, drenched and sticky in her alien girl-jizz. You bring them to your nose, taking a whiff of her undeniably-Lane scent. You lick them clean once more, trying to make a show of it for her, and when they’re totally clean, you lean in for the real deal.");
 
-	output("\n\nThere’s no more hesitation or teasing: you kiss her labia, your [pc.lips] sliding over hers, collecting the drops of her lust on them. Your tongue licks and plies along her entrance, dipping in just a little with each pass. She tastes salty; grainy; and a little thick, but the taste in unique to her alone, that the thought that you’re eating your mistress’s box alights a fire in you.");
+	output("\n\nThere’s no more hesitation or teasing: you kiss her labia, your [pc.lips] sliding over hers, collecting the drops of her lust on them. Your tongue licks and plies along her entrance, dipping in just a little with each pass. She tastes salty; grainy; and a little thick, but the taste is unique to her alone, that the thought that you’re eating your mistress’s box alights a fire in you.");
 
 	output("\n\nYour hands, without permission, go forward and clamp directly onto Lane’s thin, scaly ass for support. She sighs out loud as she feels you penetrate her; you moan out yourself as you feel the unique sensation of your tongue being pulled and squeezed by the unique muscles of Lane’s Daynarian sex. With her every pulse, her cunt contracts and you feel her get just a little bit wetter.");
 

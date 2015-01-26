@@ -336,7 +336,7 @@ public function bendItLikeBeckhamForRenvra():void
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 
-	output("\n\nWith a nice, thick sheen on spit-lube and excess aphrodesiac coating her cockhead, Ren pushes forward with a slow, steady confidence. You clutch at the table, mouth twisting open in a husky moan of pleasure as the halfbreed’s massive ovipositor-slash-horsecock slides into your ");
+	output("\n\nWith a nice, thick sheen on spit-lube and excess aphrodisiac coating her cockhead, Ren pushes forward with a slow, steady confidence. You clutch at the table, mouth twisting open in a husky moan of pleasure as the halfbreed’s massive ovipositor-slash-horsecock slides into your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(". Ren’s voice joins your own, groaning and cupping a breast as she eases her hips forward.");
@@ -383,7 +383,7 @@ public function getRenvraFuckedPart2():void
 	//else:
 	else output("“<i>Oh, fuck,</i>” you manage to grunt out, the first coherent thought you’ve put together since the first inches of her girthy cock speared you.");
 
-	output("\n\n“<i>That’s the plan,</i>” your lover sneers, adjust her grip up to your [pc.hips] and starting to move again. She drags herself out slowly, but her sheer length only allows her a fraction of its length without having to step back with it. Rather than shift her stance, Ren seems content to pound you in short, forceful thrusts. Her hips hammering against your [pc.butt], making the cheap metal desk supporting your weight shift forward with the impact. Between that and all the drug-laden pre her alien cock is pumping into you, filling your body with burning desire, you don’t have a snowball’s chance to hold back. You scream, a wail of absolute and unrepentant pleasure as you’re hammered into the climactic throes of orgasm.");
+	output("\n\n“<i>That’s the plan,</i>” your lover sneers, adjusting her grip up to your [pc.hips] and starting to move again. She drags herself out slowly, but her sheer length only allows her a fraction of its length without having to step back with it. Rather than shift her stance, Ren seems content to pound you in short, forceful thrusts. Her hips hammer against your [pc.butt], making the cheap metal desk supporting your weight shift forward with the impact. Between that and all the drug-laden pre her alien cock is pumping into you, filling your body with burning desire, you don’t have a snowball’s chance to hold back. You scream, a wail of absolute and unrepentant pleasure as you’re hammered into the climactic throes of orgasm.");
 
 	if(pc.hasCock())
 	{
@@ -393,7 +393,7 @@ public function getRenvraFuckedPart2():void
 		output(", you’re left limp and moaning, putty in the halfbreed’s hands. Even after your orgasm abates, nothing more than a trickle of spunk drooling from your [pc.cockHeads], she continues to fuck you.");
 
 	}
-	output("\n\nRenvra’s both insatiable and unrelenting, plowing through your orgasm without a moment’s hesitation. The sounds of flesh slapping, hard and wet, echoes deafeningly throughout the office. The only other sound you can focus on is the tensing breath of your halfbreed lover, growing more and more ragged as she pounds your ");
+	output("\n\nRenvra’s both insatiable and unrelenting, plowing through your orgasm without a moment’s hesitation. The sounds of flesh slapping, hard and wet, echo deafeningly throughout the office. The only other sound you can focus on is the tensing breath of your halfbreed lover, growing more and more ragged as she pounds your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
 	output(". Your instincts scream out in preparation for her nearing climax.");
@@ -540,7 +540,7 @@ public function buttFuckRenvra():void
 	clearOutput();
 	showRenvra();
 	output("You answer Ren’s unsubtle question by wrapping your hands under her firm ass and pulling her off the ground. She gasps and laughs, her legs wrapping around your waist and arms around your neck. An unsteady step takes the two of you up against a wall, pressing Renvra’s back against it. She moans as your mouth finds one of her rosy nipples, and her back arches into your embraces as you lick and kiss and gently suckle. After a few moments of that treatment, you start to feel a trickle of a candy-sweet moisture beading from her teat, and you’re eager to drink it down. It tastes wonderful!");
-	output("\n\n“<i>You’re like I’m not like other reds,</i>” Renvra laughs, stroking your [pc.hair] while you suckle from her. “<i>Most would punch you right in the face for that...</i>”");
+	output("\n\n“<i>You’re lucky I’m not like other reds,</i>” Renvra laughs, stroking your [pc.hair] while you suckle from her. “<i>Most would punch you right in the face for that...</i>”");
 	output("\n\nShe rolls her eyes when you look up at her -- a strange sight with round, pitch-black eyes like hers. You answer her exasperated gesture by switching from one breast to the other, greedily suckling the halfbreed’s sweet nectar just as fast as you can get it. The more your [pc.tongue] teases her teats, though, the more urgently you can feel the huge slab of ovipositing meat between her legs throb. A trickle of hot, creamy pink pre drools down your [pc.leg], leaking from the halfbreed’s apple-sized gonads and through her pony-sized pecker. You shift slightly, hefting Renvra’s weight up onto the edge of her desk, and grab her cock by the shaft.");
 	output("\n\nThough it’s a bit awkward from your current positions, you heft her dick up from dangling between her legs, and flop its shaft onto her belly. The crown settles perfectly into the valley of her cleavage, and happily spurts a little dribble of pink pre onto her tits. Putting on a bit of a show, Renvra moves her shoulders in a way that squeezes her tits together around her cock, giving herself an impromptu titfuck as your attentions move downward.");
 	output("\n\nWith her weight settled on the desk, your hands are free to cup and squeeze Renvra’s tight ass, caressing the muscular curve of it until your wandering ministrations reach the gulf between her legs. You cup her pseudo-balls, letting two egg-filled sacs roll between your fingers. Gently, you lift them up and out of the way, revealing the small, dark ring of Ren’s asshole. Seeing its target, your own [pc.cock] jumps to attention, and a few tentative strokes bring it to full hardness. Ren’s legs tense around your waist, pulling you a little closer until your [pc.cockHead] is pressed flush against her backdoor.");
@@ -559,7 +559,7 @@ public function buttFuckRenvra():void
 	output("\n\nYou both ");
 	if(silly) output("have a bit of a giggle");
 	else output("laugh");
-	output(" at that, letting Ren spend a few necessary moment’s adjusting to your girth inside her. For the time being, you’re content to enjoy the feeling of her muscular anal walls clenching around your shaft, inadvertently massagingg you as they try to repulse your advance. You feel like you could cum easily just from that, the raw tightness and heat of Renvra’s asshole.");
+	output(" at that, letting Ren spend a few necessary moments adjusting to your girth inside her. For the time being, you’re content to enjoy the feeling of her muscular anal walls clenching around your shaft, inadvertently massaging you as they try to repulse your advance. You feel like you could cum easily just from that, the raw tightness and heat of Renvra’s asshole.");
 
 	output("\n\nAfter a while, Ren leans back against the wall and gives you a slight nod. “<i>Alright... go ahead. I’m as ready as I’m going to be.</i>”");
 

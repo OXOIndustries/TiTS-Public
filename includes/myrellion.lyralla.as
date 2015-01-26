@@ -282,7 +282,7 @@ public function talkToLyrallaAboutHerJob():void
 	output("</i>”");
 	output("\n\n“<i>Yeah, that’s him.</i>” Lyralla’s robotic eye whirs, dilating as it loses focus.");
 	output("\n\nShe’s going to need to get used to having such an easy-to-read eye if she wants to keep her job. It’s obvious she has feelings for him.");
-	output("\n\nThe ant-women blithely continues on. “<i>I am unsure if it was pity that brought him to talk with me or a deeper commonality of spirit, but when I requested reading materials, he was the one to bring them to me.</i>” Her smile widens as she remembers. “<i>He had the tomes I requested as well as a tablet loaded with some of his own favorite selections. I doubt he’s ever carried such a heavy load before! He nearly toppled just getting into the door to my room.</i>”");
+	output("\n\nThe ant-woman blithely continues on. “<i>I am unsure if it was pity that brought him to talk with me or a deeper commonality of spirit, but when I requested reading materials, he was the one to bring them to me.</i>” Her smile widens as she remembers. “<i>He had the tomes I requested as well as a tablet loaded with some of his own favorite selections. I doubt he’s ever carried such a heavy load before! He nearly toppled just getting into the door to my room.</i>”");
 	output("\n\nYou " + pc.mf("chuckle","giggle") + ", imagining the bookish kui-tan trying to wrangle so many primitive texts at once.");
 	output("\n\nLyralla laughs with you. “<i>Yes, he was quite the sight. He’s a good man, that one. He only dropped </i>The Karkashane Rhythms<i>. Quite a feat for one of a race without four arms.</i>”");
 	output("\n\nThe myr do have a discrete advantage in that department.");
@@ -613,7 +613,7 @@ public function juroXLyrallPartIII():void
 	output("\n\nSlipping off in a moment of pleasure-induced clumsiness, she accidentally releases her pinched nipple, unleashing a pressurized stream of honeyed lactation. Juro’s ear instinctively flicks as a bit catches him there. The quick-witted ambassador eases off of the partially drained tit and lunges onto the other, nearly hosing himself down with the sticky fluid. His cheeks bulge out from the volume, but somehow he manages to avoid making any more mess.");
 	output("\n\nLyralla’s spent tit dribbles for a moment, then stops. She moans as Juro reverses his stroke, slowly pulling out, if only to thrust back in. “<i>S-sorry! I’m still not used to having honey! I didn’t get any on your clothes, did I?</i>”");
 	output("\n\n“<i>I don’t think so. It’ll wipe off, right?</i>” Juro doesn’t seem to bothered by the glob of honey hanging from his ear or the fact that his face is smeared with it. He goes right back to guzzling the torrent coming from Lyralla’s tit after speaking. ");
-	output("\n\n“<i>Good,</i>” the myr pants, finally letting go of his balls, if only to let him thrust wholly inside her. The next push into her velvety depths forestals any further attempts at communication from either party. Juro’s mouth is far too full for talking anyway, and even if it wasn’t, he’d be too busy grunting and panting with how hard he’s pounding that downward-dangling abdomen.");
+	output("\n\n“<i>Good,</i>” the myr pants, finally letting go of his balls, if only to let him thrust wholly inside her. The next push into her velvety depths forestalls any further attempts at communication from either party. Juro’s mouth is far too full for talking anyway, and even if it wasn’t, he’d be too busy grunting and panting with how hard he’s pounding that downward-dangling abdomen.");
 	output("\n\nLyralla isn’t doing any better. Her robotic legs are clicking noisily from the overwhelming amount of mixed signals her brain is sending, and they begin to lower her to the ground rather than give out entirely. She pushes Juro away, gushing nectar to the side as her ant-pussy makes the loudest, wettest-sounding, staccato slurp while his three knots pop out, one by one.");
 	output("\n\nThe proud gold myr twists around to prone in a growing puddle of her own honey, her chitinous abdomen angled upward for more comfortable fucking. Her tits are partially squished by her own weight, bulging out around the sides, slick with glistening amber. Trickles of clear lubricant leak from her upraised pussy, mixed with Juro’s copious, white-tinged pre-cum. His balls look far bigger than before, and his cock pulses, jerking in the air with each beat of his heart.");
 	output("\n\nThe kui-tan is on the proffered pussy in two shakes of an ant’s tail, wrapping his hands around the chitinous organ so that he can properly pound into it. You can see much better from this angle, watching its lips distend with ease around the triple-knot bang. She’s either done this a lot or myr pussies are built to stretch around big, fat spheres.");
@@ -659,7 +659,7 @@ public function juroXLyrallPartIV():void
 			else if(pc.cumQ() < 50) output("Heck, a droplet of pre-cum is hanging from your [pc.cockHeadBiggest] right now, but you try not to focus on it.");
 			else if(pc.cumQ() <= 500) output("Trickles of pre-cum ooze down your [pc.leg], but you try not to focus overmuch on it.");
 			else output("Streams of pre-cum run unchecked down your [pc.legs] to pool below you. You try to put it out of your mind, but part of you silently prays that no one notices it.");
-			output(" Someone is going to have to take care of your [pc.cocks] post-haste.");
+			output(" Someone is going to have to take care of your [pc.cocks] post-haste. ");
 		}
 	}
 	//Vaginas
@@ -754,7 +754,7 @@ public function askLyrallaForAPussyPass():void
 		output("\n\n“<i>Like, just cause the core is all prudish doesn’t... uh...</i>” You blink a few times to buy time to try to finish the rest of the sentence, then give up entirely. “<i>The words got all tangled up in my head! I... um... I’ve been places where fucking in public is totally cool. I’ll like it there!</i>”");
 	}
 	//Been to new texas
-	else if(flags["NEW_TEXAN_CUSTOMS_MET"] != undefined) output("\n\n“<i>Please, Lyralla. Whatever it’s like here, it can’t be as openly sexual as new texas. The whole planet smells like fucking.</i>” You grin a little wider. “<i>I think I can handle the sight of a few pairs of breasts or a canoodling couple.</i>”");
+	else if(flags["NEW_TEXAN_CUSTOMS_MET"] != undefined) output("\n\n“<i>Please, Lyralla. Whatever it’s like here, it can’t be as openly sexual as New Texas. The whole planet smells like fucking.</i>” You grin a little wider. “<i>I think I can handle the sight of a few pairs of breasts or a canoodling couple.</i>”");
 	//Nice + Mischiev
 	else if(pc.isNice() || pc.isMischievous())
 	{

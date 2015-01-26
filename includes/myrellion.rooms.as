@@ -869,7 +869,7 @@ public function initializeMyrellionRooms():void
 	//801 Airport (Checkpoint), 2F
 	rooms["801"] = new RoomClass(this);
 	rooms["801"].roomName = "AIRPORT\n2F";
-	rooms["801"].description = "The inside of the airfield terminal is more of the same from the outside: armed guards standing around, passively watching the crowd going in and out. You're shuffled into a line and your documents examined, treated just like any other myr coming through. After a short check, you're cleared to come and go from the city.\n\nTo the west lies several long elevator shafts down to the city proper. Stepping a little closer, you can see the dizzying drop down to the hollowed-out depths that support the myr city. Dozens of tiny lights flicker in the darkness, a field of tiny yellow specks in the distance.\n\nThe tarmac doors are to the east, opening and closing in quick succession as uniformed myr soldiers and wealthy-looking civilians of both colors come and go.";
+	rooms["801"].description = "The inside of the airfield terminal is more of the same from the outside: armed guards standing around, passively watching the crowd going in and out. You're shuffled into a line and your documents examined, treated just like any other myr coming through. After a short check, you're cleared to come and go from the city.\n\nTo the west lie several long elevator shafts down to the city proper. Stepping a little closer, you can see the dizzying drop down to the hollowed-out depths that support the myr city. Dozens of tiny lights flicker in the darkness, a field of tiny yellow specks in the distance.\n\nThe tarmac doors are to the east, opening and closing in quick succession as uniformed myr soldiers and wealthy-looking civilians of both colors come and go.";
 	rooms["801"].planet = "PLANET: MYRELLION";
 	rooms["801"].system = "SYSTEM: SINDATHU";
 	rooms["801"].eastExit = "800";
@@ -1080,7 +1080,7 @@ public function initializeMyrellionRooms():void
 	//Street N20
 	rooms["816"] = new RoomClass(this);
 	rooms["816"].roomName = "\nSTREET";
-	rooms["816"].description = "The street here is largely dominated by a parked Federation army vehicle that looks like a cross between a tank and a fuel trunk, and reeks of promethium. A handful of red myr troops are huddled around the vehicle, squabbling over how to repair it.";
+	rooms["816"].description = "The street here is largely dominated by a parked Federation army vehicle that looks like a cross between a tank and a fuel truck, and reeks of promethium. A handful of red myr troops are huddled around the vehicle, squabbling over how to repair it.";
 	rooms["816"].system = "SYSTEM: SINDATHU";
 	rooms["816"].eastExit = "817";
 	rooms["816"].westExit = "815";
@@ -1135,7 +1135,7 @@ public function initializeMyrellionRooms():void
 	//Street P14
 	rooms["820"] = new RoomClass(this);
 	rooms["820"].roomName = "\nSTREET";
-	rooms["820"].description = "This street connects the main thoroughfair in the north with the road to the city gates down south. A sign indicates Kressia's airfield lies to the northeast, and the city park to the southwest.";
+	rooms["820"].description = "This street connects the main thoroughfare in the north with the road to the city gates down south. A sign indicates Kressia's airfield lies to the northeast, and the city park to the southwest.";
 	rooms["820"].system = "SYSTEM: SINDATHU";
 	rooms["820"].northExit = "805";
 	rooms["820"].southExit = "819";
@@ -1228,7 +1228,7 @@ public function initializeMyrellionRooms():void
 	//827 - tradin' poast
 	rooms["827"] = new RoomClass(this);
 	rooms["827"].roomName = "TRADING\nPOST";
-	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeled it as a “<i>Federation Supply and Trading Post. Offworlders, inquire within.</i>” Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
+	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeling it as a “<i>Federation Supply and Trading Post. Offworlders, inquire within.</i>” Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
 	rooms["827"].system = "SYSTEM: SINDATHU";
 	rooms["827"].westExit = "819";
 	rooms["827"].moveMinutes = 2;

@@ -837,7 +837,7 @@ public function syriReverseCowgirlConsensualization():void {
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Brushing a hand across the ausar beauty's cheek, you tell her you'd like a front seat view of that nice, firm ass of hers bouncing on your cock. She grins down at you - the perfect opportunity for you to plant a kiss on her lips, cupping her cheeks and pulling her down. Her breath catches, voice melting into a low, contented moan as she relaxes in your arms.");
 
-	output("\n\n<i>“Is that how you " + pc.race() + " say 'please'?”</i>  she says, moving down to kiss along your neck, then shoulders. <i>“I prefer to pitch, captain, but for you...”</i>");
+	output("\n\n<i>“Is that how you " + plural(pc.race()) + " say 'please'?”</i>  she says, moving down to kiss along your neck, then shoulders. <i>“I prefer to pitch, captain, but for you...”</i>");
 
 	output("\n\nSyri turns around atop you, planting her pert little ass right in front of your face as she grabs [pc.oneCock] in her firm, furred grip, giving it a few experimental pumps. Your prick jumps to attention, right into her waiting maw. Her tongue flicks out, trailing from base to [pc.cockHead " + x + "] until her lips wrap around your glans, planting a kiss right on the tip top of your prick. You lean back and sigh as Syri goes to work, pumping the shaft of your [pc.cock " + x + "] as her mouth tends the head, slathering your first inches in wet ausar kisses.");
 
