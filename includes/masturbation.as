@@ -1624,7 +1624,7 @@ public function wutwutindabuttbuttFap():void
 	}
 	if (pc.hasTailCunt())
 	{
-		output(" Your [pc.tailcunt] lets out its own squirt of feminine juices, wishing it was dousing a real dick with its [pc.girlCum].");
+		output(" Your [pc.tailCunt] lets out its own squirt of feminine juices, wishing it was dousing a real dick with its [pc.girlCum].");
 	}
 	if (!pc.hasCock() && !pc.hasVagina() && !pc.hasTailCock() && !pc.hasTailCunt())
 	{
