@@ -703,7 +703,7 @@ public function foreskinWorshipCumWithDick():void {
 		foreskinPlayJizzOnZil();
 	}
 	//{if #Dicks = 1 & NOT SUCKABLE}
-	else if(pc.canSelfSuck(-1)) {
+	else if(!pc.canSelfSuck(-1)) {
 		output("\n\nYou relish in the sensation of your gooey sticky hand gliding up and down your length. You pause to rub the tip of your [pc.cock] with your palm, working more and more of the zil’s natural lubricant into your penis. You feel your [pc.cock] growing more and more sensitive until you finally feel your [pc.balls] tense up and you let yourself ride the wave of your orgasm.");
 		output("\n\nYou aim your [pc.cock] at the reclining Zil, who’s struggling to sit up and looks at you, golden irises focused on your [pc.cock] as the first volley of your own [pc.cum] rockets out of the tip of your dick and hits him square between the eyes. He gasps in surprise as the next shot of your ejaculate hits him in directly in the mouth. Swallowing your creamy load down, he meekly asks you to stop, but each new load of your [pc.cum] lands on his chitinous hide. Finally, your orgasm subsides and you look down at the poor zil plastered in your [pc.cum].");
 		foreskinPlayJizzOnZil();
