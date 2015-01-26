@@ -96,7 +96,7 @@
 					kGAMECLASS.output(" come away under your fingers, ");
 					if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("fur");
 					else kGAMECLASS.output("scales");
-					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinColor] skin underneath is exposed.");
+					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 					changes++;
 				}
