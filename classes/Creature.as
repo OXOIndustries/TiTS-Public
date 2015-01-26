@@ -2501,8 +2501,9 @@
 			temp += armor.fortification + upperUndergarment.fortification + lowerUndergarment.fortification + accessory.fortification + shield.fortification;
 			return temp;
 		}
-		public function getResistance(type: int): Number {
-			var total: Number = resistances[type];
+		public function getResistance(type: int): Number {			
+			var total:Number = 0;
+			total += resistances[type];
 			total += bonusResistances[type];
 			total += armor.bonusResistances[type];
 			total += accessory.bonusResistances[type];

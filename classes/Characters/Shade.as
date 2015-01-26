@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Accessories.LightningDuster;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Guns.ArcCaster;
 	import classes.kGAMECLASS;
@@ -37,6 +38,8 @@
 			this.rangedWeapon = new ArcCaster();
 
 			this.shield = new ReaperArmamentsMarkIIShield();
+			
+			this.accessory = new LightningDuster();
 			
 			this.physiqueRaw = 21;
 			this.reflexesRaw = 31;
@@ -170,7 +173,8 @@
 			this.inventory.push(new ArcCaster());
 
 			this._isLoading = false;
-		}	
+		}
+		
 		override public function setDefaultSexualPreferences():void
 		{
 			//LIKES

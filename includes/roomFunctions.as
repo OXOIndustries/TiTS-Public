@@ -10,6 +10,7 @@ import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
+import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
@@ -105,6 +106,37 @@ public function debugMenus():void
 	addButton(5, "XP", thisIsWhyWeCantHaveNiceThings);
 	
 	addButton(6, "Pass Time", thisIsWhyWeCantHaveNiceThings);
+}
+
+public function debugMenusTwo():void
+{
+	clearMenu();
+	output("The secondary room of debug. Because we can't have nice things.");
+	
+	addItemButton(0, new LightningDuster(), function():void {
+		output("\n\nLightning Duster.\n");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new LightningDuster());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(1, new ShockBlade(), function():void {
+		output("\n\Shockblade Get.\n");
+		
+		var foundLootItems:Array = [new ShockBlade()];
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
 }
 
 public function thisIsWhyWeCantHaveNiceThings():void

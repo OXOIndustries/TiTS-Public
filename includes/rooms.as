@@ -4448,6 +4448,16 @@ public function initializeRooms():void
 	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG1"].runOnEnter = debugMenus;
+	
+	// Room name is specifically designed to trip up spam filters with a known testing string.
+	rooms["DEBUG2"] = new RoomClass(this);
+	rooms["DEBUG2"].roomName = "\nDEBUG ROOM";
+	rooms["DEBUG2"].description = "";
+	rooms["DEBUG2"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG2"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG2"].eastExit = "DEBUG1";
+	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
+	rooms["DEBUG2"].runOnEnter = debugMenusTwo;
 }
 
 /*
