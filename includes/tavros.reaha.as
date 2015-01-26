@@ -77,7 +77,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 		else addButton(1, "Talk", talkWithFollowerReaha);
 	}
 	else addDisabledButton(1, "Talk");
-	if (reahaAddictionTherapyAvailable()) addDisabledButton(3, "Addiction");
+	if (!reahaAddictionTherapyAvailable()) addDisabledButton(3, "Addiction");
 	else
 	{
 		addButton(3, "Addiction", reahaAddictionTherapy, undefined, "Addiction Therapy", "Help wean Reaha off of her pleasure patches. Fucking her brains out will help lessen her withdrawal.");

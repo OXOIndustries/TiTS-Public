@@ -920,7 +920,7 @@ public function reahaAddictionTherapy():void
 	reahaAddiction(-5);
 	reahaConfidence(5);
 
-	output("\n\n<i>“Time to work on getting rid of");
+	output("<i>“Time to work on getting rid of");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" those");
 	else output(" that");
 	output(", you say, pointing to the pleasure patch");
