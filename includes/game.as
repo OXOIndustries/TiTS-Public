@@ -595,7 +595,6 @@ public function statusTick():void {
 				shitToCut[shitToCut.length] = x;
 				//trace("Marking slot: " + x + " to cut");
 			}
-			
 		}
 	}	
 	
