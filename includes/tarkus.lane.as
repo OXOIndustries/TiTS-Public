@@ -167,6 +167,8 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 				if (flags["LANE_FIRST_HYPNO_RETURN"] != 2)
 				{
+					flags["LANE_FIRST_HYPNO_RETURN"] = 1; // Set flag to trigger the actual first time message interaction
+					
 					output("As you walk the biomes of "+ getPlanetName() +", you can’t help but feel something is a little... off. Different, from when it was just a few moments ago. You flex your ears, listening for anything out of the ordinary, but you can’t hear anything. You look down your body, for anything alien that might have attached itself to you, but you’re completely clean.");
 
 					output("\n\nFor whatever reason, you’re drawn to your codex, to know the time. It displays the time on all known and visited planets, including a clock for Terran’s time in the right hand corner. Seeing that clock there reminds you of something about Terran’s time, but what....");
