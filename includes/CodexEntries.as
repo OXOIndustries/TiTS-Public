@@ -44,23 +44,19 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydians",sydianCodexEntry);
-	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydians",sydianCodexEntry);	
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
-	
-	
-	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);	
 }
 
 public function codexHomeFunction():void
@@ -1503,4 +1499,46 @@ public function sionachCodexEntry():void
 	outputCodex("\n\n");
 
 	CodexManager.viewedEntry("Sionach");
+}
+
+public function cockvinesCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("COCKVINE");
+	outputCodex(header("Cockvine"));
+	outputCodex("<b>Name (Singular & Plural):</b> Cockvine");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Overview"));
+	outputCodex("Hydrus Constuprula, better known by its colloquial name Cockvine, is a mobile, parasitic, invasive, troglophile plant species native to Myrellion. It is endemic to large parts of the Myrellion underground, a status acknowledged by both sides of the on-going Myr conflict to be a result of its historical use as a biological weapon. A Class A non-sentient species, it is illegal for it to be transported or for individuals seeded by it to travel outside Myrellion.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Growth cycles and physiology"));
+	outputCodex("At “birth” cockvine seedlings resemble short, thick, green snakes with a grasping, anemone-like hand at one end and a slit, blunt purple head of variable shape at the other. The hand end is remarkable for its stem cell-like versatility – whilst it functions primarily as a catcher and mouth for the cockvine seedling, it not only acts as the beginning of its root system once it enters adulthood but it can also be used to actively splice itself not just to other cockvines but to animal life as well.");
+
+	outputCodex("\n\nAside from the rings of flexible, fibrous muscle that they retain throughout their lives, cockvines are seeded with a huge reserve of fructose-based energy which allows them to move swiftly away from their place of origin. During this stage of their life cockvines show a snake-like aversion to large sapient creatures, actively avoiding them except in certain circumstances (see parasitism below). They do however have a ravenous attitude towards life of a similar size to it and during this, their most mobile period of existence, hunt and eat as much food as they can in preparation for the dramatic growth stages ahead. Cockvine seedlings are omnivorous and will consume almost anything, cited as a key reason for its over-reaching success on Myrellion.");
+
+	outputCodex("\n\nLike most herbaceous life cockvines react to light and moisture and, once an infant cockvine has consumed enough, it will seek out a dark, moist place to germinate. They are particularly fond of deep, narrow crevices, as these are ideal for the purposes of their adult selves. Here the cockvine buries its hand end into the earth and proceeds to branch out a considerable root system. The stem of the plant thickens and then sprouts thick vines, similar in appearance to its infant state but far longer and stronger. Large, successfully rooted cockvines have the ability to attract less fortunate infants; these may choose to graft themselves symbiotically to it in order to provide one more tentacle to the alpha cockvine, thus increasing the overall chances of the creature successfully snagging prey. An adult cockvine can have as many as twenty appendages, each up to thirteen feet in length.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Predatory habits and breeding"));
+	outputCodex("When ready to feed or mate adult cockvines extend tentacles out of their burrow, laying them still on the ground, relying on the dark of their chosen habitat and the swiftness of their grab to surprise prey. Cockvines are sensitive to vibration and express two different behaviors based on the size of an animal approaching its burrow. Smaller creatures – observational data suggests the upper bound for this category is Terran dog-sized animals - are swept straight into the crevice and, if they cannot escape in time, are slid into a pit of digestive juices below the main stem.");
+
+	outputCodex("\n\nBigger creatures are regarded as potential mates. Once a creature in this category has been induced into its burrow a cockvine will attempt to immobilize it with its tentacles. Cockvine tentacles sweat an oily substance and seep a pungent herbal semen from their tips in the presence of potential mates; this has a muscle-relaxing, aphrodisiac effect which in the close confines of a cockvine burrow is described as overpowering. Once a victim has been incapacitated the cockvine mates with it vigorously in every way it possibly can. Although they are only capable of inseminating functioning wombs, cockvines cannot discriminate between different entrances on a mate and simply seek to seed every hole as thoroughly as they can. Once it has finished, the cockvine carefully discharges the victim from its burrow and then retracts itself.");
+
+	outputCodex("\n\nAfter insemination en utero cockvines only take around a week to come to term; litter sizes vary between 8 and 20. In itself the task of birthing them is described as extremely pleasurable, however mating with and bearing cockvines has been known to cause several side effects, including increased vaginal and anal wetness as well as outright contraction of cockvine parasitism.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Parasitism"));
+	outputCodex("Because of the specificity of location the seedlings need in order to germinate it is not at all possible for every individual cockvine to find an ideal place or stockpile enough energy to enter adulthood. The species has found a striking way of surmounting this difficulty, thanks to its hand end’s ability to bind itself not just to adult cockvines but to other creatures as well.");
+
+	outputCodex("\n\nThe process occurs when a cockvine seedling has gone beyond the stage where it can successfully root itself, or otherwise senses it is better off attempting to graft itself to a more successful life-form. Cockvines acting in this way usually seek out alphas of their species to bind themselves to, however they are perfectly capable of achieving union with any creature both large enough to support them and either willing to do so or too slow to prevent it. In either case the grafted cockvine couples with the host’s nervous system and surrenders most of its own control to the host, with the larger creature able to feel and use the parasite as their own appendage. The cockvine does however retain its semen sacs and instinct to breed, and is occasionally able to overwhelm its host with a desire to use it, allowing it the opportunity to propagate its seed over a far wider range than it otherwise could. Cockvine parasitism has also been reported as a consequence of mating with an adult specimen.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Hydrus Constuprula originates from the small continent of Irskand, and was discovered and classified by the former Red Myr nation of Harokees circa PUTDATEHERE. A bleak and inhospitable place even by Myrellion standards, the plant form had evolved to suit Irskand and was not particularly widespread. Harokees was at this time locked in a violent dispute with the Gold Myr over the relatively untouched landmass of Undandin; seeing its potential to disrupt Gold attempts to cultivate the Undandin fungus fields, the Red military approved cockvine’s covert release into Gold territory. The species duly exploded in population, spreading well beyond Undandin to infect virtually every corner of the Myrellion underground, despite a number of poorly coordinated joint efforts on the part of the Myr to wipe it out.");
+
+	outputCodex("\n\nThe internecine warfare between the Myr, Nyrea and the Bothrioc and the subsequent movement of peoples, breakdown of infrastructure and land wastage has only increased cockvine’s spread. The plant is also recorded as being used by both sides of the Myr conflict as a form of sadistic punishment on prisoners of war; once a kept plant has finished with captives they are released deep in their home territory, with the explicit hope of their offspring spreading chaos there. This practice is expressly forbidden by international law.");
+	
+	CodexManager.viewedEntry("Cockvines");
 }
