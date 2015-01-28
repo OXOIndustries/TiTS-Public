@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.Bovinium;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -57,6 +58,7 @@
 			this.inventory.push(new Chocolac());
 			this.inventory.push(new Pussybloom());
 			this.inventory.push(new Pussyblossom());
+			this.inventory.push(new Bovinium());
 
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;

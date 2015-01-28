@@ -22,6 +22,7 @@ import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
 import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
+import classes.Items.Transformatives.Bovinium;
 import classes.Util.RandomInCollection;
 
 public function mhengaShipHangarFunc():Boolean
@@ -136,6 +137,21 @@ public function debugMenusTwo():void
 		useItemFunction = mainGameMenu;
 		
 		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(2, new Bovinium(), function():void {
+		output("\n\nBovinium Get.\n");
+		
+		var items:Array = [];
+		var bov:Bovinium = new Bovinium();
+		bov.quantity = 10;
+		items.push(bov);
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(items);
 	});
 }
 

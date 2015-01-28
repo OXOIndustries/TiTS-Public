@@ -56,7 +56,8 @@ package classes.Items.Transformatives
 				//if PC has non-human skin:
 				if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 				{
-					output("Your [pc.skinFurScales] start to itch powerfully. It starts as an annoyance, making you rub at an errant patch of your inhuman flesh, but the sensations spread and intensify.");
+					// ugh - skinFurScales isn't appropriate for this.
+					output("Your [pc.skin] starts to itch powerfully. It starts as an annoyance, making you rub at an errant patch of your inhuman flesh, but the sensations spread and intensify.");
 					if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" After a few moments, you start to see patches of fur falling off as you itch yourself. More and more of your lush coating drops off with every moment, until you're left bare naked! <b>Your fur is gone!</b>");
 					else if (target.skinType == GLOBAL.SKIN_TYPE_SCALES) output(" After a few moments, you start to see some of your scales flaking off. More and more drop to the ground as you scratch yourself, tearing away in big chunks until <b>you're left with surprisingly normal human skin.</b>");
 					else if (target.skinType == GLOBAL.SKIN_TYPE_GOO)
@@ -109,7 +110,7 @@ package classes.Items.Transformatives
 				var cCocks:Array = [];
 				
 				// Cocks longer than 4" shrink
-				for (i = 0; i < target.cocks.length; i++)
+				for (var i:int = 0; i < target.cocks.length; i++)
 				{
 					if (target.cocks[i].cLengthRaw > 4) tCocks.push(i);
 				}
@@ -151,10 +152,12 @@ package classes.Items.Transformatives
 					}
 					else if (cCocks.length > 1)
 					{
+						changes++;
 						output(" Instinctively, you desperately clutch at your shortening lengths, trying to prevent the loss -- but your body is adamant, spurred on by the Bovinium candy. By the time the loss is done, you're certain that <b>your cocks have shrunk " + lLoss + " inches!</b>\n\n");
 					}
 					else
 					{
+						changes++;
 						output(" Instinctively, you desperately clutch at your shortening length, trying to prevent the loss -- but your body is adamant, spurred on by the Bovinium candy. By the time the loss is done, you're certain that <b>your cock has shrunk " + lLoss +" inches!</b>\n\n");
 					}
 				}
@@ -186,7 +189,7 @@ package classes.Items.Transformatives
 					if (!doneCockChangeText)
 					{
 						output("A bolt of... not quite pain, but certainly not pleasure races up your spine! You clutch your crotch, the source of your discomfort,");
-						if (!pc.isNude()) output(" and strip away your [pc.gear] to reveal");
+						if (!target.isNude()) output(" and strip away your [pc.gear] to reveal");
 						else output(" and look down to see"); 
 						output(" that your [pc.cockSmallest] is shrinking, receedinging back into your crotch!");
 						
@@ -203,16 +206,16 @@ package classes.Items.Transformatives
 					{
 						output(" The shrinking continues, and continues... and continues. You moan helplessly as <b>your [pc.cockSmallest] vanishes completely into your groin.</b> You're left");
 						var cocksRemoved:Boolean = false;
+						changes++;
 						for (i = 0; i < cCocks.length; i++)
 						{
 							cocksRemoved = true;
-							doneChange = true;
 							target.removeCock(cCocks[i], 1);
 						}
 						
 						if (target.hasCock()) 
 						{
-							output(" with " + num2Text(cCocks.length) +" less cock");
+							output(" with " + kGAMECLASS.num2Text(cCocks.length) +" less cock");
 							if (cCocks.length > 1) output("s");
 						}
 						else output(" completely without cocks");
@@ -239,7 +242,7 @@ package classes.Items.Transformatives
 					
 					if (target.ballSizeRaw > 3) target.ballSizeRaw -= 1;
 					else if (target.ballSizeRaw > 2) target.ballSizeRaw = 1;
-					doneChange = true;
+					changes++;
 				}
 			}
 			// Remove balls entirely if no cocks remain
@@ -254,7 +257,7 @@ package classes.Items.Transformatives
 				target.ballSizeRaw = 0;
 				target.ballSizeMod = 0;
 				if (target.hasStatusEffect("Uniball")) target.removeStatusEffect("Uniball");
-				doneChange = true;
+				changes++;
 			}
 			
 			// Genderless autoacquires vagina
@@ -266,7 +269,7 @@ package classes.Items.Transformatives
 				
 				target.createVagina();
 				target.clitLength = 0.5;
-				doneChange = true;
+				changes++;
 			}
 			
 			if (target.femininity < 75 && target.femininityUnlocked(target.femininity + 5))
@@ -276,21 +279,25 @@ package classes.Items.Transformatives
 				output("You feel a slight change in your facial structure -- your lips become a bit more pronounced, your eyelashes grow a bit, your nose becomes a little cuter. Many subtle, small changes occur over the course of a minute or so. When they finish, <b>you feel much more feminine</b>!");
 				
 				target.femininity += 5;
-				doneChange = true;
+				changes++;
 				
 				if (startMF != target.mf("m", "f")) output(" <b>You're now sure anybody who so much as glanced at you would think you're a female.</b>\n\n");
 			}
+			
+			return changes;
 		}
 		
 		private function t2Changes(target:Creature, tChanges:int):int
 		{
+			var changes:int = 0;
+			
 			var grownTitties:Boolean = false;
 				
 			// Boobicles
 			if (target.breastRows[0].breastRatingRaw < 40)
 			{
 				var grownInitialTits:Boolean = false;
-				doneChange = true;
+				changes++;
 				
 				if (target.breastRows[0].breastRatingRaw < 1) grownInitialTits = true;
 				
@@ -322,7 +329,7 @@ package classes.Items.Transformatives
 			if (!target.canLactate())
 			{
 				target.boostLactation(75);
-				doneChange = true;
+				changes++;
 				
 				output("You feel a shift of weight in your [pc.chest], and your hands roam up your");
 				if (grownTitties) output(" growing ");
@@ -331,18 +338,20 @@ package classes.Items.Transformatives
 			else if (target.milkMultiplier < 150) // SWINGING IN THE DARK HERE
 			{
 				target.boostLactation(5);
-				doneChange = true;
+				changes++;
 				
 				output("You feel a shift of weight in your [pc.chest], and you get a distinctly more... full... feeling from your breasts. You give your teat an experimental squeeze, and are rewarded with a much more vigorous jet of [pc.milkNoun] that spurts out at your touch. You're pretty sure that <b>you're lactating even more now!</b>\n\n");
 			}
 			
 			if (target.milkType != GLOBAL.FLUID_TYPE_MILK && rand(3) == 0)
 			{
-				doneChange = true;
+				changes++;
 				target.milkType = GLOBAL.FLUID_TYPE_MILK;
 				
 				output("You feel a strange, twisting sensation in your [pc.chest], strong enough to make you clutch at your tits. When you put even the slightest amount of pressure on them, you're treated to a sudden gush of milk -- milk, thick and rich, just like a cow's. You can't resist the urge to bring one of your nipples up to your mouth and suckle from yourself, drinking down your new creamy bounty. Absolutely delicious! <b>Your boobs now produce milk!</b>\n\n");
 			}
+			
+			return changes;
 		}
 		
 		private function t3Changes(target:Creature, tChanges:int):int
@@ -354,7 +363,7 @@ package classes.Items.Transformatives
 			{
 				//Up to big, motherly hips
 				output("You wobble unsteadily, feeling your body shifting and expanding");
-				if (target.hipRating > 10) output(" and straining against your clothes");
+				if (target.hipRatingRaw > 10) output(" and straining against your clothes");
 				output(". Your body mass is shifting to grow your flanks to a more suitably bovine size! You spend a few moments adjusting to your new shape, enjoying the jiggle of your body.\n\n");
 				
 				target.hipRatingRaw += 1
@@ -439,7 +448,7 @@ package classes.Items.Transformatives
 
 			//Moderate chance for tone loss
 			//Small increments, but no minimum. Can take you all the way down to 0 tone.
-			if (rand(6) == 0 && changes < tChanges && target.lone > 0)
+			if (rand(6) == 0 && changes < tChanges && target.tone > 0)
 			{
 				target.tone -= 2;
 				if (target.tone > 50) target.tone -= 2;
@@ -540,12 +549,14 @@ package classes.Items.Transformatives
 			
 			//Moderate chance to increase vaginal wetness
 			//Up to very wet.
-			if (rand(6) == 0 && changes < tChanges && target.driestVaginalWetness() <= 3)
+			if (rand(6) == 0 && changes < tChanges && target.hasVagina() && target.driestVaginalWetness() <= 3)
 			{
 				for (var i:int = 0; i < target.vaginas.length; i++)
 				{
 					if ((target.vaginas[i] as VaginaClass).wetnessRaw <= 3) target.vaginas[i].wetness += 1;
 				}
+				
+				changes++;
 				
 				output("You shiver as a lurid wetness seeps out of your [pc.cunts]. You cross your [pc.legs], groaning and rubbing a finger through the valley of ");
 				if (target.vaginas.length > 1) output(" one of");
@@ -553,7 +564,7 @@ package classes.Items.Transformatives
 			}
 
 			//High chance for increased Fertility
-			if (rand(3) == 0 && changes < tChanges && && target.fertilityRaw < 2)
+			if (rand(3) == 0 && changes < tChanges && target.hasVagina() && target.fertilityRaw < 2)
 			{
 				target.fertilityRaw += 0.1;
 				changes++;
@@ -566,6 +577,7 @@ package classes.Items.Transformatives
 			if (rand(20) == 0 && changes < tChanges && target.libidoRaw <= 70)
 			{
 				target.libidoRaw += 3 + rand(5);
+				changes++;
 				
 				output("Your bovine mutations leave you feeling lustier. Thoughts of big, hung bull-men pounding your [pc.vagOrAss], filling you with cum and draining your [pc.breasts] of all their [pc.milkNoun]. You shiver, wrapping your arms around yourself at the lusty day-dream. You're almost salivating as your mind wanders to images of being gangbanged, double-penetrated, suckled from, and in every way sexually used by ultra-hung boys.\n\n");
 
@@ -579,18 +591,53 @@ package classes.Items.Transformatives
 				}
 			}
 
+			return changes;
 		}
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var tChanges:int = 2 + rand(2);
+			var totalChanges:int = 0;
 			var changes:int = 0;
 			
+			clearOutput();
 			output("You take the small bottle labeled \"Bovinium\" out and crack it open. A single, small, cow-shaped gummy candy drops into your palm when you up-end it. You pick the bovine-themed treat up and squint at it: it's even got little black spots on its white mass, making it look just like a dairy cow. Is that it? It's cute, at least.");
 
 			output("\n\nWell, here goes nothing! You give yourself an experimental \"moo!\" and down the transformative candy. It's sweet, and goes down easily. Tastes almost like milk, though tinged with a strange rusty flavor. Finished with your treat, you toss the bottle aside and wait for the changes to begin...\n\n");
 
-			changes += t0Changes(target, tChanges);
+			changes = t0Changes(target, tChanges);
+			totalChanges += changes;
+			tChanges -= changes;
+			
+			if (totalChanges == 0)
+			{
+				changes = t1Changes(target, tChanges);
+				totalChanges += changes;
+				tChanges -= changes;
+			}
+			
+			if (tChanges > 0 && totalChanges == 0)
+			{
+				changes = t2Changes(target, tChanges);
+				totalChanges += changes;
+				tChanges -= changes;
+			}
+			
+			if (tChanges > 0 && totalChanges == 0)
+			{
+				changes = t3Changes(target, tChanges);
+				totalChanges += changes;
+				tChanges -= changes;
+			}
+			
+			if (tChanges > 0)
+			{
+				changes = t3Changes(target, tChanges);
+				totalChanges += changes;
+				tChanges -= changes;
+			}
+			
+			return false;
 		}
 	}
 
