@@ -142,6 +142,7 @@ package classes.Characters
 			
 			// Small chance to get a spear
 			if (rand(10) == 0) combatMaiden.inventory.push(new VanaeSpear());
+			else if(rand(10) <= 6) combatMaiden.inventory.push(new SkySap());
 			
 			kGAMECLASS.foes.push(combatMaiden);
 		}

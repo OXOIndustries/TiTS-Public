@@ -17,7 +17,6 @@ package classes.Characters
 	 */
 	public class HuntressVanae extends Creature
 	{
-		
 		public function HuntressVanae() 
 		{
 			this._latestVersion = 1;
@@ -147,6 +146,7 @@ package classes.Characters
 			else
 			{
 				if (rand(10) <= 1) combatMaiden.inventory.push(new VanaeSpear());
+				else if(rand(10) <= 6) combatMaiden.inventory.push(new SkySap());
 			}
 			
 			kGAMECLASS.foes.push(combatMaiden);
