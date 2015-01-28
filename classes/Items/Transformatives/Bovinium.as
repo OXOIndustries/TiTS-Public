@@ -605,25 +605,20 @@ package classes.Items.Transformatives
 
 			output("\n\nWell, here goes nothing! You give yourself an experimental \"moo!\" and down the transformative candy. It's sweet, and goes down easily. Tastes almost like milk, though tinged with a strange rusty flavor. Finished with your treat, you toss the bottle aside and wait for the changes to begin...\n\n");
 
+			// T0 must happen before any others
 			changes = t0Changes(target, tChanges);
+			if (changes > 0) return false;
+			
+			// T1 must "complete" before the rest can kick in
+			changes = t1Changes(target, tChanges);
+			if (changes > 0) return false;
+
+			// T2 on kinda bleed together, shit should be weighted towards T2 until all of T2 is complete, then T3 etc.
+			changes = t2Changes(target, tChanges);
 			totalChanges += changes;
 			tChanges -= changes;
 			
-			if (totalChanges == 0)
-			{
-				changes = t1Changes(target, tChanges);
-				totalChanges += changes;
-				tChanges -= changes;
-			}
-			
-			if (tChanges > 0 && totalChanges == 0)
-			{
-				changes = t2Changes(target, tChanges);
-				totalChanges += changes;
-				tChanges -= changes;
-			}
-			
-			if (tChanges > 0 && totalChanges == 0)
+			if (tChanges > 0)
 			{
 				changes = t3Changes(target, tChanges);
 				totalChanges += changes;
