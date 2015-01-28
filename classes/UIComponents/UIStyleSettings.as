@@ -835,6 +835,16 @@ package classes.UIComponents
 			return UIStyleSettings._gRoomLocationTextGlow;
 		}
 		
+		private static var _gRoomLocationTextBustGlow:GlowFilter;
+		public static function get gRoomLocationTextBustGlow():GlowFilter
+		{
+			if (UIStyleSettings._gRoomLocationTextBustGlow == null)
+			{
+				UIStyleSettings._gRoomLocationTextBustGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 4, 4, 5, 1, false, false);
+			}
+			return UIStyleSettings._gRoomLocationTextBustGlow;
+		}
+		
 		private static var _gButtonGlow:GlowFilter;
 		public static function get gButtonGlow():GlowFilter
 		{

@@ -24,6 +24,7 @@ package classes.UIComponents.SideBarComponents
 		private var _systemText:TextField;
 		
 		private var _npcBusts:Sprite;
+		private var _bustBackground:Sprite;
 		private var _bustOrderSet:Boolean;
 		
 		public function get roomText():TextField { return _roomText; }
@@ -75,6 +76,16 @@ package classes.UIComponents.SideBarComponents
 			_systemBlock.x = Math.floor(_planetBlock.x);
 			_systemBlock.y = Math.floor(_planetBlock.y + _planetBlock.height + 6);
 			
+			// Bust background framing
+			_bustBackground = new Sprite();
+			_bustBackground.graphics.beginFill(UIStyleSettings.gForegroundColour);
+			_bustBackground.graphics.drawRect(0, 0, 179, 140);
+			_bustBackground.graphics.endFill();
+			_bustBackground.x = _roomBlock.x + 5;
+			_bustBackground.y = _roomBlock.y + 5;
+			this.addChild(_bustBackground);
+			_bustBackground.visible = false;
+			
 			// Bust Element
 			_npcBusts = new Sprite();
 			
@@ -82,21 +93,21 @@ package classes.UIComponents.SideBarComponents
 			
 			_npcBusts.x = _roomBlock.x + 5;
 			_npcBusts.y = _roomBlock.y + _roomBlock.height + 9; // We're going to "grow" the npcBusts height upward, rather than down like usual
-			
+		
 			// Bust mask
 			var bustMask:Sprite = new Sprite();
 			bustMask.graphics.beginFill(0xFFFFFF, 1);
-			bustMask.graphics.drawRect(0, 0, 189, 150);
+			bustMask.graphics.drawRect(0, 0, 179, 140);
 			bustMask.graphics.endFill();
-			bustMask.x = _roomBlock.x;
-			bustMask.y = _roomBlock.y;
+			bustMask.x = _roomBlock.x + 5;
+			bustMask.y = _roomBlock.y + 5;
 			this.addChild(bustMask);
 			_npcBusts.mask = bustMask;
 			
 			// Text Elements
 			_roomText = new TextField();
 			_roomText.x = _roomBlock.x + 5;
-			_roomText.y = _roomBlock.y + 70; // Was 60, should probably do something different though, an anchor to roomBlock.y, set height to same and textAlign from bottom?
+			_roomText.y = _roomBlock.y + 69; // Was 60, should probably do something different though, an anchor to roomBlock.y, set height to same and textAlign from bottom?
 			_roomText.width = 179;
 			_roomText.height = 90;
 			_roomText.defaultTextFormat = UIStyleSettings.gLocationBlockRoomFormatter;
@@ -113,7 +124,7 @@ package classes.UIComponents.SideBarComponents
 			
 			_planetText = new TextField();
 			_planetText.x = _planetBlock.x + 5;
-			_planetText.y = _planetBlock.y - 4;
+			_planetText.y = _planetBlock.y - 3;
 			_planetText.width = 179;
 			_planetText.height = 28;
 			_planetText.defaultTextFormat = UIStyleSettings.gLocationBlockPlanetSystemFormatter;
@@ -124,12 +135,13 @@ package classes.UIComponents.SideBarComponents
 			_planetText.wordWrap = false;
 			_planetText.mouseEnabled = false;
 			_planetText.mouseWheelEnabled = false;
+			_planetText.filters = [UIStyleSettings.gRoomLocationTextGlow];
 			
 			this.addChild(_planetText);
 			
 			_systemText = new TextField();
 			_systemText.x = _systemBlock.x + 5;
-			_systemText.y = _systemBlock.y - 4;
+			_systemText.y = _systemBlock.y - 3;
 			_systemText.width = 179;
 			_systemText.height = 28;
 			_systemText.defaultTextFormat = UIStyleSettings.gLocationBlockPlanetSystemFormatter;
@@ -140,6 +152,7 @@ package classes.UIComponents.SideBarComponents
 			_systemText.wordWrap = false;
 			_systemText.mouseEnabled = false;
 			_systemText.mouseWheelEnabled = false;
+			_systemText.filters = [UIStyleSettings.gRoomLocationTextGlow];
 			
 			this.addChild(_systemText);
 		}
@@ -189,6 +202,8 @@ package classes.UIComponents.SideBarComponents
 					if (_npcBusts.getChildAt(0) is bustT)
 					{
 						_npcBusts.visible = true;
+						_bustBackground.visible = true;
+						_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
 						return;
 					}
 					// Otherwise, clear busts
@@ -209,6 +224,8 @@ package classes.UIComponents.SideBarComponents
 				_npcBusts.addChild(bustObj);
 				bustObj.y = -(bustObj.height);
 				_npcBusts.visible = true;
+				_bustBackground.visible = true;
+				_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
 			}
 			else
 			{
@@ -264,6 +281,8 @@ package classes.UIComponents.SideBarComponents
 			if (listMatch == true)
 			{
 				_npcBusts.visible = true;
+				_bustBackground.visible = true;
+				_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
 				return;
 			}
 			
@@ -291,6 +310,8 @@ package classes.UIComponents.SideBarComponents
 				_npcBusts.addChild(bustObj);
 			}
 			_npcBusts.visible = true;
+			_bustBackground.visible = true;
+			_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
 		}
 		
 		private function removeCurrentBusts():void
@@ -308,6 +329,8 @@ package classes.UIComponents.SideBarComponents
 		public function hideBust():void
 		{
 			_npcBusts.visible = false;
+			_bustBackground.visible = false;
+			_roomText.filters = [UIStyleSettings.gRoomLocationTextGlow];
 		}
 		
 		public function bringLastBustToTop():void
