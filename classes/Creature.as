@@ -408,6 +408,7 @@
 		}
 
 		public var skinTone: String = "albino";
+		public var skinAccent: String = "";
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
 			return true;
@@ -2094,7 +2095,10 @@
 				return currPhys;
 			}
 		}
-		
+		public function RQ():Number
+		{
+			return Math.round(reflexes()/reflexesMax()*100);
+		}
 		public function reflexes(arg:Number = 0, apply:Boolean = false):Number
 		{
 			if (apply) 
@@ -6052,7 +6056,8 @@
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
-			if (nukiScore() >= 4) race = "kui-tan"
+			if (nukiScore() >= 4) race = "kui-tan";
+			if (vanaeScore() >= 4) race = "vanae";
 			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3) race = "half-leithan";
@@ -6086,6 +6091,17 @@
 		public function tanukiScore(): int
 		{
 			return nukiScore();
+		}
+		public function vanaeScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_VANAE) counter++;
+			if (tailType == GLOBAL.TYPE_VANAE && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
+			if (totalVaginas(GLOBAL.TYPE_VANAE)) counter++;
+			if (totalCocks(GLOBAL.TYPE_VANAE)) counter++;
+			if (milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) counter++;
+			if (hasStatusEffect("Vanae Markings")) counter++;
+			return counter;
 		}
 		public function nukiScore(): int
 		{
