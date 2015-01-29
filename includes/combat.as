@@ -1455,6 +1455,8 @@ public function teaseMenu(target:Creature):void
 		if(pc.hasCock() || pc.hasVagina()) addButton(2,"Crotch",teaseCrotch,target,"Crotch Tease","Use your [pc.crotch] to tease your enemy.");
 		else addDisabledButton(2,"Crotch");
 		addButton(3,"Hips",teaseHips,target,"Hips Tease","Use your [pc.hips] to tease your enemy.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK && pc.isLactating()) addButton(4,"Milk Squirt",teaseSquirt,target,"Milk Squirt","Spray the enemy with your vanae milk, arousing them.");
+		else if(pc.milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) addDisabledButton(4,"Milk Squirt","Milk Squirt","You do not currently have enough milk available to squirt any.");
 		addButton(14,"Back",combatMainMenu,undefined,"Back","Back out. Recommended if you haven't yet used \"Sense\" to determine your foe's likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe's preferences!");
 	}
 }
@@ -1469,6 +1471,9 @@ public function teaseButt(target:Creature):void {
 }
 public function teaseCrotch(target:Creature):void {
 	tease(target,"crotch");
+}
+public function teaseSquirt(target:Creature):void {
+	tease(target,"squirt");	
 }
 
 //Name, long descript, lust descript, and '"
@@ -2229,6 +2234,27 @@ public function tease(target:Creature, part:String = "chest"):void {
 		clearOutput();
 		chestTeaseText();
 	}
+	else if(part == "squirt")
+	{
+		//Get tease count updated
+		if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
+		teaseCount = flags["TIMES_CHEST_TEASED"];
+		if(teaseCount > 100) teaseCount = 100;
+		
+		if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
+		if(pc.biggestTitSize() < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BREASTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BREASTS);
+		if((pc.bRows() > 1 || pc.totalBreasts() / pc.bRows() > 2) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
+		if(pc.biggestTitSize() >= 25 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+		if(pc.hasFuckableNipples() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
+		
+		clearOutput();
+		squirtTeaseText(target);
+	}
 	else if(part == "hips")
 	{
 		//Get tease count updated
@@ -2317,6 +2343,8 @@ public function tease(target:Creature, part:String = "chest"):void {
 		//Misc Bonuses
 		var bonus:int = 0;
 		if(pc.hasPerk("Pheromone Cloud")) bonus = 1;
+		if(part == "squirt") bonus += 2;
+
 		//Does the enemy resist?
 		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.lustDamageMultiplier() == 0)
 		{
@@ -2330,6 +2358,11 @@ public function tease(target:Creature, part:String = "chest"):void {
 				if(target.plural) output("don't");
 				else output("doesn't");
 				output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
+			}
+			else if(part == "squirt") 
+			{
+				output("\nYour milk goes wide. (0)\n");
+				teaseSkillUp(part);
 			}
 			else if (target is HuntressVanae || target is MaidenVanae)
 			{
@@ -2351,6 +2384,7 @@ public function tease(target:Creature, part:String = "chest"):void {
 		else {
 			//Calc base damage
 			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
+			if(part == "squirt") damage += 5;
 			//Any perks or shit go below here.
 			if(pc.hasPerk("Pheromone Cloud")) damage += 1+rand(4);
 			//Apply randomization
@@ -2362,7 +2396,12 @@ public function tease(target:Creature, part:String = "chest"):void {
 			damage = Math.ceil(damage);
 
 			output("\n");
-			output(teaseReactions(damage,target));
+			if(part == "squirt") 
+			{
+				if(target.plural) output(target.capitalA + target.short + " are splattered with your [vanae.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
+				else output(target.capitalA + target.short + " is splattered with your [vanae.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+			}
+			else output(teaseReactions(damage,target));
 			target.lust(damage);
 			output(" ("+ damage + ")\n");
 			teaseSkillUp(part);
@@ -2379,6 +2418,7 @@ public function teaseSkillUp(part:String):void {
 	else if(part == "butt") flags["TIMES_BUTT_TEASED"]++;
 	else if(part == "hips") flags["TIMES_HIPS_TEASED"]++;
 	else if(part == "chest") flags["TIMES_CHEST_TEASED"]++;
+	else if(part == "squirt") flags["TIMES_CHEST_TEASED"]++;
 }
 
 public function teaseReactions(damage:Number,target:Creature):String {
@@ -2435,6 +2475,11 @@ public function teaseReactions(damage:Number,target:Creature):String {
 		else buffer = target.capitalA + target.short + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
 	}
 	return buffer;
+}
+
+public function squirtTeaseText(target:Creature):void {
+	output("You grab the sides of your [pc.breasts]. With a single squeeze, you squirt a stream of [pc.milk] at your opponent!");
+	pc.milked(25);
 }
 
 public function crotchTeaseText(target:Creature):void {

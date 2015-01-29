@@ -929,7 +929,7 @@
 			return "";
 		}
 		
-		public var ballFullness: Number = 100;
+		public var ballFullness: Number = 50;
 
 		public function ballFullnessUnlocked(newBallFullness:Number):Boolean
 		{
@@ -5070,19 +5070,24 @@
 			//If we're going above 100.
 			if(fullnessDelta + milkFullness > 100)
 			{
-				//If we start below 100, do that normally first
-				if(milkFullness < 100)
+				//Vanae milk just caps at 100.
+				if(milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) milkFullness = 100;
+				else
 				{
-					var subHundredFullness:Number = 100 - milkFullness;
-					milkFullness = 100;
-					fullnessDelta -= subHundredFullness;
+					//If we start below 100, do that normally first
+					if(milkFullness < 100)
+					{
+						var subHundredFullness:Number = 100 - milkFullness;
+						milkFullness = 100;
+						fullnessDelta -= subHundredFullness;
+					}
+					//150%
+					if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
+					//200%
+					if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
+					//Grow at half rate since we're over 100
+					milkFullness += fullnessDelta/2;
 				}
-				//150%
-				if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
-				//200%
-				if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
-				//Grow at half rate since we're over 100
-				milkFullness += fullnessDelta/2;
 			}
 
 			//Not going above 100? Just add it
@@ -5094,7 +5099,7 @@
 				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = 0;
 			}
-			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
+			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
 			return mLsGained;
 		}
 		public function milkCapacity(arg:int = -1):Number
@@ -5229,6 +5234,7 @@
 			//Actually reduce held milk
 			milkFullness -= amount;
 			//Set boob swelling to new appropriate tier
+			//trace("Milk fullness: " + milkFullness);
 			setBoobSwelling();
 			return milkFullness;
 		}
@@ -5505,6 +5511,7 @@
 		}
 		public function cumProduced(minutes: Number): void {
 			var cumDelta:Number = 0;
+			var subDelta:Number = 0;
 			//trace("MINUTES OF CUM CHARGING: " + minutes + " FULLNESS: " + ballFullness);
 			if(isNaN(ballFullness)) 
 			{
@@ -5513,14 +5520,29 @@
 			}
 			
 			// Why is this a loop? Just mul the final thing by total minutes. If we were firing events off that needed to be queued, or if the calculation depended on a value the algo actually changes (ie ballFullness was a part of the calc) then yeah, cycle minutes would be the /simple/ way to do it.
-			cumDelta = refractoryRate / 60 * (ballSize() - perkv1("'Nuki Nuts") + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
+			cumDelta = refractoryRate / 60 * 2; // No balls == replace with 2 for purposes of the calc
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
 			
-			//if(this is PlayerCharacter) trace("Pre Fullness: " + ballFullness)
-
+			//After 60% fullness, cut gains in half.
+			if(ballFullness >= 60)
+			{
+				cumDelta /= 2;
+			}
+			//Crossing into 60% fullness? Hit 60, then cut in half.
+			if(ballFullness < 60 && ballFullness + cumDelta * minutes >= 60)
+			{
+				//Find amount of change needed to hit 60.
+				subDelta = 60 - ballFullness;
+				//Set fullness to 60 and remove a portion of minutes equivalent to the change
+				ballFullness = 60;
+				minutes = minutes * subDelta/(minutes*cumDelta);
+				//Half cumDelta for the remaining minutes
+				cumDelta /= 2;
+			}
 			//Just hit full balls!
 			if(ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
+				trace("BLUE BALLS FOR: " + this.short);
 				//Hit max cum - standard message
 				kGAMECLASS.eventBuffer += "\n\nYou’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] ";
 				if(balls == 1) kGAMECLASS.eventBuffer += "is";
@@ -7565,14 +7587,19 @@
 				}
 			} else if (type == GLOBAL.TYPE_VANAE) {
 				if (!simple) {
-					temp = this.rand(16);
+					temp = this.rand(14);
 					if (temp <= 1) vag += "tentacle-laden gash";
-					else if (temp <= 3) vag += "writhing pussy";
-					else if (temp <= 5) vag += "human-like cunt";
-					else if (temp <= 7) vag += "vanae pussy";
-					else if (temp <= 9) vag += "supple pussy";
-					else if (temp <= 11) vag += "xeno-cunt";
-					else if (temp <= 13) vag += "alien pussy";
+					else if (temp <= 2) vag += "writhing pussy";
+					else if (temp <= 3) vag += "human-like cunt";
+					else if (temp <= 4) vag += "vanae pussy";
+					else if (temp <= 5) vag += "supple pussy";
+					else if (temp <= 6) vag += "xeno-cunt";
+					else if (temp <= 7) vag += "alien pussy";
+					else if (temp <= 8) vag += "feeler-lined pussy";
+					else if (temp <= 9) vag += "caressing cunt";
+					else if (temp <= 10) vag += "stroking snatch";
+					else if (temp <= 11) vag += "massaging cunny";
+					else if (temp <= 12) vag += "licker-lined pussy";
 					else vag += "silky twat";
 				} else {
 					temp = this.rand(18);
@@ -9123,7 +9150,11 @@
 				else if (temp <= 5) return "sweet";
 				else if (temp <= 8) return "chocolatey";
 				else return "rich";
-			} 
+			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				if (temp <= 4) return "berry-flavored";
+		        else if (temp <= 7) return "sweet";
+        		else return "fruity";
+        	}
 			return "bland";
 		}
 		public function fluidViscosity(arg: int):String {
@@ -9152,7 +9183,10 @@
 				if (temp <= 4) return "slick";
 				else if (temp <= 7) return "sticky";
 				else return "syrupy";
-			}
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				if(temp <= 5) return "creamy";
+				else return "sticky";
+			} 
 			return "fluid";
 		}
 		public function fluidColor(arg: int): String {

@@ -281,7 +281,7 @@
 				choices = new Array();
 				for(x = 0; x < target.totalVaginas(); x++) {
 					//If have vanaecunt and color isn't right!
-					if(target.vaginas[x].type == GLOBAL.TYPE_VANAE && target.vaginas[x].vaginalColor != getVanaeAccentColor(pc)) choices[choices.length] = x;
+					if(target.vaginas[x].type == GLOBAL.TYPE_VANAE && target.vaginas[x].vaginaColor != getVanaeAccentColor(pc)) choices[choices.length] = x;
 				}
 				if(choices.length == 0) x = -1;
 				else x = choices[rand(choices.length)];
