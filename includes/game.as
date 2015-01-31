@@ -493,10 +493,16 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 }
 
 public function statusTick():void {
-	var shitToCut:Array = new Array();
+	var expiredStatuses:Array = new Array();
 	var y:int = 0;
 	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
 	{
+		//Some hardcoded removal stuff
+		//Cut condensol if all cocks are gone.
+		if((pc.statusEffects[x].storageName == "Condensol-B" || pc.statusEffects[x].storageName == "Condensol-A") && !pc.hasCock())
+		{
+			expiredStatuses[expiredStatuses.length] = x;
+		}
 		//trace("Checking status effect: " + x + " of " + (pc.statusEffects.length-1));
 		//If times, count dat shit down.
 		if(pc.statusEffects[x].minutesLeft > 0) 
@@ -592,18 +598,18 @@ public function statusTick():void {
 					pc.reflexesMod += pc.statusEffects[x].value1;
 				}
 				//Mark out the ones that need cut!
-				shitToCut[shitToCut.length] = x;
+				expiredStatuses[expiredStatuses.length] = x;
 				//trace("Marking slot: " + x + " to cut");
 			}
 		}
 	}	
 	
 	//Cut the statuses that expired and need cut.
-	while(shitToCut.length > 0)
+	while(expiredStatuses.length > 0)
 	{
-		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[0]].storageName + " in slot " + shitToCut[0] + " due to status effect time out.");
-		pc.statusEffects.splice(shitToCut[0],1);
-		shitToCut.splice(0,1);
+		trace("REMOVING " + chars["PC"].statusEffects[expiredStatuses[0]].storageName + " in slot " + expiredStatuses[0] + " due to status effect time out.");
+		pc.statusEffects.splice(expiredStatuses[0],1);
+		expiredStatuses.splice(0,1);
 	}
 }
 
