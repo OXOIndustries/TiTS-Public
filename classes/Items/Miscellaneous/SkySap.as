@@ -367,9 +367,9 @@
 				// If PC has dicks, shrink. If smallest, remove.
 				if(pc.hasCock() && changes < changeLimit && rand(4) == 0)
 				{
-					outputB("\n\nYou feel a tingling along [pc.eachCock] and a slight withdrawal back into your [pc.skinFurScales]. Looking down, you realise ");
-					if(pc.smallestCockLength() >= 4) outputB("[pc.eachCock] has reduced in size by an inch!");
-					else outputB("your [pc.cockSmallest] has disappeared!");
+					outputB("\n\nYou feel a tingling along " + pc.eachCock() + " and a slight withdrawal back into your " + pc.skinFurScales() + ". Looking down, you realise ");
+					if(pc.smallestCockLength() >= 4) outputB("" + pc.eachCock() + " has reduced in size by an inch!");
+					else outputB("your " + pc.cockDescript(pc.smallestCockIndex()) + " has disappeared!");
 					outputB("<b>");
 					if(pc.smallestCockLength() >= 4) 
 					{
@@ -381,7 +381,7 @@
 					}
 					else 
 					{
-						outputB(" You no longer have a [pc.cockSimple]!");
+						outputB(" You no longer have a " + pc.simpleCockNoun(pc.smallestCockIndex()) + "!");
 						pc.removeCock(pc.smallestCockIndex(),1);
 					}
 					outputB("</b>")
