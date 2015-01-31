@@ -67,6 +67,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				buff = "";
+				kGAMECLASS.author("JimThermic");
 				kGAMECLASS.output("You take a deep breath and bring the bamboo-like container to your lips. The creamy liquid spills onto your tongue, and you're surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
 				kGAMECLASS.processTime(2);
 				

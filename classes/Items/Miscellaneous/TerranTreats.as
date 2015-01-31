@@ -149,6 +149,7 @@
 					if(pc.cockTotal() == 1) kGAMECLASS.output("dick");
 					else kGAMECLASS.output("dicks");
 					kGAMECLASS.output(" hanging free like a human’s.");
+					pc.removeStatusEffect("Genital Slit");
 				}
 
 				//Feminine TFs
