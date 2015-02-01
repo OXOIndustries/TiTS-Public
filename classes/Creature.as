@@ -1574,6 +1574,9 @@
 				case "legOrLegs":
 					buffer = legOrLegs();
 					break;
+				case "legFurScales":
+					buffer = legFurScales();
+					break;
 				case "feet":
 					buffer = feet();
 					break;
@@ -2946,6 +2949,37 @@
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES) return scaleColor;
 			else return skinTone;
 		}
+		public function legFurScales():String 
+		{
+			var output: String = "";
+			var temp:*;
+			var noun:String = "";
+			//Figure out if we're talking skin or fur.
+			if(hasLegFur()) noun += "fur"; 
+			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
+			else if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
+			else noun += "skin";
+
+			//25% of the time, add an adjective.
+			if (this.rand(4) == 0) {
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
+				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
+				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
+				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+			}
+			//25% of time, describe tone.
+			if (this.rand(4) == 0) {
+				if (output != "") output += ", ";
+				if (noun == "fur") output += furColor;
+				else if (noun == "scales") output += scaleColor;
+				else output += skinTone;
+			}
+			//Setup for words
+			if (output != "") output += " ";
+			//Set skin words.
+			output += noun;
+			return output;
+		}
 		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
 			var output: String = "";
 			var temp:*;
@@ -2981,6 +3015,10 @@
 		{
 			return false;
 			//return (skinType == GLOBAL.SKIN_TYPE_SCALES);
+		}
+		public function hasLegFur():Boolean
+		{
+			return (hasLegFlag(GLOBAL.FLAG_FLUFFY) || hasLegFlag(GLOBAL.FLAG_FURRED) || skinType == GLOBAL.SKIN_TYPE_FUR)
 		}
 		public function skinNoun(skin: Boolean = false): String {
 			var output: String = "";

@@ -500,6 +500,47 @@
 					}
 					changes++;
 				}
+				//Leg changing - monopods split to bipednuki
+				if(pc.legCount == 1 && changes < changeLimit && rand(4) == 0)
+				{
+					kGAMECLASS.output("\n\nOne moment, you’re savoring the last few crumbs from your cookies, the next, you’re dropping hard on your [pc.butt]. It feels like you’ve lost all control over your [pc.leg]... and not just all control - all feeling! In a panic, you look down at your quivering appendage, watching it ripple and shift, slowly revealing a divot in the center that all-too-soon becomes a total split.\n\nYou’ve got two masses, shaped roughly like bipedal legs, filling out before your eyes. Knees appear. New-grown toes wiggle, tipped with short claws. You can even feel soft pads forming on the bottoms of your freshly-minted feet. Not long after, a thick coat of fur springs up across your flesh, bringing with it a tingling so intense that it makes your recently-shaped muscles jerk and twitch. You can feel again!\n\nThe new limbs get easier to control over the next minute, and in no time you’re standing up and walking around on <b>your new, tanuki-like legs</b> just fine.");
+					pc.clearLegFlags();
+					pc.legCount = 2;
+					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
+					pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
+					pc.legType = GLOBAL.TYPE_KUITAN;
+					changes++;
+				}
+				//Leg changing - any other amount of legs become nukilegs.
+				//Taurs stay taurs, become nukitaurs.
+				else if(pc.legCount > 1 && changes < changeLimit && pc.legType != GLOBAL.TYPE_KUITAN && rand(4) == 0)
+				{
+					if(pc.isTaur())
+					{
+						kGAMECLASS.output("\n\nOne at a time, your multitude of lower limbs go numb. The change is slow enough that you can lower yourself to the ground safely rather than tripping and potentially injuring yourself, but it is disconcerting all the same. Rubbing the closest pair, you marvel at the way your flesh shifts beneath your fingers, flowing past your inquisitive digits on its way to a new shape.");
+						if(!pc.hasLegFur()) kGAMECLASS.output(" They even grow a thick coat of fur and");
+						else kGAMECLASS.output(" They even grow");
+						kGAMECLASS.output(" soft pads on the bottom.");
+						kGAMECLASS.output("\n\n<b>You’ve got legs like a tanuki or a kui-tan - fur, pads, and all.</b>");
+					}
+					//Nontaur
+					else
+					{
+						kGAMECLASS.output("\n\nYour right leg goes implausibly numb, dumping you to the ground before you have the slightest chance to react. Thankfully, you are uninjured, but your sense of alarm only continues to rise as you lose feeling in your left.");
+						if(pc.legCount == 3) kGAMECLASS.output(" Your middle limb goes dull and distant soon after.");
+						kGAMECLASS.output(" Reaching down, you press your hand against your [pc.legFurScales] and discover something alarming. Your flesh is moving like liquid! Muscles are fading and reforming, bones are changing shape, and it’s all somehow painless.\n\nThe remarkable transformation slows once you’ve got a fairly normal-looking set of plantigrade legs.");
+						if(!pc.hasLegFur()) kGAMECLASS.output(" A coat of fur arrives next, followed shortly after by the appearance of soft-looking pads on the bottom of your feet.");
+						else kGAMECLASS.output(" Finally, soft-looking pads appear on your new-formed feet.");
+						kGAMECLASS.output(" <b>You’ve got furry legs just like a tanuki.</b>");
+					}
+					pc.clearLegFlags();
+					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+					pc.addLegFlag(GLOBAL.FLAG_FURRED);
+					pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
+					pc.legType = GLOBAL.TYPE_KUITAN;
+					changes++;
+				}
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nDespite your patient waiting, nothing happens. At least they tasted good.");
