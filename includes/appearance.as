@@ -386,8 +386,8 @@ public function appearance(target:Creature):void {
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.TYPE_MLP) output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
-		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful body that looks like a crossbreed of a lizard and a horse, with all six legs tipped by claws.")
-		else if(target.isTaur()) output2(" From the waist down, you have the body of a horse, with all four legs capped by hooves.");
+		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.")
+		else if(target.isTaur()) output2(" From the waist down, you have a bestial, " + num2Text(target.legCount) + "-legged form vaguely like that of a horse.");
 		//Hip info only displays if you aren't a centaur. 
 		if(!target.isTaur()) {
 			if(target.thickness > 70) {
@@ -533,30 +533,83 @@ public function appearance(target:Creature):void {
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
-		//legType SPECIAL
+		
+		//legType notez!
 		if(target.legType == GLOBAL.TYPE_HUMAN)
 		{
-			output2(" Two normal human legs grow down from your waist, ending in normal human feet.");
+			if(pc.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " normal human legs extend below your waist, ending in normal human feet.");
+			else output2(" You have normal human legs that end in " + target.feet(true,true) + ".");
 		}
-		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
-		else if(target.legType == GLOBAL.TYPE_CANINE) output2(" Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
-		else if(target.legType == GLOBAL.TYPE_NAGA) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
+		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) 
+		{
+			if(pc.legCount < 4) output2(" Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
+			else output2(" You have oddly-jointed legs that end in " + target.feet(true,true) + ".");
+		}
+		else if(target.legType == GLOBAL.TYPE_CANINE) 
+		{
+			if(pc.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
+			else output2(" You have digitigrade legs that end in " + target.feet(true,true) + ".");
+		}
+		else if(target.legType == GLOBAL.TYPE_NAGA) 
+		{
+			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
+			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around.");
+			else output2(" You have wiggling snake-like appendages to propel yourself around on.");
+		}
 		//Horse body is placed higher for readability purposes
-		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) output2(" Your perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
-		else if(target.legType == GLOBAL.TYPE_DEMONIC) output2(" Your lithe legs are capped with flexible clawed feet. Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
-		else if(target.legType == GLOBAL.TYPE_BEE) output2(" Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
-		else if(target.legType == GLOBAL.TYPE_GOOEY) output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on. The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
-		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" Two digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
-		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 2) output2(" Two digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
-		else if(target.legType == GLOBAL.TYPE_LAPINE) output2(" Your legs thicken below the waist as they turn into soft-furred rabbit-like legs. You even have large bunny feet that make hopping around a little easier than walking.");
-		else if(target.legType == GLOBAL.TYPE_AVIAN) output2(" Your legs are covered with " + target.furColor + " plumage. Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
-		else if(target.legType == GLOBAL.TYPE_KANGAROO) output2(" Your furry legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
-		else if(target.legType == GLOBAL.TYPE_ARACHNID) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.");
-		else if(target.legType == GLOBAL.TYPE_DRIDER) output2(" Where your legs would normally start you have grown the body of a spider, with eight spindly legs that sprout from its sides.");
+		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) 
+		{
+			if(target.legCount < 4) output2(" Your perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+			else output2(" You have perfectly lissom legs that end in " + target.feet(true,true) + ".");
+		}
+		else if(target.legType == GLOBAL.TYPE_DEMONIC) 
+		{
+			if(target.legCount < 4) output2(" Your lithe legs are capped with flexible clawed feet. Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
+			else output2(" You have lithe legs that end in " + target.feet(true,true) + ". Sharp black nails grow in place of toenails.");
+		}
+		else if(target.legType == GLOBAL.TYPE_BEE) 
+		{
+			output2(" Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
+		}
+		else if(target.legType == GLOBAL.TYPE_GOOEY) 
+		{
+			if(target.legCount == 1) output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on. The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+			else output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your genitals into " + num2Text(target.legCount) + " semi-solid limbs.");
+		}
+		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+		else if(target.legType == GLOBAL.TYPE_LIZAN)
+		{
+			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
+			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with three long toes and a small hind-claw on the back.");
+		}
+		else if(target.legType == GLOBAL.TYPE_LAPINE) 
+		{
+			if(target.legCount < 4) output2(" Your legs thicken below the waist as they turn into soft-furred rabbit-like legs. You even have large bunny feet that make hopping around a little easier than walking.");
+			else output2(" You have thick rabbit legs that terminate in " + target.feet(true,true) + ". At least jumping should be a breeze.");
+		}
+		else if(target.legType == GLOBAL.TYPE_AVIAN) 
+		{
+			if(target.legCount < 4) output2(" Your legs are covered with " + target.furColor + " plumage. Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
+			else output2(" You have " + target.furColor + " plumage across your legs. It ends just above your two-toed, taloned feet.");
+		}
+		else if(target.legType == GLOBAL.TYPE_KANGAROO) 
+		{
+			if(target.legCount < 4) output2(" Your furry legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
+			else output2(" You have " + pc.furColor + "-furred legs with short thighs and long calves, perfect for jumping.");
+		}
+		else if(target.legType == GLOBAL.TYPE_ARACHNID) 
+		{
+			if(target.legCount < 4) output2(" Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.");
+			else output2(" Black chitin covers your legs up to the mid-thigh, looking more like a pair of 'fuck-me-boots' than insectile armor.");
+		}
+		else if(target.legType == GLOBAL.TYPE_DRIDER) 
+		{
+			output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
+		}
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
-		else if(target.legType == GLOBAL.TYPE_DRACONIC) output2(" Two human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
+		else if(target.legType == GLOBAL.TYPE_DRACONIC) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
-		else if (target.legType == GLOBAL.TYPE_PANDA) output2(" Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		else if (target.legType == GLOBAL.TYPE_PANDA) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
 
 		// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
 		if (target.legCount == 2 && !target.isTaur())

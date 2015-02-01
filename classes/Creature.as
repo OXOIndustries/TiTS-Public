@@ -3269,9 +3269,24 @@
 		public function footAdjectives(forceType: Boolean = false, forceAdjective: Boolean = false):String {
 			var output: String = "";
 			var select: int;
+			//ADJECTIVE!
+			if (this.rand(3) == 0 || forceAdjective) {
+				if(output != "") output += ", ";
+				if (hasLegFlag(GLOBAL.FLAG_SCALED)) {
+					output += "scaled";
+				} else if (hasLegFlag(GLOBAL.FLAG_FURRED)) {
+					select = this.rand(10);
+					if (select <= 3) output += "furry";
+					else if (select <= 6) output += "fuzzy";
+					else output += "fur-covered";
+				} else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) {
+					output += "wiggling";
+				}
+			}
 			//Type! 1/5 times
-			if (this.rand(5) == 0) {
+			if (this.rand(5) == 0 || forceType) {
 				select = this.rand(10);
+				if(output != "") output += ", ";
 				if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR) {
 					if (select <= 4) output += "equine";
 					else output += "horse-like";
@@ -3328,6 +3343,8 @@
 					if (select <= 3) output += "corrupted-looking";
 					else if (select <= 6) output += "demonic";
 					else output += "clawed";
+				} else if (legType == GLOBAL.TYPE_SUCCUBUS) {
+					output += "spike-supported";
 				} else if (legType == GLOBAL.TYPE_GOOEY) {
 					if (select <= 2) output += "gooey";
 					else if (select <= 5) output += "semi-solid";
@@ -3346,19 +3363,6 @@
 					else output += "nimble";
 				}
 			}
-			//ADJECTIVE!
-			if (this.rand(3) == 0 || forceAdjective) {
-				if (hasLegFlag(GLOBAL.FLAG_SCALED)) {
-					output += "scaled";
-				} else if (hasLegFlag(GLOBAL.FLAG_FURRED)) {
-					select = this.rand(10);
-					if (select <= 3) output += "furry";
-					else if (select <= 6) output += "fuzzy";
-					else output += "fur-covered";
-				} else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) {
-					output += "wiggling";
-				}
-			}
 			return output;
 		}
 		public function height():String
@@ -3375,9 +3379,10 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "paws";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(10) < 8) output += "paws";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heels";
+			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
 			else output += "feet";
 			return output;
 		}
@@ -3388,9 +3393,10 @@
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "paw";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(10) < 8) output += "paw";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heel";
+			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
 			else output += "foot";
 			return output;
 		}
@@ -3403,6 +3409,7 @@
 			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "fuzzy toes";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "toes";
+			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
 			else output += "toes";
 			return output;
 		}
