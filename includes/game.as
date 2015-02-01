@@ -790,7 +790,7 @@ public function processTime(arg:int):void {
 	//Queue up procs for boobswell shit
 	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
 	variableRoomUpdateCheck();
-
+	//Laneshit
 	processLaneDetoxEvents(arg);
 	
 	if (tryProcDommyReahaTime(arg))
@@ -808,7 +808,14 @@ public function processTime(arg:int):void {
 	}
 	
 	renvraMessageHandler();
-	
+
+	//========== Stuff that gets checked once every time that time passes ===========//
+	//Blue balls removed for not having cock and balls.
+	if(!pc.hasCock() && pc.balls == 0)
+	{
+		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
+	}
+
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.

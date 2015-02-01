@@ -6017,6 +6017,7 @@
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
+			if(!hasCock()) removeStatusEffect("Blue Balls");
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
