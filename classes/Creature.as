@@ -1284,6 +1284,9 @@
 				case "knot":
 					buffer = knotDescript(arg2);
 					break;
+				case "knotBiggest":
+					buffer = knotDescript(biggestCockIndex());
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
