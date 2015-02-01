@@ -983,7 +983,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		}
 		output("\n\nYou go limp, your ardor spent and your softening length");
 		if(y >= 0) output("s");
-		output(" slipping halfway out of her. You take the moment to appreciate the shapeliness of her shoulder blades and the natural scent of her air.");
+		output(" slipping halfway out of her. You take the moment to appreciate the shapeliness of her shoulder blades and the natural scent of her feathery hair air.");
 	}
 	//Merge
 	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn't a mere sated smile either - the kind that telegraphs just how well fucked she's been. No. It's a gloating, knowing smile. She flicks a switch on the flashlight, and a beam of incandescent light illuminates her work area. Shekka gently pushes you back with her feet, letting your soaked [pc.cocks] fall away. She pulls herself up onto her workbench, rubbing her belly, a slightly vacant look in her eyes. <i>\"I think we both won that little competition.\"</i>");
@@ -2040,7 +2040,7 @@ public function mendovaShekkaBot():void
 	if(pc.hasVagina()) output("against your womb");
 	else output("deeper into [pc.ass]");
 	output(". If this keeps up for much longer you might be in trouble.");
-	output("\n\n<i>\"If you cant take it you should stop going easy on me with your choices,”</i> the rosey-scaled engineer says with a wink. You can only grunt and moan in reply, feeling haggard from the constant dicking. The warm embrace of orgasm looms on the horizon, looking quite inviting.");
+	output("\n\n<i>\"If you can't take it, you should stop going easy on me with your choices,”</i> the rosey-scaled engineer says with a wink. You can only grunt and moan in reply, feeling haggard from the constant dicking. The warm embrace of orgasm looms on the horizon, looking quite inviting.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
 	pc.lust(10);
