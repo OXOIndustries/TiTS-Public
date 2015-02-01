@@ -67,6 +67,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				buff = "";
+				kGAMECLASS.author("JimThermic");
 				kGAMECLASS.output("You take a deep breath and bring the bamboo-like container to your lips. The creamy liquid spills onto your tongue, and you're surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
 				kGAMECLASS.processTime(2);
 				
@@ -281,7 +282,7 @@
 				choices = new Array();
 				for(x = 0; x < target.totalVaginas(); x++) {
 					//If have vanaecunt and color isn't right!
-					if(target.vaginas[x].type == GLOBAL.TYPE_VANAE && target.vaginas[x].vaginalColor != getVanaeAccentColor(pc)) choices[choices.length] = x;
+					if(target.vaginas[x].type == GLOBAL.TYPE_VANAE && target.vaginas[x].vaginaColor != getVanaeAccentColor(pc)) choices[choices.length] = x;
 				}
 				if(choices.length == 0) x = -1;
 				else x = choices[rand(choices.length)];
@@ -366,9 +367,9 @@
 				// If PC has dicks, shrink. If smallest, remove.
 				if(pc.hasCock() && changes < changeLimit && rand(4) == 0)
 				{
-					outputB("\n\nYou feel a tingling along [pc.eachCock] and a slight withdrawal back into your [pc.skinFurScales]. Looking down, you realise ");
-					if(pc.smallestCockLength() >= 4) outputB("[pc.eachCock] has reduced in size by an inch!");
-					else outputB("your [pc.cockSmallest] has disappeared!");
+					outputB("\n\nYou feel a tingling along " + pc.eachCock() + " and a slight withdrawal back into your " + pc.skinFurScales() + ". Looking down, you realise ");
+					if(pc.smallestCockLength() >= 4) outputB("" + pc.eachCock() + " has reduced in size by an inch!");
+					else outputB("your " + pc.cockDescript(pc.smallestCockIndex()) + " has disappeared!");
 					outputB("<b>");
 					if(pc.smallestCockLength() >= 4) 
 					{
@@ -380,7 +381,7 @@
 					}
 					else 
 					{
-						outputB(" You no longer have a [pc.cockSimple]!");
+						outputB(" You no longer have a " + pc.simpleCockNoun(pc.smallestCockIndex()) + "!");
 						pc.removeCock(pc.smallestCockIndex(),1);
 					}
 					outputB("</b>")

@@ -706,14 +706,13 @@ public function processTime(arg:int):void {
 	
 	var tightnessChanged:Boolean = false;
 	
-	if(pc.ballFullness < 100) pc.cumProduced(arg);
 	var productionFactor:Number = 100 / (1920) * ((pc.libido() * 3 + 100) / 100);
 	
 	// Ideally most of this character updating shit needs to be shifted into the Creature class itself
 	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
 	for (var prop:String in chars)
 	{
-		chars[prop].cumProduced(arg);
+		if(chars[prop].ballFullness < 100) chars[prop].cumProduced(arg);
 	}
 	
 	//Double time
@@ -758,6 +757,7 @@ public function processTime(arg:int):void {
 	//milk is chunked out all at once due to lazies
 	if(arg > 0 && pc.canLactate()) 
 	{
+		//trace("time rested: " + arg);
 		pc.milkProduced(arg);
 		milkGainNotes();
 	}
@@ -1210,10 +1210,10 @@ public function milkGainNotes():void
 		}
 		
 		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. ";
-if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
-else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
-else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
-pc.removeStatusEffect("Pending Gain Milk Note: 200");
+		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
+		else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
+		pc.removeStatusEffect("Pending Gain Milk Note: 200");
 	}
 }
 
