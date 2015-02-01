@@ -649,7 +649,7 @@ public function karaAI():void
 		karaStimulantBoost();
 		foes[0].createStatusEffect("Stimmed");
 	}
-	//No gun? Always force edge.
+	//No gun? GRAB DAT GUN
 	else if(foes[0].hasStatusEffect("Disarmed"))
 	{
 		output("Kara dives after her disarmed weapon, forfeiting her chance to attack in order to re-arm herself!");
