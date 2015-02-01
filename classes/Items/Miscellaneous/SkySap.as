@@ -206,7 +206,7 @@
 				}
 				if(choices.length == 0) x = -1;
 				else x = choices[rand(choices.length)];
-				//Cunt -> Naleenslit TF
+				//Change pussy type to vanae.
 				if(x >= 0 && changes < changeLimit && rand(3) == 0 && hasVanaeSkinColor(pc)) {
 					outputB("\n\nDeep in your lower abdomen, you feel a hot pooling sensation growing and coiling tight. You rub your belly, moaning as it steadily intensifies. Soon you're on the ground touching between your [pc.thighs] and madly stroking your pussy.\n\nInside your slippery softness, you feel as if things are moving about and rearranging. Instead of being unpleasant, it instead feels as if your inner walls are being massaged and caressed. With a shrill cry, your [pc.hips] madly buck the air and you squirt a stream of [pc.girlCum] out from your pussy, violently climaxing all over the place. A thin sheen of sweat coats your [pc.skinFurScales] as you fall, utterly spent, on the surface below you. That - that was something else!\n\nNow that you've settled down, you explore your new vanae pussy with your fingertips. You can feel the little feelers inside designed for stroking and teasing cocks. A little further in, and you feel a slight obstruction - you've ");
 					if(pc.vaginas[x].hymen) outputB("still got your");
@@ -215,7 +215,6 @@
 						pc.vaginas[x].hymen = true;
 					}
 					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>.");
-					pc.createVagina();
 					pc.vaginas[x].type = GLOBAL.TYPE_VANAE;
 					pc.vaginas[x].vaginaColor = getVanaeAccentColor(pc);
 					changes++;
@@ -349,7 +348,8 @@
 					outputB("\n\nYou grab your [pc.breasts] and feel a churning, filling sensation inside of them. Your [pc.nipplesNoun] poke out through your fingertips, lewdly erect, and [pc.milk] begins to orgasmically spurt from your udders. You moan and milk your wildly spurting peaks, literally creaming yourself long and hard.");
 					// Milk change here to Vanae_maiden, Vanae_Huntress, or Vanae_Matron milk.
 					pc.milkType = GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK;
-					if(pc.milkRate < 80) pc.milkRate = 80;
+					if(pc.milkMultiplier < 80) pc.milkMultiplier = 80;
+					if(pc.milkFullness < 50) pc.milkFullness = 50;
 					outputB("\n\nDrowning in pleasure, you utterly cum out the contents of your [pc.breasts] until they're emptied, and something new fills it instead. Fruity, [pc.milkColor] fluid flows out from between your fingers. Bringing your digits up, you lick some off. Just a little taste is enough to make you flush with arousal. Your breast milk is now filled with aphrodisiacs. <b>You now have [pc.milkColor] vanae breast milk!</b>");
 					outputB("\n\nYou test out your newly filled udders by giving them a quick squeeze. From your [pc.nipples], a six foot stream of milk arcs out and splatters on the ground. <b>You've gained a Squirt Attack, when you have enough milk!</b>");
 					//Gain squirt attack
@@ -407,7 +407,7 @@
 		}
 		protected function hasVanaeSkinColor(pc:Creature):Boolean
 		{
-			if(pc.skinTone == "pale violet" || pc.skinTone == "pale purple" || pc.skinTone == "pale blue" || pc.skinTone == "pale pink" || pc.skinTone == "pale orange" || pc.skinTone == "pale green" || pc.skinTone == "pale" || pc.skinTone == "pale gray" || pc.skinTone == "pale gold") return true;
+			if(pc.skinTone == "pale violet" || pc.skinTone == "pale purple" || pc.skinTone == "pale blue" || pc.skinTone == "pale pink" || pc.skinTone == "pale orange" || pc.skinTone == "pale green" || pc.skinTone == "pale" || pc.skinTone == "pale gold") return true;
 			return false;
 		}
 		protected function outputB(arg:String):void
@@ -443,9 +443,6 @@
 					break;
 				case "pale":
 					return "luminous silver";
-					break;
-				case "pale gray":
-					return "glowing black";
 					break;
 				case "pale gold":
 					return "glowing gold";

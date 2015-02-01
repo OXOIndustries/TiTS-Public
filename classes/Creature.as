@@ -6128,7 +6128,7 @@
 			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
 			if (nukiScore() >= 4) race = "kui-tan";
-			if (vanaeScore() >= 4) race = "vanae";
+			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3) race = "half-leithan";
