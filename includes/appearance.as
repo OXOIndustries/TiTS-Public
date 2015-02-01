@@ -19,20 +19,6 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
-public function matchedVaginas(target:Creature):Boolean {
-	var matched:Boolean = true;
-	for(var x:int = 0; x < pc.totalVaginas(); x++)
-	{	
-		//After the first cooch, see if they match against the previous.
-		if(x > 0)
-		{
-			//Don't match? NOT MATCHED. GTFO.
-			if(target.vaginas[x].type != target.vaginas[x-1].type) matched = false;
-		}
-	}
-	return matched;
-}
-
 public function appearance(target:Creature):void {
 	clearOutput2();
 	var rando:int = 0;
@@ -1225,7 +1211,7 @@ public function appearance(target:Creature):void {
 			else if(target.vaginaTotal() > 1) 
 			{
 				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
-				if(matchedVaginas(target)) output2(" all similar in appearance.");
+				if(target.matchedVaginas()) output2(" all similar in appearance.");
 				else output2(" each a unique and beautiful flower.");
 				temp = 0;
 				while(temp < target.totalVaginas())

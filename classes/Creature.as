@@ -7710,7 +7710,7 @@
 				else if (temp <= 5) vag += "pussy";
 				else if (temp <= 8) vag += "cunt";
 				else if (temp <= 9) vag += "fuck-hole";
-				else if (temp <= 10) vag += "muff";
+				else if (temp <= 10) vag += "slit";
 				else if (temp <= 12) vag += "twat";
 				else if (temp <= 13) vag += "gash";
 				else if (temp <= 14) vag += "cunny";
@@ -7907,21 +7907,24 @@
 				//Mixed vaginas get plain result - vaginaNoun with oddball value results in plain shit.
 				else
 				{
-					return pluralize(vaginaNoun(99));
+					return pluralize(vaginaNoun(99,true));
 				}
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
 		public function vaginasMatch():Boolean 
 		{
-			if(vaginas.length == 0) return false;
-			var y:int = 0;
-			for(var x:int = 0; x < vaginas.length; x++)
-			{
-				//If they don't match, report it
-				if(vaginas[x].type != vaginas[y].type) return false;
-				//Set y to the previous value of x for next comparisons
-				y = x;
+			return matchedVaginas();
+		}
+		public function matchedVaginas():Boolean {
+			for(var x:int = 0; x < totalVaginas(); x++)
+			{	
+				//After the first cooch, see if they match against the previous.
+				if(x > 0)
+				{
+					//Don't match? NOT MATCHED. GTFO.
+					if(vaginas[x].type != vaginas[x-1].type) return false;
+				}
 			}
 			return true;
 		}
