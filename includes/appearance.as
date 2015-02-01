@@ -19,6 +19,20 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
+public function matchedVaginas(target:Creature):Boolean {
+	var matched:Boolean = true;
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{	
+		//After the first cooch, see if they match against the previous.
+		if(x > 0)
+		{
+			//Don't match? NOT MATCHED. GTFO.
+			if(target.vaginas[x].type != target.vaginas[x-1].type) matched = false;
+		}
+	}
+	return matched;
+}
+
 public function appearance(target:Creature):void {
 	clearOutput2();
 	var rando:int = 0;
@@ -1103,7 +1117,7 @@ public function appearance(target:Creature):void {
 		//VAGOOZ
 		if(target.vaginas.length > 0) {
 			if(target.hasCock()) output2("\n\n");
-			if(!target.hasCock() && target.isTaur()) output2("As a centaur, your womanly parts lie between your rear legs in a rather equine fashion. ");
+			if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 			//Vaginal Numbers
 			if(target.vaginaTotal() == 1) {
 				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
@@ -1129,90 +1143,140 @@ public function appearance(target:Creature):void {
 						output2(". ");
 					}
 				}
-			}
-			else if(target.vaginaTotal() > 1) 
-			{
-				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", with " + num2Text(target.vaginas[0].clits) + " " + int(target.clitLength*10)/10 + "-inch clits each. ");
-			}
-			//Variances based on lustiness & wetness & such. THE DETAIL!
-			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
-			{
-				//Wetness
-				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
-				else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
-				else if(target.vaginas[0].wetness() >= 4)
+				//Variances based on lustiness & wetness & such. THE DETAIL!
+				if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 				{
-					output2("Occasional beads of ");
-					output2("[pc.girlCum] drip from ");
-				}				
-			}
-			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
-			{
-				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
-				else if(target.vaginas[0].wetness() < 4) 
+					//Wetness
+					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
+					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
+					else if(target.vaginas[0].wetness() >= 4)
+					{
+						output2("Occasional beads of ");
+						output2("[pc.girlCum] drip from ");
+					}				
+				}
+				else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 				{
-					output2("Occasional beads of ");
-					output2("[pc.girlCum] drip from ");
+					//Wetness
+					if(target.vaginas[0].wetness() < 1) {}
+					else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
+					else if(target.vaginas[0].wetness() < 4) 
+					{
+						output2("Occasional beads of ");
+						output2("[pc.girlCum] drip from ");
+					}
+					else {
+						output2("Thin streams of ");
+						output2("[pc.girlCum] occasionally dribble from ");
+					}
+				}
+				else //WTF horny!
+				{
+					//Wetness
+					if(target.vaginas[0].wetness() < 1) {}
+					else if(target.vaginas[0].wetness() < 2) 
+					{
+						output2("Occasional beads of ");
+						output2("[pc.girlCum] drip from ");
+					}
+					else if(target.vaginas[0].wetness() < 4)
+					{
+						output2("Thin streams of ");
+						output2("[pc.girlCum] occasionally dribble from ");
+					}
+					else 
+					{
+						output2("Thick streams of ");
+						output2("[pc.girlCum] drool constantly from ");
+					}				
+				}
+				//Different description based on vag looseness
+				if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
+				else if(target.vaginas[0].looseness() < 4) {
+					output2("your " + target.vaginasDescript() + ", ");
+					if(target.totalVaginas() > 1) output2("its ");
+					else output2("their ");
+					output2("lips slightly parted.");
 				}
 				else {
-					output2("Thin streams of ");
-					output2("[pc.girlCum] occasionally dribble from ");
+					output2("the massive hole");
+					output2(" that is");
+					output2(" your " + target.vaginasDescript() + ".");
+				}
+				//Zil flavor!
+				if(target.totalVaginas(GLOBAL.ZIL) > 0) {
+					output2(" The exterior folds are a dusky black, while the inner lining of ");
+					output2("your");
+					output2(" tunnel is a glorious golden hue.");
+				}
+				//Naleen flavor
+				if(target.totalVaginas(GLOBAL.TYPE_NAGA) > 0) {
+					output2(" The exterior lips are subtle and narrow, making ");
+					output2("your");
+					output2(" lengthy entrance a little more discrete.");
+				}
+				//LEITHAN FLAVOR
+				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
+				{
+					output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 				}
 			}
-			else //WTF horny!
+			//MULTICOOCH!
+			else if(target.vaginaTotal() > 1) 
 			{
-				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) 
+				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
+				if(matchedVaginas(target)) output2(" all similar in appearance.");
+				else output2(" each a unique and beautiful flower.");
+				temp = 0;
+				while(temp < target.totalVaginas())
 				{
-					output2("Occasional beads of ");
-					output2("[pc.girlCum] drip from ");
+					if(temp == 0) output2("\nYour first entrance");
+					else if(temp == 1) output2("\nThe second slit");
+					else output2("\nThe third and final vagina");
+					output2(" is a " + target.vaginaNounDescript(temp) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+					if(target.vaginas[temp].clits > 1) output2("s");
+					//Virginal trumps all else
+					if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
+					//Else wetness -> size
+					else
+					{
+						//High wetness shit
+						if(target.vaginas[temp].wetness() >= 4)
+						{
+							if(target.lust() < 50) output2(", occassionally beading its ever-present [pc.girlCumNoun]");
+							else if(target.lust() < 75) output2(", frequently drooling its ever-present [pc.girlCumNoun]");
+							else output2(", constantly-drooling thick strands of [pc.girlCumNoun]");
+						}
+						//Medium wetness shit
+						else if(target.vaginas[temp].wetness() >= 2)
+						{
+							if(target.lust() > 50) output2(", gleaming with barely-contained wetness");
+						}
+						//Size shit
+						if(target.vaginas[temp].looseness() < 2) output2(", its lips primly pressed together as if waiting for something");
+						else if(target.vaginas[temp].looseness() < 4) output2(", its lips slightly parted");
+						else output2(", its lips loosened by frequent fucking");
+						output2(".")
+						//Zil flavor!
+						if(target.vaginas[temp].type == GLOBAL.ZIL) {
+							output2(" The exterior folds are a dusky black, while the inner lining of ");
+							output2("your");
+							output2(" tunnel is a glorious golden hue.");
+						}
+						//Naleen flavor
+						if(target.vaginas[temp].type == GLOBAL.TYPE_NAGA) {
+							output2(" The exterior lips are subtle and narrow, making ");
+							output2("your");
+							output2(" lengthy entrance a little more discrete.");
+						}
+						//LEITHAN FLAVOR
+						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN)
+						{
+							output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+						}
+					}
+					temp++;
 				}
-				else if(target.vaginas[0].wetness() < 4)
-				{
-					output2("Thin streams of ");
-					output2("[pc.girlCum] occasionally dribble from ");
-				}
-				else 
-				{
-					output2("Thick streams of ");
-					output2("[pc.girlCum] drool constantly from ");
-				}				
-			}
-			//Different description based on vag looseness
-			if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
-			else if(target.vaginas[0].looseness() < 4) {
-				output2("your " + target.vaginasDescript() + ", ");
-				if(target.totalVaginas() > 1) output2("its ");
-				else output2("their ");
-				output2("lips slightly parted.");
-			}
-			else {
-				output2("the massive hole");
-				if(target.vaginaTotal() > 1) output2("s that are");
-				else output2(" that is");
-				output2(" your " + target.vaginasDescript() + ".");
-			}
-			//Zil flavor!
-			if(target.totalVaginas(GLOBAL.ZIL) > 0) {
-				output2(" The exterior folds are a dusky black, while the inner lining of ");
-				if(target.vaginaTotal() > 1) output2("each");
-				else output2("your");
-				output2(" tunnel is a glorious golden hue.");
-			}
-			//Naleen flavor
-			if(target.totalVaginas(GLOBAL.TYPE_NAGA) > 0) {
-				output2(" The exterior lips are subtle and narrow, making ");
-				if(target.vaginaTotal() > 1) output2("each");
-				else output2("your");
-				output2(" lengthy entrance a little more discrete.");
-			}
-			//LEITHAN FLAVOR
-			if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0)
-			{
-				output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 			}
 		}
 		//Genderless lovun'

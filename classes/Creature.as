@@ -2968,7 +2968,7 @@
 				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
 				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
 				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
 			}
 			//25% of time, describe tone.
 			if (this.rand(4) == 0) {
@@ -5992,6 +5992,7 @@
 			{
 				vaginas[target].vagooFlags[y] = vaginas[donor].vagooFlags[y];
 			}
+			trace("Copying " + vaginaNounDescript(donor) + " to donor " + vaginaNounDescript(target) + " donor index: " + donor + " target index: " + target + " donor type: " + vaginas[donor].type + " target type: " + vaginas[target].type);
 			return;
 		}
 		public function createVaginaUnlocked(numVag:int = 1):Boolean
