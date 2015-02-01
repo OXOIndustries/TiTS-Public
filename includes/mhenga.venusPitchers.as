@@ -1192,7 +1192,7 @@ public function elderVenusPitcherEpilogue():void {
 	//{6+}
 	else {
 		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
-		output("\n\nAhhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to put up an attempt at token resistance any longer.");
+		output("\n\nAhhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to bother resisting any longer.");
 	}
 	processTime(120+rand(20));
 	pc.orgasm();
