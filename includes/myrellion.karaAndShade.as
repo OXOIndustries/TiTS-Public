@@ -649,6 +649,12 @@ public function karaAI():void
 		karaStimulantBoost();
 		foes[0].createStatusEffect("Stimmed");
 	}
+	//No gun? Always force edge.
+	else if(foes[0].hasStatusEffect("Disarmed"))
+	{
+		output("Kara dives after her disarmed weapon, forfeiting her chance to attack in order to re-arm herself!");
+		foes[0].removeStatusEffect("Disarmed");
+	}
 	//Force Edge (High-damage melee attack, moderate cooldown)
 	else if(!foes[0].hasStatusEffect("Force Edge Cooldown") && rand(3) == 0)
 	{
