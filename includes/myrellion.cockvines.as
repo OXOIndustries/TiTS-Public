@@ -126,6 +126,8 @@ public function adultCockvineAI():void
 		var attacks:Array = [];
 
 		attacks.push(adultCockvineWhips);
+		attacks.push(adultCockvineMouthFuxAttack);
+		if (pc.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack)
 	}
 
 	if (pc.statusEffectv1("Cockvine Grip") == 0)
@@ -212,31 +214,96 @@ public function adultCockvineWhips():void
 public function adultCockvineMouthFuxAttack():void
 {
 	//Lust rise if success
+	output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
 
-One of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.
+	if (combatMiss())
+	{
+		output(" You grit your teeth and manage to bat it away.");
+	}
+	else
+	{
+		output("\n\nYou struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you.");
+		output("\n\nYou groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.");
 
-Fail: You grit your teeth and manage to bat it away.
-
-Success: You struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you. You groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.
+		pc.lust(3 + rand(5));
+	}
 }
 
+// TODO: Splice this into combat code
 public function adultCockvineMowThisAttack():void
 {
-//Activates if attacked by drone. Disables drone for 3-5 turns if successful
+	//Activates if attacked by drone. Disables drone for 3-5 turns if successful
+	output("\nIncensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
 
-Incensed by your drone’s attack, one of the tentacles reacts by swinging at it hard. {Your trusty drone darts nimbly out of the way.} {With a nasty sounding crunch the cockvine connects, sending the light robot flying out of the crevice.}
-
-Drone comes back: There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.
+	if (rand(4) == 0
+	{
+		output(" Your trusty drone darts nimbly out of the way.");
+	}
+	else
+	{
+		output(" With a nasty sounding crunch the cockvine connects, sending the light robot flying out of the crevice.");
+		pc.createStatusEffect("Combat Drone Disabled", rand(5) + 1, 0, 0, 0, blargh);
+	}
 }
 
-public function adultCockvineGrenadesInEnclosedSpaces():void
+// TODO: Splice this into combat code
+public function adultCockvinePCDroneHandler():void
+{
+	if (pc.hasStatusEffect("Combat Drone Disabled"))
+	{
+		pc.addStatusValue("Combat Drone Disabled", 1, -1);
+
+		if (pc.statusEffectv1("Combat Drone Disabled") <= 0)
+		{
+			pc.removeStatusEffect("Combat Drone Disabled");
+			output("\nThere’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.\n");
+		}
+	}
+}
+
+// TODO: Splice this into combat code
+public function adultCockvineGrenadesInEnclosedSpaces(damageValue:Number, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 {
 	//Activates if PC uses a grenade. 50% chance of taking damage/getting gassed
+	output("\nThe moment the grenade");
+	if (pluralNades) output("s");
+	output(" leave");
+	if (!pluralNades) output("s");
+	output(" your")
+	if (!usedLauncher) output(" hand");
+	else output(" launcher");
+	output(" you wonder if maybe");
+	if (!usedLauncher) output(" throwing");
+	else output(" using");
+	output(" explosives in such a tight, enclosed space is a really good idea... you struggle with the cockvine frenetically, trying to ball yourself up the best you can, your skin prickling as the seconds count down. FOOM.");
 
-The moment the grenade(s) leave(s) your hand/launcher you wonder if maybe throwing/using explosives in such a tight, enclosed space is a really good idea… you struggle with the cockvine frenetically, trying to ball yourself up the best you can, your skin prickling as the seconds count down. FOOM. {Does not hit PC: The slimy rock shakes around you and the cockvine writhes and spasms from the impact, but though you are momentarily deafened you are otherwise unharmed. Phew!} {Hits PC: You are thrown forward and smack your head into the slimy rock as the grenade(s) go(es) off with a deafening bang. {Dazed, you cannot help but take a big gulp of the gas now billowing thickly through the cramped, slithery pit.} {Though the writhing mass of cockvines absorbs the majority of it, you are thumped mightily hard by the impact of the explosion.}
+	// miss
+	if (rand(2) == 0)
+	{
+		output(" The slimy rock shakes around you and the cockvine writhes and spasms from the impact, but though you are momentarily deafened you are otherwise unharmed. Phew!");
+	}
+	else
+	{
+		output(" You are thrown forward and smack your head into the slimy rock as the grenade");
+		if (pluralNades) output("s");
+		output(" go");
+		if (!pluralNades) output("es");
+		output(" off with a deafening bang.");
+
+		if (isLustGas)
+		{
+			output(" Dazed, you cannot help but take a big gulp of the gas now billowing thickly through the cramped, slithery pit.");
+			pc.lust(damageValue);
+		}
+		else
+		{
+			output(" Though the writhing mass of cockvines absorbs the majority of it, you are thumped mightily hard by the impact of the explosion.");
+			genericDamageApply(damageValue);
+		}
+	}
 }
 
-// TODO: Splice this in to Combat code.
+// TODO: Splice this in to combat code.
 public function adultCockvineCombatDescriptionExtension():void
 {
 	if (!pc.hasStatusEffect("Cockvine Grip")) return;
@@ -265,49 +332,198 @@ public function adultCockvineCombatDescriptionExtension():void
 	}
 }
 
+// TODO: Splice this into combat code.
 public function adultCockvineSenseOverride():void
 {
-	You doubt you could show off your moves very well down here, even if this creature <i>had</i> eyes.
+	output("You doubt you could show off your moves very well down here, even if this creature <i>had</i> eyes.");
 }
 
+// TODO: Splice this into combat code.
 public function adultCockvineStruggleOverride():void
 {
-	PC struggle 
+	//PC struggle 
+	//Replaces run if at stage 1 or higher
 
-//Replaces run if at stage 1 or higher
+	output("\nInstead of attacking the cockvine directly you work at grimly extricating yourself from its grasping tentacles, peeling the coiling, writhing appendages off you and clambering out of this hellish pit.");
 
-Instead of attacking the cockvine directly you work at grimly extricating yourself from its grasping tentacles, peeling the coiling, writhing appendages off you and clambering out of this hellish pit.
+	var chance:Number;
 
-Fail: But it’s useless. The moment you manage to fight one off two more have tightened their damp, muscular weight around another part of your body. After thirty seconds of sweaty, fretful struggling you have to concede you’re no better off than you started.
+	if (pc.SQ() > pc.RQ()) chance = pc.SQ();
+	else chance = pc.RQ();
 
-Success: You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.
+	if (rand(100) > chance)
+	{
+		output(" But it’s useless. The moment you manage to fight one off two more have tightened their damp, muscular weight around another part of your body. After thirty seconds of sweaty, fretful struggling you have to concede you’re no better off than you started.");
+	}
+	else
+	{
+		output(" You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.");
+	}
 }
 
 public function adultCockvineConsentacles():void
 {
-The cockvine winds its multitudinous, fibrous grip around you as you approach its nest{, languidly shedding your [pc.gear] as you go}. {Despite your size it} {It} easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.lowerbody], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin] {and makes your [pc.eachVagina] moisten itself eagerly}. You clutch two constituent parts of your tentacle harness, running your grip down them, enjoying their firm, oily, ever-so-slightly pliant texture, coaxing the thing on. The tips ooze creamy white seed onto you in response, smearing across your [pc.breast] and cheek; the sharp smell - citric, sweet and musky - hits your bloodstream like alcohol, making your pupils dilate, your [pc.lips] part and your [pc.nipples] {harden/wet themselves}.
+	clearOutput();
+	adultCockvineHeader();
 
-The cockvine’s progress is slow - implacable but gentle - completely at odds to the manner in which it swiped at you in the first place. Innately you understand that it acts in direct proportion to its captive; because you happily stepped into it and are willing it on, its movements are sensual, almost peaceful. Smiling amorously, you reach your head forward and teasingly lick the nearest vine. Like a cat’s tail it rises and curls upwards in response, letting you run your tongue all along its pliant, sleek girth to its leaking tip. Beneath your dangling lower body another tentacle curves its long length along your [pc.groin]{.}{, your [pc.eachVagina] seeping excitement to the deliberate, slimy friction across your [pc.eachClit]}{and}{your [pc.eachCock] hardening irresistibly to the oily rubbing along its/their underside(s)}.
+	output("The cockvine winds its multitudinous, fibrous grip around you as you approach its nest");
+	if (!pc.isNude()) output(", languidly shedding your [pc.gear] as you go");
+	output(".");
+	if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
+	else output(" It");
+	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.lowerbody], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
+	if (pc.hasVagina()) output(" and makes your [pc.eachVagina] moisten itself eagerly");
+	output(".");
 
-The cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state. {Oral fixation: Your tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm, {[pc.eachVagina] quivering and wetting itself across the tentacle sliding across it} {and} {[pc.eachCock] tensing up and spurting cum in an uncontrolled series of ecstatic seizures}, dribbling down your chin freely. In the wet delirium of it you find yourself wondering how it is possible for anyone to not enjoy sucking cock.}
+	output("\n\nYou clutch two constituent parts of your tentacle harness, running your grip down them, enjoying their firm, oily, ever-so-slightly pliant texture, coaxing the thing on. The tips ooze creamy white seed onto you in response, smearing across your [pc.breast] and cheek; the sharp smell - citric, sweet and musky - hits your bloodstream like alcohol, making your pupils dilate, your [pc.lips] part and your [pc.nipples]");
+	if (!pc.fuckableNipples()) output(" harden");
+	else output(" wet themselves");
+	output(".");
 
-{IfVagina: [pc.eachVagina] is wet with excitement/seeping excitement down your thighs and you grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, dragging your tongue and cheeks across the bulging cockvine stuffed in your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.vagina0], its head spreading your puffy lips wide before the deliciously thick, firm shaft ploughs deep into you. {Your other pussy/pussies practically foam with frustration, crying out to be tended to – which it/they duly is/are, other cockvines seeking out your readied fuck-hole{s} and stretching it/them with questing, oily, sugared plant dick.} Other tentacles coil and slither over your [pc.thighs] and [pc.lowerbody], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.anus] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].
+	output("\n\nThe cockvine’s progress is slow - implacable but gentle - completely at odds to the manner in which it swiped at you in the first place. Innately you understand that it acts in direct proportion to its captive; because you happily stepped into it and are willing it on, its movements are sensual, almost peaceful. Smiling amorously, you reach your head forward and teasingly lick the nearest vine. Like a cat’s tail it rises and curls upwards in response, letting you run your tongue all along its pliant, sleek girth to its leaking tip. Beneath your dangling lower body another tentacle curves its long length along your [pc.groin]");
+	if (!pc.hasCock() && !pc.hasVagina()) output(".");
+	if (pc.hasVagina()) output(", your [pc.eachVagina] seeping excitement to the deliberate, slimy friction across your [pc.eachClit]");
+	if (pc.hasVagina() && pc.hasCock()) output(" and");
+	if (pc.hasCock())
+	{
+		output(" your [pc.eachCock] hardening irresistibly to the oily rubbing along");
+		if (pc.cocks.length == 0) output(" its");
+		else output(" their");
+		output(" underside");
+		if (pc.cocks.length > 1) output("s");
+	}
+	output(".");
 
-{IfnoVagina: You grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.anus], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel. {It thoughtlessly mashes over your prostrate, your helplessly hard [pc.eachCock] flexing and bulging to the pump of the questing, oily, sugared plant dick.}
+	output("\n\nThe cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state.");
+	// Oral Fixation
+	if (9999 == 0)
+	{
+		output("\n\nYour tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm,");
+		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and wetting itself across the tentacle sliding across it");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" [pc.eachCock] tensing up and spurting cum in an uncontrolled series of ecstatic seizures");
+		output(", dribbling down your chin freely. In the wet delirium of it you find yourself wondering how it is possible for anyone to not enjoy sucking cock.");
+	}
 
-{merge}
+	if (pc.hasVagina())
+	{
+		output("\n\n[pc.eachVagina] is");
+		if (pc.wettestVaginalWetness() <= 3) output(" wet with excitement");
+		else output(" seeping excitement down your thighs");
+		output(" and you grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, dragging your tongue and cheeks across the bulging cockvine stuffed in your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.vagina], its head spreading your puffy lips wide before the deliciously thick, firm shaft ploughs deep into you.");
+		output("\n\n");
+		if (pc.vaginas.length > 1)
+		{
+			output(" Your other");
+			if (pc.vaginas.length == 2) output(" pussy");
+			else output(" pussies");
+			output(" practically foam");
+			if (pc.vaginas.length == 2) output("s");
+			output(" with frustration, crying out to be tended to – which");
+			if (pc.vaginas.length == 2) output(" it");
+			else output(" they");
+			output(" duly");
+			if (pc.vaginas.length == 2) output(" is");
+			else output(" are");
+			output(", other cockvines seeking out your readied fuck-hole");
+			if (pc.vaginas.length > 2) output("s");
+			output(" and stretching");
+			if (pc.vaginas.length == 2) output(" it");
+			else output(" them");
+			output(" with questing, oily, sugared plant dick.");
+			output("\n\n");
+		}
+		output("Other tentacles coil and slither over your [pc.thighs] and [pc.lowerbody], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.anus] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].");
+	}
+	else
+	{
+		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.anus], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
+		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.eachCock] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
+	}
 
-{Cunt-tail: The plant monster doesn’t even have to search out your pussy tail; spreading itself and drooling eagerly in the presence of so many phalluses and long since out of your mind’s blissed-out control, it seizes upon the tip of the nearest questing vine, causing a new vein of pleasure to course through the dense fuckery you are mired in as it happily clamps down and begins to vigorously milk it. It would be impossible to take if you weren’t already so relaxed.}
+	if (pc.hasCuntTail())
+	{
+		output("\n\nThe plant monster doesn’t even have to search out your pussy tail; spreading itself and drooling eagerly in the presence of so many phalluses and long since out of your mind’s blissed-out control, it seizes upon the tip of the nearest questing vine, causing a new vein of pleasure to course through the dense fuckery you are mired in as it happily clamps down and begins to vigorously milk it. It would be impossible to take if you weren’t already so relaxed.");
+	}
 
-The cockvine holds you up and fucks your every orifice long and slow, writhing and bending into your deepest, sweetest spots, honeying your mouth{,} {and} your guts {and your pussy/pussies} with the endless leak of thick, citrus cum from its smooth, purple tips. It isn’t a mass of cocks all driven by their own independent urges, they act as a single creature with a delicious organic rhythm. Vines have wrapped themselves around your arms, striping them in glistening green; they tighten up when the tentacles engaged in reaming your [pc.vagORass] speed up, making you feel trapped in a straitjacket of warm, wet sex, making you squeal around the one you are fellating, forced to another juicy, flexing high… and then they loosen up, caressing your form sensuously, coddling you, lubricating your [pc.skin], assiduously preparing you for the next frenzied climax of rutting. You grip the ends of the tentacles swaddling your arms gratefully, jerking their bulging lengths as you lavish the one pumping into your mouth with attention, kneading and licking every inch, glorying in the way it rewards you by powerfully surging all the way in and ejaculating small loads of its pheromone-rich cum straight down your throat, making you glow with intense arousal, {[pc. eachVagina] dribbling freely around the vines stuffed into it}{and} {[pc.eachCock] straining needily}. You cannot be the only one who knows about this side of the plant creatures, surely? That they are wonderful lovers if you give yourself to them willingly? No, you think not. You think there are probably more than a few ant women, starved of men-folk, who come down here and walk gladly into their planet’s darkest caves; the most shameful and succulent of secrets. You tense up around the girthy, pliant tentacles you are transfixed on in filthy glee at the thought.
+	output("\n\nThe cockvine holds you up and fucks your every orifice long and slow, writhing and bending into your deepest, sweetest spots, honeying your mouth");
+	if (pc.hasVagina()) output(",");
+	else output(" and");
+	output(" your guts");
+	if (pc.hasVagina())
+	{
+		output(" and your");
+		if (pc.vaginas.length == 1) output(" pussy");
+		else output(" pussies");
+	}
+	output(" with the endless leak of thick, citrus cum from its smooth, purple tips. It isn’t a mass of cocks all driven by their own independent urges, they act as a single creature with a delicious organic rhythm. Vines have wrapped themselves around your arms, striping them in glistening green; they tighten up when the tentacles engaged in reaming your [pc.vagOrAss] speed up, making you feel trapped in a straitjacket of warm, wet sex, making you squeal around the one you are fellating, forced to another juicy, flexing high... and then they loosen up, caressing your form sensuously, coddling you, lubricating your [pc.skin], assiduously preparing you for the next frenzied climax of rutting.");
 
-Your sense of time and space are shattered by a series of wet, full body climaxes; how long you spend in that hot, green luscious daze doesn’t matter, there is only the multitude of hard, loving tentacles and your willingness to return their affection with interest. When you are nothing more than a drooling, cock-dazed mess of flesh it flips you upside down so that your [pc.chest] and arms are dangling down towards the trunk. Agitated now with its long anticipated release it thrusts into your [pc.vagORass] hard, one beneath you plunging in and out of your throat, eight inches of firm, wide plant prick using your gullet like a fleshlight. {Nipplecunts/lips: Positioning your body downwards alerts the carpet of cockvines beneath you to # orifices that have hitherto gone unmolested. You tense up with fresh glee as two new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.} Your [pc.butt] turned over, the {tentacle using your ass presses, rubs and bumps hard into an entirely new area electrifyingly} {tentacles using your ass and pussy/pussies press rub and bump into entirely new areas electrifyingly} and when the cockvines bulge with their final payload, stretching your every hole even wider, you cannot help but orgasm again, tensing up and thrashing around your hot, obdurate fillings wildly, your [pc.cum] {and [pc.milk]} spattering the heaving plant creature. Your flexing tunnel(s) gladly knead the cockvines as they fountain vast amounts of cum into you, drawing your warm, musky, citric reward into your belly, your intestines {and your womb(s).} The eager spurting of the cockvines before, lubricating and softening you, was clearly just pre-cum of some sort, a pale appetizer – the undocked stamen around you writhe and explode with cum, pasting you from top to bottom with their ripe cream as you are gorged on it, hands clenching and unclenching whilst it surges into what feels like every space in your body. {Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.}
+	output("\n\nYou grip the ends of the tentacles swaddling your arms gratefully, jerking their bulging lengths as you lavish the one pumping into your mouth with attention, kneading and licking every inch, glorying in the way it rewards you by powerfully surging all the way in and ejaculating small loads of its pheromone-rich cum straight down your throat, making you glow with intense arousal,");
+	if (pc.hasVagina()) output(" [pc. eachVagina] dribbling freely around the vines stuffed into it");
+	if (pc.hasVagina() && pc.hasCock()) output(" and");
+	if (pc.hasCock()) output(" [pc.eachCock] straining needily");
+	output(".");
 
-You blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself still being held, right way up this time, by the cockvine. Its energy expended, it clutches your dangling limbs gently, slowly rubbing your [pc.skin]. Is it… cuddling you? You’re not in any state to complain. You let your head dangle and enjoy the humid warmth, regaining your breath, reveling in the satisfying throb of your well-fucked body, and the feeling of fruity semen leaking out of your disgracefully treated {pussy/pussies and} ass.
+	output("\n\nYou cannot be the only one who knows about this side of the plant creatures, surely? That they are wonderful lovers if you give yourself to them willingly? No, you think not. You think there are probably more than a few ant women, starved of men-folk, who come down here and walk gladly into their planet’s darkest caves; the most shameful and succulent of secrets. You tense up around the girthy, pliant tentacles you are transfixed on in filthy glee at the thought.");
 
-After a while you pat the cockvine meaningfully. Immediately it slowly lifts you upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You grin sleepily and caress the last tentacle as it, with an obvious amount of reluctance, relinquishes its grip on you and withdraws. Such a gentleman.
+	output("\n\nYour sense of time and space are shattered by a series of wet, full body climaxes; how long you spend in that hot, green luscious daze doesn’t matter, there is only the multitude of hard, loving tentacles and your willingness to return their affection with interest. When you are nothing more than a drooling, cock-dazed mess of flesh it flips you upside down so that your [pc.chest] and arms are dangling down towards the trunk. Agitated now with its long anticipated release it thrusts into your [pc.vagOrAss] hard, one beneath you plunging in and out of your throat, eight inches of firm, wide plant prick using your gullet like a fleshlight.");
 
-You rest for a while longer and then {clamber back into your clothes} {clamber back to your feet} {right yourself}, ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.
+	if (pc.hasLipples() || pc.hasNippleCunts())
+	{
+		output("\n\nPositioning your body downwards alerts the carpet of cockvines beneath you to " + pc.totalNipples() + " orifices that have hitherto gone unmolested. You tense up with fresh glee as two new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.");
+	}
+
+output("\n\nYour [pc.butt] turned over, the");
+if (!pc.hasVagina()) output(" tentacle using your ass presses, rubs and bumps hard into an entirely new area electrifyingly");
+else
+{
+	output(" tentacles using your ass and");
+	if (pc.vaginas.length == 1) output(" pussy");
+	else output(" pussies");
+	output(" press rub and bump into entirely new areas electrifyingly");
+}
+output(" and when the cockvines bulge with their final payload, stretching your every hole even wider, you cannot help but orgasm again, tensing up and thrashing around your hot, obdurate fillings wildly, your [pc.cum]");
+if (pc.isLactating()) output(" and [pc.milk]");
+output(" spattering the heaving plant creature. Your flexing tunnel");
+if (pc.hasVagina()) output("s");
+output(" gladly knead the cockvines as they fountain vast amounts of cum into you, drawing your warm, musky, citric reward into your belly, your intestines");
+if (pc.hasVagina()) output(" and your womb");
+if (pc.vaginas.length > 1) output("s");
+output(".");
+output("\n\nThe eager spurting of the cockvines before, lubricating and softening you, was clearly just pre-cum of some sort, a pale appetizer – the undocked stamen around you writhe and explode with cum, pasting you from top to bottom with their ripe cream as you are gorged on it, hands clenching and unclenching whilst it surges into what feels like every space in your body.");
+if (pc.hasVagina()) output(" Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.");
+
+output("\n\nYou blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself still being held, right way up this time, by the cockvine. Its energy expended, it clutches your dangling limbs gently, slowly rubbing your [pc.skin]. Is it... cuddling you? You’re not in any state to complain. You let your head dangle and enjoy the humid warmth, regaining your breath, reveling in the satisfying throb of your well-fucked body, and the feeling of fruity semen leaking out of your disgracefully treated");
+if (pc.vaginas.length == 1) output(" pussy");
+else if (pc.vaginas.length > 1) output(" pussies");
+if (pc.vaginas.length > 0) output(" and");
+output(" ass.");
+
+output("\n\nAfter a while you pat the cockvine meaningfully. Immediately it slowly lifts you upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You grin sleepily and caress the last tentacle as it, with an obvious amount of reluctance, relinquishes its grip on you and withdraws. Such a gentleman.");
+
+output("\n\nYou rest for a while longer and then");
+if (!pc.isNude()) output(" clamber back into your clothes");
+else if (pc.isBiped() || pc.isTaur()) output(" clamber back to your [pc.feet]"); 
+else output(" right yourself");
+output(", ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.");
+
+processTime(60);
+
+for (var i:int = 0; i < pc.vaginas.length; i++)
+{
+	pc.loadInCunt(i, cockvine);
+}
+pc.loadInAss(cockvine);
+pc.loadInMouth(cockvine);
+
+pc.orgasm();
+pc.orgasm();
+pc.orgasm();
+
+flags["FUCKED_ADULT_COCKVINE"] = 1;
+
+clearMenu();
+addButton(0, "Next", mainGameMenu);
 
 }
 
@@ -335,12 +551,26 @@ public function adultCockvineEncounterStop():void
 
 public function adultCockvinePCVictory():void
 {
-	One more tentacle weakly tries to coil itself around its neck and then flops backwards. All around you the battered, oozing cockvine’s appendages wither and sink slowly downwards, too exhausted and broken to continue holding you. Wheezing, you pull yourself out of the crevice and collapse on the ground, pulling in blessedly cold, fresh air into your lungs. You are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.
+	clearOutput();
+	cockvineHeader();
+	output("One more tentacle weakly tries to coil itself around its neck and then flops backwards. All around you the battered, oozing cockvine’s appendages wither and sink slowly downwards, too exhausted and broken to continue holding you. Wheezing, you pull yourself out of the crevice and collapse on the ground, pulling in blessedly cold, fresh air into your lungs.");
+
+	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.");
+
+	genericVictory();
 }
 
 public function adultCockvinePCEscapes():void
 {
-	A tentacle flaps at your [pc.lowerbody] and almost catches hold of you again – you savagely {kick it/crush it against the rock}, get a good grip on the ledge above you and heave yourself out of the crevice. You take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.
+	clearOutput();
+	output("A tentacle flaps at your [pc.lowerbody] and almost catches hold of you again – you savagely");
+	if (pc.isTaur() || pc.isBiped()) output(" kick it");
+	else output(" crush it against the rock");
+	output(", get a good grip on the ledge above you and heave yourself out of the crevice.");
+
+	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.");
+
+	escape from combat handler
 }
 
 public function adultCockvinePCLoses():void
