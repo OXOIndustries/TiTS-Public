@@ -1923,7 +1923,7 @@ public function drinkEpilogueWithSimii():void
 {
 	output("\n\n<i>\"We simii can’t really get tipsy off regular alcohol anyway - our body breaks it down too fast. If you ever end up in a tavern on Omorii, my home planet, the drinks there knock most off-worlder’s socks off,</i>” she tells you, sipping her raspberry tea. “<i>... A lot of simii bartenders will still serve it to travellers, though, because they find it funny to watch.</i>”");
 	output("\n\n“<i>... Wouldn’t they die of alcohol poisoning?</i>” you ask. If it’s that powerful, they’d probably need their stomach - or stomachs - pumped afterwards.");
-	output("\n\n<i>\"Sometimes. There’s not a whole lot of law on Omorii, other than what the sheriffs decide to enforce. There’s not a lot of love lost between my people and off-worlders,<i> the pink haired waitress explains.");
+	output("\n\n<i>\"Sometimes. There’s not a whole lot of law on Omorii, other than what the sheriffs decide to enforce. There’s not a lot of love lost between my people and off-worlders,</i>\" the pink haired waitress explains.");
 	output("\n\nSeems like you’ll need to watch the bartenders if you ever end up on Omorii.");
 	processTime(5);
 	clearMenu();
