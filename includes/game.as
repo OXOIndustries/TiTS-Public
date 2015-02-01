@@ -747,7 +747,11 @@ public function processTime(arg:int):void {
 	else if(pc.lust() > lustCap)
 	{
 		var reduce:Number = arg * productionFactor / 4;
-		pc.lust(-reduce)
+		//Ice Cold - Ice cold becomes extra effective here., effectively multiplying loss by x4 (since it halved gains earlier)
+		if (pc.hasPerk("Ice Cold")) reduce *= 4;
+		//The reverse for Extra Ardor. Reduces much slower.
+		if (pc.hasPerk("Extra Ardor")) reduce /= 4;
+		pc.lust(-reduce);
 	}
 	//Gonna hit the cap? Change to cap.
 	else
