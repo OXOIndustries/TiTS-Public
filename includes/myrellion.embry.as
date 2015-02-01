@@ -1499,7 +1499,7 @@ public function thirdEmbryTransitionApproach():void
 		output("You sit down at an unoccupied table at the bar, and look around for [embry.name]. She’s nowhere in sight.");
 		output("\n\nOne of the other waitresses, an older looking Kaithrit lady, comes up to you with a knowing smile on her face. <i>\"Looking for someone, hun? You look like you’ve been stood up for a date!</i>”");
 		output("\n\n<i>\"Is [embry.name] working today? I can’t see her around,</i>” you ask, peering about even as you speak.");
-		output("\n\nA look of recognition spreads across the woman’s face. <i>\"OH! You’re [pc.name], aren’t you? You’re [embry.name]’s " + pc.mf("boy","girl") + "friend!</i>” She sounds thoroughly delighted by this. <i>\"Oh, where are my manners? I’m Dishisa.</i>”");
+		output("\n\nA look of recognition spreads across the woman’s face. <i>\"OH! You’re [pc.name], aren’t you? You’re [embry.name]’s " + pc.mf("boy","girl") + "friend!</i>” She sounds thoroughly delighted by this. <i>\"Oh, where are my manners? I’m Dishasha.</i>”");
 		output("\n\n<i>\"That little girl has been shy as a sheech ever since she started working here. Then one day she starts asking all these </i>questions<i> about " + pc.mf("boys","girls") + ", and coming out of her shell. I hear we have you to thank?</i>”");
 		output("\n\nThat definitely sounds like [embry.name] - she did mention that she was asking the other waitresses for advice. It’s also so like her to turn to a mature kaithrit woman for advice.");
 		output("\n\n<i>\"She’s taken the day off, dear. She said something about a special package arriving. Every time she says that, that girl shows up here with a bigger set of breasts!</i>” Dishasha chuckles.");
@@ -1552,7 +1552,7 @@ public function hunnnnnnnngGlasses():void
 	else
 	{
 		output("\n\n<i>\"You should definitely wear them more often - they make you look even cuter,</i>” you tell her. Her cheeks flush and she nervously adjusts her glasses.");
-		output("\n\n<i>\"W-wha--wait, what--?</i> the pink-haired girl bashfully stammers. This was <i>clearly</i> not the reaction she was expecting. <i>\"B-but I look like a geek--!</i>”");
+		output("\n\n<i>\"W-wha--wait, what--?</i>\" the pink-haired girl bashfully stammers. This was <i>clearly</i> not the reaction she was expecting. <i>\"B-but I look like a geek--!</i>”");
 		//if (pc.isTech)
 		if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
 		{
