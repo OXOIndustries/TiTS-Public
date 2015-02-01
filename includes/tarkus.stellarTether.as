@@ -3202,7 +3202,7 @@ public function giveTheProbeToShekkaForNuttin():void
 	output("<i>\"");
 	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it someone? I'm sure you guys could use the cash more than me.");
 	else if(pc.isMischievous()) output("I must be nuts, but I don't have a use for this thing. How about you take it back to sell to someone else, and you can just owe me a favor, all right?");
-	else output("Hey, Shekka. I'm not carrying this piece of crap around me. You can keep it.");
+	else output("Hey, Shekka. I'm not carrying this piece of crap around with me. You can keep it.");
 	output("\"</i>");
 	output("\n\nShekka deadpans, <i>\"You're pulling my tail, right?\"</i>");
 	output("\n\n<i>\"Nah, I don't need it.\"</i>");
