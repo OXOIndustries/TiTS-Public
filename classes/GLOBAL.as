@@ -125,18 +125,18 @@
 		public static const TYPE_DRAGONFLY:int                              = 31;
 		public static const TYPE_MLP:int                                    = 32;
 		public static const TYPE_CUNTSNAKE:int                              = 33;
-		public static const TYPE_VENUSPITCHER:int						   = 34;
+		public static const TYPE_VENUSPITCHER:int						   	= 34;
 		public static const TYPE_SUCCUBUS:int                               = 35;
 		public static const TYPE_SMALLBEE:int                               = 36;
 		public static const TYPE_SMALLDEMONIC:int                           = 37;
 		public static const TYPE_SMALLDRACONIC:int                          = 38;
-		public static const TYPE_NALEEN_FACE:int 						   = 39;
-		public static const TYPE_PANDA:int 								   = 40;
-		public static const TYPE_MIMBRANE:int							   = 41;
-		public static const TYPE_RASKVEL:int 							   = 42;
-		public static const TYPE_SYDIAN:int 								   = 43;
-		public static const TYPE_LAPINARA:int 							   = 44;
-		public static const TYPE_BADGER:int 								   = 45;
+		public static const TYPE_NALEEN_FACE:int 						   	= 39;
+		public static const TYPE_PANDA:int 								   	= 40;
+		public static const TYPE_MIMBRANE:int							  	= 41;
+		public static const TYPE_RASKVEL:int 							   	= 42;
+		public static const TYPE_SYDIAN:int 								= 43;
+		public static const TYPE_LAPINARA:int 							   	= 44;
+		public static const TYPE_BADGER:int 								= 45;
 		public static const TYPE_VANAE:int									= 46;
 		public static const TYPE_VANAE_MAIDEN:int							= 47;
 		public static const TYPE_VANAE_HUNTRESS:int							= 48;
@@ -145,6 +145,7 @@
 		public static const TYPE_SYNTHETIC:int 								= 51;
 		public static const TYPE_SIMII:int 								    = 52;
 		public static const TYPE_DAYNAR:int									= 53;
+		public static const TYPE_COCKVINE:int								= 54;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -197,7 +198,8 @@
 			"Goat",
 			"Synthetic",
 			"Simii",
-			"Daynar"
+			"Daynar",
+			"Cockvine"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -377,6 +379,7 @@
 			TYPE_RASKVEL,
 			TYPE_NAGA,
 			TYPE_SYDIAN,
+			TYPE_COCKVINE
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
