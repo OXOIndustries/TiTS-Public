@@ -2138,11 +2138,6 @@
 				return currReflexes;
 			}
 		}
-		
-		public function RQ():Number
-		{
-			return Math.round(reflexes()/reflexesMax()*100);
-		}
 
 		public function aim(arg:Number = 0, apply:Boolean = false):Number 
 		{
