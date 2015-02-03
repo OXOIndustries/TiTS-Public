@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
 import classes.ItemSlotClass;
 import classes.StorageClass;
@@ -615,7 +616,15 @@ public function replaceItemPicker(lootList:Array):void {
 			this.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
-	this.addButton(14,"Back",itemCollect,true);
+	
+	this.addButton(14, "Back",
+		(function(c_lootList:Array):Function
+		{
+			return function():void
+			{
+				itemCollect(c_lootList, true);
+			}
+		}(lootList)), undefined);
 }
 
 public function useLoot(lootList:Array):void {
