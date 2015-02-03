@@ -808,7 +808,7 @@ public function talkToKellyAboutHerMods():void
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("<i>\"Modifications, huh? You sure you wouldn't rather a little hand's on analysis, hmm? Wouldn't that be a much more fun way to find out?\"</i> she winks suggestively at you.");
+	output("<i>\"Modifications, huh? You sure you wouldn't rather have a little hand's on analysis, hmm? Wouldn't that be a much more fun way to find out?\"</i> she winks suggestively at you.");
 	//[Yes] [No]
 	clearMenu();
 	addButton(0,"Yes",yesHandsOnModAnalysisIsTheWayToGoKelly);
@@ -937,8 +937,11 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 		}
 		else
 		{
+			
 			clearMenu();
-			addButton(0,"Next",noJackingKellyOffToTestMods);
+			// This is what it LOOKS like the scene intended to do in the doc to me
+			addButton(0, "Next", getKellyOff, true);
+			//addButton(0,"Next",noJackingKellyOffToTestMods);
 		}
 	}
 }
@@ -1047,7 +1050,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 		//if more than one tail:
 		if(pc.tailCount > 1)
 		{
-			output("\n\nNot satisfied with just stuffing her pussy, you align your second [pc.tail] with tight ass.");
+			output("\n\nNot satisfied with just stuffing her pussy, you align your second [pc.tail] with her tight ass.");
 			output("\n\n<i>\"Wha? Oh, you clever " + pc.mf("boy","girl") + "...\"</i> she remarks with glee, grinning eagerly up at you as she awaits her double-stuffing.");
 			output("\n\nStimulating her pussy with your first tail, you drain a stream of honey-juice from her stretched pussy. The small rivulet, aided by gravity, slides across her butt cleavage. You intercept it with your [pc.tail], lathering your tip on the juices and finally press your tail tip against her sphincter, applying pressure and entering her.");
 
