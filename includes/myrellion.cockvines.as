@@ -1,3 +1,6 @@
+import classes.Characters.PlayerCharacter;
+import classes.Items.Accessories.TamWolf;
+import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
 {
 	showName("ADULT\nCOCK VINE");
@@ -17,7 +20,7 @@ public function adultCockvineEncounter():void
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
 		// First Encounter
-		if (CodexManager.hasViewedEntry("Cockvine"))
+		if (CodexManager.entryViewed("Cockvine"))
 		{
 			output("\n\nDeceptively still and partially hidden in the darkness it might be, but you know a cockvine tentacle when you see one.");
 		}
@@ -36,13 +39,13 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel… you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				//{Weak willed/otherwise srsly far gone:
-				if (pc.WQ < 5 || 9999 == 0)
+				if (pc.WQ() < 15 || 9999 == 0)
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
 					// Go to Consentacles
 					clearMenu();
-					addButton(0, "Next", cockvineConsentacles);
+					addButton(0, "Next", adultCockvineConsentacles);
 					return;
 				}
 			}
@@ -53,8 +56,8 @@ public function adultCockvineEncounter():void
 			}
 
 			clearMenu();
-			addButton(0, "Stop", cockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-			addButton(1, "Go on", cockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
+			addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
+			addButton(1, "Go on", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 		}
 		else
 		{
@@ -108,7 +111,7 @@ public function adultCockvineEncounter():void
 			output("\n\nYou’ve got to fight free!");
 		}
 
-		pc.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "Cockvine Constriction", "You're in the grip of a Cockvine!", true, 0);
+		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
 		startCombat("Cockvine");
 	}
 }
@@ -117,7 +120,7 @@ public function adultCockvineAI():void
 {
 	if (!pc.hasStatusEffect("Cockvine Grip"))
 	{
-		pc.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "Cockvine Constriction", "You're in the grip of a Cockvine!", true, 0);
+		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
 	}
 
 	if (pc.statusEffectv1("Cockvine Grip") < 3) adultCockvineConstrictAttack();
@@ -142,13 +145,13 @@ public function adultCockvineAI():void
 
 		if (pc.statusEffectv1("Cockvine Grip") == 1)
 		{
-			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 10, 0, 0, 0, true, "", "", "", true, 0);
+			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 10, 0, 0, 0, true, "", "", true, 0);
 			else pc.setStatusValue("Evasion Reduction", 1, 10);
 		}
 
 		if (pc.statusEffectv1("Cockvine Grip") >= 2)
 		{
-			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 20, 0, 0, 0, true, "", "", "", true, 0);
+			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 20, 0, 0, 0, true, "", "", true, 0);
 			else pc.setStatusValue("Evasion Reduction", 1, 20);
 
 			pc.energyRaw -= 5;
@@ -157,7 +160,7 @@ public function adultCockvineAI():void
 
 		if (pc.statusEffectv1("Cockvine Grip") == 3)
 		{
-			pc.createStatusEffect("Grappled", 1000, 0, 0, 0, true, "", "", "", true, 0);
+			pc.createStatusEffect("Grappled", 1000, 0, 0, 0, true, "", "", true, 0);
 		}
 	}
 
@@ -168,7 +171,7 @@ public function adultCockvineConstrictAttack():void
 {
 	output("\nThe cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
 
-	if (rand(pc.SQ()) <= 50)
+	if (rand(pc.RQ()) <= 50)
 	{
 		output("\n\nYou grapple with it as best you can but whenever you fight off one tentacle another seizes the opportunity to grasp you tightly. You cannot prevent the thoughtless power of it drawing you further into the darkness.");
 
@@ -216,7 +219,7 @@ public function adultCockvineMouthFuxAttack():void
 	//Lust rise if success
 	output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
 
-	if (combatMiss())
+	if (combatMiss(foes[0], pc))
 	{
 		output(" You grit your teeth and manage to bat it away.");
 	}
@@ -242,7 +245,7 @@ public function adultCockvineMowThisAttack():void
 	else
 	{
 		output(" With a nasty sounding crunch the cockvine connects, sending the light robot flying out of the crevice.");
-		pc.createStatusEffect("Combat Drone Disabled", rand(5) + 1, 0, 0, 0, blargh);
+		(pc as PlayerCharacter).createStatusEffect("Combat Drone Disabled", rand(5) + 1, 0, 0, 0, true, "", "", true, 0);
 	}
 }
 
@@ -298,7 +301,7 @@ public function adultCockvineGrenadesInEnclosedSpaces(damageValue:Number, plural
 		else
 		{
 			output(" Though the writhing mass of cockvines absorbs the majority of it, you are thumped mightily hard by the impact of the explosion.");
-			genericDamageApply(damageValue);
+			genericDamageApply(damageValue, pc, pc, GLOBAL.KINETIC);
 		}
 	}
 }
@@ -348,7 +351,7 @@ public function adultCockvineStruggleOverride():void
 
 	var chance:Number;
 
-	if (pc.SQ() > pc.RQ()) chance = pc.SQ();
+	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
 	else chance = pc.RQ();
 
 	if (rand(100) > chance)
@@ -376,7 +379,7 @@ public function adultCockvineConsentacles():void
 	output(".");
 
 	output("\n\nYou clutch two constituent parts of your tentacle harness, running your grip down them, enjoying their firm, oily, ever-so-slightly pliant texture, coaxing the thing on. The tips ooze creamy white seed onto you in response, smearing across your [pc.breast] and cheek; the sharp smell - citric, sweet and musky - hits your bloodstream like alcohol, making your pupils dilate, your [pc.lips] part and your [pc.nipples]");
-	if (!pc.fuckableNipples()) output(" harden");
+	if (!pc.hasFuckableNipples()) output(" harden");
 	else output(" wet themselves");
 	output(".");
 
@@ -468,7 +471,7 @@ public function adultCockvineConsentacles():void
 
 	output("\n\nYour sense of time and space are shattered by a series of wet, full body climaxes; how long you spend in that hot, green luscious daze doesn’t matter, there is only the multitude of hard, loving tentacles and your willingness to return their affection with interest. When you are nothing more than a drooling, cock-dazed mess of flesh it flips you upside down so that your [pc.chest] and arms are dangling down towards the trunk. Agitated now with its long anticipated release it thrusts into your [pc.vagOrAss] hard, one beneath you plunging in and out of your throat, eight inches of firm, wide plant prick using your gullet like a fleshlight.");
 
-	if (pc.hasLipples() || pc.hasNippleCunts())
+	if (pc.hasLipples() || pc.hasFuckableNipples())
 	{
 		output("\n\nPositioning your body downwards alerts the carpet of cockvines beneath you to " + pc.totalNipples() + " orifices that have hitherto gone unmolested. You tense up with fresh glee as two new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.");
 	}
@@ -511,10 +514,10 @@ processTime(60);
 
 for (var i:int = 0; i < pc.vaginas.length; i++)
 {
-	pc.loadInCunt(i, cockvine);
+	pc.loadInCunt(chars["COCKVINE"], i);
 }
-pc.loadInAss(cockvine);
-pc.loadInMouth(cockvine);
+pc.loadInAss(chars["COCKVINE"]);
+pc.loadInMouth(chars["COCKVINE"]);
 
 pc.orgasm();
 pc.orgasm();
@@ -530,7 +533,7 @@ addButton(0, "Next", mainGameMenu);
 public function adultCockvineEncounterGoOn():void
 {
 	clearOutput();
-	cockvineHeader();
+	adultCockvineHeader();
 
 	output("You have no wish to stop your body’s instincts. Your mind sinks into the cotton wool of its vast erogenous zone and lets your flesh get on with it, smiling beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading you downwards to their deep, wet boudoir.");
 
@@ -541,7 +544,7 @@ public function adultCockvineEncounterGoOn():void
 public function adultCockvineEncounterStop():void
 {
 	clearOutput();
-	cockvineHeader();
+	adultCockvineHeader();
 
 	output("You get a firm grip on your treacherous instincts and stop yourself moving within range of the coiling, writhing cockvine. You give the tentacle nest a wide berth, shaking yourself down and refocusing on the cavern’s shadows. You really need to start investing in more cold showers.");
 
@@ -552,7 +555,7 @@ public function adultCockvineEncounterStop():void
 public function adultCockvinePCVictory():void
 {
 	clearOutput();
-	cockvineHeader();
+	adultCockvineHeader();
 	output("One more tentacle weakly tries to coil itself around its neck and then flops backwards. All around you the battered, oozing cockvine’s appendages wither and sink slowly downwards, too exhausted and broken to continue holding you. Wheezing, you pull yourself out of the crevice and collapse on the ground, pulling in blessedly cold, fresh air into your lungs.");
 
 	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.");
@@ -730,7 +733,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 	clearOutput();
 	adultCockvineHeader();
 
-	if (fromcombat)
+	if (fromCombat)
 	{
 		if (pc.HP() <= 0)
 		{

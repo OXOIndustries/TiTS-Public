@@ -11,7 +11,8 @@
 	
 	public class SkySap extends ItemSlotClass
 	{
-		var buff:String = "";
+		private var buff:String = "";
+		
 		//constructor
 		public function SkySap()
 		{

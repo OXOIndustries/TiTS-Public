@@ -2384,6 +2384,16 @@
 			if(rangedWeapon.damageType > 2 && rangedWeapon.damageType != 8) return true;
 			return false;
 		}
+		public function hasCombatDrone():Boolean
+		{
+			if (hasPerk("Attack Drone") || accessory is TamWolf || accessory is TamWolfDamaged)
+			{
+				if (hasStatusEffect("Combat Drone Disabled")) return false;
+				return true;
+			}
+			return false;
+		}
+		
 		//Item bonus stats!
 		public function attack(melee: Boolean = true): Number {
 			var temp: int = 0;

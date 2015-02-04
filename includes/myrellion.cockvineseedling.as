@@ -18,12 +18,12 @@ public function cockvineSeedlingEncounter():void
 
 	output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind.");
 
-	if (pc.AQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.lowerbody], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
+	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.lowerbody], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
 	else
 	{
 		output(" You freeze as your eyes land on something on the ground ahead of you. An organic, tubular something, about two feet long.");
 
-		if (CodexManager.hasViewedEntry("Cockvine"))
+		if (CodexManager.entryViewed("Cockvine"))
 		{
 			output(" After a tense moment ascertaining it isn’t attached to anything, you recognize the cockvine to be a seedling.");
 		}
@@ -47,10 +47,10 @@ public function cockvineSeedlingChase():void
 	if (pc.RQ() <= 40 + rand(35))
 	{
 		output("You charge after the");
-		if (!CodexManager.hasViewedEntry("Cockvine")) output(" snake-like creature");
+		if (!CodexManager.entryViewed("Cockvine")) output(" snake-like creature");
 		else output(" cockvine seedling");
 		output(" down the narrow tunnel it escaped into, stumbling and scraping over the damp rock in your effort to catch up with it. For a few moments you see its tail urgently winding its way away from you, and you think maybe you can grab it – then you bang your [pc.lowerbody] against a protrusion of rock, making you cry out in pain and forcing you to come to a halt. You glower after the");
-		if (!CodexManager.hasViewedEntry("Cockvine")) output(" snake");
+		if (!CodexManager.entryViewed("Cockvine")) output(" snake");
 		else output(" seedling");
 		output(" and then turn back to the path, rubbing your sore spot and cursing.");
 
@@ -63,10 +63,10 @@ public function cockvineSeedlingChase():void
 	else
 	{
 		output("You charge after the");
-		if (!CodexManager.hasViewedEntry("Cockvine")) output(" snake-like creature");
+		if (!CodexManager.entryViewed("Cockvine")) output(" snake-like creature");
 		else output(" cockvine seedling");
 		output(" down the narrow tunnel it escaped into, nimbly darting over and around the damp rock in your effort to catch up with it. You lose sight of it in the gloom – and then emerge abruptly in a dead end. Nowhere left to run, the");
-		if (!CodexManager.hasViewedEntry("Cockvine")) output(" strange, green creature");
+		if (!CodexManager.entryViewed("Cockvine")) output(" strange, green creature");
 		else output(" seedling");
 		output(" is curled up in a ball as far away from you as it can, shivering slightly.");
 
@@ -127,7 +127,7 @@ public function cockvineSeedlingLeave():void
 	output("Unable to bring yourself to kill the completely defenseless creature you shrug and leave it be, retracing your steps back to the main path.");
 
 	pc.XP(10);
-	process(3);
+	processTime(3);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -204,7 +204,7 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	{
 		output(" Your own skin pigment is swiftly spreading up it; it is a thick, sheathed [pc.cockColor] appendage with what is unmistakably a flat-tipped horse-cock protruding readily out of it.");
 
-		pc.tailGenitalArg = GLOBAL.TYPE_HORSE;
+		pc.tailGenitalArg = GLOBAL.TYPE_EQUINE;
 		pc.addTailFlag(GLOBAL.FLAG_FLARED);
 	}
 	else if (sCockType == Seedling_Type_Bulbous)
