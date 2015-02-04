@@ -2172,11 +2172,7 @@ public function runAway():void {
 			}
 			else output("You manage to leave the fight behind you.")
 			processTime(8);
-			pc.removeStatusEffect("Round");
-			pc.clearCombatStatuses();
-			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
-			this.clearMenu();
-			this.addButton(0,"Next",mainGameMenu);
+			leaveCombat();
 		}
 		else {
 			output(" It doesn't work!\n");
@@ -2184,6 +2180,15 @@ public function runAway():void {
 		}
 
 	}
+}
+
+public function leaveCombat():void
+{
+	pc.removeStatusEffect("Round");
+	pc.clearCombatStatuses();
+	userInterface.hideNPCStats();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 public function fantasize():void {
 	clearOutput();

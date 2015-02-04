@@ -35,8 +35,8 @@ public function cockvineSeedlingEncounter():void
 
 	//[Give Chase] [Ignore]
 	clearMenu();
-	addButton(0, "Chase", );
-	addButton(1, "Ignore", )
+	addButton(0, "Chase", cockvineSeedlingChase);
+	addButton(1, "Ignore", mainGameMenu);
 }
 
 public function cockvineSeedlingChase():void

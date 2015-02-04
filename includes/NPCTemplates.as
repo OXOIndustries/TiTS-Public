@@ -280,6 +280,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["RENVRA"] = new Renvra();
 	}
+	if (!justUpdate || (justUpdate && chars["COCKVINE"] == undefined))
+	{
+		chars["COCKVINE"] = new Cockvine();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

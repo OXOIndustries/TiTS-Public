@@ -109,7 +109,7 @@ public function adultCockvineEncounter():void
 		}
 
 		pc.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "Cockvine Constriction", "You're in the grip of a Cockvine!", true, 0);
-		START FITE;
+		startCombat("Cockvine");
 	}
 }
 
@@ -235,7 +235,7 @@ public function adultCockvineMowThisAttack():void
 	//Activates if attacked by drone. Disables drone for 3-5 turns if successful
 	output("\nIncensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
 
-	if (rand(4) == 0
+	if (rand(4) == 0)
 	{
 		output(" Your trusty drone darts nimbly out of the way.");
 	}
@@ -570,7 +570,7 @@ public function adultCockvinePCEscapes():void
 
 	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.");
 
-	escape from combat handler
+	leaveCombat();
 }
 
 public function adultCockvinePCLoses():void

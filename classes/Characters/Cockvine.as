@@ -91,12 +91,12 @@
 			this.tailCount = 1;
 			this.tailFlags = [GLOBAL.FLAG_SCALED, GLOBAL.FLAG_LONG, GLOBAL.FLAG_THICK, GLOBAL.FLAG_PREHENSILE];
 			//Used to set cunt or dick type for cunt/dick tails!
-			this.tailGenitalArg = 0;
+			this.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 			//tailGenital:
 			//0 - none.
 			//1 - cock
 			//2 - vagina
-			this.tailGenital = 0;
+			this.tailGenital = 1;
 			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 			this.tailVenom = 0;
 			//Tail recharge determines how fast venom/webs comes back per hour.
@@ -165,7 +165,7 @@
 		{
 			var combatVine:Cockvine = this.makeCopy();
 
-			kGAMECLASS.foes.push(combatCSnake);
+			kGAMECLASS.foes.push(combatVine);
 		}
 	}
 }
