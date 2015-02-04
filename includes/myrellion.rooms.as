@@ -449,10 +449,11 @@ public function initializeMyrellionRooms():void
 	rooms["715"].southExit = "714";
 	rooms["715"].northExit = "716";
 	rooms["715"].moveMinutes = 2;
-	rooms["715"].runOnEnter = undefined;
+	rooms["715"].runOnEnter = roomDescriptionBonusForMuppets;
 	rooms["715"].addFlag(GLOBAL.INDOOR);
 	rooms["715"].addFlag(GLOBAL.PUBLIC);
 	rooms["715"].addFlag(GLOBAL.CAVE);
+	rooms["715"].addFlag(GLOBAL.NPC);
 	
 	//716 Crystamere Road
 	rooms["716"] = new RoomClass(this);
