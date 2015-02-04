@@ -4456,8 +4456,18 @@ public function initializeRooms():void
 	rooms["DEBUG2"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG2"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG2"].eastExit = "DEBUG1";
+	rooms["DEBUG2"].southExit = "DEBUG3";
 	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG2"].runOnEnter = debugMenusTwo;
+	
+	rooms["DEBUG3"] = new RoomClass(this);
+	rooms["DEBUG3"].roomName = "\nDEBUG ROOM";
+	rooms["DEBUG3"].description = "";
+	rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG3"].northExit = "DEBUG2";
+	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);
+	rooms["DEBUG3"].runOnEnter = debugMenusThree;
 }
 
 /*

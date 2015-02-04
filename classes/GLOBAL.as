@@ -48,6 +48,7 @@
 		public static const FLAG_NUBBY:int  		                        = 30;
 		public static const FLAG_FORESKINNED:int	    					= 31;
 		public static const FLAG_HOLLOW:int									= 32;
+		public static const FLAG_RIBBED:int									= 33;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -83,6 +84,7 @@
 			"Nubby",
 			"Foreskinned",
 			"Hollow",
+			"Ribbed"
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [

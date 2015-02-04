@@ -2082,6 +2082,9 @@ public function startCombat(encounter:String):void
 			chars["SHADE"].prepForCombat();
 			buildShadeAndKaraFight(true);
 			break;
+		case "Cockvine":
+			chars["COCKVINE"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;

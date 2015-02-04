@@ -155,6 +155,16 @@ public function debugMenusTwo():void
 	});
 }
 
+public function debugMenusThree():void
+{
+	clearOutput();
+	output("Debug combat room.");
+	
+	addButton(0, "F. C.Vine", adultCockvineEncounter);
+	
+	addButton(1, "F. Seed.CV", cockvineSeedlingEncounter);
+}
+
 public function thisIsWhyWeCantHaveNiceThings():void
 {
 	clearOutput();
