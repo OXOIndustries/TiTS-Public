@@ -37,7 +37,7 @@
 			this.armor.defense = 0;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 18;
+			this.physiqueRaw = 12;
 			this.reflexesRaw = 15;
 			this.aimRaw = 3;
 			this.intelligenceRaw = 1;
@@ -47,7 +47,7 @@
 			this.energyRaw = 100;
 			this.lustRaw = 75;
 			this.resistances = new Array(0.5, 1, 1, 1, 1, 1, 1, 1.5);
-			this.XPRaw = 600;
+			this.XPRaw = 60;
 			this.level = 6;
 			this.credits = 0;
 			this.HPMod = 0;

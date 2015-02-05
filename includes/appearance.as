@@ -546,7 +546,7 @@ public function appearance(target:Creature):void {
 				output2(" in a fleshy pink head that's distinctly cock-shaped in nature.");
 			}
 			// Bulbous
-			else if (target.tailGenitalArg == GLOBAl.TYPE_CANINE)
+			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
 				output2(" in a thick bulge a few inches below a tapered, dark-red tip.");
 			}

@@ -1764,6 +1764,10 @@ public function victoryRouting():void
 		//PC + Shade defeat Kara
 		pcAndShadeBeatKara();
 	}
+	else if (foes[0] is Cockvine)
+	{
+		adultCockvinePCVictory();
+	}
 	else genericVictory();
 }
 
@@ -1883,6 +1887,13 @@ public function defeatRouting():void
 	{
 		//PC + Shade Defeated
 		pcAndShadeDefeated();
+	}
+	else if (foes[0] is Cockvine)
+	{
+		if (pc.hasCock() || pc.hasVagina())
+			adultCockvinePCLoses();
+		else
+			adultCockvineHahaFuckYouGenderless(true);
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2213,7 +2224,13 @@ public function runAway():void {
 		else difficulty = 5;
 		trace("Successful escape chance: " + difficulty + " %")
 		//Success!
-		if(rand(100) + 1 <= difficulty) {
+		if (rand(100) + 1 <= difficulty) {
+			if (foes[0] is Cockvine)
+			{
+				adultCockvinePCEscapes();
+				leaveCombat();
+				return;
+			}
 			if (pc.canFly()) 
 			{
 				if (pc.legCount == 1) output("Your [pc.foot] leaves");

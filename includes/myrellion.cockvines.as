@@ -183,13 +183,13 @@ public function adultCockvineConstrictAttack():void
 {
 	output("The cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
 
-	if (rand(pc.RQ()) <= 50)
+	if (rand(Math.max(pc.RQ(), pc.PQ())) <= 65)
 	{
 		output("\n\nYou grapple with it as best you can but whenever you fight off one tentacle another seizes the opportunity to grasp you tightly. You cannot prevent the thoughtless power of it drawing you further into the darkness.");
 
 		pc.addStatusValue("Cockvine Grip", 1, 1);
 		
-		var damage:Number = damageRand(30 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)), 15);
+		var damage:Number = damageRand(15 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)), 15);
 		
 		switch (pc.statusEffectv1("Cockvine Grip"))
 		{
@@ -223,7 +223,7 @@ public function adultCockvineWhips():void
 {
 	output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
 
-	foes[0].createPerk("Multiple Attacks", 3 + rand(3), 0, 0, 0, "");
+	foes[0].createPerk("Multiple Attacks", 2 + rand(2), 0, 0, 0, "");
 	attack(foes[0], pc, true);
 	foes[0].removePerk("Multiple Attacks");
 	
@@ -358,6 +358,7 @@ public function adultCockvineStruggleOverride():void
 	{
 		output(" You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.");
 		pc.addStatusValue("Cockvine Grip", 1, -1);
+		if (pc.hasStatusEffect("Grappled")) pc.removeStatusEffect("Grappled");
 	}
 	
 	pc.setStatusValue("Cockvine Grip", 2, 1);
@@ -367,6 +368,12 @@ public function adultCockvineStruggleOverride():void
 
 public function adultCockvineConsentacles():void
 {
+	if (!pc.hasCock() && !pc.hasVagina())
+	{
+		adultCockvineHahaFuckYouGenderless();
+		return;
+	}
+	
 	clearOutput();
 	adultCockvineHeader();
 
@@ -559,7 +566,7 @@ public function adultCockvinePCVictory():void
 	adultCockvineHeader();
 	output("One more tentacle weakly tries to coil itself around its neck and then flops backwards. All around you the battered, oozing cockvine’s appendages wither and sink slowly downwards, too exhausted and broken to continue holding you. Wheezing, you pull yourself out of the crevice and collapse on the ground, pulling in blessedly cold, fresh air into your lungs.");
 
-	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.");
+	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.\n\n");
 
 	genericVictory();
 }
@@ -572,7 +579,7 @@ public function adultCockvinePCEscapes():void
 	else output(" crush it against the rock");
 	output(", get a good grip on the ledge above you and heave yourself out of the crevice.");
 
-	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.");
+	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.\n\n");
 
 	leaveCombat();
 }
