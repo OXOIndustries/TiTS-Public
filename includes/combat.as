@@ -150,8 +150,15 @@ public function combatMainMenu():void
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		
-		if (pc.hasStatusEffect("Cockvine Grip"))
+		if (pc.hasStatusEffect("Cockvine Grip") && pc.statusEffectv1("Cockvine Grip") > 0)
 		{
+			if (pc.hasPerk("Static Burst"))
+			{
+				if (pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+				else if (pc.energy() >= 5) this.addButton(3, "Static Burst", staticBurst);
+				else this.addDisabledButton(3, "Static Burst");
+			}
+			
 			this.addButton(14, "Struggle", adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
 		}
 		else
@@ -795,6 +802,13 @@ public function processCombat():void
 
 public function grappleStruggle():void {
 	clearOutput();
+	
+	if (foes[0] is Cockvine)
+	{
+		adultCockvineStruggleOverride();
+		return;
+	}
+	
 	if(pc.hasPerk("Escape Artist"))
 	{
 		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
@@ -850,6 +864,11 @@ public function staticBurst():void {
 	{
 		pc.removeStatusEffect("Grappled");
 		output("\nYou slip free of the grapple.");
+	}
+	if (pc.hasStatusEffect("Cockvine Grip"))
+	{
+		pc.addStatusValue("Cockvine Grip", 1, -2);
+		if (pc.statusEffectv1("Cockvine Grip") < 0) pc.setStatusValue("Cockvine Grip", 1, 0);
 	}
 	output("\n");
 	processCombat();
@@ -1112,7 +1131,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	//Do multiple attacks if more are queued (does not stack with special!)
 	if(attacker.hasStatusEffect("Multiple Attacks") && special == 0) {
 		output("\n");
-		attack(attacker,target);
+		attack(attacker,target, noProcess);
 		return;
 	}
 	if(attacker == chars["PC"]) output("\n");

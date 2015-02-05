@@ -16,8 +16,8 @@
 			
 			this.short = "cock vine";
 			this.originalRace = "cock vine";
-			this.a = "a ";
-			this.capitalA = "A ";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.tallness = 24 + rand(36);
 			this.scaleColor = "green";
 			this.long = "You are trapped by a cockvine. In the heavy darkness of its nest you can just about make out the rapacious plant creature’s limbs writhing busily over the rock and around you: dark green stems thick enough that you cannot get your hand fully around them, tipped with blunt, purple helmet-like heads, oozing white seed from their tips. They are attempting to draw you further downwards, towards the broad trunk of the thing, where it can secure you completely in its grasp. The harder you struggle the more vigorously they in turn seem to act, as if energized by your own movements. The tropical heat and smell of the creature is overwhelming - a heady, cloying herbal atmosphere which seems to permeate through your whole being, making you feel cloudy and limp.";
@@ -47,8 +47,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 75;
 			this.resistances = new Array(0.5, 1, 1, 1, 1, 1, 1, 1.5);
-			this.XPRaw = 20;
-			this.level = 1;
+			this.XPRaw = 600;
+			this.level = 6;
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
@@ -156,7 +156,6 @@
 			this.ass.wetnessRaw = 0;
 			
 			this.createStatusEffect("Disarm Immune");
-			this.createStatusEffect("Flee Disabled");
 			
 			this._isLoading = false;
 		}

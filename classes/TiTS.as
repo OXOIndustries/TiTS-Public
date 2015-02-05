@@ -63,6 +63,7 @@
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.getPlanetName;
+	import classes.Engine.Combat.damageRand;
 	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;

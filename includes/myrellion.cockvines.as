@@ -136,7 +136,7 @@ public function adultCockvineAI():void
 		attacks.push(adultCockvineMouthFuxAttack);
 		if (pc.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
 		
-		attacks[rand(attacks.length)];
+		attacks[rand(attacks.length)]();
 	}
 	
 	// Resolve various state changes that can happen and apply/remove/change appropriate status effects
@@ -150,14 +150,11 @@ public function adultCockvineAI():void
 	// Trigger various effects based on grip-level
 	if (pc.statusEffectv1("Cockvine Grip") == 0)
 	{
-		if (foes[0].hasStatusEffect("Flee Disabled")) foes[0].removeStatusEffect("Flee Disabled");
 		if (pc.hasStatusEffect("Evasion Reduction")) pc.removeStatusEffect("Evasion Reduction");
 		if (pc.hasStatusEffect("Grappled")) pc.removeStatusEffect("Grappled");
 	}
 	else
 	{
-		if (!foes[0].hasStatusEffect("Flee Disabled")) foes[0].createStatusEffect("Flee Disabled");
-
 		if (pc.statusEffectv1("Cockvine Grip") == 1)
 		{
 			if (!pc.hasStatusEffect("Evasion Reduction")) pc.createStatusEffect("Evasion Reduction", 10, 0, 0, 0, true, "", "", true, 0);
@@ -184,14 +181,16 @@ public function adultCockvineAI():void
 
 public function adultCockvineConstrictAttack():void
 {
-	output("\nThe cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
+	output("The cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
 
 	if (rand(pc.RQ()) <= 50)
 	{
 		output("\n\nYou grapple with it as best you can but whenever you fight off one tentacle another seizes the opportunity to grasp you tightly. You cannot prevent the thoughtless power of it drawing you further into the darkness.");
 
 		pc.addStatusValue("Cockvine Grip", 1, 1);
-
+		
+		var damage:Number = damageRand(30 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)), 15);
+		
 		switch (pc.statusEffectv1("Cockvine Grip"))
 		{
 			case 1:
@@ -211,6 +210,8 @@ public function adultCockvineConstrictAttack():void
 				break;
 
 		}
+		
+		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
 	else
 	{
@@ -222,10 +223,10 @@ public function adultCockvineWhips():void
 {
 	output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
 
-	for (var i:int = 0; i < rand(3) + 3; i++)
-	{
-		enemyAttack(foes[0]);
-	}
+	foes[0].createPerk("Multiple Attacks", 3 + rand(3), 0, 0, 0, "");
+	attack(foes[0], pc, true);
+	foes[0].removePerk("Multiple Attacks");
+	
 	output("\n");
 }
 
