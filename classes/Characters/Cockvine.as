@@ -37,15 +37,15 @@
 			this.armor.defense = 0;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 1;
-			this.reflexesRaw = 5;
-			this.aimRaw = 4;
+			this.physiqueRaw = 18;
+			this.reflexesRaw = 15;
+			this.aimRaw = 3;
 			this.intelligenceRaw = 1;
 			this.willpowerRaw = 1;
 			this.libidoRaw = 50;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 15;
+			this.lustRaw = 75;
 			this.resistances = new Array(0.5, 1, 1, 1, 1, 1, 1, 1.5);
 			this.XPRaw = 20;
 			this.level = 1;

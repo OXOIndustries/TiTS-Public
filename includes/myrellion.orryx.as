@@ -11,21 +11,21 @@
 //Ships: 
 //Orryx’s podium is a Sponsorstand, so called because Orryx pays relatively little for it, so long as it can advertise freely on its exterior. In Camarilla classifications, it’s a Skimmer-class ship, barely more than a self-propelled pod. It possesses relatively few conveniences, save for a minor Aetherspace Bender, which creates slightly more room inside than out (its interior is roughly the size of a studio apartment, filled with water). Orryx makes heavy use of its Aetherspace Manifestor, hydraulic compressor, which keeps the interior of the podium both filled with water and at deep-sea levels of pressure. Orryx makes heavy use of his Seeders, a pair of small, long-range transport rocket-pods that propel themselves into low orbit and connect to the nearest Camarilla trade route. With only two Seeders, he can’t move much product in the course of a day. Orryx references “wabeships,” the highest class of Camarilla ship--massive, dome-like pleasure satellites, owned by the most prosperous toves.
 
-function showOrryx():void
+public function showOrryx():void
 {
 	author("Frogapus");
 	showBust("ORRYX");
 	if(flags["MET_ORRYX"] == undefined || flags["MET_ORRYX"] == -1) showName("FUZZY\nALIEN");
 	else showName("\nORRYX");
 }
-function orryxReputation(arg:int = 0):Number
+public function orryxReputation(arg:int = 0):Number
 {
 	if(flags["ORRYX_REP"] == undefined) flags["ORRYX_REP"] = 0;
 	if(arg != 0) flags["ORRYX_REP"] += arg;
 	return flags["ORRYX_REP"];
 }
 
-function roomDescriptionBonusForMuppets():Boolean
+public function roomDescriptionBonusForMuppets():Boolean
 {
 	if(flags["MET_ORRYX"] == undefined)
 	{
@@ -55,7 +55,7 @@ function roomDescriptionBonusForMuppets():Boolean
 	return false;
 }
 
-function encounterFrogapi():void
+public function encounterFrogapi():void
 {
 	//First Encounter:
 	if(flags["MET_ORRYX"] == undefined)
@@ -140,7 +140,7 @@ function encounterFrogapi():void
 }
 
 //Investigate: No.
-function dontInvestigateNo():void
+public function dontInvestigateNo():void
 {
 	clearOutput();
 	showOrryx();
@@ -150,7 +150,7 @@ function dontInvestigateNo():void
 }
 
 //Investigate: Yes.
-function investigateFrogapi():void
+public function investigateFrogapi():void
 {
 	clearOutput();
 	showOrryx();
@@ -173,7 +173,7 @@ function investigateFrogapi():void
 	addButton(0,"Next",investigateFrogapi2);
 }
 
-function investigateFrogapi2():void
+public function investigateFrogapi2():void
 {
 	clearOutput();
 	showOrryx();
@@ -189,7 +189,7 @@ function investigateFrogapi2():void
 }
 
 //Let’s not make a deal: 
-function letsMakeADealUFrogapi():void
+public function letsMakeADealUFrogapi():void
 {
 	clearOutput();
 	showOrryx();
@@ -212,7 +212,7 @@ function letsMakeADealUFrogapi():void
 }
 
 //Count me out!: 
-function countMeOutYouSloot():void
+public function countMeOutYouSloot():void
 {
 	clearOutput();
 	showOrryx();
@@ -222,7 +222,7 @@ function countMeOutYouSloot():void
 }
 
 //Cultural Differences: 
-function culturalDifferences():void
+public function culturalDifferences():void
 {
 	clearOutput();
 	showOrryx();
@@ -247,7 +247,7 @@ function culturalDifferences():void
 }
 
 //Camarilla Regulations:
-function camarillaRegulations():void
+public function camarillaRegulations():void
 {
 	clearOutput();
 	showOrryx();
@@ -273,7 +273,7 @@ function camarillaRegulations():void
 }
 
 //I’m in!:
-function ImInMissFrogapipipipipipi():void
+public function ImInMissFrogapipipipipipi():void
 {
 	clearOutput();
 	showOrryx();
@@ -290,7 +290,7 @@ function ImInMissFrogapipipipipipi():void
 }
 
 //I’ll pass: 
-function illPassOnFrogapiHoneyBooBoos():void
+public function illPassOnFrogapiHoneyBooBoos():void
 {
 	clearOutput();
 	showOrryx();
@@ -301,7 +301,7 @@ function illPassOnFrogapiHoneyBooBoos():void
 }
 
 //It’s a deal.
-function itsADealYouLittleMuppetSlut():void
+public function itsADealYouLittleMuppetSlut():void
 {
 	clearOutput();
 	showOrryx();
@@ -318,7 +318,7 @@ function itsADealYouLittleMuppetSlut():void
 }
 
 //I have some now!: 
-function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
+public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 {
 	clearOutput();
 	showOrryx();
@@ -358,7 +358,7 @@ function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 }
 
 //Farewell: 
-function farewellYouSackOfFluff():void
+public function farewellYouSackOfFluff():void
 {
 	clearOutput();
 	showOrryx();
@@ -368,7 +368,7 @@ function farewellYouSackOfFluff():void
 }
 
 //(Not yet shipped a load) No:
-function noHoneyForYouSlut():void
+public function noHoneyForYouSlut():void
 {
 	clearOutput();
 	showOrryx();
@@ -392,7 +392,7 @@ function noHoneyForYouSlut():void
 }
 
 //Blackmarket
-function orryxBlackmarket():void
+public function orryxBlackmarket():void
 {
 	clearOutput();
 	showOrryx();
@@ -431,7 +431,7 @@ function orryxBlackmarket():void
 }
 
 //Yes, have some: 
-function buySomeRedShit():void
+public function buySomeRedShit():void
 {
 	clearOutput();
 	showOrryx();
@@ -447,7 +447,7 @@ function buySomeRedShit():void
 }
 
 //No thanks.
-function noThanksNoRedVenom():void
+public function noThanksNoRedVenom():void
 {
 	clearOutput();
 	showOrryx();
@@ -459,7 +459,7 @@ function noThanksNoRedVenom():void
 }
 
 //Yes, have some:
-function buySomeExpensiveShit():void
+public function buySomeExpensiveShit():void
 {
 	clearOutput();
 	showOrryx();
@@ -474,7 +474,7 @@ function buySomeExpensiveShit():void
 }
 
 //No thanks:
-function turnDownExpensiveFroggieShitz():void
+public function turnDownExpensiveFroggieShitz():void
 {
 	clearOutput();
 	showOrryx();

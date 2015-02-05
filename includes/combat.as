@@ -1,4 +1,5 @@
-﻿import classes.Characters.GigaGoo;
+﻿import classes.Characters.Cockvine;
+import classes.Characters.GigaGoo;
 import classes.Characters.GrayGoo;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
@@ -148,7 +149,16 @@ public function combatMainMenu():void
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
-		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+		
+		if (pc.hasStatusEffect("Cockvine Grip"))
+		{
+			this.addButton(14, "Struggle", adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
+		}
+		else
+		{
+			this.addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+		}
+		
 		if(foes[0] is classes.Characters.Varmint && pc.hasKeyItem("Lasso")) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
 		//Bonus shit for stuff!
 		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
@@ -549,6 +559,18 @@ public function updateCombatStatuses():void {
 			output("<b>You are disarmed and cannot use weapon based attacks.</b>\n");
 		}
 	}
+	if (pc.hasStatusEffect("Combat Drone Disabled"))
+	{
+		pc.addStatusValue("Combat Drone Disabled", 1, -1);
+		if (pc.statusEffectv1("Combat Drone Disabled") <= 0)
+		{
+			pc.removeStatusEffect("Combat Drone Disabled");
+			if (pc.hasCombatDrone())
+			{
+				output("<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>\n");
+			}
+		}
+	}
 	
 	// Annoquest stuffs
 	
@@ -733,8 +755,9 @@ public function processCombat():void
 		if(pc.shields() > 0) {
 			output("\n\n");
 			//Clear drone down if got shields healed.
-			if(pc.hasStatusEffect("Drone Down")) {
-				output("Your drone shudders to life, lifting back into the air and circling your target helpfully. ");
+			if (pc.hasStatusEffect("Drone Down")) {
+				// Hide the message of the drone is not available right now... something something
+				if (pc.hasCombatDrone()) output("Your drone shudders to life, lifting back into the air and circling your target helpfully. ");
 				pc.removeStatusEffect("Drone Down");
 				//Reboot clears hack!
 				if(pc.hasStatusEffect("Porno Hacked Drone")) pc.removeStatusEffect("Porno Hacked Drone");
@@ -747,7 +770,7 @@ public function processCombat():void
 		else if(!pc.hasStatusEffect("Drone Down")) {
 			if(!(pc.accessory is TamWolfDamaged || pc.accessory is TamWolf)) 
 			{
-				output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
+				if (pc.hasCombatDrone()) output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
 				pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
 			}
 			else 
@@ -1266,6 +1289,8 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 }
 
 public function droneAttack(target:Creature):void {
+	if (!pc.hasCombatDrone()) return;
+	
 	if(pc.accessory is TamWolf) 
 	{
 		//In Combat:
@@ -1502,7 +1527,12 @@ public function displayMonsterStatus(targetFoe:Creature):void
 		if(pc.statusEffectv1("Blind") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
 			if(targetFoe is Naleen) author("Savin");
-			if(targetFoe is ZilFemale) author("Savin");
+			if (targetFoe is ZilFemale) author("Savin");
+			if (targetFoe is Cockvine)
+			{
+				author("Nonesuch");			
+				adultCockvineCombatDescriptionExtension();
+			}
 			showMonsterArousalFlavor(targetFoe);
 			mutinousMimbranesCombat();
 			neglectedMimbranesCombat();
@@ -1597,6 +1627,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Varmint) varmintAI();
 	else if (aggressor is Shade) shadeAI();
 	else if (aggressor is Kara) karaAI();
+	else if (aggressor is Cockvine) adultCockvineAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -3111,6 +3142,14 @@ public function hipsTeaseText():void {
 
 public function sense(target:Creature):void {
 	clearOutput();
+	
+	if (target is Cockvine)
+	{
+		adultCockvineSenseOverride();
+		processCombat();
+		return;
+	}
+	
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
 	if(target.lustDamageMultiplier() == 0) output("You don't think sexuality can win this fight!\n");
 	var buffer:String = "";
@@ -3335,6 +3374,7 @@ public function flashGrenade(target:Creature):void {
 	else output("\n" + target.capitalA + target.short + " manages to keep away from the blinding projectile.\n")
 	processCombat();
 }
+
 public function NPCFlashGrenade():void {
 	pc.energy(-10);
 	output(monster.capitalA + monster.short + "produces a flash grenade and hucks it in your direction!\n");
@@ -3348,10 +3388,10 @@ public function NPCFlashGrenade():void {
 	processCombat();
 }
 
-
 public function headbutt(target:Creature):void {
 	properHeadbutt(pc,target);
 }
+
 public function properHeadbutt(attacker:Creature,target:Creature):void {
 	if(attacker == pc) clearOutput();
 	attacker.energy(-25);
@@ -3496,7 +3536,14 @@ public function grenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "! ");
 	var damage:Number = Math.round(40 + rand(10));
-	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	
+	if (foes[0] is Cockvine)
+	{
+		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+	}
+	
+	genericDamageApply(damage, pc, target, GLOBAL.THERMAL);
+	
 	output("\n");
 	processCombat();
 }
@@ -3509,6 +3556,11 @@ public function gasGrenade(target:Creature):void
 	
 	var damage:Number = 14 + pc.level + rand(10);
 
+	if (foes[0] is Cockvine)
+	{
+		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+	}
+	
 	//Any perks or shit go below here.
 	damage *= target.lustDamageMultiplier();
 	if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
@@ -3659,15 +3711,23 @@ public function carpetGrenades():void
 	clearOutput();
 	pc.energy(-25);
 	output("You sling an array of microgrenades at everything in the area! ");
+	
 	var damage:Number = Math.round(30 + rand(10));
+	
+	if (foes[0] is Cockvine)
+	{
+		adultCockvineGrenadesInEnclosedSpaces(damage, true, false, false);
+	}
+
 	for(var x:int = 0; x < foes.length; x++)
 	{
-		damage = Math.round(30 + rand(10));
 		//Double damage against plural enemies
 		if(foes[x].plural) genericDamageApply(damage*2,pc,foes[x],GLOBAL.THERMAL);
 		else genericDamageApply(damage,pc,foes[x],GLOBAL.THERMAL);
 	}
+	
 	aoeAttack(damage);
+	
 	output("\n");
 	processCombat();
 }
@@ -3676,8 +3736,15 @@ public function detCharge(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("You toss a bundle of explosives in the direction of " + target.a + target.short + "! ");
+	
 	var damage:Number = Math.round(50 + rand(10));
-	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	
+	if (foes[0] is Cockvine)
+	{
+		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+	}
+	genericDamageApply(damage, pc, target, GLOBAL.THERMAL);
+
 	output("\n");
 	processCombat();
 }
