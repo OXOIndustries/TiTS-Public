@@ -1570,6 +1570,12 @@
 				case "leg":
 					buffer = leg();
 					break;
+				case "legNoun":
+					buffer = legNoun();
+					break;
+				case "legsNoun":
+					buffer = legsNoun();
+					break;
 				case "legs":
 					buffer = legs();
 					break;
@@ -3111,11 +3117,6 @@
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
 			//EDGE CASSES
-			if (legType == GLOBAL.TYPE_SNAKE) return "coils";
-			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) {
-				select = this.rand(5);
-				return "mounds of goo";
-			}
 			return leg(forceType, forceAdjective) + "s";
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
@@ -3315,9 +3316,22 @@
 				}
 				//NOUN IT UP BITCHES!
 				if (output != "") output += " ";
-				output += "leg";
+				output += legNoun;
 			}
 			return output;
+		}
+		public function legNoun():String
+		{
+			if (legType == GLOBAL.TYPE_SNAKE) return "coil";
+			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) {
+				select = this.rand(5);
+				return "goo mound";
+			}
+			else return "leg";
+		}
+		public function legsNoun():String
+		{
+			return pluralize(legNoun());
 		}
 		public function footAdjectives(forceType: Boolean = false, forceAdjective: Boolean = false):String {
 			var output: String = "";
