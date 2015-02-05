@@ -1473,7 +1473,7 @@ function leftTeasedForEver(x:int = 0):void
 	else output("bound up ");
 	output("nipples ");
 	if(!pc.hasCock()) output("and [pc.chestNoun]");
-	else output("and [pc.cocksNoun]");
+	else output("and [pc.cocksNounSimple]");
 	output(", assaulting your body with so many sensations in all the right places. Even with your wrists bound up, you buck and grind instinctively against her, happy for your Mistress to claim what is hers.");
 
 	output("\n\nIt’s not surprising that you quickly reach the brink that you have been literally denied for days, though your orgasm is mind blowingly cataclysmic. Starting at a trembling [pc.foot] and turning into a full body spasm, you clench her ");
@@ -1570,51 +1570,107 @@ function shePaysAttentionToYouSlut():void
 			output(" of them are tightly bound and linked by the silken thread around your neck.");
 		}
 		//else if (pc.hasCock = true  && pc.hasBreasts = false)
-		else if()
+		else if(pc.biggestTitSize() < 1 && pc.hasCock())
 		{
-			output("\n\n<i>\</i>”<i>\</i>” ... It’s for binding your [pc.cocksNoun] {if (pc.hasBalls) “<i>and [pc.ballsNoun]}, and making {it/them} especially pretty.\</i>”</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockSizeAdjective] [pc.cockColor] genitals.");
-			output("\n\nYou’re both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk ‘pretty’. When she loops it around your {tiny/modest/girthy} base and pulls it tight, you let out a sharp gasp.");
-			output("\n\n<i>\"Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you’ll become incredibly erect and sensitive.</i> Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.");
+			output("\n\n\"<i>... It’s for binding your [pc.cocksNounSimple] ");
+			if(pc.balls > 0) output(" and [pc.ballsNoun]");
+			output(", and making ");
+			if(pc.balls == 0 && pc.cockTotal() == 1) output("it");
+			else output("them");
+			output(" especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockColor] genitals.");
+			output("\n\nYou’re both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk ‘pretty’. When she loops it around your ");
+			if(pc.cocks[0].thickness() < .75) output("tiny");
+			else if(pc.cocks[x].thickness() < 1.5) output("modest");
+			else output("girthy");
+			output(" base and pulls it tight, you let out a sharp gasp.");
+			output("\n\n<i>\"Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you’ll become incredibly erect and sensitive.</i>\" Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.");
 			output("\n\nLooking down, you marvel at how <i>big</i> your [pc.cock] has quickly become. It is truly jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers along your length causes you to let out a pleasured whine.");
-			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.\</i>”</i> Xanthe tsks and begins binding up the rest of your [pc.cocksNoun] {BallsYes: “<i>and [pc.ballsNoun]</i>”). By the time she’s finished {it/they} are mummified in her tightly constricting silk. It’s connected to a loop around your neck, the slightest tug of which deliciously squeezes your junk.");
+			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and begins binding up the rest of your [pc.cocksNounSimple]");
+			if(pc.balls > 0) output(" and [pc.ballsNoun]");
+			output(". By the time she’s finished ");
+			if(pc.cockTotal() == 1 && pc.balls == 0) output("it");
+			else output("they");
+			output(" are mummified in her tightly constricting silk. It’s connected to a loop around your neck, the slightest tug of which deliciously squeezes your junk.");
 		}
 		//else //if (pc.hasCock = true && pc.hasBreasts = true)
-		else if()
+		else if(pc.hasCock() && pc.biggestTitSize() >= 1)
 		{
-			output("\n\n<i>\</i>”<i>\</i>” ... It’s for binding your [pc.breastsNoun]{if pc.hasBalls: “<i>,</i>”}{else: “<i>and</i>”} [pc.cocksNoun]{if (pc.hasBalls) “<i>, and [pc.ballsNoun]}, to make them especially pretty.\</i>”</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around [pc.oneBreast]. ");
+			output("\n\n\"<i>...It’s for binding your [pc.breastsNoun]");
+			if(pc.balls > 0) output(", ");
+			else output(" and ");
+			output("[pc.cocksNounSimple]");
+			if(pc.balls > 0) output(", and [pc.ballsNoun]");
+			output(", to make them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one breast.");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.");
-			output("\n\n<i>\"Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i> Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
+			output("\n\n\"<i>Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i>\" Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
 			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
-			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.\</i>”</i> Xanthe tsks and {more than one boob: “<i>once she’s finished wrapping your other breast{s},</i>”} begins binding up your [pc.cocksNoun]. Doing so makes your {it/them} become incredibly hard and jut out, looking just as lewd as your tit{s}.");
-			output("\n\nBy the time she’s finished, both your [pc.breasts] and {[pc.maleGenitals]} are tightly constricted with her silk, with both connected to a loop connected around your neck. The slightest tug of your head backwards causes it to deliciously tug at both your girl{s} and your junk.");
+			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and once she’s finished wrapping your other breast");
+			if(pc.totalBreasts() > 2) output("s");
+			output(", begins binding up your [pc.cocksNounSimple]. Doing so makes your ");
+			if(pc.cockTotal() == 1) output("it");
+			else output("them");
+			output(" become incredibly hard and jut out, looking just as lewd as your tits.");
+			output("\n\nBy the time she’s finished, both your [pc.breasts] and [pc.cocks] are tightly constricted with her silk, with both connected to a loop connected around your neck. The slightest tug of your head backwards causes it to deliciously tug at both your girls and your junk.");
 		}
 		//if (pc.sex = female && pc.hasBreasts = false && pc.hasLegs !>= 1)
-		if()
+		if(pc.hasVagina() && pc.biggestTitSize() < 1 && pc.legCount > 1)
 		{
-			output("\n\n<i>\"It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighsLight]. ");
+			output("\n\n<i>\"It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
-			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your {[pc.clits]/cunt} and makes you swoon with pleasure. ");
+			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
 		}
 	}
-	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your [pc.eyesNoun]. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
+	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your eyes. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
+	output("\n\nThe cold of the dungeon clashes with the heat of your cheeks and ");
+	if(pc.hasCock()) output("bound up ");
+	output("loins. With your arms and [pc.legs] restrained and your senses taken from you");
+	if(!pc.isNude()) output(" - not to mention your clothes -");
+	else output(",");
+	output(" you really are at her mercy. That thought gets you all hot and bothered, and you wiggle with delighted pleasure");
+	if(pc.biggestTitSize() >= 1 || pc.hasCock())
+	{
+		output(" - tugging at your tied up ");
+		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breastsLight]");
+		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
+		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
+	}
+	else output(" - grinding and stimulating your [pc.clits] in the process");
+	output(".");
 
-output("\n\nThe cold of the dungeon clashes with the heat of your cheeks and {bound up} loins. With your arms and [pc.legs] restrained and your senses taken from you {- not to mention your clothes -} you really are at her mercy. That thought gets you all hot and bothered, and you wiggle with delighted pleasure{ - tugging at your tied up {[pc.breastsLight]/[pc.cocksLight]/[pc.breastsNoun] and [pc.cocksNoun]}{ - grinding and stimulating your {[pc.clits]/[pc.pussy]} in the process}.");
+	output("\n\n<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little ");
+	if!(!pc.hasVagina()) output("butt");
+	output("slut.</i>” Your Mistress’s husky voice comes from just behind your ear, causing the [pc.skinFurScales] on your back to tingle with delight.");
 
-output("\n\n<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little {male or neuter:butt }slut.\</i>”</i> Your Mistress’s husky voice comes from just behind your ear, causing the [pc.skinFurScales] on your back to tingle with delight. ");
+	//[Not A Slut!] [Totally A Slut]
+	//9999
+}
 
-output("\n\n[Not A Slut!] [Totally A Slut]");
+// Not A Slut
+function notASlutXanthe():void
+{
+	clearOutput();
+	showXanthe();
+	output("You object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure.");
+	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
+	output("\n\n\"<i>... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.race] " + pc.mf("boy","girl") + " that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.</i>” Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
+	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
+	if(pc.biggestTitSize() >= 1 && pc.hasCock()) 
+	{
+		output(", in turn pulling at your ");
+		if(pc.hasCock()) 
+		{
+			output("[pc.cocksNounSimple]");
+			if(pc.biggestTitSize() >= 1) output(" and ");
+		}
+		output("[pc.breastsNoun]");
+	}
+	else if(pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else output("in pleasure");
+	output(". You let out a raspy moan then immediately flush, knowing it doesn’t help your case.");
+	//9999
+}
 
-output("\n\n// Not A Slut");
-
-output("\n\nYou object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure. ");
-
-output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
-
-output("\n\n<i>\</i>”... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.race] {girl/boy} that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.\</i>”</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.assNoun].");
-
-output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: “<i>, in turn pulling at your {[pc.cocksNoun]} {and} {pc.breastsNoun]}</i>”}{else if (pc.hasLegs > 1 && pc.hasPussy = true) “<i>, in turn deliciously rubbing your {[pc.clits]/[pc.pussy]</i>”}{else: “<i> in pleasure</i>”}. You let out a raspy moan then immediately flush, knowing it doesn’t help your case.  ");
-
-output("\n\n// Totally A Slut");
+// Totally A Slut
 
 output("\n\nYou shiver with delight at her words. Whatever you thought yourself before, her words cause a brimming happiness to well up from inside of you. You are Xanthe’s subby little {butt} slut, aching to be tied up and teased by your beloved Mistress. This is your true calling!");
 
@@ -1624,14 +1680,14 @@ output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delic
 
 output("\n\n<i>\</i>”... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re </i>my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.\</i>”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.assNoun].");
 
-output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: “<i>, in turn pulling at your {[pc.cocksNoun]} {and} {pc.breastsNoun]}</i>”}{else if (pc.hasLegs > 1 && pc.hasPussy = true) “<i>, in turn deliciously rubbing your {[pc.clits]/[pc.pussy]</i>”}{else: “<i> in pleasure</i>”}. You let out a raspy moan, knowing deep down that you are definitely her special property.");
+output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: “<i>, in turn pulling at your {[pc.cocksNounSimple]} {and} {pc.breastsNoun]}</i>”}{else if (pc.hasLegs > 1 && pc.hasPussy = true) “<i>, in turn deliciously rubbing your {[pc.clits]/[pc.pussy]</i>”}{else: “<i> in pleasure</i>”}. You let out a raspy moan, knowing deep down that you are definitely her special property.");
 
 
 output("\n\n// MERGE");
 
 output("\n\nYour vulnerable [pc.skinColor] butt is spanked and slapped over and over until it is filled with a tingling, penetrating warmth that fills up it up entirely. The most pain you feel is a slight stinging sensation on impact that spreads out across your battered asscheeks, making them tingle with delicious feeling.");
 
-output("\n\nJust knowing that your [pc.ass] now looks nice and marked due to her attentions causes your {HasPussyYes: “<i>[pc.pussies] to get all wet</i>”} {herm: “<i>and your</i>”} {hasCockYes: “<i>constrained [pc.cocksNoun] to stiffen]</i>”}{NeuterYes: “<i>[pc.nipples] to stiffen</i>”}. You moan into the ballgag - being blindfolded and not knowing when she’ll strike makes you that much more excited!");
+output("\n\nJust knowing that your [pc.ass] now looks nice and marked due to her attentions causes your {HasPussyYes: “<i>[pc.pussies] to get all wet</i>”} {herm: “<i>and your</i>”} {hasCockYes: “<i>constrained [pc.cocksNounSimple] to stiffen]</i>”}{NeuterYes: “<i>[pc.nipples] to stiffen</i>”}. You moan into the ballgag - being blindfolded and not knowing when she’ll strike makes you that much more excited!");
 
 output("\n\nJust when your rump is reaching its limit, your Mistress runs her fingernails down your naked back. You tremble with pleasure and arch into her caress as much as you can. She then pulls away, and a few seconds later you feel a lash of a flogger licking at your shoulder blades.");
 
