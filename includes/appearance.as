@@ -57,13 +57,6 @@ public function appearance(target:Creature):void {
 				else if (target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) output2(" Your lips look deliciously pillowy.");
 				else if (target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
 			}
-			/*Edit out old Mimbrane lip description because possibly redundant?
-			else if(target.faceType == GLOBAL.TYPE_HUMAN && target.hasStatusEffect("Mimbrane Face"))
-			{
-				if (target.statusEffectv3("Mimbrane Face") >= 3 && target.statusEffectv3("Mimbrane Face") < 8) output2(" Your lips appear slightly puffy.");
-				else if (target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) output2(" Your lips look deliciously pillowy.");
-				else if (target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
-			}*/
 		}
 		else if(target.faceType == GLOBAL.TYPE_HUMANMASKED) {
 			//appearance for skinheads
@@ -532,7 +525,37 @@ public function appearance(target:Creature):void {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
+		{
+			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips. Most of the length of the thing is coated in dark-green scales, culimating");
+			
+			// Cockvine
+			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
+			{
+				output2(" in a proud purple head that's distinctly cock-shaped in nature.");
+			}
+			// Horse
+			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
+			{
+				output2(" in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
+			}
+			// Human
+			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
+			{
+				output2(" in a fleshy pink head that's distinctly cock-shaped in nature.");
+			}
+			// Bulbous
+			else if (target.tailGenitalArg == GLOBAl.TYPE_CANINE)
+			{
+				output2(" in a thick bulge a few inches below a tapered, dark-red tip.");
+			}
+			// Ribbed
+			else
+			{
+				output2(" in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
+			}
+		}
 		
 		//legType notez!
 		if(target.legType == GLOBAL.TYPE_HUMAN)

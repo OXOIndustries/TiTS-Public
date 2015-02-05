@@ -23,6 +23,8 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
+	
+	import classes.Engine.Utility.num2Text;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -1126,16 +1128,6 @@
 
 		//Functions
 		//UTILITIES
-		public function num2Text(number: Number): String {
-			var returnVar: String = null;
-			var numWords:Array = new Array("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten");
-			if (number > 10 || int(number) != number) {
-				returnVar = "" + number;
-			} else {
-				returnVar = numWords[number];
-			}
-			return (returnVar);
-		}
 
 		public function buysType(arg: int): Boolean {
 			for (var x: int = 0; x < typesBought.length; x++) {
@@ -3168,7 +3160,14 @@
 			{
 				adjectives[adjectives.length] = "bovine";
 				adjectives[adjectives.length] = "cow-like";
-			}		
+			}
+			else if (tailType == GLOBAL.TYPE_COCKVINE)
+			{
+				adjectives.push("vine-like");
+				adjectives.push("writhing");
+				adjectives.push("tentacle-like");
+				adjectives.push("cock-tipped");
+			}
 			//Show color 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -8300,7 +8299,7 @@
 				else if (rando <= 8) noun += "prick";
 				else if (rando <= 9) noun += "member";
 				else noun += "tool";
-			} else if (type == GLOBAL.TYPE_TENTACLE) {
+			} else if (type == GLOBAL.TYPE_TENTACLE || type == GLOBAL.TYPE_COCKVINE) {
 				if (!simple) {
 					rando = this.rand(9);
 					if (rando == 0) descript += "twisting ";

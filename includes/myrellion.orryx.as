@@ -415,7 +415,7 @@ public function orryxBlackmarket():void
 		output("\n\nYou hear a buzzing noise from his vest.");
 		output("\n\n“<i>Oh, manxome foes!</i>” he squawks, looking down at his watch. “<i>My stock’s lower than I thought. Those ridiculous ants must have disrupted my supply line again!</i>” He grumbles to himself as he fiddles with the dials on his pocketwatch. “<i>I swear -why even bother paying for a hydraulic disruptor if the market is just going to be this volatile?</i>”");
 		output("\n\nHe finally looks up at you. “<i>My sincerest apologies, dear sapient, but it looks like due to rising scarcity, I’m going to have to raise the price to ");
-		var price = (orryxReputation() - 8) * 100;
+		var price:Number = (orryxReputation() - 8) * 100;
 		output(price + ".</i>”");
 
 		output("\n\n“<i>It’s definitely a temporary thing! Only until my supply lines are settled again - I assure you!</i>” he says, spreading all four of his arms in supplication.");
@@ -463,7 +463,7 @@ public function buySomeExpensiveShit():void
 {
 	clearOutput();
 	showOrryx();
-	var price = (orryxReputation() - 8) * 100;
+	var price:Number = (orryxReputation() - 8) * 100;
 	output("You agree to the tove’s price hike, and he taps the top of his podium lightly. Near your waist, a small panel opens up in one of the flashing screens, and a small vial of Red Venom rolls out into your waiting hand. Your Codex buzzes, informing you that you’ve paid out " + price + " credits.");
 	//[+1 Orryx Rep]
 	orryxReputation(1);

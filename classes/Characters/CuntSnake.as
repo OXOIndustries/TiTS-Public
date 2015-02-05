@@ -5,6 +5,8 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
+	import classes.Engine.Utility.num2Text;
+	
 	public class CuntSnake extends Creature
 	{
 		
@@ -185,7 +187,7 @@
 			
 			combatCSnake.tallness = 24 + rand(36);
 			combatCSnake.scaleColor = "green";
-			combatCSnake.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + combatCSnake.num2Text(Math.round(combatCSnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
+			combatCSnake.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(combatCSnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
 			
 			if(rand(5) == 0) 
 			{
