@@ -618,7 +618,7 @@ public function adultCockvinePCLoses():void
 	}
 
 	output("\n\nOther tentacles are");
-	if (pc.isGroinCovered()) output(" burrowing busily through your [pc.lowergarment],");
+	if (pc.isGroinCovered()) output(" burrowing busily through your [pc.lowerGarment],");
 	else if (pc.isBiped()) output(" coiling themselves up around your [pc.thighs],");
 	output(" blindly seeking out the fresh, fertile holes they know are there.");
 	if (pc.hasVagina())
@@ -730,6 +730,10 @@ public function adultCockvinePCLoses():void
 
 	processTime(45+rand(15));
 
+	for (var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		pc.loadInCunt(foes[0], i);
+	}
 	pc.orgasm();
 
 	clearMenu();
@@ -783,4 +787,89 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 		addButton(0, "Next", mainGameMenu);
 	}
 
+}
+
+public function cockvinePregnancyBirthing(pregSlot:int):void
+{
+	clearOutput();
+	adultCockvineHeader();
+
+	var pData:PregnancyData = pc.pregnancyData[pregSlot] as PregnancyData;
+	
+	output("A sudden gush of fluid warms the insides of your [pc.thighs], and something tugs urgently at the bottom of your stomach. Alarm is quickly replaced by understanding, and you allow instinct and the odd, green impulses you’ve been experiencing over the last few days take over.");
+	if (pc.isNude()) output(" You squat");
+	else output(" You quickly take off your [pc.lowerGarments] and squat");
+	output(", bearing down with your hips as, with a groan, you feel your birth canal dilate. Rippling down it and then spreading your vagina wide with its bulbous, purple head it comes; your cockvine seedling is vigorous, thick, lithe, and exactly the right shape to make you tingle... there’s no denying it.");
+
+	output("\n\nYou cry out in shocked pleasure as it wriggles its way into life, a gush of fluid from your sensitized pussy aiding its passage to the ground. The moment the green snake-like thing hits the deck it’s off, sinuously winding its way towards cover – but you can’t hold your attention on it, not with its brothers impatiently following it down the path to freedom.");
+	
+	output("\n\nYour [pc.vagina "+ pregSlot +"] is stretched wide again and again by the ropy creatures, your pussy used along every inch of it by your strong, flexible offspring; they cause you to produce an astonishing amount of lubricant, and eventually you just have to surrender yourself to how filthily good it feels. You whimper as you are brought to orgasm by your third seedling, particularly thick, forced out by your ecstatic contractions; then you cry out and arch your back as the fourth and fifth, made impatient by their slower sibling, wriggle their way out at the same time. It becomes a blur, bearing down again and again to reach those wonderful, birth-giving highs, lost in a slimy, clenching euphoria.");
+	
+	output("\n\nAt last you are emptied and with a blissed out sigh you lie on your side and force yourself to come out of your daze, at least a little.");
+	
+	if (InRoomWithFlag(GLOBAL.CAVE, GLOBAL.FOREST, GLOBAL.JUNGLE, GLOBAL.DESERT, GLOBAL.PLANE))
+	{
+		output(" You birthed "+ pData.pregnancyQuantity +" cockvines, however you can’t even see most of them anymore – the ones that remain are swiftly winding their way towards the darkest, moistest place they can sense. The little buggers really hit the ground running! No doubt evolution has taught them their mothers are unlikely to display much maternal affection towards them. If you’re quick though you might be able to catch one and send it to the nursery.");
+	}
+	else if (currentLocation == "SHIP INTERIOR")
+	{
+		output(" You birthed "+ pData.pregnancyQuantity +" cockvines, however you can’t even see most of them anymore – the ones that remain are swiftly winding their way out of your room, insinuating their way into the darkest holes your ship has to offer. The little buggers really hit the ground running! You suppose most of them will perish on here without food or soil – some might be able to sneak off-board next time you land. If you’re quick though you might be able to catch one and send it to the nursery.");
+	}
+
+	//[Catch One] [Leave Them]
+	clearMenu();
+	addButton(0, "Catch One", cockvinePregnancyCatch);
+	addButton(1, "Leave Them", cockvinePregnancyLeave);
+}
+
+public function cockvinePregnancyLeave():void
+{
+	clearOutput();
+	adultCockvineHeader();
+
+	output("You watch the snake-like plants go. Out of sight, out of mind.");
+	if (currentLocation == "SHIP INTERIOR" && crew(true) > 0) output(" Might give some of your crew a start, though.");
+	output("\n\nYou clean yourself up and then drift off into a pleasant doze.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function cockvinePregnancyCatch():void
+{
+	clearOutput();
+	adultCockvineHeader();
+
+	output("You settle your sights on your <i>“youngest”</i>, gliding away on its green belly slightly too casually. You leap forward and grab it squarely around the middle.");
+	
+	output("\n\n“<i>Gotcha!</i>” The serpent writhes and whips its mismatched ends desperately at first before going limp, accepting defeat. You grin, and summon the drone.");
+	
+	output("\n\n“<i>Take this to the nursery. It will need a dark, moist plot and a serious amount of clearance,</i>” you tell it.");
+	
+	if (flags["COCKVINE_SEEDLING_CAPTURED"] == undefined)
+	{
+		flags["COCKVINE_SEEDLING_CAPTURED"] = 1;
+
+		output("\n\n“<i>It is forbidden for that species of flora to be transported off Myrellion,</i>” the drone trills in response.");
+		
+		if (shipLocation != "600")
+		{
+			output("\n\n“<i>Bit late for that, don’t you think?</i>” you snap. “<i>Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.</i>”");
+		}
+		else
+		{
+			output("\n\n“<i>I think everyone here has got more pressing concerns than what happens to a single baby plant, don’t you?</i>” you snap. “<i>Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.</i>”");
+		}
+
+		output("\n\nThe drone doesn’t argue the point, and a few moments later you’re watching it drift away with its slithery charge. Satisfied, you clean yourself up and then drift off into a pleasant doze.");
+	}
+	else
+	{
+		output("\n\nThe drone thankfully doesn’t try and argue with you this time, and a few moments later you’re watching it drift away with its slithery charge. Satisfied, you clean yourself up and then drift off into a pleasant, hour-long doze.");
+	}
+
+	StatTracking.track("pregnancy/cockvine seedlings captured", 1);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

@@ -1659,6 +1659,7 @@
 				case "tailCuntColor":
 				case "tailGenitalColor":
 					buffer = tailGenitalColorDesc();
+					break;
 				default:
 					// error production is now done up-stream in the parser
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.

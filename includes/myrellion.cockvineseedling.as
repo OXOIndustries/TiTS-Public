@@ -101,7 +101,8 @@ public function cockvineSeedlingChase():void
 	//[Kill It] [Join] [Leave]
 	clearMenu();
 	addButton(0, "Kill It", cockvineSeedlingKillIt);
-	addButton(1, "Join", cockvineSeedlingJoin, sCockType, "Join", "Try and persuade the thing to become your tail.");
+	if (pc.tailType != GLOBAL.TYPE_COCKVINE) addButton(1, "Join", cockvineSeedlingJoin, sCockType, "Join", "Try and persuade the thing to become your tail.");
+	else addDisabledButton(1, "Join", "Join", "You already have a cockvine seedling for a tail!");
 	addButton(2, "Leave", cockvineSeedlingLeave);
 }
 
@@ -205,6 +206,7 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	{
 		pc.tailGenitalArg = GLOBAL.TYPE_EQUINE;
 		pc.addTailFlag(GLOBAL.FLAG_FLARED);
+		pc.addTailFlag(GLOBAL.FLAG_SHEATHED);
 		pc.tailGenitalColor = RandomInCollection("pink", "black", "mottled-pink");
 		
 		output(" Your own skin pigment is swiftly spreading up it; it is a thick, sheathed [pc.tailCockColor] appendage with what is unmistakably a flat-tipped horse-cock protruding readily out of it.");
