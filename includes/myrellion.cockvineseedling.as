@@ -18,7 +18,7 @@ public function cockvineSeedlingEncounter():void
 
 	output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind.");
 
-	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.lowerbody], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
+	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.legs], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
 	else
 	{
 		output(" You freeze as your eyes land on something on the ground ahead of you. An organic, tubular something, about two feet long.");
@@ -49,7 +49,7 @@ public function cockvineSeedlingChase():void
 		output("You charge after the");
 		if (!CodexManager.entryViewed("Cockvine")) output(" snake-like creature");
 		else output(" cockvine seedling");
-		output(" down the narrow tunnel it escaped into, stumbling and scraping over the damp rock in your effort to catch up with it. For a few moments you see its tail urgently winding its way away from you, and you think maybe you can grab it – then you bang your [pc.lowerbody] against a protrusion of rock, making you cry out in pain and forcing you to come to a halt. You glower after the");
+		output(" down the narrow tunnel it escaped into, stumbling and scraping over the damp rock in your effort to catch up with it. For a few moments you see its tail urgently winding its way away from you, and you think maybe you can grab it – then you bang your [pc.foot] against a protrusion of rock, making you cry out in pain and forcing you to come to a halt. You glower after the");
 		if (!CodexManager.entryViewed("Cockvine")) output(" snake");
 		else output(" seedling");
 		output(" and then turn back to the path, rubbing your sore spot and cursing.");
@@ -190,36 +190,40 @@ public function cockvineSeedlingJoin(sCockType:int):void
 
 	if (sCockType == Seedling_Type_Vine)
 	{
-		output(" The parasite has retained its color; slimy and flexible, green with a proud purple head, it leaves no doubt as to its plant origin.");
-
 		pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
+		pc.tailGenitalColor = "green";
+		output(" The parasite has retained its color; slimy and flexible, green with a proud purple head, it leaves no doubt as to its plant origin.");
 	}
 	else if (sCockType == Seedling_Type_Human)
 	{
-		output(" Your own skin pigment is swiftly spreading up it; it is a thick, [pc.cockColor] appendage with a familiarly human cock tip.");
-
 		pc.tailGenitalArg = GLOBAL.TYPE_HUMAN;
+		pc.tailGenitalColor = "pink";
+		
+		output(" Your own skin pigment is swiftly spreading up it; it is a thick, [pc.tailCockColor] appendage with a familiarly human cock tip.");
 	}
 	else if (sCockType == Seedling_Type_Horse)
 	{
-		output(" Your own skin pigment is swiftly spreading up it; it is a thick, sheathed [pc.cockColor] appendage with what is unmistakably a flat-tipped horse-cock protruding readily out of it.");
-
 		pc.tailGenitalArg = GLOBAL.TYPE_EQUINE;
 		pc.addTailFlag(GLOBAL.FLAG_FLARED);
+		pc.tailGenitalColor = RandomInCollection("pink", "black", "mottled-pink");
+		
+		output(" Your own skin pigment is swiftly spreading up it; it is a thick, sheathed [pc.tailCockColor] appendage with what is unmistakably a flat-tipped horse-cock protruding readily out of it.");
 	}
 	else if (sCockType == Seedling_Type_Bulbous)
 	{
-		output(" Your own skin pigment is swiftly spreading up it; it is a thick, bulbous [pc.cockColor] appendage, arrestingly alien with its bean pod-like bulges, culminating in a big hole-filling swelling halfway up it. Bizarre it might look but you don’t doubt you could cause some lucky someone serious pleasure with this thing.");
-
 		pc.tailGenitalArg = GLOBAL.TYPE_CANINE;
 		pc.addTailFlag(GLOBAL.FLAG_KNOTTED);
+		pc.tailGenitalColor = "red";
+		
+		output(" Your own skin pigment is swiftly spreading up it; it is a thick, bulbous [pc.tailCockColor] appendage, arrestingly alien with its bean pod-like bulges, culminating in a big hole-filling swelling halfway up it. Bizarre it might look but you don’t doubt you could cause some lucky someone serious pleasure with this thing.");
 	}
 	else
 	{
-		output(" Your own skin pigment is swiftly spreading up it; it is a thick, ribbed, arching [pc.cockColor] appendage, a fat, stretching bulge near the end, reptile-like with its proud, blunt point.");
-
 		pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 		pc.addTailFlag(GLOBAL.FLAG_RIBBED);
+		pc.tailGenitalColor = "green";
+		
+		output(" Your own skin pigment is swiftly spreading up it; it is a thick, ribbed, arching [pc.tailCockColor] appendage, a fat, stretching bulge near the end, reptile-like with its proud, blunt point.");
 	}
 
 	output("\n\nYou let it swing back, enjoying the pliable swing of it as it settles back over your [pc.butt]. It’s undoubtedly a part of you now, although... as you head back to the main path your blood quickens, little whispers and twinges of desire teasing at your subconscious, green shoots worming their way through the red of your desire; quiet, insistent impulses urging you to roam far and wide, plunging your new cock into as many wet holes as you possibly can. A small part of you wonders with unease how easy this thing will be to really control.");

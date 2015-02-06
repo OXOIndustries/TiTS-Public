@@ -700,6 +700,16 @@
 		{
 			return "";
 		}
+		
+		public var tailGenitalColor:String = "pink";
+		public function tailGenitalColorUnlocked(newTailGenitalColor:Number):Boolean
+		{
+			return true;
+		}
+		public function tailGenitalColorLockedMessage():String
+		{
+			return "";
+		}
 
 		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 		public var tailVenom: Number = 0;
@@ -1645,6 +1655,10 @@
 				case "cocktype":
 					buffer = cockShape(arg2);
 					break;
+				case "tailCockColor":
+				case "tailCuntColor":
+				case "tailGenitalColor":
+					buffer = tailGenitalColorDesc();
 				default:
 					// error production is now done up-stream in the parser
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.
@@ -3322,10 +3336,7 @@
 		public function legNoun():String
 		{
 			if (legType == GLOBAL.TYPE_SNAKE) return "coil";
-			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) {
-				select = this.rand(5);
-				return "goo mound";
-			}
+			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "goo mound";
 			else return "leg";
 		}
 		public function legsNoun():String
@@ -9419,6 +9430,10 @@
 		{
 			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
 			else return vaginas[arg2].vaginaColor;	
+		}
+		public function tailGenitalColorDesc(arg:int = 0):String
+		{
+			return tailGenitalColor;
 		}
 		public function cockDescript(cockNum: Number = 0): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";

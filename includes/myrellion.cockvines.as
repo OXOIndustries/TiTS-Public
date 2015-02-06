@@ -444,11 +444,11 @@ public function adultCockvineConsentacles():void
 			output(" with questing, oily, sugared plant dick.");
 			output("\n\n");
 		}
-		output("Other tentacles coil and slither over your [pc.legs], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.anus] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].");
+		output("Other tentacles coil and slither over your [pc.legs], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.asshole] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].");
 	}
 	else
 	{
-		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.anus], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
+		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.asshole], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
 		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.eachCock] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
 	}
 
@@ -603,7 +603,7 @@ public function adultCockvinePCLoses():void
 
 
 	output("\n\nThe cockvine is still energized from its battle with you and it flexes over your [pc.skin]");
-	if (pc.isChestGarbed()) output(" and [pc.uppergarment]");
+	if (pc.isChestGarbed()) output(" and [pc.upperGarment]");
 	output(" with brisk momentum. Even after it has taken your wrists and spread-eagled you across its nest, warm, wet plant continues to slide over your trunk, over your [pc.nipples] and [pc.thighs], slathering you in its coating oil and beading pre-cum, tightening up and relaxing around your forearms and hips. You mumble with unease as a thick vine coils itself around your neck; this is swiftly muffled as its tip seeks out your mouth, pushes the blunt head brusquely past your lips and invades your mouth with its wet, pungent denseness. You set your teeth against it and spasm as another vine immediately pelts your [pc.butt] angrily.");
 
 	output("\n\nYes, better not to piss it off at this point. You soften your mouth and let the purple plant cock fill it. It eagerly quests and curls into your maw, spurred on by the inadvertent rub of your tongue over its smooth underbelly, and it is soon touching the front of your throat, where it tenses up and spurts thick semen. You don’t even get to taste it, nor are you extended the courtesy of being able to spit it out; the syrupy substance goes straight down your throat, warming your stomach. You feel the same warm, green, arousing glow you felt when forced to breathe in the cockvine’s scent only redoubled, spreading out through your whole being. An organic beat throbs through you and dimly you see and appreciate the unremitting, insatiable lusts that drive this bestial plant");
@@ -705,7 +705,7 @@ public function adultCockvinePCLoses():void
 	if (pc.hasVagina()) output(" and [pc.eachVagina]");
 	output(" being ravished in this way, energising it still further, shaking and squeezing you this way and that.");
 
-	output("\n\nYou are hopelessly driven to other, aching orgasms in this green, sticky delirium – maybe it’s two, maybe it’s five, you don’t keep count – before the cockvine finally reaches its own torrential high. Its tentacles bulge, spreading your [pc.lips] and [pc.anus]");
+	output("\n\nYou are hopelessly driven to other, aching orgasms in this green, sticky delirium – maybe it’s two, maybe it’s five, you don’t keep count – before the cockvine finally reaches its own torrential high. Its tentacles bulge, spreading your [pc.lips] and [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.eachVagina]");
 	output(" even wider as they penetrate you as deeply as they can before fountaining out their thick, citric payloads, filling what feels like every space in your body with heavy warmth. The eager spurting of the cockvines before, lubricating and softening you, was clearly just pre-cum of some sort, a pale appetizer – the undocked stamen around you writhe and explode with cum, pasting you from top to bottom with their ripe cream as you are gorged on it, hands clenching and unclenching whilst it surges down your throat and is pumped into your butt");
 	if (pc.hasVagina())
@@ -724,7 +724,7 @@ public function adultCockvinePCLoses():void
 	output("\n\nYou blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself being slowly lifted upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You suppose the thing <i>has</i> to treat a potentially fertilized mate with a certain amount of propriety.");
 	if (!pc.isNude()) output(" You find yourself woozily grateful that, despite treating them with extreme impoliteness, the cockvine has not actually ripped any of your clothes off. The task of going back in after them would have been unthinkable.");
 
-	output("\n\nIt takes you a while for the green vagueness to recede and for you to regain enough strength to stand up. You exhale heavily as plant cum oozes warmly out of your ravaged [pc.anus]");
+	output("\n\nIt takes you a while for the green vagueness to recede and for you to regain enough strength to stand up. You exhale heavily as plant cum oozes warmly out of your ravaged [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.vagina]");
 	output(", and you shoot a sour look at the nearby crevice. There is no sign whatsoever of your assailant; it has completely withdrawn. The high taste, texture and smell of citrus sex stays with you as you go your unsteady way.");
 
