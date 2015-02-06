@@ -206,6 +206,147 @@ A hologram of a handsome looking {myr/human/ausar/kaithrit} grins at you. He's w
 }
 */
 
+function showXanthe():void
+{
+	if(flags["MET_XANTHE"] == 1) showName("\nXANTHE");
+	else showName("\nTAILOR");
+	author("JimThermic");
+	showBust("XANTHE");
+}
+function xantheHasFrontCock():Boolean
+{
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) return true;
+	return false;
+}
+function xantheHasFrontCunt():Boolean
+{
+	if(flags["XANTHE_FRONT_GENITAL"] == 2) return true;
+	return false;
+}
+function xantheHasBackCock():Boolean
+{
+	if(flags["XANTHE_BACK_GENITAL"] == 1) return true;
+	return false;
+}
+function xantheHasBackCunt():Boolean
+{
+	if(flags["XANTHE_BACK_GENITAL"] == 2) return true;
+	return false;
+}
+
+//Buy
+function buySomethingFromXanthe():void
+{
+	clearOutput();
+	output("<i>\"What kind of clothing were you interested in buying");
+	if(xantheIsDommingPC()) output(", my pet");
+	output("? I’ve got quite the selection.</i>”");
+}
+	//[Armor] [Clothes] [Uwear, Upper] [Uwear, Lower]
+
+/*
+output("\n\nArmor");
+
+output("\n\n<i>\"Armor, huh? I’ve only got a few pieces here, but all of them are stellar pieces.</i>”");
+
+output("\n\nBattle Ballgown: (+5 Def, +2 Attack, +2 Evade, 20% Slash/Kinetic/Piercing Resistance) - Base Price: 5000 creds.");
+output("\n\nReinforced Bodysuit: (+5 Def, +5 Sexiness, +2 Evade, +10% resist Kinetic/Slash/Pierce) - Base Price: 4000 creds.");
+output("\n\nRevealing Male Armor: (+1 Def, +3 Sexiness) - Base Price: 1000 creds.");
+output("\n\nRevealing Female Armor: (+1 Def, +3 Sexiness) - Base Price: 1000 creds.");
+output("\n\nTransparent Zipsuit: (+5 Def, +10 Sexiness, 10% resist all but lust, -20% Lust resist). 5000 creds.");
+
+output("\n\nClothes");
+
+output("\n\n<i>\"Looking for a nice outfit? We’ve got a </i>lot<i> in stock. Feel free to try on any sexy little number that catches your eye.</i>”");
+
+// Costs are w'e you want.
+
+Sleep Shirt (0 Def, +2 Sexiness)  - 800 Creds
+Top and Skirt (0 Def, +2 Sexiness)  - 800 Creds
+Business Clothes (0 Def, +2 Sexiness)  - 800 Creds
+Latex Bodysuit (2 Def, +2 Sexiness)  -1000 Creds
+China Dress (2 Def, +2 Sexiness)  - 1000 Creds
+Female Kimono (0 Def, +5 Sexiness, +2 Evade)  - 1500 Creds
+Male Kimono (+2 Attk, +2 Def) 1500 Creds
+Yukata (0 Def, +5 Sexiness) - 1000 Creds
+Short Kimono  (0 Def, +2 Attk, +5 Sexiness, +2 Evade) - 2000 Creds
+Ninja Outfit (0 Def, +2 Attk, +5 Sexiness, +2 Evade) - 2000 Creds
+Maid Outfit (0 Def, +5 Sexiness)  - 1000 Creds
+Butler Outfit (0 Def, +5 Sexiness) - 1000 Creds
+Nurse Outfit (0 Def, +5 Sexiness)  - 1000 Creds
+Male Doctor's Outfit (0 Def, +5 Sexiness) - 1000 Creds
+Female Doctor's Outfit (0 Def, +5 Sexiness) - 1000 Creds
+Apron (0 Def, +5 Sexiness)  - 1000 Creds
+Seifuku (0 Def, +5 Sexiness)  - 1000 Creds
+Gakuran (0 Def, +5 Sexiness) - 1000 Creds
+Schoolgirl Outfit (0 Def, +5 Sexiness)  - 1000 Creds
+Schoolboy Outfit (0 Def, +5 Sexiness) - 1000 Creds
+Cheerleader Outfit (0 Def, +5 Sexiness)  - 1000 Creds
+Waitress Uniform (0 Def, +5 Sexiness)  - 1000 Creds
+Bunny Outfit (0 Def, +5 Sexiness)  - 1000 Creds
+Military Outfit (+2 Def, +2 Sexiness) - 1000 Creds
+Space Pirate Outfit (+2 Def, +2 Sexiness) - 1000 Creds
+Goth-Lolita Outfit  (0 Def, +5 Sexiness)  - 1000 Creds
+Tank-Top and Mini Skirt  (0 Def, +2 Attk, +5 Sexiness)  - 1500 Creds
+Leather Strap Harness (0 Def, +5 Sexiness) - 1000 Creds
+Little Black Dress (0 Def, +5 Sexiness) - 1000 Creds.
+
+
+Uwear, Upper
+
+<i>\"Covering up {that/those} [pc.chest] of yours seems like a crime, but there's something to be said for a complimenting piece. Here's what I've got.\"</i>
+
+String-Tie Top (+1 Sexiness) - 700 Creds
+Frilly Bra  (+1 Sexiness) - 700 Creds
+Girly Bra  (+1 Sexiness) - 700 Creds
+White Bra  (+1 Sexiness) - 700 Creds
+Striped Bra  (+1 Sexiness) - 700 Creds
+Furry Bra  (+1 Sexiness) - 700 Creds
+Black Lace Bra  (+1 Sexiness) - 700 Creds
+Sarashi  (+1 Sexiness) - 700 Creds
+Muscle Shirt (+1 Sexiness) - 700 Creds
+Sports Singlet (+1 Sexiness) - 700 Creds
+Mesh Shirt (+1 Sexiness) - 700 Creds
+Patriotic Bra (+1 Sexiness) - 700 Creds
+Skull Pattern Bra (+1 Sexiness) - 700 Creds
+
+Uwear, Lower
+
+<i>\"Something to cover you up down there? I'd recommend trying it on and giving me a look.\"</i>
+
+String-Tie Bottoms  (+1 Sexiness) - 700 Creds
+Frilly Panties  (+1 Sexiness) - 700 Creds
+Girly Panties  (+1 Sexiness) - 700 Creds
+White Panties  (+1 Sexiness) - 700 Creds
+Striped Panties  (+1 Sexiness) - 700 Creds
+Lowrider Panties  (+1 Sexiness) - 700 Creds
+Furry Panties  (+1 Sexiness) - 700 Creds
+Patriotic Boxers (+1 Sexiness) - 700 Creds
+Patriotic Panties (+1 Sexiness) - 700 Creds
+Skull Pattern Boxers (+1 Sexiness) - 700 Creds
+Skull Pattern Panties (+1 Sexiness) - 700 Creds
+C-String (+2 Sexiness) - 1000 Creds
+Black Lace Panties  (+1 Sexiness) - 700 Creds
+Black Silk Boxers (+1 Sexiness) - 700 Creds
+Red Satin Boxers (+1 Sexiness) - 700 Creds
+Male Thong (+1 Sexiness) - 700 Creds
+Leather Boy Shorts (+1 Sexiness) - 700 Creds
+Zip-Pouch Jock (+2 Sexiness) - 1000 Creds
+
+Nipple Tassels
+
+<i>\"These are a specialty of mine, most of them are hand made. Others I bought because I liked the design. Feel free to try them on and give them a whirl.\"</i>
+
+Red heart shaped nipple tassels (+2 Sexiness) - 1000 Creds
+Skull shaped nipple tassels (+2 Sexiness) - 1000 Creds
+Golden nipple tassels (+2 Sexiness) - 1000 Creds
+Four leaf clover nipple tassels (+2 Sexiness) - 1000 Creds
+Flower shaped nipple tassels (+2 Sexiness) - 1000 Creds
+Star shaped nipple tassels (+2 Sexiness) - 1000 Creds
+Jewelled nipple tassels (+2 Sexiness) - 1000 Creds
+Black nipple tassels (+2 Sexiness) - 1000 Creds
+*/
+
 function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 {
 	clearOutput();
@@ -213,6 +354,10 @@ function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 	//First Visit
 	if(flags["MET_XANTHE"] == undefined)
 	{
+		//Initialize Xanthe's butt and fruntcunt
+		flags["XANTHE_BACK_GENITAL"] = 2;
+		flags["XANTHE_FRONT_GENITAL"] = 1;
+
 		output("\n\nYou pass through the polished marble pillars and enter the Silken Serenity. The second you enter, you are hit with a wave of cool, fresh air.");
 		output("\n\nLooking about, you feel as if you’ve stepped into another realm entirely. Outside it looked like a boutique clothing store, trim and tidy. Inside, however, it is a labyrinth of clothing displays and mannequins.");
 		output("\n\nWandering into the maze built entirely from fashion items, you soon lose sight of the entrance. Just when you think you’re going to need to find a map or a signpost, you hear a husky voice speak out from behind you.");
@@ -709,7 +854,7 @@ function askXantheAboutHerDonger():void
 	output("\n\n<i>\"Of course! I’m not too fussy about my sex, though it does irk me when people call me a herm, or a trap. People should ask first! I’m a </i>woman<i> regardless what I’m packing down there. One myr girl even called me a boy!</i>” Xanthe huffs.");
 
 	// Unlocks ‘Use Mods’ Topic
-	flags["XANTHE_TALKED_ABOUT_SEX"];
+	flags["XANTHE_TALKED_ABOUT_SEX"] = 1;
 	processTime(5);
 	//9999
 }
@@ -728,49 +873,68 @@ function useModsYouSlut():void
 	output("\n\nWhile it may be a big decision for some people, it’s definitely not one for Xanthe. Just like most siel, she seems rather mod-happy.");
 
 	output("\n\n<i>\"Of course! I mean, you’re paying for a replacement kit. I get them discounted, so it’s 500 per treatment. If you’re willing to foot the bill, I’m happy to switch my sexes around.</i>”");
-
+	processTime(1);
+	clearMenu();
 	//[Front Cock, Rear Pussy] [Front Pussy, Rear Cock] [Two Pussies] [Two Cocks]
+	if(xantheHasFrontCock() && xantheHasBackCunt()) addDisabledButton(0,"Cock/Cunt","Cock/Cunt","Xanthe already has a cock in the front and a pussy in the back.");
+	else if(pc.credits < 500) addDisabledButton(0,"Cock/Cunt","Cock/Cunt","You can't afford this treatment.");
+	else addButton(0,"Cock/Cunt",giveDatBitchSomeHams,12,"Cock/Cunt","Pay for her to have a dick up front and a vagina in the back.");
+
+	if(xantheHasFrontCunt() && xantheHasBackCock()) addDisabledButton(1,"Cunt/Cock","Cunt/Cock","Xanthe already has a vagina in the front and a dick in the back.");
+	else if(pc.credits < 500) addDisabledButton(1,"Cunt/Cock","Cunt/Cock","You can't afford this treatment.");
+	else addButton(1,"Cunt/Cock",giveDatBitchSomeHams,21,"Cunt/Cock","Pay for her to have a vagina up front and a dick in the back.");
 	// Cannot pick what she already has. Starts with Front Cock, Rear Pussy.
 	// Costs 500 credits to change each time.
-	//9999
+	if(xantheHasFrontCunt() && xantheHasBackCunt()) addDisabledButton(1,"TwoCunts","TwoCunts","Xanthe already has two vaginas.");
+	else if(pc.credits < 500) addDisabledButton(1,"TwoCunts","TwoCunts","You can't afford this treatment.");
+	else addButton(1,"TwoCunts",giveDatBitchSomeHams,22,"TwoCunts","Pay for her to have two vaginas.");
+
+	if(xantheHasFrontCock() && xantheHasBackCock()) addDisabledButton(1,"TwoCocks","TwoCocks","Xanthe already has two dicks.");
+	else if(pc.credits < 500) addDisabledButton(1,"TwoCocks","TwoCocks","You can't afford this treatment.");
+	else addButton(1,"TwoCocks",giveDatBitchSomeHams,11,"TwoCocks","Pay for her to have two cocks.");
+	addButton(14,"Back",9999);
 }
 
 //Transformation
-function giveDatBitchSomeHams(hamArgs:String = ""):void
+function giveDatBitchSomeHams(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
+	flags["SET_XANTHE_SEX"] = 1;
 	output("You transfer the credits over and soon she’s slipping under the counter to grab some canisters, placing them down on the table.");
 	output("\n\n<i>\"Now no peeking while this happens, okay? I’ll be very cross if you’re looking at me while I’m naked and ogling my new body parts.</i>” Xanthe sultrily warns you, all the while staring at you with those brilliant blue eyes.");
 	output("\n\nIt’s quite hard to tell if she’s serious or not as she reaches for the back of her lacy black bra. She looks dead serious, but why would she need to take off her top...?");
 	processTime(1);
 	//[Close Eyes] [Half Close] [Brazenly Watch]
 	clearMenu();
-	addButton(0,"Close Eyes",9999,hamArgs);
-	addButton(1,"Half-Close",9999,hamArgs);
-	addButton(2,"Watch",9999,hamArgs);
+	addButton(0,"Close Eyes",closeEyesForTheTF,hamArgs);
+	addButton(1,"Half-Close",halfCloseEyes4Xanthe,hamArgs);
+	addButton(2,"Watch",brazenWatchXanth,hamArgs);
 }
 
 // Close Eyes
-function closeEyesForTheTF(hamArgs:String = ""):void
+function closeEyesForTheTF(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
+
+	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	output("You decide to take her at her word, and close your eyes for the process. It might be your imagination, but you swear you hear her make a slightly disappointed noise.");
 	output("\n\n<i>\"Such a good " + pc.mf("boy","girl") + "! I’ll really have to do something about that...</i>” She purrs out. There’s nothing for a good long while... is she done?");
 
 	output("\n\nUnsure whether to open your eyes, you ask her if she’s ‘done changing?’ You’re answered by feeling ");
 	//If change involved getting a new cock: 
-	if(hamArgs == "9999") output("an incredibly rigid cock pressing against your waist, and rubbing pointedly against you.");
+	if(genitalFront == 1 || genitalBack == 1) output("an incredibly rigid cock pressing against your waist, and rubbing pointedly against you.");
 	else output("her smooth, naked pussy rubbing up pointedly against you.");
 
 	output("\n\n<i>\"Oh, I’m done. How does it feel, do you like it’s touch...?</i>” Her new ");
-	if(hamArgs == "9999") output("girthy member");
+	if(genitalFront == 1 || genitalBack == 1) output("girthy member");
 	else output("silky mound");
 	output(" is lewdly pressed into your hand. Your fingertips brush her new sex, and intimately stroke her new parts. <i>\"You better not be looking.</i>”");
 
 	output("\n\nYour cheeks go a little red as you feel her ");
-	if(hamArgs == "9999") output("turgid length");
+	if(genitalFront == 1 || genitalBack == 1) output("turgid length");
 	else output("pussy heat");
 	output(" radiating through your fingers, and you sigh with pleasure. At that moment they are pulled away, and you let out a disappointed noise.  It felt so good...!");
 
@@ -778,19 +942,31 @@ function closeEyesForTheTF(hamArgs:String = ""):void
 	output("\n\nXanthe seems to notice your forlorn look, and gives you a little wink. <i>\"There there, if you </i>really<i> want to see them, I might give you a look later. It would be terrible if you didn’t get a taste of my new ‘merchandise’.</i>”");
 
 	output("\n\n<b>Xanthe now has a ");
-	if(9999 == 0) output("front cock");
+	if(genitalFront == 1) output("front cock");
 	else output("front pussy");
 	output(" and a ");
-	if(9999 == 0) output("back cock");
+	if(genitalBack == 1) output("back cock");
 	else output("back pussy");
 	output("!</b>");
 
 	processTime(4);
+	xantheSetGenitals(hamArgs)
 	//9999
+	
+}
+
+function xantheSetGenitals(hamArgs:int = 10):void
+{
+	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
+	if(genitalFront == 1) flags["XANTHE_FRONT_GENITAL"] = 1;
+	else flags["XANTHE_FRONT_GENITAL"] = 2;
+	if(genitalBack == 1) flags["XANTHE_BACK_GENITAL"] = 1;
+	else flags["XANTHE_BACK_GENITAL"] = 2;
 }
 
 // Half Close
-function halfCloseEyes4Xanthe(hamArgs:String = ""):void
+function halfCloseEyes4Xanthe(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -799,7 +975,7 @@ function halfCloseEyes4Xanthe(hamArgs:String = ""):void
 }
 
 // Brazenly Watch
-function brazenWatchXanth(hamArgs:String = ""):void
+function brazenWatchXanth(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -808,8 +984,10 @@ function brazenWatchXanth(hamArgs:String = ""):void
 	xantheWatchEpilogue(hamArgs, false);
 }
 
-function xantheWatchEpilogue(hamArgs:String = "", cheated:Boolean = false):void
+function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):void
 {
+	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	output("\n\nYou watch on as she unhooks her black bra and pulls it downwards, letting her glorious blue bosom spill out for you to see. They give a delightful little jiggle as they are finally released from their lacy confines.");
 	output("\n\nIt’s hard not to relish in the sight of those hefty alien breasts. There’s just the right amount of gravity to give them a little sag, that nice natural look without losing their full perk. ");
 	output("\n\nYou notice her dark blue nipples are slightly crinkled and her puckered buds are becoming stiff before your eyes. You can’t tell if it’s the cold or from stripping in front of you, a [pc.race] she clearly finds attractive");
@@ -823,565 +1001,746 @@ function xantheWatchEpilogue(hamArgs:String = "", cheated:Boolean = false):void
 
 	output("\n\nWith her legs spread wide, you can clearly see her hairless mounds and bare blue loins. At the front ");
 	//front cock && back pussy:
-	if(9999) output("is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight. Between her chunky rear thighs is her siel pussy, easily distinguishable by her Y-shaped slit.");
+	if(ganitalFront == 1 && genitalBack == 2) output("is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight. Between her chunky rear thighs is her siel pussy, easily distinguishable by her Y-shaped slit.");
 	//front pussy && back cock:
-	else if(9999) output("is her siel pussy, easily distinguishable by her Y-shaped slit. Between her chunky rear thighs is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight.");
+	else if(ganitalFront == 2 && genitalBack == 1) output("is her siel pussy, easily distinguishable by her Y-shaped slit. Between her chunky rear thighs is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight.");
 	//two cocks:
-	else if(9999) output("and back are a pair of slender genital slits housing her rippling alien phalli. They are currently hidden from sight.");
+	else if(ganitalFront == 1 && genitalBack == 1) output("and back are a pair of slender genital slits housing her rippling alien phalli. They are currently hidden from sight.");
 	//two pussies:
 	else output("and back are her pair of siel pussies, easily distinguishable by their Y-shaped slits.");
 
 	output("\n\nNow fully undressed, Xanthe reaches over and grabs the silvery canister from before. She presses one end against her nude rippled belly, and you immediately hear the hissing noise of sudden air release.");
 
 	output("\n\nIt only takes a few seconds before the effects kick in - it seems the siel really do take to gene mods well. Suddenly ");
-	if(9999) output("her alien pussy");
-	else if(9999) output("her alien pussies");
-	else if(9999) output("her alien cock slit");
-	else if(9999) output("her alien cock slits");
-	else output("her alien cock slit and pussy");
+
+	var frontChanging:Boolean = (flags["XANTHE_FRONT_GENITAL"] != genitalFront);
+	var backChanging:Boolean = (flags["XANTHE_BACK_GENITAL"] != genitalBack);
+
+	if(frontChanging && !backChanging)
+	{
+		if(flags["XANTHE_FRONT_GENITAL"] == 2) output("her alien pussy");
+		else output("her alien cock slit");
+	}
+	else if(backChanging && !frontChanging)
+	{
+		if(flags["XANTHE_BACK_GENITAL"] == 2) output("her alien pussy");
+		else output("her alien cock slit");
+	}
+	else 
+	{
+		if(flags["XANTHE_BACK_GENITAL"] == flags["XANTHE_FRONT_GENITAL"] && flags["XANTHE_BACK_GENITAL"] == 2) output("her alien pussies");
+		else if(flags["XANTHE_BACK_GENITAL"] == flags["XANTHE_FRONT_GENITAL"] && flags["XANTHE_BACK_GENITAL"] == 1) output("her alien cock slits");
+	}
 	output(" begin");
+	var single:Boolean = !(frontChanging && backChanging);
+	if(single) output("s")
 
-	//9999 figure out whether one thing changed or multiple
-	var single:Boolean = false;
-
-	if(single) output("s");
 	output(" to shift and transform, quickly changing ");
 	if(single) output("its");
 	else output("their");
 	output(" shape. <b>Xanthe now has a ");
-	if(9999) output("front cock");
+	if(genitalFront == 1) output("front cock");
 	else output("front pussy");
-	if(9999) 
+	output(" and a ");
+	if(genitalBack == 1) output("back cock");
+	else output("back pussy");
+	output("!</b>");
+
+	xantheSetGenitals(hamArgs);
+	
+	output("\n\nThe transformation is only momentarily underwhelming, as it is soon punctuated by ");
+	if(genitalFront == genitalBack && genitalFront == 1) output("her twin cocks emerging from their folds. Within seconds she’s shooting her own silky white cum all over her own buxom tits and stomach. She gives herself her own bukkake shower, all the while frantically stroking and jerking off her frontmost member.");
+	else if(genitalFront == genitalBack && genitalFront == 2) output("her twin pussies squirting her silky white girl cum all over the place; basting her blue stomach and thighs. She frantically strokes her frontal folds and quivers and twitches the entire time.");
+	else output("her lumpy alien cock emerging from its fold. Within seconds she’s shooting her own silky white cum and girl cum all over her stomach and thighs; giving herself a thorough basting in her own juices.");
+
+	output("\n\nOnce she’s finished thoroughly creaming herself, she pulls herself off the floor. Instead of grabbing her clothing, however, she slides towards you and presses against your chest. She ");
+	if(pc.tallness <= 65) output("leans downward");
+	else if(pc.tallness <= 80) output("leans forward");
+	else output("stands on her tippitoes");
+	output(" and gently bites at your ear. You jump in surprise.");
+
+	output("\n\n\"<i>...");
+	if(cheated) 
 	{
-		output(" and a ");
-	 	if(9999) output("back cock");
-	 	else output("back pussy");
-	 }
-	 output("!</b>");
-
-	// Transformation code here or at start of scene.
-	//9999 figure this shit later
-	/*
-	output("\n\nThe transformation is only momentarily underwhelming, as it is soon punctuated by {her twin cocks emerging from their folds. Within seconds she’s shooting her own silky white cum all over her own buxom tits and stomach. She gives herself her own bukkake shower, all the while frantically stroking and jerking off her frontmost member./her twin pussies squirting her silky white girl cum all over the place; basting her blue stomach and thighs. She frantically strokes her frontal folds and quivers and twitches the entire time. /her lumpy alien cock emerging from its fold. Within seconds she’s shooting her own silky white cum and girl cum all over her stomach and thighs; giving herself a thorough basting in her own juices.}");
-
-	output("\n\nOnce she’s finished thoroughly creaming herself, she pulls herself off the floor. Instead of grabbing her clothing, however, she slides towards you and presses against your chest. She {leans downward/leans forward/stands on her tippitoes/ and gently bites at your ear. You jump in surprise.");
-
-	output("\n\n\"<i>... {Perving: “<i>I know you watched, you naughty {boy/girl}. Don’t think you can hide {your erection/your trembling [pc.legsNoun] from me.}</i>”}{Else: “<i>Don’t think you’re getting away with all this brazen behavior of yours, by the way.}</i>” Xanthe calls you out. One of her hands {not taur: “<i>is {sliding into your [pc.lowerUndergarments] and touching/moving to touch} your {[pc.frontCock]/[pc.frontPussy]/[pc.ass]}} {Taur: is teasing your [pc.chest].}");
+		output("I know you watched, you naughty " + pc.mf("boy","girl") + ". Don’t think you can hide ");
+		if(pc.hasCock()) output("your erection");
+		else output("your trembling [pc.legsNoun] from me.");
+	}
+	else output("Don’t think you’re getting away with all this brazen behavior of yours, by the way.");
+	output("</i>” Xanthe calls you out. One of her hands ");
+	if(!pc.isTaur())
+	{
+		output("is ");
+		if(pc.isCrotchGarbed()) output("sliding into your [pc.lowerGarment] and touching");
+		else output("moving to touch");
+		if(pc.hasCock()) output("[pc.oneCock]");
+		else if(pc.hasVagina()) output("[pc.oneVagina]");
+		else output("your [pc.ass]");
+	}
+	//Taur: 
+	else output("is teasing your [pc.chest].");
 
 	output("\n\nHer six-fingered hand plays you like an instrument, and soon you’re letting out a low moan and pushing your body against it. Just when things start getting really hot and heavy, she leans forward and whispers something in your ear.");
-
-	output("\n\n<i>\"If you want to try out my new parts, you’ll have to ask very nicely. I’m not some tausian girl who can just be winked at and fucked, you know.</i>” Xanthe whispers in your ear. Her hot tickling breath causes a shiver of pleasure to quake down your back. ");
-
-	output("\n\nAnd just like that, Xanthe pulls away and leaves you with aching loins and a {seriously hard {set of erections/erection}/seriously moist snatch/flushed face}. Apparently you really <i>are</i> going to have to ask if you want to play with them!");*/
+	output("\n\n<i>\"If you want to try out my new parts, you’ll have to ask very nicely. I’m not some tausian girl who can just be winked at and fucked, you know.</i>” Xanthe whispers in your ear. Her hot tickling breath causes a shiver of pleasure to quake down your back.");
+	output("\n\nAnd just like that, Xanthe pulls away and leaves you with aching loins and a ");
+	if(pc.hasCock()) 
+	{
+		output("seriously hard ");
+		if(pc.cockTotal() > 1) output("set of erections");
+		else output("erection");
+	}
+	else if(pc.hasVagina())
+	{
+		output("seriously moist");
+		if(pc.totalVaginas()) output("snatches");
+		else output("snatch");
+	}
+	else output("flushed face");
+	output(". Apparently you really <i>are</i> going to have to ask if you want to play with them!");
+	processTime(7);
+	pc.lust(45);
 }
 
-output("\n\nSex");
+//Sex
+// Unlocks ‘Mating’ menu
+function sexChatWithXanthe():void
+{
+	clearOutput();
+	showXanthe();
+	output("You ask ");
+	if(xantheIsDommingPC()) output("your Mistress");
+	else output("Xanthe");
+	output(" about her species and sex. Do they mate with other species, or is that something the Siel don’t engage in?");
 
-output("\n\n// Unlocks ‘Mating’ menu");
+	output("\n\nThe midnight blue haired woman looks at you with a flirtatious smile, though it’s a little bit edgy too. <i>\"Oh, why are you asking...? That’s a rather SPECIFIC question, wouldn’t you agree?</i>” She inquires in a husky tone.");
 
-output("\n\nYou ask {if pc is her sub: your Mistress/ else: Xanthe} about her species and sex. Do they mate with other species, or is that something the Siel don’t engage in?");
+	processTime(1);
+	//[I Want To Mate] [Just Curious]
+	//9999
+}
 
-output("\n\nThe midnight blue haired woman looks at you with a flirtatious smile, though it’s a little bit edgy too. <i>\"Oh, why are you asking...? That’s a rather SPECIFIC question, wouldn’t you agree?</i>” She inquires in a husky tone.");
+//I Want To Mate 
+function IWantToMate():void
+{
+	clearOutput();
+	showXanthe();
+	output("You tell ");
+	if(xantheIsDommingPC()) output("your Mistress");
+	else output("Xanthe");
+	if(pc.isNice()) output(" with a slight cough");
+	else if(pc.isMischievous()) output(" in a light-hearted fashion");
+	else output(" straight up");
+	output(" that you are interested in mating with her.");
 
-output("\n\n[I Want To Mate] [Just Curious]");
+	output("\n\nAs expected, the Siel woman seems very receptive to the idea. However, despite her previous flirtations, she doesn’t state that she will or won’t just yet. Instead, she gives you a little bit of a warning.");
+	output("\n\n<i>\"My species, the Siel, mate by tying up our partners and engaging in... I believe humans call it ‘bondage’. Some species are put off by this, since apparently this is not to their tastes.</i>” Xanthe explains, all the while weaving a rather specific sort of rope. <i>\"If you’re okay with being tied up and teased, then I don’t see why not.</i>”");
+	output("\n\n<i>\"The other thing to note is that we siel mate for a lot longer than most species do. If you are truly interested in mating with me, you’re going to have to set aside a lot of time.</i>”");
+	output("\n\nYou ask Xanthe exactly how much time you would have to set aside if you two were to do the deed?");
+	output("\n\n<i>\"About a half day for a quickie. I don’t do anything less. I much prefer going for a full day, and positively adore just setting aside a week to screw. I always get my best works done then.</i>”");
+	output("\n\nThat’s a lot of time! You’d better be seriously prepared if you decide to mate with Xanthe, since it sounds like it is going to be quite an intense experience.");
+	processTime(2);
+	//9999
+}
 
+//Just Curious
+function justCuriousAboutItXanthe():void
+{
+	clearOutput();
+	showXanthe();
+	output("You tell ");
+	if(xantheIsDommingPC()) output("your Mistress");
+	else output("Xanthe");
+	output(" that you’re just asking out of curiosity. She seems rather disappointed by your answer.");
 
-output("\n\nI Want To Mate ");
+	output("\n\n<i>\"Oh... that’s far less fun. I suppose I’ll tell you; perhaps it will arouse your sense of adventure?</i>” Xanthe coils a finger around a lock of hair, all the while raising an eyebrow at you.");
+	output("\n\n<i>\"My species, the Siel, mate by tying up our partners and engaging in... I believe humans call it ‘bondage’. Some species are put off by this, since apparently this is not to their tastes.</i>”");
+	output("\n\n<i>\"The other thing to note is that we Siel mate for a lot longer than most species do. Our ‘quickies’ generally last a half day. I find a full day, or a week, far more satisfying. I always get my best works done then.</i>”");
+	output("\n\nVoid, that’s a long time! If you ask Xanthe to mate, you better be seriously prepared. It sounds like it would be quite an intense experience.");
+	processTime(2);
+	//9999
+}
 
-output("\n\nYou tell {PC is sub: your Mistress/Else: Xanthe} {nice: with a slight cough}{misc: in a light-hearted fashion} {hard: straight up} that you are interested in mating with her.");
+//Mating
+function letsDoAlienBondageMating():void
+{
+	clearOutput();
+	showXanthe();
+	// First Time
+	if(flags["XANTHE_MATED"] == undefined)
+	{
+		output("After talking and flirting with Xanthe, you feel like it's the right moment to bring up mating with her. Unfortunately, she beats you to the punch.");
+		output("\n\nWhen you least expect it, the blue-skinned Siel woman leans in and strokes your cheek. It catches you completely off guard.");
+		output("\n\n<i>\"It’s fun flirting with you, my dear, truly wonderful. But I think we both know why you keep hanging around my store, and it has nothing to do with the clothes.\</i>”</i> she proclaims, all the while looking at you with those powerful, electric blue eyes.");
+		output("\n\n<i>\"I’d say it’s because you sense an Alpha female and you’re longing to submit to me. Am I right?</i>");
+		processTime(1);
+		//[Yes] [No]
+		clearMenu();
+		addButton(0,"Yes",yesYouCanDomMeXanthe,undefined,"Yes","You want her to be your Mistress and secretly long to submit to the Siel woman.");
+		// Yes tooltip: You want her to be your Mistress and secretly long to submit to the Siel woman.
+		// No tooltip: While you’re interested in mating with her, you’re not out to be her submissive.
+		addButton(1,"No",noImNotIntoThisShit,undefined,"No","While you’re interested in mating with her, you’re not out to be her submissive.");
+	}
+	//Mating (Domme) Menu
+	else
+	{
+		//if (pc is not a taur && height below 8 ft)
+		if(!pc.isTaur() && pc.tallness < 96)
+		{
+			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats her lap.");
+			output("\n\nRealising she’s giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.");
+		}
+		else
+		{
+			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats the side of her leg.");
+			output("\n\nRealising she’s giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.");
+		}
+		output("\n\n<i>\"Good " + pc.mf("boy","girl") + ".</i>” Xanthe’s husky words of praise cause your heart to soar, especially since they’re followed by a sweet kiss on your [pc.lips].");
+		output("\n\nYou spend some time basking in her powerful presence and obeying her commands. Does she get you to do anything  - or do anything to you - today...?");
+		processTime(3);
+		//[Tie and Tease] [Spend Time] [Nothing]
+		clearMenu();
+		//9999
+	}
+}
 
-output("\n\nAs expected, the Siel woman seems very receptive to the idea. However, despite her previous flirtations, she doesn’t state that she will or won’t just yet. Instead, she gives you a little bit of a warning.");
-
-output("\n\n<i>\"My species, the Siel, mate by tying up our partners and engaging in... I believe humans call it ‘bondage’. Some species are put off by this, since apparently this is not to their tastes.</i>” Xanthe explains, all the while weaving a rather specific sort of rope. <i>\"If you’re okay with being tied up and teased, then I don’t see why not.</i>”");
-
-
-output("\n\n<i>\"The other thing to note is that we siel mate for a lot longer than most species do. If you are truly interested in mating with me, you’re going to have to set aside a lot of time.</i>”");
-
-output("\n\nYou ask Xanthe exactly how much time you would have to set aside if you two were to do the deed?");
-
-output("\n\n<i>\"About a half day for a quickie. I don’t do anything less. I much prefer going for a full day, and positively adore just setting aside a week to screw. I always get my best works done then\.</i>”");
-
-output("\n\nThat’s a lot of time! You’d better be seriously prepared if you decide to mate with Xanthe, since it sounds like it is going to be quite an intense experience.");
-
-
-output("\n\nJust Curious");
-
-output("\n\nYou tell {pc is sub: your Mistress/else: Xanthe} that you’re just asking out of curiosity. She seems rather disappointed by your answer.");
-
-output("\n\n<i>\"Oh... that’s far less fun. I suppose I’ll tell you; perhaps it will arouse your sense of adventure?</i>” Xanthe coils a finger around a lock of hair, all the while raising an eyebrow at you.");
-
-output("\n\n<i>\"My species, the Siel, mate by tying up our partners and engaging in... I believe humans call it ‘bondage’. Some species are put off by this, since apparently this is not to their tastes.</i>”");
-
-output("\n\n<i>\"The other thing to note is that we Siel mate for a lot longer than most species do. Our ‘quickies’ generally last a half day. I find a full day, or a week, far more satisfying. I always get my best works done then.</i>”");
-
-output("\n\nVoid, that’s a long time! If you ask Xanthe to mate, you better be seriously prepared. It sounds like it would be quite an intense experience.");
-
-
-output("\n\nBuy");
-
-output("\n\n<i>\"What kind of clothing were you interested in buying{if sub: “<i>, my pet</i>”}? I’ve got quite the selection.</i>”\</i>");
-
-output("\n\n[Armor] [Clothes] [Uwear, Upper] [Uwear, Lower]");
-
-output("\n\nArmor");
-
-output("\n\n<i>\"Armor, huh? I’ve only got a few pieces here, but all of them are stellar pieces.</i>”");
-
-output("\n\nBattle Ballgown: (+5 Def, +2 Attack, +2 Evade, 20% Slash/Kinetic/Piercing Resistance) - Base Price: 5000 creds.");
-output("\n\nReinforced Bodysuit: (+5 Def, +5 Sexiness, +2 Evade, +10% resist Kinetic/Slash/Pierce) - Base Price: 4000 creds.");
-output("\n\nRevealing Male Armor: (+1 Def, +3 Sexiness) - Base Price: 1000 creds.");
-output("\n\nRevealing Female Armor: (+1 Def, +3 Sexiness) - Base Price: 1000 creds.");
-output("\n\nTransparent Zipsuit: (+5 Def, +10 Sexiness, 10% resist all but lust, -20% Lust resist). 5000 creds.");
-
-output("\n\nClothes");
-
-output("\n\n<i>\"Looking for a nice outfit? We’ve got a </i>lot<i> in stock. Feel free to try on any sexy little number that catches your eye.</i>”");
-
-// Costs are w'e you want.
-
-Sleep Shirt (0 Def, +2 Sexiness)  - 800 Creds
-Top and Skirt (0 Def, +2 Sexiness)  - 800 Creds
-Business Clothes (0 Def, +2 Sexiness)  - 800 Creds
-Latex Bodysuit (2 Def, +2 Sexiness)  -1000 Creds
-China Dress (2 Def, +2 Sexiness)  - 1000 Creds
-Female Kimono (0 Def, +5 Sexiness, +2 Evade)  - 1500 Creds
-Male Kimono (+2 Attk, +2 Def) 1500 Creds
-Yukata (0 Def, +5 Sexiness) - 1000 Creds
-Short Kimono  (0 Def, +2 Attk, +5 Sexiness, +2 Evade) - 2000 Creds
-Ninja Outfit (0 Def, +2 Attk, +5 Sexiness, +2 Evade) - 2000 Creds
-Maid Outfit (0 Def, +5 Sexiness)  - 1000 Creds
-Butler Outfit (0 Def, +5 Sexiness) - 1000 Creds
-Nurse Outfit (0 Def, +5 Sexiness)  - 1000 Creds
-Male Doctor's Outfit (0 Def, +5 Sexiness) - 1000 Creds
-Female Doctor's Outfit (0 Def, +5 Sexiness) - 1000 Creds
-Apron (0 Def, +5 Sexiness)  - 1000 Creds
-Seifuku (0 Def, +5 Sexiness)  - 1000 Creds
-Gakuran (0 Def, +5 Sexiness) - 1000 Creds
-Schoolgirl Outfit (0 Def, +5 Sexiness)  - 1000 Creds
-Schoolboy Outfit (0 Def, +5 Sexiness) - 1000 Creds
-Cheerleader Outfit (0 Def, +5 Sexiness)  - 1000 Creds
-Waitress Uniform (0 Def, +5 Sexiness)  - 1000 Creds
-Bunny Outfit (0 Def, +5 Sexiness)  - 1000 Creds
-Military Outfit (+2 Def, +2 Sexiness) - 1000 Creds
-Space Pirate Outfit (+2 Def, +2 Sexiness) - 1000 Creds
-Goth-Lolita Outfit  (0 Def, +5 Sexiness)  - 1000 Creds
-Tank-Top and Mini Skirt  (0 Def, +2 Attk, +5 Sexiness)  - 1500 Creds
-Leather Strap Harness (0 Def, +5 Sexiness) - 1000 Creds
-Little Black Dress (0 Def, +5 Sexiness) - 1000 Creds.
-
-
-Uwear, Upper
-
-<i>\"Covering up {that/those} [pc.chest] of yours seems like a crime, but there's something to be said for a complimenting piece. Here's what I've got.\"</i>
-
-String-Tie Top (+1 Sexiness) - 700 Creds
-Frilly Bra  (+1 Sexiness) - 700 Creds
-Girly Bra  (+1 Sexiness) - 700 Creds
-White Bra  (+1 Sexiness) - 700 Creds
-Striped Bra  (+1 Sexiness) - 700 Creds
-Furry Bra  (+1 Sexiness) - 700 Creds
-Black Lace Bra  (+1 Sexiness) - 700 Creds
-Sarashi  (+1 Sexiness) - 700 Creds
-Muscle Shirt (+1 Sexiness) - 700 Creds
-Sports Singlet (+1 Sexiness) - 700 Creds
-Mesh Shirt (+1 Sexiness) - 700 Creds
-Patriotic Bra (+1 Sexiness) - 700 Creds
-Skull Pattern Bra (+1 Sexiness) - 700 Creds
-
-Uwear, Lower
-
-<i>\"Something to cover you up down there? I'd recommend trying it on and giving me a look.\"</i>
-
-String-Tie Bottoms  (+1 Sexiness) - 700 Creds
-Frilly Panties  (+1 Sexiness) - 700 Creds
-Girly Panties  (+1 Sexiness) - 700 Creds
-White Panties  (+1 Sexiness) - 700 Creds
-Striped Panties  (+1 Sexiness) - 700 Creds
-Lowrider Panties  (+1 Sexiness) - 700 Creds
-Furry Panties  (+1 Sexiness) - 700 Creds
-Patriotic Boxers (+1 Sexiness) - 700 Creds
-Patriotic Panties (+1 Sexiness) - 700 Creds
-Skull Pattern Boxers (+1 Sexiness) - 700 Creds
-Skull Pattern Panties (+1 Sexiness) - 700 Creds
-C-String (+2 Sexiness) - 1000 Creds
-Black Lace Panties  (+1 Sexiness) - 700 Creds
-Black Silk Boxers (+1 Sexiness) - 700 Creds
-Red Satin Boxers (+1 Sexiness) - 700 Creds
-Male Thong (+1 Sexiness) - 700 Creds
-Leather Boy Shorts (+1 Sexiness) - 700 Creds
-Zip-Pouch Jock (+2 Sexiness) - 1000 Creds
-
-Nipple Tassels
-
-<i>\"These are a specialty of mine, most of them are hand made. Others I bought because I liked the design. Feel free to try them on and give them a whirl.\"</i>
-
-Red heart shaped nipple tassels (+2 Sexiness) - 1000 Creds
-Skull shaped nipple tassels (+2 Sexiness) - 1000 Creds
-Golden nipple tassels (+2 Sexiness) - 1000 Creds
-Four leaf clover nipple tassels (+2 Sexiness) - 1000 Creds
-Flower shaped nipple tassels (+2 Sexiness) - 1000 Creds
-Star shaped nipple tassels (+2 Sexiness) - 1000 Creds
-Jewelled nipple tassels (+2 Sexiness) - 1000 Creds
-Black nipple tassels (+2 Sexiness) - 1000 Creds
-Mating
-
-
-// First Time
-After talking and flirting with Xanthe, you feel like it's the right moment to bring up mating with her. Unfortunately, she beats you to the punch.
-
-When you least expect it, the blue-skinned Siel woman leans in and strokes your cheek. It catches you completely off guard.
-
-<i>\"It's fun flirting with you, my dear, truly wonderful. But I think we both know why you keep hanging around my store, and it has nothing to do with the clothes.\"</i> she proclaims, all the while looking at you with those powerful, electric blue eyes.
-
- <i>\"I'd say it's because you sense an Alpha female and you're longing to submit to me. Am I right?</i>
-
-[Yes] [No]
-
-// Yes tooltip: You want her to be your Mistress and secretly long to submit to the Siel woman.
-// No tooltip: While you're interested in mating with her, you're not out to be her submissive.
-
-
-Yes
+//Yes
 // Sets Xanthe as Dommy to PC, brings up Mating (Domme) Menu. 
-
-You can't deny her words, instead looking at your feet with flushing cheeks. Soon you feel a curved finger being slipped underneath your chin, bringing it upwards until you are staring into her eyes.
-
-<i>\"Submit to me, my {handsome/beauutiful} [pc.race], and I will love you and take care of you until the end of days.\"</i> A gentle kissu is lavished on your raised jawline and fills you with incredible warmth.<i>\"I will fiercely protect you like no other, and others will know that you belong to ME.\"</i>
-
-Her sudden burst of possessiveness and sweet, caring promises cause your [pc.knees] to quake and your heart to swell. It feels as if she is a mother lion, threatening to tear apart those who would so much as scratch your [pc.skinFurScalesNoun].
-
-It's not even a question of being claimed, as you know in your heart that you already belong to her. You've <i>always</i> belonged to her. All that's left is to say the words that confirm it.
-
-<i>\"... Yes.\"</i> You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe. 
-
-// Play 'Tie and Tease' sex scene
-
-No
-
-
-// Was going to do a full on non-domme version, but already over word count. May insert new version of "no" and non-Domme route depending on Xanthe's reception. 
-
-You tell her that she must be getting some mixed signals. While you are definitely interested in mating with her, you definitely don't want to be her submissive.
-
-<i>\"Ah, really? I guess that's too bad then. I'm not really out for another kind of relationship at the moment. Talk to me if you change your mind.\"</i> Xanthe pets your cheek and then heads back to work.
-
-
-Mating (Domme) Menu
-
-if (pc is not a taur && height below 8 ft)
+function yesYouCanDomMeXanthe():void
 {
-Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she's sitting in a chair. She then looks at you and pats her lap.
-
-Realising she's giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.
+	clearOutput();
+	showXanthe();
+	output("You can’t deny her words, instead looking at your feet with flushing cheeks. Soon you feel a curved finger being slipped underneath your chin, bringing it upwards until you are staring into her eyes.");
+	output("\n\n<i>\"Submit to me, my " + pc.mf("handsome","beauutiful") + " [pc.race], and I will love you and take care of you until the end of days.</i>” A gentle kissu is lavished on your raised jawline and fills you with incredible warmth. <i>\"I will fiercely protect you like no other, and others will know that you belong to ME.</i>”");
+	output("\n\nHer sudden burst of possessiveness and sweet, caring promises cause your [pc.knees] to quake and your heart to swell. It feels as if she is a mother lion, threatening to tear apart those who would so much as scratch your [pc.skinFurScalesNoun].");
+	output("\n\nIt’s not even a question of being claimed, as you know in your heart that you already belong to her. You’ve <i>always</i> belonged to her. All that’s left is to say the words that confirm it.");
+	output("\n\n\"<i>... Yes.</i>” You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
+	processTime(4);
+	pc.lust(10);
+	// Play ‘Tie and Tease’ sex scene
+	//9999
 }
-else
+
+//No
+function noImNotIntoThisShit():void
 {
-Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she's sitting in a chair. She then looks at you and pats the side of her leg. 
+	clearOutput();
+	showXanthe();
+	//Was going to do a full on non-domme version, but already over word count. May insert new version of “<i>no</i>” and non-Domme route depending on Xanthe’s reception. 
 
-Realising she's giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.
+	output("You tell her that she must be getting some mixed signals. While you are definitely interested in mating with her, you definitely don’t want to be her submissive.");
+	output("\n\n<i>\"Ah, really? I guess that’s too bad then. I’m not really out for another kind of relationship at the moment. Talk to me if you change your mind.”</i> Xanthe pets your cheek and then heads back to work.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
-<i>\"Good {girl/boy}.\"</i> Xanthe's husky words of praise cause your heart to soar, especially since they're followed by a sweet kiss on your [pc.lips]. 
 
-You spend some time basking in her powerful presence and obeying her commands. Does she get you to do anything  - or do anything to you - today...?
-
-[Tie and Tease] [Spend Time] [Nothing]
-
-Tie and Tease
+//Tie and Tease
 // All Sexes
-
-Xanthe gives you a long, tongue filled kiss and you swoon in delight. You melt against her like a living puddle. Her arms slide around your waist and pull you close, ensuring that you don't fall to your feet.
-
-After what feels like forever, your Mistress deprives you of her sweet lips, and grabs your hands in hers. You are led slowly to her dungeon in the back of the store. You're utterly swept up in the flow, happy to go everywhere and anywhere she may lead.
-
-// First time sex scene
+function tieAndTeaseWithXanthe():void
 {
-When you walk into her dungeon you are overwhelmed with how much bondage furniture is everywhere. Wooden horses, a bondage wheel, an X-cross... almost every kind of galactic device designed for restraint and punishment is here. There are various tools hanging up, including at least a dozen different whips, floggers, and paddles.
+	clearOutput();
+	showXanthe();
+	output("Xanthe gives you a long, tongue filled kiss and you swoon in delight. You melt against her like a living puddle. Her arms slide around your waist and pull you close, ensuring that you don’t fall to your feet.");
+	output("\n\nAfter what feels like forever, your Mistress deprives you of her sweet lips, and grabs your hands in hers. You are led slowly to her dungeon in the back of the store. You’re utterly swept up in the flow, happy to go everywhere and anywhere she may lead.");
+
+	//First time sex scene
+	if(flags["XANTHE_MATED"] == undefined)
+	{
+		output("\n\nWhen you walk into her dungeon you are overwhelmed with how much bondage furniture is everywhere. Wooden horses, a bondage wheel, an X-cross... almost every kind of galactic device designed for restraint and punishment is here. There are various tools hanging up, including at least a dozen different whips, floggers, and paddles.");
+	}
+	output("\n\nYou’re told to ");
+	if(pc.isNude()) output("stand to attention");
+	else output("strip off your clothes");
+	output(" and you immediately do so, not even registering the instruction before you comply. When she tells you to ");
+	if(pc.legCount > 1) output("spread your [pc.legsNoun] and ");
+	output("lift your hands, you do so without without question.");
+
+	output("\n\nShe could tell you to leap out the window and you would happily do it. You’re simply that confident that she would never ask you to do something that wasn’t for your own good. Xanthe is your Mistress, and she cares for you - why would she harm her own pet?");
+
+	output("\n\nWith bated breath, you watch as your Mistress shoots her gossamer silk directly above you and sticks it to the roof. A single snap of her fingers severs it from her tail, leaving her holding a long roof-bound length.");
+
+	output("\n\nMoments later she’s closing in on you and pressing her awesome breasts against your chest. Her hands are upwards, however, securing your raised hands with the silky twine. She wraps the smooth, silky cord around your wrists.");
+
+	output("\n\nLooking upwards, you marvel at her obvious talent and the care in which she ties you up like a perfectly wrapped present. It’s tight enough for you to feel it every given second, yet in no way does it feel uncomfortable.");
+
+	output("\n\nShe also secures your [pc.legs] with two lengths of silken twine, each connected to your left and right. Tied up like this, you’re unable to do anything but ");
+	if(pc.legCount > 1) output("keep your [pc.legsNoun] spread and ");
+	output("your arms in the air. It’s like you’re a naked damsel dangling over a pit of doom!");
+
+	output("\n\n<i>\"Trussed up like this, I can do anything I want to you... or nothing at all. I could leave you here for days if I so wished, keeping you like my little wrapped up prize.</i>” Xanthe ");
+	if(!pc.isTaur()) output("slides her arms around your waist");
+	else output("slides her fingers up to your ");
+	if(!pc.isTaur()) 
+	{
+		output(" from behind. One of her six-fingered hands slips down to your ");
+	}
+	if(pc.hasVagina()) output("[pc.vaginas]");
+	else if(pc.hasCock()) output("[pc.hasCock]");
+	else output("loins");
+	output(" and pointedly teases ");
+	if(pc.hasVagina() && pc.totalVaginas() > 1) output("them");
+	else if(!pc.hasVagina() && pc.hasCock() && pc.cockTotal() > 1) output("them");
+	else if(pc.hasCock() || pc.hasVagina()) output("it");
+	//Loins = them
+	else output("them");
+	output(", showing just how vulnerable you are. She really could do anything she wanted to you like this!");
+
+	output("\n\n<i>\"If you beg... nicely beg... I might feel gracious enough to play with you. Otherwise I might just stick a vibrating toy in your [pc.vagOrAss] on low for a couple of days, enough to get you frustrated but not enough to get you off.</i>”");
+	output("\n\nYou’re not sure what makes you more panicked - the thought of going without your Mistress’s attentions, or the cruelly delicious punishment looming over your head. Either way you desperately beg her to pay attention to you. It would be a shame not to play with such a nicely wrapped toy like you!");
+
+	pc.lust(20);
+	processTime(5);
+	//[She Leaves You!] [Pays Attention] 
+	//Random?
+	clearMenu();
+	if(rand(2) == 0) addButton(0,"Next",shePaysAttentionToYouSlut);
+	else addButton(0,"Next",getLeftByXantheSlooot);
 }
-
-You're told to {stand to attention/strip off your clothes} and you immediately do so, not even registering the instruction before you comply. When she tells you to {spread your legs and} lift your hands, you do so without without question.
-
-She could tell you to leap out the window and you would happily do it. You're simply that confident that she would never ask you to do something that wasn't for your own good. Xanthe is your Mistress, and she cares for you - why would she harm her own pet?
-
-With bated breath, you watch as your Mistress shoots her gossamer silk directly above you and sticks it to the roof. A single snap of her fingers severs it from her tail, leaving her holding a long roof-bound length. 
-
-Moments later she's closing in on you and pressing her awesome breasts against your chest. Her hands are upwards, however, securing your raised hands with the silky twine. She wraps the smooth, silky cord around your wrists.
-
-Looking upwards, you marvel at her obvious talent and the care in which she ties you up like a perfectly wrapped present. It's tight enough for you to feel it every given second, yet in no way does it feel uncomfortable.
-
-She also secures your [pc.legs] with two lengths of silken twine, each connected to your left and right. Tied up like this, you're unable to do anything but {keep your legs spread and} your arms in the air. It's like you're a naked damsel dangling over a pit of doom!
-
-<i>\"Trussed up like this, I can do anything I want to you... or nothing at all. I could leave you here for days if I so wished, keeping you like my little wrapped up prize.\"</i> Xanthe {Not taur && not neuter: "walks around you and then slides her arms around your waist from behind"} {Not Taur && Neuter:" slides her arms around your waist""} {Taur: "slides her fingers up to "} {Not taur: "from behind"}. One of her six-fingered hands slips {between your/down to your} {[pc.frontPussy]/pc.frontCock]/loins] and pointedly teases {it/them}, showing just how vulnerable you are. She really could do anything she wanted to you like this!
-
-<i>\"If you beg... nicely beg... I might feel gracious enough to play with you. Otherwise I might just stick a vibrating toy in your [pc.pussyOrAssNoun] on low for a couple of days, enough to get you frustrated but not enough to get you off.\"</i> 
-
-You're not sure what makes you more panicked - the thought of going without your Mistress's attentions, or the cruelly delicious punishment looming over your head. Either way you desperately beg her to pay attention to you. It would be a shame not to play with such a nicely wrapped toy like you!
-
-[She Leaves You!] [Pays Attention] 
-
-
-
 
 // She Leaves You!
-
-You pitifully plead with all your might, begging her not to leave you trussed up like this. You overstep yourself and tell her that "she must" let you go, instantly regretting your words.
-
-<i>\"So 'I Must' let you go, must I? Why 'Must' I do that, hmm?\"</i> Xanthe looks at you sternly. Her sharp gaze cuts right into your soul, and you flush with shame. <i>\"I think you've forgotten your place, pet, and you're in need of some discipline.\"</i>
-
-Discipline! You hope that she's going to spank you, yet instead she creates {femOrNeuter: "[pc.nipple.count]"/else: "a number of"} sticky hitch-ended silk strings. She then attaches them to your {if nipple piercings: "[pc.nipple.piercings]"}{else: "[pc.nipplesLight]"} {and [pc.cocksNoun]}, tightening them and waiting for the adhesive substance to set. Once it has, she loops them through a metal ring on the floor and - looking at you - gives them a pointed tug.
-
-The sudden sharp sensation causes you to cry out in pleasured shock. Not only are you butt-naked, arms tied up, and your [pc.legs] {spread and} restrained, now your [pc.nipplesNoun] {and [pc.cocksLight] are lewdly pulled out {not back genitals: "in front of you"}. 
-
-<i>\"Mistress, please, I promise I'll be good! I'll...!</i> Your cries of protest are silenced when she pulls off a pair of her black, lacy underwear and shoves it inside of your mouth.
-
-<i>\"Bite on it!</i> Xanthe barks at you, and you immediately do so, holding it long enough for her to get some equally black duct tape. She pulls off a strip and uses it to both silence you and secure her warm unmentionables in your mouth, causing you to flush with embarrassment.
-
-// Flag check if done vibrator scene before with butch. This is the only scene currently with butch.
-
-Now thoroughly silenced, you wait patiently as she retrieves a long, black rippled vibrator and waves it in front of you. {MetButch: "You recognize 'Butch' when you see him."}{else: "It looks seriously aggressive and has a pointedly large head. She grabs some lubricant and begins to smear the cool, clear gel all over the imposing onyx phallus. You watch the entire process with bated breath."}
-
-<i>\"{This, my dear, is 'Butch'./You remember 'Butch', don't you?} He's getting shoved deep inside of your [pc.pussyOrAss]. I'm setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.\"</i> Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?
-
-// Set 'met Butch'.
-
-You can't ask any questions though, what with your mouth stuffed with her freshly worn panties and taped shut. All you can do is stand there, your precious {nips/bits} tugged out{piercings: by your piercings"}{ and legs spread wide}, as she slowly inserts Butch into your [pc.pussyOrAssNoun].
-
-The sensation of cool lube smearing all over your slowly stretching {slit/pucker} causes you to let out a muffled gasp. It's followed by a stifled cry as your {slippery snatch/basted butthole} is stretched open and Butch is slipped inside. {Virgin: <b>You've lost your {anal} virginity!</b>}
-
-<i>\"Can you feel him deep inside of you?\"</i> Your Mistress huskily asks, and you nod in response. You can feel every contour and curve buried deep inside of your [pc.vagOrAss]. Almost as if accepting it, your {pussy lips and walls/anus and sphincter} relax and mold around it, perfectly matching Butch's shape.
-
-With a pleasured sigh you relish in having such a massive tool buried inside your {{pc.pussy.wetness] box/needy butt}. Just when you're beginning to relax it begins to whir and tremble deep inside of you, causing coiled pleasure to build {between your thighs/deep inside your delightfully defiled ass}. 
-
-<i>\"I'll leave you two lovebirds alone {First: "to get better acquainted"/"for a while"."</i> Xanthe informs you, giving your [pc.assLight] a pointed slap. You jolt upwards and in the process tug at your bound [pc.nipplesNoun] and {[pc.cocksNoun]/[pc.chestNoun]}, forcing a muffled moan from your lips.
-
-<b>... Some time passes....</b>
-
-Left tied up and down in the dungeon on your own, every noise and sensation slowly becomes more acute. From the tight constriction around your wrists to that around your [pc.nipplesNoun] {and loins}, you acutely feel your captivity.
-
-More than anything, you feel and yearn for the missing company of your Mistress, who you know is somewhere close by. Instead the air is filled with the whirring noise of the black vibrator buried {in your slavering snatch/between your buttcheeks} and the keen sensation of it pressing against your {g-spot/prostate}. 
-
-
-It doesn't take you long to realise there is a full sized mirror mounted on the wall and pointing directly at you, giving you a good look at how lewd you look right now. You stare at the [pc.race] in the mirror with [pc.hisHer] [pc.nipples] {and [pc.cocks]} all bound and pulled downwards, arms upwards and [pc.legs] bound. 
-
-As you look you can see your own [pc.skinColor] cheeks flushing and your bound parts getting pointedly stiffer. Wiggling your bound [pc.legs], you moan into your Mistress's panties, getting more and more wound up. You really do look like a naughty {boy/girl}!
-
-Thinking yourself clever, you tug at the strings attached to your {loins/tits/chest}, looking in the mirror all the while in an attempt to get off. Just as the pooled pleasure you're feeling begins to reach its peak... the black vibrator suddenly slows down and takes your buzz with it. When you're about to cool off, it starts up and heats you up again.
-
-
-You cry with sexual frustration into the panties, being brought up to dizzying heights then pulled back from that delectable brink. Your legs tremble and you're held up by nothing but your smooth silk wrist wrappings, powerless as your {pussy/pucker} is provoked over and over again.
-
-Just when you think you're never going to see her again, your Mistress returns, though not to free you. Instead she pulls off the tape and feeds you, telling you not to utter a word. You compliantly do so, then afterwards your mouth is stuffed with a pair of fresh panties and sealed over again.
-
-<b>... Even <i>more</i> time passes...</b>
-
-Your Mistress periodically visits over the next few days to let you eat, drink, and occasionally unties you for a short bathroom break. She even lets you sleep for a few hours, though she makes you do so in a leather sleepsack and on the ground of the dungeon. You're woken up and tied up once again to resume your discipline every few hours, allowing your brain the shortest of breaks.
-
-By the third day you've forgotten nearly everything that exists outside of the dungeon, short of your Mistress's visits and the tantalizing pleasure you are constantly subjected to. When she comes in and pulls out Butch from your [pc.vagOrAssNoun], you assume it's for his regular re-lubing.
-
-<i>\"You've been very good, my pet. Don't think I haven't noticed you not saying a word. Time for your reward.\"</i> Xanthe strokes your [pc.hair] and you let out a muffled cry of joy. Far for seeking release, you're just happy that your Mistress is happy.
-
-// if Xanthe does not have frontcock
+function getLeftByXantheSlooot():void
 {
-You watch her slip on a black pair of underwear over her legs and then connect the whirring black phallus to the front. As she lubes it up, your heart soars with anticipation. Is she going to fuck you with Butch?
-}
-else
-{
-You watch her slip off her front underwear and then sensuously stroke her cock slit. It's not long before her rippled alien phallus is emerging, blessing you with that glorious sight. When it's fully out, she wraps it at the base with her silk and it quickly becomes fully engorged.
-}
+	clearOutput();
+	showXanthe();
+	output("You pitifully plead with all your might, begging her not to leave you trussed up like this. You overstep yourself and tell her that “<i>she must</i>” let you go, instantly regretting your words.");
+	output("\n\n<i>\"So ‘I Must’ let you go, must I? Why ‘Must’ I do that, hmm?</i>” Xanthe looks at you sternly. Her sharp gaze cuts right into your soul, and you flush with shame. <i>\"I think you’ve forgotten your place, pet, and you’re in need of some discipline.</i>”");
+	output("\n\nDiscipline! You hope that she’s going to spank you, yet instead she creates ");
+	if(!pc.hasCock()) output(num2Text(pc.totalNipples()));
+	else output("a number of");
+	output(" sticky hitch-ended silk strings. She then attaches them to your ");
+	if(pc.hasPiercedNipples()) output("[pc.nipplePiercings]");
+	else output("[pc.nipples]");
+	if(pc.hasCock()) output(" and [pc.cocks]");
+	output(", tightening them and waiting for the adhesive substance to set. Once it has, she loops them through a metal ring on the floor and - looking at you - gives them a pointed tug.");
 
+	output("\n\nThe sudden sharp sensation causes you to cry out in pleasured shock. Not only are you butt-naked, arms tied up, and your [pc.legs] ");
+	if(pc.legCount > 1) output("spread and ");
+	output("restrained, now your [pc.nipplesNoun]");
+	if(pc.hasCock()) 
+	{
+		output(" and [pc.cocksLight]");
+	}
+	output(" are");
+	output(" lewdly pulled out");
+	if(!pc.isTaur()) output(" in front of you");
+	output(".");
 
-{With her [xanthe.frontCock] at the ready/With her strap on properly equipped}, your Mistress moves {up to you/behind you} and positions herself at your {low/mid elasticity: "now gaping"} entrance. It's hardly an effort for her to slip inside your {now cavernous} {cunt/chute} and sheathe herself in your over-traversed tunnel.
+	output("\n\n<i>\"Mistress, please, I promise I’ll be good! I’ll...!</i>\" Your cries of protest are silenced when she pulls off a pair of her black, lacy underwear and shoves it inside of your mouth.");
+	output("\n\n<i>\"Bite on it!</i>\" Xanthe barks at you, and you immediately do so, holding it long enough for her to get some equally black duct tape. She pulls off a strip and uses it to both silence you and secure her warm unmentionables in your mouth, causing you to flush with embarrassment.");
 
-As you are thoroughly claimed by your Mistress, your eyes flutter back and your mouth opens as much as it can. Somehow having 'Her' pushing her tip into the deepest parts of your {cunny/butt} feels unbelievably better than just the vibrator, making you feel truly complete.
-
-Each powerful thrust of her hips lewdly slaps your {own/[pc.ass]} and tugs at your {pierced?: "pierced"}{else: "bound up"} nipples {and [pc.chestNoun]/and [pc.cocksNoun]}, assaulting your body with so many sensations in all the right places. Even with your wrists bound up, you buck and grind instinctively against her, happy for your Mistress to claim what is hers.
-
-It's not surprising that you quickly reach the brink that you have been literally denied for days, though your orgasm is mind blowingly cataclysmic. Starting at a [pc.toe] tremble and turning into a full body spasm, you clench her {[xanthe.frontCock]/strap on} with your [pc.vagOrAss] and let out an intensely muffled scream. Sensing your climax, your Mistress thrusts hard and deep, pushing her {[pc.cockHead]/cock head} hard {against the mouth of your womb/into your bowels}, making it rocket right off the richter scale.
-
-You feel as if the universe itself cracks and dissolves as {herm and male: you mindlessly shoot and cream your genitals, your bound [pc.cocks] shooting {tiny splatterings/thick sticky ropes/gloriously thick ropes/gooey gallons} of your [pc.cum] all over the floor}{herm: ". Your"}{female: "your"}{herm and female: " [pc.pussies] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar"} {neuter: your thoroughly cream yourself, twitching and shivering against her as you experience a dry orgasm}. {if xanthe.frontCock = yes: "At the same time your [pc.vagOrAss] squeezes her alien shaft deliciously hard.}
-
-if (xanthe.hasFrontCock)
-{
-Everything else in the world is wiped away by exquisite molten release. You feel your Mistress's [xanthe.cock] shooting twin streams of her sticky alien seed deep into your {Notpregs & pussy: fertile womb/pregs & puss: pregnant pussy/ass: naughty ass}. You're soon filled to the brim with her silky warmth, feeling fulfilled in so many ways.
-}
-// PC sings 'let it go' from Frozen right about here.
-
-When your Mistress finally pulls out of you and lovingly undoes your binds, you're so enraptured in your subspace that you don't realise what's happening. You're simply floating in your own private bliss-filled universe as you're slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.
-
-The first sensation that returns to you is that of your Mistress's arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.
-
-
-<i>\"There there, pet, it's okay. You're safe and in my arms.\"</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It's not long before you fall into the most incredibly deep sleep in her arms.
-
-<b>... The next day...</b>
-
-When you wake up, get dressed, and leave the dungeon, you feel like the last four days were some wonderful dream. Your body aches all over, yet you're filled with an ongoing high and a slight skip in your step. 
-
-// Four days have passed for PC. Give them some big vag or ass stretches, unless good elasticity.
-
-// End Scene.
-
-
-// Pays Attention
-
-You beg with all your heart and soul, trying to show her just how much you want her to play with you. Deep down, you know your pleading makes no difference - your Mistress will do what she wants to do with you. 
-
-Stepping back, she walks around and runs her fingers teasingly down your spine. The gentle grazing of your [pc.skinFurScales] causes you to shiver with delight. Ever the tiniest of her touches plays you like an instrument.
-
- <i>\"... I think I'll turn you into my beautiful living canvas today.\"</i> Xanthe leans in and kisses at the side of your neck. She sucks on the nape and then bites it, leaving a pointed kiss-sized bruise. <i>\"I'm going to leave my marks on you. That way, when you're travelling about, everyone will know who you REALLY belong to.\"</i>
-
-The thought of being possessively marked makes your [pc.legsNoun] quiver with delight. You want to be claimed, to be totally <i>owned</i> by her. People should know who you belong to, both in body and mind.
-
-You tell your Mistress as much, and she gives you a rewarding little bite on your earlobe. <i>\"Indeed, I take care of my pets. Each mark I leave on your [pc.skin] is a sign that I love you, dearest, don't you forget it.\"</i>
-
-if (pc.hasBreasts = true || pc.hasCock = true}  or (pc.hasLegs > 1 && pc.hasPussy = true)
-{
-Your Mistress then begins weaving some of her special silk and forming soft ropes in her multi-fingered hands. You watch on as she makes ample amounts of twine in front of you. 
-
-<i>\"Are you wondering what this is for, my pet?\"</i> She asks in her husky voice. There's a glimmering in her bright blue eyes as she holds you captive and in delicious anticipation.
-
-
-You nod and she leans in with the thread held in both hands. Draping it over your neck like a medal chain, she tugs it down and gives you a long, passionate kiss. When she pulls away, she tugs it pointedly. 
-
-if (pc.hasBreasts = true && pc.hasCock = false)
-{
-<i>\" ... It's for binding your[pc.breastsNoun], and making {it/them} especially pretty.\"</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around [pc.oneBreast]. 
-
-If you weren't already swooning from her kiss, you'd be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.
-
-<i>\"Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i> Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.
-
-Looking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.
 	
-<i>\"That's just part of the entree, dear, we haven't even started the main course.\"</i> Xanthe tsks and {if (pc.hasBreasts > 1) "begins binding up your other breast{s}. By the time she's finished {both/all} of them are tightly bound and linked by the silken thread around your neck."}{else: "finishes tying you up. By the time she's finished, both ends of the silken thread are bound around your breast, the middle of which is looped behind your neck.}
+	output("\n\nNow thoroughly silenced, you wait patiently as she retrieves a long, black rippled vibrator and waves it in front of you.");
+	// Flag check if done vibrator scene before with butch. This is the only scene currently with butch.
+	if(flags["MET_BUTCH"] != undefined) output(" You recognize ‘Butch’ when you see him.");
+	else output(" It looks seriously aggressive and has a pointedly large head. She grabs some lubricant and begins to smear the cool, clear gel all over the imposing onyx phallus. You watch the entire process with bated breath.</i>”");
+
+	output("\n\n\"<i>");
+	if(flags["MET_BUTCH"] == undefined) output("This, my dear, is ‘Butch’.");
+	else output("You remember ‘Butch’, don’t you?");
+	output(" He’s getting shoved deep inside of your [pc.pussyOrAss]. I’m setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.</i>” Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?");
+
+	output("\n\nYou can’t ask any questions though, what with your mouth stuffed with her freshly worn panties and taped shut. All you can do is stand there, your precious ");
+	if(!pc.hasCock()) output("nips");
+	else output("bits");
+	output(" tugged out");
+	if(pc.hasPiercedNipples()) output(" by your piercings");
+	if(pc.legCount > 1) output(" and legs spread wide");
+	output(", as she slowly inserts Butch into your [pc.vagOrAss].");
+
+	output("\n\nThe sensation of cool lube smearing all over your slowly stretching ");
+	if(pc.hasVagina()) output("slit");
+	else output("pucker");
+	output(" causes you to let out a muffled gasp. It’s followed by a stifled cry as your ");
+	if(pc.hasVagina()) output("slippery snatch");
+	else output("basted butthole");
+	output(" is stretched open and Butch is slipped inside.");
+	//{Virgin: <b>You’ve lost your {anal} virginity!</b>}"
+	var x:int = rand(pc.totalVaginas());
+	if(pc.hasVagina()) pc.cuntChange(x, 500, true, true, false);
+	else pc.buttChange(500,true,true,false);
+
+	output("\n\n<i>\"Can you feel him deep inside of you?</i>” Your Mistress huskily asks, and you nod in response. You can feel every contour and curve buried deep inside of your [pc.vagOrAss]. Almost as if accepting it, your ");
+	if(pc.hasVagina()) output("pussy lips and walls");
+	else output("anus and sphincter");
+	output(" relax and mold around it, perfectly matching Butch’s shape.");
+
+	output("\n\nWith a pleasured sigh you relish in having such a massive tool buried inside your ");
+	if(pc.hasVagina()) output("[pc.vagina " + x + "]");
+	else output("needy butt");
+	output(". Just when you’re beginning to relax it begins to whir and tremble deep inside of you, causing coiled pleasure to build ");
+	if(pc.hasVagina()) output("between your thighs");
+	else output("deep inside your delightfully defiled ass.");
+
+	output("\n\n<i>\"I’ll leave you two lovebirds alone ");
+	if(flags["MET_BUTCH"] == undefined) output("to get better acquainted");
+	else output("for a while");
+
+	// Set ‘met Butch’.
+	flags["MET_BUTCH"] = 1;
+
+	output(".</i>” Xanthe informs you, giving your [pc.butt] a pointed slap. You jolt upwards and in the process tug at your bound [pc.nipplesNoun] and ");
+	if(pc.hasCock()) output("[pc.cocks]");
+	else output("[pc.chestNoun]");
+	output(", forcing a muffled moan from your lips.");
+	output("<b>... Some time passes....</b>");
+	processTime(25);
+	pc.lust(44);
+	clearMenu();
+	addButton(0,"Next",getLeftAloneByXanthePartDues,x);
 }
 
-else if (pc.hasCock = true  && pc.hasBreasts = false)
+function getLeftAloneByXanthePartDues(x:int = 0):void
 {
-<i>\"<i>\" ... It's for binding your [pc.cocksNoun] {if (pc.hasBalls) "and [pc.ballsNoun]}, and making {it/them} especially pretty.\"</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockSizeAdjective] [pc.cockColor] genitals.
+	clearOutput();
+	showXanthe();
+	output("Left tied up and down in the dungeon on your own, every noise and sensation slowly becomes more acute. From the tight constriction around your wrists to that around your [pc.nipplesNoun]");
+	if(pc.hasCock()) output(" and loins");
+	output(", you acutely feel your captivity.");
+	output("\n\nMore than anything, you feel and yearn for the missing company of your Mistress, who you know is somewhere close by. Instead the air is filled with the whirring noise of the black vibrator buried ");
+	if(pc.hasVagina()) output("in your slavering snatch");
+	else output("between your buttcheeks");
+	output(" and the keen sensation of it pressing against your ");
+	if(pc.hasVagina()) output("g-spot");
+	else output("prostate");
+	output(".");
 
-You're both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk 'pretty'. When she loops it around your {tiny/modest/girthy} base and pulls it tight, you let out a sharp gasp.
+	output("\n\nIt doesn’t take you long to realise there is a full sized mirror mounted on the wall and pointing directly at you, giving you a good look at how lewd you look right now. You stare at the [pc.race] in the mirror with [pc.hisHer] [pc.nipples]");
+	if(pc.hasCock()) output(" and [pc.cocks]");
+	output(" all bound and pulled downwards, arms upwards and [pc.legs] bound.");
 
-<i>\"Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you'll become incredibly erect and sensitive.</i> Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.
+	output("\n\nAs you look you can see your own [pc.skinColor] cheeks flushing and your bound parts getting pointedly stiffer. Wiggling your bound [pc.legs], you moan into your Mistress’s panties, getting more and more wound up. You really do look like a naughty " + pc.mf("boy","girl") + "!");
 
-Looking down, you marvel at how <i>big</i> your [pc.cock] has quickly become. It is truly jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers along your length causes you to let out a pleasured whine.
+	output("\n\nThinking yourself clever, you tug at the strings attached to your ");
+	if(pc.hasCock()) output("loins");
+	else if(pc.biggestTitSize() > 1) output("tits");
+	else output("chest");
+	output(", looking in the mirror all the while in an attempt to get off. Just as the pooled pleasure you’re feeling begins to reach its peak... the black vibrator suddenly slows down and takes your buzz with it. When you’re about to cool off, it starts up and heats you up again.");
 
-<i>\"That's just part of the entree, dear, we haven't even started the main course.\"</i> Xanthe tsks and begins binding up the rest of your [pc.cocksNoun] {BallsYes: "and [pc.ballsNoun]"). By the time she's finished {it/they} are mummified in her tightly constricting silk. It's connected to a loop around your neck, the slightest tug of which deliciously squeezes your junk.
+	output("\n\nYou cry with sexual frustration into the panties, being brought up to dizzying heights then pulled back from that delectable brink. Your legs tremble and you’re held up by nothing but your smooth silk wrist wrappings, powerless as your ");
+	if(pc.hasVagina()) output("pussy");
+	else output("pucker");
+	output(" is provoked over and over again.");
+	
+	output("\n\nJust when you think you’re never going to see her again, your Mistress returns, though not to free you. Instead she pulls off the tape and feeds you, telling you not to utter a word. You compliantly do so, then afterwards your mouth is stuffed with a pair of fresh panties and sealed over again.");
+
+	output("\n\n<b>... Even <i>more</i> time passes...</b>");
+	processTime(30);
+	pc.lust(30);
+	clearMenu();
+	addButton(0,"Next",leftTeasedForEver,x);
 }
 
-
-else //if (pc.hasCock = true && pc.hasBreasts = true)
+function leftTeasedForEver(x:int = 0):void
 {
-<i>\"<i>\" ... It's for binding your [pc.breastsNoun]{if pc.hasBalls: ","}{else: "and"} [pc.cocksNoun]{if (pc.hasBalls) ", and [pc.ballsNoun]}, to make them especially pretty.\"</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around [pc.oneBreast]. 
+	clearOutput();
+	showXanthe();
+	output("\n\nYour Mistress periodically visits over the next few days to let you eat, drink, and occasionally unties you for a short bathroom break. She even lets you sleep for a few hours, though she makes you do so in a leather sleepsack and on the ground of the dungeon. You’re woken up and tied up once again to resume your discipline every few hours, allowing your brain the shortest of breaks.");
+	output("\n\nBy the third day you’ve forgotten nearly everything that exists outside of the dungeon, short of your Mistress’s visits and the tantalizing pleasure you are constantly subjected to. When she comes in and pulls out Butch from your [pc.vagOrAss], you assume it’s for his regular re-lubing.");
 
-If you weren't already swooning from her kiss, you'd be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.
+	output("\n\n<i>\"You’ve been very good, my pet. Don’t think I haven’t noticed you not saying a word. Time for your reward.</i>” Xanthe strokes your [pc.hair] and you let out a muffled cry of joy. Far for seeking release, you’re just happy that your Mistress is happy.");
 
-<i>\"Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i> Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.
+	//if Xanthe does not have frontcock
+	if(flags["XANTHE_FRONT_GENITAL"] != 1)
+	{
+		output("\n\nYou watch her slip on a black pair of underwear over her legs and then connect the whirring black phallus to the front. As she lubes it up, your heart soars with anticipation. Is she going to fuck you with Butch?");
+	}
+	else output("\n\nYou watch her slip off her front underwear and then sensuously stroke her cock slit. It’s not long before her rippled alien phallus is emerging, blessing you with that glorious sight. When it’s fully out, she wraps it at the base with her silk and it quickly becomes fully engorged.");
 
-Looking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.
+	output("\n\n");
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) output("With her [xanthe.frontCock] at the ready");
+	else output("With her strap on properly equipped");
+	output(", your Mistress moves ");
+	if(pc.genitalLocation() <= 1) output("up to you");
+	else output("behind you");
+	output(" and positions herself at your ");
+	if(pc.elasticity < 3) output("now gaping");
+	output(" entrance. It’s hardly an effort for her to slip inside your ");
+	if(pc.elasticity < 3) output("now cavernous ");
+	if(pc.hasVagina()) output("cunt");
+	else output("chute");
+	output(" and sheathe herself in your over-traversed tunnel.");
 
-<i>\"That's just part of the entree, dear, we haven't even started the main course.\"</i> Xanthe tsks and {more than one boob: "once she's finished wrapping your other breast{s},"} begins binding up your [pc.cocksNoun]. Doing so makes your {it/them} become incredibly hard and jut out, looking just as lewd as your tit{s}.
+	output("\n\nAs you are thoroughly claimed by your Mistress, your eyes flutter back and your mouth opens as much as it can. Somehow having ‘Her’ pushing her tip into the deepest parts of your ");
+	if(pc.hasVagina()) output("cunny");
+	else output("butt");
+	output(" feels unbelievably better than just the vibrator, making you feel truly complete.");
 
-By the time she's finished, both your [pc.breasts] and {[pc.maleGenitals]} are tightly constricted with her silk, with both connected to a loop connected around your neck. The slightest tug of your head backwards causes it to deliciously tug at both your girl{s} and your junk.
+	output("\n\nEach powerful thrust of her hips lewdly slaps your ");
+	if(pc.genitalLocation() <= 1) output("own");
+	else output("[pc.ass]");
+	output(" and tugs at your ");
+	if(pc.hasPiercedNipples()) output("pierced ");
+	else output("bound up ");
+	output("nipples ");
+	if(!pc.hasCock()) output("and [pc.chestNoun]");
+	else output("and [pc.cocksNounSimple]");
+	output(", assaulting your body with so many sensations in all the right places. Even with your wrists bound up, you buck and grind instinctively against her, happy for your Mistress to claim what is hers.");
+
+	output("\n\nIt’s not surprising that you quickly reach the brink that you have been literally denied for days, though your orgasm is mind blowingly cataclysmic. Starting at a trembling [pc.foot] and turning into a full body spasm, you clench her ");
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) output("[xanthe.frontCock]");
+	else output("strap on");
+	output(" with your [pc.vagOrAss] and let out an intensely muffled scream. Sensing your climax, your Mistress thrusts hard and deep, pushing her cock head hard ");
+	if(pc.hasVagina()) output("against the mouth of your womb");
+	else output("into your bowels");
+	output(", making it rocket right off the richter scale.");
+
+	output("\n\nYou feel as if the universe itself cracks and dissolves as ");
+	//herm and male:
+	if(pc.hasCock()) 
+	{
+		output("you mindlessly shoot and cream your genitals, your bound [pc.cocks] shooting ");
+		if(pc.cumQ() < 5) output("tiny splatterings");
+		else if(pc.cumQ() < 50) output("thick sticky ropes");
+		else if(pc.cumQ() < 2500) output("gloriously thick ropes");
+		else output("gooey gallons");
+		output(" of your [pc.cum] all over the floor");
+	}
+	if(pc.hasVagina() && pc.hasCock()) output(". Your");
+	else if(pc.hasVagina())
+	{
+		output("your");
+	}
+	if(pc.hasVagina()) output("[pc.vaginas] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar");
+	//neuter:
+	if(!pc.hasVagina() && !pc.hasCock()) output("you thoroughly cream yourself, twitching and shivering against her as you experience a dry orgasm");
+	output(".");
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) 
+	{
+		output(" At the same time your [pc.vagOrAss] squeezes her alien shaft deliciously hard.");
+		output("\n\nEverything else in the world is wiped away by exquisite molten release. You feel your Mistress’s [xanthe.cock] shooting twin streams of her sticky alien seed deep into your");
+		if(pc.hasVagina() && !pc.isPregnant(x)) output(" fertile womb");
+		else if(pc.hasVagina()) output(" pregnant pussy"); 
+		else output(" naughty ass");
+		output(". You’re soon filled to the brim with her silky warmth, feeling fulfilled in so many ways.");
+	}
+	// PC sings ‘let it go’ from Frozen right about here.
+	output("\n\nWhen your Mistress finally pulls out of you and lovingly undoes your binds, you’re so enraptured in your subspace that you don’t realise what’s happening. You’re simply floating in your own private bliss-filled universe as you’re slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.");
+	output("\n\nThe first sensation that returns to you is that of your Mistress’s arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.");
+	output("\n\n<i>\"There there, pet, it’s okay. You’re safe and in my arms.</i>” Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",goodGodJimTLetItEndXantheStrappedUp);
 }
 
-if (pc.sex = female && pc.hasBreasts = false && pc.hasLegs !>= 1)
+function goodGodJimTLetItEndXantheStrappedUp():void
 {
-<i>\"It's for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighsLight]. 
-
-If you weren't already swooning from her kiss, you'd be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.
-
-Once she's finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your {[pc.clits]/cunt} and makes you swoon with pleasure. 
+	clearOutput();
+	showXanthe();
+	output("<b>...The next day...</b>");
+	output("\n\nWhen you wake up, get dressed, and leave the dungeon, you feel like the last four days were some wonderful dream. Your body aches all over, yet you’re filled with an ongoing high and a slight skip in your step.");
+	processTime(1320);
+	pc.orgasm();
+	// End Scene.
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
+
+//Pays Attention
+function shePaysAttentionToYouSlut():void
+{
+	clearOutput();
+	showXanthe();
+	output("You beg with all your heart and soul, trying to show her just how much you want her to play with you. Deep down, you know your pleading makes no difference - your Mistress will do what she wants to do with you.");
+	output("\n\nStepping back, she walks around and runs her fingers teasingly down your spine. The gentle grazing of your [pc.skinFurScales] causes you to shiver with delight. Ever the tiniest of her touches plays you like an instrument.");
+	output("\n\n\"<i>...I think I’ll turn you into my beautiful living canvas today.</i>” Xanthe leans in and kisses at the side of your neck. She sucks on the nape and then bites it, leaving a pointed kiss-sized bruise. \"<i>I’m going to leave my marks on you. That way, when you’re travelling about, everyone will know who you REALLY belong to.</i>”");
+
+	output("\n\nThe thought of being possessively marked makes your [pc.legsNoun] quiver with delight. You want to be claimed, to be totally <i>owned</i> by her. People should know who you belong to, both in body and mind.");
+
+	output("\n\nYou tell your Mistress as much, and she gives you a rewarding little bite on your earlobe. <i>\"Indeed, I take care of my pets. Each mark I leave on your [pc.skin] is a sign that I love you, dearest, don’t you forget it.</i>”");
+	//if (pc.hasBreasts = true || pc.hasCock = true}  or (pc.hasLegs > 1 && pc.hasPussy = true)
+	if(pc.biggestTitSize() >= 1 || pc.hasCock() || (pc.legCount > 1 && pc.hasVagina))
+	{
+		output("\n\nYour Mistress then begins weaving some of her special silk and forming soft ropes in her multi-fingered hands. You watch on as she makes ample amounts of twine in front of you.");
+		output("\n\n<i>\"Are you wondering what this is for, my pet?</i>” She asks in her husky voice. There’s a glimmering in her bright blue eyes as she holds you captive and in delicious anticipation.");
+		output("\n\nYou nod and she leans in with the thread held in both hands. Draping it over your neck like a medal chain, she tugs it down and gives you a long, passionate kiss. When she pulls away, she tugs it pointedly.");
+
+		//if (pc.hasBreasts = true && pc.hasCock = false)
+		if(pc.biggestTitSize() >= 1 && !pc.hasCock())
+		{
+			output("\n\n<i>\"...It’s for binding your [pc.fullChest], and making them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one.");
+			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breasts], though indirectly. When she pulls it tight, you let out a sharp gasp.");
+			output("\n\n<i>\"Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i> Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
+			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
+			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and ");
+			output("begins binding up your other breast");
+			if(pc.totalBreasts() > 2) output("s");
+			output(". By the time she’s finished ");
+			if(pc.totalBreasts() == 2) output("both");
+			else output("all");
+			output(" of them are tightly bound and linked by the silken thread around your neck.");
+		}
+		//else if (pc.hasCock = true  && pc.hasBreasts = false)
+		else if(pc.biggestTitSize() < 1 && pc.hasCock())
+		{
+			output("\n\n\"<i>... It’s for binding your [pc.cocksNounSimple] ");
+			if(pc.balls > 0) output(" and [pc.ballsNoun]");
+			output(", and making ");
+			if(pc.balls == 0 && pc.cockTotal() == 1) output("it");
+			else output("them");
+			output(" especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockColor] genitals.");
+			output("\n\nYou’re both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk ‘pretty’. When she loops it around your ");
+			if(pc.cocks[0].thickness() < .75) output("tiny");
+			else if(pc.cocks[x].thickness() < 1.5) output("modest");
+			else output("girthy");
+			output(" base and pulls it tight, you let out a sharp gasp.");
+			output("\n\n<i>\"Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you’ll become incredibly erect and sensitive.</i>\" Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.");
+			output("\n\nLooking down, you marvel at how <i>big</i> your [pc.cock] has quickly become. It is truly jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers along your length causes you to let out a pleasured whine.");
+			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and begins binding up the rest of your [pc.cocksNounSimple]");
+			if(pc.balls > 0) output(" and [pc.ballsNoun]");
+			output(". By the time she’s finished ");
+			if(pc.cockTotal() == 1 && pc.balls == 0) output("it");
+			else output("they");
+			output(" are mummified in her tightly constricting silk. It’s connected to a loop around your neck, the slightest tug of which deliciously squeezes your junk.");
+		}
+		//else //if (pc.hasCock = true && pc.hasBreasts = true)
+		else if(pc.hasCock() && pc.biggestTitSize() >= 1)
+		{
+			output("\n\n\"<i>...It’s for binding your [pc.breastsNoun]");
+			if(pc.balls > 0) output(", ");
+			else output(" and ");
+			output("[pc.cocksNounSimple]");
+			if(pc.balls > 0) output(", and [pc.ballsNoun]");
+			output(", to make them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one breast.");
+			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.");
+			output("\n\n\"<i>Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i>\" Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
+			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
+			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and once she’s finished wrapping your other breast");
+			if(pc.totalBreasts() > 2) output("s");
+			output(", begins binding up your [pc.cocksNounSimple]. Doing so makes your ");
+			if(pc.cockTotal() == 1) output("it");
+			else output("them");
+			output(" become incredibly hard and jut out, looking just as lewd as your tits.");
+			output("\n\nBy the time she’s finished, both your [pc.breasts] and [pc.cocks] are tightly constricted with her silk, with both connected to a loop connected around your neck. The slightest tug of your head backwards causes it to deliciously tug at both your girls and your junk.");
+		}
+		//if (pc.sex = female && pc.hasBreasts = false && pc.hasLegs !>= 1)
+		if(pc.hasVagina() && pc.biggestTitSize() < 1 && pc.legCount > 1)
+		{
+			output("\n\n<i>\"It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
+			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
+			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
+		}
+	}
+	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your eyes. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
+	output("\n\nThe cold of the dungeon clashes with the heat of your cheeks and ");
+	if(pc.hasCock()) output("bound up ");
+	output("loins. With your arms and [pc.legs] restrained and your senses taken from you");
+	if(!pc.isNude()) output(" - not to mention your clothes -");
+	else output(",");
+	output(" you really are at her mercy. That thought gets you all hot and bothered, and you wiggle with delighted pleasure");
+	if(pc.biggestTitSize() >= 1 || pc.hasCock())
+	{
+		output(" - tugging at your tied up ");
+		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breastsLight]");
+		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
+		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
+	}
+	else output(" - grinding and stimulating your [pc.clits] in the process");
+	output(".");
+
+	output("\n\n<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little ");
+	if!(!pc.hasVagina()) output("butt");
+	output("slut.</i>” Your Mistress’s husky voice comes from just behind your ear, causing the [pc.skinFurScales] on your back to tingle with delight.");
+
+	//[Not A Slut!] [Totally A Slut]
+	//9999
 }
-
-You are then robbed of your sight when a silky blindfold is thrown over your [pc.eyesNoun]. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.
-
-The cold of the dungeon clashes with the heat of your cheeks and {bound up} loins. With your arms and [pc.legs] restrained and your senses taken from you {- not to mention your clothes -} you really are at her mercy. That thought gets you all hot and bothered, and you wiggle with delighted pleasure{ - tugging at your tied up {[pc.breastsLight]/[pc.cocksLight]/[pc.breastsNoun] and [pc.cocksNoun]}{ - grinding and stimulating your {[pc.clits]/[pc.pussy]} in the process}.
-
-<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little {male or neuter:butt }slut.\"</i> Your Mistress's husky voice comes from just behind your ear, causing the [pc.skinFurScales] on your back to tingle with delight. 
-
-[Not A Slut!] [Totally A Slut]
 
 // Not A Slut
-
-You object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure. 
-
-A loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!
-
-<i>\"... You're </i>not<i> a slut? I guess it must be some </i>other<i> [pc.race] {girl/boy} that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.\"</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.assNoun].
-
-Each crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: ", in turn pulling at your {[pc.cocksNoun]} {and} {pc.breastsNoun]}"}{else if (pc.hasLegs > 1 && pc.hasPussy = true) ", in turn deliciously rubbing your {[pc.clits]/[pc.pussy]"}{else: " in pleasure"}. You let out a raspy moan then immediately flush, knowing it doesn't help your case.  
+function notASlutXanthe():void
+{
+	clearOutput();
+	showXanthe();
+	output("You object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure.");
+	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
+	output("\n\n\"<i>... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.race] " + pc.mf("boy","girl") + " that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.</i>” Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
+	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
+	if(pc.biggestTitSize() >= 1 && pc.hasCock()) 
+	{
+		output(", in turn pulling at your ");
+		if(pc.hasCock()) 
+		{
+			output("[pc.cocksNounSimple]");
+			if(pc.biggestTitSize() >= 1) output(" and ");
+		}
+		output("[pc.breastsNoun]");
+	}
+	else if(pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else output("in pleasure");
+	output(". You let out a raspy moan then immediately flush, knowing it doesn’t help your case.");
+	//9999
+}
 
 // Totally A Slut
 
-You shiver with delight at her words. Whatever you thought yourself before, her words cause a brimming happiness to well up from inside of you. You are Xanthe's subby little {butt} slut, aching to be tied up and teased by your beloved Mistress. This is your true calling!
+output("\n\nYou shiver with delight at her words. Whatever you thought yourself before, her words cause a brimming happiness to well up from inside of you. You are Xanthe’s subby little {butt} slut, aching to be tied up and teased by your beloved Mistress. This is your true calling!");
 
-You rapturously moan into your ball gag, aching to be demeaned even more. You stick your [pc.ass] out lewdly,  showing her just how much you love her words.
+output("\n\nYou rapturously moan into your ball gag, aching to be demeaned even more. You stick your [pc.ass] out lewdly,  showing her just how much you love her words.");
 
-A loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!
+output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
 
-<i>\"... Oh, you </i>like<i> being called a slut? Make sure you remember that you're </i>my<i> property. Even as you're sucking down some spacer's spunk or burying your face in some bitch's pussy, don't forget who you </i>really<i> belong to.\"</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.assNoun].
+output("\n\n<i>\</i>”... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re </i>my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.\</i>”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.assNoun].");
 
-Each crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: ", in turn pulling at your {[pc.cocksNoun]} {and} {pc.breastsNoun]}"}{else if (pc.hasLegs > 1 && pc.hasPussy = true) ", in turn deliciously rubbing your {[pc.clits]/[pc.pussy]"}{else: " in pleasure"}. You let out a raspy moan, knowing deep down that you are definitely her special property.
-
-
-// MERGE
-
-Your vulnerable [pc.skinColor] butt is spanked and slapped over and over until it is filled with a tingling, penetrating warmth that fills up it up entirely. The most pain you feel is a slight stinging sensation on impact that spreads out across your battered asscheeks, making them tingle with delicious feeling.
-
-Just knowing that your [pc.ass] now looks nice and marked due to her attentions causes your {HasPussyYes: "[pc.pussies] to get all wet"} {herm: "and your"} {hasCockYes: "constrained [pc.cocksNoun] to stiffen]"}{NeuterYes: "[pc.nipples] to stiffen"}. You moan into the ballgag - being blindfolded and not knowing when she'll strike makes you that much more excited!
-
-Just when your rump is reaching its limit, your Mistress runs her fingernails down your naked back. You tremble with pleasure and arch into her caress as much as you can. She then pulls away, and a few seconds later you feel a lash of a flogger licking at your shoulder blades.
-
-At first you let out a yelp of surprise, followed by a cry of pleasure. Each lash only briefly stings before filling your back with a delicious tingling sensation. Each mark is a sign of your Mistress's love for you, and you are happy for your [pc.skinFurScales] to be used as her living canvas.
-
-The next half hour your back, buttocks, and {bound up breasts/[pc.chest]} are assaulted with her soft and hard floggers, paddles, and crops. {Each crack in turn caresses your {captured {chest/cock{s}/clit{s}/cunny} and you reel with dizzying pleasure.} Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.
-
-<i>\"I think that's enough marking, my beautiful pet. Perhaps ONE more to make sure they know you're mine.\"</i> As you brace yourself for one more lash, your neck is deliciously seized in her luscious lips and suckled upon - and she leaves a large hickey just below your [pc.ear]! <i>\"... There! How about I finish you off?</i>
-
-It's a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legs] are quaking so hard that you're entirely supported by your wrist binds - you're sure that once she undoes them you'll simply fall into a gooey mess.
-
-You can hear the squirting of a bottle followed by another strange sound. It's not long before a cool, lube covered object is being slid between your buttocks and pressed against your [pc.asshole]. <i>\"Relax, my love, and let it go inside of you.\"</i>
-
-Once you consciously unclenching your rectum, you are immediately rewarded with the sensation of what feels like a single slick sphere passing through your pucker and into your butt. You let out a muffled moan as it sweetly slides inside of you, massaging and caressing your back passage in all the right places.
-
-<i>\"That's one, we've got quite a few more to go.\"</i> Your Mistress sinfully promises you, and your penetrated posterior wiggles with delight. One after another, lube-filled orbs penetrate and push deep into your [pc.assTightnessAdjective] derriere. With the blindfold on, all you can focus on is the texture of those glorious spheres sliding into your rump!
-
-Your {hasCockYes: "pre-cum liberally drools into her silky bindings and you stain them with your spunk."} {Herm: "Meanwhile, your "} {hasPussyYes: "feminine juices dribble down your [pc.thighs] and coat them in your girlish warmth."}{neuter: "legs quake as you struggle to contain the coiling pleasure within."} When they're all inside of you, you finally relax your keister and let out a pleasured sigh.
-
-Your guard is let down too soon, however. There is a noise like a bicycle pump being used, and suddenly the line of balls in your ass begin swelling and expanding!
-
-<i>\"They're </i>inflatable<i> anal beads, my dear. I'm going to fill you up until you feel like you're being fucked by a conga line of Ausar cocks.</i> Your Mistress informs you.  You bite down on your gag and let out a sweet cry, feeling as if you're being knotted by a dozen canine cocks!
-
-With each pumping noise the inside of your [pc.ass] is impossibly swelled out and you whimper with delight. It's not long before you feel the sensation of floating off, and with the final pump you're pushed right over the edge. Suddenly you're cumming impossibly hard and {spilling your {[pc.cum]}{and}{pc.girlCum] everywhere/trembling the entire time in your binds}.
-
-Orgasming for what seems like forever, you don't even register as your Mistress cleans you off and undoes your binds. You're simply floating in your own private bliss-filled universe as you're slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.
-
-The first sensation that returns to you is that of your Mistress's arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.
+output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back{if (pc.hasBreasts = true || pc.hasCock = true}: “<i>, in turn pulling at your {[pc.cocksNounSimple]} {and} {pc.breastsNoun]}</i>”}{else if (pc.hasLegs > 1 && pc.hasPussy = true) “<i>, in turn deliciously rubbing your {[pc.clits]/[pc.pussy]</i>”}{else: “<i> in pleasure</i>”}. You let out a raspy moan, knowing deep down that you are definitely her special property.");
 
 
-<i>\"There there, pet, it's okay. You're safe and in my arms.\"</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It's not long before you fall into the most incredibly deep sleep in her arms.
+output("\n\n// MERGE");
 
-<b>... The next day...</b>
+output("\n\nYour vulnerable [pc.skinColor] butt is spanked and slapped over and over until it is filled with a tingling, penetrating warmth that fills up it up entirely. The most pain you feel is a slight stinging sensation on impact that spreads out across your battered asscheeks, making them tingle with delicious feeling.");
 
-When you wake up and get dressed, you take a moment to look in the nearby mirror at your front and back. The marks that your Mistress has left on your body makes your heart skip with delight, not to mention that sweet one right on your neck. You feel well and truly owned!
+output("\n\nJust knowing that your [pc.ass] now looks nice and marked due to her attentions causes your {HasPussyYes: “<i>[pc.pussies] to get all wet</i>”} {herm: “<i>and your</i>”} {hasCockYes: “<i>constrained [pc.cocksNounSimple] to stiffen]</i>”}{NeuterYes: “<i>[pc.nipples] to stiffen</i>”}. You moan into the ballgag - being blindfolded and not knowing when she’ll strike makes you that much more excited!");
+
+output("\n\nJust when your rump is reaching its limit, your Mistress runs her fingernails down your naked back. You tremble with pleasure and arch into her caress as much as you can. She then pulls away, and a few seconds later you feel a lash of a flogger licking at your shoulder blades.");
+
+output("\n\nAt first you let out a yelp of surprise, followed by a cry of pleasure. Each lash only briefly stings before filling your back with a delicious tingling sensation. Each mark is a sign of your Mistress’s love for you, and you are happy for your [pc.skinFurScales] to be used as her living canvas.");
+
+output("\n\nThe next half hour your back, buttocks, and {bound up breasts/[pc.chest]} are assaulted with her soft and hard floggers, paddles, and crops. {Each crack in turn caresses your {captured {chest/cock{s}/clit{s}/cunny} and you reel with dizzying pleasure.} Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.");
+
+output("\n\n<i>\"I think that’s enough marking, my beautiful pet. Perhaps ONE more to make sure they know you’re mine.\</i>”</i> As you brace yourself for one more lash, your neck is deliciously seized in her luscious lips and suckled upon - and she leaves a large hickey just below your [pc.ear]! <i>\</i>”... There! How about I finish you off?</i>");
+
+output("\n\nIt’s a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legs] are quaking so hard that you’re entirely supported by your wrist binds - you’re sure that once she undoes them you’ll simply fall into a gooey mess.");
+
+output("\n\nYou can hear the squirting of a bottle followed by another strange sound. It’s not long before a cool, lube covered object is being slid between your buttocks and pressed against your [pc.asshole]. <i>\"Relax, my love, and let it go inside of you.\</i>”</i>");
+
+output("\n\nOnce you consciously unclenching your rectum, you are immediately rewarded with the sensation of what feels like a single slick sphere passing through your pucker and into your butt. You let out a muffled moan as it sweetly slides inside of you, massaging and caressing your back passage in all the right places.");
+
+output("\n\n<i>\"That’s one, we’ve got quite a few more to go.\</i>”</i> Your Mistress sinfully promises you, and your penetrated posterior wiggles with delight. One after another, lube-filled orbs penetrate and push deep into your [pc.assTightnessAdjective] derriere. With the blindfold on, all you can focus on is the texture of those glorious spheres sliding into your rump!");
+
+output("\n\nYour {hasCockYes: “<i>pre-cum liberally drools into her silky bindings and you stain them with your spunk.</i>”} {Herm: “<i>Meanwhile, your “<i>} {hasPussyYes: “<i>feminine juices dribble down your [pc.thighs] and coat them in your girlish warmth.</i>”}{neuter: “<i>legs quake as you struggle to contain the coiling pleasure within.</i>”} When they’re all inside of you, you finally relax your keister and let out a pleasured sigh.");
+
+output("\n\nYour guard is let down too soon, however. There is a noise like a bicycle pump being used, and suddenly the line of balls in your ass begin swelling and expanding!");
+
+output("\n\n<i>\"They’re </i>inflatable<i> anal beads, my dear. I’m going to fill you up until you feel like you’re being fucked by a conga line of Ausar cocks.</i> Your Mistress informs you.  You bite down on your gag and let out a sweet cry, feeling as if you’re being knotted by a dozen canine cocks!");
+
+output("\n\nWith each pumping noise the inside of your [pc.ass] is impossibly swelled out and you whimper with delight. It’s not long before you feel the sensation of floating off, and with the final pump you’re pushed right over the edge. Suddenly you’re cumming impossibly hard and {spilling your {[pc.cum]}{and}{pc.girlCum] everywhere/trembling the entire time in your binds}.");
+
+output("\n\nOrgasming for what seems like forever, you don’t even register as your Mistress cleans you off and undoes your binds. You’re simply floating in your own private bliss-filled universe as you’re slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.");
+
+output("\n\nThe first sensation that returns to you is that of your Mistress’s arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.");
 
 
-Spend Time
+output("\n\n<i>\"There there, pet, it’s okay. You’re safe and in my arms.\</i>”</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
 
-// Pick one of these sentences at random.
+output("\n\n<b>... The next day...</b>");
 
-You spend some time {worshipping Xanthe's body, prostrating yourself before her and licking her feet. Afterwards your Mistress tells you that you've done a good job, and you feel fulfilled/snuggled up to Xanthe hearing about her day. You're glad that your Mistress felt it was worth sharing with you/putting stock on the shelves for Xanthe while she sews some new ones. Afterwards, she rewards you with a pat on the head!/modelling off Xanthe's new clothes while customers stare at you. Your Mistress uses you as a living mannequin!}
+output("\n\nWhen you wake up and get dressed, you take a moment to look in the nearby mirror at your front and back. The marks that your Mistress has left on your body makes your heart skip with delight, not to mention that sweet one right on your neck. You feel well and truly owned!");
 
-// Four hours is spent.
-// Only RP benefit, though there may be others in the future depending on if she's popular or not.
 
-Nothing
+output("\n\nSpend Time");
 
-Your Mistress doesn't get you to do anything too hard today, nor does she give you any form of discipline either. She's so cruel!
+output("\n\n// Pick one of these sentences at random.");
 
-Walking away frustrated and pent up, you find yourself biting your lip. Surely your Mistress will give you her particular attentions sooner or later?
+output("\n\nYou spend some time {worshipping Xanthe’s body, prostrating yourself before her and licking her feet. Afterwards your Mistress tells you that you’ve done a good job, and you feel fulfilled/snuggled up to Xanthe hearing about her day. You’re glad that your Mistress felt it was worth sharing with you/putting stock on the shelves for Xanthe while she sews some new ones. Afterwards, she rewards you with a pat on the head!/modelling off Xanthe’s new clothes while customers stare at you. Your Mistress uses you as a living mannequin!}");
 
+output("\n\n// Four hours is spent.");
+output("\n\n// Only RP benefit, though there may be others in the future depending on if she’s popular or not.");
+
+output("\n\nNothing");
+
+output("\n\nYour Mistress doesn’t get you to do anything too hard today, nor does she give you any form of discipline either. She’s so cruel!");
+
+output("\n\nWalking away frustrated and pent up, you find yourself biting your lip. Surely your Mistress will give you her particular attentions sooner or later?");
+
+/*
 New Clothing / Undergarments
 
 // All of these are copy-pasted out of the Ben/Bess file. Figured as a vendor, this would give the PC an opportunity to buy this stuff as well. 
