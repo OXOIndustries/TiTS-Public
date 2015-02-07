@@ -231,7 +231,7 @@ public function rest():void {
 		pc.HP(Math.round(pc.HPMax() * .2));
 	}
 	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .2));
+		pc.energy(Math.round(pc.energyMax() * .33));
 	}
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
