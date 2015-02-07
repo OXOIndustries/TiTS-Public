@@ -5,6 +5,8 @@ import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
 import classes.Characters.Mimbrane;
+import classes.Characters.NyreaAlpha;
+import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.SecurityDroids;
 import classes.Creature;
@@ -1647,6 +1649,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Shade) shadeAI();
 	else if (aggressor is Kara) karaAI();
 	else if (aggressor is Cockvine) adultCockvineAI();
+	else if (aggressor is NyreaAlpha) alphaNyreaAI();
+	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1767,6 +1771,10 @@ public function victoryRouting():void
 	else if (foes[0] is Cockvine)
 	{
 		adultCockvinePCVictory();
+	}
+	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
+	{
+		pcVictoryOverNyrea();
 	}
 	else genericVictory();
 }
@@ -1894,6 +1902,10 @@ public function defeatRouting():void
 			adultCockvinePCLoses();
 		else
 			adultCockvineHahaFuckYouGenderless(true);
+	}
+	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
+	{
+		pcLossToNyrea();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2145,6 +2157,12 @@ public function startCombat(encounter:String):void
 			break;
 		case "Cockvine":
 			chars["COCKVINE"].prepForCombat();
+			break;
+		case "Nyrea Alpha":
+			chars["NYREA ALPHA"].prepForCombat();
+			break;
+		case "Nyrea Beta":
+			chars["NYREA BETA"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

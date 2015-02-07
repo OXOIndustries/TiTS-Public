@@ -1,59 +1,61 @@
-﻿package classes.Characters
+package classes.Characters 
 {
 	import classes.Creature;
-	import classes.GLOBAL;
+	import classes.Items.Protection.DecentShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Util.RandomInCollection;
 	
-	public class Cockvine extends Creature
+	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Guns.EagleHandgun;
+	import classes.Items.Guns.LaserPistol;
+	
+	import classes.GLOBAL;
+	
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	
+	public class NyreaAlpha extends Creature
 	{
-		//constructor
-		public function Cockvine()
-		{	
+		
+		public function NyreaAlpha() 
+		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "cock vine";
-			this.originalRace = "cock vine";
-			this.a = "a ";
-			this.capitalA = "A ";
-			this.tallness = 24 + rand(36);
+			this.short = "alpha nyrea";
+			this.originalRace = "nyrea";
+			this.a = "an ";
+			this.capitalA = "An ";
+			this.tallness = 72;
 			this.scaleColor = "green";
-			this.long = "You are trapped by a cockvine. In the heavy darkness of its nest you can just about make out the rapacious plant creature’s limbs writhing busily over the rock and around you: dark green stems thick enough that you cannot get your hand fully around them, tipped with blunt, purple helmet-like heads, oozing white seed from their tips. They are attempting to draw you further downwards, towards the broad trunk of the thing, where it can secure you completely in its grasp. The harder you struggle the more vigorously they in turn seem to act, as if energized by your own movements. The tropical heat and smell of the creature is overwhelming - a heady, cloying herbal atmosphere which seems to permeate through your whole being, making you feel cloudy and limp.";
-			this.customDodge = "The cock vine sways aside at the last second!";
-			this.customBlock = "Your attack deflects off the cock vine's " + this.scaleColor + " scales!";
+			
+			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, and weakness, and she'll be on you!";
+			
 			this.plural = false;
-			this.lustVuln = 0;
+			this.lustVuln = 1;
 			
-			this.meleeWeapon.attackVerb = "bite";
-			this.meleeWeapon.damageType = GLOBAL.PIERCING;
-			this.meleeWeapon.attack = 2;
-			this.meleeWeapon.damage = 4;
-			this.meleeWeapon.longName = "fangs";
-			this.meleeWeapon.hasRandomProperties = true;
+			this.shield = new DecentShield();
 			
-			this.armor.longName = "glittering scales";
-			this.armor.defense = 0;
-			this.armor.hasRandomProperties = true;
-			
-			this.physiqueRaw = 12;
+			this.physiqueRaw = 15;
 			this.reflexesRaw = 15;
-			this.aimRaw = 3;
-			this.intelligenceRaw = 1;
-			this.willpowerRaw = 1;
+			this.aimRaw = 15;
+			this.intelligenceRaw = 8;
+			this.willpowerRaw = 8;
 			this.libidoRaw = 50;
-			this.shieldsRaw = 0;
+			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
-			this.lustRaw = 75;
-			this.resistances = new Array(0.5, 1, 1, 1, 1, 1, 1, 1.5);
-			this.XPRaw = 60;
-			this.level = 6;
+			this.lustRaw = 10;
+			this.resistances = new Array(1, 1, 1, 1, 1, 1, 1, 1);
+			this.XPRaw = 70;
+			this.level = 7;
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
-			this.femininity = 50;
+			this.femininity = 70;
 			this.eyeType = 0;
 			this.eyeColor = "red";
 			this.thickness = 1;
@@ -67,11 +69,11 @@
 			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			this.skinTone = "pink";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_COCKVINE;
+			this.faceType = GLOBAL.TYPE_NYREA;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_COCKVINE;
+			this.tongueType = GLOBAL.TYPE_NYREA;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_COCKVINE;
+			this.earType = GLOBAL.TYPE_NYREA;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -79,24 +81,25 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_COCKVINE;
-			this.legCount = 1;
-			this.legFlags = [GLOBAL.FLAG_TENDRIL];
+			this.legType = GLOBAL.TYPE_NYREA;
+			this.legCount = 2;
+			this.legFlags = [];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_COCKVINE;
-			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_SCALED, GLOBAL.FLAG_LONG, GLOBAL.FLAG_THICK, GLOBAL.FLAG_PREHENSILE];
+			this.tailType = 0;
+			this.tailCount = 0;
+			this.tailFlags = [];
+			
 			//Used to set cunt or dick type for cunt/dick tails!
-			this.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
+			this.tailGenitalArg = 0;
 			//tailGenital:
 			//0 - none.
 			//1 - cock
 			//2 - vagina
-			this.tailGenital = 1;
+			this.tailGenital = 0;
 			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 			this.tailVenom = 0;
 			//Tail recharge determines how fast venom/webs comes back per hour.
@@ -109,7 +112,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 0;
+			this.hipRatingRaw = 10;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -120,7 +123,7 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 0;
+			this.buttRatingRaw = 10;
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
@@ -151,20 +154,22 @@
 			this.nippleColor = "green";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
-			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;
 			
-			this.createStatusEffect("Disarm Immune");
-			
 			this._isLoading = false;
 		}
-
+		
 		override public function prepForCombat():void
 		{
-			var combatVine:Cockvine = this.makeCopy();
-
-			kGAMECLASS.foes.push(combatVine);
+			var nyrea:NyreaAlpha = this.makeCopy();
+			
+			nyrea.tallness = 68 + (rand(12) - 6);
+			nyrea.rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
+			
+			kGAMECLASS.foes.push(nyrea);
 		}
+		
 	}
+
 }

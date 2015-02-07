@@ -148,6 +148,7 @@
 		public static const TYPE_SIMII:int 								    = 52;
 		public static const TYPE_DAYNAR:int									= 53;
 		public static const TYPE_COCKVINE:int								= 54;
+		public static const TYPE_NYREA:int									= 55;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -201,7 +202,8 @@
 			"Synthetic",
 			"Simii",
 			"Daynar",
-			"Cockvine"
+			"Cockvine",
+			"Nyrea"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

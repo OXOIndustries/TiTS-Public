@@ -4975,6 +4975,19 @@
 			}
 			return vaginas[counter].looseness();
 		}
+		public function biggestVaginaIndex():int {
+			if (vaginas.length == 0) return -1;
+			if (vaginas.length == 1) return 0;
+			
+			var tLargest:Number = 0;
+			
+			for (var i:int = 1; i < vaginas.length; i++)
+			{
+				if (vaginas[i].looseness() > vaginas[tLargest].looseness()) tLargest = i;
+			}
+			
+			return tLargest;
+		}
 		public function wettestVaginalWetness(): Number {
 			var counter: Number = vaginas.length;
 			var index: Number = 0;

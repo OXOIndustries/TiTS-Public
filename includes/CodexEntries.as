@@ -45,6 +45,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
@@ -1541,4 +1542,45 @@ public function cockvinesCodexEntry():void
 	outputCodex("\n\nThe internecine warfare between the Myr, Nyrea and the Bothrioc and the subsequent movement of peoples, breakdown of infrastructure and land wastage has only increased cockvine’s spread. The plant is also recorded as being used by both sides of the Myr conflict as a form of sadistic punishment on prisoners of war; once a kept plant has finished with captives they are released deep in their home territory, with the explicit hope of their offspring spreading chaos there. This practice is expressly forbidden by international law.");
 	
 	CodexManager.viewedEntry("Cockvines");
+}
+
+public function nyreaCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("NYREA");
+	outputCodex(header("Nyrea"));
+	outputCodex("<b>Name (Singular & Plural):</b> Nyrea");
+	outputCodex("\n<b>Genders:</b> Male & Female. Note Reproduction below.");
+	outputCodex("\n<b>Height:</b> Males range in height from 5'5 to 5'10; females, the larger of the species, from 5'8 to 6'2.");
+	outputCodex("\n<b>Hair:</b> Nyrea have thin, wispy spine-like growths in most places humans might have hair. These vestigial barbs were once the species' primary means of defense against larger predators, but have long since evolved to be soft to the touch and harmless, usually cut short or styled in intricate braids and designs.");
+	outputCodex("\n<b>Eyes:</b> Nyrea have two mono-colored eyes, each with a small pupil in its center. Due to their almost exclusively subterranean existence, their eyesight is very poor, especially at longer ranges. For the same reason, their eyes are exceptionally sensitive to bright lights, and they can easily be blinded or stunned by sudden flashes. ");
+	outputCodex("\n<b>Ears:</b> Offsetting their poor eyesight, nyrea have exceptional hearing. They possess two large, tapered ears which can easily grow out to a foot or more from their heads. A nyrea's ears are sensitive to a wide range of sounds over great distances, and serve as their primary means of hunting. According to some daring rushers, they are also a primary erogenous zone. ");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Combat"));
+	outputCodex("Nyrea are predators who subsist on large cave creatures, occasionally foraying up to the surface for nocturnal hunts. They are naturally armored thanks to a chitinous carapace which covers their limbs and most of the torso in a corset-like configuration; the breasts and groin are usually covered with material armor, such as chain or leather. The nyrea are equipped with natural weapons in the form of sharp, sturdy fangs which inject a paralytic venom into their victims. Despite this, the nyrea are capable of crafting weapons, and indeed seem to prefer their use over biting: the favorite armament of the nyrean hunter appears to be the spear or javelin.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Environs"));
+	outputCodex("Natives of Myrellion, nyrea make their abodes in deep subterranean caves. Nyrean tunnels tend to be damp and roomy, often leading to and between vast open underground caverns. Cave systems inhabited by the race do show signs of manual excavation, and are frequently decorated with artwork and writing, in addition to housing carefully harvested and cultivated crops of luminescent cave fungus.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Nyrean reproduction is an extreme oddity in the galaxy, especially among sapient creatures. Effectively, the genitalia of the two sexes is reversed: females possess a long, thick, penis-like tube with a blunted, softly-barbed head and an almost-canid knot at the base; males possess a genital slit which leads to a large abdominal cavern filled with several “sperm sacs”. Much as in a female mammal's reproductive system, these sperm sacs are regularly moved to a “ready” position at the back of the genital opening where they can be penetrated by the female's pseudo-penis barbs, whereupon the sperm is extracted.");
+
+	outputCodex("\n\nReproduction amongst the nyrea is almost universally female-driven. Lone females will attempt to capture or envenom solitary males, while stronger “alpha” females will often accumulate harems of males and females to provide semen and incubation for their eggs. Once a male is secured, the female will penetrate his genital slit (and the sperm sac readied behind it) with her pseudo-penis and extract the semen through her own genitalia. This process is long and draining, especially for the male, and it can take several hours to fully drain a sperm sac through the incision made by the female. The knot at the base of the female's pseudo-penis ensures minimal leakage during copulation, and can keep a pair of particularly unlucky nyrea together for up to half a day.");
+
+	outputCodex("\n\nFemale nyrea, upon extraction of sperm from a mate, will fertilize between six and ten large eggs. Eggs are deposited via the pseudo-penis, which is by necessity very elastic and hollow. Nyrean females have a remarkable versatility when it comes to laying eggs, and individuals show marked variance in response to impregnation. Some will bear the eggs inside themselves until nearly time to hatch, while others will oviposit the eggs into the male that fertilized them, much as in Terran seahorses (this indeed seems to be the most common method, and the male genital slit and reproductive cavity seem remarkably well-adapted to this role). Some “alpha” females will attempt to dominate other, weaker nyrean females and deposit their eggs inside the defeated female (either anally or via the beaten female's own pseudo-penis). Regardless of method, it is believed that the eggs must remain inside a warm-bodied host until nearly ready to hatch. ");
+
+	outputCodex("\n\nOnce hatched, newborn nyrea are helpless for a period of a few days, weeks at most, and must be nursed. Particularly confusing to off-worlders, both nyrean sexes possess large (by human standards, averaging between a D and F cup) breasts, and are capable of lactating a thick, highly nutritious “milk”. Males and females are both capable of rearing children, as either or both may be called upon to bear their eggs, either independently or with a mate's assistance.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture & Society"));
+	outputCodex("The nyrea are not what you would traditionally label as social creatures. It is clear that they evolved from solitary predator insects, but over time have formed small settlements out of need for easy breeding and mutual protection. The settlements can range in size from a dominant female and her harem to towns of a few thousand individuals, but due to the non-agrarian habits of the nyrean race, gatherings rarely grow beyond that size.");
+
+	outputCodex("\n\nDue to the exclusive dominance of the female sex, and the power-play between females in close proximity, nyrean settlements almost always come under the rule of an “alpha” female who, depending on the size of her domain, either treats all nyrea living under her as her harem, or selects the most attractive and virile to serve her. In the latter case, “beta” females will share the remaining males between them, treating them at best as second-class citizens to be used at-will, or in some more tyrannical tribes, as little more than cattle and breeding stock.");
+
+	outputCodex("\n\n");
+
+	CodexManager.viewedEntry("Nyrea");
 }
