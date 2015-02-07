@@ -1,5 +1,6 @@
 ﻿package classes.Characters
 {
+	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
@@ -125,16 +126,16 @@
 			this.cocks = new Array();
 			//balls
 			this.balls = 0;
-			this.cumMultiplierRaw = 1.5;
+			this.cumMultiplierRaw = 2;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 2;
-			this.ballFullness = 100;
+			this.ballSizeRaw = 10;
+			this.ballFullness = 200;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 1;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
 			this.cockVirgin = true;
@@ -155,7 +156,17 @@
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;
 			
+			this.impregnationType = "CockvinePregnancy";
+			this.fertilityRaw = 1.0;
+			this.cumQualityRaw = 1.0;
+			this.pregnancyMultiplierRaw = 1;
+			
 			this.createStatusEffect("Disarm Immune");
+			
+			this.cocks = [];
+			this.createCock();
+			(this.cocks[0] as CockClass).cLengthRaw = 8;
+			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_COCKVINE;
 			
 			this._isLoading = false;
 		}

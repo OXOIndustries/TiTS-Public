@@ -62,8 +62,10 @@
 	
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
-	import classes.Engine.Utility.getPlanetName;
-	import classes.Engine.Combat.damageRand;
+	import classes.Engine.Utility.*;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.*;
 	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
@@ -270,7 +272,6 @@
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import classes.ScriptParser;
 			import classes.ShipClass;
 
 			chars = new Object();
