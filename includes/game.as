@@ -815,6 +815,8 @@ public function processTime(arg:int):void {
 	{
 		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
 	}
+	//Remove Racial Perks No Longer Qualified For
+	racialPerkUpdateCheck();
 
 	//loop through every minute
 	while(arg > 0) {
@@ -1006,6 +1008,39 @@ public function processTime(arg:int):void {
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
+}
+
+function racialPerkUpdateCheck():void
+{
+	if(pc.hasPerk("'Nuki Nuts"))
+	{
+		if(pc.nukiScore() < 3)
+		{
+			if(pc.balls > 0)
+			{
+				//Nuts inflated:
+				if(pc.perkv1("'Nuki Nuts") > 0)
+				{
+					eventBuffer += "\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your kui-tan body-mods, you won't be swelling up with excess [pc.cumNoun] any more.";
+				}
+				//Nuts not inflated:
+				else
+				{
+					eventBuffer += "\n\nA tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.";
+					pc.removePerk("'Nuki Nuts");
+				}
+				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
+				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
+				pc.removePerk("'Nuki Nuts");
+				nutStatusCleanup();
+			}
+			else
+			{
+				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
+				pc.removePerk("'Nuki Nuts");
+			}
+		}
+	}
 }
 
 public function nutSwellUpdates():void
