@@ -718,7 +718,7 @@ public function processTime(arg:int):void {
 	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
 	for (var prop:String in chars)
 	{
-		if(chars[prop].ballFullness < 100) chars[prop].cumProduced(arg);
+		if(chars[prop].ballFullness < 100 || chars[prop] == pc) chars[prop].cumProduced(arg);
 	}
 	
 	//Double time

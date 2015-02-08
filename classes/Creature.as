@@ -5658,7 +5658,7 @@
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = ballFullness/100 - 1;
 					//Get the actual bonus number to add.  Keep it to 2 decimals.
-					var nutBonus:Number = Math.round(ballSizeRaw * nutChange / 8 * 100)/100;
+					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
 					trace("NUT BONUS: " + nutBonus);
 					//Apply nutbonus and track in v1 of the perk
 					ballSizeMod += nutBonus;
