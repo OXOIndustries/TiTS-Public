@@ -157,6 +157,11 @@ public function shop(keeper:Creature):void {
 		approachRenvra();
 		return;
 	}
+	if(keeper is Xanthe)
+	{
+		enterTheSilkenSerenityWhyDidWashHaveToDie();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

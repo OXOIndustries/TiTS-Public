@@ -284,6 +284,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["COCKVINE"] = new Cockvine();
 	}
+	if (!justUpdate || (justUpdate && chars["XANTHE"] == undefined))
+	{
+		chars["XANTHE"] = new Xanthe();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

@@ -3,8 +3,17 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
-	import classes.Items.Guns.ArcCaster;
 	import classes.Items.Apparel.GenericCatsuit;
+	import classes.Items.Apparel.ReinforcedBodysuit;
+	import classes.Items.Apparel.RevealingFemaleArmor;
+	import classes.Items.Apparel.RevealingMaleArmor;
+	import classes.Items.Apparel.TransparentZipsuit;
+	import classes.Items.Apparel.BusinessClothes;
+	import classes.Items.Apparel.MeshShirt;
+	import classes.Items.Apparel.SkullPatternBra;
+	import classes.Items.Apparel.FurryBra;
+	import classes.Items.Apparel.CString;
+	import classes.Items.Apparel.ZipPouch;
 	import classes.kGAMECLASS;
 	
 	public class Xanthe extends Creature
@@ -28,7 +37,16 @@
 			this.lustVuln = 1;
 			
 			//Shopkeeper Jammle
-			this.inventory.push(new Pandaneen());
+			this.inventory.push(new MeshShirt());
+			this.inventory.push(new FurryBra());
+			this.inventory.push(new BusinessClothes());
+			this.inventory.push(new SkullPatternBra());
+			this.inventory.push(new CString());
+			this.inventory.push(new ZipPouch());
+			this.inventory.push(new RevealingFemaleArmor());
+			this.inventory.push(new RevealingMaleArmor());
+			this.inventory.push(new ReinforcedBodysuit());
+			this.inventory.push(new TransparentZipsuit());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.UPPER_UNDERGARMENT;
 			this.typesBought[this.typesBought.length] = GLOBAL.LOWER_UNDERGARMENT;

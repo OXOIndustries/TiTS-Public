@@ -3122,9 +3122,7 @@
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
-			var select: Number = 0;
-			//EDGE CASSES
-			return leg(forceType, forceAdjective) + "s";
+			return pluralize(leg(forceType, forceAdjective));
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
@@ -3330,7 +3328,7 @@
 				}
 				//NOUN IT UP BITCHES!
 				if (output != "") output += " ";
-				output += legNoun;
+				output += legNoun();
 			}
 			return output;
 		}
@@ -5106,6 +5104,18 @@
 			if (breastRows.length > 0) {
 				if (biggestTitSize() >= 1) return true;
 			}
+			return false;
+		}
+		public function hasPiercedNipples():Boolean
+		{
+			return false;
+		}
+		public function hasPiercedCocks():Boolean
+		{
+			return false;
+		}
+		public function hasPiercedVaginas():Boolean
+		{
 			return false;
 		}
 		public function hasNipples(): Boolean {
