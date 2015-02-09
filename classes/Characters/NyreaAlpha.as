@@ -38,6 +38,7 @@ package classes.Characters
 			this.lustVuln = 1;
 			
 			this.shield = new DecentShield();
+			//TODO: Spear & for Beta
 			
 			this.physiqueRaw = 15;
 			this.reflexesRaw = 15;

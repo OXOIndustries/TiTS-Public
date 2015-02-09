@@ -121,72 +121,118 @@ public function nyreaFight(settings:Array):void
 
 public function alphaNyreaAI():void
 {
-
+	// TODO
 }
 
 public function betaNyreaAI():void
 {
-
+	// TODO
 }
 
 public function nyreaSpearThrust():void
 {
-	/*
 	//Basic Attack
-	They nyrea charges forward, thrusting her heavy spear at you!
-	//Miss: You duck aside, letting her momentum carry her past you.
-	//Hit: She turns the blade at the last second, slamming the blunted haft of the spear into your chest, throwing you back with the force of the blow!
-	*/
+	output("\nThey nyrea charges forward, thrusting her heavy spear at you!\n");
+
+	if (combatMiss(foes[0], pc))
+	{
+		output("\nYou duck aside, letting her momentum carry her past you.");
+	}
+	else
+	{
+		output("\nShe turns the blade at the last second, slamming the blunted haft of the spear into your chest, throwing you back with the force of the blow! ");
+
+		genericDamageApply(damageRand(foes[0].meleeDamage()), foes[0], pc, foes[0].meleeWeapon.damageType);
+	}
 }
 
 public function nyreaMeatSpin():void
 {
-	/*
 	//Basic lust attack. She'll use this especially against females.
-	With a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].
-	Miss: You wipe her cock-drool off with disgust.
-	Hit: Unwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off. 
-	*/
+	output("\nWith a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].");
+
+	// 9999
+	if (rand(10) == 0)
+	{
+		output("\nYou wipe her cock-drool off with disgust.\n");
+	}
+	else
+	{
+		output("\nUnwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off.");
+
+		var lustDam:int = damageRand(15 * (pc.libido() / 100));
+
+		pc.lust(lustDam);
+
+		output(" <b>("+lustDam+")</b>\n");
+	}
 }
 
 public function nyreaPowerStrike():void
 {
-	/*
 	//Rarest of her attacks, ramps up use on low HP. Lower chance to hit, but HEAVY damage. Has a chance to STAGGER the PC.
-	The nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.
-	Hit: You cry out as the spear crashes into you, throwing you to the ground with nearly bonecrushing force. You blink hard {thankful your shields held / wiping blood from your brow"} as your vision swims. The nyrea, battered herself, scowls at you. "You wanted to do this the hard way!" {You are STAGGERED}. 
-	Miss: You tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. "You wanted to do this the hard way!"
-	*/
+	output("\nThe nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.");
+
+	if (combatMiss(foes[0], pc))
+	{
+		output("\nYou tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. <i>“You wanted to do this the hard way!”</i>\n");
+	}
+	else
+	{
+		output("\nYou cry out as the spear crashes into you, throwing you to the ground with nearly bonecrushing force.");
+
+		genericDamageApply(damageRand(foes[0].meleeDamage * 1.25), pc, -1, GLOBAL.KINETIC);
+
+		if (rand(2) == 0)
+		{
+			output("\nYou blink hard");
+			if (pc.shieldsRaw > 0) output(" thankful your shields held");
+			else output(" wiping blood from your brow");
+			output(" as your vision swims. The nyrea, battered herself, scowls at you. <i>“You wanted to do this the hard way!”</i>");
+
+			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+		}
+	}
 }
 
 public function nyreaPoledance():void
 {
-	/*
 	//Her preferred lust attack against males. 
-	The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. "Like what you see?" she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock's ample pre. "Come off it already... put your weapons down... {if beta: I promise you'll be glad you did // if Alpha: You can't win against a body like mine... I'm so above your class, offworlder. Just submit, like you know you want to}."
-	Miss: You look away from her tantalizing display, doing your best to contain your lust.
-	Hit: You can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace... 
-	*/
+	output("\nThe nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...");
+	if (foes[0] is NyreaBeta) output(" I promise you’ll be glad you did");
+	else if (foes[0] is NyreaAlpha) output(" You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to");
+	output(".”</i>\n");
+
+	if (rand(10) == 0)
+	{
+		output("\nYou look away from her tantalizing display, doing your best to contain your lust.\n");
+	}
+	else
+	{
+		output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
+
+		var lustDam:int = damageRand(15 * (pc.libido() / 100));
+
+		pc.lust(lustDam);
+
+		output(" <b>("+ lustDam + ")</b>\n");
+	}
 }
 
 public function nyreaNetThrow():void
 {
-	/*
 	//She'll use this frequently to disable the PC, especially as she starts taking damage. Inflicts RESTRAINED.
 	Using her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.
 	Miss: You roll aside, letting the net go clattering off into the darkness.
-	Hit: You try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you! 
-	*/
+	Hit: You try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!
 }
 
 public function nyreaMilkRub():void
 {
-	/*
 	//Light lust attack, heals some of her HP
 	Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor. 
 	Miss: God, that smells delicious...
 	Hit: You try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...
-	*/
 }
 
 public function pcLossToNyrea():void
