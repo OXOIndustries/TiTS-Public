@@ -231,7 +231,7 @@ public function rest():void {
 		pc.HP(Math.round(pc.HPMax() * .2));
 	}
 	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .2));
+		pc.energy(Math.round(pc.energyMax() * .33));
 	}
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
@@ -718,7 +718,7 @@ public function processTime(arg:int):void {
 	// Then everything can just get stuffed in this loop as like chars[prop].processTime(arg) and hook everything like that.
 	for (var prop:String in chars)
 	{
-		if(chars[prop].ballFullness < 100) chars[prop].cumProduced(arg);
+		if(chars[prop].ballFullness < 100 || chars[prop] == pc) chars[prop].cumProduced(arg);
 	}
 	
 	//Double time
@@ -815,6 +815,8 @@ public function processTime(arg:int):void {
 	{
 		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
 	}
+	//Remove Racial Perks No Longer Qualified For
+	racialPerkUpdateCheck();
 
 	//loop through every minute
 	while(arg > 0) {
@@ -1006,6 +1008,39 @@ public function processTime(arg:int):void {
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
+}
+
+function racialPerkUpdateCheck():void
+{
+	if(pc.hasPerk("'Nuki Nuts"))
+	{
+		if(pc.nukiScore() < 3)
+		{
+			if(pc.balls > 0)
+			{
+				//Nuts inflated:
+				if(pc.perkv1("'Nuki Nuts") > 0)
+				{
+					eventBuffer += "\n\nThe extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your kui-tan body-mods, you won't be swelling up with excess [pc.cumNoun] any more.";
+				}
+				//Nuts not inflated:
+				else
+				{
+					eventBuffer += "\n\nA tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you've replaced too much kui-tan DNA to reap the full benefits.";
+					pc.removePerk("'Nuki Nuts");
+				}
+				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b>)";
+				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
+				pc.removePerk("'Nuki Nuts");
+				nutStatusCleanup();
+			}
+			else
+			{
+				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
+				pc.removePerk("'Nuki Nuts");
+			}
+		}
+	}
 }
 
 public function nutSwellUpdates():void

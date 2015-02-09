@@ -1301,15 +1301,15 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksNounSimple":
+					buffer = simpleCocksNoun();
+					break;
 				case "cockNounComplex":
 					buffer = cockNounComplex(arg2);
 					break;
 				case "cockNounSimple":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
-					break;
-				case "cocksNounSimple":
-					buffer = simpleCocksNoun();
 					break;
 				case "cockNounBiggest":
 					buffer = simpleCockNoun(biggestCockIndex());
@@ -3122,9 +3122,7 @@
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
-			var select: Number = 0;
-			//EDGE CASSES
-			return leg(forceType, forceAdjective) + "s";
+			return pluralize(leg(forceType, forceAdjective));
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
@@ -3330,7 +3328,7 @@
 				}
 				//NOUN IT UP BITCHES!
 				if (output != "") output += " ";
-				output += legNoun;
+				output += legNoun();
 			}
 			return output;
 		}
@@ -5121,6 +5119,18 @@
 			}
 			return false;
 		}
+		public function hasPiercedNipples():Boolean
+		{
+			return false;
+		}
+		public function hasPiercedCocks():Boolean
+		{
+			return false;
+		}
+		public function hasPiercedVaginas():Boolean
+		{
+			return false;
+		}
 		public function hasNipples(): Boolean {
 			if(nipplesPerBreast > 0) return true;
 			return false;
@@ -5661,7 +5671,7 @@
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = ballFullness/100 - 1;
 					//Get the actual bonus number to add.  Keep it to 2 decimals.
-					var nutBonus:Number = Math.round(ballSizeRaw * nutChange / 8 * 100)/100;
+					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
 					trace("NUT BONUS: " + nutBonus);
 					//Apply nutbonus and track in v1 of the perk
 					ballSizeMod += nutBonus;

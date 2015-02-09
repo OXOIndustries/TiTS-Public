@@ -531,13 +531,16 @@ public function initializeMyrellionRooms():void
 	//721 Halcyon Way
 	rooms["721"] = new RoomClass(this);
 	rooms["721"].roomName = "HALCYON\nWAY";
-	rooms["721"].description = "Plenty of large-breasted myr are on the streets here, even the occasional male, clad in fine silken loincloths and shoulder pieces bearing elaborate designs. There’s no disguising the looks of wanton desire the nearby females favor them with. Fluttering in the breeze, colorful tapestries adorn a spiraling house of stone, each emblazoned with a variety of runes. Together, they spell out “Royal Attire,” a clothing shop. It must be quite the popular locale to draw crowds like this.";
+	rooms["721"].description = "";
+	//OLD: Plenty of large-breasted myr are on the streets here, even the occasional male, clad in fine silken loincloths and shoulder pieces bearing elaborate designs. There’s no disguising the looks of wanton desire the nearby females favor them with. Fluttering in the breeze, colorful tapestries adorn a spiraling house of stone, each emblazoned with a variety of runes. Together, they spell out “Royal Attire,” a clothing shop. It must be quite the popular locale to draw crowds like this.";
+	//New is in the bonusfunc.
 	rooms["721"].planet = "PLANET: MYRELLION";
 	rooms["721"].system = "SYSTEM: SINDATHU";
 	rooms["721"].eastExit = "720";
 	rooms["721"].westExit = "722";
+	rooms["721"].southExit = "744";
 	rooms["721"].moveMinutes = 2;
-	rooms["721"].runOnEnter = undefined;
+	rooms["721"].runOnEnter = silkenSerenityExteriorShitz;
 	rooms["721"].addFlag(GLOBAL.INDOOR);
 	rooms["721"].addFlag(GLOBAL.PUBLIC);
 	rooms["721"].addFlag(GLOBAL.CAVE);
@@ -847,6 +850,18 @@ public function initializeMyrellionRooms():void
 	rooms["743"].addFlag(GLOBAL.INDOOR);
 	rooms["743"].addFlag(GLOBAL.PUBLIC);
 	rooms["743"].addFlag(GLOBAL.CAVE);
+
+	rooms["744"] = new RoomClass(this);
+	rooms["744"].roomName = "BLACK-PAVED\nPATH";
+	rooms["744"].description = "";
+	rooms["744"].planet = "PLANET: MYRELLION";
+	rooms["744"].system = "SYSTEM: SINDATHU";
+	rooms["744"].northExit = "721";
+	rooms["744"].moveMinutes = 2;
+	rooms["744"].runOnEnter = enterTheSilkenSerenityWhyDidWashHaveToDie;
+	rooms["744"].addFlag(GLOBAL.INDOOR);
+	rooms["744"].addFlag(GLOBAL.PUBLIC);
+	rooms["744"].addFlag(GLOBAL.COMMERCE);
 	
 
 	//=========================================//
