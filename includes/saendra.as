@@ -116,7 +116,7 @@ public function dontTakeTheRewardWhaddaYouGayOrSomething():void
 	
 	output("\n\nYou nod, and slip out of the booth, heading towards the door. Over your shoulder, you hear her call, <i>“See you around, hero!”</i>");
 
-	clearOutput();
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
