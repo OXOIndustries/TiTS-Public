@@ -122,11 +122,55 @@ public function nyreaFight(settings:Array):void
 public function alphaNyreaAI():void
 {
 	// TODO
+	if (foes[0].hasStatusEffect("Net Cooldown"))
+	{
+		foes[0].addStatusValue("Net Cooldown", 1, -1);
+		if (foes[0].statusEffectv1("Net Cooldown") <= 0)
+		{
+			foes[0].removeStatusEffect("Net Cooldown");
+		}
+	}
+
+	var hpAttacks:Array = [];
+	var lustAttacks:Array = [];
+
+	hpAttacks.push(nyreaAlphaUseGun);
+	hpAttacks.push(nyreaSpearThrust);
+	hpAttacks.push(nyreaPowerStrike);
+	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) hpAttacks.push(nyreaNetThrow);
+
+	lustAttacks.push(nyreaMeatSpin);
+	lustAttacks.push(nyreaPoledance);
+	lustAttacks.push(nyreaMilkRub);
 }
 
 public function betaNyreaAI():void
 {
 	// TODO
+	if (foes[0].hasStatusEffect("Net Cooldown"))
+	{
+		foes[0].addStatusValue("Net Cooldown", 1, -1);
+		if (foes[0].statusEffectv1("Net Cooldown") <= 0)
+		{
+			foes[0].removeStatusEffect("Net Cooldown");
+		}
+	}
+
+	var hpAttacks:Array = [];
+	var lustAttacks:Array = [];
+
+	hpAttacks.push(nyreaSpearThrust);
+	hpAttacks.push(nyreaPowerStrike);
+	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) hpAttacks.push(nyreaNetThrow);
+
+	lustAttacks.push(nyreaMeatSpin);
+	lustAttacks.push(nyreaPoledance);
+	lustAttacks.push(nyreaMilkRub);
+}
+
+public function nyreaAlphaUseGun():void
+{
+	rangedAttack(foes[0], pc, true);
 }
 
 public function nyreaSpearThrust():void
@@ -149,7 +193,7 @@ public function nyreaSpearThrust():void
 public function nyreaMeatSpin():void
 {
 	//Basic lust attack. She'll use this especially against females.
-	output("\nWith a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].");
+	output("\nWith a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].\n");
 
 	// 9999
 	if (rand(10) == 0)
@@ -203,6 +247,7 @@ public function nyreaPoledance():void
 	else if (foes[0] is NyreaAlpha) output(" You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to");
 	output(".”</i>\n");
 
+	// 9999
 	if (rand(10) == 0)
 	{
 		output("\nYou look away from her tantalizing display, doing your best to contain your lust.\n");
@@ -221,22 +266,40 @@ public function nyreaPoledance():void
 
 public function nyreaNetThrow():void
 {
+	foes[0].createStatusEffect("Net Cooldown", 5, 0, 0, true);
+
 	//She'll use this frequently to disable the PC, especially as she starts taking damage. Inflicts RESTRAINED.
-	/*
-	Using her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.
-	Miss: You roll aside, letting the net go clattering off into the darkness.
-	Hit: You try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!
-	*/
+	output("\nUsing her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.\n");
+
+	if (rangedCombatMiss(foes[0], pc, 0, 3))
+	{
+		output("\nYou roll aside, letting the net go clattering off into the darkness.\n");
+	}
+	else
+	{
+		output("\nYou try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!");
+		pc.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "You're stuck in a nyrea's hunting net!", true, 0);
+	}
 }
 
 public function nyreaMilkRub():void
 {
 	//Light lust attack, heals some of her HP
-	/*
-	Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor. 
-	Miss: God, that smells delicious...
-	Hit: You try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...
-	*/
+	output("\nGiving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor.\n");
+
+	var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
+
+	if (rand(10) <= 3)
+	{
+		output("\nGod, that smells delicious...");
+	}
+	else
+	{
+		output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...");
+	}
+
+	output(" <b>(" + lustDam + ")</b>");
+	pc.lust(lustDam);
 }
 
 public function pcLossToNyrea():void

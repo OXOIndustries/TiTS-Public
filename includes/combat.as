@@ -113,7 +113,8 @@ public function combatMainMenu():void
 		clearMenu();
 		output("\n<b>You are grappled and unable to fight normally!</b>");
 		addButton(0,"Struggle",grappleStruggle);
-		if(pc.hasPerk("Static Burst")) {
+		if (pc.hasPerk("Static Burst") && !(foes[0] is NyreaAlpha) && !(foes[0] is NyreaBeta)) 
+		{
 			if(pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
 			else if(pc.energy() >= 5) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
@@ -825,6 +826,7 @@ public function grappleStruggle():void {
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
+			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to prise a gap large enough for you to squeeze your frame through!");
 			//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
@@ -837,6 +839,7 @@ public function grappleStruggle():void {
 		else if (foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 		else if (foes[0] is GrayPrime) grayPrimeFailEscape();
+		else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
 		//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
