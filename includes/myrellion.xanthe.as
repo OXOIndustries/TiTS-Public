@@ -278,7 +278,7 @@ Jewelled nipple tassels (+2 Sexiness) - 1000 Creds
 Black nipple tassels (+2 Sexiness) - 1000 Creds
 */
 
-function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
+public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 {
 	clearOutput();
 	showXanthe();
@@ -353,7 +353,7 @@ function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 	return true;
 }
 
-function xantheMenu():void
+public function xantheMenu():void
 {
 	clearMenu();
 	//Run shopkeeper setup
@@ -370,7 +370,7 @@ function xantheMenu():void
 }
 
 // Stare
-function stareAtXantheYaSloot():void 
+public function stareAtXantheYaSloot():void 
 {
 	clearOutput();
 	showXanthe();
@@ -379,7 +379,7 @@ function stareAtXantheYaSloot():void
 }
 
 // Don’t Stare
-function dontStareAtZatBitch():void
+public function dontStareAtZatBitch():void
 {
 	clearOutput();
 	showXanthe();
@@ -387,7 +387,7 @@ function dontStareAtZatBitch():void
 	stareDontStareEpilogue();
 }
 
-function stareDontStareEpilogue():void
+public function stareDontStareEpilogue():void
 {
 	output("\n\nFrom her voluminous breasts downwards and running down her sides are a bunch of dark, spikey appendages. Each one is jointed and pressed flush to her skin. They resemble tiny armor chunks. She has six fingered hands concealed by dark elbow length gloves.");
 	output("\n\nThings become progressively more alien further down. Her thighs and legs are thick, bulky, and completely lack feet. Instead, they end in double-pronged toes. Despite her unconventional built, she still wears a garter belt, sexy lace panties, and a pair of stockings.");
@@ -421,7 +421,7 @@ function stareDontStareEpilogue():void
 }
 
 // If PC tries to go in hallway without being her sub.
-function tryToGoToHallway():void
+public function tryToGoToHallway():void
 {
 	clearOutput();
 	showXanthe();
@@ -445,7 +445,7 @@ function tryToGoToHallway():void
 }
 
 //Underground Dungeon
-function undergroundDungeoooon():void
+public function undergroundDungeoooon():void
 {
 	clearOutput();
 	showXanthe();
@@ -459,7 +459,7 @@ function undergroundDungeoooon():void
 
 //Xanthe
 //Talk
-function xantheTalkUsloot():void
+public function xantheTalkUsloot():void
 {
 	clearOutput();
 	showXanthe();
@@ -501,7 +501,7 @@ function xantheTalkUsloot():void
 	}
 }
 
-function xantheTalkMenu():void
+public function xantheTalkMenu():void
 {
 	clearMenu();
 	addButton(0,"Siel",talkAbootSiel);
@@ -520,7 +520,7 @@ function xantheTalkMenu():void
 }
 
 //Siel
-function talkAbootSiel():void
+public function talkAbootSiel():void
 {
 	clearOutput();
 	showXanthe();
@@ -576,7 +576,7 @@ function talkAbootSiel():void
 }
 
 // Sounds Beautiful
-function soundsBeautifulXanthe():void
+public function soundsBeautifulXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -596,7 +596,7 @@ function soundsBeautifulXanthe():void
 
 // Sounds Flammable*
 // Cannot pick if Ditz.
-function soundsFlammabale():void
+public function soundsFlammabale():void
 {
 	clearOutput();
 	showXanthe();
@@ -613,7 +613,7 @@ function soundsFlammabale():void
 
 // Sounds Boring*
 // Cannot choose if PC is Xanthe’s sub.
-function soundsBoringAsFuckXanthe():void
+public function soundsBoringAsFuckXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -633,7 +633,7 @@ function soundsBoringAsFuckXanthe():void
 }
 
 // Can You Build?
-function canYouBuildXantheSluts():void
+public function canYouBuildXantheSluts():void
 {
 	clearOutput();
 	showXanthe();
@@ -647,7 +647,7 @@ function canYouBuildXantheSluts():void
 }
 
 // Remain Silent
-function remainSilentForThisXantheSloot():void
+public function remainSilentForThisXantheSloot():void
 {
 	clearOutput();
 	showXanthe();
@@ -661,7 +661,7 @@ function remainSilentForThisXantheSloot():void
 }
 
 // MERGE
-function sielCityTalkEpilogue():void
+public function sielCityTalkEpilogue():void
 {
 	clearOutput();
 	showXanthe();
@@ -676,7 +676,7 @@ function sielCityTalkEpilogue():void
 
 //Xanthe
 // Unlocks ‘Zyi’ topic.
-function xantheTalksAbootXanthe():void
+public function xantheTalksAbootXanthe():void
 {
 	if(!pc.isBimbo()) 
 	{
@@ -716,7 +716,7 @@ function xantheTalksAbootXanthe():void
 }
 
 //The Silken Serenity
-function askXantheWhyFoxCancelledFirefly():void
+public function askXantheWhyFoxCancelledFirefly():void
 {
 	clearOutput();
 	showXanthe();
@@ -757,7 +757,7 @@ function askXantheWhyFoxCancelledFirefly():void
 
 //Zyi
 // Must have viewed ‘Xanthe’ topic.
-function talkToXantheAboutSpaceJesus():void
+public function talkToXantheAboutSpaceJesus():void
 {
 	clearOutput();
 	showXanthe();
@@ -784,7 +784,7 @@ function talkToXantheAboutSpaceJesus():void
 }
 
 //The War
-function theWarTalkXanthe():void
+public function theWarTalkXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -803,7 +803,7 @@ function theWarTalkXanthe():void
 }
 
 //Her Sex
-function askXantheAboutHerDonger():void
+public function askXantheAboutHerDonger():void
 {
 	clearOutput();
 	showXanthe();
@@ -839,7 +839,7 @@ function askXantheAboutHerDonger():void
 
 //Use Mods
 // Must have viewed ‘Her Sex’ Topic
-function useModsYouSlut():void
+public function useModsYouSlut():void
 {
 	clearOutput();
 	showXanthe();
@@ -874,7 +874,7 @@ function useModsYouSlut():void
 }
 
 //Transformation
-function giveDatBitchSomeHams(hamArgs:int = 10):void
+public function giveDatBitchSomeHams(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -892,7 +892,7 @@ function giveDatBitchSomeHams(hamArgs:int = 10):void
 }
 
 // Close Eyes
-function closeEyesForTheTF(hamArgs:int = 10):void
+public function closeEyesForTheTF(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -935,7 +935,7 @@ function closeEyesForTheTF(hamArgs:int = 10):void
 	
 }
 
-function xantheSetGenitals(hamArgs:int = 10):void
+public function xantheSetGenitals(hamArgs:int = 10):void
 {
 	var genitalFront:int = Math.floor(hamArgs/10) * 10;
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
@@ -946,7 +946,7 @@ function xantheSetGenitals(hamArgs:int = 10):void
 }
 
 // Half Close
-function halfCloseEyes4Xanthe(hamArgs:int = 10):void
+public function halfCloseEyes4Xanthe(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -955,7 +955,7 @@ function halfCloseEyes4Xanthe(hamArgs:int = 10):void
 }
 
 // Brazenly Watch
-function brazenWatchXanth(hamArgs:int = 10):void
+public function brazenWatchXanth(hamArgs:int = 10):void
 {
 	clearOutput();
 	showXanthe();
@@ -964,7 +964,7 @@ function brazenWatchXanth(hamArgs:int = 10):void
 	xantheWatchEpilogue(hamArgs, false);
 }
 
-function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):void
+public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):void
 {
 	var genitalFront:int = Math.floor(hamArgs/10) * 10;
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
@@ -1085,7 +1085,7 @@ function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):void
 
 //Sex
 // Unlocks ‘Mating’ menu
-function sexChatWithXanthe():void
+public function sexChatWithXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -1105,7 +1105,7 @@ function sexChatWithXanthe():void
 }
 
 //I Want To Mate 
-function IWantToMate():void
+public function IWantToMate():void
 {
 	clearOutput();
 	showXanthe();
@@ -1129,7 +1129,7 @@ function IWantToMate():void
 }
 
 //Just Curious
-function justCuriousAboutItXanthe():void
+public function justCuriousAboutItXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -1148,7 +1148,7 @@ function justCuriousAboutItXanthe():void
 }
 
 //Mating
-function letsDoAlienBondageMating():void
+public function letsDoAlienBondageMating():void
 {
 	clearOutput();
 	showXanthe();
@@ -1194,7 +1194,7 @@ function letsDoAlienBondageMating():void
 
 //Yes
 // Sets Xanthe as Dommy to PC, brings up Mating (Domme) Menu. 
-function yesYouCanDomMeXanthe():void
+public function yesYouCanDomMeXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -1211,7 +1211,7 @@ function yesYouCanDomMeXanthe():void
 }
 
 //No
-function noImNotIntoThisShit():void
+public function noImNotIntoThisShit():void
 {
 	clearOutput();
 	showXanthe();
@@ -1226,7 +1226,7 @@ function noImNotIntoThisShit():void
 
 //Tie and Tease
 // All Sexes
-function tieAndTeaseWithXanthe():void
+public function tieAndTeaseWithXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -1288,7 +1288,7 @@ function tieAndTeaseWithXanthe():void
 }
 
 // She Leaves You!
-function getLeftByXantheSlooot():void
+public function getLeftByXantheSlooot():void
 {
 	clearOutput();
 	showXanthe();
@@ -1379,7 +1379,7 @@ function getLeftByXantheSlooot():void
 	addButton(0,"Next",getLeftAloneByXanthePartDues,x);
 }
 
-function getLeftAloneByXanthePartDues(x:int = 0):void
+public function getLeftAloneByXanthePartDues(x:int = 0):void
 {
 	clearOutput();
 	showXanthe();
@@ -1420,7 +1420,7 @@ function getLeftAloneByXanthePartDues(x:int = 0):void
 	addButton(0,"Next",leftTeasedForEver,x);
 }
 
-function leftTeasedForEver(x:int = 0):void
+public function leftTeasedForEver(x:int = 0):void
 {
 	clearOutput();
 	showXanthe();
@@ -1513,7 +1513,7 @@ function leftTeasedForEver(x:int = 0):void
 	addButton(0,"Next",goodGodJimTLetItEndXantheStrappedUp);
 }
 
-function goodGodJimTLetItEndXantheStrappedUp():void
+public function goodGodJimTLetItEndXantheStrappedUp():void
 {
 	clearOutput();
 	showXanthe();
@@ -1528,7 +1528,7 @@ function goodGodJimTLetItEndXantheStrappedUp():void
 }
 
 //Pays Attention
-function shePaysAttentionToYouSlut():void
+public function shePaysAttentionToYouSlut():void
 {
 	clearOutput();
 	showXanthe();
@@ -1642,7 +1642,7 @@ function shePaysAttentionToYouSlut():void
 }
 
 // Not A Slut
-function notASlutXanthe():void
+public function notASlutXanthe():void
 {
 	clearOutput();
 	showXanthe();
@@ -1670,7 +1670,7 @@ function notASlutXanthe():void
 }
 
 // Totally A Slut
-function yesXantheImTotesMyGoatsASlut():void
+public function yesXantheImTotesMyGoatsASlut():void
 {
 	clearOutput();
 	showXanthe();
@@ -1692,7 +1692,7 @@ function yesXantheImTotesMyGoatsASlut():void
 }
 
 // MERGE
-function slutNotASlutEpilogue():void
+public function slutNotASlutEpilogue():void
 {
 	clearOutput();
 	showXanthe();
@@ -1776,7 +1776,7 @@ function slutNotASlutEpilogue():void
 	addButton(0,"Next",epilogueToInflatibleXanthPlugs);
 }
 
-function epilogueToInflatibleXanthPlugs():void
+public function epilogueToInflatibleXanthPlugs():void
 {
 	clearOutput();
 	showXanthe();
@@ -1793,7 +1793,7 @@ function epilogueToInflatibleXanthPlugs():void
 
 //Spend Time
 // Pick one of these sentences at random.
-function spendTimeWithXantheYouSlut():void
+public function spendTimeWithXantheYouSlut():void
 {
 	clearOutput();
 	showXanthe();
@@ -1812,7 +1812,7 @@ function spendTimeWithXantheYouSlut():void
 }
 
 //Nothing
-function nothingWithXantheTodayBadumTish():void
+public function nothingWithXantheTodayBadumTish():void
 {
 	clearOutput();
 	showXanthe();
