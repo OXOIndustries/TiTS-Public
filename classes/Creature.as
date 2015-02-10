@@ -2438,9 +2438,9 @@
 			else 
 			{
 				temp += rangedWeapon.damage;
-				if(hasPerk("Heavy Weapons") && !hasMeleeEnergyWeapon()) 
+				if(hasPerk("Heavy Weapons") && !hasRangedEnergyWeapon()) 
 					temp += Math.ceil(rangedWeapon.damage * 0.2);
-				if(hasPerk("Gun Tweaks") && hasMeleeEnergyWeapon()) 
+				if(hasPerk("Gun Tweaks") && hasRangedEnergyWeapon()) 
 					temp += Math.ceil(rangedWeapon.damage * 0.2);
 				//Concentrated fire bonus!
 				temp += statusEffectv1("Concentrated Fire");
