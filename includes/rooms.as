@@ -30,7 +30,7 @@ public function initializeRooms():void
 	//99. Ship Interior
 	rooms["SHIP INTERIOR"] = new RoomClass(this);
 	rooms["SHIP INTERIOR"].roomName = "SHIP\nINTERIOR";
-	rooms["SHIP INTERIOR"].description = "The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely ample room for you and your crew.";
+	rooms["SHIP INTERIOR"].description = "The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.";
 	rooms["SHIP INTERIOR"].planet = "PLANET: MHEN'GA";
 	rooms["SHIP INTERIOR"].system = "SYSTEM: ARA ARA";
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
@@ -98,7 +98,7 @@ public function initializeRooms():void
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of varied races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it. The station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. The station's express lifts have entrances to the west. A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
+	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it. The station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. The station's express lifts have entrances to the west. A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
@@ -114,7 +114,7 @@ public function initializeRooms():void
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
-	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
@@ -142,7 +142,7 @@ public function initializeRooms():void
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
 	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
-	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
@@ -210,7 +210,7 @@ public function initializeRooms():void
 	//110 MERCHANT'S THOROUGHFARE
 	rooms["110"] = new RoomClass(this);
 	rooms["110"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is blocked off for now by a shop called \"Mi Amour\". To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room in from one of the larger businesses.";
+	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is blocked off for now by a shop called \"Mi Amour\". To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room from one of the larger businesses.";
 	rooms["110"].planet = "TAVROS STATION";
 	rooms["110"].system = "SYSTEM: KALAS";
 	rooms["110"].northExit = "MI AMOUR";

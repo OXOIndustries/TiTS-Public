@@ -283,7 +283,7 @@ public function alexSexMenu(display:Boolean = true):void {
 		else if(pc.hasVagina()) output("[pc.vaginas] slicken");
 		else if(pc.hasCock()) output("[pc.cocks] harden");
 		else output("body grow hot");
-		output(" with anticipation, you head up the stairs and find your new friend’s room and head inside. It’s not really all that impressive, but given the state of this place in general that’s not a big surprise, and all that matters right now is that the bed looks comfortable enough. You’re just about out of your [pc.gear] when you hear a knock on the door and turn around to see ");
+		output(" with anticipation, you head up the stairs, find your new friend’s room, and head inside. It’s not really all that impressive, but given the state of this place in general that’s not a big surprise, and all that matters right now is that the bed looks comfortable enough. You’re just about out of your [pc.gear] when you hear a knock on the door and turn around to see ");
 		if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output("Alex");
 		else output("your partner");
 		output(" peeking in. He whistles appreciatively.");
@@ -347,7 +347,7 @@ public function alexSexMenu(display:Boolean = true):void {
 				output("\n\n<i>“Shit</i>,” he says, pulling out of your lip-lock. <i>“Where’s my manners? My name’s Alex.”</i> He offers you a hand, which you take despite your mild confusion. Surprisingly, given everything else about him, his handshakes are very firm and manly. You introduce yourself in kind. <i>“Well it’s nice to meet you, [pc.name]. Not that I expect this to be much more than a wham, bam, thank you ma’am, but it’s just nice to know who you’re fucking, right?”</i>  Before you can respond, he’s pulled you back into a passionate kiss.");
 		}
 		output("\n\nYou explore Alex’s mouth with your tongue, tasting the last remnants of whatever fruity thing he’d been drinking before sneaking off with you and enjoying the low rumble of his moans against your [pc.lips] as he wriggles under you, gently pressing a knee up ");
-		if(pc.hasStatusEffect("")) output("against your genital slit");
+		if(pc.hasStatusEffect("Genital Slit")) output("against your genital slit");
 		else if(pc.isTaur() || pc.isGoo()) 
 		{
 			output("against where your torso meets your ");
@@ -355,8 +355,8 @@ public function alexSexMenu(display:Boolean = true):void {
 			else output("animalistic");
 			output(" lower half");
 		}
-		else if(pc.hasVagina()) output("soaked netherlips");
-		else if(pc.hasCock()) output("nearly unbearable hardness");
+		else if(pc.hasVagina()) output("against your soaked netherlips");
+		else if(pc.hasCock()) output("against your nearly unbearable hardness");
 		else output("between your thighs");
 		output(".");
 
@@ -533,7 +533,7 @@ public function pitchIntoAlexsBoyPussy():void {
  	if(pc.hasKnot(x) && pc.cumQ() > 500) output(" as your knot slips out of him. Tentatively, almost gingerly, he runs a hand over the taut mound of his stomach");
  	else if(pc.hasKnot(x)) output(" as your knot slips out of him");
  	else if(pc.cumQ() > 500) output(" as he runs a hand over the taut mound of his stomach");
- 	output(". <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover, I’m gonna need it. Feel free to use the shower.”</i>");
+ 	output(". <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover - I’m gonna need it. Feel free to use the shower.”</i>");
 
  	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
  	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;
@@ -567,6 +567,9 @@ public function catchVaginalFromAlex():void {
 	if(pc.wetness(x) >= 3) output(" while your fluids sheath him in slick wetness before you’ve even taken him");
 	output(". You can actually see him straining not to buck his hips or try to force you down onto him and you revel in it, savoring each moment as much as you can before it becomes too much for you and you drop down onto him with a wet slapping sound.");
 	//(VAGINAL VIRGINITY/HYMEN CHECK)
+	//Store virgin status first - it might come up later
+	var isVirgin:Boolean = false;
+	if(pc.vaginalVirgin) isVirgin = true;
 	pc.cuntChange(x,20,true,true,false);
 	//If tight:
 	if(pc.vaginalCapacity(x) <= 25) 
@@ -585,7 +588,7 @@ public function catchVaginalFromAlex():void {
 	//if medium:
 	else if(pc.vaginalCapacity(x) <= 50) 
 	{
-		if(!pc.vaginalVirgin) output("\n\nAlex’s isn’t exactly the biggest dick you’ve taken in your adventures, but he’s big enough to make you feel wonderfully filled, pressing against your walls in all the right ways");
+		if(!isVirgin) output("\n\nAlex’s isn’t exactly the biggest dick you’ve taken in your adventures, but he’s big enough to make you feel wonderfully filled, pressing against your walls in all the right ways");
 		else output("\n\nAlex's isn't the biggest dick you've seen thanks to the extranet, but he's big enough to make you feel wonderfully filled, pressing against your walls in all the right ways.");
 		//if herm:
 		if(pc.hasCock())
@@ -607,7 +610,7 @@ public function catchVaginalFromAlex():void {
 	//if gaped:
 	else 
 	{
-		if(!pc.vaginalVirgin) output("\n\nYou’ve seen some big cocks in your adventures, and in all honesty, Alex’s run of the mill, unenhanced human penis doesn’t really measure up. That doesn’t stop you from trying.");
+		if(!isVirgin) output("\n\nYou’ve seen some big cocks in your adventures, and in all honesty, Alex’s run of the mill, unenhanced human penis doesn’t really measure up. That doesn’t stop you from trying.");
 		else output("\n\nYou're built for bigger cocks than his, and in all honesty, Alex's run of the mill, unenhanced human penis doesn't really measure up. That doesn't stop you from trying.")
 
 		output(" Rolling your hips, you try to find a position where at least the head of his cock rubs against you and Alex, sensing your frustration and probably working through a bit of his own, tries to match you. Eventually the two of you settle on having you lie almost on top of him, supporting yourself on your elbows");
@@ -690,7 +693,7 @@ public function catchVaginalFromAlex():void {
 	if(pc.hasTailCock()) output(" combined with the sensation of hot cum filling his cunt");
 	output(" is enough to send him over the edge, moaning and arching his back as his seed spurts up inside of you, painting your insides white.");
 
-	output("\n\n<i>“Oh wow,”</i>  he groans, panting as you roll off of him. <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover, I’m gonna need it. Feel free to use the shower.”</i>");
+	output("\n\n<i>“Oh wow,”</i>  he groans, panting as you roll off of him. <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover - I’m gonna need it. Feel free to use the shower.”</i>");
 	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;
 	flags["FUCKED_ALEX"]++;
@@ -994,7 +997,7 @@ public function frottageWithAlex():void {
 
 	output("\n\n<i>“Oh wow,”</i> Alex groans, ");
 	if(pc.cumQ() > 25) output("wiping [pc.cum] out of his eyes and ");
-	output("collapsing back onto the bed now that his duty is done. <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover, I’m gonna need it. Feel free to use the shower.”</i>");
+	output("collapsing back onto the bed now that his duty is done. <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover - I’m gonna need it. Feel free to use the shower.”</i>");
 	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;
 	flags["FUCKED_ALEX"]++;
@@ -1139,7 +1142,7 @@ public function catchAnalFromAlex():void {
 
 	output("\n\n<i>“Oh wow,”</i>  he groans, panting as he collapses onto the bed beside you");
 	if(pc.hasTailCock()) output(", your [pc.tailCock] finally slipping out of him");
-	output(". <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover, I’m gonna need it. Feel free to use the shower.”</i>");
+	output(". <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover - I’m gonna need it. Feel free to use the shower.”</i>");
 
 	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;

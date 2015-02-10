@@ -12,12 +12,12 @@ public function shellyDisplay():void
 public function ShellyBlurb():void
 {
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) {
-		output("\n\nAs you enter the bar you notice a new addition to the bar's normal clientele, a lone woman stands near the back wall, trying to get the attention of passersby. A closer look reveals her to have tall bunny ears atop her head and a slightly distended belly.");
+		output("\n\nYou notice a new addition to the bar’s normal clientele; a lone woman stands near the back wall, trying to get the attention of passersby. A closer look reveals her to have tall bunny ears atop her head and a slightly distended belly.");
 		addButton(5,"BunnyWoman",investigateSlashShelly);
 	}
 	else 
 	{
-		output("\n\nShelly stands at the back of the bar, trying to advertise Ovilium to anyone to anyone who will listen.");
+		output("\n\nShelly stands at the back of the bar, trying to advertise Ovilium to anyone who will listen.");
 		addButton(5,"Shelly",investigateSlashShelly);
 	}
 }
@@ -37,10 +37,10 @@ public function investigateSlashShelly():void
 	//Repeat [shelly]
 	else
 	{
-		output("You walk up to shelly, and she waves happily when she sees you coming.");
+		output("You walk up to Shelly, and she waves happily when she sees you coming.");
 		if(flags["KNOW_SHELLYS_NAME"] == undefined) output("\n\n<i>“Hello again. You need something?”</i>");
 		else output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
-		output(" she asks with warm grin.");
+		output(" she asks with a warm grin.");
 	}
 	//[talk] [assist] [sex] [leave](at first only talk and leave available, after talk you get assist, after assist cock weilders get other sex)
 	clearMenu();
@@ -85,16 +85,16 @@ public function assistShellyLaying():void
 	flags["ASSISTED_SHELLY_WITH_LAYING"] = 1;
 	clearOutput();
 	shellyDisplay();
-	output("You tell Shelly if she wants some assistance with her egg laying, you’re available now. She nods, grinning and gripping your hand tightly as she pulls you to one of the back rooms. The room is well lit and surprisingly comfortable looking for what you would expect from a bar like this.");
+	output("You tell Shelly if she wants some assistance with her egg laying, you’re available now. She nods, grinning and gripping your hand tightly as she pulls you to one of the back rooms. The room is well lit and surprisingly comfortable-looking for what you would expect from a bar like this.");
 	output("\n\n<i>“The company gave me this room in case I needed to use it for emergencies. They refurbished it to be a little more inviting than it originally was,”</i> she says as she continues in and stands by the bed. <i>“Ok, so all you need to do is stimulate me... down there.”</i>");
 	output("\n\nA blush begins running up her ears, but you tell her not to worry; you’ll have the excess eggs out of her in no time. This calms her down a bit, and she sits on the edge of the bed, reaching behind her back to undo her bra. You take that time to kneel at the foot of the bed next to her, unbuttoning the fastener on her shorts and pulling them down to reveal a pair of gray lace underwear. Not exactly the sexiest you’ve ever seen, but by no means a mood dampener.");
 	output("\n\nYou loop your fingers into the elastic band of her undergarments, brushing from her front all the way back to her butt before pulling them down over her legs and feet. It’s hard not to giggle as you see her pink, fluffy cottontail sitting at the base of her spine. You lean forward and kiss her belly, looking up to see her peering down at you through the canyon of her freed, D-cup chest.");
 	output("\n\nHer dusky nipples look too inviting to ignore, and you raise your head a little to give one a lick, playing with the other gently. Shelly hums happily as you wrap your lips around her teat, sucking softly. You’re pleasantly surprised when after a moment, a small stream of sweet liquid flows into your mouth. You drink a few spurts of the sugary milk before popping off the tap and licking your lips with a smile. The chocolate bunny girl giggles and leans back onto the bed.");
 	output("\n\n<i>“That's another side effect of my prototype drug test. My insides are sweet like candy,”</i> she says seductively, holding open her mons with two fingers, revealing the pink insides and round clit. You move closer, kissing the inside of her thighs as you approach your ultimate goal. Not wanting to leave her in suspense much longer, you give her sex a big pressing lick from bottom to clit, travelling over her entrance and prompting a drawn-out moan from over the dark mountain of her belly.");
-	output("\n\nShe wasn’t wrong when she said she was sweet. Her juices taste like candy, and you nearly get a sugar high during the heavy licking you give her dripping cunt. She grips your head with both hands, holding you there as you mash your face against her. You bring your hands up around her sides, playing with her breasts while her hands are occupied. Her milk appears to be slowly leaking as you give her pussy attention, and you rub it over her chest until they feel slick with candied shine.");
+	output("\n\nShe wasn’t wrong when she said she was sweet. Her juices taste like candy, and you nearly get a sugar high during the heavy licking you give her dripping cunt. She grips your head with both hands, holding you there as you mash your face against her. You bring your hands up around her sides, playing with her breasts while her hands are occupied. Her milk appears to be slowly leaking as you give her pussy attention, and you rub it over her chest until it feels slick with candied shine.");
 	output("\n\nAfter you’ve fully shined her boobs, you bring one hand back down by your mouth, rubbing her ample butt with a milk covered hand. You glide your slippery fingers between her cheeks, rubbing a thumb at the entrance to her asshole. The juices from your licking have further soaked the hole, leaving it ready for penetration. Slowly but surely, you sink your thumb into her, rubbing the hot walls of her anal passage.");
 	output("\n\nThe slow penetration is apparently too much for her to handle, and you feel her tense up and howl with pleasure as she cums, covering your face in sweet juices. You continue licking through it, determined to have her spouting eggs by the end of this.");
-	output("\n\n<i>“Eggs, coming, here they c-cumm”</i> she says weakly, tensing and contracting as you kiss around her legs. You hold out a hand as a pink and purple egg suddenly pops out of her snatch. It is followed quickly by a single colored egg and one with polkadots. At first you think they're all you'll get for now, but she tenses one more time as an egg roughly the size of the other three combined slowly pushes through her. By this time, her stomach has noticeably shrunk, and you can see her eyes unfocus as the giant egg leaves her body.");
+	output("\n\n<i>“Eggs, coming, here they c-cumm,”</i> she says weakly, tensing and contracting as you kiss around her legs. You hold out a hand as a pink and purple egg suddenly pops out of her snatch. It is followed quickly by a single colored egg and one with polkadots. At first you think they're all you'll get for now, but she tenses one more time as an egg roughly the size of the other three combined slowly pushes through her. By this time, her stomach has noticeably shrunk, and you can see her eyes unfocus as the giant egg leaves her body.");
 	output("\n\nYou leave the eggs in a pile on the bed beside her and hoist yourself up to give her a kiss on the lips. Your chocolate-coated, candy treat kisses you back and grins happily. Her entire body glistens with sweet liquids that soak the bedsheets around her and smell like a syrupy perfume.");
 	output("\n\n<i>“Thanks for the help, I’d love to do it again some time. You can have one of the eggs if you want. I dont know if the colors are special, but they all taste really good as far as I’ve tested them,”</i> she says, her amber eyes beaming up at you.");
 	output("\n\nYou tell her you’d be happy to take one and give her another kiss for good measure. She laughs warmly and tells you she’ll lie here for a half hour or so to recover before she goes back to her job.");
