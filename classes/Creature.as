@@ -2719,7 +2719,7 @@
 				{
 					if(rand(3) == 0) result += "'o' shaped";
 					else if(rand(2) == 0) result += "whorish";
-					else result += "permenantly puckered";
+					else result += "permanently puckered";
 				}
 				//Serious this is too big, bro
 				else

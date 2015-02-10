@@ -1809,7 +1809,7 @@ public function initializeRooms():void
 	rooms["202"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["TARKUS SCOUT AUTHORITY"] = new RoomClass(this);
-	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHOTITY";
+	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHORITY";
 	rooms["TARKUS SCOUT AUTHORITY"].description = "";
 	rooms["TARKUS SCOUT AUTHORITY"].runOnEnter = tarkusScoutAuthorityOffice;
 	rooms["TARKUS SCOUT AUTHORITY"].southExit = "202";
