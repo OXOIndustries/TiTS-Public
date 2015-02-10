@@ -1010,7 +1010,7 @@ public function processTime(arg:int):void {
 	updatePCStats();
 }
 
-function racialPerkUpdateCheck():void
+public function racialPerkUpdateCheck():void
 {
 	if(pc.hasPerk("'Nuki Nuts"))
 	{

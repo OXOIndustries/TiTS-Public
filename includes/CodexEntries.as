@@ -92,7 +92,7 @@ public function codexHomeFunction():void
 	userInterface.outputCodex();
 }
 
-function sielCodexEntry():void
+public function sielCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("XANTHE");

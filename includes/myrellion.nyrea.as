@@ -142,7 +142,7 @@ public function nyreaSpearThrust():void
 	{
 		output("\nShe turns the blade at the last second, slamming the blunted haft of the spear into your chest, throwing you back with the force of the blow! ");
 
-		genericDamageApply(damageRand(foes[0].meleeDamage()), foes[0], pc, foes[0].meleeWeapon.damageType);
+		genericDamageApply(damageRand(foes[0].damage(true), 15), foes[0], pc, foes[0].meleeWeapon.damageType);
 	}
 }
 
@@ -160,7 +160,7 @@ public function nyreaMeatSpin():void
 	{
 		output("\nUnwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off.");
 
-		var lustDam:int = damageRand(15 * (pc.libido() / 100));
+		var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
 
 		pc.lust(lustDam);
 
@@ -181,7 +181,7 @@ public function nyreaPowerStrike():void
 	{
 		output("\nYou cry out as the spear crashes into you, throwing you to the ground with nearly bonecrushing force.");
 
-		genericDamageApply(damageRand(foes[0].meleeDamage * 1.25), pc, -1, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(foes[0].meleeDamage * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
 
 		if (rand(2) == 0)
 		{
@@ -211,7 +211,7 @@ public function nyreaPoledance():void
 	{
 		output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
 
-		var lustDam:int = damageRand(15 * (pc.libido() / 100));
+		var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
 
 		pc.lust(lustDam);
 
@@ -222,17 +222,21 @@ public function nyreaPoledance():void
 public function nyreaNetThrow():void
 {
 	//She'll use this frequently to disable the PC, especially as she starts taking damage. Inflicts RESTRAINED.
+	/*
 	Using her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.
 	Miss: You roll aside, letting the net go clattering off into the darkness.
 	Hit: You try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!
+	*/
 }
 
 public function nyreaMilkRub():void
 {
 	//Light lust attack, heals some of her HP
+	/*
 	Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor. 
 	Miss: God, that smells delicious...
 	Hit: You try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...
+	*/
 }
 
 public function pcLossToNyrea():void
@@ -240,6 +244,7 @@ public function pcLossToNyrea():void
 	clearOutput();
 
 	nyreaHeaderFromCreature(foes[0]);
+	var pData:PregnancyData;
 
 	output("You give a cry of surprise and pain as the nyrea deftly knocks your [pc.weapon] out of your hand, shoving you back up against a cave wall - and pressing herself tight against you, already pulling the chain bikini off from around her hefty tits, letting them press against you as her fingers work into your [pc.gear], beginning to peel it off.");
 	
@@ -319,7 +324,7 @@ public function pcLossToNyrea():void
 		pc.loadInAss(foes[0]);
 
 		// TODO: Change this and enable multi-preggers
-		var pData:PregnancyData = pc.getPregnancyOfType("NyreaEggs");
+		pData = pc.getPregnancyOfType("NyreaEggs");
 		
 		output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your ass amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
 		if (pData.pregnancyQuantity >= 4) output(" Another comes");
@@ -367,11 +372,11 @@ public function pcLossToNyrea():void
 			
 			output("\n\nSomething shifts <i>inside</i> her cock, coming up slowly from within the huntress. She thrusts as much as her tied position allows her, working the first of her eggs out. You squirm uncomfortably as her cock engorges inside you, and your womb is filled with a distinctly ovular, smooth shape that squirts into you and settles against your stomach, stretching your body out in a whole new way. ");
 			
-			pc.loadInCunt(tHole, foes[0]);
+			pc.loadInCunt(foes[0], tHole);
 
 			// TODO: Change this and enable multi-preggers
 			// TODO: Something something Renvra's pregnancy
-			var pData:PregnancyData = pc.getPregnancyOfType("NyreaEggs");
+			pData = pc.getPregnancyOfType("NyreaEggs");
 			
 			output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your womb amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
 			if (pData.pregnancyQuantity >= 4) output(" Another comes");
@@ -411,6 +416,7 @@ public function pcLossToNyrea():void
 			output("”</i>");
 			
 			output("\n\nShe turns away with a wink, striding off into the dark and leaving you to recover.");
+		}
 	}
 	else
 	{
@@ -510,7 +516,7 @@ public function pcLossToNyrea():void
 			output(". You flush as she laps it off her digits, cleaning them off one by one. <i>“I can all but taste your virility... you’ll give me fine young, won’t you offworlder?”</i>");
 			
 			output("\n\nDoes she... does she think you’re...?");
-			if (CodexManager.hasViewedEntry("Nyrea")) output(" You vaguely remember something about male nyrea having genital slits not unlike pussies, but surely she can’t think that you’re built like her race. You don’t have sperm sacs lodged somewhere up your twat!");
+			if (CodexManager.entryViewed("Nyrea")) output(" You vaguely remember something about male nyrea having genital slits not unlike pussies, but surely she can’t think that you’re built like her race. You don’t have sperm sacs lodged somewhere up your twat!");
 			
 			output("\n\nBefore you can give voice to your less-alien biology, the huntress plants a newly-cleaned hand on your shoulder and forces you down onto your [pc.knees], putting you right on level with her half-hard rod. It’s a massive slab of meat, better suited for a pony than the insectile huntress before you, as thick around as your arm and cresting a foot in length. A ring of soft, blunted spines surrounds her shaft’s flared head, surrounding a thick X-shaped slit that drools a murky moisture. She bucks her hips forward, ramming her shaft against your [pc.lips], demanding entry. You try to protest, but quickly find yourself with a mouthful of nyrean prick parting your lips. You gag and sputter as the massive rod slides home into your mouth, making you open wide to take the huntress’s inhuman girth. Her hammering hips slam you hard against the cavern wall, dazing you enough that you can do nothing to stop her forceful face-fucking.");
 			
@@ -700,7 +706,7 @@ public function fuckNyreaButtsFuckHer():void
 	
 	output("\n\nWith a lascivious grin, you pull your conquest closer, watching her big tits jiggle with the sudden downward motion as you pin her hips to yours, bringing that bountiful bosom down to easy reach. She gives a startled gasp - especially as your cock rams even deeper into her quaking hole - and blushes a dark rosey red as you grab her tits, squeezing the massive orbs until their sweet cream flows over your fingers.");
 	if (foes[0] is NyreaBeta && foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“Wh-what are you...”</i> the nyrea whines as you plant your lips on her teat, starting to suckle. <i>“That’s for my hatchlings...”</i>");
-	else if (fies[0] is NyreaAlpha && foes[0].hasStatusEffect("Nyrea Alpha")) output(" <i>“What, you actually like that? You big baby...”</i> the alpha sighs, though you think she’s just trying not to moan as you settle into her tits, suckling on the puffy, beading teats.");
+	else if (foes[0] is NyreaAlpha && foes[0].hasStatusEffect("Nyrea Alpha")) output(" <i>“What, you actually like that? You big baby...”</i> the alpha sighs, though you think she’s just trying not to moan as you settle into her tits, suckling on the puffy, beading teats.");
 	output(" Between your hand and lips, both working ceaselessly on her tits, the nyrea’s soon unable to hold back, letting out a long moan as you drink from her, enjoying the creamy bounty. As she finally gives in, her ass utterly relaxes around your [pc.cock], giving it unrestricted access to the spasming, tight, wet depths of her ass. You plunge in eagerly, each stroke taking you from crown to hilt to the beat of your suckling, hammering home with each deep drink you draw forth.");
 	
 	output("\n\nBetween your thrusting [pc.cock] and the creamy, near-vanilla milk you’re draining from her teats, the nyrea is soon locked in a prison of pleasure, barely able to move or even moan between the overwhelming sensations. You can feel her cock twitching, pinned between your bodies, helpless without some tender touch. You deny it, and her, the bliss of release, content to take what you want from the surprisingly submissive slut. You continue to remorselessly fuck her ass, delighting in her helpless squirms and pleasured grunts, keeping her so close to release, but always coming short of giving it until you feel your own orgasm welling inside you, your [pc.balls] swelling with impending need.");
@@ -823,7 +829,7 @@ public function rideNyreaDick():void
 		else
 		{
 			tHoleIdx = pc.findEmptyPregnancySlot();
-			pc.loadInCunt(tHoleIdx, foes[0]);
+			pc.loadInCunt(foes[0], tHoleIdx);
 		}
 
 		var pData:PregnancyData = pc.pregnancyData[tHoleIdx];

@@ -40,7 +40,7 @@ Xanthe, like most siel, is very mod-happy.*/
 
 //Silken Serenity Exterior Description
 
-function silkenSerenityExteriorShitz():Boolean
+public function silkenSerenityExteriorShitz():Boolean
 {
 	output("You spot an extravagant looking store with sheek marble pillars alongside the entrance. A crowd of stunningly beautiful beings are gathered out the front in a line. They are modelling various garments, armor, and lingerie. Peering closer, you realise they are holograms.\n\nAbove the store is a glimmering, glitzy sign that reads: \"Silken Serenity\". Through the throng of holo-models, you notice the windows are made of mirrored glass.");
 	// The last paragraph of the description is randomly picked. Below are the seven random paragraphs. The race in the paragraph is also picked at random.
@@ -118,52 +118,52 @@ function silkenSerenityExteriorShitz():Boolean
 	return false;
 }
 
-function showXanthe():void
+public function showXanthe():void
 {
 	if(flags["MET_XANTHE"] == 1) showName("\nXANTHE");
 	else showName("\nTAILOR");
 	author("JimThermic");
 	showBust("XANTHE");
 }
-function xantheHasFrontCock():Boolean
+public function xantheHasFrontCock():Boolean
 {
 	if(flags["XANTHE_FRONT_GENITAL"] == 1) return true;
 	return false;
 }
-function xantheHasFrontCunt():Boolean
+public function xantheHasFrontCunt():Boolean
 {
 	if(flags["XANTHE_FRONT_GENITAL"] == 2) return true;
 	return false;
 }
-function xantheHasBackCock():Boolean
+public function xantheHasBackCock():Boolean
 {
 	if(flags["XANTHE_BACK_GENITAL"] == 1) return true;
 	return false;
 }
-function xantheHasBackCunt():Boolean
+public function xantheHasBackCunt():Boolean
 {
 	if(flags["XANTHE_BACK_GENITAL"] == 2) return true;
 	return false;
 }
 
-function xantheIsDommingPC():Boolean {
+public function xantheIsDommingPC():Boolean {
 	return (flags["XANTHE_MATED"] != undefined);
 }
 
 //Buy
-function buySomethingFromXanthe():void
+public function buySomethingFromXanthe():void
 {
 	xantheShopInitialization();
 	buyItem();	
 }
 //[Armor] [Clothes] [Uwear, Upper] [Uwear, Lower]
 
-function sellSomethingToXanthe():void
+public function sellSomethingToXanthe():void
 {
 	xantheShopInitialization();
 	sellItem();
 }
-function xantheShopInitialization():void
+public function xantheShopInitialization():void
 {
 	shopkeep = chars["XANTHE"];
 	itemScreen = mainGameMenu;

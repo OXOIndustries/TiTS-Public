@@ -463,6 +463,21 @@
 			
 			return i;
 		}
+		
+		public function getButtonNameForIndex(arg:int):String
+		{
+			return _buttonData[arg].buttonName;
+		}
+		
+		public function getFunctionReferenceForIndex(arg:int):Function
+		{
+			return _buttonData[arg].func;
+		}
+		
+		public function getArgForIndex(arg:int):*
+		{
+			return _buttonData[arg].arg;
+		}
 	}
 
 }

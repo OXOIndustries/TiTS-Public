@@ -814,7 +814,6 @@
 		 */
 		public function executeGame():void
 		{
-			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.eventBuffer = "";
@@ -853,6 +852,16 @@
 			{
 				kGAMECLASS.userInterface.setMapData(kGAMECLASS.mapper.generateMap(kGAMECLASS.currentLocation));
 				kGAMECLASS.userInterface.showMinimap();
+				
+				// Some plebshit
+				if (kGAMECLASS.chars["RIVAL"] == "Jack" || kGAMECLASS.chars["RIVAL"] == "Jill")
+				{
+					kGAMECLASS.flags["RIVALCONFIGURED"] = 1;
+				}
+				else
+				{
+					kGAMECLASS.flags["RIVALCONFIGURED"] = 2;
+				}
 			}
 			
 			kGAMECLASS.mainGameMenu();

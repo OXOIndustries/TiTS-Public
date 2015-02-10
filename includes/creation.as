@@ -1226,6 +1226,7 @@ public function setRivalGender(sex:int = 0):void
 		chars["RIVAL"].hipRatingRaw += 2;
 		chars["RIVAL"].buttRatingRaw += 2;
 	}
+	flags["RIVALCONFIGURED"] = 1;
 }
 //Rival Spills the Beans
 public function rivalSpillsTheBeans():void {

@@ -7,6 +7,7 @@
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.utils.describeType;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -176,6 +177,7 @@
 		include "../includes/myrellion.lyralla.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.nehzara.as";
+		include "../includes/myrellion.nyrea.as";
 		include "../includes/myrellion.orryx.as";
 		include "../includes/myrellion.renvra.as";
 		include "../includes/myrellion.rooms.as";
@@ -408,6 +410,10 @@
 		
 		public function buttonClick(evt:MouseEvent):void 
 		{
+			var btnName:String = (evt.currentTarget as MainButton).buttonName;
+			var tFunc:Function = (evt.currentTarget as MainButton).func;
+			var tArg:* = (evt.currentTarget as MainButton).arg;
+			
 			toggleWTF();
 			
 			if (evt.currentTarget is MainButton)
@@ -442,6 +448,8 @@
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
+			
+			jackJillDetector(btnName, tFunc, tArg);
 		}
 		
 		public function showBust(... args):void
@@ -652,10 +660,18 @@
 		
 		public function pressButton(arg:int = 0):void 
 		{
+			// Basically, store shit now before we execute a scene function using PressButton(), and hence, clear the button data...
+			var btnName:String = this.userInterface.buttonTray.getButtonNameForIndex(arg);
+			var tFunc:Function = this.userInterface.buttonTray.getFunctionReferenceForIndex(arg);
+			var tArg:* = this.userInterface.buttonTray.getArgForIndex(arg);
+			
 			if (this.userInterface.PressButton(arg, inCombat()))
 			{
 				updatePCStats();
 			}
+			
+			// Then pass it into some code that will detect the failure state. If the state is triggered, use the args to figure out WHERE it happened.
+			jackJillDetector(btnName, tFunc, tArg);
 		}
 
 		// New passthroughs to GUI to handle scroll event controls
@@ -709,6 +725,70 @@
 		public function ExecuteFunction(name:String):void
 		{
 			this[name]();
+		}
+		
+		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens
+		public function jackJillDetector(btnName:String, tFunc:Function, tArg:*):void
+		{
+			if (flags["RIVALCONFIGURED"] == 1)
+			{
+				if (chars["RIVAL"] && chars["RIVAL"].short == "Jack/Jill")
+				{
+					if (btnName.length > 0)
+					{
+						var dData:String = "(ButtonName:" + btnName + ") ";
+						dData += "(Func: ";
+						
+						// This will PROBABLY BE SLOW AS MOTHERFUCK
+						var methods:XMLList = describeType(this)..method.@name;
+						
+						for each (var m:String in methods)
+						{
+							if (this.hasOwnProperty(m) && this[m] != null && this[m] === tFunc)
+							{
+								dData += m;
+								break;
+							}
+						}
+						
+						dData += ") ";
+						if (tArg != undefined) dData += "(Arg: " + tArg + ")";
+						
+						throw new Error("ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
+					}
+				}
+			}
+			// Noticed issue on an incoming save, offer to fix.
+			else if (flags["RIVALCONFIGURED"] == 2)
+			{
+				eventQueue.push(jackJillIssueSceneEvent);
+			}
+		}
+		
+		public function jackJillIssueSceneEvent():void
+		{
+			clearOutput();
+			output("Ooops!");
+			output("\n\nWe've noticed a problem with your savegame; unfortunately, a long standing bug that we've yet to properly track down has been encountered at some point in the past, and the creature data for your Rival has been reset to defaults.");
+			output("\n\nWe've put some more code in place to help finally track down the root cause of the issue, so we're itching to finally track it down before too long. In the mean-time, whenever this issue is detected, we'll offer to let you fix the problem.");
+			output("\n\nPlease re-select the gender that you intended for your Rival.");
+			clearMenu();
+			
+			flags["RIVALCONFIGURED"] = 3;
+			
+			addButton(0, "Male", fixRival, 1);
+			addButton(1, "Female", fixRival, 0);
+		}
+		
+		public function fixRival(arg:int):void
+		{
+			clearOutput();
+			output("Your Rival should now be fixed!");
+			
+			setRivalGender(arg);
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
 		}
 		
 		public function get pc():PlayerCharacter

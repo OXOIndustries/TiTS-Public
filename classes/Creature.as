@@ -2381,7 +2381,15 @@
 		}
 		public function hasEquippedWeapon():Boolean
 		{
-			return (!(meleeWeapon is Rock) || !(rangedWeapon is Rock));
+			return (hasMeleeWeapon() || hasRangedWeapon());
+		}
+		public function hasRangedWeapon():Boolean
+		{
+			return (!(rangedWeapon is Rock));
+		}
+		public function hasMeleeWeapon():Boolean
+		{
+			return (!(meleeWeapon is Rock));
 		}
 		public function hasEnergyWeapon():Boolean
 		{
@@ -4974,19 +4982,6 @@
 			}
 			return vaginas[counter].looseness();
 		}
-		public function biggestVaginaIndex():int {
-			if (vaginas.length == 0) return -1;
-			if (vaginas.length == 1) return 0;
-			
-			var tLargest:Number = 0;
-			
-			for (var i:int = 1; i < vaginas.length; i++)
-			{
-				if (vaginas[i].looseness() > vaginas[tLargest].looseness()) tLargest = i;
-			}
-			
-			return tLargest;
-		}
 		public function wettestVaginalWetness(): Number {
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
@@ -5022,7 +5017,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (vaginalCapacity(index) < vaginalCapacity(counter)) index = counter;
+				if (vaginalCapacity(index) > vaginalCapacity(counter)) index = counter;
 			}
 			return index;
 		}

@@ -45,7 +45,7 @@ package classes.Characters
 			this.intelligenceRaw = 6;
 			this.willpowerRaw = 6;
 			this.libidoRaw = 40;
-			this.shieldsRaw = t0
+			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			this.resistances = new Array(1, 1, 1, 1, 1, 1, 1, 1);
