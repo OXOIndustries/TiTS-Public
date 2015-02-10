@@ -1223,6 +1223,10 @@
 				case "skin":
 					buffer = skin();
 					break;
+				case "skinColor":
+				case "skinTone":
+					buffer = skinTone;
+					break;
 				case "ears":
 					buffer = earsDescript();
 					break;
@@ -1406,6 +1410,7 @@
 					break;
 				case "chestSimple":
 				case "chestNoun":
+				case "breastsNoun":
 					buffer = chestNoun();
 					break;
 				case "breastCupSize":
