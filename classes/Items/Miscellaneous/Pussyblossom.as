@@ -63,7 +63,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Consume:
-				kGAMECLASS.output("You swallow the pink pill. As small as it is, it goes down easy.");
+				kGAMECLASS.output("You swallow the purple pill. As small as it is, it goes down easy.");
 				var TFed:Boolean = false;
 				//Growgina
 				if(!pc.hasVagina())

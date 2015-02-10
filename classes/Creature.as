@@ -1223,6 +1223,10 @@
 				case "skin":
 					buffer = skin();
 					break;
+				case "skinColor":
+				case "skinTone":
+					buffer = skinTone;
+					break;
 				case "ears":
 					buffer = earsDescript();
 					break;
@@ -1358,6 +1362,9 @@
 				case "cockTail":
 					buffer = tailCockDescript();
 					break;
+				case "nippleNoun":
+					buffer = nippleNoun(arg2);
+					break;
 				case "nipple":
 				case "nippleDescript":
 					buffer = nippleDescript(arg2);
@@ -1406,6 +1413,7 @@
 					break;
 				case "chestSimple":
 				case "chestNoun":
+				case "breastsNoun":
 					buffer = chestNoun();
 					break;
 				case "breastCupSize":
@@ -2438,9 +2446,9 @@
 			else 
 			{
 				temp += rangedWeapon.damage;
-				if(hasPerk("Heavy Weapons") && !hasMeleeEnergyWeapon()) 
+				if(hasPerk("Heavy Weapons") && !hasRangedEnergyWeapon()) 
 					temp += Math.ceil(rangedWeapon.damage * 0.2);
-				if(hasPerk("Gun Tweaks") && hasMeleeEnergyWeapon()) 
+				if(hasPerk("Gun Tweaks") && hasRangedEnergyWeapon()) 
 					temp += Math.ceil(rangedWeapon.damage * 0.2);
 				//Concentrated fire bonus!
 				temp += statusEffectv1("Concentrated Fire");
@@ -2719,7 +2727,7 @@
 				{
 					if(rand(3) == 0) result += "'o' shaped";
 					else if(rand(2) == 0) result += "whorish";
-					else result += "permenantly puckered";
+					else result += "permanently puckered";
 				}
 				//Serious this is too big, bro
 				else
@@ -5643,7 +5651,7 @@
 				cumDelta /= 2;
 			}
 			//Just hit full balls!
-			if(ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if(balls > 0 && ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + this.short);
 				//Hit max cum - standard message
@@ -7179,6 +7187,41 @@
 				if (rando == 4) description += "bud";
 			}
 			if (plural) description = pluralize(description);
+			return description;
+		}
+		public function nippleNoun(rowNum:int = 0):String
+		{
+			var description:String = "";
+			var rando:int = 0;
+			if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+				rando = this.rand(5);
+				if (rando == 0) description += "penetrable nipple";
+				else if (rando == 1) description += "fuckable nip";
+				else if (rando == 2) description += "fuckable nipple";
+				else if (rando == 3) description += "pliable nipple-cunt";
+				else if (rando == 4) description += "stretchy nipple-cunt";
+			} else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+				rando = this.rand(5);
+				if (rando <= 1) description += "lipple";
+				else if (rando == 2) description += "lip-nipple";
+				else if (rando == 3) description += "kissable nipple";
+				else if (rando == 4) description += "mouth-like nipple";
+			}
+			//Normals
+			else {
+				rando = this.rand(5);
+				if (rando <= 1) description += "nipple";
+				if (rando == 2) {
+					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
+					else description += "nipple";
+				}
+				if (rando == 3) {
+					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
+					else description += "nipple";
+				}
+				if (rando == 4) description += "bud";
+			}
+			//description = pluralize(description);
 			return description;
 		}
 		public function areolaSizeDescript(): String {

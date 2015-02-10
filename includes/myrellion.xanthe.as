@@ -492,7 +492,7 @@ public function xantheTalkUsloot():void
 	else
 	{
 		output("As soon as you approach Xanthe to talk, there is a delighted little glint in her brilliant blue eyes.");
-		output("\n\n<i>\"Hello, [pc.Mister] Steele. Anything I can help you with today?</i>” she asks.");
+		output("\n\n<i>\"Hello, " + pc.mf("Mister","Miss") + " Steele. Anything I can help you with today?</i>” she asks.");
 		//[Siel] [Xanthe] [The Silken Serenity] [Zyi]
 		//[The War] [Her Sex] [Use Mods] [Mating]
 		// * Locked until ‘Xanthe’ topic is viewed
@@ -510,7 +510,10 @@ public function xantheTalkMenu():void
 	if(flags["XANTHE_TALKED_ABOUT_HERSELF"] != undefined) addButton(3,"Zyi",talkToXantheAboutSpaceJesus);
 	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
 	addButton(5,"The War",theWarTalkXanthe);
-	addButton(6,"Her Sex",askXantheAboutHerDonger);
+	// Lock wieners until the Codex entry is read.
+	if(CodexManager.entryViewed("Siel")) addButton(6,"Her Sex",askXantheAboutHerDonger);
+	else addDisabledButton(6,"Her Sex","Her Sex","You should probably read about the Siel's sex from the Codex first.");
+	// ** Locked until ‘Her Sex’ topic is viewed.
 	if(flags["XANTHE_TALKED_ABOUT_HER_SEX"] != undefined) addButton(7,"Use Mods",useModsYouSlut);
 	else addDisabledButton(7,"Use Mods","Use Mods","You don't know her well enough to ask about this.");
 	addButton(8,"Mating",sexChatWithXanthe);
@@ -1328,7 +1331,7 @@ public function getLeftByXantheSlooot():void
 	output("\n\n\"<i>");
 	if(flags["MET_BUTCH"] == undefined) output("This, my dear, is ‘Butch’.");
 	else output("You remember ‘Butch’, don’t you?");
-	output(" He’s getting shoved deep inside of your [pc.pussyOrAss]. I’m setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.</i>” Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?");
+	output(" He’s getting shoved deep inside of your [pc.vagOrAss]. I’m setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.</i>” Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?");
 
 	output("\n\nYou can’t ask any questions though, what with your mouth stuffed with her freshly worn panties and taped shut. All you can do is stand there, your precious ");
 	if(!pc.hasCock()) output("nips");
@@ -1552,7 +1555,7 @@ public function shePaysAttentionToYouSlut():void
 			output("\n\n<i>\"...It’s for binding your [pc.fullChest], and making them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one.");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breasts], though indirectly. When she pulls it tight, you let out a sharp gasp.");
 			output("\n\n<i>\"Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i> Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
-			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
+			output("\n\nLooking down, you marvel at how <i>round</i> your breast has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
 			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and ");
 			output("begins binding up your other breast");
 			if(pc.totalBreasts() > 2) output("s");
@@ -1591,14 +1594,14 @@ public function shePaysAttentionToYouSlut():void
 			if(pc.balls > 0) output(", ");
 			else output(" and ");
 			output("[pc.cocksNounSimple]");
-			if(pc.balls > 0) output(", and [pc.ballsNoun]");
+			if(pc.balls > 0) output(", and [pc.balls]");
 			output(", to make them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one breast.");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.");
 			output("\n\n\"<i>Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i>\" Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
 			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
 			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and once she’s finished wrapping your other breast");
 			if(pc.totalBreasts() > 2) output("s");
-			output(", begins binding up your [pc.cocksNounSimple]. Doing so makes your ");
+			output(", begins binding up your [pc.cocksNounSimple]. Doing so makes ");
 			if(pc.cockTotal() == 1) output("it");
 			else output("them");
 			output(" become incredibly hard and jut out, looking just as lewd as your tits.");
@@ -1681,7 +1684,7 @@ public function yesXantheImTotesMyGoatsASlut():void
 	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
 	output("\n\n\"<i>... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re </i>my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.</i>” Xanthe reminds you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
-	if(pc.biggestTitSize() >= 1 && pc.hasCock()) output(", in turn pulling at your [pc.cocks] and pc.chestNoun]");
+	if(pc.biggestTitSize() >= 1 && pc.hasCock()) output(", in turn pulling at your [pc.cocks] and [pc.chestNoun]");
 	else if (pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
 	else output(" in pleasure");
 	output(". You let out a raspy moan, knowing deep down that you are definitely her special property.");

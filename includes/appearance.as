@@ -1284,6 +1284,25 @@ public function appearance(target:Creature):void {
 							output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 						}
 					}
+					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+					{
+						if (target.statusEffectv3("Mimbrane Pussy") < 8)
+						{
+							output2(" Your pussy appears slightly swollen from the mimbrane.");
+						}
+						else if (target.statusEffectv3("Mimbrane Pussy") < 13)
+						{
+							output2(" Your pussy appears noticably inflated");
+							if (pc.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
+							output2(".")
+						}
+						else
+						{
+							output2(" Your pussy appears delightfully plump");
+							if (pc.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+							output2(".");
+						}
+					}
 					temp++;
 				}
 			}

@@ -253,7 +253,7 @@ public function initializeRooms():void
 	//2 - Flahne’s Office
 	rooms["CUSTOMS OFFICE"] = new RoomClass(this);
 	rooms["CUSTOMS OFFICE"].roomName = "CUSTOMS\nOFFICE";
-	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied at the moment. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labelled 'Out to Esbeth.'";
+	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labelled 'Out to Esbeth.'";
 	rooms["CUSTOMS OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["CUSTOMS OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["CUSTOMS OFFICE"].westExit = "SPACEPORT ELEVATOR";
@@ -357,7 +357,7 @@ public function initializeRooms():void
 	//10. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 3"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 3"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. The structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you a respectful nod as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of here it doglegs north.";
+	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. The structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you respectful nods as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of here it doglegs north.";
 	rooms["SOUTH ESBETH 3"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 3"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 3"].westExit = "SOUTH ESBETH 2";
@@ -395,7 +395,7 @@ public function initializeRooms():void
 	//12. Esbeth’s Eastern Path
 	rooms["EAST ESBETH"] = new RoomClass(this);
 	rooms["EAST ESBETH"].roomName = "EAST\nESBETH";
-	rooms["EAST ESBETH"].description = "There are few people around this area of town and even fewer houses. Perhaps this is due to this place’s proximity to the town’s eastern exit. Just to the north, a path splits off to the east towards the jungle. Now and again, you can see individuals like yourself venturing out to brave the dangers and discover what treasures they can. Watchtowers guard the town’s safekeeping, and the jungle has been burnt back far enough to give the autoguns on top of them a good sight line. You suppose this town is about as safe a place as you can find in the untamed wilderness.\n\nThere is a small shack to the east painted pure, alabaster white. The door has a crimson cross, the universal symbol for medical aid, adhered to it. It must be what passes for a hospital on this planet.";
+	rooms["EAST ESBETH"].description = "There are few people around this area of town and even fewer houses. Perhaps this is due to this place’s proximity to the town’s eastern exit. Just to the north, a path splits off to the east towards the jungle. Now and again, you can see individuals like yourself venturing out to brave the dangers and discover what treasures they can. Watchtowers guard the town’s safekeeping, and the jungle has been burnt back far enough to give the autoguns on top of them a good sight line. You suppose this town is about as safe a place as you can find in the untamed wilderness.\n\nThere is a small shack to the east painted pure, alabaster white. The door has a crimson cross, the universal symbol for medical aid, glued to it. It must be what passes for a hospital on this planet.";
 	rooms["EAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["EAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["EAST ESBETH"].southExit = "SOUTHEAST ESBETH";
@@ -408,7 +408,7 @@ public function initializeRooms():void
 	//13. Esbeth’s Eastern Path at the Entrance
 	rooms["EAST ESBETH ENTRANCE"] = new RoomClass(this);
 	rooms["EAST ESBETH ENTRANCE"].roomName = "EAST ESBETH\nENTRANCE";
-	rooms["EAST ESBETH ENTRANCE"].description = "The entrance to Esbeth is positioned just to the east of here. It is only an entrance in name, however. The town has no proper walls just yet, just a sets of towers providing overwatch against the ever-growing foliage. The entrance is a narrow, barely-trod path that disappears into the trees to the east. Midway towards the forest, there’s a small sign staked, though you’re still too far away to read it. Esbeth’s circuitous path continues north and south from here, following the edge of the town.";
+	rooms["EAST ESBETH ENTRANCE"].description = "The entrance to Esbeth is positioned just to the east of here. It is only an entrance in name, however. The town has no proper walls just yet, just a set of towers providing overwatch against the ever-growing foliage. The entrance is a narrow, barely-trod path that disappears into the trees to the east. Midway towards the forest, there’s a small sign staked, though you’re still too far away to read it. Esbeth’s circuitous path continues north and south from here, following the edge of the town.";
 	rooms["EAST ESBETH ENTRANCE"].planet = "PLANET: MHEN'GA";
 	rooms["EAST ESBETH ENTRANCE"].system = "SYSTEM: ARA ARA";
 	rooms["EAST ESBETH ENTRANCE"].southExit = "EAST ESBETH";
@@ -421,7 +421,7 @@ public function initializeRooms():void
 	//14. The Northeastern Corner of Esbeth
 	rooms["NORTHEAST ESBETH"] = new RoomClass(this);
 	rooms["NORTHEAST ESBETH"].roomName = "NORTHEAST\nESBETH";
-	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasional other adventurers, like you on their way, but they pay you no mind.";
+	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasional other adventurers, like you, on their way, but they pay you no mind.";
 	rooms["NORTHEAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["NORTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
@@ -459,7 +459,7 @@ public function initializeRooms():void
 	//17. Burt’s Badass Whatever
 	rooms["BURT'S MAIN HALL"] = new RoomClass(this);
 	rooms["BURT'S MAIN HALL"].roomName = "BURT'S BADASS\nMEAD HALL";
-	rooms["BURT'S MAIN HALL"].description = "A cloud of smoky inhalants hangs around the rafters of this high-ceilinged chamber to lend this place an air of mystery. The obnoxious music playing from an illuminated audio system in the corner along with the noisy beeps of a gaming system dispel that notion immediately. A huge bar lines the western wall, shining dully in the artificial lighting. It's obviously the most well-maintained and cared for object in the entire establishment. A doorway to the south leads back out onto the streets of Mhen'ga.";
+	rooms["BURT'S MAIN HALL"].description = "A cloud of smoky inhalants hangs around the rafters of this high-ceilinged chamber to lend this place an air of mystery. The obnoxious music playing from an illuminated audio system in the corner along with the noisy beeps of a gaming system dispel that notion immediately. A huge bar lies against the western wall, shining dully in the artificial lighting. It's obviously the most well-maintained and cared for object in the entire establishment. A doorway to the south leads back out onto the streets of Mhen'ga.";
 	rooms["BURT'S MAIN HALL"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S MAIN HALL"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S MAIN HALL"].southExit = "NORTH ESBETH 2";
@@ -1407,7 +1407,7 @@ public function initializeRooms():void
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
 	rooms["PENNY'S OFFICE"].roomName = "U.G.C. PEACE-\nKEEPERS";
-	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
+	rooms["PENNY'S OFFICE"].description = "The interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind which you'd expect to see on top of a hovercar or police cruiser.";
 	rooms["PENNY'S OFFICE"].runOnEnter = pennysOffice;
 	rooms["PENNY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
@@ -1418,7 +1418,7 @@ public function initializeRooms():void
 	//90. Kelly's Office - dat secretary
 	rooms["KELLY'S OFFICE"] = new RoomClass(this);
 	rooms["KELLY'S OFFICE"].roomName = "XENOGEN\nOFFICE";
-	rooms["KELLY'S OFFICE"].description = "The inside of this office is decorated in the style of high class terrans, with wood grain floors and eggshell-toned walls illuminated by angled glowbulbs. A few potted plants sit around the periphery, obviously non-native. Well-conceiled vents in the ceilings feed a steady influx of purified, cooled air into this chamber to keep it comfortable. Across the room is an expansive desk equipped with everything you would expect to find on a classy secretary's desk: a terminal, old-fashioned writing utensils, holopaper, and even a small statue of a busty centaur. A monolithic white door sits framed in the western wall and a simpler one on the south, leading back outside.";
+	rooms["KELLY'S OFFICE"].description = "The inside of this office is decorated in the style of high class terrans, with wood grain floors and eggshell-toned walls illuminated by angled glowbulbs. A few potted plants sit around the periphery, obviously non-native. Well-conceiled vents in the ceilings feed a steady influx of purified, cooled air into this chamber to keep it comfortable. Across the room is an expansive desk equipped with everything you would expect to find on a classy secretary's desk: a terminal, old-fashioned writing utensils, holopaper, and even a small statue of a busty centaur. A monolithic white door sits framed in the western wall, while a simpler one is in the southern, leading back outside.";
 	rooms["KELLY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
@@ -1452,7 +1452,7 @@ public function initializeRooms():void
 	//93. Medical Office
 	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
 	rooms["ESBETH MEDICAL OFFICE"].roomName = "MEDICAL\nOFFICE";
-	rooms["ESBETH MEDICAL OFFICE"].description = "The inside of the medical office is about as ramshackle and rundown as the outside of the shack. Standard manufactured alumiplate forms the walls, and the floor is made of the same bland, reflective stuff. Discarded wrappers and bits of clothing are scattered everywhere. There isn't even a trash receptacle anywhere to clean it up with. More importantly, a single bed is built into the east wall, covered in fresh fabric of some kind or another. The only piece of equipment that looks moderately well-maintained is a seemingly worn chair close to the bed.\n\nThe door to the west leads back to the streets of Esbeth.";
+	rooms["ESBETH MEDICAL OFFICE"].description = "The inside of the medical office is about as ramshackle and rundown as the outside of the shack. Standard manufactured alumiplate forms the walls, and the floor is made of the same bland, reflective stuff. Discarded wrappers and bits of clothing are scattered everywhere. There isn't even a trash receptacle anywhere to put it into. More importantly, a single bed is built into the east wall, covered in fresh fabric of one kind or another. The only piece of equipment that looks moderately well-maintained is a seemingly worn chair close to the bed.\n\nThe door to the west leads back to the streets of Esbeth.";
 	rooms["ESBETH MEDICAL OFFICE"].runOnEnter = mhengaMedicalThingerBonusFunc;
 	rooms["ESBETH MEDICAL OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH MEDICAL OFFICE"].system = "SYSTEM: ARA ARA";
@@ -1809,7 +1809,7 @@ public function initializeRooms():void
 	rooms["202"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["TARKUS SCOUT AUTHORITY"] = new RoomClass(this);
-	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHOTITY";
+	rooms["TARKUS SCOUT AUTHORITY"].roomName = "SCOUT\nAUTHORITY";
 	rooms["TARKUS SCOUT AUTHORITY"].description = "";
 	rooms["TARKUS SCOUT AUTHORITY"].runOnEnter = tarkusScoutAuthorityOffice;
 	rooms["TARKUS SCOUT AUTHORITY"].southExit = "202";
