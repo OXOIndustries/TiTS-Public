@@ -5643,7 +5643,7 @@
 				cumDelta /= 2;
 			}
 			//Just hit full balls!
-			if(ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if(balls > 0 && ballFullness + cumDelta * minutes >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + this.short);
 				//Hit max cum - standard message

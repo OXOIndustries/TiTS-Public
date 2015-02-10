@@ -217,7 +217,11 @@ public function checkOutBountyBoard():void
 	
 public function barBackRoomBonus():Boolean
 {
-	if(flags["KELLY_MET"] == 1 && (hours >= 17 || hours < 6)) kellyAtTheBar();
+	if((hours >= 17 || hours < 6))
+	{
+		if(flags["KELLY_MET"] == 1) kellyAtTheBar();
+		else output("\n\nA bunny-girl is back here with another patron, too busy to pay any attention to you.")
+	}
 	return false;
 }
 

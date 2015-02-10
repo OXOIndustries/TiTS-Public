@@ -70,7 +70,7 @@ public function introductionToJulian():void {
 	userInterface.showBust("DR_HASWELL");
 	flags["MET_DR_HASWELL"] = 1;
 	output("Coughing lightly to get the mousy-looking man's attention, you wonder what point there is in having a secretary if he doesn't even care about talking to the people she lets into his office.");
-	output("\n\nThe scientist's face snaps up to regard you, and you nearly take a step back under his piercing, inhuman glare. He looked like a normal enough human, sans the blue hair, but his eyes are a piercing, almost glowing blue, wrapped around a pair of deep black slits that would look more at home on a feline than a human. <i>\"I suppose you must be here about the notice I posted on the bounty board, yes?\"</i>");
+	output("\n\nThe scientist's face snaps up to regard you, and you nearly take a step back under his piercing, inhuman glare. He looked like a normal enough human, barring the blue hair, but his eyes are a piercing, almost glowing blue, wrapped around a pair of deep black slits that would look more at home on a feline than a human. <i>\"I suppose you must be here about the notice I posted on the bounty board, yes?\"</i>");
 
 
 	//If seen it:
@@ -128,7 +128,7 @@ public function acceptZilCapMission():void {
 	userInterface.showBust("DR_HASWELL");
 	flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] = 1;
 	output("You grab the capture harness and nod to the scientist. \"<i>I'll do it.</i>\"");
-	output("\n\n\"<i>Excellent!</i>\"  Julian cheers. \"<i>Male or female will do. I need them both eventually. The credits will be transferred to your account as soon as we have the creature in custody. Now...</i>\"  Julian seats himself, \"<i>, if you'll excuse me, there is a mountain of work to do and only one researcher to get it all done.</i>\"  He turns back to his work, dismissing you without another word.");
+	output("\n\n\"<i>Excellent!</i>\"  Julian cheers. \"<i>Male or female will do. I need them both eventually. The credits will be transferred to your account as soon as we have the creature in custody. Now...</i>\"  Julian seats himself, \"<i>if you'll excuse me, there is a mountain of work to do and only one researcher to get it all done.</i>\"  He turns back to his work, dismissing you without another word.");
 	//Display key item gain message "Capture Harness"
 	output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
 	pc.createKeyItem("Capture Harness",0,0,0,0);
