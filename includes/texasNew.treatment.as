@@ -547,16 +547,16 @@ public function treatmentHourProcs():void
 				pc.lust(3);
 				pc.breastRows[0].breastRatingRaw++
 			}
-			//HHH -> big HHH
+			/*HHH -> big HHH
 			else if(pc.breastRows[0].breastRatingRaw < 24)
 			{
 				eventBuffer += "\n\nYou wrap your arms around your [pc.chest], squeezing them together. Your breasts have gotten so big and well... fuckable lately. You squeeze tighter, making them bulge out slightly, and giggle. Huge tits can serve so many purposes! They can get you attention from guys and girls, or they can hold milk.... One of your hands starts tugging a nipple, reminding you of another important fact about big, treated boobs: they can feel really, really good. You're already bigger than some of the girls on New Texas, almost past HHH-cups. How big can you get?";
 				//+5 lust
 				pc.lust(5);
 				pc.breastRows[0].breastRatingRaw++
-			}
+			}*/
 			//big HHH -> I
-			else if(pc.breastRows[0].breastRatingRaw < 25)
+			else if(pc.breastRows[0].breastRatingRaw < 24)
 			{
 				eventBuffer += "\n\nWarmth burns through the nerves of your chest, heating your jiggling mounds to an incredibly pleasant simmer as they begin to swell. You grab them, mooing and moaning in equal parts, feeling them bulge out between your fingertips, marvelling at the weight of your expanding feminine flesh. Your tits are definitely I-cups now. The tingling heat fades, replaced by a desire for physical contact. You give them that and more. Your hands fly across your chest, mauling your boobs for what feels like hours. It isn't until you cum from the incessant stimulation that your hands fall away";
 				if(pc.cumQ() >= 100 || pc.wettestVaginalWetness() >= 3 || (pc.isLactating() && pc.lactationQ() >= 200)) eventBuffer += ", leaving you sitting in a puddle of your own fluids and panting.";
@@ -565,13 +565,13 @@ public function treatmentHourProcs():void
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//I -> big I
-			else if(pc.breastRows[0].breastRatingRaw < 26)
+			else if(pc.breastRows[0].breastRatingRaw < 25)
 			{
 				eventBuffer += "\n\nA little extra wobble in your chest is all the notification you need to give yourself a quick grab n' squeeze. As expected, your tits are a little bigger than before. An I-cup bra would barely contain them! You sit there, petting them, hoping that it'll encourage further growth. There's no point in stopping when you're this close to moving up a whole bra size, is there?";
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//big I -> II
-			else if(pc.breastRows[0].breastRatingRaw < 27)
+			else if(pc.breastRows[0].breastRatingRaw < 26)
 			{
 				eventBuffer += "\n\nTeetering forward and nearly losing your balance is all the reminder you need to give your rack some much needed attention. Unashamedly whipping them out, you take hold of your growing tits and weigh them. It isn't a very precise method of measuring growth, but it feels wonderful. You spend a few moments playing with them, squishing them together, and even bouncing them in place before you come to a decision. You have II-cup boobs for sure.";
 				//+2
@@ -579,7 +579,7 @@ public function treatmentHourProcs():void
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//II -> big II
-			else if(pc.breastRows[0].breastRatingRaw < 28)
+			else if(pc.breastRows[0].breastRatingRaw < 27)
 			{
 				eventBuffer += "\n\nYour chest has been supremely weighty for a while, but it seems a little heavier than before. You'd better check, just in case it got bigger... and more fuckable. Imagining it's a dick sliding between your expanding knockers, you snake a hand through your cleavage, wrapping the crook of your arm around the bottom of it. It feels good, of course. Handling your breasts is an exercise in excitement for sure, but you do your best to keep your wits about you. It's important to know how big your boobs are, after all. How else will you be able to brag about being almost too big for an II-cup bra?";
 				//+7 lust
@@ -587,7 +587,7 @@ public function treatmentHourProcs():void
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//big II -> J
-			else if(pc.breastRows[0].breastRatingRaw < 29)
+			else if(pc.breastRows[0].breastRatingRaw < 28)
 			{
 				eventBuffer += "\n\nEvery movement sends quakes of happy feelings through your mountainous melons, the feminine orbs entirely too delighted to bounce and jiggle for the whole world to see. And you can't blame them either. They're big, delicious tits. They deserve to be grabbed and squeezed and pulled until you're whimpering and drooling all over them... just like now. You moo quietly under your breath and pull your hands away, trying not to cum. You're pretty sure they're at least J-cups by now, but it's a far less pressing concern than the needy itch between your ";
 				if(pc.hasVagina()) eventBuffer += "[pc.thighs]";
@@ -599,7 +599,7 @@ public function treatmentHourProcs():void
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//J -> big J
-			else if(pc.breastRows[0].breastRatingRaw < 30)
+			else if(pc.breastRows[0].breastRatingRaw < 29)
 			{
 				eventBuffer += "\n\nLooking down, you barely suppress a giggle. Your titties are just so gosh darned big! They're all wobbly and completely obscure your " + pc.feet() + "; why, you're pretty sure that without some serious effort you won't be able to make out your own groin. It's a good thing your fingers already know just where to go, but you're pretty sure they'd be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.";
 				//+10 lust
@@ -607,7 +607,7 @@ public function treatmentHourProcs():void
 				pc.breastRows[0].breastRatingRaw++
 			}
 			//big J -> JJ
-			else if(pc.breastRows[0].breastRatingRaw < 31)
+			else if(pc.breastRows[0].breastRatingRaw < 30)
 			{
 				eventBuffer += "\n\nOoooh! A throaty moan rips through the air around you as you feel something come over your tits. It feels like a wave of tingling is hitting you. Your [pc.nipples] instantly ";
 				if(pc.hasFuckableNipples() || pc.isLactating()) eventBuffer += "leak in noticeable streams";
