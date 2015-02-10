@@ -35,7 +35,7 @@ public function nyreaHeaderFromCreature(target:Creature):void
 	else nyreaHeader();
 }
 
-public function encounterNyreaHuntress():void
+public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 {
 	clearOutput();
 
@@ -44,7 +44,7 @@ public function encounterNyreaHuntress():void
 
 	nyreaHeader(nyreaType);
 
-	if (rand(10) < 4)
+	if ((rand(10) < 4 && forceType == NYREA_UNKNOWN) || forceType == NYREA_ALPHA)
 	{
 		nyreaType = NYREA_ALPHA;
 		if (rand(10) < 6) nyreaEggs = true;
@@ -117,7 +117,7 @@ public function nyreaFight(settings:Array):void
 	if (nyreaEggs) foes[0].createStatusEffect("Nyrea Eggs", 0, 0, 0, 0, true, "", "", true, 0);
 }
 
-// ALPHA Nyrea have more health, plus a SHIELD bar. Betas are faster-moving / have a higher dodge chance. They're more lust-focused in their attacks, but as they take damage, will switch to more physical attacks (especially Power Strike and Net Throw). 
+// ALPHA Nyrea have more health, plus a SHIELD bar. Betas are faster-moving / have a higher dodge chance. They're more lust-focused in their attacks, but  (especially Power Strike and Net Throw). 
 
 public function alphaNyreaAI():void
 {
@@ -131,17 +131,18 @@ public function alphaNyreaAI():void
 		}
 	}
 
-	var hpAttacks:Array = [];
-	var lustAttacks:Array = [];
+	var attacks:Array = [];
 
-	hpAttacks.push(nyreaAlphaUseGun);
-	hpAttacks.push(nyreaSpearThrust);
-	hpAttacks.push(nyreaPowerStrike);
-	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) hpAttacks.push(nyreaNetThrow);
+	attacks.push(nyreaAlphaUseGun);
+	attacks.push(nyreaSpearThrust);
+	attacks.push(nyreaPowerStrike);
+	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
 
-	lustAttacks.push(nyreaMeatSpin);
-	lustAttacks.push(nyreaPoledance);
-	lustAttacks.push(nyreaMilkRub);
+	attacks.push(nyreaMeatSpin);
+	attacks.push(nyreaPoledance);
+	attacks.push(nyreaMilkRub);
+
+	attacks[rand(attacks.length)]();
 }
 
 public function betaNyreaAI():void
@@ -156,16 +157,24 @@ public function betaNyreaAI():void
 		}
 	}
 
-	var hpAttacks:Array = [];
-	var lustAttacks:Array = [];
+	var attacks:Array = [];
 
-	hpAttacks.push(nyreaSpearThrust);
-	hpAttacks.push(nyreaPowerStrike);
-	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) hpAttacks.push(nyreaNetThrow);
+	var lustChance:int = ((foes[0].HP() / foes[0].HPMax()) * 100) - 20; // as they take damage, will switch to more physical attacks
 
-	lustAttacks.push(nyreaMeatSpin);
-	lustAttacks.push(nyreaPoledance);
-	lustAttacks.push(nyreaMilkRub);
+	if (rand(100) >= lustChance)
+	{
+		attacks.push(nyreaSpearThrust);
+		attacks.push(nyreaPowerStrike);
+		if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
+	}
+	else
+	{
+		attacks.push(nyreaMeatSpin);
+		attacks.push(nyreaPoledance);
+		attacks.push(nyreaMilkRub);
+	}
+
+	attacks[rand(attacks.length)]();
 }
 
 public function nyreaAlphaUseGun():void
