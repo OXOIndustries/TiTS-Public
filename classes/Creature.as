@@ -1362,6 +1362,9 @@
 				case "cockTail":
 					buffer = tailCockDescript();
 					break;
+				case "nippleNoun":
+					buffer = nippleNoun(arg2);
+					break;
 				case "nipple":
 				case "nippleDescript":
 					buffer = nippleDescript(arg2);
@@ -7184,6 +7187,41 @@
 				if (rando == 4) description += "bud";
 			}
 			if (plural) description = pluralize(description);
+			return description;
+		}
+		public function nippleNoun(rowNum:int = 0):String
+		{
+			var description:String = "";
+			var rando:int = 0;
+			if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+				rando = this.rand(5);
+				if (rando == 0) description += "penetrable nipple";
+				else if (rando == 1) description += "fuckable nip";
+				else if (rando == 2) description += "fuckable nipple";
+				else if (rando == 3) description += "pliable nipple-cunt";
+				else if (rando == 4) description += "stretchy nipple-cunt";
+			} else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+				rando = this.rand(5);
+				if (rando <= 1) description += "lipple";
+				else if (rando == 2) description += "lip-nipple";
+				else if (rando == 3) description += "kissable nipple";
+				else if (rando == 4) description += "mouth-like nipple";
+			}
+			//Normals
+			else {
+				rando = this.rand(5);
+				if (rando <= 1) description += "nipple";
+				if (rando == 2) {
+					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
+					else description += "nipple";
+				}
+				if (rando == 3) {
+					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
+					else description += "nipple";
+				}
+				if (rando == 4) description += "bud";
+			}
+			//description = pluralize(description);
 			return description;
 		}
 		public function areolaSizeDescript(): String {

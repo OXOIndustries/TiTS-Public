@@ -510,7 +510,10 @@ public function xantheTalkMenu():void
 	if(flags["XANTHE_TALKED_ABOUT_HERSELF"] != undefined) addButton(3,"Zyi",talkToXantheAboutSpaceJesus);
 	else addDisabledButton(3,"Zyi","Zyi","You don't know her well enough to ask about this.");
 	addButton(5,"The War",theWarTalkXanthe);
-	addButton(6,"Her Sex",askXantheAboutHerDonger);
+	// Lock wieners until the Codex entry is read.
+	if(CodexManager.entryViewed("Siel")) addButton(6,"Her Sex",askXantheAboutHerDonger);
+	else addDisabledButton(6,"Her Sex","Her Sex","You should probably read about the Siel's sex from the Codex first.");
+	// ** Locked until ‘Her Sex’ topic is viewed.
 	if(flags["XANTHE_TALKED_ABOUT_HER_SEX"] != undefined) addButton(7,"Use Mods",useModsYouSlut);
 	else addDisabledButton(7,"Use Mods","Use Mods","You don't know her well enough to ask about this.");
 	addButton(8,"Mating",sexChatWithXanthe);
@@ -1328,7 +1331,7 @@ public function getLeftByXantheSlooot():void
 	output("\n\n\"<i>");
 	if(flags["MET_BUTCH"] == undefined) output("This, my dear, is ‘Butch’.");
 	else output("You remember ‘Butch’, don’t you?");
-	output(" He’s getting shoved deep inside of your [pc.pussyOrAss]. I’m setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.</i>” Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?");
+	output(" He’s getting shoved deep inside of your [pc.vagOrAss]. I’m setting him to react to your excitement levels. Specifically, </i>just<i> below that of orgasm.</i>” Xanthe clicks the back of it. Wait, just <i>below</i> orgasm...?");
 
 	output("\n\nYou can’t ask any questions though, what with your mouth stuffed with her freshly worn panties and taped shut. All you can do is stand there, your precious ");
 	if(!pc.hasCock()) output("nips");
