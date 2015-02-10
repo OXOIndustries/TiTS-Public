@@ -5001,16 +5001,6 @@
 			}
 			return vaginas[counter].wetness();
 		}
-		public function biggestVaginaIndex(): int {
-			if (vaginas.length == 0) return 0;
-			var counter: Number = vaginas.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (vaginalCapacity(index) < vaginalCapacity(counter)) index = counter;
-			}
-			return index;
-		}
 		public function smallestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;
 			var counter: Number = vaginas.length;

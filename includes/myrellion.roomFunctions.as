@@ -179,3 +179,29 @@ public function gildenmereElevatorBottomBonus():Boolean
 	else output("You flash the pass Lyralla gave you to the guards. They nod and gesture to the elevator. You can go to greater Gildenmere at your leisure.");
 	return false;
 }
+
+public function noManzLandBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["NO_MANS_STEP"] == undefined) flags["NO_MANS_STEP"] = 1;
+	else {
+		//if(pc.accessory is JungleLure) flags["NO_MANS_STEP"]++;
+		flags["NO_MANS_STEP"]++;
+	}
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["NO_MANS_STEP"] = 0;
+		
+		//Build possible encounters
+		choices[choices.length] = adultCockvineEncounter;
+		choices[choices.length] = cockvineSeedlingEncounter;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}

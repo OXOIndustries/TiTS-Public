@@ -610,7 +610,7 @@ public function sureBeFuckFriendsWithSyri():void {
 	showSyriName();
 	author("Savin");
 	output("<i>“Really? Awesome!”</i>  Syri says, jumping up and grabbing you in a big bear hug. <i>“We're gonna have a blast, you and I. Friends to the end!”</i>");
-	output("\n\n<i>“Hey, you're the captain of the a ship, right? I saw you dock a while ago. That's hot stuff. You should give me a tour sometime... </i>Captain<i> Steele. I haven't been on a spaceship in ages, and I'd love to see your... captain's quarters,”</i>  she says, giving you a wink as her hand brushes playfully across your thigh.");
+	output("\n\n<i>“Hey, you're the captain of a ship, right? I saw you dock a while ago. That's hot stuff. You should give me a tour sometime... </i>Captain<i> Steele. I haven't been on a spaceship in ages, and I'd love to see your... captain's quarters,”</i>  she says, giving you a wink as her hand brushes playfully across your thigh.");
 
 	output("\n\nYou nod, telling her you may do just that.");
 	//{Return to Syri's root menu}

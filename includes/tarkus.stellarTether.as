@@ -568,6 +568,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 			processTime(4);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
+			return;
 		}
 		//PC Succeeds: 
 		else
