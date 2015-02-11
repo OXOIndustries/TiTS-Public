@@ -761,6 +761,7 @@
 			// Noticed issue on an incoming save, offer to fix.
 			else if (flags["RIVALCONFIGURED"] == 2)
 			{
+				flags["RIVALCONFIGURED"] = 3;
 				eventQueue.push(jackJillIssueSceneEvent);
 			}
 		}

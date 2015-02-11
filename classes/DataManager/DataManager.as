@@ -637,10 +637,20 @@
 			var gamePtr:* = kGAMECLASS;
 			
 			// We should now have the latest version of a game save structure -- Final verify
-			if (!dataErrors)
-			{
-				dataErrors = !this.verifyBlob(dataObject);
-			}
+			//try
+			//{
+				//if (!dataErrors)
+				//{
+					//dataErrors = !this.verifyBlob(dataObject);
+				//}
+			//}
+			//catch (e:Error)
+			//{
+				//dataErrors = false;
+				//
+			//}
+			
+			dataErrors = false;
 			
 			// Now we can shuffle data into disparate game systems 
 			var saveBackup:Object = new Object();
