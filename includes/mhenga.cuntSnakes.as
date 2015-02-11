@@ -13,7 +13,7 @@
 //*Encounter a Cunt Snake
 public function encounterCuntSnakeOnJungleLand():void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNTSNAKE");
+	userInterface.showName("FIGHT:\nCUNT SNAKE");
 	//[First Time]
 	if(flags["MET_CUNT_SNAKE"] == undefined)
 	{
@@ -73,7 +73,7 @@ public function cuntSnakeAI():void {
 //Used every fifth turn
 public function paralyzingVenom():void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNTSNAKE");
+	userInterface.showName("FIGHT:\nCUNT SNAKE");
 	output("The snake coils up, then flashes out at you with mouth open and fangs exposed.");
 	//{standard miss/block text}
 	if (combatMiss(foes[combatStage-1],pc)) {
@@ -108,7 +108,7 @@ public function paralyzingVenom():void {
 //*Aphrodisiac Venom
 public function aphrodisiacBite():void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNTSNAKE");
+	userInterface.showName("FIGHT:\nCUNT SNAKE");
 	output("The snake coils up, then flashes out at you with mouth open and fangs exposed. ");
 	//{standard miss/block text}
 	if (combatMiss(foes[combatStage-1],pc)) {
@@ -138,7 +138,7 @@ public function aphrodisiacBite():void {
 //*Trip
 public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNTSNAKE");
+	userInterface.showName("FIGHT:\nCUNT SNAKE");
 	output("Your foe contorts its body inward and abruptly snaps its tail around like a whip, directed at your [pc.feet]! ");
 	//{standard miss/block text}
 	if (combatMiss(foes[combatStage-1],pc)) {
@@ -188,7 +188,7 @@ public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 //*Slap
 public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("FIGHT:\nCUNTSNAKE");
+	userInterface.showName("FIGHT:\nCUNT SNAKE");
 	output("Coiling its body like a spring, the cunt snake launches its body towards you!");
 	//{standard miss/block text}
 	//{standard miss/block text}
@@ -239,14 +239,14 @@ public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void 
 
 public function loseToCuntSnake():void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	if(pc.hasCock()) getSuckedOffByACuntSnakeAfterLosing();
 	else loseToCuntSnakeAndDontGetSucked();
 }
 
 public function cuntSnakeLossEpilogueTailChances():void {
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	if(!pc.hasCuntTail())
 	{
 		if(pc.hasCock())
@@ -273,7 +273,7 @@ public function cuntSnakeLossEpilogueTailChances():void {
 public function getSuckedOffByACuntSnakeAfterLosing():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	if(pc.HP() <= 1) {
 		output("You simply can't manage to resist any more and slump down, exhausted. The snake slithers up over its freshly defeated prize. The bumps on its head where eyes would be turn this way and that, while it flicks out its tongue and opens its mouth to take in your scent. It wavers for a moment before turning to regard your groin, somehow detecting the masculine protrusion");
 		if(pc.cockTotal() > 1) output("s that lie");
@@ -349,7 +349,7 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 public function loseToCuntSnakeAndDontGetSucked():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	if(pc.HP() <= 0) 
 	{
 		output("After being knocked around so much, you can barely stay upright, and you slump to the ground, eyes closing as soon as your body comes to rest. You shudder as you lose consciousness, helpless to stop the snake from doing what it will to you....");
@@ -470,7 +470,7 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 public function getACuntTail():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	//Wake up after falling asleep after loss scene.
 	output("A stabbing lance of pain shoots through your spine, just above your [pc.butt]. It's just intense enough stir you from slumber, but not much worse than a nasty scratch, now that you're awake - almost as if you rolled onto a rock while sleeping.");
 	output("\n\nYou reach back to feel the wound and touch... scales. Smooth, glossy, reptilian scales. The pain gets worse at contact, but the added sensation aids you in realizing that it's actually two wounds on your backside about an inch apart. It hurts more and more with each passing second, and the severity of the situation dawns on you: the snake is fang-deep in your back. You swat at it with your arm, squirming and writhing from the discomfort, barely missing again and again. When you finally make contact, it doesn't budge, but it does hurt.");
@@ -503,7 +503,7 @@ public function getACuntTail():void {
 public function defeatACuntSnake():void {
 	//{HP}
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	output("The snake flops down, limp and dazed. It doesn't appear to be a threat any longer. It starts trying to slither towards the brush. What do you do?");
 	if(pc.lust() >= 33 && pc.hasCock()) {
 		output(" The sight of that juicy snatch crawling away has you contemplating a course of action that would be unthinkable were you less aroused. ");
@@ -525,7 +525,7 @@ public function defeatACuntSnake():void {
 public function leaveIt():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	output("The perverse reptile slithers into the brush, hopefully never to be seen again.\n\n");
 	genericVictory();
 }
@@ -542,7 +542,7 @@ public function killACuntSnake():void {
 public function fuckACuntSnake():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	//It probably bites you part way into it and then Fen gets raged at for reversals.
 	output("You grab hold of the serpent before it can get away, keeping one hand just behind its head and the other securely clamped near the juicy entrance you plan to use. It's quite hard to whip out [pc.oneCock] and keep hold of the squirming alien, but somehow, you manage to keep everything wrangled and the fangs well away from your flesh. The presence of your burgeoning, rapidly-filling tumescence seems to calm the snake, so much so that it relaxes in your grip. It's the perfect picture of docility.");
 	var x:int = pc.cockThatFits(80);
@@ -599,7 +599,7 @@ public function fuckACuntSnake():void {
 public function giveBirthThroughCuntTail():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down your [pc.tail]. It’s trapped inside but slowly moving downwards in fits and start. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
 	output("\n\nYou flop down onto your side and curl your spasming tail around, watching the distention make progress along its length. Looking at the shape of the spheroid, you surmise that your tailcunt has created an egg and is giving birth to it now. Pulsing, muscular contractions work to push your ovum closer to the exit, eliciting a moan of pleasure from you in spite of your mild distress at the situation.");
 	output("\n\nThe egg begins to move faster, squishing and sliding through as it reaches the well-lubed part of your sloppy channel, and the ensuing feeling causes your back to arch and your tongue to loll from your mouth. Gurgled vocalizations of pleasure escape your mouth. Your hands, desperate to help somehow, grab hold of your [pc.chest] and grope at your [pc.nipples]");
@@ -641,7 +641,7 @@ public function giveBirthThroughCuntTail():void {
 public function hideYoEggYo():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	output("You find a good spot to hide the egg and leave it there, smiling when you realize that someone else is going to wind up with a juicy, delightful pussy attached to them, compelling them to feed it cum until they wind up feeling what you did... and then the whole cycle can start anew.");
 	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] == undefined) flags["CUNT_SNAKES_HELPED_TO_INFEST"] = 1;
 	else flags["CUNT_SNAKES_HELPED_TO_INFEST"]++;
@@ -652,7 +652,7 @@ public function hideYoEggYo():void {
 public function takeYoEggYo():void {
 	clearOutput();
 	userInterface.showBust("CUNTSNAKE");
-	userInterface.showName("\nCUNTSNAKE");
+	userInterface.showName("\nCUNT SNAKE");
 	output("You take the egg and secure it on your person. You’ll send it off first thing, so that it will properly cared for and want for nothing - hopefully, to include a host.");
 	if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] == undefined) flags["CUNT_SNAKE_EGGS_FAXED_HOME"] = 1;
 	else flags["CUNT_SNAKE_EGGS_FAXED_HOME"]++;

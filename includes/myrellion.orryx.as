@@ -279,7 +279,7 @@ public function ImInMissFrogapipipipipipi():void
 	showOrryx();
 	output("“<i>Phenomenal! Absolutely fantastic!</i>” he chortles, blinking his eyes out of sync. “<i>It’s not a dangerous mission at all. In fact, it’s the easiest thing in the world - for you, at least, not for me - I need Golden Honey.</i>”");
 	output("\n\nYou blink in surprise. From what you’ve seen of this city, the gold myr are lavishly free with the stuff.");
-	output("\n\nOrryx reads your expression surprisingly well. “<i>Yes, but they won’t deal with my directly, and I’m not allowed to deal with them either. So I need a proxy to collect, say, five units of the stuff a day. The two Seeders - those are trading pods - in my Sponsorstand can’t transport much cargo at a time,</i>” he continues, patting the side of his blinking stand. “<i>She’s a beautiful skimmer, but I can’t wait until I’ve earned enough for my own wabeship.</i>”");
+	output("\n\nOrryx reads your expression surprisingly well. “<i>Yes, but they won’t deal with me directly, and I’m not allowed to deal with them either. So I need a proxy to collect, say, five units of the stuff a day. The two Seeders - those are trading pods - in my Sponsorstand can’t transport much cargo at a time,</i>” he continues, patting the side of his blinking stand. “<i>She’s a beautiful skimmer, but I can’t wait until I’ve earned enough for my own wabeship.</i>”");
 	output("\n\n“<i>But that’s the deal, five units of Golden Honey equals a ridiculously easy pocketful of credits for you and a satisfactory profit for me. What do you say?</i>”");
 	processTime(3);
 	//I’ll pass.

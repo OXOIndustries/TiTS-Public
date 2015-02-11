@@ -163,13 +163,14 @@ public function selectRandomFap(faps:Array):void
 }
 
 public function masturbateMenu(roundTwo:Boolean = false):void {
-	this.clearMenu();
+	clearOutput();
+	clearMenu();
 	var aborted:Boolean = false;
 	//Masturbation prevention
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
 	{
 		clearOutput();
-		output("Masturbating here would be a bad idea.");
+		output("Masturbating here would be impossible.");
 		aborted = true;
 	}
 	if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
@@ -178,6 +179,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
+	//Pussy out, unless you're being force-fapped.
 	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
 	{
 		clearOutput();
@@ -216,6 +218,11 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			output("\n\n<b>No! You have to do this! You're getting too swollen not to!</b> You'll have to just blush and bear it!");
 			aborted = false;
 		}
+		else if(roundTwo)
+		{
+			output("\n\n<b>No! You have to - you're too turned on from milking yourself!");
+			aborted = false;
+		}
 	}
 	if(aborted)
 	{
@@ -235,7 +242,13 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	
 	if (roundTwo == true)
 	{
-		selectRandomFap(faps);
+		//If anything on the screen, do as a next
+		if(userInterface.outputBuffer != "")
+		{
+			clearMenu();
+			addButton(0,"Next",selectRandomFap,faps);
+		}
+		else selectRandomFap(faps);
 		return;
 	}
 	
@@ -918,6 +931,8 @@ public function milkturbation():void
 	clearOutput();
 	var milked:Boolean = false;
 	author("Fenfen MilkCo.");
+	//Passing time first for cheatsiedoodles.
+	processTime(10+rand(5));
 	//No top
 	if(!pc.isChestGarbed())
 	{
@@ -1062,6 +1077,7 @@ public function milkturbation():void
 		//10% per 400 mLs over 1L. So: 2L: 25%, 4L: 75%, etc
 		var orgasmOdds:int = 0;
 		if(pc.milkQ() >= 1000) orgasmOdds += (pc.milkQ() - 1000) / 40;
+		if(pc.isTreated()) orgasmOdds = 100;
 		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
 		if(!orgasmed && orgasmOdds <= 20)
@@ -1082,7 +1098,7 @@ public function milkturbation():void
 			else if(pc.balls > 0) output("ball-teasing ");
 			output("warmth to your most sensitive areas. You grind your [pc.hips] and cry out and need as the last droplets of [pc.milk], leaving you unfulfilled and delirious with need.");
 			output("\n\n<b>You start masturbating before the thought even reaches your brain. You have to.</b>");
-			pc.lust(1000);
+			pc.lust(9001);
 		}
 		//End: Minor orgasm all up in
 		else if(pc.milkQ() <= 5000)
@@ -1157,7 +1173,6 @@ public function milkturbation():void
 		if(orgasmed) pc.orgasm();
 		pc.milked(pc.milkFullness);
 	}
-	processTime(10+rand(5));
 	//Force faps
 	if(!orgasmed && milked && pc.lust() >= pc.lustMax())
 	{

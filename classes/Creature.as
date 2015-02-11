@@ -1365,6 +1365,9 @@
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
+				case "nipplesNoun":
+					buffer = pluralize(nippleNoun(arg2));
+					break;
 				case "nipple":
 				case "nippleDescript":
 					buffer = nippleDescript(arg2);
@@ -1400,6 +1403,12 @@
 					break;
 				case "balls":
 					buffer = ballsDescript();
+					break;
+				case "ballsNoun":
+					buffer = ballNoun(true);
+					break;
+				case "ballNoun":
+					buffer = ballNoun(false);
 					break;
 				case "ball":
 					buffer = ballsDescript();
@@ -6482,6 +6491,22 @@
 		}
 		public function ballDescript(forceCount: Boolean = false, forcedSize: Boolean = false): String {
 			return ballsDescript(forceCount, forcedSize, true);
+		}
+		public function ballNoun(plural:Boolean = true): String {
+			var rando:int = 0;
+			var desc:String = "";
+			rando = this.rand(11);
+
+			if (rando < 4) desc += "ball";
+			else if (rando <= 6) 
+			{
+				if(!plural) desc += "testicle";
+				else desc += "teste";
+			}
+			else if (rando <= 7) desc += "gonad";
+			else desc += "nut";
+			if (plural) desc = pluralize(desc);
+			return desc;
 		}
 		public function assholeDescript(): String {
 			var desc: String = "";

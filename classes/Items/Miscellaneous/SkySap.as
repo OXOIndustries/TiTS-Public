@@ -132,15 +132,19 @@
 				// Gain Tail Trip attack
 				if((pc.tailCount == 0 || pc.tailType != GLOBAL.TYPE_VANAE) && changes < changeLimit && rand(4) == 0)
 				{
-					if(pc.tailCount == 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " has fallen off!");
-					else if(pc.tailCount > 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " have fallen off!");
-					outputB(" From just above your [pc.butt], a protrusion forms and snakes outwards. After growing a few metres out, it falls to the ground from its own weight.");
-					outputB("\n\nWhen it finally stops growing, you tentatively wiggle it about. It seems to be a prehensile tail with octopus-like suckers on the bottom. It feels quite powerful, too, like you could knock someone over with a single sweep. <b>You now have a Vanae tail!</b>");
-					pc.tailCount = 1;
-					pc.tailType = GLOBAL.TYPE_VANAE;
-					pc.clearTailFlags();
-					pc.addTailFlag(GLOBAL.FLAG_LONG);
-					changes++;
+					if(target.tailTypeUnlocked(GLOBAL.TYPE_VANAE))
+					{
+						if(pc.tailCount == 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " has fallen off!");
+						else if(pc.tailCount > 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " have fallen off!");
+						outputB(" From just above your [pc.butt], a protrusion forms and snakes outwards. After growing a few metres out, it falls to the ground from its own weight.");
+						outputB("\n\nWhen it finally stops growing, you tentatively wiggle it about. It seems to be a prehensile tail with octopus-like suckers on the bottom. It feels quite powerful, too, like you could knock someone over with a single sweep. <b>You now have a Vanae tail!</b>");
+						pc.tailCount = 1;
+						pc.tailType = GLOBAL.TYPE_VANAE;
+						pc.clearTailFlags();
+						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						changes++;
+					}
+					else kGAMECLASS.output(target.tailTypeLockedMessage());
 				}
 				//Tentacle Hair
 				// Prerequisites: Don't have tentacle hair. Can be bald.

@@ -1404,7 +1404,7 @@ public function reahaMilkTalk():void
 	{
 		output(" <i>“Yeah, if you want.");
 		if (flags["REAHA_MILK_CHANGED"] != undefined) output(" I’ve already changed it anyway, after all.");
-		output(" I got myself into this mess by gene-modding, trying to be the best cow-girl I could be, but... if you’re paying for it, I guess I don’t mind.");
+		output(" I got myself into this mess by gene-modding, trying to be the best cow-girl I could be, but... if you’re paying for it, I guess I don’t mind.”</i>");
 	}
 
 	output("\n\nGood. Now, what to do about Reaha’s milk...");
@@ -1426,7 +1426,7 @@ public function reahaMilkTalk():void
 		if (reaha.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) addButton(1, "Chocolac", reahaMilkTalkChocolac, undefined, "Give Chocolac", "Give Reaha some Chocolac.");
 		else addDisabledButton(0, "Chocolac", "ChocoLac", "Reaha is already producing chocolate-milk!");
 	}
-	else addDisabledButton(1, "Chocolac", "You could probably give Reaha some Chocolac if you had any to hand.");
+	else addDisabledButton(1, "Chocolac", "Give Chocolac", "You could probably give Reaha some Chocolac if you had any to hand.");
 
 	addButton(14, "Back", showReahaTalkMenu);
 }
