@@ -1426,6 +1426,7 @@
 					buffer = chestNoun();
 					break;
 				case "breastNoun":
+				case "breast":
 					buffer = breastNoun();
 					break;
 				case "breastCupSize":

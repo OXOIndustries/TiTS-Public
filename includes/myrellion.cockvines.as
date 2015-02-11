@@ -383,7 +383,7 @@ public function adultCockvineConsentacles():void
 	if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 	else output(" It");
 	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
-	if (pc.hasVagina()) output(" and makes your [pc.eachVagina] moisten itself eagerly");
+	if (pc.hasVagina()) output(" and makes [pc.eachVagina] moisten itself eagerly");
 	output(".");
 
 	output("\n\nYou clutch two constituent parts of your tentacle harness, running your grip down them, enjoying their firm, oily, ever-so-slightly pliant texture, coaxing the thing on. The tips ooze creamy white seed onto you in response, smearing across your [pc.breast] and cheek; the sharp smell - citric, sweet and musky - hits your bloodstream like alcohol, making your pupils dilate, your [pc.lips] part and your [pc.nipples]");
@@ -391,13 +391,13 @@ public function adultCockvineConsentacles():void
 	else output(" wet themselves");
 	output(".");
 
-	output("\n\nThe cockvine’s progress is slow - implacable but gentle - completely at odds to the manner in which it swiped at you in the first place. Innately you understand that it acts in direct proportion to its captive; because you happily stepped into it and are willing it on, its movements are sensual, almost peaceful. Smiling amorously, you reach your head forward and teasingly lick the nearest vine. Like a cat’s tail it rises and curls upwards in response, letting you run your tongue all along its pliant, sleek girth to its leaking tip. Beneath your dangling lower body another tentacle curves its long length along your [pc.groin]");
+	output("\n\nThe cockvine’s progress is slow - implacable but gentle - completely at odds to the manner in which it swiped at you in the first place. Innately you understand that it acts in direct proportion to its captive; because you happily stepped into it and are willing it on, its movements are sensual, almost peaceful. Smiling amorously, you reach your head forward and teasingly lick the nearest vine. Like a cat’s tail it rises and curls upwards in response, letting you run your tongue all along its pliant, sleek girth to its leaking tip. Beneath your dangling lower body another tentacle curves its long length along your groin");
 	if (!pc.hasCock() && !pc.hasVagina()) output(".");
-	if (pc.hasVagina()) output(", your [pc.eachVagina] seeping excitement to the deliberate, slimy friction across your [pc.eachClit]");
+	if (pc.hasVagina()) output(", [pc.eachVagina] seeping excitement to the deliberate, slimy friction across your [pc.eachClit]");
 	if (pc.hasVagina() && pc.hasCock()) output(" and");
 	if (pc.hasCock())
 	{
-		output(" your [pc.eachCock] hardening irresistibly to the oily rubbing along");
+		output(" [pc.eachCock] hardening irresistibly to the oily rubbing along");
 		if (pc.cocks.length == 0) output(" its");
 		else output(" their");
 		output(" underside");
@@ -418,7 +418,7 @@ public function adultCockvineConsentacles():void
 
 	if (pc.hasVagina())
 	{
-		output("\n\n[pc.eachVagina] is");
+		output("\n\n[pc.EachVagina] is");
 		if (pc.wettestVaginalWetness() <= 3) output(" wet with excitement");
 		else output(" seeping excitement down your thighs");
 		output(" and you grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, dragging your tongue and cheeks across the bulging cockvine stuffed in your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.vagina], its head spreading your puffy lips wide before the deliciously thick, firm shaft ploughs deep into you.");
@@ -470,7 +470,7 @@ public function adultCockvineConsentacles():void
 	output(" with the endless leak of thick, citrus cum from its smooth, purple tips. It isn’t a mass of cocks all driven by their own independent urges, they act as a single creature with a delicious organic rhythm. Vines have wrapped themselves around your arms, striping them in glistening green; they tighten up when the tentacles engaged in reaming your [pc.vagOrAss] speed up, making you feel trapped in a straitjacket of warm, wet sex, making you squeal around the one you are fellating, forced to another juicy, flexing high... and then they loosen up, caressing your form sensuously, coddling you, lubricating your [pc.skin], assiduously preparing you for the next frenzied climax of rutting.");
 
 	output("\n\nYou grip the ends of the tentacles swaddling your arms gratefully, jerking their bulging lengths as you lavish the one pumping into your mouth with attention, kneading and licking every inch, glorying in the way it rewards you by powerfully surging all the way in and ejaculating small loads of its pheromone-rich cum straight down your throat, making you glow with intense arousal,");
-	if (pc.hasVagina()) output(" [pc. eachVagina] dribbling freely around the vines stuffed into it");
+	if (pc.hasVagina()) output(" [pc.eachVagina] dribbling freely around the vine stuffed into it");
 	if (pc.hasVagina() && pc.hasCock()) output(" and");
 	if (pc.hasCock()) output(" [pc.eachCock] straining needily");
 	output(".");
@@ -611,9 +611,9 @@ public function adultCockvinePCLoses():void
 	else
 	{
 		output(", mercilessly making");
-		if (pc.hasCock()) output(" your own [pc.eachCock] engorge and stand to attention");
+		if (pc.hasCock()) output(" your own [pc.cocks] engorge and stand to attention");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
-		if (pc.hasVagina()) output(" [pc.eachVagina] moisten and spread");
+		if (pc.hasVagina()) output(" [pc.vaginas] moisten and spread");
 		output(" in submissive sympathy.");
 	}
 
@@ -635,9 +635,12 @@ public function adultCockvinePCLoses():void
 		else output(" ");
 
 		output("You manage a muffled grunt as one vine wraps its thinner end around your helplessly erect [pc.cock] and tightens");
-		if (pc.cocks.length > 1) output("; your other cock is");
-		if (pc.cocks.length > 2) output("s are");
-		output(" treated similarly, smaller tentacles reaching in to take a firm grip on your overgrowth of dicks");
+		if (pc.cocks.length > 1)
+		{
+			if(pc.cocks.length == 2) output("; your other cock is");
+			if (pc.cocks.length > 2) output("; your other cocks are");
+			output(" treated similarly, smaller tentacles reaching in to take a firm grip on your overgrowth of dicks");
+		}
 		output(". You might have found it funny that the plant creature sees your male sex as simply another");
 		if (pc.cocks.length > 1) output(" set of");
 		output(" appendage");
