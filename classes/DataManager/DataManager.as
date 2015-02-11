@@ -687,7 +687,7 @@
 		 * Need to add some error handling in here
 		 * @param	obj
 		 */
-		private function loadBaseData(obj:Object, curGameObj:Object):Object
+		private function loadBaseData(obj:Object, curGameObj:Object):Boolean
 		{
 			trace("loadBaseData");
 			// Base/Primary information
@@ -710,7 +710,7 @@
 			// Game data
 			kGAMECLASS.chars = new Object();
 			var aRef:Object = kGAMECLASS.chars;
-			var failure:Boolean = false
+			var failure:Boolean = false;
 			
 			for (prop in obj.characters)
 			{
@@ -950,8 +950,9 @@
 				kGAMECLASS.userInterface.setMapData(kGAMECLASS.mapper.generateMap(kGAMECLASS.currentLocation));
 				kGAMECLASS.userInterface.showMinimap();
 				
+				var aRef:* = kGAMECLASS.chars;
 				// Some plebshit
-				if (kGAMECLASS.chars["RIVAL"] == "Jack" || kGAMECLASS.chars["RIVAL"] == "Jill")
+				if (kGAMECLASS.chars["RIVAL"].short == "Jack" || kGAMECLASS.chars["RIVAL"].short == "Jill")
 				{
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 1;
 				}
