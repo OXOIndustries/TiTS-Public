@@ -1365,6 +1365,9 @@
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
+				case "nipplesNoun":
+					buffer = pluralize(nippleNoun(arg2));
+					break;
 				case "nipple":
 				case "nippleDescript":
 					buffer = nippleDescript(arg2);
@@ -1401,6 +1404,12 @@
 				case "balls":
 					buffer = ballsDescript();
 					break;
+				case "ballsNoun":
+					buffer = ballNoun(true);
+					break;
+				case "ballNoun":
+					buffer = ballNoun(false);
+					break;
 				case "ball":
 					buffer = ballsDescript();
 					break;
@@ -1415,6 +1424,10 @@
 				case "chestNoun":
 				case "breastsNoun":
 					buffer = chestNoun();
+					break;
+				case "breastNoun":
+				case "breast":
+					buffer = breastNoun();
 					break;
 				case "breastCupSize":
 					buffer = breastCup(arg2);
@@ -6483,6 +6496,22 @@
 		public function ballDescript(forceCount: Boolean = false, forcedSize: Boolean = false): String {
 			return ballsDescript(forceCount, forcedSize, true);
 		}
+		public function ballNoun(plural:Boolean = true): String {
+			var rando:int = 0;
+			var desc:String = "";
+			rando = this.rand(11);
+
+			if (rando < 4) desc += "ball";
+			else if (rando <= 6) 
+			{
+				if(!plural) desc += "testicle";
+				else desc += "teste";
+			}
+			else if (rando <= 7) desc += "gonad";
+			else desc += "nut";
+			if (plural) desc = pluralize(desc);
+			return desc;
+		}
 		public function assholeDescript(): String {
 			var desc: String = "";
 			var rando: Number = 0;
@@ -9690,6 +9719,34 @@
 			if(descripted) descript += " ";
 			descript += chestNoun(rowNum);
 			return descript;
+		}
+		public function breastNoun(rowNum:int = 99):String
+		{	
+			var noun:String = "";
+			if(rowNum == 99) rowNum = 0;
+			//Nouns!
+			var temp:int = this.rand(14);
+			if (temp == 0) noun += "breast";
+			else if (temp <= 1) {
+				if (isLactating()) noun += "udder";
+				else noun += "breast";
+			} else if (temp <= 3) {
+				if (breastRows[rowNum].breastRating() > 4 && this.rand(2) == 0) noun += "tit";
+				else noun += "breast";
+			} else if (temp <= 6) noun += "tit";
+			else if (temp <= 7) {
+				if (!isLactating()) noun += "jug";
+				else noun += "udder";
+			} else if (temp <= 8) {
+				if (breastRows[rowNum].breastRating() > 6) noun += "love-pillow";
+				else noun += "boob";
+			} else if (temp <= 9) {
+				if (breastRows[rowNum].breastRating() > 6) noun += "tit";
+				else noun += "breast";
+			} else if (temp <= 11) noun += "mammary";
+			else if (temp <= 12) noun += "melon";
+			else noun += "mound";
+			return noun;
 		}
 		public function chestNoun(rowNum:int = 99):String
 		{

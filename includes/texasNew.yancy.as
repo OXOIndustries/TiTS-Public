@@ -610,7 +610,7 @@ public function untreatedMilkedAndFucked():void
 			else if(pc.wettestVaginalWetness() < 5) output("sopping wet");
 			else output("sloppy");
 			output(" puss");
-			if(pc.totalVaginas() > 1) output("ies");
+			if(pc.totalVaginas() > 1) output("ies?</i>");
 			else output("y?</i>");
 		}
 		else if(pc.hasCock()) output("hard [pc.cocksNounSimple]?</i>");

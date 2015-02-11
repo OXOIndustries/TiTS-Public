@@ -4,11 +4,7 @@ package classes.Items.Apparel
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
-	
-	/**
-	 * Swapped in and out of Annos statblock to determine her state/type of dress.
-	 * @author Gedan
-	 */
+
 	public class NurseOutfit extends ItemSlotClass
 	{
 		
@@ -38,9 +34,9 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;
-			this.defense = 5;
+			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 0;
+			this.sexiness = 5;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;

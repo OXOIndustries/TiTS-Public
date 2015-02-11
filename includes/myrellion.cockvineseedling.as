@@ -173,11 +173,11 @@ public function cockvineSeedlingJoin(sCockType:int):void
 		output(" it shifts itself onto your slime");
 	}
 	output(". You murmur encouragement and remain as still as you can, feeling the smooth plant undulate its way up your [pc.thigh] and then probing the base of your spine above your [pc.butt]");
-	if (pc.tailCount > 0)
+	if (pc.tailCount > 1)
 	{
-		output(", in between your other tail");
-		if (pc.tailCount > 1) output("s");
+		output(", in between your other tails");
 	}
+	else if(pc.tailCount == 1) output(", alongside your other tail");
 	output("; your eyes open wide and you gasp as the seedling rears back and plants its tendril end into you with an audible smack. You feel its proto-roots penetrate your skin, burying inwards to touch the nerves to be found there. It’s not exactly painful but certainly uncomfortable, rather like getting operated on under local anesthetic. You gasp and almost laugh as you feel odd pangs and twitches at the base of your back, strange impulses shooting up your spine as the parasite merges with you, grafting into your nervous system and suppressing your immune system’s desire to attack it.");
 
 	output("\n\nSlowly but surely you feel sensation spreading downwards into your new appendage. You twinge odd new muscle groups and to your delight the tail reacts; after you’ve flexed it a few times you find you are able to swing your cock-tail around, admire it and catch it, feel it as your own.");

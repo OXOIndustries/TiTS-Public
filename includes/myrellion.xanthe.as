@@ -118,6 +118,63 @@ public function silkenSerenityExteriorShitz():Boolean
 	return false;
 }
 
+public function xantheCock():String
+{
+	var desc:String = "";
+	var rollN:Number = 0;
+	//Desc - 33%
+	if(rand(2) == 0) 
+	{
+		rollN = rand(5);
+		if(rollN == 0) desc += "segmented ";
+		else if(rollN <= 1) desc += "lumpy ";
+		else if(rollN <= 2) desc += "muscle-ribbed ";
+		else if(rollN <= 3) desc += "caterpillar-like ";
+		else if(rollN <= 3) desc += "alien ";
+	}
+	//Nouns! 100%
+	rollN = rand(10);
+	if (rollN <= 0) desc += "siel-cock";
+	else if (rollN <= 1) desc += "prick";
+	else if (rollN <= 2) desc += "shaft";
+	else if (rollN <= 3) desc += "member";
+	else if (rollN <= 4) desc += "prick";
+	else if (rollN <= 5) desc += "xeno-dick";
+	else if (rollN <= 6) desc += "cock";
+	else if (rollN <= 7) desc += "siel-dick";
+	else if (rollN <= 8) desc += "tool";
+	else desc += "phallus";
+	return desc;
+}
+public function xantheCunt():String
+{
+	var desc:String = "";
+	var rollN:Number = 0;
+	//Desc - 33%
+	if(rand(2) == 0) 
+	{
+		rollN = rand(6);
+		if(rollN == 0) desc += "Y-lipped ";
+		else if(rollN <= 1) desc += "tri-lipped ";
+		else if(rollN <= 2) desc += "three-fold ";
+		else if(rollN <= 3) desc += "silk-lined ";
+		else if(rollN <= 4) desc += "alien ";
+		else if(rollN <= 5) desc += "exotic ";
+	}
+	//Nouns! 100%
+	rollN = rand(10);
+	if (rollN <= 0) desc += "siel-cunt";
+	else if (rollN <= 1) desc += "vagina";
+	else if (rollN <= 2) desc += "xeno-pussy";
+	else if (rollN <= 3) desc += "slit";
+	else if (rollN <= 4) desc += "box";
+	else if (rollN <= 5) desc += "cunt";
+	else if (rollN <= 6) desc += "siel-vagina";
+	else if (rollN <= 8) desc += "pussy";
+	else desc += "twat";
+	return desc;
+}
+
 public function showXanthe():void
 {
 	if(flags["MET_XANTHE"] == 1) showName("\nXANTHE");
@@ -480,7 +537,7 @@ public function xantheTalkUsloot():void
 		else if(days < 300) output("a few months");
 		else if(days < 600) output("a whole year");
 		else output("a few years");
-		output(" ago. You know how people are, it’s old if it happened three days ago.</i>” Xanthe runs a finger through her wavy locks, twirling it around. <i>\"I remember thinking you needed new clothes.</i>”");
+		output(" ago. You know how people are, it’s old if it happened yesterday.</i>” Xanthe runs a finger through her wavy locks, twirling it around. <i>\"I remember thinking you needed new clothes.</i>”");
 		output("\n\n<i>\"And here you are. Kind of like fate, hmm? I’m sure I’ve got </i>something<i> here that says ‘I’m a " + pc.mf("dashing","beautiful") + " young millionaire play" + pc.mf("boy","girl") + " and galactic adventure" + pc.mf("rer","ress") + " - kicking ass and getting laid on the side.</i>”");
 		if(!pc.isBimbo()) output("\n\nDamn media. Guess something juicy like that was only going to be a secret for a whole day before it got out. You wonder how many people saw that particular story...?");
 		//ditz:
@@ -748,7 +805,7 @@ public function askXantheWhyFoxCancelledFirefly():void
 	if(!pc.isBimbo()) output("\n\nYou ask her how she can afford to give stuff away on a whim like that.");
 	else output("\n\nThat makes you all happy inside, and you flush. You feel all special! <i>\"Oh, thanks! I like looking hot, and looking at hot people. You can look at me all you like, if it makes you happy...</i>”");
 
-	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. \"<i>... That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.\</i>”<i>");
+	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. \"<i>... That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.</i>”");
 
 	output("\n\n... So in short, the Silken Serenity is her personal perving paradise. You ask her if that means there’s cameras in the changing rooms?");
 
@@ -1202,7 +1259,7 @@ public function yesYouCanDomMeXanthe():void
 	clearOutput();
 	showXanthe();
 	output("You can’t deny her words, instead looking at your feet with flushing cheeks. Soon you feel a curved finger being slipped underneath your chin, bringing it upwards until you are staring into her eyes.");
-	output("\n\n<i>\"Submit to me, my " + pc.mf("handsome","beauutiful") + " [pc.race], and I will love you and take care of you until the end of days.</i>” A gentle kissu is lavished on your raised jawline and fills you with incredible warmth. <i>\"I will fiercely protect you like no other, and others will know that you belong to ME.</i>”");
+	output("\n\n<i>\"Submit to me, my " + pc.mf("handsome","beauutiful") + " [pc.race], and I will love you and take care of you until the end of days.</i>” A gentle kiss is lavished on your raised jawline and fills you with incredible warmth. <i>\"I will fiercely protect you like no other, and others will know that you belong to ME.</i>”");
 	output("\n\nHer sudden burst of possessiveness and sweet, caring promises cause your [pc.knees] to quake and your heart to swell. It feels as if she is a mother lion, threatening to tear apart those who would so much as scratch your [pc.skinFurScalesNoun].");
 	output("\n\nIt’s not even a question of being claimed, as you know in your heart that you already belong to her. You’ve <i>always</i> belonged to her. All that’s left is to say the words that confirm it.");
 	output("\n\n\"<i>... Yes.</i>” You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
@@ -1283,11 +1340,10 @@ public function tieAndTeaseWithXanthe():void
 
 	pc.lust(20);
 	processTime(5);
-	//[She Leaves You!] [Pays Attention] 
-	//Random?
 	clearMenu();
-	if(rand(2) == 0) addButton(0,"Next",shePaysAttentionToYouSlut);
-	else addButton(0,"Next",getLeftByXantheSlooot);
+	//[She Leaves You!] [Pays Attention] 
+	addButton(0,"SheLeaves",getLeftByXantheSlooot);
+	addButton(0,"SheStays",shePaysAttentionToYouSlut);
 }
 
 // She Leaves You!
@@ -1441,7 +1497,7 @@ public function leftTeasedForEver(x:int = 0):void
 	else output("\n\nYou watch her slip off her front underwear and then sensuously stroke her cock slit. It’s not long before her rippled alien phallus is emerging, blessing you with that glorious sight. When it’s fully out, she wraps it at the base with her silk and it quickly becomes fully engorged.");
 
 	output("\n\n");
-	if(flags["XANTHE_FRONT_GENITAL"] == 1) output("With her [xanthe.frontCock] at the ready");
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) output("With her " + xantheCock() + " at the ready");
 	else output("With her strap on properly equipped");
 	output(", your Mistress moves ");
 	if(pc.genitalLocation() <= 1) output("up to you");
@@ -1471,7 +1527,7 @@ public function leftTeasedForEver(x:int = 0):void
 	output(", assaulting your body with so many sensations in all the right places. Even with your wrists bound up, you buck and grind instinctively against her, happy for your Mistress to claim what is hers.");
 
 	output("\n\nIt’s not surprising that you quickly reach the brink that you have been literally denied for days, though your orgasm is mind blowingly cataclysmic. Starting at a trembling [pc.foot] and turning into a full body spasm, you clench her ");
-	if(flags["XANTHE_FRONT_GENITAL"] == 1) output("[xanthe.frontCock]");
+	if(flags["XANTHE_FRONT_GENITAL"] == 1) output(xantheCock());
 	else output("strap on");
 	output(" with your [pc.vagOrAss " + x + "] and let out an intensely muffled scream. Sensing your climax, your Mistress thrusts hard and deep, pushing her cock head hard ");
 	if(pc.hasVagina()) output("against the mouth of your womb");
@@ -1494,14 +1550,14 @@ public function leftTeasedForEver(x:int = 0):void
 	{
 		output("your");
 	}
-	if(pc.hasVagina()) output("[pc.vaginas] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar");
+	if(pc.hasVagina()) output(" [pc.vaginas] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar");
 	//neuter:
 	if(!pc.hasVagina() && !pc.hasCock()) output("you thoroughly cream yourself, twitching and shivering against her as you experience a dry orgasm");
 	output(".");
 	if(flags["XANTHE_FRONT_GENITAL"] == 1) 
 	{
 		output(" At the same time your [pc.vagOrAss " + x + "] squeezes her alien shaft deliciously hard.");
-		output("\n\nEverything else in the world is wiped away by exquisite molten release. You feel your Mistress’s [xanthe.cock] shooting twin streams of her sticky alien seed deep into your");
+		output("\n\nEverything else in the world is wiped away by exquisite molten release. You feel your Mistress’s " + xantheCock() + " shooting twin streams of her sticky alien seed deep into your");
 		if(pc.hasVagina() && !pc.isPregnant(x)) output(" fertile womb");
 		else if(pc.hasVagina()) output(" pregnant pussy"); 
 		else output(" naughty ass");
@@ -1598,7 +1654,7 @@ public function shePaysAttentionToYouSlut():void
 			output(", to make them especially pretty.</i>” Your Mistress informs you. She then begins meticulously weaving the soft cord around one breast.");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her promise to make you even more pretty. Your Mistress complimented your [pc.breastsNoun], though indirectly. When she pulls it tight, you let out a sharp gasp.");
 			output("\n\n\"<i>Do you know what happens to your [pc.breastsNoun] when I do this, my love? Blood rushes into them and they become especially sensitive.</i>\" Xanthe caresses your now ballooned breast, bound tight by her silk rope right against your chest. You can feel it squeezing into your sensitive [pc.skinFurScalesNoun], though not enough to <i>completely</i> cut off circulation.");
-			output("\n\nLooking down, you marvel at how <i>round</i> your [pc.breastNoun] has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
+			output("\n\nLooking down, you marvel at how <i>round</i> your breast has become. Your [pc.nippleNoun] is jutting out as the blood rushes to it, just as she promised. The slightest caress by her fingers causes you to let out a pleasured whine as you positively melt.");
 			output("\n\n<i>\"That’s just part of the entree, dear, we haven’t even started the main course.</i>” Xanthe tsks and once she’s finished wrapping your other breast");
 			if(pc.totalBreasts() > 2) output("s");
 			output(", begins binding up your [pc.cocksNounSimple]. Doing so makes ");
@@ -1722,9 +1778,8 @@ public function slutNotASlutEpilogue():void
 	{
 		output(" Each crack in turn caresses your captured ");
 		if(pc.biggestTitSize() >= 1) output("chest");
-		if(pc.hasCock()) output("[pc.cocksNounSimple]");
-		if(pc.hasVagina()) output("[pc.clits]");
-		if(pc.hasVagina()) output("[pc.vaginas]");
+		else if(pc.hasCock()) output("[pc.cocksNounSimple]");
+		else if(pc.hasVagina()) output("[pc.clits]");
 		output(" and you reel with dizzying pleasure.");
 	}
 	output(" Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.");
@@ -1733,7 +1788,7 @@ public function slutNotASlutEpilogue():void
 
 	output("\n\nIt’s a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legs] are quaking so hard that you’re entirely supported by your wrist binds - you’re sure that once she undoes them you’ll simply fall into a gooey mess.");
 	output("\n\nYou can hear the squirting of a bottle followed by another strange sound. It’s not long before a cool, lube covered object is being slid between your buttocks and pressed against your [pc.asshole]. <i>\"Relax, my love, and let it go inside of you.</i>”");
-	output("\n\nOnce you consciously unclenching your rectum, you are immediately rewarded with the sensation of what feels like a single slick sphere passing through your pucker and into your butt. You let out a muffled moan as it sweetly slides inside of you, massaging and caressing your back passage in all the right places.");
+	output("\n\nOnce you consciously unclench your rectum, you are immediately rewarded with the sensation of what feels like a single slick sphere passing through your pucker and into your butt. You let out a muffled moan as it sweetly slides inside of you, massaging and caressing your back passage in all the right places.");
 	output("\n\n<i>\"That’s one, we’ve got quite a few more to go.\</i>”</i> Your Mistress sinfully promises you, and your penetrated posterior wiggles with delight. One after another, lube-filled orbs penetrate and push deep into your derriere. With the blindfold on, all you can focus on is the texture of those glorious spheres sliding into your rump!");
 	pc.buttChange(8);
 
@@ -1741,7 +1796,7 @@ public function slutNotASlutEpilogue():void
 	if(pc.hasCock()) 
 	{
 		output("pre-cum liberally drools into her silky bindings and you stain them with your spunk.");
-		if(pc.hasVagina()) output("Meanwhile, your ");
+		if(pc.hasVagina()) output(" Meanwhile, your ");
 	}
 	if(pc.hasVagina()) output(" feminine juices dribble down your [pc.thighs] and coat them in your girlish warmth.");
 	if(!pc.hasCock() && !pc.hasVagina()) output("[pc.legs] quake as you struggle to contain the coiling pleasure within.");
@@ -1749,7 +1804,7 @@ public function slutNotASlutEpilogue():void
 
 	output("\n\nYour guard is let down too soon, however. There is a noise like a bicycle pump being used, and suddenly the line of balls in your ass begin swelling and expanding!");
 
-	output("\n\n<i>\"They’re </i>inflatable<i> anal beads, my dear. I’m going to fill you up until you feel like you’re being fucked by a conga line of Ausar cocks.</i> Your Mistress informs you. You bite down on your gag and let out a sweet cry, feeling as if you’re being knotted by a dozen canine cocks!");
+	output("\n\n<i>\"They’re </i>inflatable<i> anal beads, my dear. I’m going to fill you up until you feel like you’re being fucked by a conga line of Ausar cocks,</i>\" your Mistress informs you. You bite down on your gag and let out a sweet cry, feeling as if you’re being knotted by a dozen canine cocks!");
 	pc.buttChange(250);
 
 	output("\n\nWith each pumping noise the inside of your [pc.ass] is impossibly swelled out and you whimper with delight. It’s not long before you feel the sensation of floating off, and with the final pump you’re pushed right over the edge. Suddenly you’re cumming impossibly hard and ");

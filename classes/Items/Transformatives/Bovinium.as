@@ -395,12 +395,16 @@ package classes.Items.Transformatives
 			//High chance to grow a cow tail (No existing tails)
 			if (rand(3) == 0 && changes < tChanges && (target.tailType == 0 || target.tailCount == 0))
 			{
-				output("You feel a shifting of flesh behind you. Something's growing, sprouting from your backside. You look over your shoulder, watching as a mass of flesh twists and grows from just above your butt. After a few moments, the mass of flesh resolves into a distinctly tail-like shape which sprouts with a tuft of hair at its tip. <b>You now have a bovine tail!</b>\n\n");
-				
-				target.tailCount = 1;
-				target.tailType = GLOBAL.TYPE_BOVINE;
-				target.tailFlags = [];
-				changes++;
+				if(target.tailTypeUnlocked(GLOBAL.TYPE_BOVINE))
+				{
+					output("You feel a shifting of flesh behind you. Something's growing, sprouting from your backside. You look over your shoulder, watching as a mass of flesh twists and grows from just above your butt. After a few moments, the mass of flesh resolves into a distinctly tail-like shape which sprouts with a tuft of hair at its tip. <b>You now have a bovine tail!</b>\n\n");
+					
+					target.tailCount = 1;
+					target.tailType = GLOBAL.TYPE_BOVINE;
+					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
+					changes++;
+				}
+				else kGAMECLASS.output(target.tailTypeLockedMessage());
 			}
 
 			//High chance to grow a cow tail (PC already has tails)
@@ -514,8 +518,9 @@ package classes.Items.Transformatives
 				//PC was bipedal already:
 				else
 				{
-					output("You feel your [pc.legs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your legs, covering them to the upper thigh</b>. {if not already hooves: Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they're done, <b>you have a pair of cow-like hooves!</b>.\n\n");
-					
+					output("You feel your [pc.legs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legs], covering them to the upper thigh</b>.");
+					//if not already hooves: 
+					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they're done, <b>you have a pair of cow-like hooves!</b>.\n\n");
 					target.legType = GLOBAL.TYPE_BOVINE;
 					target.legFlags = [];
 					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);

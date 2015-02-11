@@ -355,7 +355,7 @@ public function bendItLikeBeckhamForRenvra():void
 	output("! Renvra’s movements are unyielding, refusing to accept anything less than fully burying her monstrously-large member in your ");
 	if(x >= 0) output("cunt");
 	else output("asshole");
-	output(". Your belly stretches to accommodate it, distening into a cock-shaped bulge by the time her egg-laden balls slap against ");
+	output(". Your belly stretches to accommodate it, distending into a cock-shaped bulge by the time her egg-laden balls slap against ");
 	if(pc.balls == 0) output("your behind");
 	else if(pc.balls == 1) output("your own churning orb");
 	else output("your own churning orbs");
@@ -495,7 +495,7 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 	output("\n\n“<i>Here we go,</i>” she moans, speaking in perfect cadence with her thrusts. “<i>Get ready!</i>”");
 	output("\n\nYou’re as ready as you’re going to be, and tell her as much with another orgasmic scream, letting your body carry you to the peaks of pleasure as its filled with a sudden, massive load of aphrodisiacs. Every touch seems to send you shivering and screaming to climax again, and Renvra’s pounding thrusts make your whole body feel as sensitive as [pc.oneClit], awash in sensation. Your hands instinctively go to your [pc.belly], wandering across the taut flesh there as you’re filled with your lover’s wonderfully thick semen.");
 	output("\n\nWhen she’s finally spent, Renvra gives a weak moan and falls forward, head collapsing into your [pc.chest]. You smile and run a hand through her spine-like hair, stroking her as her cock twitches and drools inside you.");
-	output("\n\n“<i>There’s nothing in the world like that,</i>” Ren finally manages to say, reaching up to cup your [pc.breast], fingers squeezing one of your [pc.nipples]. Slowly, she starts to withdraw from you, stepping back to pull the huge length of her ovicock from your slit. She does so with a moan, and unleashes of a torrent of pent-up pink spooge in the process that floods down onto the concrete floor. Still, you can feel more than enough of her lust-riddled spunk sloshing around deep inside you that you’re sure her swimmers have a fair chance of reaching their goal.");
+	output("\n\n“<i>There’s nothing in the world like that,</i>” Ren finally manages to say, reaching up to cup your [pc.breastNoun], fingers squeezing one of your [pc.nipples]. Slowly, she starts to withdraw from you, stepping back to pull the huge length of her ovicock from your slit. She does so with a moan, and unleashes of a torrent of pent-up pink spooge in the process that floods down onto the concrete floor. Still, you can feel more than enough of her lust-riddled spunk sloshing around deep inside you that you’re sure her swimmers have a fair chance of reaching their goal.");
 	output("\n\n“<i>Yuck,</i>” Ren sneers, patting your thigh affectionately and taking a wide step around the puddle to grab a towel from a drawer nearby. You watch her clean up, drying off her dick and thighs before turning her attention to you. It’s hard not to wince as the warrior woman leans back into your abused sex, but she’s surprisingly tender as she wipes away the mess she’s made of you.");
 	output("\n\nWhen she’s satisfied, Ren tosses the towel into a waste bin and grabs her clothes. While she’s pulling on her shirt and searching for her belt, you stagger up to your [pc.feet] and rub your sore ");
 	if(x >= 0) output("pussy");
@@ -769,7 +769,7 @@ public function renvraPregnancyMessage2():void
 
 	output("\n\nYou don't feel <i>bad</i>, per se. But something's fucking wrong. That's for sure.");
 
-	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and part-human as well. Well look at you, Daddy's [pc.boyGirl]! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
+	output("\n\nWith a groan, you slump against the wall and pull out your Codex. A few moments of scanning, extranet searching, and cursing pretty much solidifies in your mind: you're pregnant. With a clutch of part-myr, part-nyrea, and part-human as well. Well look at you, Daddy's " + pc.mf("boy","girl") + "! He sure would be proud you're well on your way to leaving your trail of galactic bastards just like your old man.");
 	
 	processTime(10);
 	

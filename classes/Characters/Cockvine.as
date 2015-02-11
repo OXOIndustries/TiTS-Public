@@ -15,8 +15,8 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "cock vine";
-			this.originalRace = "cock vine";
+			this.short = "cockvine";
+			this.originalRace = "cockvine";
 			this.a = "a ";
 			this.capitalA = "A ";
 			this.tallness = 24 + rand(36);

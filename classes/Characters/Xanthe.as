@@ -14,6 +14,7 @@
 	import classes.Items.Apparel.FurryBra;
 	import classes.Items.Apparel.CString;
 	import classes.Items.Apparel.ZipPouch;
+	import classes.Items.Apparel.NurseOutfit;
 	import classes.kGAMECLASS;
 	
 	public class Xanthe extends Creature
@@ -40,6 +41,7 @@
 			this.inventory.push(new MeshShirt());
 			this.inventory.push(new FurryBra());
 			this.inventory.push(new BusinessClothes());
+			this.inventory.push(new NurseOutfit());
 			this.inventory.push(new SkullPatternBra());
 			this.inventory.push(new CString());
 			this.inventory.push(new ZipPouch());

@@ -1315,8 +1315,8 @@ public function initializeMyrellionRooms():void
 	rooms["1L8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1N8"] = new RoomClass(this);
-	rooms["1N8"].roomName = "\n";
-	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of \"no man's land:\" vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads \"Nearing Kressia, the friendliest city near the surface!\" followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
+	rooms["1N8"].roomName = "NEAR\nKRESSIA";
+	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of \"no man's land\": vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads \"Nearing Kressia, the friendliest city near the surface!\" followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
 	rooms["1N8"].planet = "PLANET: MYRELLION";
 	rooms["1N8"].system = "SYSTEM: SINDATHU";
 	rooms["1N8"].westExit = "1L8";
@@ -1695,7 +1695,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1H24"] = new RoomClass(this);
 	rooms["1H24"].roomName = "THE\nTUNNELS";
-	rooms["1H24"].description = "Several stone pillars surround the foot a wide and well-made stairwell leading up and to the north. Emptied-out crates of military provisions are scattered around, evidence of the hastily-erected defensive lines surrounding you. The Republic clearly never expected the war to get this far south.";
+	rooms["1H24"].description = "Several stone pillars surround the well-made stairwell leading up and to the north. Emptied-out crates of military provisions are scattered around, evidence of the hastily-erected defensive lines surrounding you. The Republic clearly never expected the war to get this far south.";
 	rooms["1H24"].planet = "PLANET: MYRELLION";
 	rooms["1H24"].system = "SYSTEM: SINDATHU";
 	rooms["1H24"].northExit = "1H22";
@@ -1762,7 +1762,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1L18"] = new RoomClass(this);
 	rooms["1L18"].roomName = "RADIO\nBUNKER";
-	rooms["1L18"].description = "[Radio Bunker from Fast Travel Shit Here]";
+	rooms["1L18"].description = "(Radio Bunker from Fast Travel Shit Here)";
 	rooms["1L18"].planet = "PLANET: MYRELLION";
 	rooms["1L18"].system = "SYSTEM: SINDATHU";
 	rooms["1L18"].southExit = "1L20";
@@ -1816,7 +1816,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1H14"] = new RoomClass(this);
 	rooms["1H14"].roomName = "AT A\nSTREAM";
-	rooms["1H14"].description = "A well-eroded tunnel leads north to south from here, dividing the room by what amounts to a subterranean river. A craggy, cracked lip has formed in the stone to the north and east, and a stream about two feet wide rushes between the two of them. The river runs straight down the southern passage, making you keep to one side or the other of the cave.";
+	rooms["1H14"].description = "A well-eroded tunnel leads north to south from here, divided in half by what amounts to a subterranean river. A craggy, cracked lip has formed in the stone to the north and east, and a stream about two feet wide rushes between the two of them. The river runs straight down the southern passage, making you keep to one side or the other of the cave.";
 	rooms["1H14"].planet = "PLANET: MYRELLION";
 	rooms["1H14"].system = "SYSTEM: SINDATHU";
 	rooms["1H14"].southExit = "1H16";

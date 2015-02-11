@@ -158,8 +158,6 @@ public function appearance(target:Creature):void {
 			else output2("and covered with " + target.skinFurScales(true,true));
 			output2(". It's almost rabbit-like, except for the length of your muzzle.");
 		}
-		//Vanaebutt Skin
-		if(pc.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + pc.skinAccent + " trace brighter accents across much of your form.");
 
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
@@ -174,7 +172,7 @@ public function appearance(target:Creature):void {
 		else if(target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE) 
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("surrounded by a metalically glistening " + target.eyeColor + " iris.");
+			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
 			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by a " + target.eyeColor + " iris.");
 		}
@@ -293,6 +291,8 @@ public function appearance(target:Creature):void {
 			else if(target.wingType == GLOBAL.TYPE_DRAGONFLY) output2("giant dragonfly wings hang from your shoulders. At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
 		}
 		else output2(".");
+		//Vanaebutt Skin
+		if(pc.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + pc.skinAccent + " trace brighter accents across much of your form.");
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN) output2(" Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
@@ -528,7 +528,7 @@ public function appearance(target:Creature):void {
 		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
-			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips. Most of the length of the thing is coated in dark-green scales, culimating");
+			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips. Most of the length of the thing is coated in dark-green scales, culminating");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
@@ -1156,7 +1156,7 @@ public function appearance(target:Creature):void {
 				if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 				{
 					//Wetness
-					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
+					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ")
 					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 					else if(target.vaginas[0].wetness() >= 4)
 					{
@@ -1227,7 +1227,7 @@ public function appearance(target:Creature):void {
 				//LEITHAN FLAVOR
 				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
 				{
-					output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+					output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 				}
 			}
 			//MULTICOOCH!
@@ -1281,7 +1281,7 @@ public function appearance(target:Creature):void {
 						//LEITHAN FLAVOR
 						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN)
 						{
-							output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+							output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 						}
 					}
 					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
