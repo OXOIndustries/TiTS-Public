@@ -1,3 +1,4 @@
+import classes.Characters.PlayerCharacter;
 public function cockvineSeedlingHeader():void
 {
 	showName("COCK VINE\nSEEDLING");
@@ -101,8 +102,10 @@ public function cockvineSeedlingChase():void
 	//[Kill It] [Join] [Leave]
 	clearMenu();
 	addButton(0, "Kill It", cockvineSeedlingKillIt);
-	if (pc.tailType != GLOBAL.TYPE_COCKVINE) addButton(1, "Join", cockvineSeedlingJoin, sCockType, "Join", "Try and persuade the thing to become your tail.");
-	else addDisabledButton(1, "Join", "Join", "You already have a cockvine seedling for a tail!");
+	if (pc.tailType == GLOBAL.TYPE_COCKVINE) addDisabledButton(1, "Join", "Join", "You already have a cockvine seedling for a tail!");
+	else if (!pc.tailTypeUnlocked(GLOBAL.TYPE_COCKVINE)) addDisabledButton(1, "Join", "Join", "You have a funny feeling that you'll need to get rid of your current tail somehow before you could tempt the seedling to join the team...");
+	else addButton(1, "Join", cockvineSeedlingJoin, sCockType, "Join", "Try and persuade the thing to become your tail.");
+	
 	addButton(2, "Leave", cockvineSeedlingLeave);
 }
 

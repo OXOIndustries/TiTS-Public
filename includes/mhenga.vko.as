@@ -112,6 +112,14 @@ public function getDiseaseProbedYo():void
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
 	}
+	
+	if (pc.tailType == GLOBAL.TYPE_COCKVINE)
+	{
+		output("\n\nShe gasps, <i>\"Oh no! You've been infested by a hydrus constuprula parasitic vine! In order to treat that I will have to administer anesthesia.\"</i>");
+		addButton(detectedParasites, "Treat C.Vne", removeParasite, "cockvine");
+		addButton(14, "No Removal", turnDownTreatment);
+		detectedParasites++;
+	}
 
 	if (attachedMimbranes() > 0)
 	{
@@ -218,6 +226,7 @@ public function removeParasiteII(name:String):void {
 	
 	if (name == "cuntsnake") output("<i>\"All 'C' type snakes have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
 	else if (name == "mimbrane") output("<i>\"All 'M' class epidel parasites have been removed from your extremities. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
+	else if (name == "cockvine") output("<i>\"All 'H' class parasitic vines have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
 	
 	output("\n\nYou slowly sit up. There's some dizziness but it fades by the time you get upright. True to V-Ko's word, the anesthetics are wearing off almost immediately. You recall her mentioning payment for healing her earlier. <i>\"");
 	if(pc.isNice()) output("Excuse me, shouldn't this cost some money?");
@@ -226,17 +235,22 @@ public function removeParasiteII(name:String):void {
 	output("\"</i>");
 	output("\n\nV-Ko helps you down off the table. <i>\"There is no charge. Flahne has authorized me to deduct the requisite fees from this planet's health and wellness budget, paid for by local business taxes. Parasitism is taken very seriously across U.G.C. space and fully 90% of the member planets offer free treatments to remove them.\"</i>");
 	
-	if (name == "cuntsnake") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
+	if (name == "cuntsnake" || name == "cockvine") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
 	else if (name == "mimbrane") output("\n\nYou thank her the service; it's as if you never had any mimbranes on you at all.");
 	
 	output("\n\n<i>\"Now then, would you like to pursue some of my other services or will you be on your way?\"</i> V-Ko asks. <i>\"It has been a pleasure to serve.\"</i>");
 	//Menu
 	
 	// Do the removal shit
-	if (name == "cuntsnake")
+	if (name == "cuntsnake" || name == "cockvine")
 	{
 		pc.tailType = GLOBAL.TYPE_HUMAN;
 		pc.tailCount = 0;
+		pc.tailFlags = [];
+		pc.tailGenital = 0;
+		pc.tailGenitalArg = 0;
+		pc.tailGenitalColor = "";
+		
 		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 	}

@@ -435,7 +435,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 			tPC.cumMultiplierMod += (actualFeed * 0.5);
 			tPC.ballSizeMod += (actualFeed * 0.25);
 		}
-		else if (effectName == "Mimbrane Boobs" && pc.brestRows.length > 0)
+		else if (effectName == "Mimbrane Boobs" && pc.breastRows.length > 0)
 		{
 			// Toggle lactation
 			if (oldFeedValue == 0 && tPC.milkMultiplier < 50) tPC.milkMultiplier = 50;
