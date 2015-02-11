@@ -397,7 +397,8 @@ public function rideDudeleensWithAPussaaaaah():void {
 
 	output("\n\nUltimately, the naleen finishes first. With a yowl that quickly dissolves into a hiss, he thrusts upward, bending his back with inhuman flexibility as he unloads all of his cat-snake cream into into your juicing cunn");
 	if(y < 0) output("y");
-	else output("ies}. Jet after jet of warm jism plasters your walls as his thrashings slowly fade into weaker and weaker twitches. Every ejaculation seems to rob him of strength until his body is still and his members are dribbling virile spunk into your creampied snatch");
+	else output("ies");
+	output(". Jet after jet of warm jism plasters your walls as his thrashings slowly fade into weaker and weaker twitches. Every ejaculation seems to rob him of strength until his body is still and his members are dribbling virile spunk into your creampied snatch");
 	if(y >= 0) output("es");
 	output(".");
 

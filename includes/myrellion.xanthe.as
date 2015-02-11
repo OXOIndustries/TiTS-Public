@@ -537,7 +537,7 @@ public function xantheTalkUsloot():void
 		else if(days < 300) output("a few months");
 		else if(days < 600) output("a whole year");
 		else output("a few years");
-		output(" ago. You know how people are, it’s old if it happened three days ago.</i>” Xanthe runs a finger through her wavy locks, twirling it around. <i>\"I remember thinking you needed new clothes.</i>”");
+		output(" ago. You know how people are, it’s old if it happened yesterday.</i>” Xanthe runs a finger through her wavy locks, twirling it around. <i>\"I remember thinking you needed new clothes.</i>”");
 		output("\n\n<i>\"And here you are. Kind of like fate, hmm? I’m sure I’ve got </i>something<i> here that says ‘I’m a " + pc.mf("dashing","beautiful") + " young millionaire play" + pc.mf("boy","girl") + " and galactic adventure" + pc.mf("rer","ress") + " - kicking ass and getting laid on the side.</i>”");
 		if(!pc.isBimbo()) output("\n\nDamn media. Guess something juicy like that was only going to be a secret for a whole day before it got out. You wonder how many people saw that particular story...?");
 		//ditz:
@@ -805,7 +805,7 @@ public function askXantheWhyFoxCancelledFirefly():void
 	if(!pc.isBimbo()) output("\n\nYou ask her how she can afford to give stuff away on a whim like that.");
 	else output("\n\nThat makes you all happy inside, and you flush. You feel all special! <i>\"Oh, thanks! I like looking hot, and looking at hot people. You can look at me all you like, if it makes you happy...</i>”");
 
-	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. \"<i>... That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.\</i>”<i>");
+	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. \"<i>... That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.</i>”");
 
 	output("\n\n... So in short, the Silken Serenity is her personal perving paradise. You ask her if that means there’s cameras in the changing rooms?");
 
@@ -1259,7 +1259,7 @@ public function yesYouCanDomMeXanthe():void
 	clearOutput();
 	showXanthe();
 	output("You can’t deny her words, instead looking at your feet with flushing cheeks. Soon you feel a curved finger being slipped underneath your chin, bringing it upwards until you are staring into her eyes.");
-	output("\n\n<i>\"Submit to me, my " + pc.mf("handsome","beauutiful") + " [pc.race], and I will love you and take care of you until the end of days.</i>” A gentle kissu is lavished on your raised jawline and fills you with incredible warmth. <i>\"I will fiercely protect you like no other, and others will know that you belong to ME.</i>”");
+	output("\n\n<i>\"Submit to me, my " + pc.mf("handsome","beauutiful") + " [pc.race], and I will love you and take care of you until the end of days.</i>” A gentle kiss is lavished on your raised jawline and fills you with incredible warmth. <i>\"I will fiercely protect you like no other, and others will know that you belong to ME.</i>”");
 	output("\n\nHer sudden burst of possessiveness and sweet, caring promises cause your [pc.knees] to quake and your heart to swell. It feels as if she is a mother lion, threatening to tear apart those who would so much as scratch your [pc.skinFurScalesNoun].");
 	output("\n\nIt’s not even a question of being claimed, as you know in your heart that you already belong to her. You’ve <i>always</i> belonged to her. All that’s left is to say the words that confirm it.");
 	output("\n\n\"<i>... Yes.</i>” You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
@@ -1340,11 +1340,10 @@ public function tieAndTeaseWithXanthe():void
 
 	pc.lust(20);
 	processTime(5);
-	//[She Leaves You!] [Pays Attention] 
-	//Random?
 	clearMenu();
-	if(rand(2) == 0) addButton(0,"Next",shePaysAttentionToYouSlut);
-	else addButton(0,"Next",getLeftByXantheSlooot);
+	//[She Leaves You!] [Pays Attention] 
+	addButton(0,"SheLeaves",getLeftByXantheSlooot);
+	addButton(0,"SheStays",shePaysAttentionToYouSlut);
 }
 
 // She Leaves You!
@@ -1551,7 +1550,7 @@ public function leftTeasedForEver(x:int = 0):void
 	{
 		output("your");
 	}
-	if(pc.hasVagina()) output("[pc.vaginas] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar");
+	if(pc.hasVagina()) output(" [pc.vaginas] squirt and splatter your [pc.girlCum] all over your [pc.thighs], utterly smearing them with your naughty nectar");
 	//neuter:
 	if(!pc.hasVagina() && !pc.hasCock()) output("you thoroughly cream yourself, twitching and shivering against her as you experience a dry orgasm");
 	output(".");
@@ -1805,7 +1804,7 @@ public function slutNotASlutEpilogue():void
 
 	output("\n\nYour guard is let down too soon, however. There is a noise like a bicycle pump being used, and suddenly the line of balls in your ass begin swelling and expanding!");
 
-	output("\n\n<i>\"They’re </i>inflatable<i> anal beads, my dear. I’m going to fill you up until you feel like you’re being fucked by a conga line of Ausar cocks,</i> your Mistress informs you. You bite down on your gag and let out a sweet cry, feeling as if you’re being knotted by a dozen canine cocks!");
+	output("\n\n<i>\"They’re </i>inflatable<i> anal beads, my dear. I’m going to fill you up until you feel like you’re being fucked by a conga line of Ausar cocks,</i>\" your Mistress informs you. You bite down on your gag and let out a sweet cry, feeling as if you’re being knotted by a dozen canine cocks!");
 	pc.buttChange(250);
 
 	output("\n\nWith each pumping noise the inside of your [pc.ass] is impossibly swelled out and you whimper with delight. It’s not long before you feel the sensation of floating off, and with the final pump you’re pushed right over the edge. Suddenly you’re cumming impossibly hard and ");

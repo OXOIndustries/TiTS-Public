@@ -1425,6 +1425,9 @@
 				case "breastsNoun":
 					buffer = chestNoun();
 					break;
+				case "breastNoun":
+					buffer = breastNoun();
+					break;
 				case "breastCupSize":
 					buffer = breastCup(arg2);
 					break;
@@ -9715,6 +9718,34 @@
 			if(descripted) descript += " ";
 			descript += chestNoun(rowNum);
 			return descript;
+		}
+		public function breastNoun(rowNum:int = 99):String
+		{	
+			var noun:String = "";
+			if(rowNum == 99) rowNum = 0;
+			//Nouns!
+			var temp:int = this.rand(14);
+			if (temp == 0) noun += "breast";
+			else if (temp <= 1) {
+				if (isLactating()) noun += "udder";
+				else noun += "breast";
+			} else if (temp <= 3) {
+				if (breastRows[rowNum].breastRating() > 4 && this.rand(2) == 0) noun += "tit";
+				else noun += "breast";
+			} else if (temp <= 6) noun += "tit";
+			else if (temp <= 7) {
+				if (!isLactating()) noun += "jug";
+				else noun += "udder";
+			} else if (temp <= 8) {
+				if (breastRows[rowNum].breastRating() > 6) noun += "love-pillow";
+				else noun += "boob";
+			} else if (temp <= 9) {
+				if (breastRows[rowNum].breastRating() > 6) noun += "tit";
+				else noun += "breast";
+			} else if (temp <= 11) noun += "mammary";
+			else if (temp <= 12) noun += "melon";
+			else noun += "mound";
+			return noun;
 		}
 		public function chestNoun(rowNum:int = 99):String
 		{

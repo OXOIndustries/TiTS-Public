@@ -71,7 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 2 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
 				
-				kGAMECLASS.eventBuffer += ParseText("\nYou stroke your taut belly, trailing your hand over a full, sensitive breast as you do. Your stuffed womb quivers, dense and heavy with increasingly restless, serpentine life. You suppose you should feel disquieted about all of this but with both your own and the alien flora’s hormones rich in your veins it’s difficult to feel anything but complacent, warm contentment. When your thoughts drift from the task at hand they go to deep, dark, moist places; wild places, where wild things can bury themselves and become even wilder, coiling upwards, irrepressible. Your spreading [pc.Vagina] oozes excitement when you go to those places.\n");
+				kGAMECLASS.eventBuffer += ParseText("\nYou stroke your taut belly, trailing your hand over a full, sensitive breast as you do. Your stuffed womb quivers, dense and heavy with increasingly restless, serpentine life. You suppose you should feel disquieted about all of this but with both your own and the alien flora’s hormones rich in your veins it’s difficult to feel anything but complacent, warm contentment. When your thoughts drift from the task at hand they go to deep, dark, moist places; wild places, where wild things can bury themselves and become even wilder, coiling upwards, irrepressible. Your spreading [pc.vagina] oozes excitement when you go to those places.\n");
 			}, true);
 			
 			_onSuccessfulImpregnation = cockvineOnSuccessfulImpregnantion;

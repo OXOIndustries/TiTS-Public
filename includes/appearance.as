@@ -1156,7 +1156,7 @@ public function appearance(target:Creature):void {
 				if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 				{
 					//Wetness
-					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes your ")
+					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ")
 					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 					else if(target.vaginas[0].wetness() >= 4)
 					{
@@ -1227,7 +1227,7 @@ public function appearance(target:Creature):void {
 				//LEITHAN FLAVOR
 				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
 				{
-					output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+					output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 				}
 			}
 			//MULTICOOCH!
@@ -1281,7 +1281,7 @@ public function appearance(target:Creature):void {
 						//LEITHAN FLAVOR
 						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN)
 						{
-							output2(" The exterior lips are fat and swollen. They could be easily described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+							output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 						}
 					}
 					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
