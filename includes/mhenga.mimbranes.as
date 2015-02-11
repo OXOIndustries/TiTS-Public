@@ -316,136 +316,138 @@ public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 }
 
 public function feedAMimbrane(effectName:String, feedValue:int = 1):void
-{
+{	
 	if (mimbraneDebug) trace("Feeding Mimbrane [" + effectName + "] " + feedValue + " time(s)");
+	
+	var tPC:PlayerCharacter = pc;
 
-	if (pc.hasStatusEffect(effectName) && pc.statusEffectv2(effectName) > 0 && pc.statusEffectv3(effectName) < 15)
+	if (tPC.hasStatusEffect(effectName) && tPC.statusEffectv2(effectName) > 0 && tPC.statusEffectv3(effectName) < 15)
 	{
-		pc.setStatusValue(effectName, 2, 0);
+		tPC.setStatusValue(effectName, 2, 0);
 		
-		var oldFeedValue:int = pc.statusEffectv3(effectName);
+		var oldFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		var actualFeed:int = 0;
-		if (feedValue + pc.statusEffectv3(effectName) <= 15)
+		if (feedValue + tPC.statusEffectv3(effectName) <= 15)
 		{
 			actualFeed = feedValue;
 		}
 		else
 		{
-			actualFeed = 15 - pc.statusEffectv3(effectName);
+			actualFeed = 15 - tPC.statusEffectv3(effectName);
 		}
 		
-		pc.addStatusValue(effectName, 3, actualFeed);
-		var newFeedValue:int = pc.statusEffectv3(effectName);
+		tPC.addStatusValue(effectName, 3, actualFeed);
+		var newFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		// Calc willpower change
-		//pc.willpowerMod += pc.willpowerRaw * -(0.004 * actualFeed);
+		//tPC.willpowerMod += tPC.willpowerRaw * -(0.004 * actualFeed);
 		// Making this a flat change at certain breakpoints, becuase otherwise it's going to be a nightmare to track and undo later
-		if (oldFeedValue < 3 && newFeedValue >= 3) pc.willpowerMod -= 0.2;
-		if (oldFeedValue < 8 && newFeedValue >= 8) pc.willpowerMod -= 0.2;
-		if (oldFeedValue < 13 && newFeedValue >= 13) pc.willpowerMod -= 0.2;
+		if (oldFeedValue < 3 && newFeedValue >= 3) tPC.willpowerMod -= 0.2;
+		if (oldFeedValue < 8 && newFeedValue >= 8) tPC.willpowerMod -= 0.2;
+		if (oldFeedValue < 13 && newFeedValue >= 13) tPC.willpowerMod -= 0.2;
 		
 		// Mimbrane-specific changes
-		if (effectName == "Mimbrane Cock")
+		if (effectName == "Mimbrane Cock" && pc.cocks.length > 0)
 		{
-			pc.cocks[0].cThicknessRatioMod += (0.05 * actualFeed);
-			pc.cocks[0].cLengthMod += (0.75 * actualFeed);
+			(tPC.cocks[0] as CockClass).cThicknessRatioMod += (0.05 * actualFeed);
+			(tPC.cocks[0] as CockClass).cLengthMod += (0.75 * actualFeed);
 		}
-		else if (effectName == "Mimbrane Pussy")
+		else if (effectName == "Mimbrane Pussy" && pc.vaginas.length > 0)
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				//if (pc.vaginas[0].loosenessRaw == 0) pc.vaginas[0].loosenessMod = 1;
-				//if (pc.vaginas[0].wetnessRaw == 0) pc.vaginas[0].wetnessMod = 1;
-				pc.vaginas[0].wetnessMod++;
-				pc.vaginas[0].loosenessMod++;
+				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw == 0) (tPC.vaginas[0] as VaginaClass).loosenessMod = 1;
+				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw == 0) (tPC.vaginas[0] as VaginaClass).wetnessMod = 1;
+				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
+				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				//if (pc.vaginas[0].loosenessRaw <= 1) pc.vaginas[0].loosenessMod = 2;
-				//if (pc.vaginas[0].wetnessRaw <= 1) pc.vaginas[0].wetnessMod = 2;
-				pc.vaginas[0].wetnessMod++;
-				pc.vaginas[0].loosenessMod++;
+				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 1) (tPC.vaginas[0] as VaginaClass).loosenessMod = 2;
+				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 1) (tPC.vaginas[0] as VaginaClass).wetnessMod = 2;
+				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
+				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				//if (pc.vaginas[0].loosenessRaw <= 2) pc.vaginas[0].loosenessMod = 3;
-				//if (pc.vaginas[0].wetnessRaw <= 2) pc.vaginas[0].wetnessMod = 3;
-				pc.vaginas[0].wetnessMod++;
-				pc.vaginas[0].loosenessMod++;
+				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 2) (tPC.vaginas[0] as VaginaClass).loosenessMod = 3;
+				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 2) (tPC.vaginas[0] as VaginaClass).wetnessMod = 3;
+				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
+				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				//if (pc.vaginas[0].loosenessRaw <= 3) pc.vaginas[0].loosenessMod = 4;
-				//if (pc.vaginas[0].wetnessRaw <= 3) pc.vaginas[0].wetnessMod = 4;
-				pc.vaginas[0].wetnessMod++;
-				pc.vaginas[0].loosenessMod++;
+				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 3) (tPC.vaginas[0] as VaginaClass).loosenessMod = 4;
+				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 3) (tPC.vaginas[0] as VaginaClass).wetnessMod = 4;
+				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
+				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				//if (pc.vaginas[0].loosenessRaw <= 4) pc.vaginas[0].loosenessMod = 5;
-				//if (pc.vaginas[0].wetnessRaw <= 4) pc.vaginas[0].wetnessMod = 5;
-				pc.vaginas[0].wetnessMod++;
-				pc.vaginas[0].loosenessMod++;
+				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 4) (tPC.vaginas[0] as VaginaClass).loosenessMod = 5;
+				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 4) (tPC.vaginas[0] as VaginaClass).wetnessMod = 5;
+				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
+				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 		}
 		else if (effectName == "Mimbrane Ass")
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				//if (pc.ass.loosenessRaw == 0) pc.ass.loosenessMod = 1;
-				//if (pc.ass.wetnessRaw == 0) pc.ass.wetnessMod = 1;
-				pc.ass.wetnessMod++;
-				pc.ass.loosenessMod++;
+				//if (tPC.ass.loosenessRaw == 0) tPC.ass.loosenessMod = 1;
+				//if (tPC.ass.wetnessRaw == 0) tPC.ass.wetnessMod = 1;
+				(tPC.ass as VaginaClass).wetnessMod++;
+				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				//if (pc.ass.loosenessRaw <= 1) pc.ass.loosenessMod = 2;
-				//if (pc.ass.wetnessRaw <= 1) pc.ass.wetnessMod = 2;
-				pc.ass.wetnessMod++;
-				pc.ass.loosenessMod++;			}
+				//if ((tPC.ass as VaginaClass).loosenessRaw <= 1) (tPC.ass as VaginaClass).loosenessMod = 2;
+				//if ((tPC.ass as VaginaClass).wetnessRaw <= 1) (tPC.ass as VaginaClass).wetnessMod = 2;
+				(tPC.ass as VaginaClass).wetnessMod++;
+				(tPC.ass as VaginaClass).loosenessMod++;			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				//if (pc.ass.loosenessRaw <= 2) pc.ass.loosenessMod = 3;
-				//if (pc.ass.wetnessRaw <= 2) pc.ass.wetnessMod = 3;
-				pc.ass.wetnessMod++;
-				pc.ass.loosenessMod++;
+				//if ((tPC.ass as VaginaClass).loosenessRaw <= 2) (tPC.ass as VaginaClass).loosenessMod = 3;
+				//if ((tPC.ass as VaginaClass).wetnessRaw <= 2) (tPC.ass as VaginaClass).wetnessMod = 3;
+				(tPC.ass as VaginaClass).wetnessMod++;
+				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				//if (pc.ass.loosenessRaw <= 3) pc.ass.loosenessMod = 4;
-				//if (pc.ass.wetnessRaw <= 3) pc.ass.wetnessMod = 4;
-				pc.ass.wetnessMod++;
-				pc.ass.loosenessMod++;
+				//if ((tPC.ass as VaginaClass).loosenessRaw <= 3) (tPC.ass as VaginaClass).loosenessMod = 4;
+				//if ((tPC.ass as VaginaClass).wetnessRaw <= 3) (tPC.ass as VaginaClass).wetnessMod = 4;
+				(tPC.ass as VaginaClass).wetnessMod++;
+				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				//if (pc.ass.loosenessRaw <= 4) pc.ass.loosenessMod = 5;
-				//if (pc.ass.wetnessRaw <= 4) pc.ass.wetnessMod = 5;
-				pc.ass.wetnessMod++;
-				pc.ass.loosenessMod++;
+				//if ((tPC.ass as VaginaClass).loosenessRaw <= 4) (tPC.ass as VaginaClass).loosenessMod = 5;
+				//if ((tPC.ass as VaginaClass).wetnessRaw <= 4) (tPC.ass as VaginaClass).wetnessMod = 5;
+				(tPC.ass as VaginaClass).wetnessMod++;
+				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 
-			pc.buttRatingMod += actualFeed / 2.0;
+			tPC.buttRatingMod += actualFeed / 2.0;
 		}
 		else if (effectName == "Mimbrane Balls")
 		{
-			pc.cumMultiplierMod += (actualFeed * 0.5);
-			pc.ballSizeMod += (actualFeed * 0.25);
+			tPC.cumMultiplierMod += (actualFeed * 0.5);
+			tPC.ballSizeMod += (actualFeed * 0.25);
 		}
-		else if (effectName == "Mimbrane Boobs")
+		else if (effectName == "Mimbrane Boobs" && pc.brestRows.length > 0)
 		{
 			// Toggle lactation
-			if (oldFeedValue == 0 && pc.milkMultiplier < 50) pc.milkMultiplier = 50;
+			if (oldFeedValue == 0 && tPC.milkMultiplier < 50) tPC.milkMultiplier = 50;
 			
 			// Doc called for a 4% lactate rate per feed level but a) pain b) pain
 			
-			pc.breastRows[0].breastRatingMod += actualFeed;
+			(tPC.breastRows[0] as BreastRowClass).breastRatingMod += actualFeed;
 		}
 		else if (effectName == "Mimbrane Face")
 		{
-			if (oldFeedValue < 6 && newFeedValue >= 6) pc.lipMod += 1;
-			if (oldFeedValue < 12 && newFeedValue >= 12) pc.lipMod += 1;
+			if (oldFeedValue < 6 && newFeedValue >= 6) tPC.lipMod += 1;
+			if (oldFeedValue < 12 && newFeedValue >= 12) tPC.lipMod += 1;
 		}
 	}
 }
