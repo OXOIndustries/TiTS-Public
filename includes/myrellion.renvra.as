@@ -611,6 +611,8 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	clearOutput();
 	author("Savin");
 	
+	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
+	
 	output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... Your hands grab your gut, and instantly feel something shifting just under your gravid flesh. The eggs inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. A distinct wetness pools out of your");
 	if (pregSlot == 3) output(" [pc.asshole]");
 	else output(" [pc.cunt]");
@@ -645,17 +647,26 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	output(". The egg squeezes out with a wet “POP,” rolling out of you and onto the ground in a pool of pink nyrean fluids.");
 	
 
-	output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down between your [pc.legs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut. The second egg begins its descent, refusing to let you recover after the first. Your");
+	output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down between your [pc.legs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut.");
+	if (pData.pregnancyQuantity == 2) output(" The");
+	else output(" A");
+	output(" second egg begins its descent, refusing to let you recover after the first. Your");
 	if (pregSlot == 3) output(" ass");
 	else output(" sex");
 	output(" spasms and quivers as the next egg moves, and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
+	if (pData.pregnancyQuantity == 3) output(" Another egg follows");
+	else if (pData.pregnancyQuantity > 3) output(" More eggs follow");
+	if (pData.pregnancyQuantity >= 3) output(", sliding out of you easily compared to the first."); 
 
-	output("\n\nYou spend minutes laying your nyrean eggs, dropping a clutch of two total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you'll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas' entry. They'll be helpless for several weeks, so you can't exactly leave them here. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home.");
+	output("\n\nYou spend minutes laying your nyrean eggs, dropping a clutch of "+ num2Text(pData.pregnancyQuantity) +" total eggs. When the final egg pops out, you flop onto your back, breathing hard. That took damn near everything out of you, and you find yourself nearly passing out after your ordeal. Before you do, however, you realize that you'll probably need to do... something about this clutch of eggs. You tap on your Codex and review the nyreas' entry. They'll be helpless for several weeks, so you can't exactly leave them here. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the eggs, and hands you a receipt before carting them back home.");
 
-	output("\n\n<b>2 nyrea will soon be waiting for you back at the nursery.</b>");
+	output("\n\n<b>"+ pData.pregnancyQuantity +" nyrea will soon be waiting for you back at the nursery.</b>");
 
-	output("\n\nAt least, they're three-quarters nyrea.");
-	if (silly || pc.isMischievous()) output(" Close enough for government work, right?");
+	if (pData.pregnancyType == "RenvraEggPregnancy")
+	{
+		output("\n\nAt least, they're three-quarters nyrea.");
+		if (silly || pc.isMischievous()) output(" Close enough for government work, right?");
+	}
 	
 	processTime(30);
 }

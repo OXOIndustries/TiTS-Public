@@ -47,19 +47,27 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	if ((rand(10) < 4 && forceType == NYREA_UNKNOWN) || forceType == NYREA_ALPHA)
 	{
 		nyreaType = NYREA_ALPHA;
-		if (rand(10) < 6) nyreaEggs = true;
+		if (rand(10) < 6)
+		{
+			nyreaEggs = true;
+			foes[0].impregnationType = "NyreaEggPregnancy";
+		}
 	}
 	else
 	{
 		nyreaType = NYREA_BETA;
-		if (rand(10) < 4) nyreaEggs = true;
+		if (rand(10) < 4) 
+		{
+			nyreaEggs = true;
+			foes[0].impregnationType = "NyreaEggPregnancy";
+		}
 	}
 
 	output("As you make your way through the dark caverns, you become increasingly aware of a mounting feeling of unease. As if something is watching you, hidden just out of sight in the darkness of the tunnel. You slow your pace, hand drifting down to the");
 	if (pc.hasRangedWeapon()) output(" butt of your gun");
 	else if (pc.hasMeleeWeapon()) output(" hilt of your [melee.weapon]");
 	else output(" ground, picking up the meatiest rock you can find to defend yourself with");
-	output(") as your [pc.ears] perk up, listening for any trace of a possible assailant.");
+	output(" as your [pc.ears] perk up, listening for any trace of a possible assailant.");
 
 	output("\n\nYou turn, just in time to see something rushing out of the darkness at you!");
 
@@ -185,7 +193,7 @@ public function nyreaAlphaUseGun():void
 public function nyreaSpearThrust():void
 {
 	//Basic Attack
-	output("\nThey nyrea charges forward, thrusting her heavy spear at you!\n");
+	output("\nThe nyrea charges forward, thrusting her heavy spear at you!\n");
 
 	if (combatMiss(foes[0], pc))
 	{

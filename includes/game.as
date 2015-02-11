@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
+import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Miscellaneous.HorsePill;
@@ -799,14 +800,18 @@ public function processTime(arg:int):void {
 	}
 	
 	// Extra special handler for Renvra's egg messages
-	if (pc.hasStatusEffect("Renvra Eggs Messages Available"))
+	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available"))
 	{
 		var cRoom:RoomClass = rooms[currentLocation];
 		var pSpace:Boolean = cRoom.hasFlag(GLOBAL.PUBLIC);
 		
-		RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
+		// This should avoid doubling messages up if the player has both pregnancies at the same time.
+		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
+		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, arg);
 	}
 	
+	// I named this badly, but this is the secondary pregnancy variant that Renvra has. It's much more complicated, so
+	// all the checking is done at the target callsite.
 	renvraMessageHandler();
 
 	//========== Stuff that gets checked once every time that time passes ===========//
