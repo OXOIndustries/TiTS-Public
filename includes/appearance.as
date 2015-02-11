@@ -1,4 +1,5 @@
-﻿import classes.Creature;
+﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (!userInterface.appearanceButton.isActive)
@@ -528,32 +529,32 @@ public function appearance(target:Creature):void {
 		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
-			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips. Most of the length of the thing is coated in dark-green scales, culminating");
+			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" in a proud purple head that's distinctly cock-shaped in nature.");
+				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a proud purple head that's distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2(" in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
+				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
 			}
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2(" in a fleshy pink head that's distinctly cock-shaped in nature.");
+				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy pink head that's distinctly cock-shaped in nature.");
 			}
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2(" in a thick bulge a few inches below a tapered, dark-red tip.");
+				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered, dark-red tip.");
 			}
 			// Ribbed
 			else
 			{
-				output2(" in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
+				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
 		

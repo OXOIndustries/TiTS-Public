@@ -180,7 +180,30 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	else if(pc.tailCount == 1) output(", alongside your other tail");
 	output("; your eyes open wide and you gasp as the seedling rears back and plants its tendril end into you with an audible smack. You feel its proto-roots penetrate your skin, burying inwards to touch the nerves to be found there. It’s not exactly painful but certainly uncomfortable, rather like getting operated on under local anesthetic. You gasp and almost laugh as you feel odd pangs and twitches at the base of your back, strange impulses shooting up your spine as the parasite merges with you, grafting into your nervous system and suppressing your immune system’s desire to attack it.");
 
-	output("\n\nSlowly but surely you feel sensation spreading downwards into your new appendage. You twinge odd new muscle groups and to your delight the tail reacts; after you’ve flexed it a few times you find you are able to swing your cock-tail around, admire it and catch it, feel it as your own.");
+	output("\n\nSlowly but surely you feel sensation spreading downwards into your new appendage");
+	if (pc.tailCount > 0)
+	{
+		output(", as the sensations from your other tail");
+		if (pc.tailCount > 1) output("s");
+		output(" begin to fade; numbness spreads along");
+		if (pc.tailCount == 1) output(" its length");
+		else output(" their lengths");
+		output(" as the vines influence of your lower back increases. In short order, you feel your other tail");
+		if (pc.tailCount > 1) output("s");
+		output(" fall away from your flesh painlessly, leaving only the vine in");
+		if (pc.tailCount == 1) output(" its");
+		else output(" their");
+		output(" place");
+	}
+	
+	output(". You twinge odd new muscle groups and to your delight the tail reacts; after you’ve flexed it a few times you find you are able to swing your cock-tail around, admire it and catch it, feel it as your own");
+	if (pc.tailCount == 0) output(".");
+	else
+	{
+		output(", just like the appendage");
+		if (pc.tailCount > 1) output("s");
+		output(" it has sought to replace.");
+	}
 
 	pc.clearTailFlags();
 	pc.tailType = GLOBAL.TYPE_COCKVINE;
@@ -193,7 +216,7 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	{
 		pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 		pc.tailGenitalColor = "green";
-		output(" The parasite has retained its color; slimy and flexible, green with a proud purple head, it leaves no doubt as to its plant origin.");
+		output(" Your own skin pigment is swiftly spreading up it, fading off into the vines natural coloring towards the tip; a thick, green appendage with a proud purple head, leaving no doubt as to its plant origin.");
 	}
 	else if (sCockType == Seedling_Type_Human)
 	{
