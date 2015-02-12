@@ -10184,7 +10184,7 @@
 		public function tryKnockUp(cumFrom:Creature, pregSlot:int = -1):Boolean
 		{
 			// Vagina/butt slot checking
-			if (pregSlot < -2 || (pregSlot > 0 && pregSlot <= 2 && !hasVagina(pregSlot)) || pregSlot > 4)
+			if (pregSlot < -2 || (pregSlot >= 0 && pregSlot <= 2 && !hasVagina(pregSlot)) || pregSlot > 4)
 			{
 				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
 				return false;

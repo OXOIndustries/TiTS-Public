@@ -117,8 +117,8 @@ public function nyreaFight(settings:Array):void
 
 	var tString:String;
 
-	if (nyreaType == NYREA_ALPHA) tString = "NYREA ALPHA";
-	else tString = "NYREA BETA";
+	if (nyreaType == NYREA_ALPHA) tString = "Nyrea Alpha";
+	else tString = "Nyrea Beta";
 
 	startCombat(tString);
 

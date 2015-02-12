@@ -1652,10 +1652,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Shade) shadeAI();
 	else if (aggressor is Kara) karaAI();
 	else if (aggressor is Cockvine) adultCockvineAI();
-	/*
 	else if (aggressor is NyreaAlpha) alphaNyreaAI();
 	else if (aggressor is NyreaBeta) betaNyreaAI();
-	*/
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1779,7 +1777,7 @@ public function victoryRouting():void
 	}
 	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
 	{
-		//pcVictoryOverNyrea();
+		pcVictoryOverNyrea();
 	}
 	else genericVictory();
 }
@@ -1910,7 +1908,7 @@ public function defeatRouting():void
 	}
 	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
 	{
-		//pcLossToNyrea();
+		pcLossToNyrea();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");

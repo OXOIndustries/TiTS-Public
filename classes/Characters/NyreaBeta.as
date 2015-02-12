@@ -5,12 +5,11 @@ package classes.Characters
 	import classes.Items.Protection.DecentShield;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
-	
-	import classes.Items.Guns.HammerPistol;
-	import classes.Items.Guns.EagleHandgun;
-	import classes.Items.Guns.LaserPistol;
+
+	import classes.Items.Melee.NyreanSpear;
 	
 	import classes.GLOBAL;
+	import classes.CockClass;
 	
 	/**
 	 * ...
@@ -26,7 +25,7 @@ package classes.Characters
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "beta nyrea";
+			this.short = "beta nyrea huntress";
 			this.originalRace = "nyrea";
 			this.a = "a ";
 			this.capitalA = "A ";
@@ -37,10 +36,10 @@ package classes.Characters
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon = new Fists();
+			this.meleeWeapon = new NyreanSpear();
 			
 			this.physiqueRaw = 13;
-			this.reflexesRaw = 13;
+			this.reflexesRaw = 19;
 			this.aimRaw = 13;
 			this.intelligenceRaw = 6;
 			this.willpowerRaw = 6;
@@ -48,11 +47,11 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = new Array(1, 1, 1, 1, 1, 1, 1, 1);
+			this.resistances = new Array(0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85);
 			this.XPRaw = 60;
 			this.level = 6;
 			this.credits = 0;
-			this.HPMod = 0;
+			this.HPMod = 25;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 70;
@@ -155,7 +154,17 @@ package classes.Characters
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			this.milkRate = 1;
-			this.ass.wetnessRaw = 0;
+			this.ass.wetnessRaw = 1;
+			this.ass.loosenessRaw = 4;
+			
+			this.cocks = [];
+			this.cocks.push(new CockClass());
+			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_NYREA;
+			(this.cocks[0] as CockClass).cLengthRaw = 13;
+			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.66;
+			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
+			(this.cocks[0] as CockClass).virgin = false;
+			this.cockVirgin = false;
 			
 			this._isLoading = false;
 		}
@@ -165,6 +174,11 @@ package classes.Characters
 			var nyrea:NyreaBeta = this.makeCopy();
 			
 			nyrea.tallness = 60 + (rand(10) - 5);
+			
+			if (rand(20) == 0)
+			{
+				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
+			}
 			
 			kGAMECLASS.foes.push(nyrea);
 		}
