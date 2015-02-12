@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = true;
 			_ignoreMotherInfertility = true;
 			_ignoreFatherInfertility = true;
-			_allowMultiplePregnancies = true;
+			_allowMultiplePregnancies = false;
 			_canImpregnateButt = true;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
