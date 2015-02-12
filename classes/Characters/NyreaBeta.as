@@ -25,7 +25,7 @@ package classes.Characters
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "beta nyrea huntress";
+			this.short = "nyrea huntress";
 			this.originalRace = "nyrea";
 			this.a = "a ";
 			this.capitalA = "A ";
@@ -54,11 +54,11 @@ package classes.Characters
 			this.HPMod = 25;
 			this.HPRaw = this.HPMax();
 			
-			this.femininity = 70;
+			this.femininity = 100;
 			this.eyeType = 0;
 			this.eyeColor = "red";
-			this.thickness = 1;
-			this.tone = 80;
+			this.thickness = 40;
+			this.tone = 29;
 			this.hairColor = "red";
 			this.furColor = "tawny";
 			this.hairLength = 0;
@@ -149,13 +149,15 @@ package classes.Characters
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 6;
 			this.nippleColor = "green";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 1;
 			this.ass.loosenessRaw = 4;
+			
+			this.hairLength = 10;
 			
 			this.cocks = [];
 			this.cocks.push(new CockClass());

@@ -8,7 +8,11 @@ package classes.Engine.Combat
 	
 	public function damageRand(baseDamage:Number, deviation:Number):Number
 	{
-		return baseDamage + (rand(deviation * 2) - deviation);
+		var d:Number = rand(deviation * 2) - deviation;
+		d += 100;
+		d /= 100;
+		d *= baseDamage;
+		return d;
 	}
 
 }

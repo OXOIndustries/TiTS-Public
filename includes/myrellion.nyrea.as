@@ -1,3 +1,4 @@
+import classes.Creature;
 public static const NYREA_UNKNOWN:uint = 0;
 public static const NYREA_ALPHA:uint = 1;
 public static const NYREA_BETA:uint = 2;
@@ -9,7 +10,7 @@ public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN):void
 	switch(nyreaType)
 	{
 		case NYREA_UNKNOWN:
-			showName("\nNYREA");
+			showName("NYREA\nHUNTRESS");
 			showBust("NYREA");
 			break;
 			
@@ -141,7 +142,7 @@ public function alphaNyreaAI():void
 
 	var attacks:Array = [];
 
-	attacks.push(nyreaAlphaUseGun);
+	if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
 	attacks.push(nyreaSpearThrust);
 	attacks.push(nyreaPowerStrike);
 	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
@@ -151,6 +152,7 @@ public function alphaNyreaAI():void
 	attacks.push(nyreaMilkRub);
 
 	attacks[rand(attacks.length)]();
+	processCombat();
 }
 
 public function betaNyreaAI():void
@@ -183,17 +185,20 @@ public function betaNyreaAI():void
 	}
 
 	attacks[rand(attacks.length)]();
+	processCombat();
 }
 
 public function nyreaAlphaUseGun():void
 {
+	trace("Shootgun");
 	rangedAttack(foes[0], pc, true);
 }
 
 public function nyreaSpearThrust():void
 {
+	trace("Spear Thrust");
 	//Basic Attack
-	output("\nThe nyrea charges forward, thrusting her heavy spear at you!\n");
+	output("The nyrea charges forward, thrusting her heavy spear at you!\n");
 
 	if (combatMiss(foes[0], pc))
 	{
@@ -209,8 +214,9 @@ public function nyreaSpearThrust():void
 
 public function nyreaMeatSpin():void
 {
+	trace("Meat spin");
 	//Basic lust attack. She'll use this especially against females.
-	output("\nWith a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].\n");
+	output("With a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].\n");
 
 	// 9999
 	if (rand(10) == 0)
@@ -221,9 +227,9 @@ public function nyreaMeatSpin():void
 	{
 		output("\nUnwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off.");
 
-		var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
+		var lustDam:int = damageRand(15, 15);
 
-		pc.lust(lustDam);
+		pc.lustDamage(lustDam);
 
 		output(" <b>("+lustDam+")</b>\n");
 	}
@@ -231,18 +237,24 @@ public function nyreaMeatSpin():void
 
 public function nyreaPowerStrike():void
 {
+	trace("Power strike");
 	//Rarest of her attacks, ramps up use on low HP. Lower chance to hit, but HEAVY damage. Has a chance to STAGGER the PC.
-	output("\nThe nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.");
+	output("The nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.");
 
 	if (combatMiss(foes[0], pc))
 	{
-		output("\nYou tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. <i>“You wanted to do this the hard way!”</i>\n");
+		output(" You tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. <i>“You wanted to do this the hard way!”</i>\n");
 	}
 	else
 	{
-		output("\nYou cry out as the spear crashes into you, throwing you to the ground with nearly bonecrushing force.");
+		output(" You cry out as the spear crashes into you, throwing you to the ground with nearly bonecrushing force.");
 
-		genericDamageApply(damageRand(foes[0].meleeDamage * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
+		// For reference, this is why I want to try and avoid Arrays where possible; the compiler could not infer that this
+		// line was "broken", because it cannot infer anything about the types stored in an array. This is similar to the changes
+		// I made with the creature accessors in TiTS.as -- typing them gave us compile-time checking against properties/methods.
+		//genericDamageApply(damageRand(foes[0].meleeDamage * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
+		
+		genericDamageApply(damageRand((foes[0] as Creature).damage(true) * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
 
 		if (rand(2) == 0)
 		{
@@ -258,8 +270,9 @@ public function nyreaPowerStrike():void
 
 public function nyreaPoledance():void
 {
+	trace("Poledance");
 	//Her preferred lust attack against males. 
-	output("\nThe nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...");
+	output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...");
 	if (foes[0] is NyreaBeta) output(" I promise you’ll be glad you did");
 	else if (foes[0] is NyreaAlpha) output(" You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to");
 	output(".”</i>\n");
@@ -273,9 +286,9 @@ public function nyreaPoledance():void
 	{
 		output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
 
-		var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
+		var lustDam:int = damageRand(15, 15);
 
-		pc.lust(lustDam);
+		pc.lustDamage(lustDam);
 
 		output(" <b>("+ lustDam + ")</b>\n");
 	}
@@ -283,10 +296,11 @@ public function nyreaPoledance():void
 
 public function nyreaNetThrow():void
 {
+	trace("Net Throw");
 	foes[0].createStatusEffect("Net Cooldown", 5, 0, 0, true);
 
 	//She'll use this frequently to disable the PC, especially as she starts taking damage. Inflicts RESTRAINED.
-	output("\nUsing her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.\n");
+	output("Using her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.\n");
 
 	if (rangedCombatMiss(foes[0], pc, 0, 3))
 	{
@@ -301,10 +315,11 @@ public function nyreaNetThrow():void
 
 public function nyreaMilkRub():void
 {
+	trace("Milkrub");
 	//Light lust attack, heals some of her HP
-	output("\nGiving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor.\n");
+	output("Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor.\n");
 
-	var lustDam:int = damageRand(15 * (pc.libido() / 100), 15);
+	var lustDam:int = damageRand(15, 15);
 
 	if (rand(10) <= 3)
 	{
@@ -316,7 +331,7 @@ public function nyreaMilkRub():void
 	}
 
 	output(" <b>(" + lustDam + ")</b>");
-	pc.lust(lustDam);
+	pc.lustDamage(lustDam);
 }
 
 public function pcLossToNyrea():void
