@@ -190,13 +190,11 @@ public function betaNyreaAI():void
 
 public function nyreaAlphaUseGun():void
 {
-	trace("Shootgun");
 	rangedAttack(foes[0], pc, true);
 }
 
 public function nyreaSpearThrust():void
 {
-	trace("Spear Thrust");
 	//Basic Attack
 	output("The nyrea charges forward, thrusting her heavy spear at you!\n");
 
@@ -214,7 +212,6 @@ public function nyreaSpearThrust():void
 
 public function nyreaMeatSpin():void
 {
-	trace("Meat spin");
 	//Basic lust attack. She'll use this especially against females.
 	output("With a lusty grin, the nyrean woman pulls up her chainmail bikini, letting her massive pseudo-cock flop out. Her hands rub across the long length, emphasizing its huge, blunted head and the fearsomely thick knot at its base, clearly ready to tie you like a bitch. She thrusts her hips, making the semi-turgid member bounce. A dribble of lubricant is flicked out, splattering across your [pc.face].\n");
 
@@ -237,7 +234,6 @@ public function nyreaMeatSpin():void
 
 public function nyreaPowerStrike():void
 {
-	trace("Power strike");
 	//Rarest of her attacks, ramps up use on low HP. Lower chance to hit, but HEAVY damage. Has a chance to STAGGER the PC.
 	output("The nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.");
 
@@ -270,7 +266,6 @@ public function nyreaPowerStrike():void
 
 public function nyreaPoledance():void
 {
-	trace("Poledance");
 	//Her preferred lust attack against males. 
 	output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...");
 	if (foes[0] is NyreaBeta) output(" I promise you’ll be glad you did");
@@ -296,7 +291,6 @@ public function nyreaPoledance():void
 
 public function nyreaNetThrow():void
 {
-	trace("Net Throw");
 	foes[0].createStatusEffect("Net Cooldown", 5, 0, 0, true);
 
 	//She'll use this frequently to disable the PC, especially as she starts taking damage. Inflicts RESTRAINED.
@@ -315,7 +309,6 @@ public function nyreaNetThrow():void
 
 public function nyreaMilkRub():void
 {
-	trace("Milkrub");
 	//Light lust attack, heals some of her HP
 	output("Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor.\n");
 

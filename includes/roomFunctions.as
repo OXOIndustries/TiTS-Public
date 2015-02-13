@@ -153,6 +153,13 @@ public function debugMenusTwo():void
 		
 		itemCollect(items);
 	});
+	
+	addButton(5, "F. Rival", debugFuckWithRival);
+}
+
+public function debugFuckWithRival():void
+{
+	rival.short = "Jack/Jill";
 }
 
 public function debugMenusThree():void

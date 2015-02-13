@@ -185,9 +185,9 @@ public function saendrasBarMenu():void
 public function saendraSexMenu():void
 {
 	clearMenu();
-
-	if (!saendra.hasCock()) addButton(0, "Take Strapon", takeSaensStrappedyDappedyCock, undefined, "Take Strapon", "Saendra dons a strapon and goes to town on your ass.");
-	else addButton(0, "Get Buttfucked", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra's new cock to work on your ass.");
+	
+	if (saendra.hasCock()) addButton(0, "Get Buttfucked", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra's new cock to work on your ass.");
+	else addButton(0, "Take Strapon", takeSaensStrappedyDappedyCock, undefined, "Take Strapon", "Saendra dons a strapon and goes to town on your ass.");
 
 	addButton(10, "Probe Sex", saendraProbesYourCuntWithHerMechaArm, undefined, "Probe Sex", "Saendra's mechanical arm has some interesting features...");
 	

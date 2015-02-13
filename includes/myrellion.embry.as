@@ -617,7 +617,7 @@ public function embryAppearance():void
 	{
 		output("\n\nShe is wearing a lace collar with frilled edges around her slender neck. It’s cute, chic, and oddly conspicuous.");
 		output("\n\nFrom her neck right down to her toes, everything is covered by a peasant-style dress. It’s white with black trimming and frills. From the waist to the hem, the dress is rippled, giving it a very traditional look.");
-		output("\n\nIt’s hard to discern her figure underneath under so much puff. ");
+		output("\n\nIt’s hard to discern her figure under so much puff. ");
 		if(embry.biggestTitSize() < 1) output("Her breasts are non existent, and she doesn’t have much curve to speak of other than what the dress gives her.");
 		else output("She has small, A-cup breasts, and girlish curves that are emphasised by her feminine dress.");
 	}

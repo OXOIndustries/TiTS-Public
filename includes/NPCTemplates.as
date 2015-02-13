@@ -14,6 +14,7 @@ import classes.Characters.SecurityDroids;
 public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
+	
 	if (!justUpdate || (justUpdate && chars["CELISE"] == undefined))
 	{
 		chars["CELISE"] = new classes.Characters.Celise();

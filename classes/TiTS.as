@@ -754,6 +754,8 @@
 						dData += ") ";
 						if (tArg != undefined) dData += "(Arg: " + tArg + ")";
 						
+						output("\n\n<b>ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
+						
 						throw new Error("ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
 					}
 				}
