@@ -1203,7 +1203,8 @@ public function takeSaensStrappedyDappedyCock():void
 	//Strapon buttsecks. Not available after FutaSaen rises.
 	saenHeader(true);
 	var selCunt:int;
-	if (pc.hasVagina()) selCunt = pc.cuntThatFits(33.5);
+	
+	if (pc.cuntThatFits(33.5) >= 0) selCunt = pc.cuntThatFits(33.5);
 	else selCunt = 0;
 
 	output("Dangling on the side of Saen’s nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon.");
