@@ -170,6 +170,7 @@ public function debugMenusThree():void
 	addButton(0, "R. Nyrea", encounterNyreaHuntress, NYREA_UNKNOWN); // arg optional
 	addButton(1, "Alpha N.", encounterNyreaHuntress, NYREA_ALPHA);
 	addButton(2, "Beta N.", encounterNyreaHuntress, NYREA_BETA);
+	addButton(3, "SexBot", encounterASexBot);
 }
 
 public function thisIsWhyWeCantHaveNiceThings():void
