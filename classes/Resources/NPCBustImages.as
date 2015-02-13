@@ -51,7 +51,7 @@
 			// If we're trying to find a nude version and we can't find it, look for a non-nude version
 			if (nudeMode == true)
 			{
-				if ("Bust_" + bustName.split("_")[0] in targetClass) return targetClass["Bust_" + bustName.split("_")[0]];
+				if ("Bust_" + bustName.split("_NUDE")[0] in targetClass) return targetClass["Bust_" + bustName.split("_NUDE")[0]];
 			}
 			
 			// If we're trying to find the non-nude version and we can't find it...
