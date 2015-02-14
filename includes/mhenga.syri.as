@@ -1088,7 +1088,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 
 //Blow Her
 public function blowSyriYouFukkinSlut(postScene:Function = null):void {
-	if (postScene != null) clearOutput();
+	if (postScene == null) clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
@@ -1168,7 +1168,7 @@ public function dontGoAwayYouKnotCunt():void {
 	author("Savin");
 	output("<i>“What, you think we're done?”</i>  you say, grabbing your ausar lover by the waist and pulling her into a tight embrace, feeling her bare breasts pressing hard into your [pc.chest].");
 
-	output("\n\nShe laughs gaily, grabbing a handful of your backside as you kiss her. The bulge of her cock growing again is unmistakable as you yank her pants back down, grabbing her red shaft. <i>“Well, if you insist... not like I had plans,”</i>  she grins, spinning you around and shoving you back into the bed before clambering over you, licking her lips predatorily. <i>“Lusty " + pc.mf("slut","stud") + ", aren't ya?”</i>");
+	output("\n\nShe laughs gaily, grabbing a handful of your backside as you kiss her. The bulge of her cock growing again is unmistakable as you yank her pants back down, grabbing her red shaft. <i>“Well, if you insist... not like I had plans,”</i>  she grins, spinning you around and shoving you back into the bed before clambering over you, licking her lips predatorily. <i>“Lusty " + pc.mf("stud","slut") + ", aren't ya?”</i>");
 
 	output("\n\nYou grab her, pulling her down into another kiss as you grab her ass, spreading her cheeks wide with a rough squeeze.");
 	if(pc.isMischievous()) output(" <i>“Takes one to know one!”</i>");
@@ -1545,7 +1545,9 @@ public function allVaginalPathsMergeHere():void
 		//(FWB and not Hard)
 		if(syriFriendsWithBenefits() && !pc.isAss()) output(" – she reassures you that she understands your ploy by returning your wink");
 		output(". She's doing her best to use your body as a cock sleeve, fiercely gripping your [pc.skinFurScales] to jerk you up and down. You will yourself to relax your [pc.legs] and surrender as she leads your tryst from below. Syri chooses a medium pace at first, wary of tugging you too deeply onto her expanding knot; instead, the bright reddish bulge delightfully grazes your [pc.clit] on each stroke. With Syri handling the vertical motion well enough on her own, you begin to gyrate in circles that press her thick dog prick against every ridge and crevice inside your [pc.vagina " + x + "].");
-		output("\n\nYou continue to antagonize the gamer by ordering her to go faster and reminding her that you are the winner around here. The two of you are shouting and cursing at each other, and the ex-military wolf-woman impresses you with the breadth of her dirty vocabulary. Despite the resemblance to a brawl, there's no danger of slipping off her wolf-cock because her insistent hands shorten the stroke as the action accelerates. Before long she's withdrawing just the second half of her eight inches while the first four constantly slide across a very excited bundle of nerves inside your cunt. Her steel-hard rod drives you to a wild plateau: an invisible line that you don't know has been crossed until you are shouting out the last molecules of your breath and sucking in more.");
+		output("\n\nYou continue to antagonize the gamer by ordering her to go faster and reminding her that you are the winner around here. The two of you are shouting and cursing at each other, and the");
+		if (syriFriendsWithBenefits()) output(" ex-military");
+		output(" wolf-woman impresses you with the breadth of her dirty vocabulary. Despite the resemblance to a brawl, there's no danger of slipping off her wolf-cock because her insistent hands shorten the stroke as the action accelerates. Before long she's withdrawing just the second half of her eight inches while the first four constantly slide across a very excited bundle of nerves inside your cunt. Her steel-hard rod drives you to a wild plateau: an invisible line that you don't know has been crossed until you are shouting out the last molecules of your breath and sucking in more.");
 		output("\n\nSyri continues pumping until a new source of heat suddenly flows into your pussy in the middle of your fourth \"<i>Yes!</i>\" In the confusion of orgasm, nearly two seconds tick away before you work out that the ausar's big cock is filling you with dog-girl seed – and with that realization a second climax blossoms atop the first.");
 		output("\n\nThe double dose of bliss fills you with keen awareness of every nuance of your body, as if even your fingertips were suddenly as sensitive as your [pc.clits]. You try to wiggle them to increase your sensation, but it seems your body is no longer under your own command, responding only to Syri's thrusts. She keeps fucking in powerful, if somewhat ragged, strokes while her canine testes empty themselves into your sucking twat. Into the condom, actually, but the difference is trivial right now.");
 		output("\n\nEventually the busty slut beneath you shudders to a halt. You push yourself off her rod, barely clearing the swollen sack of cum on its end, and stagger over to the gaming couch. Your [pc.vagina " + x + "] is still twitching sporadically as your mind clears, no doubt hoping to reconnect with a certain wolfish wang.");

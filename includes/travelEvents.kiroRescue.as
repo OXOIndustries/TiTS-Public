@@ -189,6 +189,8 @@ public function kirosShipChubnookiUpDaButt():void
 	author("Savin");
 	showBust("KIRO_NUDE");
 
+	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
+	
 	var selCock:int = pc.biggestCockIndex();
 
 	output("Holy shit, what the fuck? You've seen some shit, but this is taking your sexual escapades to a whole new level of what-the-fuckery. The massively endowed tanuki-like girl pleads with her eyes, voice too broken to form coherent words as her gigantic balls shift and swell beneath her, so full of cum she could probably fill a fucking pool. Her mahogany eyes, stained with tears of uncontrolled agony and ecstasy, lock with yours for the slightest moment, and you know what you have to do. ");
@@ -291,6 +293,8 @@ public function kirosShipChubnookiUpDaCooter():void
 	clearOutput();
 	author("Fenoxo"); // Guessing, doc doesn't say anything, formatting/markup makes me think its fenwrites
 	showBust("KIRO_NUDE");
+	
+	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
 
 	var selCock:int = pc.biggestCockIndex();
 	var selCock2:int = pc.biggestCockIndex2();
@@ -482,6 +486,8 @@ public function kirosShipChubnookiFucksYouGud():void
 	clearOutput();
 	author("Fenoxo");
 	showBust("KIRO_NUDE");
+	
+	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
 	
 	var selVag:int = (pc as PlayerCharacter).biggestVaginaIndex();
 
@@ -677,7 +683,10 @@ public function kirosShipPostFirstFuck():void
 
 	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help but to keep glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
 
-	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel. I'd love to fuck a few more times, but I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + pc.mf("handsome","gorgeous") + ".</i>\"");
+	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel.");
+	if (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined) output(" I'd love to fuck a few more times, but");
+	else output(" I'd love to properly thank you for the assist, but");
+	output(" I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + pc.mf("handsome", "gorgeous") + ".</i>\"");
 
 	output("\n\nWhoah, whoah. If she's a famous space pirate, she can surely afford some kind of reward for your efforts, right? You put your hands on your hips and ask.");
 
