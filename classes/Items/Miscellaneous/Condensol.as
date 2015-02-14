@@ -88,18 +88,25 @@
 				}
 				else if(pc.shortestCockLength() <= 4)
 				{
-					//When using with a cock under four inches long:
-					kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch helplessly as your member shrinks and shrinks until it vanishes entirely");
-					if(pc.cockTotal() == 1 && pc.balls > 0) 
+					if (pc.cocks.length == 1 && !pc.removeCockUnlocked(0, 1))
 					{
-						pc.ballSizeRaw = 3;
-						pc.balls = 0;
-						pc.cumMultiplierRaw = 2;
-						pc.ballEfficiency = 4;
-						kGAMECLASS.output(", taking your [pc.balls] with it");
+						kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch as your cock throbs to attention. The feeling passes after a moment, with no immediately evident changes.");
 					}
-					kGAMECLASS.output(". At least the moment it disappears brings a blessed relief to the pain.");
-					pc.removeCock(pc.shortestCockIndex(),1);
+					else
+					{
+						//When using with a cock under four inches long:
+						kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch helplessly as your member shrinks and shrinks until it vanishes entirely");
+						if(pc.cockTotal() == 1 && pc.balls > 0) 
+						{
+							pc.ballSizeRaw = 3;
+							pc.balls = 0;
+							pc.cumMultiplierRaw = 2;
+							pc.ballEfficiency = 4;
+							kGAMECLASS.output(", taking your [pc.balls] with it");
+						}
+						kGAMECLASS.output(". At least the moment it disappears brings a blessed relief to the pain.");
+						pc.removeCock(pc.shortestCockIndex(), 1);
+					}
 				}
 				else if(!pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B"))
 				{
