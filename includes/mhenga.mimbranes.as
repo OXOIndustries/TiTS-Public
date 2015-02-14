@@ -319,6 +319,19 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 {	
 	if (mimbraneDebug) trace("Feeding Mimbrane [" + effectName + "] " + feedValue + " time(s)");
 	
+	if (pc.cocks.length == 0 && effectName == "Mimbrane Cock" && pc.hasStatusEffect("Mimbrane Cock"))
+	{
+		pc.removeStatusEffect("Mimbrane Cock");
+		trace("ERROR: The player previously had a cock, but it was removed whilst a mimbrane was attached. Quickfix removing the mimbrane effect to avoid hard scene crashes, but the mechanic used to remove the cock should be patched.");
+		return;
+	}
+	else if (pc.vaginas.length == 0 && effectName  == "Mimbrane Pussy" && pc.hasStatusEffect("Mimbrane Pussy"))
+	{
+		pc.removeStatusEffect("Mimbrane Pussy");
+		trace("ERROR: The player previously had a vagina, but it was removed whilst a mimbrane was attached. Quickfix removing the mimbrane effect to avoid hard scene crashes, but the mechanic used to remove the vagina should be patched.");
+		return;
+	}
+	
 	var tPC:PlayerCharacter = pc;
 
 	if (tPC.hasStatusEffect(effectName) && tPC.statusEffectv2(effectName) > 0 && tPC.statusEffectv3(effectName) < 15)
