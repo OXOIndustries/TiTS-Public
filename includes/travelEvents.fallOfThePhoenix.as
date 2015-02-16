@@ -366,9 +366,9 @@ public function phoenixCargo():Boolean
 			output(" announces, \"<i>Cargo doors are sealed while life forms are still inside and atmosphere is drained in the recreation room.</i>\"");
 
 			output("\n\nShit.");
-			currentLocation = "PHOENIX RECROOM";
-			phoenixRecRoom();
-			return false;
+			clearMenu();
+			addButton(0, "Next", move, "PHOENIX RECROOM");
+			return true;
 		}
 		else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)
 		{
