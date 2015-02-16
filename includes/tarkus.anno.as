@@ -2069,9 +2069,11 @@ public function deck13SecurityFunc():Boolean
 	{
 		clearOutput();
 		author("Savin");
+		showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
+		kGAMECLASS.userInterface.showName("FIGHT:\nS. DROIDS");
 		flags["DECK13_SECURITY_ENTERED"] = 1;
 
-		output("As you make your way out of the airlock, you're suddenly blinded by a bright white light. You flinch, trying to regain your senses as a booming metallic voice shouts: \"<i><b>INTRUDERS DETECTED. PASSENGER REGISTRY: UNAVAILABLE. IDENTITIES UNCONFIRMED. LAY DOWN YOUR WEAPONS OR YOU WILL BE PURGED</i></b>.\"");
+		output("As you make your way out of the airlock, you're suddenly blinded by a bright white light. You flinch, trying to regain your senses as a booming metallic voice shouts: \"<i><b>INTRUDERS DETECTED. PASSENGER REGISTRY: UNAVAILABLE. IDENTITIES UNCONFIRMED. LAY DOWN YOUR WEAPONS OR YOU WILL BE PURGED</b></i>.\"");
 
 		output("\n\nYour vision finally clears, revealing the unmistakable sight of security droids beneath an array of spotlights, each packing a laser pistol aimed right at you. \"<i>What the fuck?</i>\" Anno gasps, \"<i>How the... how the hell are a bunch of droids still functioning? Shit... looks like they're not kidding!</i>\"");
 
@@ -2165,7 +2167,7 @@ public function lossToSecurityDroid():void
 	clearOutput();
 	author("Savin");
 	showName("LOSS:\nSEC. DROIDS");
-	showBust("SECURITYDROIDS");
+	showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
 
 	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
 
@@ -2183,7 +2185,7 @@ public function victoryOverSecurityDroid():void
 	clearOutput();
 	author("Savin");
 	showName("VICTORY:\nSEC. DROIDS");
-	showBust("SECURITYDROIDS");
+	showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
 
 	output("<i>“FuckyoufuckyouFUCKYOU!”</i> Anno screams while firing her gun again and again into the last droid standing. It shudders and stumbles back under the impacts as her shots blow through its armored skeleton. She fires until the gun clicks empty, and still keeps pulling the trigger of the empty handgun until the robotic aggressor finally collapses, utterly destroyed.");
 
