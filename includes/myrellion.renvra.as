@@ -742,7 +742,7 @@ public function renvraBellyrubs():void
 	{	
 		flags["Renvra Full Pregnancy Bellyrub Supression"] = days;
 		
-		if (InPublicSpace())
+		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{
 			eventBuffer += "\n\nAs you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don't have the heart to tell them you're full of alien eggs.";
 			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) eventBuffer += " Besides, people rubbing all over you feels super good!";

@@ -5,6 +5,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
 	import classes.GameData.StatTracking;
+	import classes.Engine.Map.InPublicSpace;
 	
 	/**
 	 * ...
@@ -82,7 +83,7 @@ package classes.GameData.Pregnancy.Handlers
 			if (kRoll < kChance)
 			{
 				kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
-				if (!inPublicSpace && kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22)
+				if (!inPublicSpace || (kGAMECLASS.hours <= 4 && kGAMECLASS.hours >= 22))
 				{
 					kGAMECLASS.eventBuffer += "\n\nYou stop yourself, seemingly at random, and plant a hand soothingly over your [pc.belly]. The eggs inside you shift slightly, making your";
 					var pSlot:int = kGAMECLASS.pc.findPregnancyOfType("RenvraEggPregnancy");
