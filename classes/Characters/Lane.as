@@ -2,6 +2,7 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	
 	public class Lane extends Creature
 	{
@@ -50,6 +51,8 @@ package classes.Characters
 		
 		public function configMale():void
 		{
+			kGAMECLASS.flags["LANE_CONFIGURED"] = 1;
+			
 			this.femininity = 10;
 			this.eyeType = GLOBAL.TYPE_DAYNAR;
 			this.eyeColor = "dark blue";
@@ -130,6 +133,8 @@ package classes.Characters
 		
 		public function configFemale():void
 		{
+			kGAMECLASS.flags["LANE_CONFIGURED"] = 2;
+			
 			this.femininity = 85;
 			this.eyeType = GLOBAL.TYPE_DAYNAR;
 			this.eyeColor = "dark blue";

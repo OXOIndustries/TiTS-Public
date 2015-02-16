@@ -1152,7 +1152,10 @@ public function laneServices():void
 			output("\n\n<i>“You’re right. Submitting to me and my pleasure is worth more to you than your life. I could ask you to sign everything over to me and you wouldn’t say no, would you?”</i>");
 
 			output("\n\nYou shake your head, salivating, eager to get started. [lane.HeShe] hands you the codex – and to your surprise, [lane.heShe]’s only charging you the standard one hundred credits. <i>“I’m a little kinder than that, though.”</i> You blink, and thank [lane.himHer] sincerely for [lane.hisHer] unprecedented generosity.");
-			if (hasMaxedLaneHypnosis()) output(" <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
+			if (hasMaxedLaneHypnosis())
+			{
+				output(" <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
+			}
 
 			output("\n\nYou thank [lane.hisHer] for [lane.hisHer] ‘generosity’ again.");
 
@@ -1502,8 +1505,10 @@ public function lanePostApplyEffect(selectedService:String):void
 			break;
 	}
 
-	if (!hasMaxedLaneHypnosis())
+	if (!hasMaxedLaneHypnosis() && flags["DELAY_TAXES_ADDITION"] == undefined)
 	{
+		if (hasMaxedLaneHypnosis()) flags["DELAY_TAXES_ADDITION"] = 1;
+		
 		output("\n\nYou sit and look at your hands. It was a strange, difficult-to-explain sensation: you knew you were different, but you didn’t really <i>feel</i> different. At the same time, you felt different, but you didn’t know if you really <i>were</i> different. Lane definitely did something to you, and whatever it was [lane.heShe] did, you like it. You tell [lane.himHer] as much, and [lane.heShe] claps [lane.hisHer] four-fingered hands together. <i>“I’m happy that you’re happy with the results, [pc.name],”</i> [lane.heShe] tells you.");
 		if (flags["LANE_TIMES_HYPNOTISED"] <= 1) output(" <i>“I hope this changes your perception on hypnotism.”</i> You tell [lane.himHer] that it definitely does, and that you’ll be coming back for [lane.hisHer] service sometime in the future. You even ask [lane.himHer] if you could sign [lane.hisHer] guestbook, to give [lane.himHer] another testimonial to add to [lane.hisHer] collection, and [lane.heShe] happily hands you [lane.hisHer] codex.");
 
@@ -1526,7 +1531,7 @@ public function lanePostApplyEffect(selectedService:String):void
 	{
 		output("\n\nYou’re happy that Lane, righteous and generous as [lane.heShe] is, kept up [lane.hisHer] end of the bargain and gave you what you paid for. But another part of you is ecstatic about what’s going to happen next. You thank [lane.himHer] for [lane.hisHer] continued excellence, and that, if [lane.heShe]’s ready, you’re prepared to pay [lane.himHer] your ‘taxes’ for the privilege of being [lane.hisHer] to own.");
 
-		output("\n\n[lane.HeShe] smiles and stands. You stand with [lane.himHer], and with a deft, swift hand, [lane.heShe] grabs you by the collar of your [pc.armor] and pulls you in for an aggressive, dominant kiss. You melt into [lane.himHer], opening your mouth and inviting your [lane.master]’s tongue to play with your [pc.eachTongue]. [lane.HeShe]’s grabbing at you roughly and possessively as [lane.heShe] suffocates you with [lane.hisHer] lips and [lane.hisHer] tongue, guiding you across the desk and to the curtains hiding the second half of the room.");
+		output("\n\n[lane.HeShe] smiles and stands. You stand with [lane.himHer], and with a deft, swift hand, [lane.heShe] grabs you by the collar of your [pc.armor] and pulls you in for an aggressive, dominant kiss. You melt into [lane.himHer], opening your mouth and inviting your [lane.master]’s tongue to play with your own. [lane.HeShe]’s grabbing at you roughly and possessively as [lane.heShe] suffocates you with [lane.hisHer] lips and [lane.hisHer] tongue, guiding you across the desk and to the curtains hiding the second half of the room.");
 
 		output("\n\n[lane.HeShe] finally lets you go as [lane.heShe] opens [lane.hisHer] eyes and [lane.hisHer] tassels wide at you, letting you fall into [lane.himHer] a second time. Your body sinks");
 		if (pc.hasCock() && !pc.hasVagina()) output(" but [pc.eachCock] rises");

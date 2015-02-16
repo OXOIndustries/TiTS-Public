@@ -902,6 +902,13 @@
 				throw new Error("Rival has been serialized with default properties.");
 				return false;
 			}
+			// Check a transient property that is shared between both forms of Lane (m/f) that isn't set in the default stat block.
+			// If this isn't set, but any of lane-related flags ARE, then the creature blob has reverted to defaults
+			if (data.characters["LANE"].eyeColor != "dark blue" && data.flags["MET_LANE"] != undefined)
+			{
+				throw new Error("Lane has been serialized with default properties.");
+				return false;
+			}
 			
 			return true;
 		}
