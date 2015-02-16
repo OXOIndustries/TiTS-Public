@@ -149,7 +149,7 @@ package classes.Characters
 		{
 			var gigaGoo:GigaGoo = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("GIGAGOO");
+			kGAMECLASS.userInterface.showBust("GRAY_GOO_GIGA");
 			kGAMECLASS.userInterface.showName("FIGHT:\nGIGA GOO");
 			
 			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));

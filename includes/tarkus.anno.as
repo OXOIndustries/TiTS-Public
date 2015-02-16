@@ -2487,7 +2487,7 @@ public function deck13ShieldControlFunc():Boolean
 		output("\n\nYou spin on a heel, coming face to face with the goo again as she rises from the sea of gray behind you, reforming with her head quite intact and a deadly look in her steel-gray eyes. ");
 		
 		output("\n\nUh-oh. ");
-
+		grayGooDisplay();
 		clearMenu();
 		pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
 		addButton(0, "Fight!", startCombat, "grayprime");
@@ -2510,7 +2510,7 @@ public function deck13ShieldControlFunc():Boolean
 public function grayPrimeAI():void
 {
 	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks.
-
+	grayGooDisplay();
 	if (pc.hasStatusEffect("Grappled"))
 	{
 		processCombat();
@@ -2749,6 +2749,21 @@ public function grayPrimeAnnoEscape():void
 	foes[0].removeStatusEffect("AnnoEscape");
 }
 
+public function grayGooDisplay():void
+{
+	if(inCombat()) 
+	{
+		showName("FIGHT:\nGRAY PRIME");
+		showBust("GRAY_GOO_PRIME_2");
+		//showBust("GRAY_GOO_GIGA");
+	}
+	else 
+	{
+		showName("GRAY\nPRIME");
+		showBust("GRAY_GOO_PRIME");
+	}
+}
+
 public function victoryOverGrayPrime():void
 {
 	// HP Victory
@@ -2759,8 +2774,7 @@ public function victoryOverGrayPrime():void
 		
 		clearOutput();
 		author("Savin");
-		showBust("GRAYPRIME");
-		showName("FIGHT:\nGRAY PRIME");
+		grayGooDisplay();
 
 		output("<i>“No,”</i> the goo groans, staggering back under your withering barrage of attacks the hail of bullets from Anno’s gun. <i>“No, I can’t... my work is too important. I’ve given everything for this... EVERYTHING. YOU WILL </i>NOT<i> STOP ME! YOU WILL </i>NOT<i>!”</i> the goo screams, suddenly finding her second wind. Goo wriggles forward from the floor and walls, adding itself to her mass, repairing the damage you’ve done to her. She looks as good as new in the blink of an eye.");
 		
@@ -2782,8 +2796,7 @@ public function victoryOverGrayPrime():void
 	{
 		clearOutput();
 		author("Savin");
-		showBust("GRAYPRIME");
-		showName("FIGHT:\nGRAY PRIME");
+		grayGooDisplay();
 
 		output("<i>“FUCKING DIE! DIE ALREADY!”</i> Anno screams, firing her gun again and again and again into the retreating mass of gray goo, blowing fist-sized holes through its body with every shot. Still, it doesn’t fall - not for long. ");
 		
@@ -2802,8 +2815,7 @@ public function victoryOverGrayPrime():void
 	{
 		clearOutput();
 		author("Savin");
-		showBust("GRAYPRIME");
-		showName("FIGHT:\nGRAY PRIME");
+		grayGooDisplay();
 
 		output("<i>“No... stop...”</i> the goo groans as you continue to tease it. As you close the distance, you’re surprised to see her breasts, hips, and ass visibly enlarging, starting to fill out to the proportions of the <i>“regular”</i> gray goo. <i>“I don’t want to... I don’t want to become like them,”</i> the goo cries, stumbling back, clutching at her rack as if she could hold it in, restrain it from growing. ");
 		
@@ -2822,7 +2834,7 @@ public function lossToGrayPrime():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("GRAYPRIME");
+	grayGooDisplay();
 	showName("LOSS:\nGRAY PRIME");
 
 	output("<i>“What the hell!?”</i> Anno shouts beside you, firing again and again into the seemingly unstoppable goo-girl. Every bullet blows chunks out of the jiggling gray mass of her body, enough to kill any living thing outright; this monster just shrugs it off as her body reforms into perfect shape a moment later, as if she’d never been hit at all. <i>“She won’t go fucking down!”</i>");
@@ -2975,8 +2987,8 @@ public function deck13FinalFormIntro():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("You and Anno approach the hatch leading into the secondary reactor. The snowy ausar readies her holdout and gives you a slight nod. Together, you shove the door open and charge in after the strange gray goo. ");
 	
@@ -3027,8 +3039,9 @@ public function deck13GrayPrimeTalkCrew():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
+	
 
 	flags["DECK13_CREW_TALK"] = 1;
 
@@ -3075,8 +3088,8 @@ public function deck13GrayPrimeTalkNova():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("<i>“Tell me about the ship,”</i> you say, indicating the massive chamber around you.");
 	
@@ -3092,8 +3105,8 @@ public function deck13GrayPrimeTalkWork():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("<i>“So what’s this work you didn’t want us to see?”</i>");
 	
@@ -3121,8 +3134,8 @@ public function deck13GrayPrimeTalkGoo():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("<i>“So, what’s the deal with the gray goo outside?”</i> you ask. ");
 	
@@ -3146,8 +3159,8 @@ public function deck13GrayPrimeTalkDone():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("<i>“I’ve heard enough.”</i>");
 	
@@ -3166,8 +3179,8 @@ public function deck13DecisionBodies():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	pc.addNice(5);
 
@@ -3204,8 +3217,8 @@ public function deck13DecisionGoo():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	pc.addHard(5);
 
@@ -3268,8 +3281,8 @@ public function deck13DecisionAskAnno():void
 {
 	clearOutput();
 	author("Savin");
+	grayGooDisplay();
 	showName("\nANNO");
-	showBust("ANNO");
 
 	output("<i>“Thoughts?”</i> you whisper, turning to Anno.");
 	
@@ -3284,8 +3297,8 @@ public function deck13DecisionStopHer():void
 {
 	clearOutput();
 	author("Savin");
+	showBust("GRAY_GOO_GIGA");
 	showName("\nGRAY PRIME");
-	showBust("GRAYPRIME");
 
 	output("You level your [pc.rangedWeapon] at Nova. Anno follows suit, her holdout steady with the goo’s head. ");
 	
@@ -3306,6 +3319,7 @@ public function deck13DecisionStopHer():void
 
 public function gigaGooAI():void
 {
+	showBust("GRAY_GOO_GIGA");
 	if (rand(3) == 0)
 	{
 		attack(foes[0], pc);
@@ -3388,8 +3402,8 @@ public function loseToGigaGoo():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("GIGAGOO");
 	showName("LOSS:\nGIGA GOO");
+	showBust("GRAY_GOO_GIGA");
 
 	output("<i>“YOU SHOULD HAVE LET US WORK,”</i> Nova roars, reaching through the elevator’s lips and grabbing you and Anno, squeezing you together in one of her massive fists. You can already feel the life being crushed out of you before the monolithic goo-girl throws you down to the deck below, ending your life as a crushed husk in a haze of poison gas.");
 	
@@ -3403,8 +3417,8 @@ public function victoryOverGigaGoo():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("GIGAGOO");
 	showName("VICTORY:\nGIGA GOO");
+	showBust("GRAY_GOO_GIGA");
 
 	output("Finally, the elevator locks into position and the huge blast door slides open. Still firing, Anno steps off the elevator, slowly stepping back as she unloads on the monstrous goo-girl. With a roar of rage, Nova rips the elevator cart aside and reaches her arm into the corridor, nearly knocking you off your [pc.feet]. You scramble back, Anno in tow as the goo adjusts her size, body deforming as she claws her way into the hall. ");
 	

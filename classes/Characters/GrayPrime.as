@@ -163,7 +163,7 @@ package classes.Characters
 		{
 			var gooPrime:GrayPrime = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("GRAYPRIME");
+			kGAMECLASS.userInterface.showBust("GRAY_GOO_PRIME_2");
 			kGAMECLASS.userInterface.showName("FIGHT:\nGRAY PRIME");
 			
 			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
