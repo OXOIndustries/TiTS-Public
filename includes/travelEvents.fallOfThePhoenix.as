@@ -95,7 +95,27 @@ public function phoenixRecRoom():void
 
 		//[Computer]
 		if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) addButton(0, "Computer", phoenixRecRoomComputer);
+		
+		// Overwrite East button
+		if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2)
+		{
+			addButton(12, "East", phoenixRecRoomEastBlocked);
+		}
 	}	
+}
+
+public function phoenixRecRoomEastBlocked():void
+{
+	clearOutput();
+	
+	output("The door is sealed, though beyond it, you can hear the sounds of gunfire.");
+	if (flags["FALL OF THE PHOENIX TALKED TO AI"] == 1) output(" The A.I.");
+	else output(" A voice");
+	output(" announces, \"<i>Cargo doors are sealed while life forms are still inside and atmosphere is drained in the recreation room.</i>\"");
+	output("\n\nShit.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function phoenixRecRoomComputer():void
