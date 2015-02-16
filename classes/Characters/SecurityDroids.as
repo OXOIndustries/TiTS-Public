@@ -147,7 +147,7 @@ package classes.Characters
 		{
 			var combatGunTurrets:SecurityDroids = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("SECURITYDROIDS");
+			kGAMECLASS.userInterface.showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
 			kGAMECLASS.userInterface.showName("FIGHT:\nS. DROIDS");
 			
 			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));

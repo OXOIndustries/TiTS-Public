@@ -56,6 +56,7 @@ public function showNehzara():void
 public function nehzaraBonus():Boolean
 {
 	author("Kaizer_Z");
+	showBust("MYR_RED_GUARD","MYR_RED_GUARD");
 	//(First Time)
 	if(flags["MET_NEHZARA"] == undefined)
 	{
@@ -100,6 +101,7 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 	}
 	clearOutput();
 	showNehzara();
+	showBust("MYR_RED_GUARD");
 	output("You approach the pair of Red Myr standing watch over the nearest entrance, noting to yourself that they’re not wearing gasmasks like the pair outside the warehouse. For that matter, none of the Reds in here are covering their faces. One guard steps forward to stop you before you get within ten feet of the door, and she asks your name and reason for being here. She’s rather terse and straight to the point, but that’s a military girl for you. Standing around with a loaded weapon all day doesn’t engender politeness toward meddling strangers wandering about.");
 	//{if not talked to Juro}
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
@@ -113,6 +115,7 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 	//{if talked to Juro}
 	else
 	{
+		showBust("NEHZARA","MYR_RED_GUARD");
 		output("\n\nAfter you give the sentry your name and explain who you are and why you’re here, she nods and opens the door to allow you through. You find that it leads into an office which looks to have been thrown up within the past few days, sparsely decorated but for an impressively large desk in the center of the room. A uniformed Red sits at it, and you have a brief window of time to look her over upon entering. The alien warrior’s uniform is far more intricate and appealing than that of the guards, looking showy and expressive when contrasted with the functional garb of the others. You assume that makes her an officer in dress uniform.");
 		output("\n\nYou have just enough time to also notice her inhumanly jet-black eyes glistening in the dim light, and then you find yourself staring right into them as the myr’s face turns up to acknowledge your presence. “<i>Yes? Can I help you?</i>” Her voice is a sharp alto, and the serious tone combined with her uniform and the pervading sense of militarism all around you evokes the image of her barking commands on a parade ground.\n\n“<i>Oh,</i>” she adds, straightening in her chair, “<i>I don’t believe we’ve met before. Colonel Nehzara, appointed diplomatic and political representative of the Scarlet Federation to the UGC Embassy. I’m serving in an ambassadorial capacity while the Federation sorts out which general will be here full-time. In any case, the corporal wouldn’t have directed you in unless you had business here, so what do you require of me?</i>” You get the impression she’s been sizing you up since she laid eyes on you.");
 		output("\n\nYou introduce yourself and explain that you’re a star-traveler and heir to one of the larger corporations in the greater galaxy. Nehzara accepts this with a subtle nod and glances at a sheaf of paper on her desk. “<i>Ah, yes. Steele. I was apprised of your arrival on our little world. One of the UGC staff dropped off a quick notice just a moment ago. You’re... quite the important person, it seems.</i>” Her mouth quirks into a little smirk, and you could swear there’s a playful twinkle in those alien eyes of hers.");
@@ -130,6 +133,7 @@ public function approachNehzara4Repeats():void
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA","MYR_RED_GUARD");
 	output("You enter the Red Myr diplomat’s office after the guard announces your presence, and Colonel Nehzara regards you with a level gaze and a subdued smile. That’s probably a downright friendly expression by her standards. “<i>Steele,</i>” she says coolly, “<i>I can’t say I expected you to be back here. Did you have more questions?</i>” She glances at the open door and lowers her voice to where you can barely hear her. “<i>Or maybe there’s something </i>else<i> you need, hm?</i>” Something tells you that at least one of the soldiers outside heard, but they’re both too tactful to give any indication of doing so. It’s so nice to be surrounded by professionals.");
 	//(Same options as last time, plus new options)
 	nehzeraMenu(approachNehzara4Repeats);
@@ -716,7 +720,8 @@ public function heyAntHitlerWannaFeel():void
 public function nehzarasWarriorHonor():void
 {
 	clearOutput();
-	showNehzara();
+	showName("\nCONFRONTATION!")
+	showBust("NEHZARA","LYRALLA","JURO");
 	flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] = 1;
 	output("You ");
 	if(pc.legCount > 1) output("step");
@@ -738,6 +743,7 @@ public function nehzaraAndLTFollowupToHonor():void
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA","MYR_RED_GUARD");
 	output("You decide to go over and see how Nehzara’s handling the disappointment of watching her rival snatch a major accomplishment out from under her. You’ve never seen her so furious, and you’re sort of worried that she might do something drastic. She <i>was</i> a warrior long before she was a diplomat, after all.");
 	output("\n\n“<i>The goddamn nerve of that honey-guzzling bitch...</i>” Nehzara’s grumbling to herself and has her arms crossed over her chest, just under her bust. You can’t help but notice that the pose she’s struck makes her bust look absolutely fantastic, though that’s probably the last thing on her mind.");
 	output("\n\nHer face brightens just a little when she sees you approaching. The change is subtle, but she definitely perks up a little once you’re there. “<i>Steele,</i>” she says by way of greeting. “<i>No doubt you saw what just happened. That sorry excuse for an ambassador gets away with blatantly drugging a corporate representative and no one does a damn thing.</i>”");

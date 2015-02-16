@@ -25,6 +25,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
+		public var Bust_DROID_SECURITY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie.png", mimeType = "image/png")]
 		public var Bust_ELLIE:Class;
 		
@@ -43,6 +46,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara.png", mimeType = "image/png")]
+		public var Bust_KARA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
+		public var Bust_KARA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
