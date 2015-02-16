@@ -38,6 +38,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
 		public var Bust_MILLIE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_pilot.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_PILOT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;
 
