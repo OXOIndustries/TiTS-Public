@@ -349,7 +349,7 @@ public function initializeMyrellionRooms():void
 	rooms["708"].northExit = "707";
 	rooms["708"].eastExit = "701";
 	rooms["708"].moveMinutes = 3;
-	rooms["708"].runOnEnter = undefined;
+	rooms["708"].runOnEnter = southwestMushroomParkBonus;
 	rooms["708"].addFlag(GLOBAL.INDOOR);
 	rooms["708"].addFlag(GLOBAL.PUBLIC);
 	rooms["708"].addFlag(GLOBAL.CAVE);
@@ -363,7 +363,7 @@ public function initializeMyrellionRooms():void
 	rooms["709"].northExit = "701";
 	rooms["709"].southExit = "710";
 	rooms["709"].moveMinutes = 2;
-	rooms["709"].runOnEnter = undefined;
+	rooms["709"].runOnEnter = gildenmereStreetBonus;
 	rooms["709"].addFlag(GLOBAL.INDOOR);
 	rooms["709"].addFlag(GLOBAL.PUBLIC);
 	rooms["709"].addFlag(GLOBAL.CAVE);
@@ -378,7 +378,7 @@ public function initializeMyrellionRooms():void
 	rooms["710"].eastExit = "711";
 	rooms["710"].westExit = "733";
 	rooms["710"].moveMinutes = 2;
-	rooms["710"].runOnEnter = undefined;
+	rooms["710"].runOnEnter = gildenmereStreetBonus;
 	rooms["710"].addFlag(GLOBAL.INDOOR);
 	rooms["710"].addFlag(GLOBAL.PUBLIC);
 	rooms["710"].addFlag(GLOBAL.CAVE);
@@ -392,7 +392,7 @@ public function initializeMyrellionRooms():void
 	rooms["711"].westExit = "710";
 	rooms["711"].eastExit = "712";
 	rooms["711"].moveMinutes = 2;
-	rooms["711"].runOnEnter = undefined;
+	rooms["711"].runOnEnter = gildenmereStreetBonus;
 	rooms["711"].addFlag(GLOBAL.INDOOR);
 	rooms["711"].addFlag(GLOBAL.PUBLIC);
 	rooms["711"].addFlag(GLOBAL.CAVE);
@@ -406,7 +406,7 @@ public function initializeMyrellionRooms():void
 	rooms["712"].westExit = "711";
 	rooms["712"].eastExit = "713";
 	rooms["712"].moveMinutes = 2;
-	rooms["712"].runOnEnter = undefined;
+	rooms["712"].runOnEnter = gildenmereStreetBonus;
 	rooms["712"].addFlag(GLOBAL.INDOOR);
 	rooms["712"].addFlag(GLOBAL.PUBLIC);
 	rooms["712"].addFlag(GLOBAL.CAVE);
@@ -420,7 +420,7 @@ public function initializeMyrellionRooms():void
 	rooms["713"].westExit = "712";
 	rooms["713"].northExit = "714";
 	rooms["713"].moveMinutes = 2;
-	rooms["713"].runOnEnter = undefined;
+	rooms["713"].runOnEnter = gildenmereStreetBonus;
 	rooms["713"].addFlag(GLOBAL.INDOOR);
 	rooms["713"].addFlag(GLOBAL.PUBLIC);
 	rooms["713"].addFlag(GLOBAL.CAVE);
@@ -435,7 +435,7 @@ public function initializeMyrellionRooms():void
 	rooms["714"].northExit = "715";
 	rooms["714"].eastExit = "740";
 	rooms["714"].moveMinutes = 2;
-	rooms["714"].runOnEnter = undefined;
+	rooms["714"].runOnEnter = gildenmereStreetBonus;
 	rooms["714"].addFlag(GLOBAL.INDOOR);
 	rooms["714"].addFlag(GLOBAL.PUBLIC);
 	rooms["714"].addFlag(GLOBAL.CAVE);
@@ -465,7 +465,7 @@ public function initializeMyrellionRooms():void
 	rooms["716"].northExit = "717";
 	rooms["716"].westExit = "741";
 	rooms["716"].moveMinutes = 2;
-	rooms["716"].runOnEnter = undefined;
+	rooms["716"].runOnEnter = gildenmereStreetBonus;
 	rooms["716"].addFlag(GLOBAL.INDOOR);
 	rooms["716"].addFlag(GLOBAL.PUBLIC);
 	rooms["716"].addFlag(GLOBAL.CAVE);
@@ -479,7 +479,7 @@ public function initializeMyrellionRooms():void
 	rooms["717"].southExit = "716";
 	rooms["717"].northExit = "718";
 	rooms["717"].moveMinutes = 2;
-	rooms["717"].runOnEnter = undefined;
+	rooms["717"].runOnEnter = gildenmereStreetBonus;
 	rooms["717"].addFlag(GLOBAL.INDOOR);
 	rooms["717"].addFlag(GLOBAL.PUBLIC);
 	rooms["717"].addFlag(GLOBAL.CAVE);
@@ -495,7 +495,7 @@ public function initializeMyrellionRooms():void
 	rooms["718"].northExit = "719";
 	rooms["718"].eastExit = "739";
 	rooms["718"].moveMinutes = 2;
-	rooms["718"].runOnEnter = undefined;
+	rooms["718"].runOnEnter = gildenmereStreetBonus;
 	rooms["718"].addFlag(GLOBAL.INDOOR);
 	rooms["718"].addFlag(GLOBAL.PUBLIC);
 	rooms["718"].addFlag(GLOBAL.CAVE);
@@ -509,7 +509,7 @@ public function initializeMyrellionRooms():void
 	rooms["719"].southExit = "718";
 	rooms["719"].westExit = "720";
 	rooms["719"].moveMinutes = 2;
-	rooms["719"].runOnEnter = undefined;
+	rooms["719"].runOnEnter = gildenmereStreetBonus;
 	rooms["719"].addFlag(GLOBAL.INDOOR);
 	rooms["719"].addFlag(GLOBAL.PUBLIC);
 	rooms["719"].addFlag(GLOBAL.CAVE);
@@ -523,7 +523,7 @@ public function initializeMyrellionRooms():void
 	rooms["720"].eastExit = "719";
 	rooms["720"].westExit = "721";
 	rooms["720"].moveMinutes = 2;
-	rooms["720"].runOnEnter = undefined;
+	rooms["720"].runOnEnter = gildenmereStreetBonus;
 	rooms["720"].addFlag(GLOBAL.INDOOR);
 	rooms["720"].addFlag(GLOBAL.PUBLIC);
 	rooms["720"].addFlag(GLOBAL.CAVE);
@@ -556,7 +556,7 @@ public function initializeMyrellionRooms():void
 	rooms["722"].westExit = "723";
 	rooms["722"].southExit = "743";
 	rooms["722"].moveMinutes = 2;
-	rooms["722"].runOnEnter = undefined;
+	rooms["722"].runOnEnter = gildenmereStreetBonus;
 	rooms["722"].addFlag(GLOBAL.INDOOR);
 	rooms["722"].addFlag(GLOBAL.PUBLIC);
 	rooms["722"].addFlag(GLOBAL.CAVE);
@@ -570,7 +570,7 @@ public function initializeMyrellionRooms():void
 	rooms["723"].eastExit = "722";
 	rooms["723"].westExit = "724";
 	rooms["723"].moveMinutes = 2;
-	rooms["723"].runOnEnter = undefined;
+	rooms["723"].runOnEnter = gildenmereStreetBonus;
 	rooms["723"].addFlag(GLOBAL.INDOOR);
 	rooms["723"].addFlag(GLOBAL.PUBLIC);
 	rooms["723"].addFlag(GLOBAL.CAVE);
@@ -584,7 +584,7 @@ public function initializeMyrellionRooms():void
 	rooms["724"].eastExit = "723";
 	rooms["724"].westExit = "725";
 	rooms["724"].moveMinutes = 2;
-	rooms["724"].runOnEnter = undefined;
+	rooms["724"].runOnEnter = gildenmereStreetBonus;
 	rooms["724"].addFlag(GLOBAL.INDOOR);
 	rooms["724"].addFlag(GLOBAL.PUBLIC);
 	rooms["724"].addFlag(GLOBAL.CAVE);
@@ -598,7 +598,7 @@ public function initializeMyrellionRooms():void
 	rooms["725"].eastExit = "724";
 	rooms["725"].southExit = "726";
 	rooms["725"].moveMinutes = 2;
-	rooms["725"].runOnEnter = undefined;
+	rooms["725"].runOnEnter = gildenmereCornerStreetBonus;
 	rooms["725"].addFlag(GLOBAL.INDOOR);
 	rooms["725"].addFlag(GLOBAL.PUBLIC);
 	rooms["725"].addFlag(GLOBAL.CAVE);
@@ -613,7 +613,7 @@ public function initializeMyrellionRooms():void
 	rooms["726"].southExit = "727";
 	rooms["726"].westExit = "738";
 	rooms["726"].moveMinutes = 2;
-	rooms["726"].runOnEnter = undefined;
+	rooms["726"].runOnEnter = gildenmereStreetBonus;
 	rooms["726"].addFlag(GLOBAL.INDOOR);
 	rooms["726"].addFlag(GLOBAL.PUBLIC);
 	rooms["726"].addFlag(GLOBAL.CAVE);
@@ -627,7 +627,7 @@ public function initializeMyrellionRooms():void
 	rooms["727"].northExit = "726";
 	rooms["727"].southExit = "728";
 	rooms["727"].moveMinutes = 2;
-	rooms["727"].runOnEnter = undefined;
+	rooms["727"].runOnEnter = gildenmereStreetBonus;
 	rooms["727"].addFlag(GLOBAL.INDOOR);
 	rooms["727"].addFlag(GLOBAL.PUBLIC);
 	rooms["727"].addFlag(GLOBAL.CAVE);
@@ -642,7 +642,7 @@ public function initializeMyrellionRooms():void
 	rooms["728"].southExit = "729";
 	rooms["728"].eastExit = "742";
 	rooms["728"].moveMinutes = 2;
-	rooms["728"].runOnEnter = undefined;
+	rooms["728"].runOnEnter = gildenmereStreetBonus;
 	rooms["728"].addFlag(GLOBAL.INDOOR);
 	rooms["728"].addFlag(GLOBAL.PUBLIC);
 	rooms["728"].addFlag(GLOBAL.CAVE);
@@ -656,7 +656,7 @@ public function initializeMyrellionRooms():void
 	rooms["729"].northExit = "728";
 	rooms["729"].southExit = "730";
 	rooms["729"].moveMinutes = 2;
-	rooms["729"].runOnEnter = undefined;
+	rooms["729"].runOnEnter = gildenmereStreetBonus;
 	rooms["729"].addFlag(GLOBAL.INDOOR);
 	rooms["729"].addFlag(GLOBAL.PUBLIC);
 	rooms["729"].addFlag(GLOBAL.CAVE);
@@ -671,7 +671,7 @@ public function initializeMyrellionRooms():void
 	rooms["730"].southExit = "731";
 	rooms["730"].westExit = "734";
 	rooms["730"].moveMinutes = 2;
-	rooms["730"].runOnEnter = undefined;
+	rooms["730"].runOnEnter = gildenmereStreetBonus;
 	rooms["730"].addFlag(GLOBAL.INDOOR);
 	rooms["730"].addFlag(GLOBAL.PUBLIC);
 	rooms["730"].addFlag(GLOBAL.CAVE);
@@ -685,7 +685,7 @@ public function initializeMyrellionRooms():void
 	rooms["731"].northExit = "730";
 	rooms["731"].eastExit = "732";
 	rooms["731"].moveMinutes = 2;
-	rooms["731"].runOnEnter = undefined;
+	rooms["731"].runOnEnter = gildenmereStreetBonus;
 	rooms["731"].addFlag(GLOBAL.INDOOR);
 	rooms["731"].addFlag(GLOBAL.PUBLIC);
 	rooms["731"].addFlag(GLOBAL.CAVE);
@@ -699,8 +699,9 @@ public function initializeMyrellionRooms():void
 	rooms["732"].westExit = "731";
 	rooms["732"].eastExit = "733";
 	rooms["732"].northExit = "735";
+	rooms["732"].southExit = "745";
 	rooms["732"].moveMinutes = 2;
-	rooms["732"].runOnEnter = undefined;
+	rooms["732"].runOnEnter = gildenmereStreetBonus;
 	rooms["732"].addFlag(GLOBAL.INDOOR);
 	rooms["732"].addFlag(GLOBAL.PUBLIC);
 	rooms["732"].addFlag(GLOBAL.CAVE);
@@ -714,7 +715,7 @@ public function initializeMyrellionRooms():void
 	rooms["733"].westExit = "732";
 	rooms["733"].eastExit = "710";
 	rooms["733"].moveMinutes = 2;
-	rooms["733"].runOnEnter = undefined;
+	rooms["733"].runOnEnter = gildenmereStreetBonus;
 	rooms["733"].addFlag(GLOBAL.INDOOR);
 	rooms["733"].addFlag(GLOBAL.PUBLIC);
 	rooms["733"].addFlag(GLOBAL.CAVE);
@@ -819,7 +820,7 @@ public function initializeMyrellionRooms():void
 	rooms["741"].westExit = "703";
 	rooms["741"].eastExit = "716";
 	rooms["741"].moveMinutes = 2;
-	rooms["741"].runOnEnter = undefined;
+	rooms["741"].runOnEnter = gildenmereStreetBonus;
 	rooms["741"].addFlag(GLOBAL.INDOOR);
 	rooms["741"].addFlag(GLOBAL.PUBLIC);
 	rooms["741"].addFlag(GLOBAL.CAVE);
@@ -833,7 +834,7 @@ public function initializeMyrellionRooms():void
 	rooms["742"].westExit = "728";
 	rooms["742"].eastExit = "707";
 	rooms["742"].moveMinutes = 2;
-	rooms["742"].runOnEnter = undefined;
+	rooms["742"].runOnEnter = gildenmereStreetBonus;
 	rooms["742"].addFlag(GLOBAL.INDOOR);
 	rooms["742"].addFlag(GLOBAL.PUBLIC);
 	rooms["742"].addFlag(GLOBAL.CAVE);
@@ -847,13 +848,13 @@ public function initializeMyrellionRooms():void
 	rooms["743"].northExit = "722";
 	rooms["743"].southExit = "705";
 	rooms["743"].moveMinutes = 2;
-	rooms["743"].runOnEnter = undefined;
+	rooms["743"].runOnEnter = gildenmereStreetBonus;
 	rooms["743"].addFlag(GLOBAL.INDOOR);
 	rooms["743"].addFlag(GLOBAL.PUBLIC);
 	rooms["743"].addFlag(GLOBAL.CAVE);
 
 	rooms["744"] = new RoomClass(this);
-	rooms["744"].roomName = "BLACK-PAVED\nPATH";
+	rooms["744"].roomName = "PALACE\nENTRANCE";
 	rooms["744"].description = "";
 	rooms["744"].planet = "PLANET: MYRELLION";
 	rooms["744"].system = "SYSTEM: SINDATHU";
@@ -863,7 +864,41 @@ public function initializeMyrellionRooms():void
 	rooms["744"].addFlag(GLOBAL.INDOOR);
 	rooms["744"].addFlag(GLOBAL.PUBLIC);
 	rooms["744"].addFlag(GLOBAL.COMMERCE);
-	
+
+	rooms["745"] = new RoomClass(this);
+	rooms["745"].roomName = "PALACE\nENTRANCE";
+	rooms["745"].description = "The gold myr guards on either side of the palace’s entrance eye you coolly, their hands resting on the hilts of what appear to be giant, ceremonial sledgehammers. They do not move to block your passage, but you get the distinct feeling than any untoward move on your part would result in a swift ass-kicking or a whole mess of trouble. Just to the north is a broad street. Inside the structure to the south is an impressive, vaulted hall, complete with marble flooring embroidered carpets.";
+	rooms["745"].planet = "PLANET: MYRELLION";
+	rooms["745"].system = "SYSTEM: SINDATHU";
+	rooms["745"].northExit = "732";
+	rooms["745"].southExit = "746";
+	rooms["745"].moveMinutes = 2;
+	rooms["745"].runOnEnter = undefined;
+	rooms["745"].addFlag(GLOBAL.INDOOR);
+	rooms["745"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["746"] = new RoomClass(this);
+	rooms["746"].roomName = "PALACE\nHALL";
+	rooms["746"].description = "This palace’s central hall sits beneath an impressively vaulted ceiling of white marble. The floor is hewn from the same material, decorated in places with resplendant carpets. Posts for displaying works of art or other valuables ring the area, their charges long gone, perhaps stowed away to protect them danger or sold to support the war effort. An open entrance to the north leads back into the city. There are a number of other doorways in just about every direction, but all are guarded fiercely.";
+	rooms["746"].planet = "PLANET: MYRELLION";
+	rooms["746"].system = "SYSTEM: SINDATHU";
+	rooms["746"].northExit = "745";
+	//rooms["746"].eastExit = "746";
+	rooms["746"].moveMinutes = 2;
+	rooms["746"].runOnEnter = irelliaHallBonusShit;
+	rooms["746"].addFlag(GLOBAL.INDOOR);
+	rooms["746"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["747"] = new RoomClass(this);
+	rooms["747"].roomName = "IRELLIA’S\nCHAMBERS";
+	rooms["747"].description = "Flickering blue lights bathe the chamber in gentle, subdued tones. A closer glance reveals the light sources aren’t lights at all, but small terrariums housing tiny glowing mushrooms and exotic bugs that pulse with their own luminance. Curtains block her other rooms from view, though you spot at least shower to the south behind a curtain tall enough to hide a giant. The main hall lies west, past a doorway and a pair of guards.";
+	rooms["747"].planet = "PLANET: MYRELLION";
+	rooms["747"].system = "SYSTEM: SINDATHU";
+	rooms["747"].westExit = "746";
+	rooms["747"].moveMinutes = 2;
+	rooms["747"].runOnEnter = undefined;
+	rooms["747"].addFlag(GLOBAL.INDOOR);
+	rooms["747"].addFlag(GLOBAL.PUBLIC);
 
 	//=========================================//
 	//     KRESSIA ROOMS. 800-899 reserved  //

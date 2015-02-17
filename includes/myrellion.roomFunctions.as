@@ -209,3 +209,36 @@ public function noManzLandBonus():Boolean
 	}
 	return false;
 }
+
+//==========================
+//  GILDENMERE SHITZ
+//==========================
+public function gildenmereStreetBonus():Boolean
+{
+	if(flags["IRELLIA_QUEST_STATUS"] == 1  && (rand(35) == 0 || debug))
+	{
+		unificationInvitationEventProcInGildenmere();
+	}
+	return false;
+}
+
+public function southwestMushroomParkBonus():Boolean
+{
+	if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && minutes < 30)
+	{
+		unificationRallyEvent();
+		return true;
+	}
+	return false;
+}
+
+public function gildenmereCornerStreetBonus():Boolean
+{
+	if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours == 23 && minutes >= 30)
+	{
+		beADumbShitFallGuyForTheRebels();
+		return true;
+	}
+	//No explosion? Do normal street corner.
+	return southwestMushroomParkBonus();
+}

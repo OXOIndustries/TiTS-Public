@@ -706,6 +706,22 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+
+	//Irellia quest stuff.
+	//IrelliaQuest incomplete. No east passage, people token in main room.
+	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
+	{
+		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
+		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
+		rooms["746"].eastExit = "";
+	}
+	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
+	else
+	{
+		rooms["746"].eastExit = "747";
+		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
+		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
+	}
 }
 
 public function processTime(arg:int):void {
@@ -883,7 +899,22 @@ public function processTime(arg:int):void {
 				flags["GOBBLES_COOLDOWN"]++;
 				if(flags["GOBBLES_COOLDOWN"] > 24) flags["GOBBLES_COOLDOWN"] = 24;
 			}
-
+			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours == 24 && currentLocation != "725") missedRebelExplosion();
+			if(flags["IRELLIA_QUEST_STATUS"] == 4 && hours == 24) 
+			{
+				eventBuffer += "\n\nYou receive a missive from your codex informing you that Queen Irellia would like to speak to you. Sounds like someone's about to get paid!";
+				flags["IRELLIA_QUEST_STATUS"] = 5;
+			}
+			//Mushroom park meeting.
+			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708")
+			{
+				eventQueue.push(unificationRallyEvent);
+			}
+			//Bomb explosion bad-end meeting
+			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725")
+			{
+				eventQueue.push(beADumbShitFallGuyForTheRebels);
+			}
 			//Lactation effect updates
 			lactationUpdateHourTick();
 			//Horse pill procs!

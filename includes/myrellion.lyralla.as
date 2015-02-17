@@ -341,6 +341,7 @@ public function askToMeetLyrallasQueen():void
 {
 	clearOutput();
 	showLyralla();
+	flags["LYRALLA_DISCUSSED_HER_QUEEN"] = 1;
 	output("You ");
 	if(pc.isNice() || pc.isMischievous())
 	{
@@ -418,6 +419,7 @@ public function askAboutHerQueensName():void
 {
 	clearOutput();
 	showLyralla();
+	flags["LYRALLA_DISCUSSED_HER_QUEEN"] = 1;
 	output("“<i>What’s her name?");
 	if(pc.isBimbo()) output(" I bet it’s cute!");
 	output("</i>”");
