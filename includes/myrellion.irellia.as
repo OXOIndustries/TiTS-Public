@@ -20,74 +20,181 @@ Was low ranking, but is climbing in power rapidly. Outbirthing other queens in h
 Spends a lot of time breeding (a necessity of her job).
 Bullied as a child for her small stature. Becoming a Queen changed all that, of course.*/
 
-Approach Irellia
-//Normal Appearance - Quest complete. Can be found in a different room (The east one, perchance?
-Queen Irellia is lounging in a specially made recliner, her egg-swollen abdomen cradled by the woven fibers. A few handmaidens are her only company aside from yourself. Her face brightens at the sight of you.
+//Normal Appearance - Quest complete. Can be found in a different room (The east one, perchance?)
+function irelliasThroneroomBonus():Boolean
+{
+	output("\n\nQueen Irellia is lounging in a specially made recliner, her egg-swollen abdomen cradled by the woven fibers. A few handmaidens are her only company aside from yourself. Her face brightens at the sight of you.");
+	return false;
+}
 
 //Actually approach- first time
-Queen Irellia gives you a lazy wave as you approach. “<i>[pc.name]! I was beginning to think you’d never claim that private audience I offered you.</i>” Her lower arms heft a breast. “<i>May I offer you a snack?</i>”
-{Yum!/Well, that’s forward! Are you hungry?}
-[“<i>Snack</i>”][Decline]
+function approachIrelliaInHerThrone():void
+{
+	clearOutput();
+	showIrellia();
+	if()
+	{
+		output("Queen Irellia gives you a lazy wave as you approach. “<i>[pc.name]! I was beginning to think you’d never claim that private audience I offered you.</i>” Her lower arms heft a breast. “<i>May I offer you a snack?</i>”");
+		if(pc.isBimbo() || pc.isBro()) output("\n\nYum!");
+		else output("Well, that’s forward! Are you hungry?");
+		processTime(1);
+		clearMenu();
+		addButton(0,"“Snack”",tittysnackWithIrellia);
+		addButton(1,"Decline",declineATittySnackWithIrellia);
+	}
+	//Repeat Approach
+	else
+	{
+		output("Queen Irellia is lying in her specially made recliner while a handmaiden carries away a recently-birthed egg, still slick with the queen’s juices. Her face brightens at the sight of you. “<i>[pc.name], my favorite star-walker! To what do I owe the pleasure?</i>”");
+		irelliaMenu();
+	}
+}
 
-//Repeat Approach
-Queen Irellia is lying in her specially made recliner while a handmaiden carries away a recently-birthed egg, still slick with the queen’s juices. Her face brightens at the sight of you. “<i>[pc.name], my favorite star-walker! To what do I owe the pleasure?</i>”
-Tittysnack
-“<i>I’m {famished/fam...famish... uh... totally hungry},</i>” you say while striding closer to the queen. Those four breasts are just so big and swollen with tit-honey. You can imagine the regent doesn’t allow many sample their delights. You’re one of a select few, a thought that only serves to make your [pc.lips] feel more chapped and thirsty by the moment. {That pendulous breast is capped with a succulent, bronze nipple, already trailing amber nectar down its underswell, glittering in the muted light of the Irellia’s chamber./Irellia selects a pendulous breast and lifts it for you, allowing the amber nectar to trail from its bronzed nipple, setting it alight with reflections from her chamber’s muted illumination.}
-The royal myr releases an eager groan as you close in, shifting her torso so that you can get at her nutrient-packed nipple{, considerate of your diminutive height}. “<i>These four breasts are so cumbersome, [pc.name]. You have no idea how wearying it can be to bear such weight at all hours of the day.</i>” She graces you with a wan smile. “<i>Though the draining can be quite fun. Go on, drink.</i>” She squeezes, spraying a solid stream of golden fluid in your direction. “<i>The girls who support Gildenmere by giving it out on the street are so lucky.</i>”
-You open your mouth and playfully catch some of the stream on your [pc.tongue], savoring the sinfully sweet taste of it. It’s an ambrosial mix of honey and maple, underlaid with another flavor like nothing you’ve ever savored before. Closing in, you brazenly lay your fingers around the oozing boob, wrapping them over the queen’s own, and seal your [pc.lips] to the nipple she’s presented you with. Sympathetic trickles graze your cheek, spilt from one of the other backed-up nipples.
-“<i>Drink up, my star-borne champion, savor your bounty, your reward,</i>” Irellia coos encouragingly. She slips one of her arms around the back of your head and pushes you further into her bulging breast, physically demanding that you guzzle more of the sweet tit-treat. Swallowing greedily, you mentally chuckle; there are only a handful of scenarios you can imagine that would make you want to stop sucking, and none of them seem likely. Amber droplets bead at the corners of your mouth while you drink.
-Irellia shifts you to her other bottom breast after a time. The drained nipple is puffy and stiff, shining with a layer of leftover spit and nectar. Nuzzling against her pillowy mound, you enjoy the quiet moment. The queen’s chitinous, blue-coated fingers stroke {through your [pc.hair]/across your head} fondly, relaxing you while you burrow deeper into her double-decker chest.
-Over time, you lose yourself in the gentle rhythm of your own swallowing and the gentle thudding of the queen’s heart. The sublime taste coats your throat and fills your belly. You are aware of moving from breast to breast, shifting between the queen’s teats again and again, relishing in her freely-given honey.
-When at last she pushes you away, it takes all four of her arms. Your [pc.belly] feels absolutely stuffed, yet you feel positively suffused with energy. You bet you could run laps around this section of the city without even breaking a sweat!
-Queen Irellia slumps back, her jiggling breasts significantly reduced but still very large. “<i>Now, was there something else I could assist you with?</i>” The scent of honey is thick in the air, as well as a slightly muskier, more feminine scent. She must have enjoyed herself even more than you!
-//Fill energy.
-//Buff max energy by 40 for 2 days.
-//+20 lust.
-Discuss
-“<i>I’d actually like to discuss something with you{, if you have the time},</i>” you admit.
-Queen Irellia shifts to more directly view you and gives an airy wave. “<i>Go on then, dear. It is not often I get the chance to converse with a star-walker myself. I delegated that duty to Lyralla. She has a knack for it, you know.</i>”
-Birthing
-“<i>How {do you pop out so many kids?/can you possibly birth so many young?} Doesn’t it hurt?</i>” you ask.
-Irellia stares at you for a long moment, then bursts into sudden laughter. “<i>You go through all that effort to get me in private... and you want to know how I manage to squeeze out a hundred kids in a day?</i>” She wipes a tear from her eye. “<i>You star-walkers are an odd bunch. Of course it doesn’t hurt! We aren’t degenerates, like those reds, who have forgotten the proper way to breed.</i>”
-“<i>But that’s a LOT of birthing...</i>” You look her up and down, confused.
-The Queen chuckles and shakes her head, holding out a hand to forestall any further speech. “<i>Wait, wait. Do you mean to tell me that birthing hurts for your races? That it doesn’t leave you weak in the knees with pleasure? That your bodies don’t reward you for accomplishing your purpose in life?</i>”
-You blush and reply to the negative.
-“<i>Well... that’s just terrible. I’m sorry to hear it, [pc.name]. Perhaps our peoples need each other more than I thought. You have so much technology to offer us, and we have such wondrous biological bounties to bring to the table.</i>” She taps her chin in thought. “<i>I will have to speak with Lyralla and the council on this in the future, but for now, let me educate you on why we golds are so libertine.</i>”
-Leaning down over her abdomen, the queen gestures at the slit at the end of it. “<i>That is a myr vagina, [pc.name]. Every female myr, queen and worker alike has one. Normally, they look a lot more compact and less... engorged than my own, but I assure you, they are quite elastic. One of the perks of having your reproductive organs stationed in their own chamber, away your vitals.</i>”
-She sighs as a trickle of moisture begins to leak from the aforementioned feminine entrance. “<i>We lubricate quite readily since our bodies stockpile stores in the excess space in our abdomens.</i>” Seeing you blush{ in arousal}, she smiles. “<i>There is no shame in it. Consider it a compliment.</i>”
-You {stammer for words/briefly consider flashing her to return the compliment, but think better of it/grin brazenly back at her}.
-“<i>Anyhow, we queens have significantly larger abdomens than our peers. They grow larger during our first pregnancy to support the weight of our eggs and larger still with successive births. Our vaginas enlarge proportionally.</i>” She stretches down, grunting and spreading her lower lips to show its size. Her passage shines like oiled gold. No wonder she can pass eggs without incident. She’s able to pull it until it’s gaped wide enough to display her cervix.
-You gasp in amazement.
-“<i>It’s something else, isn’t it? Passing eggs feels amazing.</i>” Now it’s her turn to blush. “<i>I actually do my best to birth them in large batches nowadays. My abdomen might get a little swollen, but then I get to spend an hour feeling those beautiful orbs sliding through me, stroking and stretching me from the inside.</i>” Irellia shivers. “<i>It’s a very good hour.</i>”
-You stare at the brazen myr, a little surprised that she speaks so casually about sex.
-Irellia waves casually in your direction. “<i>Temperatures below ground are fairly static. We’ve never had much need for clothing or concealing our sexuality from strangers or friends. And I want you to know that I do consider you a friend after what you did for my people - my girls... and my boys.</i>”
-Thanking her nervously, you point out the vagina between her legs. “<i>What about that?</i>”
-The Queen giggles at that. “<i>That, dear star-walker, is a vagina - loosely modelled after the terran design by your scientists. I paid a handsome bounty of gemstones and precious metals to convince them to design me a custom genetic modification in order to allow me to take in more sperm. This way, I can mate with twice as many drones at once, or have one fertilize my next batches of eggs while I’m birthing the other.</i>” She runs her fingers down either side of it. “<i>Of course, mine connects to my existing womb rather than to a uterus in the middle of my body.</i>”
-You’re at a loss for words by this point. Your eyes just widen.
-She smiles{ and takes in the sight of your suddenly erect crotch/ and sniffs at the air, picking out the scent of third aroused vagina with ease}. “<i>Of course, it was an untested prototype. They warned me of all kinds of risks: heightened libido, undue vaginal secretions, persistent feminine arousal, clitoral swelling, and the like, but it was worth it.</i>” She dips a finger into her slit and pulls it out in order to lick the shining digit clean. “<i>Sure, I spend more time getting fertilized than most of my peers, and my clits are way more sensitive than the single one was, but I’m having more children than my rivals.</i>”
-Irellia smooths her hair back and smiles happily. “<i>In a few years I could be one of the most powerful queens in the city. All I have to do is keep this up. Now, was there anything else you wanted to talk about?{ Or did you want to do something else?/ I’d love to have some fun with you again, but I should really breed with my drones some more before I take time for fun. Maybe come see me in a few hours?}</i>”
-Gildenmere?
-You ask about Gildenmere. What kind of city is it?
-Irellia smiles broadly. “<i>Gildenmere? Gildenmere is the brightest jewel of hope left in this world. Our tunnels run deep. Our factories burn hot. Our people are provided with the best education and opportunities. Were it not for the war, this place would be a mecca of culture and civilization.</i>”
-“<i>The war has changed the city?</i>”
-The Queen gives a sober nod. “<i>Indeed. With the loss of so many, we have lost access to crucial resources. Our best and brightest have had to turn their minds to methods of murder and destruction rather than the more noble arts and sciences. Tens of thousands of our daughters have marched into fire and death to buy us time to find a solution. Now whole city blocks are empty of inhabitants.</i>”
-You fumble for words, but Irellia shakes her head and continues talking.
-“<i>It is all not all tragedy. Drones have been stepping up to fill gaps in society. Why, I even saw some working in a factory when I took a tour last week. Can you imagine that - a male doing dangerous work? They tell me the drones like it, that they want to be more than eye-candy and breeders.</i>” The queen scoffs but maintains a wry smile all the same. “<i>If we survive this conflict, we’re going to come out of it better for the struggle, mark my words. Maybe we’ll allow men to seek employment performing manual labor more intensive than a dance.</i>”
-Nodding, you add, “<i>{For sure!/I bet. Hardship always seems to bring about the greatest societal changes and scientific developments.}</i>”
-Irellia agrees, “<i>Indeed. Even weapons of grievous murder can be turned to serve society. I’m told that the scientists think they may be able to generate electricity from the technology behind our city-cracking bombs. If that’s true, we could scale back our coal mining. It would save countless lungs and lives.</i>” She pauses. “<i>All we need is for the U.G.C. to enforce a peace or scour the reds from the caverns.</i>”
-The blue-painted matron smirks. “<i>You’ll forgive me if I have my doubts. Now, were there other questions you’d like addressed?</i>”
-What’s It Like?
-You ask, “<i>What’s it like?</i>”
-Irellia tilts her head, unsure. “<i>What’s what like? I’m not a psychic, you know.</i>”
-“<i>You know...</i>” you say while wildly gesticulating, “<i>...being a queen! Ruler of your people! Worshipper like a god and all that.</i>”
-The gold myr leans back, smiling. “<i>Noone has ever asked me that before. Not even Lyralla when I was explaining her assignment to her. She’s quite the inquisitive woman, I’ll have you know.</i>” An attendant brings her water in an intricately gilded crystal goblet. Irellia sips it slowly, thinking on your question.
-When she speaks, her voice is quiet, almost a whisper. “<i>It is an honor... that’s what I believed back in my thollum, anyway. All the girls wanted to be the one who would grow up and turn out to be a queen - to be a secret princess who would have their every need catered to, pampered by servants at all hours of the day.</i>” A dry laugh follows. “<i>I wonder if my sisters still believe that nonsense.</i>”
-You look at her curiously. “<i>Nonsense?</i>”
-“<i>Yeah. When you’re young, all you see is the glitz and the glamor. You don’t see the responsibilities, the thousands of people counting on you, the expectation that you’ll pop out the army of kids you need to produce just to keep your species from dying out.</i>” She gestures at her swollen abdomen as an egg slides out into a waiting attendant’s arms. “<i>You don’t realize that you’ll have to make decisions that could ruin your daughters’ lives, and the only reason you’re even making them is because you happened to wind up with a quartet of working ovaries.</i>”
-You nod understandingly.
-Queen Irellia sighs. “<i>Being a queen is like carrying around a three-hundred pound weight in between sessions of being fucked sore. It’s dealing with stress that you were never prepared or trained for. It’s knowing that you have to send hundreds of your own offspring to certain death against an implacable foe who wants to grind your entire way of life beneath her boot.</i>” She sighs. “<i>You want to know what being a queen is like? It’s like going to the spa for a massage every day after being tortured and choosing how your children will die.</i>”
-An awkward silence fills the chamber, broken only be the sounds of Irellia’s servants taking away her emptied goblet.
-The royal myr gives you a wan smile. “<i>I did not mean to bury you under my burdens. They are mine to bear - someone has to, after all. Was there something else you had interest in? Perhaps something lighter? Joy is in such short supply these days.</i>”
+//Tittysnack
+function tittysnackWithIrellia():void
+{
+	clearOutput();
+	showIrellia();
+	output("“<i>I’m ");
+	if(!pc.isBimbo()) output("famished");
+	else output("fam...famish... uh... totally hungry");
+	output(",</i>” you say while striding closer to the queen. Those four breasts are just so big and swollen with tit-honey. You can imagine the regent doesn’t allow many sample their delights. You’re one of a select few, a thought that only serves to make your [pc.lips] feel more chapped and thirsty by the moment. ");
+	if(pc.tallness < 72) output("That pendulous breast is capped with a succulent, bronze nipple, already trailing amber nectar down its underswell, glittering in the muted light of the Irellia’s chamber.");
+	else output("Irellia selects a pendulous breast and lifts it for you, allowing the amber nectar to trail from its bronzed nipple, setting it alight with reflections from her chamber’s muted illumination.");
+
+	output("\n\nThe royal myr releases an eager groan as you close in, shifting her torso so that you can get at her nutrient-packed nipple");
+	if(pc.tallness < 53) output(", considerate of your diminutive height");
+	output(". “<i>These four breasts are so cumbersome, [pc.name]. You have no idea how wearying it can be to bear such weight at all hours of the day.</i>” She graces you with a wan smile. “<i>Though the draining can be quite fun. Go on, drink.</i>” She squeezes, spraying a solid stream of golden fluid in your direction. “<i>The girls who support Gildenmere by giving it out on the street are so lucky.</i>”");
+	output("\n\nYou open your mouth and playfully catch some of the stream on your [pc.tongue], savoring the sinfully sweet taste of it. It’s an ambrosial mix of honey and maple, underlaid with another flavor like nothing you’ve ever savored before. Closing in, you brazenly lay your fingers around the oozing boob, wrapping them over the queen’s own, and seal your [pc.lips] to the nipple she’s presented you with. Sympathetic trickles graze your cheek, spilt from one of the other backed-up nipples.");
+	output("\n\n“<i>Drink up, my star-borne champion, savor your bounty, your reward,</i>” Irellia coos encouragingly. She slips one of her arms around the back of your head and pushes you further into her bulging breast, physically demanding that you guzzle more of the sweet tit-treat. Swallowing greedily, you mentally chuckle; there are only a handful of scenarios you can imagine that would make you want to stop sucking, and none of them seem likely. Amber droplets bead at the corners of your mouth while you drink.");
+	output("\n\nIrellia shifts you to her other bottom breast after a time. The drained nipple is puffy and stiff, shining with a layer of leftover spit and nectar. Nuzzling against her pillowy mound, you enjoy the quiet moment. The queen’s chitinous, blue-coated fingers stroke ");
+	if(pc.hasHair()) output("through your [pc.hair]");
+	else output("across your head");
+	output(" fondly, relaxing you while you burrow deeper into her double-decker chest.");
+	output("\n\nOver time, you lose yourself in the gentle rhythm of your own swallowing and the gentle thudding of the queen’s heart. The sublime taste coats your throat and fills your belly. You are aware of moving from breast to breast, shifting between the queen’s teats again and again, relishing in her freely-given honey.");
+	output("\n\nWhen at last she pushes you away, it takes all four of her arms. Your [pc.belly] feels absolutely stuffed, yet you feel positively suffused with energy. You bet you could run laps around this section of the city without even breaking a sweat!");
+	output("\n\nQueen Irellia slumps back, her jiggling breasts significantly reduced but still very large. “<i>Now, was there something else I could assist you with?</i>” The scent of honey is thick in the air, as well as a slightly muskier, more feminine scent. She must have enjoyed herself even more than you!");
+	
+	processTime(24);
+	//Buff max energy by 40 for 2 days.
+	pc.createStatusEffect("Royal Nectar",40,0,0,0,false,"Charmed","Irellia's nectar has you feeling far peppier than normal.",false,2880)
+	//Fill energy.
+	pc.energy(pc.energyMax());
+	//+20 lust.
+	pc.lust(20);
+	clearMenu();
+	irelliaMenu();
+}
+
+//Discuss
+function discussSomethingWithAnAntQueen(cameFrom):void
+{
+	clearOutput();
+	showIrellia();
+	output("“<i>I’d actually like to discuss something with you");
+	if(pc.isNice()) output(", if you have the time");
+	output(",</i>” you admit.");
+
+	output("\n\nQueen Irellia shifts to more directly view you and gives an airy wave. “<i>Go on then, dear. It is not often I get the chance to converse with a star-walker myself. I delegated that duty to Lyralla. She has a knack for it, you know.</i>”");
+	processTime(1);
+	clearMenu();
+	irelliaTalkMenu(cameFrom);
+}
+
+function irelliaTalkMenu(cameFrom):void
+{
+
+}
+
+//Birthing
+function talkToIrelliaAboutBirthing():void
+{
+	clearOutput();
+	showIrellia();
+	output("“<i>How ");
+	if(pc.isBimbo()) output("do you pop out so many kids?");
+	else output("can you possibly birth so many young?");
+	output(" Doesn’t it hurt?</i>” you ask.");
+	output("\n\nIrellia stares at you for a long moment, then bursts into sudden laughter. “<i>You go through all that effort to get me in private... and you want to know how I manage to squeeze out a hundred kids in a day?</i>” She wipes a tear from her eye. “<i>You star-walkers are an odd bunch. Of course it doesn’t hurt! We aren’t degenerates, like those reds, who have forgotten the proper way to breed.</i>”");
+
+	output("\n\n“<i>But that’s a LOT of birthing...</i>” You look her up and down, confused.");
+	output("\n\nThe Queen chuckles and shakes her head, holding out a hand to forestall any further speech. “<i>Wait, wait. Do you mean to tell me that birthing hurts for your races? That it doesn’t leave you weak in the knees with pleasure? That your bodies don’t reward you for accomplishing your purpose in life?</i>”");
+	output("\n\nYou blush and reply to the negative.");
+	output("\n\n“<i>Well... that’s just terrible. I’m sorry to hear it, [pc.name]. Perhaps our peoples need each other more than I thought. You have so much technology to offer us, and we have such wondrous biological bounties to bring to the table.</i>” She taps her chin in thought. “<i>I will have to speak with Lyralla and the council on this in the future, but for now, let me educate you on why we golds are so libertine.</i>”");
+	output("\n\nLeaning down over her abdomen, the queen gestures at the slit at the end of it. “<i>That is a myr vagina, [pc.name]. Every female myr, queen and worker alike has one. Normally, they look a lot more compact and less... engorged than my own, but I assure you, they are quite elastic. One of the perks of having your reproductive organs stationed in their own chamber, away your vitals.</i>”");
+	output("\n\nShe sighs as a trickle of moisture begins to leak from the aforementioned feminine entrance. “<i>We lubricate quite readily since our bodies stockpile stores in the excess space in our abdomens.</i>” Seeing you blush");
+	if(pc.isBimbo() || pc.libido() >= 70) output(" in arousal");
+	output(", she smiles. “<i>There is no shame in it. Consider it a compliment.</i>”");
+
+	output("\n\nYou ");
+	if(pc.libido() < 33) output("stammer for words");
+	else if(pc.libido() < 66) output("briefly consider flashing her to return the compliment, but think better of it");
+	else output("grin brazenly back at her");
+	output(".");
+
+	output("\n\n“<i>Anyhow, we queens have significantly larger abdomens than our peers. They grow larger during our first pregnancy to support the weight of our eggs and larger still with successive births. Our vaginas enlarge proportionally.</i>” She stretches down, grunting and spreading her lower lips to show its size. Her passage shines like oiled gold. No wonder she can pass eggs without incident. She’s able to pull it until it’s gaped wide enough to display her cervix.");
+	output("\n\nYou gasp in amazement.");
+	output("\n\n“<i>It’s something else, isn’t it? Passing eggs feels amazing.</i>” Now it’s her turn to blush. “<i>I actually do my best to birth them in large batches nowadays. My abdomen might get a little swollen, but then I get to spend an hour feeling those beautiful orbs sliding through me, stroking and stretching me from the inside.</i>” Irellia shivers. “<i>It’s a very good hour.</i>”");
+	output("\n\nYou stare at the brazen myr, a little surprised that she speaks so casually about sex.");
+	output("\n\nIrellia waves casually in your direction. “<i>Temperatures below ground are fairly static. We’ve never had much need for clothing or concealing our sexuality from strangers or friends. And I want you to know that I do consider you a friend after what you did for my people - my girls... and my boys.</i>”");
+	output("\n\nThanking her nervously, you point out the vagina between her legs. “<i>What about that?</i>”");
+	output("\n\nThe Queen giggles at that. “<i>That, dear star-walker, is a vagina - loosely modelled after the terran design by your scientists. I paid a handsome bounty of gemstones and precious metals to convince them to design me a custom genetic modification in order to allow me to take in more sperm. This way, I can mate with twice as many drones at once, or have one fertilize my next batches of eggs while I’m birthing the other.</i>” She runs her fingers down either side of it. “<i>Of course, mine connects to my existing womb rather than to a uterus in the middle of my body.</i>”");
+	output("\n\nYou’re at a loss for words by this point. Your eyes just widen.");
+
+	output("\n\nShe smiles");
+	if(pc.hasCock() && (!pc.isCrotchGarbed() || pc.biggestCockLength() >= 9)) output(" and takes in the sight of your suddenly erect crotch");
+	else if(pc.hasVagina()) output(" and sniffs at the air, picking out the scent of third aroused vagina with ease");
+	output(". “<i>Of course, it was an untested prototype. They warned me of all kinds of risks: heightened libido, undue vaginal secretions, persistent feminine arousal, clitoral swelling, and the like, but it was worth it.</i>” She dips a finger into her slit and pulls it out in order to lick the shining digit clean. “<i>Sure, I spend more time getting fertilized than most of my peers, and my clits are way more sensitive than the single one was, but I’m having more children than my rivals.</i>”");
+	output("\n\nIrellia smooths her hair back and smiles happily. “<i>In a few years I could be one of the most powerful queens in the city. All I have to do is keep this up. Now, was there anything else you wanted to talk about?");
+	if(irelliaWantsSex()) output(" Or did you want to do something </i>else<i>?");
+	else output(" I’d love to have some fun with you again, but I should really breed with my drones some more before I take time for fun. Maybe come see me in a few hours?");
+	output("</i>”");
+
+	processTime(35);
+	irelliaTalkMenu(talkToIrelliaAboutBirthing);
+}
+
+//Gildenmere?
+//You ask about Gildenmere. What kind of city is it?
+function askIrelliaAboutGildenmere():void
+{
+	clearOutput();
+	showIrellia();
+	output("Irellia smiles broadly. “<i>Gildenmere? Gildenmere is the brightest jewel of hope left in this world. Our tunnels run deep. Our factories burn hot. Our people are provided with the best education and opportunities. Were it not for the war, this place would be a mecca of culture and civilization.</i>”");
+	output("\n\n“<i>The war has changed the city?</i>”");
+	output("\n\nThe Queen gives a sober nod. “<i>Indeed. With the loss of so many, we have lost access to crucial resources. Our best and brightest have had to turn their minds to methods of murder and destruction rather than the more noble arts and sciences. Tens of thousands of our daughters have marched into fire and death to buy us time to find a solution. Now whole city blocks are empty of inhabitants.</i>”");
+	output("\n\nYou fumble for words, but Irellia shakes her head and continues talking.");
+	output("\n\n“<i>It is all not all tragedy. Drones have been stepping up to fill gaps in society. Why, I even saw some working in a factory when I took a tour last week. Can you imagine that - a male doing dangerous work? They tell me the drones like it, that they want to be more than eye-candy and breeders.</i>” The queen scoffs but maintains a wry smile all the same. “<i>If we survive this conflict, we’re going to come out of it better for the struggle, mark my words. Maybe we’ll allow men to seek employment performing manual labor more intensive than a dance.</i>”");
+	output("\n\nNodding, you add, “<i>");
+	if(pc.isBimbo()) output("For sure!");
+	else output("I bet. Hardship always seems to bring about the greatest societal changes and scientific developments.");
+	output("</i>”");
+	output("\n\nIrellia agrees, “<i>Indeed. Even weapons of grievous murder can be turned to serve society. I’m told that the scientists think they may be able to generate electricity from the technology behind our city-cracking bombs. If that’s true, we could scale back our coal mining. It would save countless lungs and lives.</i>” She pauses. “<i>All we need is for the U.G.C. to enforce a peace or scour the reds from the caverns.</i>”");
+	output("\n\nThe blue-painted matron smirks. “<i>You’ll forgive me if I have my doubts. Now, were there other questions you’d like addressed?</i>”");
+	irelliaTalkMenu(askIrelliaAboutGildenmere);
+}
+
+//What’s It Like?
+function whatsItLikeIrellia():void
+{
+	clearOutput();
+	showIrellia();
+	output("You ask, “<i>What’s it like?</i>”");
+	output("\n\nIrellia tilts her head, unsure. “<i>What’s what like? I’m not a psychic, you know.</i>”");
+	output("\n\n“<i>You know...</i>” you say while wildly gesticulating, “<i>...being a queen! Ruler of your people! Worshipper like a god and all that.</i>”");
+	output("\n\nThe gold myr leans back, smiling. “<i>Noone has ever asked me that before. Not even Lyralla when I was explaining her assignment to her. She’s quite the inquisitive woman, I’ll have you know.</i>” An attendant brings her water in an intricately gilded crystal goblet. Irellia sips it slowly, thinking on your question.");
+	output("\n\nWhen she speaks, her voice is quiet, almost a whisper. “<i>It is an honor... that’s what I believed back in my thollum, anyway. All the girls wanted to be the one who would grow up and turn out to be a queen - to be a secret princess who would have their every need catered to, pampered by servants at all hours of the day.</i>” A dry laugh follows. “<i>I wonder if my sisters still believe that nonsense.</i>”");
+	output("\n\nYou look at her curiously. “<i>Nonsense?</i>”");
+	output("\n\n“<i>Yeah. When you’re young, all you see is the glitz and the glamor. You don’t see the responsibilities, the thousands of people counting on you, the expectation that you’ll pop out the army of kids you need to produce just to keep your species from dying out.</i>” She gestures at her swollen abdomen as an egg slides out into a waiting attendant’s arms. “<i>You don’t realize that you’ll have to make decisions that could ruin your daughters’ lives, and the only reason you’re even making them is because you happened to wind up with a quartet of working ovaries.</i>”");
+	output("\n\nYou nod understandingly.");
+	output("\n\nQueen Irellia sighs. “<i>Being a queen is like carrying around a three-hundred pound weight in between sessions of being fucked sore. It’s dealing with stress that you were never prepared or trained for. It’s knowing that you have to send hundreds of your own offspring to certain death against an implacable foe who wants to grind your entire way of life beneath her boot.</i>” She sighs. “<i>You want to know what being a queen is like? It’s like going to the spa for a massage every day after being tortured and choosing how your children will die.</i>”");
+	output("\n\nAn awkward silence fills the chamber, broken only be the sounds of Irellia’s servants taking away her emptied goblet.");
+	output("\n\nThe royal myr gives you a wan smile. “<i>I did not mean to bury you under my burdens. They are mine to bear - someone has to, after all. Was there something else you had interest in? Perhaps something lighter? Joy is in such short supply these days.</i>”");
+	processTime(17);
+	irelliaTalkMenu(whatsItLikeIrellia);
+}
+
+
 The Ceasefire
 You ask Queen Irellia what she thinks of the ceasefire.
 Her antennae flick outward, stretched wide. “<i>The ceasefire? It’s a joke. The reds won’t let it bind them for long. They’ll find an excuse to violate it or sneak a commando raid past your U.G.C. surveillance to kill off the remaining queens. It bought us time to recover, but it is no solution.</i>”
