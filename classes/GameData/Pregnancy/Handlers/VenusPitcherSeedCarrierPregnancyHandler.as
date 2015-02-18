@@ -100,13 +100,17 @@ package classes.GameData.Pregnancy.Handlers
 				mother.pregnancyData[pregSlot].pregnancyIncubation = 960 + rand(1200); // 16 - 36 hours
 			}
 			
-			kGAMECLASS.eventQueue.push(function():void {
-					if (kGAMECLASS.pc.getPregnancyOfType("VenusPitcherSeedCarrier") != null) 
-					{
-						kGAMECLASS.venusPitcherLayUnfertilizedEgg();
-						VenusPitcherSeedCarrierPregnancyHandler.cleanupPregnancy(kGAMECLASS.pc);
+			kGAMECLASS.eventQueue.push(
+				function():Function {
+					return function():void {
+						if (kGAMECLASS.pc.getPregnancyOfType("VenusPitcherSeedCarrier") != null) 
+						{
+							kGAMECLASS.venusPitcherLayUnfertilizedEgg();
+							VenusPitcherSeedCarrierPregnancyHandler.cleanupPregnancy(kGAMECLASS.pc);
+						}
 					}
-				});
+				}()
+			);
 		}
 		
 		public static function cleanupPregnancy(target:Creature):void

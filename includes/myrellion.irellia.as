@@ -21,14 +21,14 @@ Spends a lot of time breeding (a necessity of her job).
 Bullied as a child for her small stature. Becoming a Queen changed all that, of course.*/
 
 //Normal Appearance - Quest complete. Can be found in a different room (The east one, perchance?)
-function irelliasThroneroomBonus():Boolean
+public function irelliasThroneroomBonus():Boolean
 {
 	output("\n\nQueen Irellia is lounging in a specially made recliner, her egg-swollen abdomen cradled by the woven fibers. A few handmaidens are her only company aside from yourself. Her face brightens at the sight of you.");
 	return false;
 }
 
 //Actually approach- first time
-function approachIrelliaInHerThrone():void
+public function approachIrelliaInHerThrone():void
 {
 	clearOutput();
 	showIrellia();
@@ -51,7 +51,7 @@ function approachIrelliaInHerThrone():void
 }
 
 //Tittysnack
-function tittysnackWithIrellia():void
+public function tittysnackWithIrellia():void
 {
 	clearOutput();
 	showIrellia();
@@ -87,7 +87,7 @@ function tittysnackWithIrellia():void
 }
 
 //Discuss
-function discussSomethingWithAnAntQueen(cameFrom):void
+public function discussSomethingWithAnAntQueen(cameFrom):void
 {
 	clearOutput();
 	showIrellia();
@@ -101,13 +101,13 @@ function discussSomethingWithAnAntQueen(cameFrom):void
 	irelliaTalkMenu(cameFrom);
 }
 
-function irelliaTalkMenu(cameFrom):void
+public function irelliaTalkMenu(cameFrom):void
 {
 
 }
 
 //Birthing
-function talkToIrelliaAboutBirthing():void
+public function talkToIrelliaAboutBirthing():void
 {
 	clearOutput();
 	showIrellia();
@@ -156,7 +156,7 @@ function talkToIrelliaAboutBirthing():void
 
 //Gildenmere?
 //You ask about Gildenmere. What kind of city is it?
-function askIrelliaAboutGildenmere():void
+public function askIrelliaAboutGildenmere():void
 {
 	clearOutput();
 	showIrellia();
@@ -175,7 +175,7 @@ function askIrelliaAboutGildenmere():void
 }
 
 //What’s It Like?
-function whatsItLikeIrellia():void
+public function whatsItLikeIrellia():void
 {
 	clearOutput();
 	showIrellia();

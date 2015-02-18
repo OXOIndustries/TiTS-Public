@@ -1212,6 +1212,9 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	userInterface.author("Fenoxo");
 	
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
+	var pSlot:int = pc.findPregnancyOfType("VenusPticherSeedCarrier");
+	
+	if (pSlot == -1) pSlot = 0;
 	
 	output("Your [pc.belly] rumbles ominously a second before you feel a shift in your womb. Shit! Something is coming. Dropping to your [pc.knees], you double over,");
 	if (pc.isCrotchGarbed()) output(" your [pc.lowerGarments] suddenly chafing and tight. You uncover your [pc.vaginas] faster than you thought possible, sped on by biological impetuses beyond comprehension.");
@@ -1225,7 +1228,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	{
 		output(" Another seed pod must be itching to come out of you, and there is no delaying it. You brace yourself for the coming pleasure of another laying.");
 		
-		if (pData.pregnancyQuantity > 1)
+		if (pData && pData.pregnancyQuantity > 1)
 		{
 			output(" How many more of these things do you have yet to birth?");
 		}
@@ -1237,10 +1240,10 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	
 	output("\n\nThe slime dripping from your lips thickens into a sticky deluge as muscles inside you relax, opening the way for the pod's lubricant to escape in a rush. You can feel the bulbous seed start sliding inside you, shifting and stretching, forcing you open in ways that would make even the biggest dicks ache with jealousy. It should hurt, but for some reason, there's blessedly little pain - just a sense of the slick form gliding down your nerve-laden channel as if it was made to lay these things all along.");
 	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing. The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind. Sexual pleasure blitzkriegs through your brain to war with wonder at what you're body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
-	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pc.findPregnancyOfType("VenusPitcherSeedCarrier") + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back, [pc.legs] splayed.");
+	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pSlot + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back, [pc.legs] splayed.");
 	
 	//CuntChange: size 800.
-	pc.cuntChange(pc.findPregnancyOfType("VenusPitcherSeedCarrier"), 800, true, true, false);
+	pc.cuntChange(pSlot, 800, true, true, false);
 	
 	StatTracking.track("pregnancy/unfertilized venus pitcher seeds");
 	StatTracking.track("pregnancy/venus pitcher seeds");
@@ -1251,7 +1254,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	output(", you're left with the curious, oblong seed in front you. Using the codex, you determine that it wasn't fertilized. It also isn't considered edible by most species, but it's likely that you could consume it anyway if you didn't mind a major risk of bodily mutation to accommodate it.");
 	pc.orgasm()
 	
-	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
+	if (pData && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
 	
 	//Increase elasticity .1 towards a cap of 1.6
 	if (pc.elasticity < 1.6)

@@ -332,7 +332,8 @@
 			{
 				var ee:Error = e.error as Error;
 				
-				output("\n\n<b>Something bad happened! Please report this message:</b>\n\n");
+				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
+				output("Version: " + version + "\n\n");
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				addButton(14, "Next", mainGameMenu);
