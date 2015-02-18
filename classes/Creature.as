@@ -4519,6 +4519,11 @@
 			}
 			return false;
 		}
+		public function knotThickness(arg:int = 0):Number
+		{
+			if(arg < 0 || arg >= cockTotal()) return 0;
+			return cocks[arg].thickness() * cocks[arg].knotMultiplier;
+		}
 		public function hasCockFlag(arg: int = 0, cockNum: int = 0): Boolean {
 			if (cockNum > cockTotal() - 1 || cockNum < 0) return false;
 			return (cocks[cockNum].hasFlag(arg));

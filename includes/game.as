@@ -906,14 +906,14 @@ public function processTime(arg:int):void {
 				flags["IRELLIA_QUEST_STATUS"] = 5;
 			}
 			//Mushroom park meeting.
-			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708")
-			{
-				eventQueue.push(unificationRallyEvent);
-			}
+			if(flags["IRELLIA_QUEST_STATUS"] == 2 && hours == 18 && currentLocation == "708") eventQueue.push(unificationRallyEvent);
 			//Bomb explosion bad-end meeting
-			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725")
+			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 24 && currentLocation == "725") eventQueue.push(beADumbShitFallGuyForTheRebels);
+			//Irellia's sex cooldown
+			if(flags["IRELLIA_SEX_COOLDOWN"] != undefined)
 			{
-				eventQueue.push(beADumbShitFallGuyForTheRebels);
+				if(flags["IRELLIA_SEX_COOLDOWN"] <= 0) flags["IRELLIA_SEX_COOLDOWN"] = undefined;
+				else flags["IRELLIA_SEX_COOLDOWN"]--;
 			}
 			//Lactation effect updates
 			lactationUpdateHourTick();
