@@ -2,6 +2,7 @@
 {
 	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Miscellaneous.PHAccess;
+	import classes.Items.Miscellaneous.TestGrenade;
 	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
 	import classes.ShipClass;
@@ -67,6 +68,7 @@
 			var dbgShield:DBGShield;
 			var tstArmor:TSTArmor;
 			var phAccess:PHAccess;
+			var tGen:TestGrenade;
 		}
 		
 		/**
