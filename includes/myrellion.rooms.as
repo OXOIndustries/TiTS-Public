@@ -879,7 +879,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["746"] = new RoomClass(this);
 	rooms["746"].roomName = "PALACE\nHALL";
-	rooms["746"].description = "This palace’s central hall sits beneath an impressively vaulted ceiling of white marble. The floor is hewn from the same material, decorated in places with resplendant carpets. Posts for displaying works of art or other valuables ring the area, their charges long gone, perhaps stowed away to protect them danger or sold to support the war effort. An open entrance to the north leads back into the city. There are a number of other doorways in just about every direction, but all are guarded fiercely.";
+	rooms["746"].description = "This palace’s central hall sits beneath an impressively vaulted ceiling of white marble. The floor is hewn from the same material, decorated in places with resplendant carpets. Posts for displaying works of art or other valuables ring the area, their charges long gone, perhaps stowed away to protect them from danger or sold to support the war effort. An open entrance to the north leads back into the city. There are a number of other doorways in just about every direction, but all are guarded fiercely.";
 	rooms["746"].planet = "PLANET: MYRELLION";
 	rooms["746"].system = "SYSTEM: SINDATHU";
 	rooms["746"].northExit = "745";
