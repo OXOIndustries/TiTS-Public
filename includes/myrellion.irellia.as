@@ -20,7 +20,7 @@ Was low ranking, but is climbing in power rapidly. Outbirthing other queens in h
 Spends a lot of time breeding (a necessity of her job).
 Bullied as a child for her small stature. Becoming a Queen changed all that, of course.*/
 
-function irelliaMenu():void
+public function irelliaMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",irelliaAppearanceYouSlutFuckGoddamnWhyYouGottaBeLeeringAtAQueenWhileSheTriesToRelaxDontBeSuchAFuckinPerv);
@@ -32,7 +32,7 @@ function irelliaMenu():void
 	else addDisabledButton(4,"Snack","Snack","Irellia does not want to share any more of her nectar with for now. Don't be a glutton!");
 	addButton(14,"Back",mainGameMenu);
 }
-function irelliaSexMenu():void
+public function irelliaSexMenu():void
 {
 	//Fuck Frontgina
 	//Fuck da one between her legs. Back starts egging? Yiss.
@@ -58,12 +58,12 @@ function irelliaSexMenu():void
 	addButton(14,"Back",irelliaMenu);
 }
 
-function irelliaWantsSex():Boolean
+public function irelliaWantsSex():Boolean
 {
 	if(flags["IRELLIA_SEX_COOLDOWN"] == 0 || flags["IRELLIA_SEX_COOLDOWN"] == undefined) return true;
 	return false;
 }
-function irelliaSexBreak(arg:int = 8):void
+public function irelliaSexBreak(arg:int = 8):void
 {
 	if(flags["IRELLIA_SEX_COOLDOWN"] == undefined) flags["IRELLIA_SEX_COOLDOWN"] = 0;
 	flags["IRELLIA_SEX_COOLDOWN"] += arg;
@@ -139,7 +139,7 @@ public function tittysnackWithIrellia(queenOffered:Boolean = false):void
 }
 
 //Discuss
-public function discussSomethingWithAnAntQueen(cameFrom):void
+public function discussSomethingWithAnAntQueen(cameFrom:Function):void
 {
 	clearOutput();
 	showIrellia();
@@ -153,7 +153,7 @@ public function discussSomethingWithAnAntQueen(cameFrom):void
 	irelliaTalkMenu(cameFrom);
 }
 
-public function irelliaTalkMenu(cameFrom):void
+public function irelliaTalkMenu(cameFrom:Function):void
 {
 	clearMenu();
 	if(cameFrom != talkToIrelliaAboutBirthing) addButton(0,"Birthing",talkToIrelliaAboutBirthing,undefined,"Birthing","Talk to Irellia about birthing. How do gold myr queens create so much life?");
@@ -259,7 +259,7 @@ public function whatsItLikeIrellia():void
 
 //The Ceasefire
 //You ask Queen Irellia what she thinks of the ceasefire.
-function askIrelliaAboutZeCeasefireYouDirtyFrenchie():void
+public function askIrelliaAboutZeCeasefireYouDirtyFrenchie():void
 {
 	clearOutput();
 	showIrellia();
@@ -278,7 +278,7 @@ function askIrelliaAboutZeCeasefireYouDirtyFrenchie():void
 	irelliaTalkMenu(askIrelliaAboutZeCeasefireYouDirtyFrenchie);
 }
 
-function irelliaSexyTimesApproach():void
+public function irelliaSexyTimesApproach():void
 {
 	clearOutput();
 	showIrellia();
@@ -327,7 +327,7 @@ function irelliaSexyTimesApproach():void
 	irelliaSexMenu();
 }
 
-function irelliaAppearanceYouSlutFuckGoddamnWhyYouGottaBeLeeringAtAQueenWhileSheTriesToRelaxDontBeSuchAFuckinPerv():void
+public function irelliaAppearanceYouSlutFuckGoddamnWhyYouGottaBeLeeringAtAQueenWhileSheTriesToRelaxDontBeSuchAFuckinPerv():void
 {
 	clearOutput();
 	showIrellia();
@@ -344,7 +344,7 @@ function irelliaAppearanceYouSlutFuckGoddamnWhyYouGottaBeLeeringAtAQueenWhileShe
 //Tailfuck
 //For cocks any size smaller than gigantique (22 slot boners, yo)
 //Tooltip: 
-function tailFuck():void
+public function tailFuck():void
 {
 	clearOutput();
 	showIrellia();
@@ -541,7 +541,7 @@ function tailFuck():void
 
 //Fuck Frontgina
 //Fuck da one between her legs. Back starts egging? Yiss.
-function fuckIrelliasFrontGina():void
+public function fuckIrelliasFrontGina():void
 {
 	clearOutput();
 	showIrellia();
@@ -640,7 +640,7 @@ function fuckIrelliasFrontGina():void
 }
 
 //Cum Inside
-function cumInsideIrellia(x:int):void
+public function cumInsideIrellia(x:int):void
 {
 	clearOutput();
 	showIrellia();
@@ -703,7 +703,7 @@ function cumInsideIrellia(x:int):void
 }
 
 //Cum Outside
-function cumOntopOfIrellia(x:int):void
+public function cumOntopOfIrellia(x:int):void
 {
 	clearOutput();
 	showIrellia();
@@ -807,7 +807,7 @@ function cumOntopOfIrellia(x:int):void
 
 //Ladytime Sixtynines
 //Aww yiss
-function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
+public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 {
 	clearOutput();
 	showIrellia();
@@ -971,7 +971,7 @@ function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	addButton(0,"Next",lady69Epilogue4PassedOutFolks);
 }
 
-function lady69Epilogue4PassedOutFolks():void
+public function lady69Epilogue4PassedOutFolks():void
 {
 	clearOutput();
 	showIrellia();
@@ -985,7 +985,7 @@ function lady69Epilogue4PassedOutFolks():void
 //Quad Tittyfuck
 //Fuck four titties. That’s twice as many titties. TWO TIMES THE TITTIES!
 //Minimum 15</i>” dick
-function quadTittyFuckIrellia():void
+public function quadTittyFuckIrellia():void
 {
 	clearOutput();
 	showIrellia();
@@ -1033,7 +1033,7 @@ function quadTittyFuckIrellia():void
 	addButton(0,"Next",quadTitfuckPartDues);
 }
 
-function quadTitfuckPartDues():void
+public function quadTitfuckPartDues():void
 {
 	clearOutput();
 	showIrellia();
@@ -1114,7 +1114,7 @@ function quadTitfuckPartDues():void
 //Double-Team
 // By JimT
 // Must be able to take a big ass myr cock. Probably 4 inches wide, 12-16 inches long?
-function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
+public function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 {
 	clearOutput();
 	showIrellia();
@@ -1154,7 +1154,7 @@ function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 }
 
 //Muscular:
-function muscleMyrDoubleTeamGO():void
+public function muscleMyrDoubleTeamGO():void
 {
 	clearOutput();
 	showIrellia();
@@ -1188,7 +1188,7 @@ function muscleMyrDoubleTeamGO():void
 }
 
 //Moderate:
-function fuckAGenericMyrWithQueenIrellia():void
+public function fuckAGenericMyrWithQueenIrellia():void
 {
 	clearOutput();
 	showIrellia();
@@ -1221,7 +1221,7 @@ function fuckAGenericMyrWithQueenIrellia():void
 }
 
 //Feminine:
-function tellIrelliaYouLikeEmGirly():void
+public function tellIrelliaYouLikeEmGirly():void
 {
 	clearOutput();
 	showIrellia();
@@ -1255,7 +1255,7 @@ function tellIrelliaYouLikeEmGirly():void
 	addButton(0,"Next",partTwoOfAntSlootBoogalooDoubleteam,"Etheln");
 }
 
-function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
+public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 {
 	clearOutput();
 	showIrellia();
@@ -1334,7 +1334,7 @@ function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 	addButton(0,"Next",partThreeOfAntOnPCOnAntAction, partner);
 }
 
-function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
+public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 {
 	clearOutput();
 	showIrellia();
@@ -1463,7 +1463,7 @@ function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	addButton(0,"Next",irelliaDoubleTeamFinale,partner);
 }
 
-function irelliaDoubleTeamFinale(partner:String):void
+public function irelliaDoubleTeamFinale(partner:String):void
 {
 	clearOutput();
 	showIrellia();

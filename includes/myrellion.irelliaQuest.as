@@ -20,7 +20,7 @@ Was low ranking, but is climbing in power rapidly. Outbirthing other queens in h
 Spends a lot of time breeding (a necessity of her job).
 Bullied as a child for her small stature. Becoming a Queen changed all that, of course.*/
 
-function showIrellia():void
+public function showIrellia():void
 {
 	author("Fenoxo");
 	showName("QUEEN\nIRELLIA");
@@ -28,7 +28,7 @@ function showIrellia():void
 }
 
 //First Times Meetings
-function irelliaHallBonusShit():Boolean
+public function irelliaHallBonusShit():Boolean
 {
 	//Appearance Blurb
 	//First time
@@ -56,7 +56,7 @@ function irelliaHallBonusShit():Boolean
 }
 
 
-function irelliaQuestApproachRouter():void
+public function irelliaQuestApproachRouter():void
 {
 	//Approach 1st Time:
 	if(flags["MET_IRELLIA"] == undefined) firstIrelliaApproach();
@@ -77,7 +77,7 @@ function irelliaQuestApproachRouter():void
 }
 
 //Ya dun fucked up approach
-function letTheBombsGoOffApproach():void
+public function letTheBombsGoOffApproach():void
 {
 	clearOutput();
 	showIrellia();
@@ -89,7 +89,7 @@ function letTheBombsGoOffApproach():void
 }
 
 //Approach Repeat - Quest Not Taken
-function approachAfterMeetingButQuestNotTaken():void
+public function approachAfterMeetingButQuestNotTaken():void
 {
 	clearOutput();
 	showIrellia();
@@ -102,7 +102,7 @@ function approachAfterMeetingButQuestNotTaken():void
 }
 
 //Approach Repeat - Quest Taken, Uncomplete
-function approachWithIncompleteIrelliaQuest():void
+public function approachWithIncompleteIrelliaQuest():void
 {
 	clearOutput();
 	showIrellia();
@@ -116,7 +116,7 @@ function approachWithIncompleteIrelliaQuest():void
 }
 
 //Approach 1st Time:
-function firstIrelliaApproach():void
+public function firstIrelliaApproach():void
 {
 	clearOutput();
 	showIrellia();
@@ -146,7 +146,7 @@ function firstIrelliaApproach():void
 
 //Approach, Called In No Arrest Yet Made
 //Gotta wait till 23:30 after the call in.
-function tryToCheckOnAntQuestBeforeArrests():void
+public function tryToCheckOnAntQuestBeforeArrests():void
 {
 	clearOutput();
 	showIrellia();
@@ -161,7 +161,7 @@ function tryToCheckOnAntQuestBeforeArrests():void
 }
 
 //Approach, Bomb Not Yet Gone Off, Not Called In
-function approachAfterFindingOutAboutBombAndNotCallingItIn():void
+public function approachAfterFindingOutAboutBombAndNotCallingItIn():void
 {
 	clearOutput();
 	showIrellia();
@@ -174,7 +174,7 @@ function approachAfterFindingOutAboutBombAndNotCallingItIn():void
 }
 
 //Report
-function reportToIrelliaBelated():void
+public function reportToIrelliaBelated():void
 {
 	clearOutput();
 	showIrellia();
@@ -188,7 +188,7 @@ function reportToIrelliaBelated():void
 
 //Meeting PostQuest
 //Turn In Quest To Scalla
-function turnYourShitInToScalla():void
+public function turnYourShitInToScalla():void
 {
 	clearOutput();
 	showName("QUEEN\nSCALA");
@@ -212,7 +212,7 @@ function turnYourShitInToScalla():void
 
 //Introduce
 //Introduce yourself. You just wanted to touch bases with the locals and see what there take on the war is.
-function introduceToIrelliaAndCo():void
+public function introduceToIrelliaAndCo():void
 {
 	clearOutput();
 	showIrellia();
@@ -231,7 +231,7 @@ function introduceToIrelliaAndCo():void
 }
 
 //Irellia
-function introduceYourselfToIrelliaOnly():void
+public function introduceYourselfToIrelliaOnly():void
 {
 	clearOutput();
 	showIrellia();
@@ -250,7 +250,7 @@ function introduceYourselfToIrelliaOnly():void
 
 //Nevermind
 //Introduce yourself, but tell them that you’ve been offended and will be leaving.]
-function nevermindIrelliaAndCo():void
+public function nevermindIrelliaAndCo():void
 {
 	clearOutput();
 	showIrellia();
@@ -269,7 +269,7 @@ function nevermindIrelliaAndCo():void
 }
 
 //All Merge To Here
-function meetingIrelliaPt2(tried2Leave:Boolean = false):void
+public function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 {
 	clearOutput();
 	showIrellia();
@@ -296,7 +296,7 @@ function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 }
 
 //Don’t Help
-function beALittleBitchInFrontOfAntQueens():void
+public function beALittleBitchInFrontOfAntQueens():void
 {
 	clearOutput();
 	showIrellia();
@@ -310,7 +310,7 @@ function beALittleBitchInFrontOfAntQueens():void
 }
 
 //Help
-function volunteerAsAntPI(repeat:Boolean = false):void
+public function volunteerAsAntPI(repeat:Boolean = false):void
 {
 	clearOutput();
 	showIrellia();
@@ -348,7 +348,7 @@ function volunteerAsAntPI(repeat:Boolean = false):void
 //Unification Rally Invitation
 //Random event in a public street in Gildenmere.
 //Append to streets
-function unificationInvitationEventProcInGildenmere():void
+public function unificationInvitationEventProcInGildenmere():void
 {
 	showName("A CHANCE\nENCOUNTER!");
 	output("\n\nA young, barely-matured ant-girl brushes past you, forcing a flyer into your hand. She’s gone before you question her. Curious, you take a look at the pamphlet. It’s an advertisement for a unification rally - something about creating a unified Myrellion where golds and reds can live as one species, together. They have meetings in the southwest corner of the mushroom park at 18:00.");
@@ -358,7 +358,7 @@ function unificationInvitationEventProcInGildenmere():void
 }
 
 //Unification Rally
-function unificationRallyEvent():void
+public function unificationRallyEvent():void
 {
 	showName("UNIFICATION\nRALLY");
 	output("\n\nThe area may have seemed empty at first, but over the span of a few minutes, gold myr filed in from all directions, surrounding you in a sea of gleaming chitin and exposed bosoms. The press of bodies is barely tolerable. These ant women have no regard for personal space. Dangling abdomens butt against your [pc.legs]. Doubled shoulders bounce off your own. You can barely move without accidentally brushing against a nipple.");
@@ -383,7 +383,7 @@ function unificationRallyEvent():void
 }
 
 //Call In Rebels
-function callInAReportOnAntTerrorists():void
+public function callInAReportOnAntTerrorists():void
 {
 	clearOutput();
 	showName("GOLD MYR\nSECURITY");
@@ -397,7 +397,7 @@ function callInAReportOnAntTerrorists():void
 }
 
 //Don’t
-function dontCallInReportsOnAntTerrorists():void
+public function dontCallInReportsOnAntTerrorists():void
 {
 	clearOutput();
 	output("Those uppity queens deserve whatever revolution these young firebrands have planned. You aren’t going to help them maintain their corrupt matriarchy any longer.");
@@ -407,7 +407,7 @@ function dontCallInReportsOnAntTerrorists():void
 }
 
 //Arrive At The Rebels
-function beADumbShitFallGuyForTheRebels():void
+public function beADumbShitFallGuyForTheRebels():void
 {
 	showName("\nEXPLOSION!");
 	output("\n\nIt’s the appointed time, and you’re in the appointed location, but your red friend from the rally doesn’t show her face. You wait and wait and wait, but noone comes to contact you. You’re just about to leave when a shockwave flattens you into the pavement, chased by a wave of heat that ");
@@ -419,7 +419,7 @@ function beADumbShitFallGuyForTheRebels():void
 
 //Miss Rebel Appt
 //Append to evenBuffer.
-function missedRebelExplosion():void
+public function missedRebelExplosion():void
 {
 	eventBuffer += "\n\n<b>Newsflash:</b> Reports of a bombing in central Gildenmere are hitting the extranet alongside pictures of dismembered gold limbs and a cloud of smoke floating inside the gigantic cavern. A group calling themselves the “<i>Peace Federation</i>” has claimed responsibility.";
 	flags["IRELLIA_QUEST_STATUS"] = -1;
