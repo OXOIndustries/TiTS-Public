@@ -185,11 +185,11 @@ public function investigateFrogapi2():void
 	addButton(0,"Yes",letsMakeADealUFrogapi);
 	//No
 	//Yes
-	addButton(1,"No",letsMakeADealUFrogapi)
+	addButton(1,"No",letsNotMakeADealUFrogapi)
 }
 
 //Let’s not make a deal: 
-public function letsMakeADealUFrogapi():void
+public function letsNotMakeADealUFrogapi():void
 {
 	clearOutput();
 	showOrryx();
