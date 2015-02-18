@@ -531,73 +531,67 @@ public function equipItem(arg:ItemSlotClass):void {
 }
 
 public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
-	trace("itemCollect", newLootList);
+	
 	if(clearScreen) clearOutput();
+	
 	var target:PlayerCharacter = pc;
-	if(newLootList.length == 0) {
-		output("There was an error looting an the item that was looted didn't actually exist.");
-		this.clearMenu();
-		this.addButton(0,"Next",lootScreen);
-	}
+	
 	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
-	if(newLootList.length > 0) {
-		//Have room? Slap it in there!
-		if (hasRoom(pc, newLootList[0])) {
-			
-			// If there's no items, just throw a new item into the container
-			if (target.inventory.length == 0)
+	
+	var tItem:ItemSlotClass = newLootList[0];
+	
+	// Check to see if we can merge the item into an existing stack.
+	for (var i:int = 0; i < target.inventory.length; i++)
+	{
+		var iSlot:ItemSlotClass = target.inventory[i] as ItemSlotClass;
+		
+		// Check if same item && space in stack
+		if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
+		{
+			// Check if 100% merge will go past max stack
+			if (iSlot.quantity + tItem.quantity > iSlot.stackSize)
 			{
-				target.inventory.push(newLootList[0]);
+				var mergeNum:int = iSlot.stackSize - iSlot.quantity;
+				iSlot.quantity += mergeNum;
+				tItem.quantity -= mergeNum;
 			}
-			// Drop what we can into existing slots where possible
+			// Otherwise merge entire incoming item stack and null the ref
 			else
 			{
-				//Combine with half stacks first
-				for(var x:int = 0; x < target.inventory.length; x++) 
-				{
-					//Found a matching stack
-					if(target.inventory[x].shortName == newLootList[0].shortName) 
-					{
-						//That matching stack has room?
-						if(target.inventory[x].quantity < target.inventory[x].stackSize) 
-						{
-							//Add some shit
-							while(target.inventory[x].quantity < target.inventory[x].stackSize && newLootList[0].quantity > 0)
-							{
-								target.inventory[x].quantity++;
-								newLootList[0].quantity--;
-							}
-						}
-					}
-					if(newLootList[0].quantity <= 0) break;
-				}
-				
-				//Still got more to dump? Find an empty stack
-				if(newLootList[0].quantity > 0)
-				{
-					target.inventory.push(newLootList[0]);
-				}
+				iSlot.quantity += tItem.quantity;
+				tItem = null;
+				break;
 			}
-			
-			output(". The new acquisition");
-			if(newLootList[0].quantity > 1) output("s stow");
-			else output(" stows");
-			output(" away quite easily.\n");
-			//Clear the item off the newLootList.
-			newLootList.splice(0,1);
-			this.clearMenu();
-			if(newLootList.length > 0) this.addButton(0,"Next",itemCollect);
-			else this.addButton(0,"Next",lootScreen);
 		}
-		//No room - replacement screen!
-		else 
-		{
-			output(". There is not room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
-			this.clearMenu();
-			this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-			this.addButton(1,"Discard", discardItem,       newLootList);
-			if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use",     useLoot,           newLootList);
-		}
+	}
+	
+	// Check to see if we can add a new item stack into the players inventory
+	if (tItem && target.inventory.length < target.inventorySlots())
+	{
+		target.inventory.push(tItem);
+		tItem = null;
+	}
+	
+	// Fallback; offer an options menu to handle things.
+	if (tItem)
+	{
+		output(". There is no room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
+		this.clearMenu();
+		this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+		this.addButton(1,"Discard", discardItem,       newLootList);
+		if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use",     useLoot,           newLootList);
+	}
+	else
+	{			
+		output(". The new acquisition");
+		if(newLootList[0].quantity > 1) output("s stow");
+		else output(" stows");
+		output(" away quite easily.\n");
+		//Clear the item off the newLootList.
+		newLootList.splice(0,1);
+		this.clearMenu();
+		if(newLootList.length > 0) this.addButton(0,"Next",itemCollect);
+		else this.addButton(0,"Next",lootScreen);
 	}
 }
 
@@ -671,37 +665,6 @@ public function replaceItemGo(args:Array):void
 		this.addButton(0,"Next",itemCollect, lootList);
 	else 
 		this.addButton(0,"Next",lootScreen);
-}
-
-public function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
-	var mergeCounter:int = 0;
-	
-	if (target.inventory.length >= 0 && target.inventory.length < target.inventorySlots())
-	{
-		return true;
-	}
-	
-	//Loop through, lookin' fer room!
-	for(var x:int; x < target.inventorySlots(); x++) 
-	{
-		//If the item in the slot matches the new item
-		if(target.inventory[x].shortName == item.shortName) 
-		{
-			//If there is room for more!
-			if(target.inventory[x].stackSize - target.inventory[x].quantity > 0) 
-			{
-				mergeCounter += target.inventory[x].stackSize - target.inventory[x].quantity;
-			}
-			//If there is enough room for the shit, return true.
-			if(mergeCounter > item.quantity) return true;
-		}
-		//If the new slot sucks dicks (and by that I mean is empty)
-		else if(target.inventory[x].shortName == "")
-		{
-			return true;
-		}
-	}
-	return false;
 }
 
 public function hasShipStorage():Boolean
