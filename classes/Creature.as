@@ -2049,7 +2049,9 @@
 			return energyRaw;
 		}
 		public function energyMax(): Number {
-			return energyMod + 100;
+			var bonus:int = 0;
+			if(hasStatusEffect("Royal Nectar")) bonus += 40;
+			return energyMod + 100 + bonus;
 		}
 		public function energyMin(): Number {
 			return 0;
