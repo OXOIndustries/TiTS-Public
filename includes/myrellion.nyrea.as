@@ -3,24 +3,27 @@ public static const NYREA_UNKNOWN:uint = 0;
 public static const NYREA_ALPHA:uint = 1;
 public static const NYREA_BETA:uint = 2;
 
-public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN):void
+public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN, prefix:String = null):void
 {
 	author("Savin");
 	
 	switch(nyreaType)
 	{
 		case NYREA_UNKNOWN:
-			showName("NYREA\nHUNTRESS");
+			if (prefix == null) showName("NYREA\nHUNTRESS");
+			else showName(prefix + "\nNYREA HUNTRESS");
 			showBust("NYREA");
 			break;
 			
 		case NYREA_ALPHA:
-			showName("ALPHA\nNYREA");
+			if (prefix == null ) showName("ALPHA\nNYREA");
+			else showName(prefix + "\nALPHA NYREA");
 			showBust("ALPHANYREA");
 			break;
 			
 		case NYREA_BETA:
-			showName("BETA\nNYREA");
+			if (prefix == null ) showName("BETA\nNYREA");
+			else showName(prefix + "\nBETA NYREA");
 			showBust("BETANYREA");
 			break;
 		
@@ -29,11 +32,11 @@ public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN):void
 	}
 }
 
-public function nyreaHeaderFromCreature(target:Creature):void
+public function nyreaHeaderFromCreature(target:Creature, prefix:String = null):void
 {
-	if (target is NyreaAlpha) nyreaHeader(NYREA_ALPHA);
-	else if (target is NyreaBeta) nyreaHeader(NYREA_BETA);
-	else nyreaHeader();
+	if (target is NyreaAlpha) nyreaHeader(NYREA_ALPHA, prefix);
+	else if (target is NyreaBeta) nyreaHeader(NYREA_BETA, prefix);
+	else nyreaHeader(NYREA_UNKNOWN, prefix);
 }
 
 public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
@@ -51,7 +54,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 		if (rand(10) < 6)
 		{
 			nyreaEggs = true;
-			foes[0].impregnationType = "NyreaEggPregnancy";
+			trace("Nyrea has eggs!");
 		}
 	}
 	else
@@ -60,7 +63,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 		if (rand(10) < 4) 
 		{
 			nyreaEggs = true;
-			foes[0].impregnationType = "NyreaEggPregnancy";
+			trace("Nyrea has eggs!");
 		}
 	}
 
@@ -116,6 +119,8 @@ public function nyreaFight(settings:Array):void
 	var nyreaType:uint = settings[0];
 	var nyreaEggs:Boolean = settings[1];
 
+	nyreaHeaderFromCreature(foes[0]);
+	
 	var tString:String;
 
 	if (nyreaType == NYREA_ALPHA) tString = "Nyrea Alpha";
@@ -123,7 +128,11 @@ public function nyreaFight(settings:Array):void
 
 	startCombat(tString);
 
-	if (nyreaEggs) foes[0].createStatusEffect("Nyrea Eggs", 0, 0, 0, 0, true, "", "", true, 0);
+	if (nyreaEggs)
+	{
+		foes[0].createStatusEffect("Nyrea Eggs", 0, 0, 0, 0, true, "", "", true, 0);
+		foes[0].impregnationType = "NyreaEggPregnancy";
+	}
 }
 
 // ALPHA Nyrea have more health, plus a SHIELD bar. Betas are faster-moving / have a higher dodge chance. They're more lust-focused in their attacks, but  (especially Power Strike and Net Throw). 
@@ -331,7 +340,7 @@ public function pcLossToNyrea():void
 {
 	clearOutput();
 
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "DEFEAT:");
 	var pData:PregnancyData;
 
 	output("You give a cry of surprise and pain as the nyrea deftly knocks your [pc.weapon] out of your hand, shoving you back up against a cave wall - and pressing herself tight against you, already pulling the chain bikini off from around her hefty tits, letting them press against you as her fingers work into your [pc.gear], beginning to peel it off.");
@@ -412,7 +421,7 @@ public function pcLossToNyrea():void
 		pc.loadInAss(foes[0]);
 
 		// TODO: Change this and enable multi-preggers
-		pData = pc.getPregnancyOfType("NyreaEggs");
+		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 		
 		output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your ass amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
 		if (pData.pregnancyQuantity >= 4) output(" Another comes");
@@ -464,7 +473,7 @@ public function pcLossToNyrea():void
 
 			// TODO: Change this and enable multi-preggers
 			// TODO: Something something Renvra's pregnancy
-			pData = pc.getPregnancyOfType("NyreaEggs");
+			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 			
 			output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your womb amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
 			if (pData.pregnancyQuantity >= 4) output(" Another comes");
@@ -675,7 +684,7 @@ public function pcLossToNyrea():void
 public function pcVictoryOverNyrea():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	if (foes[0].lust() >= foes[0].lustMax())
 	{
@@ -703,7 +712,7 @@ public function pcVictoryOverNyrea():void
 public function fuckNyreaButts():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	output("\n\nYou give the nyrea a slight push, and she obediently falls to her knees. Planting a hand on her head to keep her right where you want her, you start to strip out of your [pc.gear], setting it aside. The nyrea watches your movements, following with her eyes as you strip down, baring your [pc.cock] as the semi-turgid shaft flops down onto the bridge of her nose. You suppress a grin, seeing the tell-tale look of hunger flash across the bug-woman’s eyes; for the moment, though, you content yourself to let your prick rest on her face, motionless as you reach down and peel off the chain armor covering the nyrea’s cock and breasts, letting both hang free and at your disposal.");
 	
@@ -740,7 +749,7 @@ public function fuckNyreaButts():void
 public function fuckNyreaButtsGetHerOff():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	pc.addNice(1);
 
@@ -777,7 +786,7 @@ public function fuckNyreaButtsGetHerOff():void
 public function fuckNyreaButtsFuckHer():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	output("No. You doubt she’d be as kind were you on the receiving end of that mammoth member. You push the alien’s dong out of your way, giving you unimpeded access to her tight little ass. She gives a slight groan as you grab her asscheeks, spreading them wide for your sodden member");
 	if (pc.cocks.length > 1) output("s");
@@ -813,7 +822,7 @@ public function fuckNyreaButtsFuckHer():void
 public function rideNyreaDick():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	var tHoleTag:String;
 	var useAss:Boolean;
@@ -933,7 +942,7 @@ public function rideNyreaDick():void
 		if (foes[0] is NyreaBeta) output("\n\nThe huntress gives you an apologetic, almost bashful look - and a peck on the cheek before skipping away, off into the caves whence she came.");
 		else if (foes[0] is NyreaAlpha) output(" She smiles at you, stroking your [pc.hair] with surprising affection before sauntering off back into the caves.");
 		
-		output("\n\n<b>You’re now carrying nyrean eggs!</b>");
+		output("\n\n<b>You’re now carrying nyrean eggs!</b>\n\n");
 	}
 	else if (foes[0].hasStatusEffect("Nyrea Eggs") && isFull)
 	{
@@ -987,12 +996,18 @@ public function rideNyreaDick():void
 		
 		output("\n\nYou grin down at her, letting your hands play across her supple, sexy body until her knot’s gone down enough to let you slip off of her. Her cock makes a loud, wet plopping sound as it slips free of you, flopping onto her belly in a smear of her own lubricants. She giggles and waves to you as you gather your things and depart, leaving her happily masturbating. ");
 	}
+	
+	processTime(45 + rand(15));
+	
+	pc.orgasm();
+	clearMenu();
+	genericVictory();
 }
 
 public function nyreaTailcockDocking():void
 {
 	clearOutput();
-	nyreaHeaderFromCreature(foes[0]);
+	nyreaHeaderFromCreature(foes[0], "VICTORY:");
 
 	output("\n\nYou lick your lips, eyes wandering over the defeated huntress, taking in the lovely curves and taut muscles of her athletic body. The nyrea");
 	if (foes[0] is NyreaAlpha) output(" stares defiantly into your eyes, visage full of fire");
@@ -1050,6 +1065,8 @@ public function nyreaTailcockDocking():void
 	if (!foes[0].hasStatusEffect("Nyrea Eggs")) output(" and her new clutch of eggs");
 	output(".");
 
+	processTime(45 + rand(15));
+	
 	pc.orgasm();
 	genericVictory();
 }
