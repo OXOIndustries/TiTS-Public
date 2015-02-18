@@ -896,7 +896,7 @@ public function initializeMyrellionRooms():void
 	rooms["747"].system = "SYSTEM: SINDATHU";
 	rooms["747"].westExit = "746";
 	rooms["747"].moveMinutes = 2;
-	rooms["747"].runOnEnter = undefined;
+	rooms["747"].runOnEnter = irelliasThroneroomBonus;
 	rooms["747"].addFlag(GLOBAL.INDOOR);
 	rooms["747"].addFlag(GLOBAL.PUBLIC);
 

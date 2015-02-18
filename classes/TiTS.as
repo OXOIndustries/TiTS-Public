@@ -173,6 +173,7 @@
 		include "../includes/myrellion.cockvineseedling.as";
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.irellia.as";
 		include "../includes/myrellion.irelliaQuest.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.liliana.as";
@@ -268,7 +269,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.20";
+			version = "0.5.21";
 
 			//temporary nonsense variables.
 			temp = 0;
