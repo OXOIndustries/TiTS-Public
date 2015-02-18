@@ -110,7 +110,7 @@ function tittysnackWithIrellia(queenOffered:Boolean = false):void
 	output("“<i>I’m ");
 	if(!pc.isBimbo()) output("famished");
 	else output("fam...famish... uh... totally hungry");
-	output(",</i>” you say while striding closer to the queen. Those four breasts are just so big and swollen with tit-honey. You can imagine the regent doesn’t allow many sample their delights. You’re one of a select few, a thought that only serves to make your [pc.lips] feel more chapped and thirsty by the moment. ");
+	output(",</i>” you say while striding closer to the queen. Those four breasts are just so big and swollen with tit-honey. You can imagine the regent doesn’t allow many to sample their delights. You’re one of a select few, a thought that only serves to make your [pc.lips] feel more chapped and thirsty by the moment. ");
 	if(!queenOffered) output("That pendulous breast is capped with a succulent, bronze nipple, already trailing amber nectar down its underswell, glittering in the muted light of the Irellia’s chamber.");
 	else output("Irellia selects a pendulous breast and lifts it for you, allowing the amber nectar to trail from its bronzed nipple, setting it alight with reflections from her chamber’s muted illumination.");
 
@@ -1122,7 +1122,7 @@ function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 	//First time:
 	if(flags["IRELLIA_DOUBLE_TEAM_EVER_DONE"] == undefined)
 	{
-		output("It's rather hard to find a myr male who hasn't been taken, and you're sure the Queen gets the cream of the crop. You suggest that perhaps she shouldn't dismiss all the drones, also asking her if she hashave a favorite male servant.");
+		output("It's rather hard to find a myr male who hasn't been taken, and you're sure the Queen gets the cream of the crop. You suggest that perhaps she shouldn't dismiss all the drones, also asking her if she has a favorite male servant.");
 		output("\n\nQueen Irellia touches her chin and shoots you a salacious smile. \"<i>I don't have a favorite, rather, I have <i>favorites</i>. It's too hard to pick just one.</i>\" Realising this doesn't help you narrow it down, she airily waves her hand. \"<i>I can recommend one if you've got a preference. Are you a fan of muscles, feminine men, something in between-?</i>\"");
 		output("\n\nShe almost sounds like she's describing a buffet. Perhaps for a Myr queen, men really <i>are</i> a buffet item. You get the impression she might pick them entirely by her mood.");
 		output("\n\nA tingling sensation spreads through your lower abdomen. From the sound of things, you've got a queen's harem at your beck and call right now. The thought alone is thoroughly intoxicating ");
@@ -1346,7 +1346,7 @@ function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	else output("\n\nEtheln coughs, and with a little blush, escorts you up to the expectant queen. He dutifully bends you forward");
 	output(" until your nose presses against the giant regent's glistening snatch. You greedily inhale her sweet and sensuous lady musk. It's so intoxicating that you wrap your arms under and around her upper thighs, press your mouth and nose into her muff, and dreamily inhale her pussy scent.");
 
-	output("\n\n\"<i>You like my pussy, [pc.MrMs] Steele?</i>\" You lightly nod in response, with your face pressed shamelessly against her slick, sticky folds. \"<i>How about you take a taste of a queen, and see if you like the flavor?</i>\"");
+	output("\n\n\"<i>You like my pussy, " + pc.mf("Mr.","Ms.") + " Steele?</i>\" You lightly nod in response, with your face pressed shamelessly against her slick, sticky folds. \"<i>How about you take a taste of a queen, and see if you like the flavor?</i>\"");
 
 	output("\n\nYou don't need to be asked twice! You lap at the gap between her puffy lips and dip your [pc.tongue] hungrily inside her honeypot. 'Honeypot' really is the right word, because she tastes so damn sweet, you're pretty sure you could put her girl juices on toast. You roll your tongue around inside of her and lap at her fleshy inner walls. As you lick you are rewarded with beads of sweet nectar that dribble onto your tongue and dance upon your taste buds.");
 
@@ -1399,17 +1399,18 @@ function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	if(partner == "Iloden") output("burly");
 	else if(partner == "Aurin") output("hunky");
 	else output("cute");
-	output(" lover behind you, who groans and tightly grabs your [pc.hips]. With a final, glorious thrust, he presses his prodigious length deep inside of you until his tip is kissing your ");
-	if(pc.isPregnant(x)) output("currently occupied");
-	else output("womb");
-	output(". With a violent shudder, " + partner + " unloads inside your ");
-	if(pc.hasVagina())
+	output(" lover behind you, who groans and tightly grabs your [pc.hips].");
+	if(pc.hasVagina()) 
 	{
+		output(" With a final, glorious thrust, he presses his prodigious length deep inside you until his tip is kissing your ");
+		if(pc.isPregnant(x)) output("currently occupied");
+		else output("womb");
+		output(". With a violent shudder, " + partner + " unloads inside your ");
 		output("[pc.vagina " + x + "] and fills up your ");
 		if(!pc.isPregnant(x)) output("uterus");
 		else output("love canal");
 	}
-	else output("clenching buttocks and fills up your rectum");
+	else output(" With a final, glorious thrust, he presses his prodigious length deep inside you. " + partner + " unloads inside your clenching buttocks and fills up your rectum");
 	output(" with his warm, broiling myr seed.");
 
 	output("\n\nWith a " + pc.mf("trembling groan","sweet cry") + " and a face and ");

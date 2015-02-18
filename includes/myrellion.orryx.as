@@ -185,7 +185,7 @@ public function investigateFrogapi2():void
 	addButton(0,"Yes",letsMakeADealUFrogapi);
 	//No
 	//Yes
-	addButton(1,"No",countMeOutYouSloot)
+	addButton(1,"No",letsMakeADealUFrogapi)
 }
 
 //Let’s not make a deal: 
@@ -194,8 +194,16 @@ public function letsMakeADealUFrogapi():void
 	clearOutput();
 	showOrryx();
 	output("You thank the small creature for its time but decide to go on your way. It waves disappointedly but still energetically from its podium as you leave.");
-	output("\n\nLet’s make a deal:");
-	output("\n\nYou decide to inquire further about this money-making opportunity.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Let’s make a deal
+public function letsMakeADealUFrogapi():void
+{
+	clearOutput();
+	showOrryx();
+	output("You decide to inquire further about this money-making opportunity.");
 	output("\n\n“<i>I knew it! You and I, we’re two gametophytes in the same haploid cluster! Except, you probably don’t have macrosporangia, am I right? Ha! Oh, you’re a sport, yes you absolutely are, my good sapient!</i>”");
 	output("\n\nYou’re only really catching about half of what Orryx is saying, but he seems to have taken a shine to you.");
 	output("\n\n“<i>Now listen,</i>” he says, leaning over the edge of his podium. “<i>I’ve got a surefire money-making opportunity here in Gildenmere, but due to some cultural differences and Camarilla regulations, I’m not allowed to pursue it directly.</i>”");
