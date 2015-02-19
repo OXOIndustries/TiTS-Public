@@ -32,9 +32,13 @@ package classes.Resources.Busts
 		//[Embed(source = "../../../assets/images/npcs/kara.png", mimeType = "image/png")]
 		//public var Bust_KARA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla.png", mimeType = "image/png")]
+		public var Bust_LYRALLA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla_nude.png", mimeType = "image/png")]
+		public var Bust_LYRALLA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
-		
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
 		public var Bust_MILLIE_NUDE:Class;
 
@@ -45,6 +49,11 @@ package classes.Resources.Busts
 		public var Bust_MYR_RED_GUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard_mask.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD_MASK:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
+		public var Bust_NEHZARA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
+		public var Bust_NEHZARA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;

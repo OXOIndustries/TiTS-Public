@@ -344,6 +344,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA_NUDE");
 	if(fromMissionTalk)
 	{
 		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it </i>is<i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
@@ -448,6 +449,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA_NUDE");
 	//{From Mission Talk}
 	if(fromMissionTalk)
 	{
@@ -525,6 +527,7 @@ public function nehzaraClosetPartII():void
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA_NUDE");
 	var x:int = pc.cockThatFits(800);
 	if(x < 0) x = pc.smallestCockIndex();
 	//(Cock < 7"thick Version:)
@@ -600,6 +603,7 @@ public function closetFuckFinaleWithNehzara():void
 {
 	clearOutput();
 	showNehzara();
+	showBust("NEHZARA_NUDE");
 	output("“<i>Hmmm,</i>” Nehzara murmurs to herself. She’s still basking in blissful post-sex afterglow, watching you through half-closed eyes while you struggle to work through the effects her venom-traced kisses had on you. The lust has worn off, but you’re still groggy and a little unsteady. You’re sure that was far more than the recommended dose. You make a mental note to remember this for the next time you face the possibility of making out with a Red Myr.");
 	output("\n\nYou feel a firm hand grasp your shoulder. Nehzara’s body presses close to yours, and her mouth is by your [pc.ear] before you know it. “<i>That was good, Steele,</i>” she coos in a gentle and almost affectionate tone. Hearing her speak like that sends a warm glow through you that’s completely different from the overpowering lust-venom. “<i>Feel free to visit me any time you make an embassy visit. I’d love to do this again.</i>”");
 	output("\n\nThe colonel pulls away, cleaning herself up and pulling on her uniform. She looks every bit as crisp and composed as when you first laid eyes on her, like she didn’t just ride you through three complete orgasms. She clears her throat and extends her hand to give you a pat on the head. “<i>I should return to the office before I’m missed.</i>” Nehzara’s voice has returned to its normal hard tone, but you know it’s only because she’s switched back to professional mode.");

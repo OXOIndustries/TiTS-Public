@@ -567,7 +567,7 @@ public function peekIntoTheClosetAndWatchAntSmex():void
 {
 	clearOutput();
 	showLyralla();
-	showBust("LYRALLA","JURO");
+	showBust("JURO","LYRALLA_NUDE");
 	showName("LYRALLA\n& JURO");
 	if(flags["JURO_LYRALLA_CLOSET_SEEN"] == undefined)
 	{
@@ -593,7 +593,7 @@ public function juroXLyrallPartII():void
 {
 	clearOutput();
 	showLyralla();
-	showBust("LYRALLA","JURO");
+	showBust("JURO","LYRALLA_NUDE");
 	showName("LYRALLA\n& JURO");
 	output("Juro’s fuzzy, padded palms grab hold of the sides of Lyralla’s nectar-drizzling teats, his thumbs hooking underneath the bottoms to help support them. It’s a pointless gesture. The myr’s cushy chest-flesh wraps entirely around the insufficient digits, almost devouring them completely. The extra pressure squeezes out fresh dribbles of the cloying sweetness. A shining, amber drop spatters against his furry cheek, smearing a golden stain across the length of his muzzle. Juro’s tongue whips out to taste it, curling around the side of his face to gather every stray speck.");
 	output("\n\nHe swallows and smiles fondly at the four-armed woman. “<i>I’d have to make sure you had plenty to eat, because there is no way I’m giving up having this for lunch.</i>” Juro kisses one of the leaking teats, running a surprisingly long and dexterous tongue over the surrounding areola to gather up the rogue trickles. The surrounding breastflesh is left gleaming from the impromptu spit-shine, and her other nipple has sympathetically engorged, jutting almost a full inch forward. You can only assume that it’s matching the one in Juro’s maw.");
@@ -609,7 +609,7 @@ public function juroXLyrallPartIII():void
 {
 	clearOutput();
 	showLyralla();
-	showBust("LYRALLA","JURO");
+	showBust("JURO","LYRALLA_NUDE");
 	showName("LYRALLA\n& JURO");
 	output("Lyralla wraps her robotic limb around her mate’s shoulders and neck, almost crushing him into her rapidly draining tit. She rubs her cheek against his forehead and hair, closing her eyes and whimpering with each cunt-stretching knot he forces inside her abdomen. Her bottom two hands are still between his legs, rolling his balls around, caressing his sack, and enjoying the feeling of them swelling up with a fresh, sticky load for her alien womb.");
 	output("\n\nSlipping off in a moment of pleasure-induced clumsiness, she accidentally releases her pinched nipple, unleashing a pressurized stream of honeyed lactation. Juro’s ear instinctively flicks as a bit catches him there. The quick-witted ambassador eases off of the partially drained tit and lunges onto the other, nearly hosing himself down with the sticky fluid. His cheeks bulge out from the volume, but somehow he manages to avoid making any more mess.");
@@ -631,7 +631,7 @@ public function juroXLyrallPartIV():void
 {
 	clearOutput();
 	showLyralla();
-	showBust("LYRALLA","JURO");
+	showBust("JURO","LYRALLA_NUDE");
 	showName("LYRALLA\n& JURO");
 	//Ctail
 	if(pc.hasCuntTail() && pc.tailCount == 1)
@@ -721,7 +721,7 @@ public function juroXLyrallPartV():void
 {
 	clearOutput();
 	showLyralla();
-	showBust("LYRALLA","JURO");
+	showBust("JURO","LYRALLA_NUDE");
 	showName("LYRALLA\n& JURO");
 	output("They both lie there for a few seconds catching their breath. Juro recovers first, struggling up to his feet while still knotted inside her. He accidentally drags Lyralla a few inches through her puddled honey before getting comfortable. Running a hand fondly along her swollen abdomen, he remarks, “<i>We may need to start taking longer lunch breaks.</i>”");
 	output("\n\nLyralla dazedly pulls her tongue back into her mouth. Her metallic eye whirrs as it points back at the kui-tan. “<i>You’re going to have to get me more rations then. I can’t make nectar on love alone.</i>”");
