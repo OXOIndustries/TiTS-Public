@@ -311,7 +311,7 @@ public function jungleMiddleEncounters():Boolean {
 
 public function findOxoniumOnMhenga():Boolean {
 	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
-		output("\n\nThere is a vertical striation running up through the rock wall of a different mineral, something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
+		output("\n\nThere is a vertical band of a different mineral running up through the rock wall, a streak of something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
 	}
 	else {
 		output("\n\nThere's a deposit of Oxonium here, but you've already called in the claim to your Dad's company. They'll probably be out to mine it once the frontier settles down a little bit.");
@@ -470,7 +470,7 @@ public function mhengaUthraBirch():Boolean
 {
 	if (flags["UTHRA HARVEST DAY"] == undefined || flags["UTHRA HARVEST DAY"] + 2 <= days)
 	{
-		output("\n\nEven worse, a obsidian sap is seeping gruesomely from wound-like gaps in the tree surface. Not a single glimmer of light reflects off the eerily black substance, contrasting violently with your misty white surroundings.");
+		output("\n\nEven worse, an obsidian sap is seeping gruesomely from wound-like gaps in the tree surface. Not a single glimmer of light reflects off the eerily black substance, contrasting violently with your misty white surroundings.");
 		
 		addButton(0, "Harvest", mhengaHarvestUthra, undefined, "Harvest Tree", "Harvest sap from the Uthra Tree");
 	}
@@ -653,8 +653,13 @@ public function mhengaSalvageFromCamp():void
 public function mhengaThickMistRoom1():Boolean
 {
 	output("The mist is incredibly thick here, obscuring almost everything around you. Every noise seems sharper and more imposing as you crunch blindly about, occasionally knocking into a tree or branch. Your");
-	if (!pc.armor is EmptySlot) output(" [pc.armor]");
-	else output(" [pc.skinFurScales]");
+	if (!pc.armor is EmptySlot) output(" [pc.armor] is");
+	else 
+	{
+		output(" [pc.skinFurScales]");
+		if(pc.hasScales() || pc.hasFeathers()) output(" are");
+		else output(" is");
+	}
 	output(" are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
 	
 	return mhengaVanaeCombatZone();

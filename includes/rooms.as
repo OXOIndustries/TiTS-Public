@@ -498,7 +498,7 @@ public function initializeRooms():void
 	//20. The Edge of the Jungle
 	rooms["JUNGLE EDGE"] = new RoomClass(this);
 	rooms["JUNGLE EDGE"].roomName = "JUNGLE\nEDGE";
-	rooms["JUNGLE EDGE"].description = "The shadows of alien trees shroud you in darkness here, though your eyes soon adjust. The path, which is obviously man-made on its way back to the west. Here, it has an offshoot to the south and a simple footpath to the east. Neither seems particularly straight, perhaps due to the huge trees, some of which are well over ten feet around. Foreign howls, birdcalls, and rustling vegetation keep your nerves on end. <b>This is not a safe place.</b>";
+	rooms["JUNGLE EDGE"].description = "The shadows of alien trees shroud you in darkness here, though your eyes soon adjust. To the west, the path is obviously man-made, running straight through the gates into town. But here, it curves to the south, while a footpath meets it from the east. Both twist and turn out of sight, perhaps routing around the huge trees, some of which are well over ten feet thick. Foreign howls, birdcalls, and rustling vegetation keep your nerves on end. <b>This is not a safe place.</b>";
 	rooms["JUNGLE EDGE"].planet = "PLANET: MHEN'GA";
 	rooms["JUNGLE EDGE"].system = "SYSTEM: ARA ARA";
 	rooms["JUNGLE EDGE"].eastExit = "FERNGROWTH PATH 1";
@@ -695,7 +695,7 @@ public function initializeRooms():void
 	//35. A Bend in the Lichens
 	rooms["LICHENS BEND 2"] = new RoomClass(this);
 	rooms["LICHENS BEND 2"].roomName = "LICHEN\nBEND";
-	rooms["LICHENS BEND 2"].description = "You nearly stumble face first into a mess of brambles, hidden behind a camouflaging layer of brown-green lichens that covers them like camo netting. They seem to go on forever to the north and west, effectively arresting any travel in that direction for now. Meanwhile, the path you're now striding across twists away to the east and south, both directions equally overgrown with the odd life.";
+	rooms["LICHENS BEND 2"].description = "You nearly stumble face first into a mess of brambles, hidden behind a camouflaging layer of brown-green lichens that covers them like camo netting. They seem to go on forever to the north and west, effectively arresting any travel in those directions for now. Meanwhile, the path you're now striding across twists away to the east and south, both directions equally overgrown with the odd life.";
 	rooms["LICHENS BEND 2"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS BEND 2"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS BEND 2"].eastExit = "LICHENS 2";
@@ -865,7 +865,7 @@ public function initializeRooms():void
 	//48. An Orange Intersection
 	rooms["ORANGE INTERSECTION 1"] = new RoomClass(this);
 	rooms["ORANGE INTERSECTION 1"].roomName = "ORANGE\nINTERSECTION";
-	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life wasn't so obviously illuminated thanks to the dayglow tone of the surrounding leaves.";
+	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life weren't so obviously illuminated thanks to the dayglow tone of the surrounding leaves.";
 	rooms["ORANGE INTERSECTION 1"].planet = "PLANET: MHEN'GA";
 	rooms["ORANGE INTERSECTION 1"].system = "SYSTEM: ARA ARA";
 	rooms["ORANGE INTERSECTION 1"].northExit = "DENSE ORANGE 4";
@@ -986,7 +986,7 @@ public function initializeRooms():void
 	//DEEP JURGLE
 	rooms["NARROW PATH 2"] = new RoomClass(this);
 	rooms["NARROW PATH 2"].roomName = "NARROW\nJUNGLE PATH";
-	rooms["NARROW PATH 2"].description = "The scorch marks that marred the trees high above to the north continue down and to the south here. You can see them dipping closer and closer to the jungle floor, and it truly is a jungle here. The air is far more humid than it is to the north. The buzz from the myriad life-forms, many of them insectile, is nearly deafening this deep in the jungle. The trunks of the trees seem thicker, the plant-life denser. This is unquestionably what you'd classify as 'deep jungle'. To the north, the path to a slightly less overgrown area. To the south, the jungle worsens.";
+	rooms["NARROW PATH 2"].description = "The scorch marks that marred the trees high above to the north continue down and to the south here. You can see them dipping closer and closer to the jungle floor, and it truly is a jungle here. The air is far more humid than it is to the north. The buzz from the myriad life-forms, many of them insectile, is nearly deafening this deep in the jungle. The trunks of the trees seem thicker, the plant-life denser. This is unquestionably what you'd classify as 'deep jungle'. To the north, the path leads to a slightly less overgrown area. To the south, the jungle worsens.";
 	rooms["NARROW PATH 2"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW PATH 2"].system = "SYSTEM: ARA ARA";
 	rooms["NARROW PATH 2"].northExit = "NARROW BEND 1";
@@ -1052,7 +1052,7 @@ public function initializeRooms():void
 	//62. Forked\nJungle
 	rooms["FORKED DEEP JUNGLE 1"] = new RoomClass(this);
 	rooms["FORKED DEEP JUNGLE 1"].roomName = "DEEP JUNGLE\nFORK";
-	rooms["FORKED DEEP JUNGLE 1"].description = "There's three distinct paths that you could follow from this point: one to east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
+	rooms["FORKED DEEP JUNGLE 1"].description = "There are three distinct paths that you could follow from this point: one to east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
 	rooms["FORKED DEEP JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["FORKED DEEP JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["FORKED DEEP JUNGLE 1"].eastExit = "DEEP JUNGLE 2";
@@ -1105,7 +1105,7 @@ public function initializeRooms():void
 	//66. Overgrown\nRock
 	rooms["OVERGROWN ROCK 1"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 1"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 1"].description = "A rock, almost mountain-like in proportions, towers overhead to the west of here. It's so tall that you would be in its shadow if it everything wasn't already so deeply steeped in darkness. You wager it rises up at least a few hundred feet into the air, its walls almost completely sheer. It's been there long enough to have accumulated a healthy covering of mosses, fungus, and other growths. You can go north and south around it or east on a trail that's surrounded by tentacles.";
+	rooms["OVERGROWN ROCK 1"].description = "A rock, almost mountain-like in proportions, towers overhead to the west of here. It's so tall that you would be in its shadow if everything weren't already so deeply steeped in darkness. You wager it rises up at least a few hundred feet into the air, its walls almost completely sheer. It's been there long enough to have accumulated a healthy covering of mosses, fungi, and other growths. You can go north and south around it or east on a trail that's surrounded by tentacles.";
 	rooms["OVERGROWN ROCK 1"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 1"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 1"].northExit = "OVERGROWN ROCK 2";
@@ -1119,7 +1119,7 @@ public function initializeRooms():void
 	//67. Overgrown\nRock
 	rooms["OVERGROWN ROCK 2"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 2"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 2"].description = "You stand at what could be called the corner of the mountainous boulder if it was less jagged and more orderly in its change of direction. There's enough clear space around it for you to keep going to the south or the west along the rock face. An infestation of vines, more tentacles really, blocks the way to the north and the east. Looking at how they move, you don't have any desire to get too close to them.";
+	rooms["OVERGROWN ROCK 2"].description = "You stand at what could be called the corner of the mountainous boulder if it were less jagged and more orderly in its change of direction. There's enough clear space around it for you to keep going to the south or the west along the rock face. An infestation of vines, more tentacles really, blocks the way to the north and the east. Looking at how they move, you don't have any desire to get too close to them.";
 	rooms["OVERGROWN ROCK 2"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 2"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 2"].southExit = "OVERGROWN ROCK 1";
@@ -1132,7 +1132,7 @@ public function initializeRooms():void
 	//68. Overgrown\nRock
 	rooms["OVERGROWN ROCK 3"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 3"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 3"].description = "A flat, almost featureless rock wall rises up to the south of here, towering over you by hundreds of feet. Its cracks and crevices are almost entirely filled with colorful forms of plant life, but for some reason, nothing has grown that close to it, enabled you to walk by it to the east and the west as you wish. To the north, there's thousands of vines bundled together. Most hang there limply, yet some are moving, squirming like tentacles. A path leads north between them, if you dare head through them.";
+	rooms["OVERGROWN ROCK 3"].description = "A flat, almost featureless rock wall rises up to the south of here, towering over you by hundreds of feet. Its cracks and crevices are almost entirely filled with colorful forms of plant life, but for some reason, nothing has grown that close to it, enabling you to walk by it to the east and the west as you wish. To the north, there's thousands of vines bundled together. Most hang there limply, yet some are moving, squirming like tentacles. A path leads north between them, if you dare head through them.";
 	rooms["OVERGROWN ROCK 3"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 3"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 3"].northExit = "VINED JUNGLE 4";
@@ -1146,7 +1146,7 @@ public function initializeRooms():void
 	//69. Vined\nJungle
 	rooms["VINED JUNGLE 4"] = new RoomClass(this);
 	rooms["VINED JUNGLE 4"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 4"].description = "There's so many vines here that you can barely see the trees responsible for the light-obscuring canopy high above. One thing you can be sure of is that there are almost no other kinds of plants this low to the ground; the wriggling mass of botanical tentacles has consumed it all. One snaps into the air to snag a fist-sized bug as you walk, popping its exoskeleton a moment later. It lowers its prey out of sight before you can see any more. The path opens up next to a large rock to the south, or you can follow the trail to the east, through the vines.";
+	rooms["VINED JUNGLE 4"].description = "There are so many vines here that you can barely see the trees responsible for the light-obscuring canopy high above. One thing you can be sure of is that there are almost no other kinds of plants this close to the ground; the wriggling mass of botanical tentacles has consumed it all. One snaps into the air to snag a fist-sized bug as you walk, popping its exoskeleton a moment later. It lowers its prey out of sight before you can see any more. The path opens up next to a large rock to the south, or you can follow the trail to the east, through the vines.";
 	rooms["VINED JUNGLE 4"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 4"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 4"].southExit = "OVERGROWN ROCK 3";
@@ -1199,7 +1199,7 @@ public function initializeRooms():void
 	//73. Overgrown\nRock
 	rooms["OVERGROWN ROCK 5"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 5"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 5"].description = "Climbing high up into the canopy, this gray-colored, monolithic slab of rock almost seems to have burst from the grown ages ago, perhaps forced out by Mhen'ga's unearthly subterranean forces. Its surface is relatively unmarked aside from some tiny fissures that the plants have worked into it. The open space around it continues to the east and west; in the latter direction, the rock has broken apart enough to create a pile of rocks around its base.";
+	rooms["OVERGROWN ROCK 5"].description = "Climbing high up into the canopy, this gray-colored, monolithic slab of rock almost seems to have burst from the ground ages ago, perhaps forced out by Mhen'ga's unearthly subterranean forces. Its surface is relatively unmarked aside from some tiny fissures that the plants have worked into it. The open space around it continues to the east and west; in the latter direction, the rock has broken apart enough to create a pile of rocks around its base.";
 	rooms["OVERGROWN ROCK 5"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 5"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 5"].westExit = "OVERGROWN ROCK 6";
@@ -1212,7 +1212,7 @@ public function initializeRooms():void
 	//74. Overgrown\nRock
 	rooms["OVERGROWN ROCK 6"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 6"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably push past them if it wasn't for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you'd be lost in no time. It'd be better to follow the open space along the sides of this rock to the east and west.";
+	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably push past them if it weren't for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you'd be lost in no time. It'd be better to follow the open space along the sides of this rock to the east and west.";
 	rooms["OVERGROWN ROCK 6"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 6"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";
@@ -1251,7 +1251,7 @@ public function initializeRooms():void
 	//77. Overgrown\nRock
 	rooms["OVERGROWN ROCK 9"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 9"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 9"].description = "Following alongside the stone protrusion, you're treated to all manner of exotic sights and sounds. You hear animal calls that sound like high-pitched whistles. There's a bird whose squawk reminds you of the sound of discharge of a laser weapon. You even see a flower that pivots to follow you, its petals glowing an almost ultraviolet color. This truly is a strange and wonderful planet, but a touch dangerous too. The path leads north and south.";
+	rooms["OVERGROWN ROCK 9"].description = "Following alongside the stone protrusion, you're treated to all manner of exotic sights and sounds. You hear animal calls that sound like high-pitched whistles. There’s a bird whose squawk reminds you of the sound of a laser weapon going off. You even see a flower that pivots to follow you, its petals glowing an almost ultraviolet color. This truly is a strange and wonderful planet, but a touch dangerous too. The path leads north and south.";
 	rooms["OVERGROWN ROCK 9"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 9"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 9"].northExit = "OVERGROWN ROCK 10";
@@ -1278,7 +1278,7 @@ public function initializeRooms():void
 	//79. Overgrown\nRock
 	rooms["OVERGROWN ROCK 11"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 11"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 11"].description = "There's a gigantic rock here; its sheer walls almost stretch up to the canopy itself. Though covered in moss and small vines, it does not look to have succumbed to the jungle's clutches just yet. There is a path around it, leading east and west, and another path leads away to the north. That trail leads between an army of blooming purple flowers. There's so many of them that it looks almost like a sea of amethyst, rustling slightly in gentle breezes.";
+	rooms["OVERGROWN ROCK 11"].description = "There's a gigantic rock here; its sheer walls almost stretch up to the canopy itself. Though covered in moss and small vines, it does not look to have succumbed to the jungle's clutches just yet. There is a path around it, leading east and west, while another path leads away to the north. That trail leads between an army of blooming purple flowers. There are so many of them that they look almost like a sea of amethyst, rustling slightly in gentle breezes.";
 	rooms["OVERGROWN ROCK 11"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 11"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 11"].westExit = "OVERGROWN ROCK 10";
@@ -1292,7 +1292,7 @@ public function initializeRooms():void
 	//80. Overgrown\nRock
 	rooms["OVERGROWN ROCK 12"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 12"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 12"].description = "The jungle to the north of this stone behemoth looks increasingly odd the further you go to the east. Giant flowers and vines give way to squirming masses of tentacles, some of which appear to be predatory from the way they swat at some of the passing bugs. The smooth, mossy surface of the rock is here to the south as always, and the loamy dirt alongside it never seems to become too tangled with growth. You can go east and west from here.";
+	rooms["OVERGROWN ROCK 12"].description = "The jungle to the north of this stone behemoth looks increasingly odd the further you go to the east. Giant flowers and vines give way to squirming masses of tentacles, some of which appear to be predatory from the way they swat at some of the passing bugs. The smooth, mossy surface of the rock is there to the south as always, and the loamy dirt alongside it never seems to become too tangled with growth. You can go east and west from here.";
 	rooms["OVERGROWN ROCK 12"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 12"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 12"].westExit = "OVERGROWN ROCK 11";
@@ -1305,7 +1305,7 @@ public function initializeRooms():void
 	//81. Giant\nLeaves
 	rooms["GIANT LEAVES 1"] = new RoomClass(this);
 	rooms["GIANT LEAVES 1"].roomName = "GIANT\nLEAVES";
-	rooms["GIANT LEAVES 1"].description = "Leaves of the deepest emerald surround you on all sides, growing off of corded stalks that resemble miniature trees. Moisture beads off the leaves, trickling down into muddy puddles around their base. To the east of here, you can make out what looks like a cliff wall towering up into the canopy. Winding south, the gap between the leaves leads even deeper into this humid jungle.";
+	rooms["GIANT LEAVES 1"].description = "Leaves of the deepest emerald surround you on all sides, growing off corded stalks that resemble miniature trees. Moisture beads on the leaves, trickling down into muddy puddles around their base. To the east of here, you can make out what looks like a cliff wall towering up into the canopy. Winding south, the gap between the leaves leads even deeper into this humid jungle.";
 	rooms["GIANT LEAVES 1"].planet = "PLANET: MHEN'GA";
 	rooms["GIANT LEAVES 1"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 1"].southExit = "GIANT LEAVES 2";
@@ -1318,7 +1318,7 @@ public function initializeRooms():void
 	//82. Giant\nLeaves
 	rooms["GIANT LEAVES 2"] = new RoomClass(this);
 	rooms["GIANT LEAVES 2"].roomName = "GIANT\nLEAVES";
-	rooms["GIANT LEAVES 2"].description = "You can see that the leaves to either side into you have been chewed away, probably by some native herbivore. Threading between them, the path rolls on to the north and to the south. The ground is mushy and soft with the amount of humidity, almost like mud, and the leaves grow in even thicker the farther south you go.";
+	rooms["GIANT LEAVES 2"].description = "You can see that the leaves to either side of you have been chewed away, probably by some native herbivore. Threading between them, the path rolls on to the north and to the south. The ground is mushy and soft with the amount of humidity, almost like mud, and the leaves grow in even thicker the farther south you go.";
 	rooms["GIANT LEAVES 2"].planet = "PLANET: MHEN'GA";
 	rooms["GIANT LEAVES 2"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 2"].northExit = "GIANT LEAVES 1";
@@ -1383,7 +1383,7 @@ public function initializeRooms():void
 	//87. Purple\nFlowers
 	rooms["PURPLE FLOWERS 4"] = new RoomClass(this);
 	rooms["PURPLE FLOWERS 4"].roomName = "PURPLE\nFLOWERS";
-	rooms["PURPLE FLOWERS 4"].description = "All around this gently winding woodpath, there are numerous flowers growing, all in bloom. It isn't too bad here. They tint the air pleasantly with their sweet aroma, and they haven't grown up enough to truly stop you from wandering off the trail if you wanted. However, the jungle changes to the south. The trees are taller, the canopy is thicker, the air is humid, and the flowers have overgrown everything except the path. You could back north, toward Esbeth, or south, into the <b>deep jungle</b>.";
+	rooms["PURPLE FLOWERS 4"].description = "All around this gently winding woodpath, there are numerous flowers growing, all in bloom. It isn't too bad here. They tint the air pleasantly with their sweet aroma, and they haven't grown up enough to truly stop you from wandering off the trail if you wanted. However, the jungle changes to the south. The trees are taller, the canopy is thicker, the air is humid, and the flowers have overgrown everything except the path. You could head back north, toward Esbeth, or south, into the <b>deep jungle</b>.";
 	rooms["PURPLE FLOWERS 4"].planet = "PLANET: MHEN'GA";
 	rooms["PURPLE FLOWERS 4"].system = "SYSTEM: ARA ARA";
 	rooms["PURPLE FLOWERS 4"].northExit = "JUNGLE EDGE";
@@ -1477,7 +1477,7 @@ public function initializeRooms():void
 
 	rooms["VALLEY DESCENT 1"] = new RoomClass(this);
 	rooms["VALLEY DESCENT 1"].roomName = "VALLEY\nDESCENT";
-	rooms["VALLEY DESCENT 1"].description = "The path here heads directly north to south on a steep slant. The more you move south, the more you seem to descend into a natural valley. The trees here seem to be defying the incline, strangely growing taller and thicker the further the path descends.\n\nThis area is thin with mist. It seems to get thicker further down. Even then, you can still see the flickering of the luminous tree lichen.";
+	rooms["VALLEY DESCENT 1"].description = "The path here heads directly north to south on a steep slant. The more you move south, the more you seem to descend into a natural valley. The trees here seem to be defying the incline, strangely growing taller and thicker the further the path descends.\n\nThis area is thin with mist. It seems to get thicker further down. Even so, you can still see the flickering of the luminous tree lichen.";
 	rooms["VALLEY DESCENT 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["VALLEY DESCENT 1"].planet = "PLANET: MHEN'GA";
 	rooms["VALLEY DESCENT 1"].system = "SYSTEM: ARA ARA";
@@ -1505,7 +1505,7 @@ public function initializeRooms():void
 
 	rooms["VALLEY FLOOR"] = new RoomClass(this);
 	rooms["VALLEY FLOOR"].roomName = "VALLEY\nFLOOR";
-	rooms["VALLEY FLOOR"].description = "You are standing at the bottom of a thick, misty valley, surrounded by colossal trees covered in luminous lichen. The pulsing colors light up the eerily thick mist. This doesn't feel like a safe place to be standing. The temperature here is very cold and wet.\n\nTo the north there is a path leading up and out of the fog filled valley. You seem free to move in any other direction, but the fog makes it hard to see what awaits you there.";
+	rooms["VALLEY FLOOR"].description = "You are standing at the bottom of a thick, misty valley, surrounded by colossal trees covered in luminous lichen. The pulsing colors light up the eerily thick mist. This doesn't feel like a safe place to be standing. The temperature here is very cold and it is very wet.\n\nTo the north there is a path leading up and out of the fog filled valley. You seem free to move in any other direction, but the fog makes it hard to see what awaits you there.";
 	rooms["VALLEY FLOOR"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["VALLEY FLOOR"].planet = "PLANET: MHEN'GA";
 	rooms["VALLEY FLOOR"].system = "SYSTEM: ARA ARA";
@@ -1519,7 +1519,7 @@ public function initializeRooms():void
 
 	rooms["MISTY VALLEY 1"] = new RoomClass(this);
 	rooms["MISTY VALLEY 1"].roomName = "MISTY\nVALLEY";
-	rooms["MISTY VALLEY 1"].description = "Gigantic, ghostly trees tower around you, looming within the pervasive mist. Flickering sparks which you know to be lichen wink at you from every direction, like a million glowing eyes staring at you from every direction.\n\nIt's hard to find your way here. There's mist in every direction, and the ground is flat and wet. Which way will you go?";
+	rooms["MISTY VALLEY 1"].description = "Gigantic, ghostly trees tower around you, looming within the pervasive mist. Flickering sparks, which you know to be lichen, wink at you from every direction, like a million glowing eyes staring at you.\n\nIt's hard to find your way here. There's mist in every direction, and the ground is flat and wet. Which way will you go?";
 	rooms["MISTY VALLEY 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["MISTY VALLEY 1"].planet = "PLANET: MHEN'GA";
 	rooms["MISTY VALLEY 1"].system = "SYSTEM: ARA ARA";

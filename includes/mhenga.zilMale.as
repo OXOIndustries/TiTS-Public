@@ -225,7 +225,7 @@ public function winVsZil():void {
 		output("The zil gives one last feeble shudder as he struggles to remain upright, but the damage is simply too much. His wings cease their incessant buzzing and drop him straight onto his ass, causing him to wince in pain and discomfort. Looking up hesitantly, he slouches his shoulders in submission and admits, <i>“I'm yours, </i>");
 		if(pc.hasVagina()) output("<i>to breed</i>");
 		else output("<i>to play with</i>");
-		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin.  What do you do?");
+		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin.  What do you do?\n\n");
 	}
 	//{Lust}
 	else

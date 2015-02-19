@@ -439,7 +439,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	if(!pc.isAss()) {
 		output("\n\nYou roll him on his side and undo his bindings before giving him a soft pat on the head.");
 		output("\n\n<i>“Thank you...”</i>  he exhales in an exhausted whisper, momentarily opening his eyes to gaze at you.");
-		output("\n\nSatisfied, you don your [pc.gear] and leave him lying on the jungle floor\n\n.");
+		output("\n\nSatisfied, you don your [pc.gear] and leave him lying on the jungle floor.\n\n");
 		genericVictory();
 		return;
 	}
@@ -877,7 +877,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 
 		output("\n\n<i>“I didn’t say you could go,”</i>  he says, slithering around you and stopping right before you, heavy coils pinning you down. <i>“Hunting always makes me feel... hot. And since I’m sparing your life, I expect you to at least take responsibility for these,”</i>  he moves his coils to lift your chin, and you find yourself face-to-dick with a pair of reptilian shafts, already leaking pre-cum.");
 	}
-	output("\n\nFixated by the pricks confronting you, knowing you are completely at his mercy, you give your assent to taking care of them, however he wants you to do so.");
+	output("\n\nFixated on the pricks confronting you, knowing you are completely at his mercy, you give your assent to taking care of them, however he wants you to do so.");
 
 	output("\n\nHe releases you but keeps you surrounded by his coils. <i>“Strip,”</i>  he orders, crossing his arms as he waits for your compliance.");
 
@@ -1019,7 +1019,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\nHe pounds your holes with renewed vigor, snarling furiously as, with a final shove, he yowls, and you feel warmth beginning to soak your insides.");
 		output("\n\nThe feeling of his seed rolling around inside of you is all the stimulus you need, and you cry out as your own orgasm washes through you, your holes clamping down on the naleen's shafts and milking him for all he's worth as you climax together. You grip the twin members impaling you with each shuddering wave of electric pleasure that crashes over you");
 		if(pc.hasCock()) output(", painting your [pc.chest] and face with your own [pc.cum] as your male half makes your pleasure known");
-		output(". As you are filled with naleen spunk, you blank out, and by the time you come to your senses; you can only feel the emptiness left by his lizard-like cocks.");
+		output(". As you are filled with naleen spunk, you blank out, and by the time you come to your senses, you can only feel the emptiness left by his lizard-like cocks.");
 
 		output("\n\n<i>“You look good,”</i>  he chuckles, eyeing the streams of white vacating your used [pc.vagina] and your abused ass, joining together into a perverted cascade.");
 

@@ -12,7 +12,7 @@ public function juliansOffice():void {
 	else 
 	{
 		output("\n\nDr. Julian S. Haswell is busy behind his desk as always. His piercing blue eyes flick up, taking notice of you, but he doesn't bother to greet you just yet, figuring that you'll speak up if its important.");
-		addButton(0,"Dr.Haswell",approachJulianRouter);
+		addButton(0,"Dr. Haswell",approachJulianRouter);
 	}	
 }
 
@@ -162,7 +162,7 @@ public function declinedZilCaptureMission():void {
 public function zilBaggedApproach():void {
 	clearOutput();
 	userInterface.showBust("DR_HASWELL");
-	output("\"<i>Ahhh, there's the intrepid " + pc.mfn("hunter","huntress","hunter") + ",</i>\"  Julian says as he rises from his chair to greet you. He gives you a friendly handshake, admitting, \"<i>Your work shaved months off my own. I already have a few products nearing general release testing, if you'll believe that!</i>\"  He beams, proud of his progress. \"<i>You can talk to Kelly if you'd like to try any of them. I've told given her clearance to sell them to you at a reduced rate as thanks for your work.</i>\"");
+	output("\"<i>Ahhh, there's the intrepid " + pc.mfn("hunter","huntress","hunter") + ",</i>\"  Julian says as he rises from his chair to greet you. He gives you a friendly handshake, admitting, \"<i>Your work shaved months off my own. I already have a few products nearing general release testing, if you'll believe that!</i>\"  He beams, proud of his progress. \"<i>You can talk to Kelly if you'd like to try any of them. I've given her clearance to sell them to you at a reduced rate as thanks for your work.</i>\"");
 	output("\n\n\"<i>That's not all,</i>\"  Doctor Haswell explains, \"<i>We need both sexes of zil if we're going to enable men AND women all over the galaxy to cum delicious, flavored sweetness with no ill side effects!</i>\"  He depresses a button on the desk, suddenly causing one of the displays to show your captured zil.");
 
 	//Dudezil:

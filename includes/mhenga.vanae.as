@@ -606,7 +606,7 @@ public function vanaePCVictory():void
 	{
 		if (foes[0] is HuntressVanae)
 		{
-			output("\n\nThe busty huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
+			output("The busty huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
 			output("\n\n<i>“Oh sweet Sky Mother, I can't take it any longer");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don't care if you are a [pc.race]");
@@ -614,7 +614,7 @@ public function vanaePCVictory():void
 		}
 		else
 		{
-			output("\n\nThe virgin huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
+			output("The virgin huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
 			output("\n\n<i>“Oh sweet Sky Mother, I've never been so horny in all my life! Please, can you fuck me? I don't care where!”</i> she whimpers, madly fingering her unsullied snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is. <i>“... Please?”</i>");
 		}
@@ -1147,7 +1147,7 @@ public function vanaeMaidenCunnilingus():void
 	else output(" bare loins ache");
 	output(". It turns you on to know you will be the first to plunge your tongue inside of her and savor the taste of her hairless alien pussy.");
 
-	output("\n\nYou reach up with two fingers and part her dewy lower lips. Her scent is so strong, so powerful, and so delicious you positively ache with the desire to thrust your [pc.tongue] inside of her cute honey hole. It is a desire you immediately satiate, pressing your [pc.lips] against her [monster.pussy] and burying it inside of her.");
+	output("\n\nYou reach up with two fingers and part her dewy lower lips. Her scent is so strong, so powerful, and so delicious you positively ache with the desire to thrust your [pc.tongue] inside of her cute honey hole. It is a desire you immediately sate, pressing your [pc.lips] against her [monster.pussy] and burying it inside of her.");
 
 	output("\n\nThe maiden huntress lets out a sweet cry as your hungry tongue roams around wildly inside of her silky depths. You feel her bringing up her [monster.legs] and resting them on your shoulders. As you eat her out, she wraps them around you and pulls you closer, eager to feel your tongue roaming every inch of her slick insides.");
 
@@ -1414,7 +1414,7 @@ public function vanaeHuntress69(selScene:String):void
 
 	output("The busty alien huntress lies back on the ground, spreading her [monster.thighs] wide. At the same time she parts her tenta-dress, exposing her [monster.pussy] to your lusty gaze. As you look at her, she flushes, coyly spreading her legs even further apart. Her [monster.clits] are poking out cutely from her puffy lips.");
 
-	output("\n\nSpurred forward by lust, you walk around and slink down, moving forward so that your loins are in each other's faces. You can see her [monster.pussy] even better up close, her puffy lips already moist. The sweet scent of her arousal wafts up, and you relish in it, pressing your face against her sodden cunt. From the satisfied moan you hear behind you and the rubbing against your sensitive flesh, you know she's doing exactly the same.");
+	output("\n\nSpurred forward by lust, you walk around and slink down, moving forward so that your loins are in each other's faces. You can see her [monster.pussy] even better up close, her puffy lips already moist. The sweet scent of her arousal wafts up, and you relish it, pressing your face against her sodden cunt. From the satisfied moan you hear behind you and the rubbing against your sensitive flesh, you know she's doing exactly the same.");
 
 	output("\n\nEager to please you, you can feel her wet tongue pressing flush against your");
 	if (isBj) output(" [pc.cockHead " + selCock + "]");
@@ -1455,7 +1455,7 @@ public function vanaeHuntress69(selScene:String):void
 
 		output("\n\nNot one to be outdone, she presses against that glorious spot deep inside of your inner walls, coaxing and milking it with her fingers as she suckles upon your [pc.clits]. You whimper with pleasure as her fingers furiously fuck your [pc.pussy], thoroughly coating them in your wetness as you get even more hot and bothered. God, she knows how to get" + pc.mf(" someone", " a girl") + " off!");
 
-		output("\n\nCopying her movements, you both suck on each others clits, feverishly fingering each other and lapping at each other's pussies. Soon your voices raise in pitch, your movements frantic and heated as you grind your hips against each other's hands and mouths. You both reach that magical moment together, creaming yourselves literally at each other's hands.");
+		output("\n\nYou copy her movements, and you both suck on each others clits, feverishly fingering each other and lapping at each other's pussies. Soon your voices rise in pitch, and your movements grow increasingly frantic and heated as you grind your hips against each other's hands and mouths. You both reach that magical moment together, creaming yourselves literally at each other's hands.");
 	}
 	else
 	{
@@ -1487,7 +1487,7 @@ public function vanaeHuntress69(selScene:String):void
 	output(". She makes sure to lap up every last drop of your");
 	if (isBj) output(" [pc.cum]");
 	else output(" [pc.girlCum]");
-	output(", making sure it is slick and spotless.");
+	output(", making sure you are slick and spotless.");
 
 	processTime(30+rand(10));
 
@@ -2629,7 +2629,7 @@ public function vanaeMaidenPCDefeatCunnilingus():void
 
 	output("\n\nHer webbed hands come down and part her short tentacle skirt. Her [monster.pussyNoun] is cute and pink, two tiny clits poking out from her puffy lips. You can see a glistening wetness on her unsullied flower, just begging to be licked off.");
 
-	output("\n\n<i>“I... I want you to eat me out, okay? Can I trust you to do that?</i> she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
+	output("\n\n<i>“I... I want you to eat me out, okay? Can I trust you to do that?</i>” she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
 
 	output("\n\nShe gives a pleasured shiver as you brush her girl parts with your [pc.lips]. As you tease them she wiggles eagerly on the spot, unable to contain the powerful sensations threatening to take over.");
 

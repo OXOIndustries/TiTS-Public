@@ -29,7 +29,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a vaginal insertable labelled 'honeypot'";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A brand new Xenogen product released thanks to your... contributions, Honeypot is a localized transformation that affects vaginal secretions, rewriting the body to produce a sweet, thick honey. The first release of the new product comes in a handy, one-use <b>insertable</b> form.";
+			this.tooltip = "A brand new Xenogen product released thanks to your... contributions, Honeypot is a localized transformation that affects vaginal secretions, rewriting the body to produce a sweet, thick honey. The first release of the new product comes in a handy, single-use <b>insertable</b> form.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -70,11 +70,11 @@
 				//{Effect: If pc has a Vagina, changes girlCum to Honey.}
 				if(target.hasVagina())
 				{
-					kGAMECLASS.output("You take out the egg shaped yellow pill from your pack. Its package shows the large Honeypot label, the last 'o' is replaced by a pair of puffy, black, honey-dripping labia. You look for a nearby seat");
+					kGAMECLASS.output("You take out the egg shaped yellow pill from your pack. Its package shows the large Honeypot label, the last ‘o’ is replaced by a pair of puffy, black, honey-dripping labia. You look for a nearby seat");
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" before carefully peeling away your [pc.lowerGarments] to easily access your [pc.vaginas]");
 					else kGAMECLASS.output(" before inspecting your crotch.");
 					kGAMECLASS.output(".");
-					if(!target.vaginalVirgin) kGAMECLASS.output(" It can't possibly compare to to anything you've taken before.");
+					if(!target.vaginalVirgin) kGAMECLASS.output(" It can't possibly compare to anything you've taken before.");
 					else kGAMECLASS.output(" It can't be that bad. You hope so, anyway. You've haven't ever forced much inside there before.");
 					kGAMECLASS.output("\n\n");
 					if(target.totalVaginas() > 1) kGAMECLASS.output("Your fingers slowly move the ovoid transformative across your multitude of lips before finally settling on a lucky pair. It isn't supposed to matter which entrance takes it. ");
