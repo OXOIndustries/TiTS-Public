@@ -2507,7 +2507,7 @@ public function embryAnalSex():void
 	{
 		output("\n\nThe pink-haired simii locks the cabin door behind you both, and her cheeks are flushed. Her stocking-clad legs are pressed together. You ask her what’s going on.");
 		// Never had vaginal sex either
-		if(flags["GOTTEN_TO_FUCK_EMBRYCUNT"] == undefined) output("\n\n<i>\"Um, you know, we’ve... n-never really had sex, you know? Not like, for real. I’m always pleasuring you, or you’re pleasuring me, but we’ve never really </i>done it<i>, you know-?</i>” [embry.name] boldly states, though her eyes are looking down at her feet. “<i>... I-I was thinking, maybe, you want to use my ass--?</i>”");
+		if(!embry.vaginalVirgin) output("\n\n<i>\"Um, you know, we’ve... n-never really had sex, you know? Not like, for real. I’m always pleasuring you, or you’re pleasuring me, but we’ve never really </i>done it<i>, you know-?</i>” [embry.name] boldly states, though her eyes are looking down at her feet. “<i>... I-I was thinking, maybe, you want to use my ass--?</i>”");
 		// Had vaginal sex, but not anal.
 		else
 		{
