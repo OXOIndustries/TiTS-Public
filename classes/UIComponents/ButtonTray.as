@@ -312,6 +312,11 @@
 			_buttons[i].setPurple();
 		}
 		
+		public function setButtonText(i:int, btnText:String):void
+		{
+			_buttons[i].setText(btnText);
+		}
+		
 		public function setButtonDisabled(i:int):void
 		{
 			_buttons[i].setDisabled();

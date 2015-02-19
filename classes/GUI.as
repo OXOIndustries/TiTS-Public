@@ -916,6 +916,11 @@
 			_buttonTray.setButtonPurple(slot);
 		}
 		
+		public function setButtonText(slot:int, btnText:String):void
+		{
+			_buttonTray.setButtonText(slot, btnText);
+		}
+		
 		public function setButtonDisabled(slot:int):void
 		{
 			_buttonTray.setButtonDisabled(slot);

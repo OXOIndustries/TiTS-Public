@@ -25,42 +25,18 @@ public function startLightsOut(victoryFunction:Function = null, failureFunction:
 		lightsArray[i] = false;
 		userInterface.setButtonBlue(i);
 		
-		addButton(i, " ", toggleLight, i);
+		addButton(i, "Off", toggleLight, i);
 	}
 	
-	lightsArray[1] = true;
-	lightsArray[5] = true;
-	lightsArray[6] = true;
-	lightsArray[9] = true;
-	lightsArray[10] = true;
-	lightsArray[11] = true;
-	lightsArray[12] = true;
-	lightsArray[13] = true;
+	var onBts:Array = [1, 5, 6, 9, 10, 11, 12, 13];
 	
-	userInterface.setButtonPurple(1);
-	userInterface.setButtonPurple(5);
-	userInterface.setButtonPurple(6);
-	userInterface.setButtonPurple(9);
-	userInterface.setButtonPurple(10);
-	userInterface.setButtonPurple(11);
-	userInterface.setButtonPurple(12);
-	userInterface.setButtonPurple(13);
-	
-	
-	//for (var i:int = 0; i < 15; i++)
-	//{
-		//if (rand(3) == 0)
-		//{
-			//lightsArray[i] = true;
-			//userInterface.setButtonPurple(i);
-		//}
-		//else
-		//{
-			//lightsArray[i] = false;
-			//userInterface.setButtonBlue(i);
-		//}
-		//addButton(i, " ", toggleLight, i);
-	//}
+	for (i = 0; i < onBts.length; i++)
+	{
+		lightsArray[onBts[i]] = true;
+		userInterface.setButtonPurple(onBts[i]);
+		
+		addButton(onBts[i], "On", toggleLight, onBts[i]);
+	}
 }
 
 public function testVictoryFunc():void
@@ -75,8 +51,16 @@ public function toggleSlot(slot:int):void
 {
 	lightsArray[slot] = !lightsArray[slot]
 	
-	if (lightsArray[slot]) userInterface.setButtonPurple(slot);
-	else userInterface.setButtonBlue(slot);
+	if (lightsArray[slot]) 
+	{
+		userInterface.setButtonPurple(slot);
+		userInterface.setButtonText(slot, "On");
+	}
+	else
+	{
+		userInterface.setButtonBlue(slot);
+		userInterface.setButtonText(slot, "Off");
+	}
 }
 
 public function toggleLight(slot:int):void

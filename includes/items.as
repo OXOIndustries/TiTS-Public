@@ -530,7 +530,8 @@ public function equipItem(arg:ItemSlotClass):void {
 	}
 }
 
-public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
+public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void 
+{
 	
 	if(clearScreen) clearOutput();
 	

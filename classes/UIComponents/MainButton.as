@@ -289,6 +289,11 @@ package classes.UIComponents
 			setColour(PURPLE_BUTTON);
 		}
 		
+		public function setText(btnText:String):void
+		{
+			buttonName = btnText;
+		}
+		
 		public function setLightBlue():void
 		{
 			setColour(FOREGROUND_BUTTON);
