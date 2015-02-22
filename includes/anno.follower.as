@@ -557,6 +557,8 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new NovaRifle());
 			anno.inventory.push(new NovaPistol());
 			anno.inventory.push(new SteeleTechSuit());
+			anno.inventory.push(new ACock());
+			anno.inventory.push(new AHCock());
 		}
 
 		// Buy/Sell markups
@@ -575,6 +577,8 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new HammerCarbine());
 			anno.inventory.push(new FlashGrenade());
 			anno.inventory.push(new JoyCoPremiumShield());
+			anno.inventory.push(new ACock());
+			anno.inventory.push(new AHCock());
 		}
 
 		anno.sellMarkup = 1.2;
