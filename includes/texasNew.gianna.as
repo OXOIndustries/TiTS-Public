@@ -55,7 +55,10 @@ public function giannaPersonality(modification:int = 0):int
 	if(modification != 0) 
 	{
 		gianna.personality += modification;
-		if(gianna.personality > 100) gianna.personality = 15;
+		if (gianna.personality > 100)
+		{
+			gianna.personality = 100;
+		}
 		else if(gianna.personality < 0) gianna.personality = 0;
 	}
 	//Boot out the current

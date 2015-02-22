@@ -14,6 +14,7 @@ import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorseCock;
 import classes.Items.Miscellaneous.PHAccess;
+import classes.Items.Miscellaneous.Silicone;
 import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Miscellaneous.TestHPBooster;
 import classes.Items.Miscellaneous.UthraSap;
@@ -155,6 +156,18 @@ public function debugMenusTwo():void
 	});
 	
 	addButton(5, "F. Rival", debugFuckWithRival);
+	
+	addButton(7, "Creds", function():void {
+		pc.credits += 100000;
+	});
+	
+	addButton(8, "Silicone", function():void {
+		var items:Array = [];
+		items.push(new Silicone());
+		items[0].quantity = 10;
+		
+		itemCollect(items);
+	});
 }
 
 public function debugFuckWithRival():void
