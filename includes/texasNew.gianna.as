@@ -1,4 +1,7 @@
-﻿//9999 DONT FORGET TO MAKE THESE DO SHIT:
+﻿import classes.Items.Miscellaneous.AHCock;
+import classes.Items.Miscellaneous.ACock;
+
+//9999 DONT FORGET THESE WHEN UPDATING THINGS
 //flags["GIANNA_FUCK_TIMER"] - needs reset in every sex scene and set to count up over time.
 //flags["TALKED_TO_GIANNA"] - needs set on every talk scene.
 
@@ -343,6 +346,12 @@ public function approachGianna(special:String = ""):void
 			output("\n\nGianna pushes herself up onto her knees, then pivots her weight as she pushes up with a leg, rising to a standing pose in a seamlessly movement. Her eyes are low and submissive, her arms crossed quietly beneath her [gianna.chest]. <i>“What now?”</i>");
 		}
 	}
+	giannaMenu();
+}
+
+public function giannaMenu():void
+{
+	giannaDisplay();
 	//[Talk][Fuck][Silicone][Temperature][Plugin][Leave]
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Fuck",giannaFuckChoices,undefined,"Fuck","Engage in a sexual act with the eager to please android.");
@@ -351,13 +360,17 @@ public function approachGianna(special:String = ""):void
 	if(flags["GIANNA_BODY_TALK_RESULT"] == undefined) addDisabledButton(2,"Locked","Locked","You'll have to talk to Gianna to unlock this option.");
 	else addButton(2,"Silicone",giannaBodyModMenu,undefined,"Silicone","She can adjust her body with silicone. Check in on her current levels and see if she'd like to make some adjustments.")
 	addButton(5,"Appearance",giannaAppearance,undefined,"Appearance","Get an in-depth description of Gianna.");
+	if(hasGiannaGift()) addButton(6,"Give",giveGiannaSomethingCoolYouSlut,undefined,"Give","Give Gianna a present from your inventory.");
+	else addDisabledButton(6,"Give","Give","You need to have a present for Gianna in order to give it to her.");
+	if(giannaHasSwapPieces()) addButton(7,"Hot-Swap",hotswapGiannaButts,undefined,"Hot-Swap","Change what Gianna has equipped in her pelvis.");
+	else addDisabledButton(7,"Hot-Swap","Hot-Swap","Gianna must have something to swap into her pelvis for this menu to be active.");
 	addButton(14,"Back",mainGameMenu);
 }
 
 public function giannaFuckChoices():void
 {
 	giannaDisplay();
-	//9999 add some talk shit here later?
+	//add some talk shit here later?
 	clearMenu();
 	if(pc.hasCock())
 	{
@@ -603,10 +616,7 @@ public function talkToGianna(display:Boolean = true):void
 			{
 				output(" before your rampant libido overwhelms your better reason, and you pull her into a kiss. She melts into you, and it isn’t until you remember that running your [pc.tongue] around the inside of her mouth won’t sate you that you break away to say, <i>\"Fuck it! Let’s fuck.”</i>");
 				//Go to sex menu
-				//9999
-				output("\n\n<b>UNCODED!</b>");
-				clearMenu();
-				addButton(0,"Next",mainGameMenu);
+				giannaFuckChoices();
 				return;
 			}
 			output(".");
@@ -1404,7 +1414,6 @@ public function giannaBodyModMenu(display:Boolean = true):void
 	if(pc.hasItem(new Silicone(),1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
 	else addDisabledButton(8,"GiveSilicone","GiveSilicone","You need to find a bag of silicone before you can give it to Gianna.");
 
-	//9999
 	if(!gianna.hasStatusEffect("Hose Plugged In")) addButton(14,"Back",approachGianna,"back");
 	else addButton(14,"Back",unhookGiannaHose);
 }
@@ -1976,8 +1985,6 @@ public function increaseGiannaLips(siliconeUsed:int):void
 	clearOutput();
 	giannaDisplay();
 	giannaAvailableSilicone(-siliconeUsed);
-	/////}”</i> you request.");
-	//9999
 	//0 bonus to 1 full to succulent/juicy
 	if(gianna.lipMod == 0)
 	{
@@ -2347,6 +2354,7 @@ public function hugeTittyTittyfuck():void
 	else output("Is there anything else I could do to please you?”</i>");
 	processTime(24+rand(4));
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	approachGianna("noText");
 }
 
@@ -2563,6 +2571,7 @@ public function giannaNormalTitTitfuck():void
 		addButton(0,"Next",mainGameMenu);
 		flags["GIANNA_TITFUCKS"] = 1;
 	}
+	flags["GIANNA_FUCK_TIMER"] = 0;
 }
 
 //[***]Cocksucking Lips Suck Cocks
@@ -2690,6 +2699,7 @@ public function giannasCockSuckingLipsSuckCocks():void
 	flags["GIANNA_STALL_SEEN"] = 1;
 	processTime(20+rand(4));
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2826,6 +2836,7 @@ public function giveGirlsOral():void
 		for (var i:int = 0; i < 5; i++)
 		{
 			pc.orgasm();
+			flags["GIANNA_FUCK_TIMER"] = 0;
 		}
 		
 		clearMenu();
@@ -2930,6 +2941,7 @@ public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 	[pc.orgasm];
 	processTime(17);
 	flags["GIANNA_GIVEN_GIRLY_ORAL_YET"] = 1;
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3117,6 +3129,7 @@ public function suckGiannasRoboCockDuring69():void
 	output("\n\nShe holds the door for you once you gather your gear, and you walk back into the barn proper together. It swings closed, hiding the evidence of your tryst from casual inspection. Not that the locals would notice or care.");
 	processTime(10);
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3201,6 +3214,7 @@ public function eatOutPussyOfRoboChicksDuring69():void
 	output("\n\nYou wipe the cherry-flavored evidence of Gianna’s lust from your [pc.face] and sit up with a sated smile. She’s smiling over at you and shaking her head, eminently pleased. The android helps you gather your things and holds the door for you with a sated smile.");
 	processTime(11);
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3559,6 +3573,7 @@ public function coochFuckThreeMaybeFourInOne():void
 			//Dont forget to cumflate if needed.
 		}
 	}
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3571,6 +3586,7 @@ public function missionaryKnotEpilogue():void
 	if(pc.cumQ() > 2000) output(" and a gush of pressurized [pc.cumNoun]. Her belly retains its swollen shape, and the leaking fuckjuice trails off in no time, penned inside her by some mechanism you don’t fully understand but appreciate nonetheless");
 	output(".");
 	output("\n\nGianna ambles off to wipe down, but she’ll be back in a moment. You grab your gear, ready for more exploration.");
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3715,6 +3731,7 @@ public function phatBootyHotdogging():void
 	else output("When you don’t need to carry equipment around with you anymore, you’re going to love being able to enjoy being naked as much as she is.");
 	processTime(20+rand(5));
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3872,6 +3889,192 @@ public function savinTriesToWriteGiannaButtfux():void
 	if(pc.isMischievous()) output(" As you’re getting ready to depart, you reach back and give Gianna a swift swat on the ass. She squeals, and a goodly amount of your orgasm leaks out to stain her thighs. Her alabaster skin darkens at the mishap, causing you to laugh all the way out.");
 	processTime(30);
 	pc.orgasm();
+	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Give
+public function giveGiannaSomethingCoolYouSlut():void
+{
+	clearOutput();
+	giannaDisplay();
+	output("You search around your possessions for something to give to Gianna.");
+	//Positive
+	if(giannaPersonality() >= 70) output("\n\nGianna bounces over, craning around you to get a look in your pack. “<i>Ohh, did you get me a present?” Her eyes brighten noticeably as she circles you. “I must have made you pretty happy, huh?</i>” She blows air across your earlobe. “<i>If you weren’t about to give me a present I’d pin you down and do it all over it again.</i>”");
+	//Neutral
+	else if(giannaPersonality() >= 30) output("\n\nGianna gasps, her eyes glowing brightly. “<i>A present? ...You’re gonna give me a present?</i>” She claps her hands excitedly and watches you with baited breath, or what passes for baited breath when breathing is optional.");
+	//Negnegneg!
+	else output("\n\nGianna keeps her eyes fixed at the ground submissively, her hands crossed just in front of her waist. “<i>Are you getting something for me?</i>” She fidgets, toeing at the ground. “<i>My old master never gave me anything, really.</i>”");
+	processTime(2);
+	//Menu of give things
+	clearMenu();
+	if(pc.hasItem(new AHCock())) addButton(0,"A.H.Cock",giveGiannaSomethingTransform,"hoss","Android Horse Cock","Give Gianna the android horse-cock you've been carrying around.");
+	else addDisabledButton(0,"Locked","Locked","You've no idea what this could be.");
+	if(pc.hasItem(new ACock())) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you've been carrying around.");
+	else addDisabledButton(1,"Locked","Locked","You've no idea what this could be.");
+	addButton(14,"Back",giannaMenu);
+}
+
+public function hasGiannaGift():Boolean
+{
+	if (pc.hasItem(new AHCock()) || pc.hasItem(new ACock())) return true;
+	return false;
+}
+
+
+//Transformation Go
+public function giveGiannaSomethingTransform(arg:String = "hoss"):void
+{
+	clearOutput();
+	giannaDisplay();
+	output("You withdraw the floppy addition from your inventory and offer it to the android.");
+
+	//HOSSCAWK
+	if(arg == "hoss")
+	{
+		//Positive
+		if(giannaPersonality() >= 70) output("\n\n“<i>Ohhh, is that a XL model? Those things are huge - and it has the equine subvariant too!? Oh I’ll make so many of the bulls here jealous! I can’t wait to see it fully inflated and wave it in someone’s face!</i>” Gianna takes and turns it in her hands, peering at it from every angle, scanning the entire surface for defects. “<i>Oh, I bet you want me to fuck you with this, don’t you?</i>” A coquettish grin slowly spreads across her face. “<i>Or maybe you want me to ram it down your throat?</i>”");
+		//Neutral
+		else if(giannaPersonality() >= 30) output("\n\n“<i>Omigod, really? That looks like one of the XL models - the horsey ones. I could probably make Zephyr all kinds of jealous with it. I bet she’d bend me over her desk and fuck me hard enough to break it in half!</i>” Gianna grins mischievously while looking over the phallic present. “<i>...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?</i>”");
+		//Submissive
+		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. “<i>T-thank you, [pc.master]. I never thought I’d get to have an XL model, let alone a horse-cock. It’s beautiful.</i>” She spins it in her hands, scanning it for defects. “<i>Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?</i>”");
+	}
+	//NORMACOCK
+	else
+	{
+		//Positive
+		if(giannaPersonality() >= 70) output("\n\n“<i>Ohhh, you got me a terran-style futa cock? My my, someone likes a little dick on their chick, don’t they?</i>” Gianna takes the artificial tool and wiggles it in your direction. “<i>Oh, I bet you want me to fuck you with this, don’t you?</i>” A coquettish grin slowly spreads across her face. “<i>Or maybe you want me to ram it down your throat?</i>”");
+		//Neutral
+		else if(giannaPersonality() >= 30) output("\n\n“<i>Omigod, really? I never thought I’d get a terran dick like this. It’s even a pretty decent size. I wonder if Zephyr would be jealous to have some competition around here. She’d probably break her desk in half rage-fucking me if I waved it under her nose.</i>” Gianna grins mischievously while looking over the phallic present. “<i>...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?</i>”");
+		//Submissive
+		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. “<i>T-thank you, [pc.master]. I never thought I’d get to have such a lovely penis. It’s beautiful.</i>” She spins it in her hands, scanning it for defects. “<i>Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?</i>”");
+	}
+	//merge
+	output("\n\nYou fumble for a response, but Gianna is no longer talking to you. She’s already starting the process of installing her gift. A small line in the synthflesh above her crotch opens up. She presses down just below rift. It audibly clicks, then pops outward, revealing gleaming composites wet with residual silicone. Something inside her opened crotch compartment hisses and snaps, then Gianna lifts out a small component containing ");
+	if(!gianna.hasCock()) output("her clit and its clitoral hood");
+	else output("her previously equipped tool");
+	output(", still moist with lubrication from internals.");
+	output("\n\nGently setting her disembodied clit on a nearby piece of equipment, she brings her new phallus into position, gently pushing its built-in silicone reservoir inside the opening she’s created in her body. After a little wiggling, she brings the ");
+	if(arg == "hoss") output("extra large-sized sheath down into the vacant slot");
+	else output("cocksheath down into the vacant slot");
+	output(", causing her flexible vagina to distend and reshape to accommodate the ");
+	if(arg == "hoss") output("bestial");
+	else output("less than feminine");
+	output(" girth. Something clicks, and Gianna sighs in relief or pleasure before closing her abdominal compartment.");
+	output("\n\n“<i>There we go! I’ve got ");
+	if(arg == "hoss") output("a big horse-cock");
+	else output("a decent-sized terran cock");
+	output(", just like you wanted!</i>” She wiggles excitedly and says, “<i>Watch this!</i>”");
+
+	//Hosscawk
+	if(arg == "hoss")
+	{
+		output("\n\nThe darkened sheath that was once her clitoral hood bulges, revealing the rubbery-looking flesh of a very swollen flare. It pushes through her inky lips with deliberate slowness, followed by the pillar of her veiny shaft. Even now, you can see the faux circulatory system bulge and pulse as it circulates heated silicone in place of blood. It seems to take forever, but in reality, no more than ten seconds have passed. She strokes it once, squeezing a bead of lubricant from its blunt head before allowing it to soft once more. It retreats into its dusky hood with almost alarming rapidity, leaving her looking like a girl with little more than an over-sized clit-hoot once more.");
+	}
+	//Normal Futa?
+	else output("\n\nA half-hard length of pink-hued synthflesh dangles from her clitoral hood, modelled in the shape of a girthy penis. While soft, it's a floppy four inches. When it gets hard, she can sport up to ten inches of silicone-inflated girlmeat. The android is more than happy to give you a demonstration, going from soft to raging tumescence in the span of ten seconds, ending her demonstration by allowing bubbles of warm lubricant to roll out of its head unimpeded, drawn from her inner reservoirs. She goes soft just as quickly.");
+	output("\n\n“<i>That... that’s awesome,</i>” you answer whilst trying not to blush");
+	if(pc.hasFur() || pc.hasScales())
+	{
+		output(", grateful for your covering of ");
+		if(pc.hasFur()) output("fur");
+		else output("scales");
+	}
+	output(".\n\nGianna giggles and snatches up her old equipment from where she set it down. “<i>Let me go put this away, and we’ll do something else, okay?</i>”");
+	output("\n\nYou’d be hard pressed not to smile back. “<i>Sure");
+	if(!pc.isAss() && !pc.isBro()) output(" thing");
+	output(".</i>”");
+	output("\n\nThe lusty android ");
+	if(pc.tallness >= 76) output("leans up on her tip-toes");
+	else if(pc.tallness >= 60) output("leans over");
+	else output("leans down");
+	output(" and plants a kiss on your cheek before disappearing around a corner to put away her old equipment");
+	if(arg == "humancock") output(", her new cock flopping between her pale thighs");
+	output(".");
+
+	processTime(4);
+	giannaCrotchTF(arg);
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function giannaHasSwapPieces():Boolean
+{
+	return (flags["GIANNA_HAS_HUMAN_COCK"] != undefined || flags["GIANNA_HAS_HORSE_COCK"] != undefined);
+}
+
+function giannaCrotchTF(arg:String = "clit"):void
+{
+	//Eat cock and set it up
+	if(gianna.hasCock()) gianna.removeCocks();
+	if(arg == "hoss")
+	{
+		if(flags["GIANNA_HAS_HORSE_COCK"] == undefined)
+		{
+			flags["GIANNA_HAS_HORSE_COCK"] = 1;
+			pc.destroyItem(new AHCock());
+		}
+		gianna.createCock(14,1.3);
+		gianna.shiftCock(0,GLOBAL.TYPE_EQUINE);
+		gianna.cocks[0].cockColor = "black";
+	}
+	if(arg == "humancock")
+	{
+		if(flags["GIANNA_HAS_HUMAN_COCK"] == undefined)
+		{
+			flags["GIANNA_HAS_HUMAN_COCK"] = 1;
+			pc.destroyItem(new ACock());
+		}
+		gianna.createCock(10,1.1);
+		gianna.cocks[0].cockColor = "pink";
+	}
+	if(arg == "clit")
+	{
+		
+	}
+}
+
+//Hot-swap
+public function hotswapGiannaButts():void
+{
+	clearOutput();
+	giannaDisplay();
+	output("What do you want to change with Gianna’s hot-swappable genitals? Your choices are limited by what you have given her.");
+	clearMenu();
+	if(gianna.hasCock()) addButton(0,"Normal",hotSwapSomethingWithGianna,"clit","Normal","Have Gianna switch her vagina back to normal, with a standard clit and everything.");
+	else addDisabledButton(0,"Normal","Normal","Gianna's crotch is already at its default configuration.");
+	if(flags["GIANNA_HAS_HUMAN_COCK"] != undefined)
+	{
+		if(gianna.hasCock(GLOBAL.TYPE_HUMAN)) addDisabledButton(1,"TerranCock","Terran Cock","Gianna already has that type of penis equipped.");
+		else addButton(1,"TerranCock",hotSwapSomethingWithGianna,"humancock","Terran Cock","Have Gianna equip her human-style cock.");
+	}
+	else addDisabledButton(1,"Locked","Locked","Gianna does not have this item yet.");
+	if(flags["GIANNA_HAS_HORSE_COCK"] != undefined)
+	{
+		if(gianna.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(2,"HorseCock","Horse Cock","Gianna already has that type of penis equipped.");
+		else addButton(2,"HorseCock",hotSwapSomethingWithGianna,"hoss","Horse Cock","Have Gianna equip her equine cock.");
+	}
+	else addDisabledButton(2,"Locked","Locked","Gianna does not have this item yet.");
+	addButton(14,"Back",giannaMenu);
+}
+
+//Hotswap Text
+public function hotSwapSomethingWithGianna(arg:String = "clit"):void
+{
+	clearOutput();
+	giannaDisplay();
+	output("You tell the sultry android that you’d like her to get a different genital setup on.");
+	//Perky/Dommy!
+	if(giannaPersonality() >= 70) output("\n\n“<i>Awww, I was just getting used to having that setup!</i>” Gianna pouts at you. “<i>Well you’d better make use of the new equipment, then! ...Unless you just like making dress up my crotch all sexy for you, you kinky [pc.boy] you!</i>”");
+	//Normal
+	else if(giannaPersonality() >= 30) output("\n\n“<i>Ohh, that’s way less fun than I thought we’d be having, but if you think I’d look better that way, who am I to judge.</i>” Gianna openly fondles herself, sighing blissfully until you cough to get her attention. “<i>Sorry,</i>” she sheepishly admits, “<i>I was just saying bye to the old parts!</i>”");
+	//Subby
+	else output("\n\nGianna nods. “<i>If that’s what you’d like, I’ll be happy to configure myself that way. One moment please.</i>”");
+	//Merge
+	output("\n\nThe white-skinned beauty departs with a sensuous wiggle of her [gianna.butt], heading off to her collection of spare parts in order to install the requested bits.\n\nWhen she returns, Gianna is blushing heavily and equipped to your specifications. What now?");
+	processTime(13);
+	giannaCrotchTF(arg);
+	giannaMenu();
 }

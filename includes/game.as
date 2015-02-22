@@ -899,6 +899,7 @@ public function processTime(arg:int):void {
 				flags["GOBBLES_COOLDOWN"]++;
 				if(flags["GOBBLES_COOLDOWN"] > 24) flags["GOBBLES_COOLDOWN"] = 24;
 			}
+			if(flags["GIANNA_FUCK_TIMER"] != undefined) flags["GIANNA_FUCK_TIMER"]++;
 			if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours == 24 && currentLocation != "725") missedRebelExplosion();
 			if(flags["IRELLIA_QUEST_STATUS"] == 4 && hours == 24) 
 			{

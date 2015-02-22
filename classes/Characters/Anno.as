@@ -11,13 +11,15 @@
 	import classes.Items.Miscellaneous.AusarTreats;
 	import classes.Items.Miscellaneous.EMPGrenade;
 	import classes.Items.Miscellaneous.GrayMicrobots;
+	import classes.Items.Miscellaneous.ACock;
+	import classes.Items.Miscellaneous.AHCock;
 	
 	public class Anno extends Creature
 	{
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -27,6 +29,8 @@
 			inventory.push(new EMPGrenade());
 			inventory.push(new TSTArmor());
 			inventory.push(new Goovolver());
+			inventory.push(new ACock());
+			inventory.push(new AHCock());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -206,6 +210,11 @@
 			dataObject.inventory.push(new EMPGrenade().getSaveObject());
 			dataObject.inventory.push(new TSTArmor().getSaveObject());
 			dataObject.inventory.push(new Goovolver().getSaveObject());
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			dataObject.inventory.push(new ACock().getSaveObject());
+			dataObject.inventory.push(new AHCock().getSaveObject());
 		}
 	}
 }
