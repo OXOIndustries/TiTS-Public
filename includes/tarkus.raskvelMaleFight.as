@@ -182,21 +182,27 @@ function dontBuyScrapShit():void
 	showRaskGang();
 	output("“<i>You must think I dropped off a shuttle here yesterday,</i>” you say, shaking your head.");
 	output("\n\n“<i>You mean you didn’t?</i>” replies one of the raskvel curiously.");
-	output("\n\n“<i>Leave [pc.himHer] be, brother,</i>” sighs the first. “<i>Some people wouldn’t know a good deal if it bit them on the bum.</i>” They disappear back into the junk with their find.
+	output("\n\n“<i>Leave [pc.himHer] be, brother,</i>” sighs the first. “<i>Some people wouldn’t know a good deal if it bit them on the bum.</i>” They disappear back into the junk with their find.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Buy It
+//Buy It
+function buySomeJankJunkJunk(lootType:int):void
+{
+	clearOutput();
+	showRaskGang();
+	output("“<i>You’ve got a deal,</i>” you say, plucking a blank credit chit from your belt.");
+	output("\n\n“<i>What, really?</i>” chokes the middle one.");
+	output("\n\n“<i>Shut up! Here you go, offworlder,</i>” says the third, clambering down and carefully handing over his find for the money. He helps you strap it to your back.");
+	output("\n\n“<i>Take it back to Novahome,</i>” chuckles the first. “<i>Any junk dealer will buy it off you for twice, thrice the price.</i>”");
+	output("\n\nThat sense of heartiness that hovers somewhere between maliciousness and friendliness persists as you bid the raskvel goodbye. You just hope you’re the one laughing once you get your purchase back to Novahome.");
+	processTime(7);
+	//9999 set up the loot somehow.
+}
 
-“<i>You’ve got a deal,</i>” you say, plucking a blank credit chit from your belt.
-
-“<i>What, really?</i>” chokes the middle one.
-
-“<i>Shut up! Here you go, offworlder,</i>” says the third, clambering down and carefully handing over his find for the money. He helps you strap it to your back.
-
-“<i>Take it back to Novahome,</i>” chuckles the first. “<i>Any junk dealer will buy it off you for twice, thrice the price.</i>”
-
-That sense of heartiness that hovers somewhere between maliciousness and friendliness persists as you bid the raskvel goodbye. You just hope you’re the one laughing once you get your purchase back to Novahome.
-
-Notes
+/*Notes
 
 The raskvel sell it for 100-1000 credits. How much they sell it for has nothing to do with its value, which is a random number between 5 and 2000 credits assigned upon purchase which can be modified by who you take it to.
 
@@ -213,42 +219,90 @@ AURORA will not buy anything. Apparently.
 //Add “sell scrap” to each of their main menus
 
 Tooltip: See what you can get for the piece of scrap you purchased from the raskvel, if anything.
- 
-Shekka
+*/
 
-“<i>What would you give me for... </i>“ you untie the {locked metal chest} {spaceship part} {antique android} {blocky data-core} from your back and plonk it down on the raskvel’s counter as grandly as you can, “<i>...this?</i>”
+//Shekka
+function shekkaGetsSoldRaskShitz(raskLootType):void
+{
+	clearOutput();
+	showShekka();
+	output("“<i>What would you give me for... </i>“ you untie the ");
+	if(raskLootType == 0) output("locked metal chest");
+	else if(raskLootType == 1) output("spaceship part");
+	else if(raskLootType == 2) output("antique android");
+	else output("blocky data-core");
+	output(" from your back and plonk it down on the raskvel’s counter as grandly as you can, “<i>...this?</i>”");
 
-Anything but the android or the spaceship part: Shekka peers at what you’ve brought her dubiously.
+	//Anything but the android or the spaceship part:
+	if(raskLootType != 1)
+	{
+		output("\n\nShekka peers at what you’ve brought her dubiously.");
+		output("\n\n“<i>I’m not really a scrapper, [pc.name],</i>” she replies. “<i>That’s more that weird goblin’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.</i>”");
+		//[Give] [Don’t]
+		clearMenu();
+		addButton(0,"Give",giveStupidShitRaskPartsToShekkaFree);
+		addButton(1,"Don't",dontGiveShitToShekka);
+	}
+	//Android: Shekka’s eyes go round.
+	else
+	{
+		output("\n\n“<i>Ooh. I’ve never seen that model before! Mind if I - ?</i>” you step back and allow her to pad over and run her inquisitive hands over the old robot. “<i>It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>“ You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
+		output("\n\n“<i>Oh, alright! How does # credits sound?</i>”");
+		processTime(2);
+		clearMenu();
+		//[Deal] [No Deal]
+		//9999
+	}
 
-“<i>I’m not really a scrapper, [pc.name],</i>” she replies. “<i>That’s more that weird goblin’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.</i>”
+}
 
-[Give] [Don’t]
+//Give:
+function giveStupidShitRaskPartsToShekkaFree():void
+{
+	clearOutput();
+	showShekka();
+	output("It’s just a relief to get it off your back in all honesty. You shrug and let Shekka hobble away with it into the back, leaving you to feel slightly resentful about the raskvel race as a whole.");
+	//9999
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Give: It’s just a relief to get it off your back in all honesty. You shrug and let Shekka hobble away with it into the back, leaving you to feel slightly resentful about the raskvel race as a whole.
+//Don’t: 
+function dontGiveShitToShekka():void
+{
+	clearOutput();
+	showShekka();
+	output("You shrug and take it back, resolving to try your luck with it elsewhere.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Don’t: You shrug and take it back, resolving to try your luck with it elsewhere.
+//No Deal: 
+function noDealRobotSellingToShekka():void
+{
+	clearOutput();
+	showShekka();
+	output("“<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”");
+	output("\n\nShekka looks at you incredulously.");
+	output("\n\n“<i>Really? Well, good luck with that. Because you won’t be offloading it on me now.</i>” She flounces back behind her counter, piercings jangling angrily.");
+	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
+	//9999
+}
 
-Android: Shekka’s eyes go round.
+//Deal:
+function sellARobotToShekka():void
+{
+	clearOutput();
+	showShekka();
+	output("You help her take the robot into the back, after which she returns to her inventory screen. A few moments later, your bank balance is updated.");
+	output("\n\n“<i>I’m gonna have a lot of fun with that, I can tell,</i>” Shekka grins. “<i>Nice find [pc.name], and thanks for letting me have it.</i>”");
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-“<i>Ooh. I’ve never seen that model before! Mind if I - ?</i>” you step back and allow her to pad over and run her inquisitive hands over the old robot. “<i>It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>“ You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.
-
-“<i>Oh, alright! How does # credits sound?</i>”
-
-[Deal] [No Deal]
-
-No Deal: “<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”
-
-Shekka looks at you incredulously.
-
-“<i>Really? Well, good luck with that. Because you won’t be offloading it on me now.</i>” She flounces back behind her counter, piercings jangling angrily.
-
-//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-
-Deal: You help her take the robot into the back, after which she returns to her inventory screen. A few moments later, your bank balance is updated.
-
-“<i>I’m gonna have a lot of fun with that, I can tell,</i>” Shekka grins. “<i>Nice find [pc.name], and thanks for letting me have it.</i>”
- 
-Spaceship part
+//Spaceship part
 
 "<i>That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...</i>" The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.
 
