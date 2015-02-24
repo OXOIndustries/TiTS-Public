@@ -104,12 +104,13 @@
 			//6x1 = 4.18
 			//12x2 = 33.51
 			//20x3 = 127.24
-			//Base starting capacity is 10.
-			var capacity:Number = 15;
+			//Base starting capacity is 10 (NOPE SHIT IS 30 NOW).
+			var capacity:Number = 30;
 			//Add bonuses!
 			capacity += bonusCapacity;
-			//Factor in looseness!
-			capacity *= (looseness() + 1)/2;
+			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
+			capacity *= (looseness() * 5 + 1)/3
+			;
 			//CoC-tier wetness 5 will double capacity.
 			capacity *= (wetness()+4)/5;
 			//Round it off and sent it away.
