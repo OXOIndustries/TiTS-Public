@@ -226,13 +226,30 @@ function shekkaGetsSoldRaskShitz(raskLootType):void
 {
 	clearOutput();
 	showShekka();
-	output("“<i>What would you give me for... </i>“ you untie the ");
+	output("“<i>What would you give me for... </i>\" you untie the ");
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
 	else if(raskLootType == 2) output("antique android");
 	else output("blocky data-core");
 	output(" from your back and plonk it down on the raskvel’s counter as grandly as you can, “<i>...this?</i>”");
 
+	
+	//Spaceship part
+	if(raskLootType == 1)
+	{
+		output("\n\n\"<i>That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...</i>\" The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
+		output("\n\n\"<i>Fine, fine. How does [9999] sound? C'mon, it might just be junk metal.</i>\"");
+	}
+	//Android: 
+	else if(raskLootType == 2)
+	{
+		output("\n\nShekka’s eyes go round. “<i>Ooh. I’ve never seen that model before! Mind if I - ?</i>” you step back and allow her to pad over and run her inquisitive hands over the old robot. “<i>It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>\" You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
+		output("\n\n“<i>Oh, alright! How does # credits sound?</i>”");
+		processTime(2);
+		clearMenu();
+		//[Deal] [No Deal]
+		//9999
+	}
 	//Anything but the android or the spaceship part:
 	if(raskLootType != 1)
 	{
@@ -243,17 +260,6 @@ function shekkaGetsSoldRaskShitz(raskLootType):void
 		addButton(0,"Give",giveStupidShitRaskPartsToShekkaFree);
 		addButton(1,"Don't",dontGiveShitToShekka);
 	}
-	//Android: Shekka’s eyes go round.
-	else
-	{
-		output("\n\n“<i>Ooh. I’ve never seen that model before! Mind if I - ?</i>” you step back and allow her to pad over and run her inquisitive hands over the old robot. “<i>It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>“ You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
-		output("\n\n“<i>Oh, alright! How does # credits sound?</i>”");
-		processTime(2);
-		clearMenu();
-		//[Deal] [No Deal]
-		//9999
-	}
-
 }
 
 //Give:
@@ -302,115 +308,211 @@ function sellARobotToShekka():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//Spaceship part
+//Deal
+function dealOnShipPartWithShekka():void
+{
+	clearOutput();
+	showShekka();
+	output("You stop yourself from going to help stow the machinery away when Shekka merely flops back down in her seat, crossing her arms with a surly expression on her face. Before you can ask why, someone comes bursting into the room above you and yanks the part up in her hands like an expert thief.");
+	//If you haven't met Aurora, you swine:
+	if(flags["MET_AURORA"] == undefined) output("\n\nThe child's haphazard");
+	else output("\n\nAurora's haphazard");
+	output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
+	output("\n\n\"<i>I'm sure she's behaved...</i>\" grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.");
+	processTime(3);
+	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"<i>That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...</i>" The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.
+//No deal
+function noDealOnShipPartWivShekka():void
+{
+	clearOutput();
+	showShekka();
+	output("\"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>\"");
+	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the goblin, then.</i>\"");
+	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
+	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"<i>Fine, fine. How does [VALUE OF CREDITS] sound? C'mon, it might just be junk metal.</i>"
+//Colenso
+function sellRaskShitToColenso():void
+{
+	clearOutput();
+	showShekka();
+	output("“<i>What would you give me for... </i>\" you untie the ");
+	var raskLootType:int = getRaskLootType();
+	if(raskLootType == 0) output("locked metal chest");
+	else if(raskLootType == 1) output("spaceship part");
+	else if(raskLootType == 2) output("antique android");
+	else output("blocky data-core");
+	output(" from your back and plonk it down on the counter as grandly as you can, “<i>...this?</i>”");
+	//Chest:
+	if(raskLootType == 0) 
+	{
+		output("\n\n“<i>Let’s have a... what the blimmin ‘eck is this?</i>” The heavily built goblin rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
+		output("\n\n“<i>Where did you find it? Do you have the key? No... no, obviously not.</i>” He strokes the lid, entranced. “<i>Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>\" You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
+		output("\n\n“<i>Nngh... alright. " + 9999 + " credits. That’s more ‘n reasonable.</i>”");
+		processTime(2);
+		//[Deal] [No Deal]
+		clearMenu();
+		addButton(0,"Deal",9999);
+		addButton(1,"No Deal",9999);
+	}
+	else
+	{
+		output("\n\n“<i>Let’s have a butcher’s.</i>” The heavily built goblin rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
+		output("\n\n“<i>Mmm. Weeeell,</i>” he rumbles eventually with an air of great reluctance, rubbing his chin. “<i>Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for # credits, as a favour. That’s ripping my own arm off, mind.</i>”");
+		processTime(2);
+		//[Deal] [No Deal]
+		clearMenu();
+		addButton(0,"Deal",9999);
+		addButton(1,"No Deal",9999);
+	}
+}
 
-Deal
+//No Deal: 
+function noDealOnGenericSpecialRaskScrapColenso():void
+{
+	clearOutput();
+	showColenso();
+	output("“<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”");
+	output("\n\nColenso shrugs easily, removing his glass.");
+	output("\n\n“<i>Your call, " + pc.mf("guv","luv") + ". Good luck hocking it elsewhere – you’ll need it.</i>”");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-You stop yourself from going to help stow the machinery away when Shekka merely flops back down in her seat, crossing her arms with a surly expression on her face. Before you can ask why, someone comes bursting into the room above you and yanks the part up in her hands like an expert thief. 
+//Deal:
+function dealColensoIllSellYouGenericScrap():void
+{
+	clearOutput();
+	showColenso();
+	output("You heave across the bulky metal, and Colenso updates your bank account with a few taps of his screen.");
+	output("\n\n“<i>Difficult to find really good scrap these days,</i>” he sighs. “<i>The rask have picked most everything worthwhile around Novahome clean. Still, keep trying eh? Ol’ Colenso will have a looksie at everything you bring him, if nothing else.</i>”");
+	//9999
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-(If you haven't met Aurora, you swine: The child's haphazard) (If you've met Aurora: Aurora's haphazard) motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.
+//CHEST
+//No Deal
+function noDealOnTheChestCommaColenso():void
+{
+	clearOutput();
+	showColenso();
+	output("“<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”");
+	output("\n\nColenso practically explodes.");
+	output("\n\n“<i>I...pbbt...no! Let me have it! I can’t... fine. Fine!</i>” he flings his arms into the air in absolute disgust, almost falling out of his chair. “<i>Sell it back to the man then, for all I care! ‘Ope they slit yer throat in the bargain, you rotten merc!</i>”");
+	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
+	//9999
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"<i>I'm sure she's behaved…</i>" grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.
+//Deal: 
+function dealWivColensoForTheChestGuv():void
+{
+	clearOutput();
+	showColenso();
+	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.");
+	output("\n\n“<i>You’re a star, [player.fullName],</i>” he says, grinning happily. “<i>You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.</i>”");
+	//9999
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-No deal
+//Anno
+function tryToSellAnnoSomeRaskScrapGuv():void
+{
+	clearOutput();
+	showColenso();
+	output("“<i>What would you give me for... </i>\" you untie the ");
+	var raskLootType:int = getRaskLootType();
+	if(raskLootType == 0) output("locked metal chest");
+	else if(raskLootType == 1) output("spaceship part");
+	else if(raskLootType == 2) output("antique android");
+	else output("blocky data-core");
+	output(" from your back and plonk it down on the ausar’s floor as grandly as you can, “<i>...this?</i>”");
+	processTime(2);
+	//Anything but the core:
+	if(raskLootType != 3) 
+	{
+		output("\n\nAnno looks at what you’ve brought her askance and then is quiet for a time, as if trying to think of the politest way of putting something.");
+		output("\n\n“<i>I appreciate the effort you’ve gone to, bringing this all the way back here boss,</i>” she says eventually. “<i>But... this isn’t really a pawn shop. I mean, what would it look like if I were buying random bits of junk off Victor’s son/daughter and not doing that for anyone else? Try Colenso. He’s the serious scrap dealer in Novahome. For a certain value of serious, anyway.</i>”");
+	}
+	//Data core:
+	else
+	{
+		output("\n\nAnno peers at what you’ve brought her interestedly.");
+		output("\n\n“<i>Is that -? Let me take a look.</i>” She rummages around in her back room and then trots around to you with a tangle of wires and a power source, before poking and twiddling around with the hulk of severed plastic and metal. “<i>Seems to be still functioning. People throw away stuff like this wholesale with malfunctioning or outdated machinery, and I will never understand why – memory is valuable, always has been, always will be. There may even be one or two interesting things stored on it, who knows... </i>\"");
+		output("\n\n“<i>So?... </i>\" you say meaningfully. Anno pauses, then simpers.");
+		output("\n\n“<i>I’m not supposed to. But I can really use cores like this for my research. When you’re dealing with macro-data, you wouldn’t believe how much memory... is " + 9999 + " credits alright?</i>”");
+		//[Deal] [No Deal]
+		//9999
+	}
+}
 
-"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>" 
+//No Deal:
+function noDealonCoresAnno():void
+{
+	clearOutput();
+	showAnno();
+	output("“<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”");
+	output("\n\nAnno sighs, and then click off her power source.");
+	output("\n\n“<i>Yeah. I shouldn’t be throwing around unauthorized company money anyway. Good luck with getting a good price for it elsewhere, boss.</i>”");
+	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
+	//9999
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>" Shekka crosses her arms, looking up to you with a stern expression. "<i>That's was my only offer. Go chuck it at the goblin, then.</i>"
-
-//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-
-Colenso
-
-“<i>What would you give me for... </i>“ you untie the {locked metal chest} {spaceship part} {antique android} {blocky data-core} from your back and plonk it down on the counter as grandly as you can, “<i>...this?</i>”
-
-Anything but the chest: “<i>Let’s have a butcher’s.</i>” The heavily built goblin rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.
-
-“<i>Mmm. Weeeell,</i>” he rumbles eventually with an air of great reluctance, rubbing his chin. “<i>Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for # credits, as a favour. That’s ripping my own arm off, mind.</i>”
-
-[Deal] [No Deal]
-
-No Deal: “<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”
-
-Colenso shrugs easily, removing his glass.
-
-“<i>Your call, guv/luv. Good luck hocking it elsewhere – you’ll need it.</i>”
-
-Deal: You heave across the bulky metal, and Colenso updates your bank account with a few taps of his screen.
-
-“<i>Difficult to find really good scrap these days,</i>” he sighs. “<i>The rask have picked most everything worthwhile around Novahome clean. Still, keep trying eh? Ol’ Colenso will have a looksie at everything you bring him, if nothing else.</i>”
-
-Chest: “<i>Let’s have a... what the blimmin ‘eck is this?</i>” The heavily built goblin rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.
-
-“<i>Where did you find it? Do you have the key? No... no, obviously not.</i>” He strokes the lid, entranced. “<i>Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, guv/luv. You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>“ You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.
-
-“<i>Nngh... alright. # credits. That’s more ‘n reasonable.</i>”
-
-[Deal] [No Deal]
-
-No Deal: “<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”
-
-Colenso practically explodes.
-
-“<i>I...pbbt...no! Let me have it! I can’t... fine. Fine!</i>” he flings his arms into the air in absolute disgust, almost falling out of his chair. “<i>Sell it back to the man then, for all I care! ‘Ope they slit yer throat in the bargain, you rotten merc!</i>”
-
-//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-
-Deal: Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.
-
-“<i>You’re a star, [player.name] Steele,</i>” he says, grinning happily. “<i>You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.</i>”
-Anno
+//Deal: 
+function itsADealAnnoBossDataCore():void
+{
+	clearOutput();
+	showAnno();
+	output("You accept the ausar’s payment and then help her haul it into the back.");
+	output("\n\n“<i>Enjoy the credits boss,</i>” she grins once it’s done. “<i>You’ve earned them.</i>”");
+	//9999
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
  
-“<i>What would you give me for... </i>“ you untie the {locked metal chest} {spaceship part} {antique android} {blocky data-core} from your back and plonk it down on the ausar’s floor as grandly as you can, “<i>...this?</i>”
+//Aurora
+function tryToHawkRaskShitToAurora():void
+{
+	clearOutput();
+	showAurora();
+	output("“<i>What would you give me for... </i>\" you untie the ");
+	var raskLootType:int = getRaskLootType();
+	if(raskLootType == 0) output("locked metal chest");
+	else if(raskLootType == 1) output("spaceship part");
+	else if(raskLootType == 2) output("antique android");
+	else output("blocky data-core");
 
-Anything but the core: Anno looks at what you’ve brought her askance and then is quiet for a time, as if trying to think of the politest way of putting something.
+	output(" from your back and plonk it down on the bat kid’s floor as grandly as you can, “<i>...this?</i>”");
 
-“<i>I appreciate the effort you’ve gone to, bringing this all the way back here boss,</i>” she says eventually. “<i>But... this isn’t really a pawn shop. I mean, what would it look like if I were buying random bits of junk off Victor’s son/daughter and not doing that for anyone else? Try Colenso. He’s the serious scrap dealer in Novahome. For a certain value of serious, anyway.</i>”
+	//(Anything at all) 
+	output("\n\n\"<i>Huh? Hey! I've seen that before! It always looked like trash to me, up above... but I'm not allowed to buy anything, they don't let me 'hold the wallet'.</i>\" In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. \"<i>Shekka is, though! She's... probably an adult! Go ask her! And hurry, too, I wanna look at it!</i>\"");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Data core: Anno peers at what you’ve brought her interestedly.
+//Combat Texts
+//Description
+//You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs. {Lust 0-40: Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.} {41-80: Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their sheaths. The three of them seem distracted and even redder in the face than usual.} {81-100: Their thick, sleek dicks are straining urgently upwards, and it is taking obvious effort on their part to maintain their focus on you.} They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.
 
-“<i>Is that -? Let me take a look.</i>” She rummages around in her back room and then trots around to you with a tangle of wires and a power source, before poking and twiddling around with the hulk of severed plastic and metal. “<i>Seems to be still functioning. People throw away stuff like this wholesale with malfunctioning or outdated machinery, and I will never understand why – memory is valuable, always has been, always will be. There may even be one or two interesting things stored on it, who knows... </i>“
-
-“<i>So?... </i>“ you say meaningfully. Anno pauses, then simpers.
-
-“<i>I’m not supposed to. But I can really use cores like this for my research. When you’re dealing with macro-data, you wouldn’t believe how much memory... is # credits alright?</i>”
-
-[Deal] [No Deal]
-
-No Deal: “<i>Not enough,</i>” you reply calmly. “<i>A decent piece like this is worth way more by my reckoning.</i>”
-
-Anno sighs, and then click off her power source.
-
-“<i>Yeah. I shouldn’t be throwing around unauthorized company money anyway. Good luck with getting a good price for it elsewhere, boss.</i>”
-
-//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-
-Deal: You accept the ausar’s payment and then help her haul it into the back.
-
-“<i>Enjoy the credits boss,</i>” she grins once it’s done. “<i>You’ve earned them.</i>”
- 
-Aurora
- 
-“<i>What would you give me for... </i>“ you untie the {locked metal chest} {spaceship part} {antique android} {blocky data-core} from your back and plonk it down on the bat kid’s floor as grandly as you can, “<i>...this?</i>”
-
-(Anything at all) "<i>Huh? Hey! I've seen that before! It always looked like trash to me, up above... but I'm not allowed to buy anything, they don't let me 'hold the wallet'." In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. "Shekka is, though! She's... probably an adult! Go ask her! And hurry, too, I wanna look at it!"
-
-
-
-
-
-
-Combat Texts
-
-Description
-
-You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs. {Lust 0-40: Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.} {41-80: Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their sheaths. The three of them seem distracted and even redder in the face than usual.} {81-100: Their thick, sleek dicks are straining urgently upwards, and it is taking obvious effort on their part to maintain their focus on you.} They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.
-
-Likes/Dislikes
+/*Likes/Dislikes
 
 Feminine face: Really likes!
 Gaping orifices: Really dislikes!
@@ -430,84 +532,119 @@ Health 75
 Initial Lust 35
 
 //Stick em to the far west of the map is my advice.
+*/
 
-Attacks
+//Attacks
+function raskGangAI():void
+{
+	
+}
 
-Standard Attack
-
+//Standard Attack
 //Attacks three times. 10% chance of stun on each
+function raskGangAttackGo():void
+{
+	output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.");
+	attack(foes[0],pc,true,1);
+	output("\n");
+	attack(foes[0],pc,true,1);
+	output("\n");
+	attack(foes[0],pc,false,1);
+	//Not stunned. Maybe stunned?
+	if(!pc.hasStatusEffect("Stunned"))
+	{
+		if(foes[0].physique()/2 + 10 <= pc.physique()/2 + rand(20) + 1)
+		{
+			//Stunned:
+			output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You cannot act for one turn!",true,0);
+		}
+	}
+	processCombat();
+}
 
-The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you. 
-
-Stunned: One of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.
-
-Zap!
-
+//Zap!
 //Procs if the player still has a shield. Medium accuracy, heavy shield damage if connects
+function raskZapAttack():void
+{
+	output("“<i>That’s a pretty decent kinetic barrier you’ve got there, offworlder,</i>” says one of them musingly. “<i>It would be a shame if... somethinghappenedtoitdoitdoitnow!</i>” the one behind you whips out an antique-looking ray gun and blasts a wave of white energy at you, throwing himself off his feet in the process.");
 
-“<i>That’s a pretty decent kinetic barrier you’ve got there, offworlder,</i>” says one of them musingly. “<i>It would be a shame if... somethinghappenedtoitdoitdoitnow!</i>” the one behind you whips out an antique-looking ray gun and blasts a wave of white energy at you, throwing himself off his feet in the process.
+	if(rangedCombatMiss() || rangedCombatMiss())
+	{
+		output("\n\nYou fling yourself to one side. The electric attack makes your [pc.skin] tingle as it hums its way past you.");
+	}
+	//Succeed: 
+	else
+	{
+		output("\n\nThe electric attack connects with your shield with a cringe-inducing CRACK.");
+		//9999 damage!
+	}
+	processCombat();
 
-Fail: You fling yourself to one side. The electric attack makes your [pc.skin] tingle as it hums its way past you.
+}
 
-Succeed: The electric attack connects with your shield with a cringe-inducing CRACK.
-
-See You Next Fall
-
+//See You Next Fall
 //Minor damage plus fallen status. Much better chance of succeeding if PC is stunned
+function seeYouNextFallSloot():void
+{
+	output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
 
-The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.lowerbody], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.
+	//Fail: 
+	if(!pc.isImmobilized() && foes[0].physique()/2 + 10 <= pc.reflexes()/2 + rand(20) + 1)
+	{
+		output("\n\nYou sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.");
+		output("\n\n“<i>Spoilsport,</i>” grouses one as they scramble back out again.");
+	}
+	//Succeed: 
+	else
+	{
+		output("\n\nYou keep your concentration on the ones in front of you – and are caught completely by surprise when they give you a mighty shove into the other, who");
+		if(pc.legCount <= 2) output(" has crouched down behind you");
+		else output(" swipes away your many legs with a clever spinning roll");
+		output(".");
+		if(pc.legCount < 2) output(" Even with no legs to speak of, you");
+		else output("You");
+		output(" cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.");
 
-Fail: You sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.
+		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+		//Felled status effect: Cannot escape. Can continue to attack/use abilities but with an accuracy penalty.
+		//Get back up: Quickly you heave yourself back to {your feet} {an upright position}, dusting yourself down with a scowl.
+		//Get back up under pile on: You tense yourself up and with a sudden upward heave send the raskvel flying off you. You scramble/skitter/ooze back to {your feet} {an upright position}, feeling intense relief from escaping that suffocating helplessness.
+		//Fail to get back up under pile on: You try and elbow your way back up and duly collapse straight back into the dirt again. These little bastards are heavy!
+	}
+	processCombat();
+}
 
-“<i>Spoilsport,</i>” grouses one as they scramble back out again.
-
-Succeed: You keep your concentration on the ones in front of you – and are caught completely by surprise when they give you a mighty shove into the other, who {has crouched down behind you} {swipes away your many legs with a clever spinning roll}. {Even with no legs to speak of, you} {You} cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.
-
-//Felled status effect: Cannot escape. Can continue to attack/use abilities but with an accuracy penalty.
-
-Taster text: You’ve fallen over! You will have to spend a turn picking yourself up.
-
-Get back up: Quickly you heave yourself back to {your feet} {an upright position}, dusting yourself down with a scowl.
-
-Get back up under pile on: You tense yourself up and with a sudden upward heave send the raskvel flying off you. You scramble/skitter/ooze back to {your feet} {an upright position}, feeling intense relief from escaping that suffocating helplessness.
-
-Fail to get back up under pile on: You try and elbow your way back up and duly collapse straight back into the dirt again. These little bastards are heavy!
-
-Pile On
-
+//Pile On
 //Procs if PC is fallen. Adds medium chance to fail to attempt to get up, raises lust, minor energy sap
+function raskPileOnPC():void
+{
+	//First:
+	if(!pc.hasStatusEffect("Raskvel Pile"))
+	{
+		output("“<i>Aw look, the offworlder’s decided to have a lie down,</i>” guffaws one of the raskvel.");
+		output("\n\n“<i>Sounds like they’ve got the right idea to me,</i>” says another huskily. You attempt to get up but are immediately forced back down as they pile on top of you, weighing you down with their warm, dense weight and engulfing you in their leathery, masculine scent.");
+	}
+	//Repeat: 
+	else
+	{
+		output("\n\nThe raskvel continue to pin you down with their bodies, determinedly ignoring your struggles and waiting for you to give up. Their leathery scales slide over your [pc.skinFurScales] as three pairs of hands go exploring, trailing over your [pc.chest], squeezing your [pc.butt], fondling your at your groin. Even in the warm, dusty, muffled chaos it’s obvious that immobilizing you is a secondary concern, next to the overriding need to give your alien physique a good grope.");
+		pc.lustDamage(10+rand(8));
+		pc.energy(-5);
+		//Lust 0-80:
+		if(pc.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");
+		else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");
+		pc.createStatusEffect("Raskvel Pile", 0, 0, 0, 0, false, "DefenseDown", "The mob of raskvel has climbed on top of you, rendering it much harder to get back up. They're distracting as hell too!", true, 0);
+	}
+	processCombat();
+}
 
-First: “<i>Aw look, the offworlder’s decided to have a lie down,</i>” guffaws one of the raskvel.
-
-“<i>Sounds like they’ve got the right idea to me,</i>” says another huskily. You attempt to get up but are immediately forced back down as they pile on top of you, weighing you down with their warm, dense weight and engulfing you in their leathery, masculine scent.
-
-Repeat: The raskvel continue to pin you down with their bodies, determinedly ignoring your struggles and waiting for you to give up. Their leathery scales slide over your [pc.skin] as three pairs of hands go exploring, trailing over your [pc.chest], squeezing your [pc.butt], fondling your [pc.groin]. Even in the warm, dusty, muffled chaos it’s obvious that immobilizing you is a secondary concern, next to the overriding need to give your alien physique a good grope. {Lust 0-80: You feel drained and hot underneath the unwelcome attention.} {81-100: It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.}
-
-Aphrodisiac Darts
-
+//Aphrodisiac Darts
 //Pulled from female encounter and works exactly the same
+//9999 - Use tweaked function from females:
+//enemyAphrodisiacDarts()
 
-“Boo! Raaaaar!” shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.
-
-	//Blocked
-
-	The needles break apart uselessly on contact with your defenses.
-	//Miss (can't be completely dodged)
-	You manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but its payload is already spent, injected inside you.
-	//Medium hit
-	Two needles slam into your body, imparting bursts of searing pain when they penetrate your flesh. You yank them out in irritation, but whatever they contained is inside you now.
-	//Full Hit
-	All three needles hit you before you can react.
-	//Reactions
-	(< 33) An unwelcome heat suffuses your body as the chemicals do their work.
-	(< 45) Your heart beats faster as you look at your foes’ bodies. The sheer confidence with which they display their near naked bodies and the energy with which they put themselves about is becoming irritatingly attractive.
-	(< 55) [EachCock] pulsates as it fills with burgeoning tumescence. You find yourself wondering what it/they would feel like rammed in some well-padded lizard boypussy./[EachVagina] grows sensitive and moist as you ponder the merits of pinning each of these little bastards down and screwing them rotten./Your [nipples] harden as you idly consider forcing them to lick you while suckling on their girthy pricks.
-	(<65) You groan out loud as the aphrodisiacs surge through your bloodstream, rousing you into a " + player.rawMf("rut","heat") + " that you have have a hard time suppressing.
-	(<75) player.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.
-	(<85) You stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.
-	(<95) The payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenous drugs, turning you on with each beat of your heart.{ Your genitals drip with need as y/Y}ou idly consider throwing the fight for a quick fuck.
-	(ELSE) You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.
-
+/*
 Raskvel loss texts
 
 Via HP
@@ -665,7 +802,7 @@ You {shuck your [pc.gear] off impatiently, uninterested in providing any sort of
 
 You grunt with fervour as the second raskvel lavishes servile attention on you, dabbing and rasping his ever-so-slightly rough, hot tongue across your sex, holding your own magisterial attention on the raskvel you have trapped {between your [pc.thighs]} {underneath your weight}. His eyes are glazed as he stares back, his hand shifting over his straining cock, apparently transfixed by your sheer dominance... or by your [pc.chest]. Difficult to tell. At any rate it’s a satisfying sight, and with your lust being so ably stoked by his pussy-licking friend you’re soon overpowered with the urge for more. You hold his helpless eyes as you lift yourself up, tantalizing his needy cock-end with the entrance of your [pc.vagina0] for a moment, and then sit yourself down with a growl. {Your capacious, man-eating cunt easily gloves him and aside from the intense satisfaction of taking his cock within you there’s the further sadistic knowledge that you’re really going to have to work him to get what you need.} {You feel faintly dizzy with pleasure as his thick, lizard cock stretches and rubs your tight cunt all the way down, laced with triumph when your [pc.thighs] touch his again, absolutely stuffing you to the brim with obedient dick.} {The medium one waits patiently for you to finish before going back to licking your clit, your sex inundated with hot, shifting pleasure outside and in.}
 
-“<i>Rusting hell... </i>“ the big one groans, tensing up as you begin to work your hips, bending his cock into you, squeezing it deep, pressing your {groin/[pc.butt]} {forwards/downwards} into the other one’s face. Leisurely you open your eyes to see that the smallest one is still standing there, his mouth slightly ajar and his fat, four inch boy cock standing on end to your performance. {You need to think of something to do with him before the heat you can feel building irresistibly in your nether regions gets too much to form cogent instructions.
+“<i>Rusting hell... </i>\" the big one groans, tensing up as you begin to work your hips, bending his cock into you, squeezing it deep, pressing your {groin/[pc.butt]} {forwards/downwards} into the other one’s face. Leisurely you open your eyes to see that the smallest one is still standing there, his mouth slightly ajar and his fat, four inch boy cock standing on end to your performance. {You need to think of something to do with him before the heat you can feel building irresistibly in your nether regions gets too much to form cogent instructions.
 
 [Hard light peg] [Feed milk] [Pussy tail] [Cock tail]}
 
@@ -691,7 +828,7 @@ Cunt-tail
 
 “<i>Come here, little boy,</i>” you purr. With you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He pauses as your [pc.cunttail] rears into view, dripping and spreading itself with unrequited arousal, an expression somewhere between fright and lust crossing his ruddy face.
 
-“<i>Kneel beside me,</i>” you say lowly. “<i>Relax, and let me do everything. That’s it... </i>“ You, in fact, don’t have to do anything at all; your parasitic tail can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him. He gasps and shouts, grasping handfuls of dirt with his body arched backwards, quivering to the [pc.cunttail] squelching ministrations. You sigh blissfully to the sensation of double penetration, pleasure channelling back down your tail and twining with that arriving from swivelling your [pc.vagina0] {and [pc.vagina1]} into the mouth and cock of the other two.
+“<i>Kneel beside me,</i>” you say lowly. “<i>Relax, and let me do everything. That’s it... </i>\" You, in fact, don’t have to do anything at all; your parasitic tail can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him. He gasps and shouts, grasping handfuls of dirt with his body arched backwards, quivering to the [pc.cunttail] squelching ministrations. You sigh blissfully to the sensation of double penetration, pleasure channelling back down your tail and twining with that arriving from swivelling your [pc.vagina0] {and [pc.vagina1]} into the mouth and cock of the other two.
 
 {merge}
 
@@ -699,9 +836,9 @@ You swiftly become immersed in the sex, rutting and thrusting into the multiple 
 
 You sigh, still gently rotating your hips, enjoying the after-tremors whilst you {continue to push the third raskvel’s face into your {beading} [pc.nipple]} {continue to gently but firmly whisk the third raskvel’s guts with hard light, his small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears} {continue to thrust your [pc.cockTail] into the tight, clenching hole it has claimed, the third raskvel’s small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears} {continue to milk the third raskvel’s small cock with your [pc.cuntTail] assiduously, pleasure shimmering up your stem as surely as he gasps and almost wails to the wet wring you’ve trapped him in}. The big raskvel’s cock is still very much erect, his alien physiology allowing him to keep pressing strongly into your walls when you sway, and that to your blissed-out mind is all for the good; you want them kept in this nice, attentive state you’ve got them in. He’s looking at you now, his breath catching every time you bend his cock within your oozing cunt.
 
-“<i>Please... </i>“ he manages. There’s a woozy mumble of support for this statement somewhere beneath you.
+“<i>Please... </i>\" he manages. There’s a woozy mumble of support for this statement somewhere beneath you.
 
-“<i>Oh very well,</i>” you sigh. “<i>Just give me a moment... </i>“ {You release the other raskvel from the {suffocating} {wet} kiss of your {breast/chest}; he looks completely zoned out as he falls back from your {erect} {drooling} nipple{, eyes dilated and [pc.milk] on his lips.} {The third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.} {The third raskvel wails as you mercilessly up the tempo of your cock-tail’s thrusting, pumping your way towards a sighted orgasm. Your sighs soon combine with his moans as hot cum courses up your long stem and then fountains deep within him, quickly packing him like a red hot water-bottle full of your seed.} {The third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty parasite’s purpose.}
+“<i>Oh very well,</i>” you sigh. “<i>Just give me a moment... </i>\" {You release the other raskvel from the {suffocating} {wet} kiss of your {breast/chest}; he looks completely zoned out as he falls back from your {erect} {drooling} nipple{, eyes dilated and [pc.milk] on his lips.} {The third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.} {The third raskvel wails as you mercilessly up the tempo of your cock-tail’s thrusting, pumping your way towards a sighted orgasm. Your sighs soon combine with his moans as hot cum courses up your long stem and then fountains deep within him, quickly packing him like a red hot water-bottle full of your seed.} {The third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty parasite’s purpose.}
 
 You then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.cunt0] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fill your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you. It makes no difference to you. Like his friend, now {crouched in front of you and licking fervently at your [pc.clit]} {buried beneath your [pc.ass], licking fervently at your [pc.cunt1]}, he stays rock hard and ready to use - which you do, clenching and riding him demandingly. The third raskvel doesn’t even need instruction. {Despite (or maybe because} of your utterly callous treatment of him} He/he crawls {back} onto the heaving red scales beneath you and places his lips on {a} {your other} [pc.nipple], with skilful licks quickly makes it {stand on end/ooze fluid}{, before making the ripe warmth brimming inside shoot outwards into his thirsty mouth}, his only aim to gratify you. You stroke his ears and laugh ecstatically at both the pleasure coursing through you and the wonderful lack of control you inspire in these creatures.
 
@@ -709,7 +846,7 @@ You rock yourself to another high, slower this time, exulting in the one-sided f
 
 You roll off them at last with a sigh, a thick cocktail of sexual fluids seeping out of your [pc.vagina0] and oozing down your [pc.thighs] when you allow the middle raskvel’s dick to slide out – disgusting, weirdly satisfying.
 
-“<i>I always wanted to breed an alien,” groans the biggest, flat on his back. “<i>But this... I wasn’t... </i>“
+“<i>I always wanted to breed an alien,” groans the biggest, flat on his back. “<i>But this... I wasn’t... </i>\"
 
 “<i>...{Wasn’t ready} {Silly mode: My body wasn’t ready},</i>” supplies the second, gazing unfocused at the sky. There’s a smile on your face as you {put your [pc.gear] back on and} sway off, leaving your boy toys behind you in a discarded heap.
 
@@ -745,11 +882,11 @@ A rougher spit-roast it is difficult to imagine but {the aphrodisiac high in you
 
 You realise suddenly that the smallest raskvel has been flopped on the ground this whole time, lazily masturbating to the one-sided threesome in front of him, evidently biding his time; the knowledge you’ve got plenty more fucking ahead of you combines with the forceful sensation of being doubly penetrated into a heady delirium of involuntary pleasure and suddenly you are cumming, the muffled sound of your moans combining with the beat of the raskvel’s tight muscles against your face and [pc.butt], {[pc.eachVagina] clenching up {and spurting gleeful amounts of fluid} around its hard intrusion, your [pc.eachClit] pulsing wickedly} {[pc.eachCock] flexing {copious amounts of} [pc.cum] onto the ground in response to the insistent rubbing on your prostate}.
 
-Raskmorph: “<i>That’s it tourist,</i>” pants the big raskvel, continuing to slam his length into your {convulsing pussy} {clenching ass}. “<i>You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there... </i>“
+Raskmorph: “<i>That’s it tourist,</i>” pants the big raskvel, continuing to slam his length into your {convulsing pussy} {clenching ass}. “<i>You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there... </i>\"
 
-Female/Herm: “<i>Such a big, beautiful broodmare,</i>” pants the big raskvel, continuing to slam his length into your convulsing pussy. “<i>I knew you’d enjoy this. Show - show my kids the stars... </i>“
+Female/Herm: “<i>Such a big, beautiful broodmare,</i>” pants the big raskvel, continuing to slam his length into your convulsing pussy. “<i>I knew you’d enjoy this. Show - show my kids the stars... </i>\"
 
-Male/Genderless: “<i>I knew you’d enjoy it, offworlder,</i>” pants the big raskvel, continuing to slam his length into your clenching ass. “<i>Gotta say, you’re a better lay than you look... </i>“
+Male/Genderless: “<i>I knew you’d enjoy it, offworlder,</i>” pants the big raskvel, continuing to slam his length into your clenching ass. “<i>Gotta say, you’re a better lay than you look... </i>\"
 
 {merge}
 
@@ -784,21 +921,21 @@ If requirements met add following text to paragraph if the raskvel attack: It oc
 
 [[Seduce]]
 
-“<i>Oh no, the big strong raskvel are going to get me!</i>” You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. “<i>Please don’t get rough with me! Oh, this is all too much... </i>“ you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.
+“<i>Oh no, the big strong raskvel are going to get me!</i>” You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. “<i>Please don’t get rough with me! Oh, this is all too much... </i>\" you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.
 
-“<i>You won’t let them harm me, will you?</i>” you whisper, letting your warm breath curl around his long ears and neck. “<i>It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us... </i>“ He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.
+“<i>You won’t let them harm me, will you?</i>” you whisper, letting your warm breath curl around his long ears and neck. “<i>It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us... </i>\" He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.
 
 “<i>What did she say to you?</i>” says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.
 
-“<i>Why do you have to be so mean?</i>” you mewl{, allowing your [pc.boobs] to shift and heave conspicuously in your [pc.uppergarment].} “<i>All this violence. Why, I’d love to do... such things with strong, youthful boys as you... </i>“ you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. “<i>But when there’s three of you all getting rough together, it’s just, just too much!</i>” The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.
+“<i>Why do you have to be so mean?</i>” you mewl{, allowing your [pc.boobs] to shift and heave conspicuously in your [pc.uppergarment].} “<i>All this violence. Why, I’d love to do... such things with strong, youthful boys as you... </i>\" you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. “<i>But when there’s three of you all getting rough together, it’s just, just too much!</i>” The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.
 
-“<i>I bet those two don’t let you have any fun,</i>” you breathe in his ear. “<i>Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself... </i>“ His breath is coming thick and hard.
+“<i>I bet those two don’t let you have any fun,</i>” you breathe in his ear. “<i>Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself... </i>\" His breath is coming thick and hard.
 
 “<i>Look, knock it off,</i>” says the biggest weakly. “<i>If you want to have fun, stop doing... doing that and we’ll share. That’s how we do it.</i>”
 
 “<i>Really?</i>” you gaze at him with sculpted, sophisticated incredulity. You allow a finger to trail down your face and then suck on it as you stare, apparently unaware of the effect this has on three increasingly flared reptilian libidos. “<i>You share? You call this undignified tumble, with other nasty man parts flying everywhere, satisfying no one, really... sharing?</i>” You {pace/slither/ooze} slowly towards him as you talk, lowering your tone as you go until only he can hear you. “<i>I can barely believe you, the biggest, the strongest, the leader, </i>shares<i> with these two rejects. Is that really proper? The alpha of the pack, sharing?</i>” he takes a big shuddering breath as you gently touch the bottom of his chin with your damp finger.
 
-“<i>I... maybe if – </i>“ he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.
+“<i>I... maybe if – </i>\" he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.
 
 You stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins…
 
@@ -820,19 +957,19 @@ You settle down and watch the animalistic display. It’s quite arousing, in its
 
 Lick pussy
 
-“<i>Oh, very well,</i>” you whisper, {slowly sliding off your [pc.undergarment] and} spreading your [pc.hips]{, shifting [pc.eachCock] out of the way}. From his position on the ground raskvel dazedly gazes in at the moist, parting veil of your [pc.vagina], mouth slightly ajar, panting quietly. “<i>I suppose you’ve earned the right to have a taste. Just a taste... </i>“
+“<i>Oh, very well,</i>” you whisper, {slowly sliding off your [pc.undergarment] and} spreading your [pc.hips]{, shifting [pc.eachCock] out of the way}. From his position on the ground raskvel dazedly gazes in at the moist, parting veil of your [pc.vagina], mouth slightly ajar, panting quietly. “<i>I suppose you’ve earned the right to have a taste. Just a taste... </i>\"
 
 You sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation so that [pc.eachClit] plump up, practically demanding attention. You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.
 
 The sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina0], thrills shooting up your spine every time the warm, wet texture of it blankets over your [pc.clit0]. You tighten the {grip of your [pc.hips] around the sides of his head} {grip of your hand on his feathers}, ensuring that worshipful mouth goes nowhere.
 
-“<i>That’s it,</i>” you coo. “<i>What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior... </i>“ You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh. {With a few murmured, humoured instructions, you are able to make him pull out and lavish the same treatment on your [pc.vagina1], {each} {your two primary pussies} burnished to a froth of high excitement by his moving, seeking, servile mouth.} His eyes are closed as he does it, dizzily lost in the “prize” he’s won.
+“<i>That’s it,</i>” you coo. “<i>What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior... </i>\" You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh. {With a few murmured, humoured instructions, you are able to make him pull out and lavish the same treatment on your [pc.vagina1], {each} {your two primary pussies} burnished to a froth of high excitement by his moving, seeking, servile mouth.} His eyes are closed as he does it, dizzily lost in the “prize” he’s won.
 
 You sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.lowerBody] made all the better by the steady warm rasp moving across your throbbing [pc.eachClit] and inner walls. {As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.femcum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.}
 
 You release your grip when you’re done, letting him flop onto his back, allowing yourself a good wallow in the afterglow whilst you look down at your toy. If anything, he’s harder than he was than when he started; his {broad, purple dick} {stubby, purple boy-prick} stands almost painfully on end, the taste and texture of you evidently only turning him even more on.
 
-“<i>Please... </i>“ he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.
+“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.
 
 “<i>Good boy,</i>” you leer down at him, before {getting up} {getting up, rearranging your clothes} and then setting off again, leaving all three of them unconscious on the ground having never lifted a finger. Well, except one.
 
@@ -844,7 +981,7 @@ You raise an arch eyebrow at the kneeling raskvel, allowing a faint, disdainful 
 
 “<i>And now you want to get your dirty mitts on me, do you?</i>” you say softly. Wriggle wiggle, goes your dainty {toe/boot/claw}. The weary red reptilian has his eyes on it; you let your words sink into him as you continue to rotate your foot/paw, changing direction from time to time... “<i>This isn’t what I wanted at all. Such violence towards your friends. Such brutality. Why should I let a wicked brute like you anywhere near my body?</i>”
 
-“<i>No... </i>“ mumbles the entranced raskvel, head swaying gently with the movements of your foot. “<i>I proved... you said... </i>“ He gestures dozily at the stunned pile of brawny scales behind him. “<i>I’m the... let me prove... </i>“
+“<i>No... </i>\" mumbles the entranced raskvel, head swaying gently with the movements of your foot. “<i>I proved... you said... </i>\" He gestures dozily at the stunned pile of brawny scales behind him. “<i>I’m the... let me prove... </i>\"
 
 “<i>Oh, very well,</i>” you whisper. You bend {your big toe} {the tip of your boot} {the pad of your big claw},  touching his warm lips with it. “<i>You may prove yourself to be something other than a savage animal, and then we’ll see if you’re worthy of anything else.</i>”
 
@@ -856,7 +993,7 @@ Raskvel tongue really is extremely good for the purpose you’ve set it to – w
 
 His mouth feels just as good concentrated on your other [pc.foot], rivulets of delicious pleasure running up your [pc.leg] to the steady lap of his tongue {polishing the point of your boot} {between the gaps of your toes/claws} and you’re feeling quite aroused in a leisured kind of way by the end, sensuous and pleased. You smirk down at him once you finally decide you’ve had enough, deliberately turning your attention to your [pc.feet], turning them this way and that, allowing him a grudgingly admiring raise of the eyebrow as you consider each of your extremely clean {feet/boots/paws}. You return your [pc.eyes] to the raskvel. If anything, he’s harder than he was than when he started; his {broad, purple dick} {stubby, purple boy-prick} stands almost painfully on end, what you’ve made him do, the taste and texture of you evidently only turning him more on.
 
-“<i>Please... </i>“ he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.
+“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.
 
 “<i>Good boy,</i>” you grin down at him, before {getting up} {getting up, rearranging your clothes} and then setting off again, leaving all three of them on the ground having never lifted a finger. Well, except one.
 
