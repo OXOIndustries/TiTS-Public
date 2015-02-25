@@ -109,8 +109,7 @@
 			//Add bonuses!
 			capacity += bonusCapacity;
 			//Factor in looseness! - 2/24/15 - buffed looseness a bunch
-			capacity *= (looseness() * 5 + 1)/3
-			;
+			capacity *= (looseness() * 5 + 1)/3;
 			//CoC-tier wetness 5 will double capacity.
 			capacity *= (wetness()+4)/5;
 			//Round it off and sent it away.
