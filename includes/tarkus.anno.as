@@ -22,6 +22,12 @@ public function haveFuckedAnno():Boolean
 	return true;
 }
 
+public function showAnno():void
+{
+	userInterface.showBust("ANNO");
+	userInterface.showName("\nANNO");
+}
+
 public function steeleTechTarkusShopAvailable():Boolean
 {
 	if (pc.hasStatusEffect("ST Tarkus Closed")) return false;
@@ -231,6 +237,10 @@ public function annoMainMenu():void
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(4,"Fix Emit.",repairMyRustBroInjuryAnno,undefined,"Fix Emit.","See if Anno can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(4,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
 	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(4,"Test Drive",testDriveArmorsForShit);
+
+	if(pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6,"Sell Prize",tryToSellAnnoSomeRaskScrapGuv,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(6,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
+
 	addButton(14,"Leave",mainGameMenu);
 }
 

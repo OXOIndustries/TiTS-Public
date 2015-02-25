@@ -191,6 +191,9 @@ public function auroraBaseMenu(disabledButton:int = -1):void
 		if(flags["TARKUS_DESTROYED"] != undefined) addDisabledButton(2,"LookAround","LookAround","Aurora's shop is gone. Any hope you had of scoping out her cool gadgets is gone along with her workshop.");
 		else addButton(2,"LookAround",lookAroundAurorasShop,undefined,"Look Around","Look around Aurora's shop for anything interesting.");
 	}
+	if(pcHasJunkPrize()) addButton(3,"Sell Prize",tryToHawkRaskShitToAurora,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(3,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
+
 	addButton(14,"Back",mainGameMenu);
 }
 

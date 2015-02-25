@@ -22,6 +22,12 @@ Nearly infertile - only ever lays one to two eggs that are never fertilized.
 Sells a hoverboard (reduces movement times) and other gadgets
 */
 
+public function showShekka():void
+{
+	userInterface.showBust("SHEKKA");
+	userInterface.showName("\nSHEKKA");
+}
+
 //Widget Warehouse Description\
 public function widgetWarehouseBonusFuntimes():Boolean
 {
@@ -122,6 +128,8 @@ public function shekkaMainMenu():void
 	addButton(6,"Sell",sellItem);
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(7,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
+	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven't found any special salvage to sell.");
 	addButton(14,"Back",mainGameMenu);
 }
 

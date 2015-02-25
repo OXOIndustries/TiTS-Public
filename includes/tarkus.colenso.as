@@ -1,6 +1,12 @@
 ﻿//Conspiracy Colenso
 //By Nonesuch
 
+public function showColenso():void
+{
+	userInterface.showBust("COLENSO");
+	userInterface.showName("\nCOLENSO");
+}
+
 //Adjecent room
 public function colensosAdjacentRoomStuff():Boolean
 {
@@ -24,6 +30,8 @@ public function colensoMenu():void
 	if(flags["SEXBOT_QUEST_STATUS"] == undefined) addButton(4,"Work?",askColensoAboutWork,undefined,"Work?","See if Colenso has any jobs for you.");
 	else if(flags["SEXBOT_QUEST_STATUS"] < 3) addButton(4,"Work",askColensoAboutWork,undefined,"Work","Talk to Colenso about the sexbot job.");
 	else addButton(4,"Work",askColensoAboutWork,undefined,"Work","See if the goblin has any more jobs for you.");
+	if(pcHasJunkPrize() && flags["COLENSO_SCRAP_DISABLED"] == undefined) addButton(5,"Sell Prize",sellRaskShitToColenso,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(5,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
 	addButton(14,"Back",mainGameMenu);
 }
 

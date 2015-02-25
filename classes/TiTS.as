@@ -147,6 +147,7 @@
 		include "../includes/tarkus.lane.as";
 		include "../includes/tarkus.lapinara.as";
 		include "../includes/tarkus.raskvelFemaleFight.as";
+		include "../includes/tarkus.raskvelMaleFight.as";
 		include "../includes/tarkus.roomFunctions.as";
 		include "../includes/tarkus.sexbots.as";
 		include "../includes/tarkus.shekka.as";

@@ -5,6 +5,48 @@
 
 *Masculine and feminine positives. As intelligent masculine they are more likely to let you go easily; as intelligent feminine you can make them fight each other over you.*/
 
+function showRaskGang():void
+{
+	userInterface.showBust("RASKVEL_MALE");
+	userInterface.showName("RASKVEL\nMALE");
+	author("Nonesuch");
+}
+
+function pcHasJunkPrize():Boolean
+{
+	if(pc.hasKeyItem("A locked metal chest")) return true;
+	if(pc.hasKeyItem("Some sort of shining spaceship part")) return true;
+	if(pc.hasKeyItem("An intact, antique android")) return true;
+	if(pc.hasKeyItem("A bulky data-core")) return true;
+	return false;
+}
+
+function getRaskLootType():int
+{
+
+	if(pc.hasKeyItem("A locked metal chest")) return 0;
+	if(pc.hasKeyItem("Some sort of shining spaceship part")) return 1;
+	if(pc.hasKeyItem("An intact, antique android")) return 2;
+	if(pc.hasKeyItem("A bulky data-core")) return 3;
+	return -1;
+}
+
+function getRaskLootPrice():int
+{
+	return pc.keyItemv1("A locked metal chest") + pc.keyItemv1("Some sort of shining spaceship part") + pc.keyItemv1("An intact, antique android") + pc.keyItemv1("A bulky data-core");
+}
+
+function removeRaskLoot():void
+{
+	pc.removeKeyItem("A locked metal chest");
+	pc.removeKeyItem("Some sort of shining spaceship part");
+	pc.removeKeyItem("An intact, antique android");
+	pc.removeKeyItem("A bulky data-core");
+	flags["SHEKKA_SCRAP_DISABLED"] = undefined;
+	flags["COLENSO_SCRAP_DISABLED"] = undefined;
+	flags["ANNO_SCRAP_DISABLED"] = undefined;
+}
+
 //Intro
 function raskvelGangEncounter():void
 {
@@ -14,7 +56,7 @@ function raskvelGangEncounter():void
 
 	//Gud Deal
 	//30% Chance. Does not proc if PC already has junk prize on them
-	if(rand(10) <= 2 && !pcHasJunkPrize)
+	if(rand(10) <= 2 && !pcHasJunkPrize() || debug)
 	{
 		output("\n\n“<i>You’re in luck, offworlder,</i>” says the one closest to you.");
 		output("\n\n“<i>We are premier scavenge hunters – Tarkus’s finest,</i>” says the second, in close succession.");
@@ -28,8 +70,9 @@ function raskvelGangEncounter():void
 
 		output("\n\n“<i>The kind of loot that would see us in Quivering Quasars and robot hookers for a lifetime,</i>” the first says dreamily.");
 		output("\n\n“<i>But,</i>” his compatriot goes on, ears drooping theatrically. “<i>We can’t haul it back to Novahome for appraisal. It’s too far, and this sweet dig site has got to be protected.</i>”");
+		var gudDealPrice:int = 100 + rand(901);
 		output("\n\n“<i>Plus the bigger raskvel gangs will just pinch it off us,</i>” grumbles the smallest.");
-		output("\n\n“<i>So! We’re offering you a deal of a lifetime,</i>” leers the biggest. “<i>For you, our offworlder friend, we’re willing to let you have it for a mere [x] credits.</i>”");
+		output("\n\n“<i>So! We’re offering you a deal of a lifetime,</i>” leers the biggest. “<i>For you, our offworlder friend, we’re willing to let you have it for a mere " + gudDealPrice + " credits.</i>”");
 		output("\n\n“<i>A pittance, you lucky alien,</i>” groans the medium-sized one. “<i>Go on, snatch it out of our poor hands before we offer it to the next random soul that chances upon us.</i>”");
 		output("\n\nYou squint up at the ");
 		if(raskLootType == 0) output("locked metal chest");
@@ -40,16 +83,20 @@ function raskvelGangEncounter():void
 		processTime(4);
 		//[Buy It] [Don’t]
 		clearMenu();
-		//9999
+		addButton(0,"Buy It",buySomeJankJunkJunk,[raskLootType,gudDealPrice],"Buy It","Buy the offered prize.");
+		addButton(1,"Don't",dontBuyScrapShit,undefined,"Don't","Don't buy that hunk o' junk.");
 	}
 	//Offers Fun
 	//40% chance
-	if(rand(7) <= 3)
+	else if(rand(7) <= 3)
 	{
 		output("\n\nThe first one is the biggest, well over a mighty four feet tall, oil-stained and well rounded with muscle in an artless, purposeful kind of way, unabashedly naked. He wipes his hands on a rag, swinging his powerful hips deliberately as he does so.\n\n“<i>Good timing, good looking,</i>” he says, grinning at you rakishly. “<i>We were just about to knock off for our break. Why don’t you come along? I think we could all do with a bit of fun.</i>”");
 		//[Yes] [No]
 		//Yes Tooltip: You suspect by “fun” they mean “sex”.
 		//No Tooltip: They can’t make you have fun.
+		clearMenu();
+		addButton(1,"No",noIDontWantFunRaskGang,undefined,"No","They can't make you have fun.");
+		addButton(0,"Yes",sureRaskLetsHaveFun,undefined,"Yes","You suspect by 'fun' they mean sex.");
 	}
 	//Wants a Bribe
 	//30% chance
@@ -60,16 +107,18 @@ function raskvelGangEncounter():void
 		output("\n\n“<i>Now, now,</i>” says the first, wagging his finger piously. “<i>We here are only concerned with offworlder safety. All sorts of bad things could happen to unsupervised members of the public if they go wandering around a junkyard.</i>”");
 		output("\n\n“<i>Could cut yourself,</i>” suggests the third.");
 		output("\n\n“<i>Could get trapped under falling machinery.</i>”");
-		output("\n\n“<i>Or you could get pinned down and mercilessly fucked by a gang of raskvel,</i>” finishes the big one. “<i>But we’re understanding folk. So if you give us [x] credits, we’ll let you run along.</i>”");
+		var bribeAmount:int = 200 + rand(300);
+		output("\n\n“<i>Or you could get pinned down and mercilessly fucked by a gang of raskvel,</i>” finishes the big one. “<i>But we’re understanding folk. So if you give us " + bribeAmount + " credits, we’ll let you run along.</i>”");
 		output("\n\n“<i>But what if [pc.heShe] can’t pay?</i>” gasps the second.");
 		output("\n\n“<i>I’m sure [pc.heShe] can think of some other way of duly compensating us,</i>” replies the first, running his eyes up and down your frame hungrily.");
 		processTime(3);
 		//[Pay] [Don’t Pay] [Pay with Sex]
 		clearMenu();
-		//9999
+		if(pc.credits >= bribeAmount) addButton(0,"Pay",payRaskGangForSafePassage,bribeAmount,"Pay","Pay them the money.");
+		else addDisabledButton(0,"Pay","Pay","You can't afford that!");
+		addButton(1,"Don't Pay",dontPayForSafePassageSlut,undefined,"Don't Pay","It's clobberin' time!");
+		addButton(2,"PayWithSex",pay4SafetyWivSmex,undefined,"Pay With Sex","Maybe you can pay them off with some some sex.");
 	}
-
-
 }
 
 //No
@@ -189,7 +238,7 @@ function dontBuyScrapShit():void
 }
 
 //Buy It
-function buySomeJankJunkJunk(lootType:int):void
+function buySomeJankJunkJunk(lootType:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -198,8 +247,24 @@ function buySomeJankJunkJunk(lootType:int):void
 	output("\n\n“<i>Shut up! Here you go, offworlder,</i>” says the third, clambering down and carefully handing over his find for the money. He helps you strap it to your back.");
 	output("\n\n“<i>Take it back to Novahome,</i>” chuckles the first. “<i>Any junk dealer will buy it off you for twice, thrice the price.</i>”");
 	output("\n\nThat sense of heartiness that hovers somewhere between maliciousness and friendliness persists as you bid the raskvel goodbye. You just hope you’re the one laughing once you get your purchase back to Novahome.");
+	var actualPrice:int = 5 + rand(2001);
+	if(lootType[0] == 0) pc.createKeyItem("A locked metal chest",actualPrice,0,0,0);
+	if(lootType[0] == 1) pc.createKeyItem("Some sort of shining spaceship part",actualPrice,0,0,0);
+	if(lootType[0] == 2) pc.createKeyItem("An intact, antique android",actualPrice,0,0,0);
+	if(lootType[0] == 3) pc.createKeyItem("A bulky data-core",actualPrice,0,0,0);
+	pc.credits -= lootType[1];
+	processTime(3);
+	output("\n\n(<b>Gained Key Item: ");
+	var raskLootType:int = getRaskLootType();
+	if(raskLootType == 0) output("Locked Metal Chest");
+	else if(raskLootType == 1) output("Spaceship Part");
+	else if(raskLootType == 2) output("Antique Android");
+	else output("Blocky Data-core");
+	output("</b> - You can try to sell this to one of the vendors back onboard Novahome.)");
+	
 	processTime(7);
-	//9999 set up the loot somehow.
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 /*Notes
@@ -208,25 +273,19 @@ The raskvel sell it for 100-1000 credits. How much they sell it for has nothing 
 
 All four of Tarkus’s vendors are in some way classified as scrap dealers, so all four have been accounted for.
 
-SHEKKA will not buy anything you bring her EXCEPT the android, which she will offer 1.75x the value for, AND the spaceship part, which she also offers 1.75 for.
-
-COLENSO will buy anything at 0.5 the value EXCEPT the metal chest, which he will offer 1.5x the value for.
-
-ANNO will not buy anything EXCEPT the data core which she will offer 1.75x the value for.
-
-AURORA will not buy anything. Apparently.
-
 //Add “sell scrap” to each of their main menus
 
 Tooltip: See what you can get for the piece of scrap you purchased from the raskvel, if anything.
 */
 
 //Shekka
-function shekkaGetsSoldRaskShitz(raskLootType):void
+//SHEKKA will not buy anything you bring her EXCEPT the android, which she will offer 1.75x the value for, AND the spaceship part, which she also offers 1.75 for.
+function shekkaGetsSoldRaskShitz():void
 {
 	clearOutput();
 	showShekka();
 	output("“<i>What would you give me for... </i>\" you untie the ");
+	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
 	else if(raskLootType == 2) output("antique android");
@@ -238,17 +297,22 @@ function shekkaGetsSoldRaskShitz(raskLootType):void
 	if(raskLootType == 1)
 	{
 		output("\n\n\"<i>That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...</i>\" The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
-		output("\n\n\"<i>Fine, fine. How does [9999] sound? C'mon, it might just be junk metal.</i>\"");
+		output("\n\n\"<i>Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C'mon, it might just be junk metal.</i>\"");
+		processTime(2);
+		clearMenu();
+		addButton(0,"Deal",dealOnShipPartWithShekka);
+		addButton(1,"No Deal",noDealOnShipPartWivShekka);
 	}
 	//Android: 
 	else if(raskLootType == 2)
 	{
 		output("\n\nShekka’s eyes go round. “<i>Ooh. I’ve never seen that model before! Mind if I - ?</i>” you step back and allow her to pad over and run her inquisitive hands over the old robot. “<i>It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>\" You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
-		output("\n\n“<i>Oh, alright! How does # credits sound?</i>”");
+		output("\n\n“<i>Oh, alright! How does " + Math.round(getRaskLootPrice()*1.75) + " credits sound?</i>”");
 		processTime(2);
 		clearMenu();
 		//[Deal] [No Deal]
-		//9999
+		addButton(0,"Deal",sellARobotToShekka);
+		addButton(1,"No Deal",noDealRobotSellingToShekka);
 	}
 	//Anything but the android or the spaceship part:
 	if(raskLootType != 1)
@@ -268,7 +332,7 @@ function giveStupidShitRaskPartsToShekkaFree():void
 	clearOutput();
 	showShekka();
 	output("It’s just a relief to get it off your back in all honesty. You shrug and let Shekka hobble away with it into the back, leaving you to feel slightly resentful about the raskvel race as a whole.");
-	//9999
+	removeRaskLoot();
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -293,7 +357,10 @@ function noDealRobotSellingToShekka():void
 	output("\n\nShekka looks at you incredulously.");
 	output("\n\n“<i>Really? Well, good luck with that. Because you won’t be offloading it on me now.</i>” She flounces back behind her counter, piercings jangling angrily.");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-	//9999
+	flags["SHEKKA_SCRAP_DISABLED"] = 1;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Deal:
@@ -303,6 +370,8 @@ function sellARobotToShekka():void
 	showShekka();
 	output("You help her take the robot into the back, after which she returns to her inventory screen. A few moments later, your bank balance is updated.");
 	output("\n\n“<i>I’m gonna have a lot of fun with that, I can tell,</i>” Shekka grins. “<i>Nice find [pc.name], and thanks for letting me have it.</i>”");
+	pc.credits += Math.round(getRaskLootPrice()*1.75);
+	removeRaskLoot();
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -320,7 +389,8 @@ function dealOnShipPartWithShekka():void
 	output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
 	output("\n\n\"<i>I'm sure she's behaved...</i>\" grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.");
 	processTime(3);
-	//9999
+	pc.credits += Math.round(getRaskLootPrice()*1.75);
+	removeRaskLoot();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -333,16 +403,17 @@ function noDealOnShipPartWivShekka():void
 	output("\"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>\"");
 	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the goblin, then.</i>\"");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-	//9999
+	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Colenso
+//COLENSO will buy anything at 0.5 the value EXCEPT the metal chest, which he will offer 1.5x the value for.
 function sellRaskShitToColenso():void
 {
 	clearOutput();
-	showShekka();
+	showColenso();
 	output("“<i>What would you give me for... </i>\" you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
@@ -355,22 +426,22 @@ function sellRaskShitToColenso():void
 	{
 		output("\n\n“<i>Let’s have a... what the blimmin ‘eck is this?</i>” The heavily built goblin rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
 		output("\n\n“<i>Where did you find it? Do you have the key? No... no, obviously not.</i>” He strokes the lid, entranced. “<i>Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>\" You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
-		output("\n\n“<i>Nngh... alright. " + 9999 + " credits. That’s more ‘n reasonable.</i>”");
+		output("\n\n“<i>Nngh... alright. " + Math.round(getRaskLootPrice()*1.5) + " credits. That’s more ‘n reasonable.</i>”");
 		processTime(2);
 		//[Deal] [No Deal]
 		clearMenu();
-		addButton(0,"Deal",9999);
-		addButton(1,"No Deal",9999);
+		addButton(0,"Deal",dealWivColensoForTheChestGuv);
+		addButton(1,"No Deal",noDealOnTheChestCommaColenso);
 	}
 	else
 	{
 		output("\n\n“<i>Let’s have a butcher’s.</i>” The heavily built goblin rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
-		output("\n\n“<i>Mmm. Weeeell,</i>” he rumbles eventually with an air of great reluctance, rubbing his chin. “<i>Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for # credits, as a favour. That’s ripping my own arm off, mind.</i>”");
+		output("\n\n“<i>Mmm. Weeeell,</i>” he rumbles eventually with an air of great reluctance, rubbing his chin. “<i>Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for " + Math.round(getRaskLootPrice()*.5) + " credits, as a favour. That’s ripping my own arm off, mind.</i>”");
 		processTime(2);
 		//[Deal] [No Deal]
 		clearMenu();
-		addButton(0,"Deal",9999);
-		addButton(1,"No Deal",9999);
+		addButton(0,"Deal",dealColensoIllSellYouGenericScrap);
+		addButton(1,"No Deal",noDealOnGenericSpecialRaskScrapColenso);
 	}
 }
 
@@ -394,7 +465,8 @@ function dealColensoIllSellYouGenericScrap():void
 	showColenso();
 	output("You heave across the bulky metal, and Colenso updates your bank account with a few taps of his screen.");
 	output("\n\n“<i>Difficult to find really good scrap these days,</i>” he sighs. “<i>The rask have picked most everything worthwhile around Novahome clean. Still, keep trying eh? Ol’ Colenso will have a looksie at everything you bring him, if nothing else.</i>”");
-	//9999
+	pc.credits += Math.round(getRaskLootPrice()*.5);
+	removeRaskLoot();
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -410,7 +482,7 @@ function noDealOnTheChestCommaColenso():void
 	output("\n\nColenso practically explodes.");
 	output("\n\n“<i>I...pbbt...no! Let me have it! I can’t... fine. Fine!</i>” he flings his arms into the air in absolute disgust, almost falling out of his chair. “<i>Sell it back to the man then, for all I care! ‘Ope they slit yer throat in the bargain, you rotten merc!</i>”");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-	//9999
+	flags["COLENSO_SCRAP_DISABLED"] = 1;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -423,17 +495,19 @@ function dealWivColensoForTheChestGuv():void
 	showColenso();
 	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.");
 	output("\n\n“<i>You’re a star, [player.fullName],</i>” he says, grinning happily. “<i>You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.</i>”");
-	//9999
+	pc.credits += Math.round(getRaskLootPrice()*1.5);
+	removeRaskLoot();
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Anno
+//ANNO will not buy anything EXCEPT the data core which she will offer 1.75x the value for.
 function tryToSellAnnoSomeRaskScrapGuv():void
 {
 	clearOutput();
-	showColenso();
+	showAnno();
 	output("“<i>What would you give me for... </i>\" you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
@@ -447,6 +521,8 @@ function tryToSellAnnoSomeRaskScrapGuv():void
 	{
 		output("\n\nAnno looks at what you’ve brought her askance and then is quiet for a time, as if trying to think of the politest way of putting something.");
 		output("\n\n“<i>I appreciate the effort you’ve gone to, bringing this all the way back here boss,</i>” she says eventually. “<i>But... this isn’t really a pawn shop. I mean, what would it look like if I were buying random bits of junk off Victor’s son/daughter and not doing that for anyone else? Try Colenso. He’s the serious scrap dealer in Novahome. For a certain value of serious, anyway.</i>”");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 	//Data core:
 	else
@@ -454,9 +530,11 @@ function tryToSellAnnoSomeRaskScrapGuv():void
 		output("\n\nAnno peers at what you’ve brought her interestedly.");
 		output("\n\n“<i>Is that -? Let me take a look.</i>” She rummages around in her back room and then trots around to you with a tangle of wires and a power source, before poking and twiddling around with the hulk of severed plastic and metal. “<i>Seems to be still functioning. People throw away stuff like this wholesale with malfunctioning or outdated machinery, and I will never understand why – memory is valuable, always has been, always will be. There may even be one or two interesting things stored on it, who knows... </i>\"");
 		output("\n\n“<i>So?... </i>\" you say meaningfully. Anno pauses, then simpers.");
-		output("\n\n“<i>I’m not supposed to. But I can really use cores like this for my research. When you’re dealing with macro-data, you wouldn’t believe how much memory... is " + 9999 + " credits alright?</i>”");
+		output("\n\n“<i>I’m not supposed to. But I can really use cores like this for my research. When you’re dealing with macro-data, you wouldn’t believe how much memory... is " + Math.round(getRaskLootPrice()*1.75) + " credits alright?</i>”");
 		//[Deal] [No Deal]
-		//9999
+		clearMenu();
+		addButton(0,"Deal",itsADealAnnoBossDataCore);
+		addButton(1,"No Deal",noDealonCoresAnno);
 	}
 }
 
@@ -469,7 +547,7 @@ function noDealonCoresAnno():void
 	output("\n\nAnno sighs, and then click off her power source.");
 	output("\n\n“<i>Yeah. I shouldn’t be throwing around unauthorized company money anyway. Good luck with getting a good price for it elsewhere, boss.</i>”");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
-	//9999
+	flags["ANNO_SCRAP_DISABLED"] = 1;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -482,17 +560,18 @@ function itsADealAnnoBossDataCore():void
 	showAnno();
 	output("You accept the ausar’s payment and then help her haul it into the back.");
 	output("\n\n“<i>Enjoy the credits boss,</i>” she grins once it’s done. “<i>You’ve earned them.</i>”");
-	//9999
+	pc.credits += Math.round(getRaskLootPrice()*1.75);
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
  
 //Aurora
+//AURORA will not buy anything. Apparently.
 function tryToHawkRaskShitToAurora():void
 {
 	clearOutput();
-	showAurora();
+	auroraBust();
 	output("“<i>What would you give me for... </i>\" you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
@@ -569,7 +648,7 @@ function raskZapAttack():void
 {
 	output("“<i>That’s a pretty decent kinetic barrier you’ve got there, offworlder,</i>” says one of them musingly. “<i>It would be a shame if... somethinghappenedtoitdoitdoitnow!</i>” the one behind you whips out an antique-looking ray gun and blasts a wave of white energy at you, throwing himself off his feet in the process.");
 
-	if(rangedCombatMiss() || rangedCombatMiss())
+	if(rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc))
 	{
 		output("\n\nYou fling yourself to one side. The electric attack makes your [pc.skin] tingle as it hums its way past you.");
 	}
@@ -580,7 +659,6 @@ function raskZapAttack():void
 		//9999 damage!
 	}
 	processCombat();
-
 }
 
 //See You Next Fall

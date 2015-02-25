@@ -29,7 +29,15 @@ public function rustPlainsEncounters():Boolean {
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
+		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
+		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
+		choices[choices.length] = raskvelGangEncounter;
 
+		if(debug) 
+		{
+			raskvelGangEncounter();
+			return true;
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
