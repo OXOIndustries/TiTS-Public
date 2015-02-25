@@ -696,8 +696,36 @@ public function stunRecover(target:Creature):void
 public function standUp():void
 {
 	clearOutput();
-	output("You climb up onto your [pc.feet].\n");
-	pc.removeStatusEffect("Trip");
+	//RASK DUDEPILE BE SPECUAL
+	if(foes[0] is RaskvelMale)
+	{
+		//Get back up
+		if(!pc.hasStatusEffect("Raskvel Pile"))
+		{
+			output("Quickly you heave yourself back on your [pc.feet], dusting yourself down with a scowl.\n");
+			pc.removeStatusEffect("Trip");
+			pc.removeStatusEffect("Raskvel Pile");
+		}
+		//Get back up under pile on:
+		if(pc.physique() + pc.statusEffectv1("Raskvel Pile") >= 30)
+		{
+			output("You tense yourself up and with a sudden upward heave send the raskvel flying off you. You scramble back on your [pc.feet], feeling intense relief from escaping that suffocating helplessness.\n");
+			pc.removeStatusEffect("Trip");
+			pc.removeStatusEffect("Raskvel Pile");
+		}
+		//Fail to get back up under pile on:
+		else
+		{
+			output("You try and elbow your way back up and duly collapse straight back into the dirt again. These little bastards are heavy!\n");
+			pc.addStatusValue("Raskvel Pile",1,10);
+		}
+	}
+	//GENERIC
+	else
+	{
+		output("You climb up onto your [pc.feet].\n");
+		pc.removeStatusEffect("Trip");
+	}
 	processCombat();
 }
 
@@ -1633,6 +1661,7 @@ public function enemyAI(aggressor:Creature):void
 	else if(aggressor is Dane) daneAI();
 	else if(aggressor is Mimbrane) mimbraneAI();
 	else if(aggressor is RaskvelFemale) raskvelChickAI();
+	else if(aggressor is RaskvelMale) raskGangAI();
 	else if(aggressor is SexBot) sexbotAI();
 	else if(aggressor is GrayGoo) grayGooAI();
 	else if(aggressor is LapinaraFemale) lapinaraAI();
@@ -1696,6 +1725,10 @@ public function victoryRouting():void
 	else if(foes[0] is RaskvelFemale)
 	{
 		victoryVsRaskvel();
+	}
+	else if(foes[0] is RaskvelMale)
+	{
+		victoryVsRaskGang();
 	}
 	else if(foes[0] is SexBot)
 	{
@@ -1820,6 +1853,10 @@ public function defeatRouting():void
 	else if(foes[0] is RaskvelFemale)
 	{
 		defeatRoutingForFemRasks();
+	}
+	else if(foes[0] is RaskvelMale)
+	{
+		lossVsRaskGang();
 	}
 	else if(foes[0] is SexBot)
 	{
@@ -2098,6 +2135,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "RaskvelFemale":
 			chars["RASKVEL_FEMALE"].prepForCombat();
+			break;
+		case "RaskvelMale":
+			chars["RASKVEL_MALE"].prepForCombat();
 			break;
 		case "SexBot":
 			chars["SEXBOT"].prepForCombat();

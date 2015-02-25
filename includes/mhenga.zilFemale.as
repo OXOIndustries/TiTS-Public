@@ -1142,7 +1142,7 @@ public function forceyFaceSittingFromFemzil():void {
 	userInterface.showName("FEMALE\nZIL");
 	// clearOutput();
 	//{HEALTH POWAHHHHHHH LAWS}
-	if(pc.HP() < 0) {
+	if(pc.HP() < 1) {
 		output("Prone on the ground, your body aching in pain, you look up at the victorious zil female as she advances towards you. A confident smile twists her sable lips.");
 	}
 	//LUST

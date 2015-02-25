@@ -29,7 +29,6 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["GEOFF"] == undefined))
 	{
 		chars["GEOFF"] = new classes.Characters.Geoff();
-	
 	}
 	//GEOFF UPGRADE HAX
 	if(chars["GEOFF"].version == 2) {
@@ -138,6 +137,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["RASKVEL_FEMALE"] == undefined))
 	{
 		chars["RASKVEL_FEMALE"] = new classes.Characters.RaskvelFemale();
+	}
+	if (!justUpdate || (justUpdate && chars["RASKVEL_MALE"] == undefined))
+	{
+		chars["RASKVEL_MALE"] = new classes.Characters.RaskvelMale();
 	}
 	if (!justUpdate || (justUpdate && chars["VKO"] == undefined))
 	{
