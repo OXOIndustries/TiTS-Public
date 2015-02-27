@@ -263,7 +263,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output("\n\nYou've caught yourself quite a fine specimen here. His features are attractive; masculine, but not overly developed, giving him smooth, clean lines. Atop his head are his cat-like ears, which flick from time to time as he watches you through defiant, golden eyes. He growls softly as you examine him with just a hint of a hiss under his breath.");
 	output("\n\nDrawing yourself up to your full height, you ");
 	if(!pc.isNaga()) output("place your [pc.foot] atop his chest, pushing down firmly with enough weight to make yourself felt without hurting him");
-	else output("coil your [pc.legs] around his chest, trapping him within the bindings of your own coils");
+	else output("coil your [pc.legOrLegs] around his chest, trapping him within the bindings of your own coils");
 	output(".");
 
 	//if Hard:
@@ -302,7 +302,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 
 	output("\n\nThat's better. Lowering yourself down until you are straddling his waist, just above where his cocks emerge, you feel one ");
 	if(!pc.isNaga()) output("rubbing against your [pc.ass]");
-	else output("pushing against your [pc.legs]");
+	else output("pushing against your [pc.legOrLegs]");
 	output(". Once in position, you drag yourself up his body, sliding your [pc.vaginas]");
 	if(pc.balls > 0) output(" and [pc.balls]");
 	output(" over his form, revelling as his soft fur tickles you, slipping over his firm, defined muscles until you are resting on his collarbone with your [pc.vaginas] hovering above his face. <i>\"Lick,\"</i>  you demand before warning him that you had better not feel so much as a scratch from his teeth.");
@@ -517,7 +517,7 @@ public function getBlownByDudeleen():void {
 
 	output("\n\nYou continue your soft motions until - with a gasp of surprise - you finally find yourself inside the naleen’s warm mouth. He looks strangely pleased, pursing his lips over [pc.cockHeadBiggest] and beginning to suckle it like a teat. His tongue, not missing a beat, begins circling around it, pushing against your cumvein as you hiss in pleasure.");
 
-	output("\n\nSqueezing with your [pc.legs], you pull back slightly, just enough to keep your cock out of his mouth, well beyond his reach. As you do so, you praise him for getting into the spirit of things; he's doing very well.");
+	output("\n\nSqueezing with your [pc.legOrLegs], you pull back slightly, just enough to keep your cock out of his mouth, well beyond his reach. As you do so, you praise him for getting into the spirit of things; he's doing very well.");
 
 	output("\n\n<i>“Please, can you...?”</i> he pleads.");
 

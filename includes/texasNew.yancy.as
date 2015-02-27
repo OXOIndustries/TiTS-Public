@@ -269,7 +269,9 @@ public function getMilkedByYancyYaSloot():void
 		output("\n\n“<i>I’ve seen that look before,</i>” he observes");
 		if(pc.hasVagina()) output(" with an accompanying twist of his fingers inside you. Your [pc.hips] shake and buck");
 		output(". “<i>If it wasn’t my job to ensure you were perfectly milked, I’d already have you bent over the table for a good seeding, but since you’re technically a customer, what do you want to do while we drain these puppies?</i>”");
-		output("\n\nThere’s a very serious-looking bulge in his pants. You could be a real slut and let him fuck you until your [pc.legs] stop working, or you could let the milkers get you off while getting a drink of the lovely-smelling ambrosia staining his fly.");
+		output("\n\nThere’s a very serious-looking bulge in his pants. You could be a real slut and let him fuck you until your [pc.legOrLegs] stop");
+		if(pc.legCount == 1) output("s");
+		output(" working, or you could let the milkers get you off while getting a drink of the lovely-smelling ambrosia staining his fly.");
 		//[Fucked] [Blowjob]
 		clearMenu();
 		addButton(0,"Get Fucked",treatedPCsGetCuntFilledAndMilkedPtI,undefined,"Get Fucked","Do what comes naturally....");
@@ -720,7 +722,13 @@ public function untreatedMilkedAndFuckedII():void
 	else if(milked < 2000) output("a lot");
 	else output("gallons of");
 	output(" [pc.milkNoun], I also really enjoyed fucking you. Most fun I’ve had in ages.\"</i>");
-	output("\n\nIs that a bashful tone to his voice? You turn around, though your [pc.legs] are no help - they’re pretty much jelly after the thorough fucking he gave you. You notice he’s downing ");
+	output("\n\nIs that a bashful tone to his voice? You turn around, though your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" is");
+	else output(" are");
+	output(" no help - ");
+	if(pc.legCount == 1) output(" it's");
+	else output(" they’re");
+	output(" pretty much jelly after the thorough fucking he gave you. You notice he’s downing ");
 	if(flags["YANCY_EXPLAINED_HIS_PILLS"] != undefined) output("those familiar pills");
 	else 
 	{
@@ -835,7 +843,10 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	showBust("YANCY");
 	showName("\nYANCY");
 	author("JimThermic");
-	output("When you finally leave the milking stall, your [pc.legs] are quivering, and you’re utterly splattered head to toe with glorious bull spunk. It leaks from your [pc.vagOrAss] and down your [pc.thighs], and you shiver with pleasure, feeling well and truly satiated. Yancy himself is completely spent, lying short of breath on the table. It seems you wore the bull boy out.");
+	output("When you finally leave the milking stall, your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" is");
+	else output(" are");
+	output(" quivering, and you’re utterly splattered head to toe with glorious bull spunk. It leaks from your [pc.vagOrAss] and down your [pc.thighs], and you shiver with pleasure, feeling well and truly satiated. Yancy himself is completely spent, lying short of breath on the table. It seems you wore the bull boy out.");
 	milkResultDisplay();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & titfucked";
 	flags["YANCY_SEXED"] = 1;

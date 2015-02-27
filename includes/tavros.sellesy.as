@@ -498,7 +498,7 @@ public function sellesyTribadismIsBadYoByZ():void
 		}
 		else output("your back spasms and locks up firmly enough to leave the burden of moving around squarely on Sellesy as your asshole tries to wring her dry");
 	}
-	output(". It’s far too difficult, and your [pc.vagina] clenches down on a tentacle that just as quickly slips out of its grasp. Sellesy’s knees bend, locking your [pc.legs] into hers, as she positions her opening directly opposite to yours. <i>“Squirt for me, my beautiful fountain!”</i> she cajoles. <i>“Put on a lovely display!”</i> Your pussy gapes and grabs air as your body empties moisture and ejaculate into your insatiable lover.");
+	output(". It’s far too difficult, and your [pc.vagina] clenches down on a tentacle that just as quickly slips out of its grasp. Sellesy’s knees bend, locking your [pc.legOrLegs] into hers, as she positions her opening directly opposite to yours. <i>“Squirt for me, my beautiful fountain!”</i> she cajoles. <i>“Put on a lovely display!”</i> Your pussy gapes and grabs air as your body empties moisture and ejaculate into your insatiable lover.");
 	if(pc.isSquirter())
 	{
 		output(" Rivers of joy run from your overproductive body, filling Sellesy faster than her own greedy entrance can drink it down; a soup of mixed juices slips from between you to spatter below with every pleasurable spasm.");
@@ -629,7 +629,7 @@ public function ladyType69WithSellesy():void
 
 	output("\n\n<i>“But you can’t do everything on your own,”</i> you counter, leaning across the distance and taking her wet breast in hand again. <i>“And it’s just not as fun, is it?”</i> Her head rolls back as you squeeze gently and you take the opportunity to kiss her graceful neck. She shivers again, but doesn’t try to pull away. Teasing her nipple in the way she just showed you, you succeed in producing a squirt of sweet-smelling booze. You can feel her throat swallowing hard under your lips and as her shoulders relax, you realize: <i>you’re getting to her</i>.");
 
-	output("\n\n<i>“Lay down,”</i> you command. Sellesy looks at you dozily for a moment, and then complies. You lean over her, hand still cupping her breast. <i>“Spread your [pc.legs].”</i> She obliges, separating her three legs in a spidery welcome. Your hand slides from her alcohol-slicked breast, trailing wetness, slowly down her stomach, feeling it quiver with her anticipation. You reach the gap between two of her legs and linger there, staring into her eyes until she meets your gaze, and then slide the rest of the way until your fingers feel the bump that marks her entrance. The woman shivers under you as you work your way in slowly, tracing first the outlines of her unusual tripartite labia and then the ring of her vaginal opening. Deliberately, making sure she watches, you lean down between her legs and kiss her nearest exposed clitoris, which is twitching and flexing in place. Slowly pulling away, you glance between her thighs at your lover’s face.");
+	output("\n\n<i>“Lay down,”</i> you command. Sellesy looks at you dozily for a moment, and then complies. You lean over her, hand still cupping her breast. <i>“Spread your [pc.legOrLegs].”</i> She obliges, separating her three legs in a spidery welcome. Your hand slides from her alcohol-slicked breast, trailing wetness, slowly down her stomach, feeling it quiver with her anticipation. You reach the gap between two of her legs and linger there, staring into her eyes until she meets your gaze, and then slide the rest of the way until your fingers feel the bump that marks her entrance. The woman shivers under you as you work your way in slowly, tracing first the outlines of her unusual tripartite labia and then the ring of her vaginal opening. Deliberately, making sure she watches, you lean down between her legs and kiss her nearest exposed clitoris, which is twitching and flexing in place. Slowly pulling away, you glance between her thighs at your lover’s face.");
 
 	output("\n\n<i>“Well-”</i>");
 
@@ -718,7 +718,7 @@ public function ladyType69WithSellesy():void
 			output("\n\nWhat’s good for the goose is good for the other goose. Your ");
 			if(pc.isNaga()) output("lower body coils around Sellesy’s head and back, uplifting her while smashing her face brutally into your [pc.vagina]");
 			else if(pc.isGoo()) output("gooey pseudopod parts and reforms around Sellesy’s head, leaving her only a small air pocket placed right at the entrance to your [pc.vagina] and no other choice");
-			else output("[pc.legs] wrap around Sellesy’s head, squeezing the woman’s still-hot face between your even hotter thighs");
+			else output("[pc.legOrLegs] wrap around Sellesy’s head, squeezing the woman’s still-hot face between your even hotter thighs");
 			output(". <i>“Lick,”</i> you insist, echoing her earlier demand. Sellesy’s mumbled reply is inaudible through the [pc.butt] covering her head, but the pleasant vibrations do send a tingle to the base of your spine before she opens her lips and a wet muscle forces its way between your labia again. Her fingernails dig into your hips with such force that they ");
 			if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("mark the skin");
 			else output("would leave a mark on bare skin");

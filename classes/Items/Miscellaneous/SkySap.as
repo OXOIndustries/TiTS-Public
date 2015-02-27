@@ -319,7 +319,10 @@
 				if(!pc.isSquirter() && pc.hasVagina() && changes < changeLimit && rand(4) == 0 && pc.totalVaginas(GLOBAL.TYPE_VANAE) > 0)
 				{
 					outputB("\n\nYou feel a wet sensation running down your [pc.thighs] and a fiercely hot sensation seizing [pc.eachPussy]. It feels as if someone or something is stirring about and fucking your insides, yet your outer lips remain utterly unparted. You moan with delight and buck your [pc.hips] at the invisible intruder, quickly submitting to the superb sensations assaulting your helpless body.");
-					outputB("\n\nWithin moments you're cumming with soul-shattering intensity. Your [pc.girlCum] spurts wildly from between your thighs in wild, unrepentant streams. When you finally come to, your [pc.legs] are soaked in your girl juice. <b>You are now a squirter!</b>");
+					outputB("\n\nWithin moments you're cumming with soul-shattering intensity. Your [pc.girlCum] spurts wildly from between your thighs in wild, unrepentant streams. When you finally come to, your [pc.legOrLegs]");
+					if(pc.legCount == 1) outputB(" is");
+					else outputB(" are");
+					outputB(" soaked in your girl juice. <b>You are now a squirter!</b>");
 					for(x = 0; x<target.totalVaginas();x++)
 					{
 						if(pc.vaginas[x].wetnessRaw < 4) pc.vaginas[x].wetnessRaw = 4;

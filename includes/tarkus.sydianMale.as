@@ -426,7 +426,7 @@ public function chicksRideASydian():void
 	else output("place a [pc.foot] square on his chest for good measure.");
 	output(" <i>\"You don't have to be sure,\"</i> you say as you sidle into position above him. <i>\"You just have to stay hard for me.\"</i>");
 	output("\n\nThe male's tail, folded beside him by own supine position, flicks back and forth in agitation, but he does not respond. His gaze remains fixedly aimed at the ground in a gesture of submission, though his three-fingered hands clench in irritation. So long as he doesn't get any bright ideas about being on top, you'll get along fine.");
-	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
+	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legOrLegs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
 	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tool's don't come with build-in stimulation functions. Your [pc.lips] wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
 	pc.cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
@@ -784,7 +784,7 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 		}
 		output(". Much as you'd like to protest... the idea of taking that big, thick cock is seeming more and more appealing.");
 		
-		output("\n\nYour heart pounds, your [pc.legs] quiver, and the need grows unbidden until you realize just how badly you need to fuck - how deliriously urgent your need for a cock or a tongue has become. You'll do anything to sate the burning desires welling through you, even mate with a mysterious alien you just met, anything to quell the fires in your loins.");
+		output("\n\nYour heart pounds, your [pc.legOrLegs] quiver, and the need grows unbidden until you realize just how badly you need to fuck - how deliriously urgent your need for a cock or a tongue has become. You'll do anything to sate the burning desires welling through you, even mate with a mysterious alien you just met, anything to quell the fires in your loins.");
 	}
 	//Lust
 	else
@@ -888,7 +888,9 @@ public function getPeggedToOrgasmByRustBro():void
 	output(" But first, you are going to need a little bit of preparation, I think.\"</i>");
 	output("\n\nSuddenly, his long tail curls around your [pc.hip], and you can feel the soft antennae brushing against your [pc.ass]. You try to wiggle away in vain as a a gooey, viscous substance is being smeared all over your buttcheeks, though for what purpose you do not know. His tail also slips between your [pc.thighs] and slathers [pc.eachCock] with the sticky liquid. Whatever he's doing, you're sure the handsome sydian has something sexual in mind.");
 
-	output("\n\nAs an exquisite heat travels up from your saturated loins, you realise the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legs] quiver as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
+	output("\n\nAs an exquisite heat travels up from your saturated loins, you realise the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legOrLegs] quiver");
+	if(pc.legCount == 1) output("s");
+	output(" as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
 
 	output("\n\nThe sensation of his fingers rubbing along your [pc.sheath] feels just as exquisite as the act of sex itself, your [pc.cockHead] bubbling pre-cum as you let out a whimpering moan. As the male sydian begins to stroke faster, you bite your lower lip, and suddenly you're letting out an uninhibited cry of delight.");
 	if(pc.cumQ() < 25) output(" Tiny trickles of [pc.cum] dribble from your tip, as you convulse in his manly grip.");
@@ -899,7 +901,7 @@ public function getPeggedToOrgasmByRustBro():void
 
 	output("\n\nDespite this claim, he is soon pushing your head down and forcing you to present your [pc.ass] to him, slapping your bare buttocks with a strong open handed slap. You can feel a stinging sensation travelling through your rump along with electrifying pleasure that causes [pc.eachCock] to tingle and jerk against your [pc.belly]. You almost cum again from the pleasure, your [pc.cock] already coated and dripping with your sticky [pc.cumColor] seed.");
 
-	output("\n\nYou can feel your buttocks being parted and his tail smearing his druggy secretions all around and inside your [pc.asshole]. If you came just from him touching your cock, how are you going to survive a pounding from behind? The idea makes you shiver with delight as you present your bare bum to him, your [pc.legs] quivering with barely contained anticipation.");
+	output("\n\nYou can feel your buttocks being parted and his tail smearing his druggy secretions all around and inside your [pc.asshole]. If you came just from him touching your cock, how are you going to survive a pounding from behind? The idea makes you shiver with delight as you present your bare bum to him, your [pc.legOrLegs] quivering with barely contained anticipation.");
 	output("\n\n<i>\"Beg for my manhood, offworlder, or else I'll keep toying with you until you go insane with lust.\"</i> The male sydian teases you as his prehensile tail wraps around your [pc.cock], smearing it even more with his secretions as his feathery antennae tease your tip. The pleasure you're feeling is so intense that it is almost agonizing, all you can do is let out short desperate gasps as your sensitive [pc.cockHead] is exquisitely toyed with.");
 	output("\n\n<i>\"Please, I'm begging you, fuck my [pc.ass] and fill me to the hilt with your cock!\"</i> You discard whatever shame you have as you bitch yourself out to the mysterious alien man; you'd do anything to sate the burning desires coursing through your body at this point.");
 	output("\n\n<i>\"As you wish, my mate.\"</i> You swear you hear the seven foot male sydian chuckle triumphantly as he presses the head of his alien tool against your back door. It's a good thing you're well lubricated by his juices as he plunges his glorious orange cock right into your [pc.asshole], claiming it for himself.");

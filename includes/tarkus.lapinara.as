@@ -176,9 +176,8 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	output("\n\nYou really don’t want to experience whatever it is she has in that syringe. It can’t be pleasant. At all. You do as the bunny says, albeit rolling your eyes as you do.");
 
 	//Male:
-	if(pc.hasCock()) output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving [pc.oneCock] a rewarding squeeze before grabbing ahold of your [pc.legs].");
-	else output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving your [pc.ass] a playful flick before grabbing ahold of your [pc.legs].");
-	output(" You won’t be moving them anytime soon.");
+	if(pc.hasCock()) output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving [pc.oneCock] a rewarding squeeze before grabbing ahold of your [pc.legOrLegs].");
+	else output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving your [pc.ass] a playful flick before grabbing ahold of your [pc.legOrLegs].");
 
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against your hole, her strange pre causing your outer rim to tingle pleasantly. You feel little to no pain when she finally enters you. It’s as if her fluids are working as an anesthetic of sorts.");
 	output("\n\nAs she continues to work her way in and out of your [pc.ass], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
@@ -222,7 +221,9 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	if(pc.legCount < 2) output(" 'em");
 	output(",”</i> she orders once more, waving a syringe in your face.");
 	output("\n\nYou really don’t want to experience whatever it is she has in that syringe. It can’t be pleasant. At all. You do as the bunny says, albeit rolling your eyes as you do.");
-	output("\n\n<i>“That’s a good " + pc.mf("boy","girl") + ",”</i> she coos, giving your [pc.clits] a rewarding touch before grabbing ahold of your [pc.legs]. You won’t be moving them anytime soon.");
+	output("\n\n<i>“That’s a good " + pc.mf("boy","girl") + ",”</i> she coos, giving your [pc.clits] a rewarding touch before grabbing ahold of your [pc.legOrLegs]. You won’t be moving");
+	if(pc.legCount > 1) output(" them");
+	output(" anytime soon.");
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against ");
 	if(pc.vaginaTotal() == 1) output("your");
 	else output("an");
@@ -403,12 +404,15 @@ public function getLickedByLapinara():void
 	author("WorldOfDrakan");
 	lapinaraBust();
 	//**Requires vagina.
-	output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins widely at the sight of your [pc.vaginas], and you swear that you can make out a hint of blush under her fur. You point to ");
+	output("You lie down on the ground, spreading your [pc.legOrLegs] for the lapinara. She grins widely at the sight of your [pc.vaginas], and you swear that you can make out a hint of blush under her fur. You point to ");
 	if(pc.totalVaginas() > 1) output("a");
 	else output("your");
 	output(" exposed puss. She appears to have taken the hint, licking her lips at the suggestion.");
 
-	output("\n\n<i>“You’re just so full of ideas, aren’t you, babe? I like that. I like that very much,”</i> your partner comments, plopping down between your [pc.legs]. She inspects [pc.oneVagina], smiling all the while. You even catch her biting her lip as she pokes and prods through your folds. <i>“And to top it all off, I’d say that you have just about the cutest pussy I’ve ever seen. Simply adorable!”</i>");
+	output("\n\n<i>“You’re just so full of ideas, aren’t you, babe? I like that. I like that very much,”</i> your partner comments, plopping down");
+	if(pc.legCount == 1) output(" upon your [pc.leg].");
+	else output(" between your [pc.legs].");
+	output(" She inspects [pc.oneVagina], smiling all the while. You even catch her biting her lip as she pokes and prods through your folds. <i>“And to top it all off, I’d say that you have just about the cutest pussy I’ve ever seen. Simply adorable!”</i>");
 
 	output("\n\n<i>“Ahem!”</i> you interrupt. Skip the banter, you’re ready to get down to business!");
 	output("\n\n<i>“Oh, right. Sorry,”</i> she apologizes.");
@@ -435,8 +439,10 @@ public function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick Just Right Size Variant- 12 Inches and Below)
 	if(pc.cocks[x].cLength() <= 12)
 	{
-		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
-		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
+		output("You lie down on the ground, spreading your [pc.legOrLegs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down");
+		if(pc.legCount == 1) output(" upon your [pc.leg].");
+		else output(" between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 
 		output("\n\n<i>“You’re just the right size for me,”</i> she muses. <i>“Perfect! I should be able to take it just fine!”</i>");
@@ -446,8 +452,10 @@ public function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick A Little Big Variant- Between 13 and 20 inches)
 	else if(pc.cocks[x].cLength() <= 20)
 	{
-		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
-		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
+		output("You lie down on the ground, spreading your [pc.legOrLegs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down");
+		if(pc.legCount == 1) output(" upon your [pc.leg].");
+		else output(" between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“It’s a little bigger than what I’m used to...”</i> she muses. <i>“I’m not sure if I can take the whole thing, but I’ll do my best!”</i>");
 		output("\n\nAnd without another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, but it isn’t long before she’s got half of your length in her mouth, completely deepthroating it, her muscles contracting pleasantly around your length, and she still manages to keep a hand on her own dick. She’s a fucking natural!");
@@ -455,8 +463,10 @@ public function getBlownByLapinara(cockNum:int = 0):void
 	//(Dick/Biggest Dick Too Big Variant- More than 20 inches long)
 	else
 	{
-		output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
-		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down between your [pc.legs].");
+		output("You lie down on the ground, spreading your [pc.legOrLegs] for the lapinara. She grins from ear to ear at the sight of your [pc.cocks]. Even with the fur covering her body, you swear that you can see her blushing. You point to your [pc.cock " + x + "]. She seems to have taken the hint, licking her lips at the suggestion.");
+		output("\n\n<i>“So it would seem that you’re looking for a bit of relief, is that right?”</i> she asks, plopping down");
+		if(pc.legCount == 1) output(" upon your [pc.leg].");
+		else output(" between your [pc.legs].");
 		output("\n\nYou nod in response, confirming her suspicions. The lapinara grabs ahold of your cock, sizing it up.");
 		output("\n\n<i>“Oh my goodness, it’s huge!”</i> she interjects. <i>“I’m not going to be able to take too much of it, but I’ll do my best!”</i>");
 		output("\n\nAnd without another word, she cups her mouth over your [pc.cock " + x + "]. You groan softly as her warmth envelops you. She starts off slow, and isn’t able to take much more than one fourth of the length, but she makes do with what she has, completely deepthroating it, her muscles contracting pleasantly around your length. And she still manages to keep a hand on her own dick. She’s a fucking natural!");

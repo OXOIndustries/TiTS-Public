@@ -425,7 +425,7 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	output("\n\nA buzz enervates your skin, ");
 	if(pc.hasHair()) output("your hair standing on end from ");
 	else output("your scalp tingling from ");
-	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
+	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legOrLegs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
 	output("\n\nElectronic fingers");
 	if(pc.hasCock()) output(" clutch your [pc.cocks]");
 	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");
@@ -574,7 +574,7 @@ public function pcLosesToHanSoSosBot():void
 
 	if(pc.hasHair()) output("your hair standing on end from ");
 	else output("your scalp tingling from ");
-	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
+	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legOrLegs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
 	output("\n\nElectronic fingers");
 	if(pc.hasCock()) output(" clutch your [pc.cocks]");
 	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");

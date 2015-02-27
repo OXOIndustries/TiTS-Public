@@ -172,7 +172,7 @@ public function treatmentHourProcs():void
 			if(pc.legCount != 1) eventBuffer += "between them";
 			else eventBuffer += "inside you";
 			eventBuffer +=", like you're as hollow as one of those chocolate bunnies they eat on Terra in spring. Only... a nice, hard dick would really hit the spot - a really veiny, thick one. It would complete you.";
-			if(pc.hasVagina()) eventBuffer += " Dribbles of arousal leak down your [pc.legs] as you mull it over.";
+			if(pc.hasVagina()) eventBuffer += " Dribbles of arousal leak down your [pc.legOrLegs] as you mull it over.";
 			eventBuffer += " Yeah... maybe a fuck break is in order.";
 			//+8 lust or lust to 33, whichever is higher.
 			if(pc.lust() + 8 < 33) pc.lust(33-pc.lust());
@@ -283,7 +283,7 @@ public function treatmentHourProcs():void
 		//23
 		else if(treatedHours == 46)
 		{
-			eventBuffer += "\n\nA welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row...";
+			eventBuffer += "\n\nA welcome flush rolls across your [pc.skin] as you consider your body. Your nerve endings seem alight with potential pleasure, just waiting to be touched and set off. Every part of your body begs for your attention and hands to tend to it. You idly rub your arms, [pc.hips], and [pc.legOrLegs] before letting go, tingling hotly. It's all you can do to keep from touching yourself, but at the same time, you feel so good! Your overheated body can handle so much pleasure; it's amazing! You've got to take your enhanced form for a spin and try some sex, just to see how incredible your orgasms will be. Maybe a few times in a row...";
 			//+5 lust
 			pc.lust(5);
 			//Inhuman Desire upgrade to +40.
@@ -499,7 +499,7 @@ public function treatmentHourProcs():void
 			//big GG -> H
 			else if(pc.breastRows[0].breastRatingRaw < 19)
 			{
-				eventBuffer += "\n\nYour hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It's enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legs] wobble, and the idea of someone else doing the tweaking ";
+				eventBuffer += "\n\nYour hands are running slowly across your expanding chest in a kind of slow dance, sending little whispers of pink-hued pleasure into your brain. It's enough to keep a happy, ditzy smile on your face and your mind placid and calm. A simple tweak of a [pc.nipple] is enough to make your [pc.legOrLegs] wobble, and the idea of someone else doing the tweaking ";
 				if(pc.hasVagina()) eventBuffer += "makes you positively drippy";
 				else eventBuffer += "has you whimpering";
 				eventBuffer += ". Best of all, you're slowly coming to realize that you've grown again. You finally have H-cups!";
@@ -702,7 +702,10 @@ public function treatmentHourProcs():void
 					eventBuffer += "\n\nAll at once, you feel moist all over your crotch. The strange sensation won't go away, leaving you with nothing to do but press a pair of fingertips inside yourself, just to check. It's slippery and wet - ";
 					if(pc.totalVaginas() == 2) eventBuffer += "both";
 					else eventBuffer += "all of";
-					eventBuffer += " your holes. You whimper. How are you supposed to keep your [pc.legs] closed when you're getting so fuckable?";
+					eventBuffer += " your holes. You whimper. How are you supposed to keep your";
+					if(pc.legCount > 1) eventBuffer += " [pc.legs] closed";
+					else eventBuffer += " sex away";
+					eventBuffer += " when you're getting so fuckable?";
 				}
 				//+5 lust for all
 				pc.lust(5);
@@ -737,15 +740,15 @@ public function treatmentHourProcs():void
 				//Singlepuss
 				if(pc.totalVaginas() == 1)
 				{
-					eventBuffer += "\n\nOut of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legs]. You stare in fascination at the sensuous sight, feeling like you're half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!";
+					eventBuffer += "\n\nOut of nowhere, your [pc.vagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] run unopposed down your [pc.legOrLegs]. You stare in fascination at the sensuous sight, feeling like you're half-girl, half-river. If you had a boyfriend handy, he could slip right in with no trouble at all!";
 				}
 				//Multipuss but only 1 changed
 				else if(cuntsBelowWetnessThreshold(3) == 1)
 				{
-					eventBuffer += "\n\nOut of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legs]. Finally, you're slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal.";
+					eventBuffer += "\n\nOut of nowhere, [pc.oneVagina] alights with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] are running unopposed down your [pc.legOrLegs]. Finally, you're slippery all over. You feel like a brain attached to a multitude of slippery, wet holes, each signalling their readiness with fragrant arousal.";
 				}
 				//Multipuss multiple changed
-				else eventBuffer += "\n\nOut of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legs]. You stare in fascination at the unquestionably sexual sight, feeling like you're little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!";
+				else eventBuffer += "\n\nOut of nowhere, your [pc.vaginas] alight with abrupt excitement, simmering and bubbling with arousal until thin streams of [pc.girlCum] cascade down your [pc.legOrLegs]. You stare in fascination at the unquestionably sexual sight, feeling like you're little more than a woman attached to a wellspring of lust. A boy with nice, thick cocks could just slide them all right into you!";
 				//+15 lust
 				pc.lust(15);
 				setMinimumWetness(3);
@@ -1146,7 +1149,9 @@ public function treatmentHourProcs():void
 		}
 		else if(treatedHours == 22)
 		{
-			eventBuffer += "\n\nIn a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs between your [pc.legs].";
+			eventBuffer += "\n\nIn a slow moment, you let yourself daydream, imagining just how things will be once you knock some sense into your cousin and claim your birthright. You’ll have a grand capital ship, staffed with the buxom women of all colors and species. [rival.name] will be there, handing out towels on the nude pool deck, forbidden from touching any of your girls. When you aren’t relaxing, you’ll sit in your captain’s chair, signing important documents while the girls tend to the needs";
+			if(pc.legCount > 1) eventBuffer += " between your [pc.legs].";
+			else eventBuffer += " of your sex.";
 			eventBuffer += "\n\nThere’s nothing wrong with a little daydreaming, after all.";
 			pc.lust(25);
 		}
@@ -1272,7 +1277,10 @@ public function treatmentHourProcs():void
 				if(pc.hasVirginCock()) eventBuffer += "first";
 				else eventBuffer += "next";
 				eventBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";
-				eventBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels between your [pc.legs], putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
+				eventBuffer += "\n\nYou don’t even really get distracted by it that much, really. The arousal burns like a pleasant heat in the back of your brain, spiking whenever your digits probe a particularly sensitive bundle of nerves, leaving the rest of your mind to do whatever mundane work it needs to do. You could probably file your taxes while a cute little faux-cow boy-toy kneels";
+				if(pc.legCount > 1) eventBuffer += " between your [pc.legOrLegs]";
+				else eventBuffer += " at your crotch";
+				eventBuffer += ", putting a nice, wide bovine tongue to use, provided you had breaks for mind-shattering orgasms every now and again.";
 				eventBuffer += "\n\nThe important takeaway is that you’re fucking amazing at being aroused now. Stimulation that would’ve morphed you into a mewling ball only makes you hotter and more capable of pleasure. It’ll take so much more teasing to bring you to the brink than ever before, but that just means you get to have bigger orgasms when you do. It’s win-win.";
 			}
 			//No Cooch!
@@ -1902,7 +1910,9 @@ public function treatmentHourProcs():void
 					//Dubstep+ cawk transform!
 					else
 					{
-						eventBuffer += "\n\nFeeling more than a little light-headed, you drop to the ground before your [pc.legs] do. A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ";
+						eventBuffer += "\n\nFeeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do";
+						if(pc.legCount == 1) eventBuffer += "es";
+						eventBuffer += ". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ";
 						if(pc.isCrotchGarbed()) eventBuffer += "pull your [pc.lowerGarments] down for a look";
 						else eventBuffer += "look down";
 						eventBuffer += ", discovering with some shock that your phalli are withdrawing ";

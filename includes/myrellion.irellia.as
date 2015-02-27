@@ -422,7 +422,7 @@ public function tailFuck():void
 	//Normal dix
 	else
 	{
-		output("\n\n“<i>Come on, Steele. I won’t bite... too much.</i>”\n\nThis time when her nectar-slicked lips envelop your [pc.cockHead " + x + "], you continue to push forward, ignoring the heavenly warmth and pressure of her slick walls pressing down on you from all sides. Your [pc.legs] wobble a little, but you stay upright thanks to the grip your hands maintain on her abdomen’s shimmering plates.");
+		output("\n\n“<i>Come on, Steele. I won’t bite... too much.</i>”\n\nThis time when her nectar-slicked lips envelop your [pc.cockHead " + x + "], you continue to push forward, ignoring the heavenly warmth and pressure of her slick walls pressing down on you from all sides. Your [pc.legOrLegs] wobble a little, but you stay upright thanks to the grip your hands maintain on her abdomen’s shimmering plates.");
 		output("\n\nQueen Irellia, smiling now, brings her other breast up to her lips, salaciously gathering the honey from her nipple just in time for it to release another drop. She purrs throatily in between swallowing, her cunt just kind of idly pulsating around you, tugging and squeezing at your [pc.cock " + x + "] to fully seat it inside her");
 		if(pc.hasKnot(x)) output(", knot and all}.");
 	}
@@ -847,7 +847,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	output("\n\nMounting the royal myr is no easy task. She may be lying back on a chair, but she’s still twice the size of your average galactic citizen and sporting an abdomen thick enough to hold dozen huge eggs. Those four nectar-filled canteloupes on her chest don’t help either, even if they are a cushy place for your [pc.belly] to rest. ");
 	if(pc.legCount >= 4) output("All");
 	else output(upperCase(num2Text(pc.legCount)));
-	output(" of her hands grab hold of your [pc.legs] to help you into position. The ease with which she’s able to drag you into place is a little alarming, but then her breath is brushing against your netherlips, a whispered promise of the contact to come.");
+	output(" of her hands grab hold of your [pc.legOrLegs] to help you into position. The ease with which she’s able to drag you into place is a little alarming, but then her breath is brushing against your netherlips, a whispered promise of the contact to come.");
 	output("\n\nYour viewpoint fills with amber flesh as you’re moved into place, at last settling just above the ant queen’s glittering delta.");
 	if(pc.tallness < 70 || pc.isTaur()) output(" You don’t even want to imagine how she’s contorted herself to make the various parts line up. That chair must support some pretty varied positions.");
 	output(" A scent somewhere between maple, honey, and raw sex filters up to your nose, released by the queen’s fore cleft. A hand strokes your back affectionately, causing you to sigh from the contact of her warm chitin on your [pc.skinFurScales].");
@@ -1386,7 +1386,13 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	else pc.buttChange(300);
 
 	output("\n\nSoon the air is filled with the sound of slapping flesh and moans, with you adding your fair share. You're drowning in pleasure, letting out a sweet, muffled cry into the ant queen's muff every time he withdraws and powerfully thrusts back in your ");
-	if(x >= 0) output("drooling snatch. Your trembling [pc.legs] are utterly soaked!");
+	if(x >= 0)
+	{
+		output("drooling snatch. Your trembling [pc.legOrLegs]");
+		if(pc.legCount == 1) output(" is");
+		else output(" are");
+		output(" utterly soaked!");
+	}
 	else output("[pc.butt]. He's really pounding your [pc.asshole]!");
 
 	output("\n\nThe harder the ");
@@ -1428,7 +1434,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	}
 	else if(pc.hasVagina())
 	{
-		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legs] - myr and [pc.cumType].");
+		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.cumType].");
 	}
 	else output("cream yourself around " + partner + "'s deeply buried cock.");
 	output(" Wracking spasms of pleasure seize your body, and your legs go out from under you. Just in time, the ");
@@ -1503,7 +1509,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 	else output("stretched rectum");
 	output(". Irellia seizes the chance to slide up and softly press her lips against yours. You dreamily make out with her, though you're so spent you can barely do anything else.");
 	output("\n\n\"<i>You'll have to come back and do this again sometime. Mating with my drones is always better with company,</i>\" Irellia purrs. You have no problems if the queen wants to share the pleasure around.");
-	output("\n\nWhen your [pc.legs] can finally support your weight, you slide off of " + partner + ", and his cock slides out of your [pc.vagOrAss " + x + "] with a lewd 'pop'. All at once, a thick, gooey stream of spunk floods out of your ");
+	output("\n\nWhen your [pc.legOrLegs] can finally support your weight, you slide off of " + partner + ", and his cock slides out of your [pc.vagOrAss " + x + "] with a lewd 'pop'. All at once, a thick, gooey stream of spunk floods out of your ");
 	if(x >= 0) output("wet lips");
 	else output("[pc.ass]");
 	output(" and down your [pc.thighs]. Before you leave, ");

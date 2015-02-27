@@ -517,7 +517,7 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\nYou smile to yourself. Her imagination has no idea how good you're going to make that bloated horse-dick of hers feel. Placing your hands on her shoulders, you pull yourself up onto just your [pc.feet], balancing yourself as you straddle her splayed legs and align yourself with the pre-spouting pecker. You lower slowly, as her head is at least three or four inches across thanks to its flare, feeling the hot kiss of her efflux as you come within a hairsbreadth touching her spasming flesh. The slick pre soaks your [pc.vaginas] with a clear coat of sopping-wet lust before your own dripping passion causes it to drizzle out onto the tanuki-woman's increasingly slippery nutsack. You decide that you can hold out no longer.");
 
-	output("\n\nRelaxing your [pc.legs], you let her flare smash into your juiced-up gates, spreading them slowly as the rock-hard pillar of cock presses against them, flat with just enough of a curve to make you spread out wider and wider. Whatever chemical lubricant she was using");
+	output("\n\nRelaxing your [pc.legOrLegs], you let her flare smash into your juiced-up gates, spreading them slowly as the rock-hard pillar of cock presses against them, flat with just enough of a curve to make you spread out wider and wider. Whatever chemical lubricant she was using");
 	if (pc.biggestVaginalCapacity() >= kiro.biggestCockVolume()) output(" doesn't matter with as much sexual experience as you've had. This is just a walk in the park for a flexible cunt like yours.");
 	else output(" seems to be working, as the wider you go, the better it feels, and there's not the slightest hint of pain.");
 	output(" Once you're wide enough that you can feel your labia slipping around either side of the blunt tip, you throw back your head in a moan of passion. Her pre-cum is bubbling straight into your passage now.");
@@ -539,7 +539,10 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina "+ selVag +"] should be crying out in protest, but all it's doing is dripping nonstop.");
 
-	output("\n\nTouching down, your [pc.legs] contact with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skin] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
+	output("\n\nTouching down, your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" touches");
+	else output(" contact");
+	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skin] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
 	{
 		output(" Your [pc.cocks] spew");
@@ -580,7 +583,7 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\nPaw-like hands squeeze and grope your tits enthusiastically to add another sensation to the symphony of ecstasy. They roll your [pc.nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [pc.skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.");
 
-	output("\n\nLocked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legs] and eventually [pc.hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your [pc.vagina] only to be sprayed back out later. It's getting so high, and you can actually feel your [pc.feet] touching the ground!");
+	output("\n\nLocked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legOrLegs] and eventually [pc.hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your [pc.vagina] only to be sprayed back out later. It's getting so high, and you can actually feel your [pc.feet] touching the ground!");
 
 	output("\n\nThe raccoon-like space-woman grabs you tighter, more fiercely as her super-long orgasm continues. She's obviously touched down as well, because she's slapping her hips against yours, fucking your cum-buried pussy with steady, machine-like motions. She's working your poor, sodden box with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours -  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive snatch. The jizz crests past your [pc.belly], almost to your");
 	var bRow:int = 0;

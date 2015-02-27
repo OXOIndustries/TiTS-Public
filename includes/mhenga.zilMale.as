@@ -555,7 +555,7 @@ public function giveTheZilAFootjob():void {
 	
 	output("\n\nHearing his gasping moans of approval, you change your movements, alternating between giving him the pressure he needs and pushing your feet and toes against the length of his cock, rubbing it while your toes squish and toy with his smooth, dusky nutsack. <i>“You need to come, don’t you boy? You want to blow that filthy load of cream all over my feet.”</i>  You urge him on, teasing him like that for minutes on end before you let him go into the frenzy his pent-up orgasm has driven him to.");
 	
-	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i>  You grin and give him another push against your sticky toes and legs, moaning as you feel his agile tongue against your [pc.skinFurScales].");
+	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legOrLegs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legOrLegs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i> You grin and give him another push against your sticky toes and legs, moaning as you feel his agile tongue against your [pc.skinFurScales].");
 	
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your feet are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));
@@ -638,7 +638,10 @@ public function alkahestsForeskinOralPlay():void {
 	if(pc.hasVagina()) {
 		output("\n\nYour [pc.vaginas] tingle");
 		if(pc.vaginaTotal() == 1) output("s");
-		output(" with the same heat as the rest of you; boiling juices flow freely down the inside of your thighs. You squeeze your [pc.legs] together to increase the stimulation on your sopping [pc.vaginas]. [pc.EachClit] strains against its hood, throbbing with need.");
+		output(" with the same heat as the rest of you; boiling juices flow freely down the inside of your thighs. You");
+		if(pc.legCount > 1) output(" squeeze your [pc.legs] together");
+		else output(" wriggle your [pc.legOrLegs]");
+		output(" to increase the stimulation on your sopping [pc.vaginas]. [pc.EachClit] strains against its hood, throbbing with need.");
 	}
 	//{IF NIPPLECOCKS}
 	if(pc.hasDickNipples()) {
@@ -717,7 +720,7 @@ public function foreskinWorshipWithPussyCum():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	output("Deciding on pleasing your lady parts, you plop on the ground and your hands glide over your pussy-lips, teasing your folds and stroking your clit. Feeling slightly more adventurous, you insert a number of fingers into your sopping cunt and piston in and out. With your remaining hand you tease and pinch [pc.oneVagina]. As you continue your ministrations your body becomes hotter and hotter, sexual fluids in a flood pouring out of your pussy.");
-	output("\n\nYou feel your release building and building until suddenly the dam breaks and your orgasm floods over your body, wave after wave of electric pleasure passing through you. Having robbed the strength from your [pc.legs], the force of your orgasm causes you to fall on your back, your back arched in pleasure. Your moistened passage ripples and contracts around your invading finger as you scream in pleasure at your release. After the waves of your orgasm subside, you lay in your warm afterglow for a minute before standing and stretching.");
+	output("\n\nYou feel your release building and building until suddenly the dam breaks and your orgasm floods over your body, wave after wave of electric pleasure passing through you. Having robbed the strength from your [pc.legOrLegs], the force of your orgasm causes you to fall on your back, your back arched in pleasure. Your moistened passage ripples and contracts around your invading finger as you scream in pleasure at your release. After the waves of your orgasm subside, you lay in your warm afterglow for a minute before standing and stretching.");
 	didntCumOnZilForeskinPlay();
 }
 
@@ -912,7 +915,7 @@ public function getBredByZil():void {
 	output(" The male's fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folks, adding a second sensation to your already overburdened vagina.");
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = 0;
-	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
+	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legOrLegs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");
 	
 	output("\n\n<i>“Fuck me,”</i> you whimper.");
 	
@@ -1193,7 +1196,7 @@ public function zilSticksItInYourBoot():void {
 		else if(pc.cumQ() <= 10000) output("six-inch deep semen morass");
 		else output("foot deep cum-lake");
 	}
-	output(" you made, the zil spurting his last ropes across your [pc.legs], [pc.butt], and back.");
+	output(" you made, the zil spurting his last ropes across your [pc.legOrLegs], [pc.butt], and back.");
 	
 	output("\n\nHe lands a few feet away and admits, <i>“That was better than I thought it would be. I hope we'll meet again. Maybe I'll </i>");
 	if(rand(2) == 0) output("<i>even let you be on top!</i>");
@@ -1262,7 +1265,7 @@ public function theZilPretendToBeHelia():void {
 	}
 	//{Buttpussy}
 	else {
-		output("\n\nYour [pc.asshole] is well used to the shape of the male's dong at this point, squeezing him whenever he pushes in and winking at him whenever he pulls out to goad him back inside. A slippery flow of honey escapes whenever he draws back, but thankfully he does not stay away long. The zil's wonderfully thick tool bounces in and out with such rapidity that you find yourself climbing towards the edge of climax before you know it, your [pc.legs] quivering as you get off on being used. Your [pc.asshole] is cumming to being used, and the shockwaves of disabling pleasure shiver through your body.");
+		output("\n\nYour [pc.asshole] is well used to the shape of the male's dong at this point, squeezing him whenever he pushes in and winking at him whenever he pulls out to goad him back inside. A slippery flow of honey escapes whenever he draws back, but thankfully he does not stay away long. The zil's wonderfully thick tool bounces in and out with such rapidity that you find yourself climbing towards the edge of climax before you know it, your [pc.legOrLegs] quivers dramatically as you get off on being used. Your [pc.asshole] is cumming to being used, and the shockwaves of disabling pleasure shiver through your body.");
 	}
 	//{dicks}
 	if(pc.hasCock()) {
@@ -1279,7 +1282,7 @@ public function theZilPretendToBeHelia():void {
 			output(" up to slap against the bottom of your multi-legged form, the impacts jarring pleasure through your body the entire way through a blissful ejaculation.");
 			if(pc.cumQ() >= 5000) {
 				output(" Feeling your warm cum rising up around your ");
-				if(pc.cumQ() <= 10000) output("[pc.legs]");
+				if(pc.cumQ() <= 10000) output("[pc.legOrLegs]");
 				else if(pc.cumQ() <= 20000) output("elbow");
 				else output("[pc.chest]");
 				output(" would worry you if you brain wasn't single mindedly occupied with breeding.");

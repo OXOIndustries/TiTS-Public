@@ -650,7 +650,7 @@ public function juroXLyrallPartIV():void
 			if(pc.cumQ() < 15) output("");
 			else if(pc.cumQ() < 50) output("You can feel a few wet spots from your collected pre-cum but try not to focus on it. ");
 			else if(pc.cumQ() <= 500) output("Trickles of pre-cum ooze down your [pc.leg], but you try not to focus overmuch on it. ");
-			else output("Streams of pre-cum run unchecked down your [pc.legs] to pool below you. You try to put it out of your mind, but part of you silently prays that no one notices it. ");
+			else output("Streams of pre-cum run unchecked down your [pc.legOrLegs] to pool below you. You try to put it out of your mind, but part of you silently prays that no one notices it. ");
 			output("Someone is going to have to take care of this pent-up need post-haste.");
 		}
 		//Unclothed
@@ -660,7 +660,7 @@ public function juroXLyrallPartIV():void
 			if(pc.cumQ() < 10) {}
 			else if(pc.cumQ() < 50) output("Heck, a droplet of pre-cum is hanging from your [pc.cockHeadBiggest] right now, but you try not to focus on it.");
 			else if(pc.cumQ() <= 500) output("Trickles of pre-cum ooze down your [pc.leg], but you try not to focus overmuch on it.");
-			else output("Streams of pre-cum run unchecked down your [pc.legs] to pool below you. You try to put it out of your mind, but part of you silently prays that no one notices it.");
+			else output("Streams of pre-cum run unchecked down your [pc.legOrLegs] to pool below you. You try to put it out of your mind, but part of you silently prays that no one notices it.");
 			output(" Someone is going to have to take care of your [pc.cocks] post-haste. ");
 		}
 	}

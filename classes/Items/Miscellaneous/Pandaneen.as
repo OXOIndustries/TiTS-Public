@@ -79,7 +79,7 @@
 				{
 					//Random!
 					if(rand(3) == 0) kGAMECLASS.output("\n\nA slow yawn works its way through your system as you await some changes. Slowly, you raise your hand up to cover your mouth. Have your reflexes slowed?");
-					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou steady your posture some, bracing your [pc.legs] into a comfortable position that you don't really feel like moving from. You're pretty sure your reflexes are slowing as a result.");
+					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou steady your posture some, bracing your [pc.legOrLegs] into a comfortable position that you don't really feel like moving from. You're pretty sure your reflexes are slowing as a result.");
 					else kGAMECLASS.output("\n\nA speck of dust lands in your eye. You didn't manage to blink until after it touched down. Shit! You spend the next two minutes blinking wildly and trying to remove it. Maybe your reflexes aren't as good as they used to be.");
 					changes++;
 					target.reflexes(-1);
@@ -580,7 +580,7 @@
 						//Manyleg -> Pandafeetz
 						else if(target.legCount > 2)
 						{
-							kGAMECLASS.output("\n\nA tremor of warning weakness hits your [pc.legs], but you don't react fast enough for your suddenly quivering lower body. It dumps you on the ground hard enough to hurt, though it doesn't do any actual damage. Your [pc.legs] are slowly combining together, flowing into one another, your bones like butter. Eventually, two distinct shapes resolve in the mass of shifting flesh, dividing into two digitigrade legs. Fur sprouts out of the paw-like feet at the bottom. <b>You've got panda feet with little claws on the toes instead of nails!</b>");
+							kGAMECLASS.output("\n\nA tremor of warning weakness hits your [pc.legOrLegs], but you don't react fast enough for your suddenly quivering lower body. It dumps you on the ground hard enough to hurt, though it doesn't do any actual damage. Your [pc.legOrLegs] are slowly combining together, flowing into one another, your bones like butter. Eventually, two distinct shapes resolve in the mass of shifting flesh, dividing into two digitigrade legs. Fur sprouts out of the paw-like feet at the bottom. <b>You've got panda feet with little claws on the toes instead of nails!</b>");
 						}
 						//Generic -> Pandafeetz
 						else

@@ -232,7 +232,10 @@ public function orderUpOneCumshakeForTurkeySlut():void
 	clearOutput();
 	gobblesHeader();
 
-	output("You slip off your [pc.gear] and pat your thigh, telling the cow that you’d appreciate a little help with your [pc.cock]. You hadn’t even noticed how horny you were getting, but now that she’s drawn attention to it... hoo boy. She chews her lip, giving you a playful grin as she slips down to her knees between your [pc.legs], her plumage flicking behind her. She wraps a hand around your [pc.cock] and gives it a tentative stroke, breathing deep of your scent. Her eyes flutter, and you soon find yourself with a busty cow-girl nuzzling your member, drawing the pre-slick shaft up her cheek until the crown crests her lips.");
+	output("You slip off your [pc.gear] and pat your thigh, telling the cow that you’d appreciate a little help with your [pc.cock]. You hadn’t even noticed how horny you were getting, but now that she’s drawn attention to it... hoo boy. She chews her lip, giving you a playful grin as she slips down to her knees");
+	if(pc.legCount > 1) output(" between");
+	else output(" towards");
+	output(" your [pc.legOrLegs], her plumage flicking behind her. She wraps a hand around your [pc.cock] and gives it a tentative stroke, breathing deep of your scent. Her eyes flutter, and you soon find yourself with a busty cow-girl nuzzling your member, drawing the pre-slick shaft up her cheek until the crown crests her lips.");
 	
 	output("\n\nShe gobbles your member down with gusto, taking you to the hilt in one swift motion");
 	if (pc.balls > 0) output(" that leaves her chin pressed into the swell of your [pc.balls]");
@@ -240,7 +243,7 @@ public function orderUpOneCumshakeForTurkeySlut():void
 	if (pc.balls > 0) output(" and cupping your balls oh so sweetly, rolling the heavy nads in her hand until you can feel the cum churning in them, ready to burst");
 	output(".");
 	
-	output("\n\nJust before it’s too late, though, the cow releases your rod, letting it bob in the warm air. You groan, shifting your [pc.legs] against the hay-covered ground. Instinctively you reach for your rod, trying to bring yourself to orgasm where she would not, but the cow bats your hands away. Instead, after you’ve had a moment to calm down, the cow-girl cups her syrup-laden tits and hefts them up into your lap. <i>“They’re so much softer than any other cow’s,”</i> she boasts, wrapping her tits around your stiff prick with practiced ease. <i>“I’m full of nice, thick syrup instead of watery old milk, you know... can you feel the difference?”</i>");
+	output("\n\nJust before it’s too late, though, the cow releases your rod, letting it bob in the warm air. You groan, shifting your [pc.legOrLegs] against the hay-covered ground. Instinctively you reach for your rod, trying to bring yourself to orgasm where she would not, but the cow bats your hands away. Instead, after you’ve had a moment to calm down, the cow-girl cups her syrup-laden tits and hefts them up into your lap. <i>“They’re so much softer than any other cow’s,”</i> she boasts, wrapping her tits around your stiff prick with practiced ease. <i>“I’m full of nice, thick syrup instead of watery old milk, you know... can you feel the difference?”</i>");
 	
 	output("\n\n<i>“God yes,”</i> you groan in immediate response, digging your fingers into");
 	if (pc.isBiped()) output(" the sides of the chair");
@@ -652,7 +655,7 @@ public function pussyGobble():void
 
 	output("\n\nIf she’s so eager, you’re more than happy to give in to her. You grind and ride her face until you can’t help but scream, arching your back as the cow-turkey drives her probing tongue so deep into you you’d swear she’s touching your womb. Once there, she refuses to withdraw, instead busying herself with wriggling, tentacle-like motions that drive you wild inside. Under an assault like that, you couldn’t stop yourself from cumming even if you wanted to - and you <i>desperately</i> want to.");
 	output("\n\nShudders and shocks of pleasure burst through you, echoing up your spine in crashing waves - and out of your cunt in wet squirts, bathing Canada’s cheeks in [pc.girlCumNoun]. She squeals excitedly, eagerly lapping up every drop you can give her like a starving woman. Even when, panting and gasping, you roll off of her, just just eagerly licks her cheeks until they’re spotless, then slips down and buries her face between your legs, silently confident you can go again. You whine and dig your fingers into the hay as your lover’s tongue probes back into you, happy to clean you inside and out.");
-	output("\n\nBy the time she’s done, you can barely feel your [pc.legs].");
+	output("\n\nBy the time she’s done, you can barely feel your [pc.legOrLegs].");
 	output("\n\n“<i>So sweet!</i>” she declares, rising to her knees and wiping her chin on the back of her hand. “<i>Milking");
 	if(pc.hasStatusEffect("CreamedGobbleCunt")) output(", a rough fuck,");
 	output(" and a snack! You’re too good to me, [pc.name]!</i>”");

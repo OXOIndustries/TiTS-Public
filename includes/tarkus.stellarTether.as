@@ -689,11 +689,13 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 
 	output("\n\nYou struggle through your salty meal, licking up every last drop until your stomach feels full to bursting and there's a thick glaze of cream on your chin. You give another low groan and roll onto your side, wiggling your hips for Mistress, hoping she'll turn the vibe off... or higher up so that you can cum.");
 	//if PC has a dick
-	if(pc.hasCock()) 
+	if(pc.hasCock())
 	{
 		output(" Thanks the to the pressure on your prostate, your own [pc.cocks] twitch");
 		if(pc.cockTotal() == 1) output("es");
-		output(" between your [pc.legs], thankfully unrestrained as ");
+		if(pc.legCount > 1) output(" between");
+		else output(" against");
+		output(" your [pc.legOrLegs], thankfully unrestrained as ");
 		if(pc.cockTotal() == 1) output("it");
 		else output("they");
 		output(" pokes through the crotchless leather suit Mistress has bound you up in.");
@@ -712,7 +714,13 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("pair of huge, swinging mammaries drop out onto the deck! You gasp, suddenly realizing the old trick Mistress has used on you, even as your huge tits expand, growing monstrously huge until you're practically lying atop them, your stunted, bound arms unable to touch the ground. As your chest grows, the rest of you does as well, your hips and ass straining against the tight leather of your puppy-suit, threatening to break from your constraints.");
 
 	output("\n\nBetween the strange, stretching feeling in your suddenly much more curvy body and the vibrator still humming away in your ass, you only just stop short of cumming as waves of mutating bliss flow through your changing body. Mistress gently strokes your [pc.hair], cooing what a good puppy you are as you slump out of her lap, usable to sit upright thanks to your heavier bosom.");
-	if(!pc.hasVagina()) output(" But that's not the last change Mistress's drugs have in store for you, as you can feel a slight, stretching pain in your loins, as something... something tears in your crotch. You cry out, but not in pain, but pleasure. You can't reach back to see what's happening, but Mistress seems to understand your need, as she reaches down and pulls away the leathers covering your groin and ass. You wince as cool air brushes across something new and alien between your [pc.legs] -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
+	if (!pc.hasVagina())
+	{
+		output(" But that's not the last change Mistress's drugs have in store for you, as you can feel a slight, stretching pain in your loins, as something... something tears in your crotch. You cry out, but not in pain, but pleasure. You can't reach back to see what's happening, but Mistress seems to understand your need, as she reaches down and pulls away the leathers covering your groin and ass. You wince as cool air brushes across something new and alien");
+		if(pc.legCount > 1) output(" between");
+		else output(" against");
+		output(" your [pc.legOrLegs] -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
+	}
 	else output(" With your new additions straining against your suit, Mistress slips a hand back around your prone body, yanking down the leather around your [pc.ass] to let your womanhood kiss the stale air of the cabin for the first time in what seems like forever.");
 
 	output("\n\nAs you lie on the deck, Mistress rises to her feet and steps over you, going to the thus-far silent Tam-wolf. You crane your neck around your now-immobile body, trying to see what's going on but not quite able: but you <i>can</i> hear....");
@@ -1713,9 +1721,9 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	output("\n\nThe lust-drunk pirate bucks her hips against your hand, her legs rapidly alternating between being locked together and splaying out in rapture. The inner walls of her sex clamp around your hand like a cinch, but you pull in and out just as rapidly, adding a third finger to your spelunking escapade. In the excitement, you fail to notice that her other arm has edged its way out of the body trap you’d placed it under.");
 	output("\n\nYou tense in astonishment as a feral growl escapes the captain's throat, and she grasps both of your shoulders, rolling both of you over till she lies on top of you. <i>“I can’t just lie there and not give anything back, can I Steele?”</i>");
 	//if pc shortstack:
-	if(pc.tallness <= 59) output("\n\nShe sits atop your fingers, hands gripping at [pc.fullChest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her pants. The britches, having already been tatters at the start of your lovemaking, are soaked so deeply that droplets of Khorgan’s feminine juices drip down periodically onto your own sex. You shiver as her fluids mix with the ones already trickling down your [pc.legs] from [pc.eachVagina].");
+	if(pc.tallness <= 59) output("\n\nShe sits atop your fingers, hands gripping at [pc.fullChest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her pants. The britches, having already been tatters at the start of your lovemaking, are soaked so deeply that droplets of Khorgan’s feminine juices drip down periodically onto your own sex. You shiver as her fluids mix with the ones already trickling down your [pc.legOrLegs] from [pc.eachVagina].");
 	//if pc notsoshort:
-	else output("\n\nThe thraggen captain straddles your hand which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she eases up, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sends rivulets of your sexual fluids dripping down your [pc.legs].");
+	else output("\n\nThe thraggen captain straddles your hand which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she eases up, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sends rivulets of your sexual fluids dripping down your [pc.legOrLegs].");
 	output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move them around to her chiseled ass. You slip your second hand under her pants as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands and pull her torn britches down to her knees, flipping her onto her back with the momentum.");
 	output("\n\nThe jade-skinned pirate's face is a mask of shock, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s bewildered form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.");
 	output("\n\nUnable to wait any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.");
@@ -2422,7 +2430,9 @@ public function kaskaBadEndPartDues():void
 		output(". Involuntary spasms clench your [pc.asshole] around the anal intruder, squeezing Kaska's dick in what feels like a familiar, affectionate way.");
 		output("\n\n<i>\"Ooh, buttslut likes, does she?\"</i> Kaska asks while reaching down to cup one cheek. <i>\"I'm told a lot of races don't really care for it, my own among them, but us alphas just can't help but want to plug it.\"</i> She slowly pulls out, dripping pre-cum over the emptiness inside you before thrusting back into her self-lubricated, anal toy. You shiver in unexpected delight.");
 		output("\n\nKaska suggests, <i>\"There must be a helluvalot of nerves back there, or something. In my experience, people that don't like anal just didn't have a partner that knew what they were doing.\"</i> She bounces off your cheeks, lazily fucking your ass with slow, even strokes. <i>\"I've never had anyone complain after I've pounded their ass.\"</i> She playfully paddles your bum. <i>\"Aside from complaining about walking funny, that is.\"</i>");
-		output("\n\nYou nod; you'll definitely be walking funny when she finishes with you, but it does feel really, really good. Your [pc.legs] tremble when she bottoms out again.");
+		output("\n\nYou nod; you'll definitely be walking funny when she finishes with you, but it does feel really, really good. Your [pc.legOrLegs] tremble");
+		if(pc.legCount == 1) output("s");
+		output(" when she bottoms out again.");
 		if(pc.hasCock()) output(" Milked-out [pc.cumNoun] trickles down the side of the crate in small streams. You haven't even came yet, but she's squeezing the stuff out of you nonetheless.");
 		output(" Wow.");
 
@@ -2435,7 +2445,9 @@ public function kaskaBadEndPartDues():void
 
 		output("\n\nKaska picks up fucking you, going faster now. She purrs, <i>\"Good slut,\"</i> while her hips piston away, feeding her eleven inches into your nicely-gaped ass with ease. You're coming to hate the empty feeling moments when she's almost pulled out, but they make the seconds of total penetration that much sweeter. Her sweaty balls noisily slap at your [pc.skinFurScales], churning with their burgeoning load. Her cock is getting thicker as well, filling past capacity with blood in the seconds before it finally cums.");
 		output("\n\nScrabbling at the edge of the crate, you brace yourself as Kaska joins you in moaning, digging your fingertips into the metal and plastic as the dickgirl really starts to ream you. The spit and precum have combined into a slurry of fuck-fueling lubrication that noisily squelches with each pistoning thrust. Over the sensual din, you hear her cry out, <i>\"Take it, slut!\"</i> a moment before her cock surges. The feeling of her cum flooding your ass is like a subtle, spreading warmth that makes her thrusts feel even better.");
-		output("\n\nYour [pc.legs] flop bonelessly as you're drilled and filled, your ass inseminated with alien spunk and loving it. Your [pc.asshole] flutters, leaking cum, and you finally lose it, screaming and babbling encouragement, degrading yourself and begging her to fill you up with more. Kaska does not disappoint. Her orgasm even manages to outlast your own. By the time you sag, limp, she's still pumping her hips and creaming your backdoor.");
+		output("\n\nYour [pc.legOrLegs] flop");
+		if(pc.legCount == 1) output("s");
+		output(" bonelessly as you're drilled and filled, your ass inseminated with alien spunk and loving it. Your [pc.asshole] flutters, leaking cum, and you finally lose it, screaming and babbling encouragement, degrading yourself and begging her to fill you up with more. Kaska does not disappoint. Her orgasm even manages to outlast your own. By the time you sag, limp, she's still pumping her hips and creaming your backdoor.");
 		output("\n\nLying there, helpless and spent, you're surprised by how satisfying it feels to take her jizz, how right it feels nestled inside you. Anal isn't supposed to be quite this good, is it? Isn't this how vaginas are supposed to feel, not asshole? Kaska squirts a last dollop of her cock's heavy cream into your stuffed belly, scattering any concerns. You won't mind doing this again.");
 	}
 	//Merge with generic kaska pulling out of a well-fucked hole and giving the PC a sedative.
@@ -2719,7 +2731,7 @@ public function makeKaskaSuchYerCoochLikeABaws():void
 	output("\n\nKaska's tongue goes wild against [pc.oneClit] at the same time that her orgasm hits her. The wild thrashing of that slick muscle on your most sensitive place nearly doubles you over, and you instinctively grab her by the back of her head, mashing her face harder into your juicing cunn");
 	if(pc.totalVaginas() == 1) output("y");
 	else output("ies");
-	output(". Wet trails of cum fall on your [pc.legs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.");
+	output(". Wet trails of cum fall on your [pc.legOrLegs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.");
 	output("\n\nIf gravity were normal, you both would've collapsed into a pile of sweaty, orgasmically spent bodies long ago, but you're able to float in place, cumming yourselves dry, for some time. When you do manage to stumble away from the jizz-stained pirate, she's gasping and weakly stroking herself, her lips stained with your [pc.girlCum] and as much of her own juice as she can gather.");
 	output("\n\nKaska won't be bothering anyone for a while.");
 	if(flags["TARKUS_BOMB_TIMER"] != 0) output(" You had better deal with the bomb.");
@@ -3104,10 +3116,10 @@ public function bidVariable(arg:Number = 20000):void
 	output("<i>\"" + arg + "\"</i> you announce.");
 	output("\n\nShekka peeps, mouse-like, and claps her hands across her mouth. The pressure of her excitement instead chooses to vent by making her tail wag, and it clangs noisily against the metal of the probe. <i>\"Really!?\"</i> she gasps. <i>\"You win. I can fix so many things on Novahome with all that cash!\"</i>");
 	//Sexed:
-	if(flags["TIMES_SEXED_SHEKKA"] != 0) 
+	if(flags["TIMES_SEXED_SHEKKA"] != 0)
 	{
 		output(" The exuberant raskvel hugs");
-		if(pc.tallness >= 84) output(" your [pc.legs]");
+		if(pc.tallness >= 84) output(" your [pc.legOrLegs]");
 		else output("you");
 		output(". <i>\"You're the best!\"</i>");
 	}

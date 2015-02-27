@@ -624,7 +624,7 @@ public function talkToShekkaAboutHerself():void
 	output(" <i>\"Can't you just buy a gene mod or treatment to fix yourself?\"</i>");
 	output("\n\nThe little mechanic shakes her head sadly, her ears chiming sad musical notes. <i>\"Not yet. Not safely, anyway. It'll be a little while yet until the pharmaceutical companies have finished unwinding the details of our genome to see which products are safe for us and which could kill or mutate us. If I took the wrong thing, I could wind up producing eggs until I rupture my abdomen or making ones that are too big for the thickness of their shells. The potential problems are endless.</i>\" She shudders, <i>\"I can wait. Besides, my sterility has had some upsides.\"</i>");
 	output("\n\nThat's more that attitude you'd expect from one of her species: always looking for the upsides. <i>\"Oh?\"</i>");
-	output("\n\nShekka nods eagerly. <i>\"It's a lot easier to take a long view when you're not throwing your [pc.legs] in the air every hour or two. I never would have been this successful if I was lazing around between layings trying to entice the boys into swelling me up more eggs.\"</i> She waggles a finger in your direction. <i>\"That sort of thing is all too common for a lot of girls, and if you were to ask them, they couldn't be happier. I'd imagine that's true with all the endorphins swimming around inside them.\"</i>");
+	output("\n\nShekka nods eagerly. <i>\"It's a lot easier to take a long view when you're not throwing your [pc.legOrLegs] in the air every hour or two. I never would have been this successful if I was lazing around between layings trying to entice the boys into swelling me up more eggs.\"</i> She waggles a finger in your direction. <i>\"That sort of thing is all too common for a lot of girls, and if you were to ask them, they couldn't be happier. I'd imagine that's true with all the endorphins swimming around inside them.\"</i>");
 	output("\n\n<i>\"Is that a note of jealousy I hear in your voice?\"</i> you question.");
 	output("\n\n<i>\"A little bit, maybe, but just because they're riding a biological high doesn't mean I'm going to join them any time soon.\"</i> She shakes her head, saying, <i>\"My work and helping to chart a course for my people's future... those are fulfillment on a whole different level. Besides, I still get to take the occasional egg-break when a big, strong offworlder decides to pack me full of cum.\"</i> Shekka shivers, her eyes half closing at a fond memory. <i>\"Those kui-tan sure know how to fill a womb!\"</i>");
 	output("\n\nYour ");
@@ -837,7 +837,10 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	output("\n\n<i>\"What's the matter?\"</i> Shekka wonders, applying some ED-80 to some rusted screws to help loosen them. <i>\"Having a little trouble with unwrapping me?\"</i>");
 	if(pc.hasCock() || pc.hasVagina()) 
 	{
-		output(" She brings her tail up between your [pc.legs] to slide alongside ");
+		output(" She brings her tail up");
+		if(pc.legCount > 1) output(" between");
+		else output(" around");
+		output(" your [pc.legOrLegs] to slide alongside ");
 		if(pc.balls > 0) output("your [pc.sack]");
 		else if(pc.hasVagina()) output("[pc.oneVagina]");
 		else output("your [pc.base " + x + "]");
@@ -1019,7 +1022,9 @@ public function tailbadism():void
 	output("\n\nShekka's fingers are no less busy");
 	if(!pc.isNude()) output(", moving amidst your [pc.gear], separating it from your [pc.skinFurScales] with deft contortions of her fingers");
 	else output(", moving over your [pc.skinFurScales]");
-	output(", crawling over your body to your [pc.nipples]. They gently tweak them while her tongue curls around your own, filling your mouth with inch after inch of the pliable organ. You stumble around the room from junkpile to junkpile. Your [pc.legs] unsteadily wobble as you try to focus on twisting tongues and the slim fingers prodding at your");
+	output(", crawling over your body to your [pc.nipples]. They gently tweak them while her tongue curls around your own, filling your mouth with inch after inch of the pliable organ. You stumble around the room from junkpile to junkpile. Your [pc.legOrLegs] unsteadily wobble");
+	if(pc.legCount == 1) output("s");
+	output(" as you try to focus on twisting tongues and the slim fingers prodding at your");
 	if(!pc.isNude()) output(" increasingly nude");
 	output(" form.");
 
@@ -1045,7 +1050,7 @@ public function tailbadism():void
 	output(" mechanic to the ground with your creaming-wet pussy, wrapping half of her tail with your folds. On the other side, her immensely engorged labia spread until you can feel them kissing around the trembling intruder. Both pussies lock into a sopping-wet embrace around her vibrating tail; you barely seem to be different creatures. Where once there were two aroused beings, there remains only a single, writhing beast of sapphic desire.");
 	output("\n\nThe buzz quiets, drowned in a sea of feminine lubricants, but you are far from idle. Supporting yourself with one hand, you reach for one of Shekka's breasts, grabbing on for dear life. It's soft and supple, blushing hotly. You can feel the little raskvel's tiny heart hammering in her chest as you squeeze. The eager pushes and prods of her own fingers against your [pc.chest] abate. Instead, her arms close around your neck and pull you into her, kissing you once more. Her nails dig into your back, but your sense of pain is deadened by white hot bar of pleasure assailing your loins.");
 	output("\n\nDamn, Shekka's tongue is long. She could probably loop it around your tonsils if she wanted to, but she seems content to slide it against your mouth's muscle, curling and squeezing it, sometimes constricting, boa-like around it. You lose yourself in the tangle of limbs, the ecstasy of one body pressed against another and the constant vibrations torturing your [pc.clit] with pleasure. The room seems to be spinning.... Wait, it is spinning!");
-	output("\n\nShekka pins you flat on your back, but it frees you to reach down and grab her ass, to feel her cheeks twitch and her muscles dance when a spasm of uncontrollable sexual energy convulses through her hips. She squirms, moaning into you. Your hands pull her harder against you, increasing the force of the tremors wracking your cunt - and hers. The scaley slut screams into your mouth and finally breaks the kiss, shrieking into your shoulder as she cums. Her juices spatter over your [pc.legs] like rain from a typhoon. It's all you can do to steady her thrashing form from tumbling to the floor while avoiding a cunt-wrenching cum all your own.");
+	output("\n\nShekka pins you flat on your back, but it frees you to reach down and grab her ass, to feel her cheeks twitch and her muscles dance when a spasm of uncontrollable sexual energy convulses through her hips. She squirms, moaning into you. Your hands pull her harder against you, increasing the force of the tremors wracking your cunt - and hers. The scaley slut screams into your mouth and finally breaks the kiss, shrieking into your shoulder as she cums. Her juices spatter over your [pc.legOrLegs] like rain from a typhoon. It's all you can do to steady her thrashing form from tumbling to the floor while avoiding a cunt-wrenching cum all your own.");
 	output("\n\nNervelessly fluttering, Shekka's fingers telegraph her orgasm directly into your ");
 	if(pc.biggestTitSize() >= 1) output("breasts");
 	else output("chest");
@@ -1091,7 +1096,9 @@ public function shekkaGrindsFinish():void
 	//Had 'em before
 	else
 	{
-		output("\n\nShekka smirks as you get up on wobbly [pc.legs]. <i>\"It was only a little fun....\"</i>");
+		output("\n\nShekka smirks as you get up on");
+		if(pc.legCount == 1) output(" your");
+		output(" wobbly [pc.legOrLegs]. <i>\"It was only a little fun....\"</i>");
 		output("\n\nYou roll your eyes. <i>\"It's a good thing you're not any bigger then! I'm not sure I could handle any more of you vibrating like that.\"</i>");
 	}
 	//Merge
@@ -1122,7 +1129,7 @@ public function hugeEarShekkaFaps():void
 	
 	output("You lean in against the diminutive mechanic, close enough for your pulsing bulge to get her attention. The gesture is as subtle as a cargo ship tumbling through lower orbit. Shekka motions for you to ");
 	if(pc.isNude()) output("strip and ");
-	output("get down on the ground, a request you happily see to in short order. The warehouse loor is cool on your [pc.butt], and it takes a bit to get comfortable as you prop up on your lower arms. Comfort isn’t all that big a priority once your raskvel dance partner is back in clear view, situated between your [pc.legs].");
+	output("get down on the ground, a request you happily see to in short order. The warehouse loor is cool on your [pc.butt], and it takes a bit to get comfortable as you prop up on your lower arms. Comfort isn’t all that big a priority once your raskvel dance partner is back in clear view, situated between your [pc.legOrLegs].");
 	output("\n\nWhereas you ");
 	if(pc.isNude()) output("rid yourself of gear and ");
 	output("clambered down in almost record time, Shekka is more concerned with taking her time on a proper show. The reptilian handywoman's seductive gaze effortlessly hooks you in as her hands reach back to undo her jumpsuit. Each enticing inch of the fabric curtain clings desperately to her fine, crimson scales before surrendering its captives to bounce back in freedom. A tail skimming across your [pc.skin] in pace with the strip-tease adds a subtle physicality to the presentation; it’s enough for your rocket to prepare to launch.");
@@ -1659,7 +1666,7 @@ public function chillOutShekkaFirstGen():void
 	else if(rand(2) == 0) output("Next,");
 	else output("Then,");
 	output(" you choose to press the icy blue button labeled <i>“Chill.”</i> Shekka lets out a satisfied breath and snuggles back into the cock. That’s not quite the reaction you were hoping for. She lets her head rest on her hands, smiling thoughtfully at you from her spot. You’re sure she’s thinking about her victory, and that thought steels you for what’s to come.");
-	output("\n\nAt least until she presses her button. As soon as she lifts her finger your [pc.vagOrAss] is flooded with heat. You feel your [pc.legs] tense, leading to the eventual flush of your whole body as warmth surges through you. For a moment you feel like giving up on the spot, but recover quickly. The temperature feels good, but it’s not enough to drive you mad that easily. You smile at the peppy mechanic, giving her a determined stare.");
+	output("\n\nAt least until she presses her button. As soon as she lifts her finger your [pc.vagOrAss] is flooded with heat. You feel your [pc.legOrLegs] tense, leading to the eventual flush of your whole body as warmth surges through you. For a moment you feel like giving up on the spot, but recover quickly. The temperature feels good, but it’s not enough to drive you mad that easily. You smile at the peppy mechanic, giving her a determined stare.");
 	output("\n\n<i>\"I won’t give up that easily!”</i> you tell her with renewed resolve. She grins back, checking over her options. The chilly dicking seems to be giving her more time to think. Perhaps if you play the game again it might not be the best choice to use against her. You return your attention to your remote, hoping you won’t have another mistake like that.");
 	processTime(1);
 	chars["SHEKKA"].lust(5);
@@ -2153,7 +2160,7 @@ public function pcLosesToNewShekkaBots():void
 	else if(pc.hasCock()) output("splattering the floor when [pc.eachCock] blows a load beneath you");
 	else output("spattering the robot’s hips with your [pc.girlCum]");
 	output(".");
-	output("\n\n<i>\"Ooooh,”</i> is all you can manage while the muscles in your [pc.legs] clamp up, your [pc.vagOrAss] tightening like a vice around the robotic intruder. Shekka cheers in victory before letting herself fall to her own pleasure. She sighs as her toes curl, and her eyes roll back into her head. You both share a moment of mindless bliss before coming back to your senses.");
+	output("\n\n<i>\"Ooooh,”</i> is all you can manage while the muscles in your [pc.legOrLegs] clamp up, your [pc.vagOrAss] tightening like a vice around the robotic intruder. Shekka cheers in victory before letting herself fall to her own pleasure. She sighs as her toes curl, and her eyes roll back into her head. You both share a moment of mindless bliss before coming back to your senses.");
 	output("\n\n<i>\"Thanks for playing with me again. Sorry you had to lose,”</i> Shekka says once she’s recovered. She crawls over to you, giving you a kiss before helping you up and finding your gear for you. You offer to help her clean up, but she dismisses it, saying she’ll clean it up later. You equip your things, ready to go on your way.");
 	processTime(4);
 	pc.removeStatusEffect("Shekka_Sexbot_Round");

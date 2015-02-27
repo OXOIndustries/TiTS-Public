@@ -301,7 +301,12 @@ public function bendItLikeBeckhamForRenvra():void
 
 	output("\n\nYou try desperately to ignore the burning desire spreading through your body. Still, ");
 	if(!pc.hasCock() && !pc.hasVagina()) output("the skin of your sexless crotch reddens, drawing down one of your hands to helplessly stroke it, trying to get some measure of pleasure from yourself");
-	else if(pc.hasCock()) output("your cock jumps to attention, throbbing powerfully between your [pc.legs]. You reach down and stroke it, urgently beating your meat while you can, knowing full well Renvra won’t be touching it");
+	else if(pc.hasCock())
+	{
+		output("your cock jumps to attention, throbbing powerfully");
+		if(pc.legCount > 1) output(" between your [pc.legs]");
+		output(". You reach down and stroke it, urgently beating your meat while you can, knowing full well Renvra won’t be touching it");
+	}
 	else output("[pc.eachVagina] reddens, its lips flushing with unbidden chemical lust. You reach down to your nether lips, stroking them and smearing your eager excitement around. The more lube the better, you suppose...");
 	output(".");
 
@@ -319,7 +324,7 @@ public function bendItLikeBeckhamForRenvra():void
 	output("\n\n“<i>Now that’s what I like to see,</i>” Renvra growls, grabbing your [pc.butt] and sinking her plated fingers into you.");
 	if(pc.isBimbo()) 
 	{
-		output(" “<i>Come all the way across the galaxy to spread your [pc.legs] for any alien with a big enough cock to full that ");
+		output(" “<i>Come all the way across the galaxy to spread your [pc.legOrLegs] for any alien with a big enough cock to fill that ");
 		if(x >= 0) output("[pc.vagina " + x + "]");
 		else output("[pc.asshole]");
 		output(" of yours, huh? You spacers are really something... but I guess I could get used to it.");
@@ -491,7 +496,7 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 	showRenvra();
 	output("“<i>That’s what I like to hear!</i>” Renvra growls, shifting her stance back slightly, bringing her nyrean knot away from the lips of your cunt. “<i>Just lie back and relax, spacer. I’ll get you nice and full of my young...</i>”");
 
-	output("\n\nOn the cusp of responding, you find yourself being hauled up by Renvra’s startlingly strong arms. She hefts you up and flips you onto your back, letting your [pc.legs] wrap around her. She kisses you, pulling you tight as you feel the contractions of her hefty member start, and the flood of pink, creamy pre growing thicker inside your stretched-out hole.");
+	output("\n\nOn the cusp of responding, you find yourself being hauled up by Renvra’s startlingly strong arms. She hefts you up and flips you onto your back, letting your [pc.legOrLegs] wrap around her. She kisses you, pulling you tight as you feel the contractions of her hefty member start, and the flood of pink, creamy pre growing thicker inside your stretched-out hole.");
 	output("\n\n“<i>Here we go,</i>” she moans, speaking in perfect cadence with her thrusts. “<i>Get ready!</i>”");
 	output("\n\nYou’re as ready as you’re going to be, and tell her as much with another orgasmic scream, letting your body carry you to the peaks of pleasure as its filled with a sudden, massive load of aphrodisiacs. Every touch seems to send you shivering and screaming to climax again, and Renvra’s pounding thrusts make your whole body feel as sensitive as [pc.oneClit], awash in sensation. Your hands instinctively go to your [pc.belly], wandering across the taut flesh there as you’re filled with your lover’s wonderfully thick semen.");
 	output("\n\nWhen she’s finally spent, Renvra gives a weak moan and falls forward, head collapsing into your [pc.chest]. You smile and run a hand through her spine-like hair, stroking her as her cock twitches and drools inside you.");
@@ -621,7 +626,7 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	else output(" womb");
 	output(".");
 
-	output("\n\nYou curl up and spread your [pc.legs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
+	output("\n\nYou curl up and spread your [pc.legOrLegs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
 	if (pc.hasCock() || pc.hasVagina()) output(" You instinctively begin masturbating, unable to resist the alien pleasure.");
 	else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
 	output(" The first egg starts pushing through you, slowly but surely reaching");
@@ -646,8 +651,9 @@ public function renvraEggnancyEnds(pregSlot:int):void
 	}
 	output(". The egg squeezes out with a wet “POP,” rolling out of you and onto the ground in a pool of pink nyrean fluids.");
 	
-
-	output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down between your [pc.legs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut.");
+	output("\n\nYou shiver as you lay the first egg of the clutch, dropping the egg down");
+	if(pc.legCount > 1) output(" between");
+	output(" your [pc.legOrLegs]. You sigh in relief, your belly noticeably shrunken. But it's not empty yet, and you soon feel another shift in your swollen gut.");
 	if (pData.pregnancyQuantity == 2) output(" The");
 	else output(" A");
 	output(" second egg begins its descent, refusing to let you recover after the first. Your");
@@ -873,7 +879,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 
 		output("\n\nYour hands grab your gut, and instantly feel something shifting just under your gravid flesh. The children inside you are moving, straining against your gut in a desperate bid to escape. With a panicked cry, you slump down to the ground and strip off your [pc.gear]. You feel your water break, a flood of wetness splashing down your thighs as your offspring get ready to come into the world! Your back arches as pleasure washes over you, brought on by the first shifting mass of a body starting its lengthy journey out of your womb.");
 
-		output("\n\nYou curl up and spread your [pc.legs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
+		output("\n\nYou curl up and spread your [pc.legOrLegs], giving your young charges as easy an access to the open air as you can. All there is to do after that is sit back and push. Your body convulses, the strange sensation of stretching pleasure overwhelming your senses.");
 		if (pc.hasVagina() || pc.hasCock()) output(" You instinctively begin masturbating, unable to resist the alien pleasure.");
 		else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
 		output(" The first child's crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");

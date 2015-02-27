@@ -167,7 +167,7 @@ public function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	//{If voluntary}
 	else
 	{
-		output("You approach a little hesitantly, finding yourself increasingly horny thanks to the way she undulates her nubile form for your enjoyment, even going so far as to pull up her leafy top and release it, setting her swollen breasts to jiggling while her verdant bra tumbles open. Two cherry-sized nipples jut out, hard and purplish in the dim light, just waiting to be tweaked. You find your [pc.legs] accelerating in your hurry to sample her wares, and before you know it, you're a step away.");
+		output("You approach a little hesitantly, finding yourself increasingly horny thanks to the way she undulates her nubile form for your enjoyment, even going so far as to pull up her leafy top and release it, setting her swollen breasts to jiggling while her verdant bra tumbles open. Two cherry-sized nipples jut out, hard and purplish in the dim light, just waiting to be tweaked. You find your [pc.legOrLegs] accelerating in your hurry to sample her wares, and before you know it, you're a step away.");
 		output("\n\nStartled, you stop, sneezing sheepishly and wiping your nose. Her breasts are just that step away");
 		if(pc.isAss()) output(" but you know the real deal is probably in that hole. Oh well, no time like the present");
 		output(". You move up, trying to palm a quick squeeze, but the ground opens up underneath you, dropping you into darkness...");
@@ -353,14 +353,14 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	//{Vaguyna}
 	if(pc.totalVaginas() == 1)
 	{
-		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva and [pc.clits] a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
-		output("\n\nYour squeal of pleasure and pain at being forced wide is muffled by the tendril in your mouth. The cock-tentacle impales you. It plows you wide open. Your passage is pulled wide by the large, flared cock as it pushes in all the way to your cervix, bubbling its hot fluids against the slight barrier as it adjusts to your tightness. You instinctively try to move your [pc.legs], though whether to wrap around an imaginary lover or curl up away from the discomfort, you aren't sure. One thing you are sure of is that you're full. The tendril starts to move, and you whimper as it scrapes along your walls, firing off every nerve in your cunt as it pulls out, only to thrust back in, just starting to properly fuck you.");
+		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legOrLegs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva and [pc.clits] a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
+		output("\n\nYour squeal of pleasure and pain at being forced wide is muffled by the tendril in your mouth. The cock-tentacle impales you. It plows you wide open. Your passage is pulled wide by the large, flared cock as it pushes in all the way to your cervix, bubbling its hot fluids against the slight barrier as it adjusts to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around an imaginary lover or curl up away from the discomfort, you aren't sure. One thing you are sure of is that you're full. The tendril starts to move, and you whimper as it scrapes along your walls, firing off every nerve in your cunt as it pulls out, only to thrust back in, just starting to properly fuck you.");
 		pc.cuntChange(0,chars["VENUSPITCHER"].cockVolume(0));
 	}
 	//{MultiVaguyna}
 	else if(pc.totalVaginas() > 1) {
-		output("\n\nSinuous slithering can be felt all along your [pc.legs], curling slowly as they wind their way higher, inexorably closing the distance between themselves and your [pc.vaginas]. You sigh and slump down to get them closer, but the tentacles suspending you inside this plant pod don't give you enough slack to get any closer to the crawling promises of penetration below. Thankfully, they continue their dogged ascent up your body, sliding along the exterior of your multiple vulvae and [pc.clits] a few times as they slowly part your labia with the curvature of their shafts. They slide back down whilst pushing against you, angling their cockheads up to start prying you the rest of the way open, stretching all your cunts at once as they shove insistently on your entrances, bathing them in lubricant.");
-		output("\n\nYour squeal of pleasure and pain at being forced wide open in more than one place at once is muffled by the tendril in your mouth. The cock-tentacles impale you, plowing you wide open. They stretch your passages wide open around their large, flared cocks, pushing them all the way to your cervixes, bubbling their hot fluids against the slight barrier as they adjust to your tightness. You instinctively try to move your [pc.legs], though whether to wrap around your imagination partners or curl away in discomfort, you aren't sure. One thing you're sure of is that you are incontrovertibly full. The tendrils start to move, and you whimper as they scrape along your walls, firing off every nerve ending in your cunts as they pull out, only to thrust back in, just starting to properly fuck you.");
+		output("\n\nSinuous slithering can be felt all along your [pc.legOrLegs], curling slowly as they wind their way higher, inexorably closing the distance between themselves and your [pc.vaginas]. You sigh and slump down to get them closer, but the tentacles suspending you inside this plant pod don't give you enough slack to get any closer to the crawling promises of penetration below. Thankfully, they continue their dogged ascent up your body, sliding along the exterior of your multiple vulvae and [pc.clits] a few times as they slowly part your labia with the curvature of their shafts. They slide back down whilst pushing against you, angling their cockheads up to start prying you the rest of the way open, stretching all your cunts at once as they shove insistently on your entrances, bathing them in lubricant.");
+		output("\n\nYour squeal of pleasure and pain at being forced wide open in more than one place at once is muffled by the tendril in your mouth. The cock-tentacles impale you, plowing you wide open. They stretch your passages wide open around their large, flared cocks, pushing them all the way to your cervixes, bubbling their hot fluids against the slight barrier as they adjust to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around your imagination partners or curl away in discomfort, you aren't sure. One thing you're sure of is that you are incontrovertibly full. The tendrils start to move, and you whimper as they scrape along your walls, firing off every nerve ending in your cunts as they pull out, only to thrust back in, just starting to properly fuck you.");
 		//[cunt stretchin' checks]
 		for(var b:int = 0; b < pc.totalVaginas(); b++) {
 			pc.cuntChange(b,chars["VENUSPITCHER"].cockVolume(0));
@@ -410,7 +410,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 		if(pc.cumQ() >= 200 && pc.cumQ() <= 1000) output(", bulging them with your sheer virility.");
 		else if(pc.cumQ() > 1000) 
 		{
-			output(", bulging them with your sheer virility while the excess spatters out around their entrances, dripping down your [pc.legs]");
+			output(", bulging them with your sheer virility while the excess spatters out around their entrances, dripping down your [pc.legOrLegs]");
 			if(pc.cumQ() >= 8000) output(" and filling a good portion of the bulb’s bottom");
 		}
 		output("."); 
@@ -653,7 +653,7 @@ public function repeatVenusPitcherHypnoGo():void {
 	
 	output("\n\nThe sensuously stacked slut coos, <i>“Come closer.... Come closer so that my breasts and nipples can ensnare you further. There’s nothing to worry about here, nothing except the chance of you missing out on a wonderful time. And as ensorceled as you are, there’s no chance of that. Come here and sink deeper for my breasts, pet. Let them smother your mind in ecstasy.”</i>");
 	
-	output("\n\nHer breasts get bigger and bigger in your fixated view, bouncing and jiggling in their hypnotizing circles as you breathe in more and more of her relaxing spores. Your mind is empty and relaxed. Your hands are busy groping your body. You are, in a word, helpless, subject to this busty flora’s whims. Her soothing whispers draw you in like a moth to a flame, irresistibly tugging on you with half-thought, unformed need that makes your [pc.legs] slowly advance. The power she radiates seems more intense the closer you get to her mammoth tits, so strong now that the tiny whispers that lick at the back of your mind are winking out one by one, disappearing into blissful obedience.");
+	output("\n\nHer breasts get bigger and bigger in your fixated view, bouncing and jiggling in their hypnotizing circles as you breathe in more and more of her relaxing spores. Your mind is empty and relaxed. Your hands are busy groping your body. You are, in a word, helpless, subject to this busty flora’s whims. Her soothing whispers draw you in like a moth to a flame, irresistibly tugging on you with half-thought, unformed need that makes your [pc.legOrLegs] slowly advance. The power she radiates seems more intense the closer you get to her mammoth tits, so strong now that the tiny whispers that lick at the back of your mind are winking out one by one, disappearing into blissful obedience.");
 	
 	output("\n\nStumbling, you snag on the edge of an unseen, unnoticed hole and begin to fall. Hypnotized as you are, you don’t even windmill your arms. You just watch the juicy, mesmerizing tits get closer, lacking the foresight to realize that your fall could take them out of sight forever....");
 	
@@ -724,7 +724,7 @@ public function watchElderVenusPitcher():void {
 	output("\n\nThe verdant maiden purrs, <i>“You don’t need to touch yourself. You know you could walk up to me, and I would make you feel so good.”</i>");
 	output("\n\nYou mumble something that sounds like, <i>“Can’t fuck everything I meet.”</i>");
 	
-	output("\n\nIn a voice so throaty and lustful that it makes your [pc.legs] shudder, the venus pitcher woman answers, <i>“You can make an exception for me and my sisters. We don’t want to do anything bad to you</i>");
+	output("\n\nIn a voice so throaty and lustful that it makes your [pc.legOrLegs] shudder, the venus pitcher woman answers, <i>“You can make an exception for me and my sisters. We don’t want to do anything bad to you</i>");
 	if(rand(3) == 0) output("<i>; we just want to make you feel good for as long as possible and help you cum out all that pent-up, nasty tension whenever it rises up inside you</i>");
 	else output("<i>; we just want to to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
 	output("<i>. What not to love? Honestly, I’d be surprised if you weren’t already rationalizing a reason to crawl into my arms and let me and my perfect tits take you to a paradise beyond imagining, </i>");
@@ -747,7 +747,7 @@ public function watchElderVenusPitcher():void {
 	
 	output("\n\nShifting slowly, gravity seems to spin around you, tugging on your body in different ways while your face remains steadfastly planted in the plant-boobs. The motion ceases once you feel suspended upside down. A tiny, mental voice whispers that you should be alarmed at this, but you know that you’re safe with the venus pitcher and in complete control. You’re simply enjoying the show and how good her words can make you feel, particularly when you obey them without questioning their meaning.");
 	
-	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
+	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legOrLegs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
 	
 	output("\n\n<i>“Now, you just lie back there, and I’m going to make you cum so very, very well,”</i>  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
 	processTime(5+rand(5));
@@ -906,8 +906,18 @@ public function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nThe tentacle buried in your [pc.vagina " + x + "] bottoms out while the larger, massive tentacle mashes itself against your pubic mound");
 	if(pc.clitLength >= 3) output(", allowing your [pc.clit] to slide up its convulsing urethra");
 	output(". Both stalks flex, thickening slightly, and rounded bulges begin to gather at their bases, launching through the tubular plant-cocks one after another. ");
-	if(!pc.isPregnant(x)) output("Inside you, the flat, flared tip matches perfectly to your cervix, the urethra just barely pushing past the rest of the tip in order to nestle firmly into it. Cum pours out of it in a wave, and as the warm flora-jizz pumps into you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss.");
-	else output("Inside you, the flat, flared tip butts up against your sealed cervix, the urethra desperately trying to match to a nonexistent opening. Cum pours out of it in a wave, and as the warm flora-jizz backwashes out of you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss.");
+	if(!pc.isPregnant(x)) 
+	{
+		output("Inside you, the flat, flared tip matches perfectly to your cervix, the urethra just barely pushing past the rest of the tip in order to nestle firmly into it. Cum pours out of it in a wave, and as the warm flora-jizz pumps into you, your [pc.legOrLegs] begin");
+		if(pc.legCount == 1) output("s");
+		output(" to buck and quake with orgasmic, mind-melting bliss.");
+	}
+	else 
+	{
+		output("Inside you, the flat, flared tip butts up against your sealed cervix, the urethra desperately trying to match to a nonexistent opening. Cum pours out of it in a wave, and as the warm flora-jizz backwashes out of you, your [pc.legOrLegs] begin");
+		if(pc.legCount == 1) output("s");
+		output(" to buck and quake with orgasmic, mind-melting bliss.");
+	}
 	output(" Your tunnel squeezes down around the shaft, trying to milk it for more with its unashamed, lusty spasms.");
 	
 	output("\n\nGirl-spunk ");
@@ -1240,7 +1250,9 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	
 	output("\n\nThe slime dripping from your lips thickens into a sticky deluge as muscles inside you relax, opening the way for the pod's lubricant to escape in a rush. You can feel the bulbous seed start sliding inside you, shifting and stretching, forcing you open in ways that would make even the biggest dicks ache with jealousy. It should hurt, but for some reason, there's blessedly little pain - just a sense of the slick form gliding down your nerve-laden channel as if it was made to lay these things all along.");
 	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing. The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind. Sexual pleasure blitzkriegs through your brain to war with wonder at what you're body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
-	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pSlot + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back, [pc.legs] splayed.");
+	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pSlot + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back");
+	if(pc.legCount > 1) output(", [pc.legOrLegs] splayed");
+	output(".");
 	
 	//CuntChange: size 800.
 	pc.cuntChange(pSlot, 800, true, true, false);

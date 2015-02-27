@@ -3154,7 +3154,8 @@
 		public function isImmobilized(): Boolean {
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
 		}
-		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
+		{
 			return pluralize(leg(forceType, forceAdjective));
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
@@ -3481,10 +3482,14 @@
 			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
 			return buffer;
 		}
-		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String 
+		{
+			if (legCount == 1) return foot(forceType, forceAdjective);
+			
 			var select: Number = 0;
 			var output: String = "";
 			output = footAdjectives(forceType, forceAdjective);
+			
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";

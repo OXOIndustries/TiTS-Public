@@ -1300,7 +1300,7 @@ public function vanaeHuntressTitfuck():void
 	clearOutput();
 	vanaeHeader("VICTORY: VANAE\n");
 
-	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your [pc.legs]. As she walks over her [monster.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
+	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your [pc.legOrLegs]. As she walks over her [monster.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
 
 	output("\n\nApproaching you and getting on her knees, the busty amazon brings her webbed hands up to cup her [monster.breasts], making her already impressive cleavage stand out. Her [monster.nipples] drool her violet milk down her ample flesh, curling and dribbling down to her [monster.belly].  There is a distinctly feminine scent in the air mixed with a fruity aroma, the latter coming from her nipple milk.");
 
@@ -1371,7 +1371,9 @@ public function vanaeHuntressEatsPCCunt():void
 
 	output("\n\nWhen she pulls out you let out a disappointed noise, only to have it turn to a husky moan as her [monster.lips] slip around your [pc.oneClit]. As she suckles on it, her webbed fingers slip up and into your [pc.pussy], spreading your folds and slipping deep inside. Suddenly you're enduring a two pronged assault, your pearl swirled and flicked in her mouth as her magical fingers sinfully screw your sex.");
 
-	output("\n\nYour insides clench around her plunging fingers as you let out a sweet cry. Your [pc.legs] spasm as you well and truly cream yourself, your [pc.girlCum] gushing around her digits as you buck your hips wildly. She continues to stroke your innermost point, coaxing your orgasm out and playing your pulsing pussy like a fiddle. You cum so hard your mind goes utterly blank, losing all concept of who or where you are as you tremble and spasm in her webbed hands.");
+	output("\n\nYour insides clench around her plunging fingers as you let out a sweet cry. Your [pc.legOrLegs] spasm");
+	if(pc.legCount == 1) output("s");
+	output(" as you well and truly cream yourself, your [pc.girlCum] gushing around her digits as you buck your hips wildly. She continues to stroke your innermost point, coaxing your orgasm out and playing your pulsing pussy like a fiddle. You cum so hard your mind goes utterly blank, losing all concept of who or where you are as you tremble and spasm in her webbed hands.");
 
 	output("\n\nUtterly exhausted, your entire body goes limp at once, your mind spinning in a delirious haze. You are distantly aware that she's pulled her fingers out from inside of you and is now lapping at your [pc.pussy]; cleaning it off with several long, loving licks.");
 
@@ -1603,7 +1605,9 @@ public function vanaeHuntressTentaSex(selScene:String):void
 	else output(" pressing and teasing against your sensetive depths");
 	output(". You let out a loud, shameless cry as her suckers clamp on, tugging and suckling at it. It pushes you careening over the edge in a glorious, spasmodic rush.");
 
-	output("\n\nYour [pc.legs] shake and you cream yourself hard,");
+	output("\n\nYour [pc.legOrLegs] shake");
+	if(pc.legCount == 1) output("s");
+	output(" and you cream yourself hard,");
 	if (pc.hasCock()) output(" [pc.cum] shooting from [pc.eachCock]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum] squirting from [pc.eachPussy]");
@@ -1642,7 +1646,7 @@ public function vanaeHuntressSquirNJerk():void
 	// Must have Cock
 	// Must have front or mid genitals.
 
-	output("The exotic huntress gestures for you to seat yourself on a nearby rock. After you sit down and spread your [pc.legs] she follows, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier.");
+	output("The exotic huntress gestures for you to seat yourself on a nearby rock. After you sit down and spread your [pc.legOrLegs] she follows, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier.");
 
 	output("\n\nShe squirts thick, gooey ropes of [monster.milk] from her [monster.nipples], dousing [pc.eachCock]. You let out a " + pc.mfn("masculine groan", "girlish moan", "breathy moan") + ", your slick staff");
 	if (pc.cocks.length > 1) output("s");
@@ -2338,7 +2342,7 @@ public function vanaeHuntressPCDefeatCunnilingus():void
 	output(". Her massive breasts rub against your skin as she runs her tongue up your silken slit, causing you to gasp aloud.");
 	if (pc.hasLeg())
 	{
-		output(" You instinctively bring your [pc.legs] up and rest");
+		output(" You instinctively bring your [pc.legOrLegs] up and rest");
 		if (pc.legCount == 1) output(" it");
 		else output(" them");
 		output(" on her shoulders, pulling her mouth needily towards your [pc.pussy].");
@@ -2382,7 +2386,9 @@ public function vanaeHuntressPCDefeatTentafux():void
 	output("\n\n");
 	vanaeTFScene();
 
-	output("\n\nAs your [pc.legs] tremble, she");
+	output("\n\nAs your [pc.legOrLegs] tremble");
+	if(pc.legCount == 1) output("s");
+	output(", she");
 	if (pc.isBiped()) output(" spreads your thighs and");
 	output(" positions herself close to your");
 	if (isCunt) output(" naked mound");
@@ -2493,7 +2499,9 @@ public function vanaeHuntressPCDefeatTentafux():void
 	else if (pc.hasCock()) output(", pressing and teasing your prostate");
 	output(". You let out a loud, shameless cry as her suckers clamp on, tugging and suckling at it. It pushes you careening over the edge in a glorious, spasmodic rush.");
 
-	output("\n\nYour [pc.legs] shake and you cream yourself hard,");
+	output("\n\nYour [pc.legOrLegs] shake");
+	if(pc.legCount == 1) output("s");
+	output(" and you cream yourself hard,");
 	if (pc.hasCock()) output(" [pc.cum] shooting from [pc.eachCock]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum] squirting from [pc.eachPussy]");

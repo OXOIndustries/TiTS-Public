@@ -526,7 +526,10 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("You wake up with a yawn, struggling to open your eyes. When you do, you're glad to find Anno's still napping in your arms, snoring ever so softly, with her tail tucked comfortably between your [pc.legs]. You run your hands through her soft, snowy hair, brushing a few stray strands from her face. Anno mewls in her sleep, a soft, pathetic little noise of comfort as she rubs her cheek against your chest. You stay like that few a few more pleasant minutes before realizing that you still have a quest to complete. You gently nudge Anno off you, resting her back under the blanket once you've stood up. You tuck your ausar friend back in before making your way back to the shop front, content to let her finish her nap.");
+	output("You wake up with a yawn, struggling to open your eyes. When you do, you're glad to find Anno's still napping in your arms, snoring ever so softly, with her tail tucked comfortably");
+	if(pc.legCount > 1) output(" between");
+	else output(" around");
+	output(" your [pc.legs]. You run your hands through her soft, snowy hair, brushing a few stray strands from her face. Anno mewls in her sleep, a soft, pathetic little noise of comfort as she rubs her cheek against your chest. You stay like that few a few more pleasant minutes before realizing that you still have a quest to complete. You gently nudge Anno off you, resting her back under the blanket once you've stood up. You tuck your ausar friend back in before making your way back to the shop front, content to let her finish her nap.");
 	processTime(122);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -719,7 +722,7 @@ public function talkToAnnoAboutShitz():void
 	output("You ask Anno if she's got a few free minutes to chat.");
 	output("\n\nShe glances around the customer-less storefront and grins, <i>\"I dunno, I'm pretty swamped at the moment...\"</i>");
 	output("\n\nYou both chuckle as Anno hops up onto the counter");
-	if(!pc.isTaur()) output(", patting an empty space beside her invitingly. You join her, your [pc.legs] dangling off the edge with hers");
+	if(!pc.isTaur()) output(", patting an empty space beside her invitingly. You join her, your [pc.legOrlegs] dangling off the edge with hers");
 	output(".");
 
 	output("\n\n<i>\"So, what's on your mind, boss?\"</i>");
@@ -1055,7 +1058,10 @@ public function intoDickgirlsAnno():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("<i>\"So, you're into girls with a little more?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form... as well as what lies between your [pc.legs].");
+	output("<i>\"So, you're into girls with a little more?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form... as well as what lies");
+	if(pc.legCount > 1) output(" between");
+	else output(" along");
+	output(" your [pc.legOrlegs].");
 	output("\n\nAnno grins. <i>\"I should hope so, or I've got some bad news for Kaede!\"</i> She laughs, taking a few moments to compose herself. <i>\"Yeah, yeah I do. There's something just... </i>right<i> about a curvy, sexy lady's body with a big, throbbing cock between her legs, you know? Soft and squishy in all the right places, but hard and powerful where it counts.\"</i>");
 	output("\n\n<i>\"So, why do you ask?\"</i> she teases, pressing herself close. <i>\"Thinking about asking little ol' me out?\"</i>");
 	output("\n\nThat sounded a little more serious than you expected...");
@@ -1295,7 +1301,10 @@ public function getSlurpedOnByAnnoz():void
 
 	output("\n\nYou look over your shoulder, smiling playfully at her. <i>\"What was that about not stopping?\"</i> you tease, wiggling your [pc.butt] over her face, close enough to brush her nose with your crotch. She whimpers at that touch, and you see her tail stick straight out, alert and eager. Something in your mind ticks over <i>ausar sense of smell...</i> just as you feel Anno's fingers dig into your [pc.gear], pulling it off with a gusto. Now it's your turn to gasp and shudder as you're suddenly left bare to the world, soft-furred hands playing excitedly up your body.");
 
-	output("\n\nIt doesn't take long, though for her probing digits to find the gash between your [pc.legs]. You stifle a moan as one of her fingers traces along the lip of [pc.oneVagina], only narrowly missing the bud of [pc.oneClit]. She puts just enough force on that digit to urge you back, until your [pc.vagina] is situated directly above her face, close enough that the tip of her cute little nose is nearly pressed between the folds of your sex.");
+	output("\n\nIt doesn't take long, though for her probing digits to find");
+	if(pc.legCount > 1) output(" the gash between your [pc.legs]");
+	else output(" your womanhood");
+	output(". You stifle a moan as one of her fingers traces along the lip of [pc.oneVagina], only narrowly missing the bud of [pc.oneClit]. She puts just enough force on that digit to urge you back, until your [pc.vagina] is situated directly above her face, close enough that the tip of her cute little nose is nearly pressed between the folds of your sex.");
 
 	output("\n\nAnno takes a deep breath, and sighs happily. <i>\"You smell amazing, boss,\"</i> she says, half-muffled in your muff. <i>\"Positively delicious...\"</i>");
 
@@ -1315,7 +1324,7 @@ public function getSlurpedOnByAnnoz():void
 	else output("the full length of her fist into your stretched-out, well-used cunt");
 	output(", stretching you nice and wide with a few even strokes, punctuating each with a long lick across your labia and clit, again and again until your [pc.hips] are shaking on their own, whole body shuddering as you feel the budding hints of orgasm welling up from your well-fucked crotch.");
 
-	output("\n\nYou surrender to your pleasure, mindlessly suckling the nectar deep in your lover's pussy as she brings you to climax. Your moan out a stuttering, <i>\"c-cumming!\"</i> when you do, voice breaking into a squeal as your [pc.vagina] spasms around Anno's probing tongue. Your world explodes in pleasure as you cum, raining femspunk onto Anno's face as your [pc.legs] clench around her, muscles recoiling from the overwhelming sensation. Still, your tongue is ceaseless in its pursuit of your partner's pleasure even in the face of your own, and before you've calmed down, it's Anno's turn to scream out her climax, voice echoing down the corridors as her pussy goes wild around your tongue buried to the hilt inside her. And she's a squirter, no doubt about it: you manage to pull back just in time to avoid a faceful of ausar girl-spunk as Anno cums, splattering the register and floor with her thick, aromatic love juice.");
+	output("\n\nYou surrender to your pleasure, mindlessly suckling the nectar deep in your lover's pussy as she brings you to climax. Your moan out a stuttering, <i>\"c-cumming!\"</i> when you do, voice breaking into a squeal as your [pc.vagina] spasms around Anno's probing tongue. Your world explodes in pleasure as you cum, raining femspunk onto Anno's face as your [pc.legOrLegs] clench around her, muscles recoiling from the overwhelming sensation. Still, your tongue is ceaseless in its pursuit of your partner's pleasure even in the face of your own, and before you've calmed down, it's Anno's turn to scream out her climax, voice echoing down the corridors as her pussy goes wild around your tongue buried to the hilt inside her. And she's a squirter, no doubt about it: you manage to pull back just in time to avoid a faceful of ausar girl-spunk as Anno cums, splattering the register and floor with her thick, aromatic love juice.");
 
 	output("\n\nPanting with exhaustion and staggered by errant bursts of ecstasy in the afterglow of your lovemaking, you slump down, resting your head in in the soft, wet valley of Anno's thighs, trying to catch your breath. You can't stop a smile, though, as you see Anno's tail wagging happily, especially as you reach out and stroke the soft white appendage, sending another shiver of bliss through your lover as you rest in each other's arms.");
 	processTime(30+rand(5));
@@ -1338,7 +1347,10 @@ public function putItInAnnosButtYouSloot():void
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>\"Turn around,\"</i> you command, approaching the defeated ausar. She makes a show of rolling her eyes and turns on a heel, bracing her hands on another crate. Anno flicks her tail up, giving you a good view of her [anno.butt], the sheer material of her uniform stretched taut across her big, squishy cheeks. You step up and give one of those supple butt-cheeks a slap and squeeze, watching Anno's flesh jiggle at your touch; its owner gives a little hiss of pain when you spank her, but settles in with a little wag of her tail as you start to grope and knead her backside, clearly not all that put out about losing anymore. Indeed, she's outright moaning by the time you've worked your way to the other cheek, spreading them as far apart as her catsuit-uniform will allow.");
 
-	output("\n\nWith a whimper of pleasure, Anno settles down atop the crate, ass in the air and wiggling happily as you feel up that perfect round ass. You can feel your own [pc.cock " + x + "] jumping to attention as you move directly behind your ausar lover, your crotch dangerously close to her rear end... if only it weren't for those troublesome clothes. With a little grin, you lean over her, your [pc.chest] pressing tight into Anno's back as your hands run up her sides, playing across her ribs and the ample curves of her bust. Anno moans lightly as your hands tease their way around her tits, her tail wagging hard between your [pc.legs]; she gasps when you finally find the zipper hidden in her collar and give it a little tug, your hand drawing the pull-tab slowly down until her suit's barely holding Anno's [anno.boobs] back. Finally, with a short, final tug, the ausar's breasts pop free of their constraints - and right into your waiting hands. Anno only just stifles a moan as your fingers squeeze her ample mounds, working her pert nipples between your fingers until you can feel a sudden surge of wetness soaking through Anno's catsuit and into your crotch. Oh, she likes that....");
+	output("\n\nWith a whimper of pleasure, Anno settles down atop the crate, ass in the air and wiggling happily as you feel up that perfect round ass. You can feel your own [pc.cock " + x + "] jumping to attention as you move directly behind your ausar lover, your crotch dangerously close to her rear end... if only it weren't for those troublesome clothes. With a little grin, you lean over her, your [pc.chest] pressing tight into Anno's back as your hands run up her sides, playing across her ribs and the ample curves of her bust. Anno moans lightly as your hands tease their way around her tits, her tail wagging hard");
+	if(pc.legCount > 1) output(" between");
+	else output(" against");
+	output(" your [pc.legOrLegs]; she gasps when you finally find the zipper hidden in her collar and give it a little tug, your hand drawing the pull-tab slowly down until her suit's barely holding Anno's [anno.boobs] back. Finally, with a short, final tug, the ausar's breasts pop free of their constraints - and right into your waiting hands. Anno only just stifles a moan as your fingers squeeze her ample mounds, working her pert nipples between your fingers until you can feel a sudden surge of wetness soaking through Anno's catsuit and into your crotch. Oh, she likes that....");
 
 	output("\n\nYou work the zipper further down, until you're able to pull the suit off of her and straight down her legs, letting it bunch into a pile between her furry feet. Anno gives a little gasp as you yank her clothes off, but her ass manages to ratchet higher in the air, her fluffy tail teasing at your nose, curling invitingly downwards. You let a hand reach back, following it down to the gap between her thick ass-cheeks. Your fingers easily find their way to her sodden quim, rubbing along the soaked expanse of her pussy. It isn't long before your digits are soaked in Anno's slick juices, coated with the thick, sweet excitement of your ausar lover. She groans as your fingers slip inside her, teasing the entrance to her womanhood, even the hood of her [anno.clit], making sure to slather yourself up with as much of her juices as you can scrounge up - which has the added effect of getting the horny ausar slut nice and ready, breath coming ragged as she's fingered deep, clearly expecting a nice cock to follow your fingers' course.");
 
@@ -1444,7 +1456,10 @@ public function cumWithAnnoOnTop():void
 	if(chars["ANNO"].analVirgin) output(", virginal");
 	output(" asshole, her movements becomes steadier, more confident, until it feels like she's finally hit her stride, riding you like a champ. Now, though, that familiar need begins to rise again in your loins, the nearly-averted orgasm from before coming back with a vengeance. You don't know if you can hold out again, but perhaps you don't need to for long: you can hear Anno's pleasured pants and gasps, her breath and heartbeat quickening as she gets truly into the quasi-double-penetration going on. Just a little more, and you might not be the only one who cums.");
 
-	output("\n\nYou urge Anno faster, using your free hand to help lift her hind-end at the bottom of every bounce. Together, you're making a chorus of sexy goans and low, sensual moans, rising toward the inevitable crescendo as your orgasms both approach inexorably, rushing forward to the point of no return. With a final cry of pleasure, Anno slams herself down on your rod, taking you to the hilt and wrist at once, and that's all she wrote: you cum the moment you feel her cheeks press into your [pc.crotch], blasting her bowels with a double load of held-back cum; her muscles go wild when she climaxes moments later, milking your cock for every last drop as her pussy tries to swallow your fist, trapping you in her spasming channel as she unleashes a torrent of fem-cum that leaves a puddle spreading between your [pc.legs].");
+	output("\n\nYou urge Anno faster, using your free hand to help lift her hind-end at the bottom of every bounce. Together, you're making a chorus of sexy goans and low, sensual moans, rising toward the inevitable crescendo as your orgasms both approach inexorably, rushing forward to the point of no return. With a final cry of pleasure, Anno slams herself down on your rod, taking you to the hilt and wrist at once, and that's all she wrote: you cum the moment you feel her cheeks press into your [pc.crotch], blasting her bowels with a double load of held-back cum; her muscles go wild when she climaxes moments later, milking your cock for every last drop as her pussy tries to swallow your fist, trapping you in her spasming channel as she unleashes a torrent of fem-cum that leaves a puddle spreading");
+	if(pc.legCount > 1) output(" between");
+	else output(" around");
+	output(" your [pc.legOrLegs].");
 
 	output("\n\nBreathing a sigh of relief, Anno collapses back into your arms, finally releasing your hand from the vice-like grip of her pussy. You wrap your arms around her, holding the ");
 	if(chars["ANNO"].analVirgin) output("analy-deflowered ");
@@ -2596,7 +2611,8 @@ public function grayPrimeGooGrapple():void
 	{
 		output(" Two of the tentacles wrap tightly around your wrists");
 		if (pc.isBiped()) output(", while two more grab your [pc.legs], lifting you up from the ground!");
-		else if (pc.isTaur()) output(",  while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling ");
+		else if (pc.isTaur()) output(", while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling!");
+		else output(", while the rest grab your [pc.legOrLegs], lifting you up from the ground!");
 		output(" Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole");
 		if (pc.hasVagina()) output("s");
 		output(". Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits.");
@@ -2620,7 +2636,10 @@ public function grayPrimeFailEscape():void
 			break;
 
 		case 1:
-			output("You give a cry of pain as one of the tentacles slips into your ass, squirming through your anal ring and into the tightly clenched passage. Another tendril of gray slips between your [pc.legs], caressing your");
+			output("You give a cry of pain as one of the tentacles slips into your ass, squirming through your anal ring and into the tightly clenched passage. Another tendril of gray slips");
+			if(pc.legCount > 1) output(" between");
+			else output(" past");
+			output(" your [pc.legOrLegs], caressing your");
 			if (pc.hasCock()) output(" [pc.cock]");
 			if (pc.hasCock() && pc.hasVagina()) output(" and");
 			if (pc.hasVagina()) output(" [pc.cunt]");
@@ -2863,7 +2882,7 @@ public function lossToGrayPrime():void
 	
 	output("\n\n<i>“It’s a pity you found us,”</i> she says, almost a bit sadly as her tentacles wrap around your wrists, pulling you to your feet - and further still, lifting you up off the deck. <i>“Hm. Some of us don’t want to kill you, it seems. Perhaps you can be still useful.”</i>");
 	
-	output("\n\nYou open your mouth to voice a question, but instead immediately are granted a taste of gray goo: one of the goo-girl’s tentacles rushes forward the moment your lips part, flooding into your mouth. You struggle against the probing tentacle of gray, but it’s relentless, squirming and shifting its shape to slide through no matter how tightly you squeeze your lips and throat. You can feel more tentacles rising, slithering up your [pc.legs], squirming through your [pc.gear], slowly stripping you down.");
+	output("\n\nYou open your mouth to voice a question, but instead immediately are granted a taste of gray goo: one of the goo-girl’s tentacles rushes forward the moment your lips part, flooding into your mouth. You struggle against the probing tentacle of gray, but it’s relentless, squirming and shifting its shape to slide through no matter how tightly you squeeze your lips and throat. You can feel more tentacles rising, slithering up your [pc.legOrLegs], squirming through your [pc.gear], slowly stripping you down.");
 	if (!(pc.meleeWeapon is Rock) && !(pc.rangedWeapon is Rock)) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
 	output(" You moan around the tentacle in your mouth as a");
 	if (pc.hasVagina() && pc.hasCock())
@@ -3525,7 +3544,9 @@ public function annoPostQuestSexytimes():void
 	
 	output(" Breathless, Anno desperately pulls your [pc.gear] off to let it clatter to the floor before giving you a push through the bathroom door. ");
 	
-	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and spreading your [pc.legs] apart. ");
+	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and");
+	if(pc.legCount > 1) output(" spreading your [pc.legs] apart.");
+	else output(" moving in on your [pc.leg].");
 	
 	// Cockwielder Variant
 	if (pc.hasCock())
@@ -3556,7 +3577,7 @@ public function annoPostQuestSexytimes():void
 		
 		output("\n\nWith tantalizing slowness, Anno lets her tongue loll out, the tip just grazing your thigh before making its way across the mound of your vulva and brushing along to just the crest of your clit before breaking off and starting again: damn tease! You stifle a moan as she does it again, this time just flicking across the lip of your buzzer’s hood to send an electric shock of pleasure through you that sets every nerve afire with desire. Your hand drifts instinctively to the wet mess of snowy hair atop Anno’s head, trying to guide her in; she resists for now, instead content to tickle and tease your thigh and lips while never quite making full contact. ");
 		
-		output("\n\nYou’re soon approaching your limit: your [pc.legs] are trembling, feeling like masses of jelly that quiver helplessly at Anno’s touch, ready to give at the slightest sexual stimulation. With a wolfish grin, Anno locks eyes with you and gives you a knowing wink before letting her tongue do the talking. A shock of pleasure surges through your body when Anno’s tongue finally gives you want you want - what you need - gliding across the full swell of your [pc.clit]. You can’t hold in a low, husky moan, squirming at the sensation of her oral assault; she answers with more licks across your blood-swollen buzzer. ");
+		output("\n\nYou’re soon approaching your limit: your [pc.legOrLegs] are trembling, feeling like masses of jelly that quiver helplessly at Anno’s touch, ready to give at the slightest sexual stimulation. With a wolfish grin, Anno locks eyes with you and gives you a knowing wink before letting her tongue do the talking. A shock of pleasure surges through your body when Anno’s tongue finally gives you want you want - what you need - gliding across the full swell of your [pc.clit]. You can’t hold in a low, husky moan, squirming at the sensation of her oral assault; she answers with more licks across your blood-swollen buzzer. ");
 		
 		output("\n\nWithout Anno and the wall supporting you, you’re sure you’d collapse under the overwhelming pleasure. Despite that, the hand planted between Anno’s ears instinctively pulls her inward, mashing the ausar’s face against your [pc.cunt] to try getting more and more from her probing tongue. Gigging, Anno gives it to you: she traces her tongue from your clit down into the folds of your pussy, parting your lips and slipping in. Your head rolls back, eyes squeezed shut as Anno explores your [pc.cunt], licking across your tender walls, letting your muscles squeeze around her, happily lapping up your flowing excitement as she works. She’s relentless, slurping and lapping minute after minute, never giving you a moment’s respite. Her fingers dig into your [pc.hips], holding you fast as she delves into your sex with a long tongue that tastes your deepest recesses. Your free hand drifts upwards,");
 		if (pc.biggestTitSize() > 0) output(" cupping one of your [pc.breasts]");
@@ -3565,7 +3586,10 @@ public function annoPostQuestSexytimes():void
 		else output(".");
 		output(" You’re desperate for pleasure now, hips bucking on Anno’s tongue. If she doesn’t back off soon, you won’t be able to stop yourself from cumming... ");
 		
-		output("\n\nThat seems to be Anno’s plan. You’re moaning like a bitch in heat now while your juices mix with the running water of the shower between your [pc.legs], trickling hot down your thighs between Anno’s rhythmical licks and kisses across your sex. You’re soon reaching your limit, voice breaking higher and higher into lusty moans and cries, even begging Anno for release. She’s eager to grant it, barely acknowledging your cries but for one look up at you to lock eyes with you and hold your gaze firmly, making you watch as she brings you to the brink of orgasm. ");
+		output("\n\nThat seems to be Anno’s plan. You’re moaning like a bitch in heat now while your juices mix with the running water of the shower");
+		if(pc.legCount > 1) output(" between");
+		else output(" along");
+		output(" your [pc.legOrLegs], trickling hot down your thighs between Anno’s rhythmical licks and kisses across your sex. You’re soon reaching your limit, voice breaking higher and higher into lusty moans and cries, even begging Anno for release. She’s eager to grant it, barely acknowledging your cries but for one look up at you to lock eyes with you and hold your gaze firmly, making you watch as she brings you to the brink of orgasm. ");
 		
 		output("\n\nFinally, you can take no more. With a shrill cry of feminine pleasure, you let your ausar lover bring you over the edge. Sexual bliss overtakes your every nerve, your body afire with desire while Anno feverishly eats you out with a tongue that moves faster and faster as you surrender to ecstasy. Shudders and shakes rock your body, their force nearly enough to make you go limp with exhaustion by the time your orgasm passes. Your prolonged moment of passion leaves Anno’s face awash with your juices - which quickly wash away as the downpour continues from the shower head. With a little wiggle of her hips, Anno makes her way to the front of the stall and plants her hands on the ceramic tiles, shifting her legs wide apart and raising her tail invitingly to give you a good look at the still-slightly parted lips of her sex. ");
 	}
@@ -3698,7 +3722,9 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	{
 		output(" erection");
 		if (pc.cocks.length > 1) output("s");
-		output(" hanging in the breeze between your [pc.legs]");
+		if(pc.hasStatusEffect("Genital Slit")) output(" slithering out from within your slit");
+		else if(pc.legCount > 1) output(" hanging in the breeze between your [pc.legs]");
+		else output(" hanging free in the breeze");
 	}
 	output(". Kaede blushes furiously when her eyes finally meet your mounting package");
 	if (pc.cocks.length > 1) output("s");
@@ -3863,7 +3889,7 @@ public function annoxKaedeFuckThemCreampie(selCock:int):void
 
 public function annoxKaedeFuckThemCombine():void
 {
-	output("\n\nWith both your lovers covered with cum, you all but collapse atop them, panting hard in your orgasmic afterglow. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
+	output("\n\nWith both your lovers covered with cum, you all but collapse atop them, panting hard in your orgasmic afterglow. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legOrLegs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
 	processTime(60+rand(30));
 
@@ -3940,7 +3966,7 @@ public function annoxKaedeService(inShop:Boolean = true):void
 	
 	output("\n\nWith a gasp, you slump off of the halfbreed’s cock, unable to take anymore. A few final spurts of cum follow you, smearing across your face and [pc.chest] as Kaede’s orgasm winds down. Good God, she was pent up! Your finger withdraws from her ass when you retreat, followed swiftly by Anno’s. The white-maned ausar takes your place on her lover’s cock, lapping up the last of Kaede’s discharge from the tip of her pointed red pecker. ");
 	
-	output("\n\nKaede’s knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale’s sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
+	output("\n\nKaede’s knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale’s sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legOrLegs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
 	var ppKaede:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppKaede.balls = 2;
@@ -4122,7 +4148,7 @@ public function annoxKaedeWatchCombine():void
 		output(", barely containing your own, almost painful erection");
 		if (pc.cocks.length > 1) output("s");
 	}
-	else if (pc.hasVagina()) output(" trying to ignore your own untended excitement drooling down your [pc.legs]");
+	else if (pc.hasVagina()) output(" trying to ignore your own untended excitement drooling down your [pc.legOrLegs]");
 	else output(" trying to ignore the desperate need welling inside you");
 	output(". Watching you stand, Anno grins and winks at you, <i>“I think you’ve got all the fap material you’ll need for a few months, huh boss?”</i> You respond with a curt nod. <i>“Go ahead and let yourself out - you know the way. I’ve got to deal with this for a while,”</i> she adds, pointing a finger between her legs and down at the knotty ausar cock still lodged in her.");
 	

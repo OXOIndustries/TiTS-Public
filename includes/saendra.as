@@ -757,7 +757,9 @@ public function saendraTalkInDC():void
 	
 	output("\n\nSera snorts. <i>“Called it. Hey, ease up. Girls with dicks are basically the new big tits fetish. Especially when they’ve got both, huh?”</i> she says, shifting slightly to emphasize her own ample bust. <i>“So what’s it gonna be, kitten? You want a big, thick cock to fuck your [pc.boy]friend here with?");
 	if (pc.hasCock()) output(" Maybe one so big that you’ll put [pc.hisHers] to shame?");
-	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they spread your [pc.legs] and fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.”</i>");
+	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they");
+	if(pc.legCount > 1) output(" spread your [pc.legs] and");
+	output(" fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.”</i>");
 	
 	output("\n\nFlashing the demoness a grin, Saendra leans in and whispers, <i>“You’re just jealous that I don’t have to fake it.”</i>");
 	
@@ -765,7 +767,10 @@ public function saendraTalkInDC():void
 	
 	output("\n\n<i>“Not my fault the boys - and the girls - are lining up around the block for a chance at me!”</i>");
 	
-	output("\n\nSera snickers. <i>“A chance? Like you could keep your [pc.legs] closed if they paid you to.”</i> ");
+	output("\n\nSera snickers. <i>“A chance? Like you could keep your");
+	if(pc.legCount > 1) output(" [pc.legs] closed");
+	else output(" sex locked up");
+	output(" if they paid you to.”</i> ");
 	
 	output("\n\n<i>“That’s right,”</i> Saen says, leaning in so close her nose is practically touching the succubus’s, <i>“I give it away, instead of having to brow-beat my customers into it. How’s it feel not being able to actually get a date, glow-in-the-dark?”</i>");
 	
@@ -1154,7 +1159,10 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	saenHeader(true);
 
 	//Fucking finally a literal anal probe ahahahaha scifi porn yay.
-	output("You roll onto your back and tear off your [pc.armor], spreading your [pc.legs] around the busty bitch-kitten’s hips so she’s got a good view of your groin and the tender little ring of your ass. Saen grins from ear to ear, reaching down to roughly squeeze your [pc.butt], kneading the soft flesh of your ready backside. <i>“I think I know what you’re after... you want a taste of this bad boy, don’tcha?”</i> she chuckles, flicking her wrist and letting her thick, prehensile probe slither out from her mechanical arm. The snake-like steel coils around your [pc.leg] and then toward your face, its slender, ice-cold tip tickling your nose and lips with deft, sure motions. <i>“Go on, then. Get him ready,”</i> she says, sinking to her knees between your spread [pc.legs]. ");
+	output("You roll onto your back and tear off your [pc.armor], spreading your [pc.legOrLegs] around the busty bitch-kitten’s hips so she’s got a good view of your groin and the tender little ring of your ass. Saen grins from ear to ear, reaching down to roughly squeeze your [pc.butt], kneading the soft flesh of your ready backside. <i>“I think I know what you’re after... you want a taste of this bad boy, don’tcha?”</i> she chuckles, flicking her wrist and letting her thick, prehensile probe slither out from her mechanical arm. The snake-like steel coils around your [pc.leg] and then toward your face, its slender, ice-cold tip tickling your nose and lips with deft, sure motions. <i>“Go on, then. Get him ready,”</i> she says, sinking to her knees");
+	if(pc.legCount > 1) output(" between your spread");
+	else output(" around your");
+	output(" [pc.legOrLegs]. ");
 
 	output("\n\nTaking the hint, you open your mouth and let the tip of Saendra’s probe slither in like a rectal-ravishing serpent, the cool metal hard and unyielding against your tongue, the rusty taste overpowering your senses. You shudder as a little gout of steam pours from your mouth and nose, but dutifully suckle on Saen’s tip, lathering it with saliva in preparation of the coming onslaught. With a little verbal urging from your lover, your start to move your head with it, soon sucking on it like a thick cock. She wriggles it in your grasp, slithering inch after inch into your mouth until you’re practically deepthroating her wrist-probe.");
 
@@ -1175,7 +1183,10 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");
 	if (pc.isBiped()) output(" spreading your [pc.legs] wide for herself, hands braced on your knees");
-	else output(" positioning herself between your [pc.legs], bracing herself on your [pc.hips]");
+	else output(" positioning herself");
+	if(pc.legCount > 1) output(" between");
+	else output(" along");
+	output(" your [pc.legOrLegs], bracing herself on your [pc.hips]");
 	output(". You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of the probe brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... ");
 
 	output("\n\nBut at the last moment, Saen lunges forward, cupping your cheek and pressing her lips to yours. You gasp, breath catching in your throat as Saen’s tongue slips between your lips, playing across your teeth. It takes a second to relax, finally easing into the unexpected kiss, wrapping your arms around Saen’s slender waist as she finally pushes her telescoping probe forward, bringing the rounded steel head through the circle of your sphincter. You groan into Saendra’s lips, but the penetration comes surprisingly easily, helped along by your long minutes of preparation and the tender, loving embrace of your red-maned lover. With the first inches inside your rectum, Saen breaks the kiss, smiling down at you with a deep, radiant warmth. She caresses your cheek, gently cupping it and bringing your head up for another quick kiss as she wiggles her hips, easing another few inches into you. You roll your head back and moan openly as her tentacle pushes in, stretching your rectal walls wider and wider as the slender steel thickens. Soon you’ve gone from her needle-like point to the grapefruit-sized rod of cold, unforgiving probe that’s now stretching your bum wide.");
@@ -1190,7 +1201,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	if (pc.hasCock()) output(" Cum spurts from your [pc.cocks], blasting Saen’s gut with an explosive load of [pc.cumColor] spunk. She grins down at you, her flesh-wrought hand grabbing your cock and giving it the attention it so desperately craved, pumping your shaft as your blow your load across her belly, finally winding down until you’re trickling cum onto yourself, rivulets running through the gray fur of Saen’s fingers.");
 	pc.orgasm();
 
-	output("\n\nBy time it’s done, you’re covered in a cold sweat, wrapped in Saen’s arms as she slowly withdraws from inside you. You’re left feeling powerfully empty, as if Saen’s probe <i>belongs</i> inside you, and you’re incomplete without it. You give a pathetic little whine as she leaves, you, your [pc.legs] wrapping around you lover and refusing to let her part from you. Smiling, Saen curls up against you, head resting on your heaving chest, trailing kisses along your [pc.chest] until you drift off to sleep, clutched in your lover’s arms. ");
+	output("\n\nBy time it’s done, you’re covered in a cold sweat, wrapped in Saen’s arms as she slowly withdraws from inside you. You’re left feeling powerfully empty, as if Saen’s probe <i>belongs</i> inside you, and you’re incomplete without it. You give a pathetic little whine as she leaves, you, your [pc.legOrLegs] wrapping around you lover and refusing to let her part from you. Smiling, Saen curls up against you, head resting on your heaving chest, trailing kisses along your [pc.chest] until you drift off to sleep, clutched in your lover’s arms. ");
 
 	processTime(30+rand(5));
 
@@ -1213,15 +1224,15 @@ public function takeSaensStrappedyDappedyCock():void
 	else output(" Saen’s fingers brush along your [pc.butt], squeezing one of the cheeks between her steel fingers. <i>“I know what you want, slut,”</i> she teases. <i>“Now spread ‘em wide!”</i>");
 	output(" You squirm beneath your fiery lover as she straddles your [pc.hips], effortlessly strapping on the oversized latex rod. It bobs menacingly between her legs, hanging just over the slick slit of her sex, its base pressed tight to the hood of her clit. Somehow, you doubt you’re the only one who’s going to be feeling that thing...");
 
-	output("\n\n<i>“Ready for this?”</i> Saen grins, looming over you, hands planting on your shoulders to pin you down, helpless before her advance. You nod eagerly, spreading your [pc.legs] wide open for Saen’s big, faux cock. Rather than go straight for the prize, though, Saen pulls you up into a kiss, her thin lips locking to your own, pressed tight for a long moment. Your eyes close, arms wrapping around your lover’s back, holding her tight until she breaks the kiss. With a wolfish grin, Saen slithers down your body, gently leaning you back in the bed and trailing kisses down your [pc.skin], hands roaming across your [pc.chest] and [pc.hips] as she slowly, sensually makes her way back toward your inviting hole. It’s ready for her by the time Saen reaches it:");
+	output("\n\n<i>“Ready for this?”</i> Saen grins, looming over you, hands planting on your shoulders to pin you down, helpless before her advance. You nod eagerly, spreading your [pc.legOrLegs] wide open for Saen’s big, faux cock. Rather than go straight for the prize, though, Saen pulls you up into a kiss, her thin lips locking to your own, pressed tight for a long moment. Your eyes close, arms wrapping around your lover’s back, holding her tight until she breaks the kiss. With a wolfish grin, Saen slithers down your body, gently leaning you back in the bed and trailing kisses down your [pc.skin], hands roaming across your [pc.chest] and [pc.hips] as she slowly, sensually makes her way back toward your inviting hole. It’s ready for her by the time Saen reaches it:");
 	if (pc.hasVagina()) output(" your [pc.cunt "+ selCunt +"] is drooling with excitement, lips wet and ready for the coming fucking");
 	else output(" your [pc.asshole] is as relaxed as it can be, lulled into a false sense of security by Saen’s surprisingly gentle treatment");
 	output(". Saen’s mechanical hand slips down, one finger pressing easily into your [pc.vagOrAss "+ selCunt +"]; you give a gasp, squirming as her digit probes your depths - its as if she’s testing you out, gently stretching you, slowly fingering herself deeper down until she’s buried to the knuckle. ");
 
-	output("\n\n<i>“I think you’re ready, hero,”</i> she grins, popping her finger out of your hole and grabbing your [pc.legs], yanking you closer to her until her floppy strapon’s head is all but pressed against the");
+	output("\n\n<i>“I think you’re ready, hero,”</i> she grins, popping her finger out of your hole and grabbing your [pc.legOrLegs], yanking you closer to her until her floppy strapon’s head is all but pressed against the");
 	if (pc.hasVagina()) output(" lips");
 	else output(" rim");
-	output(" of your [pc.vagOrAss "+ selCunt +"]. Saen leans in, one hand resting on your [pc.chest], the other cupping your ass, keeping you nice and spread for her as her hips slowly begin to rock in. Your breath catches as the plastic cockhead pushes into you, stretching the walls of your [pc.vagOrAss] around its thick girth. You groan, back arching instinctively as shockwaves of pleasure course through you, spurred on as Saen’s hips thrust her strapon in inch by inch. It’s slow going, but gentle, each thrust bringing her a little deeper inside you; knowing Saen this pace won’t last long, but you enjoy it while you can, wrapping your [pc.legs] around her waist and guiding her in. ");
+	output(" of your [pc.vagOrAss "+ selCunt +"]. Saen leans in, one hand resting on your [pc.chest], the other cupping your ass, keeping you nice and spread for her as her hips slowly begin to rock in. Your breath catches as the plastic cockhead pushes into you, stretching the walls of your [pc.vagOrAss] around its thick girth. You groan, back arching instinctively as shockwaves of pleasure course through you, spurred on as Saen’s hips thrust her strapon in inch by inch. It’s slow going, but gentle, each thrust bringing her a little deeper inside you; knowing Saen this pace won’t last long, but you enjoy it while you can, wrapping your [pc.legOrLegs] around her waist and guiding her in. ");
 
 	output("\n\nIt’s a blissful eternity before Saendra’s fully buried inside you, the base of her strapon pressing tight against");
 	if (!pc.hasVagina()) output(" your ass.");
@@ -1461,7 +1472,7 @@ public function saendraButteFuckeAnal():void
 	if (saendra.hasCock()) output("You reach around to grab your lover’s bristly cock as you pound her. She gives a delighted little squeal as your fingers wrap around her throbbing erection, jacking it to the beat your thrusting hips, cresting her tapered cockhead each time your [pc.hips] slam into her jiggling ass. ");
 	output("<i>“Oh yeah! Fuck my ass harder!”</i> Saen cries as you hammer her gaping hole, <i>“Harder! I need it harder!”</i>");
 
-	output("\n\nYou’re not sure how much harder you can go! With a grunt of effort you push her hips down, planting her flat on the bed and shifting your [pc.legs] until you’re right over her, cock angled right into the slut’s sultry hole. You shift your hands up, grabbing the lusty redhead by the tits for leverage; she screams her pleasure as you plant your [pc.knees] around her waist and start to jackhammer her ass. <i>“Fuck! Just like that!”</i> she cries, clawed fingers tearing into her sheets, <i>“Fuck me just like that, hero! FUCK ME!”</i>");
+	output("\n\nYou’re not sure how much harder you can go! With a grunt of effort you push her hips down, planting her flat on the bed and shifting your [pc.legOrLegs] until you’re right over her, cock angled right into the slut’s sultry hole. You shift your hands up, grabbing the lusty redhead by the tits for leverage; she screams her pleasure as you plant your [pc.knees] around her waist and start to jackhammer her ass. <i>“Fuck! Just like that!”</i> she cries, clawed fingers tearing into her sheets, <i>“Fuck me just like that, hero! FUCK ME!”</i>");
 
 	output("\n\nAs fast as you can move your hips, you fuck the needy halfbreed’s ass. Her muscles go wild around you, squeezing so hard you think you’re going to faint - you fight for every inch, throwing your entire strength into the redhead’s squeezing hole until the inevitable, heart pounding rise of your own orgasm flickers through your mind, breath quickening as your body prepares to unleash its second load.");
 	saendra.orgasm();
@@ -1491,7 +1502,7 @@ public function saendraButteFuckeTailwank():void
 
 	output("\n\nAs you work the halfbreed’s tits, her tails finally get back in the action, squeezing harder around your [pc.cock] and smearing your first load of cum back around your shaft. <i>“Keep going,”</i> she says, her voice little more than a husky whisper in your ear, <i>“See if you can make me cum just from my tits...”</i> That’s a challenge you wouldn’t mind undertaking... though the way her fluffy appendages are starting to work your cock, you might not last long enough to see it through. Grinning up at you, Saen’s legs grip your hips tighter, pulling you in toward her, forcefully thrusting your [pc.hips] forward into the tight, soft grip of her tails. You finally get the idea, and when her legs relent, you start to move on your own, fucking her tails like they’re one big, fluffy onahole. She gives you an approving wink, which quickly devolves into a back-arching groan of pleasure as you squeeze her tits hard, giving the sultry slut something else to think about for a moment. ");
 
-	output("\n\nYou take advantage of the momentary lapse in her tail-based assault to shift position, backing your [pc.legs] up from a position of penetration to one better suited to fucking Saendra’s tails. You get yourself angled in on the cum-slick hole made by her tails and start to pistol into them, ready to give the sexy bitch-kitten the cum-glazing she asked for. You’re getting close again already, and watching the cute little twitches and gasps of pleasure play across Saen’s face as you grope her big boobs is only making you hotter.");
+	output("\n\nYou take advantage of the momentary lapse in her tail-based assault to shift position, backing your [pc.legOrLegs] up from a position of penetration to one better suited to fucking Saendra’s tails. You get yourself angled in on the cum-slick hole made by her tails and start to pistol into them, ready to give the sexy bitch-kitten the cum-glazing she asked for. You’re getting close again already, and watching the cute little twitches and gasps of pleasure play across Saen’s face as you grope her big boobs is only making you hotter.");
 
 	output("\n\n<i>“Don’t hold back,”</i> she growls, as if reading your mind. <i>“Fucking give it to me!”</i>");
 
@@ -1565,7 +1576,7 @@ public function saendraRidesYouCowgirlStyle():void
 	if (saendra.hasCock()) output(" even as her halfbreed cock shoots its own load, pushed over by the pressure on her feminine prostate; you try and cover your face as she cums, spraying your [pc.chest] and neck with thick, white spunk");
 	output(".");
 	
-	output("\n\nMoments later, your lover collapses atop you, body quivering as you fill her ass with more and more of your potent seed. Little spurts squirt back out of her, smearing onto your [pc.legs] and staining her sheets with frothy cream. You wrap your arms around her shoulders, holding the beautiful girl close as your orgasms slowly subside, fading into the blissful afterglow of sexual release, and then into a peaceful sleep, your [pc.cock "+ selCock +"] still fully buried inside Saen’s tight, spunk-filled ass.");
+	output("\n\nMoments later, your lover collapses atop you, body quivering as you fill her ass with more and more of your potent seed. Little spurts squirt back out of her, smearing onto your [pc.legOrLegs] and staining her sheets with frothy cream. You wrap your arms around her shoulders, holding the beautiful girl close as your orgasms slowly subside, fading into the blissful afterglow of sexual release, and then into a peaceful sleep, your [pc.cock "+ selCock +"] still fully buried inside Saen’s tight, spunk-filled ass.");
 
 	processTime(30+rand(15));
 	clearMenu();

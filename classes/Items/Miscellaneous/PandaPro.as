@@ -74,7 +74,7 @@
 				{
 					//Random!
 					if(rand(3) == 0) kGAMECLASS.output("\n\nA slow yawn works its way through your system as you await some changes. Slowly, you raise your hand up to cover your mouth. Have your reflexes slowed?");
-					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou steady your posture some, bracing your [pc.legs] into a comfortable position that you don't really feel like moving from. You're pretty sure your reflexes are slowing as a result.");
+					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou steady your posture some, bracing your [pc.legOrLegs] into a comfortable position that you don't really feel like moving from. You're pretty sure your reflexes are slowing as a result.");
 					else kGAMECLASS.output("\n\nA speck of dust lands in your eye. You didn't manage to blink until after it touched down. Shit! You spend the next two minutes blinking wildly and trying to remove it. Maybe your reflexes aren't as good as they used to be.");
 					changes++;
 					target.reflexes(-1);
@@ -85,7 +85,7 @@
 					//Random!
 					if(rand(3) == 0) kGAMECLASS.output("\n\nA wave of tightness rolls out from your shoulders and down through every muscle group in your body. In its wake, it leaves behind a physical confidence that can only mean an increase in strength and toughness.");
 					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou roll your shoulders as they start to tingle, but it doesn't make the odd sensation stop. In fact, it spreads down your body like wildfire. Only after your whole body is alight with misfiring nerves does the feeling abate. You seem a bit more solid after, and a little stronger too.");
-					else kGAMECLASS.output("\n\nSlight tremors run through the arms and chest, then down your legs. Everywhere they go, you feel a little bit more physically imposing - stronger, tougher, you name it.");
+					else kGAMECLASS.output("\n\nSlight tremors run through the arms and chest, then down your [pc.legOrLegs]. Everywhere they go, you feel a little bit more physically imposing - stronger, tougher, you name it.");
 					target.slowStatGain("physique",.5);
 					if(rand(2) == 0) target.slowStatGain("physique",.5);
 					if(rand(3) == 0) target.slowStatGain("physique",1);

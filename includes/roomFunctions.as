@@ -516,40 +516,38 @@ public function mhengaHarvestUthra():void
 
 public function mhengaVanaeFernDamage():Boolean
 {
-	if (rand(3) == 0 || pc.armor is EmptySlot)
-	{
-		var damage:int = rand(8);
-		if (pc.armor is EmptySlot) damage = 8;
-		else damage -= pc.armor.defense;
-		
-		if (damage < 0)
-		{
-			output("\n\nThe spiked ferns look pretty damn painful, but your thick armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
-		}
-		else if (damage < 2)
-		{
-			output("\n\nThe spiked ferns look pretty damn painful, but thankfully your armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legs] as you hike through the area. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
-		}
-		else if (damage < 4)
-		{
-			output("\n\nThe spiked ferns look pretty damn painful, your armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legs]. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
-		}
-		else if (damage < 8)
-		{
-			output("\n\nThe spiked ferns look pretty damn painful, and your armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
-		}
-		else
-		{
-			output("\n\nYou're starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
-			pc.energy( -damage);
-		}
-	}
-	
-	return mhengaVanaeCombatZone();
+    if (rand(3) == 0 || pc.armor is EmptySlot)
+    {
+        var damage:int = rand(8);
+        if (pc.armor is EmptySlot) damage = 8;
+        else damage -= pc.armor.defense;
+        if (damage < 0)
+        {
+        output("\n\nThe spiked ferns look pretty damn painful, but your thick armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
+        }
+        else if (damage < 2)
+        {
+            output("\n\nThe spiked ferns look pretty damn painful, but thankfully your armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legOrLegs] as you hike through the area. <b>(" + damage + ")</b>");
+            pc.HP( -damage);
+        }
+        else if (damage < 4)
+        {
+            output("\n\nThe spiked ferns look pretty damn painful, your armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legOrLegs]. <b>(" + damage + ")</b>");
+            pc.HP( -damage);
+        }
+        else if (damage < 8)
+        {
+            output("\n\nThe spiked ferns look pretty damn painful, and your armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
+            pc.HP( -damage);
+        }
+        else
+        {
+            output("\n\nYou're starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legOrLegs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
+            pc.HP( -damage);
+            pc.energy( -damage);
+        }
+    }
+    return mhengaVanaeCombatZone();
 }
 
 public function mhengaVanaeAbandonedCamp():Boolean

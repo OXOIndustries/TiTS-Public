@@ -3906,7 +3906,7 @@ public function initializeRooms():void
 
 	rooms["538"] = new RoomClass(this);
 	rooms["538"].roomName = "THE\nFIELDS";
-	rooms["538"].description = "The shorter grass between rows of corn crunches under your feet.  It seems a bit drier here, with the short plant life only reaching up to your [pc.legs] and only in patches.  The rest of the area is yellowed and parched, creating a mottled green-yellow landscape of corn and wilted grass. A high, white fence bars passage to the north and east.";
+	rooms["538"].description = "The shorter grass between rows of corn crunches under your feet. It seems a bit drier here, with the short plant life only reaching up to your [pc.legOrLegs] and only in patches. The rest of the area is yellowed and parched, creating a mottled green-yellow landscape of corn and wilted grass. A high, white fence bars passage to the north and east.";
 	rooms["538"].runOnEnter = varmintRoomsBonus;
 	rooms["538"].southExit = "537";
 	rooms["538"].westExit = "547";
@@ -4230,7 +4230,7 @@ public function initializeRooms():void
 
 	rooms["565"] = new RoomClass(this);
 	rooms["565"].roomName = "THE\nFIELDS";
-	rooms["565"].description = "As you walk down the rows of waist-high plants in this field, you feel your progress begin to slow.  The sticky tendrils of these plants cling to your [pc.legs] and leave red, bristly pods on you.  You curse, and upon leaving the field, spend several minutes removing the pods.";
+	rooms["565"].description = "As you walk down the rows of waist-high plants in this field, you feel your progress begin to slow. The sticky tendrils of these plants cling to your [pc.legOrLegs] and leave red, bristly pods on you. You curse, and upon leaving the field, spend several minutes removing the pods.";
 	rooms["565"].runOnEnter = varmintRoomsBonus;
 	rooms["565"].northExit = "567";
 	rooms["565"].eastExit = "560";

@@ -196,7 +196,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE A COCK
 	if(!pc.hasCock())
 	{
-		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock</b>!");
+		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr Badger herself. <b>Your cock is now very large</b>!");
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 11;
 		pc.cocks[0].cockColor = "black";
@@ -249,7 +249,10 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE A VAGINA
 	if(!pc.hasVagina())
 	{
-		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening between your [pc.legs], and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have capacious vagina</b>!");
+		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening");
+		if(pc.legCount > 1) output(" between your [pc.legs]");
+		else output(" at your crotch");
+		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have capacious vagina</b>!");
 		pc.createVagina();
 		pc.vaginas[0].wetnessRaw = 3;
 		pc.vaginas[0].loosenessRaw = 2;

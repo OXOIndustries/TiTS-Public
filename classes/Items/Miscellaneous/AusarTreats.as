@@ -91,6 +91,7 @@
 					{
 						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] throbs suddenly ");
 						if(pc.isCrotchGarbed()) kGAMECLASS.output("beneath your [pc.lowerGarments]");
+						else if(pc.legCount == 1) kGAMECLASS.output("on your [pc.leg]");
 						else kGAMECLASS.output("between your [pc.legs]");
 						kGAMECLASS.output(", swelling to its full size as a strange heat radiates through your body. You grab your simmering penis as the alien concoction takes effect, rewriting your most sensitive places. You double over in a sick twist of pain and pleasure");
 						if(pc.cocks[x].cockColor != "bright red")
@@ -154,7 +155,7 @@
 				{
 					kGAMECLASS.output("\n\nYou feel something swelling on your [pc.cock " + x + "]'s base, straining against your sensitive flesh. Alarmed, you ");
 					if(!pc.isCrotchGarbed()) kGAMECLASS.output("strip");
-					else kGAMECLASS.output("spread your [pc.legs]");
+					else kGAMECLASS.output("spread your [pc.legOrLegs]");
 					kGAMECLASS.output(" and grab your knotty cock. Your bitch-breaking knot is swelling even larger, engorging with cum and blood as your own arousal peaks. You feverishly grab your wang, stroking it as quick as you can as your knot grows larger than it ever has before!");
 					changes++;
 					pc.lust(20+rand(20));
@@ -180,7 +181,7 @@
 				else x = -1;
 				if(changes < changeLimit && x >= 0 && rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you're used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
+					kGAMECLASS.output("\n\nYou shudder violently as waves of pleasure suddenly shoot up through your loins. A flush of wetness pours down your [pc.legOrLegs] as your cunt contracts rhythmically, drooling a steady river of [pc.girlCum] - more than you're used to producing. You shudder and sigh as your cunny nearly orgasms, just cresting the peaks of pleasure before the excess lube finally dissipates. Still, you feel a whole lot wetter than usual. You could definitely handle bigger cocks and toys now.");
 					pc.lust(20+rand(20));
 					pc.vaginas[x].wetness(1);
 					changes++;

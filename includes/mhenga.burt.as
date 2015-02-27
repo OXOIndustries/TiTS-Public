@@ -553,11 +553,16 @@ public function talkToBurtAboutDeseZilGueys():void {
 	else if(flags["BURT_ZIL_TALK"] == 1)
 	{
 		flags["BURT_ZIL_TALK"] = 2;
-		output("Burt smirks as you bring up his favorite subject,<i> “Yah, so... sex. The Zil are good at it, and open with it, but you have to be careful. They can breed with humans, so</i>");
+		output("Burt smirks as you bring up his favorite subject, <i>“Yah, so... sex. The Zil are good at it, and open with it, but you have to be careful. They can breed with humans, so");
 		//[if (hasVagina = false)]
-		if(!pc.hasCock()) output("<i> unless you are fixing to settle down and raise some kids, keep it in your pants.</i>");
-		else output("<i> unless you want a belly full of bees, I’d recommend not spreading your [pc.legs] for them.</i>");
-		output("<i>”</i>");
+		if(!pc.hasCock()) output(" unless you are fixing to settle down and raise some kids, keep it in your pants");
+		else
+		{
+			output(" unless you want a belly full of bees, I’d recommend not");
+			if (pc.legCount > 1) output(" spreading your [pc.legs] for them");
+			else output(" falling for their charms");
+		}
+		output(".”</i>");
 	}
 	//Scene 3
 	else if(flags["BURT_ZIL_TALK"] == 2)
@@ -629,9 +634,9 @@ public function getOralFromBurt():void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
 	//if (naga = true)
-	if(pc.isNaga()) 
+	if(pc.isNaga() || pc.legCount <= 1) 
 	{
-		output("You mention that you would enjoy getting a little attention yourself and Burt grins, pushing you back over the cot. Your [pc.legs] shift to wrap around the powerful man and drag him down to your loins.");
+		output("You mention that you would enjoy getting a little attention yourself and Burt grins, pushing you back over the cot. Your [pc.legOrLegs] shift to wrap around the powerful man and drag him down to your loins.");
 		if(pc.hasVagina()) output(" He lets his breath wash over [pc.eachVagina], inhaling your musky scent and smirking as he begins to place soft kisses around your [pc.vagina].");
 		//if (hasCock = true)
 		else if(pc.hasCock()) output(" He lets his lips press in teasing kisses across [pc.eachCock], smirking up at you as he teases your senses.");
@@ -643,7 +648,7 @@ public function getOralFromBurt():void {
 		{
 			output("\n\nBurt raises one hand to tease through your tender folds, spreading [pc.eachVagina] open to his view, before he leans in to kiss and nibble at your most intimate of flesh. He takes his time, wanting to really inflame your passion and pleasure before his tongue begins to dig into you, the stubble of his five o’clock shadow scratching at your belly and [pc.asshole] as he works. He clearly has had a great deal of practice with pleasuring his lovers like this, and soon enough he has your insides churning in blissful need as he pushes you towards the edge of climax. He doesn’t try to drag it out or tease you, instead he pushes you right over that edge, ");
 			//if (isSquirter = true)
-			if(pc.isSquirter()) output("gasping as you hit your climax and your juices surge from within you, splashing across his face and your [pc.legs] in a hot and musky mess.");
+			if(pc.isSquirter()) output("gasping as you hit your climax and your juices surge from within you, splashing across his face and your [pc.legOrLegs] in a hot and musky mess.");
 			else output("grinning as your body bucks and lurches in bliss beneath him in the throes of your orgasm.");
 		}
 		//[if (gender = male)]
@@ -666,8 +671,8 @@ public function getOralFromBurt():void {
 		//[if (gender = herm)] 
 		else if(pc.hasCock() && pc.hasVagina()) 
 		{
-			output("\n\nBurt smiles up at you as his hands caress your [pc.legs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your belly and [pc.asshole]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder, catching [pc.oneClit] in his mouth and sucking hard at it.");
-			if(pc.isSquirter()) output(" He gasps around your pleasure bud as you hit your climax and your juices surge from within you, splashing across his face and your [pc.legs] in a hot and musky mess.");
+			output("\n\nBurt smiles up at you as his hands caress your [pc.legOrLegs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your belly and [pc.asshole]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder, catching [pc.oneClit] in his mouth and sucking hard at it.");
+			if(pc.isSquirter()) output(" He gasps around your pleasure bud as you hit your climax and your juices surge from within you, splashing across his face and your [pc.legOrLegs] in a hot and musky mess.");
 			else output(" He gasps around your pleasure bud as your body bucks and lurches in bliss beneath him in the throes of your orgasm.");
 			output(" He keeps your maleness pointed up towards you, watching ");
 			//if (cumNormal = true) 
@@ -838,8 +843,8 @@ public function burtsWeinerInYourButt():void {
 	else output("You eagerly agree, your [pc.asshole] giving a twitch in anticipation. You grin wide as you press against him and lick your lips.");
 	
 	//[if (naga = true)] 
-	if(pc.isNaga()) {
-		output("\n\nBurt grins at you and puts weight against your abdomen, pushing you gently back onto the cot as he slips a hand down to tease along your [pc.legs], finding your [pc.asshole] and teasing a finger around it. He lowers his head and spits onto the puckered hole before moving to line up his cybernetic erection, the horse tipped flare pushing against your back door bluntly.");
+	if(pc.isNaga() || pc.legCount <= 1) {
+		output("\n\nBurt grins at you and puts weight against your abdomen, pushing you gently back onto the cot as he slips a hand down to tease along your [pc.legOrLegs], finding your [pc.asshole] and teasing a finger around it. He lowers his head and spits onto the puckered hole before moving to line up his cybernetic erection, the horse tipped flare pushing against your back door bluntly.");
 		//if (analCapacity = tight) 
 		if(pc.ass.looseness() <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
 		else if(pc.ass.looseness() <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
@@ -913,9 +918,9 @@ public function burtSticksItInThePCsVajayjay():void {
 	var x:int = pc.cuntThatFits(burt.cockVolume(0));
 	if(x < 0) x = 0;
 	//if (naga = true)
-	if(pc.isNaga()) 
+	if(pc.isNaga() || pc.legCount <= 1)
 	{
-		output("\n\nHe gently lays you on your belly on the cot, his hands stroking your [pc.hips] tenderly before he gives your [pc.butt] a teasing slap. He lifts your [pc.legs] over his shoulder and lets you coil around him as he exposes your [pc.vagina " + x + "] to his cybernetic equine manhood.");
+		output("\n\nHe gently lays you on your belly on the cot, his hands stroking your [pc.hips] tenderly before he gives your [pc.butt] a teasing slap. He lifts your [pc.legOrLegs] over his shoulder and lets you coil around him as he exposes your [pc.vagina " + x + "] to his cybernetic equine manhood.");
 		//if (vagCapacity = tight)
 		if(pc.vaginas[x].looseness() <= 2) output("\n\nYou grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
 		//[if (vagCapacity = medium)
@@ -1197,7 +1202,7 @@ public function threeDSurprise():void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
 	output("...or not?");
-	output("\n\nYou hear Burt shout a warning to you, but before you can react, tentacles wrap around your [pc.legs] from behind, hoisting you into the air upside down. Your " + pc.rangedWeapon.longName + " slips out of your grip, landing with a clatter on the floor as Three-Dee’s black tentacles coil around your arms and jerk them out to the sides, rendering you relatively immobile.");
+	output("\n\nYou hear Burt shout a warning to you, but before you can react, tentacles wrap around your [pc.legOrLegs] from behind, hoisting you into the air upside down. Your " + pc.rangedWeapon.longName + " slips out of your grip, landing with a clatter on the floor as Three-Dee’s black tentacles coil around your arms and jerk them out to the sides, rendering you relatively immobile.");
 	output("\n\nYou can feel the blood rushing to your head as you are held there, watching as Burt fights through the tentacles, trying to get to the control panel at the bar to turn her off.");
 	output("\n\nThere isn’t time, sadly, you can feel her cold black tentacles slithering across your [pc.skinFurScales], exploring you. Her hologram twitches and she stammers out,<i> “Th-this ve-ve-vessel is s-soiled... begin c-cleansing process....”</i>");
 	output("\n\nYou don’t have long to think about what that means. The segments of Three-Dee’s tentacles separate, exposing silky soft bristles, like a bottle brush intended for the most fragile of crystal decanters. The bristles begin to spin in alternating directions as she scrubs at your [pc.skin] in ways that make you shiver.");
@@ -1312,7 +1317,11 @@ public function stephIrsonEpisodeOnePartTwo():void
 	
 	output("\n\nSteph writhes and cries out as she's double-penetrated by the twin-cocked naleen, just in time to have her open mouth filled with a juicy pussy. The camera pans up to reveal the busty huntress from before, fingers mashing Steph's head into her groin as another male slithers behind <i>her</i>, a pair of cocks vanishing into the naleen's ass. She coos with delight, vocalizations almost masking Steph's screams as she's violated. You can't hide an unmistakable warmth spreading through your body as you watch the hostess getting fucked");
 	if(pc.hasCock()) {
-		output(", and you try crossing your [pc.legs] to hide your growing stiff");
+		output(", and you try");
+		if(pc.legCount == 1) output(" displacing your [pc.leg]");
+		else if(pc.isBiped()) output(" crossing your [pc.legs]");
+		else output(" shuffling yourself");
+		output(" to hide your growing stiff");
 		if(pc.cockTotal() == 1) output("y");
 		else output("ies");
 	}

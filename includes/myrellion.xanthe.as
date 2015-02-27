@@ -601,7 +601,7 @@ public function talkAbootSiel():void
 	output("\n\nThe midnight haired mistress of the Silken Serenity gestures to a nearby ");
 	if(!pc.isTaur() && !pc.isNaga()) output("seat");
 	else output("spot");
-	output(", ushering you to sit down. You do so, since it seems she’s gearing you up for quite the lengthy chat. It seems she’s concerned that your [pc.legs] might buckle from standing up.");
+	output(", ushering you to sit down. You do so, since it seems she’s gearing you up for quite the lengthy chat. It seems she’s concerned that your [pc.legOrLegs] might buckle from standing up.");
 	output("\n\nOnce you are properly seated, she sits back herself. It looks more like lying down and resting back against her own caterpillar-like body. Apparently, that’s how siel seat themselves.");
 	output("\n\n\"<i>... My race, the siel, come from a world called Xhixia, located in the Liliaran Nebulae. It’s our birth world and the capital planet of our Empire. It’s also my home planet, which means I’m rather fond of it,</i>” Xanthe explains.");
 	output("\n\n<i>\"From space, it kind of looks like a red prickly ball with purple seas. There are colorful patches - that’s where the cities are - but the rest are covered in jagged stone spikes that break the cloud layer.</i>”");
@@ -1313,7 +1313,7 @@ public function tieAndTeaseWithXanthe():void
 
 	output("\n\nLooking upwards, you marvel at her obvious talent and the care in which she ties you up like a perfectly wrapped present. It’s tight enough for you to feel it every given second, yet in no way does it feel uncomfortable.");
 
-	output("\n\nShe also secures your [pc.legs] with two lengths of silken twine, each connected to your left and right. Tied up like this, you’re unable to do anything but ");
+	output("\n\nShe also secures your [pc.legOrLegs] with two lengths of silken twine, each connected to your left and right. Tied up like this, you’re unable to do anything but ");
 	if(pc.legCount > 1) output("keep your [pc.legsNoun] spread and ");
 	output("your arms in the air. It’s like you’re a naked damsel dangling over a pit of doom!");
 
@@ -1363,7 +1363,7 @@ public function getLeftByXantheSlooot():void
 	if(pc.hasCock()) output(" and [pc.cocks]");
 	output(", tightening them and waiting for the adhesive substance to set. Once it has, she loops them through a metal ring on the floor and - looking at you - gives them a pointed tug.");
 
-	output("\n\nThe sudden sharp sensation causes you to cry out in pleasured shock. Not only are you butt-naked, arms tied up, and your [pc.legs] ");
+	output("\n\nThe sudden sharp sensation causes you to cry out in pleasured shock. Not only are you butt-naked, arms tied up, and your [pc.legOrLegs] ");
 	if(pc.legCount > 1) output("spread and ");
 	output("restrained, now your [pc.nipples]");
 	if(pc.hasCock()) 
@@ -1456,9 +1456,9 @@ public function getLeftAloneByXanthePartDues(x:int = 0):void
 
 	output("\n\nIt doesn’t take you long to realise there is a full sized mirror mounted on the wall and pointing directly at you, giving you a good look at how lewd you look right now. You stare at the [pc.race] in the mirror with [pc.hisHer] [pc.nipples]");
 	if(pc.hasCock()) output(" and [pc.cocks]");
-	output(" all bound and pulled downwards, arms upwards and [pc.legs] bound.");
+	output(" all bound and pulled downwards, arms upwards and [pc.legOrLegs] bound.");
 
-	output("\n\nAs you look you can see your own [pc.skinColor] cheeks flushing and your bound parts getting pointedly stiffer. Wiggling your bound [pc.legs], you moan into your Mistress’s panties, getting more and more wound up. You really do look like a naughty " + pc.mf("boy","girl") + "!");
+	output("\n\nAs you look you can see your own [pc.skinColor] cheeks flushing and your bound parts getting pointedly stiffer. Wiggling your bound [pc.legOrLegs], you moan into your Mistress’s panties, getting more and more wound up. You really do look like a naughty " + pc.mf("boy","girl") + "!");
 
 	output("\n\nThinking yourself clever, you tug at the strings attached to your ");
 	if(pc.hasCock()) output("loins");
@@ -1674,7 +1674,7 @@ public function shePaysAttentionToYouSlut():void
 	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your eyes. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
 	output("\n\nThe cold of the dungeon clashes with the heat of your cheeks and ");
 	if(pc.hasCock()) output("bound up ");
-	output("loins. With your arms and [pc.legs] restrained and your senses taken from you");
+	output("loins. With your arms and [pc.legOrLegs] restrained and your senses taken from you");
 	if(!pc.isNude()) output(" - not to mention your clothes -");
 	else output(",");
 	output(" you really are at her mercy. That thought gets you all hot and bothered, and you wiggle with delighted pleasure");
@@ -1786,7 +1786,10 @@ public function slutNotASlutEpilogue():void
 
 	output("\n\n<i>\"I think that’s enough marking, my beautiful pet. Perhaps ONE more to make sure they know you’re mine.</i>” As you brace yourself for one more lash, your neck is deliciously seized in her luscious lips and suckled upon - and she leaves a large hickey just below your [pc.ear]! \"<i>... There! How about I finish you off?</i>\"");
 
-	output("\n\nIt’s a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legs] are quaking so hard that you’re entirely supported by your wrist binds - you’re sure that once she undoes them you’ll simply fall into a gooey mess.");
+	output("\n\nIt’s a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" is");
+	else output(" are");
+	output(" quaking so hard that you’re entirely supported by your wrist binds - you’re sure that once she undoes them you’ll simply fall into a gooey mess.");
 	output("\n\nYou can hear the squirting of a bottle followed by another strange sound. It’s not long before a cool, lube covered object is being slid between your buttocks and pressed against your [pc.asshole]. <i>\"Relax, my love, and let it go inside of you.</i>”");
 	output("\n\nOnce you consciously unclench your rectum, you are immediately rewarded with the sensation of what feels like a single slick sphere passing through your pucker and into your butt. You let out a muffled moan as it sweetly slides inside of you, massaging and caressing your back passage in all the right places.");
 	output("\n\n<i>\"That’s one, we’ve got quite a few more to go.\</i>”</i> Your Mistress sinfully promises you, and your penetrated posterior wiggles with delight. One after another, lube-filled orbs penetrate and push deep into your derriere. With the blindfold on, all you can focus on is the texture of those glorious spheres sliding into your rump!");
@@ -1799,7 +1802,12 @@ public function slutNotASlutEpilogue():void
 		if(pc.hasVagina()) output(" Meanwhile, your ");
 	}
 	if(pc.hasVagina()) output(" feminine juices dribble down your [pc.thighs] and coat them in your girlish warmth.");
-	if(!pc.hasCock() && !pc.hasVagina()) output("[pc.legs] quake as you struggle to contain the coiling pleasure within.");
+	if(!pc.hasCock() && !pc.hasVagina()) 
+	{
+		output("[pc.legOrLegs] quake");
+		if(pc.legCount != 1) output("s");
+		output(" as you struggle to contain the coiling pleasure within.");
+	}
 	output(" When they’re all inside of you, you finally relax your keister and let out a pleasured sigh.");
 
 	output("\n\nYour guard is let down too soon, however. There is a noise like a bicycle pump being used, and suddenly the line of balls in your ass begin swelling and expanding!");

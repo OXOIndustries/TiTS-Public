@@ -205,7 +205,7 @@ public function getTailUsedBySera():void
 	{
 		output(" Your [pc.vaginas] react");
 		if(pc.totalVaginas() > 1) output("s");
-		output(" similarly. You can feel it on your [pc.legs] and in the way you squish when you shift your hips.");
+		output(" similarly. You can feel it on your [pc.legOrLegs] and in the way you squish when you shift your hips.");
 	}
 	output(" The rhythmic pumping of your tongue against her fingers continues while you're thinking about all this, on autopilot, lewdly cleaning every bit of your prodigiously slippery sauce from every nook and cranny.");
 	output("\n\n<i>\"Damn, you suck like a vacuum cleaner! I almost wanna stick it in your mouth instead!\"</i> Sera teases. Her fingers slide free of your suckling maw, connected to your [pc.lips] by strands of clear saliva. Your mouth is pursed, horny and confused. Is she finally going to tend to your needy slit? The hungry tail is all over Sera, kissing her with its engorged lips, smearing lubricants across her unblemished skin. You wonder if she's going to make you lick that off her with no small amount of anticipation, but she disappoints you by grabbing hold of your roving tail and holding it up to your face.");
@@ -223,7 +223,8 @@ public function getTailUsedBySera():void
 	output("\n\nLicking your ear, the haughty demoness starts to gently nibble. Her vibrant, blue lips seal around it in a kiss before breaking off. Her voice purrs like the rumble of a contented cheetah, <i>\"Cum all over your face, slut.\"</i>");
 	output("\n\nYou moan, shaking, muscles convulsing as ecstasy blooms.");
 	output("\n\n<i>\"Show me you're just a wanton piece of fuckmeat, waiting to be taken.\"</i>");
-	output("\n\nJuices rush to fill your mouth while your eyes roll back. Your [pc.legs] spasm");
+	output("\n\nJuices rush to fill your mouth while your eyes roll back. Your [pc.legOrLegs] spasm");
+	if(pc.legCount == 1) output("s");
 	if(pc.hasVagina()) output(", soaked with juices");
 	if(pc.hasCock()) output(", your cocks unload into the open air");
 	output(", your [pc.tailgina] ripples on your [pc.tongue], milking it, and you sag deeper into Sera's grip, letting her hold you upright while what feels like gallons of [pc.girlCum] pour into your mouth. It's the kind of orgasm that would normally knock you prone and gasping, well-fucked an unlikely to do anything but cuddle your way to a well-fucked sleep.");
@@ -367,7 +368,9 @@ public function getRodeFemdomStyleBySera():void {
 	output("\n\nShortly after you go dry, her alabaster ejaculations slow, and Sera shudders, smiling. Her voice, surprisingly tender, coos, <i>\"That's a very, very good boy.\"</i> Then, without another word, she ");
 	if(pc.hasKnot(x)) output("attempts to rise, catching on your knot. Giving you a baleful look, she sighs. It's at least five minutes before she finally manages to pop it out.");
 	else output("rises up off of you, letting the [pc.cumColor] fluid glisten on her lips.");
-	output(" You've nicely creampied Sera, and with a glance down at yourself, you realize she's done a fabulous job marking you as well. You stand up on wobbly [pc.legs], dripping wet with mixed juices.");
+	output(" You've nicely creampied Sera, and with a glance down at yourself, you realize she's done a fabulous job marking you as well. You stand up on");
+	if(pc.legCount == 1) output(" your");
+	output(" wobbly [pc.legOrLegs], dripping wet with mixed juices.");
 	output("\n\nSera is already in the process of throwing away a small towel, all evidence of the tryst already removed. Seeing you look at her, she rolls her eyes. <i>\"Fine, you can have a towel.\"</i> She hands one to you with condescending pat on the head. <i>\"That's a good bitch.\"</i> Your [pc.cocks] twitch");
 	if(pc.cockTotal() == 1) output("es");
 	output(" in response. Luckily, she doesn't see.");
@@ -408,13 +411,16 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	output("\n\nSera doesn't take long start a squirting, squelching orgasm, first gushing into your mouth and then into your [pc.cockBiggest]. There's a flood of her tangy sauce bulging your cheeks and squirting out of the corners of your mouth even though you're dutifully and instinctively swallowing. The sensations radiating from your giant member are so wonderful, and you're so close to cumming, that when she explodes inside you, stretching you wider with the extra girth her passion lends, you start a climax all your own.");
 	output("\n\nThe tailcock had a huge headstart on you, though. Your cum-tube is absolutely flooded with her alabaster stuffing before your own [pc.cum] can escape your [pc.balls]. You feel it pushing deeper into you with each pump, all the way until it meets the tide of your pending release. Hot, pleasant pressure overwhelms you as your muscles work to expel a double load. After a moment of confusing back and forth, the sperm-filled wave hits your [pc.cockBiggest], pushing Sera's tiny tail-prick just in time let your uncorked [pc.cockHeadBiggest] blow.");
 	//light cum
-	if(pc.cumQ() <= 200) output("\n\nThough the cum is almost all hers, it feels as good as if you made it all yourself. It splatters everywhere, but mostly over your [pc.legs].");
+	if(pc.cumQ() <= 200) output("\n\nThough the cum is almost all hers, it feels as good as if you made it all yourself. It splatters everywhere, but mostly over your [pc.legOrLegs].");
 	//Medium cum
 	else if(pc.cumQ() <= 1000)
 	{
 		output("\n\nThe eruption of mixed spunk ");
-		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("comes as an indistinguishable mass of white. You can't tell where yours starts and hers begins, but there's a lot of it, soaking your [pc.legs] and making a puddle on the floor.");
-		else output("comes out as a swirling mix of [pc.cumColor] and white. The rainbow jism spatters across your [pc.legs], effectively painting them before starting a puddle below.");
+		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("comes as an indistinguishable mass of white. You can't tell where yours starts and hers begins, but there's a lot of it, soaking your [pc.legOrLegs] and making a puddle on the floor.");
+		else output("comes out as a swirling mix of [pc.cumColor] and white. The rainbow jism spatters across your [pc.legOrLegs], effectively painting");
+		if(pc.legCount == 1) output(" it");
+		else output(" them");
+		output(" before starting a puddle below.");
 	}
 	//Big+ Cum
 	else
@@ -422,7 +428,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 		output("\n\nThe eruption of mixed spunk ");
 		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("might be an indistinguishable mass of white, but there's so much that you're sure most of it is your own.");
 		else output("materializes as a mix of [pc.cumColor], white, and every color in between, though most of it is your own.");
-		output(" The first rope alone is enough to completely drench your [pc.legs], and each successive blast of [pc.cumColor]");
+		output(" The first rope alone is enough to completely drench your [pc.legOrLegs], and each successive blast of [pc.cumColor]");
 		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output(" and white");
 		output(" fills a lake around your ankles.");
 		if(pc.cumQ() >= 5000)
@@ -502,7 +508,10 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	if(pc.hasCock())
 	{
 		output("\n\n<i>\"Oh, what's this?\"</i>  Sera quips, looking down at you, hands on her hips and glistening cock dangling, looming over you, still slick and shining from the abuse it levied on your throat. <i>\"Did my meat get a little hard from sucking cock?\"</i>");
-		output("\n\nYou look shamefaced between your [pc.legs], to the growing bulge of your erection ");
+		output("\n\nYou look shamefaced");
+		if(pc.legCount > 1) output(" between");
+		else output(" at");
+		output(" your [pc.legOrLegs], to the growing bulge of your erection ");
 		if(pc.isCrotchGarbed()) output("straining against your [pc.lowerGarment]");
 		else output("bare and plain for all to see");
 		output(". She stifles a snicker at your ");
@@ -560,9 +569,12 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	//If PC has a cooch:
 	if(pc.hasVagina()) 
 	{
-		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.leg]. You yelp and look down, seeing Sera's tail swishing between your [pc.legs]... and another cock where the spade ought to have been.");
-		output("\n\n<i>\"I know your type,\"</i>  Sera grins as the tail-cock lines up with your [pc.vagina], its length wriggling excitedly between the violent thrusts of her hips. <i>\"A slut like you couldn't be satisfied with just one cock, could you? So I brought you an extra one...\"</i>");
-		output("\n\nBetween the brutal ass-fucking you're already getting, you don't have much wiggle room to complain... even if you wanted to. And the thought of that other thick member doubling your pleasure quickly erodes any hope of resistance. Instead, you spread your [pc.legs] as best you can as the little tail-cock demands entrance to your sex. A yelp of pleasure escapes your mouth as the cock thrusts into you, spearing your [pc.vagina] right to the mouth of your womb, thrusting in without the faintest hint of a rhythm, driving you wild with its erratic thrusts between her hip-slapping ass-fucking.");
+		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.legOrLegs]. You yelp and look down, seeing Sera's tail swishing");
+		if(pc.legCount > 1) output(" between");
+		else output(" around");
+		output(" your [pc.legOrLegs]... and another cock where the spade ought to have been.");
+		output("\n\n<i>\"I know your type,\"</i> Sera grins as the tail-cock lines up with your [pc.vagina], its length wriggling excitedly between the violent thrusts of her hips. <i>\"A slut like you couldn't be satisfied with just one cock, could you? So I brought you an extra one...\"</i>");
+		output("\n\nBetween the brutal ass-fucking you're already getting, you don't have much wiggle room to complain... even if you wanted to. And the thought of that other thick member doubling your pleasure quickly erodes any hope of resistance. Instead, you spread your [pc.legOrLegs] as best you can as the little tail-cock demands entrance to your sex. A yelp of pleasure escapes your mouth as the cock thrusts into you, spearing your [pc.vagina] right to the mouth of your womb, thrusting in without the faintest hint of a rhythm, driving you wild with its erratic thrusts between her hip-slapping ass-fucking.");
 		pc.cuntChange(0,8,true,true,false);
 	}
 	//If PC has a tail-cock:

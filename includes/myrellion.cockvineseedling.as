@@ -19,7 +19,7 @@ public function cockvineSeedlingEncounter():void
 
 	output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind.");
 
-	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.legs], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
+	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.legOrLegs], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
 	else
 	{
 		output(" You freeze as your eyes land on something on the ground ahead of you. An organic, tubular something, about two feet long.");

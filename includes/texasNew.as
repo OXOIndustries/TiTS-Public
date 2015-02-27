@@ -608,7 +608,9 @@ public function spitRoastAmmoOnYerDicks():void
 	showName("AMMA &\nOGGY");
 	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
-	output("At the cow-girl’s invitation, your hands quickly find their way onto Amma’s hips, pulling the ditzy cow up against you. She gives a gasp of a moo, her spankable ass grinding into your [pc.crotch] while her long, slender tail wraps affectionately around one of your [pc.legs]. Your wandering hands sink into her fleshy figure, caressing her wide hips before slipping up under her blouse, tracing along her bare, hot flesh and up to the shirt-straining mounds of her milky tits.");
+	output("At the cow-girl’s invitation, your hands quickly find their way onto Amma’s hips, pulling the ditzy cow up against you. She gives a gasp of a moo, her spankable ass grinding into your [pc.crotch] while her long, slender tail wraps affectionately around");
+	if(pc.legCount > 1) output(" one of");
+	output(" your [pc.legOrLegs]. Your wandering hands sink into her fleshy figure, caressing her wide hips before slipping up under her blouse, tracing along her bare, hot flesh and up to the shirt-straining mounds of her milky tits.");
 	output("\n\nAmma’s breath catches as your fingers squeeze around her huge breasts. “<i>Aaah! You go right for it, don’t ya?</i>” she giggles as your fingers dig into her pliant titflesh, a slight moan escaping her lips, growing louder as you work your fingers into her bosom.");
 	output("\n\nAs you do, Ogram finally steps up and makes short work of Amma’s shirt, pulling it off her with practiced, easy motions. You flash the big bull a grin as your hands are laid bare, just in time for the first little trickle of milk to spurt out of Amma’s jugs, spilling across your digits and onto the floor. Her voice crescendos into a high, blissful moo as you go from groping to milking, her lactic lust pouring onto the floor - and into convenient drains beneath her desk. As you work around her big, teat-like nipples, Ogram grabs the undersides of her tits, giving them just enough squeeze to make her cry out. He silences her with a kiss, pulling the cow away from you and into his powerful grasp.");
 	output("\n\nStill, in his arms, she’s bent over and wiggling her ass and tail. You release the cow’s breasts and move down to her other big, fleshy mounds, slipping your hands up under her skirt and grabbing her ass. Her tail swerves as you hike her skirt, finally getting a good look at her big, plump derriere");
@@ -802,9 +804,12 @@ public function okayEllieYaCuntLetsMilkMeFirstTime():void
 	output("\n\nA little nervously, you do as the cow asks, stripping off your [pc.gear] and handing your equipment over piece by piece. Carries lays it all out on a small table inside the stall before turning back to you, giving you a reassuring smile even as her wandering eyes take in your nude form. “<i>Alrighty then! Let me help you get strapped into the machine here,</i>” she says, practically skipping back to your side and indicating ");
 	if(!pc.isBiped()) output("for you to just step up onto and over the machine, putting the weight of your belly onto it -- “<i>don’t worry, it can take your weight, no problem!</i>”");
 	else output("a pair of stirrups at one end, and a handlebar at the other. With a little help from your bovine assistant, you’re able to hop onto the machine and, at her instruction, lay face-down atop it.");
-	output(" Thankfully, a lining of wool padding separates most of your bare [pc.skinNoun] from the cold hard steel of the machine. Carrie adjusts the straps around your [pc.legs], making sure you’re nice and snug.");
+	output(" Thankfully, a lining of wool padding separates most of your bare [pc.skinNoun] from the cold hard steel of the machine. Carrie adjusts the straps around your [pc.legOrLegs], making sure you’re nice and snug.");
 
-	output("\n\n“<i>Pretty as a picture, stud!</i>” she cheers, taking a step back. “<i>Now, let’s get your bits and pieces tucked away down here,</i>” she adds, stepping behind you and reaching between your [pc.legs]. Your breath catches as her slender, strong fingers wrap around your [pc.cock], hefting your flaccid length and guiding it into the nearest of the many padded holes in the machine.");
+	output("\n\n“<i>Pretty as a picture, stud!</i>” she cheers, taking a step back. “<i>Now, let’s get your bits and pieces tucked away down here,</i>” she adds, stepping behind you and reaching");
+	if(pc.legCount > 1) output(" between");
+	else output(" around");
+	output(" your [pc.legOrLegs]. Your breath catches as her slender, strong fingers wrap around your [pc.cock], hefting your flaccid length and guiding it into the nearest of the many padded holes in the machine.");
 	if(pc.cockTotal() > 1) 
 	{
 		output(" Carrie repeats the process for your remaining cock");
@@ -860,7 +865,10 @@ public function useTheMilkerWithoutCarrieYaSkag():void
 
 	output("\n\nYou thank the red-headed cow and step into the stall with her. She closes and locks the door behind you, then sits herself down and hands you a bright pink bottle of lube from the table. You spend a moment ");
 	if(!pc.isNude()) output("dressing down, ");
-	output("setting your equipment aside on the table before mounting the milking machine. You shift your weight onto it and adjust the straps around your [pc.legs], leaving yourself nice and spread open. You lean back, squirt a nice thick dollop of lube into your palm, and spend a couple minutes getting yourself nice and ready. Your fingers find your [pc.asshole] easily, and with a little breathing exercise, you relax enough to slip yourself inside and slather your inner walls until they’re absolutely drooling with moisture. Perfect!");
+	output("setting your equipment aside on the table before mounting the milking machine. You shift your weight onto it and adjust the straps around your [pc.legOrLegs], leaving yourself nice and");
+	if(pc.legCount > 1) output(" spread open");
+	else output(" secure");
+	output(". You lean back, squirt a nice thick dollop of lube into your palm, and spend a couple minutes getting yourself nice and ready. Your fingers find your [pc.asshole] easily, and with a little breathing exercise, you relax enough to slip yourself inside and slather your inner walls until they’re absolutely drooling with moisture. Perfect!");
 
 	output("\n\nYou set the bottle aside and look back to your bovine attendant, giving her a thumbs up. “<i>Alright babe, just hold on and spread ‘em wide for Mister Floppycock!</i>” Carrie says, flashing you a grin before dimming the lights to a sultry haze of darkness and pushing the big red button next to her stool.");
 
@@ -899,7 +907,9 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 
 	pc.buttChange(Math.round(pc.analCapacity()/2),true,true,false);
 
-	output("\n\nThe machine doesn’t care, though: it mechanically continues its ceaseless advance. Only when you feel the wide, cold steel base of the mechanical arm does the gut-filling pressure finally abate, giving you a moment to catch your breath. Your breath is already coming shallow and ragged as your body struggles to adjust to the overwhelming girth inside you. Your [pc.legs] strain against the straps, muscles going wild, desperate to escape. All you can consciously do is grip the handlebars at the head of your body-rest and brace yourself.");
+	output("\n\nThe machine doesn’t care, though: it mechanically continues its ceaseless advance. Only when you feel the wide, cold steel base of the mechanical arm does the gut-filling pressure finally abate, giving you a moment to catch your breath. Your breath is already coming shallow and ragged as your body struggles to adjust to the overwhelming girth inside you. Your [pc.legOrLegs] strain");
+	if(pc.legCount == 1) output("s");
+	output(" against the straps, muscles going wild, desperate to escape. All you can consciously do is grip the handlebars at the head of your body-rest and brace yourself.");
 
 	output("\n\nAll that in the span of no more than five seconds, before the machine begins to move again. You try to scream, but your voice fails to come, leaving your mouth agape in a silent “<i>O</i>” of ecstasy as the latex cock inside you pulls back, almost to the crown, before thrusting back in. One long, hard push inwards until it’s hilted inside you. Faster this time, taking only a couple of seconds to bury all twelve inches up your [pc.asshole]. You’re given no time to adjust, and the moment the dildo hilts you, it begins to withdraw again, keeping the same steady speed in, out, and in again. Your [pc.cocks] squirm");
 	if(pc.cockTotal() == 1) output("s");

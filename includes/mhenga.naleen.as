@@ -207,7 +207,7 @@ public function pcLosesToNaleenLiekABitch():void {
 	if(pc.HP() <= 0) output("pain wracking your body");
 	else if(pc.lust() >= pc.lustMax()) output("lust boiling in your loins");
 	else output("venom coursing through your veins");
-	output(", you topple backwards - only to land on the thick, leathery tail of your attacker. Grinning down at you with a predatory, hungry glint in her eye, the naleen woman coils around you, tail constricting around your weak [pc.legs] and waist.");
+	output(", you topple backwards - only to land on the thick, leathery tail of your attacker. Grinning down at you with a predatory, hungry glint in her eye, the naleen woman coils around you, tail constricting around your weak [pc.legOrLegs] and waist.");
 	
 	output("\n\n<i>“You see, little pet?”</i>  the naleen purrs, upper body moving sinfully close to yours, her huge breasts pressing against you as her deft hands quickly deprive you of your gear, ");
 	if(pc.isNude()) output("though that is a simple task thanks to your nudity.");
@@ -234,7 +234,10 @@ public function naleenFucksBoysScene():void {
 	author("Savin");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	output("You wonder about her idea of fun, but as if on cue, you feel a twitching between your [pc.legs] as your [pc.cock " + x + "] springs to life, steadily stiffening. The naleen grins, wrapping her arms around your waist and pulling you tight against her; face mashed between her huge, heavy tits, surrounded by warm flesh and soft fur. Quietly she whispers, <i>“That's good, little breeder. Nice and stiff for me, hmm?”</i>");
+	output("You wonder about her idea of fun, but as if on cue, you feel a twitching");
+	if(pc.legCount > 1) output(" between");
+	else output(" against");
+	output(" your [pc.legOrLegs] as your [pc.cock " + x + "] springs to life, steadily stiffening. The naleen grins, wrapping her arms around your waist and pulling you tight against her; face mashed between her huge, heavy tits, surrounded by warm flesh and soft fur. Quietly she whispers, <i>“That's good, little breeder. Nice and stiff for me, hmm?”</i>");
 	output("\n\nWith your eyes surrounded by an endless mass of breast, you can only feel and hear as the coils of her tail tighten, and your ");
 	if(pc.cockTotal() == 1) output("cock grows");
 	else output("cocks grow");
@@ -310,7 +313,9 @@ public function ohNoNoCawkNaleenLoss():void {
 	author("Savin");
 	var x:int = 0;
 	if(pc.hasVagina()) x = pc.smallestVaginaIndex();
-	output("As the word <i>“fun”</i>  escapes her lips, you feel the naleen's reptilian tail loosen around your limp body. She leans back onto the warm, soft ground, letting you collapse atop her, cheek resting on her belly. Your [pc.legs] limply fall around her, leaving you in a pose not unlike a mockery of straddling with your ass hiked in the air, completely vulnerable to the lusty alien. You can just see the outline of her face, the sharp outline of her jaw as it twitches into a grin, feline ears alert as her serpentine body shifts beneath you. Hot leather coils around your [pc.legs], a small, slender point teasingly inching up your thigh until your can feel it brushing against your [pc.butt]. Your inert body gives an involuntary shudder as the naleen's leathery tail caresses your bare flesh, the very head slipping between your cheeks to spread you apart.");
+	output("As the word <i>“fun”</i> escapes her lips, you feel the naleen's reptilian tail loosen around your limp body. She leans back onto the warm, soft ground, letting you collapse atop her, cheek resting on her belly. Your [pc.legOrLegs] limply fall");
+	if(pc.legCount == 1) output("s");
+	output(" around her, leaving you in a pose not unlike a mockery of straddling with your ass hiked in the air, completely vulnerable to the lusty alien. You can just see the outline of her face, the sharp outline of her jaw as it twitches into a grin, feline ears alert as her serpentine body shifts beneath you. Hot leather coils around your [pc.legOrLegs], a small, slender point teasingly inching up your thigh until your can feel it brushing against your [pc.butt]. Your inert body gives an involuntary shudder as the naleen's leathery tail caresses your bare flesh, the very head slipping between your cheeks to spread you apart.");
 		
 	output("\n\n<i>“This is so much better, is it not?”</i>  the feline beauty teases as her coils wrap around your upturned posterior. <i>“Ass up like the little whore you are, ripe and eager for a fucking. You're lucky you didn't run into a male of my race, or you'd already have a pair of big, thick rods violating your every hole. I'm so much gentler than that... though from where you're sitting, perhaps you don't believe me?”</i>");
 	
@@ -608,7 +613,10 @@ public function bendNaleenOver():void {
 	if(y >= 0) output("s");
 	output(" out to the crown");
 	if(y >= 0) output("s");
-	output(" - only to plunge back in again, right to the hilt! She cries, back arching as you slam into her backside. The naleen's long, powerful tail thrashes between your [pc.legs], coiling and spasming as her body takes your cock");
+	output(" - only to plunge back in again, right to the hilt! She cries, back arching as you slam into her backside. The naleen's long, powerful tail thrashes");
+	if(pc.legCount > 1) output(" between");
+	else output(" against");
+	output(" your [pc.legOrLegs], coiling and spasming as her body takes your cock");
 	if(y >= 0) output("s");
 	output(" again and again, stretching her hole");
 	if(y >= 0) output("s");
@@ -795,7 +803,13 @@ public function yesSnuggleWifZatNaleen():void {
 	author("Savin");
 	output("<i>“I guess you'll have to,”</i>  you grin, reaching back around to cup a handful of the naleen's bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your [pc.armor.longArmor] and gear, tossing it aside, submerging you in the pleasant warmth of the naleen's sexy body. You hadn't even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: <i>“I told you, pet, it gets so very cold here. But we'll keep each other warm tonight, won't we?”</i>");
 	
-	output("\n\nYou nod enthusiastically, stopping only to gasp as you feel a slender spear of warmth wrapping around one of your [pc.legs]. You manage to slip your arms around the naleen's waist, holding her tight against you before her coils utterly enwrap you, binding you in a blanket of soothingly warm, soft scales. <i>“Better?”</i>  the huntress teases, pinching one of your rigid teats between her coils.");
+	output("\n\nYou nod enthusiastically, stopping only to gasp as you feel a slender spear of warmth wrapping around");
+	if(pc.legCount > 1) output(" one of");
+	output(" your [pc.legOrLegs]. You manage to slip your arms around the naleen's waist, holding her tight against you before her coils utterly enwrap you, binding you in a blanket of soothingly warm, soft scales. <i>“Better?”</i> the huntress teases, pinching");
+	if(pc.totalBreasts() > 1) output(" one of");
+	output(" your rigid teat");
+	if(pc.totalBreasts() > 1) output("s");
+	output(" between her coils.");
 	
 	output("\n\n<i>“Much,”</i>  you say, leaning up to kiss her. She returns it with a playful smile, pushing your head down into her bosom, stroking your ");
 	if(pc.hasHair()) output("[pc.hair]");
@@ -882,7 +896,7 @@ public function pcGetsABlowjobThatTurnsIntoButtSmex():void
 	output("\n\nYou ");
 	if(!pc.isNude()) output("shed your [pc.gear], exposing your [pc.cockBiggest]");
 	else output("shift your [pc.hips] forward, exposing your [pc.cockBiggest]");
-	output(". Taking it in one hand, you stroke it slowly as you show your manhood to the Naleen. The kitty visibly relaxes and even smiles as you cautiously inch toward her. You try to keep yourself ready for some kind of trickery, but her feline agility affords her excess of stealthy prowess. You feel her striped snake-tail wrap firmly around your [pc.legs] before you see it, then fall directly into the amazoness’ embrace.");
+	output(". Taking it in one hand, you stroke it slowly as you show your manhood to the Naleen. The kitty visibly relaxes and even smiles as you cautiously inch toward her. You try to keep yourself ready for some kind of trickery, but her feline agility affords her excess of stealthy prowess. You feel her striped snake-tail wrap firmly around your [pc.legOrLegs] before you see it, then fall directly into the amazoness’ embrace.");
 	output("\n\nTemporarily outmaneuvered by the Naleen, you scramble to assume control over the coiled trickster once more. As you shove her human-like torso to the side and stand up, you inadvertently slide your [pc.cockBiggest] up her chest. Your [pc.cockHeadBiggest] thickens and rapidly fills with blood as your member is assailed by the fine, feline fur that covers the naga’s body. The sensation tickles your shaft in a enjoyable way, and you leave a smear of your pre-cum against her belly as you stand up. Recovering from your push, the tightly coiled spring of feline grace raises herself up only to find herself faced with your [pc.cockBiggest].");
 	output("\n\nSmiling and taking a hold of one of her feline ears, you pull her head forward towards your waiting dong. As her lips make contact your crown, shivers of pleasure run through your [pc.cockBiggest]. Her gentle breathing blows cool air into your opening. Your advances are halted, however, when  she refuses to un-purse her lips to allow access to the part of her you want most. You remove your hand from her ear and instead use your digits to push her cheeks forward, forcing her pucker apart and her mouth open just enough to allow you slip your [pc.cockHeadBiggest] past her lips. With your length now past the sexual predator’s fangs, you figure that if she were going to bite, she would have by now, so you remove your hand from her face and allow yourself a moment to take in the feeling of sublime, warm wetness that now surrounds your member.");
 	processTime(5);

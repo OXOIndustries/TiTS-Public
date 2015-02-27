@@ -722,7 +722,7 @@ function raskZapAttack():void
 //Minor damage plus fallen status. Much better chance of succeeding if PC is stunned
 function seeYouNextFallSloot():void
 {
-	output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
+	output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legOrLegs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
 
 	//Fail: 
 	if(!pc.isImmobilized() && foes[0].physique()/2 + 10 <= pc.reflexes()/2 + rand(20) + 1)

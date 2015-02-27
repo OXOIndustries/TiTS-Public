@@ -118,7 +118,7 @@ package classes.Items.Miscellaneous
 					
 					if (moddedAnyTits > 0)
 					{
-						kGAMECLASS.output("\n\nYou soar higher and higher and your octaves rise as well. In one blissful shuddering moment you let out a sweet cry and violently climax from your [pc.chest]. Your [pc.nipples] shoot [pc.milk] all over the place and spew all over your [pc.legs], smearing them in your [pc.milkVisc] emissions.");
+						kGAMECLASS.output("\n\nYou soar higher and higher and your octaves rise as well. In one blissful shuddering moment you let out a sweet cry and violently climax from your [pc.chest]. Your [pc.nipples] shoot [pc.milk] all over the place and spew all over your [pc.legOrLegs], smearing them in your [pc.milkVisc] emissions.");
 						
 						if (moddedAnyTits > 1)
 						{

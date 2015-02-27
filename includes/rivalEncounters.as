@@ -293,7 +293,10 @@ public function loseToDane():void {
 	output(" The ausar's body feels like an implacable wall behind you, one you're being battered against again and again, every stroke filling you fuller and more completely than the one before.");
 	output("\n\nPop! Dane's fourth knot slips in");
 	if(pc.hasCock()) output(", sliding over your prostate exquisitely");
-	output(", filling you to brimming with dick. Your gut is churning, but it's pleasant too. His thrusts are getting longer and more intense each time, thanks to the many bulges he forces through your [pc.asshole], and you're getting looser and more blissed out as well. Your eyes have started to roll partway back in their sockets. Even your [pc.legs] are quivering in insensate fulfillment. You whimper pleadingly.");
+	output(", filling you to brimming with dick. Your gut is churning, but it's pleasant too. His thrusts are getting longer and more intense each time, thanks to the many bulges he forces through your [pc.asshole], and you're getting looser and more blissed out as well. Your eyes have started to roll partway back in their sockets. Even your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" is");
+	else output(" are");
+	output(" quivering in insensate fulfillment. You whimper pleadingly.");
 	output("\n\nDane barks in between gasps and growls of his own, turning your head to the side so he can meet your eye. <i>\"What's that bitch? Got a liking for my cock all' a sudden?\"</i> He slaps your ass for emphasis, still fucking you as hard and fast as ever.");
 	output("\n\nYour mind says no, but your body and mouth say yes, quite loudly.");
 	output("\n\n<i>\"That's what I'm talking about. Tell ya what...\"</i> Dane pounds so fast and hard that you lose track of the bulges sliding in and out of your abused, rectal star, <i>\"whether you manage to beat my boss or not, you can come be my live-in cock-sleeve if you want. I'd be sure to introduce you to the rest of my harem.\"</i> The word harem is punctuated by what feels like dozen of the bloating knobs forcing their way inside. Pleasure overwhelms you, and you start to shake, impaled on the throbbing, red length.");

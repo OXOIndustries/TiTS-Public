@@ -199,7 +199,7 @@ public function syriPuppyslutmasYe():void
 	
 	output("\n\n<i>“Seriously? I honestly didn’t think you’d say yes... but I appreciate it, Steele,”</i> she says, scooting over to put her head on your shoulder. <i>“So the party starts in less than a day, and I don’t have a ship. Or, uh, any cash for a space taxi. Think I could hitch a ride with you?”</i>");
 	
-	output("\n\nYou nod and, after finished your drinks, pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legs] and [pc.butt] as you walk. It isn’t far to the spaceport, and then a quick elevator jaunt up to your ship.");
+	output("\n\nYou nod and, after finished your drinks, pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legOrLegs] and [pc.butt] as you walk. It isn’t far to the spaceport, and then a quick elevator jaunt up to your ship.");
 	
 	output("\n\n");
 	if (flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) output("<i>“Nice digs,”</i> Syri says, following you aboard and");

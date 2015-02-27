@@ -330,7 +330,7 @@
 					else kGAMECLASS.output("they’re");
 					kGAMECLASS.output(" even hard.");
 					//CrotchGurbed
-					if(pc.isCrotchGarbed()) kGAMECLASS.output("\n\nMost of the discharge is spent in your poor [pc.lowerGarment]. Runnels of [pc.cumColor] squirt out every possible gap after the first blast, but it only gets worse as your inexplicable pleasure continues. [pc.Cum] flows in rivers down all sides of your [pc.legs], and the worst part is you can’t stop yourself or summon up the motor control to move somewhere better. You drop to the ground, careful of your bloating balls, flooding the ground around you with more and more of the [pc.cumVisc] fluid.");
+					if(pc.isCrotchGarbed()) kGAMECLASS.output("\n\nMost of the discharge is spent in your poor [pc.lowerGarment]. Runnels of [pc.cumColor] squirt out every possible gap after the first blast, but it only gets worse as your inexplicable pleasure continues. [pc.Cum] flows in rivers down all sides of your [pc.legOrLegs], and the worst part is you can’t stop yourself or summon up the motor control to move somewhere better. You drop to the ground, careful of your bloating balls, flooding the ground around you with more and more of the [pc.cumVisc] fluid.");
 					//Uncovered
 					else kGAMECLASS.output("\n\nYou’re quietly thankful for your own uncovered loins, free to spray your [pc.cumColor] relief every which way. Even without touching yourself, the inexplicable pleasure continues. [pc.Cum] flows in rivers from you, and the worst part is that you can’t seem to stop yourself or summon the will to move. You drop to the ground, careful of your ceaselessly productive, bloating balls, flooding the ground around you with more and more of the [pc.cumVisc] fluid.");
 					kGAMECLASS.output("\n\nThe flow refuses to ebb or slow for what feels like hours, but it must have only been minutes. When it does finally come to an end, you’re left panting and [pc.cumNoun]-stained, and <b>your balls are even bigger.</b> Maybe you had best lay off the tanuki treats for a while");
@@ -402,7 +402,7 @@
 					//4.5 to 5
 					else
 					{
-						kGAMECLASS.output("\n\nYou break out in sweat all over, not from the heat but from your suddenly hammering heart. Your [pc.legs] wobble and dump you to the ground, which is for the best really. Your package visibly jiggles with each heartbeat, the orb-like sperm-producers expanding in almost imperceptible spurts. Ribbons of pre-cum roll out of your [pc.cocks] while you watch. followed shortly after by a few drops of [pc.cumNoun]. You feel fuller than you’ve ever been, made randy by overwhelming need.");
+						kGAMECLASS.output("\n\nYou break out in sweat all over, not from the heat but from your suddenly hammering heart. Your [pc.legOrLegs] wobble and dump you to the ground, which is for the best really. Your package visibly jiggles with each heartbeat, the orb-like sperm-producers expanding in almost imperceptible spurts. Ribbons of pre-cum roll out of your [pc.cocks] while you watch. followed shortly after by a few drops of [pc.cumNoun]. You feel fuller than you’ve ever been, made randy by overwhelming need.");
 						//+33 lust
 						pc.lust(33);
 						//refil balls.

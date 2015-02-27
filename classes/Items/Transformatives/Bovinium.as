@@ -480,7 +480,7 @@ package classes.Items.Transformatives
 				//PC was a naga:
 				if (target.isNaga())
 				{
-					output("A strange sensation runs through your serpentine lower body, followed by a wracking pain. You double over, hugging yourself to your coiling snake-body as the Bovinium decides to rob you of your serpent-half. The transformation is quick, but thoroughly unpleasant: your [pc.legs] split apart wholesale, its outer parts flaking off to reveal taut, [pc.skinColor] skin. <b>You now have bipedal legs!</b>\n\n");
+					output("A strange sensation runs through your serpentine lower body, followed by a wracking pain. You double over, hugging yourself to your coiling snake-body as the Bovinium decides to rob you of your serpent-half. The transformation is quick, but thoroughly unpleasant: your [pc.leg] splits apart wholesale, its outer parts flaking off to reveal taut, [pc.skinColor] skin. <b>You now have bipedal legs!</b>\n\n");
 
 					output("That's not enough for the drug, though. Not by a long shot! After a few moments, you see <b>thick, curly fur starts to grow on your new-grown legs</b>, covering them up to the upper thighs. At least you'll be warm in the winter!\n\n");
 
@@ -518,7 +518,7 @@ package classes.Items.Transformatives
 				//PC was bipedal already:
 				else
 				{
-					output("You feel your [pc.legs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legs], covering them to the upper thigh</b>.");
+					output("You feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
 					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they're done, <b>you have a pair of cow-like hooves!</b>.\n\n");
 					target.legType = GLOBAL.TYPE_BOVINE;
@@ -563,9 +563,14 @@ package classes.Items.Transformatives
 				
 				changes++;
 				
-				output("You shiver as a lurid wetness seeps out of your [pc.cunts]. You cross your [pc.legs], groaning and rubbing a finger through the valley of ");
+				output("You shiver as a lurid wetness seeps out of your [pc.cunts]. You");
+				if(target.isBiped()) output(" cross your [pc.legs], groaning and");
+				else output(" moan,");
+				output(" rubbing a finger through the valley of ");
 				if (target.vaginas.length > 1) output(" one of");
-				output(" your slit. Your digit comes away completely soaked! <b>You think your cunt will be much wetter from now on!</b>\n\n");
+				output(" your slit");
+				if (target.vaginas.length > 1) output("s");
+				output(". Your digit comes away completely soaked! <b>You think your cunt will be much wetter from now on!</b>\n\n");
 			}
 
 			//High chance for increased Fertility

@@ -1082,11 +1082,14 @@ public function offerPussyYouSloot():void
 	userInterface.showName("\nALISS");
 	var x:int = rand(pc.totalVaginas());
 	output("The cock before you glistens tantalizingly with precum. You swallow hard, feeling a warm tingle from down below. Almost instinctually [pc.eachVagina] is growing wet with arousal.");
-	output("\n\nSeeming to sense this, Aliss steps forward, her strawberry flavored lips suddenly on yours. One of her hands delves between your [pc.legs], her fingers gently exploring your outer cunt lips while her mouth explores your real lips. She gently sucks your lower lip into her mouth, nibbling it for a moment before pulling away and releasing it.");
+	output("\n\nSeeming to sense this, Aliss steps forward, her strawberry flavored lips suddenly on yours. One of her hands");
+	if(pc.legCount > 1) output(" delves between");
+	else output(" caresses");
+	output(" your [pc.legOrLegs], her fingers gently exploring your outer cunt lips while her mouth explores your real lips. She gently sucks your lower lip into her mouth, nibbling it for a moment before pulling away and releasing it.");
 	//Tauric players:
 	if(pc.isTaur()) output(" Aliss slips behind your large, bulky body and kneels.");
 	else output(" \"<i>Lets get you comfortable first,</i>\" she says, motioning to the bench in the changing room. She pulls you over to it and gently lays you down onto your back before sitting on the opposite end and leaning down.");
-	output(" Her lips caress your nethers as she lightly kisses. Her hands tenderly drift up and down your [pc.legs], caressing you in faint circles. The heat builds in your groin as you find yourself growing damper under these ministrations.");
+	output(" Her lips caress your nethers as she lightly kisses. Her hands tenderly drift up and down your [pc.legOrLegs], caressing you in faint circles. The heat builds in your groin as you find yourself growing damper under these ministrations.");
 
 	//not very wet:
 	if(pc.wetness(x) < 1) output("\n\n\"<i>Hmm, we're going to have to give mother nature a helping hand here I think,</i>\" Aliss says, noting your general lack of wetness.");
@@ -1113,8 +1116,12 @@ public function offerPussyYouSloot():void
 	//tauric:
 	if(pc.isTaur()) output("\n\nStanding, Aliss takes her shaft in hand as she positions herself behind your large body.");
 	else if(pc.isNaga()) output("\n\nAliss straddles your serpentine body, her shaft in hand as she lines it up with your vagina.");
-	else output("\n\nShe sits up, straddling the bench as you splay your [pc.legs] wide, granting her entrance to your waiting hole.");
-	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds and clit. This teasing continues for another minute, until your [pc.legs] are dripping with arousal. You groan loudly and tell her to just stick it in already.");
+	else if(pc.isBiped()) output("\n\nShe sits up, straddling the bench as you splay your [pc.legs] wide, granting her entrance to your waiting hole.");
+	else output("\n\nShe sits up, straddling the bench as you spread your [pc.legOrLegs], granting her entrance to your waiting hole.");
+	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds and clit. This teasing continues for another minute, until your [pc.legOrLegs]");
+	if(pc.legCount == 1) output(" is");
+	else output(" are");
+	output(" dripping with arousal. You groan loudly and tell her to just stick it in already.");
 
 	output("\n\nAliss smirks and obliges, sinking the first few inches of her impressive cock into your waiting cunt. ");
 	if(pc.hasCock()) output("[pc.eachCock] has a pang of jealousy and twitches, rapidly growing to full mast while Aliss plunges into you. ");

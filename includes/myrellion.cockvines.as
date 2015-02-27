@@ -33,7 +33,7 @@ public function adultCockvineEncounter():void
 
 		if (flags["FUCKED_ADULT_COCKVINE"] == undefined)
 		{
-			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legs]; you jump back in the nick of time. Rippling and bobbing agitatedly in the dim light now, you can see it is some sort of lithe, green tentacle with a blunt, purple head, replete with a moist, horizontal slit across the top. It is inexpressibly obscene and your eye is drawn to the thickening end disappearing into the crevice, from which more of these penis-vines are sliding into view. You can only imagine what the main body of this thing looks like: undoubtedly if it had managed to grab you, you would have found out.");
+			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legOrLegs]; you jump back in the nick of time. Rippling and bobbing agitatedly in the dim light now, you can see it is some sort of lithe, green tentacle with a blunt, purple head, replete with a moist, horizontal slit across the top. It is inexpressibly obscene and your eye is drawn to the thickening end disappearing into the crevice, from which more of these penis-vines are sliding into view. You can only imagine what the main body of this thing looks like: undoubtedly if it had managed to grab you, you would have found out.");
 
 			// Female Treated/Bothrioc perked/whatever slut perks
 			if (pc.isTreated() || pc.isBimbo() || 9999 == 0)
@@ -63,7 +63,7 @@ public function adultCockvineEncounter():void
 		}
 		else
 		{
-			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legs], but you are ready for it and jump back easily. The lithe, green tentacle with its blunt, purple head ripples and bobs agitatedly in the dim light now; you hear the slithering, swampy sound of more of it emerging from its crevice nest, rustled into action.");
+			output("\n\nThe thick snake-like thing suddenly rears and grabs at your [pc.legOrLegs], but you are ready for it and jump back easily. The lithe, green tentacle with its blunt, purple head ripples and bobs agitatedly in the dim light now; you hear the slithering, swampy sound of more of it emerging from its crevice nest, rustled into action.");
 			
 			// Female Treated/Bothrioc perked/whatever slut perks
 			if (pc.isTreated() || pc.isBimbo() || 9999 == 0)
@@ -96,7 +96,7 @@ public function adultCockvineEncounter():void
 	{
 		if (flags["FUCKED_ADULT_COCKVINE"] == undefined)
 		{
-			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp as something warm, wet and ropy wraps itself around your [pc.legs], wrenching you off balance; before you can recover, your assailant has established a firm grip around your");
+			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover, your assailant has established a firm grip around your");
 			if (pc.isNaga()) output(" tail");
 			else output(" [pc.foot]");
 			output(" and sent you sprawling.");
@@ -105,7 +105,7 @@ public function adultCockvineEncounter():void
 		}
 		else
 		{
-			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp and then groan with understanding horror as something warm, wet and ropy wraps itself around your [pc.legs], wrenching you off balance; before you can recover the cockvine has established a firm grip around your");
+			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp and then groan with understanding horror as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover the cockvine has established a firm grip around your");
 			if (pc.isNaga()) output(" tail");
 			else output(" [pc.foot]")
 			output(" and begins to tug you away.");
@@ -194,7 +194,7 @@ public function adultCockvineConstrictAttack():void
 		switch (pc.statusEffectv1("Cockvine Grip"))
 		{
 			case 1:
-				output("\n\nYou bark in frustration as once again it takes a firm grip of your [pc.legs] and drags you away from the light.");
+				output("\n\nYou bark in frustration as once again it takes a firm grip of your [pc.legOrLegs] and drags you away from the light.");
 				break;
 
 			case 2:
@@ -316,7 +316,7 @@ public function adultCockvineCombatDescriptionExtension():void
 			break;
 
 		case 1:
-			output("\nThe cockvine has a firm grip on your [pc.legs], making escape impossible. You have the use of your arms, at least.");
+			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.");
 			break;
 
 		case 2:
@@ -382,7 +382,7 @@ public function adultCockvineConsentacles():void
 	output(".");
 	if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 	else output(" It");
-	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
+	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
 	if (pc.hasVagina()) output(" and makes [pc.eachVagina] moisten itself eagerly");
 	output(".");
 
@@ -444,7 +444,7 @@ public function adultCockvineConsentacles():void
 			output(" with questing, oily, sugared plant dick.");
 			output("\n\n");
 		}
-		output("Other tentacles coil and slither over your [pc.legs], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.asshole] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].");
+		output("Other tentacles coil and slither over your [pc.legOrLegs], eagerly seeking out other entrances to invade. One of them does. Your eyes cross as you feel a warm bluntness determinedly pressing against your [pc.asshole] and then pushing inside, dense but pliant dick sliding into your [pc.ass], the roughness of it contrasting brilliantly with the sweetness saturating [pc.eachVagina].");
 	}
 	else
 	{
@@ -767,12 +767,12 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 		output("\n\nThe cockvine winds its multitudinous, febrile grip around you as you approach its nest{, languidly shedding your [pc.gear] as you go.");
 		if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 		else output(" It");
-		output(" easily lifts you off your feet when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legs], exploring you with steady, deliberate interest.");
+		output(" easily lifts you off your feet when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
 	}
 
 	output("\n\nYou feel the monster slide its pliant grip between your thighs... and there it freezes. You feel it pat your featureless mound several times, searching for something that isn’t there.");
 
-	output("\n\n“<i>You are fucking kidding me,</i>” says a querulous voice from deep within the crevice. “<i>This shit AGAIN?</I>” You gasp as a tentacle grasps you around your [pc.legs] and hauls you ass over tit upwards. A cockvine points at your face, quivering and spitting cum with barely contained rage. “<i>Listen to me closely, flesh-thing. I didn’t transplant myself into another dimension just so some new chucklefuck could come along and pull the neuter card again. You think you’re goddamn clever, traipsing around a sex game with no genitals? I swear if you bother me before you go out and get yourself a pussy – or a dick if you really must – I will beat your ass so hard it’ll be the same color as my stamen. Capiche?</i>?”");
+	output("\n\n“<i>You are fucking kidding me,</i>” says a querulous voice from deep within the crevice. “<i>This shit AGAIN?</I>” You gasp as a tentacle grasps you around your [pc.legOrLegs] and hauls you ass over tit upwards. A cockvine points at your face, quivering and spitting cum with barely contained rage. “<i>Listen to me closely, flesh-thing. I didn’t transplant myself into another dimension just so some new chucklefuck could come along and pull the neuter card again. You think you’re goddamn clever, traipsing around a sex game with no genitals? I swear if you bother me before you go out and get yourself a pussy – or a dick if you really must – I will beat your ass so hard it’ll be the same color as my stamen. Capiche?</i>?”");
 
 	output("\n\n“<i>I – uh…</i>” you stammer.");
 
