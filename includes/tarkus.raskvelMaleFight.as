@@ -9,14 +9,14 @@
 
 *Masculine and feminine positives. As intelligent masculine they are more likely to let you go easily; as intelligent feminine you can make them fight each other over you.*/
 
-function showRaskGang():void
+public function showRaskGang():void
 {
 	userInterface.showBust("RASKVEL_MALE","RASKVEL_MALE","RASKVEL_MALE");
 	userInterface.showName("RASKVEL\nMALE");
 	author("Nonesuch");
 }
 
-function pcHasJunkPrize():Boolean
+public function pcHasJunkPrize():Boolean
 {
 	if(pc.hasKeyItem("Locked Metal Chest")) return true;
 	if(pc.hasKeyItem("Some Sort of Shining Spaceship Part")) return true;
@@ -25,7 +25,7 @@ function pcHasJunkPrize():Boolean
 	return false;
 }
 
-function getRaskLootType():int
+public function getRaskLootType():int
 {
 
 	if(pc.hasKeyItem("Locked Metal Chest")) return 0;
@@ -35,12 +35,12 @@ function getRaskLootType():int
 	return -1;
 }
 
-function getRaskLootPrice():int
+public function getRaskLootPrice():int
 {
 	return pc.keyItemv1("Locked Metal Chest") + pc.keyItemv1("Some Sort of Shining Spaceship Part") + pc.keyItemv1("Intact, Antique Android") + pc.keyItemv1("Bulky Data-Core");
 }
 
-function removeRaskLoot():void
+public function removeRaskLoot():void
 {
 	pc.removeKeyItem("Locked Metal Chest");
 	pc.removeKeyItem("Some Sort of Shining Spaceship Part");
@@ -52,7 +52,7 @@ function removeRaskLoot():void
 }
 
 //Intro
-function raskvelGangEncounter():void
+public function raskvelGangEncounter():void
 {
 	showRaskGang();
 	output("\n\nThere’s a lot of banging and cheerful shouting emanating from the big, rambling pile of junk directly in front of you. A red-scaled, massive-eared head pops out of the cockpit of a rusted hovercraft, swiftly followed by the rest of a squat form, hauling an over-sized screwdriver with it. He pauses when he sees you.");
@@ -126,7 +126,7 @@ function raskvelGangEncounter():void
 }
 
 //No
-function noIDontWantFunRaskGang():void
+public function noIDontWantFunRaskGang():void
 {
 	clearOutput();
 	showRaskGang();
@@ -159,7 +159,7 @@ function noIDontWantFunRaskGang():void
 }
 
 //Yes
-function sureRaskLetsHaveFun():void
+public function sureRaskLetsHaveFun():void
 {
 	clearOutput();
 	showRaskGang();
@@ -173,7 +173,7 @@ function sureRaskLetsHaveFun():void
 }
 
 //Pay
-function payRaskGangForSafePassage(arg:int):void
+public function payRaskGangForSafePassage(arg:int):void
 {
 	clearOutput();
 	showRaskGang();
@@ -186,7 +186,7 @@ function payRaskGangForSafePassage(arg:int):void
 }
 
 //Don’t Pay
-function dontPayForSafePassageSlut():void
+public function dontPayForSafePassageSlut():void
 {
 	clearOutput();
 	showRaskGang();
@@ -199,7 +199,7 @@ function dontPayForSafePassageSlut():void
 }
 
 //Pay with Sex
-function pay4SafetyWivSmex():void
+public function pay4SafetyWivSmex():void
 {
 	clearOutput();
 	showRaskGang();
@@ -234,7 +234,7 @@ function pay4SafetyWivSmex():void
 }
 
 //Don’t
-function dontBuyScrapShit():void
+public function dontBuyScrapShit():void
 {
 	clearOutput();
 	showRaskGang();
@@ -247,7 +247,7 @@ function dontBuyScrapShit():void
 }
 
 //Buy It
-function buySomeJankJunkJunk(lootType:Array):void
+public function buySomeJankJunkJunk(lootType:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -289,7 +289,7 @@ Tooltip: See what you can get for the piece of scrap you purchased from the rask
 
 //Shekka
 //SHEKKA will not buy anything you bring her EXCEPT the android, which she will offer 1.75x the value for, AND the spaceship part, which she also offers 1.75 for.
-function shekkaGetsSoldRaskShitz():void
+public function shekkaGetsSoldRaskShitz():void
 {
 	clearOutput();
 	showShekka();
@@ -336,7 +336,7 @@ function shekkaGetsSoldRaskShitz():void
 }
 
 //Give:
-function giveStupidShitRaskPartsToShekkaFree():void
+public function giveStupidShitRaskPartsToShekkaFree():void
 {
 	clearOutput();
 	showShekka();
@@ -348,7 +348,7 @@ function giveStupidShitRaskPartsToShekkaFree():void
 }
 
 //Don’t: 
-function dontGiveShitToShekka():void
+public function dontGiveShitToShekka():void
 {
 	clearOutput();
 	showShekka();
@@ -358,7 +358,7 @@ function dontGiveShitToShekka():void
 }
 
 //No Deal: 
-function noDealRobotSellingToShekka():void
+public function noDealRobotSellingToShekka():void
 {
 	clearOutput();
 	showShekka();
@@ -373,7 +373,7 @@ function noDealRobotSellingToShekka():void
 }
 
 //Deal:
-function sellARobotToShekka():void
+public function sellARobotToShekka():void
 {
 	clearOutput();
 	showShekka();
@@ -387,7 +387,7 @@ function sellARobotToShekka():void
 }
 
 //Deal
-function dealOnShipPartWithShekka():void
+public function dealOnShipPartWithShekka():void
 {
 	clearOutput();
 	showShekka();
@@ -405,7 +405,7 @@ function dealOnShipPartWithShekka():void
 }
 
 //No deal
-function noDealOnShipPartWivShekka():void
+public function noDealOnShipPartWivShekka():void
 {
 	clearOutput();
 	showShekka();
@@ -419,7 +419,7 @@ function noDealOnShipPartWivShekka():void
 
 //Colenso
 //COLENSO will buy anything at 0.5 the value EXCEPT the metal chest, which he will offer 1.5x the value for.
-function sellRaskShitToColenso():void
+public function sellRaskShitToColenso():void
 {
 	clearOutput();
 	showColenso();
@@ -455,7 +455,7 @@ function sellRaskShitToColenso():void
 }
 
 //No Deal: 
-function noDealOnGenericSpecialRaskScrapColenso():void
+public function noDealOnGenericSpecialRaskScrapColenso():void
 {
 	clearOutput();
 	showColenso();
@@ -468,7 +468,7 @@ function noDealOnGenericSpecialRaskScrapColenso():void
 }
 
 //Deal:
-function dealColensoIllSellYouGenericScrap():void
+public function dealColensoIllSellYouGenericScrap():void
 {
 	clearOutput();
 	showColenso();
@@ -483,7 +483,7 @@ function dealColensoIllSellYouGenericScrap():void
 
 //CHEST
 //No Deal
-function noDealOnTheChestCommaColenso():void
+public function noDealOnTheChestCommaColenso():void
 {
 	clearOutput();
 	showColenso();
@@ -498,7 +498,7 @@ function noDealOnTheChestCommaColenso():void
 }
 
 //Deal: 
-function dealWivColensoForTheChestGuv():void
+public function dealWivColensoForTheChestGuv():void
 {
 	clearOutput();
 	showColenso();
@@ -513,7 +513,7 @@ function dealWivColensoForTheChestGuv():void
 
 //Anno
 //ANNO will not buy anything EXCEPT the data core which she will offer 1.75x the value for.
-function tryToSellAnnoSomeRaskScrapGuv():void
+public function tryToSellAnnoSomeRaskScrapGuv():void
 {
 	clearOutput();
 	showAnno();
@@ -548,7 +548,7 @@ function tryToSellAnnoSomeRaskScrapGuv():void
 }
 
 //No Deal:
-function noDealonCoresAnno():void
+public function noDealonCoresAnno():void
 {
 	clearOutput();
 	showAnno();
@@ -563,7 +563,7 @@ function noDealonCoresAnno():void
 }
 
 //Deal: 
-function itsADealAnnoBossDataCore():void
+public function itsADealAnnoBossDataCore():void
 {
 	clearOutput();
 	showAnno();
@@ -577,7 +577,7 @@ function itsADealAnnoBossDataCore():void
  
 //Aurora
 //AURORA will not buy anything. Apparently.
-function tryToHawkRaskShitToAurora():void
+public function tryToHawkRaskShitToAurora():void
 {
 	clearOutput();
 	auroraBust();
@@ -623,7 +623,7 @@ Initial Lust 35
 */
 
 //Attacks
-function raskGangAI():void
+public function raskGangAI():void
 {
 	//Pile On
 	//Procs if PC is fallen. Adds medium chance to fail to attempt to get up, raises lust, minor energy sap
@@ -646,7 +646,7 @@ function raskGangAI():void
 	raskvelMobAppearanceUpdate();
 }
 
-function raskvelMobAppearanceUpdate():void
+public function raskvelMobAppearanceUpdate():void
 {
 	foes[0].long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
 	//Lust 0-40:
@@ -658,7 +658,7 @@ function raskvelMobAppearanceUpdate():void
 
 //Standard Attack
 //Attacks three times. 10% chance of stun on each
-function raskGangAttackGo():void
+public function raskGangAttackGo():void
 {
 	output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.\n");
 	attack(foes[0],pc,true,1);
@@ -680,7 +680,7 @@ function raskGangAttackGo():void
 
 //Zap!
 //Procs if the player still has a shield. Medium accuracy, heavy shield damage if connects
-function raskZapAttack():void
+public function raskZapAttack():void
 {
 	output("“<i>That’s a pretty decent kinetic barrier you’ve got there, offworlder,</i>” says one of them musingly. “<i>It would be a shame if... somethinghappenedtoitdoitdoitnow!</i>” the one behind you whips out an antique-looking ray gun and blasts a wave of white energy at you, throwing himself off his feet in the process.");
 
@@ -720,7 +720,7 @@ function raskZapAttack():void
 
 //See You Next Fall
 //Minor damage plus fallen status. Much better chance of succeeding if PC is stunned
-function seeYouNextFallSloot():void
+public function seeYouNextFallSloot():void
 {
 	output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legOrLegs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
 
@@ -748,7 +748,7 @@ function seeYouNextFallSloot():void
 
 //Pile On
 //Procs if PC is fallen. Adds medium chance to fail to attempt to get up, raises lust, minor energy sap
-function raskPileOnPC():void
+public function raskPileOnPC():void
 {
 	//First:
 	if(!pc.hasStatusEffect("Raskvel Pile"))
@@ -777,7 +777,7 @@ function raskPileOnPC():void
 
 
 
-function victoryVsRaskGang():void
+public function victoryVsRaskGang():void
 {
 	//Raskvel loss texts
 	//Via HP
@@ -798,7 +798,7 @@ function victoryVsRaskGang():void
 	//9999
 	//genericVictory();
 }
-function lossVsRaskGang():void
+public function lossVsRaskGang():void
 {
 
 	genericLoss();
@@ -807,7 +807,7 @@ function lossVsRaskGang():void
 //Sex
 //Consensual Gangbang
 //Just say no to centaurs and genderless
-function consensualGangBang():void
+public function consensualGangBang():void
 {
 	clearOutput();
 	showRaskGang();

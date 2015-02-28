@@ -4010,7 +4010,7 @@ public function giannaHasSwapPieces():Boolean
 	return (flags["GIANNA_HAS_HUMAN_COCK"] != undefined || flags["GIANNA_HAS_HORSE_COCK"] != undefined);
 }
 
-function giannaCrotchTF(arg:String = "clit"):void
+public function giannaCrotchTF(arg:String = "clit"):void
 {
 	//Eat cock and set it up
 	if(gianna.hasCock()) gianna.removeCocks();
