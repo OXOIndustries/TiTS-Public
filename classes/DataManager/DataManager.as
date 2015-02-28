@@ -969,6 +969,11 @@
 				{
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 2;
 				}
+				
+				if (kGAMECLASS.chars["LANE"].eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
+				{
+					kGAMECLASS.flags["LANE_BROKEN_INCOMINGSAVE"] = 1;
+				}
 			}
 			
 			kGAMECLASS.mainGameMenu();

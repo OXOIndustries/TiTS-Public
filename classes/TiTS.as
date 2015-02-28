@@ -738,30 +738,27 @@
 			{
 				if (chars["RIVAL"] && chars["RIVAL"].short == "Jack/Jill")
 				{
-					if (btnName.length > 0)
+					var dData:String = "(ButtonName:" + btnName + ") ";
+					dData += "(Func: ";
+					
+					// This will PROBABLY BE SLOW AS MOTHERFUCK
+					var methods:XMLList = describeType(this)..method.@name;
+					
+					for each (var m:String in methods)
 					{
-						var dData:String = "(ButtonName:" + btnName + ") ";
-						dData += "(Func: ";
-						
-						// This will PROBABLY BE SLOW AS MOTHERFUCK
-						var methods:XMLList = describeType(this)..method.@name;
-						
-						for each (var m:String in methods)
+						if (this.hasOwnProperty(m) && this[m] != null && this[m] === tFunc)
 						{
-							if (this.hasOwnProperty(m) && this[m] != null && this[m] === tFunc)
-							{
-								dData += m;
-								break;
-							}
+							dData += m;
+							break;
 						}
-						
-						dData += ") ";
-						if (tArg != undefined) dData += "(Arg: " + tArg + ")";
-						
-						output("\n\n<b>ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
-						
-						throw new Error("ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
 					}
+					
+					dData += ") ";
+					if (tArg != undefined) dData += "(Arg: " + tArg + ")";
+					
+					output("\n\n<b>ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
+					
+					throw new Error("ERROR: Rival creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
 				}
 			}
 			// Noticed issue on an incoming save, offer to fix.
@@ -769,6 +766,40 @@
 			{
 				flags["RIVALCONFIGURED"] = 3;
 				eventQueue.push(jackJillIssueSceneEvent);
+			}
+			
+			// Co-opting this for Lane
+			if (flags["MET_LANE"] != undefined && chars["LANE"].eyeColor != "dark blue")
+			{
+				if (flags["LANE_BROKEN_INCOMINGSAVE"] == undefined)
+				{
+					dData = "(ButtonName:" + btnName + ") ";
+					dData += "(Func: ";
+					
+					// This will PROBABLY BE SLOW AS MOTHERFUCK
+					methods = describeType(this)..method.@name;
+					
+					for each (m in methods)
+					{
+						if (this.hasOwnProperty(m) && this[m] != null && this[m] === tFunc)
+						{
+							dData += m;
+							break;
+						}
+					}
+					
+					dData += ") ";
+					if (tArg != undefined) dData += "(Arg: " + tArg + ")";
+					
+					output("\n\n<b>ERROR: Lane has been previously configured, but has reverted to defaults. Debug data:" + dData + "</b>");
+					
+					throw new Error("ERROR: Lane creature has been previously configured, but has reverted to defaults. Debug data:" + dData); // Hope like fuck this isn't attached to a "Next" button
+				}
+				else if (flags["LANE_BROKEN_INCOMINGSAVE"] == 1)
+				{
+					flags["LANE_BROKEN_INCOMINGSAVE"] = 2;
+					eventQueue.push(laneIssueSceneEvent);
+				}
 			}
 		}
 		
@@ -793,6 +824,31 @@
 			output("Your Rival should now be fixed!");
 			
 			setRivalGender(arg);
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+		}
+		
+		public function laneIssueSceneEvent():void
+		{
+			clearOutput();
+			output("Ooops!");
+			output("\n\nWe've noticed a problem with your savegame; unfortunately, a long standing bug that we've yet to properly track down has been encountered at some point in the past, and the creature data for Lane has been reset to defaults.");
+			output("\n\nWe've put some more code in place to help finally track down the root cause of the issue, so we're itching to finally track it down before too long. In the mean-time, whenever this issue is detected, we'll offer to let you fix the problem.");
+			output("\n\nPlease re-select the gender that you intended for Lane.");
+			clearMenu();
+			
+			addButton(0, "Male", fixLane, lane.configMale);
+			addButton(1, "Female", fixLane, lane.configFemale);
+		}
+		
+		public function fixLane(arg:Function):void
+		{
+			clearOutput();
+			output("Lane should now be fixed!");
+			
+			arg();
+			flags["LANE_BROKEN_INCOMINGSAVE"] = undefined;
 			
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);

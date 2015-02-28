@@ -777,7 +777,6 @@ public function discoverLanesShop():void
 	clearOutput();
 
 	laneHeader();
-	flags["MET_LANE"] = 1;
 
 	output("Seeing such a structured tucked away between the harsh and uninviting fauna is certainly strange; your curiosity piqued, you head inside.");
 	
@@ -810,6 +809,7 @@ public function laneGenderSelect(g:String):void
 	{
 		throw new Error("Invalid gender detected. Wakka wakka.");
 	}
+	flags["MET_LANE"] = 1;
 }
 
 public function meetMaleLane():void
