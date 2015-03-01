@@ -1126,7 +1126,7 @@ function raskMaleButtfuckery():void
 		pc.orgasm();
 		pc.orgasm();
 	}
-	pcorcessTime(45);
+	processTime(45);
 	pc.orgasm();
 	output("\n\n");
 	genericVictory();
@@ -1192,7 +1192,7 @@ function feedRaskGangMalk():void
 	if(pc.clitLength < 2) output("pussy");
 	else output("clit");
 	output(" until it is ");
-	if(pc.clitLength() >= 2) output("tenderly standing on end");
+	if(pc.clitLength >= 2) output("tenderly standing on end");
 	else output("oozing fluid freely");
 	output(". He spreads his fingers over your other ");
 	if(pc.biggestTitSize() < 1) output("nipple");
