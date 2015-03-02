@@ -27,7 +27,7 @@ package  classes
 			{
 				if (i == 0 || (w[i] != "the" && w[i] != "of"))
 				{
-					w[i] = capitalize(w[i]);
+					w[i] = capitalize(w[i], false);
 				}
 			}
 			
@@ -39,11 +39,12 @@ package  classes
 		 * @param	value
 		 * @return
 		 */
-		public static function capitalize(value:String):String
+		public static function capitalize(value:String, forceLower:Boolean = true):String
 		{
 			var nStr:String = "";
 			nStr += value.charAt(0).toUpperCase();
-			nStr += value.substr(1).toLowerCase();
+			if (forceLower) nStr += value.substr(1).toLowerCase();
+			else nStr += value.substr(1);
 			return nStr;
 		}
 	}
