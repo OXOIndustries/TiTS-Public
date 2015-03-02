@@ -3114,7 +3114,7 @@ public function chestTeaseText():void {
 		}
 		choices.push(1);
 		//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
-		if(pc.isChestGarbed() && pc.biggestTitSize() >= 4) choices.push(2);
+		if(pc.isChestGarbed() && !pc.hasUpperGarment() && pc.biggestTitSize() >= 4) choices.push(2);
 		//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
 		if(pc.isChestGarbed() && pc.tailCount >= pc.totalNipples()) choices.push(3);
 		//Reqs: PC has very high tone
@@ -3161,7 +3161,7 @@ public function chestTeaseText():void {
 		//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
 		else if(select == 2)
 		{
-			output("“<i>Want to see just how perky these are?</i>” You give your target a sly smile while opening up your [pc.chestGarments], bouncing lightly on your feet to make your [pc.fullChest] jiggle. Once the jiggle subsides a bit you pass a hand across the space under your [pc.biggestBreastDescript], showing off how they return to sitting good and high on your chest once they stop bouncing. “<i>Isn’t modern medicine great? No need for a bra with these big girls.</i>” You flash a coy wink as you cover back up.");
+			output("“<i>Want to see just how perky these are?</i>” You give your target a sly smile while opening up your [pc.upperGarments], bouncing lightly on your feet to make your [pc.fullChest] jiggle. Once the jiggle subsides a bit you pass a hand across the space under your [pc.biggestBreastDescript], showing off how they return to sitting good and high on your chest once they stop bouncing. “<i>Isn’t modern medicine great? No need for a bra with these big girls.</i>” You flash a coy wink as you cover back up.");
 		}
 		//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
 		else if(select == 3)

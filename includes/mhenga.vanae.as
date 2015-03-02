@@ -665,7 +665,7 @@ public function vanaePCVictory():void
 			// Requires one cock, any size.
 			// Must have Cock
 			// Must have front or mid genitals.
-			if (pc.hasCock() && pc.genitalSpot < 2) addButton(2, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk", "Squirt N Jerk", "Haver the huntress jerk you off with her tentacles whilst dribbling her milk all over you.");
+			if (pc.hasCock() && pc.genitalSpot < 2) addButton(2, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk", "Squirt N Jerk", "Have the huntress jerk you off with her tentacles whilst dribbling her milk all over you.");
 			else
 			{
 				if (!pc.hasCock()) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
