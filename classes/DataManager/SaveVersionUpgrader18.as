@@ -24,10 +24,13 @@ package classes.DataManager
 			var hasRenvraEggPregnancy:Boolean = false;
 			var hasRenvraFullPregnancy:Boolean = false;
 			
-			for (var ii:int = 0; ii < data.characters.PC.pregnancyData.length; ii++)
-			{
-				if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraEggPregnancy") hasRenvraEggPregnancy = true;
-				if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraFullPregnancy") hasRenvraFullPregnancy = true;
+			if (data.characters.PC.pregnancyData != undefined)
+			{			
+				for (var ii:int = 0; ii < data.characters.PC.pregnancyData.length; ii++)
+				{
+					if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraEggPregnancy") hasRenvraEggPregnancy = true;
+					if (data.characters.PC.pregnancyData[ii].pregnancyType == "RenvraFullPregnancy") hasRenvraFullPregnancy = true;
+				}
 			}
 			
 			for (var i:int = 0; i < dEffects.length; i++)

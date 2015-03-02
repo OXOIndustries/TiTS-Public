@@ -6154,7 +6154,7 @@
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
-			if (cocks.length == 1 && this.hasStatusEffect("Mimbrane Cock")) return false;
+			if (arraySpot == 0 && totalRemoved >= 1 && this.hasStatusEffect("Mimbrane Cock")) return false;
 			return true;
 		}
 		public function removeCockLockedMessage():String

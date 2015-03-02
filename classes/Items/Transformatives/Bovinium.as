@@ -112,7 +112,7 @@ package classes.Items.Transformatives
 				// Cocks longer than 4" shrink
 				for (var i:int = 0; i < target.cocks.length; i++)
 				{
-					if (target.cocks[i].cLengthRaw > 4) tCocks.push(i);
+					if (target.cocks[i].cLengthRaw > 4) tCocks.push(target.cocks[i]);
 				}
 				
 				if (tCocks.length > 0)
@@ -128,8 +128,7 @@ package classes.Items.Transformatives
 					
 					for (i = 0; i < tCocks.length; i++)
 					{
-						var tCock:int = tCocks[i];
-						var nLength:Number = target.cocks[tCock].cLengthRaw;
+						var nLength:Number = tCocks[i].cLengthRaw;
 						var lLoss:Number = rand(5) + 2;
 						
 						nLength -= lLoss;
@@ -139,10 +138,10 @@ package classes.Items.Transformatives
 							lLoss += 3 - nLength;
 						}
 						
-						if (target.cockLengthUnlocked(tCock, nLength))
+						if (target.cockLengthUnlocked(target.cocks.indexOf(tCocks[i]), nLength))
 						{
-							target.cocks[tCock].cLengthRaw = nLength;
-							cCocks.push(tCock);
+							tCocks[i].cLengthRaw = nLength;
+							cCocks.push(tCocks[i]);
 						}
 					}
 				
@@ -167,8 +166,8 @@ package classes.Items.Transformatives
 				
 				for (i = 0; i < target.cocks.length; i++)
 				{
-					if (cCocks.indexOf(i) != -1) continue; // If a cock was shrunk this item use, skip it
-					if (target.cocks[i].cLengthRaw <= 4) tCocks.push(i);
+					if (cCocks.indexOf(tCocks[i]) != -1) continue; // If a cock was shrunk this item use, skip it
+					if (target.cocks[i].cLengthRaw <= 4) tCocks.push(target.cocks[i]);
 				}
 				
 				cCocks = []; // clear the configured cocks for it
@@ -178,9 +177,7 @@ package classes.Items.Transformatives
 					for (i = 0; i < tCocks.length; i++)
 					{
 						if (rand(4) == 0) continue;
-						
-						tCock = tCocks[i];
-						if (target.removeCockUnlocked(tCock, 1)) cCocks.push(tCock);
+						if (target.removeCockUnlocked(target.cocks.indexOf(tCocks[i]), 1)) cCocks.push(tCocks[i]);
 					}
 				}
 				
@@ -210,7 +207,7 @@ package classes.Items.Transformatives
 						for (i = 0; i < cCocks.length; i++)
 						{
 							cocksRemoved = true;
-							target.removeCock(cCocks[i], 1);
+							target.removeCock(target.cocks.indexOf(cCocks[i]), 1);
 						}
 						
 						if (target.hasCock()) 
