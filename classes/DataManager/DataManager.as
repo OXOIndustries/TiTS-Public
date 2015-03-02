@@ -3,6 +3,7 @@
 	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Miscellaneous.PHAccess;
 	import classes.Items.Miscellaneous.TestGrenade;
+	import classes.Items.Miscellaneous.TestHPBooster;
 	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
 	import classes.ShipClass;
@@ -69,6 +70,7 @@
 			var tstArmor:TSTArmor;
 			var phAccess:PHAccess;
 			var tGen:TestGrenade;
+			var tBooster:TestHPBooster;
 		}
 		
 		/**
