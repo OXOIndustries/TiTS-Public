@@ -327,7 +327,7 @@ public function bendItLikeBeckhamForRenvra():void
 		output(" “<i>Come all the way across the galaxy to spread your [pc.legOrLegs] for any alien with a big enough cock to fill that ");
 		if(x >= 0) output("[pc.vagina " + x + "]");
 		else output("[pc.asshole]");
-		output(" of yours, huh? You spacers are really something... but I guess I could get used to it.");
+		output(" of yours, huh? You spacers are really something... but I guess I could get used to it.</i>”");
 	}
 	else output(" “<i>The way you spacers act sometimes, I’m starting to think you’ve all come halfway across the galaxy just for alien cock, huh?</i>”");
 
@@ -340,6 +340,7 @@ public function bendItLikeBeckhamForRenvra():void
 	output(" of your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
+	output(".");
 
 	output("\n\nWith a nice, thick sheen on spit-lube and excess aphrodisiac coating her cockhead, Ren pushes forward with a slow, steady confidence. You clutch at the table, mouth twisting open in a husky moan of pleasure as the halfbreed’s massive ovipositor-slash-horsecock slides into your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
