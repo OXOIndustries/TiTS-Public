@@ -1784,11 +1784,6 @@
 			return "fists";
 		}
 		public function orgasm(): void {
-			lustRaw = 0;
-			energy(-5);
-			minutesSinceCum = 0;
-			timesCum++;
-			
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -1826,6 +1821,11 @@
 				addStatusValue("Dumbfuck Orgasm Procced",1,1);
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
+			
+			lustRaw = 0;
+			energy(-5);
+			minutesSinceCum = 0;
+			timesCum++;
 		}
 		public function mimbranePartDescript(mimType: String = ""): String {
 			//Mimbrane additions in relation to face.
