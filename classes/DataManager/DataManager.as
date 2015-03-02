@@ -483,8 +483,7 @@
 				kGAMECLASS.userInterface.showPCStats();
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("\n\nGame loaded from file!");
-				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.addGhostButton(0, "Next", this.executeGame);
+				executeGame();
 			}
 			else
 			{
@@ -636,22 +635,7 @@
 				}
 			}
 			
-			var gamePtr:* = kGAMECLASS;
-			
-			// We should now have the latest version of a game save structure -- Final verify
-			//try
-			//{
-				//if (!dataErrors)
-				//{
-					//dataErrors = !this.verifyBlob(dataObject);
-				//}
-			//}
-			//catch (e:Error)
-			//{
-				//dataErrors = false;
-				//
-			//}
-			
+			var gamePtr:* = kGAMECLASS;		
 			dataErrors = false;
 			
 			// Now we can shuffle data into disparate game systems 
@@ -667,8 +651,7 @@
 				kGAMECLASS.resetBarStates();
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
-				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.addGhostButton(0, "Next", this.executeGame);
+				executeGame();
 			}
 			else
 			{
