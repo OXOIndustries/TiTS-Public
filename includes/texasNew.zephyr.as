@@ -437,7 +437,7 @@ public function getFuckedByZephyrIII():void
 	else output("the oft-ignored nerves in your ass have supplanted those in your cranium, making it hard to think about anything but the hard-pounding she-prick plowing your sphincter.");
 	output(" Quivers of building ecstasy run through your [pc.thighs]. If you didn’t have the desk or the cow’s strong hands to support you, you’d probably have collapsed onto the floor a few minutes ago.");
 
-	output("\n\nThe last you want to do is slide off that wonderful, ");
+	output("\n\nThe last thing you want to do is slide off that wonderful, ");
 	if(x < 0) output("butt");
 	else output("cunt");
 	output("-stuffing cock and return to feeling like an empty, horny husk.");

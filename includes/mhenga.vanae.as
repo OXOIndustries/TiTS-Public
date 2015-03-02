@@ -2521,7 +2521,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	if (pc.hasCock()) output(" [pc.cum]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum]");
-	output(" in an embarassing mess. She's sapped you completely dry.");
+	output(" in an embarrassing mess. She's sapped you completely dry.");
 
 	output("\n\nMeanwhile, the vanae huntress patiently scoops up every drip of your");
 	if (pc.hasCock()) output(" [pc.cum]");
