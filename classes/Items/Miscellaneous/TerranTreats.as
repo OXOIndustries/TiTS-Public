@@ -307,6 +307,27 @@
 					changes++;
 					pc.eyeType = GLOBAL.TYPE_HUMAN;
 				}
+				
+				//Hair
+				if(pc.hasHair() && pc.hairType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
+				{
+					kGAMECLASS.output("\n\n");
+					if(pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN))
+					{
+						kGAMECLASS.output("Your scalp itches, the [pc.hair] covering it falling away as a mass of new filaments sprouts in their place. <b>You have hair!</b>");
+						changes++;
+						pc.hairType = GLOBAL.TYPE_HUMAN;
+					}
+					else kGAMECLASS.output(pc.hairTypeLockedMessage());
+				}
+				//Lose "Mane" Perk:
+				if(pc.hasHair() && pc.hasPerk("Mane") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYou feel the hairline on the back of your neck receding to something more in line with the back of your head. <b>You no longer have a mane.</b>");
+					changes++;
+					pc.removePerk("Mane");
+				}
+				
 				if(changes == 0)
 				{
 					kGAMECLASS.output("\n\nNothing changed. What a rip-off.");
