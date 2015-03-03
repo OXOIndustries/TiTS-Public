@@ -336,7 +336,7 @@ public function talkToEllieAboutPheromones():void
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	output("You find yourself unconsciously shifting  a little closer to Ellie, breathing in deep through your nose to drink deep of that heady, potent admixture of pheromones that seem to be all but pouring off of her. You manage to ask her about them, though you’ve barely gotten a word out before you notice you’re mouth is watering... and that you have a serious hankering to eat a little ‘taur pussy.");
+	output("You find yourself unconsciously shifting  a little closer to Ellie, breathing in deep through your nose to drink deep of that heady, potent admixture of pheromones that seem to be all but pouring off of her. You manage to ask her about them, though you’ve barely gotten a word out before you notice your mouth is watering... and that you have a serious hankering to eat a little ‘taur pussy.");
 	output("\n\nEllie blushes at your question, her ashen skin taking on a darker hue beneath her black armor plates. <i>“Sorry about that, hun. We leithan girls have a pretty strong smell during mating season, they tell us. I just about drive the studs wild if they get downwind of me... they turn into big, randy piles of fuck ‘fore they knew what hit ‘em. Just the way I like it!”</i> she giggles, her thick tail curling up a bit, tenting the pink blanket covering her lower body and letting another wave of her strong sex-odor wash over you.");
 	if(pc.hasCock()) 
 	{

@@ -77,7 +77,7 @@ public function insultYourRivalOnMhenga():void {
 	flags["INSULTED_COUSIN_ON_MHENGA"] = 1;
 	output("\n\n[rival.short] whirls on you, eyes wide, almost crazy. <i>\"Why you ungrateful little shit! Dane! Come teach this rat some manners.\"</i>");
 	output("\n\nDane? Who the fuck is Dane? Your confusion must be evident.");
-	output("\n\n[rival.short] sneers and steps aside, saying, <i>\"Some people call ausar humanity's lapdogs. Dane's more of a guard dog.\"</i> The form form of a hulking brute emerges from behind [rival.em], in the shadows.");
+	output("\n\n[rival.short] sneers and steps aside, saying, <i>\"Some people call ausar humanity's lapdogs. Dane's more of a guard dog.\"</i> The form of a hulking brute emerges from behind [rival.em], in the shadows.");
 	clearMenu();
 	addButton(0,"Next",daneOmniExplanation);
 }
