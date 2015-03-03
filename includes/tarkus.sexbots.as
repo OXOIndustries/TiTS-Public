@@ -207,7 +207,7 @@ public function sexbotAI():void
 	if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;
 	//Hack drone
 	//(Procs if PC has a drone)
-	if(pc.hasPerk("Attack Drone") && pc.shields() > 0 && !pc.hasStatusEffect("Porno Hacked Drone")) choices[choices.length] = getDroneHacked;
+	if(pc.hasPerk("Attack Drone") && pc.shields() > 0 && !pc.hasStatusEffect("Porno Hacked Drone") && !pc.accessory is TamWolf && !pc.accessory is TamWolfDamaged) choices[choices.length] = getDroneHacked;
 	//Standard attack
 	choices[choices.length] = standardRobosexualAttack;
 	choices[choices.length] = standardRobosexualAttack;

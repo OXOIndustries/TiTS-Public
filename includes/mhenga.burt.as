@@ -1280,7 +1280,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i>  the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail's slender tip.");
 	
-	output("\n\n<i>“There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?”</i>  she says, pointing out the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>“Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're tying to kill 'em or mate with 'em! Let's get a closer look!”</i>");
+	output("\n\n<i>“There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?”</i>  she says, pointing out the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>“Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're trying to kill 'em or mate with 'em! Let's get a closer look!”</i>");
 	
 	output("\n\nSome of the bar's patrons ooh and aah as the camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
