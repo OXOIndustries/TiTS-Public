@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.TerranTreats;
 	import classes.Items.Transformatives.Bovinium;
 	import classes.kGAMECLASS;
 	import classes.rand;

@@ -3,7 +3,7 @@ package classes.Characters
 	import classes.BreastRowClass;
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.SkySap;
 	import classes.Items.Apparel.*;
 	import classes.Items.Melee.*;
 	import classes.Items.Guns.*;

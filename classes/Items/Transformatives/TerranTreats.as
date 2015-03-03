@@ -1,4 +1,4 @@
-﻿package classes.Items.Miscellaneous
+﻿package classes.Items.Transformatives
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
