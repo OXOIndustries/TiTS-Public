@@ -338,7 +338,7 @@
 				//Masculine Changes
 				//Grow three balls + pouch
 				//Grow three balls
-				if(pc.balls < 2 && pc.hasCock() && changes < changeLimit && rand(4) == 0)
+				if(pc.balls < 3 && pc.hasCock() && changes < changeLimit && rand(4) == 0)
 				{
 					kGAMECLASS.output("\n\nHeat coalesces in your groin, pulsing there with increasing force until it feels like it must take physical form – which, slightly startlingly, it does. You grunt with pleasure as ");
 					if(pc.balls == 2) kGAMECLASS.output("a new testicle swells");
