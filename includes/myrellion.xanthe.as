@@ -1343,7 +1343,7 @@ public function tieAndTeaseWithXanthe():void
 	clearMenu();
 	//[She Leaves You!] [Pays Attention] 
 	addButton(0,"SheLeaves",getLeftByXantheSlooot);
-	addButton(0,"SheStays",shePaysAttentionToYouSlut);
+	addButton(1,"SheStays",shePaysAttentionToYouSlut);
 }
 
 // She Leaves You!
