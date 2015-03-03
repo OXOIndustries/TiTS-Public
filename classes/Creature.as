@@ -1273,6 +1273,14 @@
 				case "tail":
 					buffer = tailDescript();
 					break;
+				case "onetail":
+				case "oneTail":
+					buffer = oneTailDescript();
+					break;
+				case "eachtail":
+				case "eachTail":
+					buffer = eachTailDescript();
+					break;
 				case "tails":
 					buffer = tailsDescript();
 					break;
@@ -3221,6 +3229,18 @@
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
+		}
+		public function oneTailDescript():String
+		{
+			if (tailCount == 0) return "ERROR: No tails!";
+			else if (tailCount == 1) return "your " + tailDescript();
+			else return "one of your " + tailDescript();
+		}
+		public function eachTailDescript():String
+		{
+			if (tailCount == 0) return "ERROR: No tails!";
+			else if (tailCount == 1) return "your " + tailDescript();
+			else return "each of your " + tailDescript();
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
