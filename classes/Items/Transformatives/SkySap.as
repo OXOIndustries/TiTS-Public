@@ -242,6 +242,8 @@
 					pc.createVagina();
 					pc.vaginas[0].type = GLOBAL.TYPE_VANAE;
 					pc.vaginas[0].vaginaColor = getVanaeAccentColor(pc);
+					pc.vaginas[0].clits = 2;
+					pc.vaginas[0].wetnessRaw = 4;
 					changes++;
 				}
 				//Double Clit Gain 
