@@ -503,7 +503,7 @@ public function bendFlahneOver():void {
 	output("\n\nWhen she cums, Flahne's cunt squeezes down on you like a glove, sucking with potent force.");
 	if(flahneDickOut()) output(" Her body twitches as her ovipositor practically pops with a flood of thick, creamy rahn spooge.");
 	output(" You groan and grit your teeth, digging your fingers deep into her wide, pliant hips. You push in hard before you blow your load, getting every inch of your " + pc.cockDescript(x) + " into Flahne's beautiful, glorious hole. With another spasm of her gel-like body, your cock responds by shooting a thick glob of [pc.cum] into Flahne's womb, filling her with spurt after spurt of musky spunk");
-	if(pc.cumQ() >= 2000) output(" until your seed begins to press against her skin, coloring her white and swelling her form");
+	if(pc.cumQ() >= 2000) output(" until your seed begins to press against her skin, coloring her [pc.cumColor] and swelling her form");
 	if(pc.cumQ() >= 10000) output(". So much seed vanishes into the girl’s golden gap that halfway through your climax, she’s already doubled in size, splayed liberally over the desk like a spilled custard");
 	output(". Her body is quick to engulf the offering, never letting a drop escape her slick depths.");
 	processTime(20 + rand(10));
@@ -512,7 +512,7 @@ public function bendFlahneOver():void {
 	output("\n\nYour hips pound into her a few last times as your " + pc.cockDescript(x) + " empties, panting and heaving as you collapse and sink into your gel-lover. She giggles playfully, reaching a hand back around to pull your prick from her hole, still twitching and dribbling - until she gets down on her knees to clean you up, lapping up every last drop. You rest your arms on her desk, examining the spilled coffee, papers, and pens strewn across her workspace. She sure made a mess....");
 	
 	output("\n\nRunning a hand across Flahne's gooey hair, you give her a gentle push off of your dick, letting it come free with a wet, squishy pop. The curvy rahn licks her lips, chest jiggling as she wipes a little stray cum from the tops of her ");
-	if(pc.cumQ() >= 2000) output("swollen, near-white ");
+	if(pc.cumQ() >= 2000) output("swollen, near-[pc.cumColor] ");
 	output("tits.");
 	if(pc.cumQ() <= 10000) {
 		output("\n\n<i>“Mmm, what a tasty snack!”</i>  Flahne grins, bounding over to you, reeking of the cum already circulating in her");
@@ -525,7 +525,7 @@ public function bendFlahneOver():void {
 	else {
 		output("\n\n<i>“Oh my God, I’ve never been so full!”</i>  Flahne marvels. She looks like she wants to prance over and hug you, but she’s absorbed so much of your cum that her head bumps against the ceiling - she can’t even stand up straight! <i>“Ugh, ouch,”</i>  she says, smiling good-naturedly to show that her gooey head isn’t really hurt. <i>“I guess I’ll have to take an extra-long break and get rid of all this nutrition...”</i>");
 		
-		output("\n\nWith a wink, Flahne reaches out an enormous, off-white arm, unlocking the door nearest to you. <i>“Heehee, I’d ask you to stay and watch, but it’s going to take a long time and get very messy in here,”</i>  she laughs, ");
+		output("\n\nWith a wink, Flahne reaches out an enormous, off-[pc.cumColor] arm, unlocking the door nearest to you. <i>“Heehee, I’d ask you to stay and watch, but it’s going to take a long time and get very messy in here,”</i>  she laughs, ");
 		if(!flahneDickOut()) output("diddling her little clitoris until it begins to swell and elongate");
 		else output("stroking her half-limp ovipositor until it returns to full size");
 		output(". <i>“I hope I have the self-control to keep it out of my mouth the whole time...”</i>  Getting the idea, you take one last look at the room-filling gel woman, drinking in the sight of breasts and thighs as big as you are, and then turn to leave.");
@@ -575,7 +575,7 @@ public function rahnSuppository():void {
 	
 	//If PC has a cock: 
 	if(pc.hasCock()) {
-		output("\n\nWith such a massive, girthy intrusion pressing down on your prostate, your cock, still buried between Flahne's tits, twitches and spurts, staining her cleavage white with your sticky seed. With a sly grin, the rahn girl wipes up a bit and licks it sensually from her fingertips. Her cock twitches in your ass, pressing down hard on your sore, battered prostate; you cum instantly, whining as your cock");
+		output("\n\nWith such a massive, girthy intrusion pressing down on your prostate, your cock, still buried between Flahne's tits, twitches and spurts, staining her cleavage [pc.cumColor] with your [pc.cumVisc] seed. With a sly grin, the rahn girl wipes up a bit and licks it sensually from her fingertips. Her cock twitches in your ass, pressing down hard on your sore, battered prostate; you cum instantly, whining as your cock");
 		if(pc.cumQ() < 2) output(" shudders and fails to express more than a single drop of [pc.cum].");
 		else output(" spurts, shooting a streak of [pc.cumColor] so powerful that it blasts onto Flahne's chin before dribbling down into her cleavage, pooling around your tip.");
 	}
