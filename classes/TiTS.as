@@ -176,6 +176,7 @@
 		include "../includes/myrellion.embry.as";
 		include "../includes/myrellion.irellia.as";
 		include "../includes/myrellion.irelliaQuest.as";
+		include "../includes/myrellion.kaede.as";
 		include "../includes/myrellion.karaAndShade.as";
 		include "../includes/myrellion.liliana.as";
 		include "../includes/myrellion.lyralla.as";

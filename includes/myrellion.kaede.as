@@ -12,7 +12,7 @@ public function hasFuckedKaede():Boolean
 	return false;
 }
 
-public function kaedeHeader(isNude:Boolean = false;):void
+public function kaedeHeader(isNude:Boolean = false):void
 {
 	if (!isNude) showBust("KAEDE");
 	else showBust("KAEDE_NUDE");
@@ -413,7 +413,7 @@ public function kaedeMyrellionSexIntro():void
 	processTime(20);
 
 	clearOutput();
-	addButton(0, "Next", );
+	addButton(0, "Next", kaedeMyrellionSexIntroII);
 }
 
 public function kaedeMyrellionSexIntroII():void
