@@ -477,9 +477,9 @@ public function chooseBreastSize():void {
 
 public function applyBreastSize(size:int = 0):void {
 	pc.breastRows[0].breastRatingRaw = size;
-	if(pc.biggestTitSize() >= 1 && pc.femininity < 50) pc.femininity += 10;
-	if(pc.biggestTitSize() >= 2 && pc.femininity < 55)) pc.femininity += 10;
-	if(pc.biggestTitSize() >= 3 && pc.femininity < 65)) pc.femininity += 15;
+	if(pc.biggestTitSize() >= 1 && pc.femininity < 60) pc.femininity += 13;
+	if(pc.biggestTitSize() >= 2 && pc.femininity < 69) pc.femininity += 13;
+	if(pc.biggestTitSize() >= 3 && pc.femininity < 77) pc.femininity += 17;
 	if(pc.hasCock()) chooseYourJunkSize();
 	else if(pc.hasVagina()) chooseYourVagina();
 	else chooseSexualGift();
