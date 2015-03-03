@@ -7374,7 +7374,11 @@
 				}
 				if (descripted > 0) descript += " ";
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
-				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS && this.rand(2) == 0) descript += "plumage";
+				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
+				{
+					if(rand(2) == 0) descript += "plumage";
+					else descript += "feather-hair";
+				}
 				else descript += "hair";
 			}
 			return descript;
@@ -8505,6 +8509,29 @@
 				else if (rando == 8) noun += "tool";
 				else if (rando == 9) noun += "snake-shaft";
 				else noun += "snake-dick";
+			} else if (type == GLOBAL.TYPE_RASKVEL) {
+				if (!simple) {
+					rando = this.rand(7);
+					if (rando == 0) descript += "reptilian ";
+					else if (rando == 1) descript += "alien ";
+					else if (rando == 2) descript += "raskvel ";
+					else if (rando == 3) descript += "reptilian ";
+					else if (rando == 4) descript += "smooth ";
+					else if (rando == 5) descript += "sleek ";
+					else descript += "exotic ";
+				}
+				rando = this.rand(11);
+				if (rando == 0) noun += "dick";
+				else if (rando == 1) noun += "cock";
+				else if (rando == 2 && descript != "raskvel ") noun += "rask-cock";
+				else if (rando == 3) noun += "prick";
+				else if (rando == 4) noun += "prick";
+				else if (rando == 5) noun += "member";
+				else if (rando == 6) noun += "phallus";
+				else if (rando == 7) noun += "shaft";
+				else if (rando == 8) noun += "tool";
+				else if (rando == 9 && descript != "alien ") noun += "xeno-shaft";
+				else noun += "cock";
 			} else if (type == GLOBAL.TYPE_ANEMONE) {
 				if (!simple) {
 					rando = this.rand(8);

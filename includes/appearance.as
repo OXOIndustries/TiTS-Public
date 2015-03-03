@@ -202,6 +202,7 @@ public function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.TYPE_MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
 			else if(pc.earType == GLOBAL.TYPE_VANAE) output2(" A pair of pointed, finned ears tops your skull.");
 			else if(pc.earType == GLOBAL.TYPE_PANDA) output2(" A pair of rounded, panda-like ears protrude from your skull, " + pc.mf("standing tall and proud","looking absolutely adorable") + ".");
+			else if(pc.earType == GLOBAL.TYPE_RASKVEL) output2(" A pair of long raskvel ears dangle from your skull down past your waist.");
 			if(pc.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
 		}
 		//not bald
@@ -221,6 +222,7 @@ public function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.TYPE_MOUSE) output2(" The " + target.hairDescript(true,true) + " atop your head is funneled between and around a pair of large, dish-shaped mouse ears that stick up prominently.");
 			else if(pc.earType == GLOBAL.TYPE_VANAE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of pointed, fin-like ears, sensitive to the slightest sound.");
 			else if(pc.earType == GLOBAL.TYPE_PANDA) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of round panda ears.");
+			else if(pc.earType == GLOBAL.TYPE_RASKVEL) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a long pair of raskvel ears that dangle down past your waist.");
 			if(pc.antennae == 2) {
 				if(pc.earType == GLOBAL.TYPE_LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
 				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
@@ -527,6 +529,10 @@ public function appearance(target:Creature):void {
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		else if(target.tailType == GLOBAL.TYPE_RASKVEL) {
+			if(target.tailCount == 1) output2(" A scaled " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you. Softer, lighter scales cover its bottom.");
+			else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
+		}
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
 			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
@@ -605,6 +611,11 @@ public function appearance(target:Creature):void {
 		{
 			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
 			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with three long toes and a small hind-claw on the back.");
+		}
+		else if(target.legType == GLOBAL.TYPE_RASKVEL)
+		{
+			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " plantigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are four long toes tipping the humanoid soles.");
+			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with four long toes at the front of the terran-like soles.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LAPINE) 
 		{
@@ -957,6 +968,9 @@ public function appearance(target:Creature):void {
 				else if(target.cocks[0].cType == GLOBAL.TYPE_BEE) {
 					output2(" There's a lot in common between human and zil genitals, but the alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
 				}
+				else if(target.cocks[0].cType == GLOBAL.TYPE_RASKVEL) {
+					output2(" It's fairly smooth and shapely in appearance, lacking in any severe or stimulating ridges.");
+				}
 				//Worm flavor
 				if(target.hasStatusEffect("infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");		
 				//Bonus flavor for non-canine dicks to have knots.
@@ -1070,6 +1084,9 @@ public function appearance(target:Creature):void {
 					else if(target.cocks[temp].cType == GLOBAL.TYPE_BEE) {
 						output2(" The alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
 					}
+					else if(target.cocks[temp].cType == GLOBAL.TYPE_RASKVEL) {
+						output2(" It's fairly smooth and shapely in appearance, lacking in any severe or stimulating ridges.");
+					}
 					//Worm flavor
 					if(target.hasStatusEffect("infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(temp) + ", tasting the air like a snake's tongue.");
 					//Bonus flavor for non-canine dicks to have knots.
@@ -1131,6 +1148,7 @@ public function appearance(target:Creature):void {
 			//Vaginal Numbers
 			if(target.vaginaTotal() == 1) {
 				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
+				if(target.vaginas[0].clits > 1) output2("s");
 				if(target.vaginas[0].hymen) output2(" and an intact hymen");
 				output2(". ");
 

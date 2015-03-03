@@ -5,7 +5,7 @@
 	import classes.Items.Guns.*
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
-	import classes.Items.Miscellaneous.*
+	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
@@ -202,7 +202,8 @@
 			/*if (rand(10) == 0)
 			{
 				combatRaskvelFemale.inventory.push(new RaskvelWrench());
-			}*/			
+			}*/	
+			if(rand(8) <= 6) combatRaskvelMale.inventory.push(new Ruskvel());
 			kGAMECLASS.foes.push(combatRaskvelMale);
 		}
 	}

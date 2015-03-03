@@ -5,7 +5,7 @@
 	import classes.Items.Guns.*
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
-	import classes.Items.Miscellaneous.*
+	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
@@ -157,7 +157,7 @@
 			this.minutesSinceCum = 420;
 			this.timesCum = 1111;
 
-			this.elasticity = 1.4;
+			this.elasticity = 2;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1.05;
 			this.clitLength = .5;
@@ -210,7 +210,8 @@
 			if (rand(10) == 0)
 			{
 				combatRaskvelFemale.inventory.push(new RaskvelWrench());
-			}			
+			}
+			else if(rand(8) <= 6) combatRaskvelFemale.inventory.push(new Ruskvel());
 			kGAMECLASS.foes.push(combatRaskvelFemale);
 		}
 	}
