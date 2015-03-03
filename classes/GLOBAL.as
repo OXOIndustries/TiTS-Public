@@ -274,6 +274,7 @@
 			TYPE_PANDA,
 			TYPE_HUMAN,
 			TYPE_LEITHAN,
+			TYPE_RASKVEL,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -315,6 +316,7 @@
 			TYPE_MLP,
 			TYPE_SUCCUBUS,
 			TYPE_KUITAN,
+			TYPE_RASKVEL,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -572,6 +574,7 @@
 			TYPE_DRACONIC,
 			TYPE_BEE,
 			TYPE_SIMII,
+			TYPE_RASKVEL,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [

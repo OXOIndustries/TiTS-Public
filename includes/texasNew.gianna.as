@@ -1,4 +1,5 @@
 ﻿import classes.Items.Miscellaneous.AHCock;
+import classes.Items.Miscellaneous.ADCock;
 import classes.Items.Miscellaneous.ACock;
 
 //9999 DONT FORGET THESE WHEN UPDATING THINGS
@@ -3918,12 +3919,14 @@ public function giveGiannaSomethingCoolYouSlut():void
 	else addDisabledButton(0,"Locked","Locked","You've no idea what this could be.");
 	if(pc.hasItem(new ACock())) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you've been carrying around.");
 	else addDisabledButton(1,"Locked","Locked","You've no idea what this could be.");
+	if(pc.hasItem(new ADCock())) addButton(2,"A.D.Cock",giveGiannaSomethingTransform,"dragon","Android Dragon Cock","Give Gianna the android dragon-cock you've been carrying around.");
+	else addDisabledButton(2,"Locked","Locked","You've no idea what this could be.");
 	addButton(14,"Back",giannaMenu);
 }
 
 public function hasGiannaGift():Boolean
 {
-	if (pc.hasItem(new AHCock()) || pc.hasItem(new ACock())) return true;
+	if (pc.hasItem(new AHCock()) || pc.hasItem(new ACock()) || pc.hasItem(new ADCock())) return true;
 	return false;
 }
 
@@ -3945,6 +3948,30 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 		//Submissive
 		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. “<i>T-thank you, [pc.master]. I never thought I’d get to have an XL model, let alone a horse-cock. It’s beautiful.</i>” She spins it in her hands, scanning it for defects. “<i>Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?</i>”");
 	}
+	//DRAGONCAWK
+	else if(arg == "dragon")
+	{
+		//Positivity Waifu
+		if(giannaPersonality() >= 75)
+		{
+			output("\n\n\"<i>Oooh, what's this?</i>\" Gianna croons, gazing at the vibrantly-colored synth-cock in your hand. She prances over a step to examine it closer, and you're gratified to see a big smile spread across her alabaster cheeks. \"<i>Wow, this is one of those old Kiha Monsters, right? I'm pretty sure they modeled this one after a hentai drawing of that cute little dragon-girl they use on their logo. I didn't think they made these anymore!</i>\"");
+			output("\n\nFor the moment, you choose not to question how - or why - Anno got her hands on a vintage robot sex-toy.");
+			output("\n\n\"<i>So, what do you want me to do with this naughty wyvern-dick, hmm?</i>\" she teases, running one of her perfectly-formed digits along the blue-hued shaft. \"<i>Maybe bend you over a hay bale and take you for a ride?</i>\"");
+		}
+		//Neutral Gigi
+		else if(giannaPersonality() >= 30)
+		{
+			output("\n\n\"<i>Ohwow, that's one of those old Fantasy Monster cocks, right? Kiha used to have a whole line of 'em, way back when.</i>\" She giggles and bounds over, running one of her perfectly-formed alaboastor fingers along the blue shaft. \"<i>Well, on a planet full of beast-dicks, this one sure manages to stand out, huh? Of course, you're not giving me a big,expensive, vintage dragon dick just to let me show off to all the other cows, are you?</i>\"");
+			output("\n\nGiving you a mischievous wink, Gianna asks, \"<i>So, wanna see what this monster can do? I bet I can fulfil all sorts of fantasies with it...</i>\"");
+		}
+		//Shit-tier Sub Droid
+		else
+		{
+			output("\n\nGianna looks up, not quite meeting your eyes, but you think you see a flicker of happiness across her servile features. \"<i>Th-thank you, [pc.master]. That's a very old model... I don't think they make them anymore. You must have spent a fortune on it. More than I'm worth, for sure.</i>\"");
+			output("\n\nYou don't think she means her value in credits.");
+			output("\n\n\"<i>It looks amazing,</i>\" she says, realizing you aren't responding to her meek comments. \"<i>Did you want me to try it out... on you? Or would you rather just watch it bounce around and squirt on the ground when you fuck me?</i>\"");
+		}
+	} 
 	//NORMACOCK
 	else
 	{
@@ -3964,11 +3991,12 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	if(arg == "hoss") output("extra large-sized sheath down into the vacant slot");
 	else output("cocksheath down into the vacant slot");
 	output(", causing her flexible vagina to distend and reshape to accommodate the ");
-	if(arg == "hoss") output("bestial");
+	if(arg == "hoss" || arg == "dragon") output("bestial");
 	else output("less than feminine");
 	output(" girth. Something clicks, and Gianna sighs in relief or pleasure before closing her abdominal compartment.");
 	output("\n\n“<i>There we go! I’ve got ");
 	if(arg == "hoss") output("a big horse-cock");
+	else if(arg == "dragon") output("a big, bestial dragon-dick");
 	else output("a decent-sized terran cock");
 	output(", just like you wanted!</i>” She wiggles excitedly and says, “<i>Watch this!</i>”");
 
@@ -3976,6 +4004,14 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	if(arg == "hoss")
 	{
 		output("\n\nThe darkened sheath that was once her clitoral hood bulges, revealing the rubbery-looking flesh of a very swollen flare. It pushes through her inky lips with deliberate slowness, followed by the pillar of her veiny shaft. Even now, you can see the faux circulatory system bulge and pulse as it circulates heated silicone in place of blood. It seems to take forever, but in reality, no more than ten seconds have passed. She strokes it once, squeezing a bead of lubricant from its blunt head before allowing it to soft once more. It retreats into its dusky hood with almost alarming rapidity, leaving her looking like a girl with little more than an over-sized clit-hoot once more.");
+	}
+	else if(arg == "dragon")
+	{
+		output("\n\nThe vibrant sheath that's not covering what was once Gianna's clitoral hood bulges with a rush of steamy fluids, revealing the growing, rubbery length of her draconic member and its tendril-crested crown. It pushes through her inky lips with deliberate slowness, followed by the pillar of her veiny shaft. Even now, you can see the faux circulatory system bulge and pulse as it circulates heated silicone in place of blood. It seems to take forever, but in reality, no more than ten seconds have passed. She starts to stroke it, slowly at first, caressing her tendril-crowned cockhead until a thick bead of moisture crests its top.");
+		output("\n\n\"<i>O-oh wow,</i>\" Gianna purrs, fluttering her eyes. \"<i>These little feelers are </i>so<i> sensitive! I-I'm gonna... gonna...</i>\"");
+		output("\n\nYou have just enough time to step out of the way before the over-eager android strokes herself all the way off, moaning and bucking her hips as a streak of cum squirts out. It's not the powerful, bestial orgasm you were expecting from such a huge rod, though: her cum dribbles out around her fingers and splatters onto the hay-coated barn floor, leaving a sticky streak in its wake that she makes a very blatant show of cleaning up.");
+		output("\n\nYou don't think you could have ever described a huge cock's orgasm as dainty before.");
+		output("\n\n\"<i>Oh, I can't wait to use this with you!</i>\" she giggles, flushing her creamy skin a little darker as she laps up the last traces of her first orgasm.");
 	}
 	//Normal Futa?
 	else output("\n\nA half-hard length of pink-hued synthflesh dangles from her clitoral hood, modelled in the shape of a girthy penis. While soft, it's a floppy four inches. When it gets hard, she can sport up to ten inches of silicone-inflated girlmeat. The android is more than happy to give you a demonstration, going from soft to raging tumescence in the span of ten seconds, ending her demonstration by allowing bubbles of warm lubricant to roll out of its head unimpeded, drawn from her inner reservoirs. She goes soft just as quickly.");
@@ -4007,7 +4043,7 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 
 public function giannaHasSwapPieces():Boolean
 {
-	return (flags["GIANNA_HAS_HUMAN_COCK"] != undefined || flags["GIANNA_HAS_HORSE_COCK"] != undefined);
+	return (flags["GIANNA_HAS_DRAGON_COCK"] != undefined || flags["GIANNA_HAS_HUMAN_COCK"] != undefined || flags["GIANNA_HAS_HORSE_COCK"] != undefined);
 }
 
 public function giannaCrotchTF(arg:String = "clit"):void
@@ -4035,6 +4071,17 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		gianna.createCock(10,1.1);
 		gianna.cocks[0].cockColor = "pink";
 	}
+	if(arg == "dragon")
+	{
+		if(flags["GIANNA_HAS_DRAGON_COCK"] == undefined)
+		{
+			flags["GIANNA_HAS_DRAGON_COCK"] = 1;
+			pc.destroyItem(new ADCock());
+		}
+		gianna.createCock(10,1.1);
+		gianna.shiftCock(0,GLOBAL.TYPE_SNAKE);
+		gianna.cocks[0].cockColor = "bluish purple";
+	}
 	if(arg == "clit")
 	{
 		
@@ -4060,6 +4107,12 @@ public function hotswapGiannaButts():void
 	{
 		if(gianna.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(2,"HorseCock","Horse Cock","Gianna already has that type of penis equipped.");
 		else addButton(2,"HorseCock",hotSwapSomethingWithGianna,"hoss","Horse Cock","Have Gianna equip her equine cock.");
+	}
+	else addDisabledButton(2,"Locked","Locked","Gianna does not have this item yet.");
+	if(flags["GIANNA_HAS_DRAGON_COCK"] != undefined)
+	{
+		if(gianna.hasCock(GLOBAL.TYPE_SNAKE)) addDisabledButton(2,"Drgn.Cock","Dragon Cock","Gianna already has that type of penis equipped.");
+		else addButton(2,"Drgn.Cock",hotSwapSomethingWithGianna,"dragon","Dragon Cock","Have Gianna equip her dragon cock.");
 	}
 	else addDisabledButton(2,"Locked","Locked","Gianna does not have this item yet.");
 	addButton(14,"Back",giannaMenu);

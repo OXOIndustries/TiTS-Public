@@ -561,6 +561,7 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new SteeleTechSuit());
 			anno.inventory.push(new ACock());
 			anno.inventory.push(new AHCock());
+			anno.inventory.push(new ADCock());
 		}
 
 		// Buy/Sell markups
@@ -581,6 +582,7 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new JoyCoPremiumShield());
 			anno.inventory.push(new ACock());
 			anno.inventory.push(new AHCock());
+			anno.inventory.push(new ADCock());
 		}
 
 		anno.sellMarkup = 1.2;
