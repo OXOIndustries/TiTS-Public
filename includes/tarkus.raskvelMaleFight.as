@@ -960,7 +960,7 @@ public function consensualGangBang():void
 
 //Buttfuckery
 //Req: Cock that fits
-function raskMaleButtfuckery():void
+public function raskMaleButtfuckery():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1149,7 +1149,7 @@ function raskMaleButtfuckery():void
 
 //Red Riding
 //Requires: Vagina
-function redRidingRaskvel():void
+public function redRidingRaskvel():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1207,7 +1207,7 @@ function redRidingRaskvel():void
 
 //Feed milk
 //PC with none of the above defaults to this
-function feedRaskGangMalk(args):void
+public function feedRaskGangMalk(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -1245,7 +1245,7 @@ function feedRaskGangMalk(args):void
 }
 
 //Hard light peg
-function raskvelHardlightPegEdition(args):void
+public function raskvelHardlightPegEdition(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -1262,7 +1262,7 @@ function raskvelHardlightPegEdition(args):void
 }
 
 //Cock-tail
-function raskVelCockTailPegging(args):void
+public function raskVelCockTailPegging(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -1279,7 +1279,7 @@ function raskVelCockTailPegging(args):void
 }
 
 //Cunt-tail
-function cuntTailRaskPlay(args):void
+public function cuntTailRaskPlay(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
@@ -1298,11 +1298,11 @@ function cuntTailRaskPlay(args):void
 }
 
 //{merge}
-function vaginaRaskStuffEpilogus(args):void
+public function vaginaRaskStuffEpilogus(args:Array):void
 {
 	var x:int = args[0];
 	var y:int = args[1];
-	var originalScene = args[2];
+	var originalScene:Function = args[2];
 	clearOutput();
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
@@ -1389,7 +1389,7 @@ function vaginaRaskStuffEpilogus(args):void
 }
 
 //Loss Gangbang
-function loseToRaskvelAndGetGangBangued():void
+public function loseToRaskvelAndGetGangBangued():void
 {
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
@@ -1573,7 +1573,7 @@ function loseToRaskvelAndGetGangBangued():void
 //Requires: Not a centaur, has a vagina, feminine, 70%+ intelligence, 3+ sexiness clothing OR female Treated, 3+ sexiness clothing
 //If requirements met add following text to paragraph if the raskvel attack: It occurs to you that there might be another, cleaner way out of this... if you use your feminine wiles to your best advantage.
 
-function seductionChance():Boolean
+public function seductionChance():Boolean
 {
 	if(pc.hasVagina() && pc.mf("he","she") == "she" && pc.IQ() >= 70 && (pc.isBimbo() || pc.sexiness() >= 3) && !foes[0].hasStatusEffect("Seduction Declined") && !pc.hasStatusEffect("Stunned"))
 	{
@@ -1587,7 +1587,7 @@ function seductionChance():Boolean
 	return false;
 }
 
-function nopeGonnaFightCapn():void
+public function nopeGonnaFightCapn():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1596,7 +1596,7 @@ function nopeGonnaFightCapn():void
 	processCombat();
 }
 
-function seduceTheRaskvelAttackYaNerd():void
+public function seduceTheRaskvelAttackYaNerd():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1630,7 +1630,7 @@ function seduceTheRaskvelAttackYaNerd():void
 }
 
 //Sneak away
-function sneakAwayFromRaskvel():void
+public function sneakAwayFromRaskvel():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1643,7 +1643,7 @@ function sneakAwayFromRaskvel():void
 }
 
 //Stay
-function stayAroundForBonusRaskbuttSex():void
+public function stayAroundForBonusRaskbuttSex():void
 {
 	clearOutput();
 	showRaskGang();
@@ -1676,7 +1676,7 @@ function stayAroundForBonusRaskbuttSex():void
 }
 
 //Lick pussy
-function lickPussyRaskButt(raskWinner:String = "big"):void
+public function lickPussyRaskButt(raskWinner:String = "big"):void
 {
 	clearOutput();
 	showRaskGang();
@@ -1728,7 +1728,7 @@ function lickPussyRaskButt(raskWinner:String = "big"):void
 
 //Lick feet
 //Requires: biped
-function feetLickingGoodTimes(raskWinner:String = "big"):void
+public function feetLickingGoodTimes(raskWinner:String = "big"):void
 {
 	clearOutput();
 	showRaskGang();

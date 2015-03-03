@@ -70,7 +70,7 @@
 			if(rand(5) == 0) changeLimit++;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				var pc = target;
+				var pc:PlayerCharacter = target as PlayerCharacter;
 				//Usage text:
 				//Nonrask
 				if(pc.race() != "raskvel" && pc.race() != "rask-morph" && pc.race() != "raskvel-morph")
