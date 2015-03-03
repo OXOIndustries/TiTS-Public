@@ -2190,10 +2190,10 @@ public function treatmentHourProcs():void
 	 	//Horns
 	 	//5 to 8”
 	 	//Horn Grow 2 Nubs
-		if((pc.horns == 0 || pc.hornType != GLOBAL.TYPE_BOVINE || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(8) == 0 && treatedHours % 2 == 0))
+		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && (treatedHours >= 82 && rand(8) == 0 && treatedHours % 2 == 0))
 		{
 			//Existing horns transform into lil bull nubs.
-			if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE)
+			if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT)
 			{
 				eventBuffer += "\n\nThere is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They're small and pointed, like little cow horns.";
 				pc.horns = 2;
@@ -2302,6 +2302,7 @@ public function treatmentHourProcs():void
 			eventBuffer += "\n\nYou feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled ram horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the satyrs of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.";
 			pc.hornType = GLOBAL.TYPE_GOAT;
 			pc.hornLength = 11;
+			pc.horns = 2;
 		}
 		//Tail
 		//Just tweak femtail stuff
