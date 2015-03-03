@@ -146,6 +146,10 @@ public function enemyAphrodisiacDarts():void
 		}
 		else output("\nYou whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 	}
+	if(pc.lust() < pc.lustMax() && foes[0] is RaskvelMale)
+	{
+		if(seductionChance()) return;
+	}
 	processCombat();
 }
 

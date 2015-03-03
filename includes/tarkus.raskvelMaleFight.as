@@ -12,8 +12,12 @@
 public function showRaskGang():void
 {
 	userInterface.showBust("RASKVEL_MALE","RASKVEL_MALE","RASKVEL_MALE");
-	userInterface.showName("RASKVEL\nMALE");
-	author("Nonesuch");
+	if(inCombat()) userInterface.showName("RASKVEL\nMALE");
+	else 
+	{
+		userInterface.showName("FIGHT: MALE\nRASKVEL");
+		author("Nonesuch");
+	}
 }
 
 public function pcHasJunkPrize():Boolean
@@ -60,7 +64,7 @@ public function raskvelGangEncounter():void
 
 	//Gud Deal
 	//30% Chance. Does not proc if PC already has junk prize on them
-	if(rand(10) <= 2 && !pcHasJunkPrize() || debug)
+	if(rand(10) <= 2 && !pcHasJunkPrize())
 	{
 		output("\n\n“<i>You’re in luck, offworlder,</i>” says the one closest to you.");
 		output("\n\n“<i>We are premier scavenge hunters – Tarkus’s finest,</i>” says the second, in close succession.");
@@ -637,8 +641,11 @@ public function raskGangAI():void
 		//See You Next Fall
 		//Minor damage plus fallen status. Much better chance of succeeding if PC is stunned
 		if(!pc.hasStatusEffect("Trip")) attackChoices.push(seeYouNextFallSloot);
-		attackChoices.push(enemyAphrodisiacDarts);
-		attackChoices.push(enemyAphrodisiacDarts);
+		if(pc.shields() < 1)
+		{
+			attackChoices.push(enemyAphrodisiacDarts);
+			attackChoices.push(enemyAphrodisiacDarts);
+		}
 		attackChoices.push(raskGangAttackGo);
 		attackChoices.push(raskGangAttackGo);
 		attackChoices[rand(attackChoices.length)]();
@@ -669,7 +676,7 @@ public function raskGangAttackGo():void
 	//Not stunned. Maybe stunned?
 	if(!pc.hasStatusEffect("Stunned"))
 	{
-		if(foes[0].physique()/2 + 10 <= pc.physique()/2 + rand(20) + 1)
+		if(foes[0].physique()/2 + 10 > pc.physique()/2 + rand(20) + 1)
 		{
 			//Stunned:
 			output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
@@ -715,7 +722,7 @@ public function raskZapAttack():void
 			}
 		}
 	}
-	processCombat();
+	if(!seductionChance()) processCombat();
 }
 
 //See You Next Fall
@@ -729,6 +736,7 @@ public function seeYouNextFallSloot():void
 	{
 		output("\n\nYou sense one of them crouching down behind you and react just in time, barrelling into the other two before they can push you over.");
 		output("\n\n“<i>Spoilsport,</i>” grouses one as they scramble back out again.");
+		if(seductionChance()) return;
 	}
 	//Succeed: 
 	else
@@ -775,8 +783,6 @@ public function raskPileOnPC():void
 //Use tweaked function from females:
 //enemyAphrodisiacDarts()
 
-
-
 public function victoryVsRaskGang():void
 {
 	//Raskvel loss texts
@@ -793,15 +799,22 @@ public function victoryVsRaskGang():void
 		output("\n\n“<i>You know, I’ve always hated fighting,</i>” mumbles one of the others, wrench falling from his hand.");
 		output("\n\n“<i>Yeah. Make love, not war, that’s my motto,</i>” says the third, gazing at you dreamily.");
 		output("\n\n“<i>Why don’t we celebrate this new spirit of serenity we have found with our new friend?</i>” wheezes the first, still looking at you with a kind of awe. “<i>We’d do anything. If it involved you. Anything.</i>”");
-		output("\n\nYou laugh quietly to yourself as you consider it.");
+		output("\n\nYou laugh quietly to yourself as you consider it.\n\n");
 	}
-	//9999
-	//genericVictory();
+	clearMenu();
+	addButton(14,"Leave",genericVictory);
+	//Red Riding
+	//Requires: Vagina
+	if(pc.hasVagina()) addButton(0,"Ride 'Em",redRidingRaskvel,undefined,"Ride 'Em","Put their dicks to use in your slit, where they belong. The foolish little creatures should've let you take the lead all along!");
+	else addDisabledButton(0,"Ride 'Em","Ride 'Em","You need a vagina to ride 'em!");
+	//Buttfuckery
+	//Req: Cock that fits
+	if(pc.cockThatFits(foes[0].analCapacity()) >= 0 && pc.hasCock()) addButton(1,"Butt Fuck",raskMaleButtfuckery,undefined,"Butt Fuck","Give them a good reaming for inconveniencing you with their cute little butts.");
+	else addDisabledButton(1,"Butt Fuck","Butt Fuck","You need a dick that'll fit inside the raskvel in order to fuck their butts.");
 }
 public function lossVsRaskGang():void
 {
-
-	genericLoss();
+	loseToRaskvelAndGetGangBangued();
 }
 
 //Sex
@@ -811,6 +824,7 @@ public function consensualGangBang():void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("As you walk, hands begin to wander and the talk – which the raskvel seem to bounce between them equally – turns increasingly saucy. With supple scales pushing into you from all sides there’s plenty for you to grasp");
 	if(pc.tallness >= 84) output(", even if you do have to reach a distance down to get at it");
 	output(", and by the time they lead you to their cubbyhole underneath a massive leaning crane you are feeling hot, at ease and more than glad you’ve got three of them all to yourself, ");
@@ -855,18 +869,18 @@ public function consensualGangBang():void
 	if(pc.ass.wetness() > 0 || pc.ass.looseness() >= 3) output(" Not that your slutty, always-ready back passage needed it, but ");
 	else output(" Whether he meant to do it or not, ");
 	output("this makes his penetration of you much easier; he slides into your cum-oiled tunnel with ease, bucking his powerful hips into your [pc.butt] as he fills you. The one between your legs meanwhile has taken the opportunity to clamber up and mount you.");
-	pc.buttChange(foes[0].cockVolume(),true,true,false);
+	pc.buttChange(foes[0].cockVolume(0),true,true,false);
 
 	//ifVag:
 	if(pc.hasVagina()) 
 	{
 		output("\n\nWith a flat reptile stomach flapping eagerly against your face, you can’t quite see but can definitely can feel another raskvel plunging his own hot cock deep into your [pc.vagina], clutches your thighs and begins to pump into you. The sensation of twin lizard pricks pushing into each other through your sensitive walls is unbearably good and you can’t help but give out a wet squeal around the one in your mouth, your pussy oozing excitement around the raskvel’s smooth, girthy, rubbing fuck.");
-		pc.cuntChange(0,foes[0].cockVolume(),true,true,false);
+		pc.cuntChange(0,foes[0].cockVolume(0),true,true,false);
 		//ifmultiVag:
 		if(pc.totalVaginas() > 1) 
 		{
 			output("\n\nYour pleasure becomes inhumanely delirious when a blunt, questing tail finds your [pc.vagina 1] and thrusts inside, the raskvel to whom it belongs chuckling to himself as you squirm around him.");
-			pc.cuntChange(1,foes[0].cockVolume(),true,true,false);
+			pc.cuntChange(1,foes[0].cockVolume(0),true,true,false);
 		}
 	}
 	//ifnoVagBUTcunttail: 
@@ -934,7 +948,7 @@ public function consensualGangBang():void
 	output("\n\n“<i>One of our better break times that,</i>” murmurs one.");
 	output("\n\n“<i>You’re a hell of a ride, offworlder,</i>” says another, heartfelt. “<i>Makes me want to get off this rock and see if you’re all as good as that.</i>”");
 
-	output("\n\nAfter you’ve rested a while longer, they provide you with a towel to give yourself a quick clean-up before warmly waving you off.  You watch them return with a certain roll in their step to their junk-pile before setting off in the opposite direction with your own, slightly tender movement.");
+	output("\n\nAfter you’ve rested a while longer, they provide you with a towel to give yourself a quick clean-up before warmly waving you off. You watch them return with a certain roll in their step to their junk-pile before setting off in the opposite direction with your own, slightly tender movement.");
 	processTime(65);
 	pc.orgasm();
 	pc.orgasm();
@@ -950,6 +964,7 @@ function raskMaleButtfuckery():void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	var x:int = pc.cockThatFits(foes[0].analCapacity());
 	var y:int = pc.cockThatFits2(foes[0].analCapacity());
 	output("“<i>You!</i>” you say imperiously to the smallest one");
@@ -1043,7 +1058,7 @@ function raskMaleButtfuckery():void
 		output("\n\nThe sight and texture of their polished, taut bodies feeds your growing lust until it feels like it’s thudding just behind your eyes – not that it needs much of an excuse to reach over your higher thinking and grab your impulses’ reigns these days anyway. The raskvels’ wide, muscular butts raised in supplication to you seems like a challenge being made directly to your " + pc.mf("masculine","hermaphrodite") + " prowess, one that makes your blood quicken and your [pc.cock " + x + "] strain upwards, demanding that you meet it, demanding that you pound into submission both... no, all three of these ill-mannered assholes that had the audacity to accost you.");
 		output("\n\nPresumably some of what you are thinking is showing on your face, because the one that handed you the oil is backing away as quickly and unassumingly as he can. Grinning, you silently point at him and then at the space besides the big one. Shakily, he comes.");
 		//1 cock:
-		if(pc.cockTotal() == 1) output("\n\n“<i>Ass up, and wait your turn,</i>” you say tartly.  You slide your [pc.cock " + x + "] between their valleys and over their purple puckers in turn, revelling in the sight, tantalizing yourself with what is to come. The smallest raskvel has a pretty cute ass; rounder, softer and more pert than the other two. That’s for later, though. You concentrate on the big one in front of you, the one you adjudge to be most in need of a good ass-fucking. Even now he’s shooting his mouth off.");
+		if(pc.cockTotal() == 1) output("\n\n“<i>Ass up, and wait your turn,</i>” you say tartly. You slide your [pc.cock " + x + "] between their valleys and over their purple puckers in turn, revelling in the sight, tantalizing yourself with what is to come. The smallest raskvel has a pretty cute ass; rounder, softer and more pert than the other two. That’s for later, though. You concentrate on the big one in front of you, the one you adjudge to be most in need of a good ass-fucking. Even now he’s shooting his mouth off.");
 		//>1 cock: 
 		else
 		{
@@ -1053,7 +1068,7 @@ function raskMaleButtfuckery():void
 			if(pc.cockTotal() > 2) output(" A crazy but undeniably attractive image flits before your eyes, of a stack of facedown raskvel, you ploughing them all at the same time... but no, even in your current state you accept that probably wouldn’t work.");
 			output(" You growl soft instructions to the one blowing you, positioning him directly in front of the biggest one, the one you adjudge to be most in need of a good ass-fucking. Even now he’s shooting his mouth off.");
 		}
-		output("\n\n“<i>This is - what you’re doing is a bit crazy offworlder. Biting off more than you can chew, if you don’t mind me saying,</i>” he ventures. The medium one mumbles in agreement. “<i>Maybe if you were raskvel you could try this, but – ack!</i>”  You shush him up by taking a firm hold of his shoulders and carefully spreading his sphincter with your oily prick, penetrating the delicious clinging warmth within.");
+		output("\n\n“<i>This is - what you’re doing is a bit crazy offworlder. Biting off more than you can chew, if you don’t mind me saying,</i>” he ventures. The medium one mumbles in agreement. “<i>Maybe if you were raskvel you could try this, but – ack!</i>” You shush him up by taking a firm hold of his shoulders and carefully spreading his sphincter with your oily prick, penetrating the delicious clinging warmth within.");
 		pc.cockChange();
 		output("\n\nThe raskvel certainly seems to be something of a novice to being on the receiving end, continuously tightening up and gasping harshly as you feed more and more of your [pc.cock " + x + "] into his tunnel; you suspect his size has something to do with that. In your mind this makes it even more important that he be forced to enjoy this, particularly as – you gasp as a series of contractions ripple up your cock – your initial impressions were correct, in raw physical terms he’s excellent.");
 		output("\n\nThe heavy, supple padding of his broad behind feels wonderful against your groin ");
@@ -1078,7 +1093,7 @@ function raskMaleButtfuckery():void
 		//>1 cock: 
 		if(pc.cockTotal() > 1)
 		{
-			output("\n\nThe smallest raskvel copes with your change of pace admirably, even when you penetrate the tight squeeze of his throat in your mania, keeping his wet lips and tongue moving across your urgently thrusting [pc.cockNounSimple " + y + "]. Just as much [pc.cum] surges into his mouth as  his brethren’s butt, however he swallows it down uncomplainingly. You wheeze deliriously to the twin orgasm rocketing through you, made all the better by having both dicks mired deep in warm, clinging hole.");
+			output("\n\nThe smallest raskvel copes with your change of pace admirably, even when you penetrate the tight squeeze of his throat in your mania, keeping his wet lips and tongue moving across your urgently thrusting [pc.cockNounSimple " + y + "]. Just as much [pc.cum] surges into his mouth as his brethren’s butt, however he swallows it down uncomplainingly. You wheeze deliriously to the twin orgasm rocketing through you, made all the better by having both dicks mired deep in warm, clinging hole.");
 		}
 		output("\n\nIt’s not enough, though. You slide the limp, groaning raskvel off your [pc.cock " + x + "] and sigh with exaggerated frustration when you get visual confirmation of what you can already feel – you are still rock hard, still itchy and fevered with lust.");
 		if(pc.cockTotal() > 1) output(" The smaller one flops down to one side, cum dripping from his mouth, looking dazed. Your attention is not on him, though.");
@@ -1138,6 +1153,7 @@ function redRidingRaskvel():void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("“<i>On the floor,</i>” you say curtly to the largest one, “<i>and let’s see it. Now.</i>” The raskvel is clearly not used to this treatment; cheeks burgundy and with no idea where to put his eyes, he clumsily sits down and ");
 	if(foes[0].lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his wad-like sheath, curling his hand around it in an almost protective gesture");
 	else output("slides his thick, purple, semi-erect erection out of his wad-like sheath. Probably aware of what you want, he wraps his hand around and nervously rubs it, practically urging it to get harder quickly.");
@@ -1172,17 +1188,32 @@ function redRidingRaskvel():void
 
 	pc.lust(50);
 	processTime(13);
+
+	var args:Array = [x,y];
 	//[Hard light peg] [Feed milk] [Pussy tail] [Cock tail]}
 	clearMenu();
-	//9999
+	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.lowerUndergarment.hardLightEquipped) addButton(0,"Next",feedRaskGangMalk,args);
+	else
+	{
+		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you've got.");
+		else addDisabledButton(0,"HardlightPeg","Hardlight Peg","You need a hardlight strap-on for this scene.");
+		addButton(1,"Tittysuckle",feedRaskGangMalk,args,"Tittysuckle","Invite him to suck on your [pc.nipple], whether or not you have any milk to give.");
+		if(pc.hasCuntTail()) addButton(2,"Tail Milk",cuntTailRaskPlay,args,"Tail Milk","Use your symbiotic tail to wring pleasure from the pint-sized alien.");
+		else addDisabledButton(2,"Tail Milk","Tail Milk","You need at least one cunt-tail for this scene.");
+		if(pc.hasCockTail()) addButton(3,"Tail Fuck",raskVelCockTailPegging,args,"Tail Fuck","Use your penis-tipped tail to wring pleasure from the pint-sized alien.");
+		else addDisabledButton(3,"Tail Fuck","Tail Fuck","You need at least one cock-tail for this scene.");
+	}
 }
 
 //Feed milk
 //PC with none of the above defaults to this
-function feedRaskGangMalk():void
+function feedRaskGangMalk(args):void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	var x:int = args[0];
+	var y:int = args[1];
 	output("“<i>Come here, little boy,</i>” you purr, ");
 	if(pc.biggestTitSize() > 1) output("cupping");
 	else output("spreading your hands over");
@@ -1207,214 +1238,550 @@ function feedRaskGangMalk():void
 		output("\n\nIt doesn’t take long under this sort of kneading for the heavy liquid in your [pc.chest] to rise, dribbling and then spurting into his hot, hungry mouth, your other tit oozing your [pc.milk] freely down onto the heaving scales beneath you.");
 	}
 	output("\n\nYou gasp and tense up to the ecstasy of it, milking hard cock with your [pc.vagina " + x + "] whilst long tongues lap attentively at your body’s most sensitive spots.");
-	//9999
+	processTime(4);
+	args.push(feedRaskGangMalk);
+	clearMenu();
+	addButton(0,"Next",vaginaRaskStuffEpilogus,args);
 }
 
 //Hard light peg
-function raskvelHardlightPegEdition():void
+function raskvelHardlightPegEdition(args):void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	var x:int = args[0];
+	var y:int = args[1];
 	output("“<i>Come here, little boy,</i>” you purr, bending across and flapping through your pile of discarded clothes for what you need. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He does pause when he sees you click on the bright light of your strap-on with a flourish, and the impulse to turn and make for the hills clearly occurs to him.");
 	output("\n\n“<i>Don’t be afraid,</i>” you coo lowly. “<i>" + pc.mf("Daddy","Mommy") + " has no use for a sissy clit like yours, but " + pc.mf("he","she") + " doesn’t want to see you go home empty-handed. On your knees here and let me see that cute butt of yours... that’s it.</i>”");
 	output("\n\nHe really does have a nice ass: supple, smaller and rounder than the other two, really crying out for a good, hard reaming. He gasps in a delightful rising cadence and grasps handfuls of dirt as, whilst you continue to lazily ride the big one’s cock, you work his tight, purple pucker loose and then begin to feed the length of strong, warm light into his colon, flexing your arm muscles, pumping into him with increasing fervour. Revelling in his arched neck and sweat-beaded brow - his expression somewhere between anguish and intense gratification - whilst swivelling your sex hard into the mouth and cock of the other two, is absolutely delightful.");
-	//9999
+	processTime(4);
+	args.push(raskvelHardlightPegEdition);
+	clearMenu();
+	addButton(0,"Next",vaginaRaskStuffEpilogus,args);
 }
 
 //Cock-tail
-function raskVelCockTailPegging():void
+function raskVelCockTailPegging(args):void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	var x:int = args[0];
+	var y:int = args[1];
 	output("“<i>Come here, little boy,</i>” you purr. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. Perhaps he lives in hope he will get in on the pussy action – if that is what he thinks he’s about to be sorely disappointed, quite literally. He pauses when your [pc.cockTail] rears into view, throbbing with frustrated lust and beading pre, and the impulse to turn and make for the hills does now clearly occur to him.");
 	output("\n\n“<i>Let’s not pretend you aren’t going to enjoy this,</i>” you say lowly. “<i>On your knees here and let me see that cute butt of yours... that’s it.</I>” He really does have a nice ass: supple, smaller and rounder than the other two, really crying out for a good, hard reaming. He gasps in a delightful rising cadence and grasps handfuls of dirt as, whilst you continue to lazily ride the big one’s cock, you allow your cock-tail to wriggle its way between his butt-cheeks, sternly working his sphincter loose and oiling him with a steady dribble of pre-cum, before thrusting into his tight, clenching colon deep.");
 	output("\n\nYou gasp and growl to the variegated ecstasy of it, penetrated and penetrating, revelling in the twinkish raskvel’s arched neck and sweat-beaded brow, his expression somewhere between anguish and intense gratification as your bulging parasitic tail claims his ass again and again, all the while you swivel your female sex purposefully into the mouth and cock of the other two.");
-	//9999
+	processTime(4);
+	args.push(raskVelCockTailPegging);
+	clearMenu();
+	addButton(0,"Next",vaginaRaskStuffEpilogus,args);
 }
 
 //Cunt-tail
-function cuntTailRaskPlay():void
+function cuntTailRaskPlay(args):void
 {
 	clearOutput();
 	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	var x:int = args[0];
+	var y:int = args[1];
 	output("“<i>Come here, little boy,</i>” you purr. With you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He pauses as your [pc.cuntTail] rears into view, dripping and spreading itself with unrequited arousal, an expression somewhere between fright and lust crossing his ruddy face.");
 	output("\n\n“<i>Kneel beside me,</i>” you say lowly. “<i>Relax, and let me do everything. That’s it... </i>\" You, in fact, don’t have to do anything at all; your parasitic tail can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him.");
 	output("\n\nHe gasps and shouts, grasping handfuls of dirt with his body arched backwards, quivering to the [pc.cuntTail] squelching ministrations. You sigh blissfully to the sensation of double penetration, pleasure channelling back down your tail and twining with that arriving from swivelling your [pc.vagina " + x + "]");
 	if(pc.totalVaginas() > 1) output(" and [pc.vagina " + y + "]");
 	output(" into the mouth and cock of the other two.");
-	//9999
+	processTime(4);
+	args.push(cuntTailRaskPlay);
+	clearMenu();
+	addButton(0,"Next",vaginaRaskStuffEpilogus,args);
 }
 
 //{merge}
+function vaginaRaskStuffEpilogus(args):void
+{
+	var x:int = args[0];
+	var y:int = args[1];
+	var originalScene = args[2];
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	output("You swiftly become immersed in the sex, rutting and thrusting into the multiple hot, gasping, licking raskvel. Domineered they may be but they’ve retained their energy and the two beneath you buck their cock and tongue into you vigorously, their bodies almost working on auto-pilot. You gasp and squeeze your [pc.hips] into the groaning reptile beneath you, tensing up to the hard bounce of his cock into your walls as you mercilessly ride him to orgasm. Catching him up in your excited bucking, you force him to cum with you, juicing him with the delicious flexing of your [pc.vagina " + x + "]");
+	if(pc.totalVaginas() == 1) output(", smearing the face of the second raskvel with girl-lube as you do");
+	output(".");
+	if(pc.totalVaginas() > 1) 
+	{
+		output(" The second raskvel almost chokes as your [pc.vagina " + y + "] quivers simultaneously, pushed into lush downfall by the rubbing ministrations of his long tongue – his reward is ");
+		if(pc.isSquirter()) output("a series of gushes of [pc.girlCum] down his throat.");
+		else output("getting his face liberally smeared with [pc.girlCum].");
+	}
 
-/*
-You swiftly become immersed in the sex, rutting and thrusting into the multiple hot, gasping, licking raskvel. Domineered they may be but they’ve retained their energy and the two beneath you buck their cock and tongue into you vigorously, their bodies almost working on auto-pilot. You gasp and squeeze your [pc.hips] into the groaning reptile beneath you, tensing up to the hard bounce of his cock into your walls as you mercilessly ride him to orgasm, catching him up in your excited bucking and forcing him to cum with you, juicing him with the delicious flexing of your [pc.vagina], {smearing the face of the second raskvel with girl-lube as you do}. {The second raskvel almost chokes as your [pc.vagina1] quivers simultaneously, pushed into lush downfall by the rubbing ministrations of his long tongue – his reward is {a series of gushes of [pc.girlCum] down his throat} {getting his face liberally smeared with [pc.girlCum].}
+	pc.orgasm();
 
-You sigh, still gently rotating your hips, enjoying the after-tremors whilst you {continue to push the third raskvel’s face into your {beading} [pc.nipple]} {continue to gently but firmly whisk the third raskvel’s guts with hard light, his small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears} {continue to thrust your [pc.cockTail] into the tight, clenching hole it has claimed, the third raskvel’s small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears} {continue to milk the third raskvel’s small cock with your [pc.cuntTail] assiduously, pleasure shimmering up your stem as surely as he gasps and almost wails to the wet wring you’ve trapped him in}. The big raskvel’s cock is still very much erect, his alien physiology allowing him to keep pressing strongly into your walls when you sway, and that to your blissed-out mind is all for the good; you want them kept in this nice, attentive state you’ve got them in. He’s looking at you now, his breath catching every time you bend his cock within your oozing cunt.
+	output("\n\nYou sigh, still gently rotating your hips, enjoying the after-tremors whilst you ");
 
-“<i>Please... </i>\" he manages. There’s a woozy mumble of support for this statement somewhere beneath you.
+	if(originalScene == feedRaskGangMalk) 
+	{
+		output("continue to push the third raskvel’s face into your ");
+		if(pc.isLactating()) output("beading ");
+		output("[pc.nipple]");
+	}
+	else if(originalScene == raskvelHardlightPegEdition) output("continue to gently but firmly whisk the third raskvel’s guts with hard light, his small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears");
+	else if(originalScene == raskVelCockTailPegging) output("continue to thrust your [pc.cockTail] into the tight, clenching hole it has claimed, the third raskvel’s small cock jerking reactively as you ride over his sweet spot again and again, his gasps rich in your ears");
+	else output("continue to milk the third raskvel’s small cock with your [pc.cuntTail] assiduously, pleasure shimmering up your stem as surely as he gasps and almost wails to the wet wring you’ve trapped him in");
+	output(". The big raskvel’s cock is still very much erect, his alien physiology allowing him to keep pressing strongly into your walls when you sway, and that to your blissed-out mind is all for the good; you want them kept in this nice, attentive state you’ve got them in. He’s looking at you now, his breath catching every time you bend his cock within your oozing cunt.");
 
-“<i>Oh very well,</i>” you sigh. “<i>Just give me a moment... </i>\" {You release the other raskvel from the {suffocating} {wet} kiss of your {breast/chest}; he looks completely zoned out as he falls back from your {erect} {drooling} nipple{, eyes dilated and [pc.milk] on his lips.} {The third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.} {The third raskvel wails as you mercilessly up the tempo of your cock-tail’s thrusting, pumping your way towards a sighted orgasm. Your sighs soon combine with his moans as hot cum courses up your long stem and then fountains deep within him, quickly packing him like a red hot water-bottle full of your seed.} {The third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty parasite’s purpose.}
+	output("\n\n“<i>Please...</i>\" he manages. There’s a woozy mumble of support for this statement somewhere beneath you.");
 
-You then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.cunt0] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fill your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you. It makes no difference to you. Like his friend, now {crouched in front of you and licking fervently at your [pc.clit]} {buried beneath your [pc.ass], licking fervently at your [pc.cunt1]}, he stays rock hard and ready to use - which you do, clenching and riding him demandingly. The third raskvel doesn’t even need instruction. {Despite (or maybe because} of your utterly callous treatment of him} He/he crawls {back} onto the heaving red scales beneath you and places his lips on {a} {your other} [pc.nipple], with skilful licks quickly makes it {stand on end/ooze fluid}{, before making the ripe warmth brimming inside shoot outwards into his thirsty mouth}, his only aim to gratify you. You stroke his ears and laugh ecstatically at both the pleasure coursing through you and the wonderful lack of control you inspire in these creatures.
+	output("\n\n“<i>Oh very well,</i>” you sigh. “<i>Just give me a moment...</i>\"");
+	if(originalScene == feedRaskGangMalk) 
+	{
+		output("\n\nYou release the other raskvel from the ");
+		if(pc.biggestTitSize() >= 10) output("suffocating ");
+		else if(pc.isLactating()) output("wet ");
+		output(" kiss of your ");
+		if(pc.biggestTitSize() >= 1) output("breast");
+		else output("chest");
+		output("; he looks completely zoned out as he falls back from your ");
+		if(!pc.hasFlatNipples() && !pc.hasFuckableNipples()) output("erect ");
+		else if(pc.isLactating()) output("drooling ");
+		output("nipple");
+		if(pc.isLactating()) output(", eyes dilated and [pc.milk] on his lips.");
+	}
+	else if(originalScene == raskvelHardlightPegEdition) output("\n\nThe third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.");
+	else if(originalScene == raskVelCockTailPegging) output("\n\nThe third raskvel wails as you mercilessly up the tempo of your cock-tail’s thrusting, pumping your way towards a sighted orgasm. Your sighs soon combine with his moans as hot cum courses up your long stem and then fountains deep within him, quickly packing him like a red hot water-bottle full of your seed.");
+	else output("\n\nThe third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty parasite’s purpose.");
 
-You rock yourself to another high, slower this time, exulting in the one-sided four-way, reaching down occasionally to tease the smallest one’s small, hot erection, never giving him quite enough of your touch to allow him release, but enough to keep him worshipfully attached to your [pc.chest]. When your heat builds to the point where you can bask in it no longer you clamp your [pc.hips] down on the second raskvel and ride him hard, your own hard breathing combining with his as you reach it, a fresh wave of pulses seizing your [pc.cunt0] {and [pc.cunt1]} up, contracting around his cock and making you {seep/spurt} your juices all over the biggest one’s questing tongue.
+	output("\n\nYou then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.vagina " + x + "] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fill your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you.");
+	output("\n\nIt makes no difference to you. Like his friend, now ");
+	if(pc.vaginaTotal() == 1) output(" crouched in front of you and licking fervently at your [pc.clit]");
+	else output(" buried beneath your [pc.ass], licking fervently at your [pc.vagina " + y + "]");
+	output(", he stays rock hard and ready to use - which you do, clenching and riding him demandingly. The third raskvel doesn’t even need instruction.");
 
-You roll off them at last with a sigh, a thick cocktail of sexual fluids seeping out of your [pc.vagina " + x + "] and oozing down your [pc.thighs] when you allow the middle raskvel’s dick to slide out – disgusting, weirdly satisfying.
+	output(" He crawls onto the heaving red scales beneath you and places his lips on ");
+	if(originalScene == feedRaskGangMalk) output("your other ");
+	else output("a ");
+	output("[pc.nipple], with skilful licks quickly makes it ");
+	if(pc.isLactating() || pc.hasCuntNipples()) output("ooze fluid");
+	else if(pc.hasLipples()) output("pucker excitedly");
+	else output("stand on end");
+	if(pc.isLactating()) output(", before making the ripe warmth brimming inside shoot outwards into his thirsty mouth");
+	output(", his only aim to gratify you. You stroke his ears and laugh ecstatically at both the pleasure coursing through you and the wonderful lack of control you inspire in these creatures.");
 
-“<i>I always wanted to breed an alien,” groans the biggest, flat on his back. “<i>But this... I wasn’t... </i>\"
+	output("\n\nYou rock yourself to another high, slower this time, exulting in the one-sided four-way, reaching down occasionally to tease the smallest one’s small, hot erection, never giving him quite enough of your touch to allow him release, but enough to keep him worshipfully attached to your [pc.chest]. When your heat builds to the point where you can bask in it no longer you clamp your [pc.hips] down on the second raskvel and ride him hard, your own hard breathing combining with his as you reach it, a fresh wave of pulses seizing your [pc.vagina " + x + "]");
+	if(pc.totalVaginas() > 1) output(" and [pc.vagina " + y + "]");
+	output(" up, contracting around his cock and making you ");
+	if(!pc.isSquirter()) output("seep");
+	else output("spurt");
+	output(" your juices all over the biggest one’s questing tongue.");
 
-“<i>...{Wasn’t ready} {Silly mode: My body wasn’t ready},</i>” supplies the second, gazing unfocused at the sky. There’s a smile on your face as you {put your [pc.gear] back on and} sway off, leaving your boy toys behind you in a discarded heap.
+	output("\n\nYou roll off them at last with a sigh, a thick cocktail of sexual fluids seeping out of your [pc.vagina " + x + "] and oozing down your [pc.thighs] when you allow the middle raskvel’s dick to slide out – disgusting, weirdly satisfying.");
+	output("\n\n“<i>I always wanted to breed an alien,” groans the biggest, flat on his back. “<i>But this... I wasn’t... </i>\"");
+	output("\n\n“<i>...");
+	if(!silly) output("Wasn’t ready");
+	else output("My body wasn’t ready");
+	output(",</i>” supplies the second, gazing unfocused at the sky. There’s a smile on your face as you");
+	if(!pc.isNude()) output(" put your [pc.gear] back on and");
+	output(" sway off, leaving your boy toys behind you in a discarded heap.\n\n");
+	processTime(22);
+	pc.orgasm();
+	genericVictory();
+}
 
+//Loss Gangbang
+function loseToRaskvelAndGetGangBangued():void
+{
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	output("You collapse into the red dust of Tarkus, too ");
+	if(pc.HP() < 1) output("battered");
+	else output("aroused");
+	output(" to offer any more resistance. Dizzily you listen to the three raskvel banter with each other as they surround you, pinning you down with their warm, smooth hands.");
 
-Loss Gangbang
+	var aphrodisiaced:Boolean = false;
 
+	//Male/genderless not raskmorph:
+	if(!pc.hasVagina() && pc.race() != "raskvel" && pc.race() != "rask-morph" && pc.race() != "raskvel-morph")
+	{
+		output("\n\n“<i>After all that coy courting you just put us through, it’s pretty damn rude of you not to be a girl, offworlder,</i>” sighs the biggest");
+		if(pc.isCrotchGarbed()) output(" as he busily rips off your [pc.lowerGarments]");
+		output(". Something pricks your skin and immediately your pulse quickens");
+		if(pc.hasCock()) output(", [pc.eachCock] stiffening in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins");
+		else output(" in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins");
+		output(". “<i>Breeding one of your hoity toity lofty rofty women – what a prize that would’ve been.</i>”");
+		
+		//PC is 4’3” or less:
+		if(pc.tallness <= 51) output("\n\n“<i>[pc.HeShe]’s smaller than you, what are you basing “lofty rofty women” on?</i>” the medium sized one interjects.");
+		output("\n\n“<i>You going to get up in that or what?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”");
+		aphrodisiaced = true;
+	}
+	//Female/herm not raskmorph:
+	else if(pc.race() != "raskvel" && pc.race() != "rask-morph" && pc.race() != "raskvel-morph")
+	{
+		output("\n\n“<i>There now sweetheart, there was no need for such a fuss,</i>” sighs the biggest. Something pricks your skin and immediately your pulse quickens, [pc.eachVagina] beading moisture in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins. “<i>We only wanted to fuck your every orifice and stuff you full of the good, strong kids like a big breeding cow like you can’t help but want.</i>”");
+		//PC is 4’3” or less:
+		if(pc.tallness <= 51) output("\n\n“<i>[pc.HeShe]’s smaller than you, what are you basing “big breeding cow” on?</i>” the medium sized one interjects.");
+		output("\n\n“<i>You going to get up in that or what?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”");
+		aphrodisiaced = true;
+	}
+	//Raskmorph:
+	else
+	{
+		output("\n\n“<i>You’re probably wondering why we haven’t mistaken you for a raskvel, am I right offworlder?</i>” the biggest one laughs");
+		if(pc.isCrotchGarbed()) output(" as he busily rips off your [pc.lowerGarments]");
+		output(". “<i>It’s just, oh, everything about you. The way you walk, how you hold yourself, the manner with which you speak to us. You’re a tourist, aren’t you? Thought the way we look was so cute you had to be it, right? But being raskvel means coping with a lot of urges. Constant urges. I don’t think I have to give you the aphro, you know exactly what I’m talking about.</i>” It’s true; the jostling of brawny, familiar flesh on yours is filling you with inadvertent, irrepressible desire, your ");
+		if(pc.totalVaginas() == 1) output("pussy");
+		else output("pussies");
+		output(" oozing excitement, and your");
+		if(pc.cockTotal() > 0) 
+		{
+			output(" cock");
+			if(pc.cockTotal() > 1) output("s");
+			output(" straining in excitement, and your");
+		}
+		output(" feral instincts eagerly preparing you for a hard fucking regardless of what your mind has to say on the matter. The raskvel grins with a mixture of understanding and schadenfreude as he squeezes your [pc.ass]. “<i>Time to find out what being a lone raskvel out in the wilds is all about, tourist.</i>”");
+		output("\n\n“<i>You going to stand on the stump all day or get up in that?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”");
+	}
+	output("\n\nThe biggest answers simply enough by taking hold of your [pc.hips] and unceremoniously driving his thick, purple prick into your [pc.vagOrAss]. You cry out in shock at the sudden, hot intrusion, but he evidently isn’t interested in your peace of mind in the slightest, immediately beginning to pick up a vigorous tempo, plumbing your depths with gusto. You are bumped and shaken forward into the medium sized one, who cusps his hand around your head almost comfortingly, introducing your face to his own gleaming, six inch dick, sharply erect and beading musky pre.");
 
-You collapse into the red dust of Tarkus, too {battered/aroused} to offer any more resistance. Dizzily you listen to the three raskvel banter with each other as they surround you, pinning you down with their warm, smooth hands.
+	if(pc.hasVagina()) pc.cuntChange(0,foes[0].cockVolume(0),true,true,false);
+	else pc.buttChange(foes[0].cockVolume(0),true,true,false);
 
-Male/genderless not raskmorph: “<i>After all that coy courting you just put us through, it’s pretty damn rude of you not to be a girl, offworlder,</i>” sighs the biggest {as he busily rips off your [pc.lowergarment]}. Something pricks your skin and immediately your pulse quickens{, [pc.eachCock] stiffening in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins} {in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins}. “<i>Breeding one of your hoity toity lofty rofty women – what a prize that would’ve been.</i>”
+	output("\n\nBent over, weak with the arousal ");
+	if(pc.hasCock()) output("they have ");
+	else output("your instincts have ");
+	output("sunken into you and being pumped like this, there’s really no struggling against it. Hard, hot cock flesh enters your mouth, held in there by the strong fingers caressing the nape of your neck, the raskvel sighing with deep enjoyment at the way the jerking of your body to the pounding you’re taking from behind sends your [pc.lips] and [pc.tongue] sliding and quivering down his sex.");
 
-{PC is 4’3” or less: “<i>[pc.HeShe]’s smaller than you, what are you basing “lofty rofty women” on?</i>” the medium sized one interjects.}
+	output("\n\nIt soon transpires that the zealous way the big raskvel is thrusting into your [pc.vagOrAss] is actually just him warming up; once he’s enjoyed finding your limit a few times, your gasps melding with his grunts of approval at how much of his large, glossy cock he can fit into your clinging, tender passage, he picks up the pace, battering his powerful hips into your [pc.butt], pile-driving into your deepest sensitive areas once every second like a jackhammer, brusquely using you to push towards his own high. The other is quickly caught up in the physicality and manner in which the bigger one is going at you too, and he’s soon fucking your mouth for all he’s worth, drool rolling down your chin as his taut stomach flaps into your nose, thick, bulging dick filling your maw again and again.");
 
-“<i>You going to get up in that or what?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”
+	output("\n\nA rougher spit-roast it is difficult to imagine but ");
+	if(aphrodisiaced) output("the aphrodisiac high in your veins means ");
+	else output("your impossible-to-control instincts mean ");
+	output("that as unwilling and uncaringly used as you are, your body is ecstatic with the cock being thrust into it, your ");
+	if(pc.hasVagina()) output("[pc.vagina] basting the raskvel rutting you in its juices, clinging eagerly to him as he recedes and practically sucking him in when he extends");
+	else 
+	{
+		output("your [pc.asshole] softening up eagerly for the raskvel behind you");
+		if(pc.ass.wetness() > 0) output(" and slathering him in your oily lubricant");
+		output(", sending thrills running up your spine when he fills you");
+	}
+	output(". Increasingly to your scattered senses the cock in your mouth is something to celebrate too: the texture of it on your lips and soft inner cheeks, the bestial scent and taste of pre drives your overcharged lust ever upwards, ");
+	if(pc.hasCock()) output("[pc.eachCock] straining, bulging and beading as surely as the second raskvel’s is");
+	if(pc.hasVagina() && pc.hasCock()) output(" and ");
+	if(pc.hasVagina()) output("your clenching [pc.vagina] practically frothing to the energetic press of your conquerors");
+	output(".");
 
-Female/herm not raskmorph: “<i>There now sweetheart, there was no need for such a fuss,</i>” sighs the biggest. Something pricks your skin and immediately your pulse quickens, [pc.eachVagina] beading moisture in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins. “<i>We only wanted to fuck your every orifice and stuff you full of the good, strong kids like a big breeding cow like you can’t help but want.</i>”
+	output("\n\nYou realise suddenly that the smallest raskvel has been flopped on the ground this whole time, lazily masturbating to the one-sided threesome in front of him, evidently biding his time; the knowledge you’ve got plenty more fucking ahead of you combines with the forceful sensation of being doubly penetrated into a heady delirium of involuntary pleasure and suddenly you are cumming, the muffled sound of your moans combining with the beat of the raskvel’s tight muscles against your face and [pc.butt], ");
+	if(pc.hasVagina()) 
+	{
+		output("[pc.eachVagina] clenching up ");
+		if(pc.isSquirter()) output("and spurting gleeful amounts of fluid ");
+		output("around its hard intrusion, your [pc.clits] pulsing wickedly");
+	}
+	else if(pc.hasCock()) 
+	{
+		output("[pc.eachCock] flexing ");
+		if(pc.cumQ() >= 125) output("copious amounts of ");
+		output("[pc.cum] onto the ground in response to the insistent rubbing on your prostate");
+	}
+	output(".");
 
-{PC is 4’3” or less: “<i>[pc.HeShe]’s smaller than you, what are you basing “big breeding cow” on?</i>” the medium sized one interjects.}
+	//Raskmorph: 
+	if(!aphrodisiaced) 
+	{
+		output("\n\n“<i>That’s it tourist,</i>” pants the big raskvel, continuing to slam his length into your ");
+		if(pc.hasVagina()) output("convulsing pussy");
+		else output("clenching ass");
+		output(". “<i>You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there... </i>\"");
+	}
+	//Female/Herm: 
+	else if(pc.hasVagina()) output("\n\n“<i>Such a big, beautiful broodmare,</i>” pants the big raskvel, continuing to slam his length into your convulsing pussy. “<i>I knew you’d enjoy this. Show - show my kids the stars... </i>\"");
+	//Male/Genderless: 
+	else output("\n\n“<i>I knew you’d enjoy it, offworlder,</i>” pants the big raskvel, continuing to slam his length into your clenching ass. “<i>Gotta say, you’re a better lay than you look... </i>\"");
 
-“<i>You going to get up in that or what?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”
+	output("\n\nHe loses the ability to form words as he speeds into his own orgasm, gripping your [pc.hips] tightly as he clenches up once and with a breathless grunt fills your guts/womb with liquid warmth. It’s a single, heavy ejaculation, a feature driven home to you when a few moments later the second raskvel holds your face tight to his abdomen and pouch-balls, filling your whole mouth with his cock and then cumming as well, a single, long stream of thick jizz coating your gullet. He releases your head and a satisfied sigh at the same time, grinning down at you as his thick, saliva-shone purple prick slides out from your gasping, panting [pc.lips], gloating in your own hazy realisation that, oozing seed from the tip as it may be, it’s still as hard as when it first entered your mouth.");
 
-Raskmorph: “<i>You’re probably wondering why we haven’t mistaken you for a raskvel, am I right offworlder?</i>” the biggest one laughs {as he busily rips off your [pc.lowergarment]}. “<i>It’s just, oh, everything about you. The way you walk, how you hold yourself, the manner with which you speak to us. You’re a tourist, aren’t you? Thought the way we look was so cute you had to be it, right? But being raskvel means coping with a lot of urges. Constant urges. I don’t think I have to give you the aphro, you know exactly what I’m talking about.</i>” It’s true; the jostling of brawny, familiar flesh on yours is filling you with inadvertent, irrepressible desire, your {pussy/pussies oozing excitement, and your} {cock(s) straining in excitement, and your} feral instincts eagerly preparing you for a hard fucking regardless of what your mind has to say on the matter. The raskvel grins with a mixture of understanding and schadenfreude as he squeezes your [pc.ass]. “<i>Time to find out what being a lone raskvel out in the wilds is all about, tourist.</i>”
+	output("\n\n“<i>It’s tough when you need a good two or three rolls in the hay to properly calm down,</i>” he sighs, teasingly batting you around the face with it. “<i>But generous offworlders like you make that a lot easier.</i>” Your shaking orgasm has only made you weaker in their hands, ");
+	if(!aphrodisiaced) output("your own instincts insisting you need more sex just as surely as theirs do");
+	else output("the cursed drug of theirs still making your pulse quicken and your mind vague with need");
+	output(" and you can offer no resistance as they eagerly change positions, fingers drifting over your ");
+	if(pc.hasCuntNipples() || pc.isLactating()) output("moist");
+	else output("pebbly");
+	output(" [pc.nipplesNoun]");
+	if(pc.hasHair()) output(" and through your [pc.hair]");
+	output(" whilst the smallest impatiently insinuates himself in the action, rubbing his stiff erection between your butt cheeks as the biggest imperiously presents his girthy, sex-smeared erection to your lips. Defeated by your own uncontrollable ");
+	if(aphrodisiaced) output("chemical");
+	else output("hormonal");
+	output(" lust now you pad and lick at it with your [pc.tongue] deferentially, feeling the glow the sharp, mixed musk sink down to where another red erection is poking fervently in at you.");
 
-“<i>You going to stand on the stump all day or get up in that?</i>” husks the smallest, voice heavy with need. “<i>Because if you’re not I will.</i>”
+	//1 < Vagina:
+	if(pc.totalVaginas() > 1) 
+	{
+		output("\n\n“<i>Oh man, you never said [pc.heShe] had more than one of them!</i>” the raskvel at your back exclaims, his fingers tracing the outer lips of your [pc.vagina " + 1 + "] and caressing [pc.oneClit]. “<i>I LOVE aliens!</i>”\n\nYou moan as with one excited movement he thrusts into your wet hole deep, masses of nerves within your core firing in frothy response, your oversexed body delighting in the anticipation of getting another creamy, virile filling.");
+		pc.cuntChange(1,foes[0].cockVolume(0),true,true,false);
+	}
 
-{merge}
+	//1 Vagina: 
+	if(pc.totalVaginas() == 1) output("\n\nYou gasp and cry out in protest as the raskvel at your back scorns your oozing, gaping pussy to spread your [pc.asshole] with his tool-like head instead. Fogged with arousal and already thoroughly fucked as you are it’s easier than it might be to relax and let him gradually slide in, and your oversexed body delights in any penetration at all. The roughness of it mingles with the pleasure of the muffled pressure put on your tenderized pussy tunnel as he bends into you with a heartfelt groan, and even to your ears the whimpers that accompany the pat of his hard thighs against your [pc.butt] are ones of slutty enjoyment.");
+	//0 Vagina:
+	else 
+	{
+		output("\n\nThe raskvel squeezes your [pc.butt] and thrusts straight into your gaped, oozing [pc.asshole], his passage greatly eased by the heavy fucking and filling it has already taken. Fogged with arousal your body urges, then demands you push back into him to feel the rub of his dick on your tenderized walls ");
+		if(pc.hasCock()) output("and needy prostate ");
+		output("and eventually that’s exactly what you’re doing, hazily justifying that you may as well get out of this humiliating situation what you may. He groans with approval at your bucking and speeds up in kind, pushing and bumping deep into your colon.");
+	}
 
-The biggest answers simply enough by taking hold of your [pc.hips] and unceremoniously driving his thick, purple prick into your [pc.vagOrAss]. You cry out in shock at the sudden, hot intrusion, but he evidently isn’t interested in your peace of mind in the slightest, immediately beginning to pick up a vigorous tempo, plumbing your depths with gusto. You are bumped and shaken forward into the medium sized one, who cusps his hand around your head almost comfortingly, introducing your face to his own gleaming, six inch dick, sharply erect and beading musky pre. Bent over, weak with the arousal {they have} {your instincts have} sunken into you and being pumped like this, there’s really no struggling against it. Hard, hot cock flesh enters your mouth, held in there by the strong fingers caressing the nape of your neck, the raskvel sighing with deep enjoyment at the way the jerking of your body to the pounding you’re taking from behind sends your [pc.lips] and [pc.tongue] sliding and quivering down his sex.
+	output("\n\nTantalized by your drifting tongue and lips and re-energized by the sight of his brother pumping into you, the raskvel in front of you wastes no more time in taking firm hold of your head and driving his leaking, over-sized dick into your mouth, and the frenetic spit-roast begins afresh. The pair of them don’t take long to reach a fresh set of orgasms, their hands clenching on your thighs and neck as they propel fresh cum into your softened ");
+	if(pc.hasVagina()) output("pussy");
+	else output("ass");
+	output(" and sucking maw... but that’s simply a signal for them to swap positions again, their apparently insatiable purple dicks still pointing fiercely upwards, ever eager to thrust into another tender orifice of yours, making the very most out of ");
+	if(!aphrodisiaced) output("your exotic offworlder flesh");
+	else output("your wriggling, shortstack flesh that they know so well how to manipulate");
+	output(".\n\nYou are made to cum again and again, out of pattern with them, ");
+	if(pc.hasVagina()) 
+	{
+		output("your ");
+		if(pc.totalVaginas() == 1) output("pussy");
+		else output("pussies");
+		output(" tightening up and pulsing around the demanding thrust of their cocks");
+		if(pc.wettestVaginalWetness() >= 3) output(", dribbling ferment onto the dust");
+		output(".");
+	}
+	else if(pc.hasCock()) 
+	{
+		output("your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" thickening, simmering with heat and then flexing cum out uselessly to the relentless bumping against your buried boy button.");
+	}
+	else output("your ass tightening up and pulsing around the demanding thrust of their cocks, that strange anal orgasm of yours tightening up your whole body in unwanted ecstasy.");
 
-It soon transpires that the zealous way the big raskvel is thrusting into your [pc.vagOrAss] is actually just him warming up; once he’s enjoyed finding your limit a few times, your gasps melding with his grunts of approval at how much of his large, glossy cock he can fit into your clinging, tender passage, he picks up the pace, battering his powerful hips into your [pc.butt], pile-driving into your deepest sensitive areas once every second like a jackhammer, brusquely using you to push towards his own high. The other is quickly caught up in the physicality and manner in which the bigger one is going at you too, and he’s soon fucking your mouth for all he’s worth, drool rolling down your chin as his taut stomach flaps into your nose, thick, bulging dick filling your maw again and again.
+	output("\n\nAt long, long last, when the biggest one withdraws from your [pc.asshole] and the middle-sized one from your [pc.lips]. After burying yet another warm load in you deep, their lengths flop downwards. They release you with lazy, satiated groans, and you are allowed to sink to the ground, panting hoarsely, raskvel cum oozing richly out of each and every hole you own.");
 
-A rougher spit-roast it is difficult to imagine but {the aphrodisiac high in your veins means} {your impossible-to-control instincts mean} that as unwilling and uncaringly used as you are, your body is ecstatic with the cock being thrust into it, your {[pc.vagina] basting the raskvel rutting you in its juices, clinging eagerly to him as he recedes and practically sucking him in when he extends} {your [pc.anus] softening up eagerly for the raskvel behind you {and slathering him in your oily lubricant}, sending thrills running up your spine when he fills you}. Increasingly to your scattered senses the cock in your mouth is something to celebrate too: the texture of it on your lips and soft inner cheeks, the bestial scent and taste of pre drives your overcharged lust ever upwards, {[pc.eachCock] straining, bulging and beading as surely as the second raskvel’s is} {and} {your clenching [pc.vagina] practically frothing to the energetic press of your conquerors}.
+	output("\n\n“<i>Whew!</i>” one of them sighs. Somebody pats your [pc.ass] comfortingly. “<i>Sorry if we got a bit carried away there, ");
+	if(!aphrodisiaced) output("but it’s not often we get to tap offworlder ass, y’know? And you shouldn’t have tried it on with us.");
+	else output("but you gotta learn what to expect if you want to be one of us, y’know?");
+	output("</i>”");
 
-You realise suddenly that the smallest raskvel has been flopped on the ground this whole time, lazily masturbating to the one-sided threesome in front of him, evidently biding his time; the knowledge you’ve got plenty more fucking ahead of you combines with the forceful sensation of being doubly penetrated into a heady delirium of involuntary pleasure and suddenly you are cumming, the muffled sound of your moans combining with the beat of the raskvel’s tight muscles against your face and [pc.butt], {[pc.eachVagina] clenching up {and spurting gleeful amounts of fluid} around its hard intrusion, your [pc.eachClit] pulsing wickedly} {[pc.eachCock] flexing {copious amounts of} [pc.cum] onto the ground in response to the insistent rubbing on your prostate}.
+	output("\n\n“<i>Just agree to have fun with us next time,</i>” suggests one of the others. “<i>Doesn’t have to be so rough.</i>”");
+	output("\n\nWith that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.");
+	processTime(55);
+	pc.orgasm();
+	genericLoss();
+}
 
-Raskmorph: “<i>That’s it tourist,</i>” pants the big raskvel, continuing to slam his length into your {convulsing pussy} {clenching ass}. “<i>You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there... </i>\"
-
-Female/Herm: “<i>Such a big, beautiful broodmare,</i>” pants the big raskvel, continuing to slam his length into your convulsing pussy. “<i>I knew you’d enjoy this. Show - show my kids the stars... </i>\"
-
-Male/Genderless: “<i>I knew you’d enjoy it, offworlder,</i>” pants the big raskvel, continuing to slam his length into your clenching ass. “<i>Gotta say, you’re a better lay than you look... </i>\"
-
-{merge}
-
-He loses the ability to form words as he speeds into his own orgasm, gripping your [pc.hips] tightly as he clenches up once and with a breathless grunt fills your guts/womb with liquid warmth. It’s a single, heavy ejaculation, a feature driven home to you when a few moments later the second raskvel holds your face tight to his abdomen and pouch-balls, filling your whole mouth with his cock and then cumming as well, a single, long stream of thick jizz coating your gullet. He releases your head and a satisfied sigh at the same time, grinning down at you as his thick, saliva-shone purple prick slides out from your gasping, panting [pc.lips], gloating in your own hazy realisation that, oozing seed from the tip as it may be, it’s still as hard as when it first entered your mouth.
-
-“<i>It’s tough when you need a good two or three rolls in the hay to properly calm down,</i>” he sighs, teasingly batting you around the face with it. “<i>But generous offworlders like you make that a lot easier.</i>” Your shaking orgasm has only made you weaker in their hands, {your own instincts insisting you need more sex just as surely as theirs do} {the cursed drug of theirs still making your pulse quicken and your mind vague with need} and you can offer no resistance as they eagerly change positions, fingers drifting over your {hardened/moist} [pc.nipples] {and through your [pc.hair]} whilst the smallest impatiently insinuates himself in the action, rubbing his stiff erection between your butt cheeks as the biggest imperiously presents his girthy, sex-smeared erection to your lips. Defeated by your own uncontrollable chemical/hormonal lust now you pad and lick at it with your [pc.tongue] deferentially, feeling the glow the sharp, mixed musk sink down to where another red erection is poking fervently in at you.
-
-1 < Vagina: “<i>Oh man, you never said [she] had more than one of them!</i>” the raskvel at your back exclaims, his fingers tracing the outer lips of your [pc.vagina1] and caressing your bulging [pc.clit1]. “<i>I LOVE aliens!</i>” You moan as with one excited movement he thrusts into your wet hole deep, masses of nerves within your core firing in frothy response, your oversexed body delighting in the anticipation of getting another creamy, virile filling.
-
-1 Vagina: You gasp and cry out in protest as the raskvel at your back scorns your oozing, gaping pussy to spread your [pc.anus] with his tool-like head instead. Fogged with arousal and already thoroughly fucked as you are it’s easier than it might be to relax and let him gradually slide in, and your oversexed body delights in any penetration at all. The roughness of it mingles with the pleasure of the muffled pressure put on your tenderized pussy tunnel as he bends into you with a heartfelt groan, and even to your ears the whimpers that accompany the pat of his hard thighs against your [pc.butt] are ones of slutty enjoyment.
-
-0 Vagina: The raskvel squeezes your [pc.butt] and thrusts straight into your gaped, oozing [pc.anus], his passage greatly eased by the heavy fucking and filling it has already taken. Fogged with arousal your body urges, then demands you push back into him to feel the rub of his dick on your tenderized walls {and needy prostate} and eventually that’s exactly what you’re doing, hazily justifying that you may as well get out of this humiliating situation what you may. He groans with approval at your bucking and speeds up in kind, pushing and bumping deep into your colon.
-
-{merge}
-
-Tantalized by your drifting tongue and lips and re-energized by the sight of his brother pumping into you, the raskvel in front of you wastes no more time in taking firm hold of your head and driving his leaking, over-sized dick into your mouth, and the frenetic spit-roast begins afresh. The pair of them don’t take long to reach a fresh set of orgasms, their hands clenching on your thighs and neck as they propel fresh cum into your softened pussy/ass and sucking maw... but that’s simply a signal for them to swap positions again, their apparently insatiable purple dicks still pointing fiercely upwards, ever eager to thrust into another tender orifice of yours, making the very most out of {your exotic offworlder flesh} {your wriggling, shortstack flesh that they know so well how to manipulate}. You are made to cum again and again, out of pattern with them, {your pussy/pussies tightening up and pulsing around the demanding thrust of their cocks{, dribbling ferment onto the dust}} {and} {your cock{s} thickening, simmering with heat and then flexing cum out uselessly to the relentless bumping against your buried boy button} {your ass tightening up and pulsing around the demanding thrust of their cocks, that strange anal orgasm of yours tightening up your whole body in unwanted ecstasy.} 
-
-At long, long last, when the biggest one withdraws from your [pc.anus] and the middle-sized one from your [pc.lips] after burying yet another warm load in you deep, their lengths flop downwards. They release you with lazy, satiated groans, and you are allowed to sink to the ground, panting hoarsely, raskvel cum oozing richly out of each and every hole you own.
-
-“<i>Whew!</i>” one of them sighs. Somebody pats your [pc.ass] comfortingly. “<i>Sorry if we got a bit carried away there, {but it’s not often we get to tap offworlder ass, y’know? And you shouldn’t have tried it on with us.} {but you gotta learn what to expect if you want to be one of us, y’know?}</i>”
-
-“<i>Just agree to have fun with us next time,</i>” suggests one of the others. “<i>Doesn’t have to be so rough.</i>”
-
-With that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.
-
-
-
-Seduction
+//Seduction
 //Requires: Not a centaur, has a vagina, feminine, 70%+ intelligence, 3+ sexiness clothing OR female Treated, 3+ sexiness clothing
+//If requirements met add following text to paragraph if the raskvel attack: It occurs to you that there might be another, cleaner way out of this... if you use your feminine wiles to your best advantage.
 
-If requirements met add following text to paragraph if the raskvel attack: It occurs to you that there might be another, cleaner way out of this... if you use your feminine wiles to your best advantage.
+function seductionChance():Boolean
+{
+	if(pc.hasVagina() && pc.mf("he","she") == "she" && pc.IQ() >= 70 && (pc.isBimbo() || pc.sexiness() >= 3) && !foes[0].hasStatusEffect("Seduction Declined") && !pc.hasStatusEffect("Stunned"))
+	{
+		output("\n\n<b>It occurs to you that there might be another, cleaner way out of this... if you use your feminine wiles to your best advantage.</b>");
+		//[[Seduce]]
+		clearMenu();
+		addButton(0,"Seduce",seduceTheRaskvelAttackYaNerd,undefined,"Seduce","You could probably seduce your way out of this. These boys will be easy to manipulate...");
+		addButton(1,"No, Fight!",nopeGonnaFightCapn);
+		return true;
+	}
+	return false;
+}
 
-[[Seduce]]
+function nopeGonnaFightCapn():void
+{
+	clearOutput();
+	showRaskGang();
+	foes[0].createStatusEffect("Seduction Declined",0,0,0,0);
+	output("You'd rather show these brutes what you're made of than titillate them any farther.");
+	processCombat();
+}
 
-“<i>Oh no, the big strong raskvel are going to get me!</i>” You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. “<i>Please don’t get rough with me! Oh, this is all too much... </i>\" you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.
+function seduceTheRaskvelAttackYaNerd():void
+{
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	output("“<i>Oh no, the big strong raskvel are going to get me!</i>” You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. “<i>Please don’t get rough with me! Oh, this is all too much... </i>\" you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.");
+	output("\n\n“<i>You won’t let them harm me, will you?</i>” you whisper, letting your warm breath curl around his long ears and neck. “<i>It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us... </i>\" He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.");
+	output("\n\n“<i>What did she say to you?</i>” says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.");
+	output("\n\n“<i>Why do you have to be so mean?</i>” you mewl");
+	if(pc.biggestTitSize() >= 3 && pc.isChestGarbed()) output(", allowing your [pc.chest] to shift and heave conspicuously in your [pc.uppergarment]");
+	output(". “<i>All this violence. Why, I’d love to do... such things with strong, youthful boys as you... </i>\" you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. “<i>But when there’s three of you all getting rough together, it’s just, just too much!</i>” The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.");
 
-“<i>You won’t let them harm me, will you?</i>” you whisper, letting your warm breath curl around his long ears and neck. “<i>It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us... </i>\" He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.
+	output("\n\n“<i>I bet those two don’t let you have any fun,</i>” you breathe in his ear. “<i>Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself... </i>\" His breath is coming thick and hard.");
 
-“<i>What did she say to you?</i>” says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.
+	output("\n\n“<i>Look, knock it off,</i>” says the biggest weakly. “<i>If you want to have fun, stop doing... doing that and we’ll share. That’s how we do it.</i>”");
 
-“<i>Why do you have to be so mean?</i>” you mewl{, allowing your [pc.boobs] to shift and heave conspicuously in your [pc.uppergarment].} “<i>All this violence. Why, I’d love to do... such things with strong, youthful boys as you... </i>\" you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. “<i>But when there’s three of you all getting rough together, it’s just, just too much!</i>” The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.
+	output("\n\n“<i>Really?</i>” you gaze at him with sculpted, sophisticated incredulity. You allow a finger to trail down your face and then suck on it as you stare, apparently unaware of the effect this has on three increasingly flared reptilian libidos. “<i>You share? You call this undignified tumble, with other nasty man parts flying everywhere, satisfying no one, really... sharing?</i>” You ");
+	if(pc.isNaga()) output("slither");
+	else if(pc.isGoo()) output("ooze");
+	else output("pace");
+	output(" slowly towards him as you talk, lowering your tone as you go until only he can hear you. “<i>I can barely believe you, the biggest, the strongest, the leader, </i>shares<i> with these two rejects. Is that really proper? The alpha of the pack, sharing?</i>” he takes a big shuddering breath as you gently touch the bottom of his chin with your damp finger.");
 
-“<i>I bet those two don’t let you have any fun,</i>” you breathe in his ear. “<i>Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself... </i>\" His breath is coming thick and hard.
+	output("\n\n“<i>I... maybe if – </i>\" he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.");
 
-“<i>Look, knock it off,</i>” says the biggest weakly. “<i>If you want to have fun, stop doing... doing that and we’ll share. That’s how we do it.</i>”
+	output("\n\nYou stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins...");
 
-“<i>Really?</i>” you gaze at him with sculpted, sophisticated incredulity. You allow a finger to trail down your face and then suck on it as you stare, apparently unaware of the effect this has on three increasingly flared reptilian libidos. “<i>You share? You call this undignified tumble, with other nasty man parts flying everywhere, satisfying no one, really... sharing?</i>” You {pace/slither/ooze} slowly towards him as you talk, lowering your tone as you go until only he can hear you. “<i>I can barely believe you, the biggest, the strongest, the leader, </i>shares<i> with these two rejects. Is that really proper? The alpha of the pack, sharing?</i>” he takes a big shuddering breath as you gently touch the bottom of his chin with your damp finger.
+	processTime(3);
+	//[Sneak away] [Stay]
+	clearMenu();
+	addButton(0,"Sneak Away",sneakAwayFromRaskvel);
+	addButton(1,"Stay",stayAroundForBonusRaskbuttSex);
+}
 
-“<i>I... maybe if – </i>\" he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.
+//Sneak away
+function sneakAwayFromRaskvel():void
+{
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	output("With all three of the raskvel entirely concerned with beating the hell out of each other, it’s easy for you to quietly take your leave. You giggle to yourself as you imagine the expression of whoever wins, once he realises you’re no longer there.");
+	stealthCombatEnd();
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-You stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins…
+//Stay
+function stayAroundForBonusRaskbuttSex():void
+{
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE");
+	var raskWinner:String = "big";
+	output("You settle down and watch the animalistic display. It’s quite arousing, in its own way – you’re essentially watching three young males rut over you. Their growls and gasps fill the air, their muscles clenching and shuddering, sweat mingling on their rusty scales as they wrestle, punch and bite each other’s taut flesh angrily. You don’t know if raskvel produce testosterone but certainly there’s a wild, bitter-sweet smell in the air which makes ");
+	if(pc.hasVagina()) output("[pc.eachVagina] react, spreading and moistening welcomingly");
+	else output("your head shiver");
+	output(".");
 
-[Sneak away] [Stay]
+	if(rand(3) == 0) 
+	{
+		output("\n\nThe smallest fights with the savagery born of a lifetime of frustrations, and against all the odds – and the early blow which knocked his biggest competitor semi-comatose – he is the eventual victor.");
+		raskWinner = "small";
+	}
+	else if(rand(2) == 0) output("\n\nThe medium sized one is able to match speed with strength, and eventually overcomes the other two.");
+	else output("\n\nDespite the early blow dealt him from behind the biggest one is simply far too strong for the other two, and is eventually able to pummel them into submission.");
+	output(" He leaves his opponents in a stunned heap and staggers towards you. You can see it’s not just you that got turned on by the fight – his purple erection is reaching well out of its slit, the only part of him that doesn’t look battered and bruised. You smile at him widely, tracing the shape of your [pc.nipple]");
+	if(pc.isChestGarbed()) output(" through your [pc.upperGarment]");
+	output(" and slowly licking your [pc.lips]. His response to this is to stumble and fall at your [pc.feet].");
 
-Sneak away
+	output("\n\n“<i>Please,</i>” he groans, staring up at you blearily. He’s completely under your spell; you idly consider what task to put him to.");
 
-With all three of the raskvel entirely concerned with beating the hell out of each other, it’s easy for you to quietly take your leave. You giggle to yourself as you imagine the expression of whoever wins, once he realises you’re no longer there.
+	processTime(6);
+	pc.lust(7);
+	//[Lick pussy] [Lick feet]
+	clearMenu();
+	addButton(0,"Lick Pussy",lickPussyRaskButt,raskWinner,"Lick Pussy","Put the winner to work on your pussy, where he belongs.");
+	addButton(1,"Lick Feet",feetLickingGoodTimes,raskWinner,"Lick Feet","Put the winner to work down at your feet, where he belongs.");
+}
 
-Stay
+//Lick pussy
+function lickPussyRaskButt(raskWinner:String = "big"):void
+{
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE");
+	output("“<i>Oh, very well,</i>” you whisper, ");
+	if(pc.isCrotchGarbed()) output("slowly sliding off your [pc.lowerGarments] and ");
+	output("spreading your [pc.hips]");
+	if(pc.hasCock()) output(", shifting [pc.eachCock] out of the way to properly present yourself");
+	output(". From his position on the ground raskvel dazedly gazes in at the moist, parting veil of [pc.oneVagina], mouth slightly ajar, panting quietly. “<i>I suppose you’ve earned the right to have a taste. Just a taste...</i>\"");
 
-You settle down and watch the animalistic display. It’s quite arousing, in its own way – you’re essentially watching three young males rut over you. Their growls and gasps fill the air, their muscles clenching and shuddering, sweat mingling on their rusty scales as they wrestle, punch and bite each other’s taut flesh angrily. You don’t know if raskvel produce testosterone but certainly there’s a wild, bitter-sweet smell in the air which makes {[pc.eachVagina] react, spreading and moistening welcomingly}.
+	output("\n\nYou sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation so that [pc.eachClit] plumps up, practically demanding attention. You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.");
 
-{The smallest fights with the savagery born of a lifetime of frustrations, and against all the odds – and the early blow which knocked his biggest competitor semi-comatose – he is the eventual victor.} {The medium sized one is able to match speed with strength, and eventually overcomes the other two.} {Despite the early blow dealt him from behind the biggest one is simply far too strong for the other two, and is eventually able to pummel them into submission.} He leaves his opponents in a stunned heap and staggers towards you. You can see it’s not just you that got turned on by the fight – his purple erection is reaching well out of its slit, the only part of him that doesn’t look battered and bruised. You smile at him widely, tracing the shape of your [pc.nipple] through your [pc.uppergarment] and slowly lick your [pc.lips]. His response to this is to stumble and fall at your [pc.lowerbody].
+	output("\n\nThe sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina " + x + "], thrills shooting up your spine every time the warm, wet texture of it blankets over your [pc.clit]. You tighten the ");
+	if(pc.legCount > 1) output("grip of your [pc.hips] around the sides of his head");
+	else output("grip of your hand on his feathers");
+	output(", ensuring that worshipful mouth goes nowhere.");
 
-“<i>Please,</i>” he groans, staring up at you blearily. He’s completely under your spell; you idly consider what task to put him to.
+	output("\n\n“<i>That’s it,</i>” you coo. “<i>What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior... </i>\" You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh.");
+	if(pc.totalVaginas() > 1) 
+	{
+		output(" With a few murmured, humoured instructions, you are able to make him pull out and lavish the same treatment on your [pc.vagina 1], ");
+		if(pc.totalVaginas() > 2) output("each");
+		else output("your two primary pussies");
+		output(" burnished to a froth of high excitement by his moving, seeking, servile mouth.} His eyes are closed as he does it, dizzily lost in the “prize” he’s won.");
+	}
 
-[Lick pussy] [Lick feet]
+	output("\n\nYou sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.legsOrLeg] made all the better by the steady warm rasp moving across your throbbing clit");
+	if(pc.totalClits() > 1) output("s");
+	output(" and inner walls. {As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.girlCum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.");
 
-Lick pussy
+	output("\n\nYou release your grip when you’re done, letting him flop onto his back, allowing yourself a good wallow in the afterglow whilst you look down at your toy. If anything, he’s harder than he was than when he started; his ");
+	if(raskWinner != "small") output("broad, purple dick");
+	else output("stubby, purple boy-prick");
+	output(" stands almost painfully on end, the taste and texture of you evidently only turning him even more on.");
 
-“<i>Oh, very well,</i>” you whisper, {slowly sliding off your [pc.undergarment] and} spreading your [pc.hips]{, shifting [pc.eachCock] out of the way}. From his position on the ground raskvel dazedly gazes in at the moist, parting veil of your [pc.vagina], mouth slightly ajar, panting quietly. “<i>I suppose you’ve earned the right to have a taste. Just a taste... </i>\"
+	output("\n\n“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
 
-You sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation so that [pc.eachClit] plump up, practically demanding attention. You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.
+	output("\n\n“<i>Good boy,</i>” you leer down at him, before getting up");
+	if(!pc.isNude()) output(", rearranging your clothes,");
+	output(" and then setting off again, leaving all three of them unconscious on the ground having never lifted a finger. Well, except one.");
 
-The sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina " + x + "], thrills shooting up your spine every time the warm, wet texture of it blankets over your [pc.clit0]. You tighten the {grip of your [pc.hips] around the sides of his head} {grip of your hand on his feathers}, ensuring that worshipful mouth goes nowhere.
+	processTime(17);
+	pc.orgasm();
+	stealthCombatEnd();
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-“<i>That’s it,</i>” you coo. “<i>What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior... </i>\" You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh. {With a few murmured, humoured instructions, you are able to make him pull out and lavish the same treatment on your [pc.vagina1], {each} {your two primary pussies} burnished to a froth of high excitement by his moving, seeking, servile mouth.} His eyes are closed as he does it, dizzily lost in the “prize” he’s won.
-
-You sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.lowerBody] made all the better by the steady warm rasp moving across your throbbing [pc.eachClit] and inner walls. {As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.femcum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.}
-
-You release your grip when you’re done, letting him flop onto his back, allowing yourself a good wallow in the afterglow whilst you look down at your toy. If anything, he’s harder than he was than when he started; his {broad, purple dick} {stubby, purple boy-prick} stands almost painfully on end, the taste and texture of you evidently only turning him even more on.
-
-“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.
-
-“<i>Good boy,</i>” you leer down at him, before {getting up} {getting up, rearranging your clothes} and then setting off again, leaving all three of them unconscious on the ground having never lifted a finger. Well, except one.
-
-Lick feet
-
+//Lick feet
 //Requires: biped
+function feetLickingGoodTimes(raskWinner:String = "big"):void
+{
+	clearOutput();
+	showRaskGang();
+	userInterface.showBust("RASKVEL_MALE_NUDE");
+	output("You raise an arch eyebrow at the kneeling raskvel, allowing a faint, disdainful smile to creep onto your face. You extend a [pc.foot], gently circling it in front of his face.");
 
-You raise an arch eyebrow at the kneeling raskvel, allowing a faint, disdainful smile to creep onto your face. You extend a {toe/boot/paw}, gently circling it in front of his face.
+	output("\n\n“<i>And now you want to get your dirty mitts on me, do you?</i>” you say softly. Wriggle wiggle, goes your dainty [pc.foot]. The weary red reptilian has his eyes on it; you let your words sink into him as you continue to rotate your [pc.foot], changing direction from time to time... “<i>This isn’t what I wanted at all. Such violence towards your friends. Such brutality. Why should I let a wicked brute like you anywhere near my body?</i>”");
 
-“<i>And now you want to get your dirty mitts on me, do you?</i>” you say softly. Wriggle wiggle, goes your dainty {toe/boot/claw}. The weary red reptilian has his eyes on it; you let your words sink into him as you continue to rotate your foot/paw, changing direction from time to time... “<i>This isn’t what I wanted at all. Such violence towards your friends. Such brutality. Why should I let a wicked brute like you anywhere near my body?</i>”
+	output("\n\n“<i>No... </i>\" mumbles the entranced raskvel, head swaying gently with the movements of your foot. “<i>I proved... you said... </i>\" He gestures dozily at the stunned pile of brawny scales behind him. “<i>I’m the... let me prove... </i>\"");
+	output("\n\n“<i>Oh, very well,</i>” you whisper. You bend ");
+	if(pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("the pad of your big claw");
+	else output("your big toe");
+	output(", touching his warm lips with it. “<i>You may prove yourself to be something other than a savage animal, and then we’ll see if you’re worthy of anything else.</i>”");
 
-“<i>No... </i>\" mumbles the entranced raskvel, head swaying gently with the movements of your foot. “<i>I proved... you said... </i>\" He gestures dozily at the stunned pile of brawny scales behind him. “<i>I’m the... let me prove... </i>\"
+	output("\n\nThe soft, wet, slightly rough texture of the raskvel’s long, purple tongue spreads itself across the underside of your [pc.foot] and you hum quietly in enjoyment as it shifts across it gently. Whatever reservations the raskvel may have once harboured about doing this are quickly lost in the task of giving your pads the treatment they deserve; eyes closed, feathers bobbing, ");
+	if(!pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS)) output("he envelopes one digit after the other in his hot mouth, sucking on them, gently pulling at them as he disengages and moving onto the next.");
+	else output("he trails his tongue across the chitin of your boot-like insect leg, polishing your instep to a high, latex-like sheen");
+	output(". You continue to bend and flex your [pc.foot] placidly, murmuring coy encouragement to your kneeling boy-toy when he moves on to the areas you wish him to concentrate on.");
 
-“<i>Oh, very well,</i>” you whisper. You bend {your big toe} {the tip of your boot} {the pad of your big claw},  touching his warm lips with it. “<i>You may prove yourself to be something other than a savage animal, and then we’ll see if you’re worthy of anything else.</i>”
+	output("\n\nRaskvel tongue really is extremely good for the purpose you’ve set it to – with the width and length of his wet, flexible muscle he is able to entirely coat the bottom of your [pc.foot] and, with careful laps, send sparks of delightful sensation rushing up your [pc.leg] and burrowing into [pc.eachVagina].");
+	if(pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS)) output(" Armoured in stern chitin they may be but you still harbour vast numbers of nerves in your feet, and you can feel them shooting off in a strange, decentralised kind of way under the pressure of the worshipful licking, and the pleasure is almost better for the vaguely frustrating, alien manner of its conveyance.");
+	else output(" You harbor vast numbers of nerves in your [pc.feet], and they shoot off in small explosions of pleasure under the pressure of the worshipful licking.");
+	output(" The wet massage is made all the better by how it’s being conducted – by this rough, rape-happy savage you’ve tamed into a quiet, needily attentive foot servant.");
 
-The soft, wet, slightly rough texture of the raskvel’s long, purple tongue spreads itself across the underside of your {foot}/{paw} and you hum quietly in enjoyment as it shifts across it gently. Whatever reservations the raskvel may have once harboured about doing this are quickly lost in the task of giving your pads the treatment they deserve; eyes closed, feathers bobbing, {he envelopes one toe/digit after the other in his hot mouth, sucking on them, gently pulling at them as he disengages and moving onto the next} {he trails his tongue across the chitin of your boot-like insect leg, polishing your instep to a high, latex-like sheen}. You continue to bend and flex your foot/paw placidly, murmuring coy encouragement to your kneeling boy-toy when he moves on to the areas you wish him to concentrate on.
+	output("\n\n“<i>You enjoying yourself down there?</i>” you giggle, withdrawing your saliva-gleaming [pc.foot] from him. The rabbit-reptile doesn’t answer; he looks almost stoned, his eyes vague as he gazes up at you. You redirect his attention by wiggling ");
+	if(pc.legCount == 2) output("your other ");
+	else output("another ");
+	output("[pc.foot] in his face. “<i>Of course you are. You may continue.</i>”");
 
-Raskvel tongue really is extremely good for the purpose you’ve set it to – with the width and length of his wet, flexible muscle he is able to entirely coat the bottom of your foot/paw/boot and, with careful laps, send sparks of delightful sensation rushing up your [pc.leg] and burrowing into [pc.eachVagina]. {Armoured in stern chitin they may be but you still harbour vast numbers of nerves in your feet, and you can feel them shooting off in a strange, decentralised kind of way under the pressure of the worshipful licking, and the pleasure is almost better for the vaguely frustrating, alien manner of its conveyance.} {You harbor vast numbers of nerves in your feet/paws, and they shoot off in small explosions of pleasure under the pressure of the worshipful licking.} The wet massage is made all the better by how it’s being conducted – by this rough, rape-happy savage you’ve tamed into a quiet, needily attentive foot servant.
+	output("\n\nHis mouth feels just as good concentrated on your other [pc.foot], rivulets of delicious pleasure running up your [pc.leg] to the steady lap of his tongue ");
+	if(pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS)) output("polishing the point of your boot");
+	else output("between the gaps of your toes");
+	output(" and you’re feeling quite aroused in a leisured kind of way by the end, sensuous and pleased. You smirk down at him once you finally decide you’ve had enough, deliberately turning your attention to your [pc.feet], turning them this way and that, allowing him a grudgingly admiring raise of the eyebrow as you consider each of your extremely clean [pc.feet]. You return your [pc.eyes] to the raskvel. If anything, he’s harder than he was than when he started; his ");
+	if(raskWinner != "small") output("broad, purple dick");
+	else output("stubby, purple boy-prick");
+	output(" stands almost painfully on end, what you’ve made him do, the taste and texture of you evidently only turning him more on.");
 
-“<i>You enjoying yourself down there?</i>” you giggle, withdrawing your saliva-gleaming [pc.foot] from him. The rabbit-reptile doesn’t answer; he looks almost stoned, his eyes vague as he gazes up at you. You redirect his attention by wiggling your other {foot/paw/boot} in his face. “<i>Of course you are. You may continue.</i>”
+	output("\n\n“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
 
-His mouth feels just as good concentrated on your other [pc.foot], rivulets of delicious pleasure running up your [pc.leg] to the steady lap of his tongue {polishing the point of your boot} {between the gaps of your toes/claws} and you’re feeling quite aroused in a leisured kind of way by the end, sensuous and pleased. You smirk down at him once you finally decide you’ve had enough, deliberately turning your attention to your [pc.feet], turning them this way and that, allowing him a grudgingly admiring raise of the eyebrow as you consider each of your extremely clean {feet/boots/paws}. You return your [pc.eyes] to the raskvel. If anything, he’s harder than he was than when he started; his {broad, purple dick} {stubby, purple boy-prick} stands almost painfully on end, what you’ve made him do, the taste and texture of you evidently only turning him more on.
+	output("\n\n“<i>Good boy,</i>” you grin down at him, before getting up");
+	output("\n\n“<i>Good boy,</i>” you leer down at him, before getting up");
+	if(!pc.isNude()) output(", rearranging your clothes,");
+	output(" and then setting off again, leaving all three of them unconscious on the ground having never lifted a finger. Well, except one.");
 
-“<i>Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.
+	processTime(17);
+	pc.orgasm();
+	stealthCombatEnd();
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-“<i>Good boy,</i>” you grin down at him, before {getting up} {getting up, rearranging your clothes} and then setting off again, leaving all three of them on the ground having never lifted a finger. Well, except one.
-
-
-Ruskvel
+/*Ruskvel
  
 Tooltip 
 
@@ -1574,5 +1941,4 @@ Wetness escapes your pussy as it seems to shimmer with heat, your lips and clit(
 Increase elasticity/depth
 
 Warmth pushes into the sensitive inner parts of your {feminine} sex, massaging your tunnel{s} and womb{s}, stretching and sculpting it/them upwards. The sensation fades over time but you are left with the instinctive knowledge that you are more able to take larger insertions there now.
-
-
+*/

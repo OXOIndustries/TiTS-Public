@@ -49,6 +49,7 @@
 		public static const FLAG_FORESKINNED:int	    					= 31;
 		public static const FLAG_HOLLOW:int									= 32;
 		public static const FLAG_RIBBED:int									= 33;
+		public static const FLAG_CHITINOUS:int								= 34;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
