@@ -163,6 +163,7 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Stun Immune");
 			
 			this._isLoading = false;
 		}

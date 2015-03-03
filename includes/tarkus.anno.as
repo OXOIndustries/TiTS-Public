@@ -3617,8 +3617,16 @@ public function annoPostQuestSexytimes():void
 	anno.orgasm();
 
 	processTime(20+rand(5));
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if(!inCombat())
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		output("\n\n");
+		genericVictory();
+	}
 }
 
 public function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
@@ -3633,8 +3641,16 @@ public function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 	output("\n\nShe sashays off, disappearing down the stairs.");
 
 	processTime(30+rand(5));
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	if(!inCombat())
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		output("\n\n");
+		genericVictory();
+	}
 }
 
 public function annoxKaedeNotRecruitedMeeting():void

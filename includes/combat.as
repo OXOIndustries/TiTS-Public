@@ -3404,7 +3404,7 @@ public function overcharge(target:Creature):void {
 		genericDamageApply(damage,pc,target,pc.rangedWeapon.damageType);
 	}
 	output("\n");
-	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
 		if(target.plural) output("<b>" + target.capitalA + target.short + " are stunned.</b>\n");
 		else output("<b>" + target.capitalA + target.short + " is stunned.</b>\n");
 		target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
@@ -3548,7 +3548,7 @@ public function properHeadbutt(attacker:Creature,target:Creature):void {
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,attacker,target);
-		if(attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+		if(attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
 			if(target == pc)
 			{
 				output("\n<b>You are stunned.</b>");
@@ -3597,8 +3597,8 @@ public function lowBlow(target:Creature):void {
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target);
-		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) || target is Kaska) {
-			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of plump lips. <b>She's very, very stunned.\"</b>");
+		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
+			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
 			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
