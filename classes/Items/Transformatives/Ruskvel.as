@@ -177,7 +177,7 @@
 				//Physical Changes
 				//Decrease height towards 3’9”
 				//Height decrease
-				if(pc.tallness < 45 && changes < changeLimit && rand(4) == 0)
+				if(pc.tallness > 45 && changes < changeLimit && rand(4) == 0)
 				{
 					//Above 4’3” feet:
 					if(pc.tallness >= 51) {
@@ -271,7 +271,7 @@
 					changes++;
 				}
 				//Grow scales
-				if(!pc.hasFur() && rand(5) == 0 && changes < changeLimit)
+				if(!pc.hasScales() && rand(5) == 0 && changes < changeLimit)
 				{
 					kGAMECLASS.output("\n\nSomething odd is happening to your skin. First it feels like you’re getting pins and needles all over; when you look at your arm closely, you discover this is being caused by every single follicle of your body hair falling out, your pores closing up. This is followed by intense irritation, your skin seeming to crack and scab in multiple places. You’re beginning to worriedly wonder where the nearest V-KO unit is when you notice the “scabs” aren’t falling out; they are instead forming neatly around each other, a soft leather mosaic slowly cobbling into existence on your epidermis. After about an hour, it’s spread to cover every inch of your hairless body. <b>You are now scaled.</b>");
 					pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
