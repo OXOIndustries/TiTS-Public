@@ -23,12 +23,15 @@ public function kaedeHeader(isNude:Boolean = false):void
 
 public function findKaedeOnMyrellion():Boolean
 {
-	if (hasMetKaede() && flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MYRELLION_EMBASSY_VISITED"] != undefined)
+	var retVal:Boolean = false;
+	
+	if (hasMetKaede() && flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KAEDE_MYRELLION_ENCOUNTER"] == undefined)
 	{
 		output("You see a familiar half-ausar standing in the transport hub, followed closely by a hover-platform laden with crates and boxes stacked head-high, all bearing the label of the RhenWorld mining company. Seeing you, the svelte red-head smiles and waves, her tail wagging quickly behind her.");
 		addButton(0, "Kaede", encounterKaedeOnMyrellion, undefined, "Greet Kaede", "Go say “Hi” to your friend.");
+		retVal = true;
 	}
-	return false;
+	return retVal;
 }
 
 public function encounterKaedeOnMyrellion():void
@@ -48,6 +51,8 @@ public function encounterKaedeOnMyrellion():void
 	output(".");
 	
 	output("\n\nKaede listens and nods. “<i>Cool. Hey, um, I’m a couple hours early on this delivery,”</i> she says, nodding to the huge stack of crates. “<i>Wanna... I dunno... get a drink or something? I think there’s a bar around here somewhere...”</i>");
+	
+	flags["KAEDE_MYRELLION_ENCOUNTER"] = 1;
 
 	processTime(10);
 
@@ -274,6 +279,8 @@ public function kaedeMyrellionBarGoodbye():void
 
 	kaedeMyrellionShadeAddition();
 
+	processTime(rand(10));
+	
 	// [Next]
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -336,6 +343,8 @@ public function kaedeMyrellionBarFlirt():void
 		
 		output("\n\nAbsolutely.");
 
+		processTime(20 + rand(10));
+		
 		//[Next] //To sex intro
 		clearMenu();
 		addButton(0, "Next", kaedeMyrellionSexIntro);
@@ -353,6 +362,8 @@ public function kaedeMyrellionBarFlirt():void
 		
 		output("\n\nAs you start to gather your things and stand, Kaede suddenly becomes more serious. “<i>Just, umm... just so we get this out of the way ahead of time, I’ve got a dick. In case that’s a problem, I mean. If it is, I understand.”</i>");
 
+		processTime(20 + rand(10));
+		
 		clearMenu();
 		addButton(0, "It's Fine", kaedeMyrellionBarTheDIsFine, undefined, "It's Fine", "Tell Kaede you're fine with her and her dick.");
 		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You're not really into the D.")
@@ -368,8 +379,10 @@ public function kaedeMyrellionBarTheDIsFine():void
 	
 	output("\n\n“<i>Great! Follow me, then.”</i>");
 
+	processTime(3);
+	
 	//To sex intro.
-	clearOutput();
+	clearMenu();
 	addButton(0, "Next", kaedeMyrellionSexIntro);
 }
 
@@ -387,6 +400,8 @@ public function kaedeMyrellionBarNoDPls():void
 	//Shade Scene from above goes here, if applicable.
 	kaedeMyrellionShadeAddition();
 
+	processTime(10 + rand(10));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -412,7 +427,7 @@ public function kaedeMyrellionSexIntro():void
 
 	processTime(20);
 
-	clearOutput();
+	clearMenu();
 	addButton(0, "Next", kaedeMyrellionSexIntroII);
 }
 
@@ -434,8 +449,13 @@ public function kaedeMyrellionSexIntroII():void
 	output("\n\nIt looks like this horny halfbreed’s entirely at your disposal...");
 
 	// [Fuck Ass] [Suck & Ride]
+	flags["KAEDE_FUCKED"] = 1;
+	
+	processTime(15 + rand(5));
+	
 	clearMenu();
-	addButton(0, "Fuck Ass", kaedeMyrellionFuckAss, undefined, "Fuck Her Ass", "The way you're sitting now, it'd be so easy to just slide your cock right into the randy shemale's tight little hole...");
+	if (pc.hasCock() && pc.smallestCockVolume() <= 250) addButton(0, "Fuck Ass", kaedeMyrellionFuckAss, undefined, "Fuck Her Ass", "The way you're sitting now, it'd be so easy to just slide your cock right into the randy shemale's tight little hole...");
+	else addDisabledButton(0, "Fuck Ass", "Fuck Her Ass", "It'd be so easy to just slide your cock right into the randy shemale's tight little hole... if you had one that could squeeze up in there.");
 	addButton(1, "Suck&Ride", kaedeMyrellionSucknRide, undefined, "Suck & Ride", "Give that delicious red doggy-cock the attention it deserves before you go for a wild ride.");
 }
 
@@ -504,7 +524,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\nWet squelches echo through <i>Talon Rogue</i>’s common room as you fuck its captain senseless. Your cock hammers her tight ass, vigorously pounding away until you can feel the rising pressure tingling through your loins. You’re so close now you can almost taste it...");
 
-	processTime(10+rand(15));
+	processTime(20+rand(15));
 
 	clearMenu();
 	addButton(0, "Facial", kaedeMyrellionFuckAssFacial, undefined, "Facial", "Pull your cock out of Kaede's ass and cum all over her face!");
@@ -618,10 +638,12 @@ public function kaedeMyrellionSucknRide():void
 	if (pc.hasVagina())
 	{
 		holeTightness = pc.vaginas[0].looseness();
+		pc.cuntChange(0, 50, true, true, false);
 	}
 	else
 	{
 		holeTightness = pc.ass.looseness();
+		pc.buttChange(50, true, true, false);
 	}
 
 	output("\n\n");

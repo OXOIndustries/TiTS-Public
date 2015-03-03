@@ -155,7 +155,9 @@ public function debugMenusTwo():void
 		itemCollect(items);
 	});
 	
-	addButton(5, "F. Rival", debugFuckWithRival);
+	addButton(5, "Kaede", function():void {
+		flags["MET_KAEDE"] = 1;
+	});
 	
 	addButton(7, "Creds", function():void {
 		pc.credits += 100000;

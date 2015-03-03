@@ -93,7 +93,7 @@ public function initializeMyrellionRooms():void
 	rooms["604"].northExit = "612";
 	rooms["604"].westExit = "611";
 	rooms["604"].moveMinutes = 2;
-	rooms["604"].runOnEnter = undefined;
+	rooms["604"].runOnEnter = myrellionSecurityCheckpointEvents;
 	rooms["604"].addFlag(GLOBAL.OUTDOOR);
 	rooms["604"].addFlag(GLOBAL.PUBLIC);
 

@@ -392,7 +392,9 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	//Shade starts straddling the PC. Still wearing her undies, no bra or clothes.
 	//[Cunt Tail Fuck]
 	//Shade queens the PC, uses her tailcunt on [pc.cock " + x + "].
-	if(pc.hasCock()) addButton(0,"Cunt Tail",cuntTailShadeFux,undefined,"Cunt Tail","Let her use her cunt tail on you. It probably feels pretty good.");
+	if (pc.hasCock()) addButton(0, "Cunt Tail", cuntTailShadeFux, undefined, "Cunt Tail", "Let her use her cunt tail on you. It probably feels pretty good.");
+	else addDisabledButton(0, "Cunt Tail", "Cunt Tail", "Let her use her cunt tail on you. (Requires a cock.)");
+	
 	//[Take Hardlight]
 	//vagOrAss. PC gives tailcunt oral. 
 	addButton(1,"CatchHardlight",takeShadesHardlightPenisInYerBoot,undefined,"CatchHardlight","Take it from a hardlight strapon.");

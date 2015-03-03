@@ -115,6 +115,12 @@ public function kressiaAirfieldBonus():Boolean
 	return false;
 }
 
+public function myrellionSecurityCheckpointEvents():Boolean
+{
+	if (findKaedeOnMyrellion()) return true;
+	return false;
+}
+
 public function DMZKressiaAirstrip():Boolean
 {
 	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined) {
