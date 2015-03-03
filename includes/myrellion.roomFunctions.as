@@ -202,6 +202,7 @@ public function noManzLandBonus():Boolean
 		//Build possible encounters
 		choices[choices.length] = adultCockvineEncounter;
 		choices[choices.length] = cockvineSeedlingEncounter;
+		choices[choices.length] = encounterNyreaBeta;
 
 		//Run the event
 		choices[rand(choices.length)]();

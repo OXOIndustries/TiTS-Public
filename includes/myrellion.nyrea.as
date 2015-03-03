@@ -39,10 +39,14 @@ public function nyreaHeaderFromCreature(target:Creature, prefix:String = null):v
 	else nyreaHeader(NYREA_UNKNOWN, prefix);
 }
 
+//Lazymoad Fencode
+public function encounterNyreaBeta():void
+{
+	encounterNyreaHuntress(NYREA_BETA);
+}
+
 public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 {
-	clearOutput();
-
 	var nyreaType:uint = NYREA_UNKNOWN;
 	var nyreaEggs:Boolean = false;
 
@@ -67,7 +71,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 		}
 	}
 
-	output("As you make your way through the dark caverns, you become increasingly aware of a mounting feeling of unease. As if something is watching you, hidden just out of sight in the darkness of the tunnel. You slow your pace, hand drifting down to the");
+	output("\n\nAs you make your way through the dark caverns, you become increasingly aware of a mounting feeling of unease. As if something is watching you, hidden just out of sight in the darkness of the tunnel. You slow your pace, hand drifting down to the");
 	if (pc.hasRangedWeapon()) output(" butt of your gun");
 	else if (pc.hasMeleeWeapon()) output(" hilt of your [melee.weapon]");
 	else output(" ground, picking up the meatiest rock you can find to defend yourself with");
