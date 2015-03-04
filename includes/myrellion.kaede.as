@@ -500,7 +500,7 @@ public function kaedeMyrellionFuckAss():void
 	if (pc.biggestCockLength() > 10) output(" cute little");
 	output(" cock. Between you grinding against her anal passage and now your fingers lacing around her shaft, she can’t help but moan and squirm in your grasp.");
 	
-	output("\n\n“<i>Is it... is it okay if I start moving?”</i> Kaede asks after a moment, cupping one of her perky tits. She she speaks, the white bubble at the tip of her shaft pops, drooling down over your fingers in a sticky wet mess.");
+	output("\n\n“<i>Is it... is it okay if I start moving?”</i> Kaede asks after a moment, cupping one of her perky tits. She speaks, the white bubble at the tip of her shaft pops, drooling down over your fingers in a sticky wet mess.");
 	
 	output("\n\nChuckling, you say that it’s normally you who’d be asking that. Kaede giggles, shifting her legs to get a better hold on the couch before she starts to move her hips. You find yourself sucking in a sharp breath as Kaede’s hips lift out of your lap, carrying her a few inches along the length of your shaft, and oh so slowly back down again. With every inch of motion, her cock twitches cutely in your hand, dragging through your fingers as her hips move, then thrust back in again. Flashing Kaede a little grin, you grab the bottle of lube off of her and squirt a little into your own hand, giving her cute canid prick a nice and slick tunnel to fuck just like she’s giving you.");
 	
@@ -555,16 +555,18 @@ public function kaedeMyrellionFuckAssCreampie():void
 	
 	output("\n\nYou manage a few last, jerky thrusts into her ass to empty your [pc.balls] into her.");
 
-	kaedeMyrellionFuckAssCombine();
+	kaedeMyrellionFuckAssCombine(true);
 }
 
-public function kaedeMyrellionFuckAssCombine():void
+public function kaedeMyrellionFuckAssCombine(cumInside:Boolean = false):void
 {
 	output("\n\nBreathing hard, Kaede flops back against the holoprojector. Her half-hard prick twitches, resting against her belly and drooling a little bit of second-wave pre from its pointed tip. The air is heavy with the mixing scents of cum and sweat; the only sounds are you and Kaede panting, trying to catch your breath after the vigorous fucking.");
 	
 	output("\n\n“<i>Oh my God...”</i> Kaede moans, running a hand through her fiery hair. “<i>That was great, [pc.name].”</i>");
 	
-	output("\n\nYou smile down at her, patting her thigh. Her cock jumps a little at your hand’s nearness, almost tempting you into continuing your love-making by jacking the cute red shaft off. Instead, you slip out from between Kaede’s legs and flop back onto the couch{, watching gleefully as a trickle of your [pc.cumNoun] drools out of her well-fucked ass}.");
+	output("\n\nYou smile down at her, patting her thigh. Her cock jumps a little at your hand’s nearness, almost tempting you into continuing your love-making by jacking the cute red shaft off. Instead, you slip out from between Kaede’s legs and flop back onto the couch");
+	if (cumInside) output(", watching gleefully as a trickle of your [pc.cumNoun] drools out of her well-fucked ass");
+	output(".");
 	
 	output("\n\nAfter a few moments of companionable quiet, Kaede grunts and sits up, crossing her legs over her crotch. She picks up the glasses she’d brought out beforehand and pours a couple of drinks out, one for each of you.");
 	
