@@ -145,7 +145,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 			output("'ve never ridden on an old-school airplane before");
 			flags["RODE_AIRPLANE"] = 1;
 		}
-		else output("never get used to these old-school airplanes");
+		else output("'ll never get used to these old-school airplanes");
 		output(". The plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.");
 		output("\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable...");
 		output("\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
@@ -225,6 +225,7 @@ public function gildenmereStreetBonus():Boolean
 	if(flags["IRELLIA_QUEST_STATUS"] == 1  && (rand(35) == 0 || debug))
 	{
 		unificationInvitationEventProcInGildenmere();
+		return true;
 	}
 	return false;
 }

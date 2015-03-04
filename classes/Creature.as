@@ -647,7 +647,7 @@
 		public function tailTypeLockedMessage():String
 		{
 			var msg:String = "";
-			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_CUNTSNAKE)
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
 			{
 				msg = "\n\nThe creature masquerading as a tail seems pretty spooked about something all of a sudden;";
 				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."

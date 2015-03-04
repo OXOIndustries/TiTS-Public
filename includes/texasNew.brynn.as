@@ -1,6 +1,7 @@
-public function brynnHeader():void
+public function brynnHeader(nude:Boolean = false):void
 {
-	showBust("BRYNN");
+	if(nude) showBust("BRYNN_NUDE");
+	else showBust("BRYNN");
 	showName("\nBRYNN");
 	author("Gedan");
 }
@@ -114,7 +115,7 @@ public function brynnsStallFunc():Boolean
 	if (flags["BRYNN_MET_TODAY"] != undefined) return false;
 
 	clearOutput();
-	brynnHeader();
+	brynnHeader(true);
 
 	if (flags["ENTERED_BRYNNS_STALL"] == undefined)
 	{
@@ -219,7 +220,7 @@ public function brynnEntranceMenu():void
 public function brynnLeave():void
 {
 	clearOutput();
-	brynnHeader();
+	brynnHeader(true);
 	if (!brynnIntroduced())
 	{
 		output("Between the two girls slurping noisily along the length of cock, and the owner of said mass of sensitive flesh, nobody has yet noticed that they've garnered themselves a peeping tom.");
@@ -289,7 +290,7 @@ public function brynnLeave():void
 public function suckThatMassiveStudlyBrynnDick():void
 {
 	clearOutput();
-	brynnHeader();
+	brynnHeader(true);
 
 	var didDeepthroat:Boolean = false;
 
@@ -652,7 +653,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 {
 	clearOutput();
-	brynnHeader();
+	brynnHeader(true);
 
 	output("You can’t muster the energy to do much more than rest on your [pc.knees] before the magnificent bull-stud, his massive load oozing from your features and dripping to the ground in a chorus of irregularly-timed splats. His spunk weighs heavily on your frame, the rivulets of cum pooling wherever they can before falling to the floor; especially your [pc.nipples], jizz building up");
 	if (pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES && pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) output(" on their pointy tips");

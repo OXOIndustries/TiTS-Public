@@ -2053,7 +2053,7 @@ public function postMealEpilogue():void
 public function flirtWithKellyUnknown():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
+	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("Kelly's lips curl into a faint grin and she closes her eyes, giving her head a small shake. <i>\"Aw, surely you can do better than that, honey? Don't I deserve a little more attention than that?\"</i> she teases you, opening her eyes as she awaits your response.");
@@ -2096,7 +2096,7 @@ public function aggressiveFlirtingWithKelly():void
 public function mischievouslyFlirtingWithKelly():void
 {
 	clearOutput();
-	userInterface.showBust("KELLY_NUDE");
+	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("Better? Well if she says so....");

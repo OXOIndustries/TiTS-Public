@@ -48,7 +48,7 @@ public function irelliaHallBonusShit():Boolean
 	else if(flags["IRELLIA_QUEST_STATUS"] == 5) 
 	{
 		output("\n\nQueen Scalla is here in her usual resplendant silks. Her sister, Queen Irellia, is nowhere to be seen. The well-dressed myr is presently talking with an attendant, unaware of you.");
-		addButton(0,"Queens",irelliaQuestApproachRouter);
+		addButton(0,"QueenScalla",irelliaQuestApproachRouter);
 	}
 	//After turn-in, there aint shit.
 	else output("\n\nYou're permitted to enter Irellia's private chambers, to the east.");
@@ -355,6 +355,8 @@ public function unificationInvitationEventProcInGildenmere():void
 	output("\n\n(<b>Gained Key Item: Unification Rally Invite</b> - This piece of paper invites you to a unification rally at 18:00 hours in the southwest corner of Mushroom Park.)");
 	pc.createKeyItem("Unification Rally Invite: 18:00, Mushroom Park",0,0,0,0);
 	flags["IRELLIA_QUEST_STATUS"] = 2;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Unification Rally

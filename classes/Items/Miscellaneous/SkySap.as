@@ -142,6 +142,7 @@
 						pc.tailType = GLOBAL.TYPE_VANAE;
 						pc.clearTailFlags();
 						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						changes++;
 					}
 					else kGAMECLASS.output(target.tailTypeLockedMessage());

@@ -31,7 +31,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 
@@ -223,6 +223,7 @@ public function synthSheathCodex():void
 public function varmintCodex():void
 {
 	clearOutputCodex();
+	showBust("VARMINT");
 	outputCodex(header("Hazard: Varmints"));
 	outputCodex("<b>Name (Singular):</b> Varmint\n\n");
 	outputCodex("One of the surviving native life forms on New Texas, the predatory creatures locally dubbed \"varmints\" are descendants from a much larger, more dangerous breed encountered by the settlers in their early days of colonization. Originally encountered as towering, dinosaur-like creatures with a penchant for flesh, the varmints' ancestors were nearly exterminated by overzealous colonist militias. Those that survived are of smaller, less dangerous and less intelligent sub-breeds.");
@@ -1376,7 +1377,7 @@ public function AISystemsCodexEntry():void
 public function thraggenCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("THRAGGEN");
+	userInterface.showBust("CAPTAIN_KHORGAN");
 	outputCodex(header("The Thraggen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
 	outputCodex("\n<b>Genders:</b> Male & Female");
@@ -1386,11 +1387,11 @@ public function thraggenCodexEntry():void
 	
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Physical Features"));
-	outputCodex("The thraggen are towering humanoids, often standing a foot or more over the human norm. Green-skinned and powerfully built, this alien race arose as apex predators on a hot jungle planet, and have evolved into a brutal warrior culture that teaches pain as pleasure -- and their biology has caught up with them. Be it by scientific error or natural phenomenon, the thraggen's ability to perceive pain is permanently diminished, and largely replaced by a powerfully sexual pleasure, which grows ever more fearsome as the warrior is injured in battle. Indeed, when a thraggen soldier is bested in battle, she is often begging for sexual release rather than mercy. Which, conveniently, has allowed warring tribes to end blood feuds with an explosion in population rather than massacre, allowing the thraggen race to expand with alarming rapidity. ");
+	outputCodex("The thraggen are towering humanoids, often standing a foot or more over the human norm. Green-skinned and powerfully built, this alien race arose as apex predators on a hot jungle planet, and have evolved into a brutal warrior culture that teaches pain as pleasure -- and their biology has caught up with them. Be it by scientific error or natural phenomenon, the thraggen's ability to perceive pain is permanently diminished, and largely replaced by a powerfully sexual pleasure, which grows ever more fearsome as the warrior is injured in battle. Indeed, when a thraggen soldier is bested in battle, she is often begging for sexual release rather than mercy. Which, conveniently, has allowed warring tribes to end blood feuds with an explosion in population rather than massacre, allowing the thraggen race to expand with alarming rapidity.");
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Typical Environments"));
-	outputCodex("Though native to the hot, humid jungle world of [REDACTED], the thraggen carved out a stellar empire for themselves by “slow boating” colony ships at near-light speed in their local cluster, establishing a sizable interplanetary presence before the first U.G.C. warp gates arrived. Having no tremendous skill at terraforming, most thraggen worlds remain rugged, untempered worlds with vast uncharted wilderness between sprawling clan holds.");
+	outputCodex("Though native to the hot, humid jungle world of =REDACTED=, the thraggen carved out a stellar empire for themselves by “slow boating” colony ships at near-light speed in their local cluster, establishing a sizable interplanetary presence before the first U.G.C. warp gates arrived. Having no tremendous skill at terraforming, most thraggen worlds remain rugged, untempered worlds with vast uncharted wilderness between sprawling clan holds.");
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
@@ -1398,9 +1399,9 @@ public function thraggenCodexEntry():void
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
-	outputCodex("Arising on the jungle world of [REDACTED], the thraggen survived for many millennia as hunter-gatherer tribes, hunting the towering Gryllan beasts rather than attempting agriculture, even into what would, on earth, have been analogous to the middle ages. Formed into closely-knit warrior tribes, the thraggen warred heavily against each other for territory, often resulting in clan feuds that would last for generations, and in some cases, persist to the modern day. Their early space flight was ramshackle at best, with most attempts at extraterrestrial flight merely attempts at weaponizing satellites or rapidly deploying soldiers. However, as the age of technology progressed on [REDACTED], the longer lives granted by advancing technology combined for the thraggen tendency to fuck rather than kill their enemies, began to lead to overpopulation of the homeworld. Hunting grounds became ever more precious, and the first major settlements, or clan holds, were established to secure precious land against rival tribes and upstart bands.");
+	outputCodex("Arising on the jungle world of =REDACTED=, the thraggen survived for many millennia as hunter-gatherer tribes, hunting the towering Gryllan beasts rather than attempting agriculture, even into what would, on earth, have been analogous to the middle ages. Formed into closely-knit warrior tribes, the thraggen warred heavily against each other for territory, often resulting in clan feuds that would last for generations, and in some cases, persist to the modern day. Their early space flight was ramshackle at best, with most attempts at extraterrestrial flight merely attempts at weaponizing satellites or rapidly deploying soldiers. However, as the age of technology progressed on =REDACTED=, the longer lives granted by advancing technology combined for the thraggen tendency to fuck rather than kill their enemies, began to lead to overpopulation of the homeworld. Hunting grounds became ever more precious, and the first major settlements, or clan holds, were established to secure precious land against rival tribes and upstart bands.");
 
-	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the [REDACTED] system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and settle sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds. ");
+	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the =REDACTED= system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and settle sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds.");
 
 	outputCodex("\n\nThe thraggen only enter the galactic stage in 227 A.C., when a U.G.C. warp gate flew into orbit around a starward thraggen world, and activated. An element of the Terran's Coalition Expeditionary Force arrived with it, eager to explore the new world -- and were immediately met with a rampaging horde of towering greenskins, descending upon them like wild animals. The bulk of the Terran force retreated, with several dozen captured and enslaved before the C.E.F. could leave the planet. By the time the Coalition returned with a full fleet to rescue the prisoners, they met -- to their horror and surprise -- an equal fleet of cobbled-together thraggen warships, with several more fleets on the way as the underestimated “brutes” co-opted the Ausar gates to unite their own worlds. ");
 
@@ -1567,7 +1568,7 @@ public function cockvinesCodexEntry():void
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
-	outputCodex("Hydrus Constuprula originates from the small continent of Irskand, and was discovered and classified by the former Red Myr nation of Harokees circa PUTDATEHERE. A bleak and inhospitable place even by Myrellion standards, the plant form had evolved to suit Irskand and was not particularly widespread. Harokees was at this time locked in a violent dispute with the Gold Myr over the relatively untouched landmass of Undandin; seeing its potential to disrupt Gold attempts to cultivate the Undandin fungus fields, the Red military approved cockvine’s covert release into Gold territory. The species duly exploded in population, spreading well beyond Undandin to infect virtually every corner of the Myrellion underground, despite a number of poorly coordinated joint efforts on the part of the Myr to wipe it out.");
+	outputCodex("Hydrus Constuprula originates from the small continent of Irskand, and was discovered and classified by the former Red Myr nation of Harokees circa three hundred years ago. A bleak and inhospitable place even by Myrellion standards, the plant form had evolved to suit Irskand and was not particularly widespread. Harokees was at this time locked in a violent dispute with the Gold Myr over the relatively untouched landmass of Undandin; seeing its potential to disrupt Gold attempts to cultivate the Undandin fungus fields, the Red military approved cockvine’s covert release into Gold territory. The species duly exploded in population, spreading well beyond Undandin to infect virtually every corner of the Myrellion underground, despite a number of poorly coordinated joint efforts on the part of the Myr to wipe it out.");
 
 	outputCodex("\n\nThe internecine warfare between the Myr, Nyrea and the Bothrioc and the subsequent movement of peoples, breakdown of infrastructure and land wastage has only increased cockvine’s spread. The plant is also recorded as being used by both sides of the Myr conflict as a form of sadistic punishment on prisoners of war; once a kept plant has finished with captives they are released deep in their home territory, with the explicit hope of their offspring spreading chaos there. This practice is expressly forbidden by international law.");
 	

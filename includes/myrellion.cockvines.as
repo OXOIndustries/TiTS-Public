@@ -3,7 +3,7 @@ import classes.Items.Accessories.TamWolf;
 import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
 {
-	showName("ADULT\nCOCK VINE");
+	showName("ADULT\nCOCKVINE");
 	showBust("ADULTCOCKVINE");
 	author("Nonesuch");
 }
@@ -312,19 +312,19 @@ public function adultCockvineCombatDescriptionExtension():void
 	switch (pc.statusEffectv1("Cockvine Grip"))
 	{
 		case 0:
-			output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...")
+			output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
 			break;
 
 		case 1:
-			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.");
+			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
 			break;
 
 		case 2:
-			output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.");
+			output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
 			break;
 
 		case 3:
-			output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...");
+			output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
 			break;
 
 		default:

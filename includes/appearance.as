@@ -533,6 +533,16 @@ public function appearance(target:Creature):void {
 			if(target.tailCount == 1) output2(" A scaled " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you. Softer, lighter scales cover its bottom.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
 		}
+		else if(target.tailType == GLOBAL.TYPE_BADGER) 
+		{
+			if(target.tailCount == 1) output2(" A little fluffy " + target.furColor + " tuft dangles atop your" + target.buttDescript() + ". It mischievously flicks back and forth from time to time.");
+			else output2(" " + upperCase(num2Text(target.tailCount)) + " fluffy little " + target.furColor + " tufts dangle atop your" + target.buttDescript() + ". They mischievously flick back and forth from time to time.");
+		}
+		else if(target.tailType == GLOBAL.TYPE_VANAE) 
+		{
+			if(target.tailCount == 1) output2(" Protruding from above your butt, a long, slippery tail wiggles behind you. It is lined with octopus-like suckers on the bottom, very much like a tentacle of some underwater... or perhaps tree-dwelling, creature.");
+			else output2(" Protruding from above your butt, " + num2Text(target.tailCount) + " long, slippery tails wiggle behind you. They is lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
+		}
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
 			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
