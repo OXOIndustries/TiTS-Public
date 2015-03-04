@@ -24,6 +24,12 @@ public function flahneNameDisplay():void
 	if(flags["MET_FLAHNE"] == undefined) userInterface.showName("GEL\nWOMAN");
 	else userInterface.showName("\nFLAHNE");
 }
+public function showFlahne(nude:Boolean = false):void
+{
+	flahneNameDisplay();
+	if(nude) showBust("FLAHNE_NUDE");
+	else showBust("FLAHNE");
+}
 
 public function flahneFuckCounter(arg:int = 0):Number {
 	if(flags["FLAHNE_SEXED"] == undefined) flags["FLAHNE_SEXED"] = 0;
@@ -433,6 +439,10 @@ public function flahneSexMenu(display:Boolean = true):void {
 		addDisabledButton(5,"(M)Exhibition","(M)Exhibition","This scene requires you to have interested Flahne in exhibitionism.");
 		addDisabledButton(6,"(F)Exhibition","(F)Exhibition","This scene requires you to have interested Flahne in exhibitionism.");
 	}
+	//Available for anybody with a cunt between their legs OR taurs with back-mounted cunts. 
+	//DA SCENE - Swap Oral
+	if(pc.hasVagina()) addButton(7,"Swap Oral",flahneEatOutSwapMeatPussiesYouKnowWhatIMean,undefined,"Swap Oral","Eat Flahne out, then see if the busty rahn can make a meal out of your own pussy - fun for everyone!");
+	else addDisabledButton(7,"Swap Oral","Swap Oral","You need a vagina to swap oral with Flahne!");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -1294,4 +1304,117 @@ public function flahneTalksAboutCumslutPenny():void
 
 	clearMenu(5 + rand(3));
 	meetingFlahne(false);
+}
+
+
+//Available for anybody with a cunt between their legs OR taurs with back-mounted cunts. 
+//DA SCENE - Swap Oral
+//Eat Flahne out, then see if the busty rahn can make a meal out of your own pussy - fun for everyone! 
+function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
+{
+	clearOutput();
+	showFlahne();
+	//if Taur:
+	if(pc.isTaur())
+	{
+		output("With the gel-like secretary's truly impressive rack suddenly on almost-complete display, it takes you a moment to churn through your options. If you ");
+		if(pc.hasCock()) output("were in the mood to use your [pc.cocks]");
+		else output("had a nice, big cock for her");
+		output(", you might just bend the giggly gel-girl over her desk and mount her like a proper mare... though you're not sure the flimsy desk could actually support your weight, much less the thrusting. The cramped little office doesn't offer a lot of other options, though, and with a body like yours... well, making love in tight quarters requires more finesse than you're able to produce when you've got a set of G-cups almost in your face.");
+	}
+	//if not taur: 
+	else
+	{
+		output("With the gel-like secretary's truly impressive rack suddenly on almost-complete display, it takes you a moment to churn through your options. After seeing her long, writhing tongue play around the candies the secretary's always sucking on, you can't wait to see what it could do to your [pc.vaginas]. Then again, those huge tits of hers are swaying hypnotically in your face, making you think of all the things you could do to a rack like that...");
+	}
+	output("\n\n\"<i>Cat got your tongue, cutie?</i>\" Flahne teases. As she speaks, though, the amber-hued secretary hops up from her swivel chair and slips around to your side of her desk, working through the remaining buttons of her shirt until it slips off her shoulders completely.");
+	output("\n\nYou nod at her question, completely entranced by the hypnotic sway of her huge tits, and the suggestive sashay of her wide hips underneath her skirt. \"<i>Well, ask your kitty friend if I can borrow it for a while,</i>\" she coos, hefting herself up onto the edge of the desk and spreading her legs. You're not surprised to see she's not wearing any panties under than sinfully short bottom of hers, and your eyes are instantly drawn to the glistening, golden honeypot tucked between her thick thighs.");
+	output("\n\nShe gives you a look with a mischievous glint in her amethyst eyes and pats her thighs invitingly, a silent offer for you to dig in. As her hands impact her alien flesh, her whole lower body seems to tremble with the shock like gelatin, quaking in ways that send the most awe-inspiring shockwaves all the way to her pendulous breasts.");
+
+	output("\n\nYou don't have to be asked twice.");
+
+	//if taur:
+	if(pc.isTaur())
+	{
+		output("\n\nSitting down on your bestial lower body brings you down to eye-level with Flahne's rack, almost eye to eye with her big, stiff, off-brown nipples.");
+	}
+	else output("\n\nYou slink down onto your [pc.knees], putting your face right on level with the jiggling gel's huge tits.");
+	output(" From there, it's just a little bit of leaning ");
+	if(pc.isTaur()) output("your humanoid half down ");
+	output("to nestle yourself between her meaty legs, close enough to smell the sugary musk wafting up from the slit of Flahne's sex. You'd almost think the curvaceous gel-girl was <i>made</i> of sweets!");
+
+	output("\n\nEager to see if Flahne's pussy tastes as good as it smells, you");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output(" lift the meaty shaft out of the way and");
+	else output(" flick your [pc.tongue] out along one of her outer lips, running it from the bottom of her twat to the hood of her clit. The taste is intoxicating, like the sweetest, sugariest candy you've ever eaten in the form of a molten liquid that's the perfect balance between sticky and creamy. You eat it up, letting the sweet stuff spur you on to licking deeper and faster into the giggling rahn's cunt.");
+
+	output("\n\n\"<i>Ooh, that's the spot!</i>\" she purrs, digging her soft digits into the lip of her desk and moaning with pleasure. Her hips wiggle happily, sending quaking sways through her huge tits - the sight of them going wild is too much to bear, and you find yourself reaching up to grab the massive mounds. Your fingers sink into them, all but vanishing into the soft gold gel that makes up Flahne's bust. Flahne giggles and shakes her shoulders, making you cling hard to her tits or be shaken off. The harder you squeeze, the more she moans - and the more of her sweet nectar you're able to lick out of her drooling cunt.");
+
+	output("\n\nWith a bit of pressure, your tongue's able to peel her pussylips apart, gaining access to the perfectly-formed passage between them. \"<i>Oh, oh gosh,</i>\" Flahne murmurs as your tongue squirms its way ever so slowly into her, spreading her soft, sodden slit nice and wide. \"<i>Eat it up, sugar. Eat it alllll up!</i>\"");
+
+	output("\n\nYou'd laugh at the corny pillow-talk if you weren't chin-deep in alien pussy. As it stands, you eagerly follow your giggly lover's instruction, licking your way around her cunny's walls and lapping up all her sweet juices. ");
+	//if Flahnepositor Out: 
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("The rahn's big, tumescent ovipositor throbs over you, completely tenting her skirt and plopping firmly onto the top of your head. Your lover giggles, her amber cheeks turning a darker orange. \"<i>Sorry,</i>\" she purrs, hefting the great big egg-layer off of you... and right up between her hefty tits. You take the hint and squeeze her boobs together, tight around the shaft of her ovi-cock, and start to massage them up against each other. You're almost immediately rewarded with a geyser of creamy pre that squirts up from her cleavage to splatter across the tops of her breasts. Flahne makes a hell of a show licking up every drop of it.\n\n");
+	output("You can tell she's getting close now! You lick and squeeze more fiercely, driving Flahne's pleasure ever higher until she lets out a sharp gasp, and you feel her thighs clench around your [pc.face]. A thick squirt of her candy-like juices presages an orgasm that has you fighting to catch your breath between wet surges and Flahne trying to bury you between her thick, soft thighs - a demise you honestly can't say you'd be opposed to, it if felt anywhere near as nice as her skin does against yours, rubbing wetly but softly all over you.");
+
+	output("\n\nFinally, you manage to break yourself out from Flahne's death-grip and catch your breath. Without out to cling to, the amber rahn flops onto her back and lets out a huge sigh. She looks utterly sated, eyes fluttering closed and hands ");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("idly playing with her squirting ovipositor, stroking the shaft so that it squirts its load into her waiting mouth");
+	else output("massaging her well-eaten pussy");
+	output(".");
+
+	output("\n\n\"<i>Oh, I needed that, sweetheart,</i>\" Flahne coos, slowly forcing herself to prop up on her arms. \"<i>Aww, you look so flustered you're about to burst! Why don't you just turn around and let me return the favor, sugar?</i>\"");
+
+	output("\n\nNow that's an offer you can't refuse! ");
+	if(pc.isTaur()) output("You awkwardly turn your big, bestial body around, trying not to knock too much over in Flahne's cramped little office. She giggles, just ducking under one of your legs as you try and get yourself angled so she's got easy access to your [pc.vaginas]. When you're finished, you're treated to the feeling of Flahne's soft fingers on your [pc.butt], rubbing and massaging the inhuman arrangement of your backside.");
+	else output("At a word from Flahne, you turn around and bend over, shaking your [pc.butt] at her and bracing your arms on your [pc.legs], your [pc.vaginas] on full display for her.");
+	output("\n\nSlowly but surely, her fingers work their way in towards [pc.oneVagina]. You shiver in anticipation, clawing ");
+	if(pc.legCount > 1) output("one of ");
+	output("your [pc.legs] along the floor as your lover draws ever closer to your cunt.");
+
+
+	output("\n\nYou hear Flahne giggling behind you, punctuated by the feeling of one of her smooth, gel-like digits circling [pc.oneClit]. You gasp, and again when her long, probe-like tongue flanks your pleasure-buzzer, lapping across the bud while her fingers teases back the hood. You have to admit, you want to feel that writhing tongue of hers inside you");
+	if(pc.tailCount > 1 && pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", and your tail seems to agree, wrapping lazily around Flahne's shoulders and pulling her closer");
+	output(".");
+
+	output("\n\nWiggling your [pc.hips] to get Flahne's attention, ");
+	var x:int = -1;
+	for(var y:int = 0; y < pc.totalVaginas(); y++)
+	{
+		//If a horsecunt or leithan cunt, set it
+		if(pc.vaginas[y].type == GLOBAL.TYPE_EQUINE || pc.vaginas[y].type == GLOBAL.TYPE_LEITHAN) x = y;
+	}
+	if(x == -1) x = rand(pc.totalVaginas());
+	//Taurs with winkypuss!
+	if(pc.isTaur() && (pc.vaginas[x].type == GLOBAL.TYPE_EQUINE || pc.vaginas[x].type == GLOBAL.TYPE_LEITHAN)) output("you make your [pc.vagina] wink enticingly at her, trying to draw her in");
+	else output("you reach back and spank your ass enticingly");
+	output(". She makes you wait an agonizingly long moment, long enough to plant a wet kiss on ");
+	if(pc.vaginas[x].clits > 1) output("a");
+	else output("your");
+	output(" [pc.clit] before she moves her tongue down to your animalistic hole. She moves with easy confidence, using her fingers to spread your pussylips nice and wide to give herself easy access to your [pc.cuntColor " + x + "] slit. It feels like ");
+	if(silly) output("something out of an ultraporn! Her tongue is like ");
+	output("a tentacle sliding into you. Your whole body goes rigid in reaction, every hair standing on-end as the alien appendage squirms and writhes inside you. Gasping and panting, you grab the far wall for support and try to hold on for dear life - or at least, try not to scream under the alien sensations crawling through you.");
+	//if Flahne exhibitionist:
+	if(flags["HUGGED_FLAHNE"] == 1) output(" As much as you're sure Flahne would just <i>love</i> someone to come bursting in on you, you don't want anything to interrupt the incredible pussy-eating you're getting!");
+
+	output("\n\nFlahne's tongue can do incredible things, you're quick to find out. Long and sinuous and dexterous, her writhing amber appendage seems to hone in on every sensitive spot you've got until you're moaning and trembling, struggling to stay on your ");
+	if(!pc.isTaur()) output("[pc.feet]");
+	else output("bestial legs");
+	output(".");
+	if(pc.hasTailFlag(GLOBAL.FLAG_LONG) && pc.tailCount > 0)
+	{
+		output(" Your [pc.tails]");
+		if(pc.tailCount > 1) output("twist and curl");
+		else output("twists and curls");
+		output(" behind you, spasming in reaction to shockwaves of pleasure - all the while trying to pull Flahne closer and deeper into your cunt.");
+	}
+	output(" You buck your [pc.hips] back against her smooth face, grinding and humping to trying to fuck Flahne's tongue deeper into your [pc.vagina " + x + "].");
+
+	output("\n\n\"<i>Gonna... gonna...</i>\" you moan, fingers scrabbling against the wall. Flahne answers with her fingers suddenly back around your clit, massaging your buzzer in time with her tongue's ministrations. That's just the push you need to slide over the edge, hurling you into the throes of pleasure. Your cunt squeezes hard around Flahne's tongue, squirting thick rivulets of [pc.girlCumNoun] across Flahne's cheeks. You can't help but cry out now, no matter how hard you try not to: a booming moan of pleasure that you're sure anyone outside Flahne's office can hear as clear as day. Nothing can stifle you once the dam's been broken, and you're moaning like a bitch in heat as Flahne licks and massages you through your climax.");
+	output("\n\nA moment passes, and you all but fall onto your [pc.knees] when Flahne's tongue slithers out of you. You spend a moment catching your breath, trembling with the aftershocks of your orgasm. Flahne giggles and licks her lips, murmuring \"<i>Now that was a treat!</i>\" and looking around for wherever her shirt fell.");
+
+	output("\n\nAs soon as your [pc.legs] are steady again, you get up and grab your [pc.gear], grinning at the amber gel-girl. She blows you a kiss between licking your juices off her cheeks.");
+	processTime(33);
+	flahneFuckCounter(1);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
