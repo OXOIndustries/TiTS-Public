@@ -186,7 +186,7 @@ package classes.Items.Miscellaneous
 					}
 				}
 				
-				kGAMECLASS.output("\n\nYou feel completely and utterly wiped when you stop orgasming at long last. You drag yourself to your feet with considerable effort and examine your");
+				kGAMECLASS.output("\n\nYou feel completely and utterly wiped when you stop orgasming at long last. You drag yourself to your [pc.feet] with considerable effort and examine your");
 				if (moddedAnyTits > 0) kGAMECLASS.output(" [pc.milk]");
 				if (target.hasCock() && moddedAnyTits > 0) kGAMECLASS.output(" and");
 				if (target.hasCock()) kGAMECLASS.output(" [pc.cum]");

@@ -148,7 +148,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\nShe gives you a wry look. “<i>It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
-	output("\n\n“<i>Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it to for the world.”</i>");
+	output("\n\n“<i>Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	
 	output("\n\nAfter a moment of companionable silence spent drinking, you ask if her work is very dangerous.");
 	
@@ -201,7 +201,7 @@ public function kaedeMyrellionTalkRenWorld():void
 		
 		output("\n\nKaede fidgets. “<i>As far as I know, yeah. W-why?”</i>");
 		
-		output("\n\nYou shrug, and mention it’d be pretty easy to be paying with weapons. Modern weapons that could give one side or the other in this primitive war a huge edge. It’s hardly the first time you’ve seen something like that: a big mega-corporation exploiting the locals with promises of armaments to settle their “<i>local disputes.”</i> The color fades from Kaede’s cheeks as you speak, until you assure her that you’re joking.");
+		output("\n\nYou shrug, and mention it’d be pretty easy to be paying with weapons. Modern weapons that could give one side or the other in this primitive war a huge edge. It’s hardly the first time you’ve seen something like that: a big mega-corporation exploiting the locals with promises of armaments to settle their “<i>local disputes.</i>” The color fades from Kaede’s cheeks as you speak, until you assure her that you’re joking.");
 		
 		output("\n\nWell, probably.");
 	}
@@ -225,7 +225,7 @@ public function kaedeMyrellionTalkHerself():void
 	
 	output("\n\nWith a chuckle, you tell her you want to know about <i>her</i>. There’s got to be more to Kaede than the job, right?");
 	
-	output("\n\nShe fidgets awkwardly and says, “<i>Uh, right, yeah. So... I my dad’s the lead mechanic on Tavros. I grew up there, you know. Didn’t see a planet until I was ten. I grew up around machines and starships and spacers. I guess I was pretty much destined to be obsessed with space.”</i>");
+	output("\n\nShe fidgets awkwardly and says, “<i>Uh, right, yeah. So... I- my dad’s the lead mechanic on Tavros. I grew up there, you know. Didn’t see a planet until I was ten. I grew up around machines and starships and spacers. I guess I was pretty much destined to be obsessed with space.”</i>");
 	
 	output("\n\nThinking for a moment, you ask if her dad happens be a fellow by the name of Zeke - the big guy that put your father’s Casstech back together before you quest began.");
 	
@@ -237,7 +237,7 @@ public function kaedeMyrellionTalkHerself():void
 	
 	output("\n\nKaede shakes her head, and her ears tuck down a little. “<i>No, no. My mom didn’t, um, stick around, I guess. She works in construction, I think. Salvage, sometimes. She’s got a pretty big ship, a full crew, works all over the frontier. I see her once every few years, maybe.”</i>");
 	
-	output("\n\nThinking you’ve hit a sensitive spot, you try and apologize, but Kaede waves you off. “<i>It’s fine. Really. I mean, in this day and age, I’m could just as easily have been born in a harem or gotten shipped off to an orphan school or something. My dad did alright by me.”</i>");
+	output("\n\nThinking you’ve hit a sensitive spot, you try and apologize, but Kaede waves you off. “<i>It’s fine. Really. I mean, in this day and age, I could just as easily have been born in a harem or gotten shipped off to an orphan school or something. My dad did alright by me.”</i>");
 	
 	output("\n\nYou suppose that’s true.");
 
@@ -257,7 +257,7 @@ public function kaedeMyrellionTalkFinish():void
 	
 	output("\n\n");
 	if (hasFuckedKaede()) output("“<i>Going so soon?”</i> you ask, your hand brushing along Kaede’s waist. She blushes, and chews her lower lip.");
-	else output("“<i>Leaving already?”</i> you ask, catching Kaede’s eye through the soft blue go of her holoband.");
+	else output("“<i>Leaving already?”</i> you ask, catching Kaede’s eye through the soft blue glow of her holoband.");
 	output(" She meets your gaze, and you get the feeling she isn’t in as much of a hurry to leave as she made out.");
 
 	processTime(3);
@@ -328,17 +328,20 @@ public function kaedeMyrellionBarFlirt():void
 
 	output("You inch a little closer to Kaede, drawing her attention away from her holoband’s clock, and remind her that she’s still got plenty of time before that delivery of hers.");
 	
-	output("\n\n“<i>I guess,”</i> she says. Her human half is trying awfully hard to be coy about it, but you can see the way her fluffy red tail starts swishing a little faster behind her that she’s enjoying your presence, and your growing closeness.");
+	output("\n\n“<i>I guess,”</i> she says. Her human side is trying awfully hard to be coy about it, but you can see the way her fluffy red tail starts swishing a little faster behind her that she’s enjoying your presence, and your growing closeness.");
 
 	//{If PC's fucked Kaede before:
 	if (hasFuckedKaede())
 	{
-		output("\n\nYou hand slips down the stroke the wagging bush of canid tail behind her, making the halfbreed girl moan softly. “<i>What do you say we get out of here?”</i> you suggest, letting your hand play down from her tail to the tight butt beneath it.");
+		output("\n\nYou hand slips down to stroke the wagging bush of canid tail behind her, making the halfbreed girl moan softly. “<i>What do you say we get out of here?”</i> you suggest, letting your hand play down from her tail to the tight butt beneath it.");
 		
 		output("\n\n“<i>Y-you want to...”</i> she starts, eyes widening a little. A bit of red touches Kaede’s cheeks, and she murmurs a little softer, “<i>I thought you were only interested in me with Anno.”</i>");
 		
-		output("\n\n{if Kind: You smile at her, and say that you’re <i>very</i> interested in the cute halfbreed. //if Misch: Well, she and Anno have a very open relationship, the way you understand it. With two smoking hot ausar girls, you want everything the pair of them have to offer. //if Hard: You take a hold of Kaede’s wrist and pull her into a furious kiss. She gasps, but melts in your grasp, returning the kiss. When you break it, you ask if that answers her question. All she can do is nod.}");
-		
+		output("\n\n");
+		if(pc.isNice()) output("You smile at her, and say that you’re <i>very</i> interested in the cute halfbreed.");
+		else if(pc.isMischievous()) output("Well, she and Anno have a very open relationship, the way you understand it. With two smoking hot ausar girls, you want everything the pair of them have to offer.");
+		else output("You take a hold of Kaede’s wrist and pull her into a furious kiss. She gasps, but melts in your grasp, returning the kiss. When you break it, you ask if that answers her question. All she can do is nod.");
+				
 		output("\n\n“<i>Alright,”</i> she says, “<i></i>Talon<i>’s parked just a little ways off. Want to, um, come back to my place, [pc.name]?”</i>");
 		
 		output("\n\nAbsolutely.");

@@ -75,7 +75,10 @@
 					kGAMECLASS.output("\n\nYou only just suppress a low, guttural ");
 					if(target.bovineScore() < 1) kGAMECLASS.output("moan");
 					else kGAMECLASS.output("moo");
-					kGAMECLASS.output(" as your back arches, your instinctive pleasure overwhelming your senses as your hands go on autopilot, tugging and squeezing your teats until your [pc.knees] are quaking. Finally, with a gasp of bliss, you let yourself collapse onto all fours like a proper dairy cow, gushing your lactic lust onto the ground until your hands are completely soaked, washing away the cream from your teats as they work you to nearly orgasmic heights of ecstasy.");
+					kGAMECLASS.output(" as your back arches, your instinctive pleasure overwhelming your senses as your hands go on autopilot, tugging and squeezing your teats until your [pc.knees] ");
+					if(target.legCount == 1) kGAMECLASS.output(" is");
+					else kGAMECLASS.output(" are");
+					kGAMECLASS.output(" quaking. Finally, with a gasp of bliss, you let yourself collapse onto all fours like a proper dairy cow, gushing your lactic lust onto the ground until your hands are completely soaked, washing away the cream from your teats as they work you to nearly orgasmic heights of ecstasy.");
 					if(target.hasCock() || target.hasVagina())
 					{
 						kGAMECLASS.output(" You try not to notice the ");

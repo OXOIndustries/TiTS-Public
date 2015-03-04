@@ -2473,7 +2473,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	else output("You're so loose - you've done this a lot, haven't you?”</i> she asks");
 	output(". You let out a trembling cry in response, your mind reeling from the intense sensations utterly seizing your body as her tentacle 'cock' coils around inside of you.");
 
-	output("\n\nTentacles of her organic skirt begin coiling around your [pc.hips] and [pc.thighs], pulling her waist flush with your own. You gasp as your bellies rub together and her naked flesh brushes against your [pc.skinFurScales], her writhing alien appendage now buried fully inside of you.");
+	output("\n\nTentacles of her organic skirt begin coiling around your [pc.hips], pulling her waist flush with your own. You gasp as your bellies rub together and her naked flesh brushes against your [pc.skinFurScales], her writhing alien appendage now buried fully inside of you.");
 
 	output("\n\nSlowly she begins to plumb your");
 	if (isCunt) output(" [pc.pussy]");
@@ -2495,7 +2495,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	output("\n\nNever have you felt so complete as being fucked right now by this amazon huntress, pleasure coursing through your body in crashing waves. You positively drown in ecstasy, pressing your [pc.hips] needily against her own.");
 
 	output("\n\nJust when you think you can't reach any higher than you already are, her flexible tip begins stroking your most sensitive spot");
-	if (pc.hasVagina()) output(", rubbing deliciously against your G-spot");
+	if (isCunt && pc.hasVagina()) output(", rubbing deliciously against your G-spot");
 	else if (pc.hasCock()) output(", pressing and teasing your prostate");
 	output(". You let out a loud, shameless cry as her suckers clamp on, tugging and suckling at it. It pushes you careening over the edge in a glorious, spasmodic rush.");
 

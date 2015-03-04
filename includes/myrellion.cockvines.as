@@ -3,7 +3,7 @@ import classes.Items.Accessories.TamWolf;
 import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
 {
-	showName("ADULT\nCOCK VINE");
+	showName("ADULT\nCOCKVINE");
 	showBust("ADULTCOCKVINE");
 	author("Nonesuch");
 }
@@ -312,19 +312,19 @@ public function adultCockvineCombatDescriptionExtension():void
 	switch (pc.statusEffectv1("Cockvine Grip"))
 	{
 		case 0:
-			output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...")
+			output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
 			break;
 
 		case 1:
-			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.");
+			output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
 			break;
 
 		case 2:
-			output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.");
+			output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
 			break;
 
 		case 3:
-			output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...");
+			output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
 			break;
 
 		default:
@@ -382,7 +382,7 @@ public function adultCockvineConsentacles():void
 	output(".");
 	if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 	else output(" It");
-	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
+	output(" easily lifts you off your [pc.feet] when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
 	if (pc.hasVagina()) output(" and makes [pc.eachVagina] moisten itself eagerly");
 	output(".");
 
@@ -449,7 +449,7 @@ public function adultCockvineConsentacles():void
 	else
 	{
 		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.asshole], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
-		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.eachCock] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
+		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.cocksNounSimple] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
 	}
 
 	if (pc.hasCuntTail())
@@ -767,7 +767,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 		output("\n\nThe cockvine winds its multitudinous, febrile grip around you as you approach its nest{, languidly shedding your [pc.gear] as you go.");
 		if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 		else output(" It");
-		output(" easily lifts you off your feet when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
+		output(" easily lifts you off your [pc.feet] when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
 	}
 
 	output("\n\nYou feel the monster slide its pliant grip between your thighs... and there it freezes. You feel it pat your featureless mound several times, searching for something that isn’t there.");

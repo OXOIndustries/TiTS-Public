@@ -499,7 +499,7 @@ public function pcLossToNyrea():void
 			
 			output("\n\nThe nyrea’s hand wraps around the shaft of her cock and hefts it up, pressing the spine-covered crown to your lips. <i>“Now suck,”</i> she commands. <i>“You’ve proven you’re good at it.”</i>");
 			
-			output("\n\nYou suppose there are worse fates than being shoved onto your knees and being forced to suck alien cock. You open your mouth to her, letting the huntress ram herself back into your mouth, almost to the knot. You run your hands along her thigh and shaft, wrapping your fingers around her knot and gently massaging the throbbing mass of flesh. It doesn’t take long to taste a salty-sweet taste pouring down your throat, a trickle of pre milked out by your deft hands and twisting tongue. ");
+			output("\n\nYou suppose there are worse fates than being shoved onto your [pc.knees] and being forced to suck alien cock. You open your mouth to her, letting the huntress ram herself back into your mouth, almost to the knot. You run your hands along her thigh and shaft, wrapping your fingers around her knot and gently massaging the throbbing mass of flesh. It doesn’t take long to taste a salty-sweet taste pouring down your throat, a trickle of pre milked out by your deft hands and twisting tongue. ");
 			
 			output("\n\n<i>“Good,”</i> your captor murmurs, <i>“Just like that.”</i>");
 			

@@ -285,7 +285,7 @@
 					//Already have tail:
 					if(pc.tailCount > 0)
 					{
-						kGAMECLASS.output("\n\nHeat pulses up your [pc.oneTail], the ropey muscles there reconfiguring. It doesn’t feel like it’s melting away, rather shifting into something different. After a while the sensation dissipates and you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
+						kGAMECLASS.output("\n\nHeat pulses up [pc.oneTail], the ropey muscles there reconfiguring. It doesn’t feel like it’s melting away, rather shifting into something different. After a while the sensation dissipates and you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
 					}
 					//Do not have tail:
 					else

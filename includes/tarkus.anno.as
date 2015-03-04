@@ -466,7 +466,11 @@ public function annoShootsResults(easy:Boolean = false):void
 
 		output("\n\nAs your tongue goes in for another taste of Anno's quivering quim, you feel a powerful twitch beside your ear as Anno's leg moves, knocking limply against your back. You lick again, and feel the same motion, twice now. As you continue to lick and slurp at Anno's cunt, you cast a glance aside, watching her leg start to spasm to the beat of your oral ministrations. You lick faster, suckling on her clit and probing deep into her pussy, working the poor, lust-addled ausar up into a leg-shaking frenzy.");
 
-		output("\n\nOh, she's <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it's running down your chin, pooling between your [pc.knees] as you feast. Good lord, she wasn't kidding about how wet she'd get. But that only gets <i>you</i> ");
+		output("\n\nOh, she's <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it's running down your chin, pooling");
+		if(pc.legCount > 1) output(" between");
+		else output(" around");
+		output(" your [pc.knees] as you feast. Good lord, she wasn't kidding about how wet she'd get. But that only gets <i>you</i> ");
+
 		if(pc.hasCock() && pc.hasVagina()) output("harder and wetter");
 		else if(pc.hasCock()) output("harder");
 		else if(pc.hasVagina()) output("wetter");
@@ -602,7 +606,7 @@ public function publicUsePuppyAnno():void
 	author("Savin");
 	userInterface.showBust("ANNO_NUDE");
 	userInterface.showName("\nANNO");
-	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly t o the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
+	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly to the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
 
 	output("\n\n<i>\"Good girl. Stay.\"</i>");
 
@@ -891,8 +895,8 @@ public function syriTalksAboutAnno():void
 	output("\n\n<i>\"Twins? I, uh...\"</i> you fidget, <i>\"I thought she was your older sister?\"</i>");
 	output("\n\n<i>\"By like, five minutes. Don't change the subject, killjoy,\"</i> Syri growls, looming over you. ");
 	//If PC has a cock: 
-	if(pc.hasCock()) output("“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”");
-	else output("“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”");
+	if(pc.hasCock()) output("“<i>Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...</i>”");
+	else output("“<i>Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.</i>”");
 	output(" Your eyes eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
 	output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
 	if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
@@ -4055,7 +4059,7 @@ public function annoxKaedeWatch(inShop:Boolean = true):void
 	
 	output("\n\n<i>“No touching,”</i> Anno giggles, her arms shifting again, thrusting forward enough that Kaede almost seems to lift off her feet for a moment. Her bushy red tail tucks inward as she realizes just what she’s in store for. <i>“There you go... I want to show my boss just what you can do, love.”</i> ");
 	
-	output("\n\n<i>“S-show-off,”</i> Kaede groans, silenced by a kiss from her lover. Anno laughs and breaks off, trailing a few more kisses down the victimized canid-girl’s neck. Behind Kaede, Anno’s arm is moving rhythmically, her wrist pumping and and slowly sliding out once a second, holding a steady, sure beat into the redhead’s straining asshole, keeping her nice and stretched around the two fur-clad digits. <i>“Fuck! Ease up, babe... not so fast....”</i>");
+	output("\n\n<i>“S-show-off,”</i> Kaede groans, silenced by a kiss from her lover. Anno laughs and breaks off, trailing a few more kisses down the victimized canid-girl’s neck. Behind Kaede, Anno’s arm is moving rhythmically, her wrist pumping and slowly sliding out once a second, holding a steady, sure beat into the redhead’s straining asshole, keeping her nice and stretched around the two fur-clad digits. <i>“Fuck! Ease up, babe... not so fast....”</i>");
 	
 	output("\n\nAnno grins. <i>“Or what? Don’t tell me you’re ready to cum already?”</i>");
 	

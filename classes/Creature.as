@@ -647,7 +647,7 @@
 		public function tailTypeLockedMessage():String
 		{
 			var msg:String = "";
-			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_CUNTSNAKE)
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
 			{
 				msg = "\n\nThe creature masquerading as a tail seems pretty spooked about something all of a sudden;";
 				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
@@ -1252,6 +1252,12 @@
 				case "hair":
 					buffer = hairDescript();
 					break;
+				case "hairNoun":
+					buffer = hairNoun();
+					break;
+				case "hairsNoun":
+					buffer = hairsNoun();
+					break;
 				case "hairColor":
 					buffer = hairColor;
 					break;
@@ -1618,6 +1624,9 @@
 					break;
 				case "legFurScales":
 					buffer = legFurScales();
+					break;
+				case "knees":
+					buffer = kneesDescript();
 					break;
 				case "feet":
 					buffer = feet();
@@ -3502,14 +3511,15 @@
 			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
 			return buffer;
 		}
-		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String 
-		{
-			if (legCount == 1) return foot(forceType, forceAdjective);
+		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+			// Plural check:
+			if(legCount == 1) return foot(forceType,forceAdjective);
 			
+			// Default:
 			var select: Number = 0;
 			var output: String = "";
 			output = footAdjectives(forceType, forceAdjective);
-			
+		
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
@@ -3517,6 +3527,9 @@
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tails";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else output += "feet";
 			return output;
 		}
@@ -3531,10 +3544,12 @@
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tail";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else output += "foot";
 			return output;
 		}
-		
 		public function toes(): String {
 			var select: Number = 0;
 			var output: String = "";
@@ -3551,11 +3566,18 @@
 		{
 			return (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || hasLegFlag(GLOBAL.FLAG_PLANTIGRADE));
 		}
+		public function kneesDescript(): String 
+		{
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) return "cilia";
+			else if (legCount == 1) return kneeDescript();
+			else return pluralize(kneeDescript());
+		}
 		public function kneeDescript(): String {
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilium";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "trunk";
 			else output += "knee";
 			return output;
 		}
@@ -7401,6 +7423,37 @@
 				}
 				else descript += "hair";
 			}
+			return descript;
+		}
+		public function hairNoun():String
+		{
+			var descript:String = "";
+			//Mane special stuff.
+			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
+				descript += "mane";
+				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
+			}
+			//Not manes
+			else {
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
+				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
+				{
+					if(rand(2) == 0) descript += "plumage";
+					else descript += "feather-hair";
+				}
+				else descript += "hair";
+			}
+			return descript;
+		}
+		public function hairsNoun():String
+		{
+			var descript:String = "";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
+			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
+			else descript += "locks";
 			return descript;
 		}
 		public function hairsDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {

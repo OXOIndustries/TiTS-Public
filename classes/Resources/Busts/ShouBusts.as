@@ -17,6 +17,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/bigT_nude.png", mimeType = "image/png")]
 		public var Bust_BIGT_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/brynn.png", mimeType = "image/png")]
+		public var Bust_BRYNN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/brynn_nude.png", mimeType = "image/png")]
+		public var Bust_BRYNN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron.png", mimeType = "image/png")]
 		public var Bust_CAMERON:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron_nude.png", mimeType = "image/png")]

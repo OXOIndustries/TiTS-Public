@@ -330,7 +330,7 @@
 						if(y < 1) y = 1;
 						//round it
 						y = Math.round(y*10)/10;
-						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your knees. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
+						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your [pc.knees]. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
 						if(y > 1) kGAMECLASS.output("es");
 						kGAMECLASS.output(" of length from the exquisitely pleased cock.");
 						target.cocks[x].cLengthRaw -= y;
@@ -404,7 +404,9 @@
 					if(target.lust() >= 75)
 					{
 						kGAMECLASS.author("Savin");
-						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
+						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble");
+						if(target.legCount == 1) kGAMECLASS.output("s");
+						kGAMECLASS.output(" as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
 						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch or squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
 						if(target.hasCock()) 
 						{
@@ -417,7 +419,9 @@
 							if(target.vaginaTotal() > 1) kGAMECLASS.output("s");
 						}
 						else kGAMECLASS.output(" tinging, faceless groin");
-						kGAMECLASS.output(". With a shudder, you sink down to your [pc.knees], spreading 'em wide as you lose yourself to your lust.");
+						kGAMECLASS.output(". With a shudder, you sink down to your [pc.knees]");
+						if(target.legCount > 1) kGAMECLASS.output(", spreading 'em wide");
+						kGAMECLASS.output(" as you lose yourself to your lust.");
 
 						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined");
 						if(target.hasCock()) 
@@ -441,7 +445,9 @@
 							if(!target.hasCock()) kGAMECLASS.output("[pc.girlCum]");
 							else kGAMECLASS.output("[pc.cum]");
 						}
-						kGAMECLASS.output(", trying to catch your breath as you slump down to the ground on weak [pc.knees]. Holy shit...");
+						kGAMECLASS.output(", trying to catch your breath as you slump down to the ground on");
+						if(target.legCount == 1) kGAMECLASS.output(" your");
+						kGAMECLASS.output(" weak [pc.knees]. Holy shit...");
 						kGAMECLASS.processTime(5);
 						target.orgasm();
 					}
@@ -480,7 +486,9 @@
 								target.ballSizeRaw = 1;
 							}
 						}
-						kGAMECLASS.output("\n\nYou can’t help but shiver at the changes surging through you. Suddenly, you feel... juices... running down and slickening your leg. Wait, what? You give a gasp of pleasure as you feel your groin splitting open - not painfully, but rather with an eruption of ecstasy. Your [pc.knees] buckle as your groin opens up, gushing a nearly-orgasmic flood of new feminine fluids as your new hole takes shape. You have a [pc.pussy] now");
+						kGAMECLASS.output("\n\nYou can’t help but shiver at the changes surging through you. Suddenly, you feel... juices... running down and slickening your leg. Wait, what? You give a gasp of pleasure as you feel your groin splitting open - not painfully, but rather with an eruption of ecstasy. Your [pc.knees] buckle");
+						if(target.legCount == 1) kGAMECLASS.output("s");
+						kGAMECLASS.output(" as your groin opens up, gushing a nearly-orgasmic flood of new feminine fluids as your new hole takes shape. You have a [pc.pussy] now");
 						if(target.ballSizeRaw < .75)
 						{
 							target.balls = 0;

@@ -670,6 +670,7 @@ public function repeatVenusPitcherHypnoGo():void {
 	output("\n\n<i>“You’re so ready to be properly touched... to have your lust fed into a bonfire of need and then milked from you with slow, deliberate orgasms. Just lie back and obey my instructions. Obey them so wholly that they stop becoming powerful instructions and turn into compulsive thoughts of your own,”</i>  the potent voice purrs as you’re stretched and suspended upside down, completely naked. Your arousal is totally exposed to her, though this is a blessing, since you’re awaiting the pleasure you’ve become conditioned to expect. The tongues you’ve been feeling have brought you to a precipice, and the feeling of pure, distilled excitement threatens to explode out of you already");
 	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output(", even though you’ve been here before");
 	output(".");
+	pc.lust(55);
 	//To Appropriate Venus pitcher milking!
 	processTime(5+rand(5));
 	elderVenusFuckSelect();
@@ -750,6 +751,7 @@ public function watchElderVenusPitcher():void {
 	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legOrLegs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
 	
 	output("\n\n<i>“Now, you just lie back there, and I’m going to make you cum so very, very well,”</i>  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
+	pc.lust(100);
 	processTime(5+rand(5));
 	//Choose appropriate genitalia to abuse!
 	//Next

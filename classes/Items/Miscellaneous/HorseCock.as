@@ -171,7 +171,7 @@
 				else kGAMECLASS.output("\n\n");
 				kGAMECLASS.output("\n\nFinally, your horsey tool is fully erect at a showstopping " + num2Text(Math.round(pc.cocks[target].cLength() + 4)) + "-inches. You run your hands up and down its massive length and hug it to your body, smelling the heady scent of your own animalistic musk. It clings to <b>your new horse-cock</b> like an arousing, pheromone-dense cloud.");
 				kGAMECLASS.output("\n\nYou feel your balls tense up a moment before your new cock blasts a fountain of sticky semen straight up, only to rain down upon your head. You tilt your head back and open your mouth; sticking out your tongue you catch mouthful after mouthful of potent cum and greedily gulp it down.");
-				kGAMECLASS.output("\n\nYour orgasm finally ends after what feels like an eternity. You stumble to your feet, a sticky wet mess, and watch in dazed amusement as your softening horse-cock slithers back up into its sheath to hang heavily along your thigh. You decide that you need to get a shower, covered in cum as you are");
+				kGAMECLASS.output("\n\nYour orgasm finally ends after what feels like an eternity. You stumble to your [pc.feet], a sticky wet mess, and watch in dazed amusement as your softening horse-cock slithers back up into its sheath to hang heavily along your thigh. You decide that you need to get a shower, covered in cum as you are");
 				if(!CodexManager.entryUnlocked("SynthSheath"))
 				{
 					kGAMECLASS.output(", and as you’re walking to the bathroom, your Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device");

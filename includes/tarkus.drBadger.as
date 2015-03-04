@@ -196,7 +196,9 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE A COCK
 	if(!pc.hasCock())
 	{
-		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr Badger herself. <b>Your cock is now very large</b>!");
+		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
+		if(pc.legCount == 1) output("s");
+		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock</b>!");
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 11;
 		pc.cocks[0].cockColor = "black";
@@ -204,7 +206,9 @@ public function heyDocImAHero():void
 	//IF PC HAS A SMALLER THAN VERY LARGE COCK
 	else if(pc.biggestCockLength() < 11)
 	{
-		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr Badger herself. <b>Your cock is now very large</b>!");
+		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
+		if(pc.legCount == 1) output("s");
+		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr Badger herself. <b>Your cock is now very large</b>!");
 		pc.cocks[0].cLengthRaw = 11;
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL COCK
@@ -329,7 +333,7 @@ public function heyDocImAHero():void
 		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
 		pc.furColor = "black";
 	}
-	if(pc.legType != GLOBAL.TYPE_SUCCUBUS)
+	if(pc.legType != GLOBAL.TYPE_SUCCUBUS && pc.isBiped())
 	{
 		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels</b>!");
 		pc.legType = GLOBAL.TYPE_SUCCUBUS;

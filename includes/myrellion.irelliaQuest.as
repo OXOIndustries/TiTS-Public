@@ -48,7 +48,7 @@ public function irelliaHallBonusShit():Boolean
 	else if(flags["IRELLIA_QUEST_STATUS"] == 5) 
 	{
 		output("\n\nQueen Scalla is here in her usual resplendant silks. Her sister, Queen Irellia, is nowhere to be seen. The well-dressed myr is presently talking with an attendant, unaware of you.");
-		addButton(0,"Queens",irelliaQuestApproachRouter);
+		addButton(0,"QueenScalla",irelliaQuestApproachRouter);
 	}
 	//After turn-in, there aint shit.
 	else output("\n\nYou're permitted to enter Irellia's private chambers, to the east.");
@@ -132,7 +132,7 @@ public function firstIrelliaApproach():void
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("with grace");
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("as if possessed by the knowledge of a sage");
 	else output("in such an unusual way");
-	output(".I would hear what [pc.heShe] has to say.</i>”");
+	output(". I would hear what [pc.heShe] has to say.</i>”");
 	output("\n\nMarsail scowls, but waves her arm in your direction, her combined jewelry jingling obnoxiously. “<i>Fine then. Speak to us, star-walker. Why do you interrupt our conference? What are you called?</i>”");
 	processTime(5);
 	clearMenu();
@@ -220,7 +220,7 @@ public function introduceToIrelliaAndCo():void
 	//Bimbo
 	if(pc.isBimbo()) output("“<i>Super nice to meet you ladies! You can call me [pc.name] Steele, or just [pc.name]. It’s way easier to remember and stuff!</i>” You pause, trying to recall what else you were going to say. “<i>Oh yeah, I was just stopping in to like, say hi and see how everyone is doing, what with the war... and uh... war.</i>”\n\nMarsail scowls. “<i>Useless and empty headed.</i>”");
 	//Nice
-	else if(pc.isNice()) output("“<i>My name is [pc.name], and I thought it would be wise to seek out the city’s leadership to see how the war has been affecting Gildenmere.</i>” You bow formally. “<i>I did not mean any rudeness, I assure you.</i>”\n\nMarsail folds her arms across her bust, scowling. “<i>Intended or not, you are rude and unwelcome.</i>”");
+	else if(pc.isNice()) output("“<i>My name is [pc.name] Steele, and I thought it would be wise to seek out the city’s leadership to see how the war has been affecting Gildenmere.</i>” You bow formally. “<i>I did not mean any rudeness, I assure you.</i>”\n\nMarsail folds her arms across her bust, scowling. “<i>Intended or not, you are rude and unwelcome.</i>”");
 	//Mischievous
 	else if(pc.isMischievous()) output("“<i>You can call me [pc.name] Steele, or just [pc.name] if it suits your fancy. I was just dropping by to say hi and get a feel for how the city was faring, but if I offended you, I don’t think I could’ve found a prettier woman to offend.</i>” You bat your eyelashes as charmingly as you can manage.\n\nMarsail laughs. “<i>Flattery does not make your impertinence less odious, [pc.name].</i>”");
 	//Rude Ahole
@@ -238,11 +238,11 @@ public function introduceYourselfToIrelliaOnly():void
 	showName("GOLD\nQUEENS");
 	//Introduce yourself and explain that you came to seek audience with Irellia, not the other two.
 	//Bimbo
-	if(pc.isBimbo()) output("“<i>Uhm... I just wanted to meet with Irellia, I think, but you two are super cute too!</i>” You bat your eyelashes and continue, “<i>Your jewelry is amazing, and I wish I had silks like those to wear. The boys wouldn’t be able to look away!</i>”\n\nMarsail crosses her lower arms across one pair of breasts. A scowl is painted so deeply into her face it might as well be etched. “<i>We do not have time for useless fluff.</i>”");
+	if(pc.isBimbo()) output("“<i>Uhm... I'm [pc.name] Steele and just wanted to meet with Irellia, I think, but you two are super cute too!</i>” You bat your eyelashes and continue, “<i>Your jewelry is amazing, and I wish I had silks like those to wear. The boys wouldn’t be able to look away!</i>”\n\nMarsail crosses her lower arms across one pair of breasts. A scowl is painted so deeply into her face it might as well be etched. “<i>We do not have time for useless fluff.</i>”");
 	//Nice
 	else if(pc.isNice()) output("“<i>Pardon my intrusion. I merely wanted an audience with Irellia, not to interrupt your fair conference.</i>” You bow deferentially.\n\nMarsail counters, “<i>And you can’t even take instruction. You were to name yourself, little thing, remember?</i>”\n\nYou apologize once more, ever the diplomat. “<i>Sorry. My name is [pc.name] Steele. Forgiveness, your grace.</i>”\n\nThe bejeweled queen scowls. “<i>You shall not have my forgiveness, pity, or even attention any longer. Begone.</i>”");
 	//Mischievous/Hard
-	else output("“<i>My mistake. Here I thought this was a city of liberty, love, and compassion, not a brutal matriarchy that won’t even take the time to meet a traveller who journeyed from beyond the stars.</i>” You spread your arms disarmingly. “<i>I’m just [pc.name] Steele, the heir{ess} to a fortune beyond your comprehension, your rudeness.</i>”\n\nMarsail’s lips flap for a second. Her skin flushes reddish brown. Finally, she snaps, “<i>Whatever you are, you are a rude, small little [pc.manWoman] unworthy of our time. We have no time for princelings with no sense of propriety!</i>” The last word comes out with a vicious snap of her jaws. Her temper could melt titanium.");
+	else output("“<i>My mistake. Here I thought this was a city of liberty, love, and compassion, not a brutal matriarchy that won’t even take the time to meet a traveller who journeyed from beyond the stars.</i>” You spread your arms disarmingly. “<i>I’m just [pc.name] Steele, the heir" + pc.mf("","ess") + " to a fortune beyond your comprehension, your rudeness.</i>”\n\nMarsail’s lips flap for a second. Her skin flushes reddish brown. Finally, she snaps, “<i>Whatever you are, you are a rude, small little [pc.manWoman] unworthy of our time. We have no time for princelings with no sense of propriety!</i>” The last word comes out with a vicious snap of her jaws. Her temper could melt titanium.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",meetingIrelliaPt2);
@@ -260,7 +260,7 @@ public function nevermindIrelliaAndCo():void
 	//Nice
 	else if(pc.isNice()) output("“<i>The name’s [pc.name] Steele, but I’m afraid that this was a mistake. If I had known my presence would be unwelcome, I would never have approached. Good day, ladies.</i>” You turn to depart.\n\nA hand falls on your shoulder, stopping you. “<i>Whether you knew or not is as meaningless as your station. You shall stay, if only so that we can lay the full weight of our displeasure upon you.</i>”");
 	//Mischievous
-	else if(pc.isMischievous()) output("“<i>The real question is: how have you fine ladies not missed my obvious royal bearing? You address {Prince/Princess} [pc.name] Steele, heir" + pc.mf("","ress") + " to the mighty Steele Tech, and you do so poorly. I suggest you have your servants bring you a fresh helping of tact; you are sorely in need of it in these trying times.</i>” You turn on your heel, a playful smile on your face. Maybe you ought to give playing the royal a try sometime.\n\nA hand falls on your shoulder, stopping you in your tracks. “<i>Such exaggerated boasting ill becomes you. Do you think us simpletons that devour every half-assed story we are offered?</i>”");
+	else if(pc.isMischievous()) output("“<i>The real question is: how have you fine ladies not missed my obvious royal bearing? You address " + pc.mf("Prince","Princess") + " [pc.name] Steele, heir" + pc.mf("","ress") + " to the mighty Steele Tech, and you do so poorly. I suggest you have your servants bring you a fresh helping of tact; you are sorely in need of it in these trying times.</i>” You turn on your heel, a playful smile on your face. Maybe you ought to give playing the royal a try sometime.\n\nA hand falls on your shoulder, stopping you in your tracks. “<i>Such exaggerated boasting ill becomes you. Do you think us simpletons that devour every half-assed story we are offered?</i>”");
 	//Hard
 	else output("“<i>Why are you so rude?</i>” You gesture at Marsail while the assembled myr gasp. “<i>Your city is perched on the edge of annihilation, and the only thing keeping it from tipping into nonexistence is the UGC’s good graces.</i>” You shrug disarmingly and turn away, making to leave. “<i>A single [pc.race] with a decent starship could wipe out one of your armies in an afternoon. It’d be a shame if potential allies left after being so ill treated - potential allies like [pc.name] Steele.</i>”\n\nA hand falls on your shoulder, stopping you. Maybe you managed to talk some sense into these royal twits.\n\n“<i>You are as uncouth as you are impertinent. You are lucky we stand in house Uldred. Such slanderous speech would see you serving in a punishment detail if we stood in Nil’dor.</i>” Marsail’s razor-edged scowl could cut glass.");
 	processTime(1);
@@ -280,7 +280,7 @@ public function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 	output("\n\nQueen Irellia agrees, “<i>Yes, quite a lot has changed. Do not let Marsail’s foul mood sully your opinion of us. We are pleased to make your acquaintance, [pc.name] Steele. If only our meeting occurred in fairer times.</i>”");
 	output("\n\nYou point out that there’s supposed to be a ceasefire.");
 	output("\n\nThe robed myr queen gives a soft, sad chuckle at that.");
-	output("\n\nQueen Irellia shakes her head, holding on of her uppermost hands against her forehead. “<i>Would that it were so simple, [pc.name]. Just because the bombs and bullets have stopped falling does not mean that hostilities have ceased. Even now, agents of the Scarlet Federation stalk our streets in secret, enacting a campaign of fire and terror against our most peaceful citizens.</i>” She gestures to the other remaining royal. “<i>Queen Scalla’s sons and daughters have endured four separate bombings over the past week.</i>”");
+	output("\n\nQueen Irellia shakes her head, holding one of her uppermost hands against her forehead. “<i>Would that it were so simple, [pc.name]. Just because the bombs and bullets have stopped falling does not mean that hostilities have ceased. Even now, agents of the Scarlet Federation stalk our streets in secret, enacting a campaign of fire and terror against our most peaceful citizens.</i>” She gestures to the other remaining royal. “<i>Queen Scalla’s sons and daughters have endured four separate bombings over the past week.</i>”");
 	output("\n\nScalla pulls her finely woven silks closer about herself. “<i>That is correct. I fear they may be targetting the younger, less secure queens, like Irellia, Marsail, and myself.</i>”");
 	//Tried to leave.
 	if(tried2Leave) output("\n\nYou shrug and ask why you should care.\n\nIrellia smirks at you. “<i>Because, star-walker, Lyralla has shared her thoughts on your kind with us. Even if honor and justice did not motivate you, the potential for coin would.</i>” Her sapphire lipstick glitters as her smile broadens. “<i>We could help each other.</i>”");
@@ -355,6 +355,8 @@ public function unificationInvitationEventProcInGildenmere():void
 	output("\n\n(<b>Gained Key Item: Unification Rally Invite</b> - This piece of paper invites you to a unification rally at 18:00 hours in the southwest corner of Mushroom Park.)");
 	pc.createKeyItem("Unification Rally Invite: 18:00, Mushroom Park",0,0,0,0);
 	flags["IRELLIA_QUEST_STATUS"] = 2;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Unification Rally

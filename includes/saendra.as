@@ -1182,11 +1182,13 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	}
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");
-	if (pc.isBiped()) output(" spreading your [pc.legs] wide for herself, hands braced on your knees");
+	if (pc.isBiped()) output(" spreading your [pc.legs] wide for herself, hands braced on your [pc.knees]");
 	else output(" positioning herself");
 	if(pc.legCount > 1) output(" between");
 	else output(" along");
 	output(" your [pc.legOrLegs], bracing herself on your [pc.hips]");
+
+
 	output(". You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of the probe brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... ");
 
 	output("\n\nBut at the last moment, Saen lunges forward, cupping your cheek and pressing her lips to yours. You gasp, breath catching in your throat as Saen’s tongue slips between your lips, playing across your teeth. It takes a second to relax, finally easing into the unexpected kiss, wrapping your arms around Saen’s slender waist as she finally pushes her telescoping probe forward, bringing the rounded steel head through the circle of your sphincter. You groan into Saendra’s lips, but the penetration comes surprisingly easily, helped along by your long minutes of preparation and the tender, loving embrace of your red-maned lover. With the first inches inside your rectum, Saen breaks the kiss, smiling down at you with a deep, radiant warmth. She caresses your cheek, gently cupping it and bringing your head up for another quick kiss as she wiggles her hips, easing another few inches into you. You roll your head back and moan openly as her tentacle pushes in, stretching your rectal walls wider and wider as the slender steel thickens. Soon you’ve gone from her needle-like point to the grapefruit-sized rod of cold, unforgiving probe that’s now stretching your bum wide.");
@@ -1472,11 +1474,17 @@ public function saendraButteFuckeAnal():void
 	if (saendra.hasCock()) output("You reach around to grab your lover’s bristly cock as you pound her. She gives a delighted little squeal as your fingers wrap around her throbbing erection, jacking it to the beat your thrusting hips, cresting her tapered cockhead each time your [pc.hips] slam into her jiggling ass. ");
 	output("<i>“Oh yeah! Fuck my ass harder!”</i> Saen cries as you hammer her gaping hole, <i>“Harder! I need it harder!”</i>");
 
-	output("\n\nYou’re not sure how much harder you can go! With a grunt of effort you push her hips down, planting her flat on the bed and shifting your [pc.legOrLegs] until you’re right over her, cock angled right into the slut’s sultry hole. You shift your hands up, grabbing the lusty redhead by the tits for leverage; she screams her pleasure as you plant your [pc.knees] around her waist and start to jackhammer her ass. <i>“Fuck! Just like that!”</i> she cries, clawed fingers tearing into her sheets, <i>“Fuck me just like that, hero! FUCK ME!”</i>");
+	output("\n\nYou’re not sure how much harder you can go! With a grunt of effort you push her hips down, planting her flat on the bed and shifting your [pc.legOrLegs] until you’re right over her, cock angled right into the slut’s sultry hole. You shift your hands up, grabbing the lusty redhead by the tits for leverage; she screams her pleasure as you");
+	if(pc.legCount == 1) output(" wrap your [pc.knee]");
+	else output(" plant your [pc.knees]");
+	output(" around her waist and start to jackhammer her ass. <i>“Fuck! Just like that!”</i> she cries, clawed fingers tearing into her sheets, <i>“Fuck me just like that, hero! FUCK ME!”</i>");
 
 	output("\n\nAs fast as you can move your hips, you fuck the needy halfbreed’s ass. Her muscles go wild around you, squeezing so hard you think you’re going to faint - you fight for every inch, throwing your entire strength into the redhead’s squeezing hole until the inevitable, heart pounding rise of your own orgasm flickers through your mind, breath quickening as your body prepares to unleash its second load.");
 	saendra.orgasm();
-	output(" You’d feel bad, if at that moment Saen didn’t scream again as a wetness spread between your [pc.knees]. You grin as she cums, her pussy juices soaking the sheets");
+	output(" You’d feel bad, if at that moment Saen didn’t scream again as a wetness spreads");
+	if(pc.legCount > 1) output(" between");
+	else output(" along");
+	output(" your [pc.knees]. You grin as she cums, her pussy juices soaking the sheets");
 	if (saendra.hasCock()) output(" as her cock spurts all over her belly, her thick seed trapped between her gut and the bed");
 	output(". You let yourself go, releasing your hold on your load and joining her in orgasm. [pc.cum] floods down your [pc.cock "+ selCock +"] and into the roiling depths of Saendra’s ass, filling the halfbreed’s gut with a rush of cum. <i>“Yeah! I feel it!”</i> she cries, reaching back to grab your [pc.butt]. <i>“Fill me with it, hero! Fuck me full of cum!”</i> ");
 	saendra.loadInAss(pc);

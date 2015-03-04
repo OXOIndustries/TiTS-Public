@@ -169,7 +169,7 @@ public function zilBaggedApproach():void {
 	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
 	{
 		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
-		output("\n\nHe's suspended in the air by dozens of oily black tentacles, thrusting his hips furtively against rippling black tube again and again. His rhythm is steady with only the barest hint of quiver, though his eyes are rolled back in his head, lost in whatever ecstasy he's trapped in.");
+		output("\n\nHe's suspended in the air by dozens of oily black tentacles, thrusting his hips furtively against the rippling black tube again and again. His rhythm is steady with only the barest hint of quiver, though his eyes are rolled back in his head, lost in whatever ecstasy he's trapped in.");
 		output("\n\n\"<i>The males of the species have proven quite adept at providing us large quantities of genetic material. All it takes is a little modification and motivation, or the M and M's, I like to call them.</i>\"");
 		output("\n\nThe zil's nuts appear at least three times larger than when you saw him before, doubtless responsible for his current state and immense productivity.");
 		output("\n\nJulian continues talking as if nothing is out of place. \"<i>Another day or two like that and we can return our enhanced subject to the wilds. I'm sure he'll be quite popular with the ladies... and boys. I don't think it'll matter much to him with his new libido.</i>\"  He turns off the display and extends another capture harness in your direction.");

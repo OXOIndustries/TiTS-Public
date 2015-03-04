@@ -957,7 +957,7 @@ public function closeEyesForTheTF(hamArgs:int = 10):void
 	clearOutput();
 	showXanthe();
 
-	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalFront:int = Math.floor(hamArgs/10);
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	output("You decide to take her at her word, and close your eyes for the process. It might be your imagination, but you swear you hear her make a slightly disappointed noise.");
 	output("\n\n<i>\"Such a good " + pc.mf("boy","girl") + "! I’ll really have to do something about that...</i>” She purrs out. There’s nothing for a good long while... is she done?");
@@ -997,7 +997,7 @@ public function closeEyesForTheTF(hamArgs:int = 10):void
 
 public function xantheSetGenitals(hamArgs:int = 10):void
 {
-	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalFront:int = Math.floor(hamArgs/10);
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	if(genitalFront == 1) flags["XANTHE_FRONT_GENITAL"] = 1;
 	else flags["XANTHE_FRONT_GENITAL"] = 2;
@@ -1026,7 +1026,7 @@ public function brazenWatchXanth(hamArgs:int = 10):void
 
 public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):void
 {
-	var genitalFront:int = Math.floor(hamArgs/10) * 10;
+	var genitalFront:int = Math.floor(hamArgs/10);
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	output("\n\nYou watch on as she unhooks her black bra and pulls it downwards, letting her glorious blue bosom spill out for you to see. They give a delightful little jiggle as they are finally released from their lacy confines.");
 	output("\n\nIt’s hard not to relish in the sight of those hefty alien breasts. There’s just the right amount of gravity to give them a little sag, that nice natural look without losing their full perk. ");
@@ -1041,11 +1041,11 @@ public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):v
 
 	output("\n\nWith her legs spread wide, you can clearly see her hairless mounds and bare blue loins. At the front ");
 	//front cock && back pussy:
-	if(genitalFront == 1 && genitalBack == 2) output("is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight. Between her chunky rear thighs is her siel pussy, easily distinguishable by her Y-shaped slit.");
+	if(xantheHasFrontCock() && xantheHasBackCunt()) output("is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight. Between her chunky rear thighs is her siel pussy, easily distinguishable by her Y-shaped slit.");
 	//front pussy && back cock:
-	else if(genitalFront == 2 && genitalBack == 1) output("is her siel pussy, easily distinguishable by her Y-shaped slit. Between her chunky rear thighs is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight.");
+	else if(xantheHasFrontCunt() && xantheHasBackCock()) output("is her siel pussy, easily distinguishable by her Y-shaped slit. Between her chunky rear thighs is a slender genital slit housing her rippling alien phallus, which is completely hidden from sight.");
 	//two cocks:
-	else if(genitalFront == 1 && genitalBack == 1) output("and back are a pair of slender genital slits housing her rippling alien phalli. They are currently hidden from sight.");
+	else if(xantheHasFrontCock() && xantheHasBackCock()) output("and back are a pair of slender genital slits housing her rippling alien phalli. They are currently hidden from sight.");
 	//two pussies:
 	else output("and back are her pair of siel pussies, easily distinguishable by their Y-shaped slits.");
 
@@ -1055,6 +1055,8 @@ public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):v
 
 	var frontChanging:Boolean = (flags["XANTHE_FRONT_GENITAL"] != genitalFront);
 	var backChanging:Boolean = (flags["XANTHE_BACK_GENITAL"] != genitalBack);
+
+	trace("XANTH PRETF STATUS. FRONT GENITAL: " + flags["XANTHE_FRONT_GENITAL"] + " BACK GENITAL: " + flags["XANTHE_BACK_GENITAL"] + "\nPOST TF STATUS. FRONT: " + genitalFront + " BACK: " + genitalBack);
 
 	if(frontChanging && !backChanging)
 	{
@@ -1113,9 +1115,10 @@ public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):v
 		output("is ");
 		if(pc.isCrotchGarbed()) output("sliding into your [pc.lowerGarment] and touching");
 		else output("moving to touch");
-		if(pc.hasCock()) output("[pc.oneCock]");
-		else if(pc.hasVagina()) output("[pc.oneVagina]");
-		else output("your [pc.ass]");
+		if(pc.hasCock()) output(" [pc.oneCock]");
+		else if(pc.hasVagina()) output(" [pc.oneVagina]");
+		else output(" your [pc.ass]");
+		output(".");
 	}
 	//Taur: 
 	else output("is teasing your [pc.chest].");

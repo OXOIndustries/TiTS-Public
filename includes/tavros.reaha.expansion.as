@@ -494,11 +494,11 @@ public function reahaTalkAddiction():void
 	
 	output("\n\n<i>“Let’s start with how you got on these in the first place.”</i> ");
 	
-	output("\n\n<i>“It was that bitch Carver,”</i> Reaha spits. <i>“When I had to... had to go into debt because of my mods, I check-boxed that I was okay with sex. I mean, hey, I just bought all these great mods, and if it helped me pay off my debt faster, I didn’t mind putting them to use. But then the bitch who owned the brothel bought my contract and put me in a pretty pink room, told me to do whatever every man who came through said. ");
+	output("\n\n<i>“It was that bitch Carver,”</i> Reaha spits. <i>“When I had to... had to go into debt because of my mods, I check-boxed that I was okay with sex. I mean, hey, I just bought all these great mods, and if it helped me pay off my debt faster, I didn’t mind putting them to use. But then the bitch who owned the brothel bought my contract and put me in a pretty pink room, told me to do whatever every man who came through said.</i>”");
 	
 	output("\n\n<i>“That’s fucked up, right? I mean, I thought that meant that I wouldn’t mind my master wooing me for some gentle loving or something");
 	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(", or at least somebody who would treat me like you do, [pc.name]");
-	output(". I never imagined I’d end up getting forced to work in an actual whorehouse. I coulda stayed on New Texas for that shit.”</i> ");
+	output(". I never imagined I’d end up getting forced to work in an actual whorehouse. I coulda stayed on New Texas for that shit.”</i>");
 	
 	output("\n\nReaha scowls, crossing her arms under her huge rack. <i>“I tried to lawyer up, but Carver just put me in the special BDSM whipping part of her brothel for a week when I had the audacity to try and fucking stop this shit. I guess I kept being rowdy even after that, even bit a couple people when they got... well, anyway, Carver and her mistresses didn’t put up with that. After that, they started putting these stupid patches on me,”</i> Reaha says, prodding");
 	if (reahaAddiction() < REAHA_ADDICTION_MED) output(" the");
@@ -923,7 +923,7 @@ public function reahaAddictionTherapy():void
 	output("<i>“Time to work on getting rid of");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" those");
 	else output(" that");
-	output(", you say, pointing to the pleasure patch");
+	output("</i>\", you say, pointing to the pleasure patch");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW) output("es");
 	output(" stuck like stickers on Reaha’s thigh.");
 	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" She winces as if threatened, shifting her leg to cover the other, hiding the patches from sight. <i>“I-If you say so...”</i>");
@@ -992,7 +992,7 @@ public function reahaAddictionTherapyDickwielder():void
 	
 	output("\n\n");
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output("Reaha’s much, much too sensitive to go straight for the prize, though. You trace your [pc.tongue] around the swell of it, leaving butterfly kisses on the cow-girl’s crotch. The lips of her pussy, though, are open game for your attentions. You nibble at the loose, thick folds on offer, letting your tongue sample the honeypot between them. Reaha gives a little girlish squeal when your tongue probes into her; her legs clench tight around you, gripping you tight as you start to really eat her out.");
-	else output("With Reaha’s reliance on patches already down, you feel confident enough to actually go in and tease her clit. She’d have lost her mind on more than a light touch before, but now as you caress the swell of it with your tongue, she just moans and shudders, legs wrapping around you to draw you in further. <i>“Not... not too much,”</i> she groans, her back arching as you lick and kiss on her. Giving her a knowing wink, you plant your lips flush on Reaha’s pleasure-buzzer and give it a gentle, long suckle like you might to one of her milky teats. You slowly make your way down from her clit after that, letting your [pc.tongue] probe between the loose, heavy lips of her pussy and into the sweet honeypot hidden between them.}");
+	else output("With Reaha’s reliance on patches already down, you feel confident enough to actually go in and tease her clit. She’d have lost her mind on more than a light touch before, but now as you caress the swell of it with your tongue, she just moans and shudders, legs wrapping around you to draw you in further. <i>“Not... not too much,”</i> she groans, her back arching as you lick and kiss on her. Giving her a knowing wink, you plant your lips flush on Reaha’s pleasure-buzzer and give it a gentle, long suckle like you might to one of her milky teats. You slowly make your way down from her clit after that, letting your [pc.tongue] probe between the loose, heavy lips of her pussy and into the sweet honeypot hidden between them.");
 	
 	output("\n\nReaha shivers at your touch, her wide hips moving to meet your probing [pc.tongue], urging you deeper into her wide, slick channel. Her muscles wring and squeeze on your tongue, searching for a big, thick cock to spread themselves wide on; instead, you lick and caress them, showering her vaginal walls with loving attention.");
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output(" As usual");

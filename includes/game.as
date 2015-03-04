@@ -69,6 +69,7 @@ public function mainGameMenu():void {
 	clearOutput();
 	output(this.rooms[this.currentLocation].description);
 	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
+	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))

@@ -407,21 +407,26 @@ package classes.Items.Transformatives
 			//High chance to grow a cow tail (PC already has tails)
 			if (rand(3) == 0 && changes < tChanges && (target.tailType != GLOBAL.TYPE_BOVINE && target.tailType != 0 && target.tailCount > 0))
 			{
-				if (target.tailCount >= 2)
+				if(target.tailTypeUnlocked(GLOBAL.TYPE_BOVINE))
 				{
-					output("You feel a strange sensation coming from your tails! They're squirming and shifting, all moving together and seeming... to fuse! You moan, biting your lip as your tails combine into a single, massively thick appendage. After a moment, much of the flesh there starts to recede into your body, leaving a single slender tail in its wake, tipped with a tuft of hair. <b>Your tails have combined into a single cow's tail!</b>\n\n");
+					if (target.tailCount >= 2)
+					{
+						output("You feel a strange sensation coming from your tails! They're squirming and shifting, all moving together and seeming... to fuse! You moan, biting your lip as your tails combine into a single, massively thick appendage. After a moment, much of the flesh there starts to recede into your body, leaving a single slender tail in its wake, tipped with a tuft of hair. <b>Your tails have combined into a single cow's tail!</b>\n\n");
+					}
+					else
+					{
+						output("You feel a strange sensation coming from your tail. Looking over your shoulder, you watch with alarm as the flesh of it sloughs off, receding into your body to reveal a small, slender tendril of skin tipped with a small tuft of fur. <b>Your tail is now like a cow's!</b>\n\n");
+					}
+					target.tailCount = 1;
+					target.tailType = GLOBAL.TYPE_BOVINE;
+					target.tailFlags = [];
+					target.clearTailFlags();
+					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+					changes++;
 				}
-				else
-				{
-					output("You feel a strange sensation coming from your tail. Looking over your shoulder, you watch with alarm as the flesh of it sloughs off, receding into your body to reveal a small, slender tendril of skin tipped with a small tuft of fur. <b>Your tail is now like a cow's!</b>\n\n");
-				}
-				
-				target.tailCount = 1;
-				target.tailType = GLOBAL.TYPE_BOVINE;
-				target.tailFlags = [];
-				changes++;
+				else kGAMECLASS.output(target.tailTypeLockedMessage());
 			}
-
 			//High chance to gain bovine ears
 			if (rand(3) == 0 && changes < tChanges && (target.earType != GLOBAL.TYPE_BOVINE))
 			{

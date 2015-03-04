@@ -1197,9 +1197,15 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	output("\n\nA shiver runs through you as the wet, warm slit of Shade’s pussy-tail brushes across your [pc.leg], leaving a sticky trail up your thigh, getting dangerously close to your half-hard dick.");
 	output("\n\n“<i>Oooh, she’s getting impatient,</i>” Shade purrs, grabbing her tail by the tip and coiling it around her waist to look at it. “<i>Desperate for a taste, aren’t you?</i>”");
 	output("\n\nShade shifts slightly, scooting down your prostrate body until she can get her hands around your [pc.hips] and pull you up, getting you on your hands");
-	if(pc.legCount == 1 && !pc.isNaga()) output(" and [pc.knee]");
-	else if(!pc.isNaga()) output(" and [pc.knees]");
-	output(" and leaving your [pc.cock " + x + "] dangling between your [pc.legOrLegs]. Her fingers brush across your length, a simple touch that has you from half mast to diamond hard by the time she’s reached your [pc.cockHead " + x + "].");
+	if(pc.legCount == 1 && pc.hasKnees()) output(" and [pc.knee]");
+	else if(pc.hasKnees()) output(" and [pc.knees]");
+	output(" and leaving your [pc.cock " + x + "] dangling");
+	if(pc.legCount > 1) output(" between");
+	else output(" against");
+	output(" your [pc.legOrLegs]. Her fingers brush across your length, a simple touch that has you from half mast to diamond hard by the time she’s reached your [pc.cockHead " + x + "].");
+
+
+
 	output("\n\n“<i>I love a woman with a nice, hard cock between her legs.");
 	if(pc.isGoo() || pc.isNaga()) output(" Or [pc.legOrLegs], in your case.");
 	output("</i>” Shade says, leaning in an planting a kiss ");

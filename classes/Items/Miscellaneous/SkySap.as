@@ -142,6 +142,7 @@
 						pc.tailType = GLOBAL.TYPE_VANAE;
 						pc.clearTailFlags();
 						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 						changes++;
 					}
 					else kGAMECLASS.output(target.tailTypeLockedMessage());
@@ -391,8 +392,21 @@
 					}
 					else 
 					{
-						outputB(" You no longer have a " + pc.simpleCockNoun(pc.smallestCockIndex()) + "!");
+						outputB(" You no longer have a " + pc.simpleCockNoun(pc.smallestCockIndex()));
 						pc.removeCock(pc.smallestCockIndex(),1);
+						// If no more dicks, then remove balls!
+						if(!pc.hasCock() && pc.balls > 0)
+						{
+							outputB("!</b>");
+							outputB("\n\nIn addition, the disappearance of your only manhood also seems to affect your [pc.sack]... With rhythmic pulses, the size of your package gradually diminishes until it vanishes completely!");
+							outputB("<b>");
+							if(pc.balls == 1) outputB(" Your single [pc.ballNoun] has disappeared");
+							else outputB(" You no longer have [pc.ballsNoun]");
+							pc.balls = 0;
+							pc.ballSizeRaw = 0;
+						}
+						outputB("!");
+
 					}
 					outputB("</b>")
 					changes++;

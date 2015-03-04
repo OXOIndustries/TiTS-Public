@@ -646,7 +646,7 @@ public function talkToGianna(display:Boolean = true):void
 				output(". <i>\"Are you sure you want to talk,”</i> she coos, rocking her [gianna.hips] just enough to drag her butt up and down against your crotch. <i>\"Wouldn’t you rather rather go lie down on a hay bale and let me tend to your tension.”</i> Giggling, the android runs her fingers ");
 				if(pc.hasHair()) output("through your [pc.hair]");
 				else output("across your head");
-				output(" while she grinds. <i>\"Don’t you want a girl that will take care all your needs and and serenade you with endless conversation while you come down?”</i> She subtly flexes the pale flesh of that silicone-padded behind. <i>\"Why rush into the talk now?”</i>");
+				output(" while she grinds. <i>\"Don’t you want a girl that will take care all your needs and serenade you with endless conversation while you come down?”</i> She subtly flexes the pale flesh of that silicone-padded behind. <i>\"Why rush into the talk now?”</i>");
 				//Add a good bit of lust and dommy sex option. Bimbos always get dommy sex. Same with super low will characters.
 				pc.lust(20);
 				//9999
