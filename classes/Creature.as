@@ -1252,6 +1252,12 @@
 				case "hair":
 					buffer = hairDescript();
 					break;
+				case "hairNoun":
+					buffer = hairNoun();
+					break;
+				case "hairsNoun":
+					buffer = hairsNoun();
+					break;
 				case "hairColor":
 					buffer = hairColor;
 					break;
@@ -7417,6 +7423,37 @@
 				}
 				else descript += "hair";
 			}
+			return descript;
+		}
+		public function hairNoun():String
+		{
+			var descript:String = "";
+			//Mane special stuff.
+			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
+				descript += "mane";
+				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
+			}
+			//Not manes
+			else {
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
+				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
+				{
+					if(rand(2) == 0) descript += "plumage";
+					else descript += "feather-hair";
+				}
+				else descript += "hair";
+			}
+			return descript;
+		}
+		public function hairsNoun():String
+		{
+			var descript:String = "";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
+			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
+			else descript += "locks";
 			return descript;
 		}
 		public function hairsDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {

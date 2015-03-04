@@ -3704,7 +3704,7 @@ public function goozookaCannon(target:Creature):void
 	if (rangedCombatMiss(pc, target, 0))
 	{
 		// Missed
-		output("\n\nBut the goo sample goes wide, splattering on the ground a little ways away. A moment later, a miniature gray googirl congeals from the mess, looks around, and starts hauling ass away from the fight. Whoops.");
+		output("\n\nHowever the goo sample goes wide, splattering on the ground a little ways away. A moment later, a miniature gray googirl congeals from the mess, looks around, and starts hauling ass away from the fight. Whoops.");
 	}
 	else
 	{

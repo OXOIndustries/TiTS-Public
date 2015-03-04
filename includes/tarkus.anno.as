@@ -4059,7 +4059,7 @@ public function annoxKaedeWatch(inShop:Boolean = true):void
 	
 	output("\n\n<i>“No touching,”</i> Anno giggles, her arms shifting again, thrusting forward enough that Kaede almost seems to lift off her feet for a moment. Her bushy red tail tucks inward as she realizes just what she’s in store for. <i>“There you go... I want to show my boss just what you can do, love.”</i> ");
 	
-	output("\n\n<i>“S-show-off,”</i> Kaede groans, silenced by a kiss from her lover. Anno laughs and breaks off, trailing a few more kisses down the victimized canid-girl’s neck. Behind Kaede, Anno’s arm is moving rhythmically, her wrist pumping and and slowly sliding out once a second, holding a steady, sure beat into the redhead’s straining asshole, keeping her nice and stretched around the two fur-clad digits. <i>“Fuck! Ease up, babe... not so fast....”</i>");
+	output("\n\n<i>“S-show-off,”</i> Kaede groans, silenced by a kiss from her lover. Anno laughs and breaks off, trailing a few more kisses down the victimized canid-girl’s neck. Behind Kaede, Anno’s arm is moving rhythmically, her wrist pumping and slowly sliding out once a second, holding a steady, sure beat into the redhead’s straining asshole, keeping her nice and stretched around the two fur-clad digits. <i>“Fuck! Ease up, babe... not so fast....”</i>");
 	
 	output("\n\nAnno grins. <i>“Or what? Don’t tell me you’re ready to cum already?”</i>");
 	

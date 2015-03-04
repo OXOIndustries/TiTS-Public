@@ -164,7 +164,7 @@ public function investigateFrogapi():void
 	if(race == "human" || race == "terran" || race == "ausar" || race == "kaithrit" || race == "kui-tan") output("“<i>" + race + "! Wonderful! I’ve worked with your kind before!</i>”");
 	else output("It shakes the device in its hand and tucks it away into a tiny pocket. “<i>Doesn’t matter, a tove that can’t do business with an unknown species is a tove that’ll never get his own wabeship, am I right?</i>”");
 
-	output("\n\n“<i>Good sapient, I am Orryx, a male, if you’re wondering, tove in good standing with the Gyre Galactic Camarilla,</i>” he begins. “<i>Wait! Hold on! I forgot something!</i>” Before you can say a word, he vanishes down into the depths of the podium. The entire structure can’t be more than five feet high, but you hear the sound of splashing and and metal clanging before the creature returns.");
+	output("\n\n“<i>Good sapient, I am Orryx, a male, if you’re wondering, tove in good standing with the Gyre Galactic Camarilla,</i>” he begins. “<i>Wait! Hold on! I forgot something!</i>” Before you can say a word, he vanishes down into the depths of the podium. The entire structure can’t be more than five feet high, but you hear the sound of splashing and metal clanging before the creature returns.");
 	flags["MET_ORRYX"] = 1;
 	processTime(3);
 	//break
@@ -334,7 +334,7 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 	{
 		output("“<i>I love it! I had a good feeling going into business with you, my good sapient,</i>” Orryx says,winking one of his four eyes and tapping his beak with his talon.");
 		output("\n\nAs you hand him the honey, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
-		output("\n\n“<i>An easy 500 credits for you, and and tidy profit for me,</i>” he burbles happily. A glance at your Codex confirms the amount. “<i>Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!</i>”");
+		output("\n\n“<i>An easy 500 credits for you, and tidy profit for me,</i>” he burbles happily. A glance at your Codex confirms the amount. “<i>Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!</i>”");
 		output("\n\nYou bid the tove farewell as you walk away.");
 		//[+1 Rep with Orryx]
 		orryxReputation(1);
@@ -352,7 +352,7 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 	{
 		output("“<i>Yes! Hah-ha! I love it! I had a good feeling going into business with you, my good sapient,</i>” Orryx says,winking one of his four eyes and tapping his beak with his talon.");
 		output("\n\nAs you hand him the honeys, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
-		output("\n\n“<i>An easy 500 credits for you, and and tidy profit for me,</i>” he burbles happily. A glance at your Codex confirms the amount. “<i>Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!</i>”");
+		output("\n\n“<i>An easy 500 credits for you, and tidy profit for me,</i>” he burbles happily. A glance at your Codex confirms the amount. “<i>Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!</i>”");
 		output("\n\nYou bid the tove farewell as you walk away.");
 		//[+1 Rep with Orryx]
 		orryxReputation(1);

@@ -131,12 +131,12 @@ public function getMilkedByYancyYaSloot():void
 	//Not nakkers
 	if(!pc.isNude())
 	{
-		output("\n\ngo ahead and get naked so we don’t get any fluids on your gear.</i>” He flips a switch to cycle the machine’s storage and warm up for the next customer.");
+		output("go ahead and get naked so we don’t get any fluids on your gear.</i>” He flips a switch to cycle the machine’s storage and warm up for the next customer.");
 	}
 	//Nakkers
 	else 
 	{
-		output("\n\nprepare yourself. This can get pretty intense.");
+		output("prepare yourself. This can get pretty intense.");
 		if(flags["YANCY_MILKED_PC"] != undefined) output(" You remember, right?");
 		output("</i>” He flips a switch to cycle the machine’s storage and warm it up for you.");
 	}
@@ -264,7 +264,7 @@ public function getMilkedByYancyYaSloot():void
 		output("\n\nHis particular body odor is really nice, actually. You can pick out individual notes in it. Here, an aroma of slow-roasted nuts, laced with a pheromone cocktail that has your skin flushing. There, a whiff of an almost chocolatey scent, a unique chemical mark that’s already rubbing off on you, marking you as his, at least until you take a shower. Your Treated brain, freed from pointless, overdrawn thoughts, parses the chemical stew in an instant. Your eyes light up. The stud wants to fuck you!");
 		output("\n\nHe smirks in the most adorable, panty-soaking way.");
 		if(!pc.hasVagina()) output(" You wish you had a pussy just so you could cream yourself all over his hand, then feel him slipping his digits inside to make sure you’re ready.");
-		else output(" You’re just glad he can feel you creaming yourself all over his hand; that you can enjoy the way his fingers are sliding inside, starting to wriggle around playfully. void above, each is thicker than a normal terran’s cock.");
+		else output(" You’re just glad he can feel you creaming yourself all over his hand; that you can enjoy the way his fingers are sliding inside, starting to wriggle around playfully. Void above, each is thicker than a normal terran’s cock.");
 
 		output("\n\n“<i>I’ve seen that look before,</i>” he observes");
 		if(pc.hasVagina()) output(" with an accompanying twist of his fingers inside you. Your [pc.hips] shake and buck");

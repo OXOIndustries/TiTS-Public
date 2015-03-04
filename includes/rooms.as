@@ -114,7 +114,7 @@ public function initializeRooms():void
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
-	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
 	rooms["LIFT: MERCHANT DECK"].eastExit = "MERCHANT'S THOROUGHFARE2";
@@ -142,7 +142,7 @@ public function initializeRooms():void
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
 	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
-	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
+	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffuse the stuffy air inside this tube of metal and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].eastExit = "TAVROS HANGAR";
@@ -1823,7 +1823,7 @@ public function initializeRooms():void
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
-	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can do down into the ship or south out into the hangar.";
+	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or south out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
 	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
