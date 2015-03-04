@@ -4151,7 +4151,7 @@ public function hotSwapSomethingWithGianna(arg:String = "clit"):void
 //Futa!Gigi Fucks Your Butt
 //Any Gigicock. Any PC genital configuration. 
 //Ask your futafied lover to pound your ass with her synth-dick. 
-function getButtReamedByFutaGigi():void
+public function getButtReamedByFutaGigi():void
 {
 	clearOutput();
 	giannaDisplay();
