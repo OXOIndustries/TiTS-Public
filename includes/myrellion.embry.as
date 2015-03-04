@@ -1467,9 +1467,9 @@ public function youPickYerNameBabe():void
 	clearOutput();
 	showSimii();
 	// Change embry.name to Belle.
-	embry.short = "Belle";
-	output("You tell [embry.name] it’s not a choice you can make for her - it’s just too important. She solemnly nods. <i>\"Y-you’re right, I should choose for myself.</i>");
+	output("You tell [embry.name] it’s not a choice you can make for her - it’s just too important. She solemnly nods. <i>\"Y-you’re right, I should choose for myself.</i>\"");
 	output("\n\n“<i>... I kind of like Belle. It’s a traditional Omoriian name, and it runs in my family. It’s new, but at the same time it’s still me, you know?</i>”");
+	embry.short = "Belle";
 	chooseANewNameEmbryFinal();
 }
 

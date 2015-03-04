@@ -392,7 +392,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	if(pc.isNude()) output(", not that you bother to wear much at all");
 	output(". Her hand traces down your [pc.belly] before pausing at your [pc.cockBiggest]. She grabs it slowly, almost hesitantly before pulling away.");
 	if(pc.cockTotal() == 2) output(" Your other penis longs for a touch as well, but is ignored.");
-	else output(" Your other penises long to be touched as well, but are ignored.");
+	else if(pc.cockTotal() > 2) output(" Your other penises long to be touched as well, but are ignored.");
 	output("\n\n<i>\"You're packing more than a little fuckmeat, eh fuckmeat?\"</i> she asks, smiling. <i>\"A dick this big is just about useless for screwing, if you ask me. It's basically just a fucking ornament that lets every dom in a ten mile radius know that you're compensating for being a ridiculous submissive.\"</i>");
 	output("\n\nYou dare to retort, <i>\"That's not true!\"</i>");
 	output("\n\nEyes like burning ice stare levelly at you, full of barely-concealed disbelief. <i>\"Really? So if I promised to stroke your dick if you dropped down");

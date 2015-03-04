@@ -602,7 +602,7 @@ public function publicUsePuppyAnno():void
 	author("Savin");
 	userInterface.showBust("ANNO_NUDE");
 	userInterface.showName("\nANNO");
-	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly t o the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
+	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly to the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
 
 	output("\n\n<i>\"Good girl. Stay.\"</i>");
 
