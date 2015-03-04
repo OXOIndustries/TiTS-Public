@@ -845,7 +845,7 @@ public function rideNyreaDick():void
 	{
 		if (pc.findEmptyPregnancySlot() >= 0)
 		{
-			tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot +"]";
+			tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot() +"]";
 			useAss = false;
 			isFull = false;
 		}
@@ -885,7 +885,7 @@ public function rideNyreaDick():void
 	if (foes[0] is NyreaBeta) output("<i>“T-too much,”</i> the huntress squeals, squirming under you as you slowly slide down on her cock and mercilessly grope her rack. <i>“You’re going to make me... make me...”</i>");
 	else if (foes[0] is NyreaAlpha) output("<i>“That’s it... don’t stop,”</i> the huntress groans, her chitinous fingers digging into your [pc.hips]. Cute that she still thinks she has any control here. <i>“Yes, keep it up. I’m... I’m getting close...”</i>");
 	
-	output("\n\nYou can’t blame her. Feeling her feline-esque barbs gently scraping through the walls of your [pc.vagOrAss] is enough to");
+	output("\n\nYou can’t blame her. Feeling her feline-esque barbs gently scraping through the walls of your " + tHoleTag + " is enough to");
 	if (pc.hasCock()) output(" make your [pc.cocks] jump with excitement");
 	else output(" send shivers of pleasure through your body, almost enough to force you to orgasm yourself");
 	output(". You give the huntress an encouraging nod and complete your descent, taking the whole mass of her cock into your quivering hole right to the flush of the knot, letting the swollen ball of flesh nestle");
@@ -989,12 +989,12 @@ public function rideNyreaDick():void
 		output("\n\n<i>“If only I had eggs to give you,”</i> the huntress coos, chewing on her lip and caressing your [pc.hips] and [pc.legOrLegs]. <i>“Nothing wrong with just a little fun, though, right?”</i>");
 		
 		output("\n\nYou wink down at her, squeezing her breasts and wiggling your backside around her knotted prick. You can’t do much more, given your knotted position, but it’s enough to make the both of you cry out in pleasure, voices giving way to moans laden with lust and desire. The wonderful stretch, the gentle scratch of her barbs inside you, and the");
-		if (pc.hasVagina()) output(" cunt");
+		if (!useAss) output(" cunt");
 		else output(" ass");
 		output("-straining knot all work together to drive you inexorably towards orgasm, rushing after the huntress towards climax. ");
 		
 		output("\n\nYour rising pleasure finally breaks, coming to a head as the huntress grabs your hips and pulls you down on her rod. The whole swell of her knot pushes into you, tying you together and sending such a shock of pleasure through your spasming");
-		if (pc.hasVagina()) output(" cunt");
+		if (!useAss) output(" cunt");
 		else output(" asshole");
 		output(" that you can’t help but cum. You scream aloud, voice echoing out through the caverns, announcing your orgasm to the rest of the planet. You force yourself to keep moving, riding the nyrea until she, too, gives a cute gasp and cums again. Her prick twitches inside you, her spines teasing you in just the right ways to make your own climax even more intense. Your whole body tingles with the sensation, shivering as you ride her massive shaft to the very end.");
 		
