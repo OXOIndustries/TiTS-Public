@@ -3367,11 +3367,11 @@ public function processLaneDetoxEvents(minutes:Number):void
 
 	if (oldT < 24 * 60 && newT >= 24 * 60)
 	{
-		eventBuffer += "Your codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it a whole twenty-four hours. You specifically neglect to mention what you’ve gone twenty-four hours without.\n\nThat wasn’t so bad! Ten days ought to be a breeze if they’re all this easy. You replace your codex and continue about what you were doing, but with a more confident stride than usual.";
+		eventBuffer += "\n\nYour codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it a whole twenty-four hours. You specifically neglect to mention what you’ve gone twenty-four hours without.\n\nThat wasn’t so bad! Ten days ought to be a breeze if they’re all this easy. You replace your codex and continue about what you were doing, but with a more confident stride than usual.";
 	}
 	if (oldT < 48 * 60 && newT >= 48 * 60)
 	{
-		eventBuffer += "Your codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve gone cold turkey.\n\nAs easy as these past two days have been, you can’t help but feel a little guilty towards Lane. You haven’t had any sort of contact with [lane.himHer] in a while – [lane.heShe] must be worried about you by now. You consider giving [lane.himHer] a call, but you resist, placing your codex back where it belongs.";
+		eventBuffer += "\n\nYour codex beeps. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve gone cold turkey.\n\nAs easy as these past two days have been, you can’t help but feel a little guilty towards Lane. You haven’t had any sort of contact with [lane.himHer] in a while – [lane.heShe] must be worried about you by now. You consider giving [lane.himHer] a call, but you resist, placing your codex back where it belongs.";
 
 		if (!pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3381,7 +3381,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 72 * 60 && newT >= 72 * 60)
 	{
-		eventBuffer += "Your codex beeps. Your skin crawls just a little bit from the sound. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve promised to become clean.\n\nIt’s been getting a little harder, though. Lights seem a little duller; smells don’t entice you like they had. Your life in general seems just a little less exciting. Maybe you could ask Lane to hypnotize you into thinking – you stop yourself and, without another thought, you replace your codex and continue with your day.";
+		eventBuffer += "\n\nYour codex beeps. Your skin crawls just a little bit from the sound. You look down at it, and on its screen is a message from yourself, congratulating yourself for making it another twenty-four hours since you’ve promised to become clean.\n\nIt’s been getting a little harder, though. Lights seem a little duller; smells don’t entice you like they had. Your life in general seems just a little less exciting. Maybe you could ask Lane to hypnotize you into thinking – you stop yourself and, without another thought, you replace your codex and continue with your day.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3391,7 +3391,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 96 * 60 && newT >= 96 * 60)
 	{
-		eventBuffer += "Your codex beeps. Your fingers scratch along its glassy surface before you grip onto it. You look down at it, and on its screen is a message from yourself, reminding you that you’re still going without La – without your ‘drug’ after all this time.\n\nYou let yourself think about Lane. It’s been four days. You can handle a little fantasy about Lane. You fondly remember the way [lane.hisHer] body glows, the way [lane.heShe] talks so casually with you about business, the way [lane.hisHer] " + lane.mf("dick", "cunt") +" felt " + lane.mf("in", "on") + " your–\n\nThe tingle of arousal snaps you out of your reverie and reminds you of what you’re fighting to avoid. You put your codex away and continue with your business, your eyes scanning the way ahead of you for something to distract you.";
+		eventBuffer += "\n\nYour codex beeps. Your fingers scratch along its glassy surface before you grip onto it. You look down at it, and on its screen is a message from yourself, reminding you that you’re still going without La – without your ‘drug’ after all this time.\n\nYou let yourself think about Lane. It’s been four days. You can handle a little fantasy about Lane. You fondly remember the way [lane.hisHer] body glows, the way [lane.heShe] talks so casually with you about business, the way [lane.hisHer] " + lane.mf("dick", "cunt") +" felt " + lane.mf("in", "on") + " your–\n\nThe tingle of arousal snaps you out of your reverie and reminds you of what you’re fighting to avoid. You put your codex away and continue with your business, your eyes scanning the way ahead of you for something to distract you.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3402,7 +3402,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 120 * 60 && newT >= 120 * 60)
 	{
-		eventBuffer += "Your codex beeps once, but your ears register it as a dull wail. You claw at your codex and bring it to your face. On it is a message from yourself, reminding you of what you had given up and what you could be experiencing <i>right now.</i>\n\nEverything reminds you of Lane somehow. The breeze reminds you of the way [lane.hisHer] breath washed over your neck as [lane.heShe] fucked you. You compare the taste of the foods you eat to the way [lane.hisHer] " + lane.mf("cock","pussy") + " tasted. The lights of the stars are nothing compared to the way the lights of [lane.hisHer] tassels glowed when [lane.heShe] worked on you.\n\nYou lick your [pc.lips] and replace your codex. You think about taking a seat and working out some new frustrations... but it wouldn’t be as good without Lane.";
+		eventBuffer += "\n\nYour codex beeps once, but your ears register it as a dull wail. You claw at your codex and bring it to your face. On it is a message from yourself, reminding you of what you had given up and what you could be experiencing <i>right now.</i>\n\nEverything reminds you of Lane somehow. The breeze reminds you of the way [lane.hisHer] breath washed over your neck as [lane.heShe] fucked you. You compare the taste of the foods you eat to the way [lane.hisHer] " + lane.mf("cock","pussy") + " tasted. The lights of the stars are nothing compared to the way the lights of [lane.hisHer] tassels glowed when [lane.heShe] worked on you.\n\nYou lick your [pc.lips] and replace your codex. You think about taking a seat and working out some new frustrations... but it wouldn’t be as good without Lane.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3413,7 +3413,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 144 * 60 && newT >= 144 * 60)
 	{
-		eventBuffer += "The feel the vibration of your codex before you hear the beep. You scratch at its edges before you realize you’re even touching it. You have to re-read the message on it three times before you realize what it’s saying.\n\nNo matter how much you drink, your thirst is never quenched. For a split second, you see Lane in your mind’s eye, you at [lane.hisHer] feet, [lane.hisHer] genitals unaroused, [lane.hisHer] happy smile at your obedience cleansing your fiery nerves. You blink and chastise yourself for thinking about [lane.himHer] and promise not to do it again, and then you’re right back to your fantasies not even two minutes later.";
+		eventBuffer += "\n\nThe feel the vibration of your codex before you hear the beep. You scratch at its edges before you realize you’re even touching it. You have to re-read the message on it three times before you realize what it’s saying.\n\nNo matter how much you drink, your thirst is never quenched. For a split second, you see Lane in your mind’s eye, you at [lane.hisHer] feet, [lane.hisHer] genitals unaroused, [lane.hisHer] happy smile at your obedience cleansing your fiery nerves. You blink and chastise yourself for thinking about [lane.himHer] and promise not to do it again, and then you’re right back to your fantasies not even two minutes later.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3424,7 +3424,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 168 * 60 && newT >= 168 * 60)
 	{
-		eventBuffer += "You’re hyper-aware of your surroundings, but that doesn’t make you any more conscious of them. The sound of your codex splits your ears like a jackhammer. The light of its screen burns your eyes, and the text on it berates you for your stupidity, giving up the best thing that ever happened to you.\n\nYou’re pretty sure you’re hallucinating. Every other time you turn around, you see Lane among the foliage, or as a face in the crowd. Each time you think you see [lane.himHer], your heart stops, and you nearly call out to [lane.himHer], to ask [lane.himHer] to end your torment and to beg for [lane.hisHer] forgiveness for letting yourself stray from [lane.hisHer] vices, and to fuck you like [lane.heShe] used to.\n\nFortunately for your dignity, that’s never the case, and your vision of [lane.himHer] vanishes when you stare for longer than a second.";
+		eventBuffer += "\n\nYou’re hyper-aware of your surroundings, but that doesn’t make you any more conscious of them. The sound of your codex splits your ears like a jackhammer. The light of its screen burns your eyes, and the text on it berates you for your stupidity, giving up the best thing that ever happened to you.\n\nYou’re pretty sure you’re hallucinating. Every other time you turn around, you see Lane among the foliage, or as a face in the crowd. Each time you think you see [lane.himHer], your heart stops, and you nearly call out to [lane.himHer], to ask [lane.himHer] to end your torment and to beg for [lane.hisHer] forgiveness for letting yourself stray from [lane.hisHer] vices, and to fuck you like [lane.heShe] used to.\n\nFortunately for your dignity, that’s never the case, and your vision of [lane.himHer] vanishes when you stare for longer than a second.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3435,7 +3435,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 192 * 60 && newT >= 192 * 60)
 	{
-		eventBuffer += "You’ve been staring at the screen of your codex for a few minutes, now. The warm glow of its screen on your eyes reminds you of Lane. Whatever endorphins the little machine gives you is peanuts compared to the real thing. The little release you manage to eke from it is interrupted by an angry message from yourself, taunting you that you had it just fine when Lane owned you, and that in surrendering your vice for a cleaner life, you’ve condemned yourself to needing it more than you ever had before.\n\nYour hallucinations have begun pervading your dreams; the last time you slept, you dreamt that you were back in Lane’s large, warm bed, snuggling underneath its sheets, naked as could be, when [lane.heShe] enters the room and silently climbs " + lane.mf("in behind you. You smile and pull your knees to your [pc.chest], spreading your [pc.ass] for his thick, wonderful cock to claim you forever again.","in front of you. You smile and lay flat on your back as she straddles your [pc.hips] and begins rocking herself back and forth, dominating you with her cunt like she used to.") + "...\n\nYou woke up on the <i>very</i> wrong side of the bed that time.";
+		eventBuffer += "\n\nYou’ve been staring at the screen of your codex for a few minutes, now. The warm glow of its screen on your eyes reminds you of Lane. Whatever endorphins the little machine gives you is peanuts compared to the real thing. The little release you manage to eke from it is interrupted by an angry message from yourself, taunting you that you had it just fine when Lane owned you, and that in surrendering your vice for a cleaner life, you’ve condemned yourself to needing it more than you ever had before.\n\nYour hallucinations have begun pervading your dreams; the last time you slept, you dreamt that you were back in Lane’s large, warm bed, snuggling underneath its sheets, naked as could be, when [lane.heShe] enters the room and silently climbs " + lane.mf("in behind you. You smile and pull your knees to your [pc.chest], spreading your [pc.ass] for his thick, wonderful cock to claim you forever again.","in front of you. You smile and lay flat on your back as she straddles your [pc.hips] and begins rocking herself back and forth, dominating you with her cunt like she used to.") + "...\n\nYou woke up on the <i>very</i> wrong side of the bed that time.";
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3446,7 +3446,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 216 * 60 && newT >= 216 * 60)
 	{
-		eventBuffer += "You see only bold, blasé colors: reds, browns, blacks and whites. Your vision has tunneled slightly, and you have to squint to look at your codex, to read the very harsh words you left yourself nine days ago. The beep it made hurt your ears, even though it didn’t sound any louder than a heartbeat, to you.\n\nOh well. You put your codex away and turn back to Lane,";
+		eventBuffer += "\n\nYou see only bold, blasé colors: reds, browns, blacks and whites. Your vision has tunneled slightly, and you have to squint to look at your codex, to read the very harsh words you left yourself nine days ago. The beep it made hurt your ears, even though it didn’t sound any louder than a heartbeat, to you.\n\nOh well. You put your codex away and turn back to Lane,";
 		if (lane.mf("m", "f") == "m") eventBuffer += " sticking his wonderful cock back into your mouth and nursing on him gently. You feel his hands on the sides of your head as he warmly but eagerly guides you across his length. <i>“I’ve missed you, [pc.name],”</i> he says, and you’re instantly gratified. You lean forward to deepthroat him – and you feel something sharp across your soft palate.";
 		else eventBuffer += " placing your [pc.lips] back on her wonderful cunt and lapping at her honeypot like a cat with a saucer of milk. You feel her hands on the sides of your head as she gently but eagerly presses your [pc.face] deeper into her. <i>“I’ve missed you, [pc.name],”</i> she says, and your heart flutters. Your tilt your head up, to dig into her as deep as you can with your [pc.tongue] – and you feel something sharp across your palate.";
 		eventBuffer += "\n\nYou’re snapped back to reality. You look down at where your [lane.master] was, and find your thumb in your mouth, wet and compressed from you sucking on it. You wail in despair that it wasn’t real.";
@@ -3462,7 +3462,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 240 * 60 && newT >= 240 * 60)
 	{
-		eventBuffer += "Your codex beeps. You look down on it, and see two new messages: one from yourself, congratulating you on making it another twenty-four hours. The other is from " + lFollowerName() + ".";
+		eventBuffer += "\n\nYour codex beeps. You look down on it, and see two new messages: one from yourself, congratulating you on making it another twenty-four hours. The other is from " + lFollowerName() + ".";
 
 		if (lFollowerName() != "Dane")
 		{

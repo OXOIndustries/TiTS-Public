@@ -2534,8 +2534,8 @@ public function tease(target:Creature, part:String = "chest"):void {
 			output("\n");
 			if(part == "squirt") 
 			{
-				if(target.plural) output(target.capitalA + target.short + " are splattered with your [vanae.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-				else output(target.capitalA + target.short + " is splattered with your [vanae.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+				if(target.plural) output(target.capitalA + target.short + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
+				else output(target.capitalA + target.short + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
 			}
 			else output(teaseReactions(damage,target));
 			target.lust(damage);
