@@ -30,7 +30,7 @@ public function appearance(target:Creature):void {
 		else output2("You started your journey as a " + target.originalRace + ", but you've become a " + target.race() + " over the course of your adventures.");
 		output2(" You're a good " + Math.floor(target.tallness / 12) + " feet");
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
-		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in more accepted metric system.");
+		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you're ");
 		if(target.armor.longName == "empty") output2("not wearing a single scrap of armor");
 		else output2("wearing " + target.armor.description + ", ");
@@ -146,11 +146,11 @@ public function appearance(target:Creature):void {
 		if(target.faceType == GLOBAL.TYPE_BADGER)
 		{
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your head pushes out into a curiously hairless badger-face, covered only with " + target.skin(true,true) + ".");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Your head pushes out into a muzzle with white fur across your nose and mouth as well as in a wide stripe up the centre of your brow, giving you the appearance of a humanoid badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the centre of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Your head pushes out into a muzzle with white fur across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
 		}
 		if(target.faceType == GLOBAL.TYPE_DRACONIC) {
-			output2(" Your face is a narrow, reptilian muzzle. It looks like a predatory lizard's, at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true) + ".");
+			output2(" Your face is a narrow, reptilian muzzle. It looks like a predatory lizard's at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true) + ".");
 		}
 		if(target.faceType == GLOBAL.TYPE_KANGAROO) {
 			output2(" Your face is ");
@@ -165,10 +165,10 @@ public function appearance(target:Creature):void {
 		//Eyes
 		if(target.eyeType == GLOBAL.TYPE_ARACHNID) 
 		{
-			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead.");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" All of which reflect back a metallic " + target.eyeColor + " in the light.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(" All of which shimmer " + target.eyeColor + " in the light like jewels.");
-			else output2(" All of which are " + target.eyeColor + ".");
+			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead");
+			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
+			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
+			else output2(", all of which are " + target.eyeColor + ".");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE) 
 		{
@@ -599,7 +599,7 @@ public function appearance(target:Creature):void {
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) 
 		{
-			if(target.legCount < 4) output2(" Your perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+			if(target.legCount < 4) output2(" Your perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced to totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
 			else output2(" You have perfectly lissom legs that end in " + target.feet(true,true) + ".");
 		}
 		else if(target.legType == GLOBAL.TYPE_DEMONIC) 
@@ -812,7 +812,7 @@ public function appearance(target:Creature):void {
 			//Lactation and breast cup final!
 			if (target.isLactating())
 			{
-				if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [pc.milk] but nowhere near full at the moment.");
+				if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [pc.milk] but are nowhere near full at the moment.");
 				else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [pc.milk] inside them now. Before long, they'll start swelling.");
 				else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [pc.milk] and noticeably swollen.");
 				else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [pc.milk]. You should release the pressure soon.");
@@ -901,7 +901,7 @@ public function appearance(target:Creature):void {
 			//Lactation and breast cup final!
 			if (target.isLactating())
 			{
-				if(target.milkFullness < 50) output2(" Your [pc.fullChest] are producing [pc.milk] but nowhere near full at the moment.");
+				if(target.milkFullness < 50) output2(" Your [pc.fullChest] are producing [pc.milk] but are nowhere near full at the moment.");
 				else if(target.milkFullness < 75) output2(" Your [pc.fullChest] have a noticable amount of [pc.milk] inside them now. Before long, they'll start swelling.");
 				else if(target.milkFullness < 100) output2(" Your [pc.fullChest] are fairly full of [pc.milk] and noticeably swollen.")
 				else if(target.milkFullness < 150) output2(" Your [pc.fullChest] are sore and sensitive from being so stuffed with [pc.milk]. You should release the pressure soon.");
@@ -1256,7 +1256,7 @@ public function appearance(target:Creature):void {
 				//LEITHAN FLAVOR
 				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
 				{
-					output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+					output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 				}
 			}
 			//MULTICOOCH!
@@ -1310,7 +1310,7 @@ public function appearance(target:Creature):void {
 						//LEITHAN FLAVOR
 						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN)
 						{
-							output2(" The exterior lips are fat and swollen. They could easily be described rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+							output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 						}
 					}
 					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)

@@ -216,7 +216,7 @@ public function specialsMenu():void {
 		if (pc.hasPerk("Carpet Grenades"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Carpet Grenades","Carpet Grenades","You cannot use carpet grenades while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
+			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into a particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
@@ -245,7 +245,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Volley")) 
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Volley","Volley","You cannot use volley while disarmed.");
-			else if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
+			else if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding the target.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset, "Volley");
 			offset++;
 		}
@@ -393,7 +393,7 @@ public function updateCombatStatuses():void {
 	//PC STATUSES!
 	if(pc.hasPerk("Shield Regen") && pc.shields() <= 0 && pc.shieldsMax() > 0 && !pc.hasStatusEffect("Used Shield Regen"))
 	{
-		output("<b>Your shields power back up at once quarter power. Now's your chance to turn this around!</b>\n");
+		output("<b>Your shields power back up at one quarter power. Now's your chance to turn this around!</b>\n");
 		pc.shields(Math.round(pc.shieldsMax()/4));
 		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 	}
@@ -431,7 +431,7 @@ public function updateCombatStatuses():void {
 	if(pc.hasStatusEffect("Poison"))
 	{
 		//2% of HP per tic.
-		output("<b>The poison continues to take its toll on your body, you need to end this fight as soon as possible!</b>");
+		output("<b>The poison continues to take its toll on your body; you need to end this fight as soon as possible!</b>");
 		genericDamageApply(Math.round(pc.HPMax() * 0.02),foes[0],pc,GLOBAL.GRAVITIC);
 		output("\n");
 	}
@@ -506,7 +506,7 @@ public function updateCombatStatuses():void {
 		if(temp + pc.shields() > pc.shieldsMax()) temp = pc.shieldsMax() - pc.shields();
 		if(temp > 0) 
 		{
-			output("<b>Your recover " + temp + " points of shielding.\n");
+			output("<b>You recover " + temp + " points of shielding.\n");
 			pc.shields(temp);
 		}
 		if(pc.statusEffectv1("Deflector Regeneration") <= 0)
@@ -519,7 +519,7 @@ public function updateCombatStatuses():void {
 	{
 		pc.addStatusValue("Used Smuggled Stimulant",1,-1);
 		pc.energy(25);
-		output("<b>A rush of energy fills you as the struggled stimulant affects you.</b>\n");
+		output("<b>A rush of energy fills you as the smuggled stimulant affects you.</b>\n");
 	}
 	if (pc.hasStatusEffect("Porno Hacked Drone"))
 	{
@@ -854,7 +854,7 @@ public function grappleStruggle():void {
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
-			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to prise a gap large enough for you to squeeze your frame through!");
+			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
 			//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
@@ -863,7 +863,7 @@ public function grappleStruggle():void {
 	//Fail to escape: 
 	if(pc.hasStatusEffect("Grappled"))
 	{
-		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
+		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
 		else if (foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 		else if (foes[0] is GrayPrime) grayPrimeFailEscape();
@@ -1242,7 +1242,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 	}
 	//Celise autoblocks
 	else if(target.short == "Celise") {
-		output("Celise takes the hit, wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred after.");
+		output("Celise takes the hit, the wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred afterwards.");
 	}
 	//Attack connected!
 	else {
@@ -2673,7 +2673,7 @@ public function crotchTeaseText(target:Creature):void {
 	//3 - cunt!
 	else if(select == 3) {
 		if(pc.isCrotchGarbed()) output("You coyly open your [pc.lowerGarments]");
-		else output("You coyloy gesture to your groin");
+		else output("You coyly gesture to your groin");
 		if(pc.hasPerk("Ditz Speech")) output(" and giggle, <i>\"Is this, like, what you wanted to see?\"</i>  ");
 		else {
 			output(" and purr, <i>\"Does the thought of a hot, ");
@@ -2684,7 +2684,7 @@ public function crotchTeaseText(target:Creature):void {
 		if(target.plural) output(possessive(target.capitalA + target.short) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
 		else output(possessive(target.capitalA + target.short)  + "'s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
 		if(pc.clitLength > 3) output("  You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
-		else output("  You smile and pull apart your lower-lips to expose your [pc.clits], giving the perfect view.");
+		else output("  You smile and pull apart your lower lips to expose your [pc.clits], giving the perfect view.");
 		if(pc.cockTotal() > 0) output("  Meanwhile, [pc.eachCock] bobs back and forth with your gyrating hips, adding to the display.");
 	}
 	//4 Horsecock centaur tease
@@ -2957,7 +2957,7 @@ public function crotchTeaseText(target:Creature):void {
 			if(pc.vaginas[0].wetness() >= 3) output(" There's a lot, so you’d have to make sure to drink up every drop.");
 			output("</i>”");
 		}
-		output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe.  “<i>I’ve gotta say, I’m really loving having a honeypot like this...maybe I’ll give you a taste, if you’re a good " + foes[0].mf("boy","girl","...thing") + ".</i>”");
+		output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe.  “<i>I’ve gotta say, I’m really loving having a honeypot like this... maybe I’ll give you a taste, if you’re a good " + foes[0].mf("boy","girl","...thing") + ".</i>”");
 		//Clothed:
 		if(pc.isCrotchGarbed()) output(" You close up your [pc.lowerGarments]");
 		else output(" You adjust your thighs back to their normal stance");
@@ -3005,7 +3005,7 @@ public function buttTeaseText():void {
 		if(pc.lowerUndergarment.shortName != "") output("unseen ");
 		output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
 	}
-	else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+	else if(select == 2) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 	//Reqs: PC has at least one tail with the Fluffy tag
 	else if(select == 4)
 	{
@@ -3101,7 +3101,7 @@ public function chestTeaseText():void {
 			output(" return your gaze to the fight.");
 		}
 		else if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
-		else output("Naked as you are, there's nothing you need to do to expose your [pc.chest] and [pc.nipples], and it running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
+		else output("Naked as you are, there's nothing you need to do to expose your [pc.chest] and [pc.nipples], and running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
 	}
 	//Titties!
 	else {
@@ -3136,7 +3136,7 @@ public function chestTeaseText():void {
 			//If Breast tease <75 Lactating.
 			else
 			{
-				output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + foes[0].a + foes[0].short + "s eyes on you, running over your [pc.chest], and take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
+				output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + foes[0].a + foes[0].short + "s eyes on you, running over your [pc.chest], and you take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
 			}
 		}
 		else if(select == 1)
@@ -3150,7 +3150,7 @@ public function chestTeaseText():void {
 			//Big TiTS!
 			else if(pc.biggestTitSize() >= 4) {
 				if(pc.isChestGarbed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little a regretfully.");
-				else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
+				else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing as it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger into it while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
 			}
 			//Petite ones!
 			else {
@@ -3475,7 +3475,7 @@ public function powerSurge(target:Creature):void {
 public function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
-	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
+	output("You fiddle with your shield, tuning it to regenerate over the next few turns.\n");
 	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
 	processCombat();
 }
@@ -3598,7 +3598,7 @@ public function lowBlow(target:Creature):void {
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target);
 		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
-			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of plump lips. <b>She's very, very stunned.</b>");
+			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
 			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
