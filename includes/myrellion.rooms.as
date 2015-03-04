@@ -170,7 +170,7 @@ public function initializeMyrellionRooms():void
 	rooms["610"].system = "SYSTEM: SINDATHU";
 	rooms["610"].westExit = "607";
 	rooms["610"].moveMinutes = 1;
-	rooms["610"].runOnEnter = undefined;
+	rooms["610"].runOnEnter = myrellionScoutAuthorityBonus;
 	rooms["610"].addFlag(GLOBAL.INDOOR);
 	rooms["610"].addFlag(GLOBAL.PUBLIC);
  

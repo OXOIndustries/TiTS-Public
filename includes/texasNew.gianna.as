@@ -425,6 +425,14 @@ public function giannaFuckChoices():void
  		addDisabledButton(5,"Girly 69","Girly 69","You need a vagina to participate in a girly sixtynine.");
  		addDisabledButton(6,"GetEatenOut","GetEatenOut","You need a vagina to get eaten out.");
  	}
+ 	if(gianna.hasCock())
+ 	{
+ 		addButton(7,"GetReamed",getButtReamedByFutaGigi,undefined,"GetReamed","Ask your futafied lover to pound your ass with her synth-cock.");
+ 	}
+ 	else
+ 	{
+ 		addDisabledButton(7,"GetReamed","GetReamed","Gianna doesn't have anything to do any reaming with!");
+ 	}
 	addButton(14,"Back",approachGianna,"back");
 }
 
@@ -3840,7 +3848,7 @@ public function savinTriesToWriteGiannaButtfux():void
 	if(pc.biggestCockLength() <= 20) output("your crotch presses into her [gianna.butt], squeezing into your synthetic lover’s behind.");
 	else 
 	{
-		output("Gianna lets out a sharp gasp, reaching down to rub her belly -- and letting you see how monstrously your gargantuan member has distorted her gut. <i>“Slow down, ");
+		output("Gianna lets out a sharp gasp, reaching down to rub her belly - and letting you see how monstrously your gargantuan member has distorted her gut. <i>“Slow down, ");
 		if(giannaPersonality() >= 30) output("tiger");
 		else output("[pc.master]");
 		output(".... I can’t take any more. I’m not Ellie down here!”</i>");
@@ -4137,4 +4145,105 @@ public function hotSwapSomethingWithGianna(arg:String = "clit"):void
 	processTime(13);
 	giannaCrotchTF(arg);
 	giannaMenu();
+}
+
+
+//Futa!Gigi Fucks Your Butt
+//Any Gigicock. Any PC genital configuration. 
+//Ask your futafied lover to pound your ass with her synth-dick. 
+public function getButtReamedByFutaGigi():void
+{
+	clearOutput();
+	giannaDisplay();
+	author("Savin");
+	output("\"<i>So, how about putting that [gianna.cockNoun] to use?</i>\" you ask, reaching out to caress the [gianna.cock] resting between your gynoid lover's statuesque legs. The artificial cock stiffens at your touch");
+	if(gianna.hasSheath(0)) output(", starting to poke out its sheath");
+	output(". Her body trembles at your touch, and one of her hands reaches up to cup one her [gianna.chest].");
+	//if PosititiveGigi:
+	if(giannaPersonality() >= 70) output("\n\n\"<i>Oh, I've been waiting for you to ask,</i>\" Gianna coos, pressing herself a little closer to you - enough that her big, beautiful tits squeeze against your [pc.chest]. \"<i>That's why you give me this beauty, right? You like your girls with a little spice!</i>\"");
+	//if NeutralGigi:
+	else if(giannaPersonality() >= 30) output("\n\n\"<i>Like, totally!</i>\" Gianna beams, pressing herself up against you - close enough that you can feel her hardening cock against you, stiffening as your hand gently caresses it.");
+	//If SubShitGigi:
+	else output("\n\n\"<i>I-if that's what you want,</i>\" Gianna murmurs, eyeing her meaty girl-dick. \"<i>You must have spent a fortune on this thing. I'll try and give you your money's worth, [pc.master].</i>\"");
+	output("\n\nThat's what you like to hear. Gianna motions you towards a side room in the bar so the two of you can have a little privacy. You can see her grow more excited - and a little more jiggly - with every step. She's practically bouncing with anticipation by the time you close and lock the door behind you, and her synthetic erection is hanging down at full mast between her ");
+	if(gianna.buttRating() >= 20) output("plump ");
+	else if(gianna.buttRating() >= 15) output("thick ");
+	else output("slender ");
+	output("thighs. She spins around on a heel when you click the lock down, planting her [gianna.butt] on the edge of the shiny metal table on the far side.");
+
+	output("\n\n\"<i>I'm still pretty new to fucking like this,</i>\" Gianna admits. ");
+	if(giannaPersonality() >= 70) output("\"<i>But I think I've got a pretty good sense of what you want. A nice, big, lady-dick right up the ass, huh?</i>\"");
+	else output("\"<i>So, how do you want it?</i>\"");
+	output("\n\nYou lick your lips and sashay over to the hung gynoid. She leans back, shifting her weight onto her arms and spreads her legs, giving you a perfect view of her [gianna.cock]. One of her alabaster hands wraps around her girthy shaft, stroking it enticingly.");
+	if(giannaPersonality() <= 30) output("\n\n\"<i>D-do you want to lube me up yourself, [pc.master]?</i>\" she inquires meekly, chewing on a [gianna.lip].");
+	else output("\n\n\"<i>Why don't you, like, come on over and lube me up?</i>\" she purrs sweetly, using a finger to rub a bit of synthetic pre from her cockhead. \"<i>I've got pre and pussy-juice... not to mention your mouth... to choose from.</i>\"");
+
+	output("\n\nYou suppose you should make sure her dick's nice and wet before the two of you get too involved. Pulling off your [pc.gear] as you go, you sashay over towards the alluring gynoid and slip down between her legs to admire the turgid length of her [gianna.cock]. The alabaster sex-bot coos and circles a finger around her [gianna.cockHead], smearing around a droplet of pre until her crown glistens with moisture. You have to admit, that synth-schlong you bought looks absolutely delicious mounted on your synthetic lover.");
+	output("\n\nThe sight of Gianna's cock throbbing and drooling pre entices you into opening wide, letting your [pc.tongue] caress the girthy underside of her [gianna.cock]. It's surprisingly ");
+	if(flags["GIANNA_TEMP"] == 1) output("hot, mimicking the over-acting temperature of your robotic partner");
+	else if(flags["GIANNA_TEMP"] == -1) output("cold, almost frigid, just like the robotic beauty it's attached to");
+	else output("lifelike, in the same way Gianna herself is now that it's attached. If it weren't for the vaguely plastic-like texture you feel, not altogether unlike a dildo, you'd be sure you're dealing with a real [gianna.cock]");
+	output(". One of your hands caresses Gianna's twat, running through the well-lubed channel between her lips, and the wraps around the base of her prick.");
+
+	output("\n\n\"<i>Oooh!</i>\" Gianna moans the moment you grab her shaft. \"<i>Oh, that's sensitive! ");
+	if(pc.hasCock()) output("I can see why you love that [pc.cock] of yours! It's nothing like getting my pussy played with....");
+	else 
+	{
+		output("I wish you could feel what I'm feeling....");
+		if(giannaPersonality() >= 70) output(" Maybe when we're done, I should see about finding you a [gianna.cock] of your own.");
+	}
+	output("</i>\" You grin up at the gynoid beauty and start to work your way upwards, licking and stroking your way along her [gianna.cock]. Lavishing every inch of synth-flesh as you go, leaving a trail of slick spit and quivering cock in your wake, all the way up to her [gianna.cockHead].");
+	output("\n\nWhen your [pc.tongue] finds Gianna's synthetic cumslit, the cream-pale beauty arches her back with an exaggerated moan of pleasure and her cock squirts a nice, thick dollop of creamy fluid right onto the tip of your [pc.tongue]. She cups one of her [gianna.tits] and chews on a [gianna.lip], You lock eyes with her, give her a wink, and wrap your [pc.lips] around her cockhead. Gianna's cock is nice and meaty, making you open wide to try and take her.");
+	//if Dom!Gigi: 
+	if(giannaPersonality() >= 70) output("\n\n\"<i>You look sooo hot choking on my dick,</i>\" Gianna teases as you go down on her tumescent artificial erection.");
+	else if(giannaPersonality() >= 30) output("\n\n\"<i>Do you, like, like my cock?</i>\" Gianna giggles, watching you slide down her tumescent artificial erection. \"<i>You sure look like it!</i>\"");
+	else output("\n\n\"<i>D-do you like my cock that much?</i>\" Gianna swoons, eyes wide as you slide down her tumescent artificial erection. Her creamy cheeks darken a bit, and you're only half-certain that she murmurs after that, \"<i>I'm glad...</i>\"");
+	
+	output("\n\nHer hand strokes your [pc.hair], gently urging you down the length of her prick until your ");
+	if(gianna.cocks[0].cType == GLOBAL.TYPE_EQUINE || gianna.cocks[0].cType == GLOBAL.TYPE_SNAKE) output("throat is bulging around her animalistic shaft");
+	else output("[pc.lips] are pressing against her crotch, and your [pc.tongue] is able to flick out to lap at the slit of her twat hidden under the throbbing shaft of synth-flesh that's stretching your mouth out");
+	output(". Every throb and twitch of her cock makes you more and more eager to feel its synthetic girth ramming into your [pc.asshole]. You're sure to cover every inch you can with a nice, thick coat of spittle. The more you lavish attention on Gianna's cock, though, the more of her thick, gooey lube she squirts into your mouth, filling you with its entirely inhuman taste.");
+	output("\n\nYou pull your mouth back, popping her wet shaft out and letting the steady stream of pre-like lube drool down her length and around your finger,s using your pumping hand to massage it in all over her. Gianna groans and shivers, looking like she's halfway to orgasm already. For now, though, you're satisfied with your lube-job - enough that you're willing to get up and present your [pc.butt] to your gynoid lover.");
+	output("\n\nLooking over your shoulder, you can see a big smile spread out over her [gianna.lips], her eyes locked on the ass on offer. \"<i>You've got a great butt, ");
+	if(giannaPersonality() > 30) output("[pc.name]");
+	else output("[pc.master]");
+	output(",</i>\" she says matter-of-factly, reaching out to caress one of your cheeks. In one fluid motion, the curvaceous gynoid grabs hold of your waist and pulls you down onto her turgid cock, right until your [pc.asshole] is pressed flush against her [gianna.cockHead]. Your eyes go wide, and your body shudders at the feeling of her well-lubed crown pressing against your ass, just on the verge of penetration.");
+	output("\n\n\"<i>This is what you wanted, right?</i>\" Gianna murmurs, at once stroking your behind and slowly guiding you down her rod. \"<i>You were thinking about this moment when you first bought me a cock. You must want it so much.</i>\"");
+	//if PC has a cock:
+	if(pc.hasCock())
+	{
+		output("\n\nYou couldn't hide your arousal if you wanted to. [pc.EachCock] is hard as diamonds, bobbing with its own tumescent weight with every motion Gianna forces on you. She giggles, finally noticing your untouched manhood, and reaches around to caress it. Your body tenses at her touch, and you can't help but moan when her soft, ");
+		if(flags["GIANNA_TEMP"] == 0) output("warm");
+		else if(flags["GIANNA_TEMP"] == -1) output("cold");
+		else output("hot");
+		output(" fingers wrap around your shaft and gently stroke you while she lowers you onto her own [gianna.cock].");
+	}
+	output("\n\nGritting your teeth and relaxing your ass as best as you can, you brace yourself for what's about to come. Gianna helps, caressing and stroking you, trying to relax you until the tension bleeds away, and your [pc.asshole] loosens enough for the crown of your lover's [gianna.cock] to start gliding into you, helped along more than a little by its glaze of lube and spit. You moan, arching your back into the agonizingly slow penetration, letting yourself slide down the haft of Gianna's synth-dick. She's nice and thick, stretching you out inch by inch as you're stuffed with gynoid cockmeat.");
+	pc.buttChange(gianna.cockVolume(0),true,true,false);
+
+	output("\n\nIt's a blissful eternity before you're sitting on Gianna's lap, head resting back against her [gianna.breasts] and gut bulging with the sheer mass of dick. You find yourself gasping for breath, trying to adjust to the ass-straining you're getting... and the feeling of your [pc.belly] bulging with synth-cock. Gianna moans and runs her hands all over you, cock twitching and squirting thick gouts of lube deep into your [pc.asshole]. At least when you start moving, it'll be nice and easy...");
+	//if SubGi: 
+	if(giannaPersonality() < 30) output("\n\n\"<i>Do you want to take charge, [pc.master]?</i>\" Gianna murmurs between cock-twitches. \"<i>I'm still not comfortable with my dick yet.</i>\"");
+	else output("\n\n\"<i>Why don't you, like, start moving babe?</i>\" Gianna murmurs, squeezing your [pc.butt]. \"<i>I wanna feel you bouncing on my cock!</i>\"");
+
+	output("\n\nYou give Gianna a wink over your shoulder and start to move. From your position in the gynoid's lap, it's easy to hook your [pc.legs] over Gianna's and start rising along her gut-straining shaft. Her schlong seems to just slide out of you, slathered with lube as it is. Pleasure shudders through you in waves as her [gianna.cock] glides through your anal passage");
+	if(pc.hasCock()) output(" and massages your prostate. Your cock bobs with every inch you move, starting to bead with its own pre");
+	output(". Your lover's hands guide your movements, helping to heft you up... only to pull you back down again.");
+
+	output("\n\nYou work your way up to a steady rhythm, bouncing in your lover's lap to the echoing temp of creamy synth-flesh slapping wetly against [pc.skinFurScales]. Moans mix with the sultry sounds of sex, your voice mixing with Gianna's as your ass is hammered by the throbbing mass of your gynoid lover's [gianna.cock]. The more you move, the thicker her cock seems inside you, and the more lube-pre she unloads into your bowels. You're not sure you could even tell when she cums, the way she's spraying the stuff into you.");
+	output("\n\nOne thing's for sure, though: you're getting close already. The wet thickness stretching your ass to the limit, the feeling of Gianna's length gliding into you again and again, has you rocketing towards climax like a starship gunning its lightdrive. All you can do is move faster, fuck harder, squeezing your ass hard around your lover's cock to milk out every drop of her creamy lube.");
+	output("\n\n\"<i>Oh sh-</i>\" Gianna yelps, and suddenly you're flooded with a ");
+	if(flags["GIANNA_TEMP"] == -1) output("ice-cold");
+	else if(flags["GIANNA_TEMP"] == 1) output("burning hot");
+	else output("warm");
+	output(" wetness geysering out of her [gianna.cock]. You lover pulls you back against her, mashing your head into her [gianna.boobs] and your ass down to the hilt of her spasming cock. That sudden rush, the sudden fullness straining your [pc.belly], is enough to push you over the edge with her, tearing a scream of ecstasy from your lips as you go. Gianna's hips buck against you, short and jerky thrusts that batter your butthole as she rides out her own orgasm.");
+
+	output("\n\nWhen your lover's trembling movements come to an end, you're left rocking gently in Gianna's lap, your hands and hers running across your lube-bloated [pc.belly]. \"<i>How was that?</i>\" Gianna coos, trailing kisses along the back of your shoulders. \"<i>Everything you hoped for, I hope.</i>\"");
+	output("\n\nYou tell your lover that it most certainly was, and start to slowly pull yourself off of her softening shaft. When you pop off, it's like a dam breaking: a flood of Gianna's lube-cum squirts out of your well-fucked behind, drooling onto the hay-coated flood. On unsteady [pc.legs], you wobble over to where you left your [pc.gear] and start to dress yourself. Gianna watches you with a smile on her black lips, cleaning her cock off with a towel hanging nearby.");
+	output("\n\n\"<i>We'll have to do that again sometime,</i>\" you say, giving her a wink over your shoulder as you head back to the main room.");
+
+	processTime(20+rand(11));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

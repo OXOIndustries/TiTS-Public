@@ -1310,10 +1310,11 @@ public function flahneTalksAboutCumslutPenny():void
 //Available for anybody with a cunt between their legs OR taurs with back-mounted cunts. 
 //DA SCENE - Swap Oral
 //Eat Flahne out, then see if the busty rahn can make a meal out of your own pussy - fun for everyone! 
-function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
+public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 {
 	clearOutput();
 	showFlahne();
+	author("Savin");
 	//if Taur:
 	if(pc.isTaur())
 	{
