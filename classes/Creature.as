@@ -1619,6 +1619,9 @@
 				case "legFurScales":
 					buffer = legFurScales();
 					break;
+				case "knees":
+					buffer = kneesDescript();
+					break;
 				case "feet":
 					buffer = feet();
 					break;
@@ -3502,14 +3505,15 @@
 			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
 			return buffer;
 		}
-		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String 
-		{
-			if (legCount == 1) return foot(forceType, forceAdjective);
+		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+			// Plural check:
+			if(legCount == 1) return foot(forceType,forceAdjective);
 			
+			// Default:
 			var select: Number = 0;
 			var output: String = "";
 			output = footAdjectives(forceType, forceAdjective);
-			
+		
 			//Noun
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
@@ -3517,6 +3521,9 @@
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tails";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else output += "feet";
 			return output;
 		}
@@ -3531,10 +3538,12 @@
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heel";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaw";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
+			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tail";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else output += "foot";
 			return output;
 		}
-		
 		public function toes(): String {
 			var select: Number = 0;
 			var output: String = "";
@@ -3551,11 +3560,18 @@
 		{
 			return (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || hasLegFlag(GLOBAL.FLAG_PLANTIGRADE));
 		}
+		public function kneesDescript(): String 
+		{
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) return "cilia";
+			else if (legCount == 1) return kneeDescript();
+			else return pluralize(kneeDescript());
+		}
 		public function kneeDescript(): String {
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilium";
+			else if (legType == GLOBAL.TYPE_NAGA) output += "trunk";
 			else output += "knee";
 			return output;
 		}

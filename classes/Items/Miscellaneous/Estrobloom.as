@@ -305,7 +305,7 @@
 						if(y < 1) y = 1;
 						//round it
 						y = Math.round(y*10)/10;
-						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your knees. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
+						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your [pc.knees]. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
 						if(y > 1) kGAMECLASS.output("es");
 						kGAMECLASS.output(" of length from the exquisitely pleased cock.");
 						target.cocks[x].cLengthRaw -= y;

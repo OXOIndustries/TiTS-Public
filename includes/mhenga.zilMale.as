@@ -555,7 +555,16 @@ public function giveTheZilAFootjob():void {
 	
 	output("\n\nHearing his gasping moans of approval, you change your movements, alternating between giving him the pressure he needs and pushing your feet and toes against the length of his cock, rubbing it while your toes squish and toy with his smooth, dusky nutsack. <i>“You need to come, don’t you boy? You want to blow that filthy load of cream all over my feet.”</i>  You urge him on, teasing him like that for minutes on end before you let him go into the frenzy his pent-up orgasm has driven him to.");
 	
-	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legOrLegs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legOrLegs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i> You grin and give him another push against your sticky toes and legs, moaning as you feel his agile tongue against your [pc.skinFurScales].");
+	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legOrLegs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legOrLegs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i> You grin and give him another push against your sticky");
+	if(pc.legType != GLOBAL.TYPE_NAGA) output(" [pc.toes]");
+	else output(" [pc.feet]");
+	output(" and [pc.legOrLegs], moaning as you feel his agile tongue against your [pc.skinFurScales].");
+
+
+
+
+
+
 	
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your feet are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));

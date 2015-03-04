@@ -382,7 +382,7 @@ public function adultCockvineConsentacles():void
 	output(".");
 	if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 	else output(" It");
-	output(" easily lifts you off your feet when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
+	output(" easily lifts you off your [pc.feet] when you reach the verge of the crevice; you sink slowly downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest. You slow your breathing down, taking in deep lungfuls of the humid, herbal atmosphere, deliberately relaxing yourself, luxuriating in the way the cockvine’s scent makes your muscles loosen, in the way it causes your blood to rise to the surface of your [pc.skin]");
 	if (pc.hasVagina()) output(" and makes [pc.eachVagina] moisten itself eagerly");
 	output(".");
 
@@ -767,7 +767,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 		output("\n\nThe cockvine winds its multitudinous, febrile grip around you as you approach its nest{, languidly shedding your [pc.gear] as you go.");
 		if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 		else output(" It");
-		output(" easily lifts you off your feet when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
+		output(" easily lifts you off your [pc.feet] when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
 	}
 
 	output("\n\nYou feel the monster slide its pliant grip between your thighs... and there it freezes. You feel it pat your featureless mound several times, searching for something that isn’t there.");

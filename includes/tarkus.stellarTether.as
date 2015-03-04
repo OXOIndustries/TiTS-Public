@@ -214,7 +214,7 @@ public function laserSightShot():void
 	//Hit:
 	else
 	{
-		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your feet! Damn, she's a deadeye!");
+		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she's a deadeye!");
 		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
 		//OVER CHAAAAAARGE
 		damage *= 2.2;
@@ -620,7 +620,7 @@ public function tamtamBadEndPetPooch():void
 		output("Under a withering hail of bullets, you find yourself thrown back as one makes hard contact, blasting through your shoulder. With a wail of agony, you stumble to the ground... and quickly see every gun in the room leveled at you. Well, that's it then. You throw your [pc.rangedWeapon] aside and raise your hands... wincing in pain from your wound. The cat-girl grins over the desk at you, and whistles loudly. Suddenly, a huge doberman-like robot lunges out of the dark at you, pinning you to the ground.");
 	}
 	//If Phase 2 -- Tam Harder:
-	else output("Under a withering hail of bullets and a ceaseless assault from the cyber-dog, you find yourself slipping, only narrowing dodging streams of lead. Suddenly, you feet a set of dangerously pointed teeth on your neck as a powerful robotic body barrels you onto the ground.");
+	else output("Under a withering hail of bullets and a ceaseless assault from the cyber-dog, you find yourself slipping, only narrowing dodging streams of lead. Suddenly, you feel a set of dangerously pointed teeth on your neck as a powerful robotic body barrels you onto the ground.");
 	output("\n\nTam the cat-girl is over you in an instant, kicking your [pc.rangedWeapon] away and leveling her own laser pistol at you. <i>\"On your knees!\"</i> she demands, before noticing that you're flat on your back");
 	if(!pc.hasKnees()) output(", much less that you don't even have knees");
 	output(". <i>\"Yeah! Suck it, bitch. High-five, Tamwolf!\"</i>");
@@ -969,7 +969,9 @@ public function sneakByZeTurrets():void
 	//{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
 	output("<i>\"Discretion is the better part of valor,\"</i> Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble weightlessly, grabbing the bottom of the bridge, leaving yourself hanging over the void.");
 	output("\n\nOHGODTHAT'SALONGWAYDOWN! Up?! Whatever....");
-	output("\n\nYou try not to stare, even as your [pc.feet] dangle down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them take into account the new paths that zero G would offer.");
+	output("\n\nYou try not to stare, even as your [pc.feet] dangle");
+	if(pc.legCount == 1) output("s");
+	output(" down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them take into account the new paths that zero G would offer.");
 
 	output("\n\nAfter a few moments' of stepping carefully, constantly worried the turrets will turn on you, you step over to a nearby console conveniently labeled \"defense turrets\" and flip the switch. No more of that.");
 	flags["ROCKET_PODS_SNEAKED"] = 1;
@@ -1000,7 +1002,7 @@ public function rocketPodRocketAttk():void
 	}
 	else
 	{
-		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your feet and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
+		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
 		var damage:int = 15;
 		//Randomize +/- 15%
 		var randomizer:Number = (rand(31)+ 85)/100;
@@ -1030,7 +1032,7 @@ public function pcBeatsRocketPods():void
 //PC Loss vs Rocket Pods
 public function pcLosesToRocketPods():void
 {
-	output("Rockets pummel into the ground around you, Closer and closer, blasting you off your feet, bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the void around Tarkus' core. Your corpse will have to rest amongst the floating strata.");
+	output("Rockets pummel into the ground around you, closer and closer, blasting you off your [pc.feet], bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the void around Tarkus' core. Your corpse will have to rest amongst the floating strata.");
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
 }
@@ -1660,7 +1662,7 @@ public function dickFuckDatThraggenCoochie():void
 	pc.cockChange();
 	output("\n\n<i>\"YES!\"</i> Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain's hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain's sexual assault is overwhelming, threatening to batter the cum right out of you -- and probably put you in the hospital, if the greenskin slut's got anything to say about it.");
 	output("\n\n<i>\"Do you like it, Steele?\"</i> the captain teases at the apex of another pelvis-crushing bounce, <i>\"Cum for me. Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....\"</i>");
-	output("\n\nOh no she doesn't! Marshalling what's left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain's back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock " + x + "] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
+	output("\n\nOh no she doesn't! Marshalling what's left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain's back into the deck and leaving you on your [pc.knees] between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock " + x + "] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
 	output("\n\nNow it's your turn. You lean in through the splayed gulf of her groin, deep enough to grab one of the dark teats atop Khorgan's breasts between your teeth, rolling the pert bud between your incisors until the captain groans with pleasure, vaginal muscles tensing around your thrusting prick. At this angle, though, no matter how tight she clenches, you've got the perfect vantage to pound her pussy. Your hips piston forward, slamming home against her up-raised cheeks with enough force to make her whole body tremble, her hefty tits bouncing hypnotically with every thrust.");
 	output("\n\nYou grab those heavy, perfect orbs, sinking your fingers into the pliant flesh until Khorgan's howling with pleasure, all but begging for release. You refuse to let up on your furious sexual assault, putting the amazonian in her place with your hammering [pc.hips] and thrusting cock filling her cunny. Finally, the captain throws her head back and gives a feral, lusty roar -- a sound that echoes out through the gulf of the planet's riven core as she cums. Her muscular legs wrap around your neck, pulling you tight into the heaving mounds of her tits as she climaxes, letting you feel the heat radiating off her lust-addled body, the beat of her heart through the tensed muscles of her sex as she slathers you in fem-spunk, drenching your groin even as her pussy milks you, muscles instinctively trying to drain the seed from you.");
 	output("\n\nThat, at least, you'll let her have. You move faster, your [pc.hips] slamming into her with greater and greater force as your speed reaches dizzying heights. The captain's orgasm drags out as you hammer her, pulling you closer and closer to your own with her low, guttural cries and wild-wringing muscles. Between your frantic thrusts, you feel your orgasm coming, a thick rope of [pc.cum] surging through your [pc.cock " + x + "] and into the slick, squirming tunnel of the captain's sex.");
@@ -1768,7 +1770,9 @@ public function loseToCaptainKhorganBadEnd():void
 	//{if PC loses in the Swordfight, via lust:}
 	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
-		output("\n\nYour knees buckle as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
+		output("\n\nYour [pc.knees] buckle");
+		if(pc.legCount == 1) output("s");
+		output(" as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
 	}
 	//{if PC loses in the Swordfight, via damage:}
 	else if(foes[0] is CaptainKhorgan)
@@ -2474,7 +2478,7 @@ public function kaskaBadEndPartIII():void
 	output("\n\nBefore you knew it, you were cleaning. Kaska even found you a feather duster, but a few minutes after you started dusting, she was on you, giving you just what you needed. You still finished dusting after, too. It was better when she let you have her cock at all hours of the day. You got really good at sucking dick and mopping up cum stains.");
 	output("\n\nIt was really hard the first time Kaska went out on jobs. You were home alone, and after a few hours, the need for her became almost overwhelming. It was agony and ecstasy. You'd sit there for hours masturbating to the nastiest dickgirl porn you could find on the extranet, barely doing anything else, just imagining the taste and texture of Kaska on your tongue or in your ass - anywhere, really.");
 	output("\n\nWhen Kaska got home days later, you were an absolute mess. She had to scrub you down in the shower because you hadn't showered the entire time. Of course, her dick was in your mouth the whole time.");
-	output("\n\nAfter that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your knees and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.");
+	output("\n\nAfter that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your [pc.knees] and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.");
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
 }

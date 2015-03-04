@@ -148,7 +148,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	{
 		showBust("REAHA");
 		showName("\nREAHA");
-		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your feet as... something... hammers the door to the bathroom. You take a second to take inventory: you're on your ship, you've got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
+		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your [pc.feet] as... something... hammers the door to the bathroom. You take a second to take inventory: you're on your ship, you've got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
 		output("\n\n<i>BANG</i> goes the bathroom door.");
 		output("\n\nOh, shit, what <i>is</i> that!? You stumble away from the door and grab your [pc.rangedWeapon] and level it at the door. As you’re going for your weapon, though, you notice something huge and firm in your pack that wasn’t there before. You fish it out, and find yourself blinking at... an egg?");
 

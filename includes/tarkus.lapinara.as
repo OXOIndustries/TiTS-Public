@@ -178,6 +178,9 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	//Male:
 	if(pc.hasCock()) output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving [pc.oneCock] a rewarding squeeze before grabbing ahold of your [pc.legOrLegs].");
 	else output("\n\n<i>“That’s a good " + pc.mfn("boy","girl","offworlder") + ",”</i> she coos, giving your [pc.ass] a playful flick before grabbing ahold of your [pc.legOrLegs].");
+	output(" You won’t be moving");
+	if(pc.legCount > 1) output(" them");
+	output(" anytime soon.");
 
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against your hole, her strange pre causing your outer rim to tingle pleasantly. You feel little to no pain when she finally enters you. It’s as if her fluids are working as an anesthetic of sorts.");
 	output("\n\nAs she continues to work her way in and out of your [pc.ass], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");

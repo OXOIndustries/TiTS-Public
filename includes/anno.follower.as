@@ -1049,7 +1049,7 @@ public function annoFollowerTailjobSex():void
 	output(". Though she doesn’t have the same kind of fine control over her tail as");
 	if (StatTracking.getStat("characters/Saendra/orgasms") > 0) output(" Saendra");
 	else output(" a kaithrit");
-	output(", she still manages to do exactly what you wanted, brushing your bare cockflesh with the tip of her thick, fluffy tail, sending a shockwave of pleasure through you that nearly knocks you off your feet. You try your hardest not to let on how much of an effect it’s having, but Anno’s perceptive enough to feel what’s happening, even if she can’t see it. ");
+	output(", she still manages to do exactly what you wanted, brushing your bare cockflesh with the tip of her thick, fluffy tail, sending a shockwave of pleasure through you that nearly knocks you off your [pc.feet]. You try your hardest not to let on how much of an effect it’s having, but Anno’s perceptive enough to feel what’s happening, even if she can’t see it.");
 	
 	output("\n\n<i>“You </i>do<i> like it!”</i> she grins, wiggling her hips against your stiff prick to rub her ass cheeks across your turgid crown. ");
 	
@@ -1502,7 +1502,10 @@ public function annoFollowerEatDatDogslootOut():void
 	
 	output("\n\nAs your tongue goes in for another taste of Anno’s quivering quim, you feel a powerful twitch beside your ear as Anno’s leg moves, knocking limply against your back. You lick again, and feel the same motion, twice now. As you continue to lick and slurp at Anno’s cunt, you cast a glance aside, watching her leg start to spasm to the beat of your oral ministrations. You lick faster, suckling on her clit and probing deep into her pussy, working the poor, lust-addled ausar up into a leg-shaking frenzy. ");
 	
-	output("\n\nOh, she’s <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it’s running down your chin, pooling between your [pc.knees] as you feast. Good lord, she wasn’t kidding about how wet she’d get. But that only gets <i>you</i>");
+	output("\n\nOh, she’s <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it’s running down your chin, pooling ");
+	if(pc.legCount > 1) output(" between");
+	else output(" around");
+	output(" your [pc.knees] as you feast. Good lord, she wasn’t kidding about how wet she’d get. But that only gets <i>you</i>");
 	if (pc.hasCock()) output(" harder");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" wetter");

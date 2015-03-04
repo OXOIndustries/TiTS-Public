@@ -457,7 +457,11 @@ public function treatedPCsGetCuntFilledAndMilkedPtI():void
 	output("\n\nThe sight of him taking you... it’s... it’s beautiful. You think back to art class in school, or at least what you remember of it, and compare it to millennia of masterpieces from a hundred different races. None came close to the perfect vision before you. Yancy is magnificent, all strong and firm, embedded in you to the hilt");
 	if(pc.hasVagina()) output(", your [pc.girlCum] dripping freely from his balls");
 	else output(", his balls looking positively full of the yummiest kind of juice");
-	output(", and you’re a perfect picture of sexuality, your lips half open, eyelids lowered, blushing from head-to-toe");
+	output(", and you’re a perfect picture of sexuality, your lips half open, eyelids lowered, blushing from head-to-");
+	if(pc.legType == GLOBAL.TYPE_HUMAN) output("toe");
+	else output("[pc.foot]");
+
+
 	if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(" where it isn’t hidden by your [pc.skinFurScales]");
 	output(".");
 	if(!pc.biggestTitSize() < 1) output(" Oh, your chest is amazing too! Your [pc.nipples] are all puffy, ready to be milked, so flushed.");
@@ -556,7 +560,7 @@ public function treatedPCsGetCuntFilledAndMilkedPtIII():void
 	else output("Unfortunately, I’m not allowed to knock up the girls that come here. The pills I’m on make it so that goo’s only really for show. If you see Big T, tell him he should let the milker attendants really take care of their customers, okay?");
 	output("</i>”");
 	output("\n\n");
-	if(pc.hasVagina()) output("Awww, that’s too bad. You get dressed and make ready to leave, but Yancy’s dick is still all wet with the mixed juices. You drop to your knees and lick him clean, pleased to see him back at full mast by the time you finished. The next girl should appreciate your effort, and besides, his cum is like, totally tasty.");
+	if(pc.hasVagina()) output("Awww, that’s too bad. You get dressed and make ready to leave, but Yancy’s dick is still all wet with the mixed juices. You drop to your [pc.knees] and lick him clean, pleased to see him back at full mast by the time you finished. The next girl should appreciate your effort, and besides, his cum is like, totally tasty.");
 	else output("Yeah... maybe someday you can bear this bull a few kids of his own, but for now, you’ll settle for tonguing off his pole. There’s no sense in letting such a nice rod go uncleaned. The next girl will appreciate it, and if the next girl is you... all that time spent hard ought to help him refill with more yummy sauce!");
 	milkResultDisplay();
 	processTime(3);
@@ -758,7 +762,10 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	output("Your hand rubs against his impressive bulge, and he flexes it within his tight shorts. Wow! You feel it pressing back against you, and an electric shiver runs up your spine. His pheromone-laced musk is making it hard to think.");
 	output("\n\n<i>\"On your knees.\"</i> The powerfully built bull orders you. You’re surprised to find yourself kneeling on the hay before him. D-did you just do that without thinking? He presses his impressive bulge against your cheek and rubs it against your [pc.face]. <i>\"... Now inhale.\"</i>");
 	output("\n\nYou do as he asks without thinking, breathing in his magnificent, heady scent. Your mouth is salivating and your eyes are fluttering back in their sockets. You let out a low, primal moan, losing yourself in the smells and sensations of his intoxicating loins.");
-	output("\n\n<i>\"... " + pc.mf("Good boy","Good girl") + ". I know a natural cock-sucker when I see one.\"</i> Yancy gruffly tells you. You blush furiously, all the while rubbing your cheek against his hot firmness. You’re butt naked from head to toe and kneeling before a virile bull,  What’s wrong with you?");
+	output("\n\n<i>\"... " + pc.mf("Good boy","Good girl") + ". I know a natural cock-sucker when I see one.\"</i> Yancy gruffly tells you. You blush furiously, all the while rubbing your cheek against his hot firmness. You’re butt naked from head to");
+	if(pc.legType == GLOBAL.TYPE_HUMAN) output(" toe");
+	else output(" [pc.foot]");
+	output(" and kneeling before a virile bull, What’s wrong with you?");
 	output("\n\nWhen the burly bull pulls his bulge away, you feel a rush of disappointment, only to realize he’s grabbing the milking cups. Right - you asked to be milked! Your mind blanked the moment he pressed that wonderful, godly bulge against your face... you shake your head once more, trying to clear your thoughts. You’re acting like a common cow slut!");
 	output("\n\nHowever, when his powerful hands press the suction cups against your [pc.nipples], you melt with pleasure once more. Your [pc.breasts] are tugged and teased by the glass cylinders, heightening your truly unbridled excitement. Your suckled nubs ");
 	if(pc.milkFullness < 50) output("slowly drip");
@@ -766,7 +773,7 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	else output("liberally squirt");
 	output(" [pc.milk] into the tubes before you.");
 
-	output("\n\nThe fact you’re on your knees getting milked like some slutty stock animal gets you so hot that your [pc.thighs] can’t stop quivering. Just when you think it can’t get any hotter, the beefy bull strips off his shorts, and his fleshy horse-cock flops out before your very eyes - all ten inches of him.");
+	output("\n\nThe fact you’re on your [pc.knees] getting milked like some slutty stock animal gets you so hot that your [pc.thighs] can’t stop quivering. Just when you think it can’t get any hotter, the beefy bull strips off his shorts, and his fleshy horse-cock flops out before your very eyes - all ten inches of him.");
 
 	output("\n\nYou take in the sight of his flaring stallion with bated breath. It’s so thick and long! Not only that, his pink length is covered in delicious little nubs. When he pushes his pheromone-laced crotch into your face once more, you positively melt with pleasure. It smelled so good covered up, but it was nothing compared to this!");
 
@@ -846,7 +853,10 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	output("When you finally leave the milking stall, your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
-	output(" quivering, and you’re utterly splattered head to toe with glorious bull spunk. It leaks from your [pc.vagOrAss] and down your [pc.thighs], and you shiver with pleasure, feeling well and truly satiated. Yancy himself is completely spent, lying short of breath on the table. It seems you wore the bull boy out.");
+	output(" quivering, and you’re utterly splattered head to");
+	if(pc.legType == GLOBAL.TYPE_HUMAN) output(" toe");
+	else output(" [pc.foot]");
+	output(" with glorious bull spunk. It leaks from your [pc.vagOrAss] and down your [pc.thighs], and you shiver with pleasure, feeling well and truly satiated. Yancy himself is completely spent, lying short of breath on the table. It seems you wore the bull boy out.");
 	milkResultDisplay();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & titfucked";
 	flags["YANCY_SEXED"] = 1;

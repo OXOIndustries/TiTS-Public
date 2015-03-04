@@ -518,7 +518,7 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	output("\n\nLicking your lips, you saunter towards the prone form of the rust monster.");
 	output("\n\n<i>“Puh-please, I can’t take anymore,”</i> he mumbles, unable to meet your gaze.");
 	output("\n\nYou smirk and let him know that you’ve worked up a pretty big thirst fighting him, and he needs to take responsibility for that. The burly male freezes, looking up hopefully as you drop ");
-	if(pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output("to your knees in front of him");
+	if(pc.hasKnees()) output("to your [pc.knees] in front of him");
 	else output("down");
 	output(", ");
 	if(!pc.isNaga()) output("your [pc.legs] straddling");
@@ -857,7 +857,7 @@ public function getPeggedToOrgasmByRustBro():void
 	//HP
 	if(pc.HP() < 1) 
 	{
-		if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output("You fall to your knees");
+		if(pc.hasKnees()) output("You fall to your [pc.knees]");
 		else output("You sink down to the ground");
 		output(", utterly bested by the tall, muscular sydian who now stands over you. You hear a rich laugh and feel the sensation of a three fingered hand brushing along your [pc.hip], teasing your [pc.skin].");
 		output("\n\n<i>\”</i>Now aren’t you a tasty little morsel? And to the victor goes the spoils.”</i></i> His voice is rich and confident. His grip is incredibly strong as he squeezes you pointedly - he has every reason to sound cocky right now. The alien Adonis is far more powerful than you; you’re just lucky he sees you as his plaything. Or are you?");
@@ -867,7 +867,7 @@ public function getPeggedToOrgasmByRustBro():void
 	//lust + clothed
 	else if(!pc.isNude())
 	{
-		if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output("Falling on your knees ");
+		if(pc.hasKnees()) output("Falling on your [pc.knees] ");
 		else output("Sinking down to the ground ");
 		output(" you look at the victorious alien standing over you. Your [pc.gear] never felt so bothersome. There’s a part of you that just wants to take them off right now");
 		if(pc.hasCock() || pc.hasVagina()) output(" and let your [pc.crotch] escape the searing heat that courses through your body");
@@ -951,7 +951,7 @@ public function mouthfulOfPenniesByFrogalog():void
 	output("As you collapse at the feet of the burly rust monster, he chuckles and bends down, grabbing you by your [pc.gear]. He strides towards a nearby junk pile, dragging you along the ground before dropping you at his feet. He plops down backward atop the scrap, the metal hissing and corroding slowly into a throne-like depression for the monster man.");
 	output("\n\nHe spreads his legs wide and grins. Slowly, his thick cock swells, rising up an inch from your face. The feathery plumes covering his brassy meat flutter out as he stiffens. Watching your expression intently, he chuckles once more. <i>“I think you know what to do.”</i>");
 	output("\n\nYou groan, pushing yourself up");
-	if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output(" to your knees");
+	if(pc.hasKnees()) output(" to your [pc.knees]");
 	//lust loss:
 	if(pc.lust() >= pc.lustMax()) output(", already panting for a mouthful of whatever thick cum he has to offer");
 	else output(", unsure if you have the strength to do this");
@@ -966,7 +966,7 @@ public function mouthfulOfPenniesByFrogalog():void
 	if(pc.hasCock()) output(" Your own cock is rock hard, twitching painfully, but you can’t think of pleasuring any cock other than the magnificent specimen in your mouth.");
 	else if(pc.hasVagina()) output(" You’re clearly wet, if the warmth down your thighs and small puddle around your knees are any indicator, but you’re having trouble thinking about anything other than the monstrous cock in your mouth.");
 	output(" You’re not entirely sure how long you");
-	if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output(" kneel");
+	if(pc.hasKnees()) output(" kneel");
 	else output("'re");
 	output(" there, servicing the Sydian. With your head spinning, you can’t focus on anything but working that meat, and how right it feels to have it pumping in and out of your dripping mouth. Finally though, you feel the thick cock begin to twitch between your lips, and you double your efforts, panting like an animal in heat as you pump your head up and down on the burly humanoid’s dick.");
 	output("\n\nFinally, he’s there. His thick fingers grasp the back of your head and shove you down as he shoots a massive load straight down your throat. You gurgle for breath, but it’s only secondary to the satisfaction of finally pleasing him. His cock throbs, filling your entire mouth, making your jaw ache, but all you can feel is the dizzying satisfaction of his hot, thick seed pouring down your gullet and filling your belly.");

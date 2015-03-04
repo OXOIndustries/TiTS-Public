@@ -2779,7 +2779,7 @@ public function mimbraneStruggle():void
 		//{defeated} 
 		else if (pc.statusEffectv1("Mimbrane Smother") == 2)
 		{
-			output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your knees. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+			output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
 			pc.lust(pc.lustMax(), true);
 		}
 	}
@@ -3053,11 +3053,11 @@ public function playerMimbraneSpitAttack():void
 					// Output text
 					if (eligibleMimbranes[ii] == "Mimbrane Cock")
 					{
-						output("\nYou’re about brought to your knees by a tremendous buildup of pressure in your [pc.cock]. Unable to ignore it, you quickly undo your [pc.armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the " + foes[0].short + ", hard enough to hit you with a little splash damage.\n")
+						output("\nYou’re about brought to your [pc.knees] by a tremendous buildup of pressure in your [pc.cock]. Unable to ignore it, you quickly undo your [pc.armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the " + foes[0].short + ", hard enough to hit you with a little splash damage.\n")
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
 					{
-						output("\nA tremendous buildup in your [pc.pussy] forces you to your knees. You frantically undo your [pc.armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the " + foes[0].short + " and hitting you with a little splash damage.\n");
+						output("\nA tremendous buildup in your [pc.pussy] forces you to your [pc.knees]. You frantically undo your [pc.armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the " + foes[0].short + " and hitting you with a little splash damage.\n");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 					{

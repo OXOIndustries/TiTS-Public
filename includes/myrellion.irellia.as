@@ -421,7 +421,10 @@ public function tailFuck():void
 	//Normal dix
 	else
 	{
-		output("\n\n“<i>Come on, Steele. I won’t bite... too much.</i>”\n\nThis time when her nectar-slicked lips envelop your [pc.cockHead " + x + "], you continue to push forward, ignoring the heavenly warmth and pressure of her slick walls pressing down on you from all sides. Your [pc.legOrLegs] wobble a little, but you stay upright thanks to the grip your hands maintain on her abdomen’s shimmering plates.");
+		output("\n\n“<i>Come on, Steele. I won’t bite... too much.</i>”\n\nThis time when her nectar-slicked lips envelop your [pc.cockHead " + x + "], you continue to push forward, ignoring the heavenly warmth and pressure of her slick walls pressing down on you from all sides. Your [pc.legOrLegs] wobble");
+		if(pc.legCount == 1) output("s");
+		output(" a little, but you stay upright thanks to the grip your hands maintain on her abdomen’s shimmering plates.");
+
 		output("\n\nQueen Irellia, smiling now, brings her other breast up to her lips, salaciously gathering the honey from her nipple just in time for it to release another drop. She purrs throatily in between swallowing, her cunt just kind of idly pulsating around you, tugging and squeezing at your [pc.cock " + x + "] to fully seat it inside her");
 		if(pc.hasKnot(x)) output(", knot and all");
 		output(".");
@@ -1453,7 +1456,10 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	output(" and his semi-hard cock still buried inside of your cum-splattered ");
 	if(x >= 0) output("pussy");
 	else output("butt");
-	output(". With hands hooked under your knees, he spreads your legs for Irellia, who is licking her lips with salacious anticipation.");
+	output(". With hands hooked under your [pc.knees], ");
+	if(pc.legCount > 1) output("he spreads your ");
+	else output("he adjusts your ");
+	output("[pc.legOrLegs] for Irellia, who is licking her lips with salacious anticipation.");
 	if(pc.hasCock()) 
 	{
 		output(" [pc.EachCock] ");

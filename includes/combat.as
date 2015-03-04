@@ -151,7 +151,7 @@ public function combatMainMenu():void
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
-		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
+		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your [pc.knees] before them.");
 		
 		if (pc.hasStatusEffect("Cockvine Grip") && pc.statusEffectv1("Cockvine Grip") > 0)
 		{
@@ -464,7 +464,7 @@ public function updateCombatStatuses():void {
 	{
 		if(pc.hasPerk("Leap Up"))
 		{
-			output("<b>You roll up onto your feet immediately thanks to your quick reflexes.</b>\n");
+			output("<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>\n");
 			pc.removeStatusEffect("Trip");
 		}
 	}
@@ -3161,7 +3161,7 @@ public function chestTeaseText():void {
 		//Reqs: PC is wearing clothes but no bra, PC’s biggest breast row is at least a D-cup
 		else if(select == 2)
 		{
-			output("“<i>Want to see just how perky these are?</i>” You give your target a sly smile while opening up your [pc.upperGarments], bouncing lightly on your feet to make your [pc.fullChest] jiggle. Once the jiggle subsides a bit you pass a hand across the space under your [pc.biggestBreastDescript], showing off how they return to sitting good and high on your chest once they stop bouncing. “<i>Isn’t modern medicine great? No need for a bra with these big girls.</i>” You flash a coy wink as you cover back up.");
+			output("“<i>Want to see just how perky these are?</i>” You give your target a sly smile while opening up your [pc.upperGarments], bouncing lightly on your [pc.feet] to make your [pc.fullChest] jiggle. Once the jiggle subsides a bit you pass a hand across the space under your [pc.biggestBreastDescript], showing off how they return to sitting good and high on your chest once they stop bouncing. “<i>Isn’t modern medicine great? No need for a bra with these big girls.</i>” You flash a coy wink as you cover back up.");
 		}
 		//Reqs: PC is wearing something covering their top, has at least as many prehensile tails as nips
 		else if(select == 3)

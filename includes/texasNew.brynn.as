@@ -169,7 +169,9 @@ public function brynnsStallFunc():Boolean
 				if (pc.hasVagina() || pc.hasCock()) output(".");
 				output(" To <i>fuck</i>.");
 				
-				output("\n\nYou push through the doors of the stall in a daze, the smell of the very thing your Treated body needs dragging you nose-first through the barn and to the strongest source of raw sex it can find. Your feet abruptly come to a stop, your [pc.legOrLegs] having been moving on effective autopilot without your conscious consent.");
+				output("\n\nYou push through the doors of the stall in a daze, the smell of the very thing your Treated body needs dragging you nose-first through the barn and to the strongest source of raw sex it can find. Your [pc.feet] abruptly come");
+				if(pc.legCount == 1) output("s");
+				output(" to a stop, your [pc.legOrLegs] having been moving on effective autopilot without your conscious consent.");
 				
 				if (brynnIntroduced())
 				{
@@ -493,7 +495,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	else output("\n\n<i>“O");
 
 	output("pen wide, [pc.girl]");
-	if (brynnIntroduced()) output(",”</i> he tells you, his deep voice being directed at you causing a flutter of weakness in your knees. Before you can muster a reply, the bull-man pulls you back onto his cock, smothering whatever words might have been forthcoming with the fat head of his dick.");
+	if (brynnIntroduced()) output(",”</i> he tells you, his deep voice being directed at you causing a flutter of weakness in your [pc.knees]. Before you can muster a reply, the bull-man pulls you back onto his cock, smothering whatever words might have been forthcoming with the fat head of his dick.");
 	else output(".”</i>");
 
 	output("\n\nYour mouth is mashed right into the streaming source of the");

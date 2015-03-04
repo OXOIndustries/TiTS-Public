@@ -761,7 +761,7 @@ public function ohShitLoseToRobot():void {
 	author("Magic Ted");
 	userInterface.showBust("MACHINA");
 	userInterface.showName("\nMACHINA");
-	if(pc.lust() > 99) output("Though you sink to your knees in need, that all changes when the robot fires a huge metal slug at you.\n\n");
+	if(pc.lust() > 99) output("Though you sink to your [pc.knees] in need, that all changes when the robot fires a huge metal slug at you.\n\n");
 	output("Pain.");
 
 	output("\n\nYou are wracked by waves and waves of pain, your vision becoming a hazy blur as your body falls against the thick ferns and other plants below. You can feel the damp ground all around you, knowing it'll be the last thing you'll get to feel - besides pain. As the machine looms closer, tools whirring ominously, you close your eyes, resigned.");
