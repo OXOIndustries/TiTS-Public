@@ -269,7 +269,13 @@
 		{
 			AttachTooltipListeners(_leftSideBar.menuButton);
 			AttachTooltipListeners(_leftSideBar.dataButton);
+			AttachTooltipListeners(_leftSideBar.quickSaveButton);
+			
 			AttachTooltipListeners(_leftSideBar.appearanceButton);
+			
+			AttachTooltipListeners(_leftSideBar.statsButton);
+			AttachTooltipListeners(_leftSideBar.perksButton);
+			AttachTooltipListeners(_leftSideBar.levelUpButton);
 		}
 		
 		/**
