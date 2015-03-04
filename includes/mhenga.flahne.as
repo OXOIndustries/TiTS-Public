@@ -1314,6 +1314,7 @@ function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 {
 	clearOutput();
 	showFlahne();
+	author("Savin");
 	//if Taur:
 	if(pc.isTaur())
 	{

@@ -87,6 +87,12 @@ public function backAlleyBonus():Boolean
 	return false;
 }
 
+public function myrellionScoutAuthorityBonus():Boolean
+{
+	showBust("ANTRIAS");
+	return false;
+}
+
 public function kressiaGatesBonus():Boolean
 {
 	if(flags["MET_LIEVE"] == undefined) output("from which can be heard a series of very soft moans and giggles");
