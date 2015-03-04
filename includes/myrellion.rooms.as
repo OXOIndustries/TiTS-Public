@@ -891,7 +891,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["747"] = new RoomClass(this);
 	rooms["747"].roomName = "IRELLIA’S\nCHAMBERS";
-	rooms["747"].description = "Flickering blue lights bathe the chamber in gentle, subdued tones. A closer glance reveals the light sources aren’t lights at all, but small terrariums housing tiny glowing mushrooms and exotic bugs that pulse with their own luminance. Curtains block her other rooms from view, though you spot at least shower to the south behind a curtain tall enough to hide a giant. The main hall lies west, past a doorway and a pair of guards.";
+	rooms["747"].description = "Flickering blue lights bathe the chamber in gentle, subdued tones. A closer glance reveals the light sources aren’t lights at all, but small terrariums housing tiny glowing mushrooms and exotic bugs that pulse with their own luminance. Curtains block her other rooms from view, though you spot a shower to the south behind a curtain tall enough to hide a giant. The main hall lies west, past a doorway and a pair of guards.";
 	rooms["747"].planet = "PLANET: MYRELLION";
 	rooms["747"].system = "SYSTEM: SINDATHU";
 	rooms["747"].westExit = "746";

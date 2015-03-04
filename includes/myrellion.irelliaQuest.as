@@ -132,7 +132,7 @@ public function firstIrelliaApproach():void
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("with grace");
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("as if possessed by the knowledge of a sage");
 	else output("in such an unusual way");
-	output(".I would hear what [pc.heShe] has to say.</i>”");
+	output(". I would hear what [pc.heShe] has to say.</i>”");
 	output("\n\nMarsail scowls, but waves her arm in your direction, her combined jewelry jingling obnoxiously. “<i>Fine then. Speak to us, star-walker. Why do you interrupt our conference? What are you called?</i>”");
 	processTime(5);
 	clearMenu();
