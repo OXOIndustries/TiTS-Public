@@ -21,20 +21,38 @@ public function hasMetLieve():Boolean
 	return false;
 }
 
-public function hasFuckedLieve():Boolean
+public function hasFuckedLieve(inc:Boolean = false):Boolean
 {
+	if (inc)
+	{
+		if (flags["FUCKED_LIEVE"] == undefined) flags["FUCKED_LIEVE"] = 0;
+		flags["FUCKED_LIEVE"]++;
+	}
+
 	if (flags["FUCKED_LIEVE"] != undefined) return true;
 	return false;
 }
 
-public function hasFuckedTrenchWives():Boolean
+public function hasFuckedTrenchWives(inc:Boolean = false):Boolean
 {
+	if (inc)
+	{
+		if (flags["FUCKED_TRENCHWIVES"] == undefined) flags["FUCKED_TRENCHWIVES"] = 0;
+		flags["FUCKED_TRENCHWIVES"]++;
+	}
+
 	if (flags["FUCKED_TRENCHWIVES"] != undefined) return true;
 	return false;
 }
 
-public function hasFuckedLieveSolo():Boolean
+public function hasFuckedLieveSolo(inc:Boolean = false):Boolean
 {
+	if (inc)
+	{
+		if (flags["FUCKED_LIEVE_SOLO"] == undefined) flags["FUCKED_LIEVE_SOLO"] = 0;
+		flags["FUCKED_LIEVE_SOLO"]++;
+	}
+
 	if (flags["FUCKED_LIEVE_SOLO"] != undefined) return true;
 	return false;
 }
@@ -177,7 +195,12 @@ public function lieveMenu():void
 		else addDisabledButton(3, "KissHer");
 	}
 
-	addButton(4, "Tour Town", );
+	if (pc.isFeminine() && flags["LIEVE_TOWNTOUR"] == undefined) addButton(4, "Tour Town", lieveTourTheTown);
+	else
+	{
+		if (flags["LIEVE_TOWNTOUR"] != undefined) addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve's already shown you around the town.");
+		else addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve probably isn't all too interested in spending so much time with a dudely-dude.")
+	}
 
 	if (hasFuckedLieve()) addButton(5, "Appearance", lieveAppearance);
 	else addDisabledButton(5, "Appearance");
@@ -740,7 +763,7 @@ public function lieveVenomToggle():void
 	flags["LIEVE_VENOM_ENABLED"] = 1;
 
 	//Sex Menu here.
-	lieveSexMenu();
+	lieveSexMenu(true);
 }
 
 public function lieveKissHer():void
@@ -763,10 +786,9 @@ public function lieveKissHer():void
 	output("\n\n<i>“Get everything you needed, Steele?”</i> Lieve asks, caressing your cheek. When you nod, she smiles and adds, <i>“Now, what’re you going to do to burn off all that extra lust, hmm?”</i>");
 
 	flags["LIEVE_VENOM_USED"]++;
-	flags["LIEVE_VENOM_ENABLED"] = 1;
 
 	//Sex menu here
-	lieveSexMenu();
+	lieveSexMenu(true);
 }
 
 public function lieveSexEntry():void
@@ -804,18 +826,25 @@ public function lieveSexEntry():void
 	lieveSexMenu();
 }
 
-public function lieveSexMenu():void
+public function lieveSexMenu(tempVenomEnabled:Boolean = false):void
 {
 	clearMenu();
-	addButton(0, "Fuck Harem", lieveFuckHarem, undefined, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
-	addButton(1, "Lieve Solo", );
-	addButton(2, "Bodyworship", );
+	if (!pc.hasCock()) addButton(0, "Fuck Harem", lieveFuckHarem, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
+	else addButton(0, "Fuck Harem", lieveFuckHaremDickVersion, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
+
+	if (pc.isMasculine()) addButton(1, "Lieve Solo", lieveSoloTurnsDownDudes, undefined, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
+	else addButton(1, "Lieve Solo", lieveSoloFucktime, tempVenomEnabled, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
+
+	if (pc.isFeminine() && (lieveVenomEnabled() || tempVenomEnabled)) addButton(2, "Bodyworship", lieveBodyWorship, undefined, "Worship Lieve’s Body", "Let Lieve hop you up on a nice, heavy dose of her lusty venom and then lavish the red myr's chiseled body with your " + pc.tongueDescript() + ".");
 }
 
-public function lieveFuckHarem():void
+public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 {
 	clearOutput();
 	lieveHeader(true);
+
+	hasFuckedLieve(true);
+	hasFuckedTrenchWives(true);
 
 	output("You relax under the ministrations of the three lusty ant-girls, their hands playing and teasing all over your bare body, carrying away your equipment. The two goldens ease you down onto one of the stools scattered around the bunker, spreading your [pc.legs] nice and wide, one of them on either side of you. You shiver as their long tongues flick out, caressing your [pc.skinFurScales] all the way up your thighs. As they work, the girls’ mistress slips down behind them, running her hands along the chitinous backs of their insectile abdomens. Lieve flashes you a wink and a grin as her hands tenderly stroke their way down the girls’ backs, and then disappear behind them.");
 	
@@ -887,15 +916,950 @@ public function lieveFuckHarem():void
 	output("\n\n<i>“Good,”</i> Lieve purrs, crawling up your sweat-sheened body and seating herself on your lap. You shiver as her chitin-clad limbs brush dangerously close to your [pc.cunt], and her plated fingers slip around your shoulder. Her other hand cups one of her small, perky breasts, pinching one of her crimson nipples between her digits. <i>“Now... I’d ask if you want me to show you what </i>I<i> can do, but we both know the answer to that.”</i>");
 	
 	output("\n\nAs she speaks, Lieve’s fingers massage her breast, making her back arch with pleasure. Her other arm slips lower, teasing all the way down to the small of your back. She crosses one leg over the other, letting the lower of the two rest of Mayren’s upraised ass as she whispers into your [pc.ear]: <i>“");
-	if (!lieveVenomEnabled())
+	if (!lieveVenomEnabled() && !tempVenomEnabled)
 	{
 		output("The real question is if you want the full package.”</i> As if to emphasize her point, Lieve leans in and plants a kiss on the nape of your neck, letting her tongue play across your [pc.skin] until you shiver with sensation, her aphrodisiac venom seeping into you. <i>“...Or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my hands, cumming again and again and again.”</i>");
 	
 		output("\n\nThough she’s teasing you, Lieve doesn’t make a move until you answer.");
+		
+		clearMenu();
+		addButton(0, "Venom Fuck", lieveVenomFuck, tempVenomEnabled, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
+		addButton(1, "No Venom", lieveNoVenomFuck, tempVenomEnabled, "No Venom", "You'd rather not have your body flooded with myr venom.");
+		return;
 	}
 	else
 	{
 		output("You wanted my venom, Steele... I hope you’re ready for it. I’m going to enjoy watching you squirm and moan for hours.”</i>");
-	output("\n\n//Go straight to venom scene}");
+		clearMenu();
+		addButton(0, "Next", lieveVenomFuck);
+	}
+}
 
+public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	if (!lieveVenomEnabled())
+	{
+		output("You nod to Lieve, telling her you want to experience the same euphoria as her wives. She smiles at you, and you suddenly find yourself with a beautiful ant-girl straddling you, arms wrapping around your neck.");
+		
+		output("\n\n<i>“Just be thankful </i>you<i> have a choice,”</i> Lieve murmurs, nodding towards her wives’ writhing bodies at her side.");
+	}
+	else
+	{
+		output("You moan as the familiar burn of Lieve’s venom spreads through your neck. Slowly but surely, the ant-girl slips around overtop you, shifting to straddle your waist. You find yourself pinned to the wall with a beautiful ant-girl wrapping her arms around your neck, a pale pink trickle of envenomed saliva already cresting her rosy lips.");
+		
+		output("\n\n<i>“Just remember, you always had a choice,”</i> she whispers, ever so slightly nodding to the writhing bodies of her wives beside you.");
+	}
+
+	output("\n\nLieve smiles at you, licking her lips before leaning in and pressing them to yours, locking you in a tongue-filled kiss that quickly has your body burning with desire. You moan, relaxing utterly in your lover’s grasp, suddenly and completely aware of every subtle touch, every hair on your body. Lieve’s breath is hot against your [pc.skinFurScales], billowing across your nose in cascading waves: that alone is enough to make you shiver. You can feel your own orgasmic juices, mixing with Sierva’s saliva, drooling out of your well-eaten gash, and your whole body convulses with the incredible sensation of the afterglow, suddenly a thousand times more potent.");
+	
+	output("\n\nInstinctively, you move a hand down to your [pc.cunt], eager to fuck yourself out of the heady cocktail of aphrodisiacs starting to work their way down. Lieve catches your wrist, pulling you back and pinning your arm to the wall. She breaks the kiss and tsks her tongue at you, flicking a little more of her druggy spittle back onto your cheeks.");
+	
+	output("\n\n<i>“Sier, take this for a moment?”</i> she grins, handing your hand off to one of her wives. The gold myr doesn’t look up, just extends one of her four arms back and laces her fingers with yours, a more gentle and affectionate restraint than you expected. A moment passes in slow agony, letting you grow more desperate for sensation - any sexual touch to set you off. Your other hand traces across Lieve’s neck, chest, down to her breast, cupping one of the perky mounds in an effort to spur her on.");
+	
+	output("\n\n<i>“That’s just an appetizer,”</i> Lieve laughs, brushing your hand aside, guiding it down to her hip. She gives you a lascivious wink and slips down off your lap, down between your [pc.legs], stopping just long enough to make one long lick across each of your [pc.nipples].");
+	
+	output("\n\nYou groan as she teases you, a few meager touches enough to make your whole chest burn. It’s a force of will not to squirm and writhe in desperation; instead, you clutch Sierva’s hand tight and urge your red myr lover down with the other, running your hand through her pink-dyed hair and stroking one of her insectile antennae.");
+	
+	output("\n\nYou hear a voice begging Lieve to fuck you, to thrust her tongue deep into your [pc.cunt]. It takes a long moment for you to recognize the slurring voice as your own.");
+	
+	output("\n\nLieve smiles up at you, planting her plated fingers on your thighs and spreading you nice and wide for her inspection. <i>“I see my girls did a good job down here,”</i> she teases, one of her fingers caressing the tender flesh leading up to your groin. Just the feeling of her finger sliding up your thigh sends you into another orgasm, every inch of your body easily as sensitive as your [pc.clit] ever could be. You scream and dig your hands into your lovers, holding tight as Lieve teases you through a second climax.");
+	
+	output("\n\n<i>“I guess I forgot, you’re not as used to my venom as the girls are,”</i> your red myr lover laughs, her lone finger still tracing up to the lips of your [pc.cunt]. You thought it was intense before, but God, the sensation of Lieve’s fingertip flicking your lip sends pleasure crashing through you in waves so strong you think you’ll faint.");
+	
+	output("\n\n<i>“Fuck,”</i> you manage to groan, body going limp.");
+	
+	output("\n\nWith a wink, Lieve circles her finger around your [pc.clit], just far enough to keep you from going completely insane from overwhelming pleasure. <i>“Like my venom?”</i> she asks, sliding her finger in between your pussylips.");
+	
+	output("\n\nYou shriek out something that Lieve takes as a <i>“yes,”</i> and you feel two more fingers join the first, plunging into your twat.");
+	
+	output("\n\n<i>“Finish yourselves off again, girls,”</i> Lieve commands. <i>“I think our friend here needs a few more womens’ touches.”</i>");
+	
+	output("\n\nYou’re not sure of the trench wives answer an affirmative, or just join you in pleasured cries. You don’t see what they do more than a few moments after, as you’re quickly finding your eyes too heavy to keep open. They flutter closed, and your [pc.legs] squeeze tight around Lieve’s shoulders, drawing her further into your spasming cunt. You can feel the drooling rivers of fem-cum rolling down your thighs, squirting out of your slit as Lieve vigorously fingers you.");
+	
+	output("\n\nTime escapes you when eight more hands join Lieve’s, wandering all over your body, teasing your over-sensitive flesh. Several of them rub and caress your [pc.breasts], while others rub your thighs, neck, and lips. You feel the familiar sensation of Mayren’s honeypot tits pressing against your face, and Sierva’s tongue running dangerously close to your pussy. Lieve’s tongue joins her, slipping into your slit. Slow as she goes, you can feel her working her way deep into you, lacing the insides of your sex with her aphrodisiac saliva. The drug burns in you like a sexual wildfire, and you lose count of how many times you orgasm before she’s fully buried between your [pc.legs]. All you can do is writhe and moan, letting the ant-girls bring you to climax again and again and again until your mind’s a blank, completely given over to physical impulse.");
+
+	clearMenu();
+	addButton(0, "Next", lieveVenomFuckII);
+}
+
+public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	//Drain Energy to 0, inflict lust venom debuff.
+	output("<b>You have no idea how much time passes...</b>");
+	
+	output("\n\nYou don’t know if you’ve ever cum so much, but by the time Lieve is done with you, you feel like a hollow husk, completely drained of energy. You moan, your body unresponsive to your mental commands as you come to. Lethargy overwhelms you, and ant-girls caress and snuggle against you. It’s an effort to move yourself to sit up, and look over the intertwined bodies of Lieve and her wives. Your skin still burns with the red myr’s lust-drug, but the mind-numbing pleasure has abated somewhat, at least.");
+	
+	output("\n\nLieve looks lazily up at you, and runs a hand across your [pc.hip]. <i>“You leaving us?”</i> she murmurs, rolling onto her back and stretching, almost feline-like. You nod slowly, and she gives you a slight little smile. <i>“Take it easy for a bit, alright? {if LieveVenom off: You’re still not used to my venom, after all.} Give yourself some time to recover.”</i>");
+	
+	output("\n\nYou promise that you will, as you untangle yourself from her wives’ many arms. You grab your gear and head out, leaving Lieve to wake her gold myr brides back up.");
+
+	pc.energyRaw = 0;
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveNoVenomFuck():void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	output("<i>“No venom,”</i> you murmur back, slipping an arm around your myr lover’s waist. The slight pull of your arm stirs her to action, and Lieve flips herself to straddle you, wrapping her own chitinous arms around your neck.");
+	
+	output("\n\n<i>“Have it your way, Steele,”</i> she says in mock disappointment. She runs her thumb under her lip, wiping away a little trickle of pink, venomous saliva. She extends her hand, and one of her wives dutifully laps the extra drug up, moaning as she suckles on Lieve’s thumb before returning to eating out her partner.");
+	
+	output("\n\nWith her hand cleansed, Lieve slips it down between your bodies, teasing her fingertips around the bud of your [pc.clit]. In turn, you lace your arms around her, pulling her a little closer until her small breasts are wonderfully near to your lips. She doesn’t seem to mind when you reach out and kiss one of them, teasing the stiff peak with your [pc.tongue], but when you try and suckle from her, Lieve roughly pushes you back against the wall, tsking her tongue and driving her fingers deep into your sex.");
+	
+	output("\n\n<i>“Ask a girl, first!”</i> she scowls, holding you firmly against the wall. <i>“I’m not a honeypot just waiting to drip nectar for you, Steele.”</i>");
+	
+	output("\n\nYou apologize, a bit taken aback by the sudden rebuke. Seeing you confused, Lieve softens, and whistles to get her wives’ attention. <i>“Mayren, I believe our friend here’s desperate for another drink. Why don’t you girls finish yourselves off again and come over here?”</i>");
+	
+	output("\n\nThe girls moan lustily, mouths still buried in each others’ abdomens, and Lieve returns her attention to you. The hand not teasing around your [pc.cunt] makes its way to your [pc.breast],");
+	if (pc.biggestTitSize() >= 2) output(" cupping and");
+	output(" squeezing your nipple between her thumb and forefinger until you suck in a sharp breath of pleasured pain");
+	if (pc.isLactating()) output(" and a trickle of [pc.milk] squirts out over Lieve’s hand. So much for asking");
+	output(". Succumbing to Lieve’s pincer attack on your tender flesh, you find yourself moaning like a whore, grinding your hips against her hand and letting your hands rove all across her body, grabbing breasts and caressing hips at random.");
+	
+	output("\n\nYour voice is joined by ecstatic moans and orgasmic screams from the floor beside you - Sierva and Mayren seem to be enjoying each other’s bodies and Lieve’s venom. As their orgasms pass, Lieve calls their attentions again, and soon enough you have a pair of lusty ant-girls crawling up to you and joining their mistress in tending to your needs. Mayren’s breast returns to your face, letting you get another taste of the delicious nectar of hers - though after a few mouthfuls, you’re starting to think you might be getting a contact high of venom through her breasts as your cheeks redden and your breath quickens.");
+	
+	output("\n\nDown below, you shiver as Sierva’s tongue resumes its place at the lips of your twat, slipping in under Lieve’s fingers. You try not to cry out under the sudden doubling of sensation, but you can’t stop your [pc.legs] from squirming around Sierva’s shoulders, squeezing the gold myr warrior tight - and pulling her closer, all the better to eat you out. Seeing what you’re about, Lieve laughs and reaches back to stroke her wife’s head and drives her other fingers into you to the hilt, searching through your channel for tender spots to caress.");
+	
+	output("\n\nWith three myr working tirelessly for your pleasure, you don’t have a prayer to hold back. They quickly have you screaming your orgasm out around a mouthful of honeypot tit, but never let up through your climax, and just keep going, fucking your limp and exhausted body straight on towards another orgasm, and another.");
+
+	clearMenu();
+	addButton(0, "Next", lieveNoVenomFuckII);
+}
+
+public function lieveNoVenomFuckII():void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	output("<b>You lose track of time...</b>");
+	
+	output("\n\nYou’re nothing but putty in their hands by the time the ant-girls are done with you, barely able to feel your extremities as orgasms wrack your body again and again. You’ve consumed so much of Mayren’s nectar that your belly seems");
+	if (!pc.isPregnant()) output(" positively pregnant");
+	else output(" even more swollen than before");
+	output(". Finally having burned through their dose of Lieve’s venom, the pair of trench wives are curled up around you, locking their plated limbs around your shoulders and waist, breasts pressing tight against you.");
+	
+	output("\n\nYou can’t remember when they pulled you off the stool, or when you ended up with your face buried between Lieve’s legs, but you can still taste the red myr’s sex on your [pc.lips], a warm and sultry flavor that clings stickily to you. Your head’s resting in the red mistress’s lap, her chitinous fingers stroking your [pc.hair].");
+	
+	output("\n\nSeeing you stirring, Lieve smiles down at you, saying <i>“I think my girls got a little overzealous, don’t you?”</i>");
+	
+	output("\n\nYou");
+	if (pc.isNice()) output(" laugh, saying that you enjoyed yourself.");
+	else if (pc.isMischievous()) output(" flash a grin back up at her. <i>“That’s my kind of zeal, though.”</i>");
+	else output(" shrug and tell her that wasn’t exactly the worst thing that could’ve happened.");
+	
+	output("\n\n<i>“I’m glad,”</i> she says simply, peeling one of Mayren’s arms off you and helping you to your feet. <i>“I know you’ve got places to be, Steele. But it was fun while it lasted.”</i>");
+	
+	output("\n\nThat it was. You pick up your [pc.gear] and start for the door, leaving Lieve to wake her girls back up.");
+
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	hasFuckedLieve(true);
+	hasFuckedTrenchWives(true);
+
+	output("\n\nYou relax under the ministrations of the three lusty ant-girls, their hands playing and teasing all over your bare body, carrying away your equipment. Their movements become more and more excited as they near your [pc.crotch], and their eyes take on a lusty, greedy sheen as they");
+	if (pc.isCrotchGarbed()) output(" pull off your [pc.lowerUndergarment]");
+	else output(" tear away the last vestiges of your gear");
+	output(" and get at your [pc.cock]. They stare almost reverently at your stiffening shaft of meat, eyes widening with a mixture of lust and awe.");
+	if (flags["LIEVE_HAREM_DICKFUCK"] != undefined) output(" If you didn’t know different, you’d almost think they’d never seen a dick before.");
+
+	flags["LIEVE_HAREM_DICKFUCK"] = 1;
+	
+	output("\n\nSierva’s black-plated fingers wrap around your [pc.cock] first, tentatively stroking the shaft near the base, leaving the [pc.cockHead] bobbing in the air. Seeing her opportunity, Mayren crawls over her muscular companion and plants herself overtop Sierva, her tits crushing down on Sier’s head like a pair of honey-filled weights. With a huge grin, May leans forward and wraps her lips around your [pc.cockHead], sending an uncontrollable shiver of pleasure through you.");
+	
+	output("\n\n<i>“What’re you-”</i> Sierva complains, squirming under the tremendous heft of Mayren’s tits. The busty honeypot just giggles around your cock and starts to slip more of you between her lips, leaning in until she’s kissing the top of Sierva’s fist. The ant-girl on bottom grunts and moves her hand a little faster, letting her tongue flick out across your sensitive underside when Mayren moves back up to your crown.");
+	
+	output("\n\nWhile they’re squabbling over your cock, the girls’ mistress moves down behind them, running her hands along their insectile abdomens. Lieve gives you a playful wink, licking one of her fingers and slipping into Mayren’s abdominal slit. The lusty bug yelps around a mouthful of cock, but her cry of surprise quickly turns into a low moan of pleasure as Lieve’s digits slide into her. You watch as Mayren’s eyes flutter closed, and her body starts to rock back and forth: onto Lieve’s hand, then down onto your cock, and back again.");
+	if (pc.balls > 0) output(" Sierva shifts, pressed down by May’s weight. Her tongue goes with her, slurping down to your [pc.balls] and caress one of the full swells of your nads. You can’t suppress a moan, and you quickly find your hand wandering down to Sier’s head, pushing her deeper down into your crotch to get more and her wonderful tongue to work.");
+	
+	output("\n\n<i>“They just can’t get enough of your [pc.cock], can they?”</i> Lieve laughs as her hand completely disappears into Mayren’s abdomen. The buxom ant-girl moans something unintelligible, and goes nearly limp - save for her tongue, which continues to swirl and lick at your cockhead with unyielding vigor. You watch appreciatively as a squirt of fem-spunk squirts out around Lieve’s wrist, drenching her almost to the elbow in musky girl-juices.");
+	
+	output("\n\nPatting May’s head, you answer Lieve that one of her girls is going to get a lot more of your dick in a few moments if they keep this kind of attention up.");
+	
+	output("\n\n<i>“Then it’s my turn,”</i> Sierva says, forcing her way up - and shoving Mayren off your [pc.cock]. The bigger ant-girl grabs you by the waist and buries herself on your dick before you or May can fight back, stealing the last few licks you need to reach the peaks of pleasure. Grabbing Sierva’s head, you hammer your hips into her lips, forcing your [pc.cock] as deep down her throat as you can get it before she wrings the cum from you. With a roar of pleasure, you feel yourself cumming, spurting a");
+	if (pc.cumQ() <= 250) output(" few squirts of seed into Sierva’s waiting lips");
+	else if (pc.cumQ() <= 750) output(" a thick, hefty load of spunk down her throat");
+	else if (pc.cumQ() <= 1500) output(" a tremendous load of spooge into her mouth, filling her almost faster than she can swallow it. She’s drooling your spunk before you’re done, trickles of [pc.cumColor] going down her chin.");
+	else
+	{
+		if (flags["RESCUE KIRO FROM BLUEBALLS"] != undefined) output(" Kiro-sized");
+		else output(" Absolutely monsterous");
+		output(" load down Sierva’s throat, bloating the warrior-ant’s gut with a bunker-buster load of spooge.");
+	}
+	output(" Sierva coughs and wipes her lips, pulling herself off your wang - just in time for Mayren to take her place again, helping herself to the last trickles of your creamy seed. The bubbly honeypot eagerly finishes what her companion bega, spit shining your [pc.cockHead] until it glistens.");
+	
+	output("\n\nYou sigh contentedly as the golden girls enjoy your spunk, marveling at the unfamiliar taste and texture of it. Mayren nuzzles into your thigh, absently stroking your [pc.cock] with one of her hands as the others clean up the excess spunk coating her lips and tease her swollen nipples. Her eyes are heavy-laden with chemical lust, even after Lieve’s popped her fist out of her pussy and moved on to Sierva. The bigger gold ant gasps and sighs as Lieve’s tongue slurps into her abdominal slit, venom-laced mouth pressing in to kiss Sierva’s lower lips.");
+	
+	output("\n\nYou watch the two of them entangle for a few brief, audibly pleasurable moments. Sier’s hand find their way between her mistress’s legs, teasing between Lieve’s rosy lips. <i>“Riiiight where you belong,”</i> Lieve coos, clenching her thighs around Sierva’s neck. Between the show they’re putting on and Mayren’s hands pumping your spent, sensitive shaft, you soon find yourself surging back to full strength.");
+	
+	output("\n\n<i>“Oooh, all for me this time?”</i> Mayren says with a smile, running her tongue along the side of your [pc.cock].");
+	
+	output("\n\n<i>“You’re welcome to it,”</i> Lieve laughs, patting Sierva’s cheek and stepping off from her gold myr lover. <i>“But I think [pc.heShe] would look a little better between the two of you, hmm?”</i>");
+	
+	output("\n\nOn that point, at least, the girls can all eagerly agree.");
+	
+	output("\n\nYou’re quickly pulled down off your stool and onto your back, straddled by both trench wives. Their eight hands explore your body in full now, cupping and squeezing and caressing every sensitive spot they can find. Sierva’s abdomen curls between her legs, its entrance probing at your lips. You open wide, letting your tongue fill in for Lieve’s and slip deep into Seirva’s slit. Grinning lustily at you, Mayren sidles down onto your lap, her own insectile behind caressing your [pc.cock] with wet, warm motions. You shiver uncontrollably as her wet slit slides along your underside, dragging along your shaft until her pussylips crest your crown.");
+	
+	output("\n\n<i>“Ah,”</i> she says simply, cupping one of her honey-swollen tits and sliding down your shaft. Your hands grip her hips, guiding her procession down until");
+	if (pc.biggestCockLength() <= 12) output(" she’s fully mounted on your cock");
+	else output(" her abdomen is distended with the overwhelming mass of your mighty rod");
+	output(". She gives you a lascivious wink as she settles in atop you, caressing her own hind-end with her lower arms, feeling herself up on both fronts.");
+	
+	output("\n\nSuddenly, your view is blocked by a tight, bare, abdomenless ass. Lieve joins her wives in straddling you, facing Mayren full on and taking the honeypot’s huge breasts in her hands and burying her face in between them. May gasps and giggles as she gets a second dosing of lust-venom applied directly to her pert teats. It’s impossible to resist the urge to reach up and grab Lieve’s ass when it’s on such blatant display for you, close enough to kiss it if you weren’t busy tending to a different set of nethers. Lieve pauses to look over her shoulder, giving you");
+	if (pc.isFeminine()) output(" a lascivious wink");
+	else output(" a strange look");
+	output(" before Sier leans forward, cupping Lieve’s cheek and pulling her into a kiss. You feel the pussy at your lips flush and start to leak as Lieve’s venom strikes again, sending shivers of pleasure through the antgirl’s body.");
+	
+	output("\n\n<i>“Don’t hog all the fun for us, Lieve!”</i> May giggles, caressing one of Lieve’s tits. <i>“I’m sure [pc.name] wants in on the fun. Don’t you, [pc.name]?”</i>");
+	
+	if (!lieveVenomEnabled() && !tempVenomEnabled)
+	{
+		output("\n\n<i>“That’s a good question,”</i> Lieve says, her smile widening. <i>“I’ve got plenty to share.... or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my girls’ hands, cumming again and again and again.”</i>");
+	
+		output("\n\nThough she’s teasing you, Lieve doesn’t make a move until you answer.");
+
+		clearMenu();
+		addButton(0, "Venom Fuck", lieveFuckHaremDickVersionVenom, undefined, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
+		addButton(1, "No Venom", lieveFuckHaremDickVersionNoVenom, undefined, "No Venom", "You'd rather not have your body flooded with myr venom.");
+	}
+	else
+	{
+		output("\n\n<i>“You wanted my venom, Steele... I hope you’re ready for it. I’m going to enjoy watching you squirm and moan for hours.”</i>");
+		//Go straight to venom scene
+
+		clearMenu();
+		addButton(0, "Next", lieveFuckHaremDickVersionVenom);
+	}
+}
+
+public function lieveFuckHaremDickVersionVenom():void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	output("Lieve manages to pull herself away from her wives for a few moments, long enough to turn her attention to you and run her pink-slathered tongue across the palm of her hand. She gives Mayren a little push, causing her wife to rise up on your cock, exposing most of your shaft to the cool air - though she’s sure to keep your crown nice and nestled in her pussy’s wet, sultry embrace. Lieve’s hand takes hold of your length, wrapping her venom-slathered fingers around it and pumping slowly up and down. Her spit and May’s drooling pussy-juice acts as a perfect lube, letting her glide along your length.");
+	
+	output("\n\nIt doesn’t take long for you to feel the first tendrils of Lieve’s venom seeping into you, sending a hot, murky lust rising through your body. As if the sight of three beautiful ant-girls crawling all over you wasn’t enough to have you rock hard to begin with! Regardless of your current arousal, you can feel the chemical aphrodisiac burning in your veins, searing away your conscious thoughts and replacing them with primal, animal need. Your hands dig into May’s abdomen, pulling her back down on your shaft and thrusting your hips up to meet her. She moans, eyes rolling back as you slam a venom-coated missile deep up her cunt, and sends a squirt of nectar hands-free to splatter over Lieve’s cheeks.");
+	
+	output("\n\nThe red myr chuckles and wipes the nectar away, licking it off her fingers - before finding Sierva’s lips pressing to hers again, suckling a little sweet venom from her lips and grinding her abdomen over your mouth. You enjoy the taste of Sierva’s cunt while you can, languidly licking at her lower lips and slipping your [pc.tongue] deep between them. Between your tongue and Lieve’s drugged lips, Sierva doesn’t last long - and neither does the gold bug on your [pc.cock], for that matter. Before long, you’ve got a pair of orgasming gold myr screaming their pleasure overtop you, squeezing breasts and bucking hips as they rain femcum down on you. With that kind of treatment, it’ll take days to get the girl-smell off of you - though in your condition, the idea of ridding yourself of the wondrous scent of female orgasm is heresy. You want more!");
+	
+	output("\n\nYou find your hands slipping around Sierva’s abdomen, fingers gliding into her sex, teasing the bud of her clit. A few short strokes and you’re treated to another screaming orgasm, just on the heels of the last. Sier cries out, her legs clutches around your head, tight enough to make you fear she’ll pop your head off! She’s got powerful thighs for a sex slave!");
+	
+	output("\n\nLapping up every drop of girl-spunk you earn, you slowly become cognizant of your own impending second climax. Feeling the same thing you are, Mayren wiggles her abdomen and starts moving faster. You might have tried to hold back, to wait until she’s ready to finish again, but the chemical rush centered right on your [pc.cock] denies all thoughts of restraint. You announce your orgasm with a sharp suck of breath, arching your back into a particularly deep thrust of May’s abdomen. You slam yourself deep into her insectile backside and unleash a second torrent of seed into her, flooding her honeypot with [pc.cumNoun].");
+	
+	output("\n\n<i>“That’s right. Fill her up, Steele,”</i> Lieve moans around a mouthful of May’s tit. She takes a break from suckling, flipping around so that her back’s to May and her front’s to you, letting you see her rosy-red pussy for the first time. She wraps one hand over her shoulder, caressing Mayren’s feelers; the other she plunges into her sex, digging deep between her legs to the same rhythm of your thrusts into her wife’s cunt.");
+	
+	output("\n\n");
+	if (pc.isFeminine()) output("<i>“Like the view, Steele?”</i> Lieve teases");
+	else output("<i>“Having fun, Steele?”</i> Lieve laughs");
+	output(", gasping lustily while her <i>other</i> trench wife leans in and licks at her perky tits. Lieve cups Sier’s cheek, drawing the golden warrior’s lips up to meet her own. Rather than kiss her again, though, Lieve draws her tongue in a full circle over her wife’s lips. Sierva shudders at the sudden chemical surge, and you feel all the tension flooding out of her body. She’s almost limp in your hands, feeling like she’s being propped up by little more than your [pc.tongue].");
+	
+	output("\n\nLieve breaks the tongue-job with a laugh, planting a normal peck on Sierva’s nose. <i>“I think you need to lay down, babe. Maybe on Steele here, hmm?”</i>");
+	
+	output("\n\n<i>“Y-yeah,”</i> Sierva moans, almost too airily to hear. Lieve helps her turn around, and your face-full of abdomen-pussy is stolen from you, replaced with a pair of soft tits pressing against your [pc.chest] and Sierva’s face meeting yours. You’re vaguely aware of Sier’s insectile backside being hefted up by Lieve, and her tongue disappearing into Sierva’s nethers. The lusty insect overtop you traces kisses along your neck, slowly meandering up to your [pc.lips]. Your eyes flutter open in alarm as her venom-laden cockpillows brush against your mouth, but fall closed again with lust-laden leadenness. Your hands wrap around Sierva’s waist, pulling the ant-girl tight against you and drive your tongue into her mouth.");
+	
+	output("\n\nVenom seeps into you from the mouth and cock, hitting you from both ends. You feel yourself cumming again before long, moaning into Sierva’s mouth. And again. And again. You lose track of time completely, succumbing to the aphrodisiac coursing through your veins and the heady smells of sex that hang like a heavy cloud over the dungeon. Life is good...");
+
+	clearMenu();
+	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
+}
+
+public function lieveFuckHaremDickVersionVenomII():void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	output("<b>You lose track of time...</b>");
+	
+	output("\n\nMayren and Sierva find themselves swapping places on your cock for what seems like an eternity, spurred on by a nigh-endless source of venom. Whenever one of the girls doesn’t have your [pc.cock] stretching her abdominal hole, she’s got Lieve tending to her, her tongue slurping through her slit.");
+	
+	output("\n\nYou’re not sure how you’re still awake. They’ve drained every drop of seed from you, that’s for certain. You groan and sigh and try to hang on through the last of the girls’ orgasms. They’re finally wearing out, too lust-drugged and worn out to continue. Mayren giggles weakly, her head nestling into Lieve’s lap. Your cock shudders inside her abdomen, sending dry shockwaves of pleasure back through you. Lieve chuckles, seeing you moaning weakly, and strokes your cheek.");
+	
+	output("\n\n<i>“A little venom and a couple of well-trained girls can go a long way, huh?”</i> she laughs, pulling May’s slack body off you once you’ve calmed down a bit.");
+	
+	output("\n\nYou nod, finally able to catch your breath. The air you’re able to suck in is rich with musk and sex. You shiver and cough, your chest heaving as the myr girls pull off of you. <i>“C’mon, Steele. Can’t lounge around all day with us... and I think the girls need some time to rest. But it was fun while it lasted.”</i>");
+	
+	output("\n\nThat it was. You pick up your [pc.gear] and stagger towards the door, leaving Lieve to wake her girls back up.");
+
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.orgasm();
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveFuckHaremDickVersionNoVenom():void
+{
+	clearOutput();
+	lieveHeader(true);
+
+	output("<i>“No thanks,”</i> you say, managing to grunt that out betweens moans of pleasure. <i>“I’ve got more than enough pleasure right here.”</i>");
+	
+	output("\n\nWith that, you pull Sierva’s abdomen a little closer, driving your tongue deep inside her. Lieve chuckles and shakes her head, letting her attention return to her wives - whose attentions, in turn, are wholly focused on you. Driven on by their mistress’s poisonous kisses, the gold myr girls move over you with a wild, demanding passion. Hands play over your body, caressing your [pc.nipples]");
+	if (pc.balls > 0 && !pc.hasVagina()) output(" and cupping your [pc.balls]");
+	else if (pc.hasVagina() && pc.balls <= 0) output(" teasing the lips of your [pc.cunt]");
+	else if (pc.hasVagina() && pc.balls > 0) output(" , cupping your [pc.balls] and probing your pussy");
+	output(".");
+	
+	output("\n\nWith three amorous ants all straddling you, there’s not much to do but lie back and let them bring you to orgasm again... and again. Even without Lieve’s lust-venom, your sensations swim under the constant barrage of stimulation, bringing you to the heights of pleasure and wringing your precious seed from your [pc.balls]. Mayren takes every load you’ll give her, greedily riding out a series of climaxes that leave her panting and gasping, propped up only by your cock and her chest resting on Lieve’s back.");
+	
+	output("\n\nSierva and Lieve aren’t much better off, mindlessly groping and caressing each other, lips locked in a deep and unbreaking kiss. Sierva’s fingers play around her mistress’s clit, occasionally breaking to slip inside her, thrusting in to the knuckles before switching back again. The girls go at it for what seems like an eternity, but you’re content to watch after a while, taking the chance to catch your breath and enjoy the afterglow, still buried in May’s cunt. It’s a long while before anybody notices that you’ve gone still, eyes closed and chest heaving.");
+	
+	output("\n\n<i>“You alright, Steele?”</i> Lieve finally asks. Blinking, you realize that she and Sierva have rolled off you - you’ve long since lost the sensation in your tongue, numb from so many ventures into Sierva’s slit. You grunt in answer, gently rolling Mayren off of you. Unsteadily, you stumble to your [pc.feet] and grab your [pc.gear], heading for the door.");
+	
+	output("\n\n<i>“Had enough of us already?”</i> Lieve chuckles, stroking May’s hair. <i>“Don’t be a stranger, then. The girls certainly seemed to enjoy that [pc.cock] of yours...”</i>");
+
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.orgasm();
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveSoloTurnsDownDudes():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	output("You gently brush the two harem babes off and close the distance between you and the amazonian red myr. She retreats a step under your advance, pressing her back to a wall; you plant a hand beside her, leaning in and saying that you’d prefer to just have a slice of her. No trench wives, just you and her.");
+	
+	output("\n\n<i>“Uh, hey, look,”</i> Lieve grimaces, fidgeting awkwardly. <i>“I’m not a breeder. Can’t have kids. Never even seen a male before. You’re real exotic, and there’s plenty of girls who’ll get their panties wet at the sight");
+	if (pc.tone <= 66) output(" of a dick");
+	else output(" of a dick and some chiseled muscles like that");
+	output(", but it’s... it’s really just not doing it for me. Sorry.”</i>");
+	
+	output("\n\nOof. You slump your shoulders, advances turned aside by an accident of orientation. Lieve gives you an apologetic look and angles you towards her waiting harem. <i>“Look, we can have some fun by proxy, though the girls, alright? I know they’d love to get their hands on a real, live dick.”</i>");
+
+	//Back to sex menu
+	lieveSexMenu();
+}
+
+// TODO: Split this scene up somewhere.
+public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	hasFuckedLieveSolo(true);
+
+	output("You gently brush the two harem babes off and close the distance between you and the amazonian red myr. She retreats a step under your advance, pressing her back to a wall; you plant a hand beside her, leaning in and saying that you’d prefer to just have a slice of her. No trench wives, just you and her.");
+	
+	output("\n\n<i>“I’m sure the girls will be horribly disappointed,”</i> Lieve answers, though one of her hands shimmies around to grab your [pc.butt].");
+	
+	output("\n\nBehind you, her wives both make exaggerated moans and paw at you, trying to entice you back to their arms. You resist the urge to take advantage of the two lust-drugged golden beauties, long enough for the lustful pair to take the hint and scamper off. They close the bunker’s door loudly behind them, leaving you and your insectile lover all alone with each other.");
+	
+	output("\n\nThe moment they’re gone, Lieve pulls you in against her. Her lips meet yours in a passionate embrace, hands digging into your [pc.butt] and holding you tight against her. A little moan escapes the lock of your lips - and in the moment, you can’t tell if it’s you or her. Your hands return her advances, playing up the ant-girl’s chest and down under the lapel of her coat. Her eyes flicker open when you grab her perky little breasts. Running your thumbs across the soft mounds, you’re pleased to find a pair of stiff points straining against her uniform, rising up to meet your touch. Teasing them is almost too much to pass up, and you find yourself spending a few moments just enjoying the stiff little buds - and the way that caressing them makes Lieve moan and tremble.");
+	
+	output("\n\nFrom there, it’s easy to start unbuttoning her shirt, eagerly tearing the thin cloth away to get at the supple, scarred flesh beneath. Lieve sucks in a sharp, surprised breath when your fingers brush along the claw-scored trenches across her belly. She recovers in the blink of an eye, though, and you quickly find one of her smoothly-chitined hands wrapping over yours, guiding you downward.");
+	
+	output("\n\nLieve’s belt comes unbuckled and her zipper rips down, admitting your wandering hand access to her toned thighs and the silken treasure between them. A pair of fingers slip between her velvet folds, and you’re rewarded with a pleasured gasp. Lieve’s back arches into you, pressing her bare chest against you. Her hands slip around your waist, starting to work at pulling your own [pc.gear] off in turn. The more you work your fingers into her, and the more your lips play across each other, the more feverish her motions become until she’s stripped you bare and you’ve yanked her pants down around her ankles, leaving her nearly as vulnerable as you are save for the uniform shirt hanging limply off her shoulders.");
+	
+	output("\n\nIn the moment it takes you to break your kiss and pull Lieve’s shirt off, you feel your heart start to hammer in your chest. Your skin flushes with more than the usual fires of arousal and the need for your lover’s touch; your lips, especially, feel like they’re aflame as the cool air caresses them.");
+	if (lieveVenomEnabled() || tempVenomEnabled) output(" The familiar taste of Lieve’s venom hangs heavily across your [pc.lips], spreading through your body in warm waves of pleasure.");
+	else output(" Your mind leaps to the lusty venom red myr possess. The way your body’s reacting, you must have just gotten a hell of a dose, swapping spit with the crimson ant-girl like that.");
+	
+	output("\n\nYou lick your lips and grab at the myr’s breasts, scooping the pair of hand-filling mounds up and squeezing them until your lover moans. You push her back against the wall, pinning her back and");
+	if (lieveVenomFuck() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+	else output(" trailing kisses up her neck, careful to avoid her poisonous lips.");
+	output(" From where she’s positioned, it’s easy for Lieve to hike her legs up around your [pc.hips], and your hands are quick to grab her ass in turn, supporting her weight between you and the wall.");
+	
+	output("\n\nYour lips trail down, replacing your hands’ grasp on her perky tits and gently licking at the rosy peaks of her nipples. The feeling of her bare and eager pussy grinding against your [pc.belly] only fuels the fires of your arousal, making it painfully hard not to just start suckling from the lush teats on offer. You wrest yourself away from one boob and onto the other, shivering as Lieve’s hands slip down your body in turn. Her plated fingers brush across your [pc.nipples] and down to your [pc.crotch]. You suck in a sharp breath of pleasure when her hand");
+	if (pc.hasCock()) output(" wraps around your [pc.cock]");
+	else if (pc.hasVagina()) output(" caresses your [pc.cunt]");
+	else output(" reaches between your [pc.legs] and teases at your [pc.asshole]");
+	output(".");
+	
+	output("\n\nIn the blink of an eye, you go from pinning Lieve to a wall to slamming into the metal desk at the far side of the bunker, and spilling your myr lover out onto it. In the heat of the moment, you’re not sure if you tripped backwards or if Lieve pushed you; either way, you end up face to face with your insectile lover, and the lascivious look playing across her rose-red lips. Her legs are still locked around you, pinning you close enough to her that you can feel her breath hot against your venom-sensitized [pc.skinFurScales].");
+
+	output("\n\nSlowly, sensually, Lieve leans back on the cold metal desk, planting her hands palm-down behind her. The angle puts her tight, strong stomach and perky breasts on full display for you, trimmed with chitin plates that lends the bombshell beauty just a touch of menace. Her black, featureless eyes flick downwards, drawing your attention from her amazonian figure down to the lips of her sex, flushed red with arousal.");
+	
+	output("\n\nLieve’s legs relax just enough for you to slip down, putting your face level with her pussy. You breath deep of the wonderfully rich, feminine smell radiating from the thin trickle of excitement smeared over her thighs. You can’t resist the urge to lick up it, playing your [pc.tongue] from thigh to pussylip, then up to the tender bud of her clit.");
+	
+	output("\n\n<i>“Oh, that’s good,”</i> Lieve groans, leaning back and letting her back arch again while your tongue circles her clit. One of her hands reaches up to cup her tit, and ends up squeezing so hard that a little trickle of nectar squirts out onto her black-plated fingers, staining them honey-yellow. Seeing your eyes transfixed on her, your lover makes a bit of a show of licking her digits clean, sucking the honey off of them one by one.");
+	
+	output("\n\nShe hasn’t even finished off her index finger when you give in, burying your face between her toned thighs and into the cleft of her cunt. Lieve’s whole body seems to lock rigid when your [pc.tongue] flicks out, parting her lips to test her sweet nether’s nectar. She’s hot inside, so much so that you’re almost worried about scalding your [pc.tongue] on her boiling depths. Her alien heat only serves to drive your lusts to burn higher, though, and you soon find yourself burying every inch of your");
+	if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" inhumanly long");
+	output(" tongue between Lieve’s legs. Her juices flow like water around you, smearing across your cheeks and chin; the more eagerly you eat your lover out, the more she rewards you with cute little moans and gasps.");
+
+	output("\n\nLieve’s legs lock around your neck, pulling you deeper into her pussy. Her thighs are like wet vices around your temples, clamping you firmly right where you belong: servicing your lover’s sultry honeypot with every ounce of energy you can muster. Even then, though, your chemically-fueled lust doesn’t let you forget your own needs: the");
+	if (pc.hasVagina() || pc.hasCock())
+	{
+		if (pc.hasVagina()) output(" drooling gash between your [pc.legs] is so wet that you’re leaking onto the floor, creaking a little pool of feminine excitement beneath you");
+		if (pc.hasCock() && pc.hasVagina()) output(". Worse, the");
+		if (pc.hasCock()) output(" hot, throbbing girth of your [pc.cock] is painfully erect. It dangles awkwardly between your [pc.legs], begging for a touch - any stimulation to relieve the intense pressure welling up inside you");
+	}
+	else output(" hot flush of your sexless body begs for any tender touch, any means of release from your venomous arousal");
+	output(". Your hands start to slip down towards your crotch, desperately seeking some measure of relief - only to be grabbed by Lieve before they’ve cleared an inch from her.");
+	
+	output("\n\n<i>“Nobody said you could move,”</i> Lieve teases, firmly affixing your hands onto her hips. Your fingers claw at her flesh, but only accomplish a groping squeeze of her ass that leaves your fingers sinking into her fleshy flanks. You groan wordlessly into Lieve’s cunt, trying to ignore the burning desire coursing through your loins.");
+	
+	output("\n\nNever content to let something lie, Lieve coos <i>“Hm? What was that? I couldn’t hear you...”</i>");
+	
+	output("\n\n<i>“Please,”</i> you murmur around a mouthful of myr pussy, driven to say anything by your mounting desperation. The rest of the thought is drowned out in mindless, lustful noises between eager, almost pleading, licks of Lieve’s sex.");
+	
+	output("\n\nLieve stifles a laugh into a moan, barely manage <i>“Please what?”</i> around a particularly deep lick that has her legs tensing fiercely around your head.");
+	
+	output("\n\nThe heady mix of lust-drug in your veins and Lieve’s rosy sex in your face makes thinking up a more cogent response than a pitiful moan a near impossibility. It takes a great deal of your waning willpower to finally blurt out <i>“");
+	if (pc.isBimbo()) output("Just, like, fuck me already!");
+	else output("Please... please fuck me!");
+	output("”</i>");
+	
+	output("\n\nThat seems to be good enough for your ant-like lover, who loosens the grip of her thighs around your neck. Rather than releasing you to tend to yourself, though, Lieve curls her leg up until her toes are planted on your forehead, and give you just the push you need to go tumbling onto your back.");
+	
+	output("\n\nShe pounces on you like an animal, pinning you to the deck with both hands planted firmly on your [pc.chest] and the rest of her straddling your [pc.hips]");
+	if (pc.hasCock()) output(", dangerously close to the erect mass of your [pc.cock], pressing so tight against her thigh you’re afraid you’ll blow your pent-up wad if she so much as grinds against it");
+	output(".");
+	
+	output("\n\n<i>“Now that’s better,”</i> Lieve chuckles, brushing her thumbs across your [pc.nipples]. Pleasure cracks through you in a whiplash of over-sensitive flesh, making you moan and squirm under your lover. She just smiles and does it again, to much the same reaction. <i>“Ooh, that little dose of venom must be burning you up inside!”</i>");
+	
+	output("\n\nYou writhe helplessly as Lieve’s smooth, chitinous thumbs caress your [pc.nipples], driving you wild with overwhelming sensation.");
+	if (pc.isLactating()) output(" Squirts of [pc.milkNoun] dribble out at even the slightest touches now, bathing Lieve’s hands in your lactic bounty until she’s forced to stop and clean her fingers off - using your mouth, of course. She presses her long digits to your lips with just enough pressure to urge you to open up and lick her clean. <i>“You really are making a mess of yourself,”</i> Lieve coos, running her other hand through the puddle of [pc.milkNoun] forming between your [pc.breasts].");
+	output(" You groan under her domineering ministrations, trying at odds to draw more pleasure from her eager explorations of your body, and to stop yourself from cumming before you even touch on the main event.");
+	
+	output("\n\nLieve is insatiable, though, and the venom-high you’re rocking has left you completely vulnerable to her touch. With a weak whimper, you find yourself arching your back under her and succumbing utterly to pleasure.");
+	if (pc.hasCock())
+	{
+		output(" Your cock is the first to give, shooting a thick rope of [pc.cumNoun] across Lieve’s bare thigh, grazing the slit of her cunt and glazing it with creamy [pc.cumColor] spunk. She gives a surprisingly delighted gasp, grinding her legs against your hardened shaft");
+		if (pc.cocks.length > 1) output("s");
+		output(" as you blow your " + possessive(pc.ballDescript()) + " load all over her.");
+	}
+	if (pc.hasVagina())
+	{
+		output(" Your [pc.cunt] contracts around the air, desperate for a cock to milk - anything to grab onto as orgasm thunders through you. Juices squirt out over your thighs, drooling onto the floor in a messy, glossy swamp that pools sloppily between your ass cheeks.");
+	}
+	if (!pc.hasCock() && !pc.hasVagina())
+	{
+		output(" With nowhere to go, your body’s mounting, orgasmic pleasure focuses in on your nipples, letting the two sensitive buds Lieve’s been teasing erupt in cataclysmic pleasure.");
+		if (!pc.isLactating()) output(" If you were lactating right now, you’re sure you’d be geysering milk like in an ultraporno.");
+		else output(" [pc.milkNoun] geysers out from your [pc.nipples], splattering all over Lieve’s chest in wet, dripping arcs. <i>“Woah!”</i> she gasps, just barely getting her face out of the way. <i>“You sure do make a mess!”</i>");
+	}
+	
+	output("\n\nGasping for breath, you collapse against the hard, sodden floor of the bunker. <i>“Now that’s better,”</i> Lieve laughs, running a hand through her lavender hair. She leans down over you, breasts pressing firmly against your [pc.chest], and plants a kiss on your [pc.lips]. Her tongue slithers into your mouth with serpent-like grace, and only too late do you realize you’ve doomed yourself to another heady dose of red myr venom. There’s nothing to do but wrap your arms around your lover and kiss her back, holding her tight as you feel the waning flames of passion reignite in waves of chemical arousal.");
+	
+	output("\n\n<i>“What?”</i> she says, pulling off you and back on her knees. <i>“You didn’t think you were getting off that easy, did you?”</i>");
+	
+	output("\n\nAll you can do is moan.");
+	
+	output("\n\nLieve starts to slide down you, slowly and sensually, taking her time to tease your oversensitive skin until you’re squirming and groaning");
+	if (pc.hasCock()) output(" and hard as a rock again");
+	output(". It feels like an eternity before you feel her plated hands on your [pc.legs], curling them up to give her ample access to your [pc.crotch].");
+	
+	if (pc.hasCock())
+	{
+		output("\n\n<i>“Hey there, buddy,”</i> Lieve whispers to your [pc.cock], her breath hot against your tender flesh. With cum still drooling from your prick, glazing your cockflesh in seed, you can’t help but let your manhood throb in response to her nearness. <i>“I’m not sure how I feel about ladydick,”</i> she continues, hiking your [pc.legs] up a little further. <i>“I guess a little taste couldn’t hurt, right? Just between you, me, and a hell of a lot of venom.”</i>");
+		
+		output("\n\nOh, shit.");
+		
+		output("\n\nLieve’s tongue flicks across the underside of your shaft, carrying with it a thick glaze of her venomous saliva. Your entire body trembles as the burning lust-drug contacts your most tender places, circling your crown and lapping around the still-wet slit atop your glans. When her tongue flicks off your crown, you’re treated to her grumbling about weird tastes before wrapping her hand around your shaft and pushing it back against your belly");
+		if (pc.balls > 0) output("; her other hand cups your [pc.balls], hefting them out of the way");
+		output(" to reveal your");
+		if (pc.hasVagina()) output(" cunt");
+		else output(" asshole");
+		output(".");
+		
+		output("\n\n<i>“Now </i>that<i>’s more like it,”</i> she grins, licking her lips. Your cock throbs in her grip, splattering a second helping of [pc.cumNoun] across your [pc.belly] as she gently strokes you off. Your lover flashes you a wink before turning her attention to her real target.");
+	}
+	else if (pc.hasVagina())
+	{
+		output("\n\n<i>“Hey there, beautiful,”</i> Lieve coos, so close to your quivering quim that you can feel her breath hot on your lower lips. One of her smooth digits caresses your mons, tracing its way around your pussy - and sending trembling waves of pleasure through your envenomed skin.");
+		if (!lieveVenomEnabled() && !tempVenomEnabled) output(" You can’t even imagine what it’s going to be like if she starts kissing you there....");
+		else output(" All you can do is brace for the immense high a red myr’s pussy-eating’s going to leave you with!");
+	}
+	
+	if (pc.hasVagina())
+	{
+		output("\n\nYou shiver as Lieve leans into your crotch, caressing your sex and teasing her way around your pussylips until her tongue finds its way to the very tip of your [pc.clit]. You suck in a panicked breath as the crimson ant-girl licks your rosebud, slathering it with a thick coating of saliva. The second lick is almost too much for you to bear.");
+		
+		output("\n\nShe takes her time, slowly circling your clit again and again, wrapping it in an irresistible coat of venomous wetness that seeps steadily into your sex. Your whole lower body tingles, and every hair you have stands on end as your lover lavishes your pleasure buzzer with her mouth.");
+		
+		output("\n\nIt doesn’t take much of that treatment to wring another orgasm out of you. Her only recognition of your body’s sudden tension, and the wetness gushing between your [pc.legs], is a muted moan. She just keeps licking and kissing around your clit, brushing your pussylips but never quite pushing into you. You try to beg her to stop - that it’s too much - but all that comes out is a squealing <i>“Fuck me! Harder!”</i>");
+	}
+	
+	if (!pc.hasCock() && !pc.hasVagina())
+	{
+		output("\n\nYou shiver as Lieve leans into your crotch, drawing her hands along your bare groin. <i>“Are all you offworlders like this?”</i> she asks, planting a kiss right where you sex ought to be. <i>“Just like my golden girls. I think I know how to deal with you...”</i>");
+		
+		output("\n\nA moan tears out of your lips as Lieve’s hands spread your [pc.butt]’s cheeks nice and wide, giving her a perfect view of your [pc.asshole]. She draws her tongue through your crack, tip to top, leaving an envenomed trail of sticky pink spit around your clenching hole.");
+	}
+	
+	output("\n\nYou’ve barely recovered from your orgasm when you feel the tip of Lieve’s tongue pressing gingerly against your [pc.vagOrAss]. Your back arches, [pc.legs] squirming as she gently applies pressure, firmer and firmer until suddenly she’s inside you. Her hands hold your hips firm, keeping you from squirming away. All you can do is moan and lace your [pc.legs] around Lieve’s shoulders, and you find yourself pulling her deeper into your groin - and driving her tongue deeper into you clenching");
+	if (pc.hasVagina()) output(" slit");
+	else output(" ass");
+	output(". You can feel her venom crawling through your body, lighting every nerve you have on fire.");
+	
+	output("\n\nYour chest clenches as if Lieve’s reaching through your body to grab your heart. Breathing is hard, coming in shaking gasps that tread towards orgasmic, echoing the cascades of pleasure coursing through you. Her oral skills are incredible, well practiced on a pair of eager slaves and honed to perfection by chemicals that flood you with aphrodisiacs so powerful that burns away any semblance of cogent thought other than <i>“FUCK ME!”</i>");
+	
+	output("\n\nAnd Lieve does. As relentless and methodical as a red myr ought to be, she lavishes every inch of your");
+	if (pc.hasVagina()) output(" pussy");
+	else output(" ass");
+	output(" with attention. Every sensitive spot you have is hers for the taking, making you scream and moan and beg for more. Orgasms pass you by one after the other, shockwaves of pleasure that leave you increasingly limp and breathless in Lieve’s arms.");
+	if (pc.hasVagina() && pc.wettestVaginalWetness() >= 4) output(" She takes every spurt of fem-cum you spray onto her in stride, never abating her oral assault for a second.");
+	else if (pc.hasCock()) output(" She takes every spurt of cum you spray onto her in stride, never abating her oral assault for a second.");
+	output(" Her venom burns so hot through your veins that your vision swims with pink, wrapping your whole world in a hazy pink mist that swirls and spins - only to come crashing down into another screaming orgasm.");
+	
+	output("\n\nYou completely lose track of time...");
+
+	clearMenu();
+	addButton(0, "Next", lieveSoloFucktimeWindup);
+}
+
+public function lieveSoloFucktimeWindup():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+	//Lust to minimum. +6 orgasms. Pass 6 hours. Give benefits from rest (eg. energy). 
+
+	output("You wake up with a gasp, blinking away what feels like years of sleep. Your body is wrapped in a pleasant warmth - a blanket, you realize when you try to sit up.");
+	
+	output("\n\n<i>“Easy, lover,”</i> Lieve says, her familiar hand suddenly on your cheek. You look up to find her sitting over you, resting your head in her lap. She’s dressed again, looking no worse for wear after your passionate lovemaking. Her pair of trench wives look at you from across the bunker with knowing smiles.");
+	
+	output("\n\nWith a groan, you pull yourself up to a sitting position - though a sudden bout of weakness has you leaning heavily on Lieve’s shoulders. She flashes you a little grin and slips an arm around your shoulders, playing the slip off like nothing. One of her girls hands you something musky and hot to drink, and you gulp it down greedily.");
+	
+	output("\n\n<i>“Sleep well?”</i> Mayren asks, trying not to giggle. You give her a nod and set the empty mug aside. Your hands are almost immediately filled by a folded-up stack of your gear, courtesy of Sierva. You slip out of the blanket and kit up, trying not to give too much of a show to Lieve and her lovers - you’re not sure you can handle another lesbothon like that again.");
+	
+	output("\n\nAt least, not for a little bit.");
+
+	for (var i:int = 0; i < 6; i++)
+	{
+		pc.orgasm();
+	}
+
+	rest(60 * 6);
+
+	//Bunker menu here
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveBodyWorship():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	hasFuckedLieveSolo(true);
+
+	output("\n\nYou take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
+	
+	output("\n\n<i>“Oh, hey there, beautiful,”</i> Lieve laughs as you slip into her arms, just before your [pc.lips] press into hers.");
+	
+	output("\n\nShe accepts the kiss eagerly, knowing exactly what you want: her mouth opens invitingly, encouraging you to let your [pc.tongue] wander in and get your high from the source. Eagerly, you start to lap up the thick, pink-tinted saliva glazing the inside of your lover’s mouth, twisting your tongue around her own until you can start to feel that wonderful, familiar fog of heat starting to spread through you. Every nerve seems to light up all at once, cascading pleasure through you in a great tidal wave that leaves you almost limp in Lieve’s embrace.");
+	
+	output("\n\nYou wave one of your arms behind you, motioning Lieve’s harem girls off when they start to brush their hands against your suddenly-sensitive [pc.skinFurScales]. <i>“Give us a few minutes, girls,”</i> your lover murmurs over your shoulder, confirming your demand. They both make a combination of disappointed sighs and shuffle off. The door clicks closed behind them, leaving you alone with Lieve and your burning lusts.");
+	
+	output("\n\nIn the blink of an eye, Lieve’s clothing seems to disappear, ripped away by your hurried hands until her perky little breasts are firmly planted in your hands and your back is against the wall with an amorous ant-girl grinding up against you. Lieve trails kisses down your bare body, every caress of her lips and tongue loaded with venom that makes your [pc.skinFurScales] flush with the throbbing beginnings of arousal. Your hands slowly slip down to Lieve’s taut ass, squeezing her tight cheeks until even the tough ant-girl’s moaning between lustful licks around your [pc.nipples].");
+	
+	output("\n\n<i>“Mmm,”</i> Lieve purrs. <i>“You’ve got talented fingers. But what about that [pc.tongue] of yours?”</i>");
+	
+	output("\n\nBetween her lips and fingers playing across your venom-ridden body and the haze of lust-drug hanging over your mind, it takes you a moment to realize what the warrior ant is asking - long enough that she peels herself off of you and shimmies back against the far wall, crooking her finger at you. She hops up onto the metal table and spreads her legs invitingly around her rosy little twat, glistening with her own arousal.");
+	
+	output("\n\nYou find yourself following the crook of her finger like a loyal puppy bounding up to her mistress, so eager to please. Before you can reach her, though, you’re stopped by one of her chitin-clad feet pressing firmly against your chest to stop you. Blinking away a moment’s confusion, you let the gentle guidance of her perfectly-formed black foot guide you down onto your [pc.knees]. Lieve lavishes you with an approving smile, tracing the smooth, hard surface of her big toe up from around your [pc.nipple] and up to your [pc.lips] in an agonizingly slow journey. Her toes seem to leave a trail of cold heat in their wake, sending shivers down your spine. Every touch is nearly orgasmic, and you’ve only had a taste of her venom...");
+	
+	output("\n\n<i>“Go on, then,”</i> Lieve says evenly, running her big toe along the full circle of your [pc.lips]. <i>“A little proper worship, and I might just give you another dose... right on");
+	if (pc.hasVagina()) output(" that cute little cunt of yours");
+	else if (pc.hasCock()) output(" your slutty little lady-dick");
+	else output(" that barren little patch of a crotch");
+	output(".”</i>");
+	
+	output("\n\nYou obediently open your mouth and wrap your lips around the first of Lieve’s toes, sucking on it like a big, hard candy. Your hands wrap around her foot, holding it nice and steady for your inspection.");
+	
+	output("\n\nLieve’s feet are surprisingly small, almost dainty - not at all what you’d expect from the powerhouse of a fighter she is. They barely seem to fill your hands, though her toes are more than enough to keep your mouth busy. Your tongue slavishly works across her smooth, hard insectile plates, one after the other. The taste is impossible to describe - her chitin is just a touch oily, perhaps the equivalent of a myr’s sweat, but not altogether unpleasant to your offworlder’s taste. It’s almost sweet, in a way - a way that only serves to make you want to clean off every inch of her gleaming plates all the more.");
+	
+	output("\n\n<i>“There’s a good girl,”</i> Lieve coos as you work your way up along the sole of her foot. <i>“I wanna see that chitin shining when you’re done.”</i>");
+	
+	output("\n\nYou do your damnedest to make sure it does.");
+	
+	output("\n\nSatisfied with the way one foot glistens in the dim light of the bunker, you switch to the other, massaging it with your hands as you start to tongue-bathe her chitinous plates. Your worshipful motions eventually guide you further and further up her leg, to the rough patch where her chitin transitions to pale, creamy flesh. In your lust-addled state, you find yourself lavishing that alien join with your tongue even moreso than her beautiful little feet, running your [pc.tongue] around the very edge of her bulky plates, getting into all those hard-to-reach places. All the while, you look lovingly up at Lieve, deep into the black wells of her eyes while you clean her. Hard to read as myr eyes are, you know you see a glimmer of returned lust there.");
+	
+	output("\n\nSeeing that you’ve polished her to a sheen, Lieve crooks a finger at you again. You move up, and she moves back, making you crawl up her body until you’re pressing her down onto her back, your lips pressing into hers. Lieve’s legs curl up and wrap around your [pc.hips], pulling you tight against her.");
+	
+	output("\n\nIn your state, the feeling of her tongue brushing your [pc.lips] is almost too much to bear. Your ");
+	if (pc.hasCock()) output(" [pc.cock] throbs against Lieve’s leg, begging for the opportunity to slide into her wet and ready hole.");
+	else if (pc.hasVagina()) output(" [pc.cunt] flushes with need, sending mind-breaking waves of pleasure through you every time it grinds against Lieve’s firm thighs or sodden crotch.");
+	else output(" bare groin becomes an epicenter of pleasure, grinding against Lieve’s sodden crotch. Your skin is over-sensitive, burning with the throbbing heat of Lieve’s lusty venom.");
+
+	output("\n\n<i>“You really love my venom, don’t you?”</i> Lieve purrs between kisses and caresses. <i>“Mmm, careful you don’t get </i>too<i> addicted, or I might just have to add you to my little harem... then again, maybe you’d like that?”</i>");
+	
+	output("\n\nYou know she’s only teasing, but in your envenomed state, you can’t deny just how aroused the suggestion suddenly makes you....");
+	
+	output("\n\nLieve’s hands gently push you down, guiding you back down to her legs. <i>“Now let’s put that talented tongue of yours back to work,”</i> she says, hooking one of her long legs over your shoulder. You find yourself staring down her tight ass and the cleft of her sex, but her gentle hands guide you to the fleshy underside of her leg. Live must have been a dirty, dirty girl to need all this cleaning... but you’re happy to help her.");
+	
+	output("\n\nLicking your way around Lieve’s leg, you lavish your lover with long drags of your [pc.tongue] along her inner thighs and the backs of her leg. You work your way all the way around her leg, circling again and again until your face is nestled into her crotch, and your tongue is probing deep into her rose-red pussy. She groans and squirms, back arching. Her cunt clenches around your tongue, trying to trap you inside her; your fingers have to join into the fray, teasing at her clit and ass until she’s crying out and grabbing your [pc.hair], pushing you deeper in.");
+	
+	output("\n\nA devilish urge crosses your mind. Before Lieve can get too carried away, you wrest yourself out of her crotch and start moving up. There’s so much more of her left to clean, after all. Lieve groans weakly as you break away from her twat, flopping back in a deflated mess on the desk and running a hand through her dyed hair. She groans out a guttural <i>“Fuck,”</i> laughing as you draw your tongue up her flat, muscular belly and up to the perky mounds of her tits. You gently swirl your [pc.tongue] around her perky red nipples, never quite close enough to wrap your lips around them, but enough to draw little gasps and moans from your lover.");
+	
+	output("\n\nYou make sure to clean every inch of her little tits before moving on. Your tongue traces its way through her underarms, using your hands to massage the tension out of her neck and shoulders. Her arms are next, and easy to clean: you make a show of sucking on each of her eight plated digits like a tiny little cock, polishing each one to a shine before moving on to the next.");
+	
+	output("\n\n<i>“Oh, you’ve really got me sopping wet,”</i> Lieve moans as you finish off her pinky, leaving a bridge of spittle between her chitin and your [pc.lips]. Her eyes, though, point lower than that. <i>“Still got one big, important place for you to clean off, though.”</i>");
+	
+	output("\n\nYou eye her curiously, until your lover gives you a gentle push off and crawls onto her knees. She turns around, chest pressing into the bunker wall, and gives you a sultry wink over her shoulder. She gives herself a spank, making even her tight little ass quake with the impact.");
+	
+	output("\n\n<i>“Dig in,”</i> she orders, shaking her hips all too enticingly. The lust drug in your veins flares, and in the blink of an eye you’re licking those two beautiful crescents of flesh on her rear, slowly working your way inwards towards your prize. Her smooth digits scrape against the rough concrete wall as you start to slip between her taut cheeks and into the cleft of her sex again - right back where you belong. Your hands grip her asscheeks firmly, squeezing hard enough to make her suck in a sharp breath and arch her back, and again when you spread them wide enough to get a good look at her crimson cunt.");
+	
+	output("\n\nLieve’s eyes flutter closed and her weight shifts back, planting her butt right on your face. You laugh and bear it, supporting her as much with your hands as you can; your tongue, meanwhile, slithers in between her slender pussylips and into the hot little channel between them. She moans, cupping one of her breasts so hard that a trickle of honey drools out of her teat, staining her fingers a creamy golden color. Too bad you can’t get a taste - the way she slurps up her lactic bounty, you imagine her nectar must be delicious.");
+	
+	output("\n\nLeft to your own devices, all you can really do is dig into Lieve’s sodden box and enjoy the sounds of your lover’s pleasure, all the while letting your own arousal mount. Resisting the urge to beg Lieve to fuck you raw grows harder by the second, until you’re panting and gasping, your hands moving desperately toward your crotch.");
+	
+	output("\n\nThe next thing to break your lust-addled stupor is Lieve’s hand grabbing your [pc.hair], pushing you deeper and deeper into her twat as she screams out in pleasure. A moment later and you’re on your back, flailing across the scattered pillows and blankets on the bunker floor. Lieve leaps on you, pulling your [pc.legs] up around her shoulders and burying her face into your crotch. Your eyes roll back, succumbing to overwhelming ecstasy - the venom in your veins responding to her lips and hands roaming all over your [pc.crotch].");
+
+	output("\n\nYour back arches, [pc.hips] thrusting against Lieve’s lips as she");
+	if (pc.hasVagina()) output(" kisses and licks at your [pc.clit], working hard to bring you to climax in her wake");
+	else if (pc.hasCock()) output(" runs her tongue along your [pc.cock]’s undershaft, using her fingers to jack your ladydick off with startling skill");
+	else output(" traces kisses and licks on your barren crotch");
+	output(". You’re on the receiving end of a direct hit of red myr venom, straight to your groin. The venom seeps in quickly, spreading out through your [pc.skin] until your lover’s every touch sends orgasmic shockwaves through you. A scream tears through your throat, echoing off the barren bunker walls - you’re sure the whole town can hear you, the whole <i>planet</i> probably, but that doesn’t matter to you: all you can think about is your overwhelming, orgasmic pleasure.");
+
+	output("\n\nIt only takes a few seconds of oral attention to drive you over the edge, spurred on by the burning touch of Lieve’s venom. When the climax passes, you’re left gasping and clawing for breath. You lover grins at you, crawling up your body to plant another kiss on your [pc.lips].");
+	
+	output("\n\n<i>“The bath house’s got nothing on you,”</i> she teases, running a still-wet finger along the curve of your cheek. <i>“I wouldn’t mind letting you do that again... since you clearly don’t mind working for your high.”</i>");
+	
+	output("\n\nShe gives you a playful wink and crawls off of you, sashaying her hips on the way over to where her uniform fell off her shoulders. You watch appreciatively as your lover steps into her pants and wiggles them up, removing her ass from view. When the good stuff’s out of sight, you sigh and start going for you own gear. You quickly kit up, finished about the same time Lieve’s got her Federation uniform and coat in a more-or-less presentable condition.");
+	
+	output("\n\nYou stop to grab a handful of butt through her pants, pressing yourself up behind her close enough that your still-tingling skin sings with pleasure. Lieve smiles over her shoulder and leans back into your arms.");
+	
+	output("\n\n<i>“I should go round my girls up,”</i> she says after a long, companionable moment. <i>“They’re probably getting bored. Or some of the guards might be starting think they could use a couple more golds for their harem. See you, babe.”</i>");
+	
+	output("\n\nYou squeeze her butt before she can slip off, and earn yourself a venom-slathered kiss <i>“to go”</i> as she goes.");
+
+	processTime(60 + rand(30));
+
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.orgasm();
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveTourTheTown():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	flags["LIEVE_TOWNTOUR"] = 1;
+	flags["LIEVE_DATEPOINTS"] = 0;
+
+	output("<i>“So how about that tour?”</i> you ask. <i>“I wouldn’t mind learning more about the town.”</i>");
+	
+	output("\n\n<i>“Sure!”</i> Lieve says with a smile. <i>“You’ll feel just like a local by the time I’m done with you! Girls, think you’ll be alright on your own for a little bit?”</i>");
+	
+	output("\n\nMayren and Sierva nod amicably, with the buxom blonde adding, <i>“Have fun!”</i>");
+	
+	output("\n\nLieve gives her a pat on the head and extends an arm to you, allowing you to loop yours with hers before she takes the lead, bringing you out of the bunker and back onto the dusty road out of the town. The two guards standing at the wire gate salute her and open it up, allowing the two of you to walk past.");
+	
+	if (pc.characterClass = GLOBAL.CLASS_MERCENARY)
+	{
+		output("\n\n<i>“You can just leave your post like that?”</i> you ask your guide, first and foremost.");
+		if (!pc.isAss()) output(" You don’t want to get her in trouble, after all.");
+	
+		output("\n\n<i>“This </i>is<i> my post!”</i> Lieve insists. <i>“Well, more or less. The only reason I’m out here and not, say, in the manor house with the other officers is to ‘help offworlders become acquainted with Federation society and bring them to understand our way of life in a positive and appealing manner.’ In other words, I’m a glorified tour guide. Not much else for me to do with the war on pause.”</i>");
+	
+		output("\n\nYou suppose that answers that.");
+	}
+	
+	output("\n\n<i>“So!”</i> Lieve starts out with a smile, her grip on your arm pulling you");
+	if (hasFuckedLieve() || hasFuckedLieveSolo()) output(" affectionately");
+	else output(" uncomfortably");
+	output(" close against her. <i>“Kressia. The city used to be huge, so close to the Goldie capital that you could spit between the two... if there weren’t all the caves in the way, anyway. We’re under one of the best and easiest accesses to the surfaces the Goldies had, used to be a gentle slope up before they built the big elevator access here, and then the airfield we’re using up top. Lucky for them, they’d already built that Great Elevator back in the capital by the time the Federation pushed in here, or it’d be nothing but Red Myr you offworlders were seeing.”</i>");
+	
+	output("\n\nShe grins at the thought, pointing you towards the huge building dominating the eastern side of town. Elevators can be seen zipping up and down from the surface, their passengers visible through sweeping glass windows. Most of the traffic, you’d imagine, would be Federation soldiers.");
+	
+	output("\n\nAt Lieve’s guidance, you find yourself walking that way, passing by military vehicles, soldiers on the street, and a handful of gold myr civilians trying not to be noticed by their occupiers. Your guide takes you down the road a ways, saying, <i>“I gather this is the posher part of town. Past the elevator building are manor houses, a lot of high-class shops for the queen-wannabes and merchant types. Most of ‘em closed down when the Federation shelled the city, but a few are getting back to business now that the fighting’s wound down. Come on, I’ll show you.”</i>");
+	
+	output("\n\nYou find yourself weaving through progressively smaller, more crowded streets until Lieve spots a small shop at the end of an avenue and guides you into it, saying, <i>“Best place for a drink in Kressia, bar none.”</i> The little corner shop reminds you of a bistro or coffee shop back home at a glance, though the place is decorated with hanging paper-wrapped lamps and silky-looking, free-standing walls that separate the tables from one another. A handful of well-dressed gold myr women are sitting around, half-visible through the paper barriers, sipping on earthen cups and chatting quietly. When you and Lieve enter, though, a hush quickly falls over the store, and you shiver as you feel every eye in the place on you.");
+	
+	output("\n\nLieve either doesn’t notice, or makes a good show of ignoring it as she leads you over to the counter at the back of the store where a svelte, young gold myr girl is sitting. Lieve smiles at her, but the cashier all but recoils as she’s approached, casting her eyes down to her feet and mumbling a very wooden greeting.");
+	
+	output("\n\n<i>“Two from your dirtiest kegs,”</i> Lieve says, taking the girl’s reaction in stride. She digs into her uniform coat’s pocket and presses a small silver coin onto the counter. After a moment’s hesitation, the gold myr snatches the coin and motions you towards a corner table. Again, Lieve smiles at her and leads you over to your assigned booth.");
+	
+	output("\n\nOnce you’re seated, Lieve pulls her coat off over the back of her chair and apologetically says, <i>“Sorry about that, [pc.name]. People here are still... adjusting to the Federation being around. Turns out we’re still not the most popular girls in town.”</i>");
+	
+	output("\n\nShe sighs and shakes her head. <i>“It’s getting better, though. People are coming out of their houses more, talking to us. A few even trust us enough to let us do the policing, now. We’ve broken up a few brawls, stopped robbers and the like. The Goldies in cities we took years ago are all proper citizens of the Federation now, I’m told. The people living here will be too, in a year or two. They just need time to adjust, that’s all.”</i>");
+	
+	output("\n\nAs Lieve’s speaking, the girl from the counter comes by and silently deposits two earthen mugs at your table, each full of a murky, bubbly liquid. Lieve raises her drink to you, smiling as the girl departs. You return the gesture and drink, following your companion’s example and holding the mug to your lips until it’s drained.");
+	
+	output("\n\nThe drink’s bitter and goes roughly down your throat, leaving you feeling scratched and hoarse. You fight down the urge to cough, and in exchange, find your cheeks reddening and eyes watering. It’s like the hardest moonshine you’ve ever tasted.");
+	
+	output("\n\n<i>“Like I said, best drink in Kressia!”</i> Lieve boasts, slamming her empty mug on the table loud enough to draw back the attention of the other patrons. <i>“Right?”</i>");
+
+	// [Agree] [Disagree] [More!]
+	pc.imbibeAlcohol(20);
+	clearMenu();
+	addButton(0, "Agree", lieveDrinkAgree, undefined, "Agree", "Hell yeah!");
+	addButton(1, "Disagree", lieveDrinkDisagree, undefined, "Disagree", "Yuck!");
+	addButton(3, "More!", lieveDrinkMore, undefined, "More!", "");
+}
+
+public function lieveDrinkAgree():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	flags["LIEVE_DATEPOINTS"] += 1;
+
+	output("<i>“Whew! That’s some strong stuff!”</i> you agree, finishing off your drink with relish. God damn, that burns!");
+	
+	output("\n\nLieve laughs and claps you on the shoulder, hard enough to make you sway in your seat. <i>“I know, right? I’ve seen it bowl some of you offworlders right off their feet, too. Kicks like a wetraxxal, doesn’t it?”</i>");
+	
+	if (!CodexManager.entryViewed("Wetraxxal"))
+	{
+		output("\n\n<i>“What’s a wetraxxal?”</i>");
+	
+		output("\n\nLieve just throws her head back and laughs some more. ");
+	}
+	else output("\n\n");
+	output("<i>“Alright, let’s get out of here. Plenty of things left to see!”</i>");
+	
+	output("\n\nYou and Lieve stand and head for the door. Again, your host offers her arm to you, leading you down one of the streets back towards the town square.");
+
+	clearMenu();
+	addButton(0, "Next", lieveTourTheTownII);
+}
+
+public function lieveDrinkDisagree():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	flags["LIEVE_DATEPOINTS"] -= 1;
+
+	output("<i>“Ugh. It tastes like piss,”</i> you grunt, wiping the water from your eyes. Oh, that aftertaste is even worse.");
+	
+	output("\n\n<i>“That’s the point!”</i> Lieve laughs, rolling her eyes. <i>“What, don’t tell me you offworlders drink something like that sweet golden swill or something?”</i>");
+	
+	output("\n\nYou can practically feel every other customer in the place glowering at the two of you. <i>“Eh, well, anyway. Let’s get out of here. Plenty more to see in town!”</i> Lieve says, grabbing her coat and standing. You follow her all the way to the door, trying to ignore the unfriendly looks drilling into your back. Lieve sighs, rubbing one of her antennas before pointing out a street back towards the town square and leading you on down.");
+
+	clearMenu();
+	addButton(0, "Next", lieveTourTheTownII);
+}
+
+public function lieveDrinkMore():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	flags["LIEVE_DATEPOINTS"] += 2;
+	pc.imbibeAlcohol(20);
+
+	output("<i>“Gah, it’s piss!”</i> you laugh, hammering back the rest of your drink. <i>“Let’s get another round!”</i>");
+	
+	output("\n\n<i>“That’s the spirit!”</i> Lieve laughs, waving over a waitress and ordering again.");
+	if (hasFuckedLieve() || hasFuckedLieveSolo()) output(" <i>“I knew I liked you for a reason.”</i>");
+	
+	output("\n\nAnother pair of drinks comes quickly, and this time, you raise your glass to your companion in a Terran toast. She cocks an eyebrow at you, but follows suit after a moment. <i>“Cheers!”</i> you say, clinking your mugs together before knocking back your drink.");
+	
+	output("\n\n<i>“Cheers!”</i> Lieve answers, almost more of a question than a toast, but she downs her drink with a relish. You both hiss and groan as the burning liquor goes down, a little less painfully than before. Still, your voice comes as a croak when you try to thank Lieve for the drinks.");
+	
+	output("\n\nShe grins and digs another small coin out of her coat, placing it very deliberately where the girl at the counter can see it before standing and offering a hand up to you. <i>“Come on. Can’t just sit here and get completely shit-faced, can we? Still have a tour to do!”</i>");
+	
+	output("\n\nWhile you wouldn’t mind just lounging around and getting wrecked, you suppose the locals wouldn’t be too happy putting up with a drunk offworlder and a rowdy red ant. You grab Lieve’s hand and let her haul you up.");
+	if (hasFuckedLieve() || hasFuckedLieveSolo()) output(" She gives you a little wink before shifting her grip on your hand, locking her fingers with yours as she leads you back towards the door.");
+	else output(" You thank her and follow your guide towards the door.");
+	output(" From there, it’s a short jaunt back to the town square.");
+
+	clearMenu();
+	addButton(0, "Next", lieveTourTheTownII);
+}
+
+public function lieveTourTheTownII():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	output("You follow Lieve back to the town square, past the towering, bustling structure of the elevator terminal.");
+	
+	output("\n\n<i>“Let’s see... merchant row’s next!”</i> your companion decides, leading you across a wide open plaza in the middle of town. On the way, you pass by the ruins of a large statue in the heart of a small park, surrounded with benches and a handful of more relaxed-looking Gold Myr than you’re used to seeing in Kressia. Some of them even look up as you and Lieve pass by and, while none of them smile, you don’t feel the same hostility you did back at the high-class bar.");
+	
+	output("\n\n<i>“So what’s the story here?”</i> you ask, nodding towards the ruined statue - or what little is left of it: just the feet and, far above you, hands bracing the ceiling, severed at the wrists.");
+	
+	output("\n\nLieve shrugs, not slowing down. <i>“Was a monument to some kind of Goldie leader. A queen born here in Kressia, I think - her tits and ass were big enough to be, anyway. We were supposed to leave it alone, up until some jackass resistance fighters decided to climb up inside it with scoped rifles and started raining fire down on us. Shootout lasted a few hours - they had almost total cover up there, and most of the troops in town were armed with nothing but their sidearms. Finally managed to round up a couple of the sharpshooters from the expeditionary army and deal with it.");
+	
+	output("\n\n<i>“Of course, the rebels managed to set off some gunpowder charges before they died. Took out most of the statue, and sent rubble raining down on everybody.”</i> Lieve shakes her head, you almost think sadly. <i>“Killed more people with falling bits of statues than their guns. Mostly Goldies, too. Big rocks went slamming through roofs, storefronts, you name it. An absolute mess.”</i>");
+	
+	output("\n\nCurious, you ask where Lieve was during the fight.");
+	
+	output("\n\n<i>“Wasn’t in town,”</i> she answers. <i>“Everything but the reserves and guard forces were pushed into the trenches, getting ready for the big push on Gildenmere. My company was right on the vanguard. Only heard the story from my trench wives after the fact.”</i>");
+	
+	output("\n\nShe falls uncharacteristically silent for a little while after that, until you arrive at the promised merchant row on the western side of town. Suddenly, her cheer comes back with a vengeance as she announces: <i>“Anyway! This is merchant row, where you can buy pretty much anything that’s not restricted. Not much in the way of weapons available, sorry, but clothes and general items are on offer. Most of the shops here in town square are open again, and even some offworlders are starting to come down and open businesses here. We’ve even got a captured Goldie queen who’s generously put her merchant collective at the city’s disposal.”</i>");
+	
+	output("\n\nLieve gives you a mischievous wink at that, and nods to a very lavishly decorated storefront across the way. Several offworlders, mostly male, are eagerly making their way inside as you approach. <i>“There’s also a great dress shop around here, run by some sort of alien, I think. Haven’t had a chance to go there myself, by Mayren and Sierva both raved about it last time I gave them some spending money - dresses were a little too skin-showing for me to wear, but I sure enjoyed seeing them in ‘em!”</i>");
+	
+	output("\n\nYou can’t help but chuckle at the lascivious myr’s lusty smile as she leads you on down the road. <i>“Of course, the big attraction of this part of town is the bath house. We don’t have anything like it back in Federation territory: public baths, where everyone gets together to scrub down, socialize, just... relax, I guess. Being naked around strangers would normally be unthinkable to a red myr, it’s embarrassing and dishonoring - just for slaves and among lovers. But the Goldies, and some offworlders, seem to love it. My trench wives made me go after a while - well, talked me into it, really - and it was so different than anything I’d done before. I can definitely see why the Goldies flock to the place!”</i>");
+	
+	output("\n\nAfter a moment’s thought, Lieve stops and turns to you, her eyes practically twinkling. <i>“Hey, what do you say you and I hit the bath house? Shouldn’t be too crowded around now...”</i>");
+
+	clearMenu();
+	addButton(0, "Bath House", lieveTourBathhouse, undefined, "Base House", "Accompany Lieve to the Bath House.");
+	addButton(1, "No, Thanks", lieveNoTYBathhouse, undefined, "No, Thanks", "You're not up for a trip to a bath house right now.");
+}
+
+public function lieveNoTYBathhouse():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	output("<i>“No thanks,”</i> you say after a moment’s thought. <i>“Let’s keep going with the tour.”</i>");
+	
+	output("\n\nLieve chuckles. <i>“Suit yourself. C’mon, I’ve still got one big place to show you!”</i>");
+
+	clearMenu();
+	addButton(0, "Next", );
+}
+
+public function lieveTourBathhouse():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	output("<i>“Sounds like fun,”</i> you answer, starting towards the great big white building your guide’s pointed out.");
+	
+	output("\n\nLieve leads you on up the stairs to the massive double doors. The bath house is built into the side of the wide open cavern that Kressia lies in, and the doors take you into a carefully constructed, vaulted chamber supported by great stone pillars that line the chamber. The interior is a shining white, illuminated by electrical lights disguised as torches hidden away in sconces in the walls. Divans and cushions line the chamber, creating an environment that looks more like some sultan’s harem chamber than a waiting room. A handful of gold and red myr are sitting around: the golds lounging nude or in loose-fitting robes and towels, the reds sitting in their uniforms with their backs rigid, trying not to stare at the half-bare bodies on display.");
+	
+	output("\n\n<i>“Welcome to Kressia’s bath house,”</i> a voluptuous gold myr woman in a sheer, silky robe that’s almost entirely transparent says, stepping out from behind a desk and approaching you with sashaying hips. A second strip of much thicker silk is wrapped around her head, covering her eyes. <i>“What service may we provide you with today?”</i>");
+	
+	output("\n\nClearly the bath house’s workers don’t - and can’t - discriminate between their red and gold customers. Lieve smiles at her despite her blindness and says, <i>“Just a normal bath, please. If you have an empty room...”</i>");
+	
+	output("\n\n<i>“We do. Please, follow me,”</i> the hostess says, turning towards a small hallway across from you. As she moves, one of her hands sensuously brushes across Lieve’s hip, making the red myr’s antenna twitch cutely. You’re not sure if you’ve wandered into a whorehouse or a public bath anymore by the time you’re led to Lieve’s room, a small, circular stone chamber with a pool set into the floor. On the way, you pass several other small chamber, all the same as yours, which contain alternately lone red myr girls hidden by silky curtains, small gatherings of golds, and red myr women surrounded by what you assume are their trench wives, being lavished with attention. From the latter two, happy moans and giggles echo through the halls.");
+	
+	output("\n\nFinding your private room satisfactory, Lieve presses a few more coins into the hostess’s hands and thanks her. The blind myr smiles radiantly at the two of you, bows in a way that practically makes her dress slip off under the weight of her honey-laden breasts, and disappears through a sheer curtain that seals you and Lieve off from the rest of the house.");
+	
+	output("\n\n<i>“This place seems... very normal,”</i> you say as the hostess leaves. Less hostile than the rest of the town’s been to the red myr so far, anyway. Aside from the very sensual moans you can hear from the other chambers, even this bath house seems fairly mundane for some of the pleasure planets in the core.");
+	
+	output("\n\n<i>“Yeah,”</i> Lieve says, setting her coat and gunbelt down on the stone floor. <i>“We’re lucky about that. The women who run the place are some kind of spiritualists, I’m told. Baths are so important to the Goldies that they can’t refuse anyone access - even their enemies. The girls here wear blindfolds so they can’t distinguish between gold and red now that we’re here, though I’m pretty sure they can smell the difference. I sure can.”</i>");
+	
+	output("\n\nAfter a few seconds, Lieve adds, <i>“That’s why I wanted to take you here, I suppose. People in town are getting used to Federation occupation. Some of the elite, the Goldies that were wealthy and powerful before we came in, still hold a grudge, but the actual people who live here... doesn’t much matter if it’s a gold or a red sitting in the governor’s mansion, as long as the city’s not being bombed or shot up. Anyway, enough of that, let’s get on with the bath!”</i>");
+	
+	output("\n\nAs if to illustrate her point, Lieve grabs her shirt and hauls it up over her head, tossing it aside. Your eyes are instantly drawn to the warrior ant’s flat, chiseled stomach and up to the small swells of her breasts, each a perfect little handful of tit tipped with a crimson nipple. Her thumbs hook through her belt, flashing you an inviting grin.");
+
+	if (pc.isNude())
+	{
+		flags["LIEVE_DATEPOINTS"] += 1;
+		clearMenu();
+		addButton(0, "Next", lieveTourBathhouseII, true);
+	}
+	else
+	{
+		output("\n\n<i>“I’ll look away if you want,”</i> she offers, though you get the distinct feeling she’s more interested in a show.");
+		clearMenu();
+		addButton(0, "Look Away", lieveTourBathhouseLookAway, undefined, "Look Away", "Ask Lieve to give you some privacy while you undress.");
+		addButton(1, "Let Her See", lieveTourBathhouseLetHerSee, undefined, "Let Her See", "No reason to be ashamed of your body. Strip down.");
+		addButton(2, "Show Off", lieveTourBathhouseShowOff, undefined, "Give Her A Show", "Give the myr a bit of a show as you undress.");
+	}
+}
+
+public function lieveTourBathhouseLookAway():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	output("You take Lieve up on her offer and ask her to turn away for a moment. She makes a playful face and turns on a heel, spending her time pulling her pants and boots off. While she’s distracted, you slip off your [pc.gear] and turn towards the steaming bathwater. You tentatively dip your [pc.foot] in, testing the water: it’s nice and warm, but not too hot. It almost sucks you in, drawing you down into the pool until you’re resting on a stone seat inside, the water coming just up to your shoulders.");
+
+	lieveTourBathhouseII();
+}
+
+public function lieveTourBathhouseLetHerSee():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	flags["LIEVE_DATEPOINTS"] += 1;
+
+	output("You answer Lieve’s offer by stripping off your [pc.gear], leaving yourself bare before her. You’re keenly aware of her gaze on you as you strip, but you don’t play to it - you keep it cool and casual, undressing like you normally would and leaving your kit stacked beside Lieve’s. Lieve urges you to go in first, and you agree. You tentatively dip your [pc.foot] in, testing the water: it’s nice and warm, but not too hot. It almost sucks you in, drawing you down into the pool until you’re resting on a stone seat inside, the water coming just up to your shoulders. As you dip in, Lieve finishes undressing, leaving her slim slit and long legs bare for you in turn.");
+
+	lieveTourBathhouseII();
+}
+
+public function lieveTourBathhouseShowOff():void
+{
+	clearOutput();
+	lieveHeader(true, true);
+
+	flags["LIEVE_DATEPOINTS"] += 2;
+
+	output("You give Lieve a playful grin and turn around, bending over to give her a view of your [pc.butt] as you start to peel off your [pc.gear]. You shake your hips, wiggling bare flesh for your myr guide. You spin back around, caressing your [pc.chest] and slowly slipping back towards the pool. You lower yourself in with a sensual grace, letting the water suck you in. Lieve watches with relish, cupping one of her own breasts and squeezing her crimson teat between plated fingers. She shimmies out of her pants, leaving her slim slit and long legs bare for you in turn.");
+
+	lieveTourTheTownII();
+}
+
+public function lieveTourBathhouseII(newLine:Boolean = false):void
+{
+	if (newLin)
+Lieve follows you into the pool as nude as you are, slipping down into the water and spreading her arms back around the stone edge of the pool. "Nice and hot, right? Kressia's built over a deep lava flow, heats up an underground lake they drilled down into. Brings up boiling water for the baths. Pretty clever, right?"
+
+You resist mentioning they've been doing that on Terra for millennia. It seems like quite an accomplishment for the myr. 
+
+Lieve cups a handful of water and brings it up to her shoulders, rubbing it into the skin where her chitin plates meet pale flesh. She picks up a small, oval object from the side of the bath and starts to caress her skin with it -- the local equivalent of soap, you imagine. She makes something of a show, rubbing it into the recesses where plates meet skin, then down the sheer curves of her breasts, then back up to the other arm, sudsing up her rack before washing it all away. The whole show leaves a glistening sheen on your companion's chest.
+
+You follow her example, taking up another of the small stones and starting to scrub down. You have to admit, washing off all the grime and sweat from your myriad adventures feels nice, especially in the steamy bath with a strangely smooth, almost lotion-like soap spreading across your [pc.skinFurScales]. You can feel your muscles relaxing, all the tension spilling out of you in moments. Oh, that's nice...
+
+After a few soothing minutes, you feel your eyelids growing heavy with relaxation. You lean back against the edge of the pool, letting the soapy stone wander across your bare body wherever you can get it. Lieve's gaze on you sends tingles of unbidden arousal through you, her eyes wandering across your [pc.chest] and below, under the crystal clear water. {if high libido OR fucked Lieve: You smile under her attention, letting your soapy fingers play down between your [pc.legs] while you caress your [pc.breast], squeezing your [pc.nipple] between your slippery fingers. //else: You blush and shift slightly, trying to shield yourself from her probing gaze.} 
+
+"Hey," Lieve says, finally bringing her gaze back up. Once she has your attention, your myr guide slips up onto her knees on the stone seat and turns around. She leans out of the pool, resting on her elbows and moving her hips so that her ass and cunt are just barely below water. "Think you could scrub my back for me? I promise I'll do you after."
+
+The offer is implicit, but impossible to miss.
+
+Scrub Her
+//Scrub Lieve's back, but just with soap and water.
+-1 Date Point
+
+You ignore your lascivious companion's offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion's body -- she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs. 
+
+"Thanks. Couldn't reach there myself," she says dryly, though you get the sense she's at least somewhat trying to disguise her disappointment.  
+
+Lick Her
+//You'll get Lieve clean alright, starting with that tight little slit between her legs.
+//+3 Date Points
+
+Lieve's been flirting the whole time during this tour of hers. Surprise date, more like it. You might as well reward the lascivious ant for her efforts, lacking subtlety though they may be. You wade across the pool and slip up behind Lieve's back, getting your hands nice and sudsy before caressing her shoulders, digging into her pale flesh and massaging the tense muscles underneath. She releases a little moan as you start to work from her shoulder blades down her sides, fingers just passing by the flanks of her breasts, then down towards her slim hips. 
+
+You can feel her body tense as your hands find the first gentle incline of her buttocks, meeting her cheeks and softly squeezing. She gasps sharply when you squeeze her, looking over her shoulder and smiling invitingly at you. Your hands push her forward ever so slightly, getting the crimson-plated beauty to lean out of the pool, raising her behind out of the water and into your waiting face. 
+
+{if Lieve sex'd before: You smile at the familiar sight of your myr lover's sex rising from the steamy pool. //else: You can't help but smile at the revelation of Lieve's sex, rising from the steamy pool.} Water runs in rivulets down her toned thighs and across her red plates, framing her rosy pussy in shimmering liquid. You lean in, letting your roaming hands converge between her legs, slipping open between her thighs to caress the tiny bud of her clit. She sucks in a sharp breath, and you giggle as you see her pussylips twitch at the pleasurable touch. You rub your way around her clit's hood, gently massaging the tender skin around her buzzer until it's as crimson as her plates and her whole lower body trembles with anticipation. 
+
+You let your thumb and pinky move back from her clit, hooking into the folds of Lieve's sex and spreading her out, just enough to let you lean close and slip your tongue straight in. You start nice and slow, matching your three main digits' motions to the steady swirling of your tongue. 
+
+"Mmm. You really know how to get a girl clean," Lieve moans, leaning back into your [pc.tongue]. Her fingers clutch at the pool's edge, plates slipping along the wet stone as she fights for purchase. "Yeah, that's the spot..."
+
+You dig your hand into one of her ass cheeks, squeezing Lieve between your roaming hands and the pool's edge. A few more probing licks, and Lieve's arms give out, sliding her face-first down onto the stone. In so doing, she leaves her slit perfectly even with your face, allowing you to really bury your face between her taut cheeks and start digging into her wet pussy. You keep licking and slurping at Lieve's slit until she's openly moaning, cupping her pert tits. 
+
+Out of nowhere, you feel Lieve's legs squeeze around your [pc.hips], pushing her up and out of the pool. You stumble back as your myr lover hefts herself up onto the stone rim of the bath and turns around to face you, legs spread open invitingly. 
+
+"That's better," she smiles, bringing one of her hands down from her tits to the top of your head, gently guiding you back to your place between her thighs. Lieve's legs wrap around your neck, drawing you back in, and her hands gently stroke your [pc.hair]. With the ant-girl seated like that, and you nestled so far beneath her, it's easy to wrap your arms around her waist and hold her close in turn. Your tongue slips into her again, not as deep as before, but you've got easy access to her clit now, letting you slither your way from her rosy depths to the swell of her pleasure buzzer. 
+
+Between little gasps and moans, Lieve picks up her own soap-rock and leans over you, rubbing it along your arms and shoulders. You shiver at the lotion-like texture spreading across your [pc.skinFurScales] -- you guess she wasn't lying when she said she'd scrub you in return. You pull yourself in as close as you can to your lover, giving her access to your back as far down as she can reach. The more you lick, the harder Lieve scrubs, wiping away all the grime and sweat remaining on you. Eventually, her arms are wrapped well around your sides, plated fingers doing less scrubbing and more caressing, tenderly stroking your [pc.skin], massaging you as you did for her earlier. 
+
+"Getting close," Lieve murmurs, chewing her lip and squeezing her thighs around your [pc.face]. You take that as an invitation to redouble your efforts, tonguing Lieve's rosy cunt until you can taste her girl-cum squirting out onto your [pc.tongue]. You recoil at the potent, musky taste that leaks out around your delving muscle, but suckle it down, lapping up all Lieve has to offer. She's quickly left panting heavily, chest heaving with orgasmic aftershocks. 
+
+When you finally withdraw your tongue, Lieve flops back like a puppet with her strings cut, slumping back against the hard stone. "Whew, that was... a good bath," she chuckles. "I'm glad I talked you into it."
+
+You laugh and roll your eyes.
 }

@@ -224,7 +224,8 @@ public function crew(counter:Boolean = false):Number {
 	}
 	return count;
 }
-public function rest():void {
+public function rest(deltaT:int = -1):void {
+	var minutes:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
@@ -235,9 +236,17 @@ public function rest():void {
 	if(pc.energy() < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33));
 	}
-	var minutes:int = 230 + rand(20) + 1;
+	if (deltaT == -1)
+	{
+		minutes = 230 + rand(20) + 1;
+		output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
+	}
+	else
+	{
+		minutes = deltaT;
+	}
+	
 	processTime(minutes);
-	output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
