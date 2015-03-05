@@ -73,7 +73,7 @@ public function cockvineSeedlingChase():void
 
 		if (!CodexManager.entryUnlocked("Cockvine"))
 		{
-			output("\n\n“<i>Cockvine,</i>” your codex pipes up. “<i>Extremely dangerous plant life-form, native to Myrellion. Its seedling form is relatively harmless, however it is capable of forming parasitic attachments to other life-forms if placed under duress.</i>”");
+			output("\n\n<i>“Cockvine,”</i> your codex pipes up. <i>“Extremely dangerous plant life-form, native to Myrellion. Its seedling form is relatively harmless, however it is capable of forming parasitic attachments to other life-forms if placed under duress.”</i>");
 			
 			CodexManager.unlockEntry("Cockvine");
 		}
@@ -147,19 +147,19 @@ public function cockvineSeedlingJoin(sCockType:int):void
 
 	if (pc.isBro() || pc.isTreatedMale())
 	{
-		output("\n\n“<i>C’mon lil bro,</i>” you say, grinning winningly and giving it a double finger shoot. “<i>This planet is chick city and I need a wingman. Time to join up with a winner!</i>”");
+		output("\n\n<i>“C’mon lil bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
 	}
 	else if (pc.isNice())
 	{
-		output("\n\n“<i>Relax little guy, I’m not going to hurt you,</i>” you say soothingly, moving slowly towards the curled up seedling. “<i>What do you say we become, y’know, friends? You won’t believe how well I’ll treat you...</i>”");
+		output("\n\n<i>“Relax little guy, I’m not going to hurt you,”</i> you say soothingly, moving slowly towards the curled up seedling. <i>“What do you say we become, y’know, friends? You won’t believe how well I’ll treat you...”</i>");
 	}
 	else if (pc.isMischievous())
 	{
-		output("\n\n“<i>You’re in luck, my slithery little friend,</i>” you say, grin widening as you move slowly towards the curled up seedling. “<i>Instead of getting stomped on, you get to be a part of [pc.name] Steele’s wild ride! C’mon, shake a tail and get up here.</i>”");
+		output("\n\n<i>“You’re in luck, my slithery little friend,”</i> you say, grin widening as you move slowly towards the curled up seedling. <i>“Instead of getting stomped on, you get to be a part of [pc.name] Steele’s wild ride! C’mon, shake a tail and get up here.”</i>");
 	}
 	else
 	{
-		output("\n\n“<i>Here’s the deal,</i>” you say, smirk widening as you move slowly towards the curled up seedling. “<i>I don’t kill you. In return, you become my tail and do exactly what I say. Capiche?</i>”");
+		output("\n\n<i>“Here’s the deal,”</i> you say, smirk widening as you move slowly towards the curled up seedling. <i>“I don’t kill you. In return, you become my tail and do exactly what I say. Capiche?”</i>");
 	}
 
 	output("\n\nYou stand over the thing, carefully positioning yourself so it can’t escape and presenting your bare flesh as prominently as you can. At length the cockvine seedling raises its tendril end, nodding and groping at the air, tasting your scent. Hesitantly it touches your [pc.skin]; when you don’t flinch away");

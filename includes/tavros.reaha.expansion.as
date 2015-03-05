@@ -316,7 +316,7 @@ public function reahaTalkTreatmentComfort():void
 	if (reahaFree()) output(" [pc.name]");
 	else output(" [pc.master]");
 	output(". I </i>hate<i> it, more than I ever could Beth’s place. At least they were honest in the whorehouse... well, not really, but they wore it on their lapels, ‘Oh, we’re evil sex-slavers, bwahahah.’ New Texas, though...");
-	if (reahaFree()) output(" The government -- my own FAMILY -- tried to turn me into a brainless cumslut just because I had the luck to be born with a pair of tits. They’re all complicit, every single one of them, for making slaves out of women, and for what? The U.G.C. lets them get away with it because it’s tradition!</i>”");
+	if (reahaFree()) output(" The government -- my own FAMILY -- tried to turn me into a brainless cumslut just because I had the luck to be born with a pair of tits. They’re all complicit, every single one of them, for making slaves out of women, and for what? The U.G.C. lets them get away with it because it’s tradition!”</i>");
 	else output(" This whole place, it’s some sick bastard’s sex garden, and we’re supposed to lie down -- preferably on our backs -- and just accept it? No. That’s why I ran away, [pc.master]. And why I never wanted to come back.”</i>");
 	
 	output("\n\nReaha takes a deep breath, looks at you with her big blue eyes, and steps up with her arms wide open. You take the cow-girl up on her offer, pulling her into a tight hug. Her arms clutch around your back, and the quiver in her voice as she speaks again clues you in to just how close to tears she is: <i>“Just... do whatever you came here to do, and let’s leave. Okay? I don’t want to be here a second longer, [pc.master]. This planet makes me sick!”</i>");
@@ -494,7 +494,7 @@ public function reahaTalkAddiction():void
 	
 	output("\n\n<i>“Let’s start with how you got on these in the first place.”</i> ");
 	
-	output("\n\n<i>“It was that bitch Carver,”</i> Reaha spits. <i>“When I had to... had to go into debt because of my mods, I check-boxed that I was okay with sex. I mean, hey, I just bought all these great mods, and if it helped me pay off my debt faster, I didn’t mind putting them to use. But then the bitch who owned the brothel bought my contract and put me in a pretty pink room, told me to do whatever every man who came through said.</i>”");
+	output("\n\n<i>“It was that bitch Carver,”</i> Reaha spits. <i>“When I had to... had to go into debt because of my mods, I check-boxed that I was okay with sex. I mean, hey, I just bought all these great mods, and if it helped me pay off my debt faster, I didn’t mind putting them to use. But then the bitch who owned the brothel bought my contract and put me in a pretty pink room, told me to do whatever every man who came through said.”</i>");
 	
 	output("\n\n<i>“That’s fucked up, right? I mean, I thought that meant that I wouldn’t mind my master wooing me for some gentle loving or something");
 	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(", or at least somebody who would treat me like you do, [pc.name]");

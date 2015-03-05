@@ -988,23 +988,23 @@ public function bessFunctions():void
 	{
 		output("You meekly suggest that [Bess] <i>perhaps</i> could improve [bess.hisHer] appearance with a few tweaks. Your remark is met with a quirked eyebrow. It’s sometimes hard to tell when [Bess] is in " + flags["BESS_LOVER_STATUS"] + " mode or not.");
 		output("\n\nThankfully, you seem to be in luck. [Bess.HisHer] gaze is softer than usual, which means you aren’t going to get disciplined for your impertinence. ");
-		output("\n\n<i>\"Oh really? What exactly do you think I should change about myself, [bNamePC]? I’m all ears...\</i>”</i>");
+		output("\n\n<i>\"Oh really? What exactly do you think I should change about myself, [bNamePC]? I’m all ears...\”</i></i>");
 	}
 	else if (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet")
 	{
 		output("[Bess]’s appearance is not to your taste, so you order [bess.himHer] to change it. It’s really that simple.");
-		output("\n\nYour devoted " + flags["BESS_LOVER_STATUS"] + " gets down on all fours and bows deeply to you, [bess.hisHer] eyes glittering with unwavering devotion. <i>\"Of course, anything you wish! What would you like me to change about myself..?\</i>”</i>");
+		output("\n\nYour devoted " + flags["BESS_LOVER_STATUS"] + " gets down on all fours and bows deeply to you, [bess.hisHer] eyes glittering with unwavering devotion. <i>\"Of course, anything you wish! What would you like me to change about myself..?\”</i></i>");
 	}
 	else if (flags["BESS_LOVER"] != undefined || flags["BESS_FRIEND"] != undefined)
 	{
 		output("You casually bring up the topic of [Bess] changing some things about [bess.himHer]self.");
-		output("\n\n[Bess] responds with a quirked eyebrow. <i>\"You want me to change myself? What, are you not happy with your {[flags["BESS_LOVER_STATUS"]]/dear friend} the way [bess.heShe] is?\</i>”</i> You watch [bess.himHer] try to keep a straight face, but [bess.heShe] can’t hold it.");
-		output("\n\n<i>\"Of course, anything for you, [bNamePC]. What would you like me to switch up?\</i>”</i>");
+		output("\n\n[Bess] responds with a quirked eyebrow. <i>\"You want me to change myself? What, are you not happy with your {[flags["BESS_LOVER_STATUS"]]/dear friend} the way [bess.heShe] is?\”</i></i> You watch [bess.himHer] try to keep a straight face, but [bess.heShe] can’t hold it.");
+		output("\n\n<i>\"Of course, anything for you, [bNamePC]. What would you like me to switch up?\”</i></i>");
 	}
 	else 
 	{
 		output("You suggest changing some things about [Bess], and [bess.heShe] seems happy to comply. In fact, [bess.heShe] seems to relish the chance to display [bess.hisHer] different functions.");
-		output("\n\n<i>\"Of course, [bNamePC]! What would you like me to change?\</i>”</i> [Bess]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
+		output("\n\n<i>\"Of course, [bNamePC]! What would you like me to change?\”</i></i> [Bess]’s [bess.eyeColor] eyes are " + bess.mf("shining brightly","positively glittering") + ", waiting to hear what you want to switch up.");
 	}
 	//[Titles] [Role] [Hair] [Eyes] [Chest] 
 	//[Body Shape] [Genitals] [Cum]

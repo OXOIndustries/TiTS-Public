@@ -139,7 +139,7 @@ public function brynnsStallFunc():Boolean
 		
 		output("\n\nThe scale of the brute before you is only made more apparent by the size of his meaty hands, both easily wrapped around the back of the two cowgirls’ heads, firmly controlling the pace of the pair along his immense cock. Despite all the attention, the dick the girls are focused so intently upon is only semi-rigid; the mass of sensitive flesh before them curves heavily in the air, one of the girls keeping the flared head aloft with a delicate grip, so that both of them can access every glorious inch of cock.");
 		
-		output("\n\n“<i>More,”</i> comes a deep voice, reverberating through the stall, “<i>it’s not enough - urgh.”</i> The bull-stud sits upright slowly, his control over the two girls slurping noisily at his cock not faltering for a second. He bites his lip, hard enough to force a slight grunt of discomfort from deep within his chest, as he rocks his powerful hips forward, thrusting his dick between the two girls trying their very best to service him. “<i>It’s not enough!”</i> comes his thick, gravelly voice again.");
+		output("\n\n<i>“More,”</i> comes a deep voice, reverberating through the stall, <i>“it’s not enough - urgh.”</i> The bull-stud sits upright slowly, his control over the two girls slurping noisily at his cock not faltering for a second. He bites his lip, hard enough to force a slight grunt of discomfort from deep within his chest, as he rocks his powerful hips forward, thrusting his dick between the two girls trying their very best to service him. <i>“It’s not enough!”</i> comes his thick, gravelly voice again.");
 	}
 	else
 	{
@@ -154,8 +154,8 @@ public function brynnsStallFunc():Boolean
 			if (brynnIntroduced()) output(" Brynn");
 			else output(" the bull");
 			output(" lifts his head up from his reclined position against the back wall of the stall.");
-			if (brynnIntroduced()) output(" “<i>Ah, [pc.name]. Good to - aah, right there - see you again!”</i> Brynn greets you, his deep, gravelly voice reverberating through the enclosed space and adding a certain ominous weight to his words in the process. “<i>Your timing couldn’t be better; these girls could - urgh - use a little help, and I know just the person...”</i>");
-			else output("<i>“Come in, come in,”</i> the stud greets you, his deep, gravelly voice reverberating through the enclosed space and adding a certain ominous weight to his words in the process. “<i>your timing couldn’t be better; these girls could use a little help....”</i>");
+			if (brynnIntroduced()) output(" <i>“Ah, [pc.name]. Good to - aah, right there - see you again!”</i> Brynn greets you, his deep, gravelly voice reverberating through the enclosed space and adding a certain ominous weight to his words in the process. <i>“Your timing couldn’t be better; these girls could - urgh - use a little help, and I know just the person...”</i>");
+			else output("<i>“Come in, come in,”</i> the stud greets you, his deep, gravelly voice reverberating through the enclosed space and adding a certain ominous weight to his words in the process. <i>“your timing couldn’t be better; these girls could use a little help....”</i>");
 		}
 		else
 		{
@@ -195,7 +195,7 @@ public function brynnsStallFunc():Boolean
 				if (brynnIntroduced()) output(" new");
 				output(" pair of cow-girls, both of them working a monstrously thick equine cock between them as best they can.");
 				
-				if (brynnIntroduced()) output("\n\n“<i>[pc.name]!”</i> Brynn greets you, having been alerted to your presence by the sound of the stall doors squealing closed behind you, “<i>Back for another round?”</i>");
+				if (brynnIntroduced()) output("\n\n<i>“[pc.name]!”</i> Brynn greets you, having been alerted to your presence by the sound of the stall doors squealing closed behind you, <i>“Back for another round?”</i>");
 				else
 				{
 					output("\n\n<i>“Welcome!”</i> the stud greets you, having been alerted to your presence by the sound of the stall doors squealing closed behind you,");
@@ -483,13 +483,13 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 	if (!brynnIntroduced())
 	{
-		output("\n\n“<i>You’re good, [pc.girl]. What’s your name?”</i> he asks. The sheer fact that his attention is now firmly focused on you, waiting for your answer, causes a flutter in your loins.");
+		output("\n\n<i>“You’re good, [pc.girl]. What’s your name?”</i> he asks. The sheer fact that his attention is now firmly focused on you, waiting for your answer, causes a flutter in your loins.");
 		
-		output("\n\n“<i>[pc.name],”</i> you reply");
+		output("\n\n<i>“[pc.name],”</i> you reply");
 		if (pc.isTreated()) output(" with a wink of an eye");
-		output(". “<i>[pc.name] St-”</i>. Before you can finish your full name, the bull-man pulls you back onto his cock, smothering the words from your lips with the fat head of his dick.");
+		output(". <i>“[pc.name] St-”</i>. Before you can finish your full name, the bull-man pulls you back onto his cock, smothering the words from your lips with the fat head of his dick.");
 		
-		output("\n\n“<i>Brynn,”</i> he replies. “<i>Now, o");
+		output("\n\n<i>“Brynn,”</i> he replies. <i>“Now, o");
 		flags["BRYNN_INTRODUCED"] = 1;
 	}
 	else output("\n\n<i>“O");
@@ -505,7 +505,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 
 	output("\n\nWhen you tease at the opening of his cock- seeking even better access to the liquid ambrosia jetting across your tongue- the stud’s grunts of approval melt into a strangled exhalation. You look up, dragging your eyes away from his pillar of cock, and look towards his face; his eyes are half-lidded, and his thick, wide tongue hangs from his open mouth. You pull your tongue away from the slit in the center of his fleshy spear, and a moment later, he settles back down to terra-firma.");
 	
-	output("\n\n“<i>Damn [pc.name]- you’re a fucking keeper!”</i> he exults, his powerful grip pushing you into his cock all the more insistently in response.");
+	output("\n\n<i>“Damn [pc.name]- you’re a fucking keeper!”</i> he exults, his powerful grip pushing you into his cock all the more insistently in response.");
 	
 	output("\n\n");
 	if (silly) output("Stuck between a cock and a hard place");
@@ -576,7 +576,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		else output(" rise");
 		output(" up from your [pc.knees] to straighten your neck as it bulges out to contain the rigid shaft.");
 		
-		output("\n\n“<i>Oh god, look at that,”</i> comes a silky-smooth voice from your right");
+		output("\n\n<i>“Oh god, look at that,”</i> comes a silky-smooth voice from your right");
 		if (pc.genitalSpot == 2)
 		{
 			output(", from the girl with her fingers");
@@ -586,9 +586,9 @@ public function suckThatMassiveStudlyBrynnDick():void
 			output(".");
 		}
 
-		output("\n\nYou consider trying to mumble a reply out around the throat full of dick, when the girl to your left pipes up, “<i>That’s so fucking hot!”</i>");
+		output("\n\nYou consider trying to mumble a reply out around the throat full of dick, when the girl to your left pipes up, <i>“That’s so fucking hot!”</i>");
 		
-		output("\n\nSomething warm and soft gently presses against the [pc.skinFurScales] of your neck, right in the middle of the bulge of cock distorting the usually much slimmer profile. A second later, the delicate touch is replaced by something much wetter and rougher swiping along the same area. A pair of incredibly smooth-skinned arms wrap around you, quickly followed by a sensually soft presence almost melting against the left side of your body. “<i>Keep going, stud, I wanna see if [pc.heShe] can take all of you,”</i> left-girl says, an obvious lusty tone dripping from her words. Licking. She’s licking your neck, continuing to pay reverence to the stud’s cock despite the fact that it’s busy being swallowed whole!");
+		output("\n\nSomething warm and soft gently presses against the [pc.skinFurScales] of your neck, right in the middle of the bulge of cock distorting the usually much slimmer profile. A second later, the delicate touch is replaced by something much wetter and rougher swiping along the same area. A pair of incredibly smooth-skinned arms wrap around you, quickly followed by a sensually soft presence almost melting against the left side of your body. <i>“Keep going, stud, I wanna see if [pc.heShe] can take all of you,”</i> left-girl says, an obvious lusty tone dripping from her words. Licking. She’s licking your neck, continuing to pay reverence to the stud’s cock despite the fact that it’s busy being swallowed whole!");
 		
 		output("\n\nWith the challenge set, Brynn wastes no time; his calculated force");
 		if (pc.hornType != 0) output(" around your [pc.horns]");
@@ -667,10 +667,10 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 	output(" cum. A similar sensation meanders its way across one of your [pc.breasts] on the opposite side and flicks off the very tip of your [pc.nipple].");
 	
 	output("\n\nA deeply satisfied groan emanates from above you, Brynn luxuriating in his front-row seat at the cum-covered [pc.name] oral-only cleanup show.");
-	if (!didDeepthroat) output(" “<i>Ahh, that took the edge off just nice like,”</i>");
+	if (!didDeepthroat) output(" <i>“Ahh, that took the edge off just nice like,”</i>");
 	else
 	{
-		output(" “<i>You");
+		output(" <i>“You");
 		if (pc.mfn("m","f","n") == "m") output(" </i>girls<i>");
 		else output(" girls");
 		output(" know just what a guy likes to see,”</i>");

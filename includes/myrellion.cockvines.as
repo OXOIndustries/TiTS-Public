@@ -772,11 +772,11 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 
 	output("\n\nYou feel the monster slide its pliant grip between your thighs... and there it freezes. You feel it pat your featureless mound several times, searching for something that isn’t there.");
 
-	output("\n\n“<i>You are fucking kidding me,</i>” says a querulous voice from deep within the crevice. “<i>This shit AGAIN?</I>” You gasp as a tentacle grasps you around your [pc.legOrLegs] and hauls you ass over tit upwards. A cockvine points at your face, quivering and spitting cum with barely contained rage. “<i>Listen to me closely, flesh-thing. I didn’t transplant myself into another dimension just so some new chucklefuck could come along and pull the neuter card again. You think you’re goddamn clever, traipsing around a sex game with no genitals? I swear if you bother me before you go out and get yourself a pussy – or a dick if you really must – I will beat your ass so hard it’ll be the same color as my stamen. Capiche?</i>?”");
+	output("\n\n<i>“You are fucking kidding me,”</i> says a querulous voice from deep within the crevice. <i>“This shit AGAIN?”</i> You gasp as a tentacle grasps you around your [pc.legOrLegs] and hauls you ass over tit upwards. A cockvine points at your face, quivering and spitting cum with barely contained rage. <i>“Listen to me closely, flesh-thing. I didn’t transplant myself into another dimension just so some new chucklefuck could come along and pull the neuter card again. You think you’re goddamn clever, traipsing around a sex game with no genitals? I swear if you bother me before you go out and get yourself a pussy – or a dick if you really must – I will beat your ass so hard it’ll be the same color as my stamen. Capiche?</i>?”");
 
-	output("\n\n“<i>I – uh…</i>” you stammer.");
+	output("\n\n<i>“I – uh…”</i> you stammer.");
 
-	output("\n\n“<i>Good. Now fuck off.</i>” The tentacle clutching your lower body coils itself up and then lashes you out of the crevice, where you land with a thump. After a couple of moments recovering you pick yourself up and carry on your unsteady way, making a wide berth of the cockvine nest. You wonder whether getting rejected by the plant monster in this way was on balance a good thing or a bad thing.");
+	output("\n\n<i>“Good. Now fuck off.”</i> The tentacle clutching your lower body coils itself up and then lashes you out of the crevice, where you land with a thump. After a couple of moments recovering you pick yourself up and carry on your unsteady way, making a wide berth of the cockvine nest. You wonder whether getting rejected by the plant monster in this way was on balance a good thing or a bad thing.");
 
 	processTime(10);
 
@@ -845,23 +845,23 @@ public function cockvinePregnancyCatch():void
 
 	output("You settle your sights on your <i>“youngest”</i>, gliding away on its green belly slightly too casually. You leap forward and grab it squarely around the middle.");
 	
-	output("\n\n“<i>Gotcha!</i>” The serpent writhes and whips its mismatched ends desperately at first before going limp, accepting defeat. You grin, and summon the drone.");
+	output("\n\n<i>“Gotcha!”</i> The serpent writhes and whips its mismatched ends desperately at first before going limp, accepting defeat. You grin, and summon the drone.");
 	
-	output("\n\n“<i>Take this to the nursery. It will need a dark, moist plot and a serious amount of clearance,</i>” you tell it.");
+	output("\n\n<i>“Take this to the nursery. It will need a dark, moist plot and a serious amount of clearance,”</i> you tell it.");
 	
 	if (flags["COCKVINE_SEEDLING_CAPTURED"] == undefined)
 	{
 		flags["COCKVINE_SEEDLING_CAPTURED"] = 1;
 
-		output("\n\n“<i>It is forbidden for that species of flora to be transported off Myrellion,</i>” the drone trills in response.");
+		output("\n\n<i>“It is forbidden for that species of flora to be transported off Myrellion,”</i> the drone trills in response.");
 		
 		if (shipLocation != "600")
 		{
-			output("\n\n“<i>Bit late for that, don’t you think?</i>” you snap. “<i>Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.</i>”");
+			output("\n\n<i>“Bit late for that, don’t you think?”</i> you snap. <i>“Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.”</i>");
 		}
 		else
 		{
-			output("\n\n“<i>I think everyone here has got more pressing concerns than what happens to a single baby plant, don’t you?</i>” you snap. “<i>Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.</i>”");
+			output("\n\n<i>“I think everyone here has got more pressing concerns than what happens to a single baby plant, don’t you?”</i> you snap. <i>“Put it in a secret compartment or something. It’s going to a controlled space; it’ll be fine.”</i>");
 		}
 
 		output("\n\nThe drone doesn’t argue the point, and a few moments later you’re watching it drift away with its slithery charge. Satisfied, you clean yourself up and then drift off into a pleasant doze.");

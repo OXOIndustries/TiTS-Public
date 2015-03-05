@@ -1282,7 +1282,7 @@ public function initializeMyrellionRooms():void
 	//827 - tradin' poast
 	rooms["827"] = new RoomClass(this);
 	rooms["827"].roomName = "TRADING\nPOST";
-	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeling it as a “<i>Federation Supply and Trading Post. Offworlders, inquire within.</i>” Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
+	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeling it as a <i>“Federation Supply and Trading Post. Offworlders, inquire within.”</i> Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
 	rooms["827"].system = "SYSTEM: SINDATHU";
 	rooms["827"].westExit = "819";
 	rooms["827"].moveMinutes = 2;

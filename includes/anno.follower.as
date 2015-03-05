@@ -2153,7 +2153,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 	{
 		output("You flash Anno a cheeky grin and drop your ");
 		output("[pc.armor], revealing your [pc.lowerUnderGarment]. Your ausar lover’s eyes go wide... and double again in size when you press the little button on the side. A beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch.");
-		output("\n\n“<i>Bend over, girl,</i>” you say, reaching down to stroke the length of your hardlight erection. The neural net built into it kicks in instantly, sending a shiver of pleasure through your loins as you stroke your strapon. Giggling eagerly at your command, Anno spins on a heel and plants herself on her bed, ass invitingly in the air.");
+		output("\n\n<i>“Bend over, girl,”</i> you say, reaching down to stroke the length of your hardlight erection. The neural net built into it kicks in instantly, sending a shiver of pleasure through your loins as you stroke your strapon. Giggling eagerly at your command, Anno spins on a heel and plants herself on her bed, ass invitingly in the air.");
 	}
 	//PC isn’t wearing anything over the strap:
 	else
@@ -2162,12 +2162,12 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 		if (anno.armor is AnnosCatsuit) output("slick catsuit");
 		else output("thick jeans");
 		output(". She giggles happily as you approach, all but melting into your arms. With a grin, you key the little button on your [pc.lowerGarments], and are rewarded with a gasp of surprise from Anno as a beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch, pressing into her thigh. The neural net built in kicks in, letting you feel the sensation of fabric against your suddenly-sensitive loins.");
-		output("\n\n“<i>Down, [pc.boy],</i>” Anno teases, trying to pull away from you. Instead, her half-hearted attempt at escape sends her tumbling into her bed, ass invitingly in the air.");
+		output("\n\n<i>“Down, [pc.boy],”</i> Anno teases, trying to pull away from you. Instead, her half-hearted attempt at escape sends her tumbling into her bed, ass invitingly in the air.");
 	}
 	//{Combine}
 	output("\n\nYou give the snowy ausar a playful smack on the rump; she moans and wiggles her hips, grinding her butt back against your glowing crotch. She finds the shaft of your energy-wang and pushes back against it, rubbing up along its length until her ass is flush against your groin, making it all too easy for you to grab Anno’s hips and dig into that big, squeezable ass of hers.");
-	output("\n\n“<i>Come on, boss,</i>” Anno coos, hooking her thumbs through her belt and shimmying out of her bottom. Your hardlight cock flops eagerly into the bared crack of her ass, fitting so snugly into it that you could swear Aliss’s strapons were made just for fucking big ol’ ausar butts. Anno gives a low, throaty moan as she feels the shimmering lightdick fill her crack, and one of her white-furred hands quickly makes its way down to the lips of her sex. She spreads herself wide open, thumb teasing across the mound of her clit as her fingers open her pussy up invitingly.");
-	output("\n\nIt’s a slight shift of your [pc.hips] to draw the glowing lightdick through the crack of Anno’s deliciously soft behind until the crown is pressed to the wide-open lips of her cunt. You shiver at the sensation stemming from your hardlight cock, and the wonderful neural connectors in it. “<i>Oooh, it tingles!</i>” Anno giggles, wiggling her behind back against the tip until it slips into her, eliciting a little gasp from your lover. You dig your fingers into her rump, squeezing tight enough to turn that gasp into another happy moan before you pull Anno back, making her come to you. She does so eagerly, rocking back on her knees to slide down the shimmering shaft of your strapon.");
+	output("\n\n<i>“Come on, boss,”</i> Anno coos, hooking her thumbs through her belt and shimmying out of her bottom. Your hardlight cock flops eagerly into the bared crack of her ass, fitting so snugly into it that you could swear Aliss’s strapons were made just for fucking big ol’ ausar butts. Anno gives a low, throaty moan as she feels the shimmering lightdick fill her crack, and one of her white-furred hands quickly makes its way down to the lips of her sex. She spreads herself wide open, thumb teasing across the mound of her clit as her fingers open her pussy up invitingly.");
+	output("\n\nIt’s a slight shift of your [pc.hips] to draw the glowing lightdick through the crack of Anno’s deliciously soft behind until the crown is pressed to the wide-open lips of her cunt. You shiver at the sensation stemming from your hardlight cock, and the wonderful neural connectors in it. <i>“Oooh, it tingles!”</i> Anno giggles, wiggling her behind back against the tip until it slips into her, eliciting a little gasp from your lover. You dig your fingers into her rump, squeezing tight enough to turn that gasp into another happy moan before you pull Anno back, making her come to you. She does so eagerly, rocking back on her knees to slide down the shimmering shaft of your strapon.");
 	output("\n\nYou might have paid a lot for this, but it’s worth every credit watching - and feeling! - Anno spear herself on your thick, turgid band of light.");
 	output("\n\nAnno takes her time taking your strapon, slowly making her way down the lightdick’s length with muted gasps of pleasure and sultry moans that drive your own excitement into overdrive");
 	if(pc.hasCock()) 
@@ -2178,9 +2178,9 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 	}
 	output(". You sate your urges - for now - by giving Anno’s spankable behind what it deserves, a sharp swat that makes her squeal... and makes her pussy do wonderful things to your hardlight shaft, squeezing and squirming around the unyielding hardness projecting from your crotch. She takes the full length of your lighdick, groaning along every inch until her ass is pressed into your crotch. Her tail wiggles up to your [pc.chest], teasing at one of your [pc.nipples] until you suck in a pleasured breath and bat it away. Anno shoots you a wink over her shoulder, and her tail goes right back to teasing you, tickling your nose when she can’t get at your [pc.chest] again.");
 	output("\n\nWith an annoyed grunt, you finally reach down and grab the fluffy white menace, giving it just enough tug to make Anno yelp. Though by the look she gives you after, it’s the same kind of cry she might give after a good, hard spanking. You lick your lips and give her another rough tug, punctuating her next cry with a shifting of your [pc.hips] that brings your hardlight dick in and out of her a few inches, thrusting back hard enough to make her whole backside jiggle with the impact. You start to move after that, starting off nice and slow for Anno’s sake, enjoying the tactile-feedback feeling of her wet slit’s walls gliding across your cock.");
-	output("\n\nThe slow thing doesn’t work out too long, though, before Anno groans “<i>Come on, boss... fucking pound me already!</i>”");
+	output("\n\nThe slow thing doesn’t work out too long, though, before Anno groans <i>“Come on, boss... fucking pound me already!”</i>");
 	output("\n\nWell, if she wants it! You grab ahold of Anno’s flared hips and thrust faster. Before long, the bed is creaking and shaking with the force of your motions. Anno’s backside quivers and quakes as your crotch slaps against it, her whole body shuddering with the impacts as you drive your hardlight cock deep into her. With every thrust, you’re rewarded with an ever-increasing flow of ausar juices splattering back against your thighs as Anno’s excitement mounts, driving her body into overdrive with your cunt-stretching lightdick. The more you stir her up, the wetter she - and you, and her sheets - get, and the louder her voice climbs as she moans and screams in pleasure. Her fingers shift away from her gaping lips to the bud of her clit, rubbing at it with abandon as she rapidly nears her limit.");
-	output("\n\n“<i>Harder! Harder!</i>” she screams, biting the bedsheets to stifle a scream as you smack her ass and bury yourself hilt-deep in her slavering cunt. No matter how hard she tries to contain it, though, Anno’s screams of pleasure bleed through as you fuck her to orgasm. The wetness you were feeling triples as she cums, slathering your sensitive hardlight cock in a musky, sultry sea of fem-cum. Her muscles, lubed so slickly that you can’t help but glide across them, go wild around you. They squeeze and wring your lightdick, milking it for a load of cum that won’t come");
+	output("\n\n<i>“Harder! Harder!”</i> she screams, biting the bedsheets to stifle a scream as you smack her ass and bury yourself hilt-deep in her slavering cunt. No matter how hard she tries to contain it, though, Anno’s screams of pleasure bleed through as you fuck her to orgasm. The wetness you were feeling triples as she cums, slathering your sensitive hardlight cock in a musky, sultry sea of fem-cum. Her muscles, lubed so slickly that you can’t help but glide across them, go wild around you. They squeeze and wring your lightdick, milking it for a load of cum that won’t come");
 	if(pc.balls > 0 && pc.hasCock()) output(", or at least, not inside her - you can already feel your own need welling up inside your [pc.balls]");
 	output(". Her writhing cunt’s mad motions only draw you deeper into her, moving faster as the feedback coming from your strapon tells your lust-addled brain one thing: cum.");
 
@@ -2194,21 +2194,21 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 		output(", and suddenly you find yourself coming. Your whole body shudders as you bust a nut in your [pc.lowerGarment], soaking through them and splattering Anno’s up-turned backside with [pc.cumNoun].");
 	}
 	output(" She gives you a happy, contented groan as you bury yourself back in her and cum your brains out, all too happy to let your hands squeeze her behind as you find your own release. After a few breathy moments, though, she reaches back to you. One of her snowy fingers finds the release on your [pc.lowerGarment], and your hardlight cock flickers out of existence, leaving you slumped against your lover, her well-fucked pussy rubbing against your crotch.");
-	output("\n\nTo your surprise, the normally subby puppy takes the initiative after that, giving you enough of a pull with her legs that you topple onto the bed beside her. She rolls and straddles you, her cum-soaked thighs resting on your [pc.hips]. “<i>Now </i>that<i> was a fucking, babe,</i>” she purrs, planting her hands on your [pc.chest], thumbs caressing your still-stiff nipples.");
+	output("\n\nTo your surprise, the normally subby puppy takes the initiative after that, giving you enough of a pull with her legs that you topple onto the bed beside her. She rolls and straddles you, her cum-soaked thighs resting on your [pc.hips]. <i>“Now </i>that<i> was a fucking, babe,”</i> she purrs, planting her hands on your [pc.chest], thumbs caressing your still-stiff nipples.");
 	if(flags["ANNO_EVER_STRAPONED"] == undefined)
 	{
-		output(" She lets a hand wander down to caress your [pc.lowerGarment], adding, “<i>I’ve never seen anything like that before. I might just have to get one...</i>”");
+		output(" She lets a hand wander down to caress your [pc.lowerGarment], adding, <i>“I’ve never seen anything like that before. I might just have to get one...”</i>");
 	}
 	output("\n\nAnno leans down, pressing her breasts into your own chest. She sniffs all along you, planting a few kisses across your shoulders and neck. ");
 	if(flags["ANNO_OWNS_LIGHT_STRAPON"] == undefined) 
 	{
 		//if Anno doesn’t own a strapon AND PC is feminine: 
-		if(pc.mf("","Bluh") == "Bluh") output("“<i>Next time we’re at Tavros, what do you say you show me where you got that, and I’ll see about returning the favor?</i>”");
+		if(pc.mf("","Bluh") == "Bluh") output("<i>“Next time we’re at Tavros, what do you say you show me where you got that, and I’ll see about returning the favor?”</i>");
 		// elseif no strapon, masculine PC:
-		else output("“<i>You’ll do that to me again, right? A little variety is nice sometimes, boss...</i>”");
+		else output("<i>“You’ll do that to me again, right? A little variety is nice sometimes, boss...”</i>");
 	}
 	//elseif has strapon:
-	else output("“<i>What do you say you take a minute, and then spread that cute little ass of yours so I can take a crack at it with mine,</i>” she teases, her tail twitching to the pair of hardlight panties flopped on the floor with her discarded clothes.");
+	else output("<i>“What do you say you take a minute, and then spread that cute little ass of yours so I can take a crack at it with mine,”</i> she teases, her tail twitching to the pair of hardlight panties flopped on the floor with her discarded clothes.");
 
 	flags["ANNO_EVER_STRAPONED"] = 1;
 	annoSexed(1);
@@ -2233,47 +2233,47 @@ public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 	else output("wearing her usual ");
 	output("lacey panties, garter, and fishnets. You wander over, though Anno’s back is turned to you as you approach.");
 
-	output("\n\n“<i>I dunno,</i>” Anno says, attention focused on ");
+	output("\n\n<i>“I dunno,”</i> Anno says, attention focused on ");
 	if(flags["MET_ALICE"] != undefined) output("Aliss");
 	else output("the nearly-nude woman");
-	output(". “<i>I love the way those stockings look, but I’m not sure about them with all this fur.</i>” She pulls up the leg of her ");
+	output(". <i>“I love the way those stockings look, but I’m not sure about them with all this fur.”</i> She pulls up the leg of her ");
 	if (anno.armor is AnnosCatsuit) output("catsuit");
 	else output("jeans");
-	output(" for emphasis, letting out a mess of white fluff. “<i>Normal socks are a pain to get into as it is.</i>”");
+	output(" for emphasis, letting out a mess of white fluff. <i>“Normal socks are a pain to get into as it is.”</i>");
 
-	output("\n\n“<i>Not to worry, </i>mi amour<i>. You’re not the only ausar to have that issue. I’ve got some specialty-made zip-up stockings in the back, if you’d like to try them on for size.</i>”");
-	output("\n\nAnno grins. “<i>I don’t know, I rather like your modelling...</i>”");
+	output("\n\n<i>“Not to worry, </i>mi amour<i>. You’re not the only ausar to have that issue. I’ve got some specialty-made zip-up stockings in the back, if you’d like to try them on for size.”</i>");
+	output("\n\nAnno grins. <i>“I don’t know, I rather like your modelling...”</i>");
 
 	output("\n\n");
 	if(flags["MET_ALICE"] != undefined) output("Aliss");
 	else output("The woman");
 	output(" giggles - and doubly so when you reach out and grab Anno’s butt, making her yelp and spin into your arms.");
 
-	output("\n\n“<i>Gah! Don’t scare me like that, [pc.name]!</i>” Anno whines, ears tucking. “<i>Can’t a girl go shopping in peace?</i>”");
+	output("\n\n<i>“Gah! Don’t scare me like that, [pc.name]!”</i> Anno whines, ears tucking. <i>“Can’t a girl go shopping in peace?”</i>");
 
-	output("\n\nThe purple girl chuckles, “<i>You’d be surprised how many couples come in together. It makes a wonderfully... intimate experience.</i>”");
+	output("\n\nThe purple girl chuckles, <i>“You’d be surprised how many couples come in together. It makes a wonderfully... intimate experience.”</i>");
 	if(flags["MET_ALICE"] == undefined)
 	{
-		output(" She extends a hand to you. “<i>I’m Aliss, by the way. Owner of </i>Mi Amour<i>.</i>”");
+		output(" She extends a hand to you. <i>“I’m Aliss, by the way. Owner of </i>Mi Amour<i>.”</i>");
 		flags["MET_ALICE"] = 1;
 	}
-	output("\n\n“<i>So,</i>” Aliss says, turning back to Anno with a mischievous glint in her eyes. “<i>Would you like me to show off the zip-version for you and [pc.name]?</i>”");
-	output("\n\nAnno looks to you, and receives an encouraging nod. “<i>That’d be perfect.</i>”");
+	output("\n\n<i>“So,”</i> Aliss says, turning back to Anno with a mischievous glint in her eyes. <i>“Would you like me to show off the zip-version for you and [pc.name]?”</i>");
+	output("\n\nAnno looks to you, and receives an encouraging nod. <i>“That’d be perfect.”</i>");
 
-	output("\n\nShe nods happily, saying, “<i>Of course, </i>mi amour<i>! You just wait right here and I’ll be back in a flash.</i>” With that, she turns and makes her way towards the changing rooms, giving her rump a tantalizing little shake before disappearing. When she goes, Anno pulls you down onto one of the cushiony seats nearby and nuzzles up against you. Her hand locks onto yours.");
+	output("\n\nShe nods happily, saying, <i>“Of course, </i>mi amour<i>! You just wait right here and I’ll be back in a flash.”</i> With that, she turns and makes her way towards the changing rooms, giving her rump a tantalizing little shake before disappearing. When she goes, Anno pulls you down onto one of the cushiony seats nearby and nuzzles up against you. Her hand locks onto yours.");
 
-	output("\n\nAliss returns a short while later, sporting the ausar-spec stockings. A thin leather strip on the inner thighs sports a zipper, making them much easier to don without uncomfortable fur-rustling. They cling to her purple skin tightly, but look to be comfortable enough. The tightness of the fit definitely leaves little to the imagination. “<i>Looks good, don’t they?</i>” she asks, giving a quick spin so you can see it from every angle. “<i>Like all our undergarments, it includes intelligent ultralastic so your tail will fit just perfectly. We really do live in an amazing time, huh?</i>”");
+	output("\n\nAliss returns a short while later, sporting the ausar-spec stockings. A thin leather strip on the inner thighs sports a zipper, making them much easier to don without uncomfortable fur-rustling. They cling to her purple skin tightly, but look to be comfortable enough. The tightness of the fit definitely leaves little to the imagination. <i>“Looks good, don’t they?”</i> she asks, giving a quick spin so you can see it from every angle. <i>“Like all our undergarments, it includes intelligent ultralastic so your tail will fit just perfectly. We really do live in an amazing time, huh?”</i>");
 
-	output("\n\n“<i>Do we ever,</i>” Anno says, eyes clearly not on the stockings. Then again, neither are yours... Aliss certainly cuts an impressive figure, especially in her silky little outfit. “<i>What do you think, boss? Think I’d look good in that?</i>”");
+	output("\n\n<i>“Do we ever,”</i> Anno says, eyes clearly not on the stockings. Then again, neither are yours... Aliss certainly cuts an impressive figure, especially in her silky little outfit. <i>“What do you think, boss? Think I’d look good in that?”</i>");
 	//if Nice: 
-	if(pc.isNice()) output("\n\n“<i>You’d look good in anything,</i>”");
-	else if(pc.isMischievous()) output("\n\n“<i>Good? Try sexy as hell,</i>”");
-	else output("\n\n“<i>Good in it. Better out of it,</i>”");
+	if(pc.isNice()) output("\n\n<i>“You’d look good in anything,”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Good? Try sexy as hell,”</i>");
+	else output("\n\n<i>“Good in it. Better out of it,”</i>");
 	output(" you answer.");
 
-	output("\n\nShe flashes you a grin. “<i>Alright. I’ll take it!</i>”");
+	output("\n\nShe flashes you a grin. <i>“Alright. I’ll take it!”</i>");
 
-	output("\n\nAliss smiles. “<i>Great! ");
+	output("\n\nAliss smiles. <i>“Great! ");
 	//if PC is feminine:
 	if(pc.mf("","f") == "f")
 	{
@@ -2284,22 +2284,22 @@ public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 	{
 		output("Before you check out, would you like to see </i>Mi Amour<i> undergarments’ most exciting feature?");
 	}
-	output("</i>”");
+	output("”</i>");
 
-	output("\n\n“<i>Sure,</i>” Anno says.");
-	if(flags["ANNO_EVER_STRAPONED"] != undefined) output(" “<i>Is it that hardlight strapon thing? Oh man please be that.</i>”");
+	output("\n\n<i>“Sure,”</i> Anno says.");
+	if(flags["ANNO_EVER_STRAPONED"] != undefined) output(" <i>“Is it that hardlight strapon thing? Oh man please be that.”</i>");
 
 	output("\n\nAliss’s grin spreads as she flicks a tiny, almost imperceptible button on the side of her panties. Light flickers around her crotch, and an impressively large terran cock materializes from her groin, flopping in the breeze.");
 
-	output("\n\n“<i>It’s my personal favorite feature,</i>” Aliss giggles. “<i>We’re one of the first shops to offer this, and it certainly has been popular. See, by incorporating miniaturized hardlight projectors across the outside of the fabric, we can set it up so that it will project a holographic, fully corporeal strap-on. No need for complicated straps, and no worries about potentially addictive or harmful drugs, you can simply wear these panties and be good to go, whenever, wherever. It will even interface with your own nervous system and give you a real time tactile feedback! And it should be noted, these projectors are so miniscule and well hidden you’d never even know they were there.</i>”");
+	output("\n\n<i>“It’s my personal favorite feature,”</i> Aliss giggles. <i>“We’re one of the first shops to offer this, and it certainly has been popular. See, by incorporating miniaturized hardlight projectors across the outside of the fabric, we can set it up so that it will project a holographic, fully corporeal strap-on. No need for complicated straps, and no worries about potentially addictive or harmful drugs, you can simply wear these panties and be good to go, whenever, wherever. It will even interface with your own nervous system and give you a real time tactile feedback! And it should be noted, these projectors are so miniscule and well hidden you’d never even know they were there.”</i>");
 
-	output("\n\n“<i>Sold,</i>” Anno says, fumbling for her credit chits. “<i>Just... ");
+	output("\n\n<i>“Sold,”</i> Anno says, fumbling for her credit chits. <i>“Just... ");
 	if(silly) output("shut up and take my money!");
 	else output("just take my money already.");
-	output("</i>”");
+	output("”</i>");
 
-	output("\n\n“<i>Great!</i>” Aliss grins, “<i>Let me slip out of these, and I’ll box up a fresh pair for you, miss Dorna.</i>”");
-	output("\n\nYou follow Anno up to the register, and she eagerly pays for the “<i>enhanced</i>” negligee. She’s practically giddy by the time you leave <i>Mi Amour</i>, murmuring to herself how she’s going to get a kick out of showing them to her girlfriend");
+	output("\n\n<i>“Great!”</i> Aliss grins, <i>“Let me slip out of these, and I’ll box up a fresh pair for you, miss Dorna.”</i>");
+	output("\n\nYou follow Anno up to the register, and she eagerly pays for the <i>“enhanced”</i> negligee. She’s practically giddy by the time you leave <i>Mi Amour</i>, murmuring to herself how she’s going to get a kick out of showing them to her girlfriend");
 	if(pc.mf("","f") == "f") output(", not to mention what she’s going to do to you when she gets back to the ship");
 	output(".");
 	processTime(9);
@@ -2313,10 +2313,10 @@ public function takeOverAlisssShopForPuppySlootPeanutButterStrapons():void
 public function getFuckedByAnnoStraponsSavinYouSlut():void
 {
 	clearOutput();
-	output("You take a step up to Anno and rest a hand on her hip. “<i>What do you say you slip on those panties of yours, huh?</i>”");
-	output("\n\nAnno grins, “<i>I bet I know which pair you mean, boss... I’d be delighted. Turn around, babe, and I’ll change.</i>”");
+	output("You take a step up to Anno and rest a hand on her hip. <i>“What do you say you slip on those panties of yours, huh?”</i>");
+	output("\n\nAnno grins, <i>“I bet I know which pair you mean, boss... I’d be delighted. Turn around, babe, and I’ll change.”</i>");
 	output("\n\nYou do as she commends, turning away from her. Behind you, you hear a zipper zipping and fabric rustling as Anno changes into something sexier. When she bids you turn around, Anno’s wearing her panties and garter from Aliss’s, orange fabric clinging to her pale skin and tracing through her snowy fur. She takes a step forward, her long, fishnet-clad legs bringing her tantalizingly close to you.");
-	output("\n\n“<i>Like what you see, lover?</i>” she purrs, strutting her stuff for you, taking a spin and bending over to give you a full view of her rump. Her tail swishes excitedly, rising out of the way when you close the distance and give her big, soft ass a squeeze. “<i>I think you do...</i>”");
+	output("\n\n<i>“Like what you see, lover?”</i> she purrs, strutting her stuff for you, taking a spin and bending over to give you a full view of her rump. Her tail swishes excitedly, rising out of the way when you close the distance and give her big, soft ass a squeeze. <i>“I think you do...”</i>");
 	output("\n\nShe presses back against you, grinding her panty-clad butt against your groin. You suddenly become aware of your own mounting excitement, ");
 	if(pc.hasCock())
 	{
@@ -2327,14 +2327,14 @@ public function getFuckedByAnnoStraponsSavinYouSlut():void
 	}
 	output(". She straightens up, leaning back against you, letting you wrap your arms around her waist. She moans breathily as you start to pull your [pc.gear] off, laying bare skin free to breathe, to touch. After a moment, though, she slips from your grasp and turns to face you, a hungry glint in her eye.");
 
-	output("\n\n“<i>What do you say, boss?</i>” she purrs, a finger reaching for her panties’ switch.");
+	output("\n\n<i>“What do you say, boss?”</i> she purrs, a finger reaching for her panties’ switch.");
 
 	processTime(4);
 
 	//if talked about mods:
 	if(flags["ANNO_STRAPON_MODS_ENABLED"] != undefined) 
 	{
-		output(" “<i>How do you want me to take you?</i>”");
+		output(" <i>“How do you want me to take you?”</i>");
 		clearMenu();
 		//[Normal] [Hyper Horsie] [Knotty Doggie] [Bristly Kitty]
 		//Above sets Anno’s [anno.cock] for the following scene between:
@@ -2362,28 +2362,28 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	author("Savin");
 	showName("\nANNO");
 	showBust("ANNO");
-	output("“<i>I knew it,</i>” Anno teases, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
+	output("<i>“I knew it,”</i> Anno teases, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
 
 	if(annoDickType == 0) output("thick, footlong human cock");
-	else if(annoDickType == GLOBAL.TYPE_EQUINE) output("monolithic horsecock, as thick around as her arm and near as long as her leg, turning Anno into a veritable tripod. “<i>You like ‘em big, huh?</i>” she adds, licking her lips");
+	else if(annoDickType == GLOBAL.TYPE_EQUINE) output("monolithic horsecock, as thick around as her arm and near as long as her leg, turning Anno into a veritable tripod. <i>“You like ‘em big, huh?”</i> she adds, licking her lips");
 	else if(annoDickType == GLOBAL.TYPE_CANINE) output("thick, pointed dog-pecker, complete with a bulbous bitch-breaker mounted on its hilt, just above Anno’s own crotch");
 	else output("long, thick kitten-cock, complete with ridges of bumpy bristles, perfect for stimulating every inch of your [pc.vagOrAss].");
 
-	output("\n\nAnno grins at you, stroking her big hardlight cock and leaning back onto her workbench. Eyeing you up and down, your lover spreads her legs around her glowing appendage and beckons you forward. “<i>Why don’t you go ahead and lube this bad boy up with your mouth, huh?</i>” ");
+	output("\n\nAnno grins at you, stroking her big hardlight cock and leaning back onto her workbench. Eyeing you up and down, your lover spreads her legs around her glowing appendage and beckons you forward. <i>“Why don’t you go ahead and lube this bad boy up with your mouth, huh?”</i> ");
 
-	output("\n\nShe pats her thigh invitingly, and you quickly find yourself crawling up between Anno’s legs, hands reaching towards her lightdick. A moan escapes her lips as your fingers brush her undercarriage, caressing the " + chars["ANNO"].cockHeadGetName(annoDickType) + " and cupping her shaft toward your [pc.lips]. She coos with delight as your cock-pillows wrap around the " + chars["ANNO"].cockHeadGetName(annoDickType) + " of her " + chars["ANNO"].cockNoun(annoDickType, false) + ", back arching slightly as your [pc.tongue] caresses her hardlight penis. “<i>Oh, I like this sensation... I can see ");
+	output("\n\nShe pats her thigh invitingly, and you quickly find yourself crawling up between Anno’s legs, hands reaching towards her lightdick. A moan escapes her lips as your fingers brush her undercarriage, caressing the " + chars["ANNO"].cockHeadGetName(annoDickType) + " and cupping her shaft toward your [pc.lips]. She coos with delight as your cock-pillows wrap around the " + chars["ANNO"].cockHeadGetName(annoDickType) + " of her " + chars["ANNO"].cockNoun(annoDickType, false) + ", back arching slightly as your [pc.tongue] caresses her hardlight penis. <i>“Oh, I like this sensation... I can see ");
 	//if meeting w/ Anno/Syri is done:
 	if(flags["ANNOxSYRI_WINCEST"] != undefined) output("why Syri keeps her dick");
 	else output("how you could get addicted to it");
-	output(".</i>”");
+	output(".”</i>");
 
 	output("\n\nOne of Anno’s hands reaches down to stroke your [pc.hair], ever so gently urging you onwards. You open wide");
 	if(annoDickType == GLOBAL.TYPE_EQUINE) output(", jaw straining");
 	output(" to take her strapon’s girth, and slowly start sliding down her pole. The first few inches go easily enough, though they leave a tingling sensation on your [pc.tongue]. However, there’s seemingly no end to Anno’s larger-than-life projection of a cock, and you soon feel its head bumping against the back of your throat, straining your mastery of your gag reflexes as it refuses to bend into your throat.");
 
-	output("\n\n“<i>Just... just keep doing that...</i>” Anno groans, reaching up and cupping one of her breasts through her bra. “<i>Just like that...</i>”");
+	output("\n\n<i>“Just... just keep doing that...”</i> Anno groans, reaching up and cupping one of her breasts through her bra. <i>“Just like that...”</i>");
 
-	output("\n\nYou figure you can oblige your lover for a bit longer and suppress your reflexes as best you can, focusing on fellating her glowing cock. As you move, you note Anno’s breath quickening, her tail twitching and curling in ever more erratic ways. You give her a quizzical look, and sheepishly your lover admits, “<i>I might have tweaked the... with the sensitivity settings. Maybe a-maybe alot ohgodfuckyes!</i>”");
+	output("\n\nYou figure you can oblige your lover for a bit longer and suppress your reflexes as best you can, focusing on fellating her glowing cock. As you move, you note Anno’s breath quickening, her tail twitching and curling in ever more erratic ways. You give her a quizzical look, and sheepishly your lover admits, <i>“I might have tweaked the... with the sensitivity settings. Maybe a-maybe alot ohgodfuckyes!”</i>");
 
 	output("\n\nAnno grabs your [pc.hair] and pulls you down, thrusting as much of her thick, throbbing");
 	if(annoDickType == GLOBAL.TYPE_EQUINE) output(" horse");
@@ -2391,14 +2391,14 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	else if(annoDickType == GLOBAL.TYPE_FELINE) output(" kitty");
 	output(" cock into your mouth as she can. Her voice twists into a scream of pleasure, and her legs shoot out, wrapping around your shoulders and holding you in an ausar death grip as she pistons her hips into your mouth. You gag and cough, choking on her hardlight dick, unable to tell her - beg her - to back off. Instead, you’re left to be used as a cockholster as Anno rides out her orally-induced orgasm. When she comes down from her heady high, your lover merely slumps back, breathing hard, letting her " + chars["ANNO"].cockNoun(annoDickType, true) + " flop out of your well-fucked mouth.");
 
-	output("\n\n“<i>I don’t know if I’m ever going to get used to that,</i>” Anno breathes, flopping back on her desk. Her cock stands upright like a flagpole, drooling with sweat and simulated rivulets of semen. Still, her legs remain tightly locked around your shoulders, holding you close as she recovers. After a few moments, she sits back up and grins down at you. “<i>Now for the fun part. Why don’t we switch places, babe?</i>”");
+	output("\n\n<i>“I don’t know if I’m ever going to get used to that,”</i> Anno breathes, flopping back on her desk. Her cock stands upright like a flagpole, drooling with sweat and simulated rivulets of semen. Still, her legs remain tightly locked around your shoulders, holding you close as she recovers. After a few moments, she sits back up and grins down at you. <i>“Now for the fun part. Why don’t we switch places, babe?”</i>");
 
 	output("\n\nShe strokes her slick hardlight cock for emphasis, and you quickly agree. She slips up off the bench, and gives you a playful push onto it, getting you to grab the edge and spread your [pc.legOrLegs] for her. She shifts behind you, and you give a little gasp as her fingers dig into your [pc.butt], giving you a little slap on the backside. You relax yourself as best you can in your lover’s arms, feeling the tingle of hardlight energy flopping into the crack of your [pc.butt]. Anno caresses your ass and hips, easing you into things as her strapon nears the clenched ");
 	if(!pc.hasVagina()) output("ring");
 	else output("lips");
 	output(" of your [pc.vagOrAss].");
 
-	output("\n\n“<i>Ready?</i>” Anno teases, the " + chars["ANNO"].cockHeadGetName(annoDickType) + " of her " + chars["ANNO"].cockNoun(annoDickType, false) + " pressing flush against your hole. You bite your lip and clutch the edge of the desk, waiting for Anno to act.");
+	output("\n\n<i>“Ready?”</i> Anno teases, the " + chars["ANNO"].cockHeadGetName(annoDickType) + " of her " + chars["ANNO"].cockNoun(annoDickType, false) + " pressing flush against your hole. You bite your lip and clutch the edge of the desk, waiting for Anno to act.");
 
 	output("\n\nShe doesn’t keep you waiting long.");
 
@@ -2427,20 +2427,20 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 
 	output("\n\n");
 	//if PC has a cock, no vag:
-	if(pc.hasCock() && !pc.hasVagina()) output("Her motions put an incredible amount of pressure on your stretched ass, sending trembling waves of pleasure through you - especially when her " + chars["ANNO"].cockNoun(annoDickType, true) + " rubs and presses against your backdoor’s most sensitive spot, making your [pc.cocks] jump in response. “<i>Oh, you like that, do you?</i>” Anno teases, reaching around to grab [pc.oneCock] and give it a tender stroke. Even her slightest touch makes you shiver in response, and your body instinctively bends to her will, your cock shuddering out a thick trickle of pre onto Anno’s fingers. She giggles as you stain her snowy fur with [pc.cumColor], and she starts to move her wrist faster, jacking you off to the same beat of her ass-fucking.\n\n");
+	if(pc.hasCock() && !pc.hasVagina()) output("Her motions put an incredible amount of pressure on your stretched ass, sending trembling waves of pleasure through you - especially when her " + chars["ANNO"].cockNoun(annoDickType, true) + " rubs and presses against your backdoor’s most sensitive spot, making your [pc.cocks] jump in response. <i>“Oh, you like that, do you?”</i> Anno teases, reaching around to grab [pc.oneCock] and give it a tender stroke. Even her slightest touch makes you shiver in response, and your body instinctively bends to her will, your cock shuddering out a thick trickle of pre onto Anno’s fingers. She giggles as you stain her snowy fur with [pc.cumColor], and she starts to move her wrist faster, jacking you off to the same beat of her ass-fucking.\n\n");
 	//if PC has a cock AND vag:
 	else if(pc.hasCock() && pc.hasVagina())
 	{
-		output("Your [pc.vagina] writhes around her thrusting hardlight cock, muscles shocked into action by the electric pleasure radiating through your cunny - and into your [pc.cock]. “<i>Oh, you like that, do you?</i>” Anno teases, reaching around to grab your [pc.cock] and give it a tender stroke. Even her slightest touch makes you shiver in response, and your body instinctively bends to her will, your cock shuddering out a thick trickle of pre onto Anno’s fingers. She giggles as you stain her snowy fur with [pc.cumColor] and she starts to move her wrist faster, jacking you off to the same beat of her strapon fucking.\n\n");
+		output("Your [pc.vagina] writhes around her thrusting hardlight cock, muscles shocked into action by the electric pleasure radiating through your cunny - and into your [pc.cock]. <i>“Oh, you like that, do you?”</i> Anno teases, reaching around to grab your [pc.cock] and give it a tender stroke. Even her slightest touch makes you shiver in response, and your body instinctively bends to her will, your cock shuddering out a thick trickle of pre onto Anno’s fingers. She giggles as you stain her snowy fur with [pc.cumColor] and she starts to move her wrist faster, jacking you off to the same beat of her strapon fucking.\n\n");
 	}
 	else output(" Your [pc.vagOrAss] squirms and writhes around the hardlight shaft thrusting into it. You’re soon moaning and groaning like a whore as Anno fucks you, hard and fast. ");
 	//{Combine, same pg.}
-	output("You can feel Anno’s breath hot and heavy on the back of your neck as she leans over it, pounding away at you and clearly getting more than she bargained for from her over-sensitive cock. “<i>Oh, I love the feeling of your [pc.vagOrAss],</i>” Anno breathes into your ear, barely audible over your own moans");
+	output("You can feel Anno’s breath hot and heavy on the back of your neck as she leans over it, pounding away at you and clearly getting more than she bargained for from her over-sensitive cock. <i>“Oh, I love the feeling of your [pc.vagOrAss],”</i> Anno breathes into your ear, barely audible over your own moans");
 	if(pc.hasCock()) output(", which grow louder and more desperate as Anno works your [pc.cock] from both ends, bringing your so close to orgasm that you can taste it");
-	output(". “<i>I’m gonna fuck it ");
+	output(". <i>“I’m gonna fuck it ");
 	if(!pc.hasCock()) output("until we both cum");
 	else output("until you baste my hand in cum");
-	output(".</i>”");
+	output(".”</i>");
 
 	output("\n\nShe sounds like she’s as close to the edge as you are, her voice breathy and tinged with gasps and moans as it is. You can’t help yourself but to try and pull her over with you, moving your [pc.hips] back to meet her " + chars["ANNO"].cockNoun(annoDickType, false) + " at every thrust, taking her rod deeper than ever before, feeling it stretch your [pc.vagOrAss].");
 	if(pc.hasCock()) output(" Her hand on your [pc.cock] increases its pace in equal measure, milking you for thicker drops of pre. You soon feel your own need rising to irresistible levels and cum starts welling up inside you, ready to burst forth.");
@@ -2454,10 +2454,10 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 
 	output("\n\nYou give a shuddered gasp, all your weight hard on the desk as you ride out your orgasm. Anno’s hips move ever so slightly, slight thrusts in and out of you as she milks herself through the sensory feedback running through her hardlight panties. She rests against you after a few long moments, her hips pressed into your [pc.butt] as she deactivates the strap. You feel a sudden emptiness as the cock inside you flashes out of existence, but that feeling is replaced by warmth and comfort as Anno’s hands slip around you, holding you close. She presses flush against your back, hands playing across your body, especially your [pc.chest], slipping between you and the table.");
 
-	output("\n\n“<i>That was nice,</i>” she purrs, nibbling on one of your [pc.ears]. “<i>I could get used to the feeling of my " + chars["ANNO"].cockNoun(annoDickType, true) + " deep inside that ");
+	output("\n\n<i>“That was nice,”</i> she purrs, nibbling on one of your [pc.ears]. <i>“I could get used to the feeling of my " + chars["ANNO"].cockNoun(annoDickType, true) + " deep inside that ");
 	if(pc.hasVagina()) output("pussy");
 	else output("asshole");
-	output(" of yours.</i>”");
+	output(" of yours.”</i>");
 
 	output("\n\nYou murmur your agreement as Anno stands up, gives you a playful spank, and reaches for her clothes.");
 
@@ -2478,12 +2478,12 @@ public function annoStraponMods():void
 	author("Savin");
 	showName("\nANNO");
 	showBust("ANNO");
-	output("“<i>Oh, hey, check this out,</i>” Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. “<i>Remember these?</i>” ");
-	output("\n\nYou nod, and your lover continues. “<i>Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!</i>”");
+	output("<i>“Oh, hey, check this out,”</i> Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. <i>“Remember these?”</i> ");
+	output("\n\nYou nod, and your lover continues. <i>“Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!”</i>");
 	output("\n\nAnno picks her panties up and slips them on over her [anno.lowerGarment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
-	output("\n\nSeeing the look in your eyes, Anno giggles and grabs her hardlight erection, stroking it tenderly as she speaks. “<i>I did a little modding on this bad boy. Enhanced batteries, stronger projection filters, and a whole slew of new cock shapes and sizes. And no, I totally don’t have penis envy, why do you ask?</i>”");
+	output("\n\nSeeing the look in your eyes, Anno giggles and grabs her hardlight erection, stroking it tenderly as she speaks. <i>“I did a little modding on this bad boy. Enhanced batteries, stronger projection filters, and a whole slew of new cock shapes and sizes. And no, I totally don’t have penis envy, why do you ask?”</i>");
 	output("\n\nShe flicks another, new dial under the power button, and the gargantuan horsedick flickers out of existence, replaced by a much more reasonably-sized canid cock, complete with a butt-busting bitch-breaker at the hilt. Anno grins, rubbing the knot with her thumb until she shivers with pleasure. Another turn of the dial, and her doggydick is replaced by a bristly kittycock, complete with rings of sensitive little bumps and nodules along the crown. She runs a finger along the bristles, arching her back and moaning as the tactile feedback sends waves of pleasure through her.");
-	output("\n\nAnno takes a step closer, giving you a lascivious wink. “<i>What do you say, next time I give you a good fucking you help me... alpha test these new mods? I promise, it’ll be the most fun QA you’ve ever done.</i>”");
+	output("\n\nAnno takes a step closer, giving you a lascivious wink. <i>“What do you say, next time I give you a good fucking you help me... alpha test these new mods? I promise, it’ll be the most fun QA you’ve ever done.”</i>");
 	output("\n\nHow could you say no?");
 	flags["ANNO_STRAPON_MODS_ENABLED"] = 1;
 	processTime(7);

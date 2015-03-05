@@ -94,7 +94,7 @@ public function enemyAphrodisiacDarts():void
 	var damage:int = 0;
 	var hit:Boolean = true;
 	//Hacky-ass solution for male raskvel. Will need tweaked if a proper mob ever uses the attack
-	if(foes[0] is RaskvelMale) output("“<i>Boo! Raaaaar!</i>” shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
+	if(foes[0] is RaskvelMale) output("<i>“Boo! Raaaaar!”</i> shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
 	else output(foes[0].capitalA + foes[0].short + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
 	//Blocked
 	if(pc.shields() > 0) 

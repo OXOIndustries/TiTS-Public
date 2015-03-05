@@ -61,7 +61,7 @@
         // Finds any opening fancyquotes that don't have an opening italics tag, and adds the tag
         "fix_fancyquotes_open": {
             "find": "(?<!<i>)“",
-            "replace": "“<i>",
+            "replace": "<i>“",
             "greedy": true,
             "case": false
         },

@@ -3917,11 +3917,11 @@ public function giveGiannaSomethingCoolYouSlut():void
 	giannaDisplay();
 	output("You search around your possessions for something to give to Gianna.");
 	//Positive
-	if(giannaPersonality() >= 70) output("\n\nGianna bounces over, craning around you to get a look in your pack. “<i>Ohh, did you get me a present?” Her eyes brighten noticeably as she circles you. “I must have made you pretty happy, huh?</i>” She blows air across your earlobe. “<i>If you weren’t about to give me a present I’d pin you down and do it all over it again.</i>”");
+	if(giannaPersonality() >= 70) output("\n\nGianna bounces over, craning around you to get a look in your pack. <i>“Ohh, did you get me a present?” Her eyes brighten noticeably as she circles you. “I must have made you pretty happy, huh?”</i> She blows air across your earlobe. <i>“If you weren’t about to give me a present I’d pin you down and do it all over it again.”</i>");
 	//Neutral
-	else if(giannaPersonality() >= 30) output("\n\nGianna gasps, her eyes glowing brightly. “<i>A present? ...You’re gonna give me a present?</i>” She claps her hands excitedly and watches you with baited breath, or what passes for baited breath when breathing is optional.");
+	else if(giannaPersonality() >= 30) output("\n\nGianna gasps, her eyes glowing brightly. <i>“A present? ...You’re gonna give me a present?”</i> She claps her hands excitedly and watches you with baited breath, or what passes for baited breath when breathing is optional.");
 	//Negnegneg!
-	else output("\n\nGianna keeps her eyes fixed at the ground submissively, her hands crossed just in front of her waist. “<i>Are you getting something for me?</i>” She fidgets, toeing at the ground. “<i>My old master never gave me anything, really.</i>”");
+	else output("\n\nGianna keeps her eyes fixed at the ground submissively, her hands crossed just in front of her waist. <i>“Are you getting something for me?”</i> She fidgets, toeing at the ground. <i>“My old master never gave me anything, really.”</i>");
 	processTime(2);
 	//Menu of give things
 	clearMenu();
@@ -3952,11 +3952,11 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	if(arg == "hoss")
 	{
 		//Positive
-		if(giannaPersonality() >= 70) output("\n\n“<i>Ohhh, is that a XL model? Those things are huge - and it has the equine subvariant too!? Oh I’ll make so many of the bulls here jealous! I can’t wait to see it fully inflated and wave it in someone’s face!</i>” Gianna takes and turns it in her hands, peering at it from every angle, scanning the entire surface for defects. “<i>Oh, I bet you want me to fuck you with this, don’t you?</i>” A coquettish grin slowly spreads across her face. “<i>Or maybe you want me to ram it down your throat?</i>”");
+		if(giannaPersonality() >= 70) output("\n\n<i>“Ohhh, is that a XL model? Those things are huge - and it has the equine subvariant too!? Oh I’ll make so many of the bulls here jealous! I can’t wait to see it fully inflated and wave it in someone’s face!”</i> Gianna takes and turns it in her hands, peering at it from every angle, scanning the entire surface for defects. <i>“Oh, I bet you want me to fuck you with this, don’t you?”</i> A coquettish grin slowly spreads across her face. <i>“Or maybe you want me to ram it down your throat?”</i>");
 		//Neutral
-		else if(giannaPersonality() >= 30) output("\n\n“<i>Omigod, really? That looks like one of the XL models - the horsey ones. I could probably make Zephyr all kinds of jealous with it. I bet she’d bend me over her desk and fuck me hard enough to break it in half!</i>” Gianna grins mischievously while looking over the phallic present. “<i>...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?</i>”");
+		else if(giannaPersonality() >= 30) output("\n\n<i>“Omigod, really? That looks like one of the XL models - the horsey ones. I could probably make Zephyr all kinds of jealous with it. I bet she’d bend me over her desk and fuck me hard enough to break it in half!”</i> Gianna grins mischievously while looking over the phallic present. <i>“...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?”</i>");
 		//Submissive
-		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. “<i>T-thank you, [pc.master]. I never thought I’d get to have an XL model, let alone a horse-cock. It’s beautiful.</i>” She spins it in her hands, scanning it for defects. “<i>Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?</i>”");
+		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. <i>“T-thank you, [pc.master]. I never thought I’d get to have an XL model, let alone a horse-cock. It’s beautiful.”</i> She spins it in her hands, scanning it for defects. <i>“Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?”</i>");
 	}
 	//DRAGONCAWK
 	else if(arg == "dragon")
@@ -3986,11 +3986,11 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	else
 	{
 		//Positive
-		if(giannaPersonality() >= 70) output("\n\n“<i>Ohhh, you got me a terran-style futa cock? My my, someone likes a little dick on their chick, don’t they?</i>” Gianna takes the artificial tool and wiggles it in your direction. “<i>Oh, I bet you want me to fuck you with this, don’t you?</i>” A coquettish grin slowly spreads across her face. “<i>Or maybe you want me to ram it down your throat?</i>”");
+		if(giannaPersonality() >= 70) output("\n\n<i>“Ohhh, you got me a terran-style futa cock? My my, someone likes a little dick on their chick, don’t they?”</i> Gianna takes the artificial tool and wiggles it in your direction. <i>“Oh, I bet you want me to fuck you with this, don’t you?”</i> A coquettish grin slowly spreads across her face. <i>“Or maybe you want me to ram it down your throat?”</i>");
 		//Neutral
-		else if(giannaPersonality() >= 30) output("\n\n“<i>Omigod, really? I never thought I’d get a terran dick like this. It’s even a pretty decent size. I wonder if Zephyr would be jealous to have some competition around here. She’d probably break her desk in half rage-fucking me if I waved it under her nose.</i>” Gianna grins mischievously while looking over the phallic present. “<i>...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?</i>”");
+		else if(giannaPersonality() >= 30) output("\n\n<i>“Omigod, really? I never thought I’d get a terran dick like this. It’s even a pretty decent size. I wonder if Zephyr would be jealous to have some competition around here. She’d probably break her desk in half rage-fucking me if I waved it under her nose.”</i> Gianna grins mischievously while looking over the phallic present. <i>“...but you wouldn’t give this to me just make her jealous, would you? Do you want me to use this on you?”</i>");
 		//Submissive
-		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. “<i>T-thank you, [pc.master]. I never thought I’d get to have such a lovely penis. It’s beautiful.</i>” She spins it in her hands, scanning it for defects. “<i>Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?</i>”");
+		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. <i>“T-thank you, [pc.master]. I never thought I’d get to have such a lovely penis. It’s beautiful.”</i> She spins it in her hands, scanning it for defects. <i>“Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?”</i>");
 	}
 	//merge
 	output("\n\nYou fumble for a response, but Gianna is no longer talking to you. She’s already starting the process of installing her gift. A small line in the synthflesh above her crotch opens up. She presses down just below rift. It audibly clicks, then pops outward, revealing gleaming composites wet with residual silicone. Something inside her opened crotch compartment hisses and snaps, then Gianna lifts out a small component containing ");
@@ -4004,11 +4004,11 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	if(arg == "hoss" || arg == "dragon") output("bestial");
 	else output("less than feminine");
 	output(" girth. Something clicks, and Gianna sighs in relief or pleasure before closing her abdominal compartment.");
-	output("\n\n“<i>There we go! I’ve got ");
+	output("\n\n<i>“There we go! I’ve got ");
 	if(arg == "hoss") output("a big horse-cock");
 	else if(arg == "dragon") output("a big, bestial dragon-dick");
 	else output("a decent-sized terran cock");
-	output(", just like you wanted!</i>” She wiggles excitedly and says, “<i>Watch this!</i>”");
+	output(", just like you wanted!”</i> She wiggles excitedly and says, <i>“Watch this!”</i>");
 
 	//Hosscawk
 	if(arg == "hoss")
@@ -4025,17 +4025,17 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	}
 	//Normal Futa?
 	else output("\n\nA half-hard length of pink-hued synthflesh dangles from her clitoral hood, modelled in the shape of a girthy penis. While soft, it's a floppy four inches. When it gets hard, she can sport up to ten inches of silicone-inflated girlmeat. The android is more than happy to give you a demonstration, going from soft to raging tumescence in the span of ten seconds, ending her demonstration by allowing bubbles of warm lubricant to roll out of its head unimpeded, drawn from her inner reservoirs. She goes soft just as quickly.");
-	output("\n\n“<i>That... that’s awesome,</i>” you answer whilst trying not to blush");
+	output("\n\n<i>“That... that’s awesome,”</i> you answer whilst trying not to blush");
 	if(pc.hasFur() || pc.hasScales())
 	{
 		output(", grateful for your covering of ");
 		if(pc.hasFur()) output("fur");
 		else output("scales");
 	}
-	output(".\n\nGianna giggles and snatches up her old equipment from where she set it down. “<i>Let me go put this away, and we’ll do something else, okay?</i>”");
-	output("\n\nYou’d be hard pressed not to smile back. “<i>Sure");
+	output(".\n\nGianna giggles and snatches up her old equipment from where she set it down. <i>“Let me go put this away, and we’ll do something else, okay?”</i>");
+	output("\n\nYou’d be hard pressed not to smile back. <i>“Sure");
 	if(!pc.isAss() && !pc.isBro()) output(" thing");
-	output(".</i>”");
+	output(".”</i>");
 	output("\n\nThe lusty android ");
 	if(pc.tallness >= 76) output("leans up on her tip-toes");
 	else if(pc.tallness >= 60) output("leans over");
@@ -4135,11 +4135,11 @@ public function hotSwapSomethingWithGianna(arg:String = "clit"):void
 	giannaDisplay();
 	output("You tell the sultry android that you’d like her to get a different genital setup on.");
 	//Perky/Dommy!
-	if(giannaPersonality() >= 70) output("\n\n“<i>Awww, I was just getting used to having that setup!</i>” Gianna pouts at you. “<i>Well you’d better make use of the new equipment, then! ...Unless you just like making dress up my crotch all sexy for you, you kinky [pc.boy] you!</i>”");
+	if(giannaPersonality() >= 70) output("\n\n<i>“Awww, I was just getting used to having that setup!”</i> Gianna pouts at you. <i>“Well you’d better make use of the new equipment, then! ...Unless you just like making dress up my crotch all sexy for you, you kinky [pc.boy] you!”</i>");
 	//Normal
-	else if(giannaPersonality() >= 30) output("\n\n“<i>Ohh, that’s way less fun than I thought we’d be having, but if you think I’d look better that way, who am I to judge.</i>” Gianna openly fondles herself, sighing blissfully until you cough to get her attention. “<i>Sorry,</i>” she sheepishly admits, “<i>I was just saying bye to the old parts!</i>”");
+	else if(giannaPersonality() >= 30) output("\n\n<i>“Ohh, that’s way less fun than I thought we’d be having, but if you think I’d look better that way, who am I to judge.”</i> Gianna openly fondles herself, sighing blissfully until you cough to get her attention. <i>“Sorry,”</i> she sheepishly admits, <i>“I was just saying bye to the old parts!”</i>");
 	//Subby
-	else output("\n\nGianna nods. “<i>If that’s what you’d like, I’ll be happy to configure myself that way. One moment please.</i>”");
+	else output("\n\nGianna nods. <i>“If that’s what you’d like, I’ll be happy to configure myself that way. One moment please.”</i>");
 	//Merge
 	output("\n\nThe white-skinned beauty departs with a sensuous wiggle of her [gianna.butt], heading off to her collection of spare parts in order to install the requested bits.\n\nWhen she returns, Gianna is blushing heavily and equipped to your specifications. What now?");
 	processTime(13);

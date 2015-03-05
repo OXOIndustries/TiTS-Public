@@ -1981,6 +1981,14 @@
 				if(personality < 50) personality = 50;
 			}
 		}
+		public function isMasculine():Boolean
+		{
+			return (mf("m", "f") == "m");
+		}
+		public function isFeminine():Boolean
+		{
+			return (mf("m", "f") == "f");
+		}
 		public function isBimbo():Boolean
 		{
 			if(hasStatusEffect("Temporary Treatment")) return true;
@@ -8222,6 +8230,11 @@
 		}
 		private function addToList(arg:*): void {
 			list[list.length] = arg;
+		}
+		public function getListLength():uint
+		{
+			if (list == null) return 0;
+			return list.length;
 		}
 		private function formatList(): String {
 			var stuff: String = "";

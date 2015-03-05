@@ -2637,7 +2637,7 @@ public function vanaeMaidenPCDefeatCunnilingus():void
 
 	output("\n\nHer webbed hands come down and part her short tentacle skirt. Her [monster.pussyNoun] is cute and pink, two tiny clits poking out from her puffy lips. You can see a glistening wetness on her unsullied flower, just begging to be licked off.");
 
-	output("\n\n<i>“I... I want you to eat me out, okay? Can I trust you to do that?</i>” she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
+	output("\n\n<i>“I... I want you to eat me out, okay? Can I trust you to do that?”</i> she meekly requests. Too horny to refuse, you slink down between her [monster.legs] and bring your [pc.face] inches away from her [monster.pussy]. If she wants you to eat her out, you'll do just that.");
 
 	output("\n\nShe gives a pleasured shiver as you brush her girl parts with your [pc.lips]. As you tease them she wiggles eagerly on the spot, unable to contain the powerful sensations threatening to take over.");
 

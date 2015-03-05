@@ -226,7 +226,7 @@ public function nevermindSyri():void
 	clearOutput();
 	showSyriName();
 	author("Not Savin. HAH!");
-	output("“<i>You get off lucky this time, ausar,</i>” you say as you spin the panting dickgirl away. “<i>But next time you might not be so lucky.</i>”\n\nShe looks a little confused at the reprieve and maybe even a little hurt, but she doesn’t show it for long. Besides, you’ve got better things to do than waste all your time screwing around in a bar.");
+	output("<i>“You get off lucky this time, ausar,”</i> you say as you spin the panting dickgirl away. <i>“But next time you might not be so lucky.”</i>\n\nShe looks a little confused at the reprieve and maybe even a little hurt, but she doesn’t show it for long. Besides, you’ve got better things to do than waste all your time screwing around in a bar.");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
