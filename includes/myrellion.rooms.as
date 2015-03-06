@@ -954,12 +954,23 @@ public function initializeMyrellionRooms():void
 	rooms["803"].system = "SYSTEM: SINDATHU";
 	//rooms["803"].westExit = "9999";
 	rooms["803"].northExit = "821";
+	rooms["803"].eastExit = "LIEVE BUNKER";
 	rooms["803"].westExit = "1H6";
 	rooms["803"].moveMinutes = 2;
 	rooms["803"].runOnEnter = kressiaGatesBonus;
 	rooms["803"].addFlag(GLOBAL.INDOOR);
 	rooms["803"].addFlag(GLOBAL.PUBLIC);
 	rooms["803"].addFlag(GLOBAL.CAVE);
+	
+	rooms["LIEVE BUNKER"] = new RoomClass(this);
+	rooms["LIEVE BUNKER"].roomName = "KRESSIA\nBUNKER";
+	rooms["LIEVE BUNKER"].description = "The pillbox guarding the gates of Kressia is a small but surprisingly cozy accommodation. The central chamber's got several carpets and cushions spread out, and some chairs lining the walls. A viewport gives a wide view of the craggy approach to Kressia, interrupted by a trio of heavy machine-guns bolted to the concrete.";
+	rooms["LIEVE BUNKER"].planet = "PLANET: MYRELLION";
+	rooms["LIEVE BUNKER"].system = "SYSTEM: SINDATHU";
+	rooms["LIEVE BUNKER"].westExit = "804";
+	rooms["LIEVE BUNKER"].moveMinutes = 1;
+	rooms["LIEVE BUNKER"].runOnEnter = lieveBunkerFunc;
+	rooms["LIEVE BUNKER"].addFlag(GLOBAL.INDOOR);
 
 
 	//Street R12

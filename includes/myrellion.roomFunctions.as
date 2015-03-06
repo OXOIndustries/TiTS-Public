@@ -95,6 +95,11 @@ public function myrellionScoutAuthorityBonus():Boolean
 
 public function kressiaGatesBonus():Boolean
 {
+	if (tryProcLateGoodbye())
+	{
+		return true;
+	}
+	
 	if(flags["MET_LIEVE"] == undefined) output("from which can be heard a series of very soft moans and giggles");
 	else output("and you can hear Lieve having a bit of fun inside");
 	output(".");
@@ -106,6 +111,7 @@ public function kressiaGatesBonus():Boolean
 		output("\n\nBefore you can answer, she pops back into the bunker, pulled in by a pair of gold-chitined hands. Giggles echo out through the port after her.");
 		flags["LIEVE_INVITE"] = 1;
 	}
+	
 	return false;
 }
 public function n20StreetBonusFunc():Boolean

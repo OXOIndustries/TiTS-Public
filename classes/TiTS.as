@@ -178,6 +178,7 @@
 		include "../includes/myrellion.irelliaQuest.as";
 		include "../includes/myrellion.kaede.as";
 		include "../includes/myrellion.karaAndShade.as";
+		include "../includes/myrellion.lieve.as";
 		include "../includes/myrellion.liliana.as";
 		include "../includes/myrellion.lyralla.as";
 		include "../includes/myrellion.nehzara.as";

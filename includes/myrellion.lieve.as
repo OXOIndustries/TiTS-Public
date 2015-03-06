@@ -6,12 +6,12 @@ public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 	if (isNude)
 	{
 		if (isSolo) showBust("LIEVE_NUDE");
-		else showBust("LIEVE_NUDE", "MYR_NUDE", "MYR_NUDE");
+		else showBust("LIEVE_NUDE", "SIERVA_NUDE", "MAYREN_NUDE");
 	}
 	else
 	{
 		if (isSolo) showBust("LIEVE");
-		else showBust("LIEVE", "MYR", "MYR");
+		else showBust("LIEVE", "SIERVA", "MAYREN");
 	}
 }
 
@@ -69,17 +69,29 @@ public function lieveVenomUsed():Boolean
 	return false;
 }
 
-public function encounterLieve():Boolean
+public function lieveBunkerFunc():Boolean
 {
-	output("The pillbox guarding the gates of Kressia is a small but surprisingly cozy accommodation. The central chamber's got several carpets and cushions spread out, and some chairs lining the walls. A viewport gives a wide view of the craggy approach to Kressia, interrupted by a trio of heavy machine-guns bolted to the concrete.");
-
-	output("\n\nLieve's here, idly watching the approach through the viewslit. Her harem lounges around behind her, looking bored and horny but unwilling to disturb their mistress at present.");
+	if (flags["MET_LIEVE"] == undefined)
+	{
+		lieveInitialEncounter();
+		return true;
+	}
+	else
+	{
+		output("\n\nLieve's here, idly watching the approach through the viewslit. Her harem lounges around behind her, looking bored and horny but unwilling to disturb their mistress at present.");
+		
+		addButton(0, "Lieve", lieveRepeatEncounter);
+	}
+	
+	return false;
 }
 
 public function lieveInitialEncounter():void
 {
 	clearOutput();
 	lieveHeader();
+	
+	flags["MET_LIEVE"] = 1;
 
 	output("You slip inside the bunker’s open door, following the voice of the red myr woman inside. Or women, by the sounds of things. You hear several distinct, feminine voices inside: two laughing and giggling, a third grumbling as you hear belts clicking and clothes rustling. A few steps down a corridor take you to an open interior with a viewslit looking out over the trench lines. Inside, you see the red myr soldier who poked her head out, her purple hair mussed and her uniform disheveled. To your surprise, a pair of gold myr are lounging next to her, both buck naked and clearly aroused, their large areolae stiff and their bare twats reddened with excitement.");
 	
@@ -131,7 +143,7 @@ public function lieveInitialEncounter():void
 	output("\n\nLieve chuckles and says, <i>“Don’t mind them, they just got themselves a nice helping of my venom. Makes them nice and affectionate, doesn’t it girls?”</i> The two gold myr coo and moan, nuzzling against Lieve.");
 	
 	output("\n\nTheir mistress grins and turns her attention back to you. <i>“So, since you’re here, anything I can help you with?");
-	if (pc.mf("m", "f") == "f" && pc.lust >= 33) output(" Or maybe you’re getting some other ideas...?");
+	if (pc.mf("m", "f") == "f" && pc.lust() >= 33) output(" Or maybe you’re getting some other ideas...?");
 	output("”</i>");
 
 	processTime(30);
@@ -180,13 +192,13 @@ public function lieveMenu():void
 	// [Talk] [Sex] [Tour Town](1 time, fem PCs only) [Appearance]
 	// [Trench Wives] [Try Venom // Kiss Her]
 	clearMenu();
-	addButton(0, "Talk", lieveTalkTo);
+	addButton(0, "Talk", lieveTalkMenu, undefined, "Talk", "Lieve's offering, so ask her a few questions.");
 	addButton(1, "Sex", lieveSexEntry, undefined, "Sex", "See if Lieve's got some steam to blow off. Even if not, looks like her harem girls are desperate for it.");
 	addButton(2, "TrenchWives", lieveTalkToTrenchWives, undefined, "Talk To Trench Wives", "Ask Lieve if you can talk to her little harem for a bit.");
 
 	if (!lieveVenomUsed())
 	{
-		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (9999 == 0 ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?");
+		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (9999 == 0 ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
 		else addDisabledButton(3, "TryVenom", "Try Venom", "Lieve is only really interested in feminine partners...");
 	}
 	else
@@ -240,7 +252,7 @@ public function lieveTalkToTrenchWives():void
 public function lieveTalkToTrenchWivesII():void
 {
 	clearOutput();
-	showname("SIERVA &\nMAYREN");
+	showName("SIERVA &\nMAYREN");
 	showBust("SIERVA", "MAYREN");
 	author("Savin");
 
@@ -2092,7 +2104,7 @@ public function lieveTheLateGoodbye():void
 	// [Lieve?] [Friend] [Alright] [No]	
 	clearMenu();
 	addButton(0, "Lieve?", lieveLateGoodbyeAskLieve, undefined, "Lieve?", "What does Lieve think about this? Has Sierva told her mistress?");
-	addButton(1, "Friend?", lieveLateGoodbyeFriend, undefined, "Friend", "Ask Sierva about this "friend" of hers.");
+	addButton(1, "Friend?", lieveLateGoodbyeFriend, undefined, "Friend", "Ask Sierva about this ‘friend’ of hers.");
 	addButton(2, "Alright", lieveLateGoodbyeAlright, undefined, "Alright", "Tell Sierva you won't help her.");
 	addButton(3, "No", lieveLateGoodbyeNo, undefined, "No", "Promise Sierva you'll deliver the letter.");
 }
