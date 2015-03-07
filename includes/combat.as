@@ -3528,7 +3528,7 @@ public function properHeadbutt(attacker:Creature,target:Creature):void {
 		}
 		else
 		{
-			output(attacker.mfn("He","She","It") + " he misses.")
+			output(attacker.mfn("He","She","It") + " he misses.");
 		}
 	}
 	//Extra miss for blind

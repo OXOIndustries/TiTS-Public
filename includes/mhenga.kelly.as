@@ -1070,7 +1070,10 @@ public function getKellyOff(newScreen:Boolean = false):void
 		{
 			output("\n\n<i>\"Ohhh, wha? What are you?\"</i> she moans as your perverse tails begin to slurp at her interior. <i>\"Gods, how are you doing that?\"</i> she asks, shaking her head in amazement.");
 			output("\n\nYou just wink at her, not bothering to reply.");
-			output("\n\n<i>\"Maybe we should try using those on my dick");
+			output("\n\n<i>\"Maybe we should try using ");
+			if(pc.tailCount == 1) output("that");
+			else output("those");
+			output(" on my dick");
 			if(pc.tailCount > 1) output("s");
 			output(" next time?\"</i> she suggests, an eager glint in her eyes. Then she moans again. <i>\"Not that this isn't fun too,\"</i> she admits.");
 		}
@@ -1115,7 +1118,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 	output("\n\nYou release her");
 	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
-		output(", withdrawing your [pc.tails] from her abused holes");
+		output(", withdrawing your [pc.tails] from her abused hole");
 		if(pc.tailCount > 1) output("s");
 	}
 	output(". You reach for her balls, cupping and weighting them. Seems like she’s drained now.");
@@ -1625,7 +1628,7 @@ public function haveKellyServeAfterUsingHerHoney():void
 
 	output("\n\n<i>\"Oh, I think you'll like it. It's a special recipe all my own; very sticky and sweet, and oh, so messy, too, but that's just part of the fun,\"</i> she grins.");
 
-	output("\n\nIn that that case, you’ll be looking forward to it.");
+	output("\n\nIn that case, you’ll be looking forward to it.");
 
 	output("\n\nShe grins at hearing that, hands you your now-filled plate, and then turns to filling her own plate in turn.");
 	processTime(2);

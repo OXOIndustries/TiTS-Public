@@ -727,7 +727,7 @@ public function agreeToElectroStim():void
 			output(".");
 		}
 	}
-	output("\n\nShe lifts what looks like an inflatable butt-plug and applies a liberal amount of lube to it, then walks towards you and does the same to [pc.asshole].");
+	output("\n\nShe lifts what looks like an inflatable butt-plug and applies a liberal amount of lube to it, then walks towards you and does the same to your [pc.asshole].");
 	output("\n\nHissing as the cold gel touches your sensitive rosebud, you force yourself to relax so she can insert the plug. It spreads you slightly as it enters you. No doubt it’ll do much more stretching once she’s actually turned it on. Anticipation courses throughout your body, heating you up as you watch her go back to the case.");
 	//if vagina:
 	if(pc.hasVagina())
@@ -756,7 +756,10 @@ public function agreeToElectroStim():void
 		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailCunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
 		output(" V-Ko procures " + num2Text(pc.tailCount) + " ring");
 		if(pc.tailCount > 1) output("s");
-		output(" from her case and bring them over. She attaches ");
+		output(" from her case and brings");
+		if(pc.tailCount == 1) output(" it");
+		else output(" them");
+		output(" over. She attaches ");
 		if(pc.tailCount == 1) output("it ");
 		else output("them, one by one, ");
 		output("to your [pc.tails]. Then she connects a wire to ");
@@ -773,7 +776,7 @@ public function agreeToElectroStim():void
 
 	output("\n\nYou nod, grunting your assent.");
 
-	output("\n\nA small beep confirms that V-Ko’s turned on the toys. Each of them vibrating and stimulating your as you begin panting in arousal.");
+	output("\n\nA small beep confirms that V-Ko’s turned on the toys. Each of them vibrating and stimulating you as you begin panting in arousal.");
 
 	//if nipples are big enough:
 	if(pc.nippleLength(0) >= .5)
@@ -822,7 +825,7 @@ public function agreeToElectroStim():void
 		output(" The rod");
 		if(pc.cockTotal() > 1) output("s");
 		output(" inside your cumvein ");
-		if(pc.cockTotal() == 1) output("don’t");
+		if(pc.cockTotal() > 1) output("don’t");
 		else output("doesn't");
 		output(" do anything but vibrate lightly either. Once you get used to their sensation, it’s kind of pleasing, but nothing special either.");
 	}
@@ -835,7 +838,7 @@ public function agreeToElectroStim():void
 		if(pc.vaginaTotal() == 1) output("doesn't");
 		else output("don’t");
 		output(" seem that special. All ");
-		if(pc.vaginaTotal() == 1) output("they ");
+		if(pc.vaginaTotal() > 1) output("they ");
 		else output("it ");
 		output("can do is gyrate lightly.");
 	}
