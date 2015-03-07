@@ -225,3 +225,4 @@ includes/NPCTemplates.as
 *.html
 RECOVER_*
 TiTS_Imagepack.swf
+devTools/scripts/Packages/User/Package Control.sublime-settings
