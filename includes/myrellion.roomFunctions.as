@@ -100,8 +100,8 @@ public function kressiaGatesBonus():Boolean
 		return true;
 	}
 	
-	if(flags["MET_LIEVE"] == undefined) output("from which can be heard a series of very soft moans and giggles");
-	else output("and you can hear Lieve having a bit of fun inside");
+	if(flags["MET_LIEVE"] == undefined) output(" from which can be heard a series of very soft moans and giggles");
+	else output(" and you can hear Lieve having a bit of fun inside");
 	output(".");
 
 	//first time:

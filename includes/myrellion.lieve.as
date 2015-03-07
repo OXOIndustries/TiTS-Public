@@ -422,6 +422,8 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Man’s. If you go down in the deep caves, you’ll start seeing bothrioc, wetraxxal, creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
 
+	processTime(10 + rand(5));
+	
 	lieveTalkMenu();
 	addDisabledButton(0, "NoMansLand");
 }
@@ -449,6 +451,8 @@ public function lieveTalkFungalMyr():void
 	
 	output("\n\nYou get the distinct feeling Lieve’s not telling you something, but you leave it at that for now.");
 
+	processTime(10 + rand(5));
+	
 	lieveTalkMenu();
 	addDisabledButton(1, "FungalMyr");
 }
@@ -512,6 +516,8 @@ public function lieveTalkTheWar():void
 	
 	output("\n\n<i>“I’m glad you space-people came to save us!”</i> Mayren adds with a dopey smile. Lieve just rolls her eyes.");
 
+	processTime(20 + rand(10));
+	
 	lieveTalkMenu();
 	addDisabledButton(2, "The War");
 }
@@ -563,6 +569,8 @@ public function lieveTalkScars():void
 	
 	output("\n\n<i>“You asked,”</i> Lieve says, forcing herself to smile as she slips out of your arms.");
 
+	processTime(20 + rand(10));
+	
 	lieveTalkMenu();
 	addButton(3, "Her Scars");
 }
@@ -619,6 +627,8 @@ public function lieveTalkRedPrisoners():void
 	
 	output("\n\n<i>“Yeah. I think we were just finishing up,”</i> Lieve says, waving them in. <i>“Unless Steele has more questions?”</i>");
 
+	processTime(30 + rand(15));
+	
 	//Unlock "Myr Fertility" talk
 	lieveTalkMenu();
 	addButton(4, "Red Prisoners?");
@@ -676,6 +686,8 @@ public function lieveTalkMyrFertility():void
 		
 		output("\n\nMay and Sierva giggle at that, and let the topic slide.");
 	}
+	
+	processTime(15 + rand(7));
 
 	lieveTalkMenu();
 	addDisabledButton(5, "Myr Fertility");
@@ -715,6 +727,8 @@ public function lieveTalkTrenchWives():void
 	output("\n\n<i>“Oh, a little violence, a little luck...”</i> Lieve grins, patting the hatchet slung on her hip. <i>“Every harem’s different. Some are awarded by officers to particularly brave or heroic soldiers; others are accumulated over time. Capture an enemy officer here, lead the charge on an enemy base there, maybe find a wounded beauty dying in a foxhole.”</i>");
 	
 	output("\n\nShe flashes Sierva a little smile.");
+	
+	processTime(10 + rand(5));
 
 	lieveTalkMenu();
 	addDisabledButton(6, "Trench Wives");
@@ -739,6 +753,8 @@ public function lieveTalkFedArmy():void
 	
 	output("\n\n<i>“Depends on your aptitudes,”</i> Lieve answers with a shrug. <i>“Girls with technical aptitude, good typists, scientists, anybody with useful skills usually get selected for special service. An army needs a lot of pencil pushers, and there’s thousands of girls working in R&D. We weren’t the first to get nukes by chance, you know. Of course, the position everybody wants these days is to be a fly girl with the air corps. Most of us had never seen the surface before the war, and now we’re sending hundreds of troops into the sky. One step closer to having ourselves a space corps, just like you offworlders.”</i>");
 
+	processTime(10 + rand(5));
+	
 	lieveTalkMenu();
 	addDisabledButton(7, "Fed.Army");
 }
@@ -775,6 +791,8 @@ public function lieveVenomToggle():void
 	pc.lust(50);
 	flags["LIEVE_VENOM_USED"] = 1;
 	flags["LIEVE_VENOM_ENABLED"] = 1;
+	
+	processTime(30 + rand(10));
 
 	//Sex Menu here.
 	lieveSexMenu(true);
@@ -803,6 +821,7 @@ public function lieveKissHer():void
 
 	//Sex menu here
 	lieveSexMenu(true);
+	processTime(3 + rand(2));
 }
 
 public function lieveSexEntry():void
@@ -838,6 +857,7 @@ public function lieveSexEntry():void
 
 	// [Fuck Harem] [Lieve Solo] [Lieve Bodyworship]
 	lieveSexMenu();
+	processTime(20 + rand(10));
 }
 
 public function lieveSexMenu(tempVenomEnabled:Boolean = false):void
@@ -930,6 +950,7 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 	output("\n\n<i>“Good,”</i> Lieve purrs, crawling up your sweat-sheened body and seating herself on your lap. You shiver as her chitin-clad limbs brush dangerously close to your [pc.cunt], and her plated fingers slip around your shoulder. Her other hand cups one of her small, perky breasts, pinching one of her crimson nipples between her digits. <i>“Now... I’d ask if you want me to show you what </i>I<i> can do, but we both know the answer to that.”</i>");
 	
 	output("\n\nAs she speaks, Lieve’s fingers massage her breast, making her back arch with pleasure. Her other arm slips lower, teasing all the way down to the small of your back. She crosses one leg over the other, letting the lower of the two rest of Mayren’s upraised ass as she whispers into your [pc.ear]: <i>“");
+	
 	if (!lieveVenomEnabled() && !tempVenomEnabled)
 	{
 		output("The real question is if you want the full package.”</i> As if to emphasize her point, Lieve leans in and plants a kiss on the nape of your neck, letting her tongue play across your [pc.skin] until you shiver with sensation, her aphrodisiac venom seeping into you. <i>“...Or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my hands, cumming again and again and again.”</i>");
@@ -947,6 +968,8 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 		clearMenu();
 		addButton(0, "Next", lieveVenomFuck);
 	}
+	
+	processTime(60 + rand(15));
 }
 
 public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
@@ -995,6 +1018,8 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\nTime escapes you when eight more hands join Lieve’s, wandering all over your body, teasing your over-sensitive flesh. Several of them rub and caress your [pc.breasts], while others rub your thighs, neck, and lips. You feel the familiar sensation of Mayren’s honeypot tits pressing against your face, and Sierva’s tongue running dangerously close to your pussy. Lieve’s tongue joins her, slipping into your slit. Slow as she goes, you can feel her working her way deep into you, lacing the insides of your sex with her aphrodisiac saliva. The drug burns in you like a sexual wildfire, and you lose count of how many times you orgasm before she’s fully buried between your [pc.legs]. All you can do is writhe and moan, letting the ant-girls bring you to climax again and again and again until your mind’s a blank, completely given over to physical impulse.");
 
+	processTime(200 + rand(40));
+	
 	clearMenu();
 	addButton(0, "Next", lieveVenomFuckII);
 }
@@ -1013,6 +1038,8 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\nYou promise that you will, as you untangle yourself from her wives’ many arms. You grab your gear and head out, leaving Lieve to wake her gold myr brides back up.");
 
+	processTime(30 + rand(10));
+	
 	pc.energyRaw = 0;
 	pc.orgasm();
 	pc.orgasm();
@@ -1051,6 +1078,8 @@ public function lieveNoVenomFuck():void
 	
 	output("\n\nWith three myr working tirelessly for your pleasure, you don’t have a prayer to hold back. They quickly have you screaming your orgasm out around a mouthful of honeypot tit, but never let up through your climax, and just keep going, fucking your limp and exhausted body straight on towards another orgasm, and another.");
 
+	processTime(30 + rand(10));
+	
 	clearMenu();
 	addButton(0, "Next", lieveNoVenomFuckII);
 }
@@ -1080,6 +1109,8 @@ public function lieveNoVenomFuckII():void
 	
 	output("\n\nThat it was. You pick up your [pc.gear] and start for the door, leaving Lieve to wake her girls back up.");
 
+	processTime(15 + rand(5));
+	
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -1152,6 +1183,8 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\n<i>“Don’t hog all the fun for us, Lieve!”</i> May giggles, caressing one of Lieve’s tits. <i>“I’m sure [pc.name] wants in on the fun. Don’t you, [pc.name]?”</i>");
 	
+	processTime(45 + rand(15));
+	
 	if (!lieveVenomEnabled() && !tempVenomEnabled)
 	{
 		output("\n\n<i>“That’s a good question,”</i> Lieve says, her smile widening. <i>“I’ve got plenty to share.... or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my girls’ hands, cumming again and again and again.”</i>");
@@ -1200,6 +1233,8 @@ public function lieveFuckHaremDickVersionVenom():void
 	
 	output("\n\nVenom seeps into you from the mouth and cock, hitting you from both ends. You feel yourself cumming again before long, moaning into Sierva’s mouth. And again. And again. You lose track of time completely, succumbing to the aphrodisiac coursing through your veins and the heady smells of sex that hang like a heavy cloud over the dungeon. Life is good...");
 
+	processTime(200 + rand(40));
+	
 	clearMenu();
 	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
 }
@@ -1221,6 +1256,8 @@ public function lieveFuckHaremDickVersionVenomII():void
 	
 	output("\n\nThat it was. You pick up your [pc.gear] and stagger towards the door, leaving Lieve to wake her girls back up.");
 
+	processTime(10 + rand(5));
+	
 	for (var i:int = 0; i < 4; i++)
 	{
 		pc.orgasm();
@@ -1251,6 +1288,8 @@ public function lieveFuckHaremDickVersionNoVenom():void
 	
 	output("\n\n<i>“Had enough of us already?”</i> Lieve chuckles, stroking May’s hair. <i>“Don’t be a stranger, then. The girls certainly seemed to enjoy that [pc.cock] of yours...”</i>");
 
+	processTime(10 + rand(3));
+	
 	for (var i:int = 0; i < 4; i++)
 	{
 		pc.orgasm();
@@ -1274,6 +1313,8 @@ public function lieveSoloTurnsDownDudes():void
 	
 	output("\n\nOof. You slump your shoulders, advances turned aside by an accident of orientation. Lieve gives you an apologetic look and angles you towards her waiting harem. <i>“Look, we can have some fun by proxy, though the girls, alright? I know they’d love to get their hands on a real, live dick.”</i>");
 
+	processTime(5 + rand(2));
+	
 	//Back to sex menu
 	lieveSexMenu();
 }
@@ -1442,6 +1483,8 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	output(" Her venom burns so hot through your veins that your vision swims with pink, wrapping your whole world in a hazy pink mist that swirls and spins - only to come crashing down into another screaming orgasm.");
 	
 	output("\n\nYou completely lose track of time...");
+	
+	processTime(60 + rand(30));
 
 	clearMenu();
 	addButton(0, "Next", lieveSoloFucktimeWindup);
@@ -1625,6 +1668,8 @@ public function lieveTourTheTown():void
 	
 	output("\n\n<i>“Like I said, best drink in Kressia!”</i> Lieve boasts, slamming her empty mug on the table loud enough to draw back the attention of the other patrons. <i>“Right?”</i>");
 
+	processTime(25 + rand(10));
+	
 	// [Agree] [Disagree] [More!]
 	pc.imbibeAlcohol(20);
 	clearMenu();
@@ -1655,6 +1700,8 @@ public function lieveDrinkAgree():void
 	
 	output("\n\nYou and Lieve stand and head for the door. Again, your host offers her arm to you, leading you down one of the streets back towards the town square.");
 
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", lieveTourTheTownII);
 }
@@ -1672,6 +1719,8 @@ public function lieveDrinkDisagree():void
 	
 	output("\n\nYou can practically feel every other customer in the place glowering at the two of you. <i>“Eh, well, anyway. Let’s get out of here. Plenty more to see in town!”</i> Lieve says, grabbing her coat and standing. You follow her all the way to the door, trying to ignore the unfriendly looks drilling into your back. Lieve sighs, rubbing one of her antennas before pointing out a street back towards the town square and leading you on down.");
 
+	processTime(5 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", lieveTourTheTownII);
 }
@@ -1700,6 +1749,8 @@ public function lieveDrinkMore():void
 	else output(" You thank her and follow your guide towards the door.");
 	output(" From there, it’s a short jaunt back to the town square.");
 
+	processTime(15 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", lieveTourTheTownII);
 }
@@ -1730,6 +1781,8 @@ public function lieveTourTheTownII():void
 	output("\n\nYou can’t help but chuckle at the lascivious myr’s lusty smile as she leads you on down the road. <i>“Of course, the big attraction of this part of town is the bath house. We don’t have anything like it back in Federation territory: public baths, where everyone gets together to scrub down, socialize, just... relax, I guess. Being naked around strangers would normally be unthinkable to a red myr, it’s embarrassing and dishonoring - just for slaves and among lovers. But the Goldies, and some offworlders, seem to love it. My trench wives made me go after a while - well, talked me into it, really - and it was so different than anything I’d done before. I can definitely see why the Goldies flock to the place!”</i>");
 	
 	output("\n\nAfter a moment’s thought, Lieve stops and turns to you, her eyes practically twinkling. <i>“Hey, what do you say you and I hit the bath house? Shouldn’t be too crowded around now...”</i>");
+	
+	processTime(25 + rand(10));
 
 	clearMenu();
 	addButton(0, "Bath House", lieveTourBathhouse, undefined, "Base House", "Accompany Lieve to the Bath House.");
@@ -1745,6 +1798,8 @@ public function lieveNoTYBathhouse():void
 	
 	output("\n\nLieve chuckles. <i>“Suit yourself. C’mon, I’ve still got one big place to show you!”</i>");
 
+	processTime(2);
+	
 	clearMenu();
 	addButton(0, "Next", lieveTourManorHouse, false);
 }
@@ -1774,6 +1829,8 @@ public function lieveTourBathhouse():void
 	
 	output("\n\nAs if to illustrate her point, Lieve grabs her shirt and hauls it up over her head, tossing it aside. Your eyes are instantly drawn to the warrior ant’s flat, chiseled stomach and up to the small swells of her breasts, each a perfect little handful of tit tipped with a crimson nipple. Her thumbs hook through her belt, flashing you an inviting grin.");
 
+	processTime(20 + rand(10));
+	
 	if (pc.isNude())
 	{
 		flags["LIEVE_DATEPOINTS"] += 1;
@@ -1797,6 +1854,8 @@ public function lieveTourBathhouseLookAway():void
 
 	output("You take Lieve up on her offer and ask her to turn away for a moment. She makes a playful face and turns on a heel, spending her time pulling her pants and boots off. While she’s distracted, you slip off your [pc.gear] and turn towards the steaming bathwater. You tentatively dip your [pc.foot] in, testing the water: it’s nice and warm, but not too hot. It almost sucks you in, drawing you down into the pool until you’re resting on a stone seat inside, the water coming just up to your shoulders.");
 
+	processTime(2);
+	
 	lieveTourBathhouseII();
 }
 
@@ -1809,6 +1868,8 @@ public function lieveTourBathhouseLetHerSee():void
 
 	output("You answer Lieve’s offer by stripping off your [pc.gear], leaving yourself bare before her. You’re keenly aware of her gaze on you as you strip, but you don’t play to it - you keep it cool and casual, undressing like you normally would and leaving your kit stacked beside Lieve’s. Lieve urges you to go in first, and you agree. You tentatively dip your [pc.foot] in, testing the water: it’s nice and warm, but not too hot. It almost sucks you in, drawing you down into the pool until you’re resting on a stone seat inside, the water coming just up to your shoulders. As you dip in, Lieve finishes undressing, leaving her slim slit and long legs bare for you in turn.");
 
+	processTime(5+rand(3));
+	
 	lieveTourBathhouseII();
 }
 
@@ -1820,6 +1881,8 @@ public function lieveTourBathhouseShowOff():void
 	flags["LIEVE_DATEPOINTS"] += 2;
 
 	output("You give Lieve a playful grin and turn around, bending over to give her a view of your [pc.butt] as you start to peel off your [pc.gear]. You shake your hips, wiggling bare flesh for your myr guide. You spin back around, caressing your [pc.chest] and slowly slipping back towards the pool. You lower yourself in with a sensual grace, letting the water suck you in. Lieve watches with relish, cupping one of her own breasts and squeezing her crimson teat between plated fingers. She shimmies out of her pants, leaving her slim slit and long legs bare for you in turn.");
+	
+	processTime(5+rand(3));
 
 	lieveTourBathhouseII();
 }
@@ -1852,6 +1915,8 @@ public function lieveTourBathhouseII(newLine:Boolean = false):void
 	
 	output("\n\nThe offer is implicit, but impossible to miss.");
 	
+	processTime(15 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Scrub Her", lieveTourBathhouseIIScrubHer, undefined, "Scrub Her", "Scrub Lieve's back, but just with soap and water.");
 	addButton(1, "Lick Her", lieveTourBathhouseIILickHer, undefined, "Lick Her", "You'll get Lieve clean alright, starting with that tight little slit between her legs.");
@@ -1867,6 +1932,8 @@ public function lieveTourBathhouseIIScrubHer():void
 	output("\n\nYou ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
 	
 	output("\n\n<i>“Thanks. Couldn’t reach there myself,”</i> she says dryly, though you get the sense she’s at least somewhat trying to disguise her disappointment.");
+	
+	rand(3 + rand(2));
 
 	clearMenu();
 	addButton(0, "Next", lieveTourManorHouse, true);
@@ -1907,6 +1974,7 @@ public function lieveTourBathhouseIILickHer():void
 	output("\n\nYou laugh and roll your eyes.");
 
 	hasFuckedLieveSolo(true);
+	processTime(30 + rand(15));
 
 	clearMenu();
 	addButton(0, "Next", lieveTourManorHouse, true);
@@ -2009,6 +2077,8 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 		else if (pc.tallness > 73) output(" down");
 		output(" at you. <i>“So... wanna come in for a bit? Let the girls help us relax for a bit?”</i>");
 	}
+	
+	processTime(25 + rand(10));
 
 	clearMenu();
 	addButton(0, "Sure", lieveTourSureFollow, undefined, "Sure", "Follow her in.");
@@ -2029,6 +2099,8 @@ public function lieveTourSureFollow():void
 	output("\n\nLieve laughs and shrugs out of her coat, slowly making her way towards her trench wives. <i>“I’m glad you two talked me into it. But now that I’ve done my part, it’s time to do yours.”</i>");
 	
 	output("\n\nThe golden girls coo and purr. <i>“Our pleasure...”</i>");
+	
+	processTime(7 + rand(4));
 
 	// [Harem Fuck Scene Here]
 	clearMenu();
@@ -2048,6 +2120,8 @@ public function lieveTourMaybeLater():void
 	
 	output("\n\nWordlessly, Lieve slips back into her home, leaving you with your [pc.lips] tingling with the aftershocks of her aphrodisiac venom.");
 
+	processTime(3 + rand(2));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2101,6 +2175,8 @@ public function lieveTheLateGoodbye():void
 	
 	output("\n\nSierva pointedly avoids your eyes. <i>“More than that, but... please? She probably thinks I’m dead. Everyone back home does, I’m sure.”</i>");
 
+	processTime(10 + rand(7));
+	
 	// [Lieve?] [Friend] [Alright] [No]	
 	clearMenu();
 	addButton(0, "Lieve?", lieveLateGoodbyeAskLieve, undefined, "Lieve?", "What does Lieve think about this? Has Sierva told her mistress?");
@@ -2127,6 +2203,8 @@ public function lieveLateGoodbyeAskLieve():void
 	
 	output("\n\nShe balks. <i>“N-no! I just want... I just want my somebody to know I’m still alive. That I’ll see her again someday.”</i>");
 
+	processTime(7 + rand(5));
+	
 	addDisabledButton(0, "Lieve?");
 }
 
@@ -2156,6 +2234,8 @@ public function lieveLateGoodbyeFriend():void
 	
 	output("\n\nSierva nods, relieved. <i>“I just want her to know I’m still alive, Steele. If she even is. I was conscripted before she was, but the last letter I got from her said she was being shipped off to training, too. Maybe six months before Lieve captured me.”</i>");
 
+	processTime(7 + rand(5));
+	
 	addDisabledButton(1, "Friend?");
 }
 
@@ -2180,6 +2260,8 @@ public function lieveLateGoodbyeNo():void
 
 	flags["SIERVA_LATEGOODBYE_RESPONSE"] = LIEVE_LATEGOODBYE_NO;
 
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2204,6 +2286,8 @@ public function lieveLateGoodbyeAlright():void
 
 	flags["SIERVA_LATEGOODBYE_RESPONSE"] = LIEVE_LATEGOODBYE_YES;
 
+	processTime(10 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
