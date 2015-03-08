@@ -11,9 +11,21 @@ public function celiseIsCrew():Boolean {
 public function celiseIsFollower():Boolean {
 	return (flags["RECRUITED_CELISE"] > 0);
 }
+public function showCelise():void
+{
+	showName("\nCELISE");
+	showBust("CELISE");
+}
+
 
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {
+	//Giga Celise has her own thing!
+	if(flags["GIGACELISE"] == 1)
+	{
+		gigaCeliseRepeatApproach();
+		return;
+	}
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -31,6 +43,7 @@ public function celiseFollowerInteractions():void {
 		else this.addButton(0,"Feed",celiseFeedingRouter);
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
+	addButton(1,"Transform",gigaCeliseTransform,undefined,"Transform","Tell Celise that you'd like her to grow lots of gooey tentacles for you to have fun with.");
 	this.addButton(14,"Back",crew);
 }
 
@@ -236,7 +249,7 @@ public function celiseSucksYouDry():void {
 		if(pc.balls > 0 && pc.ballSize() < 5) pc.ballSizeRaw++;
 		if(pc.ballEfficiency < 400) pc.ballEfficiency++;
 		if(pc.cumMultiplier() < 150) pc.cumMultiplierRaw++;
-		if(pc.refractoryRate < 50) pc.refractoryRate += .5;
+		if(pc.refractoryRate < 15) pc.refractoryRate += .5;
 	}
 	pc.orgasm();
 	celise.orgasm();

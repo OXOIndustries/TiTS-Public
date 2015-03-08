@@ -1,7 +1,15 @@
-import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Items.Guns.CustomLP17;
 import classes.Items.Melee.Cutlass;
+
+public function showKiro(nude:Boolean = false):void
+{
+	if(nude) showBust("KIRO_NUDE");
+	else showBust("KIRO");
+	showName("\nKIRO");
+}
+
 public function answerKiroDistressCall(destination:String):void
 {
 	clearOutput();

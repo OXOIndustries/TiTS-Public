@@ -129,16 +129,6 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	
-	//Boobswell pads. Need a way to exclude this from random selection sometime.
-	if(pc.hasStatusEffect("Boobswell Pads")) 
-	{
-		fap = new FapCommandContainer();
-		fap.text = "Remove B.Swell";
-		fap.func = removeBoobswellPads;
-		fap.ignoreRandomSelection = true;
-		faps.push(fap);
-	}
 
 	if (!pc.isTaur())
 	{
@@ -148,6 +138,25 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 
+	//tentacle massage fun
+	//Accessed from masturbate menu on ship. Req's genitals.
+	if(celiseIsCrew() && (pc.hasCock() || pc.hasVagina()) && currentLocation == "SHIP INTERIOR")
+	{
+		fap = new FapCommandContainer();
+		fap.text = "GooMassage";
+		fap.func = tentacleMassageFunShit;
+		faps.push(fap);
+	}
+
+	//Boobswell pads. Need a way to exclude this from random selection sometime.
+	if(pc.hasStatusEffect("Boobswell Pads")) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Remove B.Swell";
+		fap.func = removeBoobswellPads;
+		fap.ignoreRandomSelection = true;
+		faps.push(fap);
+	}
 	return faps;
 }
 

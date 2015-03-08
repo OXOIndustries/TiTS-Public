@@ -230,12 +230,7 @@ public function rest(deltaT:int = -1):void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	clearOutput();
-	if(pc.HPRaw < pc.HPMax()) {
-		pc.HP(Math.round(pc.HPMax() * .2));
-	}
-	if(pc.energy() < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33));
-	}
+	restHeal();
 	if (deltaT == -1)
 	{
 		minutes = 230 + rand(20) + 1;
@@ -249,6 +244,15 @@ public function rest(deltaT:int = -1):void {
 	processTime(minutes);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
+}
+function restHeal():void
+{
+	if(pc.HPRaw < pc.HPMax()) {
+		pc.HP(Math.round(pc.HPMax() * .2));
+	}
+	if(pc.energy() < pc.energyMax()) {
+		pc.energy(Math.round(pc.energyMax() * .33));
+	}
 }
 
 public function sleep(outputs:Boolean = true):void {
