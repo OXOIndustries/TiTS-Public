@@ -225,6 +225,12 @@ public function noManzLandBonus():Boolean
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
+		
+		// Hook landmines on the end as a fall-back to fightable encounters
+		if (tryEncounterLandmines())
+		{
+			return true;
+		}
 	}
 	return false;
 }
