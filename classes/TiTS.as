@@ -96,13 +96,18 @@
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
 
+		//Followers
+		include "../includes/follower.anno.as";
+		include "../includes/follower.celise.as";
+		include "../includes/follower.celiseGiga.as";
+		
+
 		//Misc content
 		include "../includes/rivalEncounters.as";
 		include "../includes/saendra.as";
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/anno.follower.as";	
 		
 		// Holiday Events
 		include "../includes/event.puppyslutmas.as";
@@ -110,7 +115,6 @@
 		//Tavros Station
 		include "../includes/tavros.aliss.as";
 		include "../includes/tavros.alex.as";
-		include "../includes/tavros.celise.as";
 		include "../includes/tavros.jade.as";
 		include "../includes/tavros.reaha.as";
 		include "../includes/tavros.reaha.expansion.as";

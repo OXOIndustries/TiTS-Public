@@ -14,7 +14,7 @@
 		{
 			this._latestVersion = 2;
 			this.version = this._latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
 			this.short = "Celise";
 			this.originalRace = "galotian";

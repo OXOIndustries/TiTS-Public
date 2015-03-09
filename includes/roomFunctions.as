@@ -33,6 +33,7 @@ public function mhengaShipHangarFunc():Boolean
 		annoFollowerFirstTimeOnMhenga();
 		return true;
 	}
+	
 	return false;
 }
 
@@ -75,7 +76,12 @@ public function tavrosHangarStuff():Boolean
 		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
 			addButton(0, "The Phoenix", move, "PHOENIX RECROOM");
 	}
-	
+	//Celise In Tavros
+	if(celiseIsFollower() && !celiseIsCrew())
+	{
+		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the stations mechanics.");
+		addButton(5,"Celise",approachNonCrewCelise);
+	}	
 	return false;
 }
 

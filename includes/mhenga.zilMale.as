@@ -259,6 +259,8 @@ public function winVsZil():void {
 	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);
 	else addDisabledButton(4,"Tail Peg","Tail Peg","You'll need a tailcock to peg the zil with it.");
 
+	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
+	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.,");
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -558,14 +560,7 @@ public function giveTheZilAFootjob():void {
 	output("\n\nIt’s not long before he reaches the point of no return, groaning as you squeeze him a little harder with your soles, feeling him throb and bulge as his climax washes over him and over your [pc.legOrLegs], much to your amusement. He grunts his approval and sags back against the tree, spent. You won’t have any of that however, and lean forward, grab the back of his head and push his face against your [pc.legOrLegs]. <i>“Lick up your mess, boy. We’re not done until you’ve cleaned up all of this, you understand?”</i> You grin and give him another push against your sticky");
 	if(pc.legType != GLOBAL.TYPE_NAGA) output(" [pc.toes]");
 	else output(" [pc.feet]");
-	output(" and [pc.legOrLegs], moaning as you feel his agile tongue against your [pc.skinFurScales].");
-
-
-
-
-
-
-	
+	output(" and [pc.legOrLegs], moaning as you feel his agile tongue against your [pc.skinFurScales].");	
 	output("\n\nHe dutifully laps up the sticky mess from your [pc.skinFurScales], his dexterous, tube-like organ sucking up the gooey cum even from between your toes, tickling you a bit. Soon your feet are slick and clean and you give him a gentle pat on the head, leaving him there as you ready your gear and continue your journey.\n\n");
 	processTime(10+rand(10));
 	pc.lust(5);
@@ -829,6 +824,74 @@ public function tailCockPegTheZil():void {
 	
 	output("\n\nAfter the first few pumps, your [pc.tailCock] seems to develop a mind of it's own, and it begins to rock back and forth, plowing through it's own ejaculate in its incessant quest for enjoyment.  You keep fucking the zil until his asshole is gaping and frothing with your [pc.cum]. He doesn't seem to mind, if the puddle of honey soaking his legs is any indications. Shuddering, you pull out and let your [pc.tail] close back up.");
 	output("\n\nThe zil is lying there lamely, twitching his rump from time to time with a dopey smile on his face. This is an encounter he won't soon forget.\n\n");
+	processTime(20+rand(10));
+	pc.orgasm();
+	genericVictory();
+}
+
+//This is an additional on-victory sex scene for the male zil. Requires a cock. Should be suitable for taurs as long as they have front-mounted genitalia. Contains some brute/bimbo dialogue too.
+//-Susumu
+//Blowjob Time.
+function getABJFromAManzil():void
+{
+	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
+	author("Susumu");
+	output("Though he lies defeated in front of you, the zil-boy’s pheromones continue to cloud the air and charge through your system. He looks up at you expectantly, waiting to discover whether or not you’re one of the more cruel monsters in this jungle.");
+	//Bimbo:
+	if(pc.isBimbo()) output(" He’s so cute, but he looks uneasy! You know what always makes you feel better - lots and lots of yummy cum!");
+	else if(pc.isBro()) output(" You’ve shown him who the alpha is. Time to get your reward.");
+	else output("Calmy, you discard your [pc.gear] and slowly step towards him.");
+	output(" His gaze has shifted from your face to your crotch, mesmerised by your rising [pc.cocksNounSimple]. His mouth is hanging open by the time you reach him - your ");
+	if(pc.cockTotal() > 1) output("biggest dick");
+	else output("[pc.cockBiggest]");
+	output(" is at its fullest.");
+
+	output("\n\n<i>“Well?”</i> you say. <i>“Suck.”</i>");
+	output("\n\nHe manages to pull some semblance of a stupid, lusty grin onto his face before getting up on his knees and pulling your [pc.cockBiggest] towards his lips, using it to part them with just the right amount of force. He’s clearly not new to this. The [pc.cockHeadBiggest] of your member is treated to a brief massage from the zil’s expert lips before being pulled into his wet mouth.");
+	output("\n\nHis hands begin to explore your shaft, his fingers tracing up your cock towards its base before breaking into a steady pumping action.");
+	if(pc.balls > 0) output("One hand slips underneath to your [pc.balls], where it starts to rub, tug and tease.");
+	else if(pc.hasVagina()) output("One hand slips behind your [pc.cockBiggest] to start working its sensitive fingers into [pc.oneVagina].");
+	else output("One hand slips behind your cock, feeling around your taint for something else to play with. Finding nothing, it moves on undeterred to your [pc.asshole] where it starts to make itself useful.");
+	output(" It seems you’ve happened upon quite the competent slut. Smiling, you jerk your hips forward, pushing further into his mouth and startling the zil-boy. He looks up at you and flutters his pretty wings lightly, looking straight into your [pc.eyes] as he teases you with his tongue.");
+
+	output("\n\nThe zil-boy’s tongue is exquisite, rolling around the tip of your increasingly horny member and collecting every bit of pre that you so graciously release. It soon slips out from between your [pc.cockBiggest] and his lower lip, managing to lick all the way along the bottom of your shaft and almost to the base. The bright yellow organ’s tube is normally used for collecting nectar, but this zil-boy slut uses it expertly to plant tiny kisses all across your length as it makes its journey.");
+	output("\n\nWith your [pc.cockBiggest] occupied by his tongue and your ");
+	if(pc.balls > 0) output("[pc.sack]");
+	else if(pc.hasVagina()) output("cunt");
+	else output("butthole");
+	output(" occupied by one of his hands, he drops the other hand down to his own jet-black boner and begins jerking, his drooping foreskin quickly becoming wet with sweet-smelling pre.");
+
+	output("\n\nYou put a hand behind his head, enjoying the feel of his downy spine-hair. He looks up at you, making his best subservient-little-bitch-boy face. You give his head a sudden pull, forcing your member further into his mouth. His eyes widen, but he adjusts himself, and with a wiggle of his hips, continues jerking away at his swollen boner and planting tongue-tube kisses all over your length.");
+
+	output("\n\nYou jerk your hips again, pulling him closer still. The zil-boy almost starts to choke as your [pc.cockBiggest] pushes into his throat, but now he understands what you want.");
+	if(pc.balls > 0 || pc.hasVagina()) 
+	{
+		output(" The hand on your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("[pc.cunt]");
+		output(" moves behind you and firmly holds your [pc.butt]");
+	}
+	else output(" The fingers pleasuring your [pc.asshole] pull out as a chitinous hand places itself on one of your cheeks");
+	output(". Your cocksucker uses his new grip to push himself forward, finally pushing the oral invader into the depths of his throat. His eyes water as you rock your hips, pushing in and out of him.");
+
+	output("\n\nTaking a firmer grasp of the zil’s head, you start rocking faster and harder, giving him inches at a time and taking them away just as soon. He’s stopped using the tube in his tongue to pepper your [pc.cockBiggest] with kisses. He’s trying to control it, trying to dab at your length with it but losing control. It lolls down his chin as he closes his eyes, jerking himself harder and allowing your cock to push further into him.");
+
+	output("\n\nJust as you think you’re going to have to slap him to get his full attention back, the hand on your [pc.ass] moves back to ");
+	if(pc.balls > 0) output("your [pc.sack] and gives it a squeeze");
+	else if(pc.hasVagina()) output("your [pc.vagina] and squeezes [pc.oneClit]");
+	else output("your waiting [pc.asshole]");
+	output(", right as his throat contracts around what portion of your length is inside him. It pushes you over the edge and your [pc.cockBiggest] explodes. For a second, you almost think he’s going to be able to swallow everything you’re pumping into him, but the hand ");
+	if(pc.balls > 0)
+	{
+		output("on your ball");
+		if(pc.balls > 1) output("s");
+	}
+	else if(pc.hasVagina()) output("playing with your [pc.clit]");
+	else output("fingering your hole");
+	output(" moves to your waist and pushes, sliding off of your cock. Your last few spurts of [pc.cumColor] shower his face. A sweet, intoxicating aroma hits you as you realise that the zil-boy has painted his thighs with his species’ signature honey-like ejaculate.");
+	output("\n\nThe zil-boy lazily cleans your cock off with his tongue before you collect your [pc.gear] and dress yourself. You leave him on the ground, still panting, taking occasional sips from the mixture of honey and [pc.cum] on his chitin-covered thighs.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
 	genericVictory();

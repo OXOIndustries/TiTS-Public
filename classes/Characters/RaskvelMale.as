@@ -197,8 +197,8 @@
 			//combatRaskvelMale.vaginas[0].loosenessRaw = rand(4) + 1;
 			combatRaskvelMale.credits = 100+rand(200);
 
-			// Codex shit
-			CodexManager.unlockEntry("Raskvel");
+			// Codex shit - Disabled. Entry unlocks mid-greeting event.
+
 			/*if (rand(10) == 0)
 			{
 				combatRaskvelFemale.inventory.push(new RaskvelWrench());
