@@ -57,6 +57,7 @@ public function gigaCeliseMenu():void
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Shrink",shrinkBackToNormalCelise);
+	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She'll be at the hangar in Tavros if you ever want her back.");
 	this.addButton(14,"Back",crew);
 }
 public function shrinkBackToNormalCelise():void

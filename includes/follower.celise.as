@@ -44,6 +44,7 @@ public function celiseFollowerInteractions():void {
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Transform",gigaCeliseTransform,undefined,"Transform","Tell Celise that you'd like her to grow lots of gooey tentacles for you to have fun with.");
+	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She'll be at the hangar in Tavros if you ever want her back.");
 	this.addButton(14,"Back",crew);
 }
 
@@ -78,6 +79,111 @@ public function celiseFeedingRouter():void {
 	addButton(3,"Sink In",zeiksCeliseSubmersionTechnique,undefined,"Sink In",sinkInTooltip);
 
 	addButton(14,"Back",celiseFollowerInteractions);
+}
+
+//Send Away
+function sendCeliseAway():void
+{
+	clearOutput();
+	showCelise();
+	if(flags["CELISE_EVER_SENT_AWAY"] == undefined)
+	{
+		output("You tell Celise that she’s going to have to leave the ship for a little while.");
+		output("\n\n<i>“Awww, I’ve got to go?”</i> the voluptuous goo woman pouts, her lower lip swelling to exaggerated proportions.");
+		output("\n\nYou nod.");
+		output("\n\nShe flounces in place");
+		if(flags["GIGACELISE"] == 1) output(", converging her tentacles into a semi-solid base that may as well be a massive deposit of green jello");
+		else output(", shrinking her breasts down until they barely exist, the additional mass padding out her base");
+		output(". The viridian galotian steadies her quivering and fixes you with a determined look that drags on for an uncomfortable amount of time. Her brows knit into an uncharacteristically serious glare.");
+		output("\n\nThen, just when you’re about to say anything to break the tension, she sticks out her tongue and claps you on the back. <i>“You’re just like him - all serious and stuff! Don’t worry, Vic had me wait for him tons of times - I’ve still got the travel chit and everything.”</i> She leans forward, her bust filling out to press meaningfully into your side as she does so. <i>“When you want to have fun, come pick me up Tavros Station.”</i>");
+		output("\n\nYou’re left there, stunned, while the galotian disembarks.");
+		output("\n\n(<b>Celise is no longer on your crew. You can find her again in Tavros Station.</b>)");
+		flags["CELISE_EVER_SENT_AWAY"] = 1;
+	}
+	//Repeat Send Away
+	else
+	{
+		output("You tell Celise that you’ll need her to wait at Tavros again.");
+		output("\n\nWith a glittering green grin and a wink, the ");
+		if(flags["GIGACELISE"] == undefined) output("buxom");
+		else output("tentacled");
+		output(" galotian gives you a super-sized thumbs up. <i>“Sure thing, boss! I wonder if I’ll run into that ");
+		if(rand(10) == 0) output("cute kui-tan");
+		else if(rand(9) == 0) output("adorable blue rahn");
+		else if(rand(8) == 0) output("red-haired half-ausar");
+		else if(rand(7) == 0) output("moo-cow girl and her dick-girl friend");
+		else if(rand(6) == 0) output("weird merc with the crazy eyes");
+		else if(rand(5) == 0) output("that weird man-herm guy");
+		else if(rand(4) == 0) output("egg-laying girl");
+		else if(rand(3) == 0) output("mean purple dick-girl");
+		else if(rand(2) == 0) output("fluffy panda");
+		else output("cat-dog girl");
+		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly. <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");
+		output("\n\nYou smile back at her. <i>“I just might.”</i>");
+		output("\n\nCelise giggles at that and flows past you, giving you a squeeze on the butt on her way past. She pulls a travel chit out from somewhere inside of herself on her way down the boarding ramp.");
+		output("\n\n(<b>Celise is no longer on your crew. You can find her again in Tavros Station.</b>)");
+	}
+	processTime(2);
+	//remove celise from crew!
+	flags["CELISE_ONBOARD"] = undefined;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Approach Celise in Tavros
+function approachNonCrewCelise():void
+{
+	clearOutput();
+	showCelise();
+	output("As you get close, she breaks off from her previous conversation and surges toward you in a tidal wave of enthusiasm. <i>“[pc.name]!”</i> she shouts while her liquid weight crashes over and around you, enveloping you in the squishiest hug you could get on this side of the galaxy. <i>“I missed you! I bet you missed me too, didn’t ya?”</i>");
+	output("\n\nA tendril of slippery moisture");
+	if(pc.isCrotchGarbed()) output(" squeezes underneath your [pc.lowerGarments] and");
+	output(" ");
+	if(pc.hasCock()) output("gently encircles [pc.oneCock] in a familiar squeeze");
+	else if(pc.hasVagina()) output("gently slides into an all-too sensitive crease");
+	else output("gently circles your [pc.asshole]");
+	output(". <i>“Let’s go back on the ship and have some fun, what do you say?”</i>");
+	processTime(1);
+	//[Join Crew] [Leave]
+	clearMenu();
+	addButton(0,"Join Crew",rejoinTheCrewCelise);
+	addButton(14,"Leave",leaveCeliseOnTavrosYouMonster);
+}
+
+//Join Crew
+function rejoinTheCrewCelise():void
+{
+	clearOutput();
+	showCelise();
+	output("<i>“Sounds good to me!”</i> you answer with a welcoming hug, or at least what you think is one. It’s tough to hug someone who has most of your body ensconced within herself.");
+	output("\n\nCelise’s face surges up to kiss you on the nose, her lips soft and remarkably solid compared to elsewhere. Pulling back, she giggles and withdraws herself from your body, leaving you surprisingly dry and clean in her wake. <i>“Race you to the ship!”</i>");
+	output("\n\nShe jiggles off toward the ship without another word, moving with a surprising amount of speed and grace for one so mellifluent.");
+	output("\n\n(<b>Celise has rejoined your crew.</b>)");
+	processTime(1);
+	//REJOIN CREW
+	flags["CELISE_ONBOARD"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Leave
+function leaveCeliseOnTavrosYouMonster():void
+{
+	clearOutput();
+	showCelise();
+	output("You chuckle and tell Celise that you were just wanting to make sure she was okay for right now.");
+	output("\n\nThe all-encompassing wetness gradually recedes, leaving you dry and remarkably clean in the galotian’s wake. <i>“Nuts.”</i> Celise’s disappointment lasts about as long an ice cube thrown into her star; she’s smiling again almost immediately. <i>“Well, at least I’ve got all the good people here to entertain me. Why just a little bit ago we had a cruise liner stop in. I got to eat with the captain, and the crew... and some of the passengers... and then the crew again.”</i> She licks her lips. <i>“It was so cool!”</i>");
+	output("\n\nGiggling, the galotian bends ");
+	if(pc.tallness <= 84) output("over");
+	else
+	{
+		output("up");
+		if(pc.tallness >= 100) output(", stretching her neck to giraffe-like proportions");
+	}
+	output(" to kiss your cheek. <i>“You better get going then! Don’t want your cousin to beat you to Vic’s secret stash, right?”</i> She purses her lips. <i>“Do you think that’s where he kept the sex toys?”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Feed Celise (M)
@@ -1174,7 +1280,7 @@ function zeiksCeliseSubmersionTechnique():void
 
 	output("\n\n“<i>[pc.name]? W-what...</i>” Celise stammers as you squeeze through her gooey cleavage, sinking further and further into the mounds. You wiggle your ass a bit more, forcing it into her gooey undercarriage");
 	//(giga celise option)
-	if(flags["CELISE_GIGAED"] == 1) output("; her tentacles squirm out from beneath you and reform along the edges of your body, making your submersion a ticklish affair");
+	if(flags["GIGACELISE"] == 1) output("; her tentacles squirm out from beneath you and reform along the edges of your body, making your submersion a ticklish affair");
 	output(". “<i>Oh my,</i>” she gasps, finally on the same page as you. Her body flows to the sides, lowering you into the depression left behind, and the goo around you quivers, uncontrolled, as Celise emits a low moan.");
 
 	output("\n\n“<i>Whoopsie,</i>” she giggles, hand over her mouth. It’s almost as if the unflappable woman were embarrassed at this surprising turn of events. You spoon her gooey flesh liberally over yourself as she lowers you the rest of the way, and, with a shift and a slurp, you’re completely inside. Her voluminous breasts ");
