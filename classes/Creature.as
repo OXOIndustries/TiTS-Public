@@ -2123,7 +2123,8 @@
 		{
 			if(kGAMECLASS.easy && arg > 0 && this is PlayerCharacter) arg *= .5;
 			if(hasStatusEffect("Blue Balls")) arg *= 1.25;
-			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
+			if (hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
+			if (hasStatusEffect("Myr Venom")) arg *= 1.25;
 			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
 		}
@@ -2334,14 +2335,15 @@
 			}
 			
 			var currLib:int = libidoMod + libidoRaw;
-
+			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
+			
 			if (currLib > libidoMax())
 			{
 				return libidoMax();
 			}
 			else if (currLib < libidoMin())
 			{
-				return libidoMin();;
+				return libidoMin();
 			}
 			else
 			{

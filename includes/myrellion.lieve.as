@@ -97,8 +97,8 @@ public function lieveInitialEncounter():void
 	
 	output("\n\nThe soldier finishes buckling her belt and looks up at you, running a hand through her purple hair. <i>“Sorry about that,”</i> she chuckles, resting a hand on one of the gold myr’s heads. The nude woman makes a wordless sound of pleasure and nuzzles against the red’s chitinous palm. Scratching the golden’s blonde hair, the soldier continues, <i>“Look, the Commandant’s said all you offworlder types can go out into the tunnels even with the lockdown, but if you know what’s good for you, you won’t. Can’t stop you, but I can at least warn you. Goldies mined the tunnels pretty good, and now that the fighting’s done, plenty of scavengers are out looking to loot or breed. Some are myr, some... not.”</i>");
 	
-	// {if PC’s been in No-Man’s Land before: 
-	if (9999 == 0)
+	// {if PC’s been in No-Man’s Land before: - 9999
+	if (flags["ENTERED_NOMANSLAND"] != undefined)
 	{
 		output("\n\n<i>“I get the picture,”</i> you say. <i>“Been out there before.”</i>");
 		
@@ -198,7 +198,8 @@ public function lieveMenu():void
 
 	if (!lieveVenomUsed())
 	{
-		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (9999 == 0 ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
+		// 9999
+		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
 		else addDisabledButton(3, "TryVenom", "Try Venom", "Lieve is only really interested in feminine partners...");
 	}
 	else
@@ -373,10 +374,10 @@ public function lieveTalkMenu():void
 	if (hasFuckedLieveSolo() && flags["LIEVE_TALK_THEWAR"] != undefined) addButton(3, "Her Scars", lieveTalkScars, undefined, "Her Scars", "Ask Lieve about those brutal scars on her back.");
 	else addDisabledButton(3, "Her Scars");
 
-	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "Red Prisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", ""); // 9999
+	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "Red Prisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", "Push Lieve for more details about the prisoners.");
 	else addDisabledButton(4, "Red Prisoners");
 
-	if (flags["LIEVE_TALK_PRISONERS"] != undefined) addButton(5, "Myr Fertility", lieveTalkMyrFertility, undefined, "Myr Fertility", ""); // 9999
+	if (flags["LIEVE_TALK_PRISONERS"] != undefined) addButton(5, "Myr Fertility", lieveTalkMyrFertility, undefined, "Myr Fertility", "Ask Lieve for more details about the state of Myr fertility.");
 	else addDisabledButton(5, "Myr Fertility");
 
 	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve's harem, and Trench Wives in general.");
@@ -395,8 +396,8 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“To keep you off-worlders from blundering out there blindly, anyway,”</i> she answers, adding with a mischievous wink: <i>“Apparently it’s bad PR if too many of you step on landmines or something.”</i>");
 	
-	// Encountered landmines
-	if (9999 == 0) output("\n\nYou blink. <i>“Landmines?”</i>");
+	// Encountered landmines - 9999
+	if (flags["ENCOUNTERED_LANDMINES"] != undefined) output("\n\nYou blink. <i>“Landmines?”</i>");
 	else output("<i>“I’ve noticed a few already,”</i> you grumble.");
 	
 	output("\n\nShe nods. <i>“We can’t use artillery down here, Steele. Both sides decided to make up for it by mining the space between the front lines, making it hell for the other to advance. There’s gold myr explosive mines, and our venom vapor ones out there. Either one can ruin your day if you’re not careful. If you haven’t already, go in town and see if you can buy a minesweeper. Cunning little device that picks ‘em up before you step on them. Saved my life more than once.");
@@ -790,7 +791,15 @@ public function lieveVenomToggle():void
 
 	pc.lust(50);
 	flags["LIEVE_VENOM_USED"] = 1;
-	flags["LIEVE_VENOM_ENABLED"] = 1;
+
+	if (flags["LIEVE_VENOM_TALK_TIMES"] == undefined) flags["LIEVE_VENOM_TALK_TIMES"] = 0;
+	flags["LIEVE_VENOM_TALK_TIMES"]++;
+	
+	if (flags["LIEVE_VENOM_TALK_TIMES"] > 4)
+	{
+		// Could maybe do with some words here to indicate - 9999
+		flags["LIEVE_VENOM_ENABLED"] = 1;
+	}
 	
 	processTime(30 + rand(10));
 
@@ -1041,10 +1050,13 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	processTime(30 + rand(10));
 	
 	pc.energyRaw = 0;
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.orgasm();
+	}
+	
+	flags["HAS_BEEN_MYR_VENOMED"] = 1;
 	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
 
 	clearMenu();
@@ -1111,10 +1123,10 @@ public function lieveNoVenomFuckII():void
 
 	processTime(15 + rand(5));
 	
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.orgasm();
+	}
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1263,6 +1275,9 @@ public function lieveFuckHaremDickVersionVenomII():void
 		pc.orgasm();
 	}
 
+	flags["HAS_BEEN_MYR_VENOMED"] = 1;
+	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2015,8 +2030,8 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	output("\n\n<i>“Is that right?”</i> Lieve says, letting you hear the humor in her voice. <i>“Well, good old colonel’s quite the disciplinarian, after all.”</i>");
 	
 	output("\n\n");
-	//{if Colonel met: 
-	if (9999 == 0) output("You imagine so!");
+	//{if Colonel Kalayna met: 
+	if (flags["MET_KALAYNA"] != undefined) output("You imagine so!");
 	else output("You’re picking up on some fairly blatant innuendo here, but opt not to push it with a group of strangers.");
 	
 	output("\n\n<i>“Ah well,”</i> Lieve says after a moment’s laugh. <i>“So, any chance we could swing some honey wine from the basement? I’m");
@@ -2033,7 +2048,7 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.");
 
 	// 9999
-	//Stuff for getting a Honey Wine bottle here.
+	// Stuff for getting a Honey Wine bottle here.
 
 	output("\n\nAs you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
 
@@ -2255,6 +2270,7 @@ public function lieveLateGoodbyeNo():void
 	output("\n\nHer shoulder slump as you return the rod to her hands. <i>“I understand. Please, don’t tell Lieve I tried this. She’ll... I don’t know what she’d do.”</i>");
 	
 	output("\n\nYou tell her you won’t");
+	// I've wired this up to be a single-time encounter for now, so...
 	if (9999 == 0) output(", this time");
 	output(", and add that she should go back inside before her owner misses her. Sierva sighs and does as you bid her, silently making her way back inside.");
 

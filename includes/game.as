@@ -758,6 +758,8 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
 	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
+	if (pc.hasStatusEffect("Myr Venom")) productionFactor *= 1.25;
+	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
 	productionFactor *= 4;
