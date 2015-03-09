@@ -95,7 +95,7 @@ public function sendCeliseAway():void
 		if(flags["GIGACELISE"] == 1) output(", converging her tentacles into a semi-solid base that may as well be a massive deposit of green jello");
 		else output(", shrinking her breasts down until they barely exist, the additional mass padding out her base");
 		output(". The viridian galotian steadies her quivering and fixes you with a determined look that drags on for an uncomfortable amount of time. Her brows knit into an uncharacteristically serious glare.");
-		output("\n\nThen, just when you’re about to say anything to break the tension, she sticks out her tongue and claps you on the back. <i>“You’re just like him - all serious and stuff! Don’t worry, Vic had me wait for him tons of times - I’ve still got the travel chit and everything.”</i> She leans forward, her bust filling out to press meaningfully into your side as she does so. <i>“When you want to have fun, come pick me up Tavros Station.”</i>");
+		output("\n\nThen, just when you’re about to say anything to break the tension, she sticks out her tongue and claps you on the back. <i>“You’re just like him - all serious and stuff! Don’t worry, Vic had me wait for him tons of times - I’ve still got the travel chit and everything.”</i> She leans forward, her bust filling out to press meaningfully into your side as she does so. <i>“When you want to have fun, come pick me up on Tavros Station.”</i>");
 		output("\n\nYou’re left there, stunned, while the galotian disembarks.");
 		output("\n\n(<b>Celise is no longer on your crew. You can find her again in Tavros Station.</b>)");
 		flags["CELISE_EVER_SENT_AWAY"] = 1;
