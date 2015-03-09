@@ -5,31 +5,35 @@
 //tf
 //https://docs.google.com/document/d/180f-MSkg1GbLcjWtxRkCfcK7X2cnVECwBrvyYn3AJfM/edit?usp=sharing
 
-/*Parser tags for skin color
+//Parser tags for skin color
+//Set these all in skintone for the mob.
+/*
+"orange and green" 
+	"mottled brown" 
+	"black and gold" 
+"black and blue" 
+"black and red" 
+"black and purple" 
+"red and blue" 
+"black, blue, and yellow" 
+"gold"
+*/
 
-[kerokorasSkin] 
-'orange and green' 
-'mottled brown' 
-'black and gold' 
-'black and blue' 
-'black and red' 
-'black and purple' 
-'red and blue' 
-'black, blue, and yellow' 
-'gold'
+//[kerokorasSkinDetail]
+function keroSkinDetail():String
+{
+	if(foes[0].skinTone == "orange and green") return "bright orange with splashes of pale green";
+	else if(foes[0].skinTone == "mottled brown") return "mottled earthy brown with muddy spots";
+	else if(foes[0].skinTone == "black and gold") return "pure inky black with patches of gold on her upper body";
+	else if(foes[0].skinTone == "black and blue") return "sea blue with black blotches along her back and sides";
+	else if(foes[0].skinTone == "black and red") return "dark inky black with vibrant blood red patches across her body";
+	else if(foes[0].skinTone == "black and purple") return "dark inky black with vibrant electric purple patches across her back";
+	else if(foes[0].skinTone == "red and blue") return "vibrant red with deep blue arms and legs";
+	else if(foes[0].skinTone == "black, blue, and yellow") return "blue striped black legs with a bright yellow upper body";
+	else return "solid sparkling gold"
+}
 
-[kerokorasSkinDetail] 
-'bright orange with splashes of pale green' 
-'mottled earthy brown with muddy spots' 
-'pure inky black with patches of gold on her upper body' 
-'sea blue with black blotches along her back and sides' 
-'dark inky black with vibrant blood red patches across her body' 
-'dark inky black with vibrant electric purple patches across her back' 
-'vibrant red with deep blue arms and legs' 
-'blue striped black legs with a bright yellow upper body' 
-'solid sparkling gold'
-
-
+/*
 Race summary
 Codex
 
@@ -83,9 +87,9 @@ function frogGirlsEncounter():void
 	if(9999 == "Codex Check")
 	{
 		output("\n\nThe over-sweet scent of decaying vegetation mixed with the sour scent of stagnant water reaches your nose as you push your way through the dense foliage and come upon a small bog lake covered in algae and violet hued lilypads as big around as a hoverskiff’s braceplate.");
-		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe [kerokorasSkin]-skinned creature rising up from the murky bog water.");
+		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe " + foes[0].skinTone + "-skinned creature rising up from the murky bog water.");
 		output("\n\nIt is impossible to tell the creature’s gender at first, with a complete lack of secondary sexual characteristics, it just looks boyish and sleek, an effect that is amplified by the light refracting off the beads of water running along its skin. It isn’t until it is fully out of the water and standing that you can see that it is female. A kerokoras, according to your codex.");
-		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a [kerokorasSkinDetail], and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out,<i> <i>“I smell man...”</i>");
+		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail() + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out,<i> <i>“I smell man...”</i>");
 		// Seems predicated on smell/scent, hence cockcheck rather than mf()
 		//hasCock: 
 		if(pc.hascock()) output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands draw up over her smooth belly and across her flat and featureless chest before sliding behind her neck as she gives you a lust filled look. Clearly she is trying to seduce you with her androgynous body.");
@@ -110,7 +114,7 @@ function frogGirlsEncounter():void
 	else
 	{
 		//Repeat Encounter
-		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one [kerokorasSkin] skinned.");
+		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + foes[0].skinTone + " skinned.");
 		if(!pc.hasCock()) output(" It sighs, apparently annoyed that you aren’t male.");
 		//9999 Fight? //Ravish" Iunno. Set up above shit too
 	}
@@ -118,7 +122,7 @@ function frogGirlsEncounter():void
 
 /*
 Combat Text:
-The short and sleek alien before you dodges about with practiced ease. Her [kerokorasSkin] skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting {hasCock: into your pants/you out of the way).
+The short and sleek alien before you dodges about with practiced ease. Her " + foes[0].skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting {hasCock: into your pants/you out of the way).
 */
 
 //Combat Events:
@@ -301,7 +305,7 @@ function hasCockLossForForgGirls():void
 	output("\n\nHer slick, plush hips squish against your cheeks as she mashes her vagina against your mouth. Thoughtlessly, you begin licking her sex with reckless abandon, eager to receive the assured release. She tastes sweet on your tongue, and you lick like your life depends on it. You find her fuckhole, plugging it with your tongue and wetting it as much as possible. Your nose rubs against her rigid clit, causing soft yips of pleasure to emanate from her with each passing nudge. Her insides suck your tongue deeper until you can’t get any further down.");
 	if(pc.cocks[x].cLength() >= 10) output(" You even manage to reach so far that you feel it touch her cervix.");
 
-	output("\n\nAfter a few moments of heated tasting, the [kerokorasSkin] colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps [pc.cock " + x + "] and gyrates her hips atop [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
+	output("\n\nAfter a few moments of heated tasting, the " + foes[0].skinTone + " colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps [pc.cock " + x + "] and gyrates her hips atop [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
 
 	//cockFits:
 	if()
@@ -373,7 +377,7 @@ function youDontHaveADickLossToFrogGirls():void
 	output("\n\n<i>“You are good at this. You would do well as a lower class Kero-ooooooh”</i> she manages, her attempted insult turning into a guttural moan as she loses her balance and falls on her cushiony bottom. You use her moment of weakness to focus your assault.");
 	output("\n\nYour tongue weaves across her toes, and you cheer happily internally as you see her lean back on her arms. Her eyes are glossy and she looks to be trying hard to keep up her concentration. You playfully move your hand along her upturned leg, walking with your fingers and lingering with each ‘step’. Her eyes follow your movement until you reach her crotch, at which point they unfocus as you spread her nether lips and rub the entrance to the biological boiler that lies inside.");
 	output("\n\n<i>“Hey, hang on! I didn’t say you could touch there,”</i> she says weakly, doing nothing to stop your fingers from dipping inside her entrance. Her insides part easily, obviously prepared for intrusion, but still cling tightly around you; each time you pull out your fingers are sucked relentlessly back in.");
-	output("\n\nYou rub your thumb over the moaning frog girl’s clit, and whenever you touch the slick bead her insides pulse with tight convulsions. Her [kerokorasSkin] flesh sparkles in your vision, and you close your eyes against the brightness, burrowing your face into the curves of her foot. Her webbed toes clench as you pleasure her, and you massage them with your free hand while your tongue lathers her heel.");
+	output("\n\nYou rub your thumb over the moaning frog girl’s clit, and whenever you touch the slick bead her insides pulse with tight convulsions. Her " + foes[0].skinTone + " flesh sparkles in your vision, and you close your eyes against the brightness, burrowing your face into the curves of her foot. Her webbed toes clench as you pleasure her, and you massage them with your free hand while your tongue lathers her heel.");
 	output("\n\nYou’ve long since lost track of time, but after what feels like a pleasant eternity the frog girls breathing picks up speed. She shuts her eyes and scrunches up her face in silent orgasm as her toes splay out and her inner folds trap your fingers with binding contractions. A puddle of sexual fluids and lusty poison has formed over the course of your endeavors, and after her muscles relax the frog girl lies in it, softly panting as she rests.");
 	output("\n\nIf you still had your wits about you, you may have found it prudent to leave with this turnabout victory... but the haze of lust in your body is so overwhelming that you simply lower her leg to the ground and position yourself at her crotch. Closing your eyes, you move closer to her sweltering, juicy pussy and suckle firmly on her clit. The moment your lips make contact, the combination of her drug-enhanced taste, smell, and touch is too much for you. You slowly drift into unconsciousness suckling her sensitive button, lost in dreams of fucking all manner of alien creatures.");
 	output("\n\nYou wake up a few hours later with an ache in your side from sleeping on the rough jungle undergrowth. The effects of the venom seems to have dissipated, but you still feel hot and unsatisfied; you’ll have to be careful getting back if you don’t want to end up as someone’s toy.");
@@ -425,7 +429,7 @@ function frogGirlFootJoerb():void
 	else output(" You feel your loins tense as your prostate pushes");
 	output(" a load of [pc.cum] onto the curves of her leg.");
 
-	output("\n\nThe fervent frog-girl seems to have momentarily put aside her desire to breed. Even as your last spurts drip from her [kerokorasSkin] flesh, she brings her other foot up to aid in the massage; one foot continues to weave ");
+	output("\n\nThe fervent frog-girl seems to have momentarily put aside her desire to breed. Even as your last spurts drip from her " + foes[0].skinTone + " flesh, she brings her other foot up to aid in the massage; one foot continues to weave ");
 	if(pc.cockTotal() > 1) output("through");
 	else output("around");
 	output(" [pc.eachCock], making sure ");
@@ -440,7 +444,7 @@ function frogGirlFootJoerb():void
 	output("\n\nRigidness returns to you with painful force, and you are brought out of your lusty trance by the shock. You buck your hips in time with the motion of her feet, using the space between her webbed toes as an improvised onahole. No matter how many times you thrust, the cool air brings a gasp of shock to your lips as your flesh is exposed.");
 
 	output("\n\n<i>“Again, again!”</i> laughs the cock-crazed kerokoras as she hurries to milk your [pc.cockBiggest]. The jungle is humid and hot, but the surrounding air still feels cold against the volcanic, lust flamed heat of your [pc.cocks]. You can feel a second load of pressurized [pc.cum] fit to burst free from your over-sensitive flesh, rapidly approaching the sweet release her ministrations promise.");
-	output("\n\nYour muscles tense as you cum again, this time pumping hot [pc.cumNoun] over her lustrous [kerokorasSkin] stomach. The sight of your cream running off her sweat-slicked skin only inflames your venom induced libido further. You grasp her firm thighs, one in each hand, and press them tightly together. You can feel the cords of muscle tensed beneath her [kerokorasSkin] legs, but the outer flesh remains pliant and soft to the touch.");
+	output("\n\nYour muscles tense as you cum again, this time pumping hot [pc.cumNoun] over her lustrous " + foes[0].skinTone + " stomach. The sight of your cream running off her sweat-slicked skin only inflames your venom induced libido further. You grasp her firm thighs, one in each hand, and press them tightly together. You can feel the cords of muscle tensed beneath her " + foes[0].skinTone + " legs, but the outer flesh remains pliant and soft to the touch.");
 
 	output("\n\nYou slide your [pc.cockBiggest] in between the space below her pelvis, squishing it amidst the towers of her legs. Gently, you begin rock back and forth, using all of your willpower to steady yourself. Your dick");
 	if(pc.cockTotal() > 1) output("s");
@@ -785,7 +789,7 @@ function femaleVictoryFacesitting():void
 	output("\n\nShe tries to avert her gaze as you think of a good way to punish her, but in her weakened state she can’t move her head very far. You snicker at her attempts, gently returning her head to a forward facing position. As you do so your fingers brush her lips, and you wonder what they would feel like against [pc.eachVagina].");
 	output("\n\nYou slide yourself up until your pelvis is perched in front of her face, giving her a warm smile and caressing her cheek. Despite her position she blushes sheepishly and smiles back, and you think that maybe you got a member of the species used to losing fights. Hopefully that means she’s used to pleasing her competitors. You lower yourself atop her, making sure to not drop all your weight at once.");
 	output("\n\n<i>“Aren’t you a cutie. If you do a good job there might be something in it for you,”</i> You tell your prey. The eager girl begins licking as soon as her heavenly lips touch your folds, her warm tongue tickling your mons as her flat nose brushes [pc.oneClit]. Her hot breaths warm your nethers, making the jungle air seem cold during its recess. You moan at her tongues ministrations, and she licks you with renewed vigor, not wanting to disappoint the female who bested her.");
-	output("\n\nOn the other hand, some of her eagerness might stem from the fact that she appears to be getting about as much pleasure from this as you are. Her [kerokorasSkin] legs cross and twitch uncomfortably, cunt soaked in both toxic sweat and juices. Based on her current performance you think a reward isn’t entirely out of the question. You let one hand travel back and between her legs, sliding through the slick skin of her clenched thighs.");
+	output("\n\nOn the other hand, some of her eagerness might stem from the fact that she appears to be getting about as much pleasure from this as you are. Her " + foes[0].skinTone + " legs cross and twitch uncomfortably, cunt soaked in both toxic sweat and juices. Based on her current performance you think a reward isn’t entirely out of the question. You let one hand travel back and between her legs, sliding through the slick skin of her clenched thighs.");
 	output("\n\nShe moans as you rub her cunt, pinching her clit between two fingers. Her hands cling tightly to your hips, pulling her face deeper into your [pc.cunt]. The insensate kerokoras’ legs can’t decide whether to open or tighten like a vice, alternating between both options at odd intervals. The only difference between the two is that the air is cool and her legs are blazing hot against your [pc.skinFurScales]. The heat of her insides is equally intense as they clamp around your fingers.");
 	output("\n\nYou brush your fingers against the fit frog-girl’s inner walls, sending jolts of pleasure through her athletic frame. You bite your bottom lip as the cocktail of aphrodisiac venom sends shockwaves of its own up your arm. You can hardly feel your fingers beyond the pleasure emanating from between her legs.");
 	output("\n\nThe lithe kerokoras’ tongue pushes its way up into your passage, and you feel the gooey muscle contort as your walls crush in around it. It feels like electric ecstasy inside your body, and it continues to push until it swirls around the ring of your cervix. Her lips suck on the entirety of [pc.oneVagina], and each time [pc.oneClit] is rubbed, you feel like a small portion of your mind is lost to the pleasure.");
@@ -797,7 +801,7 @@ function femaleVictoryFacesitting():void
 
 	output("\n\nThe kerokoras’ own orgasm follows swiftly behind yours, and she pauses in her licks as her body locks up and pushes itself off the ground. You continue to rapidly fingerfuck her tight cunt even as her juices schlick and drip to the jungle floor, and her legs slide out from under her on the damp ground. A wet slap resounds as her butt hits the cum soaked vines, and your movement slows as your energy peters out.");
 
-	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the [kerokorasskin] colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You Stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
+	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + foes[0].skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You Stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
 	processTime(100+rand(30));
 	pc.orgasm();
 	genericVictory();
