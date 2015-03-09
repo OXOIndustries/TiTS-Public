@@ -2021,17 +2021,17 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 
 	output("You follow her just a short distance eastwards along the main road until you come to a crossroads, and Lieve leads you north towards a wrought iron gate that separates the city cavern from a long, brightly-lit tunnel that snakes up towards a squat, wide manor house overlooking Kressia.");
 	
-	output("\n\n<i>“Last but not least, we’ve got the governor’s mansion. Originally belonged to a certain Goldie queen, but now it’s acting as the city’s command post. If you’re planning on staying in Kressia for a while, or maybe you want to do some serious business with us, you’ll want to talk to Colonel Kalayna. She can get you travel visas, merchant papers, whatever you need. Plus, I hear she’s quite eager to meet powerful offworlders. She’s been hiring adventurer-types left and right when they come through. Could be work for you, if you’re interested. Even if not, you owe it to yourself to talk to her.”</i>");
+	output("\n\n<i>“Last but not least, we’ve got the governor’s mansion. Originally belonged to a certain Goldie queen, but now it’s acting as the city’s command post. If you’re planning on staying in Kressia for a while, or maybe you want to do some serious business with us, you’ll want to talk to Marshal Sellera. She can get you travel visas, merchant papers, whatever you need. Plus, I hear she’s quite eager to meet powerful offworlders. She’s been hiring adventurer-types left and right when they come through. Could be work for you, if you’re interested. Even if not, you owe it to yourself to talk to her.”</i>");
 	
 	output("\n\nAs she’s talking, Lieve walks up to the gate and opens it up with a flourish. A couple of armed guards standing nearby nod to her as she passes through, waving you along after her. It’s a quick walk up the drive to the manor, where you find several armored vehicles circled around near the front door. Several officers are milling about, smoking what look like bright pink cigarettes - a local equivalent, you’re sure. Lieve snaps a salute to one of them, and receives a curt return and a slight nod from the black-chitined woman with what looks like a nine-pointed star on her cap.");
 	
-	output("\n\n<i>“Scout Thyrsa,”</i> the officer says, taking a long drag from her cig. <i>“I see you’re adapting well to your role as guide. Colonel Kalayna’s occupied at the moment, I’m afraid. A few kids fresh out of the academy proved themselves quite... disappointing... on their first night of leave in town. Need to be punished.”</i>");
+	output("\n\n<i>“Scout Thyrsa,”</i> the officer says, taking a long drag from her cig. <i>“I see you’re adapting well to your role as guide. Marshal Sellera’s occupied at the moment, I’m afraid. A few kids fresh out of the academy proved themselves quite... disappointing... on their first night of leave in town. Need to be punished.”</i>");
 	
-	output("\n\n<i>“Is that right?”</i> Lieve says, letting you hear the humor in her voice. <i>“Well, good old colonel’s quite the disciplinarian, after all.”</i>");
+	output("\n\n<i>“Is that right?”</i> Lieve says, letting you hear the humor in her voice. <i>“Well, good old marshal’s quite the disciplinarian, after all.”</i>");
 	
 	output("\n\n");
-	//{if Colonel Kalayna met: 
-	if (flags["MET_KALAYNA"] != undefined) output("You imagine so!");
+	//{if Marshal Sellera met: 
+	if (flags["MET_SELLERA"] != undefined) output("You imagine so!");
 	else output("You’re picking up on some fairly blatant innuendo here, but opt not to push it with a group of strangers.");
 	
 	output("\n\n<i>“Ah well,”</i> Lieve says after a moment’s laugh. <i>“So, any chance we could swing some honey wine from the basement? I’m");
