@@ -1648,7 +1648,7 @@ public function lieveTourTheTown():void
 	
 	output("\n\nLieve gives her a pat on the head and extends an arm to you, allowing you to loop yours with hers before she takes the lead, bringing you out of the bunker and back onto the dusty road out of the town. The two guards standing at the wire gate salute her and open it up, allowing the two of you to walk past.");
 	
-	if (pc.characterClass = GLOBAL.CLASS_MERCENARY)
+	if (pc.characterClass == GLOBAL.CLASS_MERCENARY)
 	{
 		output("\n\n<i>“You can just leave your post like that?”</i> you ask your guide, first and foremost.");
 		if (!pc.isAss()) output(" You don’t want to get her in trouble, after all.");

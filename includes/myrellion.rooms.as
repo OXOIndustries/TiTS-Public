@@ -1694,6 +1694,7 @@ public function initializeMyrellionRooms():void
 	rooms["1D28"].planet = "PLANET: MYRELLION";
 	rooms["1D28"].system = "SYSTEM: SINDATHU";
 	rooms["1D28"].eastExit = "1F28";
+	rooms["1D28"].westExit = "1X11";
 	rooms["1D28"].moveMinutes = 5;
 	rooms["1D28"].runOnEnter = noManzLandBonus;
 	rooms["1D28"].addFlag(GLOBAL.CAVE);
@@ -2017,4 +2018,216 @@ public function initializeMyrellionRooms():void
 	rooms["1H99"].addFlag(GLOBAL.CAVE);
 	rooms["1H99"].addFlag(GLOBAL.INDOOR);
 	rooms["1H99"].addFlag(GLOBAL.HAZARD);
+	
+	/*************************
+	Wetraxxel Dudes Caves
+	*************************/
+	rooms["1X11"] = new RoomClass(this);
+	rooms["1X11"].roomName = "WETRAXXEL\nDEN";
+	rooms["1X11"].description = "This cave branches off from the main passage you've been following. This side branch doesn't seem to be nearly as well-maintained as the myr caves, much more crudely mined out and rougher-hewed. The dark passage leads westward, deeper into these rougher caverns.";
+	rooms["1X11"].planet = "PLANET: MYRELLION";
+	rooms["1X11"].system = "SYSTEM: SINDATHU";
+	rooms["1X11"].eastExit = "1D28";
+	rooms["1X11"].westExit = "1V11";
+	rooms["1X11"].moveMinutes = 5;
+	rooms["1X11"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1X11"].addFlag(GLOBAL.CAVE);
+	rooms["1X11"].addFlag(GLOBAL.INDOOR);
+	rooms["1X11"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1V11"] = new RoomClass(this);
+	rooms["1V11"].roomName = "WETRAXXEL\nDEN";
+	rooms["1V11"].description = "The rough-hewn cavern opens up a little more here, spreading out to the north and west. Fungus is growing on the walls here, a glowing blue breed that sheds a faint illumination across the sand-colored stones. The way the fungus is growing, in distinctly swirling, nearly circular patterns makes it seem almost as if somebody has been cultivating it.\n\nA few small cave drawings also adorn the walls. Crude, simple cave paintings drawn in coal or some kind of animal blood, perhaps.";
+	rooms["1V11"].planet = "PLANET: MYRELLION";
+	rooms["1V11"].system = "SYSTEM: SINDATHU";
+	rooms["1V11"].northExit = "1V9";
+	rooms["1V11"].eastExit = "1X11";
+	rooms["1V11"].southExit = "1V13";
+	rooms["1V11"].moveMinutes = 5;
+	rooms["1V11"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1V11"].addFlag(GLOBAL.CAVE);
+	rooms["1V11"].addFlag(GLOBAL.INDOOR);
+	rooms["1V11"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1V9"] = new RoomClass(this);
+	rooms["1V9"].roomName = "WETRAXXEL\nDEN";
+	rooms["1V9"].description = "The passage here curves gently, connecting from south to west. The cave here is damp and dark, overgrown with fungus. Every step makes a wet, squelching sound as you proceed through the cramped caves.";
+	rooms["1V9"].planet = "PLANET: MYRELLION";
+	rooms["1V9"].system = "SYSTEM: SINDATHU";
+	rooms["1V9"].westExit = "1T9";
+	rooms["1V9"].southExit = "1V11";
+	rooms["1V9"].moveMinutes = 5;
+	rooms["1V9"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1V9"].addFlag(GLOBAL.CAVE);
+	rooms["1V9"].addFlag(GLOBAL.INDOOR);
+	rooms["1V9"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1T9"] = new RoomClass(this);
+	rooms["1T9"].roomName = "WETRAXXEL\nDEN";
+	rooms["1T9"].description = "What might have been a three-way intersection of caverns here has largely collapsed, preventing you from proceeding southwards. The only open passages are north, towards what appears to be a fungal garden and east into a darker, dank passage.";
+	rooms["1T9"].planet = "PLANET: MYRELLION";
+	rooms["1T9"].system = "SYSTEM: SINDATHU";
+	rooms["1T9"].northExit = "1T7"
+	rooms["1T9"].eastExit = "1V9";
+	rooms["1T9"].moveMinutes = 5;
+	rooms["1T9"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1T9"].addFlag(GLOBAL.CAVE);
+	rooms["1T9"].addFlag(GLOBAL.INDOOR);
+	rooms["1T9"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1T7"] = new RoomClass(this);
+	rooms["1T7"].roomName = "WETRAXXEL\nDEN";
+	rooms["1T7"].description = "A long passage runs east to west here, almost perfectly circular like it was drilled out by a machine. Huge amounts of fungus grow from the cave walls and ceiling, some of it glowing faintly, others smelling strangely sweet and growing in thick clumps. Somebody has clearly been cultivating the fungus here, almost like a garden.\n\nA huge mushroom is growing here, almost the size of a tree. Chunks have been cut out of its hat, harvested for its meat. A passage curves down south from where you stand, leading towards the entrance to the circle.";
+	rooms["1T7"].planet = "PLANET: MYRELLION";
+	rooms["1T7"].system = "SYSTEM: SINDATHU";
+	rooms["1T7"].southExit = "1T9";
+	rooms["1T7"].westExit = "1R7";
+	rooms["1T7"].moveMinutes = 5;
+	rooms["1T7"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1T7"].addFlag(GLOBAL.CAVE);
+	rooms["1T7"].addFlag(GLOBAL.INDOOR);
+	rooms["1T7"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1R7"] = new RoomClass(this);
+	rooms["1R7"].roomName = "WETRAXXEL\nDEN";
+	rooms["1R7"].description = "A long passage runs east to west here, almost perfectly circular like it was drilled out by a machine. Huge amounts of fungus grow from the cave walls and ceiling, some of it glowing faintly, others smelling strangely sweet and growing in thick clumps. Somebody has clearly been cultivating the fungus here, almost like a garden.\n\nGlowing red fungus hangs down from the ceiling in dangling, seaweed-like tendrils. The fungal tendrils brush across your cheeks with every step you take.";
+	rooms["1R7"].planet = "PLANET: MYRELLION";
+	rooms["1R7"].system = "SYSTEM: SINDATHU";
+	rooms["1R7"].eastExit = "1T7";
+	rooms["1R7"].westExit = "1P7";
+	rooms["1R7"].moveMinutes = 5;
+	rooms["1R7"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1R7"].addFlag(GLOBAL.CAVE);
+	rooms["1R7"].addFlag(GLOBAL.INDOOR);
+	rooms["1R7"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1P7"] = new RoomClass(this);
+	rooms["1P7"].roomName = "WETRAXXEL\nDEN";
+	rooms["1P7"].description = "A long passage runs east to west here, almost perfectly circular like it was drilled out by a machine. Huge amounts of fungus grow from the cave walls and ceiling, some of it glowing faintly, others smelling strangely sweet and growing in thick clumps. Somebody has clearly been cultivating the fungus here, almost like a garden.\n\nA right-angle turn leads down into a long passage, or eastwards towards the entrance to this sub-section of the caves.";
+	rooms["1P7"].planet = "PLANET: MYRELLION";
+	rooms["1P7"].system = "SYSTEM: SINDATHU";
+	rooms["1P7"].eastExit = "1R7";
+	rooms["1P7"].southExit = "1P9";
+	rooms["1P7"].moveMinutes = 5;
+	rooms["1P7"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1P7"].addFlag(GLOBAL.CAVE);
+	rooms["1P7"].addFlag(GLOBAL.INDOOR);
+	rooms["1P7"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1P9"] = new RoomClass(this);
+	rooms["1P9"].roomName = "WETRAXXEL\nDEN";
+	rooms["1P9"].description = "The caves here looks surprisingly well lived-in. The walls are rough and jagged, but worn down by frequent foot traffic. Cave paintings and crude drawings wander north to south, creating a simplistic mural showing hunts and births and strange subterranean creatures.";
+	rooms["1P9"].planet = "PLANET: MYRELLION";
+	rooms["1P9"].system = "SYSTEM: SINDATHU";
+	rooms["1P9"].northExit = "1P7";
+	rooms["1P9"].southExit = "1P11";
+	rooms["1P9"].moveMinutes = 5;
+	rooms["1P9"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1P9"].addFlag(GLOBAL.CAVE);
+	rooms["1P9"].addFlag(GLOBAL.INDOOR);
+	rooms["1P9"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1P11"] = new RoomClass(this);
+	rooms["1P11"].roomName = "WETRAXXEL\nDEN";
+	rooms["1P11"].description = "A three-way intersection connects the long north-south passageway to a much smaller passage to the west. The breakaway cave culminates in a large, red-painted door surrounded by the same glowing blue fungus as you saw in the entranceway to this small network of caves. The door is surprisingly well made, constructed from polished stone and bearing a single rope latch to open it. A small keyhole rests above the latch.";
+	rooms["1P11"].planet = "PLANET: MYRELLION";
+	rooms["1P11"].system = "SYSTEM: SINDATHU";
+	rooms["1P11"].northExit = "1P9";
+	rooms["1P11"].southExit = "1P13";
+	/* Requires key -- rooms["1P11"].westExit = "1N11"; */
+	rooms["1P11"].moveMinutes = 5;
+	rooms["1P11"].runOnEnter = wetraxxelCavesBonusFunc; // 9999 -- Hook it here and manually override the movement button?
+	rooms["1P11"].addFlag(GLOBAL.CAVE);
+	rooms["1P11"].addFlag(GLOBAL.INDOOR);
+	rooms["1P11"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1P13"] = new RoomClass(this);
+	rooms["1P13"].roomName = "WETRAXXEL\nDEN";
+	rooms["1P13"].description = "The caves here looks surprisingly well lived-in. The walls are rough and jagged, but worn down by frequent foot traffic. Water runs down from a crack in the cave wall, spilling down at a pretty good pace. A small pool forms at the bottom, deep enough to dip your hands into, before draining away into a small hole and deeper into the earth. ";
+	rooms["1P13"].planet = "PLANET: MYRELLION";
+	rooms["1P13"].system = "SYSTEM: SINDATHU";
+	rooms["1P13"].northExit = "1P11";
+	rooms["1P13"].southExit = "1P15";
+	rooms["1P13"].moveMinutes = 5;
+	rooms["1P13"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1P13"].addFlag(GLOBAL.CAVE);
+	rooms["1P13"].addFlag(GLOBAL.INDOOR);
+	rooms["1P13"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1P15"] = new RoomClass(this);
+	rooms["1P15"].roomName = "WETRAXXEL\nDEN";
+	rooms["1P15"].description = "A gently sloping cavern winds up and north, or down and eastward. What amounts to a scarecrow has been set up here, a humanoid figure stuffed with an unidentifiable substance and plated with discarded chitin armor. A menacing face has been drawn on it in red paint, with large fang-like teeth bared at you. Clearly meant to ward off intruders.";
+	rooms["1P15"].planet = "PLANET: MYRELLION";
+	rooms["1P15"].system = "SYSTEM: SINDATHU";
+	rooms["1P15"].northExit = "1P13";
+	rooms["1P15"].eastExit = "1R15";
+	rooms["1P15"].moveMinutes = 5;
+	rooms["1P15"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1P15"].addFlag(GLOBAL.CAVE);
+	rooms["1P15"].addFlag(GLOBAL.INDOOR);
+	rooms["1P15"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1R15"] = new RoomClass(this);
+	rooms["1R15"].roomName = "WETRAXXEL\nDEN";
+	rooms["1R15"].description = "This section of cave seems to go a little deeper than the rest, slowly sloping upwards in the west but delving deeper down to the east, vanishing into darkness. The slope is gentle, but you still find yourself thankful for the occasional handholds that have been conspicuously chiseled into the cavern walls. ";
+	rooms["1R15"].planet = "PLANET: MYRELLION";
+	rooms["1R15"].system = "SYSTEM: SINDATHU";
+	rooms["1R15"].eastExit = "1T15";
+	rooms["1R15"].westExit = "1P15";
+	rooms["1R15"].moveMinutes = 5;
+	rooms["1R15"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1R15"].addFlag(GLOBAL.CAVE);
+	rooms["1R15"].addFlag(GLOBAL.INDOOR);
+	rooms["1R15"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1T15"] = new RoomClass(this);
+	rooms["1T15"].roomName = "WETRAXXEL\nDEN";
+	rooms["1T15"].description = "This cavern is deep and dark, making almost impossible to see save for flickering bits of light streaming in from the west. The floor is wet with... something... and you find yourself lifting your [pc.legs] high to avoid the muck. A curved slope takes you up north, or else westwards into a shadowy incline.";
+	rooms["1T15"].planet = "PLANET: MYRELLION";
+	rooms["1T15"].system = "SYSTEM: SINDATHU";
+	rooms["1T15"].northExit = "1T13";
+	rooms["1T15"].westExit = "1R15";
+	rooms["1T15"].moveMinutes = 5;
+	rooms["1T15"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1T15"].addFlag(GLOBAL.CAVE);
+	rooms["1T15"].addFlag(GLOBAL.INDOOR);
+	rooms["1T15"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1T13"] = new RoomClass(this);
+	rooms["1T13"].roomName = "WETRAXXEL\nDEN";
+	rooms["1T13"].description = "A few patches of dark blue fungus illuminate the curving incline here. The passage leads to a dark, dank cave to the south, or eastward toward the entrance to the caverns. ";
+	rooms["1T13"].planet = "PLANET: MYRELLION";
+	rooms["1T13"].system = "SYSTEM: SINDATHU";
+	rooms["1T13"].eastExit = "1V13";
+	rooms["1T13"].southExit = "1T15";
+	rooms["1T13"].moveMinutes = 5;
+	rooms["1T13"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1T13"].addFlag(GLOBAL.CAVE);
+	rooms["1T13"].addFlag(GLOBAL.INDOOR);
+	rooms["1T13"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1V13"] = new RoomClass(this);
+	rooms["1V13"].roomName = "WETRAXXEL\nDEN";
+	rooms["1V13"].description = "The curving passage here slopes gently south and downwards, connecting the entrance passage to a darker, deeper cavern that seems to be bathed in shadows. The darkness westwards is pierced only by bits of dangling blue, luminescent fungus.";
+	rooms["1V13"].planet = "PLANET: MYRELLION";
+	rooms["1V13"].system = "SYSTEM: SINDATHU";
+	rooms["1V13"].northExit = "1V11"
+	rooms["1V13"].westExit = "1T13";
+	rooms["1V13"].moveMinutes = 5;
+	rooms["1V13"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1V13"].addFlag(GLOBAL.CAVE);
+	rooms["1V13"].addFlag(GLOBAL.INDOOR);
+	rooms["1V13"].addFlag(GLOBAL.HAZARD);
+
+	rooms["1N11"] = new RoomClass(this);
+	rooms["1N11"].roomName = "HAREM\nCHAMBER";
+	rooms["1N11"].description = "PLACEHOLDER";
+	rooms["1N11"].planet = "PLANET: MYRELLION";
+	rooms["1N11"].system = "SYSTEM: SINDATHU";
+	rooms["1N11"].eastExit = "1P11";
+	rooms["1N11"].moveMinutes = 5;
+	rooms["1N11"].runOnEnter = wetraxxelCavesBonusFunc;
+	rooms["1N11"].addFlag(GLOBAL.CAVE);
+	rooms["1N11"].addFlag(GLOBAL.INDOOR);
+	rooms["1N11"].addFlag(GLOBAL.HAZARD);
 }

@@ -245,7 +245,7 @@ public function rest(deltaT:int = -1):void {
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
-function restHeal():void
+public function restHeal():void
 {
 	if(pc.HPRaw < pc.HPMax()) {
 		pc.HP(Math.round(pc.HPMax() * .2));

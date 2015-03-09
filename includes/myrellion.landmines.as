@@ -1,4 +1,4 @@
-function tryEncounterLandmines():Boolean
+public function tryEncounterLandmines():Boolean
 {
 	if (rand(100) <= 3)
 	{
@@ -24,7 +24,7 @@ function tryEncounterLandmines():Boolean
 	return false;
 }
 
-function encounterLandmines():void
+public function encounterLandmines():void
 {
 	output("As you’re making your way through the caverns connecting the myr front lines, your [pc.foot] suddenly hits something heavy and metallic. You only have the span of a heartbeat to think before a shrill whine echoes through the cavern and a little metal ball pops up from the ground, no bigger than your fist.");
 
@@ -67,7 +67,7 @@ function encounterLandmines():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function encounterLandminesAsSmuggler():void
+public function encounterLandminesAsSmuggler():void
 {
 	output("\n\nAs you’re making your way through the caverns connecting the myr front lines, your keen eyes spot something metallic sticking up from the ground, just a half-inch worth of steel. A pressure sensor?");
 	

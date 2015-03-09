@@ -832,7 +832,7 @@ public function tailCockPegTheZil():void {
 //This is an additional on-victory sex scene for the male zil. Requires a cock. Should be suitable for taurs as long as they have front-mounted genitalia. Contains some brute/bimbo dialogue too.
 //-Susumu
 //Blowjob Time.
-function getABJFromAManzil():void
+public function getABJFromAManzil():void
 {
 	clearOutput();
 	userInterface.showBust("ZIL");

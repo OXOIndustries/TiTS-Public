@@ -268,3 +268,9 @@ public function gildenmereCornerStreetBonus():Boolean
 	//No explosion? Do normal street corner.
 	return southwestMushroomParkBonus();
 }
+
+/* Wetraxxel Duder */
+public function wetraxxelCavesBonusFunc():Boolean
+{
+	return false;
+}

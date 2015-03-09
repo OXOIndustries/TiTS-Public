@@ -82,7 +82,7 @@ public function celiseFeedingRouter():void {
 }
 
 //Send Away
-function sendCeliseAway():void
+public function sendCeliseAway():void
 {
 	clearOutput();
 	showCelise();
@@ -131,7 +131,7 @@ function sendCeliseAway():void
 }
 
 //Approach Celise in Tavros
-function approachNonCrewCelise():void
+public function approachNonCrewCelise():void
 {
 	clearOutput();
 	showCelise();
@@ -151,7 +151,7 @@ function approachNonCrewCelise():void
 }
 
 //Join Crew
-function rejoinTheCrewCelise():void
+public function rejoinTheCrewCelise():void
 {
 	clearOutput();
 	showCelise();
@@ -167,7 +167,7 @@ function rejoinTheCrewCelise():void
 }
 
 //Leave
-function leaveCeliseOnTavrosYouMonster():void
+public function leaveCeliseOnTavrosYouMonster():void
 {
 	clearOutput();
 	showCelise();
@@ -1144,7 +1144,7 @@ public function getDrainedSexyTimes():void {
 
 //available for every type of Celise and every PC except unsexed
 //the scene
-function zeiksCeliseSubmersionTechnique():void
+public function zeiksCeliseSubmersionTechnique():void
 {
 	clearOutput();
 	showName("\nCELISE");
