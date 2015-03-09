@@ -5,12 +5,22 @@ public function gigaCeliseTransform():void
 	showCelise();
 	author("Gardeford");
 	//(first time)
-	output("You decide to tell Celise about an idea you’ve been mulling over. The viridian slime-girl raises an eyebrow as you ask her just how much she can alter that gooey body of hers.");
-	output("\n\n<i>“Why do you ask?”</i> she questions, giving you a curious look and a sly grin. You explain to her that you want to make that lower blob she has into a mass of tentacles, as many as she can get. As you describe what you want, Celise’s eyes seem to glaze over.");
-	output("\n\n<i>“As many as... I’d need, like, A LOT more food when I’m eating. Are you sure you can handle that?”</i> she says with a tone somewhere between giddy and dazed. You imagine she’s thinking of just what she could do with a body like that. Smiling assertively, you assure her you wouldn’t ask for her to do it unless you knew that you could handle it. What could go wrong?");
-	output("\n\nCelise returns your smile with an added giggle, but then her expression becomes serious. Her body begins to quiver slightly and her eyes close just before thin tendrils branch out from the blob that serves as her lower body, gaining thickness as they grow further from the base. More tentacles keep appearing until the ball of goo is nearly non-existent.");
-	output("\n\nTo your surprise, you see the emerald goo girl’s breasts shrink to make a few more tentacles, leaving her with a much smaller B-cup chest. The many tendrils that have formed hold Celise’s upper body roughly eight feet in the air and bring her total height to nearly twelve feet. The grass green tentacles drip goo from their tips every so often, the little flecks slowly sliding back into the main mass after hitting the floor.");
-	output("\n\nThe now rather monstrous goo girl shivers with a moan of delight. Celise cups her smaller breasts in each hand and pinches the dark nipples until a ripple passes through her gelatinous form. She opens her eyes and gives you a look of unmitigated hunger. <i>“Is this alright?”</i> she asks, her lust made obvious in the sound of her voice.");
+	if(flags["CELISE_GIGAED"] == undefined)
+	{
+		output("You decide to tell Celise about an idea you’ve been mulling over. The viridian slime-girl raises an eyebrow as you ask her just how much she can alter that gooey body of hers.");
+		output("\n\n<i>“Why do you ask?”</i> she questions, giving you a curious look and a sly grin. You explain to her that you want to make that lower blob she has into a mass of tentacles, as many as she can get. As you describe what you want, Celise’s eyes seem to glaze over.");
+		output("\n\n<i>“As many as... I’d need, like, A LOT more food when I’m eating. Are you sure you can handle that?”</i> she says with a tone somewhere between giddy and dazed. You imagine she’s thinking of just what she could do with a body like that. Smiling assertively, you assure her you wouldn’t ask for her to do it unless you knew that you could handle it. What could go wrong?");
+		output("\n\nCelise returns your smile with an added giggle, but then her expression becomes serious. Her body begins to quiver slightly and her eyes close just before thin tendrils branch out from the blob that serves as her lower body, gaining thickness as they grow further from the base. More tentacles keep appearing until the ball of goo is nearly non-existent.");
+		output("\n\nTo your surprise, you see the emerald goo girl’s breasts shrink to make a few more tentacles, leaving her with a much smaller B-cup chest. The many tendrils that have formed hold Celise’s upper body roughly eight feet in the air and bring her total height to nearly twelve feet. The grass green tentacles drip goo from their tips every so often, the little flecks slowly sliding back into the main mass after hitting the floor.");
+		output("\n\nThe now rather monstrous goo girl shivers with a moan of delight. Celise cups her smaller breasts in each hand and pinches the dark nipples until a ripple passes through her gelatinous form. She opens her eyes and gives you a look of unmitigated hunger. <i>“Is this alright?”</i> she asks, her lust made obvious in the sound of her voice.");
+		flags["CELISE_GIGAED"] = 1;
+	}
+	else
+	{
+		//Repeat transformation
+		output("You ask Celise how she feels about becoming a tentacle monster again. She lights up at your request, immediately beginning the transformation. The amorous goo gains height as the blob of her lower body spreads out into a plethora of twisting tendrils, Massive FF-cups shrinking nearly ten sizes to perky B’s.");
+		output("\n\n<i>“So good,”</i> she sighs with a shudder as she completes the changes. The emerald goo-girl stands at twelve feet tall, looking down at you with a dazed smile, the tips of her smaller tendrils brushing eagerly against your body.");
+	}
 	flags["GIGACELISE"] = 1;
 	processTime(9);
 	gigaCeliseMenu();
@@ -53,8 +63,14 @@ public function shrinkBackToNormalCelise():void
 {
 	clearOutput();
 	showCelise();
-	author("Fenoxo");
-	output("Gardeford didn't write this shit, but she's small now. Come on, slacker!");
+	author("Gardeford");
+	output("You tell Celise you want her to return to her normal form. The beryl beauty looks saddened for a moment, but nods.");
+	output("\n\n<i>“Are you sure? Can we do this again sometime?”</i> she asks hopefully, begining to shrink even as she asks. As she shrinks to a low enough height you ");
+	if(pc.tallness >= 60) output("pat her on the head");
+	else output("pat the growing blob at her base");
+	output(", assuring her that you might be up for trying it again sometime, and even if you don’t you’ll be sure to feed her plenty in this form. The viridian venus grins at the prospect, giggling at your touch. Her FF-cups return with jiggly vigor, emerald nipples sinking back into the gooey expanses along with the last of the many tendrils.");
+
+	output("\n\n<i>“All done!”</i> she exclaims as her body finishes reverting.");
 	flags["GIGACELISE"] = undefined;
 	clearMenu();
 	addButton(0,"Next",celiseFollowerInteractions);
@@ -401,6 +417,7 @@ public function tentacleMassageFunShit():void
 {
 	clearOutput();
 	showCelise();
+	author("Gardeford");
 	output("Adventuring is hard work.");
 	output("\n\nYou plop down onto your pleasantly soft bed and breathe a large sigh. Your muscles ache so much you want nothing but a nap, but on top of that you’re so horny that you can’t imagine getting any rest at all. You ");
 	if(!pc.isNude()) output("manage to strip out of your garments and ");
@@ -555,6 +572,7 @@ public function gooPCsAreFun():void
 {
 	clearOutput();
 	showCelise();
+	author("Gardeford");
 	output("You ask Celise if she’s up for some melty goo fun. She claps excitedly and nods, her tentacles stretching eagerly toward you. You walk forward, feeling her warm body caressing your [pc.legs] before they melt together. The forest of tentacles parts as you walk through it, slowly mixing yourself with the emerald galotian. She sighs above you as your body slides through her. You duck inside, melting and swimming through the mass of tendrils to approach the center");
 	output("\n\nThe feeling is amazing, like being touched over every inch of your body by her lukewarm goo. ");
 	if(pc.skinTone != "green") output("Your colors mix with hers, creating vibrant patterns in the dark green liquid.");

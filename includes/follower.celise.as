@@ -1174,7 +1174,7 @@ function zeiksCeliseSubmersionTechnique():void
 
 	output("\n\n“<i>[pc.name]? W-what...</i>” Celise stammers as you squeeze through her gooey cleavage, sinking further and further into the mounds. You wiggle your ass a bit more, forcing it into her gooey undercarriage");
 	//(giga celise option)
-	if(9999) output("; her tentacles squirm out from beneath you and reform along the edges of your body, making your submersion a ticklish affair");
+	if(flags["CELISE_GIGAED"] == 1) output("; her tentacles squirm out from beneath you and reform along the edges of your body, making your submersion a ticklish affair");
 	output(". “<i>Oh my,</i>” she gasps, finally on the same page as you. Her body flows to the sides, lowering you into the depression left behind, and the goo around you quivers, uncontrolled, as Celise emits a low moan.");
 
 	output("\n\n“<i>Whoopsie,</i>” she giggles, hand over her mouth. It’s almost as if the unflappable woman were embarrassed at this surprising turn of events. You spoon her gooey flesh liberally over yourself as she lowers you the rest of the way, and, with a shift and a slurp, you’re completely inside. Her voluminous breasts ");
