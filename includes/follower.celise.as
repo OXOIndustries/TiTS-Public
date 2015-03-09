@@ -113,7 +113,7 @@ function sendCeliseAway():void
 		else if(rand(8) == 0) output("red-haired half-ausar");
 		else if(rand(7) == 0) output("moo-cow girl and her dick-girl friend");
 		else if(rand(6) == 0) output("weird merc with the crazy eyes");
-		else if(rand(5) == 0) output("that weird man-herm guy");
+		else if(rand(5) == 0) output("weird man-herm guy");
 		else if(rand(4) == 0) output("egg-laying girl");
 		else if(rand(3) == 0) output("mean purple dick-girl");
 		else if(rand(2) == 0) output("fluffy panda");

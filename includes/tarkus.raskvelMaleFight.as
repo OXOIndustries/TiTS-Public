@@ -1,8 +1,4 @@
-﻿//9999 THINGS TO DO:
-//MOD IN CODEX UNLOCK.
-
-
-//Plans/Ideas
+﻿//Plans/Ideas
 /**Three raskvel scavenging some junk. Possibly have a chance mechanic as to how they’re predisposed to you. They don’t care (low chance of that m8), they offer sexy times, they offer a gud deal on the junk, they want to get paid like the female.
 
 *In any case, group fun. Submissive gang bang, high libido triple buttfuck.
@@ -61,6 +57,11 @@ public function raskvelGangEncounter():void
 	showRaskGang();
 	output("\n\nThere’s a lot of banging and cheerful shouting emanating from the big, rambling pile of junk directly in front of you. A red-scaled, massive-eared head pops out of the cockpit of a rusted hovercraft, swiftly followed by the rest of a squat form, hauling an over-sized screwdriver with it. He pauses when he sees you.");
 	output("\n\n<i>“Oh! Hello,”</i> it says. The echoing chatter quiets and two other similar figures clamber into view to have a good stare. You recognize them as male raskvel: the hyperactive, dwarfish natives of this planet that you met plenty of back at Novahome. These three are looking down at you from their pile of trash with a mixture of mischievousness and bonhomie, smirks playing on their ruddy lips like they are all about to burst into laughter. Whether it’s with you or at you is difficult to tell.");
+	if(CodexManager.entryUnlocked("Raskvel"))
+	{
+		output("\n\nBeeping, your codex alerts you that this is a male of the raskvel race, just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i>");
+		CodexManager.unlockEntry("Raskvel");
+	}
 
 	//Gud Deal
 	//30% Chance. Does not proc if PC already has junk prize on them
