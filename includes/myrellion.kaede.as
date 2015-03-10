@@ -27,7 +27,7 @@ public function findKaedeOnMyrellion():Boolean
 	
 	if (hasMetKaede() && flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KAEDE_MYRELLION_ENCOUNTER"] == undefined)
 	{
-		output("You see a familiar half-ausar standing in the transport hub, followed closely by a hover-platform laden with crates and boxes stacked head-high, all bearing the label of the RhenWorld mining company. Seeing you, the svelte red-head smiles and waves, her tail wagging quickly behind her.");
+		output(" You see a familiar half-ausar standing in the transport hub, followed closely by a hover-platform laden with crates and boxes stacked head-high, all bearing the label of the RhenWorld mining company. Seeing you, the svelte red-head smiles and waves, her tail wagging quickly behind her.");
 		addButton(0, "Kaede", encounterKaedeOnMyrellion, undefined, "Greet Kaede", "Go say “Hi” to your friend.");
 		retVal = true;
 	}
@@ -216,7 +216,7 @@ public function kaedeMyrellionTalkHerself():void
 	clearOutput();
 	kaedeHeader();
 
-	if (hasFuckedKaede()) output("<i>“You know, even after we’ve gotten so close, I still don’t know much about </i>you<i> you say, subtly reaching down until your hand brushes along the curve of Kaede’s ass. She gasps, but as your fingers dance across her jeans, she certainly doesn’t stop you.");
+	if (hasFuckedKaede()) output("<i>“You know, even after we’ve gotten so close, I still don’t know much about </i>you<i>”</i> you say, subtly reaching down until your hand brushes along the curve of Kaede’s ass. She gasps, but as your fingers dance across her jeans, she certainly doesn’t stop you.");
 	else output("So, tell me a little bit about yourself,”</i> you suggest, leaning a little closer to the cute half-ausar.");
 	
 	output("\n\nKaede blinks. <i>“You, uh, you want to know about me?”</i>");
@@ -472,7 +472,7 @@ public function kaedeMyrellionFuckAss():void
 	output("\n\n<i>“Someone’s happy to see me,”</i> she teases, wrapping her slender fingers around your [pc.cock]. You suck in a sharp breath as the halfbreed dog-girl’s claws caress the tender flesh of your prick, but she’s nothing but gentle with you. Eager, even, as she gives your length a few experimental tugs. Smiling");
 	if (pc.tallness > 60) output(" up");
 	else if (pc.tallness < 45) output(" down");
-	output(" at you, Kaede shifts her grip a bit, scooping up her of knotty puppyprick. It’s way hotter than you expected, feeling like eight inches of fire against your [pc.cock]... but when Kaede’s fingers wrap them tight together and start to stroke, that all fades to raw pleasure.");
+	output(" at you, Kaede shifts her grip a bit, scooping up her knotty puppyprick. It’s way hotter than you expected, feeling like eight inches of fire against your [pc.cock]... but when Kaede’s fingers wrap them tight together and start to stroke, that all fades to raw pleasure.");
 	
 	output("\n\n<i>“Is that alright?”</i> she asks, drawing your eyes back up to her face. She’s blushing like a rose, chewing on her lower lip between gentle tugs of your cock.");
 	
@@ -485,7 +485,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\nUnder your ministrations, you can feel her cock throbbing and twitching against your own prick. You don’t doubt the two of you could find a very pleasurable release just like this, but you’ve got other things in mind for the cute little half-ausar.");
 	
-	output("\n\nBetween squeezing and caresses of her body, your hands meander back down to her thighs, then into your lap. You gently peel Kaede’s fingers off from around your [pc.cock] and guide your stiff shaft back between her legs. Her breath catches when your cock slides up between her cheeks, crown brushing the tight little hole of her hole.");
+	output("\n\nBetween squeezing and caresses of her body, your hands meander back down to her thighs, then into your lap. You gently peel Kaede’s fingers off from around your [pc.cock] and guide your stiff shaft back between her legs. Her breath catches when your cock slides up between her cheeks, crown brushing the tight little ring of her hole.");
 
 	output("\n\n<i>“Ah! Hold on a sec,”</i> Kaede moans. You grin as Kaede moves a bit, reaching behind you to a small table on the other side of the couch - which has the added effect and pressing her breasts into your face. When she leans back, she’s got a small bottle of lube in her hand which she squirts out onto her palm. She gives you a playful wink and slips her lubed up hand back around her ass, and grabs your cock again.");
 	
@@ -504,7 +504,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\nChuckling, you say that it’s normally you who’d be asking that. Kaede giggles, shifting her legs to get a better hold on the couch before she starts to move her hips. You find yourself sucking in a sharp breath as Kaede’s hips lift out of your lap, carrying her a few inches along the length of your shaft, and oh so slowly back down again. With every inch of motion, her cock twitches cutely in your hand, dragging through your fingers as her hips move, then thrust back in again. Flashing Kaede a little grin, you grab the bottle of lube off of her and squirt a little into your own hand, giving her cute canid prick a nice and slick tunnel to fuck just like she’s giving you.");
 	
-	output("\n\nWith that little encouragement to urge her on, Kaede starts to move faster. She wraps her arms around your neck, pulling herself into your lips for a long, drawn-out kiss. You accept it eagerly, relaxing into the halfbreed’s embrace and letting her ride you. Soon, her occasional little moans turn into a symphony of passionate cries and lusty groans as your cock spears her over and over again, and her hand jerks her shaft until she’s babbling <i>“C-cumming cumming cumming!”</i>");
+	output("\n\nWith that little encouragement to urge her on, Kaede starts to move faster. She wraps her arms around your neck, pulling herself into your lips for a long, drawn-out kiss. You accept it eagerly, relaxing into the halfbreed’s embrace and letting her ride you. Soon, her occasional little moans turn into a symphony of passionate cries and lusty groans as your cock spears her over and over again, and your hand jerks her shaft until she’s babbling <i>“C-cumming cumming cumming!”</i>");
 	
 	output("\n\nThat was fast! You give the edging half-ausar an understanding look and move your own hand a little quicker, jacking her shaft faster than she can bounce her hips. A few seconds of that treatment, and Kaede’s throwing her head back and arching her spine, howling as a streak of creamy white squirts out and splatters onto your belly. You just keep sliding your hand across her lubed-up shaft until the climactic cumshut trickles down to a little drool of watery aftershocks that dribble onto your fingers.");
 	
