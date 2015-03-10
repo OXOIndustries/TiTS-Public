@@ -385,6 +385,8 @@ public function lieveTalkMenu():void
 	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve's harem, and Trench Wives in general.");
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
+	
+	addButton(14, "Back", lieveMenu);
 }
 
 public function lieveTalkNoMansLand():void
