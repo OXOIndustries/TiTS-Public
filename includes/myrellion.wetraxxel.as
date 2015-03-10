@@ -170,7 +170,14 @@ public function encounterWetraxxelBrawler():void
 
 public function wetraxxelBrawlerAI():void
 {
+	var attacks:Array = [];
 
+	attacks.push(wetraxxelBrawlerOneTwoPunch);
+	attacks.push(wetraxxelBrawlerBodyslam);
+	if (pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerElbowDive);
+	if (!pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerSweepKick);
+	if (!pc.hasStatusEffect("Staggered")) attacks.push(wetraxxelBrawlerDropKick);
+	if (!pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerLariat);
 }
 
 public function wetraxxelBrawlerOneTwoPunch():void
@@ -443,15 +450,15 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 {
 //PCs of any gender. Submission 4+.
 
-	output("\n\nYou may have beaten the brawler, but after all the times he could have killed you for your trespassess - much less taken you in for a life of sexual slavery - you feel you owe the towering bug-man a little respect. And maybe a little service, too. You slowly approach the wetraxxel, stripping out of your [pc.gear] until you’re as naked as he is. Except for that pesky loincloth, anyway. His small black eyes regard you with cool curiosity while you strip, softening when you start to approach.");
+	output("\n\nYou may have beaten the brawler, but after all the times he could have killed you for your trespasses - much less taken you in for a life of sexual slavery - you feel you owe the towering bug-man a little respect. And maybe a little service, too. You slowly approach the wetraxxel, stripping out of your [pc.gear] until you’re as naked as he is. Except for that pesky loincloth, anyway. His small black eyes regard you with cool curiosity while you strip, softening when you start to approach.");
 	
 	output("\n\n{if submission 6+: <i>“You’re learning your place,”</i> the wetraxxel grunts, an oddly approving tone in his voice that sends a shiver of happiness through your increasingly submissive brain.} You slink down onto your hands and [pc.knees], gently nudging the wetraxxel’s knees apart to reveal the thick brown strip of his loincloth. You eagerly lift the obstructing bit of cloth, revealing the soft shaft of chitinous bug-dick beneath it. Licking your lips, your toss the loincloth aside and urge the wetraxxel to sit up on an outcropping of rock, facing you with legs spread.");
 	
 	output("\n\nOnce the towering bug-man has complied, giving you absolute access to his over-sized alien schlong, you take the lead. Your hands slide up his chitinous thighs, drawing yourself inexorably towards his crotch. Your fingers reverently cup the plated orbs of the brawler’s balls, rolling the churning sack around in your fingers. They’re like a pair of apples, swollen and thick with unspent seed, awaiting a fertile hole to sow. {if PC doesn’t have a cunt (w/o occupancy): You may not have one of those, but you’re sure your lips will make a more than adequate substitute //elseif free cunt: For now, though, you’re sure he’ll be able to make do with your lips instead. You did win this time, after all...}");
 	
-	output("\n\nSubjected to your teasing hands, the brawler bug grunts with pleasure. His plated fingers dig into the rock, and his mammoth shaft stirrs before your eyes. You watch with glree as the pronged crown of the wetraxxel’s dick starts its slow but inexorable journey towards your [pc.lips], the three slits on its head looking like dark little eyes gazing down upon you. After a moment’s restraint, your willpower seems to evaporate as the alien prick draws nearer, bringing with it the thick and musky odor of masculinity you’ve come to crave.");
+	output("\n\nSubjected to your teasing hands, the brawler bug grunts with pleasure. His plated fingers dig into the rock, and his mammoth shaft stirs before your eyes. You watch with glee as the pronged crown of the wetraxxel’s dick starts its slow but inexorable journey towards your [pc.lips], the three slits on its head looking like dark little eyes gazing down upon you. After a moment’s restraint, your willpower seems to evaporate as the alien prick draws nearer, bringing with it the thick and musky odor of masculinity you’ve come to crave.");
 	
-	output("\n\nReverently, you open your [pc.lips] and reach out with your [pc.tongue], licking across the valley of fleshy cockhead. Between your tongue’s caress and your hands’ worshipful groping of his sack, the wetraxxel can’t surpress a groan of pleasure. His cock rises faster, meeting your lips and parting them with practiced ease. You barely have time to blink before his pronged cockhead is battering the back of your throat, and one of his strong hands is on top of your head trying to force you down on more of his monumental man-meat.");
+	output("\n\nReverently, you open your [pc.lips] and reach out with your [pc.tongue], licking across the valley of fleshy cockhead. Between your tongue’s caress and your hands’ worshipful groping of his sack, the wetraxxel can’t supress a groan of pleasure. His cock rises faster, meeting your lips and parting them with practiced ease. You barely have time to blink before his pronged cockhead is battering the back of your throat, and one of his strong hands is on top of your head trying to force you down on more of his monumental man-meat.");
 	
 	output("\n\nYou put up a token resistance to his efforts - just enough to say <i>“I’m in charge this time”</i> - before sliding your head as deep down his cock as you can. The pronged cockhead refuses to bend with your throat, battering against the back of your mouth until your tonsils are slathered with a thick glaze of salty-sweet alien pre. The length of cockmeat you can’t swallow down earns the attention of your hands, pumping his shaft from the balls and base all the way to your lips.");
 	
@@ -459,7 +466,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nIt doesn’t take much more to push him over.");
 	
-	output("\n\nThe wetraxxel’s voice comes as a low, graveley grunt that punctuates the silence. His back arches into you, and his cock swells with a sudden surge of seed. You have just enough time to brace for it before the brawler’s orgasm hits you like a tidal wave, flooding your belly with an unstoppable deluge of spunk. You’re forced to swallow as fast as you can to keep up with the torrent, feeling like your whole body is bloating as the apple-sized nutes between the wetraxxel’s legs completely empty into your gut. {if PC has a big belly: And you thought your belly was straining before...}");
+	output("\n\nThe wetraxxel’s voice comes as a low, graveley grunt that punctuates the silence. His back arches into you, and his cock swells with a sudden surge of seed. You have just enough time to brace for it before the brawler’s orgasm hits you like a tidal wave, flooding your belly with an unstoppable deluge of spunk. You’re forced to swallow as fast as you can to keep up with the torrent, feeling like your whole body is bloating as the apple-sized nuts between the wetraxxel’s legs completely empty into your gut. {if PC has a big belly: And you thought your belly was straining before...}");
 	
 	output("\n\nFinally, the huge bug-man’s orgasm abates. You slide off his cock like a well-used condom, flopping to the ground and drooling spunk from your [pc.lips]. Now that’s a meal you wouldn’t mind getting seconds of...");
 	
@@ -478,7 +485,7 @@ public function wetraxxelBrawlerBadEnd():void
 	
 	output("\n\nAfter a long moment, you force yourself to nod. You can’t lie to yourself, much less the masterful man towering over you: you’ve come to enjoy the feeling of utter submission, the forceful surrender and the mind-blowing pleasure you’re rewarded with every time you cross his path. Your {[pc.cock] instinctively stiffens at the thought of another rough fucking at the brawler’s hands,  //[pc.cunt] flushes with an uninvited onset of arousal, starting to soak your thighs at the thought of another brutal fucking at the brawler’s hands. //skin flushes with unbidden arousal, eagerly anticipating another rough fucking from your insectile lover}.");
 	
-	output("\n\nSeeing you nod, the huge wetraxxel grunts and grabs your [pc.gear], stripping you down of all your equipment before he hooks his arms under yours and hefts you up off the ground. You yelp, expectations of sex flipped on their heads as you’re throwing over the brawler’s shoulder like a sack of grain. <i>“No more of your foolishness, then. I tire of having too beat you to give you what you want.”</i>");
+	output("\n\nSeeing you nod, the huge wetraxxel grunts and grabs your [pc.gear], stripping you down of all your equipment before he hooks his arms under yours and hefts you up off the ground. You yelp, expectations of sex flipped on their heads as you’re throwing over the brawler’s shoulder like a sack of grain. <i>“No more of your foolishness, then. I tire of having to beat you to give you what you want.”</i>");
 	
 	output("\n\nYou can’t deny that skipping that particular flavor of foreplay wouldn’t be the worst thing in the world... but something in the wetraxxel’s voice carries a hint of menace in it. You can’t summon up the will to struggle, though: not with your lusts running rampant through you, and his strong, plated hand resting suggestively against your [pc.butt].");
 	
@@ -488,7 +495,7 @@ public function wetraxxelBrawlerBadEnd():void
 	
 	output("\n\nSeveral chitinous, insectile girls perk up at your arrival. The sounds of sexual bliss abates as the harem’s master makes his triumphant return with you in tow. He sets you down with surprising gentleness, planting you on your [pc.feet] and facing his several wives.");
 	
-	output("\n\nThe harem girls look nothing like their master: small even by human standards, every one of them lithe and attractive. Most have small breasts, budding out between gapes in their chestplates; a few are extraordinarily buxom, letting other girls rest their heads against their pillow-like chests. Some of them click their mandible-like mouths at you, while others smile with an unexpected warmth, beckoning you closer.");
+	output("\n\nThe harem girls look nothing like their master: small even by human standards, every one of them lithe and attractive. Most have small breasts, budding out between gaps in their chestplates; a few are extraordinarily buxom, letting other girls rest their heads against their pillow-like chests. Some of them click their mandible-like mouths at you, while others smile with an unexpected warmth, beckoning you closer.");
 	
 	output("\n\nYour wetraxxel master gives you a push towards the women filling the chamber, and turns back to the door. You knew what was coming, but still, your heart seems to fall in your chest when you hear the meaty <i>ka-chunk</i> of the door’s lock settling into place. You’re trapped, naked, and completely at the wetraxxels’ mercies.");
 	
