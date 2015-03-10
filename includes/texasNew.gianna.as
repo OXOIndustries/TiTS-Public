@@ -4106,25 +4106,29 @@ public function hotswapGiannaButts():void
 	output("What do you want to change with Gianna’s hot-swappable genitals? Your choices are limited by what you have given her.");
 	clearMenu();
 	if(gianna.hasCock()) addButton(0,"Normal",hotSwapSomethingWithGianna,"clit","Normal","Have Gianna switch her vagina back to normal, with a standard clit and everything.");
-	else addDisabledButton(0,"Normal","Normal","Gianna's crotch is already at its default configuration.");
+	else addDisabledButton(0, "Normal", "Normal", "Gianna's crotch is already at its default configuration.");
+	
 	if(flags["GIANNA_HAS_HUMAN_COCK"] != undefined)
 	{
 		if(gianna.hasCock(GLOBAL.TYPE_HUMAN)) addDisabledButton(1,"TerranCock","Terran Cock","Gianna already has that type of penis equipped.");
 		else addButton(1,"TerranCock",hotSwapSomethingWithGianna,"humancock","Terran Cock","Have Gianna equip her human-style cock.");
 	}
-	else addDisabledButton(1,"Locked","Locked","Gianna does not have this item yet.");
+	else addDisabledButton(1, "Locked", "Locked", "Gianna does not have this item yet.");
+	
 	if(flags["GIANNA_HAS_HORSE_COCK"] != undefined)
 	{
 		if(gianna.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(2,"HorseCock","Horse Cock","Gianna already has that type of penis equipped.");
 		else addButton(2,"HorseCock",hotSwapSomethingWithGianna,"hoss","Horse Cock","Have Gianna equip her equine cock.");
 	}
-	else addDisabledButton(2,"Locked","Locked","Gianna does not have this item yet.");
+	else addDisabledButton(2, "Locked", "Locked", "Gianna does not have this item yet.");
+	
 	if(flags["GIANNA_HAS_DRAGON_COCK"] != undefined)
 	{
-		if(gianna.hasCock(GLOBAL.TYPE_SNAKE)) addDisabledButton(2,"Drgn.Cock","Dragon Cock","Gianna already has that type of penis equipped.");
-		else addButton(2,"Drgn.Cock",hotSwapSomethingWithGianna,"dragon","Dragon Cock","Have Gianna equip her dragon cock.");
+		if(gianna.hasCock(GLOBAL.TYPE_SNAKE)) addDisabledButton(3,"Drgn.Cock","Dragon Cock","Gianna already has that type of penis equipped.");
+		else addButton(3,"Drgn.Cock",hotSwapSomethingWithGianna,"dragon","Dragon Cock","Have Gianna equip her dragon cock.");
 	}
-	else addDisabledButton(2,"Locked","Locked","Gianna does not have this item yet.");
+	else addDisabledButton(3, "Locked", "Locked", "Gianna does not have this item yet.");
+	
 	addButton(14,"Back",giannaMenu);
 }
 
