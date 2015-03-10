@@ -302,6 +302,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["NYREA BETA"] = new NyreaBeta();
 	}
+	if (!justUpdate || (justUpdate && chars["FROG_GIRL"] == undefined))
+	{
+		chars["FROG_GIRL"] = new FrogGirl();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

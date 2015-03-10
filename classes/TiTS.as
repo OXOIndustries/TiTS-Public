@@ -127,12 +127,14 @@
 		include "../includes/mhenga.crazyCarl.as";
 		include "../includes/mhenga.cuntSnakes.as";
 		include "../includes/mhenga.flahne.as";
+		include "../includes/mhenga.frogGirls.as";
 		include "../includes/mhenga.julianSHaswell.as";
 		include "../includes/mhenga.kelly.as";
 		include "../includes/mhenga.mimbranes.as";
 		include "../includes/mhenga.naleen.as";
 		include "../includes/mhenga.naleenMale.as";
 		include "../includes/mhenga.penny.as";
+		include "../includes/mhenga.roomFunctions.as";
 		include "../includes/mhenga.scrapyard.as";
 		include "../includes/mhenga.syri.as";
 		include "../includes/mhenga.vanae.as";
