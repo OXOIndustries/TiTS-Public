@@ -177,6 +177,8 @@
 		
 		override public function setDefaultSexualPreferences():void
 		{
+			
+			combatGunTurrets.sexualPreferences.setRandomPrefs(4 + rand(3));
 			//Naleen Likes:
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.REALLY_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
