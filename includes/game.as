@@ -1190,7 +1190,7 @@ public function bigBallBadEnd():void
 			output("Your finances aren’t capable of footing the bill, but at least the medical experimentation that pays for it all isn’t too bad.");
 			if(pc.biggestTitSize() >= 1 && rand(2) == 0 && pc.breastRows[0].breasts < 3) 
 			{
-				output("A third breast is a small price to pay, after all.");
+				output(" A third breast is a small price to pay, after all.");
 				pc.breastRows[0].breasts = 3;
 			}
 			else if(pc.balls < 3) 
