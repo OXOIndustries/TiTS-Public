@@ -842,18 +842,17 @@ public function rideNyreaDick():void
 		useAss = true;
 		isFull = false;
 	}
+	else if (pc.findEmptyPregnancySlot() >= 0)
+	{
+		tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot() +"]";
+		useAss = false;
+		isFull = false;
+	}
 	else
 	{
-		if (pc.findEmptyPregnancySlot() >= 0)
-		{
-			tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot() +"]";
-			useAss = false;
-			isFull = false;
-		}
-		else
-		{
-			isFull = true;
-		}
+		tHoleTag = "[pc.asshole]";
+		useAss = true;
+		isFull = true;
 	}
 
 	output("Looking down at the defeated huntress, you can’t help but let your eyes play across her body - the swells of her breasts, barely concealed by the chain bikini-bra she’s sporting, and the tight, flat plane of her belly. And, finally, to the fur-padded bulge in her bottom. You lean over her and hook a finger through the chainmail, slipping her garments down around the stiff, thick rod of her cock straining against it.");
