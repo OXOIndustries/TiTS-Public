@@ -17,8 +17,8 @@
 			
 			this.short = "cockvine";
 			this.originalRace = "cockvine";
-			this.a = "a ";
-			this.capitalA = "A ";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.tallness = 24 + rand(36);
 			this.scaleColor = "green";
 			this.long = "You are trapped by a cockvine. In the heavy darkness of its nest you can just about make out the rapacious plant creature’s limbs writhing busily over the rock and around you: dark green stems thick enough that you cannot get your hand fully around them, tipped with blunt, purple helmet-like heads, oozing white seed from their tips. They are attempting to draw you further downwards, towards the broad trunk of the thing, where it can secure you completely in its grasp. The harder you struggle the more vigorously they in turn seem to act, as if energized by your own movements. The tropical heat and smell of the creature is overwhelming - a heady, cloying herbal atmosphere which seems to permeate through your whole being, making you feel cloudy and limp.";
@@ -27,11 +27,11 @@
 			this.plural = false;
 			this.lustVuln = 0;
 			
-			this.meleeWeapon.attackVerb = "bite";
+			this.meleeWeapon.attackVerb = "lash";
 			this.meleeWeapon.damageType = GLOBAL.PIERCING;
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.damage = 4;
-			this.meleeWeapon.longName = "fangs";
+			this.meleeWeapon.longName = "tendrils";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "glittering scales";
@@ -162,6 +162,7 @@
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Force It Gender");
 			
 			this.cocks = [];
 			this.createCock();

@@ -1604,7 +1604,7 @@ public function displayMonsterStatus(targetFoe:Creature):void
 
 public function showMonsterArousalFlavor(targetFoe:Creature):void 
 {
-	if(targetFoe.lust() < 50) { 
+	if(targetFoe.lust() < 50 || targetFoe.lustVuln <= 0) { 
 		return; 
 	}
 	else if(targetFoe.plural) {
