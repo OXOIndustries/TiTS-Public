@@ -620,7 +620,7 @@ public function bendNaleenOver():void {
 	if(y >= 0) output("s");
 	output(" again and again, stretching her hole");
 	if(y >= 0) output("s");
-	output(" until her pussy's drooling slime into the dirt between hammering thrusts. Her fingers dig into the sodden ground, biting her lip to keep from screaming - too often, anyway - as you fuck her faster and harder for every one of her cute moans and pleasured cries. The white-furred crests of her ass jiggle lewdly as your crotch slaps into it, each thrust sending big full bubble butt bouncing.");
+	output(" until her pussy's drooling slime into the dirt between hammering thrusts. Her fingers dig into the sodden ground, biting her lip to keep from screaming - too often, anyway - as you fuck her faster and harder for every one of her cute moans and pleasured cries. The white-furred crests of her ass jiggle lewdly as your crotch slaps into it, each thrust sending her big full bubble butt bouncing.");
 	
 	output("\n\n<i>“Yes! Yeeeessss!”</i>  the naleen cries, finally losing all control as you slam your cock");
 	if(y >= 0) output("s");
