@@ -706,14 +706,15 @@ public function pcVictoryOverNyrea():void
 	}
 
 	output("\n\n<i>“No...”</i> she moans, going almost limp in your grasp.");
-	if (foes[0] is NyreaBeta) output(" <i>“She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
+	if (foes[0] is NyreaBeta) output(" She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
 	else if (foes[0] is NyreaAlpha) output(" <i>“Go ahead,”</i> the alpha nyrea growls, looking you dead in the eye, <i>“I’ve taken my share of conquests... I know how this goes. You won, fair and square. I won’t resist you... this time.”</i>");
 
 	clearMenu();
 	if (pc.hasCock()) addButton(0, "Pitch Anal", fuckNyreaButts);
 	else addDisabledButton(0, "Pitch Anal");
 	addButton(1, "Ride Cock", rideNyreaDick);
-	addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant. 
+	if (pc.hasTailCock()) addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant.
+	else addDisabledButton(2, "Docking", "Docking", "Requires a tailcock.");
 }
 
 public function fuckNyreaButts():void
@@ -770,7 +771,7 @@ public function fuckNyreaButtsGetHerOff():void
 	output("\n\nYou break the kiss, shifting down to the peak of one of her bountiful breasts. She tenses as your hand squeezes the mound, wincing with sudden sensation as you draw a bead of her milk out and lap it up.");
 	if (foes[0] is NyreaBeta && foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“Wh-what are you...”</i> the nyrea whines as you plant your lips on her teat, starting to suckle. <i>“That’s for my hatchlings...”</i>");
 	else if (foes[0] is NyreaAlpha && foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“What, you actually like that? You big baby...”</i> the alpha sighs, though you think she’s just trying not to moan as you settle into her tits, suckling on the puffy, beading teats.");
-	output(" Between your hand and lips, both working ceaselessly on her tits, the nyrea’s soon unable to hold back, letting out a long moan as you drink from her, enjoying the creamy bounty. As she finally gives in, her ass relaxes around your [pc.cock], letting you start to thrust again: slowly at first, but quickly mounting to a steady hammer-fall of a pace that has your conquest moaning opening, hands digging at the stone for purchase as you pound her ass.");
+	output(" Between your hand and lips, both working ceaselessly on her tits, the nyrea’s soon unable to hold back, letting out a long moan as you drink from her, enjoying the creamy bounty. As she finally gives in, her ass relaxes around your [pc.cock], letting you start to thrust again: slowly at first, but quickly mounting to a steady hammer-fall of a pace that has your conquest moaning openly, hands digging at the stone for purchase as you pound her ass.");
 	
 	output("\n\nHer ass wrings and contracts, squeezing hard around your cock, varying her hole between almost impossible to move in and loose enough to take you to the hilt in a single thrust. Every movement you make, though, is rewarded with an ever-louder moan or grunt from the nyrea huntress. Her voice crescendos as you redouble your attentions on her cock, encasing it in a double-handed grip and pumping to the beat of your thrusting, working to get you both off. You’re quickly rewarded with a spurt of sticky pre that drools down onto your fingers, quickly making itself useful as lube when you pick up the pace, hammering into her ass and pumping her prick until you’re both moaning wildly, riding the brink of orgasm, clutching and clawing at each other as the pressure and need rises with every thrust.");
 	
@@ -1066,7 +1067,7 @@ public function nyreaTailcockDocking():void
 	
 	output("\n\nAs if on command, you shoot your load into her. Your tail shivers, swells, and busts its nut, flooding the nyrea’s hole with [pc.cum]. Her head rolls back, a cry of exultation leaving her lips as you fuck your jizz deep inside her, slathering her eggs with seed.");
 	if (pc.hasCock()) output(" Her thighs and legs get a coating of spunk a second later as her hands work your [pc.cock] to climax, milking out a thick stream of [pc.cumNoun] from your throbbing erection.");
-	output(" She revels in the feeling of your [pc.cumType] inside her");
+	output(" She revels in the feeling of your [pc.cumVisc] inside her");
 	if (pc.hasCock()) output(" and on her skin and chitin");
 	output(", purring like a wanton slut as you fill her.");
 	
