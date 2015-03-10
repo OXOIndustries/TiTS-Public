@@ -217,6 +217,8 @@ public function lieveMenu():void
 
 	if (hasFuckedLieve()) addButton(5, "Appearance", lieveAppearance);
 	else addDisabledButton(5, "Appearance");
+	
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function lieveAppearance():void
