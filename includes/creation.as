@@ -598,7 +598,7 @@ public function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Fertility"))
 	{
-		pc.fertilityRaw -= 0.15;
+		pc.fertilityRaw -= 1.15;
 		pc.removePerk("Fertility");
 	}
 	if(pc.hasPerk("Milky"))
