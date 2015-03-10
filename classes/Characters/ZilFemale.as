@@ -203,7 +203,7 @@
 			
 			kGAMECLASS.userInterface.showBust("ZILFEMALE");
 			kGAMECLASS.setLocation("FIGHT:\nFEMALE ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatZilFemale.sexualPreferences.setRandomPrefs(3 + rand(3));
+			combatZilFemale.sexualPreferences.setRandomPrefs(5 + rand(3));
 			
 			// Codex shit
 			CodexManager.unlockEntry("Zil");

@@ -174,7 +174,7 @@
 			
 			kGAMECLASS.userInterface.showBust("ZIL", "ZIL");
 			kGAMECLASS.setLocation("FIGHT:\nTWO ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatZilPack.sexualPreferences.setRandomPrefs(3 + rand(3));
+			combatZilPack.sexualPreferences.setRandomPrefs(6,2);
 			
 			kGAMECLASS.foes.push(combatZilPack);
 		}
