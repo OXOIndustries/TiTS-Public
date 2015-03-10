@@ -178,8 +178,8 @@
 		{
 			var combatMachina:HandSoBot = this.makeCopy();
 			
-			//kGAMECLASS.userInterface.showBust("NALEEN_MALE");
-			kGAMECLASS.setLocation("FIGHT:\nMACHINA", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			kGAMECLASS.userInterface.showBust("FIREWALL_BATTLE");
+			kGAMECLASS.setLocation("FIGHT:\nFIREWALL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			//combatMachina.setDefaultSexualPreferences();
 			
 			kGAMECLASS.foes.push(combatMachina);

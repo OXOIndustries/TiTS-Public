@@ -16,6 +16,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/firewall.png", mimeType = "image/png")]
+		public var Bust_FIREWALL:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/firewall_battle.png", mimeType = "image/png")]
+		public var Bust_FIREWALL_BATTLE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
@@ -26,8 +31,8 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/juro.png", mimeType = "image/png")]
-		public var Bust_JURO:Class;
+		//[Embed(source = "../../../assets/images/npcs/juro.png", mimeType = "image/png")]
+		//public var Bust_JURO:Class;
 
 		//[Embed(source = "../../../assets/images/npcs/kara.png", mimeType = "image/png")]
 		//public var Bust_KARA:Class;

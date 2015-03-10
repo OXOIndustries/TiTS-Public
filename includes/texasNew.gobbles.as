@@ -1,8 +1,9 @@
-﻿public function gobblesHeader():void
+﻿public function gobblesHeader(nude:Boolean = false):void
 {
 	if(flags["CANADA_EXPLAINED"] == undefined) showName("TURKEY\nGIRL");
 	else showName("\nCANADA");
-	showBust("GOBBLES");
+	if(nude) showBust("CANADA_NUDE");
+	else showBust("CANADA");
 	author("Savin");
 }
 
@@ -98,7 +99,7 @@ public function noThanksGobbles():void
 public function orderUpOneTurkeySlut():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("You nod and tell the cow-bird-girl that you’ll give her a hand. Her breath catches, a huge smile spreading out on her lips. <i>“Really? Oh, thank you so much! It’s so hard to find somebody to help me.”</i>");
 	
@@ -147,7 +148,7 @@ public function orderUpOneTurkeySlut():void
 public function noThanksGobblesNoPie4Me():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("You tell the syrupy cow-gal that you think you’ve had enough of her unique blend for today.");
 	
@@ -167,7 +168,7 @@ public function noThanksGobblesNoPie4Me():void
 public function orderUpOneTurkeyCuntPie():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("You’ve got to try this.");
 	
@@ -213,7 +214,7 @@ public function orderUpOneTurkeyCuntPie():void
 public function nahYouAintSuckinMuhDickGobbles():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("\n\nYou tell the syrupy cow-gal that you think you’ve had enough of her unique blend for today.");
 	
@@ -230,7 +231,7 @@ public function nahYouAintSuckinMuhDickGobbles():void
 public function orderUpOneCumshakeForTurkeySlut():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("You slip off your [pc.gear] and pat your thigh, telling the cow that you’d appreciate a little help with your [pc.cock]. You hadn’t even noticed how horny you were getting, but now that she’s drawn attention to it... hoo boy. She chews her lip, giving you a playful grin as she slips down to her knees");
 	if(pc.legCount > 1) output(" between");
@@ -266,7 +267,7 @@ public function orderUpOneCumshakeForTurkeySlut():void
 public function cumOnTurkeyslutsTitties():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("Your body inevitably answers for you. Your whole frame jerks forward as your cock unleashes its pent up load across the cow’s waiting chest. The first shot takes her across the chin, splattering into a pretty pearl necklace around her neck. The rest of your orgasm is lost in her cleavage, trapped between two monumental jugs of titflesh. She lets out another moo as you bust your nut all over her rack, smiling up at you with sated, heavy lids over her blue eyes.");
 	
@@ -287,7 +288,7 @@ public function cumOnTurkeyslutsTitties():void
 public function cumInTurkeyslutsCunt():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("You answer by grabbing her under the arms and hefting the buxom cow up onto your lap, spearing her on your cock. She gives a shrill, startled moo as you [pc.cock] is rammed inside her, spreading that maple lead of pubes wide around your member. <i>“That.. that works too,”</i> she moans, settling onto your lap and locking your member in a silken, spicy vice. That’s all you needed to cum, and you quickly find yourself busting your nut into the cow’s welcoming hole. She gives a little groan as your first shot spills into her womb, but after that she’s all doe eyes and eager shifts of her hips, milking you just as easily with her pussy as with her breasts.");
 
@@ -380,7 +381,7 @@ public function notNowGobblesIDontWantToGoForRound2():void
 public function milkGobblesRepeat():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	//Spend some quality time with Canada... and those big, succulent breasts of hers.
 	output("You give Canada’s boob a playful squeeze and tell her that, before the two of you do anything, those big jugs of hers need to be milked. They look about ready to burst!");
 	output("\n\nShe giggles and presses herself a little tighter to you. <i>“Thanks. I hate asking strangers to help me... they’re not normally as nice or gentle as you.”</i>");
@@ -435,7 +436,7 @@ public function milkGobblesRepeat():void
 public function fuckAmeriturkeyGobbleButt():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	output("You give your answer by slipping one of your hands from Canada’s teats to the hem of her lacy white panties, or what’s left of them after she’s soaked them completely through, and tug them down. She gives a little gasp as the elastic band brushes the <i>“base”</i> of her tail, firmly planted in the nicely stretched hole of her ass, but coos happily as you pull her panties and garter off, leaving her with a bare pussy fringed with a dainty tuft of red hair, and a pair of tall white stockings the nicely frame the full moons of her rump. You lick your fingers clean before sliding them into her - her lips part easily around you, though her whole body eases forward under the gentle pressure, culminating in a mooing moan and a huge spurt of amber syrup from her teats as the shock of pleasure spreads through her.");
 	output("\n\nCanada wiggles her hips for you and leans back into your hand, taking your digits as deep as they’ll go. <i>“That’s nice,”</i> she purrs, slowly humping back against you. <i>“Get me nice and stretchy, okay?”</i>");
 	output("\n\n<i>That</i> you can do. You slip another finger in, and another, and spread ‘em wide. The cow-girl cries out as you stretch her pink hole to its limit, spreading her lips out until you can see trickles of moisture drool past your digits and onto the hay-coated floor. The turkey-cow moans and moos, squeezing her tits and thrusting back against your hand as hard as she can, desperate for more pleasure.");
@@ -492,7 +493,7 @@ public function fuckAmeriturkeyGobbleButt():void
 public function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	output("You let the buxom cow-turkey have her fun, holding your lower body steady so she has something to rub back against. She gives you a grateful little smile over her shoulder, which quickly turns into an O-shaped ring of ecstasy as you squeeze her nipples harder to the rhythm her hips are setting.");
 	output("\n\nHer movements become faster, more frantic, over time. The bucket fills quickly, however, spurred on by the waves of pleasure crashing through Canada’s overstimulated body. She takes her milking like a champ, mooing and squealing excitedly as your fingers move faster, tug and squeeze harder to get every drop of dark amber from her deep reserves. The more she grinds against you, and the more urgent your own motions become, the thicker and stickier her syrupy offering becomes. You can’t help but bring a few sticky fingers to your lips to taste it; it’s every bit as sweet as you imagined, liquid candy on your [pc.tongue].");
 	output("\n\n<i>“Tastes great,”</i> you tell her, digging your licked-clean hand into her big, soft ass for a playful squeeze.");
@@ -524,7 +525,7 @@ public function noCockTurkeyBastingRoundIIYEehawAMURRICA():void
 public function goTradeYerBucketOSyrupFuckYallImOut():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	output("<i>“I’m sure Ellie will be happy to have it,”</i> you say, standing up with a languid stretch. Your bovine companion nods her understanding and gathers up her scant clothing. With her cup size drastically reduced by the milking, she’s at least able to get her bra on without trouble. Her panties and syrup-stained top make her look like she’s just taken a dunk in the pool, but Canada shamelessly hefts up the bucket and scampers back down to the barn floor - though not without giving you an affectionate kiss on the cheek first.");
 	output("\n\n<i>“Thanks for the milking, [pc.name],”</i> she adds. <i>“I’m glad I have you to help me...”</i>");
 	output("\n\nYou answer with a playful swat on her big, bouncy butt, sending her giggling down the stairs. You follow after a few moments, to the amused looks of several cows lounging around.");
@@ -539,7 +540,7 @@ public function goTradeYerBucketOSyrupFuckYallImOut():void
 public function cuddleWithCanadaWenchesWooWooWooWooWoo():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	output("<i>“I’d like that,”</i> you say simply, tossing some fresh hay over the mess the two of you made before reclining on the loft’s floor. Your turkey-cow friend makes an excited mooing noise and sets her bucket aside. She eagerly hops into your waiting arms, giving you a face-full of feathers as she grinds her still-wet behind into your ");
 	if(pc.hasCock() && pc.isCrotchGarbed()) output("bulging crotch");
 	else if(pc.hasCock()) output("stiff, as-yet-unused cock");
@@ -610,7 +611,7 @@ public function justSnuggleWithGobblesUSloot():void
 public function buttBasteDatTurkey():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 
 	output("Your bovine lover is adept at offers you can’t refuse, isn’t she? The feeling of her open, inviting asshole kissing your crown is just too much to resist. You shift your hips slightly, angling your pecker with the cow-girl’s eager hole, and give her the filling she wanted. Canada squeals as you slide into her, a high-pitched cry of pleasure that lasts until your hips are flush with her full cheeks, your cock completely sheathed in the broiling vice of her ass. You could swear her buttplug must have been a carbon copy of your dick, the way she feels around you.");
 	output("\n\nShe squeezes you tight, a vice-like grip that threatens to milk your to orgasm");
@@ -644,7 +645,7 @@ public function buttBasteDatTurkey():void
 public function pussyGobble():void
 {
 	clearOutput();
-	gobblesHeader();
+	gobblesHeader(true);
 	output("Well, you won’t say no to that....");
 	output("\n\nYou push Canada down and shift to straddle her shoulders, planting your " + possessive(pc.vaginaDescript()) + " lips on the bridge of her nose. Your bovine lover reaches up and gives you an experimental lick, then giggles. <i>“You taste good,”</i> she laughs, blushing a bit as she realizes what she’s saying. Her eyes dart away from yours as she adds, <i>“I never thought girl-parts would taste good before the Treatment... now they’re like candy.”</i>");
 	output("\n\nYou chuckle and ruffle her hair");

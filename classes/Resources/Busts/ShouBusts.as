@@ -30,6 +30,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron_nude.png", mimeType = "image/png")]
 		public var Bust_CAMERON_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/canada.png", mimeType = "image/png")]
+		public var Bust_CANADA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/canada_nude.png", mimeType = "image/png")]
+		public var Bust_CANADA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 
@@ -69,6 +74,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro.png", mimeType = "image/png")]
+		public var Bust_JURO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro_nude.png", mimeType = "image/png")]
+		public var Bust_JURO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;
