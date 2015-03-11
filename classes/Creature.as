@@ -9646,8 +9646,7 @@
 				else if (temp <= 8) return "chocolatey";
 				else return "rich";
 			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
-				if (temp <= 4) return "berry-flavored";
-				else if (temp <= 7) return "sweet";
+				if (temp <= 5) return "sweet";
         		else return "fruity";
         	}
 			return "bland";

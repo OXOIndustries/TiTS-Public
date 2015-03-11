@@ -263,7 +263,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output("\n\nYou've caught yourself quite a fine specimen here. His features are attractive; masculine, but not overly developed, giving him smooth, clean lines. Atop his head are his cat-like ears, which flick from time to time as he watches you through defiant, golden eyes. He growls softly as you examine him with just a hint of a hiss under his breath.");
 	output("\n\nDrawing yourself up to your full height, you ");
 	if(!pc.isNaga()) output("place your [pc.foot] atop his chest, pushing down firmly with enough weight to make yourself felt without hurting him");
-	else output("coil your [pc.legOrLegs] around his chest, trapping him within the bindings of your own coils");
+	else output("wrap your [pc.legOrLegs] around his chest, trapping him within bindings of your scaled flesh");
 	output(".");
 
 	//if Hard:
@@ -300,7 +300,10 @@ public function rideDudeleensWithAPussaaaaah():void {
 	else if(pc.isMischievous()) output("\n\nNow, now. If he doesn’t play nice, you might have to do something you’ll both regret. So he’d better get over himself and submit. Plus he seems to be enjoying himself too, you tease.\n\nHe grunts in pleasure as you give his shaft a firm stroke with your [pc.foot], his doubled spurts of pre signalling his undeniable enjoyment as he calms down.");
 	else output("\n\nYou warn him against fighting back. He obviously wanted sex with you. All he has to do is lie back and you can both enjoy it.\n\nHe scoffs at first, but after a moment to think he decides that to play along. With a nod of understanding he quiets down. You give him a congratulatory stroke on with your [pc.foot], earning a pleasured sigh from the increasingly aroused, alien naga.");
 
-	output("\n\nThat's better. Lowering yourself down until you are straddling his waist, just above where his cocks emerge, you feel one ");
+	output("\n\nThat's better. Lowering yourself down until you are ");
+	if(pc.legCount == 1) output("positioned above");
+	else output("straddling");
+	output(" his waist, just above where his cocks emerge, you feel one ");
 	if(!pc.isNaga()) output("rubbing against your [pc.ass]");
 	else output("pushing against your [pc.legOrLegs]");
 	output(". Once in position, you drag yourself up his body, sliding your [pc.vaginas]");
@@ -901,7 +904,10 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\nAlmost despite yourself, you feel your [pc.cocks] growing harder in anticipation, stoked further by the sensation of smooth scales sliding over your sensitive prick-flesh.");
 	}
 
-	output("\n\nHe continues to wrap you, coiling around just beneath your [pc.butt], and hoisting you up and off the floor. You immediately move your hands to support yourself on his topmost coils while he moves you into a sitting position, legs spread.");
+	output("\n\nHe continues to wrap you, coiling around just beneath your [pc.butt], and hoisting you up and off the floor. You immediately move your hands to support yourself on his topmost coils while he moves you into a sitting position");
+	if(pc.isNaga()) output(" atop your own");
+	else if(pc.legCount == 1) output(" with your [pc.leg] positioned out of the way.");
+	else output(", [pc.legs] spread.");
 
 	output("\n\nExposed, you can't help but wriggle slightly to better raise your ass and let him see what there is to play with down there.");
 
@@ -1023,7 +1029,9 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 
 		output("\n\n<i>“You look good,”</i>  he chuckles, eyeing the streams of white vacating your used [pc.vagina] and your abused ass, joining together into a perverted cascade.");
 
-		output("\n\nYou simply groan deeply, too caught up in your afterglow to think of anything more coherent. You are dimly aware of his coils slowly lowering you to the forest floor and untwining themselves from about your limbs. You simply let your eyes sink closed and breathe slowly, getting your strength back.");
+		output("\n\nYou simply groan deeply, too caught up in your afterglow to think of anything more coherent. You are dimly aware of his coils slowly lowering you to the forest floor and untwining themselves from about your limb");
+		if(pc.legCount > 1) output("s");
+		output(". You simply let your eyes sink closed and breathe slowly, getting your strength back.");
 		output("\n\nThe moment you open your eyes, you are met with his golden, slitted ones. <i>“It’s such a pity I have to let you go... but do come back. Intruders like you make the best prey,”</i>  he grins");
 		if(pc.hasCock()) output(", extending his tongue to lick a stray strand of [pc.cum] off your [pc.face]");
 		output(".");
