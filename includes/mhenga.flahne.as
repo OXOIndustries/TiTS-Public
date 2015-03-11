@@ -563,7 +563,7 @@ public function rahnSuppository():void {
 	
 	output("\n\n<i>“There, was that so much effort?”</i>  you tease. Given a little push, Flahne flops down in her chair with an <i>“Oomph,”</i>  pseudo-cock wobbling like a flagpole as her huge tits sway, barely contained by her straining shirt. You leap onto her with predatory grace, pulling off your [pc.gear]");
 	if(pc.biggestTitSize() >= 1) output(", letting your [pc.chest] free, pressing them hard against Flahne's own prodigious bosom, trapping her organ");
-	output(". The gel girl gasps as you straddle her, and as you as you lean in to plant a long, deep kiss on her full lips, her swivel chair tilts so far back that you nearly flip over. She moans into your mouth, tongue playing across yours as her hands drift down to your [pc.butt]. Her fingers are deft and swift, crossing your skin and spreading your ass cheeks, brushing across your puckered hole. Your breath catches when one gooey grope practically pours into your [pc.asshole], teasing your sphincter with a deep, swirling probe that leaves your mouth agape with pleasure.");
+	output(". The gel girl gasps as you straddle her, and as you lean in to plant a long, deep kiss on her full lips, her swivel chair tilts so far back that you nearly flip over. She moans into your mouth, tongue playing across yours as her hands drift down to your [pc.butt]. Her fingers are deft and swift, crossing your skin and spreading your ass cheeks, brushing across your puckered hole. Your breath catches when one gooey grope practically pours into your [pc.asshole], teasing your sphincter with a deep, swirling probe that leaves your mouth agape with pleasure.");
 	
 	output("\n\n<i>“Mmmm, ready for a little rahn suppository, cutie?”</i> Flahne winks, popping her rod between your");
 	if(pc.legCount > 1) output(" [pc.legs] to rest between your");
@@ -605,7 +605,7 @@ public function rahnSuppository():void {
 	
 	output("\n\n<i>“Mmm, now that </i>was<i> a treat!”</i>  Flahne cheers, planting a kiss on your cheek - and licking her own eggs right off. <i>“I want you again, [pc.name]... but you need to rest after that... and maybe let some of my cum back out. Don't want to get too full of me, do you?”</i>");
 	
-	output("\n\nShe giggles, laughing so hard that her huge tits bounces on her chest");
+	output("\n\nShe giggles, laughing so hard that her huge tits bounce on her chest");
 	if(pc.hasCock() && pc.cumQ() > 2) output(", flicking a bit of your seed off onto the floor");
 	output(". You groan in agony at your stomach and her joke, rolling off the desk and leaking everywhere as you search around for your gear. Flahne gives you a little wave as you stagger back, even blowing you a kiss - arms squeeze her boobs enticingly, almost begging you to come back soon and fuck her.");
 	processTime(20 + rand(5));

@@ -6241,7 +6241,7 @@
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
 				//trace("no boobs confirmed");
-				weighting -= 20;
+				weighting -= 10;
 			}
 			//Hips give small boost
 			if (hipRating() >= 6) weighting += hipRating() * 1.5;

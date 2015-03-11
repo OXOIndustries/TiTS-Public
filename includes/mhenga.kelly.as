@@ -861,7 +861,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 
 		output("\n\nYou stop for a moment to admire her twin spires, juicy and throbbing, dribbling honey. Before you get to that, though, you decide to finish removing her shorts. You push her legs up and pull her shorts off, tossing them away to join her bikini top.");
 		output("\n\nShe smiles up at you and spreads her legs so that you have a full, unobstructed view of everything that lays between them. <i>\"Enjoying the view?\"</i> she asks mischievously, the look on her face making it clear she assumes the answer to be \"yes.\"");
-		output("\n\nYou don’t grace her with an answer, instead you step forward and grab one of her legs. You caress her thighs, slowly making your way towards her dainty feet, checking her muscles along the way. An appreciative groan escapes her throat, and she flexes her legs, wriggling her feet at the sensation. You grab her foot, massaging it as you as you check each of her padded toes.");
+		output("\n\nYou don’t grace her with an answer, instead you step forward and grab one of her legs. You caress her thighs, slowly making your way towards her dainty feet, checking her muscles along the way. An appreciative groan escapes her throat, and she flexes her legs, wriggling her feet at the sensation. You grab her foot, massaging it as you check each of her padded toes.");
 
 		output("\n\n<i>\"Mmm... that feels nice. Can't remember the last time I got a footrub,\"</i> she mumbles appreciatively, trying to stare down the length of her body and watch you work, despite her impressive cleavage and twin-shafts being in the way.");
 

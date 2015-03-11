@@ -10,7 +10,7 @@
 public function barBonusFunction():Boolean
 {
 	//Bartender (Time 0-4)
-	if(timesDelilahSexed() < 5) output("\n\nYou see a svelte, dusky-skinned girl moving behind the bar, dressed it a tight cocktail dress that nicely hugs her rounded ass, showing it off behind the see-through bar. More than one randy customer reaches over to smack that ass as she works, nearly making her spill every other drink she tries to pour!");
+	if(timesDelilahSexed() < 5) output("\n\nYou see a svelte, dusky-skinned girl moving behind the bar, dressed in a tight cocktail dress that nicely hugs her rounded ass, showing it off behind the see-through bar. More than one randy customer reaches over to smack that ass as she works, nearly making her spill every other drink she tries to pour!");
 	//5th+ Time
 	else output("\n\nThe dusky-skinned, trappy bartender is currently bent over her bar, servicing a client front and back as she mixes a few brightly-colored drinks for the customers. A little bowl has been set up next to her reading, \"Tap that ass for tips!\" It's practically overflowing with credit chits and a few stray strands of cum. Looks like she's finally accepted her place!");
 	if(flags["MET_DEL"] == undefined) addButton(0,"Bartender",approachDCLTrap,undefined,"Bartender","Approach the bartender for a drink or something.");

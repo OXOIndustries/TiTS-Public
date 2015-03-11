@@ -1208,15 +1208,15 @@ public function offerAlissYourAss():void
 		output(" Suppressing another shiver, you find ");
 		if(pc.hasCock())
 		{
-			output("[pc.eachCock] rising to occasion");
+			output("[pc.eachCock] rising to the occasion");
 			if(pc.hasVagina()) output(" and ");
 		}
 		if(pc.hasVagina()) output("[pc.eachVagina] moistening");
-		output(" in approval of tongue bathing you're receiving.");
+		output(" in approval of the tongue bathing you're receiving.");
 	}
 
 	output("\n\nAliss' tongue dives into your sphincter, exploring its hot folds. ");
-	if(pc.hasCock()) output("It probes deeper and deeper before finding its mark... [pc.eachCock] give a twinge of urgency as a sudden pressure comes down on your prostate. ");
+	if(pc.hasCock()) output("It probes deeper and deeper before finding its mark... [pc.eachCock] gives a twinge of urgency as a sudden pressure comes down on your prostate. ");
 	output("You gasp slightly and bite your lip. The invader in your anus delves deeper still until your entire body shivers, as if Aliss had just touched the core of your being... which is of course, impossible. Nevertheless, the snake-like appendage inside you writhes and squirms, coating the walls of your rectum in saliva, no doubt in preparation for your imminent reaming.");
 
 	output("\n\nAnd then, just like that, the sensation is gone. Aliss' tongue retreats from your freshly slickened asshole, leaving you feeling strangely empty. You catch the ovir's reflection licking her lips as she smiles. \"<i>Mmm, now that you're all good to go, let me just grab some protection,</i>\" she says, retrieving a small silver packet from the nearby bench. Emblazoned on the wrapper is an eight-legged horse, and even at this angle you can see it says \"Stallionguard.\" \"<i>These bad boys are meant for people with horsecocks, but they fit us ovir perfectly too,</i>\" Aliss giggles, opening the wrapper and producing a large, semi-transparent condom.");
@@ -1227,7 +1227,9 @@ public function offerAlissYourAss():void
 		if(pc.cockTotal() == 1) output("an");
 		else if(pc.cockTotal() == 2) output("a couple");
 		else output("a few");
-		output(" extra condoms and passes them to you. \"<i>You'd best suit up too, I don't want to have to spend the next hour cleaning, and I don't think you do either.</i>\" You nod absently. Making a mess is great when you don't have to worry about the consequences. Reluctantly, you put on the condom");
+		output(" extra condom");
+		if(pc.cockTotal() > 1) output("s");
+		output(" and passes them to you. \"<i>You'd best suit up too, I don't want to have to spend the next hour cleaning, and I don't think you do either.</i>\" You nod absently. Making a mess is great when you don't have to worry about the consequences. Reluctantly, you put on the condom");
 		if(pc.cockTotal() > 1) output("s");
 		output(", and present your ass once more.");
 	}
@@ -1272,7 +1274,7 @@ public function offerAlissYourAss():void
 	}
 	if(pc.hasCock()) 
 	{
-		output(" Meanwhile, [pc.eachCock], though neglected, throb as the orgasmic wave flows through you. You moan as ");
+		output(" Meanwhile, [pc.eachCock], though neglected, throbs as the orgasmic wave flows through you. You moan as ");
 		if(pc.cockTotal() == 1) output("it erupts");
 		else output("they erupt");
 		output(", spurting cum directly into the high-tech condom, which grows bulbous.");
