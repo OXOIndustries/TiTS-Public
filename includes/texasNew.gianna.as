@@ -3993,11 +3993,14 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 		else output("\n\nGianna actually looks up at you when you offer it to her. Her luminous eyes are dim and flickering, full of unspoken emotion. <i>“T-thank you, [pc.master]. I never thought I’d get to have such a lovely penis. It’s beautiful.”</i> She spins it in her hands, scanning it for defects. <i>“Perfect. Did... did you want me to use this on you, or just watch it squirt while you make use of my chassis?”</i>");
 	}
 	//merge
-	output("\n\nYou fumble for a response, but Gianna is no longer talking to you. She’s already starting the process of installing her gift. A small line in the synthflesh above her crotch opens up. She presses down just below rift. It audibly clicks, then pops outward, revealing gleaming composites wet with residual silicone. Something inside her opened crotch compartment hisses and snaps, then Gianna lifts out a small component containing ");
+	output("\n\nYou fumble for a response, but Gianna is no longer talking to you. She’s already starting the process of installing her gift. A small line in the synthflesh above her crotch opens up. She presses down just below the rift. It audibly clicks, then pops outward, revealing gleaming composites wet with residual silicone. Something inside her opened crotch compartment hisses and snaps, then Gianna lifts out a small component containing ");
 	if(!gianna.hasCock()) output("her clit and its clitoral hood");
 	else output("her previously equipped tool");
 	output(", still moist with lubrication from internals.");
-	output("\n\nGently setting her disembodied clit on a nearby piece of equipment, she brings her new phallus into position, gently pushing its built-in silicone reservoir inside the opening she’s created in her body. After a little wiggling, she brings the ");
+	output("\n\nGently setting her disembodied ");
+	if(!gianna.hasCock()) output("clit");
+	else output("old cock");
+	output(" on a nearby piece of equipment, she brings her new phallus into position, gently pushing its built-in silicone reservoir inside the opening she’s created in her body. After a little wiggling, she brings the ");
 	if(arg == "hoss") output("extra large-sized sheath down into the vacant slot");
 	else output("cocksheath down into the vacant slot");
 	output(", causing her flexible vagina to distend and reshape to accommodate the ");
@@ -4017,7 +4020,7 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 	}
 	else if(arg == "dragon")
 	{
-		output("\n\nThe vibrant sheath that's not covering what was once Gianna's clitoral hood bulges with a rush of steamy fluids, revealing the growing, rubbery length of her draconic member and its tendril-crested crown. It pushes through her inky lips with deliberate slowness, followed by the pillar of her veiny shaft. Even now, you can see the faux circulatory system bulge and pulse as it circulates heated silicone in place of blood. It seems to take forever, but in reality, no more than ten seconds have passed. She starts to stroke it, slowly at first, caressing her tendril-crowned cockhead until a thick bead of moisture crests its top.");
+		output("\n\nThe vibrant sheath bulges with a rush of steamy fluids, revealing the growing, rubbery length of her draconic member and its tendril-crested crown. It pushes through her inky lips with deliberate slowness, followed by the pillar of her veiny shaft. Even now, you can see the faux circulatory system bulge and pulse as it circulates heated silicone in place of blood. It seems to take forever, but in reality, no more than ten seconds have passed. She starts to stroke it, slowly at first, caressing her tendril-crowned cockhead until a thick bead of moisture crests its top.");
 		output("\n\n\"<i>O-oh wow,</i>\" Gianna purrs, fluttering her eyes. \"<i>These little feelers are </i>so<i> sensitive! I-I'm gonna... gonna...</i>\"");
 		output("\n\nYou have just enough time to step out of the way before the over-eager android strokes herself all the way off, moaning and bucking her hips as a streak of cum squirts out. It's not the powerful, bestial orgasm you were expecting from such a huge rod, though: her cum dribbles out around her fingers and splatters onto the hay-coated barn floor, leaving a sticky streak in its wake that she makes a very blatant show of cleaning up.");
 		output("\n\nYou don't think you could have ever described a huge cock's orgasm as dainty before.");
@@ -4207,7 +4210,7 @@ public function getButtReamedByFutaGigi():void
 	if(gianna.cocks[0].cType == GLOBAL.TYPE_EQUINE || gianna.cocks[0].cType == GLOBAL.TYPE_SNAKE) output("throat is bulging around her animalistic shaft");
 	else output("[pc.lips] are pressing against her crotch, and your [pc.tongue] is able to flick out to lap at the slit of her twat hidden under the throbbing shaft of synth-flesh that's stretching your mouth out");
 	output(". Every throb and twitch of her cock makes you more and more eager to feel its synthetic girth ramming into your [pc.asshole]. You're sure to cover every inch you can with a nice, thick coat of spittle. The more you lavish attention on Gianna's cock, though, the more of her thick, gooey lube she squirts into your mouth, filling you with its entirely inhuman taste.");
-	output("\n\nYou pull your mouth back, popping her wet shaft out and letting the steady stream of pre-like lube drool down her length and around your finger,s using your pumping hand to massage it in all over her. Gianna groans and shivers, looking like she's halfway to orgasm already. For now, though, you're satisfied with your lube-job - enough that you're willing to get up and present your [pc.butt] to your gynoid lover.");
+	output("\n\nYou pull your mouth back, popping her wet shaft out and letting the steady stream of pre-like lube drool down her length and around your fingers, using your pumping hand to massage it in all over her. Gianna groans and shivers, looking like she's halfway to orgasm already. For now, though, you're satisfied with your lube-job - enough that you're willing to get up and present your [pc.butt] to your gynoid lover.");
 	output("\n\nLooking over your shoulder, you can see a big smile spread out over her [gianna.lips], her eyes locked on the ass on offer. \"<i>You've got a great butt, ");
 	if(giannaPersonality() > 30) output("[pc.name]");
 	else output("[pc.master]");

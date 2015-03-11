@@ -1372,7 +1372,6 @@ public function joyCoMagicMilker7Sucks():void
 			if(pc.nippleLengthRatio < 2) pc.nippleLengthRatio += .2;
 			pc.nippleLengthRatio += .2;
 		}
-		processTime(20+rand(5));
 		//Get Milk Item
 		if(milkProduced < 3000)
 		{
@@ -1426,6 +1425,7 @@ public function joyCoMagicMilker7Sucks():void
 			addButton(0,"Next",mainGameMenu);
 		}
 		pc.milked(pc.milkFullness);
+		processTime(20+rand(5));
 	}
 }
 
