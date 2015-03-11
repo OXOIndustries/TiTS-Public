@@ -19,44 +19,43 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "sydian male";
-			this.originalRace = "Sydian";
+			this.short = "wetraxxel brawler";
+			this.originalRace = "Wetraxxel";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Placeholder";
-			this.customDodge = "The sydian rolls aside in a remarkable display of agility for one with such a large frame.";
+			this.long = "The wetraxxel is a towering, insectile man -- easily ten feet tall, and covered in chitinous plates. A pair of small insectile feelers adorn his head, over small black eyes and a pair of slits for nostrils. His mouth is a four-part set of sharply fanged mandibles, which click quietly as his grunts and growls. He's monstrously broad-shouldered, with lighter-colored and more flexible plates on his chest; his gut is an off-white against the midnight black of his other chitin. His plated fists are raised to you in a classic boxing stance, ready to punch and block in equal measure.\n\nThe wetraxxal male's naked save for a simple loincloth which barely conceals a hefty-looking package, certainly sizable even for its owner's great height. ";
+			this.customDodge = "The wetraxxel brawler rolls aside in a remarkable display of agility for one with such a large frame.";
 			this.customBlock = "The alien's chitin deflects the attack.";
 			this.plural = false;
-			this.lustVuln = 1;
+			this.lustVuln = 0.8;
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 3;
+			this.armor.defense = 7;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 18;
-			this.reflexesRaw = 12;
+			this.physiqueRaw = 30;
+			this.reflexesRaw = 26;
 			this.aimRaw = 10;
-			this.intelligenceRaw = 13;
-			this.willpowerRaw = 17;
-			this.libidoRaw = 35;
+			this.intelligenceRaw = 7;
+			this.willpowerRaw = 25;
+			this.libidoRaw = 20;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 33;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XPRaw = 250;
-			this.level = 4;
+			this.lustRaw = 10;
+			this.resistances = new Array(0.66,0.66,0.66,0.66,0.66,0.66,0.66,0.66);
+			this.XPRaw = 500;
+			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 25;
+			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
-			
 			
 			this.femininity = 5;
 			this.eyeType = GLOBAL.TYPE_SYDIAN;
 			this.eyeColor = "black";
-			this.tallness = 85;
-			this.thickness = 70;
-			this.tone = 80;
+			this.tallness = 120;
+			this.thickness = 30;
+			this.tone = 90;
 			this.hairColor = "black";
 			this.scaleColor = "orange";
 			this.furColor = "orange";
@@ -100,7 +99,7 @@
 			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 			this.tailVenom = 0;
 			//Tail recharge determines how fast venom/webs comes back per hour.
-			this.tailRecharge = 5;
+			this.tailRecharge = 0;
 			//hipRating
 			//0 - boyish
 			//2 - slender
@@ -124,18 +123,18 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cLengthRaw = 6;
+			this.cocks[0].cLengthRaw = 12;
 			this.cocks[0].cThicknessRatioRaw = 1.5;
 			//balls
 			this.balls = 2;
-			this.cumMultiplierRaw = 6;
+			this.cumMultiplierRaw = 10;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
-			this.ballSizeRaw = 3;
-			this.ballFullness = 1;
+			this.ballSizeRaw = 8;
+			this.ballFullness = 3;
 			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 100;
+			this.ballEfficiency = 200;
 			//Scales from 0 (never produce more) to infinity.
 			this.refractoryRate = 20;
 			this.minutesSinceCum = 2110;
@@ -166,20 +165,12 @@
 		
 		override public function prepForCombat():void
 		{
-			var combatSydianMale:SydianMale = this.makeCopy();
+			var brawler:WetraxxelBrawler = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("SYDIAN_MALE");
-			kGAMECLASS.userInterface.showName("FIGHT:\nSYDIAN MALE");
+			kGAMECLASS.userInterface.showBust("WETRAXXEL");
+			kGAMECLASS.userInterface.showName("FIGHT:\nWETRAXXEL");
 			
-			CodexManager.unlockEntry("Sydians");
-			
-			combatSydianMale.sexualPreferences.setRandomPrefs(2 + rand(3));
-			combatSydianMale.cocks[0].cLengthRaw = 9 + rand(4);
-			if(rand(3) == 0) combatSydianMale.hairColor = "pale green";
-			else if(rand(2) == 0) combatSydianMale.hairColor = "fiery orange";
-			else combatSydianMale.hairColor = "blood-hued crimson";
-			combatSydianMale.long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb is still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + combatSydianMale.hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + combatSydianMale.cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
-			kGAMECLASS.foes.push(combatSydianMale);
+			kGAMECLASS.foes.push(brawler);
 		}
 	}
 }

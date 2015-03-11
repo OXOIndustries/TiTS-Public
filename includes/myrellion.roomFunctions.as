@@ -225,13 +225,14 @@ public function noManzLandBonus():Boolean
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
-		
-		// Hook landmines on the end as a fall-back to fightable encounters
-		if (tryEncounterLandmines())
-		{
-			return true;
-		}
 	}
+	
+	// Hook landmines on the end as a fall-back to fightable encounters
+	if (tryEncounterLandmines())
+	{
+		return true;
+	}
+	
 	return false;
 }
 
@@ -272,5 +273,30 @@ public function gildenmereCornerStreetBonus():Boolean
 /* Wetraxxel Duder */
 public function wetraxxelCavesBonusFunc():Boolean
 {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["NO_MANS_STEP"] == undefined) flags["NO_MANS_STEP"] = 1;
+	else {
+		//if(pc.accessory is JungleLure) flags["NO_MANS_STEP"]++;
+		flags["NO_MANS_STEP"]++;
+	}
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["NO_MANS_STEP"] = 0;
+		
+		//Build possible encounters
+		/*
+		choices[choices.length] = adultCockvineEncounter;
+		choices[choices.length] = cockvineSeedlingEncounter;
+		choices[choices.length] = encounterNyreaBeta;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		*/
+		wetraxxelCaveEncounters();
+		return true;
+	}
 	return false;
 }

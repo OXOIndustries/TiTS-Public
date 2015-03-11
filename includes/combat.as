@@ -1716,7 +1716,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else if (aggressor is FrogGirl) frogGirlAI();
 	else if (aggressor is WetraHound) wetraHoundAI();
-	else if (aggressor is WetraxxelBrawler) WetraxxelBrawlerAI();
+	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1849,6 +1849,14 @@ public function victoryRouting():void
 	else if(foes[0] is FrogGirl)
 	{
 		victoryAgainstTheFrogs();
+	}
+	else if (foes[0] is WetraHound)
+	{
+		wetraHoundPCVictory();
+	}
+	else if (foes[0] is WetraxxelBrawler)
+	{
+		wetraxxelBrawlerPCVictory();
 	}
 	else genericVictory();
 }
@@ -1985,7 +1993,9 @@ public function defeatRouting():void
 	{
 		pcLossToNyrea();
 	}
-	else if(foes[0] is FrogGirl) loseAgainstTheFrogs();
+	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
+	else if (foes[0] is WetraHound) wetraHoundPCLoss();
+	else if (foes[0] is WetraxxelBrawler) wetraxxelBrawlerPCLoss();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);

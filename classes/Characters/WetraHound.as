@@ -20,29 +20,24 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "varmint";
-			this.originalRace = "Automaton";
+			this.short = "wetra hound";
+			this.originalRace = "wetra";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like.\n\nThe creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!";
-			this.customDodge = "Claws scrabbling, the varmint slips away from your attack.";
-			this.customBlock = "The armor plates soak up your attack.";
+			this.long = "This huge, muscular creature has a slavering maw full of razor-sharp fangs, and walks on four legs in an almost gorilla-like gait. The hound's claws dig into the earth, clattering across the stone and echoing through the cavern. Glowing blue eyes look you over with a bestial, hungry intelligence.";
+			this.customDodge = "Claws scrabbling, the wetra slips away from your attack.";
+			this.customBlock = "The hounds thick hide soak up your attack.";
 			this.plural = false;
 			this.lustVuln = 0;
 			this.meleeWeapon = new Fists();
-			this.meleeWeapon.attack = 2;
-			this.meleeWeapon.damage = 1;
+			this.meleeWeapon.attack = 8;
+			this.meleeWeapon.damage = 8;
 			this.meleeWeapon.longName = "claw";
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.hasRandomProperties = true;
-			this.rangedWeapon.longName = "guns";
-			this.rangedWeapon.attack = -2;
-			this.rangedWeapon.damage = 1;
-			this.rangedWeapon.attackVerb = "shot";
-			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "tough hide";
-			this.armor.defense = 3;
+			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 27;
@@ -55,7 +50,7 @@
 			this.energyRaw = 100;
 			this.lustRaw = 0;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XPRaw = 250;
+			this.XPRaw = 400;
 			this.level = 6;
 			this.credits = 0;
 			this.HPMod = 25;
@@ -145,19 +140,12 @@
 		
 		override public function prepForCombat():void
 		{
-			var combatVarmint:Varmint = this.makeCopy();
+			var wetraHound:WetraHound = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("VARMINT");
-			kGAMECLASS.userInterface.showName("FIGHT:\nVARMINT");
+			kGAMECLASS.userInterface.showBust("WETRAHOUND");
+			kGAMECLASS.userInterface.showName("FIGHT:\nWETRA HOUND");
 			
-			//combatVarmint.sexualPreferences.setRandomPrefs(2 + rand(3));
-			//LOOT!
-			//if (rand(3) == 0)
-			//{
-			//	combatVarmint.inventory.push(new ZilRation());
-			//}
-			
-			kGAMECLASS.foes.push(combatVarmint);
+			kGAMECLASS.foes.push(wetraHound);
 		}
 	}
 }

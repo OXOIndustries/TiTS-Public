@@ -6,8 +6,7 @@ public function tryEncounterLandmines():Boolean
 
 		if (pc.hasKeyItem("Minesweeper"))
 		{
-			// NINE NINE NINE THE BOAT, GENTLY DOWN THE STREAM
-			// 9999
+			// NINE NINE NINE THE BOAT, GENTLY DOWN THE STREAM (9999)
 			return false;
 		}
 

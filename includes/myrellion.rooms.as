@@ -1681,25 +1681,12 @@ public function initializeMyrellionRooms():void
 	rooms["1F28"].system = "SYSTEM: SINDATHU";
 	rooms["1F28"].northExit = "1F26";
 	rooms["1F28"].southExit = "1F30";
-	rooms["1F28"].westExit = "1D28";
+	rooms["1F28"].westExit = "1X11";
 	rooms["1F28"].moveMinutes = 5;
 	rooms["1F28"].runOnEnter = noManzLandBonus;
 	rooms["1F28"].addFlag(GLOBAL.CAVE);
 	rooms["1F28"].addFlag(GLOBAL.INDOOR);
 	rooms["1F28"].addFlag(GLOBAL.HAZARD);
-
-	rooms["1D28"] = new RoomClass(this);
-	rooms["1D28"].roomName = "PLACE\nHOLDER";
-	rooms["1D28"].description = "PLACEHOLDER: See Wetraxxel document for shits here and beyond";
-	rooms["1D28"].planet = "PLANET: MYRELLION";
-	rooms["1D28"].system = "SYSTEM: SINDATHU";
-	rooms["1D28"].eastExit = "1F28";
-	rooms["1D28"].westExit = "1X11";
-	rooms["1D28"].moveMinutes = 5;
-	rooms["1D28"].runOnEnter = noManzLandBonus;
-	rooms["1D28"].addFlag(GLOBAL.CAVE);
-	rooms["1D28"].addFlag(GLOBAL.INDOOR);
-	rooms["1D28"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1F26"] = new RoomClass(this);
 	rooms["1F26"].roomName = "UNDERGROUND\nROAD";
@@ -2027,7 +2014,7 @@ public function initializeMyrellionRooms():void
 	rooms["1X11"].description = "This cave branches off from the main passage you've been following. This side branch doesn't seem to be nearly as well-maintained as the myr caves, much more crudely mined out and rougher-hewed. The dark passage leads westward, deeper into these rougher caverns.";
 	rooms["1X11"].planet = "PLANET: MYRELLION";
 	rooms["1X11"].system = "SYSTEM: SINDATHU";
-	rooms["1X11"].eastExit = "1D28";
+	rooms["1X11"].eastExit = "1F28";
 	rooms["1X11"].westExit = "1V11";
 	rooms["1X11"].moveMinutes = 5;
 	rooms["1X11"].runOnEnter = wetraxxelCavesBonusFunc;
@@ -2134,16 +2121,16 @@ public function initializeMyrellionRooms():void
 	rooms["1P11"].system = "SYSTEM: SINDATHU";
 	rooms["1P11"].northExit = "1P9";
 	rooms["1P11"].southExit = "1P13";
-	/* Requires key -- rooms["1P11"].westExit = "1N11"; */
+	/* rooms["1P11"].westExit = "1N11"; */
 	rooms["1P11"].moveMinutes = 5;
-	rooms["1P11"].runOnEnter = wetraxxelCavesBonusFunc; // 9999 -- Hook it here and manually override the movement button?
+	rooms["1P11"].runOnEnter = wetraxxelCavesBonusFunc;
 	rooms["1P11"].addFlag(GLOBAL.CAVE);
 	rooms["1P11"].addFlag(GLOBAL.INDOOR);
 	rooms["1P11"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1P13"] = new RoomClass(this);
 	rooms["1P13"].roomName = "WETRAXXEL\nDEN";
-	rooms["1P13"].description = "The caves here looks surprisingly well lived-in. The walls are rough and jagged, but worn down by frequent foot traffic. Water runs down from a crack in the cave wall, spilling down at a pretty good pace. A small pool forms at the bottom, deep enough to dip your hands into, before draining away into a small hole and deeper into the earth. ";
+	rooms["1P13"].description = "The caves here looks surprisingly well lived-in. The walls are rough and jagged, but worn down by frequent foot traffic. Water runs down from a crack in the cave wall, spilling down at a pretty good pace. A small pool forms at the bottom, deep enough to dip your hands into, before draining away into a small hole and deeper into the earth.";
 	rooms["1P13"].planet = "PLANET: MYRELLION";
 	rooms["1P13"].system = "SYSTEM: SINDATHU";
 	rooms["1P13"].northExit = "1P11";

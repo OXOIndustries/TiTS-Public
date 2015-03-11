@@ -38,7 +38,8 @@ public function encounterWetraHound():void
 	
 	output("\n\nThe creature growls, opening its slavering maw into a bestial howl before charging at you!");
 
-	startCombat("wetrahound");
+	clearMenu();
+	addButton(0, "Next", startCombat, "wetrahound");
 }
 
 public function wetraHoundAI():void
@@ -275,7 +276,7 @@ public function encounterWetraxxelBrawler():void
 
 	// StartCombat
 	clearMenu();
-	startCombat("wetraxxelbrawler");
+	addButton(0, "Next", startCombat, "wetraxxelbrawler");
 }
 
 public function wetraxxelBrawlerAI():void

@@ -20,7 +20,7 @@
 */
 
 //[kerokorasSkinDetail]
-function keroSkinDetail():String
+public function keroSkinDetail():String
 {
 	if(foes[0].skinTone == "orange and green") return "bright orange with splashes of pale green";
 	else if(foes[0].skinTone == "mottled brown") return "mottled earthy brown with muddy spots";
@@ -47,7 +47,7 @@ public function showFrogGirl():void
 	else showName("\nKEROKORAS");
 }
 
-function frogGirlsEncounter():void
+public function frogGirlsEncounter():void
 {
 	foes = new Array();
 	chars["FROG_GIRL"].prepForCombat();
@@ -171,7 +171,7 @@ public function frogGirlBasicLustAttack():void
 
 //Tongue lash
 //special attack: deals lust damage if no shields
-function tongueLashAttack():void
+public function tongueLashAttack():void
 {
 	output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
 	//miss: 
@@ -203,7 +203,7 @@ function tongueLashAttack():void
 
 //Lick
 //used for basic attack if the pc has no shields. deals moderate lust damage
-function getLickedBitch():void
+public function getLickedBitch():void
 {
 	output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
 	if(combatMiss(foes[0],pc)) output(" You leap backwards, escaping her attack before she can pull it off.");
@@ -215,7 +215,7 @@ function getLickedBitch():void
 	processCombat();
 }
 
-function victoryAgainstTheFrogs():void
+public function victoryAgainstTheFrogs():void
 {
 	showFrogGirl();
 	//Victory by lust:
@@ -247,7 +247,7 @@ function victoryAgainstTheFrogs():void
 	addButton(14,"Leave",genericVictory);
 }
 
-function loseAgainstTheFrogs():void
+public function loseAgainstTheFrogs():void
 {
 	//Loss by Lust text
 	if(pc.lust() >= pc.lustMax())
@@ -270,7 +270,7 @@ function loseAgainstTheFrogs():void
 	scenes[0]();
 }
 
-function submitToFrogSex():void
+public function submitToFrogSex():void
 {
 	clearOutput();
 	showFrogGirl();
@@ -281,7 +281,7 @@ function submitToFrogSex():void
 
 //hasCock Loss
 //should be able to fit just about anything under a foot thick.
-function hasCockLossForForgGirls():void
+public function hasCockLossForForgGirls():void
 {
 	showFrogGirl();
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
@@ -382,7 +382,7 @@ function hasCockLossForForgGirls():void
 }
 //!hasCock Loss
 // No dicks
-function youDontHaveADickLossToFrogGirls():void
+public function youDontHaveADickLossToFrogGirls():void
 {
 	showFrogGirl();
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision.");
@@ -414,7 +414,7 @@ function youDontHaveADickLossToFrogGirls():void
 
 //Victory Footjerbs
 //requires cock, accounts for size
-function frogGirlFootJoerb():void
+public function frogGirlFootJoerb():void
 {
 	clearOutput();
 	showFrogGirl();
@@ -494,7 +494,7 @@ function frogGirlFootJoerb():void
 //Requires having met a venus pitcher
 //Must have met fem naleen
 /*9999 THIS CONTENT IS CUT!
-function naleenAmbushRescueThing():void
+public function naleenAmbushRescueThing():void
 {
 	//figure out how to show naleen and frog-girl bust at same time
 	output("\n\nAs you wander through the jungles of Mhen’ga you become aware of a... noise. Freezing for a moment, you listen carefully. Sure enough you hear a cry from somewhere close by; it sounds like someone is trying to fight off an attacker! It could just be one of the venus pitchers you’ve seen around the forest, but you’d better check it out just in case.");
@@ -550,7 +550,7 @@ function naleenAmbushRescueThing():void
 }
 
 //Rescue
-function rescueTheNaleenFutaFromFrogs():void
+public function rescueTheNaleenFutaFromFrogs():void
 {
 	clearOutput();
 	output("<i>“");
@@ -575,7 +575,7 @@ function rescueTheNaleenFutaFromFrogs():void
 }
 
 //Lose to forg gorls
-function loseToForgGorls():void
+public function loseToForgGorls():void
 {
 	//9999 show double bust
 	output("You collapse from the double threat of the kerokoras. One of them backs away snickering, walking to the collapsed huntress and preparing to take her away. Before she can do anything the huntress whacks her on the head with her tail and rushes off into the forest. You on the other hand are not so lucky.");
@@ -585,7 +585,7 @@ function loseToForgGorls():void
 }
 
 //Win the fight
-function beatUpSomeForgGoils():void
+public function beatUpSomeForgGoils():void
 {
 	clearOutput();
 	//9999 show 2frogs & Naleen
@@ -603,7 +603,7 @@ function beatUpSomeForgGoils():void
 }
 
 //repeat
-function encounterNaleenWivCocksGuvnah():void
+public function encounterNaleenWivCocksGuvnah():void
 {
 	//showNaleen();
 	output("\n\nYou find the huntress looking warily around, still careful to not be ambushed in her fragile state.");
@@ -613,7 +613,7 @@ function encounterNaleenWivCocksGuvnah():void
 }
 
 //Help
-function helpNaleenDeCock():void
+public function helpNaleenDeCock():void
 {
 	clearOutput();
 	//showNaleen();
@@ -752,7 +752,7 @@ output("\n\nBy the time you pull away from the kiss she seems to have passed out
 
 //Item Rape
 //Loss - req's throbb & a vagina
-function itemRapeAFrogGirl():void
+public function itemRapeAFrogGirl():void
 {
 	showFrogGirl();
 	pc.destroyItem(new Throbb(), 1);
@@ -808,7 +808,7 @@ function itemRapeAFrogGirl():void
 }
 
 //Female victory: Facesitting.
-function femaleVictoryFacesitting():void
+public function femaleVictoryFacesitting():void
 {
 	clearOutput();
 	showFrogGirl();
