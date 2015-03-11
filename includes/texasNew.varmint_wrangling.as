@@ -258,7 +258,7 @@ public function rimHimFirst():void
 
 	output("\n\nYou slip up from between Cam’s legs and take in the effect of your efforts: one cum-slathered faux-cow, weakly jacking himself off as spooge leaks from his cock onto his belly. He groans, a lust-addled look in his eyes.");
 	output("\n\n<i>“S-sorry,”</i> he murmurs. <i>“The Treatment made me a mite bit too sensitive down there. Now I can’t stop... trembling.”</i> He moans as another thick trickle of spunk drools down and stains his fingers.");
-	output("\n\nYou stroke the faux-cow’s thigh, soothing him... even as you squirt a little extra lube onto your hand slather up your [pc.cock " + x + "] again, making sure it’s nice and ready for him. The best thing about a Treated lover? He’s ready to go again almost instantly.");
+	output("\n\nYou stroke the faux-cow’s thigh, soothing him... even as you squirt a little extra lube onto your hand and slather up your [pc.cock " + x + "] again, making sure it’s nice and ready for him. The best thing about a Treated lover? He’s ready to go again almost instantly.");
 	pc.lust(25);
 	processTime(7);
 	//{to Fuck Him}

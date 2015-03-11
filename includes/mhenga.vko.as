@@ -682,7 +682,7 @@ public function agreeToElectroStim():void
 		output(" as well.");
 		if(pc.tailCount > 0)
 		{
-			output("From behind you, you can hear your [pc.tails] being given the same treatment, feeling ");
+			output(" From behind you, you can hear your [pc.tails] being given the same treatment, feeling ");
 			if(pc.tailCount == 1) output("a clamp snap shut on your length");
 			else output("multiple clamps snapping shut along your lengths");
 			output(" and binding you to the chair.");
@@ -873,8 +873,8 @@ public function agreeToElectroStim():void
 	if(pc.tailCount > 0)
 	{
 		output(" Behind you, your [pc.tails]");
-		if(pc.tailCount == 1) output("is ");
-		else output("are ");
+		if(pc.tailCount == 1) output(" is ");
+		else output(" are ");
 		output("getting the same treatment; it doesn't truly compare to the sensations against your nipples, but, mmm, it feels so good!");
 	}
 	output("\n\nThe tentacle-like artificial tongue writhes in your mouth, plunging deeper inside of you until it is literally throat fucking you, muffling your cries of pleasure even as it strokes and plays with you. The pleasure just keeps growing and growing as the devices continue to play with you");

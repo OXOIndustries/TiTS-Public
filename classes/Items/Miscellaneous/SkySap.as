@@ -79,7 +79,7 @@
 				// Apply Vanae set color
 				if(!hasVanaeSkinColor(pc) && changes < changeLimit && changes < changeLimit && rand(3) == 0)
 				{
-					outputB("\n\nAll across your body, you begin to shed your " + pc.skinNoun(false) + ". You watch on in amazement as clumps of " + pc.skinTone + " fall from your body. It doesn't feel uncomfortable in the least - rather, it tickles! Replacing it is ");
+					outputB("\n\nAll across your body, you begin to shed your " + pc.skinNoun(false) + ". You watch on in amazement as clumps of " + pc.skinNoun(false) + " fall from your body. It doesn't feel uncomfortable in the least - rather, it tickles! Replacing it is ");
 					setSkinColorVanae(pc);
 					outputB(pc.skinTone + " flesh, soft and supple like a newborn child.");
 					outputB("\n\nYou run your hand along your freshly formed skin and shiver a little with delight. <b>You now have " + pc.skinTone + " skin!</b>");

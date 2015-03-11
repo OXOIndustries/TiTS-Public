@@ -1346,7 +1346,7 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 
 	output("\n\nEager to see if Flahne's pussy tastes as good as it smells, you");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output(" lift the meaty shaft out of the way and");
-	else output(" flick your [pc.tongue] out along one of her outer lips, running it from the bottom of her twat to the hood of her clit. The taste is intoxicating, like the sweetest, sugariest candy you've ever eaten in the form of a molten liquid that's the perfect balance between sticky and creamy. You eat it up, letting the sweet stuff spur you on to licking deeper and faster into the giggling rahn's cunt.");
+	output(" flick your [pc.tongue] out along one of her outer lips, running it from the bottom of her twat to the hood of her clit. The taste is intoxicating, like the sweetest, sugariest candy you've ever eaten in the form of a molten liquid that's the perfect balance between sticky and creamy. You eat it up, letting the sweet stuff spur you on to licking deeper and faster into the giggling rahn's cunt.");
 
 	output("\n\n\"<i>Ooh, that's the spot!</i>\" she purrs, digging her soft digits into the lip of her desk and moaning with pleasure. Her hips wiggle happily, sending quaking sways through her huge tits - the sight of them going wild is too much to bear, and you find yourself reaching up to grab the massive mounds. Your fingers sink into them, all but vanishing into the soft gold gel that makes up Flahne's bust. Flahne giggles and shakes her shoulders, making you cling hard to her tits or be shaken off. The harder you squeeze, the more she moans - and the more of her sweet nectar you're able to lick out of her drooling cunt.");
 
@@ -1355,9 +1355,9 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	output("\n\nYou'd laugh at the corny pillow-talk if you weren't chin-deep in alien pussy. As it stands, you eagerly follow your giggly lover's instruction, licking your way around her cunny's walls and lapping up all her sweet juices. ");
 	//if Flahnepositor Out: 
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("The rahn's big, tumescent ovipositor throbs over you, tenting her skirt and plopping firmly onto the top of your head. Your lover giggles, her amber cheeks turning a darker orange. \"<i>Sorry,</i>\" she purrs, hefting the great big egg-layer off of you... and right up between her hefty tits. You take the hint and squeeze her boobs together, tight around the shaft of her ovi-cock, and start to massage them up against each other. You're almost immediately rewarded with a geyser of creamy pre that squirts up from her cleavage to splatter across the tops of her breasts. Flahne makes a hell of a show licking up every drop of it.\n\n");
-	output("You can tell she's getting close now! You lick and squeeze more fiercely, driving Flahne's pleasure ever higher until she lets out a sharp gasp, and you feel her thighs clench around your [pc.face]. A thick squirt of her candy-like juices presages an orgasm that has you fighting to catch your breath between wet surges and Flahne trying to bury you between her thick, soft thighs - a demise you honestly can't say you'd be opposed to, it if felt anywhere near as nice as her skin does against yours, rubbing wetly but softly all over you.");
+	output("You can tell she's getting close now! You lick and squeeze more fiercely, driving Flahne's pleasure ever higher until she lets out a sharp gasp, and you feel her thighs clench around your [pc.face]. A thick squirt of her candy-like juices presages an orgasm that has you fighting to catch your breath between wet surges and Flahne trying to bury you between her thick, soft thighs - a demise you honestly can't say you'd be opposed to, if it feels anywhere near as nice as her skin does against yours, rubbing wetly but softly all over you.");
 
-	output("\n\nFinally, you manage to break yourself out from Flahne's death-grip and catch your breath. Without anything to cling to, the amber rahn flops onto her back and lets out a huge sigh. She looks utterly sated, eyes fluttering closed and hands ");
+	output("\n\nFinally, you manage to break away from Flahne's death-grip and catch your breath. Without anything to cling to, the amber rahn flops onto her back and lets out a huge sigh. She looks utterly sated, eyes fluttering closed and hands ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output("idly playing with her squirting ovipositor, stroking the shaft so that it dribbles its load into her waiting mouth");
 	else output("massaging her well-eaten pussy");
 	output(".");
@@ -1390,7 +1390,9 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	output(". She makes you wait an agonizingly long moment, long enough to plant a wet kiss on ");
 	if(pc.vaginas[x].clits > 1) output("a");
 	else output("your");
-	output(" [pc.clit] before she moves her tongue down to your animalistic hole. She moves with easy confidence, using her fingers to spread your pussylips nice and wide to give herself easy access to your [pc.cuntColor " + x + "] slit. It feels like ");
+	output(" [pc.clit] before she moves her tongue down to your ");
+	if(pc.isTaur() && (pc.vaginas[x].type == GLOBAL.TYPE_EQUINE || pc.vaginas[x].type == GLOBAL.TYPE_LEITHAN)) output("animalistic ");
+	output("hole. She moves with easy confidence, using her fingers to spread your pussy lips nice and wide to give herself easy access to your [pc.cuntColor " + x + "] slit. It feels like ");
 	if(silly) output("something out of an ultraporn! Her tongue is like ");
 	output("a tentacle sliding into you. Your whole body goes rigid in response, every hair standing on-end as the alien appendage squirms and writhes inside you. Gasping and panting, you grab the far wall for support and try to hold on for dear life - or at least, try not to scream under the alien sensations crawling through you.");
 	//if Flahne exhibitionist:

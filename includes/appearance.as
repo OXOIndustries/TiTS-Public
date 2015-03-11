@@ -181,6 +181,8 @@ public function appearance(target:Creature):void {
 		{
 			if (target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 			else if (target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			//Vanae eyes
+			else if(target.eyeColor == "luminous violet" || target.eyeColor == "luminous purple" || target.eyeColor == "luminous blue" || target.eyeColor == "luminous pink" || target.eyeColor == "luminous orange" || target.eyeColor == "luminous green" || target.eyeColor == "luminous silver" || target.eyeColor == "glowing gold") output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
 			else output2(" Fairly unremarkable " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 		}
 		//Hair

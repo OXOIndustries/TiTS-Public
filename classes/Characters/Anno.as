@@ -20,7 +20,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 6;
+			this._latestVersion = 7;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -221,6 +221,10 @@
 		public function UpgradeVersion5(dataObject:Object):void
 		{
 			dataObject.inventory.push(new ADCock().getSaveObject());
+		}
+		public function UpgradeVersion6(dataObject:Object):void
+		{
+			dataObject.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 		}
 	}
 }
