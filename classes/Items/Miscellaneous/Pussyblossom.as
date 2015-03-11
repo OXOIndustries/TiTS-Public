@@ -164,16 +164,16 @@
 					}
 				}
 				//Fertility gain +TF
-				if(pc.fertility() < 50 && TFed)
+				if(pc.fertility() < 1.5 && TFed)
 				{
-					pc.fertilityRaw += 3;
+					pc.fertilityRaw += .03;
 					kGAMECLASS.output("\n\nYou’re probably a little more fertile too.");
 				}
 				//Fertility gain - no TF
-				else if(pc.fertility() < 50)
+				else if(pc.fertility() < 1.5)
 				{
 					kGAMECLASS.output("\n\nYou don’t feel any different, but you’ve probably gotten slightly more fertile. There’s gotta be a cheaper way to supercharge a womb, though.");
-					pc.fertilityRaw += 3;
+					pc.fertilityRaw += .03;
 				}
 				//Nothing
 				else kGAMECLASS.output("\n\nNo matter how long you wait, nothing happens. What a waste of credits.");

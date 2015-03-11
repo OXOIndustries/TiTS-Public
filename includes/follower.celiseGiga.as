@@ -128,12 +128,12 @@ public function malePartsTentacruelFun():void
 	//(cockbiggest=Horsecock)
 	else if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) 
 	{
-		output("\n\n<i>“Ooooo, I’ve always wanted a pony,”</i> she says with a dreamy giggle, rubbing her gooey nose into your [pc.cockBiggest] before giving it a lick that climbs from base to crown. Her fingers grip around your girth to slide alternately up and down as she kisses the center of [pc.cockBiggest]’s flaring tip. After a moment, her lips envelop ");
+		output("\n\n<i>“Ooooo, I’ve always wanted a pony,”</i> she says with a dreamy giggle, rubbing her gooey nose into your [pc.cockBiggest] before giving it a lick that climbs from base to crown. Her fingers grip around your girth to slide alternately up and down as she kisses the center of your [pc.cockBiggest]’s flaring tip. After a moment, her lips envelop ");
 		if(pc.biggestCockLength() >= 10) output("the first few inches of ");
 		output("your equine member");
 		if(pc.cocks[x].thickness() >= 3) output(", stretching to accommodate your girth");
 		output(". Her long tongue caresses its surface, slowly bathing your [pc.cockBiggest] in gooey warmth.");
-		output("\n\nYour thoughts jumble into a flash of white as the pleasurable feelings overwhelm your senses. Streams of [pc.cumcolor] discolor the emerald goo-girl as torrents of your jizz disappear into her throat. She hums contentedly, and her eyes roll back, still reflexively sucking the last of the cum from your urethra. Celise slowly raises her head, her lips tickling your flare as they pass it. <i>“A beautiful start, but we’re not even close to done,”</i> she says with an alluring gaze.");
+		output("\n\nYour thoughts jumble into a flash of white as the pleasurable feelings overwhelm your senses. Streams of [pc.cumColor] discolor the emerald goo-girl as torrents of your jizz disappear into her throat. She hums contentedly, and her eyes roll back, still reflexively sucking the last of the cum from your urethra. Celise slowly raises her head, her lips tickling your flare as they pass it. <i>“A beautiful start, but we’re not even close to done,”</i> she says with an alluring gaze.");
 	}
 	//(cockbiggest=other)
 	else
@@ -161,7 +161,7 @@ public function malePartsTentacruelFun():void
 	if(pc.biggestTitSize() < 1) output("rubbing your stomach and teasing your [pc.nipples]");
 	else output("coiling slowly around your [pc.breasts] and flicking the [pc.nipples]");
 	output(". The majority, however, are busy milking your lower half for all it has. Celise grasps your head in both hands and presses her face to yours to kiss you with all she has. Her long tongue snakes into your mouth, wrapping around your own and slowly drawing back out.");
-	output("\n\nResistance is futile against this onslaught of pleasure, and your restrained form is in no position to resist in the first place. Your [pc.CockBiggest] erupts with euphoric vigor, filling the tube of the giant tentacle that suckles it. Celise gives a happy sigh and fixes on you with a lustful gaze. <i>“I need more! Faster!”</i> she yells ecstatically as the funnel continues to suck.");
+	output("\n\nResistance is futile against this onslaught of pleasure, and your restrained form is in no position to resist in the first place. Your [pc.cockBiggest] erupts with euphoric vigor, filling the tube of the giant tentacle that suckles it. Celise gives a happy sigh and fixes on you with a lustful gaze. <i>“I need more! Faster!”</i> she yells ecstatically as the funnel continues to suck.");
 	output("\n\nYou gasp when a thin tendril slips across your body and into your asshole. It’s thin enough to be painless");
 	if(pc.analVirgin) output(", albeit feeling very awkward,");
 	output(" as it slides through your insides. Another set of tentacles ");
@@ -236,7 +236,7 @@ public function celiseFemalePartsTentacleFun():void
 	}
 	else
 	{
-		output("The emerald goo-girl licks her lips, gripping your [pc.butt] in her hands while her tentacles separate your [pc.legs]. You moan softly as she lowers her head to kiss the [pc.clit]. Her tongue snakes out to lick around your entrance, its tip running a circuit about the ");
+		output("The emerald goo-girl licks her lips, gripping your [pc.butt] in her hands while her tentacles separate your [pc.legs]. You moan softly as she lowers her head to kiss your [pc.clit]. Her tongue snakes out to lick around your entrance, its tip running a circuit about the ");
 		if(pc.looseness() < 2) output("tight");
 		else if(pc.looseness() < 3) output("ready");
 		else if(pc.looseness() < 4) output("slightly parted");
@@ -257,7 +257,7 @@ public function celiseFemalePartsTentacleFun():void
 	output(" suspending you a few feet from the ground. Velvety wet kisses batter your [pc.chest], cocooning ");
 	if(pc.biggestTitSize() < 1) output("it");
 	else output("them");
-	output(" in warm moistness. Celise lowers herself to your pelvis and makes sure to lick along the length of your body as she goes. This time, instead of her tongue, an array of tentacles teases the entrance to your [pc.vagina], the smaller ones holding it open slightly as a larger one slides along it, tickling [pc.clit].");
+	output(" in warm moistness. Celise lowers herself to your pelvis and makes sure to lick along the length of your body as she goes. This time, instead of her tongue, an array of tentacles teases the entrance to your [pc.vagina], the smaller ones holding it open slightly as a larger one slides along it, tickling your [pc.clit].");
 
 	output("\n\nThe tickling tendril loops around and slips inside you to slowly push its way into your [pc.vaginaNoun]. Your insides clench around the invading appendage, trying to force it out and pull it in at the same time. The goo-girl happily goes with the flow, pushing softly whenever you suck her in. Algid tentacles do nothing to abate the fiery lust building in your nethers, so Celise simply picks up the pace. Shivers run down your body as you lose hold of your resistance. You numbly register your partner kissing you as your insides spasm with pleasure");
 	if(pc.hasCock())

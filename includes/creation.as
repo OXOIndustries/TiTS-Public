@@ -598,7 +598,7 @@ public function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Fertility"))
 	{
-		pc.fertilityRaw -= 1.15;
+		pc.fertilityRaw -= 0.15;
 		pc.removePerk("Fertility");
 	}
 	if(pc.hasPerk("Milky"))
@@ -675,7 +675,7 @@ public function applySexualGift(arg:String = "none"):void {
 		pc.elasticity += .5;
 	}
 	else if(arg == "fertility") {
-		pc.fertilityRaw += 1.15;
+		pc.fertilityRaw += 0.15;
 		pc.createPerk("Fertility",0,0,0,0,"Increases your odds of getting pregnant.");
 	}
 	else if(arg == "milky") {
