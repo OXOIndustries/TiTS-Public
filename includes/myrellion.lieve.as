@@ -577,7 +577,7 @@ public function lieveTalkScars():void
 	processTime(20 + rand(10));
 	
 	lieveTalkMenu();
-	addButton(3, "Her Scars");
+	addDisabledButton(3, "Her Scars");
 }
 
 public function lieveTalkRedPrisoners():void
@@ -636,7 +636,7 @@ public function lieveTalkRedPrisoners():void
 	
 	//Unlock "Myr Fertility" talk
 	lieveTalkMenu();
-	addButton(4, "Red Prisoners?");
+	addDisabledButton(4, "Red Prisoners?");
 }
 
 public function lieveTalkMyrFertility():void
@@ -750,7 +750,7 @@ public function lieveTalkFedArmy():void
 	
 	output("\n\nYou confess that you were more interested in the more intimate details.");
 	
-	output("\n\n<i>“Well,”</i> Lieve says. <i>“Let’s start with the basics. We train for a period of six weeks, twelve if you’re selected to be an officer or specialist like a radioman or a minesweeper. Basic training is almost all about discipline: making sure we know how to follow orders, how to stay calm under fire and keep your wits about you. That discipline is more important than even fighting skill, when you get right down to it. Federation troops don’t panic when the shells start flying, or when the enemy comes up out of their trenches. The girls we’ve recruited the last few years are even trained for gas and chemical attacks.");
+	output("\n\n<i>“Well,”</i> Lieve says. <i>“Let’s start with the basics. We train for a period of six weeks, twelve if you’re selected to be an officer or specialist like a radioman or a minesweeper. Basic training is almost all about discipline: making sure we know how to follow orders, how to stay calm under fire and keep your wits about you. That discipline is more important than even fighting skill, when you get right down to it. Federation troops don’t panic when the shells start flying, or when the enemy comes up out of their trenches. The girls we’ve recruited the last few years are even trained for gas and chemical attacks.”</i>");
 	
 	output("\n\n<i>“I’m sure that doesn’t seem like much to you off-worlders, but there’s a hell of a difference between a Federation soldier who’s been drilled to perfection and a gold who’s just been conscripted and had a rifle shoved in her hands for the first time ten minutes before they throw her over the top. There’s nothing more important than discipline, training, and experience for surviving in the trenches when you’re getting shot at and shelled for weeks on end. Basic can give you two of them, at least.”</i>");
 	
@@ -1363,7 +1363,7 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	else output(" Your mind leaps to the lusty venom red myr possess. The way your body’s reacting, you must have just gotten a hell of a dose, swapping spit with the crimson ant-girl like that.");
 	
 	output("\n\nYou lick your lips and grab at the myr’s breasts, scooping the pair of hand-filling mounds up and squeezing them until your lover moans. You push her back against the wall, pinning her back and");
-	if (lieveVenomFuck() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+	if (lieveVenomEnabled() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
 	else output(" trailing kisses up her neck, careful to avoid her poisonous lips.");
 	output(" From where she’s positioned, it’s easy for Lieve to hike her legs up around your [pc.hips], and your hands are quick to grab her ass in turn, supporting her weight between you and the wall.");
 	
@@ -1530,7 +1530,7 @@ public function lieveSoloFucktimeWindup():void
 		pc.orgasm();
 	}
 
-	rest(60 * 6);
+	processTime(60 * 6);
 
 	//Bunker menu here
 	clearMenu();
@@ -2200,8 +2200,8 @@ public function lieveTheLateGoodbye():void
 	clearMenu();
 	addButton(0, "Lieve?", lieveLateGoodbyeAskLieve, undefined, "Lieve?", "What does Lieve think about this? Has Sierva told her mistress?");
 	addButton(1, "Friend?", lieveLateGoodbyeFriend, undefined, "Friend", "Ask Sierva about this ‘friend’ of hers.");
-	addButton(2, "Alright", lieveLateGoodbyeAlright, undefined, "Alright", "Tell Sierva you won't help her.");
-	addButton(3, "No", lieveLateGoodbyeNo, undefined, "No", "Promise Sierva you'll deliver the letter.");
+	addButton(2, "Alright", lieveLateGoodbyeAlright, undefined, "Alright", "Promise Sierva you'll deliver the letter.");
+	addButton(3, "No", lieveLateGoodbyeNo, undefined, "No", "Tell Sierva you won't help her.");
 }
 
 public function lieveLateGoodbyeAskLieve():void

@@ -1,4 +1,4 @@
-/*Embry: the Clumsy Simii Waitress
+﻿/*Embry: the Clumsy Simii Waitress
 Also a transgirl, if you look under her dress. Help her transition, or don't!
 Written by JimThermic, edited by Frogapus
 **AA note, this is terribly written, horribly edited, I love it. Stop using the word glorious
@@ -281,15 +281,40 @@ this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 */
 
-public function showEmbry():void
+public function showEmbry(nude:Boolean = false):void
 {
 	showName("\nEMBRY");
-	showBust("EMBRY");
+	if(flags["EMBRY_TREATMENTS"] == undefined || flags["EMBRY_TREATMENTS"] == 0) 
+	{
+		if(nude) showBust("EMBRY_0_NUDE");
+		else showBust("EMBRY_0");
+	}
+	//A cup Embry
+	else if(flags["EMBRY_TREATMENTS"] == 1) 
+	{
+		if(nude) showBust("EMBRY_1_NUDE");
+		else showBust("EMBRY_1");
+	}
+	//C cup Emrby
+	else if(flags["EMBRY_TREATMENTS"] == 2) 
+	{
+		if(nude) showBust("EMBRY_2_NUDE");
+		else showBust("EMBRY_1");
+	}
+	else if(flags["EMBRY_TREATMENTS"] == 3) 
+	{
+		if(nude) 
+		{
+			if(embry.hasCock()) showBust("EMBRY_2_NUDE");
+			else showBust("EMBRY_3_NUDE");
+		}
+		else showBust("EMBRY_3");
+	}
 	author("JimThermic");
 }
-public function showSimii():void
+public function showSimii(nude:Boolean = false):void
 {
-	showEmbry();
+	showEmbry(nude);
 }
 
 //Embry
@@ -454,6 +479,8 @@ public function callWaitress():void
 	if(embry.armor is PeasantDress) output(" She’s all puff and frill.");
 	else if(embry.armor is WaitressUniform) output(" The skimpy fetish outfit really showcases her feminine assets, specifically, her glorious [embry.breastCupSize]s.");
 	embryMenu();
+	//Failsafe
+	CodexManager.unlockEntry("Simii");
 }
 
 
@@ -1172,7 +1199,7 @@ public function declineToWitnessEmbrysStuff():void
 public function witnessEmbrysGirlTF():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("You agree to witness for Embry, and she gives a bright smile. <i>\"R-really, you will?”</i> The monkey girl wraps her arms around your waist, and gives you a tight, warm hug. <i>\"Thank you!”</i>");
 	output("\n\nYou follow her back to her room on the Cappella, and she locks the door after you both. You notice there’s a secure medical container plastered with warning labels on the floor. She wasn’t joking when she said it was dangerous. It’s a lot more regulation than you’ve seen for any transformation drug");
 	if(pc.isTreated()) output(" besides the treatment");
@@ -1207,7 +1234,7 @@ public function witnessEmbrysGirlTF():void
 public function holdEmbryDuringFirstTFLoverMode():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("You don’t let her turn away from you, instead wrapping your arms around her, and pulling her close. At first she tenses up, frightened that you’re repulsed by her, but then relaxes into your arms. You kiss away the tears from her lashes, and then her lips - even more tears fall to take their place.");
 	output("\n\n<i>\"Y-you’re not r-r-repulsed by me---?”</i> she sobs. Her fingers clutch desperately at your chest, holding you tight, as she stares ");
 	if(pc.tallness > embry.tallness + 3) output("up");
@@ -1298,7 +1325,7 @@ public function notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain():void
 public function approachEmbrysSecondTransition():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	//Lovers who witnessed the first transition (Didn’t decline or turn away) get the Lover’s scene AND the ‘New Outfit’ scene. Everyone else just gets a variant on the ‘New Outfit / Name Change’ scene.
 	// Played as soon as you talk to her after second transition.
 
@@ -1574,7 +1601,7 @@ public function hunnnnnnnngGlasses():void
 public function doneWivGlassesChatGuvnah():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("[embry.name] coughs and nervously rubs the back of her neck. <i>\"U-um, anyway, my appearance aside, I was going to message you because my final treatment is here!”</i> she gestures to the familiar looking package.");
 	output("\n\nYou both press your thumbs against the fingerpad and she removes the sealed canister. She holds it in both hands, a serious look in her baby blue eyes. You realise her [embry.lips] are pursed and her hands are trembling.");
 	output("\n\n<i>\"T-this... this is the moment. It’s finally here. It doesn’t feel real--?”</i> [embry.name] whispers. Tears are welling in her eyes and she tightly clasps the metal cylinder. <i>“... When I take this, I’ll be a girl, a really, real girl. I won’t have to fight anymore...”</i>");
@@ -2167,6 +2194,7 @@ public function iDontLoveYouEmbry():void
 //Sex Scenes
 public function embrySexMenu():void
 {
+	showSimii();
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Blowjob",blowjorbsFromEmbry,undefined,"Blowjob","Get a blowjob from Embry.");
 	else addDisabledButton(0,"Blowjob","Blowjob","You need a penis in order to receive a blowjob.");
@@ -2195,7 +2223,7 @@ public function embrySexMenu():void
 public function blowjorbsFromEmbry():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("After [embry.name]’s shift is finished, you both head back to her room on the Cappella, and you spend some time in each other’s company. Out of nowhere, the monkey girl looks at you through her pink bangs, and makes a bashful suggestion.");
 	output("\n\n<i>\"Um... I was wondering... if you want me to, y’know, s-suck on your thing?”</i> she gestures towards ");
 	if(pc.isCrotchGarbed()) output("the bulge in your [pc.lowerGarment]");
@@ -2297,7 +2325,7 @@ public function blowjorbsFromEmbry():void
 public function cunnilingusWithEmbry():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("You hook up with [embry.name] after her shift is finished, and walk back to her room on the Cappella. She snuggles up against you, and you spend some time together. After a while, she gives you a meaningful look, her blue eyes glittering.");
 	output("\n\n<i>\"U-uh... I was thinking... you know, if you’d like me to... l-lick you, down there?”</i> she can barely get the words out. Her face turns bright red, and she nuzzles into you to hide her burning cheeks. <i>“... ");
 	if(flags["GOTTEN_CUNNILINGUS_FROM_EMBRY"] == undefined) output("That’s n-not weird, or anything, is it - asking to lick a " + pc.mf("boy","another girl") + "’s pussy?”</i>");
@@ -2357,7 +2385,7 @@ public function cunnilingusWithEmbry():void
 public function analingusWithEmbry():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("After her shift is over, [embry.name] hooks her arm through yours, and you head back to her room on the Cappella. You snuggle with each other on the bed for a while, until you bring up her licking out your ass.");
 	// First time
 	if(flags["GOTTEN_RIMMED_BY_EMBRY"] == undefined)
@@ -2425,7 +2453,7 @@ public function analingusWithEmbry():void
 public function breastMassageScene4Embrah():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("[embry.name] finishes off her shift at the bar, and skips over to you the moment she’s free. The simii girl wraps her arms around one of yours, and cutely presses it between her [embry.breasts]. There’s a big, bright smile on her face, and a happy glimmer in her baby blue eyes.");
 	output("\n\n<i>\"I’ve got you--!”</i> she gleefully exclaims, and snuggles close. You walk back to the Capella like that, her pushed close to you. Seems she’s gotten a bit more confident since she got some breasts. Though the transition did come with side effects...");
 	output("\n\nAs you walk across the tarmac, together like lovers, you can feel her breathing slowly becoming more ragged. There’s an aroused flush to her cheeks, and she’s madly fluttering her lashes. You can feel her [pc.nipples], pert and stiff, brushing against you through the fabric of her waitress outfit.");
@@ -2497,7 +2525,7 @@ public function breastMassageScene4Embrah():void
 public function embryAnalSex():void
 {
 	clearOutput();
-	showSimii();
+	showSimii(true);
 	output("After [embry.name]’s shift is over, she invites you to her cabin on the Capella. You walk back there, hand in hand");
 	if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] == undefined) output(", and for some reason she seems more nervous than usual");
 	output(".");
@@ -2749,6 +2777,7 @@ public function embryAnalSex():void
 public function vagisilSexForEmbry(spentTime:Boolean = false):void
 {
 	clearOutput();
+	showSimii(true);
 	// If seen Embry’s Vaginal Sex ‘Spend Time’ scene/ [embry.name] is not a virgin / Accessing through sex menu
 	if(!spentTime)
 	{

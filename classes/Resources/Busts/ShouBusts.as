@@ -43,9 +43,23 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie.png", mimeType = "image/png")]
 		public var Bust_ELLIE:Class;
-		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie_nude.png", mimeType = "image/png")]
 		public var Bust_ELLIE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_0.png", mimeType = "image/png")]
+		public var Bust_EMBRY_0:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_0_nude.png", mimeType = "image/png")]
+		public var Bust_EMBRY_0_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_1.png", mimeType = "image/png")]
+		public var Bust_EMBRY_1:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_1_nude.png", mimeType = "image/png")]
+		public var Bust_EMBRY_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_2_nude.png", mimeType = "image/png")]
+		public var Bust_EMBRY_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_3.png", mimeType = "image/png")]
+		public var Bust_EMBRY_3:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/embry_3_nude.png", mimeType = "image/png")]
+		public var Bust_EMBRY_3_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_1.png", mimeType = "image/png")]
 		public var Bust_FROG_1:Class;
