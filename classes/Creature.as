@@ -6642,37 +6642,67 @@
 			desc += "your " + cocksDescript();
 			return desc;
 		}
-		public function ballsDescript(forceCount: Boolean = false, forceSize: Boolean = false, forceSingular: Boolean = false): String {
+		public function ballsDescript(forceCount: Boolean = false, forceSize: Boolean = false, forceSingular: Boolean = false, appearance: Boolean = false): String {
 			if (balls == 0) return "prostate";
 			var descripted: int = 0;
 			var rando: Number = 0;
 			var desc: String = "";
-			if (hasStatusEffect("Uniball") < 0 && (this.rand(4) == 0 || forceCount) && !forceSingular) {
+			//Changed up the formatting here since this is only for appearance screens
+			if (forceCount && !forceSingular) {
 				if (balls == 1) {
 					rando = this.rand(4);
+					if (rando == 0) desc += "a single ";
+					if (rando == 1) desc += "a solitary ";
+					if (rando == 2) desc += "a lone ";
+					if (rando == 3) desc += "an individual ";
+				}
+				else if (balls == 2) {
+					rando = this.rand(3);
+					if (rando == 0) desc += "a pair of ";
+					if (rando == 1) desc += "two ";
+					if (rando == 2) desc += "two ";
+				}
+				else if (balls == 3) {
+					rando = this.rand(3);
+					if (rando == 0) desc += "three ";
+					if (rando == 1) desc += "three ";
+					if (rando == 2) desc += "a trio of ";
+				}
+				else if (balls == 4) {
+					rando = this.rand(3);
+					if (rando == 0) desc += "a quartette of ";
+					if (rando == 1) desc += "four ";
+					if (rando == 2) desc += "four ";
+				}
+				else desc += num2Text(balls);
+			}
+			//Not in appearance screen? Okay
+			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
+				if (balls == 1) {
+					rando = this.rand(3);
 					if (rando == 0) desc += "single ";
 					if (rando == 1) desc += "solitary ";
 					if (rando == 2) desc += "lone ";
-					if (rando == 3) desc += "individual ";
 				}
-				if (balls == 2) {
+				else if (balls == 2) {
 					rando = this.rand(3);
 					if (rando == 0) desc += "pair of ";
 					if (rando == 1) desc += "two ";
 					if (rando == 2) desc += "two ";
 				}
-				if (balls == 3) {
+				else if (balls == 3) {
 					rando = this.rand(3);
 					if (rando == 0) desc += "three ";
 					if (rando == 1) desc += "triple ";
 					if (rando == 2) desc += "trio of ";
 				}
-				if (balls == 4) {
+				else if (balls == 4) {
 					rando = this.rand(3);
 					if (rando == 0) desc += "quartette of ";
 					if (rando == 1) desc += "four ";
 					if (rando == 2) desc += "four ";
 				}
+				else desc += num2Text(balls);
 			}
 			//size!
 			if (ballSize() > 1 && (this.rand(3) <= 1 || forceSize)) {
