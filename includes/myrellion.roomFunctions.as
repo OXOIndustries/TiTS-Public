@@ -99,6 +99,7 @@ function approachAntrias():void
 {
 	clearOutput();
 	showBust("ANTRIAS");
+	author("Savin");
 	if(!myrellionTaxiUnlocked())
 	{
 		output("You step up to the desk and get the man’s attention. He blinks at you. <i>“Sorry, friend, we’re just getting set up here. No comm buoys are online yet, I’m afraid. Haven’t managed to bring in the drill-shot probes to do it properly. Come back later, yeah?”</i>");
@@ -145,6 +146,7 @@ public function myrellionTaxiUnlocked():Boolean
 function takeATransPortMyrellion(arg:String = ""):void
 {
 	clearOutput();
+	author("Savin");
 	if(currentLocation == "610")
 	{
 		showBust("ANTRIAS");
@@ -170,6 +172,7 @@ function takeATransPortMyrellion(arg:String = ""):void
 //Place somewhere roughly equidistant between Gildenmere and Kressia, and nearish to the entrance to the Deep Caves. 
 function noAntsLandBeaconBonus():Boolean
 {
+	author("Savin");
 	//Room Descript
 	output("What could have been a small military bunker sits here, tucked away almost imperceptibly against the far wall of the cavern. The only reason you'd notice it at all is the huge tear in the earth overhead, letting in beams of sunlight which reveal the pillbox's firing port, now devoid of armament. There's no indication of who built it or why its been abandoned, but a quick look inside reveals a beat up old radio sitting against a back wall, hooked up to several wires that lead all the way up to the surface.");
 	if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined)
@@ -192,6 +195,7 @@ function noAntsLandBeaconBonus():Boolean
 function repairRadio():void
 {
 	clearOutput();
+	author("Savin");
 	showName("\nTINKERING");
 	output("You do a little basic techno-wizardry: using your Codex to look up the Scout Authority's emergency radio frequency, tuning the radio to it, and sending a databurst from your Codex to the computer at the DMZ. You should be able to bring in a taxi drone now - assuming somebody at the Scouts knows how to read morse code in this day and age.");
 	processTime(3);
@@ -204,6 +208,7 @@ function repairRadio():void
 public function callATaxiYeScrub():void
 {
 	clearOutput();
+	author("Savin");
 	showName("HAILING\nA CAB");
 	output("You crank up the old radio equipment. Before you send a request, where did you want to go? <b>Just 150 credits!</b>");
 	myrellionTaxiMenu();
@@ -213,6 +218,7 @@ public function callATaxiYeScrub():void
 function searchDatBunker():void
 {
 	clearOutput();
+	author("Savin");
 	showName("\nSEARCHING...");
 	output("You spend a few minutes poking around in the old bunker, looking for anything salvagable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you'd imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you're able to dig out a beat up old rifle. Looks like it's been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
 	flags["LOOTED_MYR_RIFLE"] = 1;
