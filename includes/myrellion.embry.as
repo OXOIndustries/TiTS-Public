@@ -2572,8 +2572,8 @@ public function embryAnalSex():void
 	{
 		output("\n\n<i>\"Um, let me get you ready first? You don’t want it to go in dry.”</i> [embry.name] cutely suggests, and you nod. She gets down on all fours, and crawls");
 		if(pc.isTaur()) output(" under you");
-		else if(pc.legCount > 1) output("between your legs");
-		else output("to your [pc.cock]");
+		else if(pc.legCount > 1) output(" between your legs");
+		else output(" to your [pc.cock]");
 		output(".");
 	}
 	output("\n\n[embry.name] then squirts some lube into her petite hand. She looks up at you with adoring baby blue eyes. Her lube-splattered fingers stroke your ");
@@ -2608,7 +2608,7 @@ public function embryAnalSex():void
 
 	output("\n\n[embry.name] sighs with pleasure as you finger her [embry.ass]. You teasingly slip a second finger inside of her. She gasps with pleasure, and her [embry.thighs] madly quiver. Her fingers dig into the desk and she lets out a lewd little moan. You press your slickened fingers deep into her butt, and she presses her [embry.hips] back to meet them, her whole body trembling with delight.");
 
-	output("\n\n<i>\"M-my butt--you’re fingering my naughty butt--!</i> [embry.name] breathily moans. You can see her eyes in the mirror, and she looks drunk on lust. Her [embry.breasts] rock back and forth as she passionately humps your sticky digits. When you slip a third inside, she lets out a delighted squeal. Her anus is stretched considerably around your fingers, making for quite a sight!");
+	output("\n\n<i>\"M-my butt--you’re fingering my naughty butt--!\"</i> [embry.name] breathily moans. You can see her eyes in the mirror, and she looks drunk on lust. Her [embry.breasts] rock back and forth as she passionately humps your sticky digits. When you slip a third inside, she lets out a delighted squeal. Her anus is stretched considerably around your fingers, making for quite a sight!");
 	output("\n\nWhen you start finger fucking her [embry.ass], [embry.name] can’t hold out any longer, and her whole body convulses with delight.");
 	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [embry.cock] jerks and messily shoots white, sticky ropes of spunk all over the side of the bench, firingly wildly in the air.");
 	//{if Embry.hasPussy:
@@ -2648,7 +2648,7 @@ public function embryAnalSex():void
 		else output("liberally fill her with your [pc.cum]");
 		output(". She shudders uncontrollably, her [embry.asshole] clenching your [pc.cockNounSimple], and she trembles in ecstasy.");
 		//PCLIKESPEEN & embry.hasCock:
-		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [pc.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
+		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [embry.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		else if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
 		output("\n\nWhen you pull your [pc.cock] out from her ass, there is a plopping noise from her [embry.asshole], and ");
 		if(pc.cumQ() <= 10) output("tiny drips");

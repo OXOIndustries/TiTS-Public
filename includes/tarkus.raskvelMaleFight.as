@@ -329,7 +329,7 @@ public function shekkaGetsSoldRaskShitz():void
 		addButton(1,"No Deal",noDealRobotSellingToShekka);
 	}
 	//Anything but the android or the spaceship part:
-	if(raskLootType != 1)
+	else
 	{
 		output("\n\nShekka peers at what you’ve brought her dubiously.");
 		output("\n\n<i>“I’m not really a scrapper, [pc.name],”</i> she replies. <i>“That’s more that weird goblin’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.”</i>");
@@ -508,7 +508,7 @@ public function dealWivColensoForTheChestGuv():void
 	clearOutput();
 	showColenso();
 	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.");
-	output("\n\n<i>“You’re a star, [player.fullName],”</i> he says, grinning happily. <i>“You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.”</i>");
+	output("\n\n<i>“You’re a star, [pc.fullName],”</i> he says, grinning happily. <i>“You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.”</i>");
 	pc.credits += Math.round(getRaskLootPrice()*1.5);
 	removeRaskLoot();
 	processTime(2);

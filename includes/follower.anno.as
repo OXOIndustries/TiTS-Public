@@ -1127,7 +1127,7 @@ public function annoFollowerSuckAndFuckSex():void
 	output(" as you guide your [pc.hips] forward toward the welcoming warmth of Anno’s mouth.");
 	
 	output("\n\nShe opens wide for you, tongue guiding your [pc.cockHead " + selCock + "] in with a quiet slurp, cheeks bulging as your member slides into her inviting hole. Hot and humid breath courses around your [pc.cock " + selCock + "] as it enters her, finding a nice, hot holster that conforms to your prick’s girth and length with aplomb, tight where it needs to be, but loose enough that you don’t have much trouble pushing in enough dick meat to have your");
-	if (pc.cocks[selCock].cLength() >= 8) output(" cock start distending her throat, which proves to be quite elastic as it stretches around your hefty member. This girl’s got some gag reflexes!");
+	if (pc.cocks[selCock].cLength() >= 8) output(" cock start distending her throat, which proves to be quite elastic as it stretches around your hefty member. This girl’s got some mastery over her gag reflexes!");
 	else
 	{
 		if (pc.balls > 0) output(" balls");

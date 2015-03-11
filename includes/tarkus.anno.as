@@ -1164,7 +1164,7 @@ public function faceFuckAnno():void
 		else output("groin");
 		output(" touch her brow.");
 	}
-	else output("cock start distending her throat, which proves to be quite elastic as it stretches around your hefty member. This girl's got some gag reflexes!");
+	else output("cock start distending her throat, which proves to be quite elastic as it stretches around your hefty member. This girl's got some mastery over her gag reflexes!");
 	output(" Sated with your first foray between Anno's lips, you take a moment to enjoy the tight, wet feeling of your new favorite cock-cozy around your member, the muscles of her mouth");
 	if(pc.cocks[x].cLength() >= 8) output(" and throat");
 	output(" rhythmically contracting and shifting around your dick with the precisions you'd expect from a well-fucked whore. For her part, the dog-slut beams up at you from beneath your throbbing cock, clearly enjoying herself.");

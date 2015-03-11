@@ -85,10 +85,11 @@
 		//COCK VOLUME
 		public function volume():Number {
 			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength() - thickness());
+			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength() - thickness()/2);
+
 			var tip:Number = (4/3 * 3.142 * thickness()/2 * thickness()/2 * thickness()/2)/2;
 			//If blunt, tip is converted to cylinder as well.
-			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness());
+			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness()/2);
 			//If flared, tip is multiplied by 1.3.
 			if(hasFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%

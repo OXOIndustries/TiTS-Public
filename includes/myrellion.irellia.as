@@ -1269,7 +1269,7 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 	{
 		output("Iloden strides up to you until he's standing only a few inches away. There's a definite electricity in the air as he stares at you with his dark alien eyes. This man has a powerful presence to match his strong, hard body, and you feel yourself being slowly swept up in it despite yourself.");
 		output("\n\nHe raises a gloriously muscled arm and, while still staring intensely into your eyes, ");
-		if(!pc.isCrotchGarbed())
+		if(!pc.nude())
 		{
 			output("pointedly strips off your ");
 			if(!pc.armor is EmptySlot) 
@@ -1291,7 +1291,7 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		output("\n\nReturning the kiss now with equal fervor, your tongues dance together. He slides his hands down to your waist, but you don't even notice.");
 		if(pc.hasCock()) output(" Both of your cocks - erect on both sides - press against each other, like they're kissing as well.");
 		output(" A hot flush begins to sweep through your body, your temperature rising and refusing to go down.");
-		if(!pc.isCrotchGarbed()) 
+		if(!pc.nude()) 
 		{
 			output(" You're wearing <i>way</i> too many clothes...");
 			output("\n\nYour golden-haired lover seems to have the same thought. He helps you trip off your ");

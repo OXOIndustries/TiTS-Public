@@ -1490,7 +1490,7 @@ public function leftTeasedForEver(x:int = 0):void
 	output("\n\nYour Mistress periodically visits over the next few days to let you eat, drink, and occasionally unties you for a short bathroom break. She even lets you sleep for a few hours, though she makes you do so in a leather sleepsack and on the ground of the dungeon. You’re woken up and tied up once again to resume your discipline every few hours, allowing your brain the shortest of breaks.");
 	output("\n\nBy the third day you’ve forgotten nearly everything that exists outside of the dungeon, short of your Mistress’s visits and the tantalizing pleasure you are constantly subjected to. When she comes in and pulls out Butch from your [pc.vagOrAss " + x + "], you assume it’s for his regular re-lubing.");
 
-	output("\n\n<i>\"You’ve been very good, my pet. Don’t think I haven’t noticed you not saying a word. Time for your reward.”</i> Xanthe strokes your [pc.hair] and you let out a muffled cry of joy. Far for seeking release, you’re just happy that your Mistress is happy.");
+	output("\n\n<i>\"You’ve been very good, my pet. Don’t think I haven’t noticed you not saying a word. Time for your reward.”</i> Xanthe strokes your [pc.hair] and you let out a muffled cry of joy. Far from seeking release, you’re just happy that your Mistress is happy.");
 
 	//if Xanthe does not have frontcock
 	if(flags["XANTHE_FRONT_GENITAL"] != 1)
