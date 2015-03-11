@@ -41,34 +41,96 @@
 		/**
 		 * Configure a random set of sexual preferences, according to the parameter count
 		 * @param	count
+		 * Difficulty parameter sets whether to make an easy to please, normal, or difficult foe for teasing.
+		 * -1 = super easy, 0 = easy, 1 = normal, 2 = hard, 3= super hard
 		 */
-		public function setRandomPrefs(count:int):void
+		public function setRandomPrefs(count:int,difficulty:int = 1):void
 		{
 			// Ensure the prefs are clear before randomising
 			this.clearPrefs();
 			
 			// Add additonal factors for masculine/feminine sexprefs
-			if (rand(3) == 0)
-			{
-				this.setPref(GLOBAL.SEXPREF_MASCULINE, this.getRandomLikeFactor());
-			}
-			else if (rand(2) == 0)
-			{
-				this.setPref(GLOBAL.SEXPREF_FEMININE, this.getRandomLikeFactor());
-			}
+			if (rand(3) == 0) this.setPref(GLOBAL.SEXPREF_MASCULINE, this.getRandomLikeFactor());
+			else if (rand(2) == 0) this.setPref(GLOBAL.SEXPREF_FEMININE, this.getRandomLikeFactor());
 			
 			// Init an initial "like" to add
 			var randSexpref:int = this.getRandomSexpref();
-			
+			var totalMulti:Number = getTotalPrefMultiplier();
+			//Assign the preference with a random like/dislike factor based on difficulty.
+			var prefThresholdMinByDifficulty:Number = .75;
+			var prefThresholdMaxByDifficulty:Number = 1.5;
+			if(difficulty <= 0) 
+			{
+				prefThresholdMinByDifficulty = 2;
+				prefThresholdMaxByDifficulty = 4;
+			}
+			else if(difficulty <= -1) 
+			{
+				prefThresholdMinByDifficulty = 3;
+				prefThresholdMaxByDifficulty = 6;
+			}
+			else if(difficulty == 2) 
+			{
+				prefThresholdMinByDifficulty = .4;
+				prefThresholdMaxByDifficulty = .75;
+			}
+			else if(difficulty >= 3) 
+			{
+				prefThresholdMinByDifficulty = .2;
+				prefThresholdMaxByDifficulty = .5;
+			}
+			//trace("UPPER BOUND: " + prefThresholdMaxByDifficulty + " LOWER BOUND: " + prefThresholdMinByDifficulty)
+			//Loop through the total number of new mods to add.
 			for (var likeNum:int = 0; likeNum < count; likeNum++)
 			{
+				//Pick new prefs until we get one the character doesn't have.
 				while (this.getPref(randSexpref) != 0)
 				{
 					randSexpref = getRandomSexpref();
 				}
-				
-				this.setPref(randSexpref, this.getRandomLikeFactor());
+				//Get multi. If it's in bounds, random up/down. If it's high, bring it down, if low, bring it up.
+				totalMulti = getTotalPrefMultiplier()
+				//Too high? DISLIKE
+				if(totalMulti > prefThresholdMaxByDifficulty) 
+				{
+					this.setPref(randSexpref, this.getRandomDislikeFactor());
+					//trace("TOO HIGH! PICKED A DISLIKE");
+				}
+				//Too low? LIKE!
+				else if(totalMulti < prefThresholdMinByDifficulty) 
+				{
+					this.setPref(randSexpref, this.getRandomLikesFactor());
+					//trace("TOO LOW! PICKED A LIKE");
+				}
+				//Else? Random!
+				else 
+				{
+					this.setPref(randSexpref, this.getRandomLikeFactor());
+					//trace("PICKED RANDOM");
+				}
+				//trace("CURRENT MULTI: " + getTotalPrefMultiplier());
 			}
+			//trace("Sexprefs generated. total multiplier: " + getTotalPrefMultiplier(true))
+		}
+		public function getTotalPrefMultiplier(traced:Boolean = false):Number
+		{
+			var likeFactor:Number = 1;
+			var foundPrefs:int = 0;
+
+			//var args:Array
+			if(traced) trace("SEXPREFS.LENGTH" + _sexPrefs.length);
+			for (var flagNum:int = 0; flagNum < GLOBAL.MAX_SEXPREF_VALUE; flagNum++)
+			{
+				if (getPref(flagNum) != 0)
+				{
+					if(traced) trace("SEXPREF FOUND. VALUE: " + getPref(flagNum));
+					likeFactor *= getPref(flagNum);
+					foundPrefs++;
+				}
+				else if(traced) trace("NO SEXPREF FOUND");
+			}
+			if(foundPrefs == 0) return 1;
+			return likeFactor;
 		}
 		
 		/**
@@ -78,6 +140,17 @@
 		public function getRandomLikeFactor():Number
 		{
 			var lFactor:Number = GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))];
+			return lFactor;
+		}
+		//These are used to get random positive or negative levels of like.
+		public function getRandomLikesFactor():Number
+		{
+			var lFactor:Number = GLOBAL.SEXPREF_VALUES[(rand(2))];
+			return lFactor;
+		}
+		public function getRandomDislikeFactor():Number
+		{
+			var lFactor:Number = GLOBAL.SEXPREF_VALUES[(rand(2)+2)];
 			return lFactor;
 		}
 		

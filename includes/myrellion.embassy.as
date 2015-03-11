@@ -69,10 +69,11 @@ public function lyrallaAndJuroInCloset():Boolean
 	return false;
 }
 
-public function juroDisplay():void
+public function juroDisplay(nude:Boolean = false):void
 {
 	author("Savin");
-	showBust("JURO");
+	if(!nude) showBust("JURO");
+	else showBust("JURO_NUDE");
 	showName("AMBASSADOR\nJURO");
 }
 

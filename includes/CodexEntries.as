@@ -36,6 +36,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Naleen", naleenCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
@@ -100,7 +101,7 @@ public function sielCodexEntry():void
 	outputCodex("<i>Be careful you don't get too wrapped up in them.</i>\n");
 
 	outputCodex("\n<b>Name (Singular & Plural):</b> Siel");
-	outputCodex("\n<b>Genders:</b> Male, Female, Herm (See Siel Sexes and Genders)");
+	outputCodex("\n<b>Sexes:</b> Male, Female, Herm (See Siel Sexes and Genders)");
 	outputCodex("\n<b>Height:</b> Generally six feet high with a total body length of twelve feet.");
 	outputCodex("\n<b>Weight:</b> Over one hundred kilos.");
 	outputCodex("\n<b>Hair:</b> Very dark or very light blue, purple, or pink, as well as black or white. Many siel choose to recolor their hair.");
@@ -121,6 +122,32 @@ public function sielCodexEntry():void
 	CodexManager.viewedEntry("Siel");
 }
 
+public function kerokorasCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)));
+	outputCodex(header("Kerokoras"));
+	outputCodex("<i>U.G.C. survival guidelines recommend you do not lick them.</i>\n")
+	outputCodex("\n<b>Name (Singular & Plural):</b> Kerokoras");
+	outputCodex("\n<b>Sexes:</b> Purely Female");
+	outputCodex("\n<b>Height:</b> Between 4'6\" and 5'6\".");
+	outputCodex("\n<b>Hair:</b> Hairless");
+	outputCodex("\n<b>Eyes:</b> Bulbous, featuring broad pupils and wildly varying sclera coloration.\n\n");
+
+	outputCodex(blockHeader("Features"));
+	outputCodex("Kerokoras have bald and round heads, almost human in shape, but with large eyes and a complete lack of a protruding nose or ears. Instead they have a pair of broadly spaced nostrils above a wide mouth, and a pair of shallow pits where ears would be expected. Their mouths are able to open extremely wide, with jaws designed to dislocate, allowing them to consume large prey whole. The insides of their mouths are a reddish purple, with a thin, pale ridge of cartilage in place of teeth, making chewing tough food nearly impossible.\n\nThe most notable feature of the kerokoras face is their tongue. On average, their tongues can extend between eight and twelve feet, roughly twice their height. These prehensile tongues are made of twitch muscle, and capable of extending at nearly the same speed as a traditionally gunpowder-accelerated kinetic projectile, allowing them to hunt with the slightly sticky appendage. Like the insides of their mouths, their tongues tend to be a deep red with a purple and veiny underside.\n\nKerokoras lack not only hair, but mammaries as well, their flat chests lacking breasts or nipples. With the lack of breasts, their bodies are largely regarded as somewhat tomboyish, further reinforced by their narrow, feminine shoulders, each leading to a pair of slender, albeit well-muscled arms. Webbed, five fingered hands adorn the other end of their lithe arms.\n\nThe races evolutionary history is further evident in their lower bodies, with impressively thick legs intended for superior jumping and running speed. The power evident in the leg structure persists in their feet, with three large toes, featuring similar webbing to the hands, further aiding the race with movement through water and air.\n\nA short stubby tail protrudes from the base of their spines, just above their asses and, unlike most unevolved amphibians, they have both an anus and a vagina, instead of a cloaca.\n\nKerokoras feature very individual colors and patterning of the skin, with varying shades of green, earthy browns, vibrant orange, blue, red, green, yellow, black, and some with spotted combinations of these colors on their backs.\n\n");
+	outputCodex(blockHeader("Typical Environments"));
+	outputCodex("Kerokoras are usually only found in swamplands, preferably with large insect populations and plenty of dense foliage. They tend to live high in the trees, only approaching the ground to defend their young, find a mate, or feed. Oddly, kerokoras can be found on multiple worlds, despite their complete lack of interest in technology and their primitive tribal structures.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("The kerokoras are an opportunistic species, sexually. They have the ability to reproduce with males of almost any species that produces sperm. Their elastic reproductive organs allow them to accommodate a mate of almost any size, and always feel vice tight, regardless of how small or large the male might be.\n\nThe kerokoras produce a venomous sweat that greatly enhances the ardor of any creature who comes into contact with it. When searching for a mate, they will often lick their own back with their long tongues, gathering their sweat into a concentrated mix. They then find a male and repeatedly whip them with their tongue until the subject is in a rutting frenzy and doesn't care that he is mating with an alien species.\n\nIt should be noted that while any given kerokoras is resistant to their own venom, they are not immune to the sweat of other kerokoras. This sweat covers their entire body, and also acts to keep their skin clean.\n\nUpon being fertilized, the kerokoras will begin to develop an eggsack with anywhere from two to six eggs. After a relatively short initial gestation period of two weeks, the eggs are laid, generally in shallow, swampy water. These eggs typically hatch about a month later.\n\nKerokoras young are born without limbs, and with a long tail, and spend the first year of their development in water, before their limbs develop and they join the tribe in the trees. They reach full adulthood shortly after growing their arms and legs, and are able to breed soon after that, though most wait several years before contributing to the tribe.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The history of the kerokoras race is confusing to say the least, as they tend to have different stories on each world where they are encountered. Verbal folklore hints at an ancient age when they built great 'stone insects' that they rode on the backs of to distant stars, hinting that they are from a civilization in decline.\n\nResearch into their genetics reveals clues, hinting at past genetic tampering to allow them to mate with virtually any other species, and as the root-source of their ability to produce venom. Kerokoras raised entirely in captivity are quite malleable when it comes to beliefs, and can be raised in a tech heavy environment as long as they are supplied with adequate room to move.\n\n");
+	outputCodex(blockHeader("Other Notes"));
+	outputCodex("\n\nKerokoras venom is somewhat valuable for its aphrodisiac qualities, but when ingested in large quantities can have an invasive quality. The genetic alterations that the kerokoras have been subject to in the past lingers in their venom; strange transformations have been noted in test subjects ingesting large quantities of the venom.\n");
+	CodexManager.viewedEntry("Kerokoras");
+}
+
+
 public function kaithritCodexEntry():void
 {
 	clearOutputCodex();
@@ -128,7 +155,7 @@ public function kaithritCodexEntry():void
 	outputCodex(header("Kaithrit"));
 	outputCodex("<i>Cat-girls with two tails? What's not to love? ...what do you mean they have males?</i>\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Kaithrit");
-	outputCodex("\n<b>Genders:</b> Female, Male, statistically significant occurrence of hermaphroditism.");
+	outputCodex("\n<b>Sexes:</b> Female, Male, statistically significant occurrence of hermaphroditism.");
 	outputCodex("\n<b>Height:</b> Males range from 5' to 6'2” tall. Females and hermaphrodites range from 5'6\" to 7'3\".");
 	outputCodex("\n<b>Hair:</b> Nominally, kaithrit only feature hair on their head and a fine layer of soft fur on their tails and ears. Fur and hair coloration is highly diverse; every color and hue seen on terran felines has been reported, but some have stranger colors.");
 	outputCodex("\n<b>Eyes:</b> Kaithrit have two eyes in the normal humanoid position. These eyes are typically colored amber, hazel, brown, blue, green, gray, yellow, orange, black, yellow-green, blue-green, violet, copper or gold. Kaithrit have a slightly higher predisposition towards heterochromia than other races. They possess slitted feline pupils which give them much keener low-light vision than humans.\n\n");
@@ -267,7 +294,7 @@ public function ovirCodexEntry():void
 	userInterface.showBust("ALISS");
 	outputCodex(header("Ovir"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ovir");
-	outputCodex("\n<b>Genders:</b> Male & Female.");
+	outputCodex("\n<b>Sexes:</b> Male & Female.");
 	outputCodex("\n<b>Height:</b> Averages between 4'6\" and 6\"");
 	outputCodex("\n<b>Weight:</b> Averages between 90 and 160 lbs.");
 	outputCodex("\n<b>Hair:</b> Human-like hair on top of head, can be brown, black, red, blonde, or green.");
@@ -293,7 +320,7 @@ public function kuitanCodexEntry():void
 	userInterface.showBust("KIRO");
 	outputCodex(header("Kui-Tan"));
 	outputCodex("<b>Name (Singular & Plural):</b> Kui-tan\n");
-	outputCodex("<b>Genders:</b> Evenly split between males and hermaphrodites.\n");
+	outputCodex("<b>Sexes:</b> Evenly split between males and hermaphrodites.\n");
 	outputCodex("<b>Height: </b>Most adults are between 4’10” and 5’1” in height with few ever being shorter than 4’4” or taller than 5’6”.\n");
 	outputCodex("<b>Weight: </b>Similar to terrans despite their thick fur giving them a somewhat pudgy appearance.\n");
 	outputCodex("<b>Hair:</b> Hair grows from the top of the scalp with colorations from chocolate hues all the way to oil-black.\n");
@@ -1032,7 +1059,7 @@ public function vanaeCodexEntry():void
 	outputCodex("'Vah-nay'");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
 	//Taxonym: Vanae
-	outputCodex("\n<b>Genders:</b> Female");
+	outputCodex("\n<b>Sexes:</b> Female");
 	outputCodex("\n<b>Height:</b> 5'2\" - 5'6\"");
 	outputCodex("\n<b>Weight:</b> 55 - 62 kg");
 	outputCodex("\n<b>Skin:</b> Snow white with special markings of a single, bioluminescent color (Most to least common: Indigo, violet, pink, dark red, blue or black).");
@@ -1179,7 +1206,7 @@ public function Bess13CodexEntry():void
 	outputCodex(header("Bess-13 and Ben-14 Units"));
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
-	outputCodex("\n<b>Genders:</b> Female (Bess-13) or Male (Ben-14)");
+	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
 	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
 	outputCodex("\n<b>Weight:</b> 65kg (Bess-13), 70kg (Ben-14). These are the default factory settings.");
 	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
@@ -1230,7 +1257,7 @@ public function panaraCodex():void
 	outputCodex(header("Panara"));
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
-	outputCodex("\n<b>Genders:</b> Female (Bess-13) or Male (Ben-14)");
+	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
 	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
 
 	outputCodex("<b>Planet Name:</b> Panara");
@@ -1380,7 +1407,7 @@ public function thraggenCodexEntry():void
 	userInterface.showBust("CAPTAIN_KHORGAN");
 	outputCodex(header("The Thraggen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
-	outputCodex("\n<b>Genders:</b> Male & Female");
+	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> 6'0 - 7'5.");
 	outputCodex("\n<b>Hair:</b> Naturally, thraggen hair ranges in shades from silvery grey to a vibrant orange or dark red. Warriors often paint their faces and dye their hair in woad-like patterns, passed down by family line, before combat or major ceremonies.");
 	outputCodex("\n<b>Eyes:</b> Slitted, predatory eyes, usually brightly colored -- green, blue and red are the most common.");
@@ -1418,7 +1445,7 @@ public function daynarCodexEntry():void
 	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
 	outputCodex(header("The Daynar"));
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
-	outputCodex("\n<b>Genders:</b> Male & Female");
+	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Males - 5' 9\" ft, Females - 5' 7\"");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");
@@ -1477,7 +1504,7 @@ public function sionachCodexEntry():void
 	showBust("SIONACH");
 	outputCodex(header("The Sionach"));
 	outputCodex("<b>Name (Singular & Plural):</b> Sionach");
-	outputCodex("\n<b>Genders:</b> Male and female");
+	outputCodex("\n<b>Sexes:</b> Male and female");
 	outputCodex("\n<b>Height:</b> 4’7” to 5’10”");
 	outputCodex("\n<b>Hair:</b> Sionach hair runs the gamut from orange, black, white, grey, browns and silvers of varying shades. In addition to scalp and pubic hair, many sionach of both genders develop what are colloquially referred to as whiskers on the cheek: three bar-like patterns of short, downy hair. In addition, all have slender, shaped patterns of fur across their otherwise hairless bodies which vary from individual to individual. Some have small strips up their legs, others have tufts on knees and elbows, and some have negligee-like patterns around the chest and buttocks. These outcroppings are always very short, barely removed from the skin, and serve more as coloration than protection. ");
 	outputCodex("\n<b>Eyes:</b> Two large eyes in the normal humanoid position. Common eye colors include amber, golden, brown, crimson and yellow-green, with rare eye colors including blues, purples and blacks. Pupils are either round or vertical slits, with an equal distribution among the population. ");
@@ -1581,7 +1608,7 @@ public function nyreaCodexEntry():void
 	showBust("NYREA");
 	outputCodex(header("Nyrea"));
 	outputCodex("<b>Name (Singular & Plural):</b> Nyrea");
-	outputCodex("\n<b>Genders:</b> Male & Female. Note Reproduction below.");
+	outputCodex("\n<b>Sexes:</b> Male & Female. Note Reproduction below.");
 	outputCodex("\n<b>Height:</b> Males range in height from 5'5 to 5'10; females, the larger of the species, from 5'8 to 6'2.");
 	outputCodex("\n<b>Hair:</b> Nyrea have thin, wispy spine-like growths in most places humans might have hair. These vestigial barbs were once the species' primary means of defense against larger predators, but have long since evolved to be soft to the touch and harmless, usually cut short or styled in intricate braids and designs.");
 	outputCodex("\n<b>Eyes:</b> Nyrea have two mono-colored eyes, each with a small pupil in its center. Due to their almost exclusively subterranean existence, their eyesight is very poor, especially at longer ranges. For the same reason, their eyes are exceptionally sensitive to bright lights, and they can easily be blinded or stunned by sudden flashes. ");

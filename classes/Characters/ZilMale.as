@@ -183,7 +183,7 @@
 			
 			CodexManager.unlockEntry("Zil");
 			
-			combatZilMale.sexualPreferences.setRandomPrefs(3 + rand(3));
+			combatZilMale.sexualPreferences.setRandomPrefs(5+rand(3));
 			combatZilMale.tallness = 60 + rand(7);
 			combatZilMale.cocks[0].cLengthRaw = 4 + rand(5);
 			combatZilMale.long = "The male zil you're fighting would stand roughly " + combatZilMale.displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(combatZilMale.longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered by an ebony carapace";

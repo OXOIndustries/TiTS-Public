@@ -1683,6 +1683,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Cockvine) adultCockvineAI();
 	else if (aggressor is NyreaAlpha) alphaNyreaAI();
 	else if (aggressor is NyreaBeta) betaNyreaAI();
+	else if (aggressor is FrogGirl) frogGirlAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1811,6 +1812,10 @@ public function victoryRouting():void
 	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
 	{
 		pcVictoryOverNyrea();
+	}
+	else if(foes[0] is FrogGirl)
+	{
+		victoryAgainstTheFrogs();
 	}
 	else genericVictory();
 }
@@ -1947,6 +1952,7 @@ public function defeatRouting():void
 	{
 		pcLossToNyrea();
 	}
+	else if(foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2081,6 +2087,7 @@ public function startCombatLight():void
 	updateNPCStats();
 	if(foes[0] is LapinaraFemale) lapinaraBust();
 	else if(foes[0] is SexBot) sexBotDisplay();
+	else if(foes[0] is FrogGirl) showFrogGirl();
 }
 
 public function startCombat(encounter:String):void 

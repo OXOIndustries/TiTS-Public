@@ -30,6 +30,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cameron_nude.png", mimeType = "image/png")]
 		public var Bust_CAMERON_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/canada.png", mimeType = "image/png")]
+		public var Bust_CANADA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/canada_nude.png", mimeType = "image/png")]
+		public var Bust_CANADA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 
@@ -42,6 +47,24 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ellie_nude.png", mimeType = "image/png")]
 		public var Bust_ELLIE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_1.png", mimeType = "image/png")]
+		public var Bust_FROG_1:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_2.png", mimeType = "image/png")]
+		public var Bust_FROG_2:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_3.png", mimeType = "image/png")]
+		public var Bust_FROG_3:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_4.png", mimeType = "image/png")]
+		public var Bust_FROG_4:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_5.png", mimeType = "image/png")]
+		public var Bust_FROG_5:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_6.png", mimeType = "image/png")]
+		public var Bust_FROG_6:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_7.png", mimeType = "image/png")]
+		public var Bust_FROG_7:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_8.png", mimeType = "image/png")]
+		public var Bust_FROG_8:Class;
+
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]
@@ -51,6 +74,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro.png", mimeType = "image/png")]
+		public var Bust_JURO:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro_nude.png", mimeType = "image/png")]
+		public var Bust_JURO_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;

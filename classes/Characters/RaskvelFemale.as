@@ -189,7 +189,7 @@
 			
 			kGAMECLASS.userInterface.showBust("RASKVEL_FEMALE");
 			kGAMECLASS.setLocation("FIGHT: FEM.\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatRaskvelFemale.sexualPreferences.setRandomPrefs(3 + rand(3));
+			combatRaskvelFemale.sexualPreferences.setRandomPrefs(4 + rand(3),0);
 			
 			//Determine armor sizes
 			if(rand(2) == 0) {
