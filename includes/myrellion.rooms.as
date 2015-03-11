@@ -173,6 +173,7 @@ public function initializeMyrellionRooms():void
 	rooms["610"].runOnEnter = myrellionScoutAuthorityBonus;
 	rooms["610"].addFlag(GLOBAL.INDOOR);
 	rooms["610"].addFlag(GLOBAL.PUBLIC);
+	rooms["610"].addFlag(GLOBAL.TAXI);
  
 	//611 The Great Elevator
 	rooms["611"] = new RoomClass(this);
@@ -1796,15 +1797,15 @@ public function initializeMyrellionRooms():void
 
 	rooms["1L18"] = new RoomClass(this);
 	rooms["1L18"].roomName = "RADIO\nBUNKER";
-	rooms["1L18"].description = "(Radio Bunker from Fast Travel Shit Here)";
+	rooms["1L18"].description = "";
 	rooms["1L18"].planet = "PLANET: MYRELLION";
 	rooms["1L18"].system = "SYSTEM: SINDATHU";
 	rooms["1L18"].southExit = "1L20";
 	rooms["1L18"].moveMinutes = 5;
-	rooms["1L18"].runOnEnter = noManzLandBonus;
+	rooms["1L18"].runOnEnter = noAntsLandBeaconBonus;
 	rooms["1L18"].addFlag(GLOBAL.CAVE);
 	rooms["1L18"].addFlag(GLOBAL.INDOOR);
-	rooms["1L18"].addFlag(GLOBAL.HAZARD);
+	rooms["1L18"].addFlag(GLOBAL.TAXI);
 
 	rooms["1J18"] = new RoomClass(this);
 	rooms["1J18"].roomName = "AN\nINTERSECTION";

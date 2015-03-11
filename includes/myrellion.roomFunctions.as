@@ -90,8 +90,144 @@ public function backAlleyBonus():Boolean
 public function myrellionScoutAuthorityBonus():Boolean
 {
 	showBust("ANTRIAS");
+	addButton(0,"Approach",approachAntrias);
 	return false;
 }
+
+//[Scout] (PC hasn't fixed any comm arrays)
+function approachAntrias():void
+{
+	clearOutput();
+	showBust("ANTRIAS");
+	if(!myrellionTaxiUnlocked())
+	{
+		output("You step up to the desk and get the man’s attention. He blinks at you. <i>“Sorry, friend, we’re just getting set up here. No comm buoys are online yet, I’m afraid. Haven’t managed to bring in the drill-shot probes to do it properly. Come back later, yeah?”</i>");
+		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
+		output("\n\n<i>“Hey, if you manage to find any old communications arrays, even basic local tech, try and bring it online. Ever little bit help, ya know.”</i>");
+		clearMenu();
+		addButton(14,"Back",mainGameMenu);
+	}
+	//[Scout] (PC has fixed 1+ array)
+	else
+	{
+		output("<i>“Ho there, what can I do for you?”</i> the man asks, sitting up straight as you approach. <i>“Comm arrays are coming online in places we can get you, so where do you want to go, friend? <b>Only 150 credits a trip!</b>”</i>");
+		//{Destination -- 160 Credits}
+		myrellionTaxiMenu();
+	}
+}
+public function myrellionTaxiMenu():void
+{
+	clearMenu();
+	if(currentLocation == "610") addDisabledButton(0,"ScoutAuth.","Scout Authority","You're already at the scout authority!");
+	else
+	{
+		if(pc.credits >= 150) addButton(0,"ScoutAuth.",takeATransPortMyrellion,"610","Scout Authority","Spend 160 credits to go back to the scout authority in the DMZ.");
+		else addDisabledButton(0,"ScoutAuth.","Scout Authority","You can't afford the taxi fee.");
+	}
+	if(currentLocation == "1L18") addDisabledButton(1,"NoMan'sLand","No Man's Land","You're already at that taxi stop.");
+	else
+	{
+		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(0,"NoMan'sLand","No Man's Land","You haven't unlocked the comm array in no man's land yet.");
+		else
+		{
+			if(pc.credits >= 150) addButton(0,"NoMan'sLand",takeATransPortMyrellion,"1L18","No Man's Land","Spend 160 credits to go to no man's land.");
+			else addDisabledButton(0,"NoMan'sLand","No Man's Land","You can't afford the taxi fee.");
+		}
+	}
+	addButton(14,"Leave",mainGameMenu);
+}
+
+public function myrellionTaxiUnlocked():Boolean
+{
+	return (flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined);
+}
+
+function takeATransPortMyrellion(arg:String = ""):void
+{
+	clearOutput();
+	if(currentLocation == "610")
+	{
+		showBust("ANTRIAS");
+		output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head out back.”</i>");
+		output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the blasted surface of Myrellion, towards one of the subterranean entrances you need.");
+		output("\n\nNot long after, you arrive at your destination, a large crack in the ground allowing entrance. Carefully, your drone pilot lowers the car down into the blackness of Myrellion’s heart. You have to take a jump out, though, dropping down the last few feet into the uneven ground. The hover-car zips away a minute later, leaving you behind.");
+	}
+	else
+	{
+		output("You send a databurst to the Scout Authority, requesting transit. You receive what amounts to a Morse code affirmation over the radio in return, and spend the next few minutes waiting for your ride.");
+		output("\n\nThe robot-driven shuttle dives down through the crack in the roof quickly enough, parking just outside with open doors. You hop aboard and zoom off to your destination. If only it didn't cost you 150 credits for the luxury of it all.");
+	}
+	pc.credits -= 150;
+	currentLocation = arg;
+	var map:* = mapper.generateMap(currentLocation);
+  	this.userInterface.setMapData(map);
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//No Man's Land Beacon - 1L18
+//Place somewhere roughly equidistant between Gildenmere and Kressia, and nearish to the entrance to the Deep Caves. 
+function noAntsLandBeaconBonus():Boolean
+{
+	//Room Descript
+	output("What could have been a small military bunker sits here, tucked away almost imperceptibly against the far wall of the cavern. The only reason you'd notice it at all is the huge tear in the earth overhead, letting in beams of sunlight which reveal the pillbox's firing port, now devoid of armament. There's no indication of who built it or why its been abandoned, but a quick look inside reveals a beat up old radio sitting against a back wall, hooked up to several wires that lead all the way up to the surface.");
+	if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined)
+	{
+		output(" You might be able to use your Codex to tune it into the Scout's comm network and set up a taxi beacon here.");
+		addButton(0,"Fix Radio",repairRadio);
+	}
+	else 
+	{
+		output(" The radio is currently beeping rhythmically, sending coordinates to and fro the Scout base at the DMZ.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxy, though you'll pay 150 credits for the convenience.");
+	}
+	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there's something worthwhile here?");
+	else addDisabledButton(1,"Search","Search","You've already searched this location.");
+	//[Repair Radio] [Search]
+	return false;
+}
+
+//[Repair Radio]
+function repairRadio():void
+{
+	clearOutput();
+	showName("\nTINKERING");
+	output("You do a little basic techno-wizardry: using your Codex to look up the Scout Authority's emergency radio frequency, tuning the radio to it, and sending a databurst from your Codex to the computer at the DMZ. You should be able to bring in a taxi drone now - assuming somebody at the Scouts knows how to read morse code in this day and age.");
+	processTime(3);
+	flags["NO_ANTS_LAND_TAXI_UNLOCKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Call Taxi] //or whatever
+public function callATaxiYeScrub():void
+{
+	clearOutput();
+	showName("HAILING\nA CAB");
+	output("You crank up the old radio equipment. Before you send a request, where did you want to go? <b>Just 150 credits!</b>");
+	myrellionTaxiMenu();
+}
+
+//[Search] (One time only)
+function searchDatBunker():void
+{
+	clearOutput();
+	showName("\nSEARCHING...");
+	output("You spend a few minutes poking around in the old bunker, looking for anything salvagable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you'd imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you're able to dig out a beat up old rifle. Looks like it's been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
+	flags["LOOTED_MYR_RIFLE"] = 1;
+	processTime(18);
+	quickLoot(new MyrRifle());
+}
+/*
+Deep Caves Beacon
+There's a shaft of light beaming down from on high here, traceable up to a pretty sizable gash in the cavern ceiling, drilling all the way down to your depth. Buried in the dirt at the bottom is a small data probe, proudly bearing a scuffed up version of the U.G.C. Scouts emblem. {You could probably activate it, setting up a taxi pick-up point. // The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.}
+
+
+[Activate Beacon]
+You give the beacon a kick, and it buzzes to life. That was easy. Should be able to call in a taxi from here, now, thanks to the fuck-off huge hole it made landing here.
+*/
+
 
 public function kressiaGatesBonus():Boolean
 {
