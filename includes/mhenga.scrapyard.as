@@ -31,6 +31,9 @@ public function scrapyardMaintenance():void {
 }
 
 public function sellToArtie():void {
+	author("Nonesuch");
+	userInterface.showBust("ARTIE");
+	userInterface.showName("\nARTIE");
 	sellItem();
 }
 public function buyFromGeoff():void {

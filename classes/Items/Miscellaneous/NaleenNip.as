@@ -420,8 +420,8 @@
 					if(target.armor.shortName != "") kGAMECLASS.output("[pc.armor.longName]");
 					kGAMECLASS.output(" to free yourself from the constricting pressure.");
 				}
-				if(target.cockTotal() == 1) kGAMECLASS.output("It's");
-				else kGAMECLASS.output("They're");
+				if(target.cockTotal() == 1) kGAMECLASS.output(" It's");
+				else kGAMECLASS.output(" They're");
 				kGAMECLASS.output(" pulsating and achingly hard, already drooling a steady trickle of pre-cum along ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("its underside");
 				else kGAMECLASS.output("their undersides");
@@ -430,15 +430,13 @@
 				if(target.hasASheath()) kGAMECLASS.output("folding into your sheath at first, then taking it along with your dick, ");
 				kGAMECLASS.output("disappearing further into your middle with each passing moment. In a fit of desperation, you grab hold");
 				if(target.cockTotal() > 1) kGAMECLASS.output(" of one");
-				kGAMECLASS.output(" and tug, trying to keep your [pc.cocks] from going away, but you're too slick with pre! The length slides right through your grip and up inside you. WIth barely half of ");
+				kGAMECLASS.output(" and tug, trying to keep your [pc.cocks] from going away, but you're too slick with pre! The length slides right through your grip and up inside you. With barely half of ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("its length remaining");
 				else kGAMECLASS.output("their lengths remaining");
 				kGAMECLASS.output(" exposed, you're forced to watch ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("it");
 				else kGAMECLASS.output("them");
-				kGAMECLASS.output(" completely recede");
-				if(target.cockTotal() == 1) kGAMECLASS.output("s");
-				kGAMECLASS.output(", leaving only a single slit in its place.");
+				kGAMECLASS.output(" completely recede, leaving only a single slit in its place.");
 				kGAMECLASS.output("\n\nThe arousal fades as quickly as it came, leaving you there to consider your new genital slit. A quick, probing fingertip finds that your [pc.cocks] ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("hasn't");
 				else kGAMECLASS.output("haven't");

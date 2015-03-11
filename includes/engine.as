@@ -256,8 +256,8 @@ public function updateNPCStats():void {
 		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(foes[0].originalRace));
 		
 		var gText:String = "";
-		
-		if(foes[0].hasCock()) {
+		if(foes[0] is NyreaAlpha || foes[0] is NyreaBeta) gText = "Female???";
+		else if(foes[0].hasCock()) {
 			if (foes[0].hasVagina()) gText = "Herm";
 			else gText = "Male";
 		}
