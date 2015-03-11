@@ -2015,8 +2015,33 @@ public function genericLoss():void {
 	{
 		this.addButton(0,"Next",helpBadPCsOut);
 	}
+	else if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 5)
+	{
+		this.addButton(0,"Next",helpReallyBadPCsOut);
+	}
 	else if (pc.level == 1 && (foes[0] is NaleenMale || foes[0] is Naleen || foes[0] is HuntressVanae || foes[0] is MaidenVanae)) addButton(0,"Next",helpDumbPCsOut);
 	else this.addButton(0,"Next",mainGameMenu);
+}
+
+public function helpReallyBadPCsOut():void
+{
+	clearOutput();
+	showName("T.I.T.S.\nHELP")
+	output("(Are you having difficulty winning fights? If so, select yes for a minor statistical boost to your combat prowess.)");
+	clearMenu();
+	addButton(0,"Boost Me",boostMeCaptain);
+	addButton(1,"No",mainGameMenu);
+}
+public function boostMeCaptain():void
+{
+	pc.physique(1);
+	pc.reflexes(1);
+	pc.aim(1);
+	pc.intelligence(1);
+	pc.willpower(1);
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	mainGameMenu();
 }
 
 public function helpBadPCsOut():void

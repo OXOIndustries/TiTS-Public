@@ -250,7 +250,7 @@ public function naleenFucksBoysScene():void {
 		output(".");
 	}
 	//{If PC has a small dick (less than 6)
-	if(pc.cocks[x].cLength() < 6) output("\n\n<i>“Hmm?”</i>  the naleen purrs, cocking her head askance, <i>“is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...");
+	if(pc.cocks[x].cLength() < 6) output("\n\n<i>“Hmm?”</i>  the naleen purrs, cocking her head askance, <i>“is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...”</i>");
 
 	//(If PC's got a BIGGUS DICKUS (more than 15):
 	else if(pc.cocks[x].cLength() > 15) output("\n\n<i>“Oh myyyy,”</i>  the naleen purrs as your cock grows and grows in her hand, engorging to its inhuman length. <i>“My, my, you did pack quite a surprise for me, my pet. Such a nice change of pace from these awful, tiny zil boys everywhere.”</i>  you groan as the naleen hugs you crushingly tight, burying you in titflesh.\n\n<i>“Oh, I do so hope you last, pet. I want to get the most out of this!”</i>");
