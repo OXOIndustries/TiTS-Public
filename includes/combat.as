@@ -2004,17 +2004,44 @@ public function defeatRouting():void
 }
 
 public function genericLoss():void {
+	StatTracking.track("combat/losses");
 	pc.removeStatusEffect("Round");
 	trace("GENERIC LOSS");
 	pc.clearCombatStatuses();
 	resetNPCBarStates();
 	trace("LOSS DONE");
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
+	{
+		this.addButton(0,"Next",helpBadPCsOut);
+	}
+	else if (pc.level == 1 && (foes[0] is NaleenMale || foes[0] is Naleen || foes[0] is HuntressVanae || foes[0] is MaidenVanae)) addButton(0,"Next",helpDumbPCsOut);
+	else this.addButton(0,"Next",mainGameMenu);
+}
+
+public function helpBadPCsOut():void
+{
+	clearOutput();
+	showName("T.I.T.S.\nHELP")
+	output("(If you're struggling with combat difficulty, consider accessing <b>easy mode</b>. Easy mode reduces all damage (both normal and lust) by 50%. You can turn it on at any time by bringing up the menu and entering the options submenu.\n\nThe menu button is located in the bottom left of the interface - the three horizontal lines. It has been highlighted for convenience.");
+	userInterface.mainMenuButton.Glow();
+	output("\n\nAdditionally, remember that you should have at least one class ability to use as well as tease attacks. Several melee weapons are also available in Esbeth can be purchased for a reasonable amount of money - if you'd like a little extra punch.)");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function helpDumbPCsOut():void
+{
+	clearOutput();
+	showName("T.I.T.S.\nHELP")
+	output("(That foe was unsuitable for a character of your level. Consider taking the northern path out of Esbeth until after you have reached level two or three.)");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function genericVictory():void 
 {
+	StatTracking.track("combat/wins");
 	pc.clearCombatStatuses();
 	resetNPCBarStates();
 	getCombatPrizes();
