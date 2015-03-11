@@ -85,6 +85,7 @@
 					outputB("\n\nYou run your hand along your freshly formed skin and shiver a little with delight. <b>You now have " + pc.skinTone + " skin!</b>");
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 					pc.clearSkinFlags();
+					
 					changes++;
 				}
 

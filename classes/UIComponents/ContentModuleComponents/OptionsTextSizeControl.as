@@ -1,4 +1,4 @@
-package classes.UIComponents.ContentModuleComponents 
+﻿package classes.UIComponents.ContentModuleComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -17,6 +17,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _descriptionText:TextField;
 		private var _incButton:MainMenuButton;
 		private var _decButton:MainMenuButton;
+		private var _rstButton:MainMenuButton;
 		private var _previewText:TextField;
 		
 		public function OptionsTextSizeControl() 
@@ -48,21 +49,34 @@ package classes.UIComponents.ContentModuleComponents
 			_decButton.arg = "dec";
 			_decButton.buttonName = "Decrease\nFont Size";
 			
+			_rstButton = new MainMenuButton(true);
+			this.addChild(_rstButton);
+			_rstButton.x = _decButton.x - (_rstButton.width + 5);
+			_rstButton.func = buttonClickHandler;
+			_rstButton.arg = "reset";
+			_rstButton.buttonName = "Default\nFont Size";
+			_descriptionText = new TextField();
+
 			_descriptionText = new TextField();
 			_descriptionText.border = false;
 			_descriptionText.background = false;
-			_descriptionText.multiline = true;
+			_descriptionText.multiline = false;
 			_descriptionText.wordWrap = true;
 			_descriptionText.embedFonts = true;
 			_descriptionText.antiAliasType = AntiAliasType.ADVANCED;
 			_descriptionText.x = 5;
 			_descriptionText.y = 0;
 			_descriptionText.styleSheet = UIStyleSettings.gSharedStyleSheet;
+			//_descriptionText.name = "text";
+			//_descriptionText.htmlText = "<span class='words'><p><b>Main content display font size.</b></p></span>";
+			//this.addChild(_descriptionText);
+
 			_descriptionText.name = "text";
-			_descriptionText.htmlText = "<span class='words'><p><b>Main content display font size.</b></p></span>";
+			_descriptionText.htmlText = "<span class='words'><p><b>Main content display font size. (" + kGAMECLASS.gameOptions.fontSize + ")</b></p></span>";
 			this.addChild(_descriptionText);
-			_descriptionText.width = _decButton.x - 15;
-			_descriptionText.height = _decButton.bodyHeight();
+
+			_descriptionText.width = _rstButton.x - 15;
+			_descriptionText.height = _rstButton.bodyHeight();
 			_descriptionText.y += Math.round((_descriptionText.height - _descriptionText.textHeight) / 2);
 			_descriptionText.height = _descriptionText.textHeight;
 			
@@ -93,7 +107,9 @@ package classes.UIComponents.ContentModuleComponents
 			{
 				cStyle.setStyle(".words", {fontFamily: "Lato", fontSize: fSize, color: "#FFFFFF", marginRight: 5});
 				_previewText.styleSheet = cStyle;
-			}			
+			}
+			_descriptionText.htmlText = "<span class='words'><p><b>Main content display font size. (" + kGAMECLASS.gameOptions.fontSize + ")</b></p></span>";
+
 		}
 		
 		public function updateDisplay():void
@@ -110,6 +126,7 @@ package classes.UIComponents.ContentModuleComponents
 
 			kGAMECLASS.gameOptions["fontSize"] += change;
 			
+			if (arg == "reset") kGAMECLASS.gameOptions["fontSize"] = 18;
 			if (kGAMECLASS.gameOptions.fontSize < 12) kGAMECLASS.gameOptions.fontSize = 12;
 			if (kGAMECLASS.gameOptions.fontSize > 26) kGAMECLASS.gameOptions.fontSize = 26;
 

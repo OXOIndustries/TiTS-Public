@@ -230,10 +230,11 @@ public function appearance(target:Creature):void {
 		}
 		if(pc.earType == GLOBAL.TYPE_LEITHAN) output2(" In addition, pointed elfin ears jut out below them, giving you exceptional hearing.");
 		//Tongue
-		if(pc.tongueType == GLOBAL.TYPE_NAGA || pc.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like tongue occasionally flits between your lips, tasting the air.");
-		else if(pc.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
-		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
-		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible tongue that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
+		if(pc.tongueType == GLOBAL.TYPE_NAGA || pc.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [pc.tongueNoun] occasionally flits between your lips, tasting the air.");
+		else if(pc.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating [pc.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
+		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy [pc.tongueNoun] that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
+		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible [pc.tongue] that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
+		else output2(" Your mouth contains a [pc.tongue].");
 		//Horns
 		if(pc.horns > 0)
 		{

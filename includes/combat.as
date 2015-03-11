@@ -1716,7 +1716,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else if (aggressor is FrogGirl) frogGirlAI();
 	else if (aggressor is WetraHound) wetraHoundAI();
-	else if (aggressor is WetraxxelBrawler) WetraxxelBrawlerAI();
+	//else if (aggressor is WetraxxelBrawler) WetraxxelBrawlerAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 

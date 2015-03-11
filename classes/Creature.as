@@ -1276,6 +1276,15 @@
 				case "tongue":
 					buffer = tongueDescript();
 					break;
+				case "tongueNoun":
+					buffer = tongueNoun();
+					break;
+				case "tongueNounSimple":
+					buffer = tongueNoun(true,false);
+					break;
+				case "tonguePierced":
+					buffer = tongueNoun(false,true);
+					break;
 				case "tail":
 					buffer = tailDescript();
 					break;
@@ -2873,7 +2882,175 @@
 			return pluralize(eyeDescript());
 		}
 		public function tongueDescript(): String {
-			return "tongue";
+			var adjectives:Array = new Array();
+			var types:Array = new Array();
+			var description:String = "";
+			var descripted:int = 0;
+			
+			//Pick adjective
+			if(hasTongueFlag(GLOBAL.FLAG_LONG))
+			{
+				adjectives[adjectives.length] = "lengthy";
+				adjectives[adjectives.length] = "long";
+				adjectives[adjectives.length] = "extensive";
+				//adjectives[adjectives.length] = "protracted"; //This is a turrible tongue adjective.
+				//adjectives[adjectives.length] = "telescopic"; //Only works if it extends in telescopic fashion
+				if (tongueType == GLOBAL.TYPE_LEITHAN) adjectives[adjectives.length] = "extendable";
+				if (tongueType == GLOBAL.TYPE_DEMONIC) adjectives[adjectives.length] = "two-foot long";
+				if (tongueType == GLOBAL.TYPE_DRACONIC) adjectives[adjectives.length] = "four-foot long";
+			}
+			if(hasTongueFlag(GLOBAL.FLAG_PREHENSILE))
+			{
+				adjectives[adjectives.length] = "talented";
+				adjectives[adjectives.length] = "rapacious";
+				adjectives[adjectives.length] = "ravenous";
+				adjectives[adjectives.length] = "flexible";
+				adjectives[adjectives.length] = "voracious";
+				//adjectives[adjectives.length] = "avaricious";
+				adjectives[adjectives.length] = "prehensile";
+			}
+			if(hasTongueFlag(GLOBAL.FLAG_HOLLOW))
+			{
+				adjectives[adjectives.length] = "tubular";
+				adjectives[adjectives.length] = "hollow";
+			}
+			if(hasTongueFlag(GLOBAL.FLAG_SMOOTH))
+			{
+				adjectives[adjectives.length] = "smooth";
+				adjectives[adjectives.length] = "sleek";
+			}
+			
+			//Show adjective 50% of the time
+			if(rand(2) == 0 && adjectives.length > 0) 
+			{
+				description += adjectives[rand(adjectives.length)];
+				descripted++;
+			}
+			
+			//Mention of piercings
+			if (tonguePierced > 0)
+			{
+				if (descripted > 0) description += ", ";
+				description += tongueNoun(false,true);
+			}
+			
+			//Pick type
+			if(tongueType == GLOBAL.TYPE_HUMAN)
+			{
+				if(isHuman() || isHalfHuman()) 
+				{
+					types[types.length] = "human";
+					types[types.length] = "terran";
+				}
+				else types[types.length] = "humanoid";
+				if(race() == "raskvel") types[types.length] = "raskvel";
+			}
+			else if(tongueType == GLOBAL.TYPE_NAGA)
+			{
+				types[types.length] = "forked";
+				types[types.length] = "reptilian";
+				types[types.length] = "flitting";
+				types[types.length] = "snake-like";
+			}
+			else if(tongueType == GLOBAL.TYPE_DEMONIC)
+			{
+				types[types.length] = "slowly undulating";
+				types[types.length] = "retractable";
+				types[types.length] = "demonic";
+			}
+			else if(tongueType == GLOBAL.TYPE_DRACONIC)
+			{
+				types[types.length] = "thick";
+				types[types.length] = "fleshy";
+				types[types.length] = "draconic";
+			}
+			else if(tongueType == GLOBAL.TYPE_LEITHAN)
+			{
+				types[types.length] = "narrow";
+				types[types.length] = "forked";
+				types[types.length] = "leithan";
+			}
+			else if(tongueType == GLOBAL.TYPE_LAPINE)
+			{
+				types[types.length] = "rabbit-like";
+				types[types.length] = "cute";
+				//types[types.length] = "tiny"; //but what if got long flag? ERROR ERROR
+				types[types.length] = "lapine";
+			}
+			else if(tongueType == GLOBAL.TYPE_EQUINE)
+			{
+				types[types.length] = "horse-like";
+				types[types.length] = "equine";
+			}
+			else if(tongueType == GLOBAL.TYPE_CANINE)
+			{
+				types[types.length] = "dog-like";
+				types[types.length] = "canine";
+				types[types.length] = "large";
+				types[types.length] = "floppy";
+				if(race() == "ausar") types[types.length] = "ausar";
+			}
+			else if(tongueType == GLOBAL.TYPE_FELINE)
+			{
+				types[types.length] = "cat-like";
+				types[types.length] = "feline";
+				types[types.length] = "cute";
+				//types[types.length] = "tiny"; //See aforementioned bunnytongue
+				if(race() == "kaithrit") types[types.length] = "kaithrit";
+			}
+			else if(tongueType == GLOBAL.TYPE_BOVINE)
+			{
+				types[types.length] = "cow-like";
+				types[types.length] = "taurine";
+				types[types.length] = "wide-set";
+				types[types.length] = "broad";
+				types[types.length] = "bovine";
+			}
+			else if(tongueType == GLOBAL.TYPE_GOOEY)
+			{
+				types[types.length] = "goo-like";
+				types[types.length] = "amorphous";
+				types[types.length] = "gelatinous";
+				types[types.length] = "slimy";
+				types[types.length] = "gooey";
+				if(isRahn()) types[types.length] = "rahn";
+				if(race() == "galotian") types[types.length] = "galotian";
+				if(race() == "Conglomerate") types[types.length] = "nanomite";
+			}
+			
+			//Show type 50% of the time
+			if(rand(2) == 0 && types.length > 0) 
+			{
+				if (descripted > 0) description += ", ";
+				description += types[rand(types.length)];
+			}
+			if(descripted > 0) description += " ";
+			//Pick a noun.
+			description += tongueNoun(true,false);
+			return description;
+		}
+		public function tongueNoun(bNoun:Boolean = true, bPiercings:Boolean = true): String {
+			var nouns:Array = ["tongue"];
+			var description:String = "";
+			var descripted:int = 0;
+			
+			//Mention of piercings.
+			if (bPiercings && tonguePierced > 0)
+			{
+				if (tonguePierced < 2) description += "pierced";
+				else if (tonguePierced < 3) description += "double-pierced";
+				else if (tonguePierced < 4) description += "triple-pierced";
+				else if (tonguePierced < 7) description += "multi-pierced";
+				else description += "heavily-pierced";
+				descripted++;
+			}
+			//Pick a noun.
+			if(bNoun)
+			{
+				if (descripted > 0) description += " ";
+				description += nouns[rand(nouns.length)];
+			}
+			return description;
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
@@ -6270,7 +6447,7 @@
 			var temp: Number = 0;
 			var rando: Number = 0;
 			//Determine race type:
-			var race: String = "human";
+			var race: String = originalRace;
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
@@ -6406,6 +6583,11 @@
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
 			return counter;
+		}
+		public function isRahn(): Boolean {
+			if(race() == "rahn" || race() == "fuu'rahn" || race() == "zel'rahn" || race() == "loo'rahn" || race() == "doh'rahn" || race() == "go'rahn") return true;
+			else if (race().indexOf("rahn") != -1) return true;
+			return false;
 		}
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			var desc: String = "";
@@ -9465,7 +9647,7 @@
 				else return "rich";
 			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				if (temp <= 4) return "berry-flavored";
-		        else if (temp <= 7) return "sweet";
+				else if (temp <= 7) return "sweet";
         		else return "fruity";
         	}
 			return "bland";

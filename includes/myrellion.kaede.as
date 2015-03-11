@@ -27,9 +27,9 @@ public function findKaedeOnMyrellion():Boolean
 	
 	if (hasMetKaede() && flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MYRELLION_EMBASSY_VISITED"] != undefined && flags["KAEDE_MYRELLION_ENCOUNTER"] == undefined)
 	{
-		output(" You see a familiar half-ausar standing in the transport hub, followed closely by a hover-platform laden with crates and boxes stacked head-high, all bearing the label of the RhenWorld mining company. Seeing you, the svelte red-head smiles and waves, her tail wagging quickly behind her.");
+		output("\n\nYou see a familiar half-ausar standing in the transport hub, followed closely by a hover-platform laden with crates and boxes stacked head-high, all bearing the label of the RhenWorld mining company. Seeing you, the svelte red-head smiles and waves, her tail wagging quickly behind her.");
 		addButton(0, "Kaede", encounterKaedeOnMyrellion, undefined, "Greet Kaede", "Go say “Hi” to your friend.");
-		retVal = true;
+		retVal = false;
 	}
 	return retVal;
 }
@@ -118,6 +118,9 @@ public function kaedeMyrellionDrinks():void
 
 	processTime(15);
 	currentLocation = "609";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("THE\nGOLDEN PEAK");
 
 	kaedeMyrellionBarTalkMenu();
 }
@@ -152,7 +155,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\nAfter a moment of companionable silence spent drinking, you ask if her work is very dangerous.");
 	
-	output("\n\n<i>“It can be,”</i> she answers, and she pats her thigh just above where her handgun is slung in its holster. <i>“Pirates and raiders can get away with pretty much anything out here. My ship, </i>Talon<i>, is strapped with as many guns as I could afford. And I’ve got my money’s worth, let me tell you. Hand to God, I’ve torn a pirate ship in half with ‘em at point blank. It’s scary as all hell out here sometimes. I could get captured, enslaved, blown up, or incinerated at pretty much any time for no reason.”</i>");
+	output("\n\n<i>“It can be,”</i> she answers, and she pats her thigh just above where her handgun is slung in its holster. <i>“Pirates and raiders can get away with pretty much anything out here. My ship is strapped with as many guns as I could afford. And I’ve got my money’s worth, let me tell you. Hand to God, I’ve torn a pirate ship in half with ‘em at point blank. It’s scary as all hell out here sometimes. I could get captured, enslaved, blown up, or incinerated at pretty much any time for no reason.”</i>");
 	
 	output("\n\n<i>“Still worth it?”</i>");
 	
@@ -229,7 +232,7 @@ public function kaedeMyrellionTalkHerself():void
 	
 	output("\n\nThinking for a moment, you ask if her dad happens be a fellow by the name of Zeke - the big guy that put your father’s Casstech back together before you quest began.");
 	
-	output("\n\n<i>“Yeah, that’s him!”</i> Kaede laughs, <i>“Zeke Entara. Y’know, I walked in on him talking about some big Steele Tech contract way back. Months ago now, it must have been. Must have been your ship, now that I think about it.”</i>");
+	output("\n\n<i>“Yeah, that’s him!”</i> Kaede laughs, <i>“Zeke Entara. Y’know, I walked in on him talking about some big Steele Tech contract way back.  Months ago now, it must have been. Must have been your ship, now that I think about it.”</i>");
 	
 	output("\n\n<i>“Must have,”</i> you say. smiling now that Kaede’s opening up a little more. <i>“So, your dad’s the mechanic who put my");
 	if (9999 == 0) output(" old");
@@ -425,7 +428,7 @@ public function kaedeMyrellionSexIntro():void
 	output("\n\n<i>“Sorry about the mess,”</i> Kaede laughs, grabbing the food off her projector-turned-table and throwing it into a mini-fridge up against the far wall. She pulls the leather jacket off of her waist and hangs it up next to the airlock, following it with her gunbelt. <i>“Anyway, I think I’ve got that bottle in my cabin. Why don’t I go get it?”</i>");
 	
 	output("\n\nYou nod, and let Kaede slip away through a hatch into a side chamber near the back of the ship. You slip down onto the couch while you wait, slipping your arms around the back of the seat");
-	if (pc.isBiped()) output(" and kicking your feet up onto the projector’s face");
+	if (pc.isBiped()) output(" and kicking your [pc.feet] up onto the projector’s face");
 	output(".");
 
 	processTime(20);
@@ -582,6 +585,11 @@ public function kaedeMyrellionFuckAssCombine(cumInside:Boolean = false):void
 	
 	output("\n\n<i>“See you later, [pc.name],”</i> she says with a smile, heading off onto the tarmac. You disembark, heading back toward the transport hub. Hopefully you’ll get another chance at that cute piece of ass again sometime soon!");
 
+	currentLocation = "600";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("AIRFIELD\nSOUTH");
+
 	processTime(20+rand(10));
 	pc.orgasm();
 	
@@ -701,6 +709,11 @@ public function kaedeMyrellionSucknRide():void
 
 	processTime(45+rand(15));
 	pc.orgasm();
+
+	currentLocation = "600";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("AIRFIELD\nSOUTH");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
