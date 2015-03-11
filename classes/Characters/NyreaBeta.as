@@ -47,7 +47,7 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = new Array(0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85);
+			this.resistances = new Array(0.85, 0.85, 0.85, 0.85, 0.85, 1, 0.85, 0.85);
 			this.XPRaw = 250;
 			this.level = 6;
 			this.credits = 0;

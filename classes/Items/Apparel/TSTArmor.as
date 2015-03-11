@@ -44,7 +44,7 @@ package classes.Items.Apparel
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 1;
-			this.bonusResistances = new Array(0, 0, 0, 0.3, 0.3, 0.1, 0.2, 0.2);
+			this.bonusResistances = new Array(0, 0, 0, 0.3, 0.3, 0.0, 0.2, 0.2);
 			
 			this.version = this._latestVersion;
 		}
