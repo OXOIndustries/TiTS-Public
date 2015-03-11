@@ -74,9 +74,8 @@ public function wetraHoundBite():Boolean
 		{
 			if (pc.hasStatusEffect("Bleeding"))
 			{
-				var se:StorageClass = pc.getStatusEffect("Bleeding");
-				se.value1 += 1;
-				se.value2 = 3;
+				pc.addStatusValue("Bleeding", 1, 1);
+				pc.setStatusValue("Bleeding", 2, 3);
 			}
 			else
 			{
@@ -87,10 +86,12 @@ public function wetraHoundBite():Boolean
 
 			genericDamageApply(damageRand(50, 15), foes[0], pc, GLOBAL.PIERCING);
 		}
+		return true;
 	}
 	else
 	{
 		output(" You punch the bastard right in the nose, sending the beast tumbling back away just before it can bite into you!");
+		return false;
 	}
 }
 
@@ -110,10 +111,12 @@ public function wetraHoundPunch():Boolean
 		output("!");
 
 		genericDamageApply(damageRand(35, 15), foes[0], pc, GLOBAL.KINETIC);
+		return true;
 	}
 	else
 	{
 		output(" You put up your dukes and block the punch, deflecting the beast's mighty blow!");
+		return false;
 	}
 }
 
@@ -131,10 +134,12 @@ public function wetraHoundOverrun():Boolean
 		output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
 
 		genericDamageApply(damageRand(125, 20), foes[0], pc, GLOBAL.KINETIC);
+		return true;
 	}
 	else
 	{
 		output(" You tumble out of the way as quick as you can, letting the hound's momentum carry it past you. Its head slams into a wall with what should have been lethal force... but the beast just shakes it off and whirls around, ready to keep fighting!");
+		return false;
 	}
 }
 
@@ -192,7 +197,7 @@ public function wetraHoundPCLoss():void
 	output("The wetra hound slams into you like a freight train, barreling you to the ground and pinning you under its massive weight. The beast snarls and snaps, its razor-like fangs looming over your face, drooling and snarling and snapping. The creature doesn’t maul you, however, it just keeps you pinned.");
 	
 	output("\n\nOver the sounds of its snarling, you begin to hear footsteps rapidly approaching.");
-	if (!CodexManager.hasUnlockedEntry("Wetraxxel"))
+	if (!CodexManager.entryUnlocked("Wetraxxel"))
 	{
 		output(" A huge, muscular, insectile creature");
 	}
@@ -201,7 +206,7 @@ public function wetraHoundPCLoss():void
 		output(" The wetraxxel male who masters these caves");
 	}
 	output(" steps out of the shadows, cracking his knuckles and scowling at you.");
-	if (!CodexManager.hasUnlockedEntry("Wetraxxel"))
+	if (!CodexManager.entryUnlocked("Wetraxxel"))
 	{
 		output(" Your codex beeps out an identification, barely audible over the hound’s growling: this creature is a wetraxxel, a towering brawler who is dangerously territorial.");
 
@@ -249,7 +254,7 @@ public function encounterWetraxxelBrawler():void
 	
 	output("\n\nSomething tells you he isn’t happy to see you in his domain.");
 	
-	if (!CodexManager.hasUnlockedEntry("Wetraxxel"))
+	if (!CodexManager.entryUnlocked("Wetraxxel"))
 	{
 		output("\n\nYour Codex beeps out a warning: <i>“Danger! This creature is a male wetraxxel, a highly territorial, intelligent, and taciturn inhabitant of Myrellion. Early studies indicate it will defend its territory and females with its life. User beware: submission to a wetraxxel male may result in capture and imprisonment.”</i>");
 
@@ -772,7 +777,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	else holeTag = "[pc.asshole]";
 
 	var holeTightness:Number;
-	if (useVag) holeTightness = pc.loosestVaginalLooseness();
+	if (useVag) holeTightness = pc.gapestVaginaLooseness();
 	else holeTightness = pc.ass.looseness();
 
 	output("Your eyes wander across the beaten brawler’s huge and muscular body, across smooth chitinous curves and fanged mandibles, down to the simple loincloth covering his groin. The cloth is tenting under your intent gaze, giving way until his alien member peeks out from underneath it. You give the bug-man a gentle push onto his back: he goes down with a solid, heavy sound that echoes through the dark caverns. His loincloth flops out of the way, revealing the full length of his member: a strange and over-long appendage, crowned with a distinctly forked crown that bears a trio of dark slits.");
@@ -799,7 +804,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	if (useVag) output(" cunt");
 	else output(" ass");
 	output(".");
-	if (useVag) pc.cuntChange(pc.loosestVaginalIndex(), foes[0].biggestCockVolume(), true, true, false);
+	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), foes[0].biggestCockVolume(), true, true, false);
 	else pc.buttChange(foes[0].biggestCockVolume(), true, true, false);
 	
 	output("\n\nYou chew on your lip, trying to stifle a cry of pleasure as you sink down on the pillar of wetraxxel cockflesh. It’s an effort not to scream out, letting your voice echo through the corridors and announcing your ecstasy to the world. The wetraxxel makes that decision for you, grabbing your [pc.hips] and yanking you down on his rod: you can’t help but scream as he tries to ram feet of cockflesh into the straining");
@@ -819,7 +824,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes every more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves for mile around hear you.");
 	
 	output("\n\nThe wetraxxel joins you with a gruff grunt of pleasure, and a sudden flood of wet heat into your "+holeTag+" as he cums. With one final push, you take him as deep as you can and surrender yourself to pleasure, letting orgasm wash over your in tidal waves of ecstasy. Your "+holeTag+" clenches powerfully around the wetraxxel’s dick, milking his hot seed out with your every orgasmic motion.");
-	if (useVag) pc.loadInCunt(foes[0], pc.loosestVaginalIndex());
+	if (useVag) pc.loadInCunt(foes[0], pc.biggestVaginaIndex());
 	else pc.loadInAss(foes[0]);
 	
 	output("\n\nWhile you cum, you feel the brawler’s hands wrap around your hips, holding you steady until your climax has passed, and you slump down against his chest. You find your cheek resting against the lighter plates of the brawler’s abs while you catch your breath, letting the wetraxxel’s cock slowly wilt and slide out of you, leaving a sticky trail of seed that clings to your thighs. You slip off to sleep, held tight against the insectile brute’s chest");
