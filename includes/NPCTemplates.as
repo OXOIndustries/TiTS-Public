@@ -306,6 +306,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["FROG_GIRL"] = new FrogGirl();
 	}
+	if (!justUpdate || (justUpdate && chars["WETRA HOUND"] == undefined))
+	{
+		chars["WETRA HOUND"] = new WetraHound();
+	}
+	if (!justUpdate || (justUpdate && chars["WETRAXXEL BRAWLER"] == undefined))
+	{
+		chars["WETRAXXEL BRAWLER"] = new WetraxxelBrawler();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

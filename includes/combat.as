@@ -9,6 +9,8 @@ import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.SecurityDroids;
+import classes.Characters.WetraHound;
+import classes.Characters.WetraxxelBrawler;
 import classes.Creature;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -451,6 +453,35 @@ public function updateCombatStatuses():void {
 		}		
 		genericDamageApply(3+rand(4),foes[0],pc,GLOBAL.THERMAL);
 		output("\n");
+	}
+	if (pc.hasStatusEffect("Bleeding"))
+	{
+		output("<b>Your wounds continue to take their toll on your body;");
+		if (pc.statusEffectv2("Bleeding") >= 1)
+		{
+			pc.addStatusValue("Bleeding", 2, -1);
+			output(" your microsugeons working overtime to stem the ongoing damage.</b>");
+		}
+		else
+		{
+			pc.removeStatusEffect("Bleeding");
+			output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>");
+		}
+		genericDamageApply(damageRand(pc.statusEffectv1("Bleeding") * pc.statusEffectv3("Bleeding"), 15), foes[0], pc, GLOBAL.SLASHING);
+		output("\n");
+	}
+	if (pc.hasStatusEffect("Staggered"))
+	{
+		if (pc.statusEffectv1("Staggered"))
+		{
+			pc.addStatusValue("Staggered", 1, -1);
+			output("<b>You're still reeling from the force of the blows to which you've been subject.</b>");
+		}
+		else
+		{
+			pc.removeStatusEffect("Staggered");
+			output("<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
+		}
 	}
 	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
 	{
@@ -1684,6 +1715,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is NyreaAlpha) alphaNyreaAI();
 	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else if (aggressor is FrogGirl) frogGirlAI();
+	else if (aggressor is WetraHound) wetraHoundAI();
+	else if (aggressor is WetraxxelBrawler) WetraxxelBrawlerAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -2214,6 +2247,12 @@ public function startCombat(encounter:String):void
 		case "Nyrea Beta":
 			chars["NYREA BETA"].prepForCombat();
 			break;
+		case "wetrahound":
+			chars["WETRA HOUND"].prepForCombat();
+			break;
+		case "wetraxxelbrawler":
+			chars["WETRAXXEL BRAWLER"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
@@ -2511,6 +2550,13 @@ public function tease(target:Creature, part:String = "chest"):void {
 			{
 				output("\n");
 				output(teaseReactions(0, target));
+				output(" (0)\n");
+				teaseSkillUp(part);
+			}
+			else if (target is WetraHound)
+			{
+				output("\n");
+				wetraHoundAnimalIntellect();
 				output(" (0)\n");
 				teaseSkillUp(part);
 			}

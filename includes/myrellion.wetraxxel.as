@@ -38,7 +38,6 @@ public function encounterWetraHound():void
 	
 	output("\n\nThe creature growls, opening its slavering maw into a bestial howl before charging at you!");
 
-	//9999 - start combat
 	startCombat("wetrahound");
 }
 
@@ -62,8 +61,6 @@ public function wetraHoundAI():void
 
 public function wetraHoundBite():Boolean
 {
-	// 9999 - Needs Bleed hooking into combat code
-
 	//Moderate piercing damage. Chance to inflict Bleeding (if shields are down only).
 
 	output("The wetra hound leaps forward, its fanged maw wide open. The creature slams into you, attempting to sink its dagger-like teeth into you.");
@@ -72,6 +69,11 @@ public function wetraHoundBite():Boolean
 		output(" The hound bites your arm, bringing its jaws down around you with crushing weight. You yelp in pain as its fangs sink into you!");
 		if (pc.shields() <= 0)
 		{
+			/* Bleeding
+			v1 = stacks
+			v2 = remaining rounds
+			v3 = base damage
+			*/
 			if (pc.hasStatusEffect("Bleeding"))
 			{
 				pc.addStatusValue("Bleeding", 1, 1);
@@ -79,7 +81,7 @@ public function wetraHoundBite():Boolean
 			}
 			else
 			{
-				pc.createStatusEffect("Bleeding", 1, 3, 0, 0, false, "Icon_Crying", "You've been savaged and are bleeding!", true, 0);
+				pc.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You've been savaged and are bleeding!", true, 0);
 			}
 
 			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
@@ -162,7 +164,6 @@ public function wetraHoundRend():void
 
 public function wetraHoundAnimalIntellect():void
 {
-	// 9999
 	//Play when the PC tries to Tease the wetra hound.
 
 	output("The wetra hound looks at you confusedly as you strut your stuff, but it shows no visible signs of arousal. Not surprisingly, you have a hard time turning on an animal!");
@@ -363,8 +364,14 @@ public function wetraxxelBrawlerDropKick():void
 
 		genericDamageApply(damageRand(100, 15), foes[0], pc, GLOBAL.KINETIC);
 
-		pc.createStatusEffect("Staggered", 0, 0, 0, 0, false, "Icon_OffDown", "You're staggered and your Aim and Reflexes have been reduced!", true, 0);
-		// 9999 Implement effect
+		if (pc.hasStatusEffect("Staggered"))
+		{
+			pc.setStatusValue("Staggered", 1, 5);
+		}
+		else
+		{
+			pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered and your Aim and Reflexes have been reduced!", true, 0);
+		}
 	}
 }
 
@@ -444,7 +451,6 @@ public function wetraxxelBrawlerPCLoss():void
 		output("\n\n<i>“You still return?”</i> the wetraxxel sighs, looming over you. You pointedly avoid his gaze, already starting to pull away your burdensome gear, shame-facedly trying to hide your mounting sexual excitement. <i>“You enjoy your submission, I see. As do I. Perhaps you would make a fine addition to my harem after all...”</i>");
 	}
 
-	//Go to randomly-determined PC loss scene, if not Bad Ended. 9999
 	clearMenu();
 	addButton(0, "Next", wetraxxelLossScene(false)); // Autobadends if appropriate.
 }

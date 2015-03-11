@@ -2187,7 +2187,8 @@
 			var currReflexes:int = reflexesRaw + reflexesMod;
 
 			//Debuffs!
-			if(hasStatusEffect("Trip")) currReflexes -= 4;
+			if (hasStatusEffect("Trip")) currReflexes -= 4;
+			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
 
 			if (currReflexes > reflexesMax())
 			{
@@ -2219,6 +2220,8 @@
 			}
 			
 			var currAim:int = aimRaw + aimMod;
+			
+			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			
 			if (currAim > aimMax())
 			{
