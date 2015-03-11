@@ -282,23 +282,27 @@
 				//Grow tail
 				if(pc.tailType != GLOBAL.TYPE_RASKVEL && rand(7) == 0 && changes < changeLimit)
 				{
-					//Already have tail:
-					if(pc.tailCount > 0)
+					if(target.tailTypeUnlocked(GLOBAL.TYPE_RASKVEL))
 					{
-						kGAMECLASS.output("\n\nHeat pulses up [pc.oneTail], the ropey muscles there reconfiguring. It doesn’t feel like it’s melting away, rather shifting into something different. After a while the sensation dissipates and you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
+						//Already have tail:
+						if(pc.tailCount > 0)
+						{
+							kGAMECLASS.output("\n\nHeat pulses up [pc.oneTail], the ropey muscles there reconfiguring. It doesn’t feel like it’s melting away, rather shifting into something different. After a while the sensation dissipates and you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
+						}
+						//Do not have tail:
+						else
+						{
+							kGAMECLASS.output("\n\nAn uncomfortable sensation builds at the base of your spine, as if your back is trying to grow but has nowhere to go. Finally and with a sensation of blessed relief something bursts into existence above your [pc.butt], shooting outwards and quickly forming into a new appendage. When the sensation dissipates you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
+						}
+						pc.tailCount = 1;
+						pc.clearTailFlags();
+						pc.tailType = GLOBAL.TYPE_RASKVEL;
+						pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						pc.addTailFlag(GLOBAL.FLAG_SCALED);
+						changes++;
 					}
-					//Do not have tail:
-					else
-					{
-						kGAMECLASS.output("\n\nAn uncomfortable sensation builds at the base of your spine, as if your back is trying to grow but has nowhere to go. Finally and with a sensation of blessed relief something bursts into existence above your [pc.butt], shooting outwards and quickly forming into a new appendage. When the sensation dissipates you’re left to clumsily swing around <b>your new raskvel tail</b> and admire it in all its long, blunt, scaly glory. When you let it go and put your mind elsewhere it flops into the dirt. You suppose you’ll get used to the constant shifting sound that follows your every step now.");
-					}
-					pc.tailCount = 1;
-					pc.clearTailFlags();
-					pc.tailType = GLOBAL.TYPE_RASKVEL;
-					pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-					pc.addTailFlag(GLOBAL.FLAG_LONG);
-					pc.addTailFlag(GLOBAL.FLAG_SCALED);
-					changes++;
+					else kGAMECLASS.output(target.tailTypeLockedMessage());
 				}
 				//Grow long tongue
 				if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && rand(6) == 0 && changes < changeLimit)
@@ -359,7 +363,7 @@
 					kGAMECLASS.output("\n\nYou gasp and bunch your fists as what feels like a soft vice clamps down on your balls, pushing them upwards and inwards. It’s not painful exactly but whatever is happening to them is intense enough for sweat to stand out on your brow. When the sensation dissipates somewhat you slide a hand downstairs uncertainly. <b>You’ve grown a tight-fitting pouch</b> which holds your three nuts up to the back of your thighs.");
 					if(pc.ballSizeRaw >= 7)
 					{
-						kGAMECLASS.output("Your testicles have also shrunken to compensate. ");
+						kGAMECLASS.output(" Your testicles have also shrunken to compensate. ");
 						pc.ballSizeRaw -= 2;
 					}
 					kGAMECLASS.output(" It’s...uncomfortable, to be honest. The sensation of dense urge that three testicles gave you before is tripled now they are packed together in such a small space; a hot, needy sphere that is forever goading you to find release, whatever the cost.");
