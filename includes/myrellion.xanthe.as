@@ -353,7 +353,7 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 		output("\n\nYou instinctively spin round. Your eyes are immediately met with a pair of electric blues staring straight back at you. They are shaped like exploding stars; pale azure exploding within the black rims of an iris. You take a step back, and they come into perspective.");
 		output("\n\nThe eyes, and the voice, belong to a mysterious looking woman with dusky blue-grey skin. Her face is smooth, feminine, and replete with high cheekbones. There is a playful smile on her full, pouting lips. It’s clear that she quite enjoyed sneaking up on you.");
 		output("\n\n<i>\"Don’t worry. I don’t bite. Much,”</i> she teases. You soak in her appearance. Two antennae are sticking out of her head, and sweep back like insectoid rabbit ears. They’re protruding from a full head of wavy, midnight blue hair that tumbles down to her collarbones. There are slit like gills on either side of her neck.");
-		output("\n\nLooking down, you notice her eye-poppingly large breasts are only <i>barely</i> contained by a black lace bra. Teasing you again, she crosses crosses her arms underneath her plump udders. She pushes her arms upwards, and her assets threaten to spill deliciously out of their lacy confines...");
+		output("\n\nLooking down, you notice her eye-poppingly large breasts are only <i>barely</i> contained by a black lace bra. Teasing you again, she crosses her arms underneath her plump udders. She pushes her arms upwards, and her assets threaten to spill deliciously out of their lacy confines...");
 		//[Stare] [Don’t Stare] * Ditz always stares.
 		clearMenu();
 		if(pc.isBimbo()) addButton(0,"Next",stareAtXantheYaSloot);
@@ -454,7 +454,7 @@ public function stareDontStareEpilogue():void
 	if(!CodexManager.entryUnlocked("Siel"))
 	{
 		output("\n\nAll of her...? You suddenly realise there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, the Siel pulls it out... and out... and out. Void, how much of her IS there?");
-		output("\n\nWhen you finally get a good look at her, you realise she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
+		output("\n\nWhen you finally get a good look at her, you realise she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears a second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
 		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>\"Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>");
 		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. \"<i>... If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
 		CodexManager.unlockEntry("Siel");
@@ -830,7 +830,7 @@ public function talkToXantheAboutSpaceJesus():void
 
 	output("\n\nYou ask her if Zyi is some sort of god, and Xanthe quirks an eyebrow. \"<i>... Well, yes and no. You worship gods, and I don’t worship Zyi. None of the siel do. Zyi just sort of </i>is<i>. I suppose that’s no real explanation, though, so I’ll elaborate.”</i>");
 
-	output("\n\n<i>\"Zyi, though you may know them by another name, is the one who created the universe and everything in it.”</i> Xanthe explains, all the playing with one of her midnight blue locks. <i>\"Neither male nor female, Zyi tugs at the strings of all things, making things happen simply because Zyi is Zyi.”</i>");
+	output("\n\n<i>\"Zyi, though you may know them by another name, is the one who created the universe and everything in it.”</i> Xanthe explains, all the while playing with one of her midnight blue locks. <i>\"Neither male nor female, Zyi tugs at the strings of all things, making things happen simply because Zyi is Zyi.”</i>");
 	output("\n\n<i>\"I remember one myr girl asked me why we follow a god who doesn’t care about us. It’s more ‘recognition’ than ‘following’, really. We simply acknowledge the fact there is someone pulling the strings of random occurrence. There doesn’t need to be a rhyme or reason to it.”</i>");
 
 	output("\n\n<i>\"We don’t ‘pray’ like many other species do. There’s no way to get in Zyi’s good books, because you can’t manipulate the universe - it’s silly even to try. The best you can hope for is that Zyi decides to do something good for you, though they’re just as likely to do the opposite.”</i>");
@@ -1316,7 +1316,7 @@ public function tieAndTeaseWithXanthe():void
 
 	output("\n\nLooking upwards, you marvel at her obvious talent and the care in which she ties you up like a perfectly wrapped present. It’s tight enough for you to feel it every given second, yet in no way does it feel uncomfortable.");
 
-	output("\n\nShe also secures your [pc.legOrLegs] with two lengths of silken twine, each connected to your left and right. Tied up like this, you’re unable to do anything but ");
+	output("\n\nShe also secures your [pc.legOrLegs] with two lengths of silken twine, each secured your immediate left and right. Tied up like this, you’re unable to do anything but ");
 	if(pc.legCount > 1) output("keep your [pc.legsNoun] spread and ");
 	output("your arms in the air. It’s like you’re a naked damsel dangling over a pit of doom!");
 
@@ -1758,7 +1758,7 @@ public function slutNotASlutEpilogue():void
 {
 	clearOutput();
 	showXanthe();
-	output("Your vulnerable [pc.skinColor] butt is spanked and slapped over and over until it is filled with a tingling, penetrating warmth that fills up it up entirely. The most pain you feel is a slight stinging sensation on impact that spreads out across your battered asscheeks, making them tingle with delicious feeling.");
+	output("Your vulnerable [pc.skinColor] butt is spanked and slapped over and over until it is filled with a tingling, penetrating warmth that fills it up entirely. The most pain you feel is a slight stinging sensation on impact that spreads out across your battered asscheeks, making them tingle with delicious feelings.");
 	output("\n\nJust knowing that your [pc.ass] now looks nice and marked due to her attentions causes your ");
 	if(pc.hasVagina()) 
 	{
