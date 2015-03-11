@@ -838,7 +838,7 @@ public function rideNyreaDick():void
 
 	if (!pc.isPregnant(3))
 	{
-		tHoleTag = "[pc.asshole]"
+		tHoleTag = "[pc.asshole]";
 		useAss = true;
 		isFull = false;
 	}
