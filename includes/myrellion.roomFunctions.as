@@ -95,7 +95,7 @@ public function myrellionScoutAuthorityBonus():Boolean
 }
 
 //[Scout] (PC hasn't fixed any comm arrays)
-function approachAntrias():void
+public function approachAntrias():void
 {
 	clearOutput();
 	showBust("ANTRIAS");
@@ -143,7 +143,7 @@ public function myrellionTaxiUnlocked():Boolean
 	return (flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined);
 }
 
-function takeATransPortMyrellion(arg:String = ""):void
+public function takeATransPortMyrellion(arg:String = ""):void
 {
 	clearOutput();
 	author("Savin");
@@ -170,7 +170,7 @@ function takeATransPortMyrellion(arg:String = ""):void
 
 //No Man's Land Beacon - 1L18
 //Place somewhere roughly equidistant between Gildenmere and Kressia, and nearish to the entrance to the Deep Caves. 
-function noAntsLandBeaconBonus():Boolean
+public function noAntsLandBeaconBonus():Boolean
 {
 	author("Savin");
 	//Room Descript
@@ -192,7 +192,7 @@ function noAntsLandBeaconBonus():Boolean
 }
 
 //[Repair Radio]
-function repairRadio():void
+public function repairRadio():void
 {
 	clearOutput();
 	author("Savin");
@@ -215,7 +215,7 @@ public function callATaxiYeScrub():void
 }
 
 //[Search] (One time only)
-function searchDatBunker():void
+public function searchDatBunker():void
 {
 	clearOutput();
 	author("Savin");

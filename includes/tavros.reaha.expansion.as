@@ -39,6 +39,7 @@ public function reahaAddicted():Boolean
 
 public function reahaAddictionTherapyAvailable():Boolean
 {
+	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined) return false;
 	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false;
 	if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) return false;
 	return true;
@@ -100,7 +101,7 @@ public function reahaFirstTalk():void
 	flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] = 1;
 
 	output("<i>“I get the feeling you’ve been to New Texas before,”</i> you say to her, by way of opening the topic");
-	if (9999 == 0) output(", your eyes drawn to her bare, bovine body. She looks, and even acts, like the Treated cows you’ve seen on the surface");
+	if (flags["NEW_TEXAN_CUSTOMS_MET"] != undefined) output(", your eyes drawn to her bare, bovine body. She looks, and even acts, like the Treated cows you’ve seen on the surface");
 	output(". Reaha blinks hard, clearly surprised that you’re just trying to talk rather than fuck.");
 	
 	output("\n\nWhen you pose the question to her, Reaha looks pointedly away from you, biting her lip and drawing circles on the deck with her big toe. When she speaks, her voice is hushed, barely audible. <i>“I was born here, actually,”</i> she finally admits, still not meeting your gaze. <i>“I grew up here on T.’s ranch. New Texan, born and raised.”</i>");
@@ -319,7 +320,9 @@ public function reahaTalkTreatmentComfort():void
 	if (reahaFree()) output(" The government -- my own FAMILY -- tried to turn me into a brainless cumslut just because I had the luck to be born with a pair of tits. They’re all complicit, every single one of them, for making slaves out of women, and for what? The U.G.C. lets them get away with it because it’s tradition!”</i>");
 	else output(" This whole place, it’s some sick bastard’s sex garden, and we’re supposed to lie down -- preferably on our backs -- and just accept it? No. That’s why I ran away, [pc.master]. And why I never wanted to come back.”</i>");
 	
-	output("\n\nReaha takes a deep breath, looks at you with her big blue eyes, and steps up with her arms wide open. You take the cow-girl up on her offer, pulling her into a tight hug. Her arms clutch around your back, and the quiver in her voice as she speaks again clues you in to just how close to tears she is: <i>“Just... do whatever you came here to do, and let’s leave. Okay? I don’t want to be here a second longer, [pc.master]. This planet makes me sick!”</i>");
+	output("\n\nReaha takes a deep breath, looks at you with her big blue eyes, and steps up with her arms wide open. You take the cow-girl up on her offer, pulling her into a tight hug. Her arms clutch around your back, and the quiver in her voice as she speaks again clues you in to just how close to tears she is: <i>“Just...");
+	if (shipLocation == "500") output(" do whatever you came here to do, and let’s leave. Okay? I don’t want to be here a second longer, [pc.master]. This planet makes me sick!”</i>");
+	else output(" just promise me that you won't hang around there too much [pc.master]. The place makes me sick!”</i>");
 
 	processTime(5);
 
@@ -334,10 +337,10 @@ public function reahaTalkNewTexas():void
 	output("<i>“So what do think about New Texas,”</i> you ask. <i>“It’s your homeworld, after all.”</i>");
 	
 	output("\n\nReaha");
-	if (9999 == 0) output(" sighs");
+	if (shipLocation != "500") output(" sighs");
 	else output(" sighs wistfully, looking out the tiny window of her cabin in the landing barn outside");
 	output(". <i>“Aside from the Treatment and all the bullshit that goes along with it, I guess it’s not that bad. New Texas is pretty, at least, and peaceful. Way different than cramped, noisy Tavros... there’s fields everywhere, wide open for you to run and play in whenever you want, as far as the eye can see. New Texas is an agrarian world, mostly farms and stuff except for a few bigger cities near the equator. I grew up around");
-	if (9999 == 0) output(" here");
+	if (shipLocation == "500") output(" here");
 	else output(" Tee’s ranch");
 	output(", so that’s mostly what I know. Mom never took us far from the ranch, seeing as she was one of the big dairy girls. Couldn’t go long without a session in the industrial milker, or her tits would swell up like this,”</i> Reaha says, giggling and making a ballooning motion with her arms over her already-impressive chest. ");
 	
@@ -451,7 +454,7 @@ public function reahaTalkNewTexasII():void
 		output("<i>“So, how come you never told me you had sisters before?”</i>");
 		
 		output("\n\nReaha shrugs. <i>“Up ‘til recently, I thought you bought me to");
-		if (!reahaFree()) output(" suck dick");
+		if (reahaFree()) output(" suck dick");
 		else output(" be your personal milk maid");
 		output(", not talk.");
 		if (reahaConfidence() >= 40) output(" I’m glad that’s not the case, [pc.name].");
@@ -715,7 +718,7 @@ public function reahaTalkGeneModsWhyComfort():void
 	if (reahaAddicted())
 	{
 		output(", nodding to the pleasure patch");
-		if (reahaAddiction() >= REAHA_ADDICTION_MED) output("s");
+		if (reahaAddiction() >= REAHA_ADDICTION_MED) output("es");
 		output(" on her thigh");
 	}
 	output(".");
@@ -1056,7 +1059,7 @@ public function reahaAddictionTherapyNoWingWang():void
 	var hardLight:Boolean = pc.lowerUndergarment.hardLightEquipped;
 
 	output("You give your busty bovine companion a reassuring smile as you");
-	if (hardLight) output(" reach down and flick the tiny button on the hip of your [pc.lowerUnderGarment], letting your hardlight strapon spring to life.");
+	if (hardLight) output(" reach down and flick the tiny button on the hip of your [pc.lowerUndergarment], letting your hardlight strapon spring to life.");
 	else output(" reach over to the leather belt and strapon cock hanging from her bedpost. You shimmey into the strapon belt and tighten it over your [pc.hips], leaving yourself with a floppy, nearly footlong cock dangling from your [pc.crotch].");
 	output(" Reaha’s gaze drops to your strapon, and you instantly recognize the growing, hungry look in her eyes. ");
 	
