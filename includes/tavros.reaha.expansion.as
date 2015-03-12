@@ -926,7 +926,7 @@ public function reahaAddictionTherapy():void
 	output("<i>“Time to work on getting rid of");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" those");
 	else output(" that");
-	output("</i>\", you say, pointing to the pleasure patch");
+	output(",”</i> you say, pointing to the pleasure patch");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW) output("es");
 	output(" stuck like stickers on Reaha’s thigh.");
 	if (reahaConfidence() <= REAHA_CONFIDENCE_LOW) output(" She winces as if threatened, shifting her leg to cover the other, hiding the patches from sight. <i>“I-If you say so...”</i>");

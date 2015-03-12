@@ -1220,7 +1220,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	output("\n\nWhen you’re finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>“Come on then... I’m ready for you,”</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward. ");
 	
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + selCock + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno’s pussy clenches around your intruding member. You push forward despite her body’s resistance, the ausar’s incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
-	if (pc.cockVolume(selCock) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the hardwood of the desk");
+	if (pc.cockVolume(selCock) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
 	output(".");
 	
 	output("\n\n");
@@ -1231,7 +1231,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	
 	output("\n\nFaster this time, you thrust back into Anno’s still-gaping pussy. She gives a sharp moan as your [pc.hips] slap into her, leaving her ass bouncing with the impact and your [pc.cock " + selCock + "] buried back into that wonderful hole of hers, surrounded by spasming muscles as she recovers from the potent thrust. Again and again you thrust into her, working yourself up to a steady rhythm of pussy-pounding, occasionally punctuating your peaks with a sharp slap on Anno’s jiggling butt or reaching up to cup one of her bouncing breasts, squeezing her stiff nips until she’s screaming for more. ");
 	
-	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you’re soon greeted by the howling cries of Anno’s impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in the store and down the corridors; her pussy clenches down hard, milking your [pc.cock " + selCock + "] for all its worth as she cums and cums, going crazy around your thrusting cock. ");
+	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you’re soon greeted by the howling cries of Anno’s impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in through the room; her pussy clenches down hard, milking your [pc.cock " + selCock + "] for all its worth as she cums and cums, going crazy around your thrusting cock. ");
 	
 	if (pc.hasKnot(pc.biggestCockIndex()))
 	{

@@ -3124,7 +3124,7 @@ public function bidVariable(arg:Number = 20000):void
 	{
 		output(" The exuberant raskvel hugs");
 		if(pc.tallness >= 84) output(" your [pc.legOrLegs]");
-		else output("you");
+		else output(" you");
 		output(". <i>\"You're the best!\"</i>");
 	}
 	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a "+ rival.mf("man", "woman") +" of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");

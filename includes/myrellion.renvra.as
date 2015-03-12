@@ -262,9 +262,9 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	//if PC has a dick: 
 	if(pc.hasCock()) 
 	{
-		output(" <i>“So, what’s it going to be, spacer? Want a piece of my ass, or are you thinking about a ");
-		if(pc.hasVagina()) output("pussy");
-		else output("ass");
+		output(" <i>“So, what’s it going to be, spacer? Want a piece of my ass, or are you thinking about a");
+		if(pc.hasVagina()) output(" pussy");
+		else output("n ass");
 		output(" full of this bad boy?”</i> she teases, stroking her massive prick.");
 	}
 	//elseif no dick:

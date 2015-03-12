@@ -10095,10 +10095,11 @@
 		public function chestNoun(rowNum:int = 99):String
 		{
 			var noun:String = "";
-			if(rowNum == 99) rowNum = 0;
+			if (rowNum == 99) rowNum = 0;
 			//Nouns!
 			var temp:int = this.rand(14);
-			if (temp == 0) noun += "breasts";
+			if (breastRows[rowNum].breastRating() <= 0) noun += "chest";
+			else if (temp == 0) noun += "breasts";
 			else if (temp <= 1) {
 				if (isLactating()) noun += "udders";
 				else noun += "breasts";

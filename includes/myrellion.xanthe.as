@@ -455,7 +455,7 @@ public function stareDontStareEpilogue():void
 	{
 		output("\n\nAll of her...? You suddenly realise there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, the Siel pulls it out... and out... and out. Void, how much of her IS there?");
 		output("\n\nWhen you finally get a good look at her, you realise she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears a second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
-		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>\"Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>");
+		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>\"Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>”");
 		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. \"<i>... If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
 		CodexManager.unlockEntry("Siel");
 		output("\n\n<b>('Siel' Codex entry unlocked!)</b>");
@@ -1030,7 +1030,7 @@ public function xantheWatchEpilogue(hamArgs:int = 10, cheated:Boolean = false):v
 	var genitalBack:int = hamArgs - Math.floor(hamArgs/10) * 10;
 	output("\n\nYou watch on as she unhooks her black bra and pulls it downwards, letting her glorious blue bosom spill out for you to see. They give a delightful little jiggle as they are finally released from their lacy confines.");
 	output("\n\nIt’s hard not to relish in the sight of those hefty alien breasts. There’s just the right amount of gravity to give them a little sag, that nice natural look without losing their full perk. ");
-	output("\n\nYou notice her dark blue nipples are slightly crinkled and her puckered buds are becoming stiff before your eyes. You can’t tell if it’s the cold or from stripping in front of you, a [pc.race] she clearly finds attractive");
+	output("\n\nYou notice her dark blue nipples are slightly crinkled and her puckered buds are becoming stiff before your eyes. You can’t tell if it’s the cold or from stripping in front of you, " + indefiniteArticle(pc.race()) + " she clearly finds attractive");
 	if(cheated) output(", whether you’re looking or not");
 	output(".");
 	output("\n\nThe siel woman tosses the frilly fabric aside, turns around, and rolls onto her back. She then spreads her numerous stocking-clad legs and thighs wide. You relish in the ");

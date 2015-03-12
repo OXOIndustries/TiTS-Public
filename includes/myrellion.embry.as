@@ -415,7 +415,7 @@ public function callWaitress():void
 		flags["MET_EMBRY"] = 2;
 		output("You sit down at an unoccupied table, and make yourself comfortable. You spot [embry.name] standing across the room. The moment she notices you, her cheeks suddenly flush.");
 		output("\n\nShe shyly wanders over to your table, almost seeming to hide behind people, a menu clutched tightly to her flat chest.");
-		output("\n\n<i>\"U-um, here’s your menu, so you can drink or eat. Eat the food on the menu - not the menu itself,</i> she rambles. <i>“... If you’re hungry. I mean, you don’t </i>have<i> to. I’m not going to force feed you or anything.”</i>");
+		output("\n\n<i>\"U-um, here’s your menu, so you can drink or eat. Eat the food on the menu - not the menu itself,</i>” she rambles. <i>“... If you’re hungry. I mean, you don’t </i>have<i> to. I’m not going to force feed you or anything.”</i>");
 		output("\n\nWhen she finally does lean over and place the menu before you, the monkey girl drifts unusually close, so much so that you can smell her tickling, floral scent. Her wide blue eyes give you a long, searching look.");
 		output("\n\nShe’s close enough for you to feel her warm breath tickling your cheek. [embry.name] doesn’t seem to have noticed she’s lingering. Her hands have placed the menu down, but she hasn’t let go.");
 		output("\n\n<i>\"Y-your menu... here’s your menu...”</i>");
@@ -550,7 +550,7 @@ public function jokeAtEmbry():void
 	showSimii();
 	pc.addMischievous(3);
 	output("<i>“Are </i>you<i> part of the menu? You know, since you’re attached to it.”</i> You light-heartedly joke.");
-	output("\n\nEmbry blinks, and drops the menu like it’s on fire. <i>“Oh, I didn’t mean–sorry–I’ll leave you to your meal!”</i> She turns on the spot, and moves to dash off.");
+	output("\n\nEmbry blinks, and drops the menu like it’s on fire. <i>“Oh, I didn’t mean–sorry–I’ll leave you to your meal!</i>” She turns on the spot, and moves to dash off.");
 	processTime(1);
 	secondTimeEmbryMeetingContinuation();
 }
@@ -563,7 +563,7 @@ public function mockEmbryYouAss():void
 	showSimii();
 	pc.addHard(3);
 	output("<i>“Wow, you’re really attached to the menu. Sure you want to let it go?”</i> You openly mock her.");
-	output("\n\nEmbry eyes start quiver as if she’s going to cry. She drops the menu, and pulls her hands up to her mouth. <i>“... I’m – I didn’t mean to... I’m sorry!</i> She turns on the spot, and moves to dash off.");
+	output("\n\nEmbry eyes start quiver as if she’s going to cry. She drops the menu, and pulls her hands up to her mouth. <i>“... I’m – I didn’t mean to... I’m sorry!</i>” She turns on the spot, and moves to dash off.");
 	processTime(1);
 	secondTimeEmbryMeetingContinuation();
 }
@@ -577,7 +577,7 @@ public function secondTimeEmbryMeetingContinuation():void
 	output("\n\nAfter the damage is dealt with, she turns to you, looking rather mortified.");
 	output("\n\n<i>“... You saw it, didn’t you? My thing...”</i> she mumbles. Right now she looks like she’s going to die from embarrassment. <i>\"It wasn’t on purpose--I wasn’t flashing you! It wasn’t a sexual thing at all. Not that I DO sexual things. I’m actually a virgin... not that I... oh... my god.”</i> [embry.name] then facepalms. Clearly she didn’t mean to say that.");
 	output("\n\n<i>“... What meant to say is that... there’s a reason for it... I’m... I’m trans...”</i> She looks at you with wide eyes, like she expects some kind of judgement. <i>\"I’d... you know, appreciate it if you didn’t tell anybody. I like when people treat me like a girl... I mean, I AM a girl... I’m just, you know, not physically. Yet.”</i>");
-	output("\n\n<i>“The myr girls around here go crazy for anything that looks like a guy so, please, don’t tell anyone...?</i>");
+	output("\n\n<i>“The myr girls around here go crazy for anything that looks like a guy so, please, don’t tell anyone...?</i>”");
 
 	processTime(4);
 	clearMenu();
@@ -2181,10 +2181,10 @@ public function iDontLoveYouEmbry():void
 	output("\n\nLooking into Embry’s honest eyes, you tell her that you don’t love her. Whatever feelings she has for you, you definitely don’t feel the same way about her.");
 	output("\n\nThe simii girl’s expression freezes, and then quickly crumbles before your very eyes. Since she met you she’s lost many of her nervous mannerisms, but all of the re-emerge as she absorbs the devastating news.");
 	output("\n\nYou can almost see her heart breaking and her world falling apart in those wet blue eyes. Her hands are clenched together, body trembling, as she slips into shock and denial.");
-	output("\n\n<i>\"B-b-but y-you... you took my f-first k-k-kiss...a-and everything else you’ve d-done--!\”</i><i> she sobs out loud, unable to wipe away her tears fast enough. <i>\”</i>... You... I thought you and I, we were... aren’t we? I don’t... it hurts!\”</i><i>");
+	output("\n\n<i>\"B-b-but y-you... you took my f-first k-k-kiss...a-and everything else you’ve d-done--!\”</i> she sobs out loud, unable to wipe away her tears fast enough.  <i>“You... I thought you and I, we were... aren’t we? I don’t... it hurts!\”</i>");
 	output("\n\nEmbry moves towards you and reaches out to touch you, and you push her hand away. She recoils like a kicked dog, whimpering pitifully and falling to her knees.");
 	output("\n\nYou’re acutely aware of the bystanders now looking at you both, watching the awkward and dramatic public scene. The simii girl looks utterly distraught as she trembles and rocks on the ground.");
-	output("\n\nYou cough and tell her it’s over, since it seems like the time. Her wailing intensifies. Eager to escape the spectacle before someone gets involved, you hurriedly head back to the elevator, leaving [embry.name] crying on the street. That was <i>never<i> going to go well...");
+	output("\n\nYou cough and tell her it’s over, since it seems like the time. Her wailing intensifies. Eager to escape the spectacle before someone gets involved, you hurriedly head back to the elevator, leaving [embry.name] crying on the street. That was <i>never</i> going to go well...");
 	flags["EMBRY_RELATIONSHIP"] = 0;
 	flags["CRUSHED_EMBRYS_HEART"] = 1;
 	clearMenu();
@@ -2397,7 +2397,7 @@ public function analingusWithEmbry():void
 		output(" monkey girl stammers so hard, it’s a wonder she can get any words out. <i>\"L-l-l-lick out your a-ass?!”</i> she furiously blushes, and looks at you to see if you’re serious. You nod, and she subconciously touches her lips. <i>“...B-b-but isn’t that really naughty, and dirty--?”</i>");
 		output("\n\nYou coax her with your words, and she hesitantly agrees to give it a try. Her hands fumble as they strip off your [pc.gear]. Once she’s finished, you bend over, and present your [pc.ass] to her.");
 		output("\n\n<i>“... S-so, I just part your cheeks, and, um, stick my tongue i-inside your butt---?”</i> she fidgets, and brushes back her pink hair. She looks like she’s buying for time.");
-		output("\n\nWhen it’s clear this is going to happen, she gets down on her knees, and puts her slender hands on your buttocks. <i>“... O-okay, tell me if i’m doing it wrong...”</i> she slowly parts them and stares at your puckered hole. You cheekily flex it, and she lets out a little gasp. Her face inches closer to your rim, and you can feel her burning cheeks brushing against yours.");
+		output("\n\nWhen it’s clear this is going to happen, she gets down on her knees, and puts her slender hands on your buttocks. <i>“... O-okay, tell me if I’m doing it wrong...”</i> she slowly parts them and stares at your puckered hole. You cheekily flex it, and she lets out a little gasp. Her face inches closer to your rim, and you can feel her burning cheeks brushing against yours.");
 	}
 	// else (not first time)
 	else
@@ -2512,7 +2512,7 @@ public function breastMassageScene4Embrah():void
 		output("\n\n<i>\"O-oh... oh wow... that was...”</i> The pink haired monkey girl falls back against you, unable to finish her sentence. She’s limply lying against you, her whole body coated in a thin sheen of sweat.");
 	}
 	output("\n\n[embry.name] turns her head around, and presses her soft, pink lips against yours. You passionately kiss, your tongues dancing with each other, enjoying the afterglow together. When you finally pull apart, she reaches up and strokes your cheek, and affectionately stares into your eyes.");
-	output("\n\n<i>\"I-I never knew I could cum like that... until you. You’re amazing...</i> she breathily tells you, her cheeks flushed. <i>“... But I love this bit the most; being in your arms afterwards.”</i>");
+	output("\n\n<i>“I-I never knew I could cum like that... until you. You’re amazing...</i>” she breathily tells you, her cheeks flushed. <i>“... But I love this bit the most; being in your arms afterwards.”</i>");
 	processTime(52);
 	flags["SEXED_EMBRY"] = 1;
 	pc.lust(20);

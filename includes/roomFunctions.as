@@ -98,6 +98,15 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
+	output("\n\nIndefinite Article Tests:");
+	output("\n\n" + indefiniteArticle("ausar"));
+	output("\n\n" + indefiniteArticle("europe"));
+	output("\n\n" + indefiniteArticle("hour"));
+	output("\n\n" + indefiniteArticle("time"));
+	output("\n\n" + indefiniteArticle("university"));
+	output("\n\n" + indefiniteArticle("NSA"));
+	output("\n\n" + indefiniteArticle("NASA"));
+	
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
 	

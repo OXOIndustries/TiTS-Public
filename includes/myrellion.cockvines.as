@@ -370,7 +370,7 @@ public function adultCockvineConsentacles():void
 {
 	if (!pc.hasCock() && !pc.hasVagina())
 	{
-		adultCockvineHahaFuckYouGenderless();
+		adultCockvineHahaFuckYouGenderless(false);
 		return;
 	}
 	
@@ -484,57 +484,57 @@ public function adultCockvineConsentacles():void
 		output("\n\nPositioning your body downwards alerts the carpet of cockvines beneath you to " + pc.totalNipples() + " orifices that have hitherto gone unmolested. You tense up with fresh glee as two new tentacles stretch into the sensitive insides of your [pc.nipples], arching your back and presenting your [pc.chest] to drive them further inside.");
 	}
 
-output("\n\nYour [pc.butt] turned over, the");
-if (!pc.hasVagina()) output(" tentacle using your ass presses, rubs and bumps hard into an entirely new area electrifyingly");
-else
-{
-	output(" tentacles using your ass and");
+	output("\n\nYour [pc.butt] turned over, the");
+	if (!pc.hasVagina()) output(" tentacle using your ass presses, rubs and bumps hard into an entirely new area electrifyingly");
+	else
+	{
+		output(" tentacles using your ass and");
+		if (pc.vaginas.length == 1) output(" pussy");
+		else output(" pussies");
+		output(" press rub and bump into entirely new areas electrifyingly");
+	}
+	output(" and when the cockvines bulge with their final payload, stretching your every hole even wider, you cannot help but orgasm again, tensing up and thrashing around your hot, obdurate fillings wildly, your [pc.cum]");
+	if (pc.isLactating()) output(" and [pc.milk]");
+	output(" spattering the heaving plant creature. Your flexing tunnel");
+	if (pc.hasVagina()) output("s");
+	output(" gladly knead the cockvines as they fountain vast amounts of cum into you, drawing your warm, musky, citric reward into your belly, your intestines");
+	if (pc.hasVagina()) output(" and your womb");
+	if (pc.vaginas.length > 1) output("s");
+	output(".");
+	output("\n\nThe eager spurting of the cockvines before, lubricating and softening you, was clearly just pre-cum of some sort, a pale appetizer – the undocked stamen around you writhe and explode with cum, pasting you from top to bottom with their ripe cream as you are gorged on it, hands clenching and unclenching whilst it surges into what feels like every space in your body.");
+	if (pc.hasVagina()) output(" Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.");
+
+	output("\n\nYou blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself still being held, right way up this time, by the cockvine. Its energy expended, it clutches your dangling limbs gently, slowly rubbing your [pc.skin]. Is it... cuddling you? You’re not in any state to complain. You let your head dangle and enjoy the humid warmth, regaining your breath, reveling in the satisfying throb of your well-fucked body, and the feeling of fruity semen leaking out of your disgracefully treated");
 	if (pc.vaginas.length == 1) output(" pussy");
-	else output(" pussies");
-	output(" press rub and bump into entirely new areas electrifyingly");
-}
-output(" and when the cockvines bulge with their final payload, stretching your every hole even wider, you cannot help but orgasm again, tensing up and thrashing around your hot, obdurate fillings wildly, your [pc.cum]");
-if (pc.isLactating()) output(" and [pc.milk]");
-output(" spattering the heaving plant creature. Your flexing tunnel");
-if (pc.hasVagina()) output("s");
-output(" gladly knead the cockvines as they fountain vast amounts of cum into you, drawing your warm, musky, citric reward into your belly, your intestines");
-if (pc.hasVagina()) output(" and your womb");
-if (pc.vaginas.length > 1) output("s");
-output(".");
-output("\n\nThe eager spurting of the cockvines before, lubricating and softening you, was clearly just pre-cum of some sort, a pale appetizer – the undocked stamen around you writhe and explode with cum, pasting you from top to bottom with their ripe cream as you are gorged on it, hands clenching and unclenching whilst it surges into what feels like every space in your body.");
-if (pc.hasVagina()) output(" Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.");
+	else if (pc.vaginas.length > 1) output(" pussies");
+	if (pc.vaginas.length > 0) output(" and");
+	output(" ass.");
 
-output("\n\nYou blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself still being held, right way up this time, by the cockvine. Its energy expended, it clutches your dangling limbs gently, slowly rubbing your [pc.skin]. Is it... cuddling you? You’re not in any state to complain. You let your head dangle and enjoy the humid warmth, regaining your breath, reveling in the satisfying throb of your well-fucked body, and the feeling of fruity semen leaking out of your disgracefully treated");
-if (pc.vaginas.length == 1) output(" pussy");
-else if (pc.vaginas.length > 1) output(" pussies");
-if (pc.vaginas.length > 0) output(" and");
-output(" ass.");
+	output("\n\nAfter a while you pat the cockvine meaningfully. Immediately it slowly lifts you upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You grin sleepily and caress the last tentacle as it, with an obvious amount of reluctance, relinquishes its grip on you and withdraws. Such a gentleman.");
 
-output("\n\nAfter a while you pat the cockvine meaningfully. Immediately it slowly lifts you upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You grin sleepily and caress the last tentacle as it, with an obvious amount of reluctance, relinquishes its grip on you and withdraws. Such a gentleman.");
+	output("\n\nYou rest for a while longer and then");
+	if (!pc.isNude()) output(" clamber back into your clothes");
+	else if (pc.isBiped() || pc.isTaur()) output(" clamber back to your [pc.feet]"); 
+	else output(" right yourself");
+	output(", ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.");
 
-output("\n\nYou rest for a while longer and then");
-if (!pc.isNude()) output(" clamber back into your clothes");
-else if (pc.isBiped() || pc.isTaur()) output(" clamber back to your [pc.feet]"); 
-else output(" right yourself");
-output(", ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.");
+	processTime(60);
 
-processTime(60);
+	for (var i:int = 0; i < pc.vaginas.length; i++)
+	{
+		pc.loadInCunt(chars["COCKVINE"], i);
+	}
+	pc.loadInAss(chars["COCKVINE"]);
+	pc.loadInMouth(chars["COCKVINE"]);
 
-for (var i:int = 0; i < pc.vaginas.length; i++)
-{
-	pc.loadInCunt(chars["COCKVINE"], i);
-}
-pc.loadInAss(chars["COCKVINE"]);
-pc.loadInMouth(chars["COCKVINE"]);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 
-pc.orgasm();
-pc.orgasm();
-pc.orgasm();
+	flags["FUCKED_ADULT_COCKVINE"] = 1;
 
-flags["FUCKED_ADULT_COCKVINE"] = 1;
-
-clearMenu();
-addButton(0, "Next", mainGameMenu);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 
 }
 
