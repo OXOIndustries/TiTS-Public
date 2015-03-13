@@ -549,12 +549,12 @@ public function giannaAppearance():void
 	output(" Of course, there isn’t a single hair, mole, or blemish to disfigure the canvas of supple synthskin, not even in her armpits or pubic mound. Her manufacturer evidently wasn’t a fan of body hair.");
 
 	output("\n\nThe artificial woman’s face was also designed to replicate classical beauty, engineered with a small, slightly upturned nose, elegant cheekbones, and smoothly shaped eyebrows. Glowing faintly, her eyes are manufactured to work in the same way as their organic counterparts, and as a consequence, they look fairly natural at a distance. Lines of circuitry pattern her iris, only visible on close inspection, rotating and shifting as the companion droid’s gaze roves.");
-	//add more lip ratings! Need 5!
-	if(gianna.lipRating() <= 3) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
-	else if(gianna.lipRating() <= 4) output(" Her lips are luscious and shapely, the kind of lips only the most gifted woman would naturally bear.");
-	else if(gianna.lipRating() <= 5) output(" Her voluptuous lips are so swollen that when look at them, the term 'bee-stung' springs to mind. They practically beg to be kissed.");
-	else if(gianna.lipRating() <= 6) output(" Her dazzling lips are exquisitely large. Their sable hue at once seems to devour all the light while simultaneously reflecting. They're almost hypnotic, begging you to press against them.");
-	else if(gianna.lipRating() <= 4) output(" Her lips are plush and pillowy, kept slightly pursed by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
+	// No silicone distributed to Giannas lips gives lipRating() == 2, Maxed out it gives lipRating() == 7
+	if(gianna.lipRating() <= 2) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
+	else if(gianna.lipRating() <= 3) output(" Her lips are luscious and shapely, the kind of lips only the most gifted woman would naturally bear.");
+	else if(gianna.lipRating() <= 4) output(" Her voluptuous lips are so swollen that when look at them, the term 'bee-stung' springs to mind. They practically beg to be kissed.");
+	else if(gianna.lipRating() <= 5) output(" Her dazzling lips are exquisitely large. Their sable hue at once seems to devour all the light while simultaneously reflecting. They're almost hypnotic, begging you to press against them.");
+	else if(gianna.lipRating() <= 6) output(" Her lips are plush and pillowy, kept slightly pursed by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
 	else output(" Her lips appear 'o'-shaped and whorish in the extreme, so swollen and pouty that they would make proper speech impossible on a real girl. A mouth like that is only good for sucking cock or slobbering across a swollen cunt and little else.");
 
 	output("\n\nAn elaborately-braided ponytail of coal-black hair hangs down the back of the android’s head all the way to her ass. The fibers are thick and lustrous in spite of their synthetic nature, and they look as if they would be silky smooth to the touch. She frequently brings her hair over a shoulder to drape across her chest, deepening the contrast between her milk-white skin and sable locks.");
