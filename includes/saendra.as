@@ -814,7 +814,7 @@ public function saenAndSeraJustBuy():void
 	processTime(1);
 
 	clearMenu();
-	addButton(0, "Next", saenAndSeraGetTheDrugs, true);
+	addButton(0, "Next", saenAndSeraGetTheDrugs);
 }
 
 public function saenAndSeraMet():void
@@ -926,7 +926,8 @@ public function saenAndSeraWatch():void
 
 	//Go to Get the Drug
 	pc.lust(15);
-	processTime(20+rand(5));
+	processTime(20 + rand(5));
+	pc.credits += 500;
 
 	clearMenu();
 	addButton(0, "Next", saenAndSeraGetTheDrugs);
@@ -1001,7 +1002,8 @@ public function saenAndSeraThreesome():void
 	
 	output("\n\nSera heaves a heavy sigh, and you feel the tendril of her cocktail recede from inside you. <i>“Not bad,”</i> she growls, <i>“I guess that’ll do. This time.”</i>");
 
-	processTime(30+rand(15));
+	processTime(30 + rand(15));
+	pc.credits += 1000;
 
 	clearMenu();
 	addButton(0, "Next", saenAndSeraGetTheDrugs);
@@ -1020,12 +1022,9 @@ public function saenAndSeraNoWay():void
 	removeButton(1);
 }
 
-public function saenAndSeraGetTheDrugs(fullPrice:Boolean = false):void
+public function saenAndSeraGetTheDrugs():void
 {
 	saenSeraHeader();
-
-	// Money was already taken by Saen, so she'll give you half of it back
-	if (!fullPrice) pc.credits -= 1000;
 
 	output("<i>“Alright,”</i> Sera says, taking credit chit offered by Saen and pulling a small hypo spray out from under her counter. <i>“Here you go, furball. Read the fucking warning label before you take the damn thing, or I’m gonna laugh when you end up in the hospital with a dick bigger than you are.”</i> ");
 	
