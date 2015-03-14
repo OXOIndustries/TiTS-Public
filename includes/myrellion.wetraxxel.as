@@ -86,9 +86,8 @@ public function wetraHoundBite():Boolean
 			}
 
 			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
-
-			genericDamageApply(damageRand(15, 15), foes[0], pc, GLOBAL.PIERCING);
 		}
+		genericDamageApply(damageRand(15, 15), foes[0], pc, GLOBAL.PIERCING);
 		return true;
 	}
 	else
