@@ -93,7 +93,7 @@ public function raskvelGangEncounter():void
 		//[Buy It] [Don’t]
 		clearMenu();
 		if (pc.credits >= gudDealPrice) addButton(0, "Buy It", buySomeJankJunkJunk, [raskLootType, gudDealPrice], "Buy It", "Buy the offered prize.");
-		else addDisaabledButton(0, "Buy It", "Buy It", "You can't afford the asking price.");
+		else addDisabledButton(0, "Buy It", "Buy It", "You can't afford the asking price.");
 		addButton(1,"Don't",dontBuyScrapShit,undefined,"Don't","Don't buy that hunk o' junk.");
 	}
 	//Offers Fun
