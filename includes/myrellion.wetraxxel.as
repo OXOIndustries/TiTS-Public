@@ -87,7 +87,7 @@ public function wetraHoundBite():Boolean
 
 			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
 
-			genericDamageApply(damageRand(50, 15), foes[0], pc, GLOBAL.PIERCING);
+			genericDamageApply(damageRand(15, 15), foes[0], pc, GLOBAL.PIERCING);
 		}
 		return true;
 	}
@@ -113,7 +113,7 @@ public function wetraHoundPunch():Boolean
 		}
 		output("!");
 
-		genericDamageApply(damageRand(35, 15), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(10, 15), foes[0], pc, GLOBAL.KINETIC);
 		return true;
 	}
 	else
@@ -136,7 +136,7 @@ public function wetraHoundOverrun():Boolean
 	{
 		output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
 
-		genericDamageApply(damageRand(125, 20), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(20, 20), foes[0], pc, GLOBAL.KINETIC);
 		return true;
 	}
 	else
@@ -155,7 +155,7 @@ public function wetraHoundRend():void
 	{
 		output(" tearing into your flesh");
 
-		genericDamageApply(damageRand(25, 10), foes[0], pc, GLOBAL.SLASHING);
+		genericDamageApply(damageRand(20, 10), foes[0], pc, GLOBAL.SLASHING);
 	}
 	else
 	{
