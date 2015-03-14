@@ -422,23 +422,12 @@ public function wetraxxelCavesBonusFunc():Boolean
 		flags["NO_MANS_STEP"]++;
 	}
 	
-	var choices:Array = new Array();
-	//If walked far enough w/o an encounter
-	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
-		//Reset step counter
+	if ((rand(5) + 2) <= flags["NO_MANS_STEP"])
+	{
 		flags["NO_MANS_STEP"] = 0;
-		
-		//Build possible encounters
-		/*
-		choices[choices.length] = adultCockvineEncounter;
-		choices[choices.length] = cockvineSeedlingEncounter;
-		choices[choices.length] = encounterNyreaBeta;
-
-		//Run the event
-		choices[rand(choices.length)]();
-		*/
 		wetraxxelCaveEncounters();
 		return true;
 	}
+	
 	return false;
 }

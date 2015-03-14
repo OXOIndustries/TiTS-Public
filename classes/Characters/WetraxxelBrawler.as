@@ -43,11 +43,11 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = new Array(0.66,0.66,0.66,0.66,0.66,0.66,0.66,0.66);
+			this.resistances = new Array(0.8,0.8,0.8,0.8,0.8,1,0.8,0.8);
 			this.XPRaw = 500;
 			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 80;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 5;

@@ -310,8 +310,8 @@ public function wetraxxelBrawlerOneTwoPunch():void
 
 	if (numHits > 0)
 	{
-		var damage:Number = 40;
-		if (numHits == 2) damage += 55;
+		var damage:Number = 15;
+		if (numHits == 2) damage += 20;
 
 		genericDamageApply(damageRand(damage, 15), foes[0], pc, GLOBAL.KINETIC);
 	}
@@ -345,7 +345,7 @@ public function wetraxxelBrawlerSweepKick():void
 			}
 		}
 
-		genericDamageApply(damageRand(125, 25), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(20, 25), foes[0], pc, GLOBAL.KINETIC);
 	}
 }
 
@@ -362,7 +362,7 @@ public function wetraxxelBrawlerDropKick():void
 	{
 		output(" His feet slam into your [pc.chest], knocking the wind out of you and sending you stumbling back. It’s agony to catch your breath after that, and you find yourself clutching at your chest, wheezing painfully. <b>Your aim and reflexes are temporarily reduced</b> while you catch your breath.");
 
-		genericDamageApply(damageRand(100, 15), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(18, 15), foes[0], pc, GLOBAL.KINETIC);
 
 		if (pc.hasStatusEffect("Staggered"))
 		{
@@ -388,7 +388,7 @@ public function wetraxxelBrawlerLariat():void
 	{
 		output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-		genericDamageApply(damageRand(40, 10), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(10, 10), foes[0], pc, GLOBAL.KINETIC);
 	}
 }
 
@@ -404,7 +404,7 @@ public function wetraxxelBrawlerBodyslam():void
 	else
 	{
 		output(" The brawler body-slams you at full force, crashing into your [pc.chest] with rib-cracking impact! You’ll be feeling that for days!");
-		genericDamageApply(damageRand(100, 20), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(18, 20), foes[0], pc, GLOBAL.KINETIC);
 	}
 }
 
@@ -420,7 +420,7 @@ public function wetraxxelBrawlerElbowDive():void
 	else
 	{
 		output(" He drops down on you like a hammer, cracking his elbow right into your gut! You cry out as the massive blow connects, leaving your writhing in pain.");
-		genericDamageApply(damageRand(150, 25), foes[0], pc, GLOBAL.KINETIC);
+		genericDamageApply(damageRand(22, 25), foes[0], pc, GLOBAL.KINETIC);
 	}
 }
 
