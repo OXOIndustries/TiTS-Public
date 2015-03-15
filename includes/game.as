@@ -21,6 +21,11 @@ public function get canSaveAtCurrentLocation():Boolean
 	return this.rooms[this.currentLocation].canSaveInRoom
 }
 
+public function infiniteItems():Boolean
+{
+	return (debug || flags["INFINITE_ITEMS"] != undefined);
+}
+
 // Wrap some newline shit to make eventBuffer more consistent
 public function addToEventBuffer(msg:String):void
 {

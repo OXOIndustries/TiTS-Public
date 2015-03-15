@@ -214,11 +214,20 @@
 			Cheats.XPToLevel();
 		},
 		true);
+
+	inputManager.AddBindableControl(
+		"Infinte Item Use",
+		"Prevents items from being consumed on use.",
+		function():void {
+			Cheats.infiniteItemUse();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
+	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

@@ -1,4 +1,4 @@
-package classes 
+﻿package classes 
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Items.Miscellaneous.ZilRation;
@@ -50,6 +50,20 @@ package classes
 			(kGAMECLASS.pc as PlayerCharacter).XPRaw = (kGAMECLASS.pc as PlayerCharacter).XPMax();
 		}
 		
+		public static function infiniteItemUse():void
+		{
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["INFINITE_ITEMS"] == undefined)
+			{
+				kGAMECLASS.output("\n\n<b>Items can now be used infinitely.");
+				kGAMECLASS.flags["INFINITE_ITEMS"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n\n<b>Items can no longer be used indefinitely.");
+				kGAMECLASS.flags["INFINITE_ITEMS"] = undefined;
+			}
+		}
 		public static function RoomTeleport():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)

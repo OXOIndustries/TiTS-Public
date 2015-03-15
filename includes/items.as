@@ -57,7 +57,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 			}
 			
 			// Consume an item from the stack
-			if (!debug)
+			if (!infiniteItems())
 			{
 				item.quantity--;
 				if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
@@ -107,7 +107,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		
 		item.useFunction(targetCreature, usingCreature);
 		
-		if (!debug)
+		if (!infiniteItems())
 		{
 			item.quantity--;
 			if (item.quantity <= 0)
