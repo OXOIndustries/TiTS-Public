@@ -1,0 +1,56 @@
+﻿package classes.Items.Armor
+{
+	import classes.ItemSlotClass;
+	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
+	
+	public class ChitPlate extends ItemSlotClass
+	{
+		//constructor
+		public function ChitPlate()
+		{
+			this._latestVersion = 1;
+
+			this.quantity = 1;
+			this.stackSize = 1;
+			this.type = GLOBAL.ARMOR;
+			
+			//Used on inventory buttons
+			this.shortName = "C.Plate";
+			
+			//Regular name
+			this.longName = "suit of chitin plates";
+			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
+			//Longass shit, not sure what used for yet.
+			this.description = "a suit of platemail made from chitin plates";
+			
+			//Displayed on tooltips during mouseovers
+			this.tooltip = "Sharing the appearance of obsidian stone, these smooth plates fit over the body like some medieval armor, making you pass off as an awkward myrmedion to the blind. While it doesn’t have any of the flash and festivity of modern armor, the thick, natural plates could easily deflect and absorb your modern day hustle and bustle.";
+
+			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
+		
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
+			this.attackVerb = "null";
+			
+			//Information
+			this.basePrice = 5000;
+			this.attack = 0;
+			this.damage = 0;
+			this.damageType = GLOBAL.PIERCING;
+			this.defense = 7;
+			this.shieldDefense = 0;
+			this.shields = 0;
+			this.sexiness = 0;
+			this.critBonus = 0;
+			this.evasion = 0;
+			this.fortification = 0;
+			this.bonusResistances = new Array(0, -.2, -.2, 0, 0, 0, 0, -.2);
+			
+			this.version = _latestVersion;
+		}
+	}
+}

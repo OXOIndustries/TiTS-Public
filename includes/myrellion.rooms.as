@@ -1095,6 +1095,7 @@ public function initializeMyrellionRooms():void
 	//rooms["812"].westExit = "9999";
 	rooms["812"].southExit = "813";
 	rooms["812"].northExit = "811";
+	rooms["812"].westExit = "828";
 	rooms["812"].moveMinutes = 2;
 	rooms["812"].runOnEnter = undefined;
 	rooms["812"].addFlag(GLOBAL.INDOOR);
@@ -1301,6 +1302,18 @@ public function initializeMyrellionRooms():void
 	rooms["827"].runOnEnter = renvraBonus;
 	rooms["827"].addFlag(GLOBAL.INDOOR);
 	rooms["827"].addFlag(GLOBAL.PUBLIC);
+
+	//828 - Ted's shop
+	rooms["828"] = new RoomClass(this);
+	rooms["828"].roomName = "A\nSHOP";
+	rooms["828"].description = "";
+	rooms["828"].system = "SYSTEM: SINDATHU";
+	rooms["828"].eastExit = "812";
+	rooms["828"].moveMinutes = 1;
+	rooms["828"].runOnEnter = merchantQueenRoomBonus;
+	rooms["828"].addFlag(GLOBAL.INDOOR);
+	rooms["828"].addFlag(GLOBAL.PUBLIC);
+	rooms["828"].addFlag(GLOBAL.COMMERCE);
 
 	//=========================================//
 	// NO MANZ LAND ROOMS. 1A0 to 1Z99 Reserved//

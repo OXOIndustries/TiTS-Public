@@ -188,6 +188,7 @@
 		include "../includes/myrellion.lieve.as";
 		include "../includes/myrellion.liliana.as";
 		include "../includes/myrellion.lyralla.as";
+		include "../includes/myrellion.merchantQueen.as";
 		include "../includes/myrellion.nehzara.as";
 		include "../includes/myrellion.nyrea.as";
 		include "../includes/myrellion.orryx.as";

@@ -129,37 +129,41 @@ public function shop(keeper:Creature):void {
 		mainGameMenu();
 		return;
 	}
-	if(keeper is Jade) {
+	else if(keeper is Jade) {
 		approachJade();
 		return;
 	}
-	if(keeper is Sera) {
+	else if(keeper is Sera) {
 		approachSera();
 		return;
 	}
-	if(keeper is Kelly) {
+	else if(keeper is Kelly) {
 		kellyOfficeApproach();
 		return;
 	}
-	if(keeper is Anno)
+	else if(keeper is Anno)
 	{
 		if (!annoIsCrew()) repeatAnnoApproach();
 		else annoFollowerApproach();
 		return;
 	}
-	if(keeper is Ellie)
+	else if(keeper is Ellie)
 	{
 		ellieMenu();
 		return;
 	}
-	if(keeper is Renvra)
+	else if(keeper is Renvra)
 	{
 		approachRenvra();
 		return;
 	}
-	if(keeper is Xanthe)
+	else if(keeper is Xanthe)
 	{
 		enterTheSilkenSerenityWhyDidWashHaveToDie();
+		return;
+	}
+	else if(keeper is MerchantQueen) {
+		introductionToMerchantQueenSloot();
 		return;
 	}
 	clearOutput();

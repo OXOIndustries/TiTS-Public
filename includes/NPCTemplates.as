@@ -314,6 +314,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["WETRAXXEL BRAWLER"] = new WetraxxelBrawler();
 	}
+	if (!justUpdate || (justUpdate && chars["MERCHANT QUEEN"] == undefined))
+	{
+		chars["MERCHANT QUEEN"] = new MerchantQueen();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{
