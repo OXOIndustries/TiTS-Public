@@ -582,7 +582,7 @@ public function greatFootjerbSavin():void
 	author("Savin");
 	output("You step up over the defeated sydian, eyes wandering over his bare, muscular form. With a slight push from ");
 	if(pc.legCount == 2) output("your [pc.foot]");
-	else if(pc.legCount > 2) output("one of your many pc.legs]");
+	else if(pc.legCount > 2) output("one of your many [pc.legs]");
 	else output("the tip of your [pc.foot]");
 	output(", you get him on his back and wedge his legs apart. He resists at first, but the prize between them betrays its master before he can say a word, a tent-pole of alien meat rising to prominence as your [pc.leg] spreads his apart. You playfully tsk your tongue as the alien's shaft reveals itself as your [pc.foot] works up the inside of his thigh, sending a visible shudder up his powerful, yet prostrate body.");
 	output("\n\n<i>\"Oh, don't tell me you get turned on by losing!\"</i> You tease, [pc.foot] dancing up his leg until your brush against the swell of his sack, hooking yourself underneath it so that you can really feel the heft of his nuts, the heat of them. You chuckle to yourself as he looks pointedly away from you, cock bobbing in the air, all but drooling already. <i>\"Or are you just so pent up that you don't care how you get fucked? Must be hard finding a willing lay out here, huh?\"</i>");
