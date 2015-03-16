@@ -20,7 +20,7 @@
 			this.type = GLOBAL.GADGET;
 			
 			//Used on inventory buttons
-			this.shortName = "MagicMilker";
+			this.shortName = "M.Milker";
 			
 			//Regular name
 			this.longName = "JoyCo Magic-Milker 7";

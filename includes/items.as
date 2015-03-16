@@ -265,7 +265,64 @@ public function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return buyPrice;
 }
 
-public function generalInventoryMenu():void
+public function unequipMenu():void
+{
+	inventoryDisplay();
+	var x:int = 0;
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	var adjustment:int = 0;
+	output("What would you like to unequip?");
+
+	clearMenu();
+	if (pc.upperUndergarment.shortName != "") 
+	{
+		this.addOverrideItemButton(0, pc.upperUndergarment, "Undertop", unequip, "bra");
+	}
+	else this.addDisabledButton(0,"Undertop");
+
+	if (pc.shield.shortName != "") 
+	{
+		this.addOverrideItemButton(1, pc.shield, "Shield", unequip, "shield");
+	}
+	else this.addDisabledButton(1,"Shield");
+	
+	if (pc.lowerUndergarment.shortName != "")
+	{
+		this.addOverrideItemButton(5, pc.lowerUndergarment, "UnderwearOff", unequip, "underwear");
+	}
+	else this.addDisabledButton(5,"UnderwearOff");
+	
+	if (pc.meleeWeapon.shortName != "Rock") 
+	{
+		this.addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
+	}
+	else this.addDisabledButton(2,"Melee Off");
+	
+	if (pc.armor.shortName != "") 
+	{
+		this.addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
+	}
+	else this.addDisabledButton(6,"Armor Off");
+	
+	if (pc.rangedWeapon.shortName != "Rock")
+	{
+		this.addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
+	}
+	else this.addDisabledButton(7,"Ranged Off");
+	
+	if (pc.accessory.shortName != "") 
+	{
+		this.addOverrideItemButton(6, pc.accessory, "Acc. Off", unequip, "accessory");
+	}
+	else this.addDisabledButton(6,"Acc. Off");
+	
+	//Set user and target.
+	itemUser = pc;
+	addButton(14,"Back",generalInventoryMenu);
+}
+
+public function inventoryDisplay():void
 {
 	clearOutput();
 	var x:int = 0;
@@ -299,73 +356,23 @@ public function generalInventoryMenu():void
 		output("\n");
 	}
 	else output("None\n\n");
+}
+
+public function generalInventoryMenu():void
+{
+	inventoryDisplay();
+	var x:int = 0;
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	
 	output("What item would you like to use?");
+	
 	this.clearMenu();
 	var adjustment:int = 0;
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
-		//5 = bra
-		if(x+adjustment == 5) {
-			if (pc.upperUndergarment.shortName != "") 
-			{
-				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bra");
-			}
-			else this.addDisabledButton(x+adjustment,"UndertopOff");
-			adjustment++;
-		}
-		//6 = shield
-		if(x+adjustment == 6)
-		{
-			if (pc.shield.shortName != "") 
-			{
-				this.addOverrideItemButton(x + adjustment, pc.shield, "Shield Off", unequip, "shield");
-			}
-			else this.addDisabledButton(x+adjustment,"Shield Off");
-			adjustment++;
-		}
-		//7 = panties
-		if(x+adjustment == 7)
-		{
-			if (pc.lowerUndergarment.shortName != "")
-			{
-				this.addOverrideItemButton(x + adjustment, pc.lowerUndergarment, "UnderwearOff", unequip, "underwear");
-			}
-			else this.addDisabledButton(x+adjustment,"UnderwearOff");
-			adjustment++;
-		}
-		//10 = melee
-		if(x+adjustment == 10) {
-			if (pc.meleeWeapon.shortName != "Rock") 
-			{
-				this.addOverrideItemButton(x + adjustment, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
-			}
-			else this.addDisabledButton(x+adjustment,"Melee Off");
-			adjustment++;
-		}
-		//11 = armor
-		if(x+adjustment == 11) {
-			if (pc.armor.shortName != "") 
-			{
-				this.addOverrideItemButton(x + adjustment, pc.armor, "Armor Off", unequip, "armor");
-			}
-			else this.addDisabledButton(x+adjustment,"Armor Off");
-			adjustment++;
-		}
-		//12 = ranged
-		if(x+adjustment == 12) {
-			if (pc.rangedWeapon.shortName != "Rock")
-			{
-				this.addOverrideItemButton(x + adjustment, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
-			}
-			else this.addDisabledButton(x+adjustment,"Ranged Off");
-			adjustment++;
-		}
-		//13 = accessory!
-		if(x+adjustment == 13) {
-			if (pc.accessory.shortName != "") 
-			{
-				this.addOverrideItemButton(x + adjustment, pc.accessory, "Acc. Off", unequip, "accessory");
-			}
-			else this.addDisabledButton(x+adjustment,"Acc. Off");
+		//0 = unequip menu
+		if(x+adjustment == 0) {
+			addButton(x+adjustment,"Unequip",unequipMenu,undefined,"Unequip","Unequip an item.");
 			adjustment++;
 		}
 		//normal inventory
@@ -380,7 +387,6 @@ public function generalInventoryMenu():void
 			}
 		}
 	}
-	
 	//Set user and target.
 	itemUser = pc;
 	this.addButton(14,"Back",mainGameMenu);
