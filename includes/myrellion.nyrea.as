@@ -715,6 +715,15 @@ public function pcVictoryOverNyrea():void
 	addButton(1, "Ride Cock", rideNyreaDick);
 	if (pc.hasTailCock()) addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant.
 	else addDisabledButton(2, "Docking", "Docking", "Requires a tailcock.");
+	
+	// 9999 territory - need something decent for leaving after victory without fucking
+	addButton(14, "Leave", function():void {
+		clearOutput();
+		nyreaHeaderFromCreature(foes[0], "VICTORY:");
+		processTime(10);
+		clearMenu();
+		genericVictory();
+	});
 }
 
 public function fuckNyreaButts():void

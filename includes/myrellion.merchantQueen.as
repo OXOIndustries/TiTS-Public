@@ -1,7 +1,7 @@
 ﻿//By Magic_Ted
 //Full of magic.
 
-function showMerchantQueen():void
+public function showMerchantQueen():void
 {
 	showName("MERCHANT\nQUEEN");
 	showBust("MERCHANT_QUEEN");
@@ -9,7 +9,7 @@ function showMerchantQueen():void
 }
 
 //Room Description
-function merchantQueenRoomBonus():Boolean
+public function merchantQueenRoomBonus():Boolean
 {
 	//Dug out space, round and relatively open. Tons of alcoves dug into the walls for storage with the merchandise set inside the earthen shelves. Platform in the middle for more, with Queen at the other side of the room.
 	output("The bowl shaped room is wide and inviting despite its deceptively small size, giving plenty of space to mill around the store floor. The only break in the roof is also what keeps it cool: a circle cut out of the ceiling that vents all the hot air outside, with the only source of lighting installed in a ring around it. The store’s merchandise is set along dug-in shelves in the dome’s wall, with a lofty island in the center of the room offering up more space for any of the bigger items.");
@@ -29,7 +29,7 @@ function merchantQueenRoomBonus():Boolean
 
 //Introduction
 //Plays the moment you enter the room.
-function introductionToMerchantQueenSloot():void
+public function introductionToMerchantQueenSloot():void
 {	
 	if(flags["MET_MERCHANT_QUEEN"] == undefined)
 	{
@@ -65,7 +65,7 @@ function introductionToMerchantQueenSloot():void
 	merchantQueenMenu();
 }
 
-function merchantQueenMenu():void
+public function merchantQueenMenu():void
 {
 	showMerchantQueen();
 	clearMenu();
@@ -82,7 +82,7 @@ function merchantQueenMenu():void
 }
 
 //Shop
-function antFuckinShopShit():void
+public function antFuckinShopShit():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -144,7 +144,7 @@ There you have your titty juice treatment, vagrants. No red/gold/spidu TFs, tho,
 //A queen? Exposition me, baby, cuz I am a stupid shit who can’t read a codex.
 //Also occupation theatre! Because she’s in WW2 Paris and stuff. Lots of words here, I fukken love words.
 
-function talkToAntQueenButt(arg = undefined):void
+public function talkToAntQueenButt(arg:Function = undefined):void
 {
 	clearMenu();
 	showMerchantQueen();
@@ -185,7 +185,7 @@ function talkToAntQueenButt(arg = undefined):void
 
 //Name?
 //She never mentioned her name.
-function askDisMyrQueenAbootHerName():void
+public function askDisMyrQueenAbootHerName():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -201,7 +201,7 @@ function askDisMyrQueenAbootHerName():void
 
 //Merchandise
 //What’s with all this stuff?
-function whatsWithAllThisStuffGuvnah():void
+public function whatsWithAllThisStuffGuvnah():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -213,7 +213,7 @@ function whatsWithAllThisStuffGuvnah():void
 
 //Queen?
 //She mentioned she was a queen? As in royalty?
-function sozYouzAQueen():void
+public function sozYouzAQueen():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -227,7 +227,7 @@ function sozYouzAQueen():void
 //Sex-life
 //Is she constantly having sex? Even now...
 //{Unlocks flirt/sex}
-function OiIsDatBitchHavingSexAllDay():void
+public function OiIsDatBitchHavingSexAllDay():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -243,7 +243,7 @@ function OiIsDatBitchHavingSexAllDay():void
 
 //Lifestyle
 //The place is occupied by Reds and the military is everywhere...
-function soWhatsTheDealWithAllTheseCommies():void
+public function soWhatsTheDealWithAllTheseCommies():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -260,7 +260,7 @@ function soWhatsTheDealWithAllTheseCommies():void
 
 //Influence?
 //What do you mean by influence?
-function whatYouMeanAboutInfluenceEh():void
+public function whatYouMeanAboutInfluenceEh():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -277,7 +277,7 @@ function whatYouMeanAboutInfluenceEh():void
 
 //Flirt {Sex}
 //{Unlocked with Sex? dialog}
-function flirtSexWithAnAntQueenMerchantButt():void
+public function flirtSexWithAnAntQueenMerchantButt():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -297,7 +297,7 @@ function flirtSexWithAnAntQueenMerchantButt():void
 
 //Flirt
 //hay good lookin’ got room for one more awh yeah
-function flirtUpAStormWithAntQueen():void
+public function flirtUpAStormWithAntQueen():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -313,7 +313,7 @@ function flirtUpAStormWithAntQueen():void
 
 //Assert
 //fuk words just gonna grab a tit
-function assertYourselfLikeThisIsCoC():void
+public function assertYourselfLikeThisIsCoC():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -333,7 +333,7 @@ function assertYourselfLikeThisIsCoC():void
 	mercQueenSexRouter();
 }
 
-function mercQueenSexRouter():void
+public function mercQueenSexRouter():void
 {
 	clearMenu();
 	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) addButton(0,"Next",cocklustWivAntsGuv);
@@ -341,7 +341,7 @@ function mercQueenSexRouter():void
 }
 
 //Cocklust
-function cocklustWivAntsGuv():void
+public function cocklustWivAntsGuv():void
 {
 	clearOutput();
 	showMerchantQueen();
@@ -398,7 +398,7 @@ function cocklustWivAntsGuv():void
 	addButton(0,"Next",getAntSuckedPart2);
 }
 
-function getAntSuckedPart2():void
+public function getAntSuckedPart2():void
 {
 	clearOutput();
 	output("Somewhere in that mess you know you ");
@@ -425,7 +425,7 @@ function getAntSuckedPart2():void
 }
 
 //Femlust
-function femlustWithQueen():void
+public function femlustWithQueen():void
 {
 	clearOutput();
 	showMerchantQueen();
