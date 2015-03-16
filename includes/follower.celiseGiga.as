@@ -219,7 +219,7 @@ public function celiseFemalePartsTentacleFun():void
 		output(" your [pc.skinFurScales]");
 	}
 	output(", pleasantly cool to the touch.");
-	output("\n\nYou sit as the jade-tentacled beauty kisses down your upper body, licking and cuddling your [pc.fullChest] on the way down. She nuzzles your stomach and delivers several small pecks before squeezing your sides. The warm goo of her body leaves patches of moisture that cool as the contact ends. Your [pc.eachVagina] wets in anticipation once her head dips lower.");
+	output("\n\nYou sit as the jade-tentacled beauty kisses down your upper body, licking and cuddling your [pc.fullChest] on the way down. She nuzzles your stomach and delivers several small pecks before squeezing your sides. The warm goo of her body leaves patches of moisture that cool as the contact ends. [pc.EachVagina] wets in anticipation once her head dips lower.");
 	output("\n\n");
 	//(if [pc.legs]=snake)
 	if(pc.isNaga())

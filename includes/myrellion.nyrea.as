@@ -107,6 +107,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 
 	if (!CodexManager.entryUnlocked("Nyrea"))
 	{
+		CodexManager.unlockEntry("Nyrea");
 		output("\n\nYou stare at the insectile woman as your codex beeps, <i>“Warning: Nyrea encountered. This species’ females are known to be extremely hostile, and may attempt to use unsuspecting travelers as breeding stock or as incubation space for her eggs. Caution is recommended, especially around the species' pseudo-penis.”</i>");
 
 		output("\n\n<i>“Cute toy,”</i> the huntress grins, twirling her spear. <i>“Don’t think it’ll help you now, though.”</i>");

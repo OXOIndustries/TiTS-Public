@@ -870,19 +870,20 @@ public function grappleStruggle():void {
 		adultCockvineStruggleOverride();
 		return;
 	}
-	
-	if(pc.hasPerk("Escape Artist"))
+	//Escape artist! Use reflexes instead of physique if advantageous.
+	if(pc.hasPerk("Escape Artist") && pc.reflexes() >= pc.physique())
 	{
-		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
-			output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
+		if(pc.reflexes() + rand(20) + 5 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
+			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+			else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 			pc.removeStatusEffect("Grappled");
 		}
 	}
 	else 
 	{
-		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled"))
+		if(pc.physique() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled"))
 		{
-			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+			if (foes[0] is SexBot) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
 			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");

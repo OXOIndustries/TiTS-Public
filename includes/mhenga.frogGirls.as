@@ -319,22 +319,22 @@ public function hasCockLossForForgGirls():void
 
 	output("\n\nYour impending orgasm is cut short, and you groan as the feeling rebounds through your body. So much pressure that aches to be released, but held fast by a stopper. The frog girl shakes her head with a sly smile.");
 
-	output("\n\n<i>“Thsk thsk, babymaker, We’re not ready yet,”</i> she says, lisping with her tongue hanging from her mouth, snuggling in close and rubbing her face against yours. All the while her organ plays with [pc.eachCock], never letting you rest. Her hands, now free to work on other things, caress your [pc.chest]. ");
+	output("\n\n<i>“Thsk thsk, babymaker; we’re not ready yet,”</i> she says, lisping with her tongue hanging from her mouth, snuggling in close and rubbing her face against yours. All the while her organ plays with [pc.eachCock], never letting you rest. Her hands, now free to work on other things, caress your [pc.chest]. ");
 	if(pc.hasBreasts()) output("She seems especially interested in your [pc.nipples], tweaking and tugging them whenever the opportunity arises.");
 	else output("She seems to have a lot of experience with this, leaving no flesh un-touched.");
 	output(" Her ongoing ministrations temporarily keep your mind off the ache that she continues to build upon. After an embarrassingly short time you’re reduced to begging her for release.");
 
-	output("\n\n<i>“Jutht a little bit mo-ah, babymaker, I want an a hundred percent chanth,”</i> she promises, patting you on the shoulder. She positions her hips around your head. <i>“You help too, gotta make sure I’m prepared.”</i>");
+	output("\n\n<i>“Jutht a little bit mo-ah, babymaker, I want a hundred percent chanth,”</i> she promises, patting you on the shoulder. She positions her hips around your head. <i>“You help too, gotta make sure I’m prepared.”</i>");
 
 	output("\n\nHer slick, plush hips squish against your cheeks as she mashes her vagina against your mouth. Thoughtlessly, you begin licking her sex with reckless abandon, eager to receive the assured release. She tastes sweet on your tongue, and you lick like your life depends on it. You find her fuckhole, plugging it with your tongue and wetting it as much as possible. Your nose rubs against her rigid clit, causing soft yips of pleasure to emanate from her with each passing nudge. Her insides suck your tongue deeper until you can’t get any further down.");
 	if(pc.cocks[x].cLength() >= 10) output(" You even manage to reach so far that you feel it touch her cervix.");
 
-	output("\n\nAfter a few moments of heated tasting, the " + foes[0].skinTone + " colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps [pc.cock " + x + "] and gyrates her hips atop [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
+	output("\n\nAfter a few moments of heated tasting, the " + foes[0].skinTone + " colored beauty draws her cunt away from your mouth. A thin trail of saliva and juices connects you for a moment before breaking and falling to your face. With nothing further to hold your attention, it is brought back to your aching loins. The anuran nymph grasps your [pc.cock " + x + "] and gyrates her hips atop your [pc.cockHead " + x + "]. You thrust weakly in an attempt to drive your way into her snug pussy.");
 
 	//cockFits:
 	if(pc.cockVolume(x) <= foes[0].vaginalCapacity(0))
 	{
-		output("\n\n<i>“Good, babymaker. Now you can thill me up with babies,”</i> she says with a loving tone between gasps of pleasure. Without warning her hips slam down over you, driving [pc.cock " + x + "] deep into her velvety cunt. At first she simply bounces on top of you, slickening your shaft with sex juices and venom");
+		output("\n\n<i>“Good, babymaker. Now you can thill me up with babies,”</i> she says with a loving tone between gasps of pleasure. Without warning her hips slam down over you, driving your [pc.cock " + x + "] deep into her velvety cunt. At first she simply bounces on top of you, slickening your shaft with sex juices and venom");
 		if(pc.cockTotal() > 1) 
 		{
 			output(", her legs slapping against ");
@@ -445,10 +445,10 @@ public function frogGirlFootJoerb():void
 	output(" to full hardness within a matter of moments. When the frog-like girl notices the effect she’s having on you, she smiles triumphantly and runs her gooey tongue over her lips, steeling herself for her task.");
 
 	output("\n\nWithin moments your expectations are met in full, possibly even surpassed; this decision is shaping up to have been worth it so far. The libidinous venom in her sweat might be influencing your feelings, but you’re content to let it considering the results. Her dexterous toes are long enough that ");
-	if(pc.biggestCockThickness() <= 7) output("they surround [pc.cockBiggest] entirely");
-	else output("They begin to wrap around [pc.cockBiggest]. The webs between her digits tickle you as the smooth pads along the underside of her toes trail up and down your slickened [pc.cockNoun " + pc.biggestCockIndex() + "].");
+	if(pc.biggestCockThickness() <= 7) output("they surround your [pc.cockBiggest] entirely");
+	else output("they begin to wrap around your [pc.cockBiggest]. The webs between her digits tickle you as the smooth pads along the underside of her toes trail up and down your slickened [pc.cockNoun " + pc.biggestCockIndex() + "].");
 
-	output("\n\nShe gauges your reaction and continues her ministrations, stopping when her foot reaches your tip. Her toes whorl around your [pc.cockHeadBiggest], causing it to swell from its lusty sweat coating. With every touch you feel the blood pumping to your nether region, and you let out a soft moan at the sweet thought of release.");
+	output("\n\nShe gauges your reaction and continues her ministrations, stopping when her foot reaches your tip. Her toes whirl around your [pc.cockHeadBiggest], causing it to swell from its lusty sweat coating. With every touch you feel the blood pumping to your nether region, and you let out a soft moan at the sweet thought of release.");
 	output("\n\nIt doesn’t take much more; the lithe kerokoras brings the sole of her foot over your [pc.cockHeadBiggest], and with a soft swirl you feel as if your reserves have been uncorked.");
 	if(pc.balls == 1) output(" Your [pc.ball] tenses as it pushes");
 	else if(pc.balls > 1) output(" Your [pc.balls] tense as they push");
@@ -759,8 +759,8 @@ public function itemRapeAFrogGirl():void
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras to pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
 	output("\n\n<i>“Hey, isn’t this one of those things sky people use to become babymakers? I wonder what it feels like...”</i> she says, and you hear her gasp as she injects herself with the syringe of Throbb you were carrying. You hear a wet schlick and a moan of pleasure from the frog-girl before she turns to face you.");
 	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + foes[0].skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");
-	output("\n\nThe lusty venom in her sweat seeps into your body as she rubs it in, feeling up every part of your body with fervor. Her fingers slide over your [pc.fullchest], and she giggles when your [pc.nipples] harden with the combination of chemicals and attention. Before the venoms totally inhibit your common sense you manage to keep one thought at the top of your head. This harlot is using YOUR injector ofThrobb, and by the stars you’ll get your money’s worth.");
-	output("\n\nYou muster all of your desire into strength and grasp the kerokoras’s freshly grown cock, feeling lightheaded for a moment at its touch. Despite looking human, its length is drenched in the lust inducing sweat that only slickens the rest of her body. You recover your wits, and notice that the frog girl is entirely at your mercy, shuddering uncontrollably as you hold her pulsing member.");
+	output("\n\nThe lusty venom in her sweat seeps into your body as she rubs it in, feeling up every part of your body with fervor. Her fingers slide over your [pc.fullChest], and she giggles when your [pc.nipples] harden with the combination of chemicals and attention. Before the venoms totally inhibit your common sense you manage to keep one thought at the top of your head. This harlot is using YOUR injector of Throbb, and by the stars you’ll get your money’s worth.");
+	output("\n\nYou muster all of your desire into strength and grasp the kerokoras’s freshly grown cock, feeling lightheaded for a moment at its touch. Despite looking human, its length is drenched in the lust inducing sweat that slickens the rest of her body. You recover your wits, and notice that the frog girl is entirely at your mercy, shuddering uncontrollably as you hold her pulsing member.");
 	output("\n\nYou grin as you lead her by the dick to kneel before you, her breath coming in ragged huffs as your hand glides over her saturated cockflesh. The poor girl collapses as you pump her, and you continue your assault, flattening her rod against her stomach as you skim rapidly across its underside. Pre gushes from her tip with every pass, and you can see her juices soaking deeper into the jungle floor with each return.");
 	output("\n\nSuddenly she tenses up, pushing into your grip as her virgin cock throbs one final time and releases a stream of hot, white cum. You continue to rub her as she spurts rope after rope of jizz all over her face and chest. She moans between each pulse, but her voice is cut short by each orgasmic surge. You simply smile as you watch the pleasure in her glazed expression, slowing your efforts as her tide ebbs.");
 	output("\n\nYou pull your new pet up, and she follows weakly as you guide her to a kneeling position between your legs. The sight of [pc.eachVagina] causes her cock to spring back to hardness, and droplets of lusty juices and cum fall down onto your [pc.skinfurscales]. A rush of pleasure runs through your body with every drop, and you quiver with anticipation as you lower your frog-girl thrall’s trembling cock into your hole.");
@@ -777,8 +777,8 @@ public function itemRapeAFrogGirl():void
 	output("\n\nYou grasp her by the hips, squeezing her tensed muscles and helping her pick up the pace. She attempts to hold on to your own hips, but with her slick skin she just slides off and holds herself up from the ground, her long tongue lolling from her mouth onto your bare stomach, dripping with chemicals that send your libido into overdrive.");
 
 	output("\n\nForcing her to pick up the pace, you ram her into you as fast as you can push and pull. She numbly follows your hands as best she can, chest heaving as juices splash between you when she hilts inside. The toxic lube coated cock flows in and out of [pc.vagina " + x + "], and you lock your legs around her to make sure it gets as deep as it can");
-	if(pc.totalVaginas() > 1) output(".");
-	else {
+	if(pc.totalVaginas() > 1) 
+	{
 		output(", Your other entrance");
 		if(pc.totalVaginas() > 2) output("s wettening as their");
 		else output("wettening as its");
@@ -794,7 +794,7 @@ public function itemRapeAFrogGirl():void
 	output(" as the mounting poison brings you over the edge.");
 
 	if(pc.totalVaginas() < 3) output("\n\n[pc.EachVagina] clenches tightly around her cock, milking it for everything it has to give.");
-	else output("\n\n[pc.eachVagina] clench tightly, but only the middle one gets the chance to milk her cock for everything it has to give.");
+	else output("\n\n[pc.EachVagina] clench tightly, but only the middle one gets the chance to milk her cock for everything it has to give.");
 	output(" Your vision is reduced to a haze of lust that blurs your surroundings into beautiful lights, and you clutch her body tightly to you as if to solidify the thought that she belongs to you. In the end your grip is too tight, and your hands slide off of her slippery skin, splaying out on the jungle floor and grasping fistfuls of dirt and vines.");
 
 	output("\n\nAs her flow begins to die down, the insensate kerokoras attempts to pull out, only to shout as she cums again. She collapses against you a second time as her flood of jizz rebounds from your full womb and splashes out onto the ground. You also feel her cock begin to shrink, releasing another spurt of cum and shrinking another inch or so with every attempt to pull out. By the time she’s free she has been returned to her dickless self. In a final act of clarity you grasp her head and shove it between your legs.");
@@ -821,14 +821,14 @@ public function femaleVictoryFacesitting():void
 	output("\n\nYou brush your fingers against the fit frog-girl’s inner walls, sending jolts of pleasure through her athletic frame. You bite your bottom lip as the cocktail of aphrodisiac venom sends shockwaves of its own up your arm. You can hardly feel your fingers beyond the pleasure emanating from between her legs.");
 	output("\n\nThe lithe kerokoras’ tongue pushes its way up into your passage, and you feel the gooey muscle contort as your walls crush in around it. It feels like electric ecstasy inside your body, and it continues to push until it swirls around the ring of your cervix. Her lips suck on the entirety of [pc.oneVagina], and each time [pc.oneClit] is rubbed, you feel like a small portion of your mind is lost to the pleasure.");
 	if(pc.totalVaginas() == 2) output(" Your other cunt pangs in blissful sympathy whenever the first is sucked.");
-	else output(" Your other cunt pangs in blissful sympathy whenever the first is sucked.");
+	else if(pc.totalVaginas() > 2) output(" Your other cunts pang in blissful sympathy whenever the first is sucked.");
 	output("\n\nYou begin to buck your hips into her head as your pleasure builds to unbearable levels, and the poor girl is forced to close her eyes as her face is spattered with juices from [pc.eachVagina]. Some part of you worries about how well she can breathe, but if she is having any trouble she certainly doesn’t make her problems known, continuing to make out with your crotch like it’s her last night on Mhenga.");
 
 	output("\n\nPowerful spasms start in your pelvis and spread to the rest of your body, and you press the frog girl’s face as hard as you can into [pc.oneVagina]. Femcum showers the frenzied frog, and she licks up your juices with her eyes still closed from the shower. Her tongue draws out from your insides to clean the rest of [pc.eachVagina].");
 
 	output("\n\nThe kerokoras’ own orgasm follows swiftly behind yours, and she pauses in her licks as her body locks up and pushes itself off the ground. You continue to rapidly fingerfuck her tight cunt even as her juices schlick and drip to the jungle floor, and her legs slide out from under her on the damp ground. A wet slap resounds as her butt hits the cum soaked vines, and your movement slows as your energy peters out.");
 
-	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + foes[0].skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You Stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
+	output("\n\nThe two of you collapse in a bundle of twitching nerves, eventually falling asleep holding each other. You awaken first, a few minutes later, and manage to get up, giving the " + foes[0].skinTone + " colored beauty a kiss on the forehead. It must’ve rained for a time while you were asleep, as the kerokoras’ venom has been washed away and replaced by plain water. You stretch before gathering your things and returning to your quest, feeling surprisingly relaxed for having slept on vines.\n\n");
 	processTime(100+rand(30));
 	pc.orgasm();
 	genericVictory();

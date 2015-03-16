@@ -12,7 +12,7 @@ public function adultCockvineEncounter():void
 {
 	adultCockvineHeader();
 
-	CodexManager.unlockEntry("Cockvine");
+	CodexManager.unlockEntry("Cockvines");
 
 	output("\n\n");
 	
@@ -22,7 +22,7 @@ public function adultCockvineEncounter():void
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
 		// First Encounter
-		if (CodexManager.entryViewed("Cockvine"))
+		if (CodexManager.entryViewed("Cockvines"))
 		{
 			output("\n\nDeceptively still and partially hidden in the darkness it might be, but you know a cockvine tentacle when you see one.");
 		}

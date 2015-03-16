@@ -1250,7 +1250,7 @@ public function boobswellStuff(time:Number = 0):void
 			eventBuffer += "\n\nThanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
 			if(pc.bRows() == 1) eventBuffer += "you ";
 			else eventBuffer += "your " + num2Text2(swelledRows[swelledRows.length-1]+1) + " row of breasts ";
-			eventBuffer += "could now fit into an [pc.breastCupSize " + swelledRows[swelledRows.length-1] + "] bra!</b>";
+			eventBuffer += "could now fit into " + indefiniteArticle(pc.breastCup(swelledRows[swelledRows.length-1])) + " bra!</b>";
 		}
 		swelledRows.splice(swelledRows.length-1,1);
 	}

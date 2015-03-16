@@ -19,17 +19,25 @@ public function cockvineSeedlingEncounter():void
 
 	output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind.");
 
-	if (pc.RQ() <= 25 + rand(25)) output(" You almost jump out of your skin when something touches your [pc.legOrLegs], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
+	//if (pc.RQ() <= 25 + rand(25)) 
+	//Converted to a formula that allows success to scale with PC level. Higher level PCs should be better at catching these fuckers.
+	if(pc.reflexes()/2 + rand(20) + 1 < 13) output(" You almost jump out of your skin when something touches your [pc.legOrLegs], and you curse as you hear some small pest slithering swiftly away from you in the darkness. Caves are just the goddamn worst.");
 	else
 	{
 		output(" You freeze as your eyes land on something on the ground ahead of you. An organic, tubular something, about two feet long.");
 
-		if (CodexManager.entryViewed("Cockvine"))
+		if (CodexManager.entryViewed("Cockvines"))
 		{
 			output(" After a tense moment ascertaining it isn’t attached to anything, you recognize the cockvine to be a seedling.");
 		}
 
 		output("\n\nThe green, snake-like creature is quietly probing away with one of its ends, ringed in delicate tendrils, between the cracks of the cave wall. It tenses up suddenly, craning its other thick end towards you; though it lacks any obvious sensory organs it evidently knows you’re there, because it immediately slithers a retreat into the dark.");
+	}
+	if (!CodexManager.entryUnlocked("Cockvines"))
+	{
+		output("\n\n<i>“Cockvine,”</i> your codex pipes up. <i>“Extremely dangerous plant life-form, native to Myrellion. Its seedling form is relatively harmless, however it is capable of forming parasitic attachments to other life-forms if placed under duress.”</i>");
+		
+		CodexManager.unlockEntry("Cockvines");
 	}
 
 	processTime(5 + rand(3));
@@ -45,7 +53,9 @@ public function cockvineSeedlingChase():void
 	clearOutput();
 	cockvineSeedlingHeader();
 
-	if (pc.RQ() <= 40 + rand(35))
+	//if (pc.RQ() <= 40 + rand(35))
+	//Converted to a formula that allows success to scale with PC level. Higher level PCs should be better at catching these fuckers.
+	if(pc.reflexes()/2 + rand(20) + 1 < 16) 
 	{
 		output("You charge after the");
 		if (!CodexManager.entryViewed("Cockvine")) output(" snake-like creature");
@@ -60,6 +70,7 @@ public function cockvineSeedlingChase():void
 
 		clearMenu()
 		addButton(0, "Next", mainGameMenu);
+		return;
 	}
 	else
 	{
@@ -71,16 +82,7 @@ public function cockvineSeedlingChase():void
 		else output(" seedling");
 		output(" is curled up in a ball as far away from you as it can, shivering slightly.");
 
-		if (!CodexManager.entryUnlocked("Cockvine"))
-		{
-			output("\n\n<i>“Cockvine,”</i> your codex pipes up. <i>“Extremely dangerous plant life-form, native to Myrellion. Its seedling form is relatively harmless, however it is capable of forming parasitic attachments to other life-forms if placed under duress.”</i>");
-			
-			CodexManager.unlockEntry("Cockvine");
-		}
-		else
-		{
-			output("\n\n");
-		}
+		output("\n\n");
 	}
 
 	var sCockType:int = RandomInCollection(

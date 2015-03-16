@@ -63,7 +63,8 @@ package classes.UIComponents.ContentModules
 		
 		private function BuildControls():void
 		{
-			addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
+			//Turns off debug mode toggle. "fuckyou" cheat to enable.
+			//addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
 			addToggleControl("Toggle easy mode game difficulty.", "Easy Mode", "easyMode");
 			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
 			

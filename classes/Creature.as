@@ -5198,7 +5198,7 @@
 		public function looseness(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
-			return vaginas[arg].looseness;
+			return vaginas[arg].looseness();
 		}
 		public function lowestWetness(index:Boolean = false): Number {
 			//If the player has no vaginas

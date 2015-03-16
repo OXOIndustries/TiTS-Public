@@ -222,12 +222,21 @@
 			Cheats.infiniteItemUse();
 		},
 		true);
+
+	inputManager.AddBindableControl(
+		"Toggle Debug",
+		"Enables or disables debug mode. Please do not share.",
+		function():void {
+			Cheats.toggleDebug();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
+	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

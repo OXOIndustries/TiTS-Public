@@ -46,7 +46,7 @@ public function encounterLandmines():void
 		else output(" [pc.skin]");
 		output(". Before you can recover, though, a thick cloud of roiling pink gas begins to suffuse the tunnel, drifting down from the mine’s height. You try and hold your breath, but the wind’s been knocked out of you by the mine’s explosive charge, and you soon find yourself breathing the gas in.");
 
-		output("\n\nThank God it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
+		output("\n\nBy the void, it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
 
 		processTime(20);
 
