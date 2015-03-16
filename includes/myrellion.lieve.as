@@ -972,7 +972,7 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 		
 		clearMenu();
 		addButton(0, "Venom Fuck", lieveVenomFuck, tempVenomEnabled, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
-		addButton(1, "No Venom", lieveNoVenomFuck, tempVenomEnabled, "No Venom", "You'd rather not have your body flooded with myr venom.");
+		addButton(1, "No Venom", lieveNoVenomFuck, undefined, "No Venom", "You'd rather not have your body flooded with myr venom.");
 		return;
 	}
 	else
