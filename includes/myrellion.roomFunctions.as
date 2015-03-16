@@ -360,7 +360,7 @@ public function noManzLandBonus():Boolean
 		flags["NO_MANS_STEP"] = 0;
 		
 		//Build possible encounters
-		choices[choices.length] = adultCockvineEncounter;
+		if(CodexManager.entryUnlocked("Cockvines")) choices[choices.length] = adultCockvineEncounter;
 		choices[choices.length] = cockvineSeedlingEncounter;
 		choices[choices.length] = encounterNyreaBeta;
 
