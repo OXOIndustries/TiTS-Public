@@ -55,13 +55,27 @@
 			Cheats.OutputStuff();
 			if(kGAMECLASS.flags["INFINITE_ITEMS"] == undefined)
 			{
-				kGAMECLASS.output("\n\n<b>Items can now be used infinitely.");
+				kGAMECLASS.output("\n<b>Items can now be used infinitely.");
 				kGAMECLASS.flags["INFINITE_ITEMS"] = 1;
 			}
 			else
 			{
-				kGAMECLASS.output("\n\n<b>Items can no longer be used indefinitely.");
+				kGAMECLASS.output("\n<b>Items can no longer be used indefinitely.");
 				kGAMECLASS.flags["INFINITE_ITEMS"] = undefined;
+			}
+		}
+		public static function toggleDebug():void
+		{
+			Cheats.OutputStuff();
+			if(!kGAMECLASS.debug)
+			{
+				kGAMECLASS.output("\n<b>Debug mode enabled. Expect broken shit.");
+				kGAMECLASS.debug = true;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Debug mode disabled. Atta " + kGAMECLASS.pc.mf("boy","girl") + "!");
+				kGAMECLASS.debug = false;
 			}
 		}
 		public static function RoomTeleport():void
