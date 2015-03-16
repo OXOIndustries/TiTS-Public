@@ -5838,7 +5838,8 @@
 		public function cumMultiplier():Number
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
-			
+			var bonus:Number = bonus += perkv1("Potent");
+			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
 		}
@@ -10309,7 +10310,9 @@
 		public var cumQualityMod:Number = 0;
 		public function cumQuality():Number
 		{
-			return cumQualityRaw + cumQualityMod;
+			var bonus:Number = 0;
+			if(hasPerk("Virile")) bonus += perkv1("Virile");
+			return (cumQualityRaw + cumQualityMod + bonus);
 		}
 		
 		/**

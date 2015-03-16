@@ -582,12 +582,12 @@ public function chooseSexualGift():void {
 	this.clearMenu();
 	if(pc.hasPerk("Virile"))
 	{
-		pc.cumQualityRaw -= 0.15;
+		//pc.cumQualityRaw -= 0.15;
 		pc.removePerk("Virile");
 	}
 	if(pc.hasPerk("Potent"))
 	{
-		pc.cumMultiplierRaw -= 1;
+		//pc.cumMultiplierRaw -= 1;
 		pc.refractoryRate -= 1;
 		pc.removePerk("Potent");
 	}
@@ -662,13 +662,12 @@ public function chooseSexualGift():void {
 
 public function applySexualGift(arg:String = "none"):void {
 	if(arg == "virile") {
-		pc.cumQualityRaw += 0.15;
-		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
+		pc.createPerk("Virile",1.15,0,0,0,"Increases the quality of your sperm.");
 	}
 	else if(arg == "potent") {
-		pc.cumMultiplierRaw += 1;
+		//pc.cumMultiplierRaw += 1;
 		pc.refractoryRate += 1;
-		pc.createPerk("Potent",0,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
+		pc.createPerk("Potent",1,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
 	}
 	else if(arg == "elasticity") {
 		pc.createPerk("Elasticity",0,0,0,0,"Increases the elasticity of your orifices and renders them more resistant to stretching.");
