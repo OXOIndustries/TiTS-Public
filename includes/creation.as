@@ -582,7 +582,7 @@ public function chooseSexualGift():void {
 	this.clearMenu();
 	if(pc.hasPerk("Virile"))
 	{
-		pc.cumQualityRaw -= 1.15;
+		pc.cumQualityRaw -= 0.15;
 		pc.removePerk("Virile");
 	}
 	if(pc.hasPerk("Potent"))
@@ -662,7 +662,7 @@ public function chooseSexualGift():void {
 
 public function applySexualGift(arg:String = "none"):void {
 	if(arg == "virile") {
-		pc.cumQualityRaw += 1.15;
+		pc.cumQualityRaw += 0.15;
 		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
 	}
 	else if(arg == "potent") {

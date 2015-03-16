@@ -783,7 +783,7 @@ public function goldMyrmedionCodexEntry():void
 public function redMyrmedionCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("NEHZERA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
+	userInterface.showBust("NEHZARA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
 
 	outputCodex(header("Red Myr"));
 	outputCodex("<b>Name (Singular):</b> Red Myrmedion");

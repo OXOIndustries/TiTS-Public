@@ -3023,6 +3023,7 @@
 			{
 				if (descripted > 0) description += ", ";
 				description += types[rand(types.length)];
+				descripted++;
 			}
 			if(descripted > 0) description += " ";
 			//Pick a noun.

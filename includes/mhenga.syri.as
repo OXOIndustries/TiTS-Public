@@ -213,7 +213,7 @@ public function pcBeatsSyriWhenSexBet():void {
 	//SEX MENU!
 	clearMenu();
 	if(pc.hasCock() && pc.cockThatFits(chars["SYRI"].analCapacity()*1.75) >= 0) addButton(0,"FuckHerButt",victoryFuckSyrisBunghole);
-	else if(pc.hasCock()) addDisabledButton(0,"FuckHerButt","Fuck Her Butt","You'd split her in half if you tried to fuck her butt. Damn");
+	else if(pc.hasCock()) addDisabledButton(0,"FuckHerButt","Fuck Her Butt","You'd split her in half if you tried to fuck her butt. Damn.");
 	else addDisabledButton(0,"FuckHerButt","Fuck Her Butt","You need a dick to fuck her butt.");
 	addButton(1,"RideHerDick",rideSyrisCockYouWinner);
 	if(pc.hasVagina()) addButton(2,"Up My Pussy",rideSyriInYerCoochYaWinner,undefined,"Up My Pussy","Take your prize and stick it as far up your pussy as it will go.");

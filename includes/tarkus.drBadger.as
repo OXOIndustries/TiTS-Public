@@ -170,7 +170,7 @@ public function heyDocImAHero():void
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
-		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
+		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 	}
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)
@@ -321,7 +321,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE FUR
 	if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
 	{
-		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your skin, sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
 		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_FURRED);
