@@ -927,7 +927,7 @@ public function elderVenusPitchersPlayWithCooches():void {
 	else if(!pc.isSquirter(x)) output("leaks");
 	else output("gushes");
 	output(" out around the tendril as it pumps you full, distorting your entrance with the size of the jizz-bulges traveling into you.");
-	if(!pc.isPregnant(x)) output(" Your belly slow bulges with the spewing seed, rounding out into a slightly-pregnant dome while your mind reels with fantasies about birthing smooth seeds that will someday blossom into equally entrancing creatures.");
+	if(!pc.isPregnant(x)) output(" Your belly slowly bulges with the spewing seed, rounding out into a slightly-pregnant dome while your mind reels with fantasies about birthing smooth seeds that will someday blossom into equally entrancing creatures.");
 	output(" A waterfall of musky jism rolls out of your [pc.vagina " + x + "] seemingly without end.");
 	if(pc.isPregnant(x)) output(" You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.");
 	output(" The bigger tentacle fires cum out like a cannon, ");
