@@ -40,12 +40,14 @@ package classes.Engine.Utility
 		// Single letter word which should be preceeded by 'an'
 		if (l_word.length == 1) 
 		{
+			/*
 			if ("aedhilmnorsx".indexOf(l_word) >= 0)
 			{
 				if (outputCombined) return "an " + msg;
 				return "an";
 			}
 			else
+			*/
 			{
 				if (outputCombined) return "a " + msg;
 				return "a";
@@ -84,12 +86,14 @@ package classes.Engine.Utility
 		}
 		else if (word == word.toUpperCase()) 
 		{
+			/*
 			if ("aedhilmnorsx".indexOf(l_word.charAt(0)) >= 0)
 			{
 				if (outputCombined) return "an " + msg;
 				return "an";
 			}
 			else
+			*/
 			{
 				if (outputCombined) return "a " + msg;
 				return "a";

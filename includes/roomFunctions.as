@@ -99,9 +99,9 @@ public function debugMenus():void
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
 	output("\n\nIndefinite Article Tests:");
-	output("\n\n" + indefiniteArticle("ausar"));
-	output("\n\n" + indefiniteArticle("europe"));
-	output("\n\n" + indefiniteArticle("hour"));
+	output("\n\n" + indefiniteArticle("C-cup"));
+	output("\n\n" + indefiniteArticle("D-cup"));
+	output("\n\n" + indefiniteArticle("DD-cup"));
 	output("\n\n" + indefiniteArticle("time"));
 	output("\n\n" + indefiniteArticle("university"));
 	output("\n\n" + indefiniteArticle("NSA"));
