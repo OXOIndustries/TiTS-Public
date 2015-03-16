@@ -208,7 +208,7 @@ public function lieveMenu():void
 		else addDisabledButton(3, "KissHer");
 	}
 
-	if (pc.isFeminine() && flags["LIEVE_TOWNTOUR"] == undefined) addButton(4, "Tour Town", lieveTourTheTown);
+	if (pc.isFeminine() && flags["LIEVE_TOWNTOUR"] == undefined && (pc.hasCock() || pc.hasVagina())) addButton(4, "Tour Town", lieveTourTheTown);
 	else
 	{
 		if (flags["LIEVE_TOWNTOUR"] != undefined) addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve's already shown you around the town.");
@@ -876,8 +876,9 @@ public function lieveSexEntry():void
 public function lieveSexMenu(tempVenomEnabled:Boolean = false):void
 {
 	clearMenu();
-	if (!pc.hasCock()) addButton(0, "Fuck Harem", lieveFuckHarem, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
-	else addButton(0, "Fuck Harem", lieveFuckHaremDickVersion, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
+	if (pc.hasVagina()) addButton(0, "Fuck Harem", lieveFuckHarem, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
+	else if (pc.hasCock()) addButton(0, "Fuck Harem", lieveFuckHaremDickVersion, tempVenomEnabled, "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless.");
+	else addDisabledButton(0, "Fuck Harem", "Fuck Harem", "Take the harem babes up on their implicit offer and join Lieve in fucking them senseless. (Requires some form of genitalia)");
 
 	if (pc.isMasculine()) addButton(1, "Lieve Solo", lieveSoloTurnsDownDudes, undefined, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
 	else addButton(1, "Lieve Solo", lieveSoloFucktime, tempVenomEnabled, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
@@ -1144,7 +1145,7 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 	hasFuckedLieve(true);
 	hasFuckedTrenchWives(true);
 
-	output("\n\nYou relax under the ministrations of the three lusty ant-girls, their hands playing and teasing all over your bare body, carrying away your equipment. Their movements become more and more excited as they near your [pc.crotch], and their eyes take on a lusty, greedy sheen as they");
+	output("You relax under the ministrations of the three lusty ant-girls, their hands playing and teasing all over your bare body, carrying away your equipment. Their movements become more and more excited as they near your [pc.crotch], and their eyes take on a lusty, greedy sheen as they");
 	if (pc.isCrotchGarbed()) output(" pull off your [pc.lowerUndergarment]");
 	else output(" tear away the last vestiges of your gear");
 	output(" and get at your [pc.cock]. They stare almost reverently at your stiffening shaft of meat, eyes widening with a mixture of lust and awe.");
@@ -2123,7 +2124,8 @@ public function lieveTourSureFollow():void
 
 	// [Harem Fuck Scene Here]
 	clearMenu();
-	addButton(0, "Next", lieveFuckHarem);
+	if (pc.hasVagina()) addButton(0, "Next", lieveFuckHarem);
+	else if (pc.hasCock()) addButton(0, "Next", lieveFuckHaremDickVersion);
 }
 
 public function lieveTourMaybeLater():void
