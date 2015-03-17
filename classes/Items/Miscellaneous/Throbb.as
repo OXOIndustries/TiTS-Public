@@ -145,6 +145,7 @@
 				if(pc.cockLengthUnlocked(arg, 9) && pc.cocks[arg].cLengthRaw <= 8) {
 					kGAMECLASS.output("\n\nYour hand strays to your [pc.cock " + arg + "] without conscious thought. On noticing it, you merely smile, admiring the shape of your swollen length, like your hand belongs there. Your arm begins to pump, dragging your hand up and down the length, pleasuring yourself before you have a chance to react, and you just slump back, jacking on your [pc.cock " + arg + "] as it feels better and better.");
 					temp = Math.round(23 + rand(30))/10;
+					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
 					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don't really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug's namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You've gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
 					changes++;
@@ -154,6 +155,7 @@
 				{
 					kGAMECLASS.output("\n\nYou couldn't stop yourself from grabbing onto your [pc.cock " + arg + "] if you wanted to. It's burning with need, throbbing and bouncing against you as it weakly shoots out ropes of pre-cum as thick as your normal ejaculate. You tug it, feeling lengthing in your hand, thickening to match its expanded size, and groan. Your [pc.hips] lurch into the air as you start fistfucking yourself, dick lengthening all the while. ");
 					temp = Math.round(15 + rand(30))/10;
+					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
 					kGAMECLASS.output("<b>It doesn't stop until you've gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
 					changes++;
@@ -163,6 +165,7 @@
 				{
 					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You're throbbing so hard, thickening with each beat of your heart. It feels so good that you can't fathom how why you haven't cum yet. It's like you're drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
 					temp = Math.round(10 + rand(30))/10;
+					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
 					changes++;
 				}
@@ -176,7 +179,8 @@
 			if(pc.ballsUnlocked(2) && pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nJust when you're getting into the chemical arousal that's coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there's nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
 				pc.balls = 2;
-				pc.ballSizeRaw = 1;
+				pc.ballSizeRaw = 3;
+				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 3;
 				changes++;
 			}
 			else if (!pc.ballsUnlocked(2))
@@ -191,7 +195,8 @@
 			if (pc.ballSizeRaw < 4) newBallSize = pc.ballSizeRaw + 1.5 + rand(20) / 10;
 			else if (pc.ballSizeRaw < 8) newBallSize = pc.ballSizeRaw + 0.75 + rand(10) / 10;
 			else newBallSize = pc.ballSizeRaw + 0.5 + rand(5) / 10;
-			
+			if(pc.hasPerk("Bulgy")) newBallSize *= 1.2;
+
 			if(pc.ballSizeUnlocked(newBallSize) && pc.balls > 0 && pc.hasCock() && rand(3) == 0 && changes < changeLimit)
 			{
 				kGAMECLASS.output("\n\nA churning, swelling tightness stretches the skin of your [pc.sack] tight for a moment as the omnipresent heat travels into your [pc.balls]. ");
@@ -245,12 +250,13 @@
 				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it's getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
 				pc.createCock();
 				pc.cocks[0].cLengthRaw = 5;
+				if(pc.hasPerk("Hung")) pc.cocks[0].cLengthRaw += 2+rand(4);
 				if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
 			    if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
 			    if(pc.race() == "leithan" || pc.race() == "half-leithan") pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
 			    if(pc.race() == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
 			    if(pc.race() == "naleen" || pc.race() == "naga") pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
-				kGAMECLASS.output("<b>your hand is wrapped around a five-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
+				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[0].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}
 			else if (!pc.createCockUnlocked())

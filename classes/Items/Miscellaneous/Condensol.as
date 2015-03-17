@@ -143,6 +143,7 @@
 						if(pc.cocks[x].cLengthRaw > 10) pc.cocks[x].cLengthRaw -= 1 + rand(3);
 						if(pc.cocks[x].cLengthRaw > 20) pc.cocks[x].cLengthRaw -= 2 + rand(3);
 						if(pc.cocks[x].cLengthRaw > 30) pc.cocks[x].cLengthRaw -= 3 + rand(4);
+						if(pc.hasPerk("Mini")) pc.cocks[x].cLengthRaw *= 0.75;
 					}
 				}
 			}

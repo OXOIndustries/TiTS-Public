@@ -453,16 +453,26 @@
 			if(target.shortestCockLength() < 10 && target.cockLengthUnlocked(target.shortestCockIndex(), 10) && changes < changeLimit && rand(3) == 0) {
 				//Slit vers
 				if(target.hasStatusEffect("Genital Slit")) {
-					kGAMECLASS.output("\n\nA slight twitch from your [pc.cock " + x+ "] inside your slit pulls your attention southward, but it ends almost as soon as it starts. Just when you're about to move on, it happens again, this time more strongly. The [pc.cockHead " + x+ "] slips through the lips of your entrance, emerging briefly before it subsides a second later. Once more, the process repeats, this time reaching out perhaps an inch before withdrawing. You reach a hand inside to check on it and discover that it's grown bigger - big enough to be a full inch longer when hard.");
+					kGAMECLASS.output("\n\nA slight twitch from your [pc.cock " + x+ "] inside your slit pulls your attention southward, but it ends almost as soon as it starts. Just when you're about to move on, it happens again, this time more strongly. The [pc.cockHead " + x+ "] slips through the lips of your entrance, emerging briefly before it subsides a second later. Once more, the process repeats, this time reaching out perhaps a");
+					if(target.hasPerk("Hung")) kGAMECLASS.output(" couple inches");
+					else kGAMECLASS.output("n inch");
+					kGAMECLASS.output(" before withdrawing. You reach a hand inside to check on it and discover that it's grown bigger - big enough to be a full");
+					if(target.hasPerk("Hung")) kGAMECLASS.output(" two inches");
+					else kGAMECLASS.output(" inch");
+					kGAMECLASS.output(" longer when hard.");
 				}
 				//Noslit version
 				else {
 					kGAMECLASS.output("\n\nA twitch runs through your [pc.cock " + x + "]");
 					if(target.hasSheath(x)) kGAMECLASS.output(", drawing it out of its sheath to hang in the open air.");
 					else kGAMECLASS.output(", causing it to swell a bit as it hangs in the open air.");
-					kGAMECLASS.output(" It stops as soon as it starts, but a few moments later, your penis shudders once more, looking a little bigger than before. The odd, expanding sensation returns one last time, making you big enough to be a full inch bigger when hard. Perhaps being more like a planet's apex predator isn't such a bad idea.");
+					kGAMECLASS.output(" It stops as soon as it starts, but a few moments later, your penis shudders once more, looking a little bigger than before. The odd, expanding sensation returns one last time, making you big enough to be a full");
+					if(target.hasPerk("Hung")) kGAMECLASS.output(" two inches");
+					else kGAMECLASS.output(" inch");
+					kGAMECLASS.output(" bigger when hard. Perhaps being more like a planet's apex predator isn't such a bad idea.");
 				}
 				target.cocks[x].cLengthRaw += 1;
+				if(target.hasPerk("Hung")) target.cocks[x].cLengthRaw += 1;
 				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}
@@ -471,6 +481,7 @@
 				x = target.shortestCockIndex();
 				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can't help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn't emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
 				target.cocks[x].cLengthRaw += 1 + rand(3);
+				if(target.hasPerk("Hung")) target.cocks[x].cLengthRaw += 1 + rand(3);
 				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}

@@ -97,7 +97,7 @@
 					//Dick grows one to three inches towards previously established pandacap
 					//Find smallest dick for expansion
 					x = target.shortestCockIndex();
-					if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5)
+					if((target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && !target.hasPerk("Hung")) || (target.cocks[x].cLengthRaw < target.tallness/12 * 3 && target.hasPerk("Hung")))
 					{
 						y = 1 + rand(3);
 						//1

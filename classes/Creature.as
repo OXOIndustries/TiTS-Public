@@ -10357,7 +10357,9 @@
 		public var pregnancyIncubationBonusMotherMod:Number = 0;
 		public function pregnancyIncubationBonusMother():Number
 		{
-			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod;
+			var bonus:Number = 0;
+    		if(hasPerk("Incubator")) bonus += perkv1("Incubator");
+			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
 		}
 		
 		public var bellyRatingRaw:Number = 0;

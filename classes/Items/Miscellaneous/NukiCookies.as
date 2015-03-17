@@ -339,6 +339,7 @@
 					kGAMECLASS.output("\n\n(<b>Perk Gained: 'Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
 					pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
 					pc.ballSizeRaw += 1.5;
+					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1.5;
 					pc.orgasm();
 					pc.ballFullness = 100;	
 					changes++;
