@@ -262,7 +262,7 @@ public function feedCost(effectName:String, feedCost:int):void
 	var pDays:int = pc.statusEffectv2(effectName);
 	var pFeeds:int = pc.statusEffectv3(effectName);
 	
-	var nFeedCount:int = Math.min(0, pFeeds - feedCost);
+	var nFeedCount:int = Math.max(0, pFeeds - feedCost);
 	
 	resetMimbraneEffects(effectName);
 	if (nFeedCount > 0) feedAMimbrane(effectName, nFeedCount);
@@ -490,11 +490,11 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) pussyMod++;
 		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
 		
-		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
+		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.vaginas[0].loosenessMod -= pussyMod;
-		if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
+		//if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
 		pc.vaginas[0].wetnessMod -= pussyMod;
-		if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
+		//if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
 	}
 	else if (effectName == "Mimbrane Ass")
 	{
@@ -505,11 +505,11 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) buttMod++;
 		if (pc.statusEffectv3(effectName) >= 15) buttMod++;
 		
-		//9999 The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
+		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.ass.loosenessMod -= buttMod;
-		if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
+		//if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
 		pc.ass.wetnessMod -= buttMod;
-		if(pc.ass.wetnessMod < 0) pc.ass.wetnessMod = 0;
+		//if(pc.ass.wetnessMod < 0) pc.ass.wetnessMod = 0;
 		pc.buttRatingMod -= Number(pc.statusEffectv3(effectName)) / 2.0;
 	}
 	else if (effectName == "Mimbrane Balls")
@@ -3048,7 +3048,9 @@ public function playerMimbraneSpitAttack():void
 					pc.lust(5);
 
 					// Cost
-					pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 10);
+					// Converted to feedcost to prevent excess growth
+					//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 10);
+					feedCost(eligibleMimbranes[ii], 10);
 
 					// Output text
 					if (eligibleMimbranes[ii] == "Mimbrane Cock")
@@ -3091,7 +3093,9 @@ public function playerMimbraneSpitAttack():void
 					foes[0].lust(15);
 
 					// Cost
-					pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+					//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+					// Converted to feedcost to prevent excess growth
+					feedCost(eligibleMimbranes[ii], 5);
 
 					// Output text
 					if (eligibleMimbranes[ii] == "Mimbrane Cock")
@@ -3161,7 +3165,9 @@ public function playerMimbraneCloudAttack():void
 		if (rand(4) == 0) // 1 in 4 (0-3)
 		{
 			// Cost
-			pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 3);
+			// Converted to feedcost to prevent excess growth
+			//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 3);
+			feedCost(eligibleMimbranes[ii], 3);
 
 			// 20% chance of misfire
 			if (rand(5) == 0) // 1 in 5 (0-4)
