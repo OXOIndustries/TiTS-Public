@@ -1,6 +1,8 @@
 package classes.Engine.Combat.DamageTypes 
 {
 	import classes.DataManager.Serialization.ISaveable;
+	import flash.utils.getQualifiedClassName;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -20,7 +22,9 @@ package classes.Engine.Combat.DamageTypes
 		public static const PHEROMONE:uint = 9;
 		public static const TEASE:uint = 10;
 		public static const UNRESISTABLE_LUST:uint = 11
+		
 		public static const NUMTYPES:uint = 12;
+		public static const UNSET:uint = uint.MAX_VALUE;
 		
 		/* Type 'categories' */
 		public static const HPDamageTypes:Array = [
@@ -72,8 +76,13 @@ package classes.Engine.Combat.DamageTypes
 			"true lust"
 		];
 		
-		public var damageType:uint;
-		public var damageValue:Number;
+		private var _damageType:uint;
+		private var _damageValue:Number;
+		
+		public function get damageType():uint { return _damageType; }
+		
+		public function get damageValue():Number { return _damageValue; }
+		public function set damageValue(v:Number):void { _damageValue = v; }
 		
 		public function get shortName():String { return TypeShortNames[damageType]; }
 		public function get longName():String { return TypeLongNames[damageType]; }
@@ -88,12 +97,36 @@ package classes.Engine.Combat.DamageTypes
 			return false;
 		}
 		
-		public function DamageType(type:uint, value:Number) 
+		public function DamageType(type:uint = UNSET, value:Number = 0) 
 		{
 			damageType = type;
 			damageValue = value;
 		}
 		
+		public function getSaveObject():Object
+		{
+			var d:Object = { };
+			
+			d.classInstance = getQualifiedClassName(this);
+			
+			d.type = _damageType;
+			d.value = _damageValue;
+			
+			return d;
+		}
+		
+		public function loadSaveObject(o:Object):void
+		{
+			_damageType = o.type;
+			_damageValue = o.value;
+		}
+		
+		public function makeCopy():*
+		{
+			var ndt:DamageType = new DamageType();
+			ndt.loadSaveObject(this.getSaveObject);
+			return ndt;
+		}
 	}
 
 }

@@ -1,14 +1,16 @@
 package classes.Engine.Combat.DamageTypes 
 {
-	import classes.DataManager.Serialization.UnversionedSaveable;
+	import classes.DataManager.Serialization.ISaveable;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public class TypeCollection extends UnversionedSaveable
+	public class TypeCollection implements ISaveable
 	{
 		private var typeCollection:Vector.<DamageType>;
+		private var flagCollection:Vector.<DamageFlag>;
 		
 		public function getType(type:uint):DamageType { return typeCollection[type]; }
 		
@@ -25,10 +27,15 @@ package classes.Engine.Combat.DamageTypes
 		public function get pheromone():Number { return typeCollection[DamageType.PHEROMONE]; }
 		public function get tease():Number { return typeCollection[DamageType.TEASE]; }
 		
-		
-		public function TypeCollection(... settings) 
+		/**
+		 * new TypeCollection({DamageType.KINETIC: 50, DamageType.THERMAL: 25}, 
+		 * @param	values
+		 * @param	flags
+		 */
+		public function TypeCollection(values:Object = null, ... flags) 
 		{
 			typeCollection = new Vector.<DamageType>();
+			flagCollection = new Vector.<DamageFlag>();
 			
 			/* Init the collection */
 			for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
@@ -37,28 +44,73 @@ package classes.Engine.Combat.DamageTypes
 			}
 			
 			/* If a settings object was given to us, override defaults with it */
-			if (settings.length > 0)
+			if (values != null || flags.length > 0)
 			{
-				loadSettings(settings);
+				loadSettings(values, flags);
 			}
 		}
 		
-		private function loadSettings(settings:Array)
+		private function loadSettings(values:Object, flags:Array)
 		{
-			if (settings.length % 2 != 0) throw new Error("TypeCollection created with a mis-matched argument list: " + settings);
-			
-			var typeIndex:uint;
-			var typeValue:Number;
-			
-			for (var i:uint = 0; i < settings.length; i += 2)
+			if (values != null)
 			{
-				typeIndex = settings[i];
-				typeValue = settings[i + 1];
-				
-				if (typeIndex < 0 || typeIndex >= DamageType.NUMTYPES) throw new Error("TypeCollection created with an invalid argument list: " + settings + " (" + typeIndex + ")");
-				
-				typeCollection[typeIndex].damageValue = typeValue;
+				for (var key:* in values)
+				{
+					var idx:uint = key;
+					var val:Number = values[key];
+					
+					getType(idx).damageValue = val;
+				}
 			}
+			
+			if (flags.length > 0)
+			{
+				flagCollection.push(new DamageFlag(flags[i]));
+			}
+		}
+		
+		public function addFlag(flag:uint):void
+		{
+			if (hasFlag(flag)) removeFlag(flag);
+			addDamageFlag(new DamageFlag(flag));
+		}
+		
+		public function addDamageFlag(df:DamageFlag):void
+		{
+			if (hasFlag(df.flag)) removeFlag(df.flag);
+			flagCollection.push(df);
+		}
+		
+		public function removeFlag(flag:uint):void
+		{
+			var idx:uint = flagIndex(flag);
+			if (idx != -1)
+			{
+				flagCollection.splice(idx, 1);
+			}
+		}
+		
+		public function removeAllFlags():void
+		{
+			flagCollection.splice(0, flagCollection.length);
+		}
+		
+		public function hasFlag(flag:uint):void
+		{
+			for (var i:uint = 0; i < flagCollection.length; i++)
+			{
+				if (flagCollection[i].flag == flag) return true;
+			}
+			return false;
+		}
+		
+		private function flagIndex(flag:uint):void
+		{
+			for (var i:uint = 0; i < flagCollection.length; i++)
+			{
+				if (flagCollection[i].flag == flag) return i;
+			}
+			return -1;
 		}
 		
 		public function multiply(m:*):void
@@ -105,6 +157,50 @@ package classes.Engine.Combat.DamageTypes
 				total += typeCollection[i].damageValue;
 			}
 			return total;
+		}
+		
+		public function getSaveObject():Object
+		{
+			var d:Object = new Object();
+			
+			d.classInstance = getQualifiedClassName(this);
+			
+			d.values = [];
+			for (var i:uint = 0; i < typeCollection.length; i++)
+			{
+				d.values.push(typeCollection[i].getSaveObject());
+			}
+			
+			d.flags = [];
+			for (i = 0; i < flagCollection.length; i++)
+			{
+				d.flags.push(flagCollection[i].getSaveObject());
+			}
+			
+			return d;
+		}
+		
+		public function loadSaveObject(o:Object):void
+		{
+			for (var i:uint = 0; i < o.values.length; i++)
+			{
+				var dt:DamageType = new DamageType();
+				dt.loadSaveObject(o.values[o]);
+				typeCollection[dt.damageType].damageValue = dt.damageValue;
+			}
+			
+			for (i = 0; i < o.flags.length; i++)
+			{
+				var df:DamageFlag = new DamageFlag();
+				flagCollection.push(df.loadSaveObject(o.flags[i]));
+			}
+		}
+		
+		public function makeCopy():*
+		{
+			var tc:TypeCollection = new TypeCollection();
+			tc.loadSaveObject(this.getSaveObject());
+			return tc;
 		}
 	}
 
