@@ -20,7 +20,7 @@ package classes.Characters
 			this.customDodge = "Dodge Placeholder";
 			this.customBlock = "Block Placeholder";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -41,7 +41,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 350;
 			this.level = 3;
 			this.credits = 0;

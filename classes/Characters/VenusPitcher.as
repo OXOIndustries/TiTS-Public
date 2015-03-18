@@ -22,7 +22,6 @@
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Fists();
 			
@@ -44,7 +43,6 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 45;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 20;
 			this.level = 1;
 			this.credits = 0;

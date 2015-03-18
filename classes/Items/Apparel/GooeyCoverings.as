@@ -4,6 +4,8 @@ package classes.Items.Apparel
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -40,9 +42,7 @@ package classes.Items.Apparel
 			
 			//Information
 			this.basePrice = 150;
-			this.attack = 0;
-			this.damage = 4;
-			this.damageType = GLOBAL.PIERCING;
+			this.attack = 0;			
 			this.defense = 50;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,7 +50,6 @@ package classes.Items.Apparel
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

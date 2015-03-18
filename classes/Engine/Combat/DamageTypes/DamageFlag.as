@@ -28,6 +28,8 @@ package classes.Engine.Combat.DamageTypes
 		public static const NULLIFYING:uint		= 10;
 		public static const AMPLIFYING:uint		= 11;
 		public static const EXPLOSIVE:uint		= 12;
+		public static const ENERGY_WEAPON:uint	= 13;
+		public static const GROUNDED:uint		= 14;
 		
 		private var _thisFlag:uint;
 		private var _triggers:Array;
@@ -126,6 +128,16 @@ package classes.Engine.Combat.DamageTypes
 				if (_triggers[i].triggerOn == trigger) return i;
 			}
 			return -1;
+		}
+		
+		public function getTriggerOp(trigger:uint):uint
+		{
+			return _triggers[triggerIndexFor(trigger)].triggerOp;
+		}
+		
+		public function getTriggerValue(trigger:uint):Number
+		{
+			return _triggers[triggerIndexFor(trigger)].triggerValue;
 		}
 		
 		public function getSaveObject():Object

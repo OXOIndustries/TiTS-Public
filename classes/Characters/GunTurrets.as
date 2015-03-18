@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Guns.HammerPistol;
@@ -8,6 +9,7 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	//**************************************************
 	//Listed as chars["AUTOTURRETS"] in code elsewhere!
@@ -31,11 +33,12 @@
 			this.customDodge = "Somehow, the turrets' swivelling moves them out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
 			this.plural = true;
-			this.lustVuln = 0;
+			isLustImmune = true;
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "guns";
 			this.rangedWeapon.attack = -2;
-			this.rangedWeapon.damage = 1;
+			rangedWeapon.baseDamage.kinetic.damageValue = 2;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attackVerb = "shot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
@@ -52,7 +55,10 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.resistances = new Array(1,1,1,1.1,1.1,1,1.4,1);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.electric.damageValue = -40.0;
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 0;

@@ -3259,7 +3259,7 @@ public function playerMimbraneCloudAttack():void
 
 public function applyCloudDebuff(target:Creature):void
 {
-	if (target.lustVuln == 0)
+	if (target.isLustImmune)
 	{
 		output("\nIt seems as though your mimbranes efforts to aid you might be wasted; your assailint doesn't seem the least bit hindered by the think cloud of lust surrounding them.\n");
 		return;

@@ -9,6 +9,7 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class RaskvelMale extends Creature
 	{
@@ -26,10 +27,10 @@
 			this.long = "Placeholdah";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
 			this.plural = true;
-			this.lustVuln = 1;
 			this.meleeWeapon = new RaskvelWrench();
 			
-			this.rangedWeapon.damage = 10;
+			rangedWeapon.baseDamage.kinetic.damageValue = 10;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
 			this.rangedWeapon.attackVerb = "shot";
@@ -50,7 +51,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 150;

@@ -4,6 +4,8 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class CavalrySaber extends ItemSlotClass
 	{
@@ -37,8 +39,10 @@
 			//Information
 			this.basePrice = 3200;
 			this.attack = 0;
-			this.damage = 8;
-			this.damageType = GLOBAL.SLASHING;
+			
+			baseDamage.kinetic.damageValue = 8;
+			baseDamage.addFlag(DamageFlag.PENETRATING);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -46,7 +50,6 @@
 			this.critBonus = 3;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

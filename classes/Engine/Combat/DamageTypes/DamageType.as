@@ -62,18 +62,18 @@ package classes.Engine.Combat.DamageTypes
 		];
 		
 		public static const TypeLongNames:Array = [
-			"kinetic",
-			"electric",
-			"burning",
-			"freezing",
-			"corrosive",
-			"poison",
-			"true damage",
-			"psionic",
-			"drug",
-			"pheromone",
-			"tease",
-			"true lust"
+			"Kinetic",
+			"Electric",
+			"Burning",
+			"Freezing",
+			"Corrosive",
+			"Poison",
+			"True Damage",
+			"Psionic",
+			"Drug",
+			"Pheromone",
+			"Tease",
+			"True Lust"
 		];
 		
 		private var _damageType:uint;
@@ -83,6 +83,9 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function get damageValue():Number { return _damageValue; }
 		public function set damageValue(v:Number):void { _damageValue = v; }
+		
+		public function get resistanceValue():Number { return _damageValue; }
+		public function set resistanceValue(v:Number):void { _damageValue = v; }
 		
 		public function get shortName():String { return TypeShortNames[damageType]; }
 		public function get longName():String { return TypeLongNames[damageType]; }
@@ -99,8 +102,8 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function DamageType(type:uint = UNSET, value:Number = 0) 
 		{
-			damageType = type;
-			damageValue = value;
+			_damageType = type;
+			_damageValue = value;
 		}
 		
 		public function getSaveObject():Object

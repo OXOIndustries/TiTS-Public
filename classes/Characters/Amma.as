@@ -26,7 +26,7 @@ package classes.Characters
 			this.customDodge = "Anno Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
@@ -47,7 +47,6 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 350;
 			this.level = 4;
 			this.credits = 0;

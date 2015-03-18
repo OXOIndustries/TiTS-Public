@@ -35,7 +35,6 @@ package classes.Characters
 			this.customBlock = "The maiden brings her pointed spear up and parries your attack, redirecting your forceful strike instead of meeting it head on.";
 			
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new VanaeSpear();
 			this.rangedWeapon;
@@ -51,7 +50,7 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
+			
 			this.XPRaw = 50;
 			
 			this.level = 3;

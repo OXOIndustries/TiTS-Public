@@ -24,6 +24,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	import classes.Engine.Utility.num2Text;
 
@@ -82,15 +83,6 @@
 
 		//Is a creature a 'pluralize' encounter - mob, etc. 
 		public var plural: Boolean = false;
-
-		//Lust vulnerability
-		public var lustVuln: Number = 1;
-		
-		public function lustDamageMultiplier():Number
-		{
-			if (lustVuln == 0) return 0;
-			return (lustVuln + meleeWeapon.bonusLustVuln + rangedWeapon.bonusLustVuln + armor.bonusLustVuln + upperUndergarment.bonusLustVuln + lowerUndergarment.bonusLustVuln + accessory.bonusLustVuln + shield.bonusLustVuln);
-		}
 
 		public var customDodge: String = "";
 		public var customBlock: String = "";
@@ -258,7 +250,49 @@
 		public var teaseXP: Number = 0;
 
 		//Resistances
-		public var resistances:TypeCollection = new TypeCollection();
+		public var baseHPResistances:TypeCollection = new TypeCollection();
+		public var baseShieldResistances:TypeCollection = new TypeCollection();
+		
+		public function getShieldResistances():TypeCollection
+		{
+			var r:TypeCollection = baseShieldResistances.makeCopy();
+			if (!(shield is EmptySlot)) r.combineResistances(shield.resistances);
+			return r;
+		}
+		
+		public function getHPResistances():TypeCollection
+		{
+			var r:TypeCollection = baseHPResistances.makeCopy();
+			if (!(armor is EmptySlot)) r.combineResistances(armor.resistances);
+			if (!(lowerUndergarment is EmptySlot)) r.combineResistances(lowerUndergarment.resistances);
+			if (!(upperUndergarment is EmptySlot)) r.combineResistances(upperUndergarment.resistances);
+			if (!(accessory is EmptySlot)) r.combineResistances(accessory.resistances);
+			return r;
+		}
+		
+		public function getLustResistances():TypeCollection
+		{
+			var r:TypeCollection = new TypeCollection();
+			if (shieldsRaw > 0) r.combineResistances(getShieldResistances());
+			r.combineResistances(getHPResistances());
+			return r;
+		}
+		
+		public var isLustImmune:Boolean = false;
+		
+		/*
+		public function getResistance(type: int): Number {			
+			// TODO: Convert these into actual resistance values
+			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
+			{
+				if(hasPerk("Tough 2")) total -= 0.05;
+				total -= .1;
+			}
+		}
+		public function getShieldResistance(type: int): Number {
+			if (resist < 0 && hasPerk("Enhanced Dampeners")) resist /= 2;
+		}
+		*/
 
 		//Level Stats
 		public var XPRaw: Number = 0;
@@ -2056,6 +2090,7 @@
 		}
 		//HP
 		public function HP(arg: Number = 0): Number {
+			// TODO: Pull this out of here and jam it into resistances.
 			if(kGAMECLASS.easy && arg < 0 && this is PlayerCharacter) arg *= .5;
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
@@ -2461,12 +2496,12 @@
 		}
 		public function hasMeleeEnergyWeapon():Boolean
 		{
-			if(meleeWeapon.damageType > 2 && meleeWeapon.damageType != 8) return true;
+			if (meleeWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON)) return true;
 			return false;
 		}
 		public function hasRangedEnergyWeapon():Boolean
 		{
-			if(rangedWeapon.damageType > 2 && rangedWeapon.damageType != 8) return true;
+			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON)) return true;
 			return false;
 		}
 		public function hasCombatDrone():Boolean
@@ -2489,29 +2524,41 @@
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
-		public function damage(melee: Boolean = true): Number {
-			var temp: int = 0;
+		public function damage(melee: Boolean = true):TypeCollection
+		{
+			var modifiedDamage:TypeCollection;
+			
 			if (melee) 
 			{
-				temp += meleeWeapon.damage;
+				modifiedDamage = meleeWeapon.baseDamage.makeCopy();
+				
 				if(hasPerk("Low Tech Solutions") && !hasMeleeEnergyWeapon()) 
-					temp += Math.ceil(meleeWeapon.damage * 0.2);
+					modifiedDamage.multiply(1.2);
+					
 				if(hasPerk("Weapon Tweaks") && hasMeleeEnergyWeapon()) 
-					temp += Math.ceil(meleeWeapon.damage * 0.2);
+					modifiedDamage.multiply(1.2);
 			}
 			else 
 			{
-				temp += rangedWeapon.damage;
+				modifiedDamage = rangedWeapon.baseDamage.makeCopy();
+				
 				if(hasPerk("Heavy Weapons") && !hasRangedEnergyWeapon()) 
-					temp += Math.ceil(rangedWeapon.damage * 0.2);
+					modifiedDamage.multiply(1.2);
+					
 				if(hasPerk("Gun Tweaks") && hasRangedEnergyWeapon()) 
-					temp += Math.ceil(rangedWeapon.damage * 0.2);
-				//Concentrated fire bonus!
-				temp += statusEffectv1("Concentrated Fire");
-				trace("Concentrated fire bonus applied: " + statusEffectv1("Concentrated Fire"));
+					modifiedDamage.multiply(1.2);
+					
+				// Easiest way I can think of conveying base damage - might be better to add this as a flat bonus some other way.
+				modifiedDamage.unresistable_hp.damageValue += statusEffectv1("Concentrated Fire"); 
 			}
-			temp += armor.damage + upperUndergarment.damage + lowerUndergarment.damage + accessory.damage + shield.damage;
-			return temp;
+			
+			modifiedDamage.add(armor.baseDamage);
+			modifiedDamage.add(upperUndergarment.baseDamage);
+			modifiedDamage.add(lowerUndergarment.baseDamage);
+			modifiedDamage.add(accessory.baseDamage);
+			modifiedDamage.add(shield.baseDamage);
+			
+			return modifiedDamage;
 		}
 		public function defense(): Number {
 			var temp: int = 0;
@@ -2608,30 +2655,6 @@
 			temp += armor.fortification + upperUndergarment.fortification + lowerUndergarment.fortification + accessory.fortification + shield.fortification;
 			return temp;
 		}
-		/*
-		public function getResistance(type: int): Number {			
-			var total:Number = 0;
-			total += resistances[type];
-			total += bonusResistances[type];
-			total += armor.bonusResistances[type];
-			total += accessory.bonusResistances[type];
-			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
-			{
-				if(hasPerk("Tough 2")) total -= 0.05;
-				total -= .1;
-			}
-			if(total < 0) total = 0;
-			return Math.round(total * 10) / 10;
-		}
-		public function getShieldResistance(type: int): Number {
-			var total: Number = 1;
-			var resist: Number = shield.bonusResistances[type];
-			//Dampeners perk reduces vulnerabilities!
-			if (resist < 0 && hasPerk("Enhanced Dampeners")) resist /= 2;
-			total -= resist;
-			return Math.round(total * 10) / 10;
-		}
-		*/
 		public function hasSkinFlag(arg:int): Boolean {
 			var temp: int = 0;
 			while (temp < skinFlags.length) {

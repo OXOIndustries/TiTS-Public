@@ -35,7 +35,6 @@
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			//Shopkeeper Jammle
 			this.inventory.push(new MeshShirt());
@@ -56,8 +55,7 @@
 			//this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.sellMarkup = 1.1;
 			this.buyMarkdown = .6;
-
-			this.meleeWeapon.damage = 0;
+			
 			this.meleeWeapon.attack = 0;
 			this.meleeWeapon.longName = "fists";
 			this.meleeWeapon.attackVerb = "punch";
@@ -78,7 +76,6 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 400;
 			this.level = 5;
 			this.credits = 0;

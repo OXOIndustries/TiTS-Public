@@ -1,6 +1,7 @@
 package classes.Characters 
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Guns.HammerPistol;
@@ -8,6 +9,7 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -32,11 +34,14 @@ package classes.Characters
 			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
 			this.plural = true;
-			this.lustVuln = 0;
+			isLustImmune = true;
+			
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "laser emitters";
 			this.rangedWeapon.attack = 0;
-			this.rangedWeapon.damage = 0;
+			rangedWeapon.baseDamage.electric.damageValue = 1;
+			rangedWeapon.baseDamage.burning.damageValue = 1;
+			rangedWeapon.addFlag(DamageFlag.LASER);
 			this.rangedWeapon.attackVerb = "shot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
@@ -54,7 +59,10 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.resistances = new Array(1,1,1,1.1,1.1,1,1.4,1);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.electric.damageValue = -40.0;
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 0;

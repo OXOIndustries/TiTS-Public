@@ -30,18 +30,19 @@ package classes.Items.Apparel
 
 			this.attackVerb = "";
 			
-			this.bonusLustVuln = -0.3;
+			resistances.psionic.resistanceValue = 30.0;
+			resistances.drug.resistanceValue = 30.0;
+			resistances.pheromone.resistanceValue = 30.0;
+			resistances.tease.resistanceValue = 30.0;
+			
 			this.basePrice = 1550;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 2;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = [0, 0, 0, 0, 0, 0, 0, 0];
 			
 			this.version = this._latestVersion;
 		}

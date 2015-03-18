@@ -33,7 +33,6 @@
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
@@ -51,7 +50,7 @@
 			this.libidoRaw = 75;
 			this.energyRaw = 100;
 			this.lustRaw = 85;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 3;
 			this.credits = 0;

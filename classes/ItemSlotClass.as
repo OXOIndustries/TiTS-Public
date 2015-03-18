@@ -3,9 +3,12 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.DataManager.Serialization.ItemSaveable;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class ItemSlotClass extends ItemSaveable
 	{
@@ -30,9 +33,9 @@
 		//Equipped properties
 		//Bonus tohit
 		public var attack:Number;
-		//Bonus damage
-		public var damage:Number;
-		public var damageType:int;
+
+		public var baseDamage:TypeCollection;
+		
 		public var defense:Number;
 		public var shieldDefense:Number;
 		public var shields:Number;
@@ -40,9 +43,9 @@
 		public var critBonus:Number;
 		public var evasion:Number;
 		public var fortification:Number;
-		public var bonusResistances:Array;
-		public var bonusLustVuln:Number;
 		public var hardLightEquipped:Boolean;
+		
+		public var resistances:TypeCollection;
 		
 		public var isUsable:Boolean;
 		public var combatUsable:Boolean;
@@ -75,8 +78,8 @@
 		
 			//Equipped properties
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = 0;
+			
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -84,8 +87,10 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-			this.bonusLustVuln = 0;
+			
+			resistances = new TypeCollection();
+			baseDamage = new TypeCollection();
+			
 			this.hardLightEquipped = false;
 		
 			this.isUsable = true;
@@ -147,27 +152,18 @@
 			
 			compareString = mergeString(compareString, this.statDiff("attack", 			"Accuracy",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
+			//compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("bonusLustVuln",	"Lust Vulnerability",this, oldItem, true, true));
+			//compareString = mergeString(compareString, this.statDiff("bonusLustVuln",	"Lust Vulnerability",this, oldItem, true, true));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
 			
-			// Default DamageType value is 0. GLOBAL.KINETIC is ALSO 0. Fuck.
-			// I guess as a workaround we can just check what the _types_ of the items involved are, and only shit out the damageType if we're looking at weapons?
-			if (this.type == GLOBAL.MELEE_WEAPON || this.type == GLOBAL.RANGED_WEAPON)
-			{
-				if (compareString.length > 0) compareString += "\n";
-				
-				var dType:String = "Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType];
-				
-				compareString = mergeString(compareString, dType);
-			}
+			// TODO: Display weapon damage
 			
 			// Item value -- this is going to be a bit of a shit. I can't easily figure out what "mode" a button is at this point, so this code doesn't know if we're buying or selling,
 			// so we dunno which modifiers to use to figure out the actual value of an item wrt a specific vendor.
@@ -314,83 +310,83 @@
 		 * @param	oldItem		The item the replacement would displace
 		 * @return				Formatted HTML string
 		 */
-		private function resistancesDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		private function resistancesDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String		
 		{
-			var resistDifferences:String = "";
-			var resistancesDiffString:String = "";
-			var foundResistDiff:Boolean = false;
-			var resistIndex:int;
+			var res:String = "";
 			
-			// Only display if either old or new item doesn't have a full set of default resistances
-			for (resistIndex = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
+			res += getResistComparison("Damage Resistances", DamageType.HPDamageTypes, newItem, oldItem);
+			res += getResistComparison("Lust Resistances", DamageType.LustDamageTypes, newItem, oldItem);
+			
+			return res;
+		}
+		
+		private function getResistComparison(headerString:String, typesList:Array, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var resistancesDiffString:String = "";
+			var flipFlop:Boolean = false;
+			
+			for (var i:uint = 0; i < typesList.length; i++)
 			{
-				if (newItem.bonusResistances[resistIndex] != 0 || oldItem.bonusResistances[resistIndex] != 0)
+				var resistIndex:uint = typesList[i];
+				
+				// Skip resistances that are default on both items
+				if (newItem.resistances.getType(resistIndex).damageValue == 0 && oldItem.resistances.getType(resistIndex).damageValue == 0) continue;
+				
+				// Prepend the header if this is the first resistance that is actually going to be displayed.
+				if (resistancesDiffString.length == 0)
 				{
-					foundResistDiff = true;
+					resistancesDiffString += "\n" + headerString + ": \n";
+					resistancesDiffString += "<textformat tabstops='59,96,150,206,246'>";
 				}
+				
+				// Print the new items resistance value as a %
+				resistancesDiffString += newItem.resistances.getType(resistIndex).longName + "\t ";
+				resistancesDiffString += String(newItem.resistances.getType(resistIndex).damageValue) + "%\t ";
+					
+				// Display the comparison value
+				var newRes:Number = newItem.resistances.getType(resistIndex).damageValue;
+				var oldRes:Number = oldItem.resistances.getType(resistIndex).damageValue;
+					
+				if (newRes > oldRes)
+				{
+					// Good
+					resistancesDiffString += "<span class='good'><b>(+";
+					resistancesDiffString += newRes - oldRes;
+				}
+				else if (newRes < oldRes)
+				{
+					// Bad
+					resistancesDiffString += "<span class='bad'><b>(-";
+					resistancesDiffString += oldRes - newRes;
+				}
+				else
+				{
+					// No diff
+					resistancesDiffString += "<span class='words'><b>(0";
+				}
+					
+				resistancesDiffString += "%)</b></span> ";
+				
+				if (flipFlop)
+				{
+					if (i != typesList.length - 1) resistancesDiffString += "\n";
+				}
+				else
+				{
+					resistancesDiffString += "\t";
+				}
+				
+				flipFlop != flipFlop;
 			}
 			
-			// Ok, now we dump the bonus resist header into the thing and pump out the list of resistances
-			if (foundResistDiff)
+			if (resistancesDiffString.length > 0)
 			{
-				resistancesDiffString += "\nBonus Resistances: \n";
-				resistancesDiffString += "<textformat tabstops='59,96,150,206,246'>";
-				//resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
-				
-				for (resistIndex = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
-				{
-					// Print the new items resistance value as a %
-					resistancesDiffString += GLOBAL.DamageTypeStrings[resistIndex] + "\t ";
-					trace("Resist cals for " + GLOBAL.DamageTypeStrings[resistIndex] + ":");
-					
-					resistancesDiffString += convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "%\t ";
-					trace("New Array Val [" + newItem.bonusResistances[resistIndex] +"] New As Resistance [" + convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "]");
-					trace("Old Array Val [" + oldItem.bonusResistances[resistIndex] +"] Old As Resistance [" + convertNumToResistancePercentage(oldItem.bonusResistances[resistIndex]) + "]");
-					
-					// Display the comparison value
-					var newRes:Number = newItem.bonusResistances[resistIndex];
-					var oldRes:Number = oldItem.bonusResistances[resistIndex];
-					
-					if (newRes > oldRes)
-					{
-						// Good
-						resistancesDiffString += "<span class='good'><b>(+";
-						resistancesDiffString += convertNumToResistancePercentage(newRes - oldRes);
-					}
-					else if (newRes < oldRes)
-					{
-						// Bad
-						resistancesDiffString += "<span class='bad'><b>(-";
-						resistancesDiffString += convertNumToResistancePercentage(oldRes - newRes);
-					}
-					else
-					{
-						// No diff
-						resistancesDiffString += "<span class='words'><b>(0";
-					}
-					
-					resistancesDiffString += "%)</b></span> ";
-					
-					if (resistIndex % 2 == 1 && (resistIndex + 1 != newItem.bonusResistances.length))
-					{
-						resistancesDiffString += "\n";
-					}
-					else
-					{
-						resistancesDiffString += "\t"
-					}
-				}
-				
 				resistancesDiffString += "</textformat>";
 			}
 			
+			// TODO: Add flags too!
+			
 			return resistancesDiffString;
-		}
-		
-		private function convertNumToResistancePercentage(val:Number):String
-		{
-			var resistString:String = String(Math.round(val * 100));
-			return resistString;
 		}
 	}
 }

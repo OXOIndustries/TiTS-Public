@@ -25,7 +25,6 @@ package classes.Characters
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Fists();
 			this.armor = new ComfortableClothes();
@@ -42,7 +41,6 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 25;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 1000;

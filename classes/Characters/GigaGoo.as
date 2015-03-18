@@ -1,6 +1,7 @@
 package classes.Characters 
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.Pregnancy.PregnancyStageProgression;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.GooeyCoverings;
@@ -36,15 +37,20 @@ package classes.Characters
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
 			this.plural = true;
-			this.lustVuln = 0.8;
-			this.meleeWeapon = new GooeyPsuedopod();
-			(this.meleeWeapon as GooeyPsuedopod).attack = 3;
-			(this.meleeWeapon as GooeyPsuedopod).damage = 12;
-			(this.meleeWeapon as GooeyPsuedopod).hasRandomProperties = true;
 			
-			this.armor = new GooeyCoverings();
-			(this.armor as GooeyCoverings).defense = 3;
-			(this.armor as GooeyCoverings).hasRandomProperties = true;
+			baseHPResistances.drug.resistanceValue = 20.0;
+			baseHPResistances.pheromone.resistanceValue = 20.0;
+			baseHPResistances.psionic.resistanceValue = 20.0;
+			baseHPResistances.tease.resistanceValue = 20.0;
+			
+			meleeWeapon = new GooeyPsuedopod();
+			meleeWeapon.attack = 3;
+			meleeWeapon.baseDamage.kinetic.damageValue = 12;
+			meleeWeapon.hasRandomProperties = true;
+			
+			armor = new GooeyCoverings();
+			armor.defense = 3;
+			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
 			
@@ -57,7 +63,15 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8];
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = 20.0;
+			baseHPResistances.electric.damageValue = 20.0;
+			baseHPResistances.burning.damageValue = 20.0;
+			baseHPResistances.freezing.damageValue = 20.0;
+			baseHPResistances.corrosive.damageValue = 20.0;
+			baseHPResistances.poison.damageValue = 20.0;
+			
 			this.XPRaw = 250;
 			this.level = 5;
 			this.credits = 0;

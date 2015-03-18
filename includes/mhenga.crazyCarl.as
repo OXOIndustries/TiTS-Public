@@ -192,7 +192,7 @@ public function aboutTheRobotFromCrazyCarl():void {
 
 		// SKIP DIS: *If non-mercenary: You nod dizzily, having difficulty parsing the wealth of information as he throws at you. Slowly you catch up with the rambling and are able to piece it together; he took a pretty good gun and made it a even more reliable gun.*
 		output("\n\nFollowing along without missing a beat, you nod firmly in understanding. The ZK series was already known for being a solid go-to carbine and this fixes up some of the flaws. A less egregious action that won’t catch on anything, reinforcement prevents the vulnerable wiring from being affected by environmental circumstances or attacks and the poor accuracy has been improved by adding more coolant, making the rails take longer to heat up and warp. The weapon is still marked for short ranges, ");
-		if(pc.rangedWeapon.damage < 13) output("but you’re confident that you would have a much more dependable weapon.");
+		if(pc.rangedWeapon.baseDamage.getTotal() < 13) output("but you’re confident that you would have a much more dependable weapon.");
 		else output("of course.");
 		output("\n\n\"<i>And it’s yours. As a reward.”</i>");
 

@@ -4,6 +4,8 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class MyrRifle extends ItemSlotClass
 	{
@@ -36,8 +38,11 @@
 			//Information
 			this.basePrice = 1000;
 			this.attack = 2;
-			this.damage = 11;
-			this.damageType = GLOBAL.KINETIC;
+			
+			baseDamage = new TypeCollection();
+			baseDamage.kinetic.damageValue = 14;
+			baseDamage.addFlag(DamageFlag.BULLET);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -45,7 +50,6 @@
 			this.critBonus = 4;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

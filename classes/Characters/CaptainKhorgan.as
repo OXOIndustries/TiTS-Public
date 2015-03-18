@@ -1,11 +1,15 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class CaptainKhorgan extends Creature
 	{
@@ -23,10 +27,12 @@
 			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!";
 			this.customBlock = "She easily deflects your attack.";
 			this.plural = false;
-			this.lustVuln = 1;
+
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			this.meleeWeapon.damage = 3;
+			meleeWeapon.baseDamage.kinetic.damageValue = 3;
+			meleeWeapon.addFlag(DamageFlag.PENETRATING);
+			
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.longName = "cutlass";
 			this.meleeWeapon.attackVerb = "slash";
@@ -47,7 +53,12 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 55;
-			this.resistances = new Array(1.2,1.2,1.2,0.9,0.9,0.9,0.9,1);
+
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = -20.0;
+			baseHPResistances.burning.damageValue = 10.0;
+			baseHPResistances.electric.damageValue = 10.0;
+				
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 987;

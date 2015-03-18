@@ -27,7 +27,7 @@
 			this.customDodge = "The sydian rolls aside in a remarkable display of agility for one with such a large frame.";
 			this.customBlock = "The alien's chitin deflects the attack.";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
@@ -43,7 +43,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 33;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 0;

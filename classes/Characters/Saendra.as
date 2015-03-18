@@ -33,7 +33,6 @@ package classes.Characters
 			this.customDodge = "Saen casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new MechaFist();
 			this.rangedWeapon = new HammerPistol();
@@ -51,7 +50,7 @@ package classes.Characters
 			this.shieldsRaw = 40;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
+			
 			this.XPRaw = 250;
 			this.credits = 650;
 			this.HPMod = 60;

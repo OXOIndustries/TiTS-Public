@@ -14,18 +14,19 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function getType(type:uint):DamageType { return typeCollection[type]; }
 		
-		public function get kinetic():Number { return typeCollection[DamageType.KINETIC]; }
-		public function get electric():Number { return typeCollection[DamageType.ELECTRIC]; }
-		public function get burning():Number { return typeCollection[DamageType.BURNING]; }
-		public function get freezing():Number { return typeCollection[DamageType.FREEZING]; }
-		public function get corrosive():Number { return typeCollection[DamageType.CORROSIVE]; }
-		public function get poison():Number { return typeCollection[DamageType.POISON]; }
-		public function get unresistable():Number { return typeCollection[DamageType.UNRESISTABLE]; }
+		public function get kinetic():DamageType { return typeCollection[DamageType.KINETIC]; }
+		public function get electric():DamageType { return typeCollection[DamageType.ELECTRIC]; }
+		public function get burning():DamageType { return typeCollection[DamageType.BURNING]; }
+		public function get freezing():DamageType { return typeCollection[DamageType.FREEZING]; }
+		public function get corrosive():DamageType { return typeCollection[DamageType.CORROSIVE]; }
+		public function get poison():DamageType { return typeCollection[DamageType.POISON]; }
+		public function get unresistable_hp():DamageType { return typeCollection[DamageType.UNRESISTABLE_HP]; }
 		
-		public function get psionic():Number { return typeCollection[DamageType.PSIONIC]; }
-		public function get drug():Number { return typeCollection[DamageType.DRUG]; }
-		public function get pheromone():Number { return typeCollection[DamageType.PHEROMONE]; }
-		public function get tease():Number { return typeCollection[DamageType.TEASE]; }
+		public function get psionic():DamageType { return typeCollection[DamageType.PSIONIC]; }
+		public function get drug():DamageType { return typeCollection[DamageType.DRUG]; }
+		public function get pheromone():DamageType { return typeCollection[DamageType.PHEROMONE]; }
+		public function get tease():DamageType { return typeCollection[DamageType.TEASE]; }
+		public function get unresistable_lust():DamageType { return typeCollection[DamageType.UNRESISTABLE_LUST]; }
 		
 		/**
 		 * new TypeCollection({DamageType.KINETIC: 50, DamageType.THERMAL: 25}, 
@@ -65,7 +66,10 @@ package classes.Engine.Combat.DamageTypes
 			
 			if (flags.length > 0)
 			{
-				flagCollection.push(new DamageFlag(flags[i]));
+				for (var i:uint = 0; i < flags.length; i++)
+				{
+					flagCollection.push(new DamageFlag(flags[i]));
+				}
 			}
 		}
 		
@@ -95,7 +99,7 @@ package classes.Engine.Combat.DamageTypes
 			flagCollection.splice(0, flagCollection.length);
 		}
 		
-		public function hasFlag(flag:uint):void
+		public function hasFlag(flag:uint):Boolean
 		{
 			for (var i:uint = 0; i < flagCollection.length; i++)
 			{
@@ -104,7 +108,25 @@ package classes.Engine.Combat.DamageTypes
 			return false;
 		}
 		
-		private function flagIndex(flag:uint):void
+		public function canTrigger(flag:uint):Boolean
+		{
+			for (var i:uint = 0; i < flagCollection.length; i++)
+			{
+				if (flagCollection[i].hasTriggerFor(flag)) return true;
+			}
+			return false;
+		}
+		
+		public function getTrigger(flag:uint):DamageFlag
+		{
+			for (var i:uint = 0; i < flagCollection.length; i++)
+			{
+				if (flagCollection[i].hasTriggerFor(flag)) return flagCollection[i];
+			}
+			return null;
+		}
+		
+		private function flagIndex(flag:uint):uint
 		{
 			for (var i:uint = 0; i < flagCollection.length; i++)
 			{
@@ -132,21 +154,63 @@ package classes.Engine.Combat.DamageTypes
 			}
 		}
 		
-		public function add(obj:TypeCollection):void
+		public function add(a:*):void
 		{	
-			for (var i:uint = 0; i < typeCollection.length; i++)
+			if (a is TypeCollection)
 			{
-				typeCollection[i].damageValue += (obj as TypeCollection).getType(i).damageValue;
+				for (var i:uint = 0; i < typeCollection.length; i++)
+				{
+					typeCollection[i].damageValue += (a as TypeCollection).getType(i).damageValue;
+				}
+				
+				// TODO: Merge flags
+			}
+			else
+			{
+				for (i = 0; i < typeCollection.length; i++)
+				{
+					if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue += a;
+				}
 			}
 		}
 		
 		/* Treat this instance of a TypeCollection as Damage, and modify it by the values in the argument */
 		public function applyResistances(resistances:TypeCollection):void
 		{
-			for (var i:uint = 0; i < typeCollection.length; i++)
+			if (flagCollection.length > 0)
+			{
+				for (var i:uint = 0; i < flagCollection.length; i++)
+				{
+					if (resistances.canTrigger(flagCollection[i].flag))
+					{
+						var df:DamageFlag = resistances.getTrigger(flagCollection[i].flag);
+						
+						switch (df.getTriggerOp(flagCollection[i].flag))
+						{
+							case DamageFlag.OP_MUL:
+								multiply(df.getTriggerValue(flagCollection[i].flag));
+								break;
+							
+							case DamageFlag.OP_ADD:
+								add(df.getTriggerValue(flagCollection[i].flag));
+								break;
+								
+							default:
+								break;
+						}
+					}
+				}
+			}
+			
+			for (i = 0; i < typeCollection.length; i++)
 			{
 				typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).damageValue) / 100.0);
 			}
+		}
+		
+		public function combineResistances(resistance:TypeCollection):void
+		{
+			
 		}
 		
 		public function getTotal():Number

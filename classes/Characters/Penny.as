@@ -24,7 +24,6 @@
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Tonfas();
 			this.armor = new UGCUniform();
@@ -38,7 +37,7 @@
 			this.shieldsRaw = 20;
 			this.energyRaw = 100;
 			this.lustRaw = 85;
-			this.resistances = new Array(0,0,0,0,0,0,0,0);
+			
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 0;

@@ -37,8 +37,6 @@ package classes.Items.Protection
 			//Information
 			this.basePrice = 1;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 1;
@@ -47,16 +45,17 @@ package classes.Items.Protection
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.bonusResistances[GLOBAL.KINETIC] = 0.35;
-			this.bonusResistances[GLOBAL.SLASHING] = 0.25;
-			this.bonusResistances[GLOBAL.PIERCING] = 0.15;
+			resistances.kinetic.damageValue = 10.0;
+			resistances.electric.damageValue = 15.0;
+			resistances.burning.damageValue = 20.0;
+			resistances.freezing.damageValue = 25.0;
+			resistances.corrosive.damageValue = 30.0;
+			resistances.poison.damageValue = 35.0;
 			
-			this.bonusResistances[GLOBAL.LASER] = 0.1;
-			this.bonusResistances[GLOBAL.PLASMA] = 0.2;
-			this.bonusResistances[GLOBAL.GRAVITIC] = 0.3;
-			this.bonusResistances[GLOBAL.ELECTRIC] = 0.4;
-			this.bonusResistances[GLOBAL.THERMAL] = 0.6;
+			resistances.psionic.damageValue = 40.0;
+			resistances.pheromone.damageValue = 45.0;
+			resistances.tease.damageValue = 50.0;
+			resistances.drug.damageValue = 55.0;
 			
 			this.version = _latestVersion;
 		}
