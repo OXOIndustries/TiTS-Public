@@ -3,6 +3,7 @@
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
@@ -257,8 +258,7 @@
 		public var teaseXP: Number = 0;
 
 		//Resistances
-		public var resistances: Array = new Array(1, 1, 1, 1, 1, 1, 1, 1);
-		public var bonusResistances: Array = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+		public var resistances:TypeCollection = new TypeCollection();
 
 		//Level Stats
 		public var XPRaw: Number = 0;
@@ -2608,6 +2608,7 @@
 			temp += armor.fortification + upperUndergarment.fortification + lowerUndergarment.fortification + accessory.fortification + shield.fortification;
 			return temp;
 		}
+		/*
 		public function getResistance(type: int): Number {			
 			var total:Number = 0;
 			total += resistances[type];
@@ -2630,6 +2631,7 @@
 			total -= resist;
 			return Math.round(total * 10) / 10;
 		}
+		*/
 		public function hasSkinFlag(arg:int): Boolean {
 			var temp: int = 0;
 			while (temp < skinFlags.length) {
