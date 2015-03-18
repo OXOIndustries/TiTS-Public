@@ -47,7 +47,7 @@ public function introductionToMerchantQueenSloot():void
 		//If Flahne unf’d;
 		if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] != undefined) output(" unlike a certain rahn you know");
 		output(". Despite your creepy, silent sleuthing, she’s still all smiles. <i>“The answer is yes. Don’t worry, I get it a lot. I’m a Myr Queen, off-worlder, one of the precious few chosen by fate to give birth to our people. I apparently also happen to be pretty bad at getting the thread through the hook, so to speak, so I keep trying. Mm, it’s surprisingly good for business... and it entertains our </i>glorious<i> Red overlords. A lot of you off-worlders spend your time gawking instead of haggling for a better deal - not that I would take </i>advantage<i> of that, of course.”</i> The merchant queen’s lips curl up in a coy, teasing little smile as she gives you a once-over yourself");
-		if(pc.isCrotchGarbed()) output(", not so much as batting an eyelash at your own nudity");
+		if(!pc.isCrotchGarbed()) output(", not so much as batting an eyelash at your own nudity");
 		output(". <i>“Welcome to my shop, traveler. Feel free to browse </i>any<i> of my wares,”</i> she purrs.");
 		if(silly) output(" Briefly, you muse that at least the currently-fucking woman has a good reason to lay it on thick.");
 	}

@@ -190,7 +190,7 @@
 						x = target.shortestCockIndex();
 						if(rand(3) == 0)
 						{
-							kGAMECLASS.eventBuffer += "You adjust your package and fine [pc.oneCock] a little more ";
+							kGAMECLASS.eventBuffer += "You adjust your package and find [pc.oneCock] a little more ";
 							if(target.cocks[x].cLength() <= 8) kGAMECLASS.eventBuffer += "hand-filling";
 							else if(target.cocks[x].cLength() <= 15) kGAMECLASS.eventBuffer += "overwhelming";
 							else kGAMECLASS.eventBuffer += "tremendously large";
@@ -524,7 +524,7 @@
 						//Halfway there!
 						else if(target.hairLength < 4)
 						{
-							kGAMECLASS.eventBuffer += "You wind blow an unruly lock of your hair off your forehead before realizing that its grown. There's at least four inches of unkempt length there.";
+							kGAMECLASS.eventBuffer += "You wind blow an unruly lock of your hair off your forehead before realizing that it has grown. There's at least four inches of unkempt length there.";
 							target.hairLength = 4;
 						}
 						//Stage three!

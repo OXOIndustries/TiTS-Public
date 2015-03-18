@@ -434,7 +434,7 @@ public function tailFuck():void
 	//PC has cum medium/lots
 	if(StatTracking.getStat("sex/player/orgasms") > 50 && !pc.cockVirgin) 
 	{
-		output("\n\nThe sum total of your entire sexual experience is a drop in the bucket next to Queen Irellia. Sure, you seen a lot more variety out there, but she’s clearly gotten this down to a science, breeding for hours upon hours day in and day out, learning to move her pussy in ways that would ");
+		output("\n\nThe sum total of your entire sexual experience is a drop in the bucket next to Queen Irellia. Sure, you've seen a lot more variety out there, but she’s clearly gotten this down to a science, breeding for hours upon hours day in and day out, learning to move her pussy in ways that would ");
 		if(flags["LANDED_ON_TEXAS"] == 1) output("make a New Texan jealous.");
 		else 
 		{
@@ -569,7 +569,7 @@ public function fuckIrelliasFrontGina():void
 		else output("a");
 		output(" naked, erect phallus, but you bat it back with a frown. You’ve no time to waste on parasitic twats when a queen’s slit is right there waiting for you.");
 	}
-	output("\n\nQueen Irellia smiles at what she sees, gently fanning her face as her cheeks flush orange. A droplet of slick pussy-nectar hangs from the top of her surprisingly-engorged clitorus, and the lips are fuller and more prominent than before. She brushes off the stray droplet with the back of her thumb, then brings it to her lips to savor, her tongue lapping it away in a flash. Her eyes twinkle with mirth. <i>“What’s the matter, [pc.name]? You aren’t anxious about performing are you? I hear some drones have problems with that. A big girl like me can be intimidating, no?”</i>");
+	output("\n\nQueen Irellia smiles at what she sees, gently fanning her face as her cheeks flush orange. A droplet of slick pussy-nectar hangs from the top of her surprisingly-engorged clitoris, and the lips are fuller and more prominent than before. She brushes off the stray droplet with the back of her thumb, then brings it to her lips to savor, her tongue lapping it away in a flash. Her eyes twinkle with mirth. <i>“What’s the matter, [pc.name]? You aren’t anxious about performing are you? I hear some drones have problems with that. A big girl like me can be intimidating, no?”</i>");
 	output("\n\nYou step closer with a smile on your face and a hand on [pc.oneCock], the other on your hip. After everything you’ve seen and done, a private tryst with royalty hardly phases you, and you tell her as much while you climb up onto her throne. It’s a little awkward, being so high up from the floor");
 	if(pc.tallness >= 84) output(", but you manage without much effort.");
 	else if(pc.tallness >= 66) output(", but you manage it after a few seconds of struggling.");

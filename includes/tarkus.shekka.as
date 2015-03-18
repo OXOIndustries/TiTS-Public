@@ -482,7 +482,7 @@ public function talkToShekkaAboutNovahome():void
 	userInterface.showName("\nSHEKKA");
 	output("You ask about Novahome.");
 	output("\n\n<i>\"Oh isn't it just the best!\"</i> Shekka throws her arms up in the air and practically dances in place, revealing the flighty side that most of her race seem to spend all their time exposing. <i>\"It's way better than living in some smoky hole in the ground, fighting the sydians or rogue bots every rotation. ");
-	if(flags["TARKUS_DESTROYED"] == undefined) output("It even saved us from the death of our planet. ");
+	if(flags["TARKUS_DESTROYED"] != undefined) output("It even saved us from the death of our planet. ");
 	else output("Hell, it's hard enough to keep the parasitic lapinara from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
 	output("\"</i> She puffs her chest out in pride, clearly outlining the curves of her small bosom for all to see. Her nipples stick out like tiny, sore thumbs, begging to be tweaked or touched. You restrain yourself for now, wanting to hear the rest of her words.");
 	output("\n\nShekka explains, <i>\"I was pretty young when my tribe moved in. I can still remember huddling in a leaky old cave around the warmth of a dozen half-repaired generators at night. Luckily, one of our neighboring tribes, the Gyss, found the Nova while foraging. They wanted to make it their home, but there were too many sydians inside for them to take on their own, not to mention all the aquiara inside.\"</i>");

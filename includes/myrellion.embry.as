@@ -1494,7 +1494,7 @@ public function youPickYerNameBabe():void
 	clearOutput();
 	showSimii();
 	// Change embry.name to Belle.
-	output("You tell [embry.name] it’s not a choice you can make for her - it’s just too important. She solemnly nods. <i>\"Y-you’re right, I should choose for myself.</i>\"");
+	output("You tell Embry it’s not a choice you can make for her - it’s just too important. She solemnly nods. <i>\"Y-you’re right, I should choose for myself.</i>\"");
 	output("\n\n<i>“... I kind of like Belle. It’s a traditional Omoriian name, and it runs in my family. It’s new, but at the same time it’s still me, you know?”</i>");
 	embry.short = "Belle";
 	chooseANewNameEmbryFinal();
@@ -1885,7 +1885,7 @@ public function agreeToGetRidOfCock():void
 {
 	clearOutput();
 	showSimii();
-	output("You agree with [embry.name] that it is probably best to wait. She seems understanding, though very embrassed.");
+	output("You agree with [embry.name] that it is probably best to wait. She seems understanding, though very embarassed.");
 	output("\n\n<I>\"Um, c-can we make out anyway? I was, you know... enjoying it until </i>that<i> happened...</i>\" she whispers.");
 	mergeSomeShitTogetherIunno(true);
 }

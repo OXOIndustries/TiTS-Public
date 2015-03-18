@@ -155,7 +155,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	if (pc.hasCock())
 	{
 		addButton(0, "Anal", kirosShipChubnookiUpDaButt, undefined, "Anally", "Fuck the beached Tanuki's ass.");
-		addButton(1, "Vaginal", kirosShipChubnookiUpDaCooter, undefined, "Vaginally", "Fuck the beached Tankuis cunt.");
+		addButton(1, "Vaginal", kirosShipChubnookiUpDaCooter, undefined, "Vaginally", "Fuck the beached Tanuki's cunt.");
 	}
 	else
 	{
@@ -165,11 +165,11 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	
 	if (pc.hasVagina())
 	{
-		addButton(2, "Get Filled", kirosShipChubnookiFucksYouGud, undefined, "Get Filled", "Ride the Tanukis monster cock.");
+		addButton(2, "Get Filled", kirosShipChubnookiFucksYouGud, undefined, "Get Filled", "Ride the Tanuki's monster cock.");
 	}
 	else
 	{
-		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tankuis monster cock.");
+		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tanuki's monster cock.");
 	}
 
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)

@@ -8777,7 +8777,7 @@
 					if (rando == 0) descript += "feline ";
 					else if (rando == 1) descript += "spine-covered ";
 					else if (rando == 2) descript += "spined ";
-					else if (rando == 3) descript += "pink ";
+					else if (rando == 3) descript += "kitty ";
 					else if (rando == 4) descript += "animalistic ";
 					else if (rando == 5) descript += "soft-barbed ";
 					else if (rando == 6) descript += "nubby ";
