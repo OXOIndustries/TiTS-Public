@@ -5838,7 +5838,7 @@
 		public function cumMultiplier():Number
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
-			var bonus:Number = bonus += perkv1("Potent");
+			var bonus:Number = perkv1("Potent");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
