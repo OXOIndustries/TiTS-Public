@@ -8,7 +8,7 @@ package classes.Engine.Combat
 	 * ...
 	 * @author Gedan
 	 */
-	public function calculateDamage(baseDamage:TypeCollection, target:Creature, attacker:Creature):DamageResult
+	public function calculateDamage(baseDamage:TypeCollection, target:Creature, attacker:Creature, special:String = ""):DamageResult
 	{
 		var damageResult:DamageResult = new DamageResult();
 		
@@ -18,11 +18,11 @@ package classes.Engine.Combat
 		//damageResult.add(value);
 		//damageResult.multiply(value); etc
 		
-		calculateShieldDamage(target, attacker, damageResult);
+		calculateShieldDamage(target, attacker, damageResult, special);
 		
 		if (damageResult.remainingDamage.getTotal() > 0) 
 		{
-			calculateHPDamage(target, attacker, damageResult);
+			calculateHPDamage(target, attacker, damageResult, special);
 		}
 		
 		return damageResult;

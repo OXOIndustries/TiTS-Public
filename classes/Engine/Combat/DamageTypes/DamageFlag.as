@@ -127,7 +127,8 @@ package classes.Engine.Combat.DamageTypes
 			{
 				if (_triggers[i].triggerOn == trigger) return i;
 			}
-			return -1;
+			throw new Error("Couldn't find index for " + trigger + ". Check it's present first!");
+			return uint.MAX_VALUE;
 		}
 		
 		public function getTriggerOp(trigger:uint):uint

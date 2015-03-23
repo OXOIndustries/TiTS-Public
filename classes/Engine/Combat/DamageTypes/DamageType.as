@@ -76,6 +76,23 @@ package classes.Engine.Combat.DamageTypes
 			"True Lust"
 		];
 		
+		public static const TypeIndexes:Object = {
+			kinetic: DamageType.KINETIC,
+			electric: DamageType.ELECTRIC,
+			burning: DamageType.BURNING,
+			freezing: DamageType.FREEZING,
+			corrosive: DamageType.CORROSIVE,
+			poison: DamageType.POISON,
+			unresistablehp: DamageType.UNRESISTABLE_HP,
+			truedamage: DamageType.UNRESISTABLE_HP,
+			psionic: DamageType.PSIONIC,
+			drug: DamageType.DRUG,
+			pheromone: DamageType.PHEROMONE,
+			tease: DamageType.TEASE,
+			unresistablelust: DamageType.UNRESISTABLE_LUST,
+			truelust: DamageType.UNRESISTABLE_LUST
+		}
+		
 		private var _damageType:uint;
 		private var _damageValue:Number;
 		

@@ -29,7 +29,7 @@ package classes.Engine.Combat.DamageTypes
 		public function get unresistable_lust():DamageType { return typeCollection[DamageType.UNRESISTABLE_LUST]; }
 		
 		/**
-		 * new TypeCollection({DamageType.KINETIC: 50, DamageType.THERMAL: 25}, 
+		 * new TypeCollection({kinetic: 50, burning: 25});
 		 * @param	values
 		 * @param	flags
 		 */
@@ -51,13 +51,15 @@ package classes.Engine.Combat.DamageTypes
 			}
 		}
 		
-		private function loadSettings(values:Object, flags:Array)
+		private function loadSettings(values:Object, flags:Array):void
 		{
 			if (values != null)
 			{
 				for (var key:* in values)
 				{
-					var idx:uint = key;
+					if (DamageType.TypeIndexes[key] === undefined) throw new Error("Undefined damage type: " + key);
+					
+					var idx:uint = DamageType.TypeIndexes[key];
 					var val:Number = values[key];
 					
 					getType(idx).damageValue = val;
@@ -87,10 +89,13 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function removeFlag(flag:uint):void
 		{
-			var idx:uint = flagIndex(flag);
-			if (idx != -1)
+			if (hasFlag(flag))
 			{
-				flagCollection.splice(idx, 1);
+				var idx:uint = flagIndex(flag);
+				if (idx != -1)
+				{
+					flagCollection.splice(idx, 1);
+				}
 			}
 		}
 		
@@ -132,7 +137,8 @@ package classes.Engine.Combat.DamageTypes
 			{
 				if (flagCollection[i].flag == flag) return i;
 			}
-			return -1;
+			throw new Error("Flag type " + flag + " was not present. Check it is available first!");
+			return uint.MAX_VALUE;
 		}
 		
 		public function multiply(m:*):void

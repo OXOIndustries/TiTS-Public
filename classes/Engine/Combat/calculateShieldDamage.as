@@ -1,13 +1,15 @@
 package classes.Engine.Combat 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.kGAMECLASS;
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public function calculateShieldDamage(target:Creature, attacker:Creature, damageResult:DamageResult):void
+	public function calculateShieldDamage(target:Creature, attacker:Creature, damageResult:DamageResult, special:String = ""):void
 	{
 		if (target.shieldsRaw <= 0) return;
 		
@@ -21,6 +23,20 @@ package classes.Engine.Combat
 		damageToShields.applyResistances(target.getShieldResistances());
 		
 		var damageAfterResistances:Number = damageToShields.getTotal();
+		
+		// Apply other defensive modifiers
+		var defReduction:Number = target.shieldDefense();
+		
+		if (special == "ranged" && kGAMECLASS.pc.hasPerk("Armor Piercing") && !(target is PlayerCharacter))
+		{
+			if (defReduction > 0) defReduction -= (kGAMECLASS.pc.level + rand(3));
+			if (defReduction < 0) defReduction = 0;
+		}
+		
+		damageAfterResistances -= defReduction;
+		
+		//If we're this far, damage can't be less than one. You did get hit, after all.
+		if (damageAfterResistances < 1) damageAfterResistances = 1;
 		
 		// If the damage doesn't break through shields, we done after storing values and returning
 		if (damageAfterResistances <= target.shieldsRaw)

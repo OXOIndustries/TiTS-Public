@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.possessive;
 	
 	public class Pandaneen extends ItemSlotClass
 	{
@@ -179,7 +180,7 @@
 							{
 								kGAMECLASS.output("\n\nPleasant pressure appears ");
 								if(!target.hasSheath(x)) kGAMECLASS.output("at the base of your [pc.cock " + x + "]");
-								else kGAMECLASS.output("inside your " + kGAMECLASS.possessive(target.cockDescript(x)) + " sheath");
+								else kGAMECLASS.output("inside your " + possessive(target.cockDescript(x)) + " sheath");
 								kGAMECLASS.output(". It's just enough warning for you to ");
 								if(!target.isCrotchGarbed()) kGAMECLASS.output("look down");
 								else kGAMECLASS.output("pull open your [pc.lowerGarments]");

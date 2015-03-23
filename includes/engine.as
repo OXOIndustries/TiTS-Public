@@ -122,12 +122,7 @@ public function plural(str:String):String {
 	else str += "s";
 	return str;
 }
-public function possessive(str:String):String {
-	var lastChar:String = str.substr(str.length-1,str.length);
-	if(lastChar == "s") str += "'";
-	else str += "'s";
-	return str;
-}
+
 
 public function leftBarClear():void {
 	this.userInterface.leftBarClear();

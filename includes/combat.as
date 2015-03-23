@@ -8,13 +8,16 @@ import classes.Characters.Mimbrane;
 import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
+import classes.Characters.PlayerCharacter;
 import classes.Characters.SecurityDroids;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Characters.Varmint;
+import classes.Engine.Combat.applyDamage;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -254,7 +257,7 @@ public function specialsMenu():void {
 		
 		if(pc.hasPerk("Overcharge"))
 		{
-			if(pc.rangedWeapon.damageType == GLOBAL.KINETIC || pc.rangedWeapon.damageType == GLOBAL.SLASHING || pc.rangedWeapon.damageType == GLOBAL.PIERCING)
+			if (!(pc as PlayerCharacter).hasRangedEnergyWeapon())
 			{
 				addDisabledButton(offset,"Overcharge","Overcharge","Only energy weapons may be overcharged.");
 			}
@@ -426,7 +429,7 @@ public function updateCombatStatuses():void {
 		else
 		{
 			output("<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + pc.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-			genericDamageApply(rand(4) + foes[0].level,foes[0],pc,GLOBAL.THERMAL);
+			applyDamage(new TypeCollection( { burning: 4 + foes[0].level } ), foes[0], pc);
 			output("\n");
 		}
 	}
@@ -1409,129 +1412,6 @@ public function droneAttack(target:Creature):void {
 public function droneDamage():int
 {
 	return (1+pc.level + rand(2 + pc.level/2));
-}
-
-public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
-	//Apply damage reductions
-	if (target.shieldsRaw > 0) 
-	{
-		//use melee weapon 
-		if(damTypeOverride == -1) sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		else sDamage = shieldDamage(target,damage,damTypeOverride);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if (target.shieldsRaw > 0)
-		{
-			if(target == pc) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else 
-			{
-				if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>)");
-				else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-		else 
-		{
-			if(target == pc) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-			else 
-			{
-				if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-	}
-	if(damage >= 1) 
-	{
-		if(damTypeOverride == -1) damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		else damage = HPDamage(target,damage,damTypeOverride);
-		if (sDamage[0] > 0) 
-		{
-			if(target == pc) output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
-			else output(" The attack continues on to connect with " + foes[0].a + foes[0].short + "! (<b>" + damage + "</b>)");
-		}
-		else 
-			output(" (<b>" + damage + "</b>)");
-	}
-}
-
-
-public function HPDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC,special:String = ""):Number 
-{
-	var temp:Number = 0;
-	//Reduce damage by defense value
-	temp = victim.defense();
-	if(special == "ranged" && pc.hasPerk("Armor Piercing"))
-	{
-		if(temp > 0) temp -= (pc.level+rand(3));
-		if(temp < 0) temp = 0;
-	}
-	damage -= temp;
-	
-	//Apply type reductions!
-	damage *= victim.getResistance(damageType);
-	//None yet!
-	
-	damage = Math.round(damage);
-	
-	//Damage cannot exceed HP amount.
-	if(damage > victim.HP()) {
-		damage = victim.HP();
-	}
-	//If we're this far, damage can't be less than one. You did get hit, after all.
-	if(damage < 1) damage = 1;
-	//Apply the damage
-	victim.HP(-1 * damage);
-	//Pass back how much was done.
-	return damage;
-}
-
-public function shieldDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC, special:String = ""):Array 
-{
-	var initialDamage:Number = damage;
-	var soakedDamage:Number = 0;
-	var leftoverDamage:int = 0;
-	var shieldDefense:Number = 0;
-	//Reduce damage by shield defense value
-	shieldDefense += victim.shieldDefense();
-	if(special == "ranged" && pc.hasPerk("Armor Piercing") && pc != victim)
-	{
-		if(shieldDefense > 0) shieldDefense -= (pc.level+rand(3));
-		if(shieldDefense < 0) shieldDefense = 0;
-	}
-	damage -= shieldDefense;
-	
-	//Apply victim resistances vs damage
-	damage *= victim.getShieldResistance(damageType);
-
-	//Debug trace statements to help me doublecheck that all this is working right
-	//trace("INITIAL DAMAGE: " + initialDamage);
-	//trace("SHIELD DEFENSE VALUE: " + victim.shieldDefense());	
-	//trace("SHIELD DAMAGE MULTIPLIER: " + victim.getShieldResistance(damageType));
-	
-	damage = Math.round(damage);
-	
-	//Damage cannot exceed shield amount.
-	if(damage > victim.shieldsRaw) {
-		damage = victim.shieldsRaw;
-		soakedDamage = (damage - shieldDefense) / victim.getShieldResistance(damageType);
-		leftoverDamage = initialDamage - soakedDamage;
-		//If shit rounded up, that might put leftover damage in negs.
-		//Prevent dat.
-		if(leftoverDamage < 0) leftoverDamage = 0;
-		
-		//Second half of checking shield stuff.
-		//trace("Damage soaked up by shields: " + soakedDamage);
-		//trace("New leftover damage: " + leftoverDamage);
-	}
-	//If we're this far, damage can't be less than one. You did get hit, after all.
-	if(damage < 1) damage = 1;
-	//Apply the damage
-	victim.shieldsRaw -= damage;
-	//Pass back how much was done and how much is leftover.
-	return [damage,leftoverDamage];
 }
 
 public function teaseMenu(target:Creature):void 

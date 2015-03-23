@@ -1,13 +1,17 @@
 package classes.Engine.Combat 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.rand;
+	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public function calculateHPDamage(target:Creature, attacker:Creature, damageResult:DamageResult):void
+	public function calculateHPDamage(target:Creature, attacker:Creature, damageResult:DamageResult, special:String = ""):void
 	{
 		if (target.HP() <= 0) return;
 		
@@ -18,6 +22,22 @@ package classes.Engine.Combat
 		damageToHP.applyResistances(target.getHPResistances());
 		
 		var damageAfterResistances:Number = damageToHP.getTotal();
+		
+		// Apply other defensive stats
+		var defReduction:Number = target.defense();
+		
+		if (special == "ranged" && kGAMECLASS.pc.hasPerk("Armor Piercing") && !(target is PlayerCharacter))
+		{
+			if (defReduction > 0) defReduction -= (kGAMECLASS.pc.level + rand(3));
+			if (defReduction < 0) defReduction = 0;
+		}
+		
+		damageAfterResistances -= defReduction;
+	
+		//If we're this far, damage can't be less than one. You did get hit, after all.
+		if (damageAfterResistances < 1) damageAfterResistances = 1;
+		
+		// We can communicate overkill damage now, so we'll set the value approximately by unwinding a percentage of leftover damage after resistances.
 		
 		if (damageAfterResistances <= target.HP())
 		{
