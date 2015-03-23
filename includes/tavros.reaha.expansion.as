@@ -141,7 +141,7 @@ public function reahaFirstTalk():void
 	output("\n\nShe pauses there. Long enough to make you finally ask, <i>“So why did you have to escape?”</i>");
 	
 	output("\n\n<i>“Why do you think?”</i> she snaps.");
-	if (!reahaFree()) output(" <i>“She immediately regrets her outburst, covering her mouth with a murmured <i>“Sorry, [pc.master].”</i> With a sigh, she continues, more softly now:");
+	if (!reahaFree()) output(" She immediately regrets her outburst, covering her mouth with a murmured <i>“Sorry, [pc.master].”</i> With a sigh, she continues, more softly now:");
 	output(" <i>“I didn’t want the Treatment. I didn’t want to end up a brainless bimbo like my mom, sucking every dick that walked past her. Which I guess is kind of ironic in hindsight, huh? But I... I didn’t want to be this way,");
 	if (reahaFree()) output(" [pc.name]");
 	else output(" [pc.master]");
@@ -334,7 +334,7 @@ public function reahaTalkNewTexas():void
 	clearOutput();
 	reahaHeader();
 
-	output("<i>“So what do think about New Texas,”</i> you ask. <i>“It’s your homeworld, after all.”</i>");
+	output("<i>“So what do you think about New Texas,”</i> you ask. <i>“It’s your homeworld, after all.”</i>");
 	
 	output("\n\nReaha");
 	if (shipLocation != "500") output(" sighs");
