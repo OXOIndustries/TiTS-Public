@@ -58,7 +58,7 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			if(!kGAMECLASS.debug) quantity++;
+			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.clearOutput();

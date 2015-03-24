@@ -59,14 +59,14 @@
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
-				if(!kGAMECLASS.debug) quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else if (targetCreature.hasStatusEffect("Shield Boosted"))
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
-				if(!kGAMECLASS.debug) quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else

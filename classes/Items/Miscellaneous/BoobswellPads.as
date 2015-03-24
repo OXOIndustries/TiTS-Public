@@ -70,13 +70,13 @@
 					if(target.bRows() == 1) 
 					{
 						kGAMECLASS.output("You're already wearing the pads. You'll have to remove them before you put on another set.");
-						if(!kGAMECLASS.debug) quantity++;
+						if(!kGAMECLASS.infiniteItems()) quantity++;
 						return false
 					}
 					else
 					{
 						kGAMECLASS.output("You can only wear one set of pads at a time.");
-						if(!kGAMECLASS.debug) quantity++;
+						if(!kGAMECLASS.infiniteItems()) quantity++;
 						return false
 					}
 				}

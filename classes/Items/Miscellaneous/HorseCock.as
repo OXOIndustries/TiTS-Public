@@ -101,7 +101,7 @@
  					if(eligableHorseTFDicks(pc) == 0)
  					{
  						kGAMECLASS.output("You don't have any suitable place to stick this - you're already packing some fine horsemeat.");
- 						if(!kGAMECLASS.debug) quantity++;
+ 						if(!kGAMECLASS.infiniteItems()) quantity++;
  					}
  					else if(eligableHorseTFDicks(pc) == 1) HorseCockHorseCockConversion(eligableHorseDick(pc));
  					else
