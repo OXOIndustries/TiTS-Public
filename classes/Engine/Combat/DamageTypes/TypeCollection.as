@@ -173,6 +173,14 @@ package classes.Engine.Combat.DamageTypes
 			}
 			else
 			{
+				var numTypes:uint = 0;
+				for (i = 0; i < typeCollection.length; i++)
+				{
+					if (typeCollection[i].damageValue > 0) numTypes++;
+				}
+				
+				a /= numTypes;
+				
 				for (i = 0; i < typeCollection.length; i++)
 				{
 					if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue += a;

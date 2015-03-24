@@ -5,6 +5,7 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
+	import classes.Engine.Utility.rand;
 	/**
 	 * ...
 	 * @author Gedan

@@ -42,6 +42,8 @@ package classes.Items.Guns
 			this.damage = 0;
 			this.damageType = GLOBAL.NO_TYPE;
 			*/
+			baseDamage.tease.damageValue = 15;
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

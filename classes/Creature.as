@@ -2515,7 +2515,8 @@
 		}
 		
 		//Item bonus stats!
-		public function attack(melee: Boolean = true): Number {
+		public function attack(melee: Boolean = true): Number 
+		{
 			var temp: int = 0;
 			if (melee) temp += meleeWeapon.attack;
 			else temp += rangedWeapon.attack;
@@ -2524,7 +2525,8 @@
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
-		public function damage(melee: Boolean = true):TypeCollection
+		
+		public function damage(melee:Boolean = true):TypeCollection
 		{
 			var modifiedDamage:TypeCollection;
 			
@@ -2560,7 +2562,8 @@
 			
 			return modifiedDamage;
 		}
-		public function defense(): Number {
+		public function defense(): Number 
+		{
 			var temp: int = 0;
 			temp += meleeWeapon.defense;
 			temp += rangedWeapon.defense;
@@ -2574,7 +2577,8 @@
 			}
 			return temp;
 		}
-		public function shieldDefense(): Number {
+		public function shieldDefense(): Number 
+		{
 			var temp: int = 0;
 			temp += meleeWeapon.shieldDefense;
 			temp += rangedWeapon.shieldDefense;

@@ -1,4 +1,5 @@
 import classes.Characters.PlayerCharacter;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Accessories.TamWolf;
 import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
@@ -264,7 +265,7 @@ public function adultCockvineMowThisAttack():void
 	}
 }
 
-public function adultCockvineGrenadesInEnclosedSpaces(damageValue:Number, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
+public function adultCockvineGrenadesInEnclosedSpaces(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 {
 	//Activates if PC uses a grenade. 50% chance of taking damage/getting gassed
 	output("\nThe moment the grenade");
@@ -295,12 +296,14 @@ public function adultCockvineGrenadesInEnclosedSpaces(damageValue:Number, plural
 		if (isLustGas)
 		{
 			output(" Dazed, you cannot help but take a big gulp of the gas now billowing thickly through the cramped, slithery pit.");
-			pc.lust(damageValue);
+			var damage:TypeCollection = damageValue.makeCopy();
+			damage.applyResistances(pc.getLustResistances());
+			pc.lust(damage.getTotal());
 		}
 		else
 		{
 			output(" Though the writhing mass of cockvines absorbs the majority of it, you are thumped mightily hard by the impact of the explosion.");
-			genericDamageApply(damageValue, pc, pc, GLOBAL.KINETIC);
+			applyDamage(damageValue, pc, pc);
 		}
 	}
 }

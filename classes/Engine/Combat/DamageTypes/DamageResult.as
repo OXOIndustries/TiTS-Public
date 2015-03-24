@@ -16,7 +16,11 @@ package classes.Engine.Combat.DamageTypes
 		public var hpDamage:Number = 0;
 		public var typedHPDamage:TypeCollection = new TypeCollection();
 		
+		public var lustDamage:Number = 0;
+		public var typedLustDamage:TypeCollection = new TypeCollection();
+		
 		public var wasCrit:Boolean = false;
+		public var wasSneak:Boolean = false;
 		
 		public var totalAttacks:uint = 0;
 		public var numMisses:uint = 0;
@@ -24,6 +28,8 @@ package classes.Engine.Combat.DamageTypes
 		public var numCrits:uint = 0;
 		
 		public var remainingDamage:TypeCollection = new TypeCollection();
+		public var remainingLustDamage:TypeCollection = new TypeCollection();
+		public var lustResisted:Boolean = false;
 		
 		public function addResult(o:DamageResult):void
 		{
@@ -36,7 +42,11 @@ package classes.Engine.Combat.DamageTypes
 			hpDamage += o.hpDamage;
 			typedHPDamage.add(o.typedHPDamage);
 			
+			lustDamage += o.lustDamage;
+			typedLustDamage.add(o.typedLustDamage);
+			
 			remainingDamage.add(o.remainingDamage);
+			remainingLustDamage.add(o.remainingLustDamage);
 			
 			if (o.wasCrit) numCrits++;
 			else numHits++;

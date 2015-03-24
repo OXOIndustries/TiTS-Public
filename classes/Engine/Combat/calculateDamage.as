@@ -4,25 +4,101 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.ItemSlotClass;
+	import classes.Engine.Combat.DamageTypes.DamageType;
+	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	public function calculateDamage(baseDamage:TypeCollection, target:Creature, attacker:Creature, special:String = ""):DamageResult
 	{
+		// Split damage into the two components -- HP/Shield and Lust
+		
+		var baseHPDamage:TypeCollection = new TypeCollection();
+		var baseLustDamage:TypeCollection = new TypeCollection();
+		
+		for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+		{
+			if (baseDamage.getType(i).isHPDamage) baseHPDamage.getType(i).damageValue = baseDamage.getType(i).damageValue;
+			else baseLustDamage.getType(i).damageValue = baseDamage.getType(i).damageValue;
+		}
+		
 		var damageResult:DamageResult = new DamageResult();
 		
-		damageResult.remainingDamage = baseDamage;
+		/****************************
+		 * Apply damage bonuses here
+		 ****************************/
 		
-		// Add any stuff to handle damage increases here from the attacker.
-		//damageResult.add(value);
-		//damageResult.multiply(value); etc
+		// Take care HOW you apply bonuses here -- lust AND hp damage can be modified
+		// Special will allow you to apply bonus only to 'default' attacks.
 		
-		calculateShieldDamage(target, attacker, damageResult, special);
-		
-		if (damageResult.remainingDamage.getTotal() > 0) 
+		if (special == "ranged" || special == "melee")
 		{
-			calculateHPDamage(target, attacker, damageResult, special);
+			if (special == "melee")
+			{
+				baseHPDamage.add(attacker.physique() / 2);
+				
+				// Melee crit
+				if(attacker.critBonus(true) >= rand(100) + 1 && attacker is PlayerCharacter)
+				{
+					damageResult.wasCrit = true;
+					baseHPDamage.multiply(2);
+				}
+				
+				// Sneak attack
+				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) 
+				{
+					damageResult.wasSneak = true;
+					
+					damage.add(attacker.level * 2);
+					if (attacker.hasStatusEffect("Take Advantage")) damage.add(attacker.level * 2);
+					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage.add(attacker.level);
+				}
+			}
+			else
+			{
+				baseHPDamage.add(attacker.aim() / 2);
+				
+				// Ranged crit 
+				if(attacker.critBonus(false) >= rand(100) + 1 && attacker == pc)
+				{
+					damageResult.wasCrit = true;
+					damage.multiply(2);
+				}
+				
+				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) 
+				{
+					output("\n<b>Aimed shot!</b>");
+					damage.add(attacker.level * 2);
+					if(attacker.hasStatusEffect("Take Advantage")) damage.add(attacker.level * 2);
+					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage.add(attacker.level);
+				}
+			}
+		}
+		else if (special == "goovolver")
+		{
+			
+		}
+		
+		/****************************
+		 * Now apply the damage.
+		 ****************************/		
+		damageResult.remainingDamage = baseDamage;
+		damageResult.remainingLustDamage = baseLustDamage;
+		
+		if (baseHPDamage.getTotal() > 0)
+		{
+			calculateShieldDamage(target, attacker, damageResult, special);
+			
+			if (damageResult.remainingDamage.getTotal() > 0) 
+			{
+				calculateHPDamage(target, attacker, damageResult, special);
+			}
+		}
+		
+		if (baseLustDamage.getTotal() > 0)
+		{
+			calculateLustDamage(target, attacker, damageResult, special);
 		}
 		
 		return damageResult;

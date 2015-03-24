@@ -13,7 +13,7 @@ package classes.Engine.Combat
 	 * @param	baseDamage
 	 * @param	deviation
 	 */
-	public function damageRand(baseDamage:TypeCollection, deviation:Number):void
+	public function damageRand(baseDamage:TypeCollection, deviation:Number):TypeCollection
 	{
 		var numDTypes:uint = 0;
 		
@@ -25,7 +25,7 @@ package classes.Engine.Combat
 			}
 		}
 		
-		if (numDTypes == 0) return;
+		if (numDTypes == 0) return baseDamage;
 		
 		deviation /= numDTypes;
 		
@@ -38,6 +38,8 @@ package classes.Engine.Combat
 			d /= 100;
 			baseDamage.getType(i).damageValue *= d;
 		}
+		
+		return baseDamage;
 	}
 
 }
