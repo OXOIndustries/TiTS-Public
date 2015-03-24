@@ -3971,7 +3971,7 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 		//Neutral Gigi
 		else if(giannaPersonality() >= 30)
 		{
-			output("\n\n\"<i>Ohwow, that's one of those old Fantasy Monster cocks, right? Kiha used to have a whole line of 'em, way back then.</i>\" She giggles and bounds over, running one of her perfectly-formed alabaster fingers along the blue shaft. \"<i>Well, on a planet full of beast-dicks, this one sure manages to stand out, huh? Of course, you're not giving me a big, expensive, vintage dragon dick just to let me show off to all the other cows, are you?</i>\"");
+			output("\n\n\"<i>Ohwow, that's one of those old Fantasy Monster cocks, right? Kiha used to have a whole line of 'em, way back when.</i>\" She giggles and bounds over, running one of her perfectly-formed alabaster fingers along the blue shaft. \"<i>Well, on a planet full of beast-dicks, this one sure manages to stand out, huh? Of course, you're not giving me a big, expensive, vintage dragon dick just to let me show off to all the other cows, are you?</i>\"");
 			output("\n\nGiving you a mischievous wink, Gianna asks, \"<i>So, wanna see what this monster can do? I bet I can fulfill all sorts of fantasies with it...</i>\"");
 		}
 		//Shit-tier Sub Droid
