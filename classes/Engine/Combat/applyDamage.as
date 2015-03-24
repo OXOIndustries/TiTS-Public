@@ -13,7 +13,7 @@ package classes.Engine.Combat
 	 * ...
 	 * @author Gedan
 	 */
-	public function applyDamage(baseDamage:TypeCollection, attacker:Creature, target:Creature, special:String = ""):void
+	public function applyDamage(baseDamage:TypeCollection, attacker:Creature, target:Creature, special:String = ""):DamageResult
 	{
 		/* 
 		 * Do not apply randomisation here -- if it is required, apply it prior to applyDamage()
@@ -25,7 +25,7 @@ package classes.Engine.Combat
 		var damageResult:DamageResult = calculateDamage(baseDamage, target, attacker, special);
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
-		if (special == "supress") return;
+		if (special == "supress") return damageResult;
 		else if (special == "minimal" && damageResult.totalDamage > 0) output(" <b>(" + damageResult.totalDamage + "</b>)");
 		
 		// Begin message outpuuuuut.
@@ -133,6 +133,8 @@ package classes.Engine.Combat
 				// TODO
 			}
 		}
+		
+		return damageResult;
 	}
 
 }

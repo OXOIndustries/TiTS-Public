@@ -5,6 +5,9 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.ItemSlotClass;
 	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Utility.rand;
+	import classes.Characters.PlayerCharacter;
+	import classes.Engine.Interfaces.output;
 	
 	/**
 	 * ...
@@ -50,9 +53,9 @@ package classes.Engine.Combat
 				{
 					damageResult.wasSneak = true;
 					
-					damage.add(attacker.level * 2);
-					if (attacker.hasStatusEffect("Take Advantage")) damage.add(attacker.level * 2);
-					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage.add(attacker.level);
+					baseHPDamage.add(attacker.level * 2);
+					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
+					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}
 			}
 			else
@@ -60,18 +63,18 @@ package classes.Engine.Combat
 				baseHPDamage.add(attacker.aim() / 2);
 				
 				// Ranged crit 
-				if(attacker.critBonus(false) >= rand(100) + 1 && attacker == pc)
+				if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
 				{
 					damageResult.wasCrit = true;
-					damage.multiply(2);
+					baseHPDamage.multiply(2);
 				}
 				
 				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
-					damage.add(attacker.level * 2);
-					if(attacker.hasStatusEffect("Take Advantage")) damage.add(attacker.level * 2);
-					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage.add(attacker.level);
+					baseHPDamage.add(attacker.level * 2);
+					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
+					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}
 			}
 		}

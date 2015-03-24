@@ -1,4 +1,6 @@
-﻿/*Intro
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+/*Intro
 Combat Description
 Attacks
 Normal Attack
@@ -114,28 +116,23 @@ public function naleenDudeConstrict():void {
 	{
 		output("The naleen grins predatorily, constricting his lower half in a painful vice. You groan as well as you can under the pressure of his bone-crushing coils.");
 	}
-	var attacker:Creature = foes[0];
-	var target:Creature = pc;
-	//Damage bonuses:
-	var damage:int = 5 + rand(5);
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
 	
-	//Apply damage reductions
-	if(target.shieldsRaw > 0) {
-		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
+	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "dudeconstrict");
+	
+	if (damageResult.shieldDamage > 0)
+	{
+		if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
+		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
 	}
-	if(damage >= 1) {
-		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		if(sDamage[0] > 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! (<b>" + damage + "</b>)");
-		else output(" (<b>" + damage + "</b>)");	
+	
+	if (damageResult.hpDamage > 0)
+	{
+		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
 	}
+	
+	output(" (<b>" + damageResult.totalDamage + "</b>)");
+	
 	processCombat();
 }
 
@@ -165,10 +162,13 @@ public function biteAttackDudeleen():void {
 //If PC is shielded, deal some damage to the Naleen too.
 //Deals Heavy Damage, is a bit easier to avoid than his claws.
 //Meant to hurt the PC’s health rather than their shields. Is there a way to amplify HP damage and reduce shield’s damage?
-public function dudeNaleenPounce():void {
+public function dudeNaleenPounce():void 
+{
 	output("With a snarl ending in a hiss, he launches to the air. He strikes at you with claw and fang in a mighty pounce!");
-	var damage:int = 0;
-	var sDamage:Array = new Array();
+	
+	var damage:TypeCollection;
+	var damageResult:DamageResult;
+	
 	//Miss:
 	if(combatMiss(foes[0],pc))
 	{
@@ -178,19 +178,22 @@ public function dudeNaleenPounce():void {
 	else if(pc.shieldsRaw > 0) 
 	{
 		output("You yelp as you are brought crashing down onto the ground. Luckily your shield seems to have taken the brunt of his blow. You push him off, watching as he flops on the ground with a pained yowl. He quickly gets back on his coils, though it seems like he didn’t get out of this unscathed.");
-		damage = 1 + rand(3);
-		sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
-		if(pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		HPDamage(foes[0],3+rand(4),GLOBAL.ELECTRIC);
-		//No bleed thru!
+		damage = new TypeCollection( { kinetic: 1 + rand(3) } );
+		damageResult = calculateDamage(damage, pc, foes[0], "pounce");
+		
+		if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds. (<b>" + damageResult.totalDamage + "</b>)");
+		else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.totalDamage + "</b>)");
+		else output(" (<b>" + damageResult.totalDamage + "</b>)");
+		
+		calculateDamage(new TypeCollection( { electric: 3 + rand(4) } ), foes[0], pc);
 	}
 	//Hit HP for BIG DAMAGE!
 	else
 	{
-		damage = 10+rand(5);
-		damage = HPDamage(pc,damage,foes[0].meleeWeapon.damageType);
-		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage. (" + damage + ")");
+		damage = new TypeCollection( { kinetic: 10 + rand(5) } );
+		damageResult = calculateDamage(damage, pc, foes[0], "pounce");
+		
+		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage. (<b>" + damageResult.totalDamage + "</b>)");
 	}
 	processCombat();
 }

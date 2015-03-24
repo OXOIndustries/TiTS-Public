@@ -67,6 +67,7 @@
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;

@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 //UNLESS OTHERWISE NOTED, ALL SCENES BY SAVINOXO
 //Female Naleen Encounter
@@ -101,28 +103,23 @@ public function naleenConstrict():void {
 	{
 		output("The naleen's constricting embrace tightens slightly, coil after coil slithering around your compressing flesh.");
 	}
-	var attacker:Creature = foes[0];
-	var target:Creature = pc;
-	//Damage bonuses:
-	var damage:int = 5 + rand(5);
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
 	
-	//Apply damage reductions
-	if(target.shieldsRaw > 0) {
-		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
+	var damageResult:DamageResult = calculateDamage(damage, pc, foes[0], "constrict");
+	
+	if (damageResult.shieldDamage > 0)
+	{
+		if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
+		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
 	}
-	if(damage >= 1) {
-		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		if(sDamage[0] > 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! (<b>" + damage + "</b>)");
-		else output(" (<b>" + damage + "</b>)");	
+	
+	if (damageResult.hpDamage > 0)
+	{
+		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars!");
 	}
+	
+	output(" (<b>" + damageResult.totalDamage + "</b>)");
+
 	processCombat();
 }
 

@@ -1,4 +1,7 @@
-﻿//ZIL_PROBLEM_DEALT_WITH
+﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//ZIL_PROBLEM_DEALT_WITH
 
 /*Notes:
 Short, silky-smooth fur.
@@ -495,27 +498,22 @@ public function zilFlyingSpinKick():void {
 	}
 	else 
 	{
-		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
+		var damage:TypeCollection = attacker.damage(true);
+		damage.add(attacker.physique() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
 		//Apply damage reductions
-		if (target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (target.shieldsRaw > 0) 
-				output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
-		if(damage >= 1) 
+		if (damageResult.shieldDamage > 0) 
 		{
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (sDamage[0] > 0) 
-				output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damage + "</b>)");
-			else 
-				output(" (<b>" + damage + "</b>)");	
+			if (damageResult.hpDamage == 0)	output(" Your shield crackles but holds. (<b>" + damageResult.totalDamage + "</b>)");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.totalDamage + "</b>)");
+		}
+		
+		if(damageResult.hpDamage > 0) 
+		{
+			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damageResult.totalDamage + "</b>)");
+				
 			if (!pc.hasStatusEffect("Stunned"))
 			{
 				output("<b> It's concussive enough to leave you stunned.</b>");
@@ -529,9 +527,10 @@ public function zilFlyingSpinKick():void {
 //Buffs kinetic defenses?
 public function pluralZilHarden():void {
 	output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	foes[0].resistances[GLOBAL.KINETIC] *= .8;
-	foes[0].resistances[GLOBAL.SLASHING] *= .8;
-	foes[0].resistances[GLOBAL.PIERCING] *= .8;
+	
+	(foes[0] as Creature).baseHPResistances.kinetic.damageValue += 20.0;
+	(foes[0] as Creature).baseHPResistances.addFlag(DamageFlag.PLATED);
+	
 	processCombat();
 }
 
