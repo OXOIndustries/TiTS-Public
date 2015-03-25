@@ -4,16 +4,18 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
+	import classes.Items.Transformatives.Gush;
 	public class DrBadger extends Creature
 	{
 		//constructor
 		public function DrBadger()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.inventory.push(new Dumbfuck());
+			this.inventory.push(new Gush());
 			this.inventory.push(new Throbb());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -174,6 +176,10 @@
 			this.ass.loosenessRaw = 2;
 			
 			this._isLoading = false;
-		}	
+		}
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new Gush().getSaveObject());
+		}
 	}
 }

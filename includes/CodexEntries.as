@@ -101,7 +101,7 @@ public function gushCodexEntry():void
 	userInterface.showBust("");
 	outputCodex(header("Gush"));
 	//Gush Codex
-	outputCodex("<i>This is gush. \\\[Picture of gush\\\] This is your brain on gush. \\\[Picture of a tremendously swollen pair of breasts\\\] Any questions?\n");
+	outputCodex("<i>This is gush. \\\[Picture of gush\\\] This is your brain on gush. \\\[Picture of a tremendously swollen pair of breasts\\\] Any questions?</i>\n");
 	outputCodex("\n<b>Warning: </b>Gush is presently illegal on over 96% of confederate worlds, almost certainly due to its addictive euphoria.\n\n");
 
 	outputCodex(blockHeader("Effects"));
