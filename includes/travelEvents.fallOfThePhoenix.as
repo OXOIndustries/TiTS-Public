@@ -1,3 +1,4 @@
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Melee.Rock;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.kGAMECLASS;
@@ -556,7 +557,7 @@ public function phoenixPiratesCarpetGrenades():void
 
 	output(" You dive out of the way, but still get riddled with shrapnel.");
 	
-	genericDamageApply(25, foes[0], pc, GLOBAL.KINETIC);
+	applyDamage(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING), foes[0], pc);
 
 	output("\n");
 	
@@ -569,7 +570,7 @@ public function phoenixPiratesBroadside():void
 
 	output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
 	
-	genericDamageApply(30, foes[0], pc, GLOBAL.KINETIC);
+	applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BULLET), foes[0], pc);
 	
 	output("\n");
 
@@ -594,7 +595,7 @@ public function saendraHammerPistol():void
 	else
 	{
 		output(" shooting one of the pirates square in the back!");
-		genericDamageApply(10, null, foes[0], GLOBAL.KINETIC);
+		applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), null, foes[0]);
 	}
 	
 	output("\n");
@@ -611,7 +612,9 @@ public function saendraDisarmingShot():void
 	else
 	{
 		output(" blasting through one pirate’s gun and destroying it!");
-		genericDamageApply(5, null, foes[0], GLOBAL.KINETIC);
+		
+		applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), null, foes[0]);
+
 		if (foes[0].hasStatusEffect("Disarming Shot Stacks"))
 		{
 			foes[0].createStatusEffect("Disarming Shot Stacks", 1, 0, 0, 0);

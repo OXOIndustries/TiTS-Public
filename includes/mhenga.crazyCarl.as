@@ -1,4 +1,6 @@
-﻿import classes.Items.Guns.HammerPistol;
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Guns.HammerPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.MagnumPistol;
 import classes.Items.Guns.TheShocker;
@@ -665,8 +667,7 @@ public function theSpinner():void {
 //Weld-gun
 public function weldGunAttack():void {
 	output("One of the machine’s appendages raises upwards and flattens out in the span of half a second, and molten-red flames burst out and fly across the arena at you! The intense heat only lasts for a moment, however, as the modified welder immediately overheats.");
-	var damage:int = 10+rand(5);
-	genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	applyDamage(new TypeCollection( { burning: 10 + rand(5) } ), foes[0], pc);
 	processCombat();
 }
 
@@ -710,26 +711,24 @@ public function suicideBullshit():void {
 	//Shit, got hit.
 	else
 	{
-		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " massive gun!");
-		//Damage bonuses:
-		var damage:int = 15 + foes[0].aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(pc.shieldsRaw > 0) {
-			sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " massive gun!");
+		var damage:TypeCollection = new TypeCollection( { kinetic: 15 } );
+		damage.add(foes[0].aim() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0], "ranged");
+
+		if (damageResult.shieldDamage > 0)
+		{
+			if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 		}
-		if(damage >= 1) {
-			damage = HPDamage(pc,damage,foes[0].rangedWeapon.damageType,"ranged");
-			if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
-			else output(" (<b>" + damage + "</b>)");	
+		
+		if (damageResult.hpDamage > 0)
+		{
+			output(" The hit carries on through to damage you!");
 		}
+		
+		output(" (<b>" + damageResult.totalDamage + "</b>)");	
 	}
 	//*PC survives by HP, dodging, whatever.*
 	if(pc.HP() >= 1 && pc.lust() <= 99) {

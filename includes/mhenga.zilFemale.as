@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 // Flags:
 // FOUGHT_FEMZIL_LAST_TIME  : Last time you encountered the FemZil, you fought it rather then fucked it (?)
@@ -233,31 +235,25 @@ public function zilFemaleDartThrow():void {
 		output("\nYou twist to avoid the dart!");
 	}
 	//It hits!
-	else {
-		var attacker:Creature = foes[0];
-		var target:Creature = pc;
-		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		if(pc.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (target.shieldsRaw > 0) 
-				output(" The dart spangs uselessly off your shields! (<b>" + sDamage[0] + "</b>)");
-			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
-		if(damage >= 1) 
+	else 
+	{
+		var damage:TypeCollection = foes[0].damage(true);
+		damage.add(foes[0].physique() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields! (<b>" + damageResult.totalDamage + "</b>)");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached."); 
+		}
+		
+		if (damageResult.hpDamage > 0)
+		{
 			output(" The dart punches right through your ");
 			if(pc.armor.shortName == "") output(pc.armor.longName);
 			else output("[pc.skinFurScales]");
-			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood! (" + damage + ") (Lust: " + 10);
+			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood! (<b>" + damageResult.totalDamage + "</b>) (Lust: " + 10);
 			pc.lust(10);
 		}
 	}

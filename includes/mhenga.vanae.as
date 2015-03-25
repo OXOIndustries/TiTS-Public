@@ -1,5 +1,6 @@
 ﻿import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.VaginaClass;
 public function encounterVanae(isHuntress:Boolean):void
 {
@@ -268,17 +269,16 @@ public function vanaeSpearStrike():void
 				output(" One minute you're fighting, the next you're seeing stars as she drives the flat end right into your temple. Your world spins, your head feeling as if it suddenly exploded.");
 			}
 			
-			var damage:int = foes[0].meleeWeapon.damage + 8;
-			var randInf:Number = (rand(10) + 90) / 100;
-			damage *= randInf;
-			
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damageRand(damage, 10);
+						
 			if (isCrit)
 			{
-				dMulti += 1;
+				damage.multiply(2);
 				pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
 			}
 			
-			genericDamageApply(damage * dMulti, foes[0], pc, GLOBAL.KINETIC);
+			applyDamage(damage, foes[0], pc);
 		}
 	}		
 	processCombat();
@@ -294,9 +294,9 @@ public function vanaeTailSwipe():void
 	if (combatMiss(foes[0], pc)) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");
 	else
 	{
-		var isCrit:Boolean = false;
-		var dMulti:Number = 1.0;
 		var critChance:int = 15;
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 20);
 		
 		if (rand(100) > critChance)
 		{
@@ -305,20 +305,15 @@ public function vanaeTailSwipe():void
 		}
 		else
 		{
-			isCrit = true;
-			dMulti += 1;
+			damage.multiply(2);
 			
 			// [Crit]: 
 			output(" You're struck by her tail, falling to the ground and hitting your head - hard. Your world spins as she closes in on you. You're too disoriented to do anything about it...");
 		}
 		
-		var damage:int = foes[0].meleeWeapon.damage;
-		var randInf:Number = (rand(20) + 80) / 100;
-		damage *= randInf;
+		applyDamage(damage, foes[0], pc);
 		
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
 	processCombat();
 }
@@ -428,11 +423,11 @@ public function vanaeSpiralKick():void
 		// [Hit & Stun]: 
 		output(" Her [monster.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...");
 		
-		var damage:int = foes[0].meleeWeapon.damage + 25;
-		var randInf:Number = (rand(20) + 80) / 100;
-		damage *= randInf;
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(12);
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 		
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 		pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 	}
 

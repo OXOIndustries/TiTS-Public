@@ -1,4 +1,5 @@
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 public static const NYREA_UNKNOWN:uint = 0;
 public static const NYREA_ALPHA:uint = 1;
 public static const NYREA_BETA:uint = 2;
@@ -220,7 +221,7 @@ public function nyreaSpearThrust():void
 	{
 		output("\nShe turns the blade at the last second, slamming the blunted haft of the spear into your chest, throwing you back with the force of the blow! ");
 
-		genericDamageApply(damageRand(foes[0].damage(true), 15), foes[0], pc, foes[0].meleeWeapon.damageType);
+		applyDamage(damageRand(foes[0].meleeDamage(), 15), foes[0], pc);
 	}
 }
 
@@ -238,11 +239,9 @@ public function nyreaMeatSpin():void
 	{
 		output("\nUnwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off.");
 
-		var lustDam:int = damageRand(15, 15);
-
-		pc.lustDamage(lustDam);
-
-		output(" <b>("+lustDam+")</b>\n");
+		var damage:TypeCollection = new TypeCollection( { tease: 7, pheremone: 7 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -264,7 +263,10 @@ public function nyreaPowerStrike():void
 		// I made with the creature accessors in TiTS.as -- typing them gave us compile-time checking against properties/methods.
 		//genericDamageApply(damageRand(foes[0].meleeDamage * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
 		
-		genericDamageApply(damageRand((foes[0] as Creature).damage(true) * 1.25, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.multiply(1.25);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 
 		if (rand(2) == 0)
 		{
@@ -295,11 +297,9 @@ public function nyreaPoledance():void
 	{
 		output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
 
-		var lustDam:int = damageRand(15, 15);
-
-		pc.lustDamage(lustDam);
-
-		output(" <b>("+ lustDam + ")</b>\n");
+		var damage:TypeCollection = new TypeCollection( { tease: 15 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -326,7 +326,8 @@ public function nyreaMilkRub():void
 	//Light lust attack, heals some of her HP
 	output("Giving you a cocky look, the nyrea pulls up the thin veneer of chain covering her ample bosom and cups her tits, giving them a long, obviously-pleasurable squeeze. A trickle of cream-colored milk spurts out at her touch, barely needing to be coaxed. She winks at you, bringing one of her teats to her lips and drinking long as the other drizzles all over her body, which she deftly rubs into her skin and armor.\n");
 
-	var lustDam:int = damageRand(15, 15);
+	var damage:TypeCollection = new TypeCollection( { tease: 15 } );
+	damageRand(damage, 15);
 
 	if (rand(10) <= 3)
 	{
@@ -337,8 +338,7 @@ public function nyreaMilkRub():void
 		output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...");
 	}
 
-	output(" <b>(" + lustDam + ")</b>");
-	pc.lustDamage(lustDam);
+	applyDamage(damage, foes[0], pc);
 }
 
 public function pcLossToNyrea():void

@@ -1,4 +1,6 @@
-﻿//Summary
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Summary
 //frog grills. not much i would consider gamebreaking here. new tf. unique random proc event. drop their tf as loot.
 
 //Mechanics and such
@@ -147,11 +149,10 @@ public function frogGirlKickAttackkkkkuuuuu():void
 		output(" You take the hit, grunting at the force of her attack");
 		if(pc.shields() > 0) output(", though your shield flares brightly");
 		output(".");
-		var damage:int = foes[0].damage(true) + foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -182,15 +183,14 @@ public function tongueLashAttack():void
 		if(pc.shields() > 0) 
 		{
 			output("and you are staggered by the force of the blow hitting your shield");
-			var damage:int = foes[0].damage(true) + foes[0].physique()/2+5;
-			//Randomize +/- 15%
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
-			var sDamage:Array = shieldDamage(pc,damage,GLOBAL.KINETIC);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + sDamage[0] + "</b>)");
-			else output(". Your shield is breached! (<b>" + sDamage[0] + "</b>)");
+			
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damageRand(damage, 15);
+			var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
+			// TODO: This originally only impacted shields...
+			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + damageResult.totalDamage + "</b>)");
+			else output(". Your shield is breached! (<b>" + damageResult.totalDamage + "</b>)");
 		}
 		else
 		{

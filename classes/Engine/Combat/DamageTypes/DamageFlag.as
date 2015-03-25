@@ -30,6 +30,8 @@ package classes.Engine.Combat.DamageTypes
 		public static const EXPLOSIVE:uint		= 12;
 		public static const ENERGY_WEAPON:uint	= 13;
 		public static const GROUNDED:uint		= 14;
+		public static const BYPASS_SHIELD:uint	= 15;
+		public static const ONLY_SHIELD:uint	= 16;
 		
 		private var _thisFlag:uint;
 		private var _triggers:Array;

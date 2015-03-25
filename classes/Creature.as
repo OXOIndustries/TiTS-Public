@@ -2526,6 +2526,19 @@
 			return temp;
 		}
 		
+		public function meleeDamage():TypeCollection
+		{ 
+			var d:TypeCollection = damage(true); 
+			d.add(physique() / 2);
+			return d;
+		}
+		public function rangedDamage():TypeCollection 
+		{ 
+			var d:TypeCollection = damage(false);
+			d.add(aim() / 2);
+			return d;
+		}
+		
 		public function damage(melee:Boolean = true):TypeCollection
 		{
 			var modifiedDamage:TypeCollection;

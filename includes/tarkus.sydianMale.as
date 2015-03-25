@@ -1,4 +1,5 @@
-﻿import classes.Items.Miscellaneous.NoItem;
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Miscellaneous.NoItem;
 public function encounterMaleSydian():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
@@ -143,8 +144,8 @@ public function sydianTackleAttack():void
 	{
 		output("He connects, knocking you backwards and putting him in the perfect position for another blow.");
 		foes[0].createStatusEffect("Hammer Punch Next");
-		var damage:int = 5+rand(4);
-		genericDamageApply(damage,foes[0],pc);
+		
+		applyDamage(new TypeCollection( { kinetic: 5 + rand(4) }, DamageFlag.CRUSHING), foes[0], pc);
 	}
 	processCombat();
 }
@@ -159,8 +160,8 @@ public function tripAttack():void
 	{
 		output("You go down to the ground! <b>You're going to have a difficult time fighting from down here!</b>");
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		var damage:int = 1;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		
+		applyDamage(new TypeCollection( { kinetic: 1 } ), foes[0], pc);
 	}
 	processCombat();
 }
@@ -177,10 +178,9 @@ public function hammerPunch():void
 	else
 	{
 		output(" He connects!");
-		var damage:int = 15 + foes[0].physique()/2;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = new TypeCollection( { kinetic: (15 + foes[0].physique() / 2) } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	foes[0].removeStatusEffect("Hammer Punch Next");
 	processCombat();
@@ -193,12 +193,13 @@ public function bodySlamByBros():void
 	else
 	{
 		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
-		if(pc.shields() > 0) output(" Not even your shields protect you!");
-		var damage:int = 5 + foes[0].physique()/2;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		damage = HPDamage(pc,damage,GLOBAL.KINETIC);
-		output(" (<b>" + damage + "</b>)");
+		
+		// TODO: Bypass shields
+		if (pc.shields() > 0) output(" Not even your shields protect you!");
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		output(" (<b>" + damageResult.totalDamage + "</b>)");
 	}
 	processCombat();
 }

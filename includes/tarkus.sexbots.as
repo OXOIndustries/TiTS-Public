@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Encounters
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
 public function encounterASexBot():void
@@ -223,29 +225,21 @@ public function sexBotElectropulseAttack():void
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
 	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
-	var attacker:Creature = foes[0];
-	var target:Creature = pc;
-	var damTypeOverride:int = GLOBAL.ELECTRIC;
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	var damage:int = 15;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
-	//Apply damage reductions
-	if (target.shieldsRaw > 0) 
+	
+	var damage:TypeCollection = new TypeCollection( { electric: 15 } );
+	damageRand(damage, 15);
+	var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+	
+	// TODO: Apply only to shields...
+	
+	if (damageResult.shieldDamage > 0)
 	{
-		sDamage = shieldDamage(target,damage,damTypeOverride);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if (target.shieldsRaw > 0)
-		{
-			output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		}
-		else 
-		{
-			output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
+		if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 	}
+	
+	output(" (<b>" + damageResult.totalDamage + "</b>)");
+	
 	processCombat();
 }
 

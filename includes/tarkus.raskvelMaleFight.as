@@ -1,4 +1,6 @@
-﻿//Plans/Ideas
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Plans/Ideas
 /**Three raskvel scavenging some junk. Possibly have a chance mechanic as to how they’re predisposed to you. They don’t care (low chance of that m8), they offer sexy times, they offer a gud deal on the junk, they want to get paid like the female.
 
 *In any case, group fun. Submissive gang bang, high libido triple buttfuck.
@@ -702,27 +704,17 @@ public function raskZapAttack():void
 	{
 		output("\n\nThe electric attack connects with your shield with a cringe-inducing CRACK.");
 		//damage!
-		var damTypeOverride:int = GLOBAL.ELECTRIC;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		var damage:int = 15;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if (pc.shieldsRaw > 0) 
+		var damage:TypeCollection = new TypeCollection( { electric: 15 } );
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			sDamage = shieldDamage(pc,damage,damTypeOverride);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (pc.shieldsRaw > 0)
-			{
-				output(" It holds. (<b>" + sDamage[0] + "</b>)");
-			}
-			else 
-			{
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-			}
+			if (pc.shieldsRaw > 0) output(" It holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 		}
+		
+		output(" (<b>" + damageResult.totalDamage + "</b>)");
 	}
 	if(!seductionChance()) processCombat();
 }

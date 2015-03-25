@@ -1,4 +1,5 @@
-﻿//Hostile Female Raskvel Encounter
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
 //Crotchless Mechanic's Overalls/Tattered Shirt and Skirt
 //Giant wrench shotgun.
@@ -78,11 +79,9 @@ public function raskvelPunch():void
 	}
 	else
 	{
-		var damage:int = foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: (foes[0].physique() / 2)});
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -183,13 +182,10 @@ public function enemyWrenchAttack():void
 				output("<b> The hit was hard enough to stun you!</b>");
 				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
-			var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-			//OVER CHAAAAAARGE
-			damage *= 2;
-			//Randomize +/- 15%
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
-			genericDamageApply(damage,foes[0],pc);
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damage.multiply(2);
+			damageRand(damage, 15);
+			applyDamage(damage, foes[0], pc);
 		}
 		foes[0].removeStatusEffect("Wrench Charge");
 	}
@@ -206,12 +202,9 @@ public function raskvelFemShotgun():void
 	else
 	{
 		output("\nYou are struck by the projectiles!");
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		//OVER CHAAAAAARGE
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = foes[0].rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }

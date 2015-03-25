@@ -1,4 +1,5 @@
-﻿/*Rival Encounter
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+/*Rival Encounter
 Notes
 Approach
 Fight
@@ -210,13 +211,10 @@ public function daneCrossSlashAttack():void {
 	else
 	{
 		output("\nThe blades hit you while crossed in a perfect 'x'!");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//OVER CHAAAAAARGE
-		damage *= 3;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.multiply(3);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }

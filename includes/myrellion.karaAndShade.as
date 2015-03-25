@@ -1,4 +1,5 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 /*FLAGS
 SHADE_PAID_YOU
@@ -734,12 +735,9 @@ public function karaPlasmaShot(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -761,12 +759,9 @@ public function karaHitsWivASwordChuck(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(true) + attacker.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target);
+		var damage:TypeCollection = attacker.meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -786,14 +781,10 @@ public function karaDoesChargeShot(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 1.5;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damage.multiply(1.5);
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 
 		//{It hits for X damage! // } {If burn: ");
 		if(!target.hasStatusEffect("Burn") && rand(2) == 0)
@@ -835,12 +826,9 @@ public function shadeUsesArcCaster(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 
 }
@@ -861,12 +849,9 @@ public function shadeShootHoldoutPistol(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.KINETIC);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -944,12 +929,10 @@ public function tazerForShade(target:Creature):void
 	else
 	{
 		//The dart hits and unleashes a shock of electricity, zapping {target} for X damage and stunning {you / her}! "
-		var damage:int = 10;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = new TypeCollection( { electric: 10 } );
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
+		
 		if(foes[0].aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
 			target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
 			output(" <b>You are stunned!</b>");
@@ -967,7 +950,7 @@ public function shadeQuickdraws(target:Creature):void
 		output("\n\nJust as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.");
 		foes[0].rangedWeapon = new HoldOutPistol();
 	}
-	else if(target.getResistance(GLOBAL.ELECTRIC) <= 0)
+	else if(target.getHPResistances().electric.resistanceValue >= 100 || target.getShieldResistances().electric.resistanceValue >= 100)
 	{
 		output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
 		foes[0].rangedWeapon = new HoldOutPistol();

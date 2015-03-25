@@ -1,4 +1,6 @@
-﻿//Male Zil Encounter
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Male Zil Encounter
 
 // Flags:
 // TIMES_LOST_TO_ZIL  : TODO - FIXME
@@ -136,30 +138,21 @@ public function zilFlyingSpinKickSingle():void {
 	}
 	else 
 	{
-		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		trace("HEEL KICK DAMAGE: " + damage);
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if (target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (target.shieldsRaw > 0) 
-				output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
-		if(damage >= 1) 
+		var damage:TypeCollection = attacker.damage(true);
+		damage.add(attacker.physique() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (sDamage[0] > 0) 
-				output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damage + "</b>)");
-			else 
-				output(" (<b>" + damage + "</b>)");	
+			if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. (<b>" + damageResult.totalDamage + "</b>) ");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.totalDamage + "</b>)");
+		}
+		
+		if (damageResult.hpDamage > 0)
+		{
+			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damageResult.totalDamage + "</b>)");
+			
 			if (!pc.hasStatusEffect("Stunned"))
 			{
 				output("<b> It's concussive enough to leave you stunned.</b>");
@@ -180,25 +173,18 @@ public function zilDrop():void {
 		processCombat();
 		return;
 	}
-	var damage:int = 0;
-	var sDamage:int = 0;
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
 	//{lift fail}
 	if((pc.thickness + 100) * pc.tallness >= 9900) {
 		output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
 		//{low damage}
-		damage = rand(4)+1;
-		genericDamageApply(damage,foes[0],pc);
+		applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), foes[0], pc);
 	}
 	else 
 	{
 		output(" He proves strong enough to separate you from your footing. You struggle, but the ground gets further and further away. Then, he lets you go. ");
 		if(!pc.canFly()) {
 			output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
-			damage = rand(5)+5;
-			genericDamageApply(damage,foes[0],pc);		
+			applyDamage(new TypeCollection( { kinetic: 5 + rand(5) } ), foes[0], pc);
 		}
 		else output("You flutter down safely under your own power. It's so good to be able to fly.");
 		

@@ -1,5 +1,7 @@
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -2035,7 +2037,7 @@ public function annoRegularAttack(bonusDamage:int = 0):void
 
 		if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
 
-		genericDamageApply(14 + bonusDamage, anno, foes[0], GLOBAL.KINETIC);
+		applyDamage(new TypeCollection( { kinetic: 14 + bonusDamage } ), anno, foes[0]);
 	}
 	
 	output("\n");
@@ -2165,7 +2167,7 @@ public function securityDroidChargeShot():void
 	{
 		output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
 
-		genericDamageApply(30, foes[0], pc, GLOBAL.LASER);
+		applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), foes[0], pc);
 	}
 
 	output("\n");
@@ -2595,9 +2597,9 @@ public function grayPrimeGooSword():void
 	{
 		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!\n");
 
-		var damage:int = foes[0].damage(true) + foes[0].aim()/2;
-		damage *= ((100 + (15-rand(30)))/100);
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -2692,9 +2694,10 @@ public function grayPrimeForcePunch():void
 	{
 		output(" Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt!");
 
-		var damage:int = foes[0].damage(true) + foes[0].aim() / 2 + 20;
-		damage *= ((100 + (15-rand(30)))/100);
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(20);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 
 		// 25% of knockdown
 		if (rand(4) == 0)
@@ -3378,10 +3381,10 @@ public function gigaGooPunch():void
 		(pc as Creature).createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
 		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 	}
-
-	var damage:int = foes[0].damage(true) + foes[0].aim() / 2;
-	damage *= (100 + (15-rand(30)))/100;
-	genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+	
+	var damage:TypeCollection = foes[0].meleeDamage();
+	damageRand(damage, 15);
+	applyDamage(damage, foes[0], pc);
 }
 
 //Sword Thrust
@@ -3397,10 +3400,11 @@ public function gigaGooSwordThrust():void
 	else
 	{
 		output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
-
-		var damage:int = foes[0].damage(true) + ((foes[0].aim() + foes[0].reflexes()) / 2) + 5;
-		damage *= (100 + (25-rand(50)))/100;
-		genericDamageApply(damage, foes[0], pc, GLOBAL.PIERCING);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(foes[0].reflexes() + 5);
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -3414,13 +3418,13 @@ public function gigaGooCageRattle():void
 
 	for (var i:int = 0; i < 7; i++)
 	{
-		var damage:int = 5;
-		damage *= (100+(15-rand(30)))/100;
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+		damageRand(damage, 15);
 		
 		if (!combatMiss(foes[0], pc, -1, 2))
 		{
-			totalDamage += damage;
-			genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+			var damageResult:DamageResult = applyDamage(damage, foes[0], pc);
+			totalDamage += damageResult.totalDamage;
 		}
 	}
 

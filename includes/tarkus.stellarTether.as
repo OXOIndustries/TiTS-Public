@@ -1,4 +1,6 @@
-﻿//{If Dungeon not completed, add:}
+﻿import classes.Characters.PlayerCharacter;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
 {
 	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
@@ -215,13 +217,11 @@ public function laserSightShot():void
 	else
 	{
 		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she's a deadeye!");
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 2.2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		var damage:TypeCollection = foes[0].damage(false);
+		damage.add(foes[0].aim() / 2);
+		damage.multiply(2.2);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -259,12 +259,10 @@ public function thermalDisruptorFromTam():void
 		output("\n\nHer grin turns savage. <i>\"Just kidding! I like it rough!");
 		if(silly && foes[0].hasStatusEffect("Tamwolf Out")) output("\"ruff\"!");
 		output("\"</i>");
-		var damage:int = 18;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
-
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 18 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -302,11 +300,11 @@ public function tamwolfBiteGogogogogogo():void
 		if(pc.armor.shortName == "") output("you");
 		else output("your [pc.armor]");
 		output(".");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number  = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+		
+		var damage:TypeCollection = foes[0].damage(true);
+		damage.add(foes[0].physique() / 2);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 } 
@@ -795,7 +793,7 @@ public function liftDownEvent():void
 		output("stars is blocked out by the rise of huge earthen cliff sides as you descend into the chasm. You step up to the glass fore of the car, squinting to see the tether station far below. You can't at first, but as time passes (and the elevator picks up speed), it comes into view. It's a large installation, circular, surrounded by a wide walkway with a lengthy bridge leading from the bottom of the lift tracks to the door of the station proper.");
 
 		output("\n\nWhat a long way down. You take a moment to catch your breath after the deadly shootout with that crazed cat-girl and her robotic friend; ");
-		if(pc.rangedWeapon.shortName != "" && pc.rangedWeapon.damageType == GLOBAL.KINETIC) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
+		if(pc.rangedWeapon.shortName != "" && (pc as PlayerCharacter).rangedWeapon.baseDamage.hasFlag(DamageFlag.BULLET)) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
 		else if(pc.rangedWeapon.shortName != "") output("you check the ammunition readings on your weapon, satisfied you're up for another encounter");
 		else output("you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]");
 		output(". Satisfied you're ready for a proper fight, you step back from the window and steel yourself from what's to come.");
@@ -1003,11 +1001,10 @@ public function rocketPodRocketAttk():void
 	else
 	{
 		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
-		var damage:int = 15;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -1158,9 +1155,8 @@ public function khorganSuitAI():void
 public function miningLaserBarrage():void
 {
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
-	var damage:int = 0;
+	var damage:TypeCollection;
 	var leftOverDamage:int = 0;
-	var randomizer:Number = 0;
 	for(var x:int = 3;x > 0;x--)
 	{
 		//Damage!
@@ -1172,15 +1168,18 @@ public function miningLaserBarrage():void
 		else
 		{
 			output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
-			damage = 10;
-			randomizer = (rand(31)+ 85)/100;
-			damage *= randomizer;
+			
+			var damage:TypeCollection = new TypeCollection( { burning: 10 } );
+			damageRand(damage, 15);
+			
 			//Leftover damage is what doesn't get eaten by cover.
-			leftOverDamage = damage - Math.round(damage * coverPercent());
+			leftOverDamage = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+			
 			//Cover soaks up it's % in damage.
-			coverDamage(damage * coverPercent());
+			coverDamage(damage.getTotal() * coverPercent());
+			
 			//Figure out how much is left
-			genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+			damage = new TypeCollection( { burning: leftOverDamage } );
 		}
 	}
 	processCombat();
@@ -1274,15 +1273,18 @@ public function miningLaserSuperShot():void
 		output("\n\nYou try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
 		if(pc.shields() > 0) output("shields and ");
 		output("gear.");
-		var damage:int = 30;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 30 } );
+		damageRand(damage, 15);
+		
 		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+		
 		//Cover soaks up it's % in damage.
-		coverDamage(damage * coverPercent());
+		coverDamage(damage.getTotal() * coverPercent());
+		
 		//Figure out how much is left
-		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+		damage = new TypeCollection( { burning: leftOverDamage } );
 	}
 	processCombat();
 }
@@ -1307,15 +1309,18 @@ public function crateThrow():void
 			output(", but find yourself STUNNED");
 		}
 		output(".");
-		var damage:int = 15;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
+		damageRand(damage, 15);
+		
 		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+		
 		//Cover soaks up it's % in damage.
-		coverDamage(damage * coverPercent());
+		coverDamage(damage.getTotal() * coverPercent());
+		
 		//Figure out how much is left
-		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+		damage = new TypeCollection( { burning: leftOverDamage } );
 	}
 	processCombat();
 }
@@ -1385,11 +1390,12 @@ public function missileIncoming():void
 			output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you're tossed about like a ragdoll.");
 			flags[flags["MISSILE_TARGET"]] = 0;
 			output(" <b>(-100% Cover)</b>");
-			var damage:int = 20;
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
+			
+			var damage:TypeCollection = new TypeCollection( { burning: 20 } );
+			damageRand(damage, 15);
+			
 			//Figure out how much is left
-			genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+			applyDamage(damage,foes[0],pc);
 		}
 	}
 	processCombat();
@@ -1494,11 +1500,10 @@ public function captainCutlassAttk():void
 	else 
 	{
 		output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -1521,8 +1526,8 @@ public function roundHouseKickFromCapn():void
 		}
 		else output(".");
 		output(" Oof!");
-		var damage:int = 4;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		
+		applyDamage(new TypeCollection( { kinetic: 4 } ), foes[0], pc);
 	}
 	processCombat();
 }

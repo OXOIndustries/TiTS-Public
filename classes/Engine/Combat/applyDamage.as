@@ -10,7 +10,12 @@ package classes.Engine.Combat
 	import classes.Items.Guns.Goovolver;
 	
 	/**
-	 * ...
+	 * Apply damage wraps all of the general output stuff and isolates it from the actual damage calculation.
+	 * If you want to include the 'standard' damage output, call applyDamage().
+	 * If you want to include no output, call applyDamage() with the special argument as 'supress' or call calculateDamage()
+	 * If you want to just output the actual damage value, call applyDamage() with the special argument as 'minimal'.
+	 * Calling calculateDamage() is preferable - it returns a structured object that contains information about
+	 * all damage handled - shield, hp, lust, split -- and splits it into typed damage values too.
 	 * @author Gedan
 	 */
 	public function applyDamage(baseDamage:TypeCollection, attacker:Creature, target:Creature, special:String = ""):DamageResult

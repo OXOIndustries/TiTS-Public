@@ -1,6 +1,8 @@
 import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 /*
 
 Removal and Body Part Change Denial
@@ -2833,23 +2835,22 @@ public function mimbraneTrip():void
 	{
 		output("\n\nIt successfully hooks onto your [pc.leg] and pulls it out from under you, tripping you hard against the ground.");
 
-		var damage:int = 5 + rand(5);
-		var sDamage:Array = new Array();
-
-		if (pc.shieldsRaw > 0)
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + rand(5) } );
+		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			sDamage = shieldDamage(pc, damage, foes[0].meleeWeapon.damageType);
-			damage = sDamage[1];
-
-			if (pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else output(" There is a concussive boom and tingling aftershock of energy as your shield collapses under the impact. (<b>" + sDamage[0] + "</b>)");
+			if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield collapses under the impact.");
 		}
-		if (damage >= 1)
+		
+		if (damageResult.hpDamage > 0)
 		{
-			damage = HPDamage(pc, damage, foes[0].meleeWeapon.damageType);
-			if (sDamage[0] > 0) output(" You take a moment to shake the stars from your vision, your rapid introduction to the floor suprisingly painful considering the circumstances. (<b>" + damage + "</b>)");
-			else output(" (<b>" + damage + "</b>)");
+			output(" You take a moment to shake the stars from your vision, your rapid introduction to the floor suprisingly painful considering the circumstances.");
+			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 		}
+		
+		output(" (<b>" + damageResult.totalDamage + "</b>)");
 	}
 	processCombat();
 }

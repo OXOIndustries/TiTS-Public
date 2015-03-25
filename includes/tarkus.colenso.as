@@ -1,4 +1,5 @@
-﻿//Conspiracy Colenso
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Conspiracy Colenso
 //By Nonesuch
 
 public function showColenso():void
@@ -514,8 +515,8 @@ public function electropulseAttack(target:Creature):void
 	if(target == pc)
 	{
 		output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
-		var damage:Number = Math.round(15 + rand(5));
-		genericDamageApply(damage,foes[0],pc,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = new TypeCollection( { electric: 15 + rand(5) } );
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -546,8 +547,8 @@ public function flameThrowerAttack(target:Creature):void
 			output("\n<b>The flames licking at your flesh intensify!</b>");
 			pc.addStatusValue("Burning",1,2);
 		}
-		var damage:Number = Math.round(5 + rand(5));
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		var damage:TypeCollection = new TypeCollection( { burning: 5 + rand(5) } );
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }

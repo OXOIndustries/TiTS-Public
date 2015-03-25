@@ -38,9 +38,7 @@ package classes.Engine.Combat
 		if (special == "ranged" || special == "melee")
 		{
 			if (special == "melee")
-			{
-				baseHPDamage.add(attacker.physique() / 2);
-				
+			{				
 				// Melee crit
 				if(attacker.critBonus(true) >= rand(100) + 1 && attacker is PlayerCharacter)
 				{
@@ -59,9 +57,7 @@ package classes.Engine.Combat
 				}
 			}
 			else
-			{
-				baseHPDamage.add(attacker.aim() / 2);
-				
+			{				
 				// Ranged crit 
 				if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
 				{
