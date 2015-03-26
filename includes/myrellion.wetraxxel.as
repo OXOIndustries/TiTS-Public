@@ -1,3 +1,4 @@
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function wetraxxelCaveEncounters():void
 {
 	if (flags["WETRAXXEL_ENCOUNTER_WEIGHT"] == undefined)
@@ -87,7 +88,9 @@ public function wetraHoundBite():Boolean
 
 			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
 		}
-		genericDamageApply(damageRand(15, 15), foes[0], pc, GLOBAL.PIERCING);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -112,7 +115,9 @@ public function wetraHoundPunch():Boolean
 		}
 		output("!");
 
-		genericDamageApply(damageRand(10, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -135,7 +140,9 @@ public function wetraHoundOverrun():Boolean
 	{
 		output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
 
-		genericDamageApply(damageRand(20, 20), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -154,7 +161,9 @@ public function wetraHoundRend():void
 	{
 		output(" tearing into your flesh");
 
-		genericDamageApply(damageRand(20, 10), foes[0], pc, GLOBAL.SLASHING);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING);
+		damageRand(damage, 10);
+		applyDamage(damage, foes[0], pc);
 	}
 	else
 	{
@@ -310,10 +319,9 @@ public function wetraxxelBrawlerOneTwoPunch():void
 
 	if (numHits > 0)
 	{
-		var damage:Number = 15;
-		if (numHits == 2) damage += 20;
-
-		genericDamageApply(damageRand(damage, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: numHits * 15 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -345,7 +353,9 @@ public function wetraxxelBrawlerSweepKick():void
 			}
 		}
 
-		genericDamageApply(damageRand(20, 25), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -362,7 +372,9 @@ public function wetraxxelBrawlerDropKick():void
 	{
 		output(" His feet slam into your [pc.chest], knocking the wind out of you and sending you stumbling back. It’s agony to catch your breath after that, and you find yourself clutching at your chest, wheezing painfully. <b>Your aim and reflexes are temporarily reduced</b> while you catch your breath.");
 
-		genericDamageApply(damageRand(18, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 
 		if (pc.hasStatusEffect("Staggered"))
 		{
@@ -388,7 +400,9 @@ public function wetraxxelBrawlerLariat():void
 	{
 		output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-		genericDamageApply(damageRand(10, 10), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
+		damageRand(damage, 10);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -404,7 +418,9 @@ public function wetraxxelBrawlerBodyslam():void
 	else
 	{
 		output(" The brawler body-slams you at full force, crashing into your [pc.chest] with rib-cracking impact! You’ll be feeling that for days!");
-		genericDamageApply(damageRand(18, 20), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -420,7 +436,10 @@ public function wetraxxelBrawlerElbowDive():void
 	else
 	{
 		output(" He drops down on you like a hammer, cracking his elbow right into your gut! You cry out as the massive blow connects, leaving your writhing in pain.");
-		genericDamageApply(damageRand(22, 25), foes[0], pc, GLOBAL.KINETIC);
+		
+		var damage:TypeCollection = new TypeCollection( { kinetic: 22 } );
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 

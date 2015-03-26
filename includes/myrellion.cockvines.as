@@ -190,7 +190,8 @@ public function adultCockvineConstrictAttack():void
 
 		pc.addStatusValue("Cockvine Grip", 1, 1);
 		
-		var damage:Number = damageRand(15 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)), 15);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 15 * (0.5 + (pc.statusEffectv1("Cockvine Grip") / 2)) }, DamageFlag.CRUSHING);
+		damageRand(damage, 15);
 		
 		switch (pc.statusEffectv1("Cockvine Grip"))
 		{
@@ -212,7 +213,7 @@ public function adultCockvineConstrictAttack():void
 
 		}
 		
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		applyDamage(damage, foes[0], pc);
 	}
 	else
 	{
