@@ -1177,7 +1177,7 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 		else output(" Absolutely monsterous");
 		output(" load down Sierva’s throat, bloating the warrior-ant’s gut with a bunker-buster load of spooge.");
 	}
-	output(" Sierva coughs and wipes her lips, pulling herself off your wang - just in time for Mayren to take her place again, helping herself to the last trickles of your creamy seed. The bubbly honeypot eagerly finishes what her companion bega, spit shining your [pc.cockHead] until it glistens.");
+	output(" Sierva coughs and wipes her lips, pulling herself off your wang - just in time for Mayren to take her place again, helping herself to the last trickles of your creamy seed. The bubbly honeypot eagerly finishes what her companion began, spit shining your [pc.cockHead] until it glistens.");
 	
 	output("\n\nYou sigh contentedly as the golden girls enjoy your spunk, marveling at the unfamiliar taste and texture of it. Mayren nuzzles into your thigh, absently stroking your [pc.cock] with one of her hands as the others clean up the excess spunk coating her lips and tease her swollen nipples. Her eyes are heavy-laden with chemical lust, even after Lieve’s popped her fist out of her pussy and moved on to Sierva. The bigger gold ant gasps and sighs as Lieve’s tongue slurps into her abdominal slit, venom-laced mouth pressing in to kiss Sierva’s lower lips.");
 	
