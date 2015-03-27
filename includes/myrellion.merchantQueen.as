@@ -171,7 +171,7 @@ public function talkToAntQueenButt(arg:Function = undefined):void
 
 	//Lifestyle
 	//The place is occupied by Reds and the military is everywhere...
-	if(arg == soWhatsTheDealWithAllTheseCommies) addDisabledButton(4,"Lifestyle`","Lifestyle","You just finished that discussion");
+	if(arg == soWhatsTheDealWithAllTheseCommies) addDisabledButton(4,"Lifestyle","Lifestyle","You just finished that discussion");
 	else addButton(4,"Lifestyle",soWhatsTheDealWithAllTheseCommies,undefined,"Lifestyle","The place is occupied by Reds and the military is everywhere...");
 
 	//Influence?

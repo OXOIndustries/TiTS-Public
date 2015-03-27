@@ -617,7 +617,7 @@ public function pcLossToNyrea():void
 			
 			output("\n\n<i>“Mmm. This part of you certainly wants me,”</i> she teases, bringing up a pair of black-clad fingers glistening with");
 			if (pc.wetness(tVag) <= 3) output(" moisture");
-			else output(" [pc.girlGumNoun]");
+			else output(" [pc.girlCumNoun]");
 			output(". You flush as she laps it off her digits, cleaning them off one by one. <i>“I can all but taste your virility... you’ll give me fine young, won’t you offworlder?”</i>");
 			
 			output("\n\nDoes she... does she think you’re...?");

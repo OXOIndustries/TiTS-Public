@@ -104,7 +104,7 @@ public function approachAntrias():void
 	{
 		output("You step up to the desk and get the man’s attention. He blinks at you. <i>“Sorry, friend, we’re just getting set up here. No comm buoys are online yet, I’m afraid. Haven’t managed to bring in the drill-shot probes to do it properly. Come back later, yeah?”</i>");
 		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
-		output("\n\n<i>“Hey, if you manage to find any old communications arrays, even basic local tech, try and bring it online. Ever little bit help, ya know.”</i>");
+		output("\n\n<i>“Hey, if you manage to find any old communications arrays, even basic local tech, try and bring it online. Every little bit helps, ya know.”</i>");
 		clearMenu();
 		addButton(14,"Back",mainGameMenu);
 	}
@@ -183,7 +183,7 @@ public function noAntsLandBeaconBonus():Boolean
 	else 
 	{
 		output(" The radio is currently beeping rhythmically, sending coordinates to and fro the Scout base at the DMZ.");
-		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxy, though you'll pay 150 credits for the convenience.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
 	}
 	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there's something worthwhile here?");
 	else addDisabledButton(1,"Search","Search","You've already searched this location.");

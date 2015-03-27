@@ -129,7 +129,7 @@ public function kaedeMyrellionBarTalkMenu():void
 {
 	clearMenu();
 	addButton(0, "Her Job", kaedeMyrellionTalkJob, undefined, "Her Job", "Ask Kaede about her space-trucker job.");
-	addButton(1, "RenWorld", kaedeMyrellionTalkRenWorld, undefined, "RenWorld", "Ask Kaede about this RenWorld contract she's got.");
+	addButton(1, "RhenWorld", kaedeMyrellionTalkRenWorld, undefined, "RhenWorld", "Ask Kaede about this RhenWorld contract she's got.");
 	addButton(2, "Herself", kaedeMyrellionTalkHerself, undefined, "Herself", "Ask Kaede a little about, well, Kaede.");
 	addButton(3, "Finish", kaedeMyrellionTalkFinish, undefined, "Finish", "Finish your drink.")
 }
@@ -171,7 +171,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	clearOutput();
 	kaedeHeader();
 
-	output("<i>“So, this RenWorld contract...”</i>");
+	output("<i>“So, this RhenWorld contract...”</i>");
 	
 	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh.... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
 	
@@ -211,7 +211,7 @@ public function kaedeMyrellionTalkRenWorld():void
 
 	processTime(15);
 
-	addDisabledButton(1, "RenWorld");
+	addDisabledButton(1, "RhenWorld");
 }
 
 public function kaedeMyrellionTalkHerself():void
@@ -234,7 +234,7 @@ public function kaedeMyrellionTalkHerself():void
 	
 	output("\n\n<i>“Yeah, that’s him!”</i> Kaede laughs, <i>“Zeke Entara. Y’know, I walked in on him talking about some big Steele Tech contract way back.  Months ago now, it must have been. Must have been your ship, now that I think about it.”</i>");
 	
-	output("\n\n<i>“Must have,”</i> you say. smiling now that Kaede’s opening up a little more. <i>“So, your dad’s the mechanic who put my");
+	output("\n\n<i>“Must have,”</i> you say, smiling now that Kaede’s opening up a little more. <i>“So, your dad’s the mechanic who put my");
 	if (9999 == 0) output(" old");
 	output(" ship back together. And your mom? Is she a mechanic too?”</i>");
 	

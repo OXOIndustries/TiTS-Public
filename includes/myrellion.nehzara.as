@@ -668,7 +668,7 @@ public function nehzeraMenu(arg:Function):void
 			addDisabledButton(6,"StorageCloset","StorageCloset","You are not presently aroused enough for sexual hijinx.");
 		}
 		if(arg == talkToNehzaraAboutHistory) addButton(9,"Trench Wives?",trenchWives,undefined,"Trench Wives?","Wait... trench wives? There’s an unusual term, and she said something about <i>“war trophies.”</i> You could ask her to elaborate on that.");
-		if(arg == trenchWives) addDisabledButton(9,"Trech Wives","You just finished that discussion.");
+		if(arg == trenchWives) addDisabledButton(9,"Trench Wives","You just finished that discussion.");
 	}
 	addButton(14,"Leave",leaveNehzara);
 }
