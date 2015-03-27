@@ -172,6 +172,7 @@
 					while (dataObject.version < this._latestVersion)
 					{
 						this["UpgradeVersion" + dataObject.version](dataObject);
+						dataObject.version++;
 					}
 				}
 				
@@ -190,7 +191,16 @@
 					{
 						if (_ignoredFields.indexOf(prop) == -1)
 						{
-							this[prop] = dataObject[prop];
+							if (this[prop] is ISaveable)
+							{
+								var classT:Class = getDefinitionByName(dataObject[prop].classInstance) as Class;
+								this[prop] = new classT();
+								this[prop].loadSaveObject(dataObject[prop]);
+							}
+							else
+							{
+								this[prop] = dataObject[prop];
+							}
 						}
 					}
 					else

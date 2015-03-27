@@ -11,7 +11,7 @@
 		//constructor
 		public function Reaha()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -155,6 +155,17 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 150;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

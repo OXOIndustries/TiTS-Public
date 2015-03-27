@@ -9,7 +9,7 @@
 		//constructor
 		public function DrBadger()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -173,6 +173,17 @@
 			this.ass.loosenessRaw = 2;
 			
 			this._isLoading = false;
-		}	
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

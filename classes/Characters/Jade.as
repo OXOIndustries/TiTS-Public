@@ -11,7 +11,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -191,6 +191,16 @@
 		public function UpgradeVersion4(dataObject:Object):void
 		{
 			dataObject.inventory.push(new NukiCookies().getSaveObject());
+		}
+		
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.armor;
+			delete dataObject.meleeWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

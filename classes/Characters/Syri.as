@@ -10,7 +10,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -167,6 +167,17 @@
 			dataObject.aimRaw = 15;
 			dataObject.intelligenceRaw = 9;
 			dataObject.willpowerRaw = 4;
-		}			
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

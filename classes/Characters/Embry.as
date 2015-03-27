@@ -11,7 +11,7 @@
 		//constructor
 		public function Embry()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -153,6 +153,15 @@
 			this.ass.loosenessRaw = 1;
 			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			delete dataObject.meleeWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

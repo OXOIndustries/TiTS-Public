@@ -18,7 +18,7 @@
 		//constructor
 		public function Gianna()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -176,6 +176,15 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.vaginas[0].hymen = false;
+		}
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.lustVuln;
+			delete d.meleeWeapon;
+			delete d.rangedWeapon;
+			delete d.armor;
 		}
 	}
 }

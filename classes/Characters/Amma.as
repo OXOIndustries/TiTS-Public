@@ -14,7 +14,7 @@ package classes.Characters
 		//constructor
 		public function Amma()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -162,6 +162,17 @@ package classes.Characters
 			this.vaginas[0].bonusCapacity = 40;
 			
 			this._isLoading = false;
-		}		
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

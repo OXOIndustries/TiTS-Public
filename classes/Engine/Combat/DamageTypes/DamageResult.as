@@ -31,6 +31,8 @@ package classes.Engine.Combat.DamageTypes
 		public var remainingLustDamage:TypeCollection = new TypeCollection();
 		public var lustResisted:Boolean = false;
 		
+		public var easyModeApplied:Boolean = false;
+		
 		public function addResult(o:DamageResult):void
 		{
 			totalDamage += o.totalDamage;

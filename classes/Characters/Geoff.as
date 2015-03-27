@@ -15,7 +15,7 @@
 		//constructor
 		public function Geoff()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -194,6 +194,16 @@
 		public function UpgradeVersion3(dataObject:Object):void
 		{
 
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

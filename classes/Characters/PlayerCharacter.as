@@ -13,7 +13,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -64,5 +64,22 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			var res:Array = d.resistances;
+			var bRes:Array = d.bonusResistances;
+			
+			// TODO: Convert resistance perks.
+			
+			//delete d.meleeWeapon;
+			//delete d.rangedWeapon;
+			
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

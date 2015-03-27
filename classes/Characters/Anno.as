@@ -20,7 +20,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 7;
+			this._latestVersion = 8;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -223,6 +223,14 @@
 		public function UpgradeVersion6(dataObject:Object):void
 		{
 			dataObject.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
+		}
+		public function UpgradeVersion7(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.bonusResistances;
+			delete d.resistances;
+			delete d.lustVuln;
+			delete d.bonusLustVuln;
 		}
 	}
 }

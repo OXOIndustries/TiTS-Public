@@ -13,7 +13,7 @@
 		//constructor
 		public function Burt()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -176,6 +176,17 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
+		}
+		
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

@@ -12,7 +12,7 @@
 		//constructor
 		public function Penny()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -174,11 +174,22 @@
 			dataObject.intelligenceRaw = 4;
 			dataObject.willpowerRaw = 3;
 		}
+		
 		public function UpgradeVersion3(dataObject:Object):void
 		{
-			trace("PENNY UPGRADED");
 			dataObject.vaginas[0].bonusCapacity = 20;
 			dataObject.elasticity = 3;
+		}
+		
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

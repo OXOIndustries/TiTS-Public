@@ -1,4 +1,5 @@
-﻿//The Gray Goo
+﻿import classes.Creature;
+//The Gray Goo
 //A TiTS Combat Encounter
 //By Savin: Age 12
 
@@ -134,7 +135,11 @@ public function grayGooHarden():void
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
-	if(!foes[0].hasStatusEffect("Harden")) foes[0].createStatusEffect("Harden",0,30,0,0,false,"DefenseUp","Defense against all forms of attack has been increased!",true,0);
+	if (!foes[0].hasStatusEffect("Harden"))
+	{
+		foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+		(foes[0] as Creature).baseHPResistances.kinetic.resistanceValue += 10.0;
+	}
 	//PC has options here!
 	//[Do Nothing] [Quickie!]
 	clearMenu();

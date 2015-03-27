@@ -30,13 +30,41 @@ package classes.Engine.Combat.DamageTypes
 		public static const EXPLOSIVE:uint		= 12;
 		public static const ENERGY_WEAPON:uint	= 13;
 		public static const GROUNDED:uint		= 14;
-		public static const BYPASS_SHIELD:uint	= 15;
-		public static const ONLY_SHIELD:uint	= 16;
+		
+		// System flags
+		public static const BYPASS_SHIELD:uint	= 15;	// An attack with this flag will only influence HP and/or lust
+		public static const ONLY_SHIELD:uint	= 16;	// An attack with this flag will only influence shields and/or lust
+		public static const EASY:uint 			= 17;	// Basically adds an extra 50% resistance up to a maximum of 100% resistance to any given type.
+		
+		public static const FlagNames:Array = [];
+		
+		// Static init -- I think this might be the 'safest' way to map keys -> values statically
+		// Trying to use the variables as object keys will use the key /text/ rather than the variable value (ie PENETRATING -> 'PENETRATING' rather than 1)
+		{
+			FlagNames[PENETRATING] 		= "Penetrating";
+			FlagNames[ABLATIVE] 		= "Ablative";
+			FlagNames[PLATED] 			= "Plated";
+			FlagNames[CRUSHING] 		= "Crushing";
+			FlagNames[BULLET] 			= "Bullet";
+			FlagNames[LASER] 			= "Laser";
+			FlagNames[MIRRORED] 		= "Mirrored";
+			FlagNames[CRYSTAL] 			= "Crystal";
+			FlagNames[PSIONIC] 			= "Psionic";
+			FlagNames[NULLIFYING] 		= "Nullifying";
+			FlagNames[AMPLIFYING] 		= "Amplifying";
+			FlagNames[EXPLOSIVE] 		= "Explosive";
+			FlagNames[ENERGY_WEAPON] 	= "Energy Weaponry";
+			FlagNames[GROUNDED]			= "Grounded";
+			FlagNames[BYPASS_SHIELD] 	= "Shield Bypass";
+			FlagNames[ONLY_SHIELD] 		= "Targets Shield";
+			FlagNames[EASY] 			= "Easy";
+		}
 		
 		private var _thisFlag:uint;
 		private var _triggers:Array;
 		
 		public function get flag():uint { return _thisFlag; }
+		public function get short():String { return FlagNames[_thisFlag]; }
 		
 		/**
 		 * new DamageFlag(ABLATIVE, [PENETRATING, 0.75], [CRUSHING, 1.25], [BULLET, 0.8]);
@@ -45,16 +73,17 @@ package classes.Engine.Combat.DamageTypes
 		 */
 		public function DamageFlag(dFlag:uint = UNSET, ... dTriggers) 
 		{
+			_triggers = [];
+			
 			// Allow creation for later overwrite by serialised data
 			if (dFlag == UNSET)
 			{
 				_thisFlag = UNSET;
-				_triggers = [];
 			}
-			
 			// Build defaults based on supplied flag.
 			else if (dFlag != UNSET)
 			{
+				// Try and create the default values if none were specified
 				switch (dFlag)
 				{
 					case ABLATIVE:
@@ -85,6 +114,9 @@ package classes.Engine.Combat.DamageTypes
 						createTrigger(PSIONIC, 1.25);
 						break;
 				}
+				
+				// Fallback
+				if (_thisFlag == UNSET) _thisFlag = dFlag;
 			}
 			
 			// Override defaults if data was provided
@@ -119,8 +151,12 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function hasTriggerFor(trigger:uint):Boolean
 		{
-			if (triggerIndexFor(trigger) == -1) return false;
-			return true;
+			for (var i:uint = 0; i < _triggers.length; i++)
+			{
+				if (_triggers[i].triggerOn == trigger) return true;
+			}
+			
+			return false;
 		}
 		
 		private function triggerIndexFor(trigger:uint):uint

@@ -61,7 +61,11 @@ package classes.GameData
 			tough.levelLimit = 3;
 			tough.autoGained = true;
 			tough.perkName = "Tough";
-			tough.perkDescription = "Vulnerability to piercing, slashing, and kinetic damage taken reduced by 10%.";
+			tough.perkDescription = "Resistance to Kinetic damage increased by 10%."
+			tough.applicationFunction = function():void {
+				kGAMECLASS.pc.baseHPResistances.kinetic.resistanceValue += 10.0;
+				kGAMECLASS.pc.baseShieldResistances.kinetic.resistanceValue += 10.0;
+			}
 			insertPerkData(tough);
 			
 			var powerStrike:PerkData = new PerkData();
@@ -131,7 +135,11 @@ package classes.GameData
 			tough2.levelLimit = 6;
 			tough2.autoGained = true;
 			tough2.perkName = "Tough 2";
-			tough2.perkDescription = "Upgrades the \"Tough\" ability from 10 to 15%.";
+			tough2.perkDescription = "Increases Kinetic damage resistance provided by 'Tough' to 15% (+5%).";
+			tough2.applicationFunction = function():void {
+				kGAMECLASS.pc.baseHPResistances.kinetic.resistanceValue += 5.0;
+				kGAMECLASS.pc.baseShieldResistances.kinetic.resistanceValue += 5.0;
+			}
 			insertPerkData(tough2);
 
 			var lowTechSolutions:PerkData = new PerkData();

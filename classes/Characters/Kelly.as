@@ -21,7 +21,7 @@
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .4;
 
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -181,6 +181,17 @@
 			this.ass.bonusCapacity = 120;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 	}
 

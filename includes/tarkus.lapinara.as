@@ -58,7 +58,7 @@ public function lapinaraHornCharge():void
 	//Hit (shield is down): 
 	else
 	{
-		var damage = foes[0].meleeDamage();
+		var damage:TypeCollection = foes[0].meleeDamage();
 		damage.add(8);
 		damageRand(damage, 15);
 		

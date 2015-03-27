@@ -255,7 +255,7 @@
 		
 		public function getShieldResistances():TypeCollection
 		{
-			var r:TypeCollection = baseShieldResistances.makeCopy();
+			var r:TypeCollection = baseShieldResistances.makeCopy();			
 			if (!(shield is EmptySlot)) r.combineResistances(shield.resistances);
 			return r;
 		}
@@ -281,14 +281,6 @@
 		public var isLustImmune:Boolean = false;
 		
 		/*
-		public function getResistance(type: int): Number {			
-			// TODO: Convert these into actual resistance values
-			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
-			{
-				if(hasPerk("Tough 2")) total -= 0.05;
-				total -= .1;
-			}
-		}
 		public function getShieldResistance(type: int): Number {
 			if (resist < 0 && hasPerk("Enhanced Dampeners")) resist /= 2;
 		}
@@ -2089,9 +2081,7 @@
 			return level * level * 100;
 		}
 		//HP
-		public function HP(arg: Number = 0): Number {
-			// TODO: Pull this out of here and jam it into resistances.
-			if(kGAMECLASS.easy && arg < 0 && this is PlayerCharacter) arg *= .5;
+		public function HP(arg: Number = 0): Number {			
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;

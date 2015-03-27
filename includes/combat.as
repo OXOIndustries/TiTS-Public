@@ -3581,6 +3581,7 @@ public function goozookaCannon(target:Creature):void
 	else
 	{
 		var damage:TypeCollection;
+		var tLust:Number;
 		
 		// Hit
 		if (target is GrayGoo)
@@ -3593,7 +3594,7 @@ public function goozookaCannon(target:Creature):void
 			damage = new TypeCollection( { tease: 5 } );
 			damage.applyResistances(target.getLustResistances());
 			
-			var tLust:Number = damage.getTotal();
+			tLust = damage.getTotal();
 			
 			if (target.lust() + tLust > target.lustMax()) tLust = target.lustMax() - target.lust();
 			
@@ -3610,7 +3611,7 @@ public function goozookaCannon(target:Creature):void
 		
 			damage = new TypeCollection( { tease: 33 } );
 			damage.applyResistances(target.getLustResistances());
-			var tLust:Number = damage.getTotal();
+			tLust = damage.getTotal();
 			
 			if (target.lust() + tLust > target.lustMax()) tLust = target.lustMax() - target.lust();
 			tLust = Math.ceil(tLust);

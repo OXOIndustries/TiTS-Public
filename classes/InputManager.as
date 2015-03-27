@@ -251,7 +251,6 @@
 		
 		/**
 		 * Register the current methods, and their associated bindings, as the defaults.
-		 * TODO: Finish this shit off
 		 */
 		public function RegisterDefaults():void
 		{

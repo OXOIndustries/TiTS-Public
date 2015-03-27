@@ -20,7 +20,7 @@ package classes.Characters
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -187,6 +187,17 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			delete d.rangedWeapon;
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 		
 	}

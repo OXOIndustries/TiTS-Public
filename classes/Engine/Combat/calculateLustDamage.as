@@ -5,6 +5,9 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.rand;
+	import classes.Characters.PlayerCharacter;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -20,6 +23,14 @@ package classes.Engine.Combat
 			return;
 		}
 		
+		var tarResistances:TypeCollection = target.getLustResistances();
+		
+		if (target is PlayerCharacter && kGAMECLASS.easy)
+		{
+			tarResistances.addFlag(DamageFlag.EASY);
+			damageResult.easyModeApplied = true;
+		}
+		
 		if (target.lustRaw >= target.lustMax()) return;
 		
 		// Apply bonuses
@@ -28,7 +39,7 @@ package classes.Engine.Combat
 		if (lustDamage.tease.damageValue > 0) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);		
 		
-		lustDamage.applyResistances(target.getLustResistances());
+		lustDamage.applyResistances(tarResistances);
 		
 		var damageAfterResistances:Number = lustDamage.getTotal();
 		

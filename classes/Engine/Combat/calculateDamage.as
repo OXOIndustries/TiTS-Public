@@ -8,7 +8,7 @@ package classes.Engine.Combat
 	import classes.Engine.Utility.rand;
 	import classes.Characters.PlayerCharacter;
 	import classes.Engine.Interfaces.output;
-	
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	/**
 	 * ...
 	 * @author Gedan
@@ -82,17 +82,17 @@ package classes.Engine.Combat
 		/****************************
 		 * Now apply the damage.
 		 ****************************/		
-		damageResult.remainingDamage = baseDamage;
+		damageResult.remainingDamage = baseHPDamage;
 		damageResult.remainingLustDamage = baseLustDamage;
 		
-		if (baseHPDamage.getTotal() > 0)
+		if (!damageResult.remainingDamage.hasFlag(DamageFlag.BYPASS_SHIELD))
 		{
 			calculateShieldDamage(target, attacker, damageResult, special);
-			
-			if (damageResult.remainingDamage.getTotal() > 0) 
-			{
-				calculateHPDamage(target, attacker, damageResult, special);
-			}
+		}
+		
+		if (!damageResult.remainingDamage.hasFlag(DamageFlag.ONLY_SHIELD) && damageResult.remainingDamage.getTotal() > 0)
+		{
+			calculateHPDamage(target, attacker, damageResult, special);
 		}
 		
 		if (baseLustDamage.getTotal() > 0)

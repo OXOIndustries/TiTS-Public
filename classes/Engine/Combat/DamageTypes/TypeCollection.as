@@ -13,6 +13,10 @@ package classes.Engine.Combat.DamageTypes
 		private var flagCollection:Vector.<DamageFlag>;
 		
 		public function getType(type:uint):DamageType { return typeCollection[type]; }
+		public function getFlags():Vector.<DamageFlag>
+		{
+			return flagCollection;
+		}
 		
 		public function get kinetic():DamageType { return typeCollection[DamageType.KINETIC]; }
 		public function get electric():DamageType { return typeCollection[DamageType.ELECTRIC]; }
@@ -191,6 +195,11 @@ package classes.Engine.Combat.DamageTypes
 		/* Treat this instance of a TypeCollection as Damage, and modify it by the values in the argument */
 		public function applyResistances(resistances:TypeCollection):void
 		{
+			if (resistances.hasFlag(DamageFlag.EASY))
+			{
+				this.multiply(0.5);
+			}
+			
 			if (flagCollection.length > 0)
 			{
 				for (var i:uint = 0; i < flagCollection.length; i++)
@@ -218,7 +227,7 @@ package classes.Engine.Combat.DamageTypes
 			
 			for (i = 0; i < typeCollection.length; i++)
 			{
-				typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).damageValue) / 100.0);
+				typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).resistanceValue) / 100.0);
 			}
 		}
 		
@@ -263,7 +272,7 @@ package classes.Engine.Combat.DamageTypes
 			for (var i:uint = 0; i < o.values.length; i++)
 			{
 				var dt:DamageType = new DamageType();
-				dt.loadSaveObject(o.values[o]);
+				dt.loadSaveObject(o.values[0]);
 				typeCollection[dt.damageType].damageValue = dt.damageValue;
 			}
 			

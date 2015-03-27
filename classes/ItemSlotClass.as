@@ -79,7 +79,6 @@
 			//Equipped properties
 			this.attack = 0;
 			
-			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -88,6 +87,7 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			// We don't really need to keep two sets of properties around for additional resists/damage on items -- just repurpose the same thing!
 			resistances = new TypeCollection();
 			baseDamage = new TypeCollection();
 			
@@ -152,18 +152,31 @@
 			
 			compareString = mergeString(compareString, this.statDiff("attack", 			"Accuracy",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
-			//compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
-			//compareString = mergeString(compareString, this.statDiff("bonusLustVuln",	"Lust Vulnerability",this, oldItem, true, true));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
+			var damageString:String = damageDiff(this, oldItem);
+			if (damageString.length > 0)
+			{
+				if (compareString.length > 0) compareString += "\n\n";
+				compareString += damageString;
+			}
 			
-			// TODO: Display weapon damage
+			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
+			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
+			{
+				var resistString:String = resistancesDiff(this, oldItem);
+				if (resistString.length > 0)
+				{
+					if (compareString.length > 0) compareString += "\n\n";
+					compareString += resistString;
+				}
+			}
 			
 			// Item value -- this is going to be a bit of a shit. I can't easily figure out what "mode" a button is at this point, so this code doesn't know if we're buying or selling,
 			// so we dunno which modifiers to use to figure out the actual value of an item wrt a specific vendor.
@@ -184,14 +197,6 @@
 				var valueString:String = "Price: " + price + " Credits";
 				
 				compareString = mergeString(compareString, valueString);
-			}
-			
-			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
-			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
-			{
-				var resistString:String = resistancesDiff(this, oldItem);
-				
-				if (compareString.length > 0 && resistString.length > 0) compareString += "\n" + resistString;
 			}
 			
 			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
@@ -312,12 +317,203 @@
 		 */
 		private function resistancesDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String		
 		{
-			var res:String = "";
+			var pRes:String = getResistComparison("Damage Resistances", DamageType.HPDamageTypes, newItem, oldItem);
+			var lRes:String = getResistComparison("Lust Resistances", DamageType.LustDamageTypes, newItem, oldItem);
 			
-			res += getResistComparison("Damage Resistances", DamageType.HPDamageTypes, newItem, oldItem);
-			res += getResistComparison("Lust Resistances", DamageType.LustDamageTypes, newItem, oldItem);
+			if (pRes.length > 0 && lRes.length > 0) pRes += "\n\n" + lRes;
 			
-			return res;
+			// Flagshit
+			var flagStr:String = getResistanceFlags("Protective Flags", newItem, oldItem);
+			if (pRes.length > 0 && flagStr.length > 0) pRes += "\n\n";
+			pRes += flagStr;
+			
+			return pRes;
+		}
+		
+		private function damageDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var pH:String;
+			var lH:String;
+			
+			if (this.type != GLOBAL.MELEE_WEAPON && this.type != GLOBAL.RANGED_WEAPON)
+			{
+				pH = "Bonus Physical Damage";
+				lH = "Bonus Lust Damage";
+			}
+			else
+			{
+				pH = "Physical Damage";
+				lH = "Lust Damage";
+			}
+			
+			var pDam:String = getDamageComparison(pH, DamageType.HPDamageTypes, newItem, oldItem);
+			var lDam:String = getDamageComparison(lH, DamageType.LustDamageTypes, newItem, oldItem);
+			
+			if (pDam.length > 0 && lDam.length > 0) pDam += "\n\n" + lDam;
+			
+			// Flagshit
+			var flagStr:String = getDamageFlags("Damage Flags", newItem, oldItem);
+			if (pDam.length > 0 && flagStr.length > 0) pDam += "\n\n";
+			pDam += flagStr;
+			
+			return pDam;
+		}
+		
+		private function getDamageComparison(header:String, typesList:Array, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var damageString:String = "";
+			var damAppend:String = "";
+			var newDamage:Number = 0;
+			var oldDamage:Number = 0;
+			var flipFlop:Boolean = false;
+			
+			for (var i:uint = 0; i < typesList.length; i++)
+			{
+				var damIndex:uint = typesList[i];
+				
+				// Skip if both are default
+				if (newItem.baseDamage.getType(damIndex).damageValue == 0 && oldItem.baseDamage.getType(damIndex).damageValue == 0) continue;
+				newDamage += newItem.baseDamage.getType(damIndex).damageValue;
+				oldDamage += oldItem.baseDamage.getType(damIndex).damageValue;
+				
+				if (damageString.length == 0)
+				{
+					damAppend += header + ": ";
+					damageString += "<textformat tabstops='79,103,150,233'>";
+				}
+				else
+				{
+					if (flipFlop)
+					{
+						if (i != typesList.length - 1)
+						{
+							damageString += "\n";
+						}
+					}
+					else
+					{
+						damageString += "\t";
+					}
+				
+					flipFlop = !flipFlop;
+				}
+				
+				// Print the values
+				damageString += newItem.baseDamage.getType(damIndex).longName + ":\t ";
+				damageString += "<b>" + String(newItem.baseDamage.getType(damIndex).damageValue) + "</b>";
+				
+				// Print the comparison value
+				var newDam:Number = newItem.baseDamage.getType(damIndex).damageValue;
+				var oldDam:Number = oldItem.baseDamage.getType(damIndex).damageValue;
+				
+				if (newDam > oldDam)
+				{
+					damageString += " <span class='good'><b>(+";
+					damageString += String(newDam - oldDam);
+				}
+				else if (newDam < oldDam)
+				{
+					damageString += " <span class='bad'><b>(-";
+					damageString += String(oldDam - newDam);
+				}
+				else
+				{
+					damageString += " <span class='words'><b>(0";
+				}
+				
+				damageString += ")</b></span> ";
+			}
+			
+			if (damageString.length > 0)
+			{
+				damageString += "</textformat>";
+			}
+			
+			// Total damage difference
+			if (newDamage != 0 || oldDamage != 0)
+			{
+				damAppend += "<b>" + String(newDamage) + "</b>";
+				
+				if (newDamage > oldDamage)
+				{
+					damAppend += " <span class='good'><b>(+";
+					damAppend += String(newDamage - oldDamage);
+				}
+				else if (newDamage < oldDamage)
+				{
+					damAppend += " <span class='bad'><b>(-";
+					damAppend += String(oldDamage - newDamage);
+				}
+				else
+				{
+					damAppend += " <span class='words'><b>(0";
+				}
+				
+				damAppend += ")</b></span>\n";
+			}
+			
+			damageString = damAppend + damageString;
+			
+			return damageString;
+		}
+		
+		private function getDamageFlags(headerString:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var nFlags:Vector.<DamageFlag> = newItem.baseDamage.getFlags();
+			var oFlags:Vector.<DamageFlag> = oldItem.baseDamage.getFlags();
+			var hasFlags:Array = [];
+			
+			var flags:String = "Damage Flags:\n";
+			var fNew:String = "";
+			var fDupe:String = "";
+			var fLost:String = "";
+			
+			for (var i:uint = 0; i < nFlags.length; i++)
+			{
+				hasFlags.push(nFlags[i].flag);
+				
+				if (!oldItem.baseDamage.hasFlag(nFlags[i].flag))
+				{
+					// New flag
+					if (fNew.length > 0) fNew += ", ";
+					fNew += nFlags[i].short;
+				}
+				else
+				{
+					// Dupe flag
+					if (fDupe.length > 0) fDupe += ", ";
+					fDupe += nFlags[i].short;
+				}
+			}
+			
+			for (i = 0; i < oFlags.length; i++)
+			{
+				if (hasFlags.indexOf(oFlags[i].flag) == -1)
+				{
+					// Lost flag
+					if (fLost.length > 0) fLost += ", ";
+					fLost += oFlags[i].short;
+				}
+			}
+			
+			// Merge shit together
+			if (fNew.length > 0) flags += "<span class='good'><b>" + fNew + "</b></span>";
+			if (fDupe.length > 0)
+			{
+				if (fNew.length > 0) flags += "<span class='words'><b>, </b></span>";
+				flags += "<span class='words'><b>" + fDupe + "</b></span>";
+			}
+			if (fLost.length > 0)
+			{
+				if (fDupe.length > 0 || fNew.length > 0) flags += "<span class='bad'><b>, </b></span>";
+				flags += "<span class='bad'><b>" + fLost + "</b></span>";
+			}
+			
+			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
+			{
+				return flags;
+			}
+			return "";
 		}
 		
 		private function getResistComparison(headerString:String, typesList:Array, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
@@ -335,8 +531,21 @@
 				// Prepend the header if this is the first resistance that is actually going to be displayed.
 				if (resistancesDiffString.length == 0)
 				{
-					resistancesDiffString += "\n" + headerString + ": \n";
-					resistancesDiffString += "<textformat tabstops='59,96,150,206,246'>";
+					resistancesDiffString += headerString + ":\n";
+					resistancesDiffString += "<textformat tabstops='74,105,152,226,257'>";
+				}
+				else
+				{
+					if (flipFlop)
+					{
+						if (i != typesList.length - 1) resistancesDiffString += "\n";
+					}
+					else
+					{
+						resistancesDiffString += "\t";
+					}
+					
+					flipFlop = !flipFlop;
 				}
 				
 				// Print the new items resistance value as a %
@@ -365,18 +574,7 @@
 					resistancesDiffString += "<span class='words'><b>(0";
 				}
 					
-				resistancesDiffString += "%)</b></span> ";
-				
-				if (flipFlop)
-				{
-					if (i != typesList.length - 1) resistancesDiffString += "\n";
-				}
-				else
-				{
-					resistancesDiffString += "\t";
-				}
-				
-				flipFlop != flipFlop;
+				resistancesDiffString += ")</b></span> ";
 			}
 			
 			if (resistancesDiffString.length > 0)
@@ -384,9 +582,58 @@
 				resistancesDiffString += "</textformat>";
 			}
 			
-			// TODO: Add flags too!
-			
 			return resistancesDiffString;
+		}
+		
+		private function getResistanceFlags(header:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var nFlags:Vector.<DamageFlag> = newItem.resistances.getFlags();
+			var oFlags:Vector.<DamageFlag> = oldItem.resistances.getFlags();
+			var hasFlags:Array = [];
+			
+			var flags:String = header + ":\n";
+			var fNew:String = "";
+			var fDupe:String = "";
+			var fLost:String = "";
+			
+			for (var i:uint = 0; i < nFlags.length; i++)
+			{
+				hasFlags.push(nFlags[i].flag);
+				
+				if (!oldItem.resistances.hasFlag(nFlags[i].flag))
+				{
+					// New flag
+					if (fNew.length > 0) fNew += ", ";
+					fNew += nFlags[i].short;
+				}
+				else
+				{
+					// Dupe flag
+					if (fDupe.length > 0) fDupe += ", ";
+					fDupe += nFlags[i].short;
+				}
+			}
+			
+			for (i = 0; i < oFlags.length; i++)
+			{
+				if (hasFlags.indexOf(oFlags[i].flag) == -1)
+				{
+					// Lost flag
+					if (fLost.length > 0) fLost += ", ";
+					fLost += oFlags[i].short;
+				}
+			}
+			
+			// Merge shit together
+			if (fNew.length > 0) flags += "<span class='good'>" + fNew + "</span>";
+			if (fDupe.length > 0) flags += "<span class='words'>" + fDupe + "</span>";
+			if (fLost.length > 0) flags += "<span class='bad'>" + fLost + "</span>";
+			
+			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
+			{
+				return flags;
+			}
+			return "";
 		}
 	}
 }

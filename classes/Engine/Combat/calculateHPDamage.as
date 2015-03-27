@@ -6,6 +6,7 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -15,11 +16,19 @@ package classes.Engine.Combat
 	{
 		if (target.HP() <= 0) return;
 		
+		var tarResistances:TypeCollection = target.getHPResistances();
+		
+		if (target is PlayerCharacter && kGAMECLASS.easy && !damageResult.easyModeApplied)
+		{
+			tarResistances.addFlag(DamageFlag.EASY);
+			damageResult.easyModeApplied = true;
+		}
+		
 		var damageToHP:TypeCollection = damageResult.remainingDamage.makeCopy();
 		
 		var initialTotalDamage:Number = damageToHP.getTotal();
 		
-		damageToHP.applyResistances(target.getHPResistances());
+		damageToHP.applyResistances(tarResistances);
 		
 		var damageAfterResistances:Number = damageToHP.getTotal();
 		

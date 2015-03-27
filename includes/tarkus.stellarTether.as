@@ -1169,7 +1169,7 @@ public function miningLaserBarrage():void
 		{
 			output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
 			
-			var damage:TypeCollection = new TypeCollection( { burning: 10 } );
+			damage = new TypeCollection( { burning: 10 } );
 			damageRand(damage, 15);
 			
 			//Leftover damage is what doesn't get eaten by cover.

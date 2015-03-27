@@ -21,7 +21,7 @@ package classes.Characters
 	{
 		public function Saendra() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -164,6 +164,17 @@ package classes.Characters
 			this.createStatusEffect("Uniball");
 			this.cumMultiplierRaw = 2;
 			this.refractoryRate = 10;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 

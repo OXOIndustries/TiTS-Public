@@ -9,6 +9,7 @@ import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
+import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
@@ -98,15 +99,6 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
-	output("\n\nIndefinite Article Tests:");
-	output("\n\n" + indefiniteArticle("C-cup"));
-	output("\n\n" + indefiniteArticle("D-cup"));
-	output("\n\n" + indefiniteArticle("DD-cup"));
-	output("\n\n" + indefiniteArticle("time"));
-	output("\n\n" + indefiniteArticle("university"));
-	output("\n\n" + indefiniteArticle("NSA"));
-	output("\n\n" + indefiniteArticle("NASA"));
-	
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
 	
@@ -143,31 +135,16 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new ShockBlade(), function():void {
-		output("\n\Shockblade Get.\n");
+	addItemButton(1, new TachyonBeamLaser(), function():void {
+		output("\n\nTach Beam.\n");
 		
-		var foundLootItems:Array = [new ShockBlade()];
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
+		quickLoot(new TachyonBeamLaser());
 	});
 	
-	addItemButton(2, new Bovinium(), function():void {
-		output("\n\nBovinium Get.\n");
+	addItemButton(2, new TSTArmorMkII(), function():void {
+		output("\n\nTST Mk 2.\n");
 		
-		var items:Array = [];
-		var bov:Bovinium = new Bovinium();
-		bov.quantity = 10;
-		items.push(bov);
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(items);
+		quickLoot(new TSTArmorMkII());
 	});
 	
 	addButton(5, "Kaede", function():void {

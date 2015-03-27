@@ -6,6 +6,8 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -14,6 +16,14 @@ package classes.Engine.Combat
 	{
 		if (target.shieldsRaw <= 0) return;
 		
+		var tarResistances:TypeCollection = target.getShieldResistances();
+		
+		if (target is PlayerCharacter && kGAMECLASS.easy)
+		{
+			tarResistances.addFlag(DamageFlag.EASY);
+			damageResult.easyModeApplied = true;
+		}
+		
 		// Get shield resistances from the target, and used them to reduce the damage available
 		var damageToShields:TypeCollection = damageResult.remainingDamage.makeCopy();
 		
@@ -21,7 +31,7 @@ package classes.Engine.Combat
 		// much damage we used to break through the shields if we get all the way through
 		var initialTotalDamage:Number = damageToShields.getTotal();
 		
-		damageToShields.applyResistances(target.getShieldResistances());
+		damageToShields.applyResistances(tarResistances);
 		
 		var damageAfterResistances:Number = damageToShields.getTotal();
 		

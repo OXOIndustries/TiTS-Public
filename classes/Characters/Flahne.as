@@ -10,7 +10,7 @@
 		//constructor
 		public function Flahne()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -173,6 +173,16 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 	}
 }
