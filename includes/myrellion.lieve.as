@@ -1858,7 +1858,7 @@ public function lieveTourBathhouse():void
 	{
 		flags["LIEVE_DATEPOINTS"] += 1;
 		clearMenu();
-		addButton(0, "Next", lieveTourBathhouseII, true);
+		addButton(0, "Next", lieveTourBathhouseII, false);
 	}
 	else
 	{
@@ -1910,7 +1910,7 @@ public function lieveTourBathhouseShowOff():void
 	lieveTourBathhouseII();
 }
 
-public function lieveTourBathhouseII(newLine:Boolean = false):void
+public function lieveTourBathhouseII(newLine:Boolean = true):void
 {
 	if (newLine)
 	{
