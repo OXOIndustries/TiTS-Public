@@ -113,7 +113,6 @@ package classes.UIComponents.StatusEffectComponents
 			this._icon = new _iconT();
 			this.addChild(_icon);
 			
-			// TODO: The scaling code can (probably) scale things outside of the padding restrictions in extreme cases.
 			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
 				var ratio:Number;

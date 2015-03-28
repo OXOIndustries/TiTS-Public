@@ -1342,7 +1342,6 @@ public function lieveSoloTurnsDownDudes():void
 	lieveSexMenu();
 }
 
-// TODO: Split this scene up somewhere.
 public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 {
 	clearOutput();
@@ -1412,6 +1411,12 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	else output("Please... please fuck me!");
 	output("”</i>");
 	
+	clearMenu();
+	addButton(0, "Next", lieveSoloFucktimeII, tempVenomEnabled);
+}
+
+public function lieveSoloFucktimeII(tempVenomEnabled:Boolean = false):void
+{
 	output("\n\nThat seems to be good enough for your ant-like lover, who loosens the grip of her thighs around your neck. Rather than releasing you to tend to yourself, though, Lieve curls her leg up until her toes are planted on your forehead, and give you just the push you need to go tumbling onto your back.");
 	
 	output("\n\nShe pounces on you like an animal, pinning you to the deck with both hands planted firmly on your [pc.chest] and the rest of her straddling your [pc.hips]");

@@ -226,7 +226,7 @@ public function sexBotElectropulseAttack():void
 	userInterface.showName("FIGHT:\nSEXBOT");
 	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
 	
-	var damage:TypeCollection = new TypeCollection( { electric: 15 } );
+	var damage:TypeCollection = new TypeCollection( { electric: 15 }, DamageFlag.ONLY_SHIELD );
 	damageRand(damage, 15);
 	var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
 	

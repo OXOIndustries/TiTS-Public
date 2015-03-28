@@ -227,6 +227,7 @@
 		public function UpgradeVersion7(d:Object):void
 		{
 			delete d.meleeWeapon;
+			delete d.armor;
 			delete d.bonusResistances;
 			delete d.resistances;
 			delete d.lustVuln;

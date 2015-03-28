@@ -111,8 +111,8 @@
 		public function set paddingTop(value:int):void		{ _paddingTop = value;		}
 		public function set paddingBottom(value:int):void	{ _paddingBottom = value; 	}
 		public function set margin(value:int):void 			{ _margin = value; 			}
-		public function set displayMode(value:int):void		{ _displayMode = value;		} // TODO: Add checking to the incoming value
-		public function set scaleMode(value:int):void		{ _scaleMode = value;		} // TODO: Add checking to the incoming value
+		public function set displayMode(value:int):void		{ _displayMode = value;		}
+		public function set scaleMode(value:int):void		{ _scaleMode = value;		}
 		
 		public function set targetHeight(value:int):void	{ _targetHeight = value;	}
 		public function set targetWidth(value:int):void		{ _targetWidth = value;		}

@@ -185,10 +185,10 @@ public function tongueLashAttack():void
 			output("and you are staggered by the force of the blow hitting your shield");
 			
 			var damage:TypeCollection = foes[0].meleeDamage();
+			damage.addFlag(DamageFlag.ONLY_SHIELD);
 			damageRand(damage, 15);
 			var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
 		
-			// TODO: This originally only impacted shields...
 			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + damageResult.totalDamage + "</b>)");
 			else output(". Your shield is breached! (<b>" + damageResult.totalDamage + "</b>)");
 		}

@@ -425,7 +425,6 @@ public function pcLossToNyrea():void
 
 		pc.loadInAss(foes[0]);
 
-		// TODO: Change this and enable multi-preggers
 		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 		
 		output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your ass amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
@@ -476,8 +475,6 @@ public function pcLossToNyrea():void
 			
 			pc.loadInCunt(foes[0], tHole);
 
-			// TODO: Change this and enable multi-preggers
-			// TODO: Something something Renvra's pregnancy
 			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 			
 			output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your womb amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");

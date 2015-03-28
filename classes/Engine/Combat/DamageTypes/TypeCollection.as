@@ -239,6 +239,7 @@ package classes.Engine.Combat.DamageTypes
 			
 			for (i = 0; i < typeCollection.length; i++)
 			{
+				// TODO: Make sure this works for negative values.
 				typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).resistanceValue) / 100.0);
 			}
 		}

@@ -194,7 +194,6 @@ public function bodySlamByBros():void
 	{
 		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
 		
-		// TODO: Bypass shields
 		if (pc.shields() > 0) output(" Not even your shields protect you!");
 		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD);
 		damageRand(damage, 15);
