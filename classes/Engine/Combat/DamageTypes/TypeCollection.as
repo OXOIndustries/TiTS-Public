@@ -168,12 +168,24 @@ package classes.Engine.Combat.DamageTypes
 		{	
 			if (a is TypeCollection)
 			{
+				var aTC:TypeCollection = a as TypeCollection;
+				
 				for (var i:uint = 0; i < typeCollection.length; i++)
 				{
-					typeCollection[i].damageValue += (a as TypeCollection).getType(i).damageValue;
+					typeCollection[i].damageValue += aTC.getType(i).damageValue;
 				}
 				
-				// TODO: Merge flags
+				if (aTC.getFlags().length > 0)
+				{
+					var aF:Vector.<DamageFlag> = aTC.getFlags();
+					for (var f:uint = 0; f < aF.length; f++)
+					{
+						if (!hasFlag(aF[f].flag))
+						{
+							addDamageFlag(aF[f].makeCopy());
+						}
+					}
+				}
 			}
 			else
 			{
@@ -233,7 +245,13 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function combineResistances(resistance:TypeCollection):void
 		{
+			// Simply add and cap to +100
+			add(resistance);
 			
+			for (var i:uint = 0; i < typeCollection.length; i++)
+			{
+				if (typeCollection[i].resistanceValue > 100) typeCollection[i].resistanceValue = 100;
+			}
 		}
 		
 		public function getTotal():Number
