@@ -97,7 +97,7 @@
 				}
 				else
 				{
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 					kGAMECLASS.output("You briefly hold the egg-shaped pill in your hand before pocketing it once more. You need a vagina to put it in before you can use it.");
 				}
 			}

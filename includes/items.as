@@ -313,9 +313,9 @@ public function unequipMenu():void
 	
 	if (pc.accessory.shortName != "") 
 	{
-		this.addOverrideItemButton(6, pc.accessory, "Acc. Off", unequip, "accessory");
+		this.addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
 	}
-	else this.addDisabledButton(6,"Acc. Off");
+	else this.addDisabledButton(3,"Acc. Off");
 	
 	//Set user and target.
 	itemUser = pc;

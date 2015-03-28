@@ -187,7 +187,7 @@
 						x = target.shortestCockIndex();
 						if(rand(3) == 0)
 						{
-							kGAMECLASS.eventBuffer += "You adjust your package and fine [pc.oneCock] a little more ";
+							kGAMECLASS.eventBuffer += "You adjust your package and find [pc.oneCock] a little more ";
 							if(target.cocks[x].cLength() <= 8) kGAMECLASS.eventBuffer += "hand-filling";
 							else if(target.cocks[x].cLength() <= 15) kGAMECLASS.eventBuffer += "overwhelming";
 							else kGAMECLASS.eventBuffer += "tremendously large";
@@ -221,7 +221,9 @@
 				//#2 Make balls one to two tenths of an inch bigger.
 				else if(select == 2)
 				{
-					var newBallSize:Number = target.ballSizeRaw + 0.1 + rand(2) / 10;
+					var ballGrowth:Number = 0.1 + rand(2) / 10;
+					if(target.hasPerk("Bulgy")) ballGrowth *= 2;
+					var newBallSize:Number = target.ballSizeRaw + ballGrowth;
 					if (target.ballSizeUnlocked(newBallSize))
 					{
 						//1
@@ -246,6 +248,21 @@
 							kGAMECLASS.eventBuffer += ".";
 						}
 						target.ballSizeRaw = newBallSize;
+
+						// 10% Super secret nutsplosion!
+						if(rand(10) == 0 && target.ballSizeRaw < 8 && target.hasPerk("Bulgy"))
+						{
+							kGAMECLASS.eventBuffer += "\n\nWith a slight tingling sensation building in your [pc.sack], you let out a shudder. Curious, you try to look and before you realize it, you are suddenly taken aback. The tingling increases tenfold as your [pc.balls] enlarge";
+							if(target.balls == 1) kGAMECLASS.eventBuffer += "s";
+							kGAMECLASS.eventBuffer += ", bloating up to twice the size";
+							if(target.balls == 1) kGAMECLASS.eventBuffer += " it was";
+							else kGAMECLASS.eventBuffer += " they were";
+							kGAMECLASS.eventBuffer += " before! <b>Your natural bulginess has rewarded you with";
+							if(target.balls == 1) kGAMECLASS.eventBuffer += " a larger testicle";
+							else kGAMECLASS.eventBuffer += " larger testicles";
+							kGAMECLASS.eventBuffer += "!</b>";
+							newBallSize *= 2;
+						}
 					}
 					else
 					{
@@ -504,7 +521,7 @@
 						//Halfway there!
 						else if(target.hairLength < 4)
 						{
-							kGAMECLASS.eventBuffer += "You wind blow an unruly lock of your hair off your forehead before realizing that its grown. There's at least four inches of unkempt length there.";
+							kGAMECLASS.eventBuffer += "You wind blow an unruly lock of your hair off your forehead before realizing that it has grown. There's at least four inches of unkempt length there.";
 							target.hairLength = 4;
 						}
 						//Stage three!

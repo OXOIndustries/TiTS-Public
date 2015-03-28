@@ -5870,7 +5870,7 @@
 		public function cumMultiplier():Number
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
-			var bonus:Number = bonus += perkv1("Potent");
+			var bonus:Number = perkv1("Potent");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
@@ -7437,13 +7437,13 @@
 				else if (isLactating() && milkFullness > 50) {
 					if (descripted > 0) description += ", ";
 					//Light lactation
-					if (milkRate < 65) {
+					if (milkMultiplier < 65) {
 						rando = this.rand(2);
 						if (rando == 0) description += "moistened";
 						if (rando == 1) description += "slightly lactating";
 					}
 					//Moderate lactation
-					else if (milkRate <= 85) {
+					else if (milkMultiplier <= 85) {
 						rando = this.rand(3);
 						if (rando == 0) description += "lactating";
 						if (rando == 1) description += "milky";
@@ -8809,7 +8809,7 @@
 					if (rando == 0) descript += "feline ";
 					else if (rando == 1) descript += "spine-covered ";
 					else if (rando == 2) descript += "spined ";
-					else if (rando == 3) descript += "pink ";
+					else if (rando == 3) descript += "kitty ";
 					else if (rando == 4) descript += "animalistic ";
 					else if (rando == 5) descript += "soft-barbed ";
 					else if (rando == 6) descript += "nubby ";
@@ -10389,7 +10389,9 @@
 		public var pregnancyIncubationBonusMotherMod:Number = 0;
 		public function pregnancyIncubationBonusMother():Number
 		{
-			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod;
+			var bonus:Number = 0;
+    		if(hasPerk("Incubator")) bonus += perkv1("Incubator");
+			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
 		}
 		
 		public var bellyRatingRaw:Number = 0;

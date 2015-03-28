@@ -526,9 +526,13 @@
 					kGAMECLASS.output("\n\nA tightness in your package is the only warning your get before your [pc.cock " + x + "] starts shrinking.");
 					y = target.cocks[x].cLengthRaw - 8;
 					y = Math.round((rand(y/4*10)/10 + y/4 + 1)*10)/10;
-					if(y > 11) y = 11;
+					if(target.hasPerk("Mini")) y *= 2;
+					if(y > 22 && target.hasPerk("Mini")) y = 22;
+					else if(y > 11) y = 11;
+					if(y >= target.cocks[x].cLengthRaw) y = target.cocks[x].cLengthRaw - 1;
 
-					if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
+					if(y >= 13) kGAMECLASS.output(" Inch after inch, it shortens rapidly until you've lost well over a foot of cock flesh.");
+					else if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
 					else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
 					else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 					else kGAMECLASS.output(" Gradually, you lose about an inch.");

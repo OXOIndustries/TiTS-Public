@@ -65,7 +65,7 @@ package classes.Items.Miscellaneous
 				if(!CodexManager.entryViewed("Dumbfuck"))
 				{
 					kGAMECLASS.output("You've heard this stuff is pretty intense. You had better look up the codex entry for it before you consider downing it.");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				else
 				{

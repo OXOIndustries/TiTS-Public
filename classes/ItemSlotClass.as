@@ -532,7 +532,7 @@
 				if (resistancesDiffString.length == 0)
 				{
 					resistancesDiffString += headerString + ":\n";
-					resistancesDiffString += "<textformat tabstops='74,105,152,226,257'>";
+					resistancesDiffString += "<textformat tabstops='74,107,152,228,257'>";
 				}
 				else
 				{

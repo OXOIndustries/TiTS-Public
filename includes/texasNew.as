@@ -1097,7 +1097,7 @@ public function orderUp(order:String = ""):void
 	author("Savin");
 	showBust("HERMAN");
 	showName("\nHERMAN");
-	output("You give herman your order, which he punches in on the register. He hands you a numbered ticket: <i>“Be right up, " + pc.mf("buddy","missy") + ".”</i>");
+	output("You give Herman your order, which he punches in on the register. He hands you a numbered ticket: <i>“Be right up, " + pc.mf("buddy","missy") + ".”</i>");
 	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cookin is finger-licking good!");
 	//{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. 
 	if(order == "Ribs")

@@ -161,7 +161,8 @@
 						//Find smallest dick for expansion
 						x = target.shortestCockIndex();
 						//Dick grows  a quarter inch to a cap of your height in feet * 1.5 (6' tall = 9" dick)
-						if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && rand(3) == 0 && changes < changeLimit)
+						if(((target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && !target.hasPerk("Hung")) || (target.cocks[x].cLengthRaw < target.tallness/12 * 3 && target.cockLengthUnlocked(x, target.tallness / 12 * 3) && target.hasPerk("Hung"))) && rand(3) == 0 && changes < changeLimit)
+
 						{
 							//(Alt2 - req's armor or undies)
 							if(target.isCrotchGarbed() && rand(2) == 0)
@@ -190,6 +191,10 @@
 							changes++;
 							target.lust(4+rand(4));
 						}
+						else if ((!target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && !target.hasPerk("Hung")) || (!target.cockLengthUnlocked(x, target.tallness / 12 * 3) && target.hasPerk("Hung")))
+						{
+							kGAMECLASS.output(target.cockLengthLockedMessage());
+						}
 						//Find thinnest cock
 						x = target.thinnestCockRatioIndex();
 						//Dick gets slightly closer to very thick
@@ -205,7 +210,7 @@
 						}
 						
 						//Balls swell up to apple sized (rating == 3) (rarely)
-						if(target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && rand(4) == 0 && changes < changeLimit)
+						if(((target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (target.ballSizeRaw < 6 && target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))) && rand(4) == 0 && changes < changeLimit)
 						{
 							//Ballsize <= 1
 							if(target.ballSizeRaw <= 1)
@@ -228,7 +233,7 @@
 							changes++;
 							target.lust(7+rand(3));
 						}
-						else if (!target.ballSizeUnlocked(3))
+						else if ((!target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy"))||(!target.ballSizeUnlocked(6) && target.hasPerk("Bulgy")))
 						{
 							kGAMECLASS.output(target.ballSizeLockedMessage());
 						}
@@ -297,7 +302,7 @@
 						//Dick grows one to three inches towards previously established pandacap
 						//Find smallest dick for expansion
 						x = target.shortestCockIndex();
-						if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && rand(2) == 0 && changes < changeLimit)
+						if(((target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && !target.hasPerk("Hung")) || (target.cocks[x].cLengthRaw < target.tallness/12 * 3 && target.cockLengthUnlocked(x, target.tallness / 12 * 3) && target.hasPerk("Hung"))) && rand(2) == 0 && changes < changeLimit)
 						{
 							y = 1 + rand(3);
 							//1
@@ -329,7 +334,7 @@
 							target.cocks[x].cLengthRaw += y;
 							changes++;
 						}
-						else if (!target.cockLengthUnlocked(x, target.tallness / 12 * 1.5))
+						else if ((!target.cockLengthUnlocked(x, target.tallness / 12 * 1.5) && !target.hasPerk("Hung")) || (!target.cockLengthUnlocked(x, target.tallness / 12 * 3) && target.hasPerk("Hung")))
 						{
 							kGAMECLASS.output(target.cockLengthLockedMessage());
 						}

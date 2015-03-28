@@ -141,7 +141,7 @@ public function reahaFirstTalk():void
 	output("\n\nShe pauses there. Long enough to make you finally ask, <i>“So why did you have to escape?”</i>");
 	
 	output("\n\n<i>“Why do you think?”</i> she snaps.");
-	if (!reahaFree()) output(" <i>“She immediately regrets her outburst, covering her mouth with a murmured <i>“Sorry, [pc.master].”</i> With a sigh, she continues, more softly now:");
+	if (!reahaFree()) output(" She immediately regrets her outburst, covering her mouth with a murmured <i>“Sorry, [pc.master].”</i> With a sigh, she continues, more softly now:");
 	output(" <i>“I didn’t want the Treatment. I didn’t want to end up a brainless bimbo like my mom, sucking every dick that walked past her. Which I guess is kind of ironic in hindsight, huh? But I... I didn’t want to be this way,");
 	if (reahaFree()) output(" [pc.name]");
 	else output(" [pc.master]");
@@ -334,7 +334,7 @@ public function reahaTalkNewTexas():void
 	clearOutput();
 	reahaHeader();
 
-	output("<i>“So what do think about New Texas,”</i> you ask. <i>“It’s your homeworld, after all.”</i>");
+	output("<i>“So what do you think about New Texas,”</i> you ask. <i>“It’s your homeworld, after all.”</i>");
 	
 	output("\n\nReaha");
 	if (shipLocation != "500") output(" sighs");
@@ -690,7 +690,7 @@ public function reahaTalkGeneModsWhy():void
 	
 	output("\n\n");
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH && reahaConfidence() <= REAHA_CONFIDENCE_LOW) output("Reaha grunts and slaps a fresh pleasure patch onto her butt, hard enough to make herself jiggle. ");
-	output("I grew up on New Texas, okay? Imagine being on a planet where everybody’s a big-tittied cow who squirts milk if she thinks too hard. And then you’re just.... not. Guess you could call it self-image issues, but I just didn’t feel </i>pretty<i> without all this,”</i> she says, waving a hand over her bovine body. ");
+	output("<i>“I grew up on New Texas, okay? Imagine being on a planet where everybody’s a big-tittied cow who squirts milk if she thinks too hard. And then you’re just.... not. Guess you could call it self-image issues, but I just didn’t feel </i>pretty<i> without all this,”</i> she says, waving a hand over her bovine body. ");
 	
 	output("\n\n<i>“Being a big, chesty cow was what I grew up thinking was attractive. So of course I wanted that, too... just without the Treatment to fuck my brain over. I thought I could have the best of both worlds. Fuck me, right?”</i>");
 	
@@ -774,7 +774,7 @@ public function reahaTalkGeneModsBefore():void
 		
 		output("\n\nYou chuckle. <i>“I wanna see what you looked like before, that’s why.”</i> ");
 		
-		output("\n\n<i>“Oh! Really?”</i> she asks, eyes widening. <i>“Uh, yeah, I guess I have some pics around here...”</i> Reaha adds, leaning over the small holoterminal in her quarters and poking a few hovering hardlight buttons. After a moment, the screen flickers to a 3D picture of several uniformed Terran-Space Coalition troops lined up in front of a heavy hover tank, arms locked over each other’s shoulders. You reach over your cow’s shoulders and flick the zoom, scrolling in on a very busty, soft looking girl on the far right of the company... only to see that she’s got brown hair under her helmet, and a much darker complexion that Reaha. ");
+		output("\n\n<i>“Oh! Really?”</i> she asks, eyes widening. <i>“Uh, yeah, I guess I have some pics around here...”</i> Reaha adds, leaning over the small holoterminal in her quarters and poking a few hovering hardlight buttons. After a moment, the screen flickers to a 3D picture of several uniformed Terran-Space Coalition troops lined up in front of a heavy hover tank, arms locked over each other’s shoulders. You reach over your cow’s shoulders and flick the zoom, scrolling in on a very busty, soft looking girl on the far right of the company... only to see that she’s got brown hair under her helmet, and a much darker complexion than Reaha. ");
 		
 		output("\n\n<i>“That’s not me. I’m over in the middle. There,”</i> Reaha says, jabbing a finger at a short, athletic trooper who’s reaching way up to put her arms around the soldiers beside her. Her breasts are barely noticable under her uniform, and her curves are nothing to really speak of. She’s almost boyish looking. You’d barely recognize her for Reaha if it weren’t for the smattering of freckles on her cheeks.");
 		
@@ -1606,7 +1606,7 @@ public function reahaBootOffShipGo2Tavros():void
 	if (reahaAddicted()) output(", plus her boxes of pleasure patches");
 	output(". It isn’t long before you’re able to find a taxi service for her, and send her on her way to Tavros. ");
 	
-	output("\n\n<i>“I’ll see you see, I guess,");
+	output("\n\n<i>“I’ll see you soon, I guess,");
 	if (reahaFree()) output(" [pc.name]");
 	else output(" [pc.master]");
 	output(",”</i> Reaha says as she’s getting aboard the taxi");

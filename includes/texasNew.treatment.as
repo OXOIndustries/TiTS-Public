@@ -1111,7 +1111,13 @@ public function treatmentHourProcs():void
 				if(pc.cockTotal() == 1) eventBuffer += "it";
 				else eventBuffer += "them";
 				eventBuffer += " to be entirely too rigid at this exact moment.";
-				if(pc.lust() >= 80) eventBuffer += " You’re either going to need to give them some attention, or find a slippery girl in need of a good reaming soon.";
+				if(pc.lust() >= 80) 
+				{
+					eventBuffer += " You’re either going to need to give ";
+					if(pc.cockTotal() > 1) eventBuffer += "them ";
+					else eventBuffer += "it ";
+					eventBuffer += "some attention, or find a slippery girl in need of a good reaming soon.";
+				}
 				else eventBuffer += " You give yourself a comforting squeeze and move on, revelling in the sensuous warmth that infuses you.";
 
 			}
@@ -1188,7 +1194,7 @@ public function treatmentHourProcs():void
 		else if(treatedHours == 32)
 		{
 			eventBuffer += "\n\nYou examine yourself and sigh, ticking through a mental list of the changes you’ve noticed so far. You’re a lot more confident. That’s a plus. And you’re hornier. A lot hornier. You can’t really doubt that now, even if your boosted libido feels as normal and right as fresh apple pie. You file that away as a plus too. The extra lust and the extra demands it places on you don’t distract you from what needs to be done as much as you thought they would. Also, you’re pretty sure you’re really starting to enjoy physical work. Just lifting a heavy weight up and down for an hour would be a pretty great way to spend an afternoon.";
-			eventBuffer += "\n\nWhat about downsides? You rack your brain. Well, you’ve got to get off more for sure, but that’s not really a downside. You wouldn’t be able to keep a treated girl sated if you weren’t getting so randy. Is there anything else? You shake your head. Nothing is coming to mind. This Treatment this is working out pretty great.";
+			eventBuffer += "\n\nWhat about downsides? You rack your brain. Well, you’ve got to get off more for sure, but that’s not really a downside. You wouldn’t be able to keep a treated girl sated if you weren’t getting so randy. Is there anything else? You shake your head. Nothing is coming to mind. This Treatment is working out pretty great.";
 			pc.lust(2);
 
 		}
@@ -1761,7 +1767,7 @@ public function treatmentHourProcs():void
 				pc.addStatusValue("Treated",3,-1);
 				eventBuffer += "\n\nYour " + pc.cockDescript(pc.biggestCockIndex()) + " is a proud " + num2Text(Math.round(pc.biggestCockLength())) + " inches now";
 				if(pc.cockTotal() == 2) eventBuffer += ", and your other isn’t far behind";
-				else eventBuffer += ", and your others aren’t far behind";
+				else if(pc.cockTotal() > 2) eventBuffer += ", and your others aren’t far behind";
 				eventBuffer += ".";
 				pc.lust(10);
 			}
@@ -2181,7 +2187,7 @@ public function treatmentHourProcs():void
 		if(!pc.hasPerk("Pheromone Cloud") && pc.hasCock() && treatedHours == 138)
 		{
 			eventBuffer += "\n\nOut of the blue, you catch a whiff of yourself, and... you smell pretty good, actually. You’d put your aroma somewhere between a woodsmoke, sweat, and a clean, almost nutty fragrance. Your body odor is undoubtedly getting thick with pheromones to better signal your intentions and desires. Luckily, they don’t seem to turn you on like they’re supposed to do others. Maybe you’re immune to your own. Then again, your nose seems a lot more sensitive. You could probably pick out individuals by their smell alone. Heck, you can identify your own penis";
-			if(pc.hasCock()) eventBuffer += "es";
+			if(pc.cockTotal() > 1) eventBuffer += "es";
 			eventBuffer += " by the unique musk that underlays your own odor.";
 			//Perk Unlocked: Pheromone Cloud - You are surrounded by a cloud of pleasant-smelling pheromones that increase the success rate and arousing potential of your tease attacks.
 			eventBuffer += "\n\n(<b>Perk Gained: Pheromone Cloud</b> - Pheromones boost tease attack and arousal.)";

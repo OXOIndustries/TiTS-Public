@@ -1048,7 +1048,10 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\nYou don’t know if you’ve ever cum so much, but by the time Lieve is done with you, you feel like a hollow husk, completely drained of energy. You moan, your body unresponsive to your mental commands as you come to. Lethargy overwhelms you, and ant-girls caress and snuggle against you. It’s an effort to move yourself to sit up, and look over the intertwined bodies of Lieve and her wives. Your skin still burns with the red myr’s lust-drug, but the mind-numbing pleasure has abated somewhat, at least.");
 	
-	output("\n\nLieve looks lazily up at you, and runs a hand across your [pc.hip]. <i>“You leaving us?”</i> she murmurs, rolling onto her back and stretching, almost feline-like. You nod slowly, and she gives you a slight little smile. <i>“Take it easy for a bit, alright? {if LieveVenom off: You’re still not used to my venom, after all.} Give yourself some time to recover.”</i>");
+	output("\n\nLieve looks lazily up at you, and runs a hand across your [pc.hip]. <i>“You leaving us?”</i> she murmurs, rolling onto her back and stretching, almost feline-like. You nod slowly, and she gives you a slight little smile. <i>“Take it easy for a bit, alright? ");
+	//if LieveVenom off:
+	if(!lieveVenomEnabled()) output("You’re still not used to my venom, after all. ");
+	output("Give yourself some time to recover.”</i>");
 	
 	output("\n\nYou promise that you will, as you untangle yourself from her wives’ many arms. You grab your gear and head out, leaving Lieve to wake her gold myr brides back up.");
 

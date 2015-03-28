@@ -144,7 +144,7 @@ public function nehzarasAppearance():void
 {
 	clearOutput();
 	showNehzara();
-	output("Nehzara is a snappy, hard-eyed Red Myr woman who looks every inch the Scarlet Federation field officer she is. Others of her race are just barely taller than an average human female, though more sturdily built, but Nehzara is a little larger than average. You estimate she’d be 5’10”</i> when standing. Her general frame is slim and lithe, but not frail by any stretch of the word.");
+	output("Nehzara is a snappy, hard-eyed Red Myr woman who looks every inch the Scarlet Federation field officer she is. Others of her race are just barely taller than an average human female, though more sturdily built, but Nehzara is a little larger than average. You estimate she’d be 5’10” when standing. Her general frame is slim and lithe, but not frail by any stretch of the word.");
 	if(flags["SEXED_NEHZARA"] == undefined) output(" There’s a tension to the way she’s carrying herself, a rigidity that goes beyond military discipline and looks forced and uncomfortable.");
 	else output(" She is far more relaxed than she had been during your first meeting. While her posture is still impeccable, she no longer looks so rigid and uncomfortable.");
 

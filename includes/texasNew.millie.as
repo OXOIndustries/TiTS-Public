@@ -589,7 +589,7 @@ public function yeahMillieLetsFuck():void
 
 	output("\n\nYou ease yourself back until you’re completely flat on the table’s surface");
 	if(pc.tallness >= 84) output(", except for your dangling [pc.feet]. Height does have its disadvantages");
-	output(". You blink your eyes closed rather than endure the harsh light for a second longer. Besides, if there’s one thing you can trust cow-girl on, it’s properly worshipping a cock. Even a cow with a decided abnormal forcefulness to her.");
+	output(". You blink your eyes closed rather than endure the harsh light for a second longer. Besides, if there’s one thing you can trust a cow-girl with, it’s properly worshipping a cock. Even a cow with a decided abnormal forcefulness to her.");
 
 	output("\n\nMillie picks up her stroking where she left off, though you can hear her other hand fiddling with the last clasp on her denim outfit. You can see it now with your minds eye, those nimble fingers struggling with a too-tight fastener, sending those gigantic boobs swaying and jostling against one another, giving her cleavage a sensuous wiggle. Springing open with an audible rustle of fabric, Millie’s outfit gives out. She doesn’t even have to stop jacking you off to get out of it. She goes right on stroking, treating your rod like a favored pet while wiggling the tight fabric down.");
 

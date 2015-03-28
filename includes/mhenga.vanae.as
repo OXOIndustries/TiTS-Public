@@ -522,19 +522,24 @@ public function vanaeTFScene():void
 			if (pc.hasStatusEffect("Uniball") && rand(3) == 0)
 			{
 				pc.removeStatusEffect("Uniball");
-				if (pc.ballSizeRaw < 3) pc.ballSizeRaw = 3;
+				if (pc.ballSizeRaw < 6 && pc.hasPerk("Bulgy")) pc.ballSizeRaw = 6;
+				else if (pc.ballSizeRaw < 3) pc.ballSizeRaw = 3;
 				//pc.balls = 2;
 			}
 			
-			if (pc.ballSizeRaw < 8)
+			if((pc.ballSizeRaw < 8 && !pc.hasPerk("Bulgy")) || (pc.ballSizeRaw < 16 && pc.hasPerk("Bulgy")))
 			{
 				if (pc.ballSizeRaw < 6) pc.ballSizeRaw += 0.5;
 				if (pc.ballSizeRaw < 4) pc.ballSizeRaw += 1;
 			}
 			pc.ballSizeRaw++;
-			
-			output(" The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
-			
+
+			output(" The new weight catches you by surprise as");
+			if(pc.balls == 1) output(" it");
+			else output(" they");
+			if(pc.balls == 1) output(" hangs");
+			else output(" hang");
+			output(" lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
 			break;
 			
 		case "vagina":

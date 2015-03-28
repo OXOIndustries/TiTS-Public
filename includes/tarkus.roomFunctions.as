@@ -145,7 +145,7 @@ public function grabARubbahTube():void
 	{
 		flags["SYNTHSHEATH_ACQUIRED"] = 1;
 		output("You walk over and gingerly pull the tube out and hold it up in the air. It is immediately apparent what this object is supposed to be. The huge equine balls sway gently in the air attached to a rubbery equine sheath while you waggle it before your eyes. You notice writing on the side of the object, all but obliterated by time and the elements.");
-		output("\n\n“Xe...en .io...h Sy...hS...th.Mk1” You slowly sound out as you discern the remaining letters.");
+		output("\n\n<i>“Xe...en .io...h Sy...hS...th.Mk1”</i> You slowly sound out as you discern the remaining letters.");
 		output("\n\nYou turn the object over in your hands, the rubbery tube flopping this way and that before you stow the strange object in your pack.");
 	}
 	else

@@ -212,7 +212,7 @@
 				//Nuki ears
 				if(pc.earType != GLOBAL.TYPE_KUITAN && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nAt itch radiates out from the top of your head, migrating down the sides to your ears. Nerves fizzle and misfire as your flesh remoulds. Your eardrums pop a half-dozen times in a row. You wince a time or two, then reach to try and feel the changes. Silky fur brushes against your fingertips, revealing a rounded pair of ears - just like a tanuki or kui-tan!");
+					kGAMECLASS.output("\n\nAn itch radiates out from the top of your head, migrating down the sides to your ears. Nerves fizzle and misfire as your flesh remoulds. Your eardrums pop a half-dozen times in a row. You wince a time or two, then reach to try and feel the changes. Silky fur brushes against your fingertips, revealing a rounded pair of ears - just like a tanuki or kui-tan!");
 					pc.earType = GLOBAL.TYPE_KUITAN;
 					changes++;
 				}
@@ -336,6 +336,7 @@
 					kGAMECLASS.output("\n\n(<b>Perk Gained: 'Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
 					pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
 					pc.ballSizeRaw += 1.5;
+					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1.5;
 					pc.orgasm();
 					pc.ballFullness = 100;	
 					changes++;

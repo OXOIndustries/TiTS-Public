@@ -131,6 +131,12 @@ package classes.Items.Transformatives
 						var nLength:Number = tCocks[i].cLengthRaw;
 						var lLoss:Number = rand(5) + 2;
 						
+						if(target.hasPerk("Mini"))
+						{
+							if(nLength > 12) lLoss *= 2;
+							else if(nLength > 6) lLoss += lLoss/2;
+						}
+
 						nLength -= lLoss;
 						
 						if (nLength < 3)

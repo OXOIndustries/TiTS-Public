@@ -155,7 +155,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	if (pc.hasCock())
 	{
 		addButton(0, "Anal", kirosShipChubnookiUpDaButt, undefined, "Anally", "Fuck the beached Tanuki's ass.");
-		addButton(1, "Vaginal", kirosShipChubnookiUpDaCooter, undefined, "Vaginally", "Fuck the beached Tankuis cunt.");
+		addButton(1, "Vaginal", kirosShipChubnookiUpDaCooter, undefined, "Vaginally", "Fuck the beached Tanuki's cunt.");
 	}
 	else
 	{
@@ -165,11 +165,11 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	
 	if (pc.hasVagina())
 	{
-		addButton(2, "Get Filled", kirosShipChubnookiFucksYouGud, undefined, "Get Filled", "Ride the Tanukis monster cock.");
+		addButton(2, "Get Filled", kirosShipChubnookiFucksYouGud, undefined, "Get Filled", "Ride the Tanuki's monster cock.");
 	}
 	else
 	{
-		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tankuis monster cock.");
+		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tanuki's monster cock.");
 	}
 
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)
@@ -514,7 +514,7 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\n\"<i>R-really?</i>\" the half-crazed hermaphrodite pants, \"<i>I c-can put inside you? I can use you like a little cum-bloated cocksleeve until my balls are empty and you're waddling around full of jizz?</i>\" She bites her lip, grabs her nipple and gasps, violently lurching her hips forward, slamming them into the entrance of the fake pussy with aroused desperation. She jackhammers it a few times before exhaustion overwhelms her, forcing her to give up with a mewl of disappointment. \"<i>Please, do it!</i>\" She roughly yanks back, revealing a glistening fuckpole at least a foot and a half long, pulsating so violently that it visibly throbs in place. It's big, flat flare is stretched wide like it's about to cum, and a steady stream of pre-cum is just rolling out of the distended cum-slit.");
 
-	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like its the most important thing in the room - and to you, it is.  You grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
+	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like its the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
 	if (pc.hasHair()) output(" [pc.hair]");
 	else output(" head");
 	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to [pc.eachVagina] until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering, before you remember your promise. You're going to let this beast-girl cum inside you.");

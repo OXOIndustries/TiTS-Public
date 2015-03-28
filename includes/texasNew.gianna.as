@@ -308,7 +308,7 @@ public function approachGianna(special:String = ""):void
 			else if(rand(3) == 0) output("The Beagles");
 			else if(rand(2) == 0) output("Playing Poker");
 			else output("Buried Treasure");
-			output(" that I haven’t been able to get out of my head.”</i> traightening up, she continues, <i>“There’s something soothing about the simple, driving rhythm of it.”</i> A sly look crosses her face. <i>“But you didn’t come here to talk music - did you? Did you want to hang out, or were you just aiming for a better look at my butt?");
+			output(" that I haven’t been able to get out of my head.”</i> straightening up, she continues, <i>“There’s something soothing about the simple, driving rhythm of it.”</i> A sly look crosses her face. <i>“But you didn’t come here to talk music - did you? Did you want to hang out, or were you just aiming for a better look at my butt?");
 			if(gianna.buttRating() >= 15) output(" It’s your fault it’s like this anyway.");
 			output("”</i>");
 			output("\n\nGianna pivots and arches her back, pointing the faultless ");
@@ -3917,7 +3917,7 @@ public function giveGiannaSomethingCoolYouSlut():void
 	giannaDisplay();
 	output("You search around your possessions for something to give to Gianna.");
 	//Positive
-	if(giannaPersonality() >= 70) output("\n\nGianna bounces over, craning around you to get a look in your pack. <i>“Ohh, did you get me a present?” Her eyes brighten noticeably as she circles you. “I must have made you pretty happy, huh?”</i> She blows air across your earlobe. <i>“If you weren’t about to give me a present I’d pin you down and do it all over it again.”</i>");
+	if(giannaPersonality() >= 70) output("\n\nGianna bounces over, craning around you to get a look in your pack. <i>“Ohh, did you get me a present?”</i> Her eyes brighten noticeably as she circles you. <i>“I must have made you pretty happy, huh?”</i> She blows air across your earlobe. <i>“If you weren’t about to give me a present I’d pin you down and do it all over it again.”</i>");
 	//Neutral
 	else if(giannaPersonality() >= 30) output("\n\nGianna gasps, her eyes glowing brightly. <i>“A present? ...You’re gonna give me a present?”</i> She claps her hands excitedly and watches you with baited breath, or what passes for baited breath when breathing is optional.");
 	//Negnegneg!
@@ -3971,8 +3971,8 @@ public function giveGiannaSomethingTransform(arg:String = "hoss"):void
 		//Neutral Gigi
 		else if(giannaPersonality() >= 30)
 		{
-			output("\n\n\"<i>Ohwow, that's one of those old Fantasy Monster cocks, right? Kiha used to have a whole line of 'em, way back when.</i>\" She giggles and bounds over, running one of her perfectly-formed alaboastor fingers along the blue shaft. \"<i>Well, on a planet full of beast-dicks, this one sure manages to stand out, huh? Of course, you're not giving me a big,expensive, vintage dragon dick just to let me show off to all the other cows, are you?</i>\"");
-			output("\n\nGiving you a mischievous wink, Gianna asks, \"<i>So, wanna see what this monster can do? I bet I can fulfil all sorts of fantasies with it...</i>\"");
+			output("\n\n\"<i>Ohwow, that's one of those old Fantasy Monster cocks, right? Kiha used to have a whole line of 'em, way back when.</i>\" She giggles and bounds over, running one of her perfectly-formed alabaster fingers along the blue shaft. \"<i>Well, on a planet full of beast-dicks, this one sure manages to stand out, huh? Of course, you're not giving me a big, expensive, vintage dragon dick just to let me show off to all the other cows, are you?</i>\"");
+			output("\n\nGiving you a mischievous wink, Gianna asks, \"<i>So, wanna see what this monster can do? I bet I can fulfill all sorts of fantasies with it...</i>\"");
 		}
 		//Shit-tier Sub Droid
 		else

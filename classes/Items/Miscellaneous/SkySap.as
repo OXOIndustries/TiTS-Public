@@ -386,6 +386,11 @@
 						for(x = 0; x < pc.cockTotal(); x++)
 						{
 							pc.cocks[x].cLengthRaw--;
+							if(pc.hasPerk("Mini"))
+							{
+								if(pc.cocks[x].cLengthRaw > 4) pc.cocks[x].cLengthRaw--;
+								else pc.cocks[x].cLengthRaw = 3;
+							}
 						}
 					}
 					else 

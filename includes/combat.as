@@ -878,7 +878,7 @@ public function grappleStruggle():void {
 	//Escape artist! Use reflexes instead of physique if advantageous.
 	if(pc.hasPerk("Escape Artist") && pc.reflexes() >= pc.physique())
 	{
-		if(pc.reflexes() + rand(20) + 5 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
+		if(pc.reflexes() + rand(20) + 7 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 			pc.removeStatusEffect("Grappled");

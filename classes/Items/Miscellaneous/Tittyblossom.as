@@ -135,14 +135,14 @@
 				//4 - 12-15 points
 				else if(rand(2) == 0)
 				{
-					kGAMECLASS.output("\n\nThe inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing as the Estrobloom works its magic.");
+					kGAMECLASS.output("\n\nThe inside of your mouth is all tingly... but so are your lips! You purse them before pressing them together and sliding your [pc.tongue] between them. They feel like heated pads around the oral muscle. The sensation spreads outward through the whole of your [pc.face]. You can actually feel it changing as the Tittyblossom works its magic.");
 					x = 12+rand(4);
 					target.modFem(x);
 				}
 				//5 - 16-20 points
 				else
 				{
-					kGAMECLASS.output("\n\nYou fail to stifle a gasp when the Estrobloom kicks in. Your whole face feels like its practically glowing at this point, alight with electric buzzes of reforming flesh and remapped nerves. Your lips seem fuller and more sensitive, your jaw more svelte, and your nose cuter somehow.");
+					kGAMECLASS.output("\n\nYou fail to stifle a gasp when the Tittyblossom kicks in. Your whole face feels like its practically glowing at this point, alight with electric buzzes of reforming flesh and remapped nerves. Your lips seem fuller and more sensitive, your jaw more svelte, and your nose cuter somehow.");
 					x = 16+rand(5);
 					target.modFem(x);
 				}
@@ -158,7 +158,7 @@
 				//<= 55
 				else if(y <= 55 && target.femininity > 55) kGAMECLASS.output(" <b>Your face is definitely starting to show touches of femininity at this point. Even your lips are a little fuller.</b>");
 				//< 45
-				else if(y < 45 && target.femininity >= 45) kGAMECLASS.output(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if you take another couple Estroblooms....</b>");
+				else if(y < 45 && target.femininity >= 45) kGAMECLASS.output(" <b>You check yourself out and discover that your [pc.face] is completely androgynous now. Your face alone isn't going to tell anybody what gender you are, but if you take another couple Tittyblossoms....</b>");
 				//< 35
 				else if(y < 35 && target.femininity >= 35) kGAMECLASS.output(" <b>After looking at your [pc.face] in your codex's holocam, you can only find a few hints of your masculinity left.</b>");
 				else if(y < 28 && target.femininity >= 28) kGAMECLASS.output(" <b>The profile of your face is getting less obviously masculine, but there's still the matter of your somewhat angular jawline to contend with.</b>");
@@ -311,8 +311,10 @@
 					if(target.cocks[x].cLengthRaw > 20)
 					{
 
-						kGAMECLASS.output("\n\nThe teltale heat of Estrobloom's changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It's getting smaller, and fast! It doesn't stop until its lost about a quarter of its former length, leaving you with only ");
+						kGAMECLASS.output("\n\nThe teltale heat of Tittyblossom's changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It's getting smaller, and fast! It doesn't stop until its lost about a quarter of its former length, leaving you with only ");
 						target.cocks[x].cLengthRaw *= .75;
+						if(target.hasPerk("Mini")) target.cocks[x].cLengthRaw *= .75;
+						if(target.cocks[x].cLengthRaw < 1) target.cocks[x].cLengthRaw = 1;
 						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you're going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
@@ -321,10 +323,12 @@
 						kGAMECLASS.output("\n\nA pleasant tingle in your [pc.cock " + x + "]");
 						if(target.cockTotal() > 1) kGAMECLASS.output(" and in that cock alone");
 						y = 2 + rand(3);
+						if(target.hasPerk("Mini")) y *= 2;
 						if(target.cocks[x].cLengthRaw - y < 8 && target.hasPerk("Hung")) y = target.cocks[x].cLengthRaw - 8;
 						else if(target.cocks[x].cLengthRaw - y < 4.5) y = target.cocks[x].cLengthRaw - 4.5;
-						trace("Modified y: " + y);
+						//trace("Modified y: " + y);
 						if(y < 1) y = 1;
+						if(y >= target.cocks[x].cLengthRaw) y = target.cocks[x].cLengthRaw - 1;
 						//round it
 						y = Math.round(y*10)/10;
 						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your [pc.knees]. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
