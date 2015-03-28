@@ -309,8 +309,6 @@
 		
 		/**
 		 * Figure out the differences, if any, between the bonusResistance arrays between two items and generate formatted HTML to display the difference.
-		 * TODO: Resistances are inverse -- the values are used as damage multipliers, ie, lower is strictly better.
-		 * TODO: Convert the displayed values into percentages?
 		 * @param	newItem		The "replacement" item
 		 * @param	oldItem		The item the replacement would displace
 		 * @return				Formatted HTML string

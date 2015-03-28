@@ -1,6 +1,7 @@
 package classes.Characters 
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	
@@ -70,11 +71,33 @@ package classes.Characters
 			var res:Array = d.resistances;
 			var bRes:Array = d.bonusResistances;
 			
-			// TODO: Convert resistance perks.
+			// Convert resistance perks.
+			var toughLevel:uint = 0;
 			
-			//delete d.meleeWeapon;
-			//delete d.rangedWeapon;
+			if (d.perks)
+			{
+				for (var i:uint = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						if (d.perks[i].storageName == "Tough" && toughLevel == 0) toughLevel = 1;
+						if (d.perks[i].storageName == "Tough 2" && toughLevel <= 1) toughLevel = 2;
+					}
+				}
+			}
 			
+			var toughVal:Number;
+			if (toughLevel == 1) toughVal = 10;
+			if (toughLevel == 2) toughVal = 15;
+			
+			var nBaseHP:TypeCollection = new TypeCollection();
+			nBaseHP.kinetic.resistanceValue = toughVal;
+			
+			var nBaseShield:TypeCollection = new TypeCollection();
+			nBaseShield.kinetic.resistanceValue = toughVal;
+			
+			d.baseHPResistances = nBaseHP.getSaveObject();
+			d.baseShieldResistances = nBaseShield.getSaveObject();			
 			
 			delete d.lustVuln;
 			delete d.resistances;

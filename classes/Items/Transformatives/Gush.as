@@ -62,7 +62,7 @@ package classes.Items.Transformatives
 		public function gushBadEndPartI():void
 		{
 			clearOutput();
-			var pc = kGAMECLASS.pc;
+			var pc:PlayerCharacter = kGAMECLASS.pc;
 			kGAMECLASS.showName("\nTITTIES!");
 			//Milk slave - NT only
 			//Get taken to the milk barn and repeatedly gangbanged by bulls that like dumber girls. Gianna is nice, though.
@@ -103,7 +103,7 @@ package classes.Items.Transformatives
 		public function gushBadEndPartII():void
 		{
 			clearOutput();
-			var pc = kGAMECLASS.pc;
+			var pc:PlayerCharacter = kGAMECLASS.pc;
 			kGAMECLASS.showName("\nTITTIES!");
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS")
 			{
@@ -146,7 +146,7 @@ package classes.Items.Transformatives
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Gush
-				var pc = target;
+				var pc:PlayerCharacter = target as PlayerCharacter;
 				//Just in case it didn't get unlocked before.
 				CodexManager.unlockEntry("Gush");
 				//Not read codex
@@ -362,7 +362,7 @@ package classes.Items.Transformatives
 		public function notBadEndEpilogue4Gush():void
 		{
 			clearOutput();
-			var pc = kGAMECLASS.pc;
+			var pc:PlayerCharacter = kGAMECLASS.pc;
 			output("You lose track of time under the psychosensory assault blasting out of your plentiful boobs. Thoughts of delight and pleasure bounce around, unattached to any sort of linear progression or chain of cognition as if they’re the only thing your brain has room for, and in a way, that’s true. Your beautiful bosom has monopolized your mind for its own ends, forcing your hands to endlessly worship your [pc.nipples]. Who are you to stop it, and why would you want to? It feels so good to pinch and tug and squirt!");
 			output("\n\nSeconds, minutes, and maybe even hours are passing, but they’re of little consequence to you. You’re lead, squirming and moaning, from one [pc.milk]-dripping orgasm to the next, coating yourself so thickly in the [pc.milkVisc] fluid that you its all you can smell anymore. Even if a whole crowd of aliens were to stop and stare, you wouldn’t be aware of them; your eyes are rolled back to far, and if they weren’t, you wouldn’t be looking at anything but your own fecund chest, drooling over how mind-meltingly sensual the very act of lactation has become.");
 			output("\n\nSquirt. Gasp. Dribble. Moan and quiver. On and on, the cascades of ecstasy wash over you, exuded from your [pc.nipples] as easily as the constant streams, but eventually, even seemingly timeless pleasure must abate. You dimly become aware that your [pc.milkNoun] has stopped flowing, your reserves exhausted.");
