@@ -846,7 +846,7 @@ public function tellAnnoAboutSyri():void
 		output("\n\nYou quickly assure her you aren't. They're on different planets, after all.");
 		if(pc.isMischievous()) output(" The logistics would be a nightmare.");
 		output("\n\n<i>\"Well... you and I aren't exactly together, really, and knowing Syri she's just looking for a bum to fuck, so... yeah, I guess that's alright. Kinda weird, though...\"</i>");
-		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Sysy found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
+		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Syri found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
 		output(" She smirks. <i>\"Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>");
 	}
 	else output("\n\n<i>\"Cool! I didn't even know she moved. Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>\n\nYou chuckle and say you will.");
