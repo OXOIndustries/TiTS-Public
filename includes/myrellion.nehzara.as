@@ -728,7 +728,6 @@ public function nehzarasWarriorHonor():void
 	author("Kaizer_Z");
 	showName("\nCONFRONTATION!")
 	showBust("NEHZARA","LYRALLA","JURO");
-	flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] = 1;
 	output("You ");
 	if(pc.legCount > 1) output("step");
 	else output("slide");
@@ -749,6 +748,7 @@ public function nehzaraAndLTFollowupToHonor():void
 	clearOutput();
 	showNehzara();
 	showBust("NEHZARA","MYR_RED_GUARD");
+	flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] = 1;
 	output("You decide to go over and see how Nehzara’s handling the disappointment of watching her rival snatch a major accomplishment out from under her. You’ve never seen her so furious, and you’re sort of worried that she might do something drastic. She <i>was</i> a warrior long before she was a diplomat, after all.");
 	output("\n\n<i>“The goddamn nerve of that honey-guzzling bitch...”</i> Nehzara’s grumbling to herself and has her arms crossed over her chest, just under her bust. You can’t help but notice that the pose she’s struck makes her bust look absolutely fantastic, though that’s probably the last thing on her mind.");
 	output("\n\nHer face brightens just a little when she sees you approaching. The change is subtle, but she definitely perks up a little once you’re there. <i>“Steele,”</i> she says by way of greeting. <i>“No doubt you saw what just happened. That sorry excuse for an ambassador gets away with blatantly drugging a corporate representative and no one does a damn thing.”</i>");
