@@ -801,7 +801,7 @@ public function okayEllieYaCuntLetsMilkMeFirstTime():void
 	if(!pc.isNude()) output("Anyway, let’s get you out of those clothes, alright?”</i>");
 	else output("I’ll hold onto your gear for you, alright?”</i>");
 
-	output("\n\nA little nervously, you do as the cow asks, stripping off your [pc.gear] and handing your equipment over piece by piece. Carries lays it all out on a small table inside the stall before turning back to you, giving you a reassuring smile even as her wandering eyes take in your nude form. <i>“Alrighty then! Let me help you get strapped into the machine here,”</i> she says, practically skipping back to your side and indicating ");
+	output("\n\nA little nervously, you do as the cow asks, stripping off your [pc.gear] and handing your equipment over piece by piece. Carrie lays it all out on a small table inside the stall before turning back to you, giving you a reassuring smile even as her wandering eyes take in your nude form. <i>“Alrighty then! Let me help you get strapped into the machine here,”</i> she says, practically skipping back to your side and indicating ");
 	if(!pc.isBiped()) output("for you to just step up onto and over the machine, putting the weight of your belly onto it -- <i>“don’t worry, it can take your weight, no problem!”</i>");
 	else output("a pair of stirrups at one end, and a handlebar at the other. With a little help from your bovine assistant, you’re able to hop onto the machine and, at her instruction, lay face-down atop it.");
 	output(" Thankfully, a lining of wool padding separates most of your bare [pc.skinNoun] from the cold hard steel of the machine. Carrie adjusts the straps around your [pc.legOrLegs], making sure you’re nice and snug.");

@@ -10,7 +10,7 @@ public function encounterMaleSydian():void
 		author("Lukadoc");
 		flags["MET_SYDIAN_MALE"] = 0;
 		output("\n\nA nearby junkpile shudders, drawing your attention. You look closer, and this time you see something besides rotten rubber and discarded machinery: a pair of wiggling antennae that seem to be groping around rusted metal, further corroding it with every touch. Then, as if somehow aware of your presence, the creature below moves, sending the concealing mound shuddering. Tiny cascades of detritus roll down the side as a vaguely humanoid mass rises up out of it, chewing metallic flakes as the dust settles.");
-		output("\n\nThe creature cocks dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. It's shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
+		output("\n\nThe creature dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. It's shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
 		//No new PG
 		//Met lady rust monster
 		if(flags["MET_FEMALE_SYDIAN"] != undefined) output(" It has to be a male sydian!");

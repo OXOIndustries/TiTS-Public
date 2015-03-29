@@ -842,7 +842,7 @@ public function getABJFromAManzil():void
 	//Bimbo:
 	if(pc.isBimbo()) output(" He’s so cute, but he looks uneasy! You know what always makes you feel better - lots and lots of yummy cum!");
 	else if(pc.isBro()) output(" You’ve shown him who the alpha is. Time to get your reward.");
-	else output("Calmy, you discard your [pc.gear] and slowly step towards him.");
+	else output(" Calmy, you discard your [pc.gear] and slowly step towards him.");
 	output(" His gaze has shifted from your face to your crotch, mesmerised by your rising [pc.cocksNounSimple]. His mouth is hanging open by the time you reach him - your ");
 	if(pc.cockTotal() > 1) output("biggest dick");
 	else output("[pc.cockBiggest]");
