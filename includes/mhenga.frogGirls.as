@@ -160,7 +160,7 @@ public function frogGirlKickAttackkkkkuuuuu():void
 //basic lust attack, only used on males
 public function frogGirlBasicLustAttack():void
 {
-	output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free”</i> she says teasingly.");
+	output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free,”</i> she says teasingly.");
 	if(pc.willpower()/2 + rand(20) + 1 >= 18) output("\nYou manage to ignore the spectacle, much to the kerokoras’ disappointment.");
 	else 
 	{
