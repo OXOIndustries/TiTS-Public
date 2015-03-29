@@ -37,9 +37,16 @@ public function investigateSlashShelly():void
 	//Repeat [shelly]
 	else
 	{
-		output("You walk up to Shelly, and she waves happily when she sees you coming.");
-		if(flags["KNOW_SHELLYS_NAME"] == undefined) output("\n\n<i>“Hello again. You need something?”</i>");
-		else output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
+		if(flags["KNOW_SHELLYS_NAME"] == undefined) 
+		{
+			output("You walk up to Shelly, and she waves happily when she sees you coming.");
+			output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
+		}
+		else 
+		{
+			output("You walk up to the bunny woman, and she locks you with a hopeful look when she sees you approaching.");
+			output("\n\n<i>“Hello again. You need something?”</i>");
+		}
 		output(" she asks with a warm grin.");
 	}
 	//[talk] [assist] [sex] [leave](at first only talk and leave available, after talk you get assist, after assist cock weilders get other sex)
