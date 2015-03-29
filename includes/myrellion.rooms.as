@@ -1329,7 +1329,7 @@ public function initializeMyrellionRooms():void
 	rooms["1H6"].southExit = "1H8";
 	rooms["1H6"].eastExit = "803";
 	rooms["1H6"].moveMinutes = 5;
-	rooms["1H6"].runOnEnter = undefined;
+	rooms["1H6"].runOnEnter = kressiaGateBonus;
 	rooms["1H6"].addFlag(GLOBAL.CAVE);
 	rooms["1H6"].addFlag(GLOBAL.INDOOR);
 	//rooms["1H6"].addFlag(GLOBAL.HAZARD);
@@ -1644,7 +1644,7 @@ public function initializeMyrellionRooms():void
 	rooms["1J36"].northExit = "1J34";
 	rooms["1J36"].southExit = "1J38";
 	rooms["1J36"].moveMinutes = 5;
-	rooms["1J36"].runOnEnter = undefined;
+	rooms["1J36"].runOnEnter = northGildenmereCheckpoint;
 	rooms["1J36"].addFlag(GLOBAL.CAVE);
 	rooms["1J36"].addFlag(GLOBAL.INDOOR);
 	//rooms["1J36"].addFlag(GLOBAL.HAZARD);

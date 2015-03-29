@@ -323,6 +323,42 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function kressiaGateBonus():Boolean
+{
+	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined)
+	{
+		output("\n\nYou're forced to wait while they check your clearance. When it comes up negative, you're ordered to walk back into the caves or into a hail of bullets. You'll take the caves.");
+		processTime(2);
+		clearMenu();
+		addButton(11,"South",move,"1H8");
+		return true;
+	}
+	else
+	{
+		output("\n\nYou're forced to wait while they check your clearance. They wave you through after a minute or two.");
+		processTime(2);
+	}
+	return false;
+}
+
+public function northGildenmereCheckpoint():Boolean
+{
+	if(!pc.hasKeyItem("Gildenmere Pass"))
+	{
+		output("\n\nA group of golden soldiers approaches you here, checking you for the paperwork that would allow one free roam of this part of Gildenmere. When you don't have it, they show you the door. Looks like you'll have to go walk through the caves of no ant's land.");
+		processTime(2);
+		clearMenu();
+		addButton(6,"North",move,"1J34");
+		return true;
+	}
+	else
+	{
+		output("\n\nA group of golden soldiers approaches you, checking your paperwork. Once satisfied, they let you go on your way.");
+		processTime(2);
+	}
+	return false;
+}
+
 public function gildenmereElevatorBottomBonus():Boolean
 {
 	if(!pc.hasKeyItem("Gildenmere Pass"))
