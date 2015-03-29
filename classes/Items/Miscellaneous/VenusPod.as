@@ -55,8 +55,8 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			if (!kGAMECLASS.debug) this.quantity++;
-			kGAMECLASS.output("Nothing you can do with this yet.");
+			if(!kGAMECLASS.infiniteItems()) this.quantity++;
+			kGAMECLASS.output("There is nothing you can do with this yet.");
 			return false;
 		}
 	}
