@@ -2233,7 +2233,7 @@ public function penniliciousPawjob():void {
 	output(" woman while she circles around, shaking her body for your enjoyment until she sits down beside you.");
 	
 	output("<i>“So, mate, do you mind licking me out</i>");
-	if(pc.hasCock()) output("<i> or sucking me off</i>");
+	if(penny.hasCock()) output("<i> or sucking me off</i>");
 	output("<i> while I do this, or we going to forget this foot business and just get naughty?”</i>  Penny asks.");
 	//[Lick Out] [Suck Off] [GetGroundOn] [Frot]
 	//The first two go to the same scene with variations. The second two are unique.
@@ -2272,7 +2272,7 @@ public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	output("\n\n<i>“You like that, don’t you, [pc.name]? You like my foxy paws wrapping around your cock and stroking it, jacking you off with my feet,”</i>  Penny states with a sigh. Her toes interlace around your [pc.cockBiggest]");
 	if(pc.biggestCockVolume() >= 500) output(" as well as they can, given its girth");
 	output(", and she begins to pleasure you. Twisting them around, she keeps one on top for a while, slowly pumping up and down, squeezing your naturally secreted lubricant onto the other before switching. Then, the process begins anew, making Penny’s feet shine with sexual juices while they clasp your cock in their honeyed embrace. It’s all you can do not to thrust and try to fuck her feet right then and there.");
-	output("\n\nGrabbing hold of the fennec-morph by her curvy bottom, you try to focus on the oral you’re providing - anything to distract your body from its building need to fuck, to thrust wildly and with reckless abandon into the faux orifice surrounding it. Sensing this, Penny takes her slick paws and begins to go faster, polishing your [pc.cockBiggest] with with its own juices. The alternating textures of her soft fur and pleasant pads are stoking your ardor until you feel like your whole body is a blaze of sexual need, but you strain to hold still. You’re determined to let her feet bring you to climax, after all.");
+	output("\n\nGrabbing hold of the fennec-morph by her curvy bottom, you try to focus on the oral you’re providing - anything to distract your body from its building need to fuck, to thrust wildly and with reckless abandon into the faux orifice surrounding it. Sensing this, Penny takes her slick paws and begins to go faster, polishing your [pc.cockBiggest] with its own juices. The alternating textures of her soft fur and pleasant pads are stoking your ardor until you feel like your whole body is a blaze of sexual need, but you strain to hold still. You’re determined to let her feet bring you to climax, after all.");
 	output("\n\nYou start to moan enthusiastically into Penny’s crotch. The vibrations only serve to turn her strokes jerky and irregular, which in turn heightens your own excitement. The fox-girl grunts, <i>“Come on, my </i>");
 	if (dick) output("<i>cock</i>");
 	else output("<i>cunt</i>");
@@ -2847,7 +2847,7 @@ public function gardeFordWritesPennySmex():void {
 	else
 	{
 		output("\n\nYou position one arm under Penny’s leg and lift her pelvis up to your face. Her upper body is pushed further onto her desk, knocking papers onto the floor. You give her lust-engorged pussy a big lick, starting at her tiny clit and travelling all the way up to the base of her tail. The fox girl’s legs dangle in the air, her feet stretching out as far as they can in her spasms of pleasure. The foxy police-woman struggles to maintain a grip to stop herself from sliding over the edge of the desk. A combination of her juices and your saliva trickles down her belly all the way to the cleft of her breasts.");
-		output("\n\nThe fennec’s tail bats against your face with every pass, the soft fur feeling wonderful against your [pc.skinFurScales]. You move your tongue back down to her vagina and circle it around the edge. When you reach her hole you slide in and lick around her inner walls. “Ahh, f-fuck, eat me like the predator you are, Steele,” Penny slurs through her moans. You happily oblige, moving her legs over your shoulders for easier holding. Her thighs tighten around your head as your licks intensify, and you return both hands to Penny’s sonar dishes.");
+		output("\n\nThe fennec’s tail bats against your face with every pass, the soft fur feeling wonderful against your [pc.skinFurScales]. You move your tongue back down to her vagina and circle it around the edge. When you reach her hole you slide in and lick around her inner walls. <i>“Ahh, f-fuck, eat me like the predator you are, Steele,”</i> Penny slurs through her moans. You happily oblige, moving her legs over your shoulders for easier holding. Her thighs tighten around your head as your licks intensify, and you return both hands to Penny’s sonar dishes.");
 		output("\n\nThe fiesty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
 		//if short tongue: 
 		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slather her walls with your saliva, mixing it with her juices and letting it run into your mouth and down her body like a mountain stream.");
@@ -2862,7 +2862,7 @@ public function gardeFordWritesPennySmex():void {
 	else output("you have a lot more pleasure to give her.");
 	output(" You give both of Penny’s furry buttcheeks a big squeeze and begin to move up her body, planting kisses along her athletic form as you go. As you pass her chest you kiss the side of her DD-cup boobs before moving up to her ears.");
 	
-	output("\n\n“Huh? It’s not over? I don’t know how active I’ll be-eeee” Penny says weakly before you assault her ears with kisses. Starting at the base you kiss all the way up the large lobes. Her ears try to duck away as your hot breath assails them, but you use your lips to mock bite them. The second ear twitches with anticipation as you finish with the first, and you have no plans to leave it wanting. This time you start with a false bite to the tip, then brush your lips softly against the back till you kiss the base. As you work on her ears, you ");
+	output("\n\n<i>“Huh? It’s not over? I don’t know how active I’ll be-eeee”</i> Penny says weakly before you assault her ears with kisses. Starting at the base you kiss all the way up the large lobes. Her ears try to duck away as your hot breath assails them, but you use your lips to mock bite them. The second ear twitches with anticipation as you finish with the first, and you have no plans to leave it wanting. This time you start with a false bite to the tip, then brush your lips softly against the back till you kiss the base. As you work on her ears, you ");
 	if(!pc.isNude()) output("remove your [pc.gear] and ");
 	if(pc.hasCock() && pc.hasVagina()) output("slip your fingers around your [pc.cocks] to play with your [pc.vaginas].");
 	else if(pc.hasCock()) output("rub your stiff [pc.cocks].");

@@ -135,7 +135,7 @@ public function lieveInitialEncounter():void
 	
 	output("\n\n<i>“Steele. [pc.name] Steele,”</i> you answer.");
 	
-	if (pc.hasCock()) output("\n\n<i>“Steele?”</i> the ravenette smiles. <i>“What a firm, strong name...");
+	if (pc.hasCock()) output("\n\n<i>“Steele?”</i> the ravenette smiles. <i>“What a firm, strong name...”</i>");
 	else output("<i>“Good to meet you, Steele,”</i> Lieve says with a smile, gently stroking the blonde girl’s hair.");
 	
 	output("\n\n<i>“Oh, and these are my trench wives, Mayren,”</i> she says, patting the blonde’s head, <i>“and Sierva,”</i> she finishes, reaching behind herself to put a hand on the stronger-looking ravenette’s hip. The gold-plated warrior makes a pleasured sound and wraps her arms around Lieve’s waist.");
@@ -307,7 +307,7 @@ public function lieveTalkToSierva():void
 	output("\n\n<i>“So, how did you end up here?”</i> you ask.");
 	if (pc.isNice()) output(" <i>“If you don’t mind me asking, that is.”</i>");
 	
-	output("\n\nSierva’s smile fades completely, replaced by a hurt look as she answers, <i>“I was wounded in action. Our battalion was supposed to take back a town from the Federation, a surface access town called Ferenze. The enemy was entrenched, though, and we walked into a solid wall of machinegun fire. I called a retreat when I realized the attack was hopeless, but took a round in the hip on the way back to our line. Ended up falling into a shell crater, left behind and bleeding out. I laid there for hours... the pain was incredible. Even if my troops realized they’d left me behind, there was nothing they could do to help with all those Federation guns aimed at them.");
+	output("\n\nSierva’s smile fades completely, replaced by a hurt look as she answers, <i>“I was wounded in action. Our battalion was supposed to take back a town from the Federation, a surface access town called Ferenze. The enemy was entrenched, though, and we walked into a solid wall of machinegun fire. I called a retreat when I realized the attack was hopeless, but took a round in the hip on the way back to our line. Ended up falling into a shell crater, left behind and bleeding out. I laid there for hours... the pain was incredible. Even if my troops realized they’d left me behind, there was nothing they could do to help with all those Federation guns aimed at them.”</i>");
 	
 	output("\n\n<i>“That night, though, Lieve found me. She was crawling through no-man’s land to spot for artillery, and by chance happened to take cover in the crater I’d fallen into.”</i> Looking up to her captor with a smile, Sierva adds, <i>“She took pity on me. Dragged me back to a Federation aid station and ordered their medics to patch me up. Another hour, they said later, and I’d have bled out completely.”</i>");
 	
@@ -404,7 +404,7 @@ public function lieveTalkNoMansLand():void
 	if (flags["ENCOUNTERED_LANDMINES"] != undefined) output("\n\nYou blink. <i>“Landmines?”</i>");
 	else output("\n\n<i>“I’ve noticed a few already,”</i> you grumble.");
 	
-	output("\n\nShe nods. <i>“We can’t use artillery down here, Steele. Both sides decided to make up for it by mining the space between the front lines, making it hell for the other to advance. There’s gold myr explosive mines, and our venom vapor ones out there. Either one can ruin your day if you’re not careful. If you haven’t already, go in town and see if you can buy a minesweeper. Cunning little device that picks ‘em up before you step on them. Saved my life more than once.");
+	output("\n\nShe nods. <i>“We can’t use artillery down here, Steele. Both sides decided to make up for it by mining the space between the front lines, making it hell for the other to advance. There’s gold myr explosive mines, and our venom vapor ones out there. Either one can ruin your day if you’re not careful. If you haven’t already, go in town and see if you can buy a minesweeper. Cunning little device that picks ‘em up before you step on them. Saved my life more than once.”</i>");
 	
 	output("\n\n<i>“They’re not the worst things you’ll find out there, though,”</i> Lieve adds, inviting you to sit down. You do so as Lieve continues talking. Her voice shifts from the guarded friendliness she normally shows you to a more authoritative pitch, as if she’s talking to one of her subordinates. You imagine she’s given this speech several times before.");
 	
@@ -417,7 +417,7 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“You’ve fought the nyrea before?”</i> you ask.");
 	
-	output("\n\nLieve nods. <i>“Before the war, Federation troops were mainly fighting off nyrea raids. Back in our territory, the nyrea have a few fairly large city-states. One particularly ambitious queen even tried to form a nyrean country, though that failed spectacularly. Some even decided to join the Federation when it formed - we’ve got a few scout companies of mixed myr and nyrea. The ones that can take their minds off fucking for long enough to be useful, anyway.");
+	output("\n\nLieve nods. <i>“Before the war, Federation troops were mainly fighting off nyrea raids. Back in our territory, the nyrea have a few fairly large city-states. One particularly ambitious queen even tried to form a nyrean country, though that failed spectacularly. Some even decided to join the Federation when it formed - we’ve got a few scout companies of mixed myr and nyrea. The ones that can take their minds off fucking for long enough to be useful, anyway.”</i>");
 	
 	output("\n\n<i>“Speaking of minds full of fucking, you’ll want to keep clear of any myr - of any color - you find out there. The ones that aren’t deserters looking to steal from you are likely to be infested with the myrmedius fungus. I don’t know what it would do to an offworlder, but to myr, it drives us mad with lust. Infected victims can be unpredictable, and will try to force themselves on you. They’re not particularly physically strong, but can still get the better of you if you aren’t careful.”</i>");
 	
@@ -556,7 +556,7 @@ public function lieveTalkScars():void
 	
 	output("\n\n<i>“But not you?”</i>");
 	
-	output("\n\nLieve sighs. <i>“Not me. At least, not for those scars. A little over a year ago, I pulled spotter duty. Nothing out of the ordinary - one of the most important things us scouts do is carry radios into No Man’s Land and spot for artillery. That’s how I met Sierva, even. Dangerous work, and exhausting, but it makes our cannons a hell of a lot more effective. Worth every sweaty, filthy day of curling up in a crater hoping the shells don’t fall just a little bit short and blow me to pieces.");
+	output("\n\nLieve sighs. <i>“Not me. At least, not for those scars. A little over a year ago, I pulled spotter duty. Nothing out of the ordinary - one of the most important things us scouts do is carry radios into No Man’s Land and spot for artillery. That’s how I met Sierva, even. Dangerous work, and exhausting, but it makes our cannons a hell of a lot more effective. Worth every sweaty, filthy day of curling up in a crater hoping the shells don’t fall just a little bit short and blow me to pieces.”</i>");
 	
 	output("\n\n<i>“It was the tenth time I’d played spotter, back when the fighting was about fifty miles back east. Everything was going fine until I crawled into a ditch... that happened to have a trap door in it.”</i>");
 	
@@ -847,7 +847,7 @@ public function lieveSexEntry():void
 		output("Lieve and her girls seem quite friendly, and the display of bare bosoms and the sexy, hungry looks of her harem has you burning up under the collar. After a moment's hesitation, you take a step forward and ask if she's up for it.");
 
 		if (pc.isMasculine()) output("\n\nAfter a moment’s thought, Lieve flashes you a slight smile and says, <i>“I think we can do that. Go on, girls, I know you’ve been wanting to sink your teeth into him since you saw him.”</i>");
-		else output("\n\n<i>“I thought you’d never ask,”</i> Lieve answers with a big grin. <i>“Just toss your gear aside and relax, [pc.name]. My girls and I will take good care of you...");
+		else output("\n\n<i>“I thought you’d never ask,”</i> Lieve answers with a big grin. <i>“Just toss your gear aside and relax, [pc.name]. My girls and I will take good care of you...”</i>");
 	}
 	else
 	{
@@ -1334,7 +1334,7 @@ public function lieveSoloTurnsDownDudes():void
 	else output(" of a dick and some chiseled muscles like that");
 	output(", but it’s... it’s really just not doing it for me. Sorry.”</i>");
 	
-	output("\n\nOof. You slump your shoulders, advances turned aside by an accident of orientation. Lieve gives you an apologetic look and angles you towards her waiting harem. <i>“Look, we can have some fun by proxy, though the girls, alright? I know they’d love to get their hands on a real, live dick.”</i>");
+	output("\n\nOof. You slump your shoulders, advances turned aside by an accident of orientation. Lieve gives you an apologetic look and angles you towards her waiting harem. <i>“Look, we can have some fun by proxy, through the girls, all right? I know they’d love to get their hands on a real, live dick.”</i>");
 
 	processTime(5 + rand(2));
 	
@@ -1789,7 +1789,7 @@ public function lieveTourTheTownII():void
 	
 	output("\n\n<i>“So what’s the story here?”</i> you ask, nodding towards the ruined statue - or what little is left of it: just the feet and, far above you, hands bracing the ceiling, severed at the wrists.");
 	
-	output("\n\nLieve shrugs, not slowing down. <i>“Was a monument to some kind of Goldie leader. A queen born here in Kressia, I think - her tits and ass were big enough to be, anyway. We were supposed to leave it alone, up until some jackass resistance fighters decided to climb up inside it with scoped rifles and started raining fire down on us. Shootout lasted a few hours - they had almost total cover up there, and most of the troops in town were armed with nothing but their sidearms. Finally managed to round up a couple of the sharpshooters from the expeditionary army and deal with it.");
+	output("\n\nLieve shrugs, not slowing down. <i>“Was a monument to some kind of Goldie leader. A queen born here in Kressia, I think - her tits and ass were big enough to be, anyway. We were supposed to leave it alone, up until some jackass resistance fighters decided to climb up inside it with scoped rifles and started raining fire down on us. Shootout lasted a few hours - they had almost total cover up there, and most of the troops in town were armed with nothing but their sidearms. Finally managed to round up a couple of the sharpshooters from the expeditionary army and deal with it.”</i>");
 	
 	output("\n\n<i>“Of course, the rebels managed to set off some gunpowder charges before they died. Took out most of the statue, and sent rubble raining down on everybody.”</i> Lieve shakes her head, you almost think sadly. <i>“Killed more people with falling bits of statues than their guns. Mostly Goldies, too. Big rocks went slamming through roofs, storefronts, you name it. An absolute mess.”</i>");
 	

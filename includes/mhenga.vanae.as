@@ -1222,7 +1222,7 @@ public function vanaeHuntressVaginalSex():void
 		output("\n\nYou assure her it will despite your size, though she looks dubious. <i>“If you leave me ruined from your stupidly huge cock, I'm holding you responsible,”</i> she warns.");
 	}
 
-	output("\n\nOnce she has finishes appraising your [pc.cock " + selCock + "] she stretches out her [monster.tongue], gently lapping at your [pc.cockhead " + selCock +"]. The bumps of her tongue bristle and stroke your sensitive glans, her saliva drooling lewdly on it and down your [pc.cock " + selCock +"]. Soon she is moving down, her tongue curling hungrily around the underside of your shaft. You quickly stiffen and groan as she masterfully lashes your length, leaving it rigid and glistening in her spit.");
+	output("\n\nOnce she finishes appraising your [pc.cock " + selCock + "] she stretches out her [monster.tongue], gently lapping at your [pc.cockhead " + selCock +"]. The bumps of her tongue bristle and stroke your sensitive glans, her saliva drooling lewdly on it and down your [pc.cock " + selCock +"]. Soon she is moving down, her tongue curling hungrily around the underside of your shaft. You quickly stiffen and groan as she masterfully lashes your length, leaving it rigid and glistening in her spit.");
 
 	if (pc.balls > 0)
 	{

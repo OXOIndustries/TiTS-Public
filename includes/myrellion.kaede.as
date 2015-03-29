@@ -509,7 +509,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\nWith that little encouragement to urge her on, Kaede starts to move faster. She wraps her arms around your neck, pulling herself into your lips for a long, drawn-out kiss. You accept it eagerly, relaxing into the halfbreed’s embrace and letting her ride you. Soon, her occasional little moans turn into a symphony of passionate cries and lusty groans as your cock spears her over and over again, and your hand jerks her shaft until she’s babbling <i>“C-cumming cumming cumming!”</i>");
 	
-	output("\n\nThat was fast! You give the edging half-ausar an understanding look and move your own hand a little quicker, jacking her shaft faster than she can bounce her hips. A few seconds of that treatment, and Kaede’s throwing her head back and arching her spine, howling as a streak of creamy white squirts out and splatters onto your belly. You just keep sliding your hand across her lubed-up shaft until the climactic cumshut trickles down to a little drool of watery aftershocks that dribble onto your fingers.");
+	output("\n\nThat was fast! You give the edging half-ausar an understanding look and move your own hand a little quicker, jacking her shaft faster than she can bounce her hips. A few seconds of that treatment, and Kaede’s throwing her head back and arching her spine, howling as a streak of creamy white squirts out and splatters onto your belly. You just keep sliding your hand across her lubed-up shaft until the climactic cumshot trickles down to a little drool of watery aftershocks that dribble onto your fingers.");
 	
 	output("\n\nBashfully, Kaede looks pointedly away and mumbles <i>“S-sorry, [pc.name]. It’s been a while...”</i>");
 	
@@ -542,7 +542,7 @@ public function kaedeMyrellionFuckAssFacial():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("A wicked through crosses your mind, only just managing to drown out the spasms of pleasure starting to wrack your body long enough to entice you into action. At the apex of a thrust, you rock your hips just a little further back, enough to pull yourself completely out of Kaede’s clenching hole. You lunge forward, grabbing Kaede’s head of auburn hair and lifting her up to look your one-eyed snake dead on.");
+	output("A wicked throught crosses your mind, only just managing to drown out the spasms of pleasure starting to wrack your body long enough to entice you into action. At the apex of a thrust, you rock your hips just a little further back, enough to pull yourself completely out of Kaede’s clenching hole. You lunge forward, grabbing Kaede’s head of auburn hair and lifting her up to look your one-eyed snake dead on.");
 	
 	output("\n\nShe goes wide-eyed, just in time for the first spurt of [pc.cumNoun] to squirt out from your [pc.cock] and splatter across her face. Kaede yelps and laughs as spunk smears over her lips and cheeks. You furiously stroke your prick, milking out every drop onto Kaede’s face and breasts, then trickles out onto her belly as your orgasm starts to subside.");
 
