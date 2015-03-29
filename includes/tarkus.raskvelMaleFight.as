@@ -221,8 +221,8 @@ public function pay4SafetyWivSmex():void
 	//Misc:
 	else if(pc.isMischievous())
 	{
-		output("<i>“Oh dear, I left my wallet back at the spaceport!” you clap your hands into your face with theatrical dismay. <i>“Maybe I’ve got what you’re looking for in my back pocket.”</i> You turn and display your [pc.butt] for them, before scrounging");
-		if(pc.isCrotchGarbed()) output(" beneath your [pc.lowergarment]");
+		output("<i>“Oh dear, I left my wallet back at the spaceport!”</i> you clap your hands into your face with theatrical dismay. <i>“Maybe I’ve got what you’re looking for in my back pocket.”</i> You turn and display your [pc.butt] for them, before scrounging");
+		if(pc.isCrotchGarbed()) output(" beneath your [pc.lowerGarment]");
 		else output(" between your cheeks");
 		output(" with apparent earnestness. This is met with a chorus of appreciative laughter.");
 
@@ -790,7 +790,7 @@ public function victoryVsRaskGang():void
 {
 	//Raskvel loss texts
 	//Via HP
-	if(foes[0].HP() < 0)
+	if(foes[0].HP() < 1)
 	{
 		output("Your blow fells the big raskvel; he lands in a semi-comatose heap at your feet. The other two, all the laughter thoroughly thrashed out of them, take this as a sign to collapse as well, groaning surrender. You look down at the dusty pile of taut, burnished reptile muscle you’ve created, feeling rather satisfied.");
 		if(pc.lust() >= 33) output(" You wonder if you’re quite satisfied enough, though.");
@@ -869,7 +869,7 @@ public function consensualGangBang():void
 	output("\n\n<i>“Sucks to be you,”</i> agrees his friend, who has crawled up your front, used his weight to lay you back into the one behind you and is presenting his seven inch purple dick to your face. You gaze up at him slyly before licking his tip, tantalizing him with it and tasting his musk before enveloping it with your [pc.lips] and swallowing his smooth hardness whole, earning a delighted groan as you do. You’ve barely gotten down to the base when he tenses up, grabs your shoulders and ejaculates; again, one single pump of thick semen, coating the back of your mouth, and just like the other one, he stays rock hard.");
 
 	output("\n\nHe spreads his fingers across the back of your head and continues to piston his length between your lips, his orgasm only seeming to intensify lust. His heady urgency is evidently infectious. You arch your back and give out a muffled gasp as the raskvel beneath you spreads your cheeks and with a satisfied grunt pierces your [pc.asshole] with the thick, pointed dick you’d thought you’d teased into submission. You tense up around him and feel yet more liquid warmth fire into your insides.");
-	if(pc.ass.wetness() > 0 || pc.ass.looseness() >= 3) output(" Not that your slutty, always-ready back passage needed it, but ");
+	if(pc.ass.wetness() > 1 || pc.ass.looseness() >= 3) output(" Not that your slutty, always-ready back passage needed it, but ");
 	else output(" Whether he meant to do it or not, ");
 	output("this makes his penetration of you much easier; he slides into your cum-oiled tunnel with ease, bucking his powerful hips into your [pc.butt] as he fills you. The one between your legs meanwhile has taken the opportunity to clamber up and mount you.");
 	pc.buttChange(foes[0].cockVolume(0),true,true,false);
@@ -925,14 +925,16 @@ public function consensualGangBang():void
 	{
 		output("pushes your [pc.chest] together and rams his erection between them, ");
 		if(!pc.hasFuckableNipples()) output("gently pinching");
-		else output("fingering your [pc.nipples] as he does");
+		else output("fingering");
+		output(" your [pc.nipples] as he does");
 	}
 	//ifnoboobs:
 	else 
 	{
-		output("rams his erection into the softness between inner arm and chest, using your armpit whilst gently ");
+		output("rams his erection into the softness between your inner arm and chest, using your armpit whilst gently ");
 		if(!pc.hasFuckableNipples()) output("pinching");
-		else output("fingering your [pc.nipples]");
+		else output("fingering");
+		output(" your [pc.nipples]");
 	}
 	output(".");
 
@@ -1421,7 +1423,9 @@ public function loseToRaskvelAndGetGangBangued():void
 	//Female/herm not raskmorph:
 	else if(pc.race() != "raskvel" && pc.race() != "rask-morph" && pc.race() != "raskvel-morph")
 	{
-		output("\n\n<i>“There now sweetheart, there was no need for such a fuss,”</i> sighs the biggest. Something pricks your skin and immediately your pulse quickens, [pc.eachVagina] beading moisture in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins. <i>“We only wanted to fuck your every orifice and stuff you full of the good, strong kids like a big breeding cow like you can’t help but want.”</i>");
+		output("\n\n<i>“There now sweetheart, there was no need for such a fuss,”</i> sighs the biggest");
+		if(pc.isCrotchGarbed()) output(" as he busily rips off your [pc.lowerGarments]");
+		output(". Something pricks your skin and immediately your pulse quickens, [pc.eachVagina] beading moisture in immediate reaction to the heavy load of chemical aphrodisiac that has just been dumped into your veins. <i>“We only wanted to fuck your every orifice and stuff you full of the good, strong kids like a big breeding cow like you can’t help but want.”</i>");
 		//PC is 4’3” or less:
 		if(pc.tallness <= 51) output("\n\n<i>“[pc.HeShe]’s smaller than you, what are you basing “big breeding cow” on?”</i> the medium sized one interjects.");
 		output("\n\n<i>“You going to get up in that or what?”</i> husks the smallest, voice heavy with need. <i>“Because if you’re not I will.”</i>");
@@ -1451,7 +1455,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	else pc.buttChange(foes[0].cockVolume(0),true,true,false);
 
 	output("\n\nBent over, weak with the arousal ");
-	if(pc.hasCock()) output("they have ");
+	if(aphrodisiaced) output("they have ");
 	else output("your instincts have ");
 	output("sunken into you and being pumped like this, there’s really no struggling against it. Hard, hot cock flesh enters your mouth, held in there by the strong fingers caressing the nape of your neck, the raskvel sighing with deep enjoyment at the way the jerking of your body to the pounding you’re taking from behind sends your [pc.lips] and [pc.tongue] sliding and quivering down his sex.");
 
@@ -1538,7 +1542,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	if(pc.hasVagina()) output("pussy");
 	else output("ass");
 	output(" and sucking maw... but that’s simply a signal for them to swap positions again, their apparently insatiable purple dicks still pointing fiercely upwards, ever eager to thrust into another tender orifice of yours, making the very most out of ");
-	if(!aphrodisiaced) output("your exotic offworlder flesh");
+	if(aphrodisiaced) output("your exotic offworlder flesh");
 	else output("your wriggling, shortstack flesh that they know so well how to manipulate");
 	output(".\n\nYou are made to cum again and again, out of pattern with them, ");
 	if(pc.hasVagina()) 
@@ -1561,7 +1565,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	output("\n\nAt long, long last, when the biggest one withdraws from your [pc.asshole] and the middle-sized one from your [pc.lips]. After burying yet another warm load in you deep, their lengths flop downwards. They release you with lazy, satiated groans, and you are allowed to sink to the ground, panting hoarsely, raskvel cum oozing richly out of each and every hole you own.");
 
 	output("\n\n<i>“Whew!”</i> one of them sighs. Somebody pats your [pc.ass] comfortingly. <i>“Sorry if we got a bit carried away there, ");
-	if(!aphrodisiaced) output("but it’s not often we get to tap offworlder ass, y’know? And you shouldn’t have tried it on with us.");
+	if(aphrodisiaced) output("but it’s not often we get to tap offworlder ass, y’know? And you shouldn’t have tried it on with us.");
 	else output("but you gotta learn what to expect if you want to be one of us, y’know?");
 	output("”</i>");
 

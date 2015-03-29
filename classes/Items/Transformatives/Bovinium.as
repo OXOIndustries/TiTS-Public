@@ -268,7 +268,9 @@ package classes.Items.Transformatives
 			{
 				output("You feel a lance of point, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
 
-				output("\n\nYou reach a hand down, brushing it along your {bare }crotch, and find an unsettling wetness clinging to your groin. Your fingers explore further, and find a cut gaping in your [pc.skin], growing deeper. The pangs of agony start to abate, replaced by something approaching pleasure as your fingers explore this new cleft in your groin. Your find a small lump near to top, and a single touch of it sends shivers of ecstasy through you. As your explore the new hole in your body, you quickly come to the realization that <b>you now have a vagina</b>!\n\n");
+				output("\n\nYou reach a hand down, brushing it along your ");
+				if(!target.isCrotchGarbed()) output("bare ");
+				output("crotch, and find an unsettling wetness clinging to your groin. Your fingers explore further, and find a cut gaping in your [pc.skin], growing deeper. The pangs of agony start to abate, replaced by something approaching pleasure as your fingers explore this new cleft in your groin. Your find a small lump near to top, and a single touch of it sends shivers of ecstasy through you. As your explore the new hole in your body, you quickly come to the realization that <b>you now have a vagina</b>!\n\n");
 				
 				target.createVagina();
 				target.clitLength = 0.5;

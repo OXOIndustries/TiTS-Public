@@ -8,6 +8,7 @@
 		public function VaginaClass(vag:Boolean = true)
 		{
 			if(!vag) clits = 0;
+			wetnessRaw = 0;
 			hymen = false;
 		}
 		

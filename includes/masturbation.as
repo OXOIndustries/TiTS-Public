@@ -286,17 +286,16 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		// Unavailable, so we'll just not show the button (in case player backs out and comes back later when the scene is available)
 	}
 	
-	// Random button
-	if (faps.length > 0)
-	{
-		addButton(btnOffset, "Random", selectRandomFap, faps);
-		btnOffset++;
-	}
-	
 	// Repeat button
 	if (showRepeat)
 	{
 		addButton(btnOffset, "Repeat", filtFaps[0].func);
+		btnOffset++;
+	}
+	// Random button
+	if (faps.length > 0)
+	{
+		addButton(btnOffset, "Random", selectRandomFap, faps);
 		btnOffset++;
 	}
 
