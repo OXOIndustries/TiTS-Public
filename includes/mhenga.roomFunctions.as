@@ -91,32 +91,35 @@ public function jungleDeepEncounters():Boolean {
 	//Venus pitchers require you to have met a younger pitcher.
 	if(flags["TIMES_MET_VENUS_PITCHER"] != undefined)
 	{
-		//in this room and da chick awake.
-		if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
-			elderVenusPitcherEncounter();
-			flags["JUNGLE_STEP"] = 0;
-			flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
-			flags["ROOM_80_PITCHER_MET"] = 1;
-			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
-			return true;
-		}
-		//in this room and da chick awake.
-		if(currentLocation == "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] == undefined) {
-			elderVenusPitcherEncounter();
-			flags["JUNGLE_STEP"] = 0;
-			flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
-			flags["ROOM_65_PITCHER_MET"] = 1;
-			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
-			return true;
-		}
-		//in this room and da chick awake.
-		if(currentLocation == "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] == undefined) {
-			elderVenusPitcherEncounter();
-			flags["JUNGLE_STEP"] = 0;
-			flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
-			flags["ROOM_61_PITCHER_MET"] = 1;
-			if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
-			return true;
+		if(pc.hasCock() || pc.hasVagina() || pc.hasCuntTail())
+		{
+			//in this room and da chick awake.
+			if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
+				elderVenusPitcherEncounter();
+				flags["JUNGLE_STEP"] = 0;
+				flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
+				flags["ROOM_80_PITCHER_MET"] = 1;
+				if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
+				return true;
+			}
+			//in this room and da chick awake.
+			if(currentLocation == "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] == undefined) {
+				elderVenusPitcherEncounter();
+				flags["JUNGLE_STEP"] = 0;
+				flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
+				flags["ROOM_65_PITCHER_MET"] = 1;
+				if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
+				return true;
+			}
+			//in this room and da chick awake.
+			if(currentLocation == "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] == undefined) {
+				elderVenusPitcherEncounter();
+				flags["JUNGLE_STEP"] = 0;
+				flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
+				flags["ROOM_61_PITCHER_MET"] = 1;
+				if(!rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)) rooms[currentLocation].addFlag(GLOBAL.PLANT_BULB);
+				return true;
+			}
 		}
 	}
 
