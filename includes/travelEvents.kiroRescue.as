@@ -227,14 +227,14 @@ public function kirosShipChubnookiUpDaButt():void
 	output("\n\nYou figured, given the porn she's been watching. Still, you've got a cock, and she's got an ass with what's gotta be a massive prostate, ripe for the milking. And if there's one way to get that cum out of her, that's the key. Squeezing her ass, you tell her to brace herself. She nods, biting her lips as your cock presses in against her dark star.");
 
 	// small cock
-	if (pc.cockVolume(selCock) <= 10 * 2)
+	if (pc.cockVolume(selCock) <= kiro.biggestCockVolume() - 100)
 	{
 		output("\n\nIt doesn't take as much effort as you'd thought to get your [pc.cock " + selCock + "] in. She gives a little whine, pushes back for a moment, and you're in. Looks like she's played with this hole more than she lets on... ");
 		pc.cockChange(false, true);
 		kiro.buttChange(pc.cockVolume(selCock), false, false, false);
 	}
 	// big cock
-	else if (pc.cockVolume(selCock) <= 21 * 3.5)
+	else if (pc.cockVolume(selCock) <= kiro.biggestCockVolume()+100)
 	{
 		output("\n\nYou push against her asshole, grunting with effort as her tight little hole resists you, shoving back against your stiff cock until finally with a cry of pain she yields, and your [pc.cockHead " + selCock + "] plunges in. ");
 		pc.cockChange(false, true);

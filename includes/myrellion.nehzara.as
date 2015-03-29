@@ -76,7 +76,7 @@ public function nehzaraBonus():Boolean
 		if(flags["MET_LYRALLA"] != undefined && flags["MET_JURO"] != undefined && flags["SEXED_NEHZARA"] != undefined && rand(5) == 0 && flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] == undefined)
 		{
 			nehzarasWarriorHonor();
-			return true;
+			return false;
 		}
 		output("You ");
 		if(!pc.isNaga() && !pc.isGoo()) output("step");
@@ -725,6 +725,7 @@ public function heyAntHitlerWannaFeel():void
 public function nehzarasWarriorHonor():void
 {
 	clearOutput();
+	author("Kaizer_Z");
 	showName("\nCONFRONTATION!")
 	showBust("NEHZARA","LYRALLA","JURO");
 	flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] = 1;
@@ -739,7 +740,6 @@ public function nehzarasWarriorHonor():void
 	output("\n\nYou notice that Nehzara is standing by the door of her office and talking with a younger myr that your codex informs you is adorned with the trappings and insignia of a lieutenant. She looks to have calmed down somewhat, though the junior officer is still fuming. You could go talk to them, or you could decide to come back later.");
 	processTime(3);
 	//[Nehzara & Lt.] (Going back to the hangar and coming back would meet with the normal screen)
-	clearMenu();
 	addButton(0,"Nehzara & Lt.",nehzaraAndLTFollowupToHonor,undefined,"Nehzara & Lt.","Go see what's up.");
 }
 
