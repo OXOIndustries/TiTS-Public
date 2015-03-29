@@ -846,7 +846,7 @@ public function tellAnnoAboutSyri():void
 		output("\n\nYou quickly assure her you aren't. They're on different planets, after all.");
 		if(pc.isMischievous()) output(" The logistics would be a nightmare.");
 		output("\n\n<i>\"Well... you and I aren't exactly together, really, and knowing Syri she's just looking for a bum to fuck, so... yeah, I guess that's alright. Kinda weird, though...\"</i>");
-		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Sysy found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
+		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Syri found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
 		output(" She smirks. <i>\"Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>");
 	}
 	else output("\n\n<i>\"Cool! I didn't even know she moved. Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>\n\nYou chuckle and say you will.");
@@ -897,7 +897,7 @@ public function syriTalksAboutAnno():void
 	//If PC has a cock: 
 	if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
 	else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
-	output(" Your eyes eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
+	output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
 	output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
 	if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
 	else output("shoulders");
