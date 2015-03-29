@@ -3006,6 +3006,13 @@
 				types[types.length] = "broad";
 				types[types.length] = "bovine";
 			}
+			else if(tongueType == GLOBAL.TYPE_RASKVEL)
+			{
+				types[types.length] = "purple";
+				types[types.length] = "thick";
+				types[types.length] = "alien";
+				types[types.length] = "raskvel";
+			}
 			else if(tongueType == GLOBAL.TYPE_GOOEY)
 			{
 				types[types.length] = "goo-like";
