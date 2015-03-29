@@ -231,12 +231,12 @@
 								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, ");
 								if(!target.hasPerk("Bulgy")) 
 								{
-									output("apple-sized endowment");
+									kGAMECLASS.output("apple-sized endowment");
 									target.ballSizeRaw = 9.5;
 								}
 								else 
 								{
-									output("baseball-sized endowment");
+									kGAMECLASS.output("baseball-sized endowment");
 									target.ballSizeRaw = 7.85;
 								}
 								if(target.balls > 1) kGAMECLASS.output("s");
