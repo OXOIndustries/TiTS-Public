@@ -577,6 +577,7 @@ public function itsADealAnnoBossDataCore():void
 	output("\n\n<i>“Enjoy the credits boss,”</i> she grins once it’s done. <i>“You’ve earned them.”</i>");
 	pc.credits += Math.round(getRaskLootPrice()*1.75);
 	processTime(2);
+	removeRaskLoot();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

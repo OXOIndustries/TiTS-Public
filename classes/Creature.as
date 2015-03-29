@@ -6458,7 +6458,7 @@
 			//Temp vars
 			var temp: Number = 0;
 			var rando: Number = 0;
-			var race:String = originalRace;
+			var race:String = "human";
 			//Determine race type
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";

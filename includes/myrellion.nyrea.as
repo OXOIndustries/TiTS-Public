@@ -355,7 +355,9 @@ public function pcLossToNyrea():void
 	
 	output("\n\n<i>“I knew you’d come around,”</i> she purrs. You suddenly become very aware of the pseudo-cock pressing into your thigh, already dribbling pre.");
 
-		output("\n\n<i>“It’s your lucky day, offworlder,”</i> the huntress grins, one of her chitinous hands wrapping over the pseudo-cock between her legs, too large to get her fingers completely around. <i>“I’ve got a belly full of eggs desperate for somewhere to go.”</i>");
+	output("\n\n<i>“It’s your lucky day, offworlder,”</i> the huntress grins, one of her chitinous hands wrapping over the pseudo-cock between her legs, too large to get her fingers completely around.");
+	if(foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“I’ve got a belly full of eggs desperate for somewhere to go.”</i>");
+	else output(" <i>“I've been looking for a good fuck.”</i>");
 	
 	output("\n\nHow does that make you <i>lucky</i>!?");
 	
@@ -386,21 +388,28 @@ public function pcLossToNyrea():void
 	if (pc.isTreatedFemale()) output(" no matter how much you may want to");
 	output(". The fleshy bitch-breaker only grows as your throat plays pussy for her cock, swelling to terrifying thickness in front of your eyes.");
 	
-	output("\n\nThe huntress sees where your eyes are going and grins down at you. <i>“Better prepare yourself. I need that inside you to release my eggs, after all.”</i>");
-	
+	if(foes[0].hasStatusEffect("Nyrea Eggs")) output("\n\nThe huntress sees where your eyes are going and grins down at you. <i>“Better prepare yourself. I need that inside you to release my eggs, after all.”</i>");
+
 	output("\n\nYou gulp around her cock, your utterly pillaged throat clenching tight enough to send a shiver of pleasure through the nyrea’s body. She grunts tersely after that, and pulls her prick out of your mouth without warning. You’re left coughing and gasping for breath, bridges of spittle trailing between your abused lips and the slathered crown of the huntress’s thorny pseudo-cock.");
 	
 	if (foes[0] is NyreaAlpha)
 	{
-		output("\n\n<i>“Not bad,”</i> she coos, grabbing you by the scruff of the neck and shoving you onto all fours. <i>“I can feel my eggs stirring... my young aching for release.”</i>");
+		output("\n\n<i>“Not bad,”</i> she coos, grabbing you by the scruff of the neck and shoving you onto all fours.");
+		if(foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“I can feel my eggs stirring... my young aching for release.”</i>");
 	
-		output("\n\nShe plants a chitinous foot on your back, pinning you down as she strokes herself overtop you. <i>“You’ll take good care of my eggs, won’t you, offworlder? Perhaps you’ll spread my spawn to the stars. Ah, they’ll be like gods to my people.”</i>");
+		output("\n\nShe plants a chitinous foot on your back, pinning you down as she strokes herself overtop you.");
+		if(foes[0].hasStatusEffect("Nyrea Eggs")) output(" <i>“You’ll take good care of my eggs, won’t you, offworlder? Perhaps you’ll spread my spawn to the stars. Ah, they’ll be like gods to my people.”</i>");
+		else output(" <i>“I'm going to enjoy this, offworlder, mounting someone who's walked amongst the stars....”</i>");
 	}
 	else
 	{
-		output("\n\nThe huntress groans, rapidly stroking herself. <i>“I can’t... I can’t keep my eggs back much longer, offworlder. I need to get them out... I need to put myself inside you now, okay?”</i>");
+		output("\n\nThe huntress groans, rapidly stroking herself. <i>“I can’t... I can’t ");
+		if(foes[0].hasStatusEffect("Nyrea Eggs")) output("keep my eggs back much longer, offworlder. I need to get them out... I need to put myself inside you now, okay?”</i>");
+		else output("hold myself back much longer, offworlder. I need to cum... I need to put myself inside you now, okay?”</i>");
 	
-		output("\n\nNot that you have much choice in the matter. You hazily nod your understanding as she gives you a gentle push onto all fours. <i>“Just relax... it won’t hurt. You’ll just feel full afterwards. I know; plenty of alphas like to give me their eggs, too.”</i>");
+		output("\n\nNot that you have much choice in the matter. You hazily nod your understanding as she gives you a gentle push onto all fours. <i>“Just relax... it won’t hurt. You’ll just feel full afterwards. I know; plenty of alphas like to ");
+		if(foes[0].hasStatusEffect("Nyrea Eggs")) output("give me their eggs, too.”</i>");
+		else output("use me too.”</i>");
 	}
 	
 	output("\n\nYou lie there with your ass in the air, ripe for the huntress’s pleasure. She slowly lowers herself down, latex-smooth fingers brushing across your [pc.skin] as she rips away your [pc.gear]. One of her hands cracks against your [pc.butt], a spank hard enough to rip a yelp of surprise from your lips");
