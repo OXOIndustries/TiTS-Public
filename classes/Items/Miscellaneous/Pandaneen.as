@@ -215,22 +215,32 @@
 						if(((target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (target.ballSizeRaw < 6 && target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))) && rand(4) == 0 && changes < changeLimit)
 						{
 							//Ballsize <= 1
-							if(target.ballSizeRaw <= 1)
+							if(target.ballSizeRaw < 1)
 							{
-								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, large ball");
+								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, ");
+								kGAMECLASS.output("baseball-sized ball");
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(".</b>");
-								target.ballSizeRaw = 1;
+								target.ballSizeRaw = 4;
 							}
 							//Ballsize == 2
 							else
 							{
 								kGAMECLASS.output("\n\nYou gasp in delight in surprise when you feel the familiar weight of your [pc.balls] surge. Reaching down");
 								if(target.isCrotchGarbed()) kGAMECLASS.output(" into your [pc.lowerGarment]");
-								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, apple-sized endowment");
+								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, ");
+								if(!target.hasPerk("Bulgy")) 
+								{
+									output("apple-sized endowment");
+									target.ballSizeRaw = 9.42;
+								}
+								else 
+								{
+									output("baseball-sized endowment");
+
+								}
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" will be sure to make your orgasms a little more productive.</b>");
-								target.ballSizeRaw = 3;
 							}
 							changes++;
 							target.lust(7+rand(3));
