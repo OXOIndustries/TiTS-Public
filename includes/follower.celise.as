@@ -1291,7 +1291,7 @@ public function zeiksCeliseSubmersionTechnique():void
 	}
 	else 
 	{
-		output("drift back together, sliding into your own, piling up green flesh and parting around your huge rack like an enormously slow wave breaking over rocks. Your [pc.biggestBreastDescrip] are painstakingly covered in a layer of warm, thick Celise, stopping just short of the areolae. Errant strands of goo creep from the rings to tweak and moisten your exposed nipples as Celise playfully bites your ear");
+		output("drift back together, sliding into your own, piling up green flesh and parting around your huge rack like an enormously slow wave breaking over rocks. Your [pc.biggestBreastDescript] are painstakingly covered in a layer of warm, thick Celise, stopping just short of the areolae. Errant strands of goo creep from the rings to tweak and moisten your exposed nipples as Celise playfully bites your ear");
 		if(pc.hasDickNipples() || pc.hasCuntNipples() || pc.isLactating()) 
 		{
 			output(" and your ");
