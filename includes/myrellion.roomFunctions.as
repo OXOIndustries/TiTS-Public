@@ -264,7 +264,7 @@ public function n20StreetBonusFunc():Boolean
 
 public function kressiaAirfieldBonus():Boolean
 {
-	output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
+	output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to the DMZ where your ride is parked.");
 	addButton(0,"Enter Plane",aeroplaneFlightShit,false,"Enter Plane","Hop on a plane for a quick trip back to the DMZ.");
 	return false;
 }
@@ -282,6 +282,7 @@ public function DMZKressiaAirstrip():Boolean
 	}
 	else
 	{
+		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
 		addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
 	}
 	return false;
