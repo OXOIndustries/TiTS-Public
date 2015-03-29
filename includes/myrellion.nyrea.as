@@ -156,10 +156,13 @@ public function alphaNyreaAI():void
 
 	var attacks:Array = [];
 
-	if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
-	attacks.push(nyreaSpearThrust);
-	attacks.push(nyreaPowerStrike);
-	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
+	if(!foes[0].hasStatusEffect("Disarmed"))
+	{
+		if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
+		attacks.push(nyreaSpearThrust);
+		attacks.push(nyreaPowerStrike);
+		if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
+	}
 
 	attacks.push(nyreaMeatSpin);
 	attacks.push(nyreaPoledance);
@@ -185,7 +188,7 @@ public function betaNyreaAI():void
 
 	var lustChance:int = ((foes[0].HP() / foes[0].HPMax()) * 100) - 20; // as they take damage, will switch to more physical attacks
 
-	if (rand(100) >= lustChance)
+	if (rand(100) >= lustChance && !foes[0].hasStatusEffect("Disarmed"))
 	{
 		attacks.push(nyreaSpearThrust);
 		attacks.push(nyreaPowerStrike);
