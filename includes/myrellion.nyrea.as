@@ -940,7 +940,7 @@ public function rideNyreaDick():void
 		output(" with alien spooge and egg.");
 
 		output("\n\nAnd then another egg starts making its way inside you, pushing the first even deeper, filling your");
-		if (pc.hasVagina()) output(" cunt");
+		if (!useAss) output(" cunt");
 		else output(" ass");
 
 		var tHoleIdx:int;
