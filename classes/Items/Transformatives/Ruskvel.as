@@ -312,8 +312,8 @@
 					pc.tongueType = GLOBAL.TYPE_RASKVEL;
 					pc.addTongueFlag(GLOBAL.FLAG_LONG);
 					pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
-					pc.addTongueFlag(FLAG_LUBRICATED);
-					pc.addTongueFlag(FLAG_SQUISHY);
+					pc.addTongueFlag(GLOBAL.FLAG_LUBRICATED);
+					pc.addTongueFlag(GLOBAL.FLAG_SQUISHY);
 					changes++;
 				}
 				//Lose hair, grow feathers
