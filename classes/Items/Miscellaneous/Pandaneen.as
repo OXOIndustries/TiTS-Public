@@ -232,12 +232,12 @@
 								if(!target.hasPerk("Bulgy")) 
 								{
 									output("apple-sized endowment");
-									target.ballSizeRaw = 9.42;
+									target.ballSizeRaw = 9.5;
 								}
 								else 
 								{
 									output("baseball-sized endowment");
-
+									target.ballSizeRaw = 7.85;
 								}
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" will be sure to make your orgasms a little more productive.</b>");

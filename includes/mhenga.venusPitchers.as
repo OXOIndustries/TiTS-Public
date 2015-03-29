@@ -1375,7 +1375,12 @@ public function layFertilizedVenusPitcherEgg():void
 
 	// Do the needful with the eggs etc
 	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
-
+	//Count the number of times PC has laid full seed batches. Incremented after laying the last seed.
+	else 
+	{
+		if(flags["LAID VENUS PITCHER SEEDS"] == undefined) flags["LAID VENUS PITCHER SEEDS"] = 0;
+		flags["LAID VENUS PITCHER SEEDS"]++;
+	}
 	//Increase elasticity .1 towards a cap of 2
 	if (pc.elasticity < 2.0)
 	{
