@@ -171,7 +171,7 @@ public function findOxoniumOnMhenga():Boolean {
 
 public function claimMhengaOxonium():void {
 	clearOutput();
-	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. There amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");
+	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");
 	
 	flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] = 1;
 	if(flags["OXONIUM_FOUND"] == undefined) flags["OXONIUM_FOUND"] = 0;
@@ -413,7 +413,7 @@ public function mhengaSalvageFromCamp():void
 		//Add to Salvage results, 2nd time
 		//Remove "Salvage" option, replace with [Use Comms].
 		flags["SALVAGED VANAE CAMP"] = 2;
-		output("As you pick through the abandoned research camp, you spot something useful among the wreckage of what looks to be a burned-out hoverloader: a mid-range communications array, new in box. While not particularly valuable, and much too heavy to carry around with you, this array could easily cut through the jungle and send back to Esbeth. You break it out of the box and boot it up. The array makes a happy chirping sound, announcing more loudly than you'd like that it is a top of the line Xenogen product brought to you courtesy of some dead, highly advanced race Xenogen looted whose name you're not sure you could replicate.\n\nWith the comms array set up, <b>you could probably call for retrieval from Esbeth now.</b>");
+		output("As you pick through the abandoned research camp, you spot something useful among the wreckage of what looks to be a burned-out hoverloader: a mid-range communications array, new in box. While not particularly valuable, and much too heavy to carry around with you, this array could easily cut through the jungle and send a signal back to Esbeth. You break it out of the box and boot it up. The array makes a happy chirping sound, announcing more loudly than you'd like that it is a top of the line Xenogen product brought to you courtesy of some dead, highly advanced race Xenogen looted whose name you're not sure you could replicate.\n\nWith the comms array set up, <b>you could probably call for retrieval from Esbeth now.</b>");
 		processTime(3);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu); 

@@ -71,7 +71,7 @@ public function tavrosHangarStuff():Boolean
 {
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighbouring hangar.");
+		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 		
 		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
 			addButton(0, "The Phoenix", move, "PHOENIX RECROOM");
@@ -234,7 +234,7 @@ public function bountyBoardExtra():Boolean
 public function checkOutBountyBoard():void
 {
 	clearOutput();
-	output("The bounty board is covered in simple leaflets, papers, all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
 	output("\n\n");
 	if(flags["SEEN_JULIANS_AD"] == undefined) {
 		output("<b>New: </b>");
@@ -294,7 +294,7 @@ public function firstTimeOnTarkusBonus():Boolean
 public function BonusFunction210():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
-	output("\n\nThe cargo elevator seems to be working down here - it's doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
+	output("\n\nThe cargo elevator seems to be working down here - its doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
 	return false;
 }
 
@@ -338,7 +338,7 @@ public function novaElevatorControlPanel():void
 	author("Gedan");
 	showName("NOVA\nELEVATOR");
 	
-	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevators doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
 	
 	clearMenu();
 	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
@@ -476,7 +476,7 @@ public function randomBarnEventFunc():Boolean
 		//Gianna
 		else if(flags["MET_GIANNA"] != undefined && rand(4) == 0 && currentLocation != "512")
 		{
-			output("\n\n<b>Gianna is stepping out of the stall as you pass by,</b> a mop slung over her shoulder and a big pail of milk in her left hand, sloshing over with fullness. \"<i>Oh, hi, [pc.name],</i>\" she says, stopping to give you a bright smile. \"<i>Don't mind me, just doing a little bit of cleaning. Some of the cow-girls get a little.... messy sometimes.</i>\"");
+			output("\n\n<b>Gianna is stepping out of the stall as you pass by,</b> a mop slung over her shoulder and a big pail of milk in her left hand, sloshing over with fullness. \"<i>Oh, hi, [pc.name],</i>\" she says, stopping to give you a bright smile. \"<i>Don't mind me, just doing a little bit of cleaning. Some of the cow-girls get a little... messy sometimes.</i>\"");
 		}
 		//Dane
 		//Rare chance. Only outside of male milker. PC can't have beaten the Myrellion boss fight. 
@@ -502,7 +502,7 @@ public function randomBarnEventFunc():Boolean
 			if(rand(2) == 0)
 			{
 				output("\n\n<b>You see Ogram standing outside this stall</b>, leaning against the door with his arms crossed over his broad chest. \"<i>Hey there, " + pc.mf("buddy","beautiful") + ",</i>\" he says, inclining his head to you as you pass. \"<i>Just waiting on the little lady in there.\"</i>");
-				output("\n\nThrough the stall door, you can hear pleasure moans and cries as his partner gets a little lactic relief.");
+				output("\n\nThrough the stall door, you can hear pleasured moans and cries as his partner gets a little lactic relief.");
 			}
 			//Amma and Ogram II
 			else
@@ -697,7 +697,7 @@ public function eastTransitStationBonus():Boolean
 {
 	if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
 	{
-		output("\n\nA forgotten comm relay is sitting here, its antennas corroded with rust. If you knocked all the crud loose, it could probably get signal again, allowing you to call for transport.");
+		output("\n\nA forgotten comm relay is sitting here, its antennas corroded with rust. If you knocked all the crud loose, it could probably get a signal again, allowing you to call for transport.");
 		addButton(0,"Fix Comms",fixCommsOnTarkus);
 	}
 	else

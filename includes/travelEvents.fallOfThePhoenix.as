@@ -299,7 +299,7 @@ public function phoenixCrewQuarters():void
 	
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
-		output("Saendra's cabin is more like a university girl's dorm than a ship captain's room. The bed is sloppily made and covered with several books, magazines, and piles of clothes. There's a locker in one corner, hanging open to show a picture of a Saendra with her arm around");
+		output("Saendra's cabin is more like a university girl's dorm than a ship captain's room. The bed is sloppily made and covered with several books, magazines, and piles of clothes. There's a locker in one corner, hanging open to show a picture of Saendra with her arm around");
 		if (flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output(" Kiro's");
 		else output(" a kui-tan girl's");
 		output(" shoulders, sticking their tongues out at the camera. With the locker open, you're also treated to a good look at several open drawers full of Saendra's bright pink panties and bras. A life-sized latex horse dildo is peeking its flared head out from under the bed.");
@@ -330,7 +330,7 @@ public function phoenixCrewQuartersFluxCouple():void
 
 		output("\n\n\"<i>That's life support for the rest of the ship. The, uh, parts that still have it.</i>\"");
 
-		output("\n\nAlright. Simple enough. You reach a hand into the panel... and are immediately rewarded with a nasty shock! OUCH! You recoil, wagging your shocked hand around until it stops hurting. Ow. You'll need something else to rewire the ship.");
+		output("\n\nAll right. Simple enough. You reach a hand into the panel... and are immediately rewarded with a nasty shock! OUCH! You recoil, wagging your shocked hand around until it stops hurting. Ow. You'll need something else to rewire the ship.");
 
 		flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] = 1;
 	}
@@ -417,7 +417,7 @@ public function loseToPhoenixPirates():void
 
 	output("You never saw the blow coming. Under a hail of gunfire, you dive into cover, only to find a pair of pirates with stun batons leaping at you. Though you throw one of them off, the other connects, shocking you; with a scream, you crumple to the ground, only to be shocked again and again, until blackness takes you...");
 
-	output("\n\nYou awaken with your hands bound, a pair of men dragging you along the corridor of a ship - not the <i>Phoenix</i>, but a much larger vessel, filled with crewmen watching you. A glance behind you shows that the woman you were trying to rescue is being dragged along as well, her head hung low and tails tucked defensively between her legs. She looks up, catches your eye, and looks sharply way. Shame? Fear? You're not sure.");
+	output("\n\nYou awaken with your hands bound, a pair of men dragging you along the corridor of a ship - not the <i>Phoenix</i>, but a much larger vessel, filled with crewmen watching you. A glance behind you shows that the woman you were trying to rescue is being dragged along as well, her head hung low and tails tucked defensively between her legs. She looks up, catches your eye, and looks sharply away. Shame? Fear? You're not sure.");
 
 	output("\n\nA door slides open ahead of you, and you find yourself being brought before a gaudy combination of throne and captain's chair, a great black seat surrounded by digital readouts and flanked by crew stations. In it sits a tall, handsome woman, clad in black leather and possessed of black hair streaming down just past her shoulders. One of her cheeks is covered with a rose-vine tattoo: the left, with savage looking scars leading up to an eye patch. ");
 
@@ -425,7 +425,7 @@ public function loseToPhoenixPirates():void
 
 	output("\n\nTo illustrate her point, one of the mooks holding you strikes you across the face. You see stars and reel from the impact.");
 
-	output("\n\nShe clicks her tongue and stands, taking a step down from her throne toward you. She looks from you to the other captain. \"<i>Saendra. I'm disappointed in you. After all we've done for you, this is how you repay us? Father will be </i>very<i>unhappy.</i>\" The pirate reaches down and grabs one of Saendra's tits, reaching right into her shirt. The captain recoils, struggling against the men holding her down.... until the pirate's hand comes back with a small data chit, still stuck to a piece of tape. ");
+	output("\n\nShe clicks her tongue and stands, taking a step down from her throne toward you. She looks from you to the other captain. \"<i>Saendra. I'm disappointed in you. After all we've done for you, this is how you repay us? Father will be </i>very<i>unhappy.</i>\" The pirate reaches down and grabs one of Saendra's tits, reaching right into her shirt. The captain recoils, struggling against the men holding her down... until the pirate's hand comes back with a small data chit, still stuck to a piece of tape. ");
 
 	output("\n\n\"<i>At least you managed to do something right,</i>\" the pirate sighs, looking over the data chit. Satisfied, she looks to one of the guards and says, \"<i>Take Saendra down to the holding cells. Do something about those injuries and process her. Maybe Carver can get some use out of her.</i>\"");
 
@@ -715,7 +715,7 @@ public function phoenixEngineeringValeriaCaptain():void
 
 	output("\n\nYeah. That looked bad.");
 
-	output("\n\n\"<i>Anyway... thank you for helping, [pc.name]. We owe you..... If we get out of here, that is.</i>\"");
+	output("\n\n\"<i>Anyway... thank you for helping, [pc.name]. We owe you... If we get out of here, that is.</i>\"");
 	removeButton(2);
 }
 
