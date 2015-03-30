@@ -1,4 +1,4 @@
-import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
@@ -696,6 +696,8 @@ public function sexWIthAnnoPostTease():void
 	else addDisabledButton(0,"Face Fuck","Face Fuck","You need a penis in order to have Anno give you a blowjob.");
 	if(pc.hasVagina()) addButton(1,"GetSlurped",getSlurpedOnByAnnoz,undefined,"GetSlurped","Have Anno put that ausar tongue to work somewhere it can be truly appreciated.");
 	else addDisabledButton(1,"GetSlurped","GetSlurped","You need a vagina for her to eat you out.");
+	if(flags["ANNO_TRIBERATOR_USED"] == undefined) addButton(2,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Is that an ausar vibrator over there? Maybe you can use it on her.");
+	else addButton(2,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Use Anno's vibrator on her again.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

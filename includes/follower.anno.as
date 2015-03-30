@@ -1006,7 +1006,6 @@ public function annoFollowerSexMenu():void
 
 	if (pc.hasCock() || pc.hasVagina()) addButton(4, "ShowerSex", annoFollowerShowerSex, undefined, "Shower Sex", "Get clean when you get dirty. Take Anno to the showers for some slippery fun.");
 	else addDisabledButton(4, "ShowerSex", "Show Sex", "You need some form of genitalia to properly enjoy a shower with the snowy ausar slut.");
-
 	addButton(5, "Eat Her Out", annoFollowerEatDatDogslootOut, undefined, "Eat Her Out", "Give Anno some oral loving.");
 
 	//In Soviet Ausaril, Science Fucks YOU
@@ -1017,6 +1016,9 @@ public function annoFollowerSexMenu():void
 	if(pc.lowerUndergarment.hardLightEquipped) addButton(7,"Pitch Strapon",fuckAnnoWithScienceYoFukkinLadyBoi,undefined,"Pitch Strapon","Use your hardlight strapon on Anno.");
 	else addDisabledButton(7,"Pitch Strapon","Pitch Strapon","You need a pair of strapon-equipped undergarments to do this.");
 	
+	if(flags["ANNO_TRIBERATOR_USED"] == undefined) addButton(8,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Is that an ausar vibrator over there? Maybe you can use it on her.");
+	else addButton(8,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Use Anno's vibrator on her again.");
+
 	addButton(14, "Back", annoFollowerMenu);
 }
 
@@ -2492,3 +2494,160 @@ public function annoStraponMods():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Anno 'Tribrator' Sex Scene
+//Commissioned by Grip & Written by JimThermic
+
+/*Current Anno Approaches
+Current Anno Approaches
+// Sex Menu Text (Non-Follower)
+With Anno panting happily, bent over the counter with her ass in the air and tail wagging freely behind her, you figure the perky little ausar’s in for a special treat.
+// Sex Menu Text (Follower)
+You give a light rap on Anno’s door, and are quickly let in. “Hey, boss!” she says with a smile, ushering you in. 
+Anno plops down on the side of her bed, arms spread back to support her... which has the added bonus of thrusting her chest out against the low-cut neck of her blouse. “Did you need something, babe?”
+*/
+
+// Conditionals:
+// No PC Sex Requirement
+
+function annosTriberatorGatorMatorHater():void
+{
+	clearOutput();
+	showAnno();
+	author("JimThermic");
+	//First Time:
+	if(flags["ANNO_TRIBERATOR_USED"] == undefined)
+	{
+		output("Out of the corner of your eye, you notice something large, red, and obviously phallic lying on ");
+		if(annoIsCrew()) output("her side table");
+		else output("the bench");
+		output(". What <i>is</i> that?");
+
+		output("\n\nYou pick it up and gawk at it. You’re holding a vibrator shaped like 12 inches of synthetic canine cock. It has a large handle - though nowhere as large as the impressive phallus - with quite a few buttons on it.");
+
+		output("\n\nRaising an eyebrow at Anno, you playfully wave it about in your hand. <i>“Pretty big for ");
+		if(pc.tallness >= 84) output("such a small girl");
+		else output("an ausar girl");
+		output("! Did you build it yourself?”</i>");
+
+		output("\n\nAnno is not the least bit embarrassed - rather, she looks excited, like you’re waving her favorite ‘bone’ in front of her. <i>“Oh, that! Yeah, I made that myself. A girl can never have too many toys, right?”</i>");
+
+		output("\n\n<i>“There’s quite a few buttons on here,”</i> you observe, running your finger along the handle, <i>“A deflate and inflate button, three speed settings, a cum button, and something marked ‘special’?”</i>");
+
+		output("\n\n<i>“Oh yeah, it’s an all-in-one doggie dick, all right! It’s got a knot built in the base, though it’s rather smooth now. If you hit ‘cum’, it’ll knot and spray artificial cum from the tip. Pretty neat, huh?”</i> Her snowy white ears are all perked and her tail is wagging. <i>“...What the ‘Special’ button does is a secret - you’ll have to try it out if you want to know what it does!”</i>");
+
+		output("\n\n<i>“There’s one problem with it, though,”</i> Anno pouts and her wolfy ears flatten back. <i>“...I made a mistake when I built it. It’s meant to be a solo product, but I packed in so many bells and whistles that you can’t use it on yourself. The handle’s too long, you know?”</i>");
+		output("\n\n<i>“...I haven’t even tested it yet, since I can’t masturbate with it.”</i>");
+		output("\n\nWell, that’s not really a problem, is it? You touch the tip of the doggy dildo and sensuously suggest <i>you</i> test it out on her.");
+		if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" As a fellow tech-head, you’d be remiss if you didn’t help her try out her new device, right?");
+	}
+	else //(Repeat encounter)
+	{
+		output("\n\nYou pick up the multi-purpose vibrator lying on Anno’s ");
+		if(annoIsCrew()) output("desk");
+		else output("bench");
+		output(" and playfully wave it in the air. As soon as you do, Anno straightens up, pushing out her bourgeoning breasts. Her snowy ears perk up and her tail excitedly swishes back and forth.");
+		output("\n\n<i>“Oh-OH! Are you going to use it-?”</i> The canine girl bites her lower lip, looking at you with big, caramel-colored eyes. It seems she <i>really</i> wants you to use the toy on her.");
+		output("\n\n<i>“Are you going to be a good girl and do as I say...?”</i> you ask, leading her on. She happily nods, so you tell her you will be using it today. She’s over the moons about it.");
+	}
+	// MERGE
+	//Anno BlouseNShit:
+	if(anno.armor is AnnosBlouse)
+	{
+		output("\n\n");
+		if(flags["ANNO_TRIBERATOR_USED"] == undefined) output("<i>“Oh really? I’d love a helping hand...”</i>");
+		else output("<i>“Fantastic! Let’s get </i>these<i> out of the way then...”</i>");
+		output(" she grins. Standing up, she begins to slowly unbutton her fine blouse. Her brazenly formed breasts are slowly exposed, starting with her considerable cleavage. It’s even more impressive considering she’s not even wearing a bra!");
+
+		output("\n\nWhen the last button comes undone, her plump tits spill free of their confines and jiggle deliciously before your eyes. It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She tosses away the flimsy top and bends over to strip off her tight-fitting jeans.  As the smoking hot ausar slides them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
+	}
+	//Else (Anno Catsuit):
+	else
+	{
+		output("\n\n");
+		if(flags["ANNO_TRIBERATOR_USED"] == undefined) output("<i>“Oh really? I’d love a helping hand...”</i>");
+		else output("<i>“Fantastic! Let’s get </i>this<i> out of the way then...”</i>");
+		output(" she grins. Standing up, she begins to slowly unzip her snugly fitting catsuit, and you watch the mouthwatering sight. Her brazenly formed breasts are slowly exposed, starting with her considerable cleavage. It’s even more impressive considering she’s not even wearing a bra!");
+		output("\n\nWhen the zip reaches her waist, her plump tits spill free of their confines and jiggle deliciously before your eyes It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She finishes unzipping and then begins sliding off the suit.  As the snowy-haired ausar  bends over to slide them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
+	}
+	output("\n\nNow she’s butt-naked, you order Anno to get on ");
+	if(annoIsCrew()) output("the bed");
+	else output("the ground");
+	output(" and on all fours, just like a dog. She excitedly does as she’s told, ");
+	if(annoIsCrew()) output("climbing onto the springy satin fabric and crawling across it on her hands and knees.");
+	else output("dropping to her hands and knees and turning around.");
+	output(" She cheekily pokes out her round rump at you. Her flushing pussy lips, are brazenly exposed, her snowy landing strip practically guiding the way.");
+
+	output("\n\nWhen you approach her glistening canine snatch, Anno teasingly drapes her big bushy tail over it. <i>“...Mmm, what makes you think I’m that easy?”</i> She giggles, peering over her shoulder. You click your tongue, turning the doggie vibrator ‘on’, and press it pointedly against one of her bouncy buttocks. Her big, bushy tail twitches at first, then spasmically swishes about! <i>“S-s-stooooop, I’m ticklish there - no fair!!”</i>");
+
+	output("\n\nWith her vulnerable little pussy exposed, you slide the whirring canine cock between her round thighs. Teasing her with the tapered tip, Anno lets out a shivering moan, trembling as you deliciously drag it along and part her glistening slit. <i>“Mmmm, I’m going to melt...”</i>");
+	output("\n\nBending over and lifting her tail, Anno lewdly parts the folds of her pink, velvety pussy to you. You press the throbbing tip against her hooded clit. She groans and spasmically clenches her slippery fuschia flower. It wantonly winks at you, aching to be filled.");
+	output("\n\n<i>“Do you want it?”</i> You tease her, rubbing the buzzing toy against her love button. Her snowy tail waggles madly at your teasing words.");
+	output("\n\n<i>“Yes! Yes yes yes! Pleeease give it to me-!”</i> Anno moans and presses her plush ass back, carnally grinding her snatch against the phallic vibrator. Paying her back for earlier, you hotdog her with the whirring dick toy. When you press it between her fleshy buttocks, she needily clenches and milks it just like a real cock. <i>“Mmmm... lower, insiiide my pussy-!”</i>");
+	output("\n\nDeciding you’ve teased her enough, you give her what she desperately wants, pressing the curved tip against her parted folds. Anno needily arches her hips and you sheathe the quivering dildo in her quim. She gasps and ");
+	if(annoIsCrew()) output("clenches at the sheets");
+	else output("wiggles on the store floor.");
+	output(" as it bottoms out inside of her. Her tiny pussy is obscenely stretched around the knotted base.");
+
+	output("\n\n<i>“It-it feels so much bigger than it looks!”</i> she breathily exclaims. Finding her pussy is incredibly tight as well, you begin moving the ten inches of vibrating ausar cock back and forth, occasionally twisting it with no small amount of skill. Anno trembles and pants, her bushy tail lifted high in the air.");
+
+	output("\n\nYou click the vibration up. The handle quivers in your hand and Anno bites back a moan. For a while you thrust away more, before pulling it out of her soppy snatch with a loud ‘plop’. She whines at the sudden emptiness, until you press the tapered tip against her clit, turning her protests into pleasured cries.");
+
+	output("\n\nOnce you re-sheathe the vibrator inside of her snowy-haired snatch, you click the special button, and two little arms emerge from the handle - they’re vibrating stimulators! One shoots up to her vulnerable clit while the other presses against and slips into her starry pucker. This drives Anno wild, who ");
+	if(annoIsCrew()) output("groans and bites her pillow. She clenches it hard as you");
+	else output("falls forward with her butt in the air as you lustily");
+	output(" tease her twitching holes and love-bud with the tribrator.");
+
+	output("\n\nMeanwhile, watching her wiggle and needily rock her rump against the vibrator is getting you seriously worked up. Your ");
+	if(pc.hasCock())
+	{
+		output("[pc.cocks] ");
+		if(pc.cockTotal() == 1) output("is");
+		else output("are");
+		output(" deliciously straining ");
+		if(pc.isCrotchGarbed()) output("against your [pc.lowerGarment]");
+		else output("and rock hard");
+	}
+	if(pc.hasCock() && pc.hasVagina())
+	{
+		output(", and your ");
+	}
+	if(pc.hasVagina())
+	{
+		output("[pc.pussies] ");
+		if(pc.totalVaginas() > 1) output("are");
+		else output("is");
+		output(" damp and your [pc.clits] ");
+		if(pc.totalClits() == 1) output("is");
+		else output("are");
+		output(" pulsing with pleasure");
+	}
+	//PcIsADamnNeuter: 
+	if(!pc.hasVagina() && !pc.hasCock()) output("lower belly is pooling with pleasure and your bare loins needily ache.");
+	output(" The more horny you get, the more wild you are with the vibrator - it’s a chain reaction of pleasure that will only end one of you getting off!");
+
+	output("\n\nGrabbing her fluffy tail, you tug at the end. At the same time, you thrust the toy deep inside of her snatch and anus - turning the speed up to max - and Anno ecstatically cries out. Her drooling cunny and pucker clench around the whirring toy, her whole body quaking with pleasure. Her white, wolf-like ears are pressed back flat and she’s panting wildly. By her trembling thighs, she’s seconds away from creaming herself!");
+	output("\n\nBeating Anno to the punch, you plunge the whirring ausar cock into her slick netherlips and click the ‘cum’ button’. Suddenly the artificial knot begins to rapidly inflate and bulge out inside of her tight tunnel. From the tapered tip, it spastically fires thick, gooey ropes of artificial ausar cum which splash wildly inside of her warm, wet insides.");
+
+	output("\n\nAnno whimpers and moans as her mating instincts take over, bucking wildly and insistently against the knotted cock. She collapses forward, bushy tail in the air, letting her snow-capped cunt be filled with spurt after glorious spurt of dripping dick juice. Even as her eyes roll back, and she drools with delight, she instinctively presses her hips back, bucking against it like a bitch in heat. The curved canine tip rubs hotly against her cervix and fills her fertile womb with synthetic seed.");
+
+	output("\n\nAs Anno wildly cums around the tribrator, you tug the knotted toy back, and she lets out an orgasmic yelp. Pushing it back in, she groans long and low, the stimulating arms still churning around inside of her bowels and caressing her clit. Perhaps because it’s an ausar cock, she cums for an <i>incredibly</i> long time, remaining firmly fastened to the swollen cock. When you pull it out, a river of fake cum pours out of her stretched lips, and streams down her sweaty thighs. She twitches there ");
+	if(annoIsCrew()) output("on the bed, thoroughly staining her sheets.");
+	else output("on the floor in an truly happy puppy puddle.");
+
+	output("\n\nTurning the toy off, you relish in the sight of the utterly despoiled Anno, her plush breasts pressed against the ground and her bubbly butt in the air. Her snowy tail is hanging down over her sex, which you lift up softly. Leaning forward, you give her soaked snatch a little licking. You’re surprised to find out the artificial cum tastes like strawberries and cream! At the same time, the ausar girl trembles with delight, still sensitive from her incredibly long and intense orgasm. Even the slightest brush of your [pc.tongue] causes her cum-soaked thighs to quiver and quake.");
+
+	output("\n\nSince Anno’s hardly coherent, you grab some blankets and wrap up the trembling puppy. Scooping her in your arms, you cradle her on the ");
+	if(annoIsCrew()) output("bed");
+	else output("couch");
+	output(", and scritch behind her soft, fluffy ears. Even as she’s half-concious, the ausar girl loves a good ear scritching, and she instinctively nuzzles into your chest. Her big, bushy tail is waggling slowly. Every so often she shivers and shakes as another orgasmic aftershock racks her body, causing her to moan and sigh in half-delirious delight.");
+
+	output("\n\n<i>“Mmmm... that was... just WOW,”</i> Anno dreamily murmurs. She’s so happy and comfortable that she falls asleep against you. With a long yawn, you wrap your arms around the bundle of cute snoozing ausar, finding her sleepiness contagious. Your eyelids get heavier and heavier, until you finally join her in slumber, both of you snuggled up on her ");
+	if(annoIsCrew()) output("bed");
+	else output("couch");
+	output(".");
+	// Add some big lusts to PC from watching Anno get tribrator fucked.
+	pc.lust(33);
+	processTime(44+rand(3));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
