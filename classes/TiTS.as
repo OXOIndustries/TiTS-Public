@@ -121,6 +121,7 @@
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
 		include "../includes/tavros.shelly.as";
+		include "../includes/tavros.vahn.as";
 		
 		//First planet
 		include "../includes/mhenga.burt.as";

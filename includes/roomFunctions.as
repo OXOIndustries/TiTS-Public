@@ -69,19 +69,28 @@ public function hangarBonus():Boolean
 
 public function tavrosHangarStuff():Boolean
 {
+	if(flags["MET_VAHN"] == undefined) {
+		output("\n\nYou spot a blond, half-ausar technician standing next to your ship, looking down at a datapad.");
+		addButton(0,"Tech",VahnTheMechanic);
+	}
+	else
+	{
+		output("\n\nVahn's around here somewhere, if you want to look for him.");
+		addButton(0,"Vahn",VahnTheMechanic);
+	}
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
 		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 		
 		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
-			addButton(0, "The Phoenix", move, "PHOENIX RECROOM");
+			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
 	}
 	//Celise In Tavros
 	if(celiseIsFollower() && !celiseIsCrew())
 	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the stations mechanics.");
+		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
 		addButton(5,"Celise",approachNonCrewCelise);
-	}	
+	}
 	return false;
 }
 
