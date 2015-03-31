@@ -3378,7 +3378,7 @@ public function flashGrenade(target:Creature):void {
 
 public function NPCFlashGrenade():void {
 	pc.energy(-10);
-	output(monster.capitalA + monster.short + "produces a flash grenade and hucks it in your direction!\n");
+	output(monster.capitalA + monster.short + " produces a flash grenade and hucks it in your direction!\n");
 	//Chance of bliiiiiiiind
 	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind")) {
 		output("\n<b>You're blinded by </b>");

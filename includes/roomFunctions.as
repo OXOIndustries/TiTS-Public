@@ -184,6 +184,7 @@ public function debugMenusThree():void
 	output("Debug combat room.");
 	
 	addButton(0, "C.Snake", encounterCuntSnakeOnJungleLand);
+	addButton(1, "Kaska", meetUpWithKaskaZeBossSloot);
 	addButton(3, "SexBot", encounterASexBot);
 }
 
