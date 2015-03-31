@@ -354,9 +354,11 @@ public function zilFemHarden():void {
 	author("Savin");
 	//Buffs kinetic defenses?
 	output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	foes[0].resistances[GLOBAL.KINETIC] *= .8;
-	foes[0].resistances[GLOBAL.SLASHING] *= .8;
-	foes[0].resistances[GLOBAL.PIERCING] *= .8;
+	
+	var newRes:Number = (100 - foes[0].baseHPResistances.kinetic.resistanceValue) / 5;
+	foes[0].baseHPResistances.kinetic.resistanceValue += newRes;
+	foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+	
 	processCombat();
 }
 

@@ -86,7 +86,7 @@ package classes.Characters
 				}
 			}
 			
-			var toughVal:Number;
+			var toughVal:Number = 0;
 			if (toughLevel == 1) toughVal = 10;
 			if (toughLevel == 2) toughVal = 15;
 			

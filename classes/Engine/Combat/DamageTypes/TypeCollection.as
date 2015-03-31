@@ -2,6 +2,7 @@ package classes.Engine.Combat.DamageTypes
 {
 	import classes.DataManager.Serialization.ISaveable;
 	import flash.utils.getQualifiedClassName;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -9,6 +10,14 @@ package classes.Engine.Combat.DamageTypes
 	 */
 	public class TypeCollection implements ISaveable
 	{
+		private function fprint(msg:String):void
+		{
+			if (kGAMECLASS.debug)
+			{
+				trace(msg);
+			}
+		}
+		
 		private var typeCollection:Vector.<DamageType>;
 		private var flagCollection:Vector.<DamageFlag>;
 		
@@ -218,6 +227,8 @@ package classes.Engine.Combat.DamageTypes
 				{
 					if (resistances.canTrigger(flagCollection[i].flag))
 					{
+						trace("Triggering Flag!");
+						
 						var df:DamageFlag = resistances.getTrigger(flagCollection[i].flag);
 						
 						switch (df.getTriggerOp(flagCollection[i].flag))
@@ -235,12 +246,23 @@ package classes.Engine.Combat.DamageTypes
 						}
 					}
 				}
-			}
+			}	
 			
 			for (i = 0; i < typeCollection.length; i++)
 			{
+				if (typeCollection[i].damageValue > 0)
+				{
+					if (resistances.getType(i).resistanceValue > 0)
+					{
+						typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).resistanceValue) / 100.0);
+					}
+					else
+					{
+						typeCollection[i].damageValue *= ((100.0 + Math.abs(resistances.getType(i).resistanceValue)) / 100.0);
+					}
+				}
+				
 				// TODO: Make sure this works for negative values.
-				typeCollection[i].damageValue *= ((100.0 - resistances.getType(i).resistanceValue) / 100.0);
 			}
 		}
 		
@@ -291,14 +313,15 @@ package classes.Engine.Combat.DamageTypes
 			for (var i:uint = 0; i < o.values.length; i++)
 			{
 				var dt:DamageType = new DamageType();
-				dt.loadSaveObject(o.values[0]);
+				dt.loadSaveObject(o.values[i]);
 				typeCollection[dt.damageType].damageValue = dt.damageValue;
 			}
 			
 			for (i = 0; i < o.flags.length; i++)
 			{
 				var df:DamageFlag = new DamageFlag();
-				flagCollection.push(df.loadSaveObject(o.flags[i]));
+				df.loadSaveObject(o.flags[i]);
+				flagCollection.push(df);
 			}
 		}
 		

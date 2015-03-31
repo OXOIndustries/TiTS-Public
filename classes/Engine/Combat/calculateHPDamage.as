@@ -42,7 +42,8 @@ package classes.Engine.Combat
 		}
 		
 		damageAfterResistances -= defReduction;
-	
+		damageAfterResistances = Math.round(damageAfterResistances);
+		
 		//If we're this far, damage can't be less than one. You did get hit, after all.
 		if (damageAfterResistances < 1) damageAfterResistances = 1;
 		

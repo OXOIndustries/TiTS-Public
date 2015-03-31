@@ -41,7 +41,7 @@ package classes.Engine.Combat
 		
 		lustDamage.applyResistances(tarResistances);
 		
-		var damageAfterResistances:Number = lustDamage.getTotal();
+		var damageAfterResistances:Number = Math.round(lustDamage.getTotal());
 		
 		// Actual lust damage happens
 		target.lust(damageAfterResistances);

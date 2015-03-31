@@ -183,9 +183,7 @@ public function debugMenusThree():void
 	clearOutput();
 	output("Debug combat room.");
 	
-	addButton(0, "R. Nyrea", encounterNyreaHuntress, NYREA_UNKNOWN); // arg optional
-	addButton(1, "Alpha N.", encounterNyreaHuntress, NYREA_ALPHA);
-	addButton(2, "Beta N.", encounterNyreaHuntress, NYREA_BETA);
+	addButton(0, "C.Snake", encounterCuntSnakeOnJungleLand);
 	addButton(3, "SexBot", encounterASexBot);
 }
 

@@ -98,11 +98,24 @@ package classes.Engine.Combat.DamageTypes
 		
 		public function get damageType():uint { return _damageType; }
 		
-		public function get damageValue():Number { return _damageValue; }
-		public function set damageValue(v:Number):void { _damageValue = v; }
+		public function get damageValue():Number 
+		{
+			return _damageValue; 
+		}
+		public function set damageValue(v:Number):void 
+		{
+
+			_damageValue = v; 
+		}
 		
-		public function get resistanceValue():Number { return _damageValue; }
-		public function set resistanceValue(v:Number):void { _damageValue = v; }
+		public function get resistanceValue():Number 
+		{
+			return _damageValue; 
+		}
+		public function set resistanceValue(v:Number):void 
+		{ 
+			_damageValue = v; 
+		}
 		
 		public function get shortName():String { return TypeShortNames[damageType]; }
 		public function get longName():String { return TypeLongNames[damageType]; }

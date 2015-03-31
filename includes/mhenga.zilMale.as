@@ -200,6 +200,7 @@ public function zilHardenSingle():void {
 	var newRes:Number = (100 - foes[0].baseHPResistances.kinetic.resistanceValue) / 5;
 	foes[0].baseHPResistances.kinetic.resistanceValue += newRes;
 	foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+	
 	processCombat();
 }
 	

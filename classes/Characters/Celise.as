@@ -13,7 +13,7 @@
 		//constructor
 		public function Celise()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -176,6 +176,16 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_AMORPHOUS);
 			}
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			delete d.bonusResistances;
+			delete d.resistances;
+			delete d.lustVuln;
+			delete d.bonusLustVuln;
 		}
 		
 		override public function prepForCombat():void

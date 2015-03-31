@@ -777,7 +777,7 @@ public function celiseMenu():void
 }
 
 public function processCombat():void 
-{
+{	
 	flags["COMBAT MENU SEEN"] = undefined;
 	combatStage++;
 	trace("COMBAT STAGE:" + combatStage);

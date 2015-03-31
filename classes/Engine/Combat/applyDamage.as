@@ -31,7 +31,11 @@ package classes.Engine.Combat
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
 		if (special == "supress") return damageResult;
-		else if (special == "minimal" && damageResult.totalDamage > 0) output(" <b>(" + damageResult.totalDamage + "</b>)");
+		else if (special == "minimal")
+		{
+			if (damageResult.totalDamage > 0) output(" <b>(" + Math.round(damageResult.totalDamage) + "</b>)");
+			return damageResult;
+		}
 		
 		// Begin message outpuuuuut.
 		if (damageResult.wasCrit == true)
@@ -49,17 +53,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter)
 			{
-				output(" Your shield crackles but holds. (<b>" + damageResult.shieldDamage + "</b>)");
+				output(" Your shield crackles but holds. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
 			}
 			else
 			{
 				if (target.plural) 
 				{
-					output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b> " + damageResult.shieldDamage + "</b>)");
+					output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
 				}
 				else
 				{
-					output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + damageResult.shieldDamage + "</b>)"); 
+					output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)"); 
 				}
 			}
 		}
@@ -68,17 +72,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter) 
 			{
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.shieldDamage + "</b>)");
+				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
 			}
 			else 
 			{
 				if (target.plural) 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + damageResult.shieldDamage + "</b>)");
+					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
 				}
 				else 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + damageResult.shieldDamage + "</b>)");
+					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
 				}
 			}
 		}
@@ -88,17 +92,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter) 
 			{
-				output(" The attack continues on to connect with you! (<b>" + damageResult.hpDamage + "</b>)");
+				output(" The attack continues on to connect with you! (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
 			}
 			else 
 			{
-				output(" The attack continues on to connect with " + target.a + target.short + "! (<b>" + damageResult.hpDamage + "</b>)");
+				output(" The attack continues on to connect with " + target.a + target.short + "! (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
 			}
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			output(" (<b>" + damageResult.hpDamage + "</b>)");
+			output(" (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
 		}
 		
 		// Lust damage output
@@ -131,7 +135,7 @@ package classes.Engine.Combat
 		{
 			if (special == "goovolver")
 			{
-				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts! <b>(" + damageResult.lustDamage + "</b>)");
+				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts! <b>(" + Math.round(damageResult.lustDamage) + "</b>)");
 			}
 			else
 			{
