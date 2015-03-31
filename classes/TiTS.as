@@ -122,6 +122,7 @@
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
 		include "../includes/tavros.shelly.as";
+		include "../includes/tavros.vahn.as";
 		
 		//First planet
 		include "../includes/mhenga.burt.as";
@@ -282,7 +283,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.28";
+			version = "0.5.29";
 
 			//temporary nonsense variables.
 			temp = 0;

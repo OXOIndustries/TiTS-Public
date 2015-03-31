@@ -3088,7 +3088,7 @@ public function bid16k():void
 	showBust("RIVAL","SHEKKA");
 	output("<i>\"16,000,\"</i> you announce.");
 	//Fucked Shekka
-	if(flags["TIMES_SEXED_SHEKKA"] != 0)
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined && flags["TIMES_SEXED_SHEKKA"] != 0)
 	{
 		output("\n\nShekka smiles radiantly and turns towards you. <i>\"I can't turn down an offer like that.\"</i> She graces you with a sly wink, sure to hide it from your cousin. <i>\"16,000 is more than I've made in a long time.\"</i>");
 		output("\n\n[rival.name] sniffs angrily and turns on [rival.his] heel. <i>\"You clearly have some relationship with this... this... creature. 16,000 was barely within her asking price before.\"</i> [rival.He] snaps his fingers. <i>\"Dane, we're leaving. Have [pc.name]'s ship tracked. We'll get the next one.\"</i>");

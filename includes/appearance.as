@@ -236,6 +236,7 @@ public function appearance(target:Creature):void {
 		else if(pc.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating [pc.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy [pc.tongueNoun] that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible [pc.tongueNoun] that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
+		else if(pc.tongueType == GLOBAL.TYPE_RASKVEL) output2(" Your mouth contains a thick, purple tongue that, if you so desire, can extend a fair portion from your mouth. Its tip is blunted slightly.");
 		else output2(" Your mouth contains a [pc.tongue].");
 		//Horns
 		if(pc.horns > 0)
@@ -553,27 +554,27 @@ public function appearance(target:Creature):void {
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a proud purple head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a proud purple head that's distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
 			}
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy pink head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy pink head that's distinctly cock-shaped in nature.");
 			}
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered, dark-red tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered, dark-red tip.");
 			}
 			// Ribbed
 			else
 			{
-				output2("Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
 		

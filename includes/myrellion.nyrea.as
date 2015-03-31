@@ -157,10 +157,13 @@ public function alphaNyreaAI():void
 
 	var attacks:Array = [];
 
-	if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
-	attacks.push(nyreaSpearThrust);
-	attacks.push(nyreaPowerStrike);
-	if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
+	if(!foes[0].hasStatusEffect("Disarmed"))
+	{
+		if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
+		attacks.push(nyreaSpearThrust);
+		attacks.push(nyreaPowerStrike);
+		if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
+	}
 
 	attacks.push(nyreaMeatSpin);
 	attacks.push(nyreaPoledance);
@@ -186,7 +189,7 @@ public function betaNyreaAI():void
 
 	var lustChance:int = ((foes[0].HP() / foes[0].HPMax()) * 100) - 20; // as they take damage, will switch to more physical attacks
 
-	if (rand(100) >= lustChance)
+	if (rand(100) >= lustChance && !foes[0].hasStatusEffect("Disarmed"))
 	{
 		attacks.push(nyreaSpearThrust);
 		attacks.push(nyreaPowerStrike);
@@ -352,57 +355,61 @@ public function pcLossToNyrea():void
 	
 	output("\n\n<i>“I knew you’d come around,”</i> she purrs. You suddenly become very aware of the pseudo-cock pressing into your thigh, already dribbling pre.");
 
-		output("\n\n<i>“It’s your lucky day, offworlder,”</i> the huntress grins, one of her chitinous hands wrapping over the pseudo-cock between her legs, too large to get her fingers completely around. <i>“I’ve got a belly full of eggs desperate for somewhere to go.”</i>");
+	if(foes[0].hasStatusEffect("Nyrea Eggs")) 
+	{
+		output("\n\n<i>“It’s your lucky day, offworlder,”</i> the huntress grins, one of her chitinous hands wrapping over the pseudo-cock between her legs, too large to get her fingers completely around.");
+		output(" <i>“I’ve got a belly full of eggs desperate for somewhere to go.”</i>");
+		
+		output("\n\nHow does that make you <i>lucky</i>!?");
 	
-	output("\n\nHow does that make you <i>lucky</i>!?");
+		output("\n\n<i>“Best get me ready, offworlder,”</i> she coos, giving you a gentle push down onto your [pc.knees], putting your face on level with her thick shaft, its X-shaped slit glistening with moisture. <i>“I’d hate to damage you... too much.”</i>");
 	
-	output("\n\n<i>“Best get me ready, offworlder,”</i> she coos, giving you a gentle push down onto your [pc.knees], putting your face on level with her thick shaft, its X-shaped slit glistening with moisture. <i>“I’d hate to damage you... too much.”</i>");
-	
-	output("\n\nAs if to emphasize the subtle threat, the huntress’s thumb brushes across the net of soft little spines growing from the crown of her rod. They don’t look sharp or stiff enough to hurt you, but the idea of them dragging through your");
-	if (!pc.hasVagina()) output(" bowels");
-	else output(" [pc.cunt]");
-	output(" sends a shiver through you. Her other hand plants itself atop your head, brushing");
-	if (pc.hairLength > 0) output(" through your [pc.hair]");
-	else output(" across your bare scalp");
-	output(" and slowly pulling you toward the flared haft of her cock.");
+		output("\n\nAs if to emphasize the subtle threat, the huntress’s thumb brushes across the net of soft little spines growing from the crown of her rod. They don’t look sharp or stiff enough to hurt you, but the idea of them dragging through your");
+		if (!pc.hasVagina()) output(" bowels");
+		else output(" [pc.cunt]");
+		output(" sends a shiver through you. Her other hand plants itself atop your head, brushing");
+		if (pc.hairLength > 0) output(" through your [pc.hair]");
+		else output(" across your bare scalp");
+		output(" and slowly pulling you toward the flared haft of her cock.");
 
-	if (pc.isTreatedFemale() || pc.isBimbo()) output(" It may not be a REAL cock per-se, but your spunk-craving brain’s primal instincts kick in all the same, and you practically leap onto the offered rod, wrapping your [pc.lips] eagerly around the thick crown.");
-	else
-	{
-		output(" You struggle against the nyrea’s grasp, but you’re far too");
-		if (pc.HP() <= 0) output(" battered");
-		else output(" aroused");
-		output(" to resist her for long. You put up only what amounts to a token resistance before you find your [pc.lips] pressing into the slip of her over-sized egg-layer, flicking across the crown of her prick.");
+		if (pc.isTreatedFemale() || pc.isBimbo()) output(" It may not be a REAL cock per-se, but your spunk-craving brain’s primal instincts kick in all the same, and you practically leap onto the offered rod, wrapping your [pc.lips] eagerly around the thick crown.");
+		else
+		{
+			output(" You struggle against the nyrea’s grasp, but you’re far too");
+			if (pc.HP() <= 0) output(" battered");
+			else output(" aroused");
+			output(" to resist her for long. You put up only what amounts to a token resistance before you find your [pc.lips] pressing into the slip of her over-sized egg-layer, flicking across the crown of her prick.");
+		}
+		output(" The Huntress coos, guiding you down the length of her shaft with firm, unyielding hands. You quickly find your lips spread around what feels like an arm’s girth of nyrean cock, the blunted crown battering against the back of your throat. You gulp it down, suppressing your gag reflex and opening your throat up like a pussy for the chitinous beauty to fuck.");
+		
+		if (foes[0] is NyreaAlpha)
+			output("\n\n<i>“That’s it, offworlder.... You do know how to pleasure a woman, don’t you? If only more of my harem sluts had your touch...”</i>");
+		
+		output("\n\nThe nyrea’s hands settle on the sides of your head, holding you steady against the jagged cavern wall. All you can do is try not to choke on the massive rod as she starts to piston into you, using her hips to pound away into your mouth. Tears well up in your eyes as the dull spines on her cockhead rake through your throat, not truly painful but intensely discomforting. The swell of her knot hammers against your [pc.lips], even thicker than the mighty shaft you’re being face-fucked with, and much too big to get your lips around");
+		if (pc.isTreatedFemale()) output(" no matter how much you may want to");
+		output(". The fleshy bitch-breaker only grows as your throat plays pussy for her cock, swelling to terrifying thickness in front of your eyes.");
+		
+		output("\n\nThe huntress sees where your eyes are going and grins down at you. <i>“Better prepare yourself. I need that inside you to release my eggs, after all.”</i>");
+
+		output("\n\nYou gulp around her cock, your utterly pillaged throat clenching tight enough to send a shiver of pleasure through the nyrea’s body. She grunts tersely after that, and pulls her prick out of your mouth without warning. You’re left coughing and gasping for breath, bridges of spittle trailing between your abused lips and the slathered crown of the huntress’s thorny pseudo-cock.");
+		
+		if (foes[0] is NyreaAlpha)
+		{
+			output("\n\n<i>“Not bad,”</i> she coos, grabbing you by the scruff of the neck and shoving you onto all fours. <i>“I can feel my eggs stirring... my young aching for release.”</i>");
+		
+			output("\n\nShe plants a chitinous foot on your back, pinning you down as she strokes herself overtop you. <i>“You’ll take good care of my eggs, won’t you, offworlder? Perhaps you’ll spread my spawn to the stars. Ah, they’ll be like gods to my people.”</i>");
+		}
+		else
+		{
+			output("\n\nThe huntress groans, rapidly stroking herself. <i>“I can’t... I can’t keep my eggs back much longer, offworlder. I need to get them out... I need to put myself inside you now, okay?”</i>");
+		
+			output("\n\nNot that you have much choice in the matter. You hazily nod your understanding as she gives you a gentle push onto all fours. <i>“Just relax... it won’t hurt. You’ll just feel full afterwards. I know; plenty of alphas like to give me their eggs, too.”</i>");
+		}
+		
+		output("\n\nYou lie there with your ass in the air, ripe for the huntress’s pleasure. She slowly lowers herself down, latex-smooth fingers brushing across your [pc.skin] as she rips away your [pc.gear]. One of her hands cracks against your [pc.butt], a spank hard enough to rip a yelp of surprise from your lips");
+		if (pc.buttRating() >= 12) output(" and leave your big butt jiggling");
+		output(". While you’re recovering, a single chitin-clad digit slips between your cheeks, sloppily wet with the huntress’s own spit, and presses against the ring of your [pc.asshole]. You suck in a sharp breath as the huntress presses it into you, sliding it into the knuckle and slowly thrusting, getting you nice and ready. You let your head sink down to the cavern floor, trying not to look at the bristling, knotted mammoth hanging between her legs.");
 	}
-	output(" The Huntress coos, guiding you down the length of her shaft with firm, unyielding hands. You quickly find your lips spread around what feels like an arm’s girth of nyrean cock, the blunted crown battering against the back of your throat. You gulp it down, suppressing your gag reflex and opening your throat up like a pussy for the chitinous beauty to fuck.");
-	
-	if (foes[0] is NyreaAlpha)
-		output("\n\n<i>“That’s it, offworlder.... You do know how to pleasure a woman, don’t you? If only more of my harem sluts had your touch...”</i>");
-	
-	output("\n\nThe nyrea’s hands settle on the sides of your head, holding you steady against the jagged cavern wall. All you can do is try not to choke on the massive rod as she starts to piston into you, using her hips to pound away into your mouth. Tears well up in your eyes as the dull spines on her cockhead rake through your throat, not truly painful but intensely discomforting. The swell of her knot hammers against your [pc.lips], even thicker than the mighty shaft you’re being face-fucked with, and much too big to get your lips around");
-	if (pc.isTreatedFemale()) output(" no matter how much you may want to");
-	output(". The fleshy bitch-breaker only grows as your throat plays pussy for her cock, swelling to terrifying thickness in front of your eyes.");
-	
-	output("\n\nThe huntress sees where your eyes are going and grins down at you. <i>“Better prepare yourself. I need that inside you to release my eggs, after all.”</i>");
-	
-	output("\n\nYou gulp around her cock, your utterly pillaged throat clenching tight enough to send a shiver of pleasure through the nyrea’s body. She grunts tersely after that, and pulls her prick out of your mouth without warning. You’re left coughing and gasping for breath, bridges of spittle trailing between your abused lips and the slathered crown of the huntress’s thorny pseudo-cock.");
-	
-	if (foes[0] is NyreaAlpha)
-	{
-		output("\n\n<i>“Not bad,”</i> she coos, grabbing you by the scruff of the neck and shoving you onto all fours. <i>“I can feel my eggs stirring... my young aching for release.”</i>");
-	
-		output("\n\nShe plants a chitinous foot on your back, pinning you down as she strokes herself overtop you. <i>“You’ll take good care of my eggs, won’t you, offworlder? Perhaps you’ll spread my spawn to the stars. Ah, they’ll be like gods to my people.”</i>");
-	}
-	else
-	{
-		output("\n\nThe huntress groans, rapidly stroking herself. <i>“I can’t... I can’t keep my eggs back much longer, offworlder. I need to get them out... I need to put myself inside you now, okay?”</i>");
-	
-		output("\n\nNot that you have much choice in the matter. You hazily nod your understanding as she gives you a gentle push onto all fours. <i>“Just relax... it won’t hurt. You’ll just feel full afterwards. I know; plenty of alphas like to give me their eggs, too.”</i>");
-	}
-	
-	output("\n\nYou lie there with your ass in the air, ripe for the huntress’s pleasure. She slowly lowers herself down, latex-smooth fingers brushing across your [pc.skin] as she rips away your [pc.gear]. One of her hands cracks against your [pc.butt], a spank hard enough to rip a yelp of surprise from your lips");
-	if (pc.buttRating() >= 12) output(" and leave your big butt jiggling");
-	output(". While you’re recovering, a single chitin-clad digit slips between your cheeks, sloppily wet with the huntress’s own spit, and presses against the ring of your [pc.asshole]. You suck in a sharp breath as the huntress presses it into you, sliding it into the knuckle and slowly thrusting, getting you nice and ready. You let your head sink down to the cavern floor, trying not to look at the bristling, knotted mammoth hanging between her legs.");
 
 	//Nyrea Has Eggs: Buttstuff
 	//Cockworship, then oviposition :D
@@ -614,7 +621,7 @@ public function pcLossToNyrea():void
 			
 			output("\n\n<i>“Mmm. This part of you certainly wants me,”</i> she teases, bringing up a pair of black-clad fingers glistening with");
 			if (pc.wetness(tVag) <= 3) output(" moisture");
-			else output(" [pc.girlGumNoun]");
+			else output(" [pc.girlCumNoun]");
 			output(". You flush as she laps it off her digits, cleaning them off one by one. <i>“I can all but taste your virility... you’ll give me fine young, won’t you offworlder?”</i>");
 			
 			output("\n\nDoes she... does she think you’re...?");
@@ -930,7 +937,7 @@ public function rideNyreaDick():void
 		output(" with alien spooge and egg.");
 
 		output("\n\nAnd then another egg starts making its way inside you, pushing the first even deeper, filling your");
-		if (pc.hasVagina()) output(" cunt");
+		if (!useAss) output(" cunt");
 		else output(" ass");
 
 		var tHoleIdx:int;

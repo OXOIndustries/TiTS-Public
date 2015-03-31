@@ -3038,6 +3038,13 @@
 				types[types.length] = "broad";
 				types[types.length] = "bovine";
 			}
+			else if(tongueType == GLOBAL.TYPE_RASKVEL)
+			{
+				types[types.length] = "purple";
+				types[types.length] = "thick";
+				types[types.length] = "alien";
+				types[types.length] = "raskvel";
+			}
 			else if(tongueType == GLOBAL.TYPE_GOOEY)
 			{
 				types[types.length] = "goo-like";
@@ -6239,6 +6246,11 @@
 				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
+			if (type == GLOBAL.TYPE_RASKVEL) {
+				cocks[slot].cockColor = "purple";
+				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+			}
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
@@ -6485,21 +6497,27 @@
 			//Temp vars
 			var temp: Number = 0;
 			var rando: Number = 0;
-			//Determine race type:
-			var race: String = originalRace;
+			var race:String = "human";
+			//Determine race type
 			if (horseScore() >= 2) race = "part horse-morph";
-			if (ausarScore() >= 4 && race == "human") race = "ausar"
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
-			if (nukiScore() >= 4) race = "kui-tan";
-			if (vanaeScore() >= 4) race = "vanae-morph";
-			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
-			if (leithanScore() >= 3) race = "half-leithan";
-			if (zilScore() >= 4) race = "zil";
+			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
+			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan"
+			if (raskvelScore() >= 2) race = "rask-morph";
+			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
+			if (ausarScore() >= 4) race = "ausar"
+			if (kaithritScore() >= 4) race = "kaithrit"
+			if (leithanScore() >= 6) race = "leithan";
+			if (nukiScore() >= 4) race = "kui-tan";
+			if (vanaeScore() >= 4) race = "vanae-morph";
+			if (raskvelScore() >= 6) race = "raskvel";
+			if (zilScore() >= 4) race = "zil";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
+
 			return race;
 		}
 		
@@ -6532,7 +6550,7 @@
 			if (earType == GLOBAL.TYPE_VANAE) counter++;
 			if (tailType == GLOBAL.TYPE_VANAE && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
 			if (totalVaginas(GLOBAL.TYPE_VANAE)) counter++;
-			if (totalCocks(GLOBAL.TYPE_VANAE)) counter++;
+			if (hasVaginaType(GLOBAL.TYPE_VANAE)) counter++;
 			if (milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) counter++;
 			if (hasStatusEffect("Vanae Markings")) counter++;
 			return counter;
@@ -6577,9 +6595,9 @@
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_CANINE) counter++;
 			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
-			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
 			if (legType == GLOBAL.TYPE_CANINE) counter++;
+			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			return counter;
 		}
 		public function leithanScore():int {
@@ -6594,15 +6612,18 @@
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
+			if (eyeType == GLOBAL.TYPE_FELINE) counter++;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
+			if (legType == GLOBAL.TYPE_FELINE) counter++;
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter++;
 			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
+			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			return counter;
 		}
 		public function zilScore(): int {
 			var counter: int = 0;
 			if (cockTotal(GLOBAL.TYPE_BEE) > 0) counter++;
-			if (hasVagina(GLOBAL.TYPE_BEE)) counter++;
+			if (hasVaginaType(GLOBAL.TYPE_BEE)) counter++;
 			if (armType == GLOBAL.TYPE_BEE) counter++;
 			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
 			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
@@ -6617,10 +6638,23 @@
 			if (armType == GLOBAL.TYPE_FELINE) counter++;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (hasStatusEffect("Genital Slit")) counter++;
-			if (hasVagina(GLOBAL.TYPE_NAGA)) counter++;
+			if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
+			return counter;
+		}
+		public function raskvelScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_RASKVEL) counter++;
+			if (tailType == GLOBAL.TYPE_RASKVEL && hasTailFlag(GLOBAL.FLAG_SCALED) && tailCount > 0) counter++;
+			if (legType == GLOBAL.TYPE_RASKVEL) counter++;
+			if (hasCock(GLOBAL.TYPE_RASKVEL)) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			if (counter > 1 && hasVagina() && totalClits()/totalVaginas() == 2) counter++;
+			if (counter > 2 && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
+			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
 			return counter;
 		}
 		public function isRahn(): Boolean {
@@ -8673,10 +8707,7 @@
 			var descript: String = "";
 			var noun: String = "";
 			var rando: Number = 0;
-			//If a taildick, convert to human so we can mention its a tailcock 50% of the time!
-			if (tail && this.rand(2) == 0) {
-				type = GLOBAL.TYPE_HUMAN;
-			}
+			var choices:Array = new Array();
 			if (type == GLOBAL.TYPE_HUMAN) {
 				if (!simple) {
 					rando = this.rand(7);
@@ -8689,338 +8720,150 @@
 				else if (rando <= 6) noun += "prick";
 				else if (rando <= 7) noun += "pecker";
 				else noun += "shaft";
-			} else if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
+			} else if (type == GLOBAL.TYPE_CANINE)
+			{
 				if (!simple) {
 					rando = this.rand(8);
-					if (rando <= 0 && type == GLOBAL.TYPE_CANINE) descript += "canine ";
-					else if (rando <= 0) descript += "vulpine ";
-					else if (rando <= 1) descript += "pointed ";
-					else if (rando <= 2) descript += "knotty ";
-					else if (rando <= 3) descript += "bestial ";
-					else if (rando <= 4) descript += "animalistic ";
-					else if (rando <= 5) descript += "canine ";
-					else if (rando <= 6) descript += "animalistic ";
-					else descript += "knotted ";
+					choices = ["pointed","knotty","bestial","animalistic","knotted","canine","canine"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				if (type == GLOBAL.TYPE_CANINE) {
-					rando = this.rand(11);
-					if (rando == 0) noun += "doggie-dong";
-					else if (rando == 1) noun += "shaft";
-					else if (rando == 2) noun += "prick";
-					else if (rando == 3) noun += "dog-shaft";
-					else if (rando == 4) noun += "cock";
-					else if (rando == 5) noun += "puppy-pecker";
-					else if (rando == 6) noun += "dog-dick";
-					else if (rando == 7) noun += "shaft";
-					else if (rando == 8) noun += "member";
-					else if (rando == 9) noun += "cock";
-					else noun += "dog-cock";
-				} else {
-					rando = this.rand(11);
-					if (rando == 0) noun += "dong";
-					else if (rando == 1) noun += "shaft";
-					else if (rando == 2) noun += "prick";
-					else if (rando == 3) noun += "fox-shaft";
-					else if (rando == 4) noun += "cock";
-					else if (rando == 5) noun += "vixen-pricker";
-					else if (rando == 6) noun += "fox-dick";
-					else if (rando == 7) noun += "shaft";
-					else if (rando == 8) noun += "member";
-					else if (rando == 9) noun += "cock";
-					else noun += "fox-cock";
+				choices = ["shaft","prick","cock","tool","member","cock"];
+				if (tail && rand(2) == 0) noun += "tail-";	
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "canine ") choices.push("doggie-dong","dog-cock","puppy-pecker","dog-dick");
+				noun += choices[rand(choices.length)];
+			} else if(type == GLOBAL.TYPE_VULPINE) {
+				if (!simple) {
+					rando = this.rand(8);
+					choices = ["pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine"];
+					descript += choices[rand(choices.length)] + " ";
 				}
+				//Baseline cocknames.
+				choices = ["shaft","prick","cock","tool","member","cock"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "vulpine ") choices.push("fox-dick","fox-cock","fox-prick","fox-tool","vixen-pricker");
+				
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_EQUINE) {
 				if (!simple) {
-					rando = this.rand(7);
-					if (rando == 0) descript += "flared ";
-					else if (rando == 1) descript += "equine ";
-					else if (rando == 2) descript += "bestial ";
-					else if (rando == 3) descript += "flat-tipped ";
-					else if (rando == 4) descript += "animalistic ";
-					else if (rando == 5) descript += "blunted ";
-					else descript += "sheath-girded ";
+					choices = ["flared","equine","bestial","flat-tipped","animalistic","blunted"]
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(10);
-				if (rando <= 0) noun += "horse-cock";
-				else if (rando <= 1) noun += "prick";
-				else if (rando <= 2) noun += "horse-shaft";
-				else if (rando <= 3) noun += "horse-member";
-				else if (rando <= 4) noun += "stallion-prick";
-				else if (rando <= 5) noun += "dong";
-				else if (rando <= 6) noun += "beast-cock";
-				else if (rando <= 7) noun += "stallion-cock";
-				else if (rando <= 8) noun += "tool";
-				else noun += "phallus";
+				choices = ["shaft","prick","cock","tool","member","cock","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "equine ") choices.push("horse-cock","horse-shaft","horse-member","stallion-prick","beast-cock","stallion-cock");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_DEMONIC) {
 				if (!simple) {
-					rando = this.rand(9);
-					if (rando == 0) descript += "nub-covered ";
-					else if (rando == 1) descript += "nubby ";
-					else if (rando == 2) descript += "perverse ";
-					else if (rando == 3) descript += "bumpy ";
-					else if (rando == 4) descript += "demonic ";
-					else if (rando == 5) descript += "cursed ";
-					else if (rando == 6) descript += "infernal ";
-					else if (rando == 7) descript += "unholy ";
-					else descript += "blighted ";
+					choices = ["nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando <= 0 && descript != "demonic") noun += "demon-dick";
-				else if (rando <= 1) noun += "shaft";
-				else if (rando <= 2) noun += "cock";
-				else if (rando <= 3) noun += "pecker";
-				else if (rando <= 4) noun += "demon-dick";
-				else if (rando <= 5) noun += "cock";
-				else if (rando <= 6) noun += "dong";
-				else if (rando <= 7) noun += "prick";
-				else if (rando <= 8) noun += "prick";
-				else if (rando <= 9) noun += "member";
-				else noun += "tool";
+				choices = ["shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "demonic ") choices.push("demon-dick","demon-cock");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_TENTACLE || type == GLOBAL.TYPE_COCKVINE) {
 				if (!simple) {
-					rando = this.rand(9);
-					if (rando == 0) descript += "twisting ";
-					else if (rando == 1) descript += "wriggling ";
-					else if (rando == 2) descript += "sinuous ";
-					else if (rando == 3) descript += "squirming ";
-					else if (rando == 4) descript += "writhing ";
-					else if (rando == 5) descript += "smooth ";
-					else if (rando == 6) descript += "undulating ";
-					else if (rando == 7) descript += "slithering ";
-					else descript += "vine-like ";
+					choices = ["twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando <= 0) noun += "tentacle-prick";
-				else if (rando <= 1) noun += "plant-shaft";
-				else if (rando <= 2) noun += "tentacle-cock";
-				else if (rando <= 3) noun += "cock-tendril";
-				else if (rando <= 4) noun += "tentacle-pecker";
-				else if (rando <= 5) noun += "plant-prick";
-				else if (rando <= 6) {
+				choices = ["cock","phallus","shaft"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else choices.push("tentacle-prick","plant-shaft","tentacle-cock","cock-tendril","tentacle-pecker","plant-prick","tentacle-dick");
+				noun += choices[rand(choices.length)];
+				//Variant that doesn't match code scheme chance
+				if(!tail && rand(10) == 0)
+				{
 					noun += "penile flora";
 					descript = "";
-				} else if (rando <= 7) noun += "shaft";
-				else if (rando <= 8) noun += "tentacle-dick";
-				else if (rando <= 9 && descript != "vine-like ") noun += "vine-prick";
-				else noun += "cock";
+				}
 			} else if (type == GLOBAL.TYPE_FELINE) {
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando == 0) descript += "feline ";
-					else if (rando == 1) descript += "spine-covered ";
-					else if (rando == 2) descript += "spined ";
-					else if (rando == 3) descript += "kitty ";
-					else if (rando == 4) descript += "animalistic ";
-					else if (rando == 5) descript += "soft-barbed ";
-					else if (rando == 6) descript += "nubby ";
-					else descript += "feline ";
+					choices = ["feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "dick";
-				else if (rando <= 1) noun += "cat-cock";
-				else if (rando <= 2) noun += "kitty-cock";
-				else if (rando <= 3) noun += "prick";
-				else if (rando <= 4) noun += "kitty-prick";
-				else if (rando <= 5) noun += "cat-penis";
-				else if (rando <= 6) noun += "member";
-				else if (rando <= 7) noun += "shaft";
-				else if (rando <= 8) noun += "shaft";
-				else if (rando <= 9) noun += "dick";
-				else noun += "kitten-prick";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "feline " && descript != "kitty") choices.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando == 0) descript += "reptilian ";
-					else if (rando == 1) descript += "ophidian ";
-					else if (rando == 2) descript += "inhuman ";
-					else if (rando == 3) descript += "reptilian ";
-					else if (rando == 4) descript += "herpetological ";
-					else if (rando == 5) descript += "serpentine ";
-					else if (rando == 6) descript += "bulbous ";
-					else descript += "bulging ";
+					choices = ["reptilian","ophidian","inhuman","reptilian","herpetological","serpentine","bulbous","bulging"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "dick";
-				else if (rando == 1) noun += "cock";
-				else if (rando == 2) noun += "snake-cock";
-				else if (rando == 3) noun += "prick";
-				else if (rando == 4) noun += "prick";
-				else if (rando == 5) noun += "member";
-				else if (rando == 6) noun += "phallus";
-				else if (rando == 7) noun += "shaft";
-				else if (rando == 8) noun += "tool";
-				else if (rando == 9) noun += "snake-shaft";
-				else noun += "snake-dick";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "reptilian ") choices.push("snake-cock","snake-shaft","snake-dick");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_RASKVEL) {
 				if (!simple) {
-					rando = this.rand(7);
-					if (rando == 0) descript += "reptilian ";
-					else if (rando == 1) descript += "alien ";
-					else if (rando == 2) descript += "raskvel ";
-					else if (rando == 3) descript += "reptilian ";
-					else if (rando == 4) descript += "smooth ";
-					else if (rando == 5) descript += "sleek ";
-					else descript += "exotic ";
+					choices = ["reptilian","alien","raskvel","reptilian","smooth","sleek","exotic"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "dick";
-				else if (rando == 1) noun += "cock";
-				else if (rando == 2 && descript != "raskvel ") noun += "rask-cock";
-				else if (rando == 3) noun += "prick";
-				else if (rando == 4) noun += "prick";
-				else if (rando == 5) noun += "member";
-				else if (rando == 6) noun += "phallus";
-				else if (rando == 7) noun += "shaft";
-				else if (rando == 8) noun += "tool";
-				else if (rando == 9 && descript != "alien ") noun += "xeno-shaft";
-				else noun += "cock";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else choices.push("rask-cock","xeno-shaft");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_ANEMONE) {
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando == 0) descript += "tentacle-ringed ";
-					else if (rando == 1) descript += "blue ";
-					else if (rando == 2) descript += "stinger-laden ";
-					else if (rando == 3) descript += "pulsating ";
-					else if (rando == 4) descript += "stinger-coated ";
-					else if (rando == 5) descript += "near-transparent ";
-					else if (rando == 6) descript += "tentacle-ringed ";
-					else descript += "squirming ";
+					choices = ["tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "anemone-dick";
-				if (rando == 1) noun += "cock";
-				if (rando == 2) noun += "member";
-				if (rando == 3) noun += "shaft";
-				if (rando == 4) noun += "prick";
-				if (rando == 5) noun += "anemone-prick";
-				if (rando == 6) noun += "member";
-				if (rando == 7) noun += "cock";
-				if (rando == 8) noun += "dick";
-				if (rando == 9) noun += "shaft";
-				if (rando == 10) noun += "shaft";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else choices.push("anemone-dick","anemone-prick");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_KANGAROO) {
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando == 0) descript += "kangaroo-like ";
-					else if (rando == 1) descript += "pointed ";
-					else if (rando == 2) descript += "marsupial ";
-					else if (rando == 3) descript += "tapered ";
-					else if (rando == 4) descript += "curved ";
-					else if (rando == 5) descript += "near-transparent ";
-					else if (rando == 6) descript += "tentacle-ringed ";
-					else descript += "squirming ";
+					choices = ["kangaroo-like","pointed","marsupial","tapered","curved"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "dick";
-				else if (rando <= 1) noun += "cock";
-				else if (rando <= 2) noun += "member";
-				else if (rando <= 3) noun += "shaft";
-				else if (rando <= 4) noun += "pecker";
-				else if (rando <= 5 && descript != "kangaroo-like ") noun += "kangaroo-cock";
-				else if (rando <= 6) noun += "prick";
-				else if (rando <= 7 && descript != "kangaroo-like ") noun += "kangaroo-dick";
-				else if (rando <= 8) noun += "cock";
-				else if (rando <= 9 && descript != "kangaroo-like ") noun += "kangaroo-cock";
-				else noun += "shaft";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "kangaroo-like ") choices.push("kangaroo-cock","kangaroo-dick");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_DRACONIC) {
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando == 0) descript += "dragon-like ";
-					else if (rando == 1) descript += "segmented ";
-					else if (rando == 2) descript += "pointed ";
-					else if (rando == 3) descript += "knotted ";
-					else if (rando == 4) descript += "mythic ";
-					else if (rando == 5) descript += "draconic ";
-					else if (rando == 6) descript += "tapered ";
-					else descript += "scaly ";
+					choices = ["dragon-like","segmented","pointed","knotted","mythic","draconic","tapered","scaly"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando <= 0) noun += "dick";
-				else if (rando <= 1) noun += "shaft";
-				else if (rando <= 2) noun += "prick";
-				else if (rando <= 3 && descript != "dragon-like ") noun += "dragon-cock";
-				else if (rando <= 4) noun += "phallus";
-				else if (rando <= 5) noun += "tool";
-				else if (rando <= 6) noun += "dick";
-				else if (rando <= 7) noun += "cock";
-				else if (rando <= 8 && descript != "dragon-like ") noun += "dragon-dick";
-				else if (rando <= 9) noun += "endowment";
-				else noun += "shaft";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				//Don't say "canine dog-cock" that's dumb.
+				else if(descript != "dragon-like ") choices.push("dragon-cock","dragon-dick");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_BEE) {
 				if (!simple) {
-					rando = this.rand(7);
-					if (rando == 0) descript += "foreskin-covered ";
-					else if (rando == 1) descript += "thick-skinned ";
-					else if (rando == 2) descript += "fleshy ";
-					else if (rando == 3) descript += "skin-shrouded ";
-					else if (rando == 4) descript += "alien ";
-					else if (rando == 5) descript += "vaguely human-like ";
-					else descript += "smooth ";
+					choices = ["foreskin-covered","thick-skinned","fleshy","skin-shrouded","alien","vaguely human-like","smooth"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "zil-dick";
-				if (rando == 1) noun += "cock";
-				if (rando == 2) noun += "member";
-				if (rando == 3) noun += "shaft";
-				if (rando == 4) noun += "phallus";
-				if (rando == 5) noun += "zil-prick";
-				if (rando == 6) noun += "member";
-				if (rando == 7) noun += "zil-cock";
-				if (rando == 8) noun += "dick";
-				if (rando == 9) noun += "tool";
-				if (rando == 10) noun += "shaft";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else choices.push("zil-dick","zil-prick","zil-cock");
+				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_KUITAN) {
-				//NOT SIMPLE? TEH WURRST
 				if (!simple) {
-					rando = this.rand(8);
-					if (rando <= 0 && type == GLOBAL.TYPE_CANINE) descript += "alien ";
-					else if (rando <= 0) descript += "bulgy ";
-					else if (rando <= 1) descript += "knot-lined ";
-					else if (rando <= 2) descript += "extra knotty ";
-					else if (rando <= 3) descript += "bestial ";
-					else if (rando <= 4) descript += "kui-tan ";
-					else if (rando <= 5) descript += "inhuman ";
-					else if (rando <= 6) descript += "exotic ";
-					else descript += "knotted ";
+					choices = ["alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted"];
+					descript += choices[rand(choices.length)] + " ";
 				}
-				rando = this.rand(11);
-				if (rando == 0) noun += "prong";
-				else if (rando == 1) noun += "shaft";
-				else if (rando == 2) noun += "prick";
-				else if (rando == 3) noun += "shaft";
-				else if (rando == 4) noun += "cock";
-				else if (rando == 5) noun += "xeno-cock";
-				else if (rando == 6) noun += "dick";
-				else if (rando == 7) noun += "tool";
-				else if (rando == 8) noun += "member";
-				else if (rando == 9) noun += "cock";
-				else noun += "cock";
+				choices = ["prong","dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "alien ") choices.push("xeno-cock");
+				noun += choices[rand(choices.length)];
 			}
 			else if (type == GLOBAL.TYPE_SIMII) {
 				if (!simple) {
 					descript += "simian ";
 				}
-				
-				rando = this.rand(11);
-				if (rando == 0)
-				{
-					if (descript != "simian ") noun += "simii-dick";
-					else noun += "dick";
-				}
-				if (rando == 1) noun += "cock";
-				if (rando == 2) noun += "member";
-				if (rando == 3) noun += "shaft";
-				if (rando == 4) noun += "phallus";
-				if (rando == 5) noun += "prick";
-				if (rando == 6) noun += "member";
-				if (rando == 7)
-				{
-					if (descript != "simian ") noun += "simii-cock";
-					else noun += "cock";
-				}
-				if (rando == 8) noun += "dick";
-				if (rando == 9) noun += "tool";
-				if (rando == 10) noun += "shaft";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "simian ") choices.push("simii-dick","simii-cock");
+				noun += choices[rand(choices.length)];
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {

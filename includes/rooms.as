@@ -44,7 +44,7 @@ public function initializeRooms():void
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
-	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon's Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father's fortune. Luckily, the galaxy is vast. Your cousin won't be claiming if anything for at least a few months if the scale of your father's challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
+	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon's Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father's fortune. Luckily, the galaxy is vast. Your cousin won't be claiming anything for at least a few months if the scale of your father's challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
@@ -67,7 +67,7 @@ public function initializeRooms():void
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
 	rooms["ANON'S BAR AND BOARD"].roomName = "ANON'S BAR\nAND BOARD";
-	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of the this establishment. You've already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
+	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You've already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
 	rooms["ANON'S BAR AND BOARD"].planet = "TAVROS STATION";
 	rooms["ANON'S BAR AND BOARD"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
@@ -240,7 +240,7 @@ public function initializeRooms():void
 	//1 - Spaceport Elevator
 	rooms["SPACEPORT ELEVATOR"] = new RoomClass(this);
 	rooms["SPACEPORT ELEVATOR"].roomName = "SPACEPORT\nELEVATOR";
-	rooms["SPACEPORT ELEVATOR"].description = "A standard self-assembling cargo elevator towers overhead, connected to dozens of landing pads covered with brilliantly flashing lights. The supporting girders are stamped with the logo of Pyrite Heavy Industries, the subgroup of Pyrite Industries that handles the largest constructions. The whole thing still gleams like new, even in an environment so damp that the metal is sweating drops of condensation. The doors to the elevator are open, all you need to do is push the button to go back to your ship. Fences and the wall of a building to the east keep you penned in this area, but a doorway marked “Customs” to the east could be entered if you wish to explore.";
+	rooms["SPACEPORT ELEVATOR"].description = "A standard self-assembling cargo elevator towers overhead, connected to dozens of landing pads covered with brilliantly flashing lights. The supporting girders are stamped with the logo of Pyrite Heavy Industries, the subgroup of Pyrite Industries that handles the largest constructions. The whole thing still gleams like new, even in an environment so damp that the metal is sweating drops of condensation. The doors to the elevator are open; all you need to do is push the button to go back to your ship. Fences and the wall of a building to the east keep you penned in this area, but a doorway marked “Customs” to the east could be entered if you wish to explore.";
 	rooms["SPACEPORT ELEVATOR"].planet = "PLANET: MHEN'GA";
 	rooms["SPACEPORT ELEVATOR"].system = "SYSTEM: ARA ARA";
 	rooms["SPACEPORT ELEVATOR"].inExit = "SHIP HANGAR";
@@ -293,7 +293,7 @@ public function initializeRooms():void
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
 	rooms["WEST ESBETH 1"].roomName = "WEST\nESBETH";
-	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends forther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front purpose: \"Crazy Carl’s Crude Cylinder Collection Cache\". The crude neon outline of a handgun helps you fill in the blanks.";
+	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: \"Crazy Carl’s Crude Cylinder Collection Cache\". The crude neon outline of a handgun helps you fill in the blanks.";
 	rooms["WEST ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["WEST ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
@@ -421,7 +421,7 @@ public function initializeRooms():void
 	//14. The Northeastern Corner of Esbeth
 	rooms["NORTHEAST ESBETH"] = new RoomClass(this);
 	rooms["NORTHEAST ESBETH"].roomName = "NORTHEAST\nESBETH";
-	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasional other adventurers, like you, on their way, but they pay you no mind.";
+	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasionally other adventurers, like you, on their way, but they pay you no mind.";
 	rooms["NORTHEAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["NORTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
@@ -602,7 +602,7 @@ public function initializeRooms():void
 	//28. The Lichen-Covered Jungle
 	rooms["LICHENS 1"] = new RoomClass(this);
 	rooms["LICHENS 1"].roomName = "LICHEN\nJUNGLE";
-	rooms["LICHENS 1"].description = "Hardly anything seems to grow here but trees, thorns, and lichens, and the lichens have grown over both of the former. The trees grow so closely together to the north that it would be impossible to squeeze between, while the thorns to the south are so large and thick that getting through them would be a huge pain. Purplish lights twinkle from some of the lichens around you, and it seems like every new step exposes you to a new color or trait from the oddly earth-like, indigenous life-form.";
+	rooms["LICHENS 1"].description = "Hardly anything seems to grow here but trees, thorns, and lichens, and the lichens have grown over both of the former. The trees grow so closely together to the north that it would be impossible to squeeze between them, while the thorns to the south are so large and thick that getting through them would be a huge pain. Purplish lights twinkle from some of the lichens around you, and it seems like every new step exposes you to a new color or trait from the oddly earth-like, indigenous life-form.";
 	rooms["LICHENS 1"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS 1"].westExit = "LICHENS BEND 1";
@@ -905,7 +905,7 @@ public function initializeRooms():void
 	//51. Deep Forest
 	rooms["DEEP FOREST 1"] = new RoomClass(this);
 	rooms["DEEP FOREST 1"].roomName = "DEEP\nFOREST";
-	rooms["DEEP FOREST 1"].description = "Navigation is tricky with so little light to illuminate the way, but the lack of visible light assists you in other ways, keeping brush and undergrowth to an absolute minimum. If you were so inclined, you could easily wander around the gloomy wood. It would be wise not to wander too far, however; you don't want to get lost on such a wild planet. The woodland trail makes a straight line east to west. In the former direction, the forest lightens. In the latter, a small brook crosses the trail. The waters are crystal clear and shallow enough to cross without issue.";
+	rooms["DEEP FOREST 1"].description = "Navigation is tricky with so little light to illuminate the way, but the lack of visible light assists you in other ways, keeping brush and undergrowth to an absolute minimum. If you were so inclined, you could easily wander around the gloomy woods. It would be wise not to wander too far, however; you don't want to get lost on such a wild planet. The woodland trail makes a straight line east to west. In the former direction, the forest lightens. In the latter, a small brook crosses the trail. The waters are crystal clear and shallow enough to cross without issue.";
 	rooms["DEEP FOREST 1"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP FOREST 1"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP FOREST 1"].eastExit = "DARK ORANGE CORNER 1";
@@ -1052,7 +1052,7 @@ public function initializeRooms():void
 	//62. Forked\nJungle
 	rooms["FORKED DEEP JUNGLE 1"] = new RoomClass(this);
 	rooms["FORKED DEEP JUNGLE 1"].roomName = "DEEP JUNGLE\nFORK";
-	rooms["FORKED DEEP JUNGLE 1"].description = "There are three distinct paths that you could follow from this point: one to east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
+	rooms["FORKED DEEP JUNGLE 1"].description = "There are three distinct paths that you could follow from this point: one to the east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
 	rooms["FORKED DEEP JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["FORKED DEEP JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["FORKED DEEP JUNGLE 1"].eastExit = "DEEP JUNGLE 2";
@@ -1079,7 +1079,7 @@ public function initializeRooms():void
 	//64. Vined Jungle/Corner
 	rooms["VINED JUNGLE 2"] = new RoomClass(this);
 	rooms["VINED JUNGLE 2"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc and somehow manages to stay free of the encroaching mass of vines. If fact, none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
+	rooms["VINED JUNGLE 2"].description = "The path through the tentacles takes a gentle curve to the north and east underfoot. It seems almost mechanical in the smoothness of its arc and somehow manages to stay free of the encroaching mass of vines. In fact, none of the vines bother you in the slightest as you consider your options. You hear the crack of an insect falling prey to the wriggling plantlife, ominously encouraging you to leave this place behind.";
 	rooms["VINED JUNGLE 2"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 2"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 2"].northExit = "VINED JUNGLE 1";
@@ -1092,7 +1092,7 @@ public function initializeRooms():void
 	//65. Vined\nJungle
 	rooms["VINED JUNGLE 3"] = new RoomClass(this);
 	rooms["VINED JUNGLE 3"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 3"].description = "The unnatural, squirming walls on either side undulate like the waves of an ocean stuck on its side. It's enough to set one's nerves on edge, and the darkness of the deep jungle's atmosphere doesn't really help. A lazily buzzing bug with at least twelve finger-sized legs crosses your way, but it doesn't stop to pay you any attention. To the west, the vines thin. To the east, the both the tendrils and the path continue on much the same.";
+	rooms["VINED JUNGLE 3"].description = "The unnatural, squirming walls on either side undulate like the waves of an ocean stuck on its side. It's enough to set one's nerves on edge, and the darkness of the deep jungle's atmosphere doesn't really help. A lazily buzzing bug with at least twelve finger-sized legs crosses your way, but it doesn't stop to pay you any attention. To the west, the vines thin. To the east, both the tendrils and the path continue on much the same.";
 	rooms["VINED JUNGLE 3"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 3"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 3"].eastExit = "VINED JUNGLE 2";
@@ -1172,7 +1172,7 @@ public function initializeRooms():void
 	//71. Vined\nJungle
 	rooms["VINED JUNGLE 6"] = new RoomClass(this);
 	rooms["VINED JUNGLE 6"].roomName = "VINED\nJUNGLE";
-	rooms["VINED JUNGLE 6"].description = "Between the darkness, the squirming plants, and the gigantic bugs that constantly flit by, you're ready to step somewhere that doesn't seem so obviously dangerous. A few rays of amber sunlight do trickle down, but they only serve to highlight the moist sheen that covers the green mounds. To the east, there appears to be three-way fork. The path continues to the west unbroken.";
+	rooms["VINED JUNGLE 6"].description = "Between the darkness, the squirming plants, and the gigantic bugs that constantly flit by, you're ready to step somewhere that doesn't seem so obviously dangerous. A few rays of amber sunlight do trickle down, but they only serve to highlight the moist sheen that covers the green mounds. To the east, there appears to be a three-way fork. The path continues to the west unbroken.";
 	rooms["VINED JUNGLE 6"].planet = "PLANET: MHEN'GA";
 	rooms["VINED JUNGLE 6"].system = "SYSTEM: ARA ARA";
 	rooms["VINED JUNGLE 6"].westExit = "VINED JUNGLE 5";
@@ -1264,7 +1264,7 @@ public function initializeRooms():void
 	//78. Overgrown\nRock
 	rooms["OVERGROWN ROCK 10"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 10"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 10"].description = "You stand at one corner of the giant stone. From where you're standing, you can't even make out the top, but you can see that it's surface is riddled with mosses and lichen-like growths. You wager that it has been here for quite a long time, though you'd need a geologist for an accurate guess. The surrounding plant life has stayed away from the rocky protrusion for some reason, leaving a fifteen foot wide path that you can follow around it. There is also a small, maybe three foot wide, trail in between a few dozen person-sized leaves.";
+	rooms["OVERGROWN ROCK 10"].description = "You stand at one corner of the giant stone. From where you're standing, you can't even make out the top, but you can see that its surface is riddled with mosses and lichen-like growths. You wager that it has been here for quite a long time, though you'd need a geologist for an accurate guess. The surrounding plant life has stayed away from the rocky protrusion for some reason, leaving a fifteen foot wide path that you can follow around it. There is also a small, maybe three foot wide, trail in between a few dozen person-sized leaves.";
 	rooms["OVERGROWN ROCK 10"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 10"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 10"].southExit = "OVERGROWN ROCK 9";
@@ -1617,7 +1617,7 @@ public function initializeRooms():void
 
 	rooms["NARROW GORGE 1"] = new RoomClass(this);
 	rooms["NARROW GORGE 1"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You're standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There's also a fallen tree spanning  the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you're fairly sure it will hold your weight. ";
+	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You're standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There's also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you're fairly sure it will hold your weight. ";
 	rooms["NARROW GORGE 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 1"].system = "SYSTEM: ARA ARA";
@@ -1851,7 +1851,7 @@ public function initializeRooms():void
 	//#5 SHIP CORRIDOR
 	rooms["205"] = new RoomClass(this);
 	rooms["205"].roomName = "SHIP\nCORRIDOR";
-	rooms["205"].description = "You're in the middle of a bend in a massive, maintenance access corridor. Once, long ago, it was used by work robots to move between various sections of the ship unseen. Now, with much of the ship in disrepair, it's the main thoroughfare between Novahome's central corridor and the hangar. The raskvel streaming by you seem excited to have all the offworlders around, stopping them to jabber questions almost nonstop. You narrowly escape the same fate as you go on your way. A ramp is visible to the west, and a the corridor stretches south towards Novahome proper, glowing faintly.";
+	rooms["205"].description = "You're in the middle of a bend in a massive, maintenance access corridor. Once, long ago, it was used by work robots to move between various sections of the ship unseen. Now, with much of the ship in disrepair, it's the main thoroughfare between Novahome's central corridor and the hangar. The raskvel streaming by you seem excited to have all the offworlders around, stopping them to jabber questions almost nonstop. You narrowly escape the same fate as you go on your way. A ramp is visible to the west, and a corridor stretches south towards Novahome proper, glowing faintly.";
 	rooms["205"].runOnEnter = undefined;
 	rooms["205"].westExit = "204";
 	rooms["205"].southExit = "206";
@@ -1891,7 +1891,7 @@ public function initializeRooms():void
 	//#8 NOVAHOME
 	rooms["208"] = new RoomClass(this);
 	rooms["208"].roomName = "\nNOVAHOME";
-	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it's now packed with houses and shops of all styles and sizes. On one side, there's shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
+	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it's now packed with houses and shops of all styles and sizes. On one side, there's a shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
 	rooms["208"].runOnEnter = colensosAdjacentRoomStuff;
 	rooms["208"].eastExit = "209";
 	rooms["208"].westExit = "207";
@@ -1976,7 +1976,7 @@ public function initializeRooms():void
 	//#14 WEST NOVAHOME
 	rooms["214"] = new RoomClass(this);
 	rooms["214"].roomName = "WEST\nNOVAHOME";
-	rooms["214"].description = "West Novahome is the located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
+	rooms["214"].description = "West Novahome is located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
 	rooms["214"].runOnEnter = undefined;
 	rooms["214"].eastExit = "213";
 	rooms["214"].moveMinutes = 2;
@@ -2071,7 +2071,7 @@ public function initializeRooms():void
 	//#21 RUST CANYON
 	rooms["221"] = new RoomClass(this);
 	rooms["221"].roomName = "RUST\nCANYON";
-	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is thick with dust and stagnant. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
+	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is stagnant and thick with dust. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
 	rooms["221"].runOnEnter = rustCoastEncounters;
 	rooms["221"].westExit = "222";
 	rooms["221"].southExit = "220";
@@ -2084,7 +2084,7 @@ public function initializeRooms():void
 	//#22 NEXT TO\nA JUNK PILE
 	rooms["222"] = new RoomClass(this);
 	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look to closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
+	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look too closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
 	rooms["222"].runOnEnter = rustCoastEncounters;
 	rooms["222"].eastExit = "221";
 	rooms["222"].northExit = "223";
@@ -2165,7 +2165,7 @@ public function initializeRooms():void
 	//#28 OIL SEA\nBEACH
 	rooms["228"] = new RoomClass(this);
 	rooms["228"].roomName = "OIL SEA\nBEACH";
-	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collection sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It's hard not to feel like this whole planet is a spectacle of pollution and rot taken heaped upon itself until it's gained its own sense of obscene beauty. Surely there's something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
+	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collecting sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It's hard not to feel like this whole planet is a spectacle of pollution and rot heaped upon itself until it's gained its own sense of obscene beauty. Surely there's something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
 	rooms["228"].runOnEnter = rustCoastEncounters;
 	rooms["228"].northExit = "225";
 	rooms["228"].eastExit = "223";
@@ -2220,7 +2220,7 @@ public function initializeRooms():void
 	//#32 OIL SEA\nBEACH
 	rooms["232"] = new RoomClass(this);
 	rooms["232"].roomName = "OIL SEA\nBEACH";
-	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the \"water\" several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the sound and west while twisting, creaking mass of forgotten wrecks has been stacked to the north and east, blocking your way.";
+	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the \"water\" several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the south and west while twisting, creaking mass of forgotten wrecks have been stacked to the north and east, blocking your way.";
 	rooms["232"].runOnEnter = rustCoastEncounters;
 	rooms["232"].westExit = "231";
 	rooms["232"].southExit = "233";
@@ -2274,7 +2274,7 @@ public function initializeRooms():void
 	//#36 RUST\nPATH
 	rooms["236"] = new RoomClass(this);
 	rooms["236"].roomName = "RUST\nPATH";
-	rooms["236"].description = "It is hard not to feel a little claustrophobic when you're standing in the shadows of two giants. It's even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west, one pile all stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
+	rooms["236"].description = "It is hard not to feel a little claustrophobic when you're standing in the shadows of two giants. It's even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west is a pile of stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
 	rooms["236"].runOnEnter = rustPlainsEncounters;
 	rooms["236"].northExit = "219";
 	rooms["236"].eastExit = "237";
@@ -2393,7 +2393,7 @@ public function initializeRooms():void
 	//#44 NEXT TO\nA JUNK PILE
 	rooms["244"] = new RoomClass(this);
 	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are of stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
+	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also go west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
 	rooms["244"].runOnEnter = rustCoastEncounters;
 	rooms["244"].northExit = "235";
 	rooms["244"].eastExit = "243";
@@ -2436,7 +2436,7 @@ public function initializeRooms():void
 	//#47 OIL SEA\nBEACH
 	rooms["247"] = new RoomClass(this);
 	rooms["247"].roomName = "OIL SEA\nBEACH";
-	rooms["247"].description = "You are momentarily puzzled by the sound of a church bell. Could some alien culture have actually built a place of worship on this planet? And why in whoever’s name would they put it on this beach? A step around another battered hull exposes the mystery, but does nothing to dispel the oddity. As you watch, a cylindrical section of a ship, likely a spent fuel tank, rolls down a slope of metallic sand into the sea of chemicals. Rhythmically, the idiot tide shoves it back. The thick, syrupy waves push it up the slope far enough to clang the house-sized tank against a half-buried engine core, lodged in the shore. You wonder, in passing, how long this accidental bell has peeled, summoning it’s nonexistent flock. A blade of metal the size of a small skyscraper blocks travel to the south and east, leaving north the only passable direction.";
+	rooms["247"].description = "You are momentarily puzzled by the sound of a church bell. Could some alien culture have actually built a place of worship on this planet? And why in whoever’s name would they put it on this beach? A step around another battered hull exposes the mystery, but does nothing to dispel the oddity. As you watch, a cylindrical section of a ship, likely a spent fuel tank, rolls down a slope of metallic sand into the sea of chemicals. Rhythmically, the idiot tide shoves it back. The thick, syrupy waves push it up the slope far enough to clang the house-sized tank against a half-buried engine core, lodged in the shore. You wonder, in passing, how long this accidental bell has peeled, summoning its nonexistent flock. A blade of metal the size of a small skyscraper blocks travel to the south and east, leaving north the only passable direction.";
 	rooms["247"].runOnEnter = rustCoastEncounters;
 	rooms["247"].northExit = "246";
 	rooms["247"].planet = "PLANET: TARKUS";
@@ -2645,7 +2645,7 @@ public function initializeRooms():void
 	//#62 RUST\nFIELDS
 	rooms["262"] = new RoomClass(this);
 	rooms["262"].roomName = "RUST\nFIELDS";
-	rooms["262"].description = "Crusty collections of oxidized granules crunch under underneath your every motion as you walk around, vaguely reminding you of the soft crackle of autumn leaves. That illusion is swiftly shattered by the feeling a bone-dry breeze against your cheek, carried along the length of the Nova by weather systems you don't have time to study. That once-great capital ship's hull prevents any movement to the north, and an unsteady drift of dust amidst poorly-stacked machinery stops travel east.";
+	rooms["262"].description = "Crusty collections of oxidized granules crunch underneath your every motion as you walk around, vaguely reminding you of the soft crackle of autumn leaves. That illusion is swiftly shattered by the feeling of a bone-dry breeze against your cheek, carried along the length of the Nova by weather systems you don't have time to study. That once-great capital ship's hull prevents any movement to the north, and an unsteady drift of dust amidst poorly-stacked machinery stops travel east.";
 	rooms["262"].runOnEnter = rustPlainsEncounters;
 	rooms["262"].southExit = "260";
 	rooms["262"].westExit = "263";
@@ -2698,7 +2698,7 @@ public function initializeRooms():void
 	//#66 RUST\nFIELDS
 	rooms["266"] = new RoomClass(this);
 	rooms["266"].roomName = "RUST\nFIELDS";
-	rooms["266"].description = "Here among the flat, featureless dunes of the rust fields, the sight of the silvery trees to the east comes as something of relief. Of course, you dare not tread among them; it's quite clear their branches are tipped with deadly blades, and they seem to swing them around with predatory intent whenever something moves nearby. You can go north and south along the border or west deeper into the rust fields.";
+	rooms["266"].description = "Here among the flat, featureless dunes of the rust fields, the sight of the silvery trees to the east comes as something of a relief. Of course, you dare not tread among them; it's quite clear their branches are tipped with deadly blades, and they seem to swing them around with predatory intent whenever something moves nearby. You can go north and south along the border or west deeper into the rust fields.";
 	rooms["266"].runOnEnter = rustRidgesEncounters;
 	rooms["266"].northExit = "265";
 	rooms["266"].southExit = "267";
@@ -2712,7 +2712,7 @@ public function initializeRooms():void
 	//#67 RUST\nFIELDS
 	rooms["267"] = new RoomClass(this);
 	rooms["267"].roomName = "RUST\nFIELDS";
-	rooms["267"].description = "You stand on a crossroads of sorts. Though you're in technically in the rust fields, the iron ridges aren't far to the south, and the scything glade begins a few steps to the east. Luckily, there's a large enough gap between bladed trees for you to pass quite comfortably. You can spot at least one corroded stump in the middle of the open area - someone has gone through great pains to try and open a path through the deadly foilage.";
+	rooms["267"].description = "You stand on a crossroads of sorts. Though you're technically in the rust fields, the iron ridges aren't far to the south, and the scything glade begins a few steps to the east. Luckily, there's a large enough gap between bladed trees for you to pass quite comfortably. You can spot at least one corroded stump in the middle of the open area - someone has gone through great pains to try and open a path through the deadly foilage.";
 	rooms["267"].runOnEnter = rustRidgesEncounters;
 	rooms["267"].northExit = "266";
 	rooms["267"].eastExit = "269";
@@ -2764,7 +2764,7 @@ public function initializeRooms():void
 	//#71 SCYTHING\nGLADE
 	rooms["271"] = new RoomClass(this);
 	rooms["271"].roomName = "SCYTHING\nGLADE";
-	rooms["271"].description = "You're struck by how red the soil of Tarkus is inside the glade; it's so dark that's her nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
+	rooms["271"].description = "You're struck by how red the soil of Tarkus is inside the glade; it's so dark that's it's nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
 	rooms["271"].runOnEnter = rustScytheGladeEncounters;
 	rooms["271"].northExit = "270";
 	rooms["271"].eastExit = "272";
@@ -2860,7 +2860,7 @@ public function initializeRooms():void
 	//#79 ARTIFICIAL\nPLATFORM
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
-	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
+	rooms["279"].description = "You're standing on the west end of a metal platform. Its surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
 	rooms["279"].runOnEnter = eastTransitStationBonus;
 	rooms["279"].westExit = "278";
 	rooms["279"].eastExit = "350";
@@ -2898,7 +2898,7 @@ public function initializeRooms():void
 	//#83 SCYTHING\nGLADE
 	rooms["283"] = new RoomClass(this);
 	rooms["283"].roomName = "SCYTHING\nGLADE";
-	rooms["283"].description = "A gnarled, argent root has emerged from the granular soil like the back of some great sandworm. If it did not catch the light so beautifully, you might have wound up tripping over it. As it is, you're able to move carefully over its thickness. The thing's \"bark,\" if it can be called that, is smooth to the touch, almost slickened with a kind of oil. Perhaps that secretion is what keeps it from corroding away like so much. The path twists east and south from here.";
+	rooms["283"].description = "A gnarled, argent root has emerged from the granular soil like the back of some great sandworm. If it did not catch the light so beautifully, you might have wound up tripping over it. As it is, you're able to move carefully over its thickness. The thing's \"bark,\" if it can be called that, is smooth to the touch, almost slickened with a kind of oil. Perhaps that secretion is what keeps it from corroding away. The path twists east and south from here.";
 	rooms["283"].runOnEnter = rustScytheGladeEncounters;
 	rooms["283"].eastExit = "282";
 	rooms["283"].southExit = "272";
@@ -3017,7 +3017,7 @@ public function initializeRooms():void
 	//#92 NEXT TO\nCRASHED SHIP
 	rooms["292"] = new RoomClass(this);
 	rooms["292"].roomName = "NEXT TO\nCRASHED SHIP";
-	rooms["292"].description = "A forgotten ship that looks almost as old as the rest of the planet crashed here so long ago that the junk mounds have consumed at least half of its bulk. A fanciful musing that this is just the tip of a much large craft comes to mind. What if this rounded, orange tip is just the capstone of a city-sized colony vessel? It would explain the wide variety of sapient natives. It's likely no more than idle thought. You can head east, south, and west of here.";
+	rooms["292"].description = "A forgotten ship that looks almost as old as the rest of the planet crashed here so long ago that the junk mounds have consumed at least half of its bulk. A fanciful musing that this is just the tip of a much larger craft comes to mind. What if this rounded, orange tip is just the capstone of a city-sized colony vessel? It would explain the wide variety of sapient natives. It's likely no more than idle thought. You can head east, south, and west of here.";
 	rooms["292"].runOnEnter = rustPlainsEncounters;
 	rooms["292"].eastExit = "293";
 	rooms["292"].southExit = "254";
@@ -3031,7 +3031,7 @@ public function initializeRooms():void
 	//#93 NEXT TO\nCRASHED SHIP
 	rooms["293"] = new RoomClass(this);
 	rooms["293"].roomName = "NEXT TO\nCRASHED SHIP";
-	rooms["293"].description = "An orange ship, mostly covered in junk, sits to the northwest, it's rounded hull curving gracefully away to the north and west in spite of the many pits and blast marks that score its surface.";
+	rooms["293"].description = "An orange ship, mostly covered in junk, sits to the northwest, its rounded hull curving gracefully away to the north and west in spite of the many pits and blast marks that score its surface.";
 	rooms["293"].runOnEnter = bonusTubeSteak;
 	rooms["293"].northExit = "261";
 	rooms["293"].eastExit = "259";
@@ -3046,7 +3046,7 @@ public function initializeRooms():void
 	//#94 Factory Square
 	rooms["294"] = new RoomClass(this);
 	rooms["294"].roomName = "FACTORY\nSQUARE";
-	rooms["294"].description = "To the south between the slabs and sickly vegetation, you can make out a large, squat, brick building, blackened with age and mouldy with ancient Raskvel graffiti. An iron radio tower looms over it. It looks wholly unpromising, but the GPS data you compiled tells you that the sexbots originate from this area, and that building is the only significant structure in the area. It’s going to be a complete pain in the ass approaching it – the wreckage and briars which surround it are thick and hostile-looking. Looking through the detritus at the dark, blocky shape you feel a profound sense of foreboding. You’d best be as prepared as possible before confronting whatever is inside, if that is your intention.";
+	rooms["294"].description = "To the south between the slabs and sickly vegetation, you can make out a large, squat, brick building, blackened with age and moldy with ancient Raskvel graffiti. An iron radio tower looms over it. It looks wholly unpromising, but the GPS data you compiled tells you that the sexbots originate from this area, and that building is the only significant structure in the area. It’s going to be a complete pain in the ass approaching it – the wreckage and briars which surround it are thick and hostile-looking. Looking through the detritus at the dark, blocky shape you feel a profound sense of foreboding. You’d best be as prepared as possible before confronting whatever is inside, if that is your intention.";
 	rooms["294"].runOnEnter = sexbotQuestRoom2;
 	rooms["294"].northExit = "256";
 	rooms["294"].planet = "PLANET: TARKUS";
@@ -3129,7 +3129,7 @@ public function initializeRooms():void
 
 	rooms["350"] = new RoomClass(this);
 	rooms["350"].roomName = "THE\nCHASMFALL";
-	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you've seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. And each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
+	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you've seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. Each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
 	rooms["350"].runOnEnter = chasmfallBonusFunction;
 	rooms["350"].westExit = "279";
 	rooms["350"].planet = "PLANET: TARKUS";
@@ -3202,7 +3202,7 @@ public function initializeRooms():void
 
 	rooms["356"] = new RoomClass(this);
 	rooms["356"].roomName = "CORE\nPLATFORM";
-	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for you [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for your [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
 	rooms["356"].runOnEnter = undefined;
 	rooms["356"].westExit = "355";
 	rooms["356"].northExit = "357";
@@ -3534,7 +3534,7 @@ public function initializeRooms():void
 	//505 The Road
 	rooms["505"] = new RoomClass(this);
 	rooms["505"].roomName = "THE\nROAD";
-	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that's been weatherworn into a what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
+	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that's been weatherworn into what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
 	rooms["505"].runOnEnter = undefined;
 	rooms["505"].westExit = "504";
 	rooms["505"].eastExit = "506";
@@ -3620,7 +3620,7 @@ public function initializeRooms():void
 	//The Barn (South End)
 	rooms["511"] = new RoomClass(this);
 	rooms["511"].roomName = "THE\nBARN";
-	rooms["511"].description = "The inside of barn assaults your senses with two things above all else: indecent moans and the scent of milk. A not-so-subtle undercurrent of sexual musk runs beneath them, tickling at your nose and making it impossible to ignore the sexual pleasure surrounding you. Despite the lurid scents and smells, the floor of the barn is clean. It's covered with a fine layer of hay that will undoubtedly keep things dry in case of an accident, not that you've seen one yet. A massive sliding door is positioned on the southern wall, leading back out to the road. Empty stalls sit east and west of here, and more of them line the passageway to the north.";
+	rooms["511"].description = "The inside of the barn assaults your senses with two things above all else: indecent moans and the scent of milk. A not-so-subtle undercurrent of sexual musk runs beneath them, tickling at your nose and making it impossible to ignore the sexual pleasure surrounding you. Despite the lurid scents and smells, the floor of the barn is clean. It's covered with a fine layer of hay that will undoubtedly keep things dry in case of an accident, not that you've seen one yet. A massive sliding door is positioned on the southern wall, leading back out to the road. Empty stalls sit east and west of here, and more of them line the passageway to the north.";
 	rooms["511"].runOnEnter = randomBarnEventFunc;
 	rooms["511"].southExit = "510";
 	rooms["511"].northExit = "512";
@@ -3845,7 +3845,7 @@ public function initializeRooms():void
 
 	rooms["533"] = new RoomClass(this);
 	rooms["533"].roomName = "THE\nROAD";
-	rooms["533"].description = "Coming to an abrupt end, the road terminates in a circular well-trod cul-de-sac. Fences are all too apparently in the area around you, preventing travel into the wild grasses to the south and surrounding the expansive field to the west. A small, close-cut field of grass sits empty to the north save for a broken-down tractor that’s grounded to the far north.";
+	rooms["533"].description = "Coming to an abrupt end, the road terminates in a circular well-trod cul-de-sac. Fences are all too apparent in the area around you, preventing travel into the wild grasses to the south and surrounding the expansive field to the west. A small, close-cut field of grass sits empty to the north save for a broken-down tractor that’s grounded to the far north.";
 	rooms["533"].runOnEnter = fauxCowFarmerBonus;
 	rooms["533"].eastExit = "532";
 	rooms["533"].northExit = "534";
@@ -3882,7 +3882,7 @@ public function initializeRooms():void
 
 	rooms["536"] = new RoomClass(this);
 	rooms["536"].roomName = "BUSTED\nHOVERTRACTOR";
-	rooms["536"].description = "A wounded hovertractor lies askew, embedded in the ground. Judging by the angle its sitting at as well as the ruts it scored in the grass, its driver lost control of it and crashed it into the dirt, nearly tipping it over until it caught on a white-washed fence that stands almost as high as it. Viscous fluids have puddled in places around it, and many access hatches panels are popped open as if someone was trying to repair it. Nothing of interest lies to the north or east, but the road is a short ways south.";
+	rooms["536"].description = "A wounded hovertractor lies askew, embedded in the ground. Judging by the angle it's sitting at as well as the ruts it scored in the grass, its driver lost control of it and crashed it into the dirt, nearly tipping it over until it caught on a white-washed fence that stands almost as high as it. Viscous fluids have puddled in places around it, and many access hatches are popped open as if someone was trying to repair it. Nothing of interest lies to the north or east, but the road is a short ways south.";
 	rooms["536"].runOnEnter = undefined;
 	rooms["536"].southExit = "534";
 	//rooms["536"].westExit = "537";
@@ -3967,7 +3967,7 @@ public function initializeRooms():void
 
 	rooms["544"] = new RoomClass(this);
 	rooms["544"].roomName = "THE\nFIELDS";
-	rooms["544"].description = "You spy an odd figure amidst a field of arrowroot.  You wave, but feel foolish as walk closer to it.  It's a scarecrow, albeit an odd one.  A barrel has been propped up on a sawhorse and topped with a dried gourd, forming the rough semblance of a four legged man.  It looks like the two, hollow gourds, nailed to the front of the barrel were added later, meant to suggest breasts.  Now why would someone do that?";
+	rooms["544"].description = "You spy an odd figure amidst a field of arrowroot.  You wave, but feel foolish as you walk closer to it.  It's a scarecrow, albeit an odd one.  A barrel has been propped up on a sawhorse and topped with a dried gourd, forming the rough semblance of a four legged man.  It looks like the two, hollow gourds, nailed to the front of the barrel were added later, meant to suggest breasts.  Now why would someone do that?";
 	rooms["544"].runOnEnter = varmintRoomsBonus;
 	rooms["544"].northExit = "545";
 	rooms["544"].eastExit = "541";
@@ -4119,7 +4119,7 @@ public function initializeRooms():void
 
 	rooms["556"] = new RoomClass(this);
 	rooms["556"].roomName = "THE\nFIELDS";
-	rooms["556"].description = "You hear a buzzing noise and wave a hand by your ear.  A small insect flies off, and you recognize it as some kind of wasp.  A glance at the trees here reveals a surprising number of the buzzing insects.  It seems a bit odd until you squint up at the branches of the trees and recognize the smalls shapes of figs amidst them.  Impressed by your own zoological acumen, you continue along your way.";
+	rooms["556"].description = "You hear a buzzing noise and wave a hand by your ear.  A small insect flies off, and you recognize it as some kind of wasp.  A glance at the trees here reveals a surprising number of the buzzing insects.  It seems a bit odd until you squint up at the branches of the trees and recognize the small shapes of figs amidst them.  Impressed by your own zoological acumen, you continue along your way.";
 	rooms["556"].runOnEnter = varmintRoomsBonus;
 	rooms["556"].northExit = "557";
 	rooms["556"].eastExit = "549";

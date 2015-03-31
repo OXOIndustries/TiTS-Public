@@ -374,7 +374,7 @@ public function unificationRallyEvent():void
 	output("\n\nThe crimson and gold myr grins. <i>“Great. We’ll be meeting in the northwest corner of the city tomorrow at 23:30. If you show up, we could have a place for you. I promise, it’s gonna be explosive.”</i> Her whole face lights up with glee.");
 	output("\n\n<i>“Sounds like fun.”</i> You meaningfully twiddle the radio in your pocket. <i>“I’ll be there.”</i>");
 	output("\n\n<i>“Awesome. Change is coming - I promise!”</i> She twists away and into the crowd, losing herself in the sea of bodies before you can even ask her name.");
-	output("\n\nYou stick out the rest of the rest of the rally, but nothing else of note happens. Aside from your crimson-bedecked friend, none of the golds seem truly, violently committed to any cause, paying lip service to ideals that wouldn’t survive first contact with reality.");
+	output("\n\nYou stick out the rest of the rally, but nothing else of note happens. Aside from your crimson-bedecked friend, none of the golds seem truly, violently committed to any cause, paying lip service to ideals that wouldn’t survive first contact with reality.");
 	output("\n\nWhen the crowd disperses, you’re left alone with your thoughts and your radio. Do you call them in?");
 	processTime(24);
 

@@ -104,7 +104,7 @@ public function approachAntrias():void
 	{
 		output("You step up to the desk and get the man’s attention. He blinks at you. <i>“Sorry, friend, we’re just getting set up here. No comm buoys are online yet, I’m afraid. Haven’t managed to bring in the drill-shot probes to do it properly. Come back later, yeah?”</i>");
 		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
-		output("\n\n<i>“Hey, if you manage to find any old communications arrays, even basic local tech, try and bring it online. Ever little bit help, ya know.”</i>");
+		output("\n\n<i>“Hey, if you manage to find any old communications arrays, even basic local tech, try and bring it online. Every little bit helps, ya know.”</i>");
 		clearMenu();
 		addButton(14,"Back",mainGameMenu);
 	}
@@ -183,7 +183,7 @@ public function noAntsLandBeaconBonus():Boolean
 	else 
 	{
 		output(" The radio is currently beeping rhythmically, sending coordinates to and fro the Scout base at the DMZ.");
-		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxy, though you'll pay 150 credits for the convenience.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
 	}
 	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there's something worthwhile here?");
 	else addDisabledButton(1,"Search","Search","You've already searched this location.");
@@ -264,7 +264,7 @@ public function n20StreetBonusFunc():Boolean
 
 public function kressiaAirfieldBonus():Boolean
 {
-	output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
+	output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to the DMZ where your ride is parked.");
 	addButton(0,"Enter Plane",aeroplaneFlightShit,false,"Enter Plane","Hop on a plane for a quick trip back to the DMZ.");
 	return false;
 }
@@ -282,6 +282,7 @@ public function DMZKressiaAirstrip():Boolean
 	}
 	else
 	{
+		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
 		addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
 	}
 	return false;
@@ -320,6 +321,42 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 	processTime(30+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function kressiaGateBonus():Boolean
+{
+	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined)
+	{
+		output("\n\nYou're forced to wait while they check your clearance. When it comes up negative, you're ordered to walk back into the caves or into a hail of bullets. You'll take the caves.");
+		processTime(2);
+		clearMenu();
+		addButton(11,"South",move,"1H8");
+		return true;
+	}
+	else
+	{
+		output("\n\nYou're forced to wait while they check your clearance. They wave you through after a minute or two.");
+		processTime(2);
+	}
+	return false;
+}
+
+public function northGildenmereCheckpoint():Boolean
+{
+	if(!pc.hasKeyItem("Gildenmere Pass"))
+	{
+		output("\n\nA group of golden soldiers approaches you here, checking you for the paperwork that would allow one free roam of this part of Gildenmere. When you don't have it, they show you the door. Looks like you'll have to go walk through the caves of no ant's land.");
+		processTime(2);
+		clearMenu();
+		addButton(6,"North",move,"1J34");
+		return true;
+	}
+	else
+	{
+		output("\n\nA group of golden soldiers approaches you, checking your paperwork. Once satisfied, they let you go on your way.");
+		processTime(2);
+	}
+	return false;
 }
 
 public function gildenmereElevatorBottomBonus():Boolean

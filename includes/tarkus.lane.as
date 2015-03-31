@@ -909,7 +909,7 @@ public function lanesShopFullyUnder():void
 	output("You approach Lane’s Plane, eager for another dose of your "+ lane.mf("master", "mistress") +"’s medicine. [lane.HisHer] hut has been taking on a rather extravagant turn lately, with all that extra money [lane.heShe]’s been siphoning from you. When you enter, you see [lane.himHer] lounging languidly, [lane.hisHer] legs spread and [lane.hisHer] chair leaned back, waiting for some other unlucky- or lucky, from your twisted, controlled perspective- customer to walk into [lane.hisHer] trap.");
 
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops [lane.hisHer] feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
-	output(" [lane.heShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
+	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
 	if (pc.hasCock() && !pc.hasVagina()) output(" your [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
 	else if (pc.hasVagina() && !pc.hasCock()) output(" your [pc.vagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over to you give you another life-altering orgasm.");
 	else if (pc.hasVagina() && pc.hasCock()) output(" each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
@@ -1790,7 +1790,7 @@ public function fuckedByMaleLane():void
 
 	output("\n\nYou obligingly keep up your pace, slathering his penis with your saliva. You can taste the occasional bead of precum from the his tip whet your gullet and then wash down your throat. By the time Lane’s had enough and pulls away, his cock is considerably thicker: it’s easily twelve centimeters thick when it leaves your lips again, a far cry from the spindly thing it was when it went in. You almost feel proud.");
 
-	output("\n\n<i>“There you go,”</i> he praises warmly, <i>“you’ve done well. You’re an excellent cock fluffer.”</i> You’re a little confused as to what he wants, but it gets clearer when he lifts you by your armpits and then throws you onto the bed, face down and bent at the waist, your [pc.vagorass] exposed and winking vulnerably to him.");
+	output("\n\n<i>“There you go,”</i> he praises warmly, <i>“you’ve done well. You’re an excellent cock fluffer.”</i> You’re a little confused as to what he wants, but it gets clearer when he lifts you by your armpits and then throws you onto the bed, face down and bent at the waist, your [pc.vagOrAss] exposed and winking vulnerably to him.");
 
 	output("\n\nHe claps his hands down on your [pc.ass] painfully. The sound of his hands slapping you echo off the wall, followed by your pained yell. He thrusts his hips forward, his cock jamming between your thighs;");
 	if (pc.hasVagina()) 
@@ -1823,7 +1823,7 @@ public function fuckedByMaleLane():void
 	if (pc.hasFuckableNipples()) output(" His claws sink into your sensitive [pc.nipples] as he fondles them, eliciting a familiar groan from you. <i>“I don’t think having an extra pair of cunts is normal, either, but who am I to say in this universe of ours?”</i>");
 	else if (pc.hasNippleCocks()) output(" His claws scratch and grip along your [pc.nipples] as he fondles them, eliciting a familiar moan from you. <i>“Is having a pair of extra dicks a ‘thing’ with your species? Should I be jealous? Was I born the wrong species?”</i>");
 
-	output("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagOrAss], you whimper in need. <i>“You sound... needy.</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
+	output("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagOrAss], you whimper in need. <i>“You sound... needy.”</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
 
 	output("\n\n<i>“You!”</i> you should through clenched teeth and pressed lungs. <i>“I need you, master Lane! Please, I need you inside me!”</i>");
 
@@ -1871,7 +1871,7 @@ public function fuckedByMaleLane():void
 	}
 	if (!pc.hasVagina() && !pc.hasCock()) output(" You clench your ass with his every inward thrust, trying to make the sensation last as long as you can, but it’s all a vain effort. Without genitals to release with, you can’t help but feel your release build and build and build, and have nowhere to go at the end of it. It’s torturous and maddening, and you love every second of it. Only Lane can make you feel so wonderfully contradictory!");
 
-	output("\n\nHis grip gets tighter, and he drags his claws over your [pc.skinfurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagOrAss]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.");
+	output("\n\nHis grip gets tighter, and he drags his claws over your [pc.skinFurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagOrAss]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.");
 
 	output("\n\nHe bucks thrice more, then he grunts, and then you feel a magnificent warmth spread inside you, shooting");
 	if (pc.hasVagina()) output(" deep into your waiting cunny and towards your patient womb");

@@ -843,7 +843,7 @@ public function elderVenusPitchersDickplay():void {
 		if(pc.cockTotal() > 1) output("s");
 		output(" bloats from the amount pouring into it, expanding to almost double its size in places down its length. The tip remains stubbornly sealed around your [pc.sheath]. Here and there, beads of [pc.cumColor] escape around it, but the bulk is pumping straight into the venus pitcher’s ravenous stalk, disappearing into the wall of the bulb in explosive waves of gooey, wondrous pleasure.");
 		output("\n\nYou can hear the suspended woman groaning in delight while her body devours nearly every single drop. <i>“Oh... wow, you’re so good at this, pet!”</i> Her hands begin to tug on her nipples, and she whimpers a barely controlled command, <i>“Don’t you ever forget me! This feels so good that you’ll want to come back to me every day!”</i>");
-		output("\n\nGrunting your assent, you shudder and spend the rest of your virility, embedding the memory in your psyche, knowing that you do want to return to her whenever you’ve got more to give.”</i>");
+		output("\n\nGrunting your assent, you shudder and spend the rest of your virility, embedding the memory in your psyche, knowing that you do want to return to her whenever you’ve got more to give.</i>");
 		if(pc.cumQ() >= 4000) 
 		{
 			output(" There’s so much [pc.cum] that some rather phallic tentacles begin firing your fluid back into the bottom of the pod, keeping it in a lewd reserve as her own storage capabilities are overwhelmed by your immense virility.  The ensuing pool ");
@@ -1375,7 +1375,12 @@ public function layFertilizedVenusPitcherEgg():void
 
 	// Do the needful with the eggs etc
 	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
-
+	//Count the number of times PC has laid full seed batches. Incremented after laying the last seed.
+	else 
+	{
+		if(flags["LAID VENUS PITCHER SEEDS"] == undefined) flags["LAID VENUS PITCHER SEEDS"] = 0;
+		flags["LAID VENUS PITCHER SEEDS"]++;
+	}
 	//Increase elasticity .1 towards a cap of 2
 	if (pc.elasticity < 2.0)
 	{

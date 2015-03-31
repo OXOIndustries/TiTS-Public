@@ -286,17 +286,16 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		// Unavailable, so we'll just not show the button (in case player backs out and comes back later when the scene is available)
 	}
 	
-	// Random button
-	if (faps.length > 0)
-	{
-		addButton(btnOffset, "Random", selectRandomFap, faps);
-		btnOffset++;
-	}
-	
 	// Repeat button
 	if (showRepeat)
 	{
 		addButton(btnOffset, "Repeat", filtFaps[0].func);
+		btnOffset++;
+	}
+	// Random button
+	if (faps.length > 0)
+	{
+		addButton(btnOffset, "Random", selectRandomFap, faps);
 		btnOffset++;
 	}
 
@@ -425,7 +424,7 @@ public function vaginalFap():void {
 	}
 	output("\n\nYou moan, loud and low but inexorably rising higher with each touch and caress, each thrusting slip through your needy crevice. Arching your [pc.hips], you hump against your hand, grinding back into your quickly moving fingers");
 	if(pc.totalClits() > 0) output(", some plunging inside while others tend to [pc.oneClit]");
-	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and your fingers are rapidly become soaked with your [pc.girlCum].");
+	output(", your body practically on autopilot at this point - a quivering, pre-orgasm wreck. It's no surprise to you; this is what you wanted after all. A high pitched, keening whine escapes your [pc.lips] as you climb towards the peak of pleasure, and your fingers are rapidly becoming soaked with your [pc.girlCum].");
 	
 	output("\n\nThen, it comes all at once, an explosion of ecstasy strong enough to make your eyes roll back and your body go on autopilot: fingers thrusting, [pc.hips] lurching, [pc.legOrLegs] quivering. Your wail turns into a lurid moan every bit as sloppy as your spasming [pc.vaginas]");
 	if(pc.isSquirter()) output(", just before you squirt out ribbons of [pc.girlCum]");

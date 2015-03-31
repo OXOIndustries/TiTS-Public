@@ -796,7 +796,7 @@ public function talkToGiannaAboutHerAI():void
 	output("\n\nNodding, the nude android replies, <i>“Point, [pc.name]. Well, where to start...”</i> Her eyes dimly flicker while she thinks over the query. They shine bright blue as she comes to a decision. <i>“You might recall that I already told you I was a G-class A.I. I didn’t really go into what that means though.”</i> Gianna purses her [gianna.lips], ordering her thoughts. <i>“G-class refers to the method of our creation. Unlike virtual intelligences or programmed intelligences, we’re actually patterned after a simulated brainscan of a sapient creature.”</i>");
 	output("\n\nYou ask, <i>“Does that mean that somewhere out there you have an organic sister, so to speak?”</i>");
 	output("\n\nGianna’s resulting smile is warm, genuine. You get the impression that she enjoyed the familial comparisons more than she’s letting on. <i>“I guess you could say that, if they’re still alive. I don’t know how old my original scan was. It could’ve been in storage for decades. I do know that it was a terran originally. That’s listed in my technical specs. There are optional A.I.s that can be equipped in a Generation Six, but mine is the most popular, owing largely to the many races finding terrans emotionally compatible.”</i>");
-	output("\n\nPausing briefly, she shifts the discussion back, <i>“But the point I was trying to make is that G-class intelligences are by nature similar to organics in a great many ways. Our thought processes are intertwined, interdependent, and entirely unoptimized. We make mistakes in judgement, get emotional, and otherwise act like the race we’re grown from. We’re ideal for any platform that needs to interact with organics on a regular basis. After all, what’s easier to relate to than intelligence that thinks and talks the same way.”</i>");
+	output("\n\nPausing briefly, she shifts the discussion back, <i>“But the point I was trying to make is that G-class intelligences are by nature similar to organics in a great many ways. Our thought processes are intertwined, interdependent, and entirely unoptimized. We make mistakes in judgement, get emotional, and otherwise act like the race we’re grown from. We’re ideal for any platform that needs to interact with organics on a regular basis. After all, what’s easier to relate to than intelligence that thinks and talks the same way?”</i>");
 	output("\n\nYou nod.");
 	output("\n\n<i>“And we still have all the advantages of being housed in computers. We can change bodies easily enough. We can rapid-encode processes on the fly to do quick, error-free calculations or operate complex, interconnected machinery,”</i> Gianna boasts. <i>“I could even plug into a starship and control it as easily as this body");
 	if(giannaPersonality() >= 80) output(", but I’d definitely miss the sensations this one provides. I don’t think docking into a station would have quite the same thrill as riding a bull to the ground until his muscles go slack from orgasm.");
@@ -828,9 +828,9 @@ public function talkToGiannaAboutHerAI():void
 		output("\n\nOh? You pass her a questioning look.");
 		output("\n\n<i>“Yeah. I’m wired so that biological needs are replaced with a desire to please others, but my programming is necessarily dynamic and adaptive,”</i> Gianna says, oddly serious. <i>“New Texas has been great for keeping me completely satiated. For a time, that was enough, but now... now I find myself wanting more. I have the time to consider what my true purpose is, not just the one I was designed for. Could I do more than merely keep someone company? Can I truly love? Can others love me?”</i>");
 		output("\n\nShe nervously fiddles with her ponytail. <i>“My experiences are analogous to Maslow’s hierarchy of needs in a way. With my baser needs met, I’m free to tackle more important, higher concepts. I just hope that I can fulfill them, too.”</i>");
-		output("\n\nStopping to look your way, Gianna asks you, <i>“What do you think ");
+		output("\n\nStopping to look your way, Gianna asks you, <i>“What do you think, ");
 		if(giannaPersonality() < 20) output("[pc.master] ");
-		output("[pc.name]. Is it possible to grow beyond your purpose? Do you think I could ever be more than just a companion?”</i>");
+		output("[pc.name]? Is it possible to grow beyond your purpose? Do you think I could ever be more than just a companion?”</i>");
 		processTime(10);
 		//[Yes] [No]
 		clearMenu();
@@ -1134,7 +1134,7 @@ public function talkToGiannaAboutHerFormerOwner():void
 	else if(gianna.buttRating() >= 15) output("fat-bottomed ");
 	else if(gianna.buttRating() <= 7 && gianna.biggestTitSize() <= 4) output("slim ");
 
-	output("android is in a fragile emotional state. You could could comfort her or drive home that she really is a thing, not a person. Or you could tread a neutral path. It’s up to you.");
+	output("android is in a fragile emotional state. You could comfort her or drive home that she really is a thing, not a person. Or you could tread a neutral path. It’s up to you.");
 	processTime(10);
 	//CHOICES CHOICES!
 	clearMenu();
@@ -1248,7 +1248,7 @@ public function talkToGiannaAboutBigT():void
 	//Ass
 	else output("\n\n<i>“His loss.”</i>");
 	//Merge
-	output("\n\n<i>“Yup!”</i> Gianna chirps. <i>“He dropped me off at the ship and came by every day to visit. He even played some games with me, even though I whupped him so badly that his tail practically tucked itself between his legs when he left.”</i> She straightens her braid and released it. <i>“After a few weeks I offered to help out around the farm to pay him back for his kindness. He wouldn’t have any of it, but he did start bringing me manuals for the machinery in the barn. Told me I could be a hired hand. He even promised to make me a citizen if I wanted it, even give me my old Master’s ship if he didn’t claim it within a few months.”</i>");
+	output("\n\n<i>“Yup!”</i> Gianna chirps. <i>“He dropped me off at the ship and came by every day to visit. He even played some games with me, even though I whupped him so badly that his tail practically tucked itself between his legs when he left.”</i> She straightens her braid and releases it. <i>“After a few weeks I offered to help out around the farm to pay him back for his kindness. He wouldn’t have any of it, but he did start bringing me manuals for the machinery in the barn. Told me I could be a hired hand. He even promised to make me a citizen if I wanted it, even give me my old Master’s ship if he didn’t claim it within a few months.”</i>");
 	output("\n\nSpreading her arms, the pale-skinned android looks radiant. <i>“And now here I am. I have a ship to live in, a job that pays me a few credits, and something of a family. Truth be told, I don’t think he knows how to treat me. I may look like a girl, but I don’t smell like one. And here, that’s almost as important.”</i> She shrugs. <i>“So I get to be something between a son and daughter, I suppose.”</i>");
 	output("\n\nChewing on her [gianna.lip], she thinks for a moment. <i>“Oh, and he’s the planetary Governor too. That’s how come he was able to pull so many strings for me.”</i>");
 	output("\n\nYou rub your chin in thought, taking it all in. <i>“I guess you couldn’t have asked for anyone better to flatten you with their truck.”</i>");
@@ -3270,7 +3270,7 @@ public function coochFuckThreeMaybeFourInOne():void
 	output("\n\n<i>“");
 	if(flags["FUCKED_GIANNA_VAGINALLY"] == undefined) output("I thought you’d never ask.");
 	else output("I was hoping that you’d say that.");
-	output("”</i> Gianna turns, scanning the surroundings for a suitable location. <i>“There,”</i> she announces while pointing at an empty stall. <i>“The one just got cleaned. Fresh hay and everything.”</i>");
+	output("”</i> Gianna turns, scanning the surroundings for a suitable location. <i>“There,”</i> she announces while pointing at an empty stall. <i>“This one just got cleaned. Fresh hay and everything.”</i>");
 	output("\n\n");
 	if(flags["GIANNA_STALL_SEEN"] == undefined) output("Fresh hay?");
 	else output("Here we go again....");
@@ -3525,8 +3525,8 @@ public function coochFuckThreeMaybeFourInOne():void
 			else output(gianna.vaginas[0].vaginaColor);
 			output(" delta. The first contact between your [pc.cockHead " + x + "] and Gianna’s [gianna.vagina] provides pleasure as suddenly as a live wire might induce pain, coaxing your [pc.cocks] to throb all the harder. Droplets of pre-cum abruptly spill out of you; some are lost to your lover’s smooth folds, while others invariably make their way across the veins that bar their way, drooling onto the table.");
 			output("\n\nSinking down your shaft like a talented stripper down a well-worked pole, the skillful slut slaps her hips into you with a lewd-sounding slap. Lubricant splatters across your middle from the force of the penetration, cascading in across your [pc.belly] in shimmering sheets. The companion’s pussy is ");
-			if(flags["GIANNA_TEMP"] == 1) output("hot enough to make your dick sweat inside its sweltering embrace");
-			else if(flags["GIANNA_TEMP"] == 0) output("so warm and wet that you quiver with desire");
+			if(flags["GIANNA_TEMP"] == 1) output("hot enough to make your dick sweat inside its sweltering embrace.");
+			else if(flags["GIANNA_TEMP"] == 0) output("so warm and wet that you quiver with desire.");
 			else output("cool enough that the slick pressure is pleasurable in an alien way.");
 			output(" Gianna’s luscious lips squeeze down around you at the same time that the android’s voice raises in a sigh of pleasure. <i>“Ahhh....”</i>");
 			pc.cockChange();
@@ -3569,7 +3569,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				if(pc.cumQ() >= 12000) output(", then bloating to obscene roundness");
 				output(". She milks your [pc.cock " + x + "] throughout and long after your heady flow abates.");
 			}
-			output("\n\nFlopping down onto you, Gianna wraps her arms around your neck and batters your crotch with her hips, slapping them against you with increasingly unfocused, sloppy thrusts. [pc.Cum] squirts out around you, and the screams of pleasure she unleashes into your ear nearly deafen you. Yet, you can’t help but smile in satisfaction at getting her off so powerfully. She’s twitching on top of you for a solid minute, her pussy still quivering around you, lustily kissing at the name of your neck repeatedly.");
+			output("\n\nFlopping down onto you, Gianna wraps her arms around your neck and batters your crotch with her hips, slapping them against you with increasingly unfocused, sloppy thrusts. [pc.Cum] squirts out around you, and the screams of pleasure she unleashes into your ear nearly deafen you. Yet, you can’t help but smile in satisfaction at getting her off so powerfully. She’s twitching on top of you for a solid minute, her pussy still quivering around you, lustily kissing at the nape of your neck repeatedly.");
 			output("\n\nYou gently push her up when her thrashings slow.");
 			output("\n\nThe android smiles at you, rubbing her hand across your lube");
 			if(pc.cumQ() > 500) output(" and cum");

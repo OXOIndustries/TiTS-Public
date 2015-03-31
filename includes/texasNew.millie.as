@@ -95,9 +95,9 @@ public function approachMillie():void
 		//You fucked her
 		else if(flags["MILLIE_LAST_ACTION"] == "Fucked") output("Needing a little relief?”</i> Her thighs open of their own volition as she talks. You don’t think she’s even aware of it.");
 		//Got dosed with faux-treatment and is now treated
-		else if(flags["MILLIE_LAST_ACTION"] == "Faux Treated" && pc.isTreated()) output("<i>“Oh, you went and did it, didn’t you? You smell like a real woman now!”</i>");
+		else if(flags["MILLIE_LAST_ACTION"] == "Faux Treated" && pc.isTreated()) output("Oh, you went and did it, didn’t you? You smell like a real woman now!”</i>");
 		//You got dosed with lactation-inducing drugs
-		else if(flags["MILLIE_LAST_ACTION"] == "Faux Treated") output("<i>“Want another sample? After this one, you should just go get Treated for real. Milking will feel soooo much better.”</i>");
+		else if(flags["MILLIE_LAST_ACTION"] == "Faux Treated") output("Want another sample? After this one, you should just go get Treated for real. Milking will feel soooo much better.”</i>");
 	}
 	millieMenu();
 }
@@ -227,7 +227,7 @@ public function useTheMilkersMillie():void
 	showName("\nMILLIE");
 	output("<i>“");
 	if(pc.isBimbo()) output("Oooh, but the machines would make my titties cum soooo hard.");
-	else if(pc.isNice()) output("The machines this time, please");
+	else if(pc.isNice()) output("The machines this time, please.");
 	else output("Just put those cups on and flip the switch.");
 	output("”</i>");
 
@@ -304,12 +304,13 @@ public function millieMilkersPartDues():void
 		//Dick
 		if(pc.hasCock() && tempCock >= 0)
 		{
-			output("\n\nYou almost protest when she mounts you, but the moment is so quick, and her engulphing of ");
+			output("\n\nYou almost protest when she mounts you, but the moment is so quick, and her engulfing of ");
 			if(pc.cockTotal() > 1) output("one");
 			else output("your");
 			output(" shaft so sudden, that the pleasure steals your voice. And now that she’s already atop you, what point is there in pushing her off? Millie’s pussy is equal parts squeezing vice and velvet sleeve, such a perfect fit that you can scarecly believe it wasn’t sculpted to your exact dimensions");
 			if(pc.cockVolume(tempCock) >= 600) output(", even as it bulges her belly");
 			output(". She slams her broad birthing hips down with table-rattling force, splattering pussy juice across the waterproofed surface.");
+			pc.cockChange();
 			output("\n\nMillie simultaneously squeezes your prick and your tits, and you can’t hold on any more. The scent of the buxom’s cows milk fills the air, dripping overtop of you. Her voice purrs long, low moans of pleasure. The sensations overwhelm your self-control, and you arch your back, cumming deep into the cow-girl’s dewy snatch, pumping fluids from both ends. One of her hands ");
 			if(pc.hasHair() && pc.hairLength >= 1) output("grabs a fistful of your hair");
 			else output("absently caresses your head");
@@ -371,7 +372,8 @@ public function millieMilkersPartDues():void
 		//Dick
 		if(pc.hasCock())
 		{
-			output("\n\nYour peaceful, lactic paradise is abruptly interrupted by the appearance of the warmest, wettest, most wonderful sleeve wrapping around [pc.oneCock], squeezing and rippling around it, pumping you relentless. You feel like little more than [pc.cocks] and [pc.breasts], all being milked in equal measure. You register an orgasm from your [pc.cocks] by the way the ecstasy from your crotch overwhelms that from your breasts, not from any cogent awareness of a climax. Your [pc.cum] erupts. Your milk squirts. Your eyes closed.");
+			output("\n\nYour peaceful, lactic paradise is abruptly interrupted by the appearance of the warmest, wettest, most wonderful sleeve wrapping around [pc.oneCock], squeezing and rippling around it, pumping you relentless. You feel like little more than [pc.cocks] and [pc.breasts], all being milked in equal measure. You register an orgasm from your [pc.cocks] by the way the ecstasy from your crotch overwhelms that from your breasts, not from any cogent awareness of a climax. Your [pc.cum] erupts. Your milk squirts. Your eyes close.");
+			pc.cockChange();
 			output("\n\nYou float in a sea of ecstasy, only aware of rhytmic suckling of your boobs, sloshing [pc.milk] inside the cups, and the sticky wetness you make by erupting into Millie’s cunt again and again.");
 		}
 		//Cooches
@@ -414,7 +416,7 @@ public function millieMilkingFinale():void
 		if(pc.totalBreasts() > 2) 
 		{
 			output(" You blink, bleary-eyed, watching her free you from the last tube");
-			if(pc.totalBreasts() > 1) output("s");
+			if(pc.totalBreasts() > 3) output("s");
 			output(".");
 		}
 		else
@@ -427,7 +429,7 @@ public function millieMilkingFinale():void
 		else output("[pc.milkNoun]");
 		output(". Gasping, you squirm away, still far too sensitive after so much time hooked up to the machine. The cow stops, grabbing you a towel. <i>“Here, clean up.”</i>");
 		output("\n\nYou wipe yourself up, avoiding your sore, completely emptied tits until last, giving them as long as possible to recover from the rough treatment. Still, when you finish, you’re clean, even if the stall smells like milk");
-		if (pc.isLactating()) output(", [pc.milkNoun],");
+		if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_MILK) output(", [pc.milkNoun],");
 		output(" and cherries - the source of the last the obvious damp patch that Millie’s denim has acquired.");
 	}
 	//Treated
@@ -454,7 +456,7 @@ public function millieMilkingFinale():void
 		if(pc.hasStatusEffect("Temporary Treatment"))
 		{
 			output("\n\nYou almost jump her right there and then until she takes the headband off you, stunning you as your thoughts realign into their former patterns. Your jaw works as you try to make sense of the insane experience.");
-			if(pc.breastRows[0].breastRating < 3)
+			if(pc.breastRows[0].breastRating() < 3)
 			{
 				output(" And your breasts... wow.");
 				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they're plenty big.")
@@ -580,7 +582,7 @@ public function yeahMillieLetsFuck():void
 	output("\n\n");
 	if(flags["FUCKED_MILLIE"] == undefined) output("Just what’s she planning?");
 	else output("Oh, this again?");
-	output(" Obligingly, you hope up onto the table’s waterproofed surface, regretfully leaving her supple palm behind.");
+	output(" Obligingly, you hop up onto the table’s waterproofed surface, regretfully leaving her supple palm behind.");
 
 	output("\n\n<i>“Lie down. It’ll be easier that way.”</i> Millie’s hand finds your length once more, and she traces a slow line up your sensitive underside. <i>“");
 	if(pc.isTreated() && pc.mf("m","") == "m") output("I know you’re a big, strong bull,");
@@ -597,7 +599,7 @@ public function yeahMillieLetsFuck():void
 	if(pc.cockTotal() > 1) output("s");
 	output(", and the dutiful cow collects it all to smear back over your length");
 	if(pc.cockTotal() > 1) output("s");
-	if(pc.cockTotal() > 1) output(" in sequence");
+	if(pc.cockTotal() > 2) output(" in sequence");
 	output(", making ");
 	if(pc.cockTotal() == 1) output("it");
 	else output("them");
@@ -762,7 +764,7 @@ public function treatmentTryouts():void
 
 	output("\n\n<i>“Well you made the right choice. Here. Take two of these.”</i> She fishes two little pink pills out of a bottle. <i>“Don’t worry, they’re cherry flavored. You can just chew ‘em up.”</i>");
 	output("\n\nYou ");
-	if(flags["TRIED_TREATMENT_LIGHT"] == undefined) output("shrug and pop them on in.");
+	if(flags["TRIED_TREATMENT_LIGHT"] == undefined) output("shrug and pop them on in");
 	else output("gobble them down in a hurry");
 	output(". They taste as sweet as promised, though the scent of fruit lingers in the air long after the fizzling, tingly pills have dissolved on your tongue. Millie smiles, slipping a headband over your forehead.");
 	output("\n\n<i>“");
@@ -820,6 +822,7 @@ public function treatmentTryouts():void
 	pc.lust(35);
 	processTime(5);
 	clearMenu();
+	flags["TRIED_TREATMENT_LIGHT"] = 1;
 	addButton(0,"Next",millieMilkersPartDues);
 }
 
@@ -890,7 +893,7 @@ public function milliePersonallyDrainsYerTiTS():void
 	//Treated girls should probably cum their little brains out.
 	if(pc.isTreated() && pc.isBimbo())
 	{
-		output("\n\nThe feeling are overwhelmingly pleasant. The contact of her skin on ");
+		output("\n\nThe feelings are overwhelmingly pleasant. The contact of her skin on ");
 		if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("yours");
 		else output("your [pc.skinFurScales]");
 		output(" is electric, enhanced by a coating of warm milk that may as well be the finest massage oil for how good it feels. And her mouth... her lips make your areola feel like a clit getting some world-class cunnilingus, all while erupting squirt after squirt of [pc.milk] thanks to her rhythmic sucking. Even your neglected ");
@@ -934,7 +937,7 @@ public function milliePersonallyDrainsYerTiTS():void
 			else output("aren’t");
 			output(" the only thing");
 			if(pc.cockTotal() > 1) output("s");
-			output(" going off either; your [pc.nipples] are gushing harder than ever. Millie’s cheeks bulge obscenely before she manages to gulp down her mouthful, her other hand suddenly drowning waves of [pc.milkColor]. Holding on tight, you ride out the orgasm, kept warm and wet by Millie’s attension");
+			output(" going off either; your [pc.nipples] are gushing harder than ever. Millie’s cheeks bulge obscenely before she manages to gulp down her mouthful, her other hand suddenly drowning waves of [pc.milkColor]. Holding on tight, you ride out the orgasm, kept warm and wet by Millie’s attention");
 			if(pc.cumQ() >= 500) output(", drenching the table");
 			if(pc.cumQ() >= 4000) output(" and floor");
 			output(". Your eyes drift closed, exhausted");
@@ -979,7 +982,7 @@ public function millieSucksTitsVol2():void
 		if(pc.hasStatusEffect("Temporary Treatment"))
 		{
 			output("\n\nYou almost miss her the headband off you, stunning you as your thoughts realign into their former patterns. Your jaw works as you try to make sense of the insane experience.");
-			if(pc.breastRows[0].breastRating < 3)
+			if(pc.breastRows[0].breastRating() < 3)
 			{
 				output(" And your breasts... wow.");
 				if(pc.breastRows[0].breastRatingRaw < 1) output(" You still have them, and they're plenty big.")

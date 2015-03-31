@@ -388,7 +388,7 @@ public function rideDatZilCawk():void {
 	userInterface.showName("MALE\nZIL");
 	if(pc.isNice()) output("Smiling amiably, you tell him that you plan to take his seed in the most pleasurable way possible.");
 	else if(pc.isMischievous()) output("Smiling roguishly, you tell him that he's going to have a hard time walking when you finish.");
-	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once your done with him.");
+	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once you're done with him.");
 	output(" The zil gasps as you push him flat on his back, and he openly ogles your [pc.chest]");
 	if(!pc.isNice()) output(" as you strip off your [pc.gear]");
 	else output(" as you admire his smooth, polished figure");
@@ -828,7 +828,7 @@ public function getABJFromAManzil():void
 	//Bimbo:
 	if(pc.isBimbo()) output(" He’s so cute, but he looks uneasy! You know what always makes you feel better - lots and lots of yummy cum!");
 	else if(pc.isBro()) output(" You’ve shown him who the alpha is. Time to get your reward.");
-	else output("Calmy, you discard your [pc.gear] and slowly step towards him.");
+	else output(" Calmy, you discard your [pc.gear] and slowly step towards him.");
 	output(" His gaze has shifted from your face to your crotch, mesmerised by your rising [pc.cocksNounSimple]. His mouth is hanging open by the time you reach him - your ");
 	if(pc.cockTotal() > 1) output("biggest dick");
 	else output("[pc.cockBiggest]");

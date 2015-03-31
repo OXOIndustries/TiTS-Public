@@ -1082,7 +1082,7 @@ public function cuntTailShadeFux():void
 	output("\n\n");
 	if(!pc.isAss()) output("Well, it’s only fair. ");
 	else output("Bitch. ");
-	output("You swat her taut ass but settle back into her thighs, slurping at her sweet little cunt. Your [pc.tongue] males quick, shallow, rhythmic motions, probing in to find the kaithrit’s most sensitive spot; your fingers slip back around her hips and make for the perky red pleasure-buzzer over her slit. One touch makes her shiver in pleasure - a few careful strokes have her quivering in your hands, her dominant tone fading to moans of pleasure and bucks of her hips, trying to draw your tongue deeper. You lick and kiss your way ");
+	output("You swat her taut ass but settle back into her thighs, slurping at her sweet little cunt. Your [pc.tongue] makes quick, shallow, rhythmic motions, probing in to find the kaithrit’s most sensitive spot; your fingers slip back around her hips and make for the perky red pleasure-buzzer over her slit. One touch makes her shiver in pleasure - a few careful strokes have her quivering in your hands, her dominant tone fading to moans of pleasure and bucks of her hips, trying to draw your tongue deeper. You lick and kiss your way ");
 	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("through her inner walls");
 	else output("deep inside her, your inhumanly long tongue like a writhing tentacle inside her");
 	output(", teasing and caressing for minute after minute. Her breathing grows faster and more shallow, her heart racing enough to let you feel it through the walls of her drooling pussy. She’s so close that you can - literally - taste it, feeling the sweltering heat of her sex washing over your cheeks and chin, bathing you in moisture.");

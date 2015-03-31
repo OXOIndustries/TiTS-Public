@@ -710,6 +710,7 @@ public function wetraxxelBrawlerPCVictory():void
 	{
 		output("With a grunt, the brawler slumps to his knees, leaning heavily against the craggy rockface beside himself. <i>“I yield,”</i> he groans, relaxing his fists into raised hands. <i>“You fight with fire, alien. Fire and honor. Do with me as you will.”</i>");
 	}
+	output("\n\n");
 
 	clearMenu();
 
@@ -726,6 +727,8 @@ public function wetraxxelBrawlerPCVictory():void
 
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
 	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
+
+	addButton(14,"Leave",genericVictory);
 }
 
 public function wetraxxelBrawlerPCVictoryFuckHisButt():void
