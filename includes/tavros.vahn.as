@@ -11,18 +11,18 @@
 //Dialogue Menu
 
 // Positioned somewhere in the starting Hanger. 
-function fuckedVahn():Boolean
+public function fuckedVahn():Boolean
 {
 	return (flags["SEXED_VAHN"] != undefined);
 }
-function showVahn():void
+public function showVahn():void
 {
 	showName("\nVAHN");
 	showBust("VAHN");
 	author("JimThermic");
 }
 
-function VahnTheMechanic():void 
+public function VahnTheMechanic():void 
 {
 	clearOutput();
 	showVahn();
@@ -58,7 +58,7 @@ function VahnTheMechanic():void
 }
 
 //Appearance
-function appearanceForVahn():void
+public function appearanceForVahn():void
 {
 	clearOutput();
 	showVahn();
@@ -70,7 +70,7 @@ function appearanceForVahn():void
 }
 
 //Talk
-function talkToVahn():void
+public function talkToVahn():void
 {
 	clearOutput();
 	showVahn();
@@ -85,7 +85,7 @@ function talkToVahn():void
 }
 
 //Vahn
-function talkToVahnAboutVahn():void
+public function talkToVahnAboutVahn():void
 {
 	clearOutput();
 	showVahn();
@@ -101,7 +101,7 @@ function talkToVahnAboutVahn():void
 }
 
 //Starships
-function talkToVahnAboutStarships():void
+public function talkToVahnAboutStarships():void
 {
 	clearOutput();
 	showVahn();
@@ -115,7 +115,7 @@ function talkToVahnAboutStarships():void
 }
 
 //Hobbies
-function talkToVahnAboutHisHobbies():void
+public function talkToVahnAboutHisHobbies():void
 {
 	clearOutput();
 	showVahn();
@@ -130,7 +130,7 @@ function talkToVahnAboutHisHobbies():void
 }
 
 //Sex
-function vahnSexMenu():void
+public function vahnSexMenu():void
 {
 	clearOutput();
 	showVahn();
@@ -161,7 +161,7 @@ function vahnSexMenu():void
 
 //Sex Scenes
 //Give BJ
-function giveVahnABJ():void
+public function giveVahnABJ():void
 {
 	clearOutput();
 	showVahn();
@@ -269,7 +269,7 @@ function giveVahnABJ():void
 }
 
 //Give Doggy
-function giveVahnAnal():void
+public function giveVahnAnal():void
 {
 	clearOutput();
 	showVahn();

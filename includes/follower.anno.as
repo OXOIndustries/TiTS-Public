@@ -2509,7 +2509,7 @@ Anno plops down on the side of her bed, arms spread back to support her... which
 // Conditionals:
 // No PC Sex Requirement
 
-function annosTriberatorGatorMatorHater():void
+public function annosTriberatorGatorMatorHater():void
 {
 	clearOutput();
 	showAnno();
