@@ -37,7 +37,7 @@ public function investigateSlashShelly():void
 	//Repeat [shelly]
 	else
 	{
-		if(flags["KNOW_SHELLYS_NAME"] == undefined) 
+		if(flags["KNOW_SHELLYS_NAME"] != undefined) 
 		{
 			output("You walk up to Shelly, and she waves happily when she sees you coming.");
 			output("\n\n<i>“Hey [pc.name], you need anything?”</i>");

@@ -632,9 +632,9 @@
 		private function makeQuotesPrettah(inStr:String):String
 		{
 			inStr = inStr.replace(/(?<= )'|^'/g,									"‘")
-						 .replace(/(?<=\w)'(?![^<]*>)'/g,							"’")
+						 .replace(/(?<=\w)'(?![^<]*>)/g,							"’")
 						 .replace(/(\w)'(\w)/g,										"$1’$2")
-						 .replace(/"(?=<i>)|(?<=<i>)"|^"/g,								"\u201c")
+						 .replace(/"(?=<i>)|(?<=<i>)"|^"|(?<=\s)"/g,								"\u201c")
 						 .replace(/\"$|\"(?<=[^ ])(?![A-z])/g,						"\u201d")
 						 .replace(/--/g,											"\u2014");
 			return inStr;

@@ -43,7 +43,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="-managers flash.fonts.AFEFontManager" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::AIR,true&#xA;CONFIG::FLASH,false" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->

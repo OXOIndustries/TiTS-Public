@@ -26,6 +26,16 @@
 	import classes.GameData.StatTracking;
 	import flash.events.IOErrorEvent;
 	
+	import classes.Engine.Interfaces.*;
+	
+	CONFIG::AIR 
+	{
+		import flash.filesystem.File;
+		import flash.filesystem.FileMode;
+		import flash.filesystem.FileStream;
+		import flash.events.ProgressEvent;
+	}
+	
 	/**
 	 * Data Manager to handle the processing of player data files.
 	 * @author Gedan
@@ -40,6 +50,18 @@
 		private var _lastManualDataSlot:int = -1;
 		
 		private var _debug:Boolean = true;
+		
+		CONFIG::AIR
+		{
+			private var stickyFileRef:File;
+			private var stickyFileStreamRef:FileStream;
+			private var saveDir:String = "data/com.taintedspace.www"
+		}
+		
+		CONFIG::FLASH
+		{
+			private var stickyFileRef:FileReference;
+		}
 		
 		public function DataManager() 
 		{
@@ -175,15 +197,132 @@
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
 			else kGAMECLASS.addDisabledGhostButton(1, "Save", "Save Game", "You can't save in your current location.");
+			kGAMECLASS.addGhostButton(2, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
 			
 			kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
 			else kGAMECLASS.addDisabledGhostButton(6, "Save File", "You can't save in your current location.");
 			
+			// This is only really required for Android because shenanigans.
+			CONFIG::AIR
+			{
+				kGAMECLASS.addGhostButton(7, "Delete File", this.deleteFileMenu, undefined, "Delete File", "Delete a save file.");
+			}
+			
 			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
 		}
 		
+		private function deleteSaveMenu():void
+		{
+			clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			
+			var displayMessage:String = "";
+			displayMessage += "<b>Which slot would you like to delete?</b>\n";
+			
+			clearGhostMenu();
+			
+			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
+			{
+				var df:SharedObject = this.getSO(slotNum);
+				displayMessage += this.generateSavePreview(df, slotNum);
+				
+				if (df.size == 0)
+				{
+					addDisabledGhostButton(slotNum - 1, "Slot " + slotNum);
+				}
+				else
+				{
+					addGhostButton(slotNum - 1, "Slot " + slotNum, this.deleteSlot, slotNum);
+				}
+			}
+			
+			output2(displayMessage);
+			addGhostButton(14, "Back", this.showDataMenu);
+		}
+		
+		private function deleteSlot(slotNum:int):void
+		{
+			clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			
+			output2("Are you sure you want to delete the savegame in slot " + String(slotNum - 1) + "?");
+			
+			clearGhostMenu();
+			addGhostButton(0, "No", deleteSaveMenu);
+			addGhostButton(4, "Yes", confirmDeleteSlot, slotNum);
+		}
+		
+		private function confirmDeleteSlot(slotNum:int):void
+		{
+			clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			
+			var df:SharedObject = getSO(slotNum);
+			
+			df.clear();
+			df.flush();
+			
+			output2("Deleted!");
+			
+			clearGhostMenu();
+			addGhostButton(0, "Next", showDataMenu);
+		}
 
+		CONFIG::AIR
+		{
+			private function deleteFileMenu():void
+			{
+				clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				
+				var displayMessage:String = "";
+				displayMessage += "<b>Which slot would you like to delete?</b>\n";
+				
+				clearGhostMenu();
+				
+				stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
+				var files:Array = stickyFileRef.getDirectoryListing();
+				
+				for (var i:uint = 0; i < files.length; i++)
+				{
+					var offset:uint = 0;
+					if (i >= 14) offset += 1;
+					
+					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
+					kGAMECLASS.addGhostButton(i + offset, "#" + i, deleteFileSelected, files[i]);
+				}
+				
+				output2(displayMessage);
+				addGhostButton(14, "Back", this.showDataMenu);
+			}
+			
+			private function deleteFileSelected(tarFile:File):void
+			{
+				clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				
+				output2("Are you sure you want to delete the savefile " + tarFile.name + "?");
+				
+				clearGhostMenu();
+				addGhostButton(0, "No", deleteFileMenu);
+				addGhostButton(4, "Yes", confirmDeleteFileSelected, tarFile);
+			}
+			
+			private function confirmDeleteFileSelected(tarFile:File):void
+			{
+				clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				
+				tarFile.deleteFile();
+				
+				output2("Deleted!");
+				
+				clearGhostMenu();
+				addGhostButton(0, "Next", showDataMenu);
+			}
+		}
+		
 		/**
 		 * Display the loading interface
 		 */
@@ -356,121 +495,269 @@
 			}
 		}
 		
-		private function saveToFile():void
+		CONFIG::FLASH
 		{
-			var dataBlob:Object = { };
-			this.saveBaseData(dataBlob);
-			
-			var verified:Boolean = false;
-			
-			try
+			private function saveToFile():void
 			{
-				verified = this.verifyBlob(dataBlob);
+				var dataBlob:Object = { };
+				this.saveBaseData(dataBlob);
+				
+				var verified:Boolean = false;
+				
+				try
+				{
+					verified = this.verifyBlob(dataBlob);
+				}
+				catch (e:Error)
+				{
+					var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
+					this.replaceDataWithBlob(brokenFile, dataBlob);
+					brokenFile.flush();
+					
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Save data could not be verified.");
+					kGAMECLASS.output2("\n\n" + e.message);
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				}
+				
+				if (verified)
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Attempting to save data to file...");
+					
+					// Convert data into a byte array
+					var baDataBlob:ByteArray = new ByteArray();
+					baDataBlob.writeObject(dataBlob);
+					baDataBlob.position = 0;
+					
+					var file:FileReference = new FileReference();
+					file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
+					file.save(baDataBlob, dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+				}
+				else
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				}
 			}
-			catch (e:Error)
+		}
+		
+		CONFIG::AIR
+		{
+			private function saveToFile():void
 			{
-				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
-				this.replaceDataWithBlob(brokenFile, dataBlob);
-				brokenFile.flush();
+				var dataBlob:Object = { };
+				this.saveBaseData(dataBlob);
+				
+				var verified:Boolean = false;
+				
+				try
+				{
+					verified = this.verifyBlob(dataBlob);
+				}
+				catch (e:Error)
+				{
+					var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
+					this.replaceDataWithBlob(brokenFile, dataBlob);
+					brokenFile.flush();
+					
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Save data could not be verified.");
+					kGAMECLASS.output2("\n\n" + e.message);
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				}
+				
+				if (verified)
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Attempting to save data to file...");
+					
+					// Convert data into a byte array
+					var baDataBlob:ByteArray = new ByteArray();
+					baDataBlob.writeObject(dataBlob);
+					baDataBlob.position = 0;
+				
+					var airSaveDir:File = File.documentsDirectory.resolvePath(saveDir);
+					trace(airSaveDir.toString());
+					var airFile:File = airSaveDir.resolvePath(dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
+					var stream:FileStream = new FileStream();
+					
+					try
+					{
+						airSaveDir.createDirectory();
+						stream.open(airFile, FileMode.WRITE);
+						stream.writeBytes(baDataBlob);	
+						stream.close();
+						saveToFileWriteHandler();
+					}
+					catch (e:Error)
+					{
+						kGAMECLASS.output2("\n\nError: " + e.message);
+					}
+				}
+				else
+				{
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				}
+			}
+		}
+		
+		CONFIG::FLASH
+		{
+			private function saveToFileWriteHandler(e:Event):void
+			{
+				trace("Save complete.");
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.output2("Save data could not be verified.");
-				kGAMECLASS.output2("\n\n" + e.message);
-				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.output2("Save complete.");
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
-			
-			if (verified)
+		}
+		
+		CONFIG::AIR
+		{
+			private function saveToFileWriteHandler():void
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.output2("Attempting to save data to file...");
-				
-				// Convert data into a byte array
-				var baDataBlob:ByteArray = new ByteArray();
-				baDataBlob.writeObject(dataBlob);
-				baDataBlob.position = 0;
-				
-				var file:FileReference = new FileReference();
-				file.addEventListener(Event.COMPLETE, saveToFileWriteHandler);
-				file.save(baDataBlob, dataBlob.saveName + " - " + dataBlob.daysPassed + " days.tits");
-			}
-			else
-			{
-				kGAMECLASS.clearOutput2();
-				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
-				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.output2("Save complete.");
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
 		
-		private function saveToFileWriteHandler(e:Event):void
+		CONFIG::FLASH
 		{
-			trace("Save complete.");
-			
-			kGAMECLASS.clearOutput2();
-			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.output2("Save complete.");
-			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			private function loadFromFile():void
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Selected a file to load.");
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				
+				stickyFileRef = new FileReference();
+				stickyFileRef.browse([new FileFilter("TiTS Saves", "*.tits")]);
+				stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
+			}
 		}
 		
-		private var stickyFileRef:FileReference;
-		
-		private function loadFromFile():void
+		CONFIG::AIR
 		{
-			kGAMECLASS.clearOutput2();
-			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.output2("Selected a file to load.");
-			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
-			
-			stickyFileRef = new FileReference();
-			stickyFileRef.browse([new FileFilter("TiTS Saves", "*.tits")]);
-			stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
+			private function loadFromFile():void
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Select a file to load:\n");
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+				
+				stickyFileRef = File.documentsDirectory.resolvePath(saveDir);
+				var files:Array = stickyFileRef.getDirectoryListing();
+				
+				for (var i:uint = 0; i < files.length; i++)
+				{
+					var offset:uint = 0;
+					if (i >= 14) offset += 1;
+					
+					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
+					kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
+				}
+				
+				//stickyFileRef.browseForOpen("Open"); // FUCK YOU FOREVER ANDROID YOU FUCKING STUPID FUCKING FUCKS.
+				//stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
+				
+			}
 		}
 		
-		private function loadFileSelected(e:Event):void
+		CONFIG::FLASH
 		{
-			trace("1. File selected.");
-			
-			kGAMECLASS.clearOutput2();
-			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.output2("Attempting to load file...");
-			
-			stickyFileRef.removeEventListener(Event.SELECT, loadFileSelected);
-			
-			stickyFileRef.addEventListener(Event.OPEN, loadFileBegin);
-			stickyFileRef.addEventListener(Event.COMPLETE, loadFileHandler);
-			stickyFileRef.addEventListener(IOErrorEvent.IO_ERROR, loadFileError);
-			
-			stickyFileRef.load();
+			private function loadFileSelected(e:Event):void
+			{
+				trace("1. File selected.");
+				
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Attempting to load file...");
+				
+				stickyFileRef.removeEventListener(Event.SELECT, loadFileSelected);
+				
+				stickyFileRef.addEventListener(Event.OPEN, loadFileBegin);
+				stickyFileRef.addEventListener(Event.COMPLETE, loadFileHandler);
+				stickyFileRef.addEventListener(IOErrorEvent.IO_ERROR, loadFileError);
+				
+				stickyFileRef.load();
+			}
 		}
 		
-		private function loadFileBegin(e:Event):void
+		CONFIG::AIR
 		{
-			trace("2. Starting to load");
-			
-			kGAMECLASS.clearOutput2();
-			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.output2("Loading...");
-			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			private function loadFileSelected(tarFile:File):void
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Attempting to load file...");
+				
+				stickyFileStreamRef = new FileStream();
+				stickyFileStreamRef.open(tarFile, FileMode.READ);
+				
+				var bytes:ByteArray = new ByteArray();
+				stickyFileStreamRef.readBytes(bytes);
+				
+				bytes.position = 0;	
+				var dataBlob:Object = bytes.readObject();
+				
+				stickyFileStreamRef.close();
+				doFileLoad(dataBlob);
+			}
 		}
 		
-		private function loadFileHandler(e:Event):void
+		CONFIG::FLASH
 		{
-			trace("3. Load complete, inserting into game.");
+			private function loadFileBegin(e:Event):void
+			{
+				trace("2. Starting to load");
+				
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Loading...");
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		CONFIG::FLASH
+		{
+			private function loadFileHandler(e:Event):void
+			{
+				trace("3. Load complete, inserting into game.");
 			
-			kGAMECLASS.clearOutput2();
-			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.output2("Got file, verifying...");
-			
-			var dataBlob:Object;
-			
-			var byteArray:ByteArray = stickyFileRef.data;
-			byteArray.position = 0;
-			dataBlob = byteArray.readObject();
-			
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.output2("Got file, verifying...");
+				
+				var dataBlob:Object;
+				
+				var byteArray:ByteArray = stickyFileRef.data;
+				byteArray.position = 0;
+				dataBlob = byteArray.readObject();
+				doFileLoad(dataBlob);
+			}
+		}
+		
+		
+		private function doFileLoad(dataBlob:Object):void
+		{
 			var gamePtr:* = kGAMECLASS;
 			
 			// Now we can shuffle data into disparate game systems 
