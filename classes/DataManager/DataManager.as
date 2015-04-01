@@ -302,7 +302,7 @@
 				clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
 				
-				output2("Are you sure you want to delete the savefile " + tarFile.name + "?");
+				output2("Are you sure you want to delete the save file " + tarFile.name + "?");
 				
 				clearGhostMenu();
 				addGhostButton(0, "No", deleteFileMenu);
