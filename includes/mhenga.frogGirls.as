@@ -187,15 +187,15 @@ public function tongueLashAttack():void
 			var damage:TypeCollection = foes[0].meleeDamage();
 			damage.addFlag(DamageFlag.ONLY_SHIELD);
 			damageRand(damage, 15);
-			var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
-			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + damageResult.totalDamage + "</b>)");
-			else output(". Your shield is breached! (<b>" + damageResult.totalDamage + "</b>)");
+			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
+			else output(". Your shield is breached! (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
 		}
 		else
 		{
 			output("and you feel the toxin in her saliva work its way into your body.");
-			pc.lustDamage(10+rand(10));
+			applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), foes[0], pc, "minimal");
 		}
 	}
 	processCombat();
@@ -210,7 +210,7 @@ public function getLickedBitch():void
 	else
 	{
 		output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
-		pc.lustDamage(6+rand(6));
+		applyDamage(new TypeCollection( { tease: 6 + rand(6) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }

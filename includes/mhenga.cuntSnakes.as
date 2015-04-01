@@ -157,7 +157,7 @@ public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 		
 		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
 		if (damageResult.shieldDamage > 0)
 		{
@@ -208,7 +208,7 @@ public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void 
 		
 		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, target, attacker);
+		var damageResult:DamageResult = calculateDamage(damage, attacker, target);
 		
 		if (damageResult.shieldDamage > 0)
 		{

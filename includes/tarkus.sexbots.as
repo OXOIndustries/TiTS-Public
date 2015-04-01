@@ -228,7 +228,7 @@ public function sexBotElectropulseAttack():void
 	
 	var damage:TypeCollection = new TypeCollection( { electric: 15 }, DamageFlag.ONLY_SHIELD );
 	damageRand(damage, 15);
-	var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 	
 	// TODO: Apply only to shields...
 	
@@ -339,7 +339,7 @@ public function grappleWithASexbot():void
 			if(pc.cockTotal() == 1) output("s");
 		}
 		output(" eagerly to the warm, seeking vibrations of the tentacle attached to your groin.");
-		pc.lustDamage(5+rand(5));
+		applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
 	}
 	else
 	{
@@ -362,7 +362,7 @@ public function grappleWithASexbot():void
 			output(".");
 
 			output("\n\n<i>“You are encouraged to struggle as hard as you can,”</i> says the sexbot, green eyes glittering as it forcibly masturbates you. <i>“This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.”</i>");
-			pc.lustDamage(10+rand(5));
+			applyDamage(new TypeCollection( { tease: 10 + rand(5)}), foes[0], pc, "minimal");
 			pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 		}
 	}

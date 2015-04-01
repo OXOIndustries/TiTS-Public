@@ -3553,16 +3553,10 @@ public function gasGrenade(target:Creature):void
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 	}
 	
-	//Any perks or shit go below here.
-	damage.applyResistances(target.getLustResistances());
-	var tLust:Number = damage.getTotal();
-	
-	if(target.lust() + tLust > target.lustMax()) tLust = target.lustMax() - target.lust();
-	tLust = Math.ceil(tLust);
+	var damageResult:DamageResult = applyDamage(damage, pc, pc, "supress");
 	output("\n");
-	output(teaseReactions(tLust,target));
-	target.lustDamage(tLust);
-	output(" ("+ tLust + ")\n");
+	output(teaseReactions(damageResult.lustDamage, target));
+	output(" (<b>"+ Math.round(damageResult.lustDamage) + "</b>)\n");
 	processCombat();
 }
 
@@ -3581,7 +3575,7 @@ public function goozookaCannon(target:Creature):void
 	else
 	{
 		var damage:TypeCollection;
-		var tLust:Number;
+		var damageResult:DamageResult
 		
 		// Hit
 		if (target is GrayGoo)
@@ -3592,34 +3586,23 @@ public function goozookaCannon(target:Creature):void
 			if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
 			
 			damage = new TypeCollection( { tease: 5 } );
-			damage.applyResistances(target.getLustResistances());
-			
-			tLust = damage.getTotal();
-			
-			if (target.lust() + tLust > target.lustMax()) tLust = target.lustMax() - target.lust();
+			damageResult = applyDamage(damage, pc, target, "supress");
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
 			output(" (Heals " + heal + ")");
-			output(" (Lust Damage " + tLust + ")\n");
+			output(" (Lust Damage " + damageResult.lustDamage + ")\n");
 			
 			target.HP(heal);
-			target.lust(tLust);
 		}
 		else
 		{
 			output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
 		
 			damage = new TypeCollection( { tease: 33 } );
-			damage.applyResistances(target.getLustResistances());
-			tLust = damage.getTotal();
-			
-			if (target.lust() + tLust > target.lustMax()) tLust = target.lustMax() - target.lust();
-			tLust = Math.ceil(tLust);
-			
+			damageResult = applyDamage(damage, pc, target, "supress");
 			output("\n");
-			output(teaseReactions(tLust, target));
-			target.lustDamage(tLust);
-			output(" (" + tLust + ")\n");
+			output(teaseReactions(damageResult.lustDamage, target));
+			output(" (<b>" + damageResult.lustDamage + "</b>)\n");
 		}
 	}
 	
@@ -3768,11 +3751,9 @@ public function shieldHack(target:Creature):void
 	output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "! ");
 	
 	var damage:TypeCollection = damageRand(new TypeCollection( { electric: 25 + pc.level * 5 } ), 15);
+	damage.addFlag(DamageFlag.ONLY_SHIELD);
 	
-	var damageResult:DamageResult = new DamageResult();
-	damageResult.remainingDamage = damage;
-	
-	calculateShieldDamage(target, pc, damageResult, "shieldhack");
+	var damageResult:DamageResult = calculateDamage(damage, pc, target, "supress");
 	
 	if(target.shields() > 0)
 	{

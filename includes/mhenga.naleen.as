@@ -105,7 +105,7 @@ public function naleenConstrict():void {
 	}
 	
 	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
-	var damageResult:DamageResult = calculateDamage(damage, pc, foes[0], "constrict");
+	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "constrict");
 	
 	if (damageResult.shieldDamage > 0)
 	{
@@ -176,8 +176,8 @@ public function biteAttack():void {
 		pc.aimMod -= .5;
 		pc.willpowerMod -= .5;
 		pc.reflexesMod -= .5;
-		pc.addStatusValue("Naleen Venom",1,.5);
-		pc.lustDamage(10+rand(10));
+		pc.addStatusValue("Naleen Venom", 1, .5);
+		applyDamage(new TypeCollection( { drug: 10 + rand(10) } ), foes[0], pc, "minimal");
 		if(pc.lust() >= pc.lustMax() || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
 	}
 	processCombat();

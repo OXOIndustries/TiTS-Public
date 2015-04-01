@@ -715,7 +715,7 @@ public function suicideBullshit():void {
 		var damage:TypeCollection = new TypeCollection( { kinetic: 15 } );
 		damage.add(foes[0].aim() / 2);
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0], "ranged");
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "ranged");
 
 		if (damageResult.shieldDamage > 0)
 		{

@@ -2153,15 +2153,6 @@
 				return currLust;
 			}
 		}
-		public function lustDamage(arg:Number = 0):Number
-		{
-			if(kGAMECLASS.easy && arg > 0 && this is PlayerCharacter) arg *= .5;
-			if(hasStatusEffect("Blue Balls")) arg *= 1.25;
-			if (hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
-			if (hasStatusEffect("Myr Venom")) arg *= 1.25;
-			if(hasPerk("Easy")) arg *= 1.2;
-			return lust(arg);
-		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
 		{

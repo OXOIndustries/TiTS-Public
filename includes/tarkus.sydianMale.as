@@ -95,7 +95,7 @@ public function rustBroDegrade():void
 		else
 		{
 			output(" The strike smacks cleanly into your [pc.skinFurScales], leaving a veneer of viscous goo behind. It rapidly wicks into your body, leaving your surfaces clean but your heart hammering with excitement. It's some kind of mild aphrodisiac!");
-			pc.lustDamage(5+rand(5));
+			applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
 		}
 		foes[0].createStatusEffect("Use Grope Next");
 	}
@@ -109,12 +109,12 @@ public function sydianMaleGropesYou():void
 	output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
 	if(pc.reflexes()/2 + rand(20) + 1 > foes[0].physique()) {
 		output(" You manage to slip out of his hold before he excite you too much.");
-		pc.lustDamage(3);
+		applyDamage(new TypeCollection( { tease: 3 } ), foes[0], pc, "minimal");
 	}
 	else
 	{
 		output(" His big, thick fingers cup and squeeze, then explore and caress, manhandling you with enough precision to give away that this isn't the first time he's done this.");
-		pc.lustDamage(15+rand(10));
+		applyDamage(new TypeCollection( { tease: 15 + rand(10) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
@@ -123,7 +123,7 @@ public function sydianMaleGropesYou():void
 public function sydianAntennaeTickle():void
 {
 	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the food long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
-	pc.lustDamage(10+rand(5));
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 
@@ -131,7 +131,7 @@ public function sydianAntennaeTickle():void
 public function sydianLickAttack():void
 {
 	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva. He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	pc.lustDamage(15+rand(5));
+	applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 //Tackle
@@ -195,10 +195,10 @@ public function bodySlamByBros():void
 		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
 		
 		if (pc.shields() > 0) output(" Not even your shields protect you!");
-		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING);
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
-		output(" (<b>" + damageResult.totalDamage + "</b>)");
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+		output(" (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
 	}
 	processCombat();
 }

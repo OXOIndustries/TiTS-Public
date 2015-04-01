@@ -342,7 +342,7 @@ public function vanaeGrapple():void
 			output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
 
 			pc.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
-			pc.lustDamage(8 + rand(8));
+			applyDamage(new TypeCollection( { tease: 8 + rand(8) } ), foes[0], pc, "minimal");
 		}
 	}
 	else
@@ -351,7 +351,7 @@ public function vanaeGrapple():void
 	if (foes[0] is MaidenVanae) output(" meager");
 	else output(" sizable");
 	output(" mounds, your [pc.groin] burning with arousal.");
-		pc.lustDamage(8 + rand(8));
+		applyDamage(new TypeCollection( { tease: 8 + rand(8) } ), foes[0], pc, "minimal");
 	}
 	
 	processCombat();
@@ -363,7 +363,7 @@ public function vanaeWaitWhilstGrappled():void
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
 	if (foes[0] is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have good time - okay?”</i>");
 	else output(" <i>“...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...”</i>");
-	pc.lustDamage(16 + rand(8));
+	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), foes[0], pc, "minimal");
 }
 
 public function vanaeEscapeGrapple():void
@@ -403,7 +403,7 @@ public function vanaeMilkSquirtBreasts():void
 			pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 		}
 		
-		pc.lustDamage(8 + rand(4));
+		applyDamage(new TypeCollection( { tease: 8 + rand(4) } ), foes[0], pc, "minimal");
 	}
 	
 	processCombat();

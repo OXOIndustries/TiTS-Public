@@ -2836,7 +2836,7 @@ public function mimbraneTrip():void
 		output("\n\nIt successfully hooks onto your [pc.leg] and pulls it out from under you, tripping you hard against the ground.");
 
 		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + rand(5) } );
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
 		if (damageResult.shieldDamage > 0)
 		{

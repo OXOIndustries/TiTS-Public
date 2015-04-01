@@ -1541,12 +1541,12 @@ public function crotchFaceSmash():void
 	if(pc.willpower() + rand(20) + 1 < 20)
 	{
 		output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
-		pc.lustDamage(15);
+		applyDamage(new TypeCollection( { tease: 15 } ), foes[0], pc, "minimal");
 	}
 	else 
 	{
 		output("\n\nYou hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance.");
-		pc.lust(2);
+		applyDamage(new TypeCollection( { tease: 2 } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
@@ -1560,7 +1560,7 @@ public function motorboatedByASpork():void
 	if(pc.willpower() + rand(20) + 1 < 25)
 	{
 		output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
-		pc.lustDamage(7+rand(3));
+		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//Failure:
 	else output("\n\nYou shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing.");
@@ -2080,8 +2080,8 @@ public function kaskaFutaLusts():void
 	output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
 	foes[0].createStatusEffect("Futa Lust",0,0,0,0);
 	//+5 lust each
-	pc.lustDamage(5);
-	foes[0].lustDamage(5);
+	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 5 } ), pc, foes[0], "supress");
 	processCombat();
 }
 //Tittygrapple
@@ -2114,7 +2114,7 @@ public function doNothingWhileTittyGrappled():void
 public function failToStruggleKaskaBoobs():void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
-	pc.lustDamage(10+rand(5));
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
 	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
@@ -2128,8 +2128,8 @@ public function pinchKaskaNipple():void
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
 	pc.removeStatusEffect("Grappled");
-	pc.lustDamage(4+rand(3));
-	foes[0].lustDamage(7+rand(3));
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, foes[0], "minimal");
 	processCombat();
 }
 //Crate Tease
@@ -2137,7 +2137,7 @@ public function pinchKaskaNipple():void
 public function crateTeaseFromKaska():void
 {
 	output("Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>");
-	pc.lustDamage(8+rand(10));
+	applyDamage(new TypeCollection( { tease: 8 + rand(10) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 //Futasnuggle
@@ -2148,7 +2148,7 @@ public function futaSnuggleAttack():void
 	if(pc.armor.shortName == "") output("leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]");
 	else output("leaving you intimately aware of the pressure of her dick on your [pc.armor]");
 	output(". She licks the lobe of your ear, whispering, <i>\"I could do things to you that no mere woman or man could dream of.\"</i>");
-	pc.lustDamage(9+rand(5));
+	applyDamage(new TypeCollection( { tease: 9 + rand(5) } ), foes[0], pc, "minimal");
 	if(pc.lust() < pc.lustMax()) output("\n\nThe horny dick-girl doesn't bother resisting when you push her away, but her scent and warmth remain.");
 	else output("You're enjoying this far too much to push her away.");
 	processCombat();
@@ -2159,7 +2159,7 @@ public function futaSnuggleAttack():void
 public function kaskaHighKick():void
 {
 	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
-	pc.lustDamage(3+rand(4));
+	applyDamage(new TypeCollection( { tease: 3 + rand(4) } ), foes[0], pc, "minimal");
 	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	if(pc.lust() >= pc.lustMax()) output("\n\nIt's too much. You can't keep up the facade of fighting her any longer.");
 	else output("\n\nYou stumble back, more aroused by the view than you care to admit.");

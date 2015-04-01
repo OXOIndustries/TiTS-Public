@@ -240,7 +240,7 @@ public function zilFemaleDartThrow():void {
 		var damage:TypeCollection = foes[0].damage(true);
 		damage.add(foes[0].physique() / 2);
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
 		if (damageResult.shieldDamage > 0)
 		{

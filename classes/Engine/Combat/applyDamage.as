@@ -27,11 +27,11 @@ package classes.Engine.Combat
 		 * 
 		 * calculateDamage handles all of the bonus damage calculations, defensive reductions, etc. It spits back a singular result -- damageResult -- that contains all of the information required to output messages about the damage that occured.
 		 */
-		var damageResult:DamageResult = calculateDamage(baseDamage, target, attacker, special);
+		var damageResult:DamageResult = calculateDamage(baseDamage, attacker, target, special);
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
 		if (special == "supress") return damageResult;
-		else if (special == "minimal")
+		else if (special == "minimal" || attacker == null)
 		{
 			if (damageResult.totalDamage > 0) output(" (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
 			return damageResult;
@@ -139,7 +139,8 @@ package classes.Engine.Combat
 			}
 			else
 			{
-				// TODO
+				// TODO: Maybe move tease reaction shit here???
+				output(" (<b>" + Math.round(damageResult.lustDamage) + "</b>)");
 			}
 		}
 		

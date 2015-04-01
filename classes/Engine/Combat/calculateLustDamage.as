@@ -33,20 +33,48 @@ package classes.Engine.Combat
 		
 		if (target.lustRaw >= target.lustMax()) return;
 		
-		// Apply bonuses
+		// Apply bonuses to specific damage types.
 		var lustDamage:TypeCollection = damageResult.remainingLustDamage.makeCopy();
 		
-		if (lustDamage.tease.damageValue > 0) lustDamage.tease.damageValue += attacker.sexiness() / 2;
-		if (lustDamage.tease.damageValue > 0 && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);		
+		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
+		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);
 		
+		// Apply any defensive modifiers
+		var damMulti:Number = 1;
+		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
+		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
+		if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
+		if (target.hasPerk("Easy")) damMulti += 0.2;
+		if (damMulti != 1) lustDamage.multiply(damMulti);
+		
+		// Apply resistances
 		lustDamage.applyResistances(tarResistances);
-		
 		var damageAfterResistances:Number = Math.round(lustDamage.getTotal());
 		
-		// Actual lust damage happens
+		// Clamp damage done to 1 > Damage > DamageToCap
+		if (damageAfterResistances < 1) damageAfterResistances = 1;
+		if (damageAfterResistances > (target.lustMax() - target.lust()))
+		{
+			var damDiff:Number = (target.lustMax() - target.lust()) / damageAfterResistances;
+			damageAfterResistances = target.lustMax() - target.lust();
+			
+			damageResult.lustDamage = damageAfterResistances;
+			damageResult.typedLustDamage = lustDamage.makeCopy();
+			damageResult.typedLustDamage.multiply(damDiff);
+			
+			damageResult.totalDamage += damageAfterResistances;
+			damageResult.typedTotalDamage.add(damageResult.typedLustDamage);
+		}
+		else
+		{
+			damageResult.typedLustDamage = lustDamage.makeCopy();
+			damageResult.lustDamage = damageAfterResistances;
+			
+			damageResult.totalDamage += damageAfterResistances;
+			damageResult.typedTotalDamage.add(damageResult.typedLustDamage);
+		}
+		
 		target.lust(damageAfterResistances);
-
-		// TODO: This could do with fleshing out. Maybe building out some variation of tease reactions.
 	}
 
 }

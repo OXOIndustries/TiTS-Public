@@ -707,7 +707,7 @@ public function raskZapAttack():void
 		//damage!
 		var damage:TypeCollection = new TypeCollection( { electric: 15 } );
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
 		if (damageResult.shieldDamage > 0)
 		{
@@ -764,7 +764,7 @@ public function raskPileOnPC():void
 	else
 	{
 		output("The raskvel continue to pin you down with their bodies, determinedly ignoring your struggles and waiting for you to give up. Their leathery scales slide over your [pc.skinFurScales] as three pairs of hands go exploring, trailing over your [pc.chest], squeezing your [pc.butt], fondling your at your groin. Even in the warm, dusty, muffled chaos it’s obvious that immobilizing you is a secondary concern, next to the overriding need to give your alien physique a good grope.");
-		pc.lustDamage(10+rand(8));
+		applyDamage(new TypeCollection( { tease: 10 + rand(8) } ), foes[0], pc, "minimal");
 		pc.energy(-5);
 		//Lust 0-80:
 		if(pc.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");

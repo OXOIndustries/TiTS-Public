@@ -13,7 +13,7 @@ package classes.Engine.Combat
 	 * ...
 	 * @author Gedan
 	 */
-	public function calculateDamage(baseDamage:TypeCollection, target:Creature, attacker:Creature, special:String = ""):DamageResult
+	public function calculateDamage(baseDamage:TypeCollection, attacker:Creature, target:Creature, special:String = ""):DamageResult
 	{
 		// Split damage into the two components -- HP/Shield and Lust
 		
@@ -26,6 +26,20 @@ package classes.Engine.Combat
 			else baseLustDamage.getType(i).damageValue = baseDamage.getType(i).damageValue;
 		}
 		
+		var dFlags:Vector.<DamageFlag> = baseDamage.getFlags();
+		
+		for (i = 0; i < dFlags.length; i++)
+		{
+			var df:DamageFlag = new DamageFlag();
+			var dfl:DamageFlag = new DamageFlag();
+			
+			df.loadSaveObject(dFlags[i].getSaveObject());
+			dfl.loadSaveObject(dFlags[i].getSaveObject());
+			
+			baseHPDamage.addDamageFlag(df);
+			baseLustDamage.addDamageFlag(dfl);
+		}
+		
 		var damageResult:DamageResult = new DamageResult();
 		
 		/****************************
@@ -35,7 +49,7 @@ package classes.Engine.Combat
 		// Take care HOW you apply bonuses here -- lust AND hp damage can be modified
 		// Special will allow you to apply bonus only to 'default' attacks.
 		
-		if (special == "ranged" || special == "melee")
+		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
 			if (special == "melee")
 			{				
@@ -85,7 +99,7 @@ package classes.Engine.Combat
 		damageResult.remainingDamage = baseHPDamage;
 		damageResult.remainingLustDamage = baseLustDamage;
 		
-		if (!damageResult.remainingDamage.hasFlag(DamageFlag.BYPASS_SHIELD))
+		if (!damageResult.remainingDamage.hasFlag(DamageFlag.BYPASS_SHIELD) && damageResult.remainingDamage.getTotal() > 0)
 		{
 			calculateShieldDamage(target, attacker, damageResult, special);
 		}
@@ -95,7 +109,7 @@ package classes.Engine.Combat
 			calculateHPDamage(target, attacker, damageResult, special);
 		}
 		
-		if (baseLustDamage.getTotal() > 0)
+		if (damageResult.remainingLustDamage.getTotal() > 0)
 		{
 			calculateLustDamage(target, attacker, damageResult, special);
 		}

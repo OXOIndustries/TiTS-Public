@@ -2679,7 +2679,7 @@ public function grayPrimeFailEscape():void
 			break;
 	}
 
-	pc.lustDamage(10+rand(5));
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 }
 
 //Force Punch
@@ -2732,7 +2732,7 @@ public function grayPrimeLustfulClones():void
 public function grayPrimeCloneLustAttack():void
 {
 	output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
-	pc.lustDamage(foes[0].statusEffectv1("Gooclones"));
+	applyDamage(new TypeCollection( { tease: foes[0].statusEffectv1("Gooclones") } ), foes[0], pc, "minimal");
 }
 
 //Attack Clone

@@ -26,7 +26,8 @@
 			this.customBlock = "The frog-girl's skin proves remarkably durable!";
 			this.plural = false;
 			
-			
+			meleeWeapon.baseDamage.kinetic.damageValue = 3;
+			meleeWeapon.attack = 2;
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.hasRandomProperties = true;

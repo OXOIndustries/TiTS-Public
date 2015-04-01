@@ -236,13 +236,13 @@ public function nyreaMeatSpin():void
 	// 9999
 	if (rand(10) == 0)
 	{
-		output("\nYou wipe her cock-drool off with disgust.\n");
+		output("\nYou wipe her cock-drool off with disgust.");
 	}
 	else
 	{
 		output("\nUnwittingly, you breathe in at that exact moment, getting a full blast of the potent sexual aroma the insectile beauty is giving off.");
 
-		var damage:TypeCollection = new TypeCollection( { tease: 7, pheremone: 7 } );
+		var damage:TypeCollection = new TypeCollection( { tease: 7, pheromone: 7 } );
 		damageRand(damage, 15);
 		applyDamage(damage, foes[0], pc);
 	}
@@ -292,9 +292,9 @@ public function nyreaPoledance():void
 	output(".”</i>\n");
 
 	// 9999
-	if (rand(10) == 0)
+	if (pc.lust() >= pc.lustMax() * 0.75)
 	{
-		output("\nYou look away from her tantalizing display, doing your best to contain your lust.\n");
+		output("\nYou look away from her tantalizing display, doing your best to contain your lust.");
 	}
 	else
 	{

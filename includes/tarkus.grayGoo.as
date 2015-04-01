@@ -65,8 +65,8 @@ public function grayGooTeaseAttackGo():void
 		if(pc.hasCock()) output("clearly offering you the chance to do the same");
 		else output("clearly offering to do the same to you!");
 	}
-	foes[0].lust(3);
-	pc.lustDamage(8+rand(6));
+	applyDamage(new TypeCollection( { tease: 3 } ), null, foes[0], "supress");
+	applyDamage(new TypeCollection( { tease: 8 + rand(6) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 
@@ -86,7 +86,7 @@ public function grayGooRestrain():void
 	{
 		output("Seeing that you can't quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
 		pc.addStatusValue("Grappled",3,1);
-		pc.lustDamage(10+rand(6));
+		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
 	}
 	//Turn 2
 	else
@@ -109,7 +109,7 @@ public function grayGooRestrain():void
 			else output(" [pc.legs] together");
 			output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear]");
 		}
-		pc.lustDamage(10+rand(6));
+		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }

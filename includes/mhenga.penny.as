@@ -501,7 +501,7 @@ public function zilFlyingSpinKick():void {
 		var damage:TypeCollection = attacker.damage(true);
 		damage.add(attacker.physique() / 2);
 		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, pc, foes[0]);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
 		//Apply damage reductions
 		if (damageResult.shieldDamage > 0) 
