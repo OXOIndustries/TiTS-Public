@@ -108,7 +108,7 @@ public function sydianMaleGropesYou():void
 	foes[0].removeStatusEffect("Use Grope Next");
 	output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
 	if(pc.reflexes()/2 + rand(20) + 1 > foes[0].physique()) {
-		output(" You manage to slip out of his hold before he excite you too much.");
+		output(" You manage to slip out of his hold before he can excite you too much.");
 		applyDamage(new TypeCollection( { tease: 3 } ), foes[0], pc, "minimal");
 	}
 	else
@@ -122,7 +122,7 @@ public function sydianMaleGropesYou():void
 //Antennae Tickle - raises lust, less damage than grope
 public function sydianAntennaeTickle():void
 {
-	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the food long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
+	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the foot long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
 	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 	processCombat();
 }
@@ -449,7 +449,7 @@ public function chicksRideASydian():void
 		output(" ");
 	}
 	output("fuckdoll, slapping his bitch-breaking girth into you with bruising force. Your composure slips once more, and this time, you're sure you're going to cum.");
-	output("\n\nThe sydian must sense this because grabs hold of ");
+	output("\n\nThe sydian must sense this because he grabs hold of ");
 	if(pc.hasCock()) {
 		output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
 	}

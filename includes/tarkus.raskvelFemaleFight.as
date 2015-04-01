@@ -551,37 +551,77 @@ public function quotePayUnquoteFemRasks():void
 //Loss vs Raskvel Scenes
 public function defeatRoutingForFemRasks():void
 {
-	var choices:Array = new Array();
-	var args:Array = new Array();
+	var choices:Array = [];
 	
 	//Face-Sitting Footjobs
 	//Dick Req
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
-		choices[choices.length] = raskvelGirlsSitsIfTheyFits;
-		args[args.length] = true;
+	if (pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
+		choices.push( { func: raskvelGirlsSitsIfTheyFits, arg: true } );
 	}
 	//Tail-pegging
 	//Nondix
 	if(!pc.hasCock())
 	{
-		choices[choices.length] = getRaskVelTailPegged;
-		args[args.length] = true;
+		choices.push( { func: getRaskVelTailPegged, arg: true } );
 	}
 	//Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 	if(pc.hasCock() && pc.biggestCockVolume() > foes[0].vaginalCapacity())
 	{
-		choices[choices.length] = hugeDicksGetForceWorshippedByFemRaskvel;
-		args[args.length] = undefined;
+		choices.push( { func: hugeDicksGetForceWorshippedByFemRaskvel, arg: undefined } );
 	}
 	//Get Pegged while Double Penetrating Her
-	if(pc.cockTotal() > 1 && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && pc.cockThatFits2(foes[0].vaginalCapacity()))
+	if (pc.cockTotal() > 1 && 
+		pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && 
+		pc.cockThatFits2(foes[0].vaginalCapacity()) >= 0
+	   )
 	{
-		choices[choices.length] = getPeggedWhileDoublePenetrate;
-		args[args.length] = undefined;	
+		choices.push( { func: getPeggedWhileDoublePenetrate, arg: undefined } );
 	}
-	var select:int = rand(choices.length);
-	if(args[select] == undefined) choices[select]();
-	else choices[select](args[select]);
+	
+	if (choices.length > 0)
+	{
+		var select:int = rand(choices.length);
+		if(choices[select].arg == undefined) choices[select].func();
+		else choices[select].func(choices[select].arg);
+	}
+	else
+	{
+		// Catch-all for un-accounted body types etc etc.
+		// This was the only thing I could think of when I stumbled over some bug report, so fuck it.
+		raskyNotInterestedInYerWeirdShit();
+	}
+}
+
+public function raskyNotInterestedInYerWeirdShit():void
+{
+	showBust("RASKVEL");
+	showName("LOST VS: F.\nRASKVEL");
+	author("Gedan");
+	
+	output("<i>“Yeaaah! Showed you didn't I!”</i> she exclaims over top of your crumpled frame, ");
+	if (pc.HP() <= 0) output(" utterly beaten and unable to fight back against the raskvel.");
+	else output(" utterly lost to your arousal at the hands of the raskvel.");
+	
+	output("\n\nShe rummages around with your [pc.gear] searching for a suitable tribute now that she's victorious.");
+	if (pc.credits >= 1)
+	{
+		output(" <i>“Score! I knew you were holdin’ out on me.");
+		if (silly) output(" Silly fuckers, always gotta try to ice skate uphill,");
+		else output(" Let this be a lesson for the next time!");
+		output("”</i> she warns as she tosses a slightly-lighter credit chit onto your chest.");
+		payRaskvel();
+	}
+	else
+	{
+		output("<i>Oh. Oh man, do I feel like a jerk now- you really didn’t have anything to pay me,”</i> she sheepishly admits, having discovered your total lack of credits. <i>“I, err- let that be a warning to you! Yeah! You better have something for me if we ever cross paths again, ya got it?”</i>.");
+		output("\n\nSeemingly satisfied having chastised you for being a broke-ass space-bum she takes off in a flash, leaving you to");
+		if (pc.HP() <= 0) output(" recover from your beating");
+		else output(" cool yourself off");
+		output(" some before you grab your [pc.gear] and set yourself back on your [pc.feet] ready to carry on.");
+	}
+	
+	processTime(3+rand(7));
+	genericLoss();
 }
 
 //Face-Sitting Footjobs

@@ -1412,7 +1412,7 @@ public function victoriousVsCaptainOrcButt():void
 	output("\n\nBut she's not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit's powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it's strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust.");
 	output("\n\nWith a pneumatic hiss, the mech suit's cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core.");
 	output("\n\n<i>\"You stupid " + pc.mf("bastard","bitch") + ",\"</i> the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist's pose. <i>\"All you and the damn Peacekeepers had to do was was stay back a few hours... nobody had to get hurt. But you... now you've ruined everything. Probably killed half my crew, haven't you? And now my suit! My beautiful suit!\"</i>");
-	output("\n\nYou have just enough time to pull your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
+	output("\n\nYou have just enough time to ready your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
 	output("\n\nShe circles, breathing hard. <i>\"You're strong, I'll give you that. That suit should have been able to mow through a whole squad of soldiers, but you...\"</i>");
 	output("\n\nKhorgan sighs, a slight grin crossing her lips. She charges, swinging low. You parry, leaping back as you see the feint for what it is, only just dodging a left hook that would have had you on your ass. She follows up with a few swings which you alternatively dodge or parry before countering with your own attack, pushing her back -- and giving you some room to breathe.");
 	output("\n\n<i>\"Good!\"</i> the captain grins, the fury in her voice fading to what you might venture to call mirth. <i>\"You're good, Steele. Maybe even good enough...\"</i>");
@@ -3222,7 +3222,7 @@ public function giveTheProbeToShekkaForNuttin():void
 	showName("\nSHEKKA");
 	showBust("SHEKKA");
 	output("<i>\"");
-	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it someone? I'm sure you guys could use the cash more than me.");
+	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it to someone? I'm sure you guys could use the cash more than me.");
 	else if(pc.isMischievous()) output("I must be nuts, but I don't have a use for this thing. How about you take it back to sell to someone else, and you can just owe me a favor, all right?");
 	else output("Hey, Shekka. I'm not carrying this piece of crap around with me. You can keep it.");
 	output("\"</i>");

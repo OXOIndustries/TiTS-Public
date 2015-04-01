@@ -1898,12 +1898,12 @@ public function annoTalkAboutDaMission():void
 	
 	output("\n\n<i>“You see it, right?”</i> Anno says, jabbing a white-furred finger into the display, towards");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(" the");
-	output(" a");
+	else output(" a");
 	output(" section of the ship that seems to be drawing an inordinate amount of power. <i>“Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.”</i>");
 	
 	output("\n\n<i>“A ghost deck?”</i>");
 	
-	output("\n\nShe nods, and presses a button that zooms your view close in on the deck, giving you a cross-section view of it. <i>“It’s an old, old Earth custom, I found out. Skipping floor 13 on buildings, decks on ship. Unlucky number. Nobody even noticed it wasn’t there: Deck 13 in the stair wells and elevators just leads to a mechanical closet, every time. Nothing to look at but old tools. But in the center of the deck? There’s something MASSIVE drawing power from all over the ship.”</i>");
+	output("\n\nShe nods, and presses a button that zooms your view close in on the deck, giving you a cross-section view of it. <i>“It’s an old, old Earth custom, I found out. Skipping floor 13 on buildings, deck 13 on ships and the like. Unlucky number. Nobody even noticed it wasn’t there: Deck 13 in the stair wells and elevators just leads to a mechanical closet, every time. Nothing to look at but old tools. But in the center of the deck? There’s something MASSIVE drawing power from all over the ship.”</i>");
 	
 	output("\n\n<i>“Alright. So what? What’s that got to do with your work?”</i>");
 	

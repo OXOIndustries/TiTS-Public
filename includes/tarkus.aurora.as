@@ -151,7 +151,7 @@ public function approachAurora():void
 
 		output("\n\n<i>\"Could you narrow it down some? I don’t really need ship-\"</i>");
 
-		output("\n\n<i>\"I make weapons, too! And armor and normal stuff. For aspiring scavengers and stewart captains");
+		output("\n\n<i>\"I make weapons, too! And armor and normal stuff. For aspiring scavengers and stalwart captains");
 		if(silly) output(" and aspiring indie bands");
 		output("!\"</i>");
 
