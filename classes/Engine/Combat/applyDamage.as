@@ -33,7 +33,7 @@ package classes.Engine.Combat
 		if (special == "supress") return damageResult;
 		else if (special == "minimal")
 		{
-			if (damageResult.totalDamage > 0) output(" <b>(" + Math.round(damageResult.totalDamage) + "</b>)");
+			if (damageResult.totalDamage > 0) output(" (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
 			return damageResult;
 		}
 		

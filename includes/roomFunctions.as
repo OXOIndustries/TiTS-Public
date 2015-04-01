@@ -185,7 +185,9 @@ public function debugMenusThree():void
 	
 	addButton(0, "C.Snake", encounterCuntSnakeOnJungleLand);
 	addButton(1, "Kaska", meetUpWithKaskaZeBossSloot);
-	addButton(3, "SexBot", encounterASexBot);
+	addButton(2, "Nyrea", encounterNyreaHuntress);
+	addButton(3, "Frog", frogGirlsEncounter);
+	// addButton(3, "SexBot", encounterASexBot);
 }
 
 public function thisIsWhyWeCantHaveNiceThings():void
