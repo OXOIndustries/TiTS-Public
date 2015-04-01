@@ -48,6 +48,7 @@
 	import classes.UIComponents.ContentModules.CodexModule;
 	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
 	import classes.UIComponents.ContentModules.LevelUpStatsModule;
+	import classes.Engine.Interfaces.ParseText;
 
 	import classes.UIComponents.SideBarComponents.StatBar;
 
@@ -664,7 +665,8 @@
 		
 		public function showName(name:String):void
 		{
-			roomText = name;
+			//APRIL FOOLS! roomText = name;
+			roomText = ParseText(name);
 		}
 
 		// Text input bullshittery
@@ -904,6 +906,8 @@
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
+			//APRIL FOOLS!
+			cap = kGAMECLASS.parser.recursiveParser(cap);
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
