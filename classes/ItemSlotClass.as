@@ -194,7 +194,8 @@
 					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
 				}
 				
-				var valueString:String = "Price: " + price + " Credits";
+				//FOOLS! var valueString:String = "Price: " + price + " Credits";
+				var valueString:String = "Price: " + price + " Dogecoins";
 				
 				compareString = mergeString(compareString, valueString);
 			}

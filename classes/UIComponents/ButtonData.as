@@ -1,5 +1,7 @@
+﻿
 package classes.UIComponents 
 {
+	import classes.kGAMECLASS;
 	/**
 	 * ...
 	 * @author Gedan
@@ -61,10 +63,12 @@ package classes.UIComponents
 		 */
 		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
 		{
+			//APRIL FOOLS!
 			this.buttonName = cap;
 			this.func = func;
 			this.arg = arg;
-			this.tooltipHeader = ttHeader;
+			if(ttHeader is String) this.tooltipHeader = ttHeader;
+			else this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
 		}
 		

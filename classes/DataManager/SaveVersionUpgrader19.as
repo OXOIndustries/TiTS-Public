@@ -17,7 +17,13 @@ package classes.DataManager
 		{}
 		
 		public function upgrade(data:Object):Boolean
-		{	
+		{
+			if(data.gameOptions.debugMode) 
+			{
+				trace("TURNED OFF DEBUG!");
+				data.gameOptions.debugMode = false;
+			}
+			trace("UPGRADED TO VERSION 20!");
 			
 			data.version = 20;
 			data.minVersion = 20;
@@ -46,7 +52,5 @@ package classes.DataManager
 			
 			return true;
 		}
-		
 	}
-
 }
