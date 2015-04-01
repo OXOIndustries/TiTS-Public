@@ -1010,7 +1010,7 @@ public function getVagFukkedBySyri():void {
 
 	output("\n\nYou feel yourself cumming, [pc.vagina " + x + "] spasming hard around the massive intruder spearing it open");
 	if(pc.hasCock()) output(" as [pc.eachCock] explodes in a shower of seed, smearing Syri's belly with a sudden gush of your cum");
-	output(". Syri groans in response, her cock spasming in return, knot swelling again as your cunny clamps and squeezes, milking it even through the microfiber condom. With a quiet roar, Syri grabs your ass and pulls your hard onto her lap, shoving as much of her dick into you as she can before cumming; you can feel the condom balloon out as her hot seed pours into it, swelling the condom until it feels like a sloshing second knot pressing against your cervix.");
+	output(". Syri groans in response, her cock spasming in return, knot swelling again as your cunny clamps and squeezes, milking it even through the microfiber condom. With a quiet roar, Syri grabs your ass and pulls you hard onto her lap, shoving as much of her dick into you as she can before cumming; you can feel the condom balloon out as her hot seed pours into it, swelling the condom until it feels like a sloshing second knot pressing against your cervix.");
 
 	output("\n\n<i>“Gods,”</i>  Syri pants, hands clasping your [pc.butt], <i>“that was awesome, Steele. You're an animal...”</i>  Suddenly, you're hefted up into her arms as the ausar girl hobbles to her feet, shakily carrying you back to the bed before you both fall in, laughing like kids until Syri rolls onto you, face inches from your own.");
 
