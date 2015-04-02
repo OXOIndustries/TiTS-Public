@@ -13,7 +13,7 @@
 		//constructor
 		public function Silicone()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.hasRandomProperties = true;
 			
 			this.quantity = 1;
@@ -65,6 +65,13 @@
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use the a silicone.");
 			}
 			return true;
+		}
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+			delete d.damage;
+			delete d.damageType;
 		}
 	}
 }
