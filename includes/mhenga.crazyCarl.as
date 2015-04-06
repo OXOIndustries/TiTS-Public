@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Guns.HammerPistol;
 import classes.Items.Guns.LaserPistol;
@@ -642,26 +643,36 @@ public function machinaAttackNormal():void {
 public function theSpinner():void {
 	output("You hear a loud whir from the corrupt machine before it jerks forwards, coming at you as the main body starts to rotate. Not too soon after it is spinning at a blur of a pace, appendages sprawled outwards and in range of you! Watch out!\n");
 	//*Up to seven normal damage attacks.*
-	foes[0].meleeWeapon.damage -= 3;
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	if(rand(2) == 0) {
-		attack(foes[0],pc,true,1);
-		output("\n");
-	}
-	if(rand(3) == 0) 
+	var damage:TypeCollection = (foes[0] as Creature).meleeDamage();
+	damage.kinetic.damageValue -= 3;
+	if (damage.kinetic.damageValue < 1) damage.kinetic.damageValue = 1;
+	
+	var attacks:uint = 5 + ((rand(2) == 0) ? 1 : 0) + ((rand(3) == 0) ? 1 : 0);
+	
+	for (var i:uint = 0; i < attacks; i++)
 	{
-		attack(foes[0],pc,true,1);
+		if (combatMiss(foes[0], pc))
+		{
+			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].meleeWeapon.attackVerb + ".");
+		}
+		else if (rand(100) <= 45 && !pc.isImmobilized())
+		{
+			if (pc.customDodge.length > 0) output(pc.customDodge);
+			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].meleeWeapon.attackVerb + ".");
+		}
+		else if (mimbraneFeetBonusEvade(pc))
+		{
+			output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		}
+		else
+		{
+			output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " " + foes[0].meleeWeapon.longName + "!");
+			
+			applyDamage(damage, foes[0], pc, "melee");
+		}
 		output("\n");
 	}
-	attack(foes[0],pc,false,1);
-	foes[0].meleeWeapon.damage += 3;
+	processCombat();
 }
 
 //Weld-gun
