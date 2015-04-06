@@ -121,10 +121,10 @@ public function grayGooReformatting():void
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	//{Restores light HP, removes status effects}
-	foes[0].clearCombatStatuses();
+	(foes[0] as Creature).clearCombatStatuses();
 	output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15HP and all statuses cleared!)");
-	foes[0].lustDamage(5);
-	foes[0].HP(15);
+	(foes[0] as Creature).lust(5);
+	(foes[0] as Creature).HP(15);
 	processCombat();
 }
 
