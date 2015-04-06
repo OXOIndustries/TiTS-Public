@@ -203,12 +203,21 @@ package classes.Engine.Combat.DamageTypes
 				{
 					if (typeCollection[i].damageValue > 0) numTypes++;
 				}
-				
-				a /= numTypes;
-				
-				for (i = 0; i < typeCollection.length; i++)
+
+				// If we can split over existing types, do
+				if (numTypes > 0)
 				{
-					if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue += a;
+					a /= numTypes;
+					
+					for (i = 0; i < typeCollection.length; i++)
+					{
+						if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue += a;
+					}
+				}
+				// Otherwise we're just going to treat it as unresistable
+				else
+				{
+					unresistable_hp.damageValue = a;
 				}
 			}
 		}
