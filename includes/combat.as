@@ -2136,8 +2136,6 @@ public function runAway():void {
 		//Very hard: PC IS FUCKING SLOW
 		else difficulty = 4;
 
-		if(easy && difficulty > 0) difficulty--;
-
 		//Multiple NPCs? Raise difficulty class for each one!
 		difficulty += foes.length - 1;
 		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
@@ -2151,7 +2149,13 @@ public function runAway():void {
 		if(pc.canFly() && (!foes[0].canFly() || foes[0].isImmobilized())) difficulty--;
 		//Lower difficulty for immobilized foe
 		if(foes[0].isImmobilized()) difficulty--;
-		
+		//Easy mode is magic!
+		if(easy)
+		{
+			if(difficulty > 0) difficulty--;
+			if(difficulty > 0) difficulty--;
+			if(difficulty > 0) difficulty--;
+		}		
 
 		//Set threshold value and check!
 		if(difficulty < 0) difficulty = 100;
