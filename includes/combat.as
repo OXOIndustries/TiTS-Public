@@ -1152,7 +1152,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
 		
-		applyDamage(attacker.damage(true), attacker, target, "melee");
+		applyDamage(attacker.meleeDamage(), attacker, target, "melee");
 	}
 	//Do multiple attacks if more are queued (does not stack with special!)
 	if(attacker.hasStatusEffect("Multiple Attacks") && special == 0) {
@@ -1244,11 +1244,11 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		
 		if (attacker.rangedWeapon is Goovolver)
 		{
-			applyDamage(attacker.damage(false), attacker, target, "goovolver");
+			applyDamage(attacker.rangedDamage(), attacker, target, "goovolver");
 		}
 		else
 		{
-			applyDamage(attacker.damage(false), attacker, target, "ranged");
+			applyDamage(attacker.rangedDamage(), attacker, target, "ranged");
 		}		
 	}
 	//Do multiple attacks if more are queued.
