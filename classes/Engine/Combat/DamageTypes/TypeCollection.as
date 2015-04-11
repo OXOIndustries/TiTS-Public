@@ -214,10 +214,27 @@ package classes.Engine.Combat.DamageTypes
 						if (typeCollection[i].damageValue > 0) typeCollection[i].damageValue += a;
 					}
 				}
-				// Otherwise we're just going to treat it as unresistable
+				// Otherwise we're just going to treat it as kinetic
 				else
 				{
-					unresistable_hp.damageValue = a;
+					if (hasFlag(DamageFlag.BULLET) || hasFlag(DamageFlag.CRUSHING) || hasFlag(DamageFlag.PENETRATING))
+					{
+						kinetic.damageValue = a;
+					}
+					else if (hasFlag(DamageFlag.LASER))
+					{
+						electric.damageValue = a * 0.33;
+						burning.damageValue = a * 0.67;
+					}
+					else if (hasFlag(DamageFlag.ENERGY_WEAPON))
+					{
+						electric.damageValue = a;
+					}
+					else
+					{
+						// Fallback
+						unresistable_hp.damageValue = a;
+					}
 				}
 			}
 		}
@@ -270,8 +287,6 @@ package classes.Engine.Combat.DamageTypes
 						typeCollection[i].damageValue *= ((100.0 + Math.abs(resistances.getType(i).resistanceValue)) / 100.0);
 					}
 				}
-				
-				// TODO: Make sure this works for negative values.
 			}
 		}
 		

@@ -5,6 +5,7 @@
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class Naleen extends Creature
 	{
@@ -28,6 +29,8 @@
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 1;
+			this.meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "shimmering scales";

@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 //{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
@@ -2048,25 +2049,45 @@ public function shieldBustah():void
 public function kaskaVolleyShot():void
 {
 	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	//LAZORS!
-	foes[0].rangedWeapon.damageType = GLOBAL.THERMAL;
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	//Set back to Kinetic for normal shots!
-	foes[0].rangedWeapon.damageType = GLOBAL.KINETIC;
+	
+	// Ideally copypasta and run this twice.
+	var damage:TypeCollection = (foes[0] as Creature).damage(false);
+	damage.add(new TypeCollection( { burning: 1, electric: 1 } ));
+	damage.addFlag(DamageFlag.LASER);
+	damage.add(foes[0].aim() / 2);
+	
+	damage.kinetic.damageValue -= 3;
+	damage.burning.damageValue -= 3;
+	damage.electric.damageValue -= 3;
+	if (damage.kinetic.damageValue < 1) damage.kinetic.damageValue = 1;
+	if (damage.burning.damageValue < 1) damage.burning.damageValue = 1;
+	if (damage.electric.damageValue < 1) damage.electric.damageValue = 1;
+	
+	var attacks:uint = 4;
+	
+	for (var i:uint = 0; i < attacks; i++)
+	{
+		if (rangedCombatMiss(foes[0], pc))
+		{
+			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+		}
+		else if (rand(100) <= 45 && !pc.isImmobilized())
+		{
+			if (pc.customDodge.length > 0) output(pc.customDodge);
+			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+		}
+		else if (mimbraneFeetBonusEvade(pc))
+		{
+			output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		}
+		else
+		{
+			output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " " + foes[0].rangedWeapon.longName + "!");
+			
+			applyDamage(damage, foes[0], pc, "ranged");
+		}
+		output("\n");
+	}
 	processCombat();
 }
 
