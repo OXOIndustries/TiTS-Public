@@ -2136,6 +2136,7 @@ public function runAway():void {
 		//Very hard: PC IS FUCKING SLOW
 		else difficulty = 4;
 
+		if(easy && difficulty > 0) difficulty--;
 
 		//Multiple NPCs? Raise difficulty class for each one!
 		difficulty += foes.length - 1;

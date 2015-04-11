@@ -666,7 +666,8 @@
 		public function showName(name:String):void
 		{
 			//APRIL FOOLS! roomText = name;
-			roomText = ParseText(name);
+			//roomText = ParseText(name);
+			roomText = name;
 		}
 
 		// Text input bullshittery
@@ -907,7 +908,7 @@
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
 			//APRIL FOOLS!
-			cap = kGAMECLASS.parser.recursiveParser(cap);
+			//cap = kGAMECLASS.parser.recursiveParser(cap);
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		

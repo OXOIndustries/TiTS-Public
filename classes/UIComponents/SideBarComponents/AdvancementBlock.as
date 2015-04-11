@@ -95,8 +95,8 @@ package classes.UIComponents.SideBarComponents
 			
 			_creditsBar = new StatBar(StatBar.MODE_NOBAR);
 			_barContainer.addChild(_creditsBar);
-			//APRIL FOOLS _creditsBar.caption = "CREDITS";
-			_creditsBar.caption = "DOGECOINS";
+			//APRIL FOOLS _creditsBar.caption = "DOGECOINS";
+			_creditsBar.caption = "CREDITS";
 			_creditsBar.value = "9001";
 			_creditsBar.y = Math.floor(_xpBar.y + 30);
 		}

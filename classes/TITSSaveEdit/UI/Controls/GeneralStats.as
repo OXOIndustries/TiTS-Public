@@ -89,8 +89,8 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_credits = new InputLabelPair();
 			AddControl(_credits);
-			//_credits.labelText = "Credits";
-			_credits.labelText = "Dogecoins";
+			_credits.labelText = "Credits";
+			//APRIL FOOLS _credits.labelText = "Dogecoins";
 			_credits.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_personality = new InputLabelPair();

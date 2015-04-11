@@ -63,12 +63,13 @@ package classes.UIComponents
 		 */
 		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
 		{
-			//APRIL FOOLS!
 			this.buttonName = cap;
 			this.func = func;
 			this.arg = arg;
-			if(ttHeader is String) this.tooltipHeader = ttHeader;
-			else this.tooltipHeader = ttHeader;
+			//APRIL FOOLS!
+			//if(ttHeader is String) this.tooltipHeader = ttHeader;
+			//else this.tooltipHeader = ttHeader;
+			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
 		}
 		

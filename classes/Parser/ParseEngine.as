@@ -584,15 +584,13 @@
 			// And repeated spaces (this has to be done after markdown processing)
 			ret = ret.replace(/  +/g, " ");
 
-			//Convert credits to dogecoins
-
 			/*
 			for (var prop in this.parserState)
 			{
 				trace("this.parserState."+prop+" = "+this.parserState[prop]);
 			}
 			*/
-			//APRIL FOOLS!
+			/*APRIL FOOLS!
 			ret = ret.replace(/credits/g,"dogecoins");
 			ret = ret.replace(/Credits/g,"Dogecoins");
 			ret = ret.replace(/ausar/g,"dogesar");
@@ -615,7 +613,7 @@
 			ret = ret.replace(/DANE/g,"COCKTHULU");
 			ret = ret.replace(/Dr. Badger/g,"Dr. Horrible");
 			ret = ret.replace(/Dr.Badger/g,"Dr.Horrible");
-			ret = ret.replace(/BADGER/g,"HORRIBLE");
+			ret = ret.replace(/BADGER/g,"HORRIBLE");*/
 
 			//trace(ret);
 			// trace("Maintext content @ recursiveParser = ", mainText.htmlText.length)
