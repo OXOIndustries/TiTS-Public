@@ -114,6 +114,12 @@ package classes.Engine.Combat
 			calculateLustDamage(target, attacker, damageResult, special);
 		}
 		
+		// Round all the values for display
+		damageResult.hpDamage = Math.round(damageResult.hpDamage);
+		damageResult.shieldDamage = Math.round(damageResult.shieldDamage);
+		damageResult.lustDamage = Math.round(damageResult.lustDamage);
+		damageResult.totalDamage = Math.round(damageResult.totalDamage);
+		
 		return damageResult;
 	}
 

@@ -244,7 +244,7 @@ public function zilFemaleDartThrow():void {
 		
 		if (damageResult.shieldDamage > 0)
 		{
-			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields! (<b>" + damageResult.totalDamage + "</b>)");
+			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields! (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
 			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached."); 
 		}
 		

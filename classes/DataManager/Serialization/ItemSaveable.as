@@ -187,6 +187,8 @@
 			{
 				for (prop in dataObject)
 				{
+					if (!hasOwnProperty(prop)) continue;
+					
 					if (_ignoredFields.length > 0)
 					{
 						if (_ignoredFields.indexOf(prop) == -1)
