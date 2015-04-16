@@ -9,6 +9,8 @@ package classes.Engine.Combat
 	import classes.Characters.PlayerCharacter;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -71,7 +73,17 @@ package classes.Engine.Combat
 				}
 			}
 			else
-			{				
+			{	
+				if (attacker.hasStatusEffect("Concentrated Fire"))
+				{
+					baseHPDamage.add(attacker.statusEffectv1("Concentrated Fire"));
+				}
+				
+				if (attacker is PlayerCharacter)
+				{
+					kGAMECLASS.concentratedFire();
+				}
+				
 				// Ranged crit 
 				if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
 				{
@@ -103,7 +115,7 @@ package classes.Engine.Combat
 		{
 			calculateShieldDamage(target, attacker, damageResult, special);
 			
-			for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+			for (i = 0; i < DamageType.NUMTYPES; i++)
 			{
 				if (isNaN(damageResult.typedTotalDamage.getType(i).damageValue)) throw new Error("NaN");
 			}
