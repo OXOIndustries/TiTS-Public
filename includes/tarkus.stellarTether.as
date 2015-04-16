@@ -1986,12 +1986,12 @@ public function kaskaFightAI():void
 	//HP Shit
 	if(!foes[0].hasStatusEffect("Futa Lust"))
 	{
-		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed"))
+		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed") && foes[0].energy() >= 20)
 		{
 			NPCDisarmingShot(foes[0]);
 			return;
 		}
-		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0)
+		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0 && foes[0].energy() >= 20)
 		{
 			NPCstealthFieldActivation(foes[0]);
 			return;
@@ -2022,9 +2022,8 @@ public function kaskaFightAI():void
 		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
 	}
 	//Pick one
-	//if(choices.length > 0) choices[rand(choices.length)]();
-	shieldBustah();
-	//else enemyAttack(pc);
+	if(choices.length > 0) choices[rand(choices.length)]();
+	else enemyAttack(pc);
 }
 
 
