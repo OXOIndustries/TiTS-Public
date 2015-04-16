@@ -30,6 +30,8 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "You can pretty much find a rock anywhere, and they hurt more than fists, sooooo....";
 			
+			this.baseDamage.kinetic.damageValue = 0.1;
+			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "smack";
