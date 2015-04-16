@@ -46,6 +46,7 @@ package classes.Items.Guns
 			baseDamage.electric.damageValue = 4;
 			baseDamage.burning.damageValue = 10;
 			baseDamage.addFlag(DamageFlag.LASER);
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
