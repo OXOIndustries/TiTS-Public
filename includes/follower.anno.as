@@ -2649,5 +2649,9 @@ public function annosTriberatorGatorMatorHater():void
 	pc.lust(33);
 	processTime(44+rand(3));
 	clearMenu();
+	
+	if (flags["ANNO_TRIBERATOR_USED"] == undefined) flags["ANNO_TRIBERATOR_USED"] = 0;
+	flags["ANNO_TRIBERATOR_USED"]++;
+	
 	addButton(0,"Next",mainGameMenu);
 }

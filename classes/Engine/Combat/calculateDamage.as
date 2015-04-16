@@ -113,7 +113,7 @@ package classes.Engine.Combat
 		{
 			calculateHPDamage(target, attacker, damageResult, special);
 			
-			for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+			for (i = 0; i < DamageType.NUMTYPES; i++)
 			{
 				if (isNaN(damageResult.typedTotalDamage.getType(i).damageValue)) throw new Error("NaN");
 			}
