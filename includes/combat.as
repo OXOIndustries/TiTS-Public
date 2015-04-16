@@ -776,7 +776,7 @@ public function celiseMenu():void
 	if(pc.statusEffectv1("Round") == 1) 
 		this.addButton(0,"Attack",attackRouter,playerAttack);
 	else if(pc.statusEffectv1("Round") == 2) 
-		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack);
 	else 
 		this.addButton(5,"Tease",attackRouter,tease);
 }

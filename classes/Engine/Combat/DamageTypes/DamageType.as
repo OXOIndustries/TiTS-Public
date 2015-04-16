@@ -145,12 +145,19 @@ package classes.Engine.Combat.DamageTypes
 			d.type = _damageType;
 			d.value = _damageValue;
 			
+			if (isNaN(d.value)) throw new Error("Attempted to produce a NaN DamageType instance.");
+			
 			return d;
 		}
 		
 		public function loadSaveObject(o:Object):void
 		{
 			_damageType = o.type;
+			if (isNaN(o.value))
+			{
+				o.value = 0;
+				trace("Correcting a previously NaN Damage/Resistance type present in a save file...");
+			}
 			_damageValue = o.value;
 		}
 		

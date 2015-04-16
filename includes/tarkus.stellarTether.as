@@ -2022,8 +2022,9 @@ public function kaskaFightAI():void
 		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
 	}
 	//Pick one
-	if(choices.length > 0) choices[rand(choices.length)]();
-	else enemyAttack(pc);
+	//if(choices.length > 0) choices[rand(choices.length)]();
+	shieldBustah();
+	//else enemyAttack(pc);
 }
 
 

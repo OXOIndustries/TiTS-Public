@@ -102,11 +102,21 @@ package classes.Engine.Combat
 		if (!damageResult.remainingDamage.hasFlag(DamageFlag.BYPASS_SHIELD) && damageResult.remainingDamage.getTotal() > 0)
 		{
 			calculateShieldDamage(target, attacker, damageResult, special);
+			
+			for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+			{
+				if (isNaN(damageResult.typedTotalDamage.getType(i).damageValue)) throw new Error("NaN");
+			}
 		}
 		
 		if (!damageResult.remainingDamage.hasFlag(DamageFlag.ONLY_SHIELD) && damageResult.remainingDamage.getTotal() > 0)
 		{
 			calculateHPDamage(target, attacker, damageResult, special);
+			
+			for (var i:uint = 0; i < DamageType.NUMTYPES; i++)
+			{
+				if (isNaN(damageResult.typedTotalDamage.getType(i).damageValue)) throw new Error("NaN");
+			}
 		}
 		
 		if (damageResult.remainingLustDamage.getTotal() > 0)
