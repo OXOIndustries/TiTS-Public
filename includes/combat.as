@@ -700,6 +700,11 @@ public function updateCombatStatuses():void {
 		{
 			cloudDebuffHandler(foes[x]);
 		}
+		if (foes[x].hasStatusEffect("Stealth Field Generator"))
+		{
+			foes[x].addStatusValue("Stealth Field Generator", 1, -1);
+			if (foes[x].statusEffectv1("Stealth Field Generator") <= 0) foes[x].removeStatusEffect("Stealth Field Generator");
+		}
 	}
 }
 public function stunRecover(target:Creature):void 
