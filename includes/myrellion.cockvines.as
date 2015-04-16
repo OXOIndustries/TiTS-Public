@@ -59,8 +59,8 @@ public function adultCockvineEncounter():void
 			}
 
 			clearMenu();
-			addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-			addButton(1, "Go on", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
+			addButton(0, "Leave", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
+			addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 		}
 		else
 		{
@@ -89,8 +89,8 @@ public function adultCockvineEncounter():void
 			}
 
 			clearMenu();
-			addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-			addButton(1, "Go on", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
+			addButton(0, "Leave", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
+			addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
 		}
 	}
 	else
