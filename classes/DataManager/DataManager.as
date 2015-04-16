@@ -246,7 +246,7 @@
 			clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
-			output2("Are you sure you want to delete the savegame in slot " + String(slotNum - 1) + "?");
+			output2("Are you sure you want to delete the savegame in slot " + String(slotNum) + "?");
 			
 			clearGhostMenu();
 			addGhostButton(0, "No", deleteSaveMenu);
