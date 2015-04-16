@@ -122,9 +122,6 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.combatStats.hpMod = char.HPMod;
 			_mainDisplay.combatStats.energyMod = char.energyMod;
 			_mainDisplay.combatStats.lust = char.lustRaw;
-			_mainDisplay.combatStats.lustVuln = char.lustVuln;
-			
-			_mainDisplay.resistances.resistances = char.resistances;
 			
 			_mainDisplay.tailAppearance.tailType = char.tailType;
 			_mainDisplay.tailAppearance.tailCount = char.tailCount;
@@ -227,9 +224,6 @@ package classes.TITSSaveEdit.UI
 			char.HPMod = _mainDisplay.combatStats.hpMod;
 			char.energyMod = _mainDisplay.combatStats.energyMod;
 			char.lustRaw = _mainDisplay.combatStats.lust;
-			char.lustVuln = _mainDisplay.combatStats.lustVuln;
-			
-			char.resistances = _mainDisplay.resistances.resistances;
 			
 			char.tailType = _mainDisplay.tailAppearance.tailType;
 			char.tailCount = _mainDisplay.tailAppearance.tailCount;
