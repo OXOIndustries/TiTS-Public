@@ -657,7 +657,7 @@ public function updateCombatStatuses():void {
 				foes[x].removeStatusEffect("Burn");
 				output(" refusing to go out until they've done their foul work.</b>");
 			}		
-			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), foes[0], pc);
+			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, foes[x]);
 			output("\n");
 		}
 		if(foes[x].hasStatusEffect("Blind"))
