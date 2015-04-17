@@ -42,7 +42,7 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			super.sexiness = 2;
+			this.sexiness = 4;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
@@ -50,6 +50,7 @@
 			this.version = _latestVersion;
 		}
 		
+		/*
 		override public function get sexiness():Number
 		{
 			if (kGAMECLASS.pc.isLactating()) return super.sexiness + 4;
@@ -60,5 +61,6 @@
 		{
 			super.sexiness = v;
 		}
+		*/
 	}
 }

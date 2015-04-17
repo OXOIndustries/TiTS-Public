@@ -60,7 +60,10 @@ public function kressiaSurvivalShopAntGirls():void
 		
 		output("\n\n<i>“Welcome to our shop, star-walker. I’m Anarrie Viirkan, the proprietor, and this is my wife Shiare,”</i> she says, sweeping an arm towards the curvaceous honeypot working the register who gives you a wave while her other three arms man-handle a huge metal can through the electronic register for another human explorer. <i>“If you’d like to see any of our display items, or need any help, don’t hesitate to ask either one of us.”</i>");
 		
-		output("\n\n<i>“If you find anything you want, just bring it on over here, {handsome/hot stuff},”</i> the gold myr, Shiare, chimes in. With a wink, she adds <i>“I’ll treat you right!”</i>");
+		output("\n\n<i>“If you find anything you want, just bring it on over here,"); 
+		if (pc.isMasculine()) output(" handsome");
+		else output(" hot stuff");
+		output(",”</i> the gold myr, Shiare, chimes in. With a wink, she adds <i>“I’ll treat you right!”</i>");
 		
 		output("\n\nAnarrie chuckles, though you see her insectile antennae twitch furtively in her wife’s direction. <i>“So, anything I can show you?”</i>");
 	}

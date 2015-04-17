@@ -14,6 +14,14 @@
 	import classes.Items.Miscellaneous.ACock;
 	import classes.Items.Miscellaneous.AHCock;
 	import classes.Items.Miscellaneous.ADCock;
+	import classes.Items.Accessories.Minesweeper;
+	import classes.Items.Armor.ChitinArmor;
+	import classes.Items.Guns.FlareGun;
+	import classes.Items.Guns.HuntingRifle;
+	import classes.Items.Guns.MyrBow;
+	import classes.Items.Melee.SurvivalAxe;
+	import classes.Items.Apparel.ThermalUnderwear;
+	import classes.Items.Apparel.HoneypotBra;
 	
 	public class Anarrie extends Creature
 	{
@@ -28,7 +36,7 @@
 			inventory.push(new ChitinArmor());
 			inventory.push(new FlareGun());
 			inventory.push(new ThermalUnderwear());
-			inventory.push(new HonepotBra());
+			inventory.push(new HoneypotBra());
 			inventory.push(new SurvivalAxe());
 			inventory.push(new HuntingRifle());
 			inventory.push(new MyrBow());
