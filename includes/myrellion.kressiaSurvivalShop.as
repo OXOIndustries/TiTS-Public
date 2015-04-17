@@ -187,7 +187,7 @@ public function kressiaSurvivalShopTalkVenomVials():void
 	
 	if (flags["FUCKED_ANARRIE"] != undefined)
 	{
-		output("\n\nWith a conspiratorial look around, she bids you to lean down a little closer. When you do, she continues: <i>“Some might think it’s very... let’s say ‘erotic’... to become addicted to a lover’s vital essence, but let’s be honest: it’s not very practical to be constantly reliant on anybody, even your wife. ");
+		output("\n\nWith a conspiratorial look around, she bids you to lean down a little closer. When you do, she continues: <i>“Some might think it’s very... let’s say ‘erotic’... to become addicted to a lover’s vital essence, but let’s be honest: it’s not very practical to be constantly reliant on anybody, even your wife.");
 	}
 	else
 	{

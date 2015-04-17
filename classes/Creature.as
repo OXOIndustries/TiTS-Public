@@ -4079,6 +4079,11 @@
 				aimMod += 5;
 				reflexesMod += 5;
 			}
+			if (hasStatusEffect("Goo Reduced"))
+			{
+				removeStatusEffect("Goo Reduced");
+				armor.defense = 8;
+			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{

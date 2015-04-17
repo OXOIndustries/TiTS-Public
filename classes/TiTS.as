@@ -1013,5 +1013,9 @@
 		{
 			return chars["ANARRIE"];
 		}
+		public function get goo():gooArmor
+		{
+			return chars["GOO"];
+		}
 	}
 }

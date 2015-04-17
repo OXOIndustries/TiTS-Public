@@ -8,6 +8,8 @@ package classes.GameData
 	public class CommandContainer 
 	{
 		public var text:String;
+		public var ttHeader:String;
+		public var ttBody:String;
 		public var func:Function;
 		public var arg:*;
 		
@@ -29,6 +31,8 @@ package classes.GameData
 			text = "";
 			func = null;
 			arg = undefined;
+			ttHeader = undefined;
+			ttBody = undefined;
 		}
 		
 	}

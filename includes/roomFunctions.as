@@ -4,6 +4,7 @@ import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
 import classes.Items.Apparel.TSTArmorMkII;
 import classes.Items.Apparel.UGCUniform;
+import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
@@ -170,6 +171,10 @@ public function debugMenusTwo():void
 		items[0].quantity = 10;
 		
 		itemCollect(items);
+	});
+	
+	addItemButton(9, new GooArmor(), function():void {
+		quickLoot(new GooArmor());
 	});
 }
 

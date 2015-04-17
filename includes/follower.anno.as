@@ -632,6 +632,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
+		addButton(8, "Nova Update", annoFollowerNovaUpdate, undefined, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -2654,4 +2655,108 @@ public function annosTriberatorGatorMatorHater():void
 	flags["ANNO_TRIBERATOR_USED"]++;
 	
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function annoFollowerNovaUpdate():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("<i>“So, has R&D figured out anything useful from the </i>Nova<i>?”</i> you ask, casting a glance to some displays on her work bench. Several holographic images of bouncy, buxom goo-girls are on display, not all of them gray.");
+
+	output("\n\nAnno grins. <i>“They’ve been tearing the ‘ghost deck’ up since we cleared it out. We’re working on dissecting the tech on the </i>Nova<i> the crew was using to mass-produce the goo, but we’re a couple years out from actually producing our own, looks like. We’re dealing with tech several centuries out of date - nobody knows how to use it, all the ports and cables and chips are unavailable and, even if we </i>could<i> get them, they’re woefully inefficient. R&D’s basically having to start from scratch on building their prototypes. Once we get up and running, though, oh man, we’re gonna be able to churn the little bimbos out like you wouldn’t believe. Some of the egg-heads are already talking about branding them as ‘silver galotians.’”</i>");
+
+	output("\n\nThat’s good, though you were hoping for something a little bit more immediate. Anno shrugs apologetically. <i>“Well, we’re looking into the actual goo itself, too. Trying to reverse-engineer their network A.I., figure out ways to make them do things other than suck dick. I mean, giving JoyCo a run for their money on pleasure droids alone is pretty valuable, but the thing about gray goo - the really exciting part about them - is that they’re both chassis and intelligence rolled together. They just form up to whatever configuration you need ‘em in, a long as you have enough goo. I really wanna see if we can make, say, a giant elephant goo, or turn them into mini-leithans. And that’s not even scratching the surface of their applications. Bell-Isle/Grunmann didn’t know what they were sitting on - or didn’t know how to take advantage of it, anyway. Corporate couldn’t be happier with our work.”</i>");
+
+	output("\n\nShe smiles proudly, tail wagging behind her. <i>“Oh! We do have one very, very, very early working prototype... here, lemme pull it off my drive,”</i> she adds, pushing a few keys on her holoscreen. After a moment’s work, she pulls a small thumb drive out and hands it to you. <i>“Someone from our military contracts group got ahold of of my notes on the goo. We got to talking, and that sort of snowballed into something we’re PRETTY SURE works, though since we’re having trouble fabricating goo back at Corporate, I can’t one-hundred percent vouch for it. Probably works, though. Maybe.”</i>");
+
+	output("\n\nYou turn the thumb drive over in your hand, looking it over. <i>“So what’s it do?”</i>");
+
+	output("\n\n<i>“Oh! Right. It’s a primitive combat routine. Should teach a gray goo how to do what she does best - clinging to people and giving ‘em big, squishy boob-hugs - but in battle. Specifically, it should teach the goo to envelop an opponent and molest them into submission. Next generation less-than-lethal goonology.”</i>");
+
+	output("\n\nNeat. <i>“So, just plug it into a gray goo and I’m good to go?”</i>");
+
+	output("\n\nAnno shrugs. <i>“Weeeell, I dunno if you’d want to just stick it in any gray goo you find");
+	if (flags["ANNO_MISSION_OFFER"] == 3) output(" on Tarkus");
+	else output(", assuming you can even find one. Because, you know, planet go asplode and all");
+	output(". It’s a modification program, not an overwrite. If the goo’s already got it into her head to go around attacking people willy-nilly, she’ll just keep doing that. Except now you have to file paperwork to get her onto planets because now she’s a class-seventy assault droid. With a dick. Made of goo. Anyway, uh... I’d suggest getting a new goo if you can. Head");
+	if (shipLocation != "201") output(" on back");
+	else output(" outside");
+	output(" to the </i>Nova<i> and shovel some goo out of the canister on Deck 13. R&D left one dispenser active there just in case.”</i>");
+
+	output("\n\nYou pocket the drive and tell Anno you’ll look into it.");
+
+	output("\n\n<i>“Great! Lemme know how it works out. I think I’ve got some QA forms around here somewhere...”</i>");
+
+	if (flags["ANNO_NOVA_UPDATE"] == undefined) flags["ANNO_NOVA_UPDATE"] = 1;
+
+	annoFollowerTalkMenu(false);
+	addDisabledButton(10, "Nova Update");
+	processTime(5+rand(3));
+}
+
+public function grayGooArrivesAtShip():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+
+	output("<i>“So, [goo.name], think you can help me out with something?”</i> you ask as you make your way aboard. The gray girl’s eyes are wide with awe as she surveys your ship, squirming around and poking her head right up next to several of your computer systems, poking at the door mechanics, or bending way over to look at something on the floor. Or to show off her big, jiggling booty... hard to tell. You tap her on the back to get her attention, and repeat your request.");
+	
+	output("\n\n<i>“Oh! Sure, bestest buddy. Anything you want!”</i> she says with a grin, bouncing up uncomfortably close to you. She presents her tits to you and wiggles her behind, clearly expecting your desire to be entirely sexual.");
+	
+	output("\n\nNot quite. You ask her what she’d think about working with you on your quest. Specifically, coming with you when you’re out fighting. Maybe you could wear her as armor... gray goo is incredibly touch, after all.");
+	
+	output("\n\n<i>“Hehe, I knew you just wanted to get inside of me!”</i> [goo.name] teases, lunging at you and wrapping her arms around you. You shiver as the cool gray goo envelops you, squirming wetly around your body as [goo.name] conforms to your body. Goo drains around your [pc.face], plating your cheeks like a crash helmet with a pair of big, silver eyes planted just over your own. After a moment, you feel your [pc.gear] being pulled off of you, thrown to the ground as goo runs across your bare skin.");
+	
+	output("\n\n<i>“Is this okay?”</i> [goo.name] asks, squirming around you. <i>“It’s super comfy, huh?”</i>");
+	
+	output("\n\nYou have to admit, it actually <i>is</i> very comfortable. Nice and cool, and the goo flows around you like a full-body glove... that just happens to be hardened against weapons fire whenever you need it to be. You tell [goo.name] that this is going to work out just fine... especially if she’s as eager to help you between fights as well.");
+	
+	output("\n\n<i>“I was hoping you’d ask!”</i> she giggles, shifting herself around your [pc.crotch].");
+
+	flags["ANNO_NOVA_UPDATE"] = 3;
+
+	// {to Masturbation menu}
+	clearMenu();
+	masturbateMenu();
+}
+
+public function grayGooSpessSkype():void
+{
+	if (flags["ANNO_NOVA_UPDATE"] == 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
+	{
+		flags["GRAYGOO_SPESS_SKYPE"] = 1;
+		eventQueue.push(grayGooSpessSkypeScene);
+	}
+}
+
+public function grayGooSpessSkypeScene():void
+{
+	clearOutput();
+
+	output("The sound of talking beckons you awake. You blink your eyes open, and see that your cabin’s holoterminal is open, flashing brightly... and Nova is parked in your chair, her body molded in an even more human form than normal. She looks like the old Nova you encountered on Deck 13, complete with uniform and long hair pulled back in a ponytail, sitting on her legs and talking happily at the computer screen.");
+		
+	output("\n\n<i>“I’m having so much fun!”</i> she grins, jiggling excitedly at the screen. <i>“Space is amazing. There are so many cool people and weird places and adventures. So many adventures! I never thought I’d be, like, a real life adventurer. Well, kind of. [pc.name] is the real adventurer, but [pc.heShe]’s been nice enough to let me tag along.”</i>");
+		
+	output("\n\nYou hear a noble, reserved laugh from the screen, and a woman’s voice answer. <i>“That’s lovely, Nova. I’m glad you’re being taken care of.”</i>");
+		
+	output("\n\n<i>“How’s the new body? Everything where it’s supposed to be?”</i> Nova teases, making her big ol’ tits bounce.");
+		
+	output("\n\n<i>“I am... fully functional, yes,”</i> the voice says with another laugh. <i>“The new body’s quite nice, actually. I do admit, I miss the flexibility and convenience we used to have, but I shouldn’t complain. Sometimes I even forget that I’m not... me.”</i>");
+		
+	output("\n\nNova pouts. <i>“Aww, don’t be like that. You’re gonna make </i>me<i> sad. Oh, didn’t you get that super duper awesome job, anyway?”</i>");
+		
+	output("\n\n<i>“I did!”</i> the woman says, her tone changing immediately. <i>“Steele Tech offered me a captain’s post aboard one of their transports. They said I had sufficient ‘prior experience.’ Ha! Still, it’s something to do. Most of the crew is still in re-education classes to bring them up to speed on all the advances in the last few centuries.”</i>");
+	
+	output("\n\nNova beams. <i>“Super cool! I guess I can still call you ‘captain,’ then?”</i>");
+	
+	output("\n\n<i>“I suppose you can,”</i> the woman laughs. <i>“Ah, speaking of which, looks like my XO is at the door. I have to run, Nova. I’ll call you back soon.”</i>");
+	
+	output("\n\n<i>“Aw. Okay! See you later, Captain Morrow. Love you. Bye.”</i>");
+	
+	output("\n\nThe screen flicks off to back, and like breathing a sigh, Nova resumes her less-human gooey form. She scoots back over to where you’ve dumped your equipment and collapses into an amorphous pile, awaiting you. Smiling to yourself, you roll back over and go to sleep again...");
+
+	addButton(0, "Next", mainGameMenu);
 }

@@ -16,6 +16,7 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Accessories.TamWolfDamaged;
+import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Characters.Varmint;
@@ -392,6 +393,20 @@ public function specialsMenu():void {
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Goozooka","Goozooka","You cannot use a goozooka while disarmed.");
 			else addButton(offset, "Goozooka", attackRouter, goozookaCannon, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
 		}
+		offset++;
+	}
+	
+	if (pc.armor is GooArmor)
+	{
+		if (!pc.hasStatusEffect("Reduced Goo"))
+		{
+			addButton(offset, "Goo Clone", attackRouter, pcGooClone, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
+		}
+		else
+		{
+			addButton(offset, "Recall Goo", pcRecallGoo, undefined, "Recall Goo", "Call [goo.name] back to you, restoring your gooey armor.");
+		}
+		offset++;
 	}
 }
 
@@ -704,6 +719,29 @@ public function updateCombatStatuses():void {
 		{
 			foes[x].addStatusValue("Stealth Field Generator", 1, -1);
 			if (foes[x].statusEffectv1("Stealth Field Generator") <= 0) foes[x].removeStatusEffect("Stealth Field Generator");
+		}
+		if (foes[x].hasStatusEffect("Gray Goo Clone"))
+		{
+			var lFailed:Boolean = false;
+			
+			if ((foes[x] as Creature).isLustImmune == true) lFailed = true;
+			if ((foes[x] as Creature).getLustResistances().tease.resistanceValue >= 100.0) lFailed = true;
+			
+			if (!lFailed)
+			{
+				var lDamage:TypeCollection = new TypeCollection( { tease: 5 + rand(3) } );
+				var dResult:DamageResult = applyDamage(lDamage, pc, foes[x], "supress");
+			}
+			
+			output("[goo.name] dances around, flashing plenty of tits and ass for " + foes[x].a + foes[x].short + ".");
+			if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
+			{
+				output(" " + foes[x].capitalA + foes[x].short + " looks on, clearly unimpressed.");
+			}
+			else
+			{
+				output(" " + foes[x].capitalA + foes[x].short + " stares mesmerized at [goo.name]'s dance, flushing with lust. (<b>" + dResult.lustDamage + "</b>)");
+			}
 		}
 	}
 }
@@ -3616,6 +3654,41 @@ public function goozookaCannon(target:Creature):void
 		}
 	}
 	
+	processCombat();
+}
+
+public function pcGooClone(target:Creature):void
+{
+	clearOutput();
+	output("<i>“Go get 'em, [goo.name]!”</i> you shout. She cheers and leaps off of you, half her gooey mass plopping down beside you and reforming into a miniature, big-tittied dancing goo-girl. The mini-goo bounces around, showing off her tits or bending over, flashing her ass and crotch at " + target.a + target.short + ".");
+	
+	target.lust(3 + rand(3));
+	
+	pc.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", "[goo.name] has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
+	pc.armor.defense = 1;
+	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", "[goo.name] is busy distracting your foes!", true, 0);
+	processCombat();
+}
+
+public function pcRecallGoo():void
+{
+	clearOutput();
+	
+	var target:Creature;
+	
+	for (var i:uint = 0; i < foes.length; i++)
+	{
+		if (foes[i].hasStatusEffect("Gray Goo Clone"))
+		{
+			target = foes[i];
+			break;
+		}
+	}
+	
+	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
+	pc.removeStatusEffect("Reduced Goo");
+	pc.armor.defense = 8;
+	target.removeStatusEffect("Gray Goo Clone");
 	processCombat();
 }
 

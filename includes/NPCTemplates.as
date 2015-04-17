@@ -1,6 +1,7 @@
 ﻿import classes.Characters.Anarrie;
 import classes.Characters.Brynn;
 import classes.Characters.GigaGoo;
+import classes.Characters.gooArmor;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
 import classes.Characters.Kiro;
@@ -322,6 +323,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["ANARRIE"] == undefined))
 	{
 		chars["ANARRIE"] = new Anarrie();
+	}
+	if (!justUpdate || (justUpdate && chars["GOO"] == undefined))
+	{
+		chars["GOO"] = new gooArmor();
 	}
 	// Check all characters have version information set
 	for (var prop:String in chars)

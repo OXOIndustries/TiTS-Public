@@ -318,6 +318,7 @@ public function sleep(outputs:Boolean = true):void {
 	processTime(minutes);
 
 	mimbraneSleepEvents();
+	grayGooSpessSkype();
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
@@ -350,6 +351,12 @@ public function shipMenu():Boolean {
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
+		return true;
+	}
+	
+	if (flags["ANNO_NOVA_UPDATE"] == 2)
+	{
+		grayGooArrivesAtShip();
 		return true;
 	}
 
