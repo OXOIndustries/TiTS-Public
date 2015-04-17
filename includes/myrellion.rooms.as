@@ -1106,10 +1106,11 @@ public function initializeMyrellionRooms():void
 	//Street H20
 	rooms["813"] = new RoomClass(this);
 	rooms["813"].roomName = "\nSTREET";
-	rooms["813"].description = "The corner of the street here is built into the side of the cave, with jagged rock overlooking the road. Electric lights flicker dimly over a short, aborted tunnel that seems to have intended to go westward. A sign indicates that a new shopping mall would be here next year, followed by another sign that says construction is canceled due to the declaration of war.\n\nThe city gates lie to the south-east, and the airfield to the northeast, a directional sign points out.";
+	rooms["813"].description = "The corner of the street here is built into the side of the cave, with jagged rock overlooking the road. Electric lights flicker dimly over a short, aborted tunnel that seems to have intended to go westward. A sign indicates that a new shopping mall would be here next year, followed by another sign that says construction is canceled due to the declaration of war.\n\nThe city gates lie to the south-east, and the airfield to the northeast, a directional sign points out.\n\nOne of the signs on the merchant row indicates a “Survival Shop”. Some Federation soldiers are coming in and out of it, arms full of warm-looking clothing or admiring knives, guns, and axes.";
 	rooms["813"].system = "SYSTEM: SINDATHU";
 	rooms["813"].eastExit = "814";
 	rooms["813"].northExit = "812";
+	rooms["813"].westExit = "829";
 	rooms["813"].moveMinutes = 2;
 	rooms["813"].runOnEnter = undefined;
 	rooms["813"].addFlag(GLOBAL.INDOOR);
@@ -1314,6 +1315,18 @@ public function initializeMyrellionRooms():void
 	rooms["828"].addFlag(GLOBAL.INDOOR);
 	rooms["828"].addFlag(GLOBAL.PUBLIC);
 	rooms["828"].addFlag(GLOBAL.COMMERCE);
+	
+	// Kressia Survival Shop
+	rooms["829"] = new RoomClass(this);
+	rooms["829"].roomName = "KRESSIA\nSURVIVAL SHOP";
+	rooms["829"].description = "The shop's interior is rather small, but surprisingly cozy compared to the uncomfortably cool city outside. A fire crackles in a hearth against the west wall, just beside a staircase that leads up to another floor. The shop's main show floor is a haphazard array of display cases and clothing racks laden with military-style jackets and coats. A few primitive firearms are on offer under a glass case, though there's plenty of knives, hatchets, and swords for you to peruse. ";
+	rooms["829"].system = "SYSTEM: SINDATHU";
+	rooms["829"].eastExit = "813";
+	rooms["829"].moveMinutes = 1;
+	rooms["829"].runOnEnter = kressiaSurvivalShopEntryFunc;
+	rooms["829"].addFlag(GLOBAL.INDOOR);
+	rooms["829"].addFlag(GLOBAL.PUBLIC);
+	rooms["829"].addFlag(GLOBAL.COMMERCE);
 
 	//=========================================//
 	// NO MANZ LAND ROOMS. 1A0 to 1Z99 Reserved//

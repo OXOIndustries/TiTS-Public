@@ -186,6 +186,7 @@
 		include "../includes/myrellion.irelliaQuest.as";
 		include "../includes/myrellion.kaede.as";
 		include "../includes/myrellion.karaAndShade.as";
+		include "../includes/myrellion.kressiaSurvivalShop.as";
 		include "../includes/myrellion.landmines.as";
 		include "../includes/myrellion.lieve.as";
 		include "../includes/myrellion.liliana.as";
@@ -1007,6 +1008,10 @@
 		public function get lane():Lane
 		{
 			return chars["LANE"];
+		}
+		public function get anarrie():Anarrie
+		{
+			return chars["ANARRIE"];
 		}
 	}
 }

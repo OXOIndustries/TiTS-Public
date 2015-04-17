@@ -1,12 +1,13 @@
+import classes.Creature;
+import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
 	if (rand(100) <= 3)
 	{
 		flags["ENCOUNTERED_LANDMINES"] = 1;
 
-		if (pc.hasKeyItem("Minesweeper"))
+		if ((pc as Creature).accessory is Minesweeper)
 		{
-			// NINE NINE NINE THE BOAT, GENTLY DOWN THE STREAM (9999)
 			return false;
 		}
 

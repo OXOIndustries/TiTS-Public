@@ -98,6 +98,11 @@ package classes.Engine.Combat
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}
+				
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				{
+					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+				}
 			}
 		}
 		else if (special == "goovolver")

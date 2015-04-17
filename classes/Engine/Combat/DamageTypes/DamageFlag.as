@@ -35,29 +35,31 @@ package classes.Engine.Combat.DamageTypes
 		public static const BYPASS_SHIELD:uint	= 15;	// An attack with this flag will only influence HP and/or lust
 		public static const ONLY_SHIELD:uint	= 16;	// An attack with this flag will only influence shields and/or lust
 		public static const EASY:uint 			= 17;	// Basically adds an extra 50% resistance up to a maximum of 100% resistance to any given type.
+		public static const CHANCE_APPLY_BURN:uint = 18;
 		
 		public static const FlagNames:Array = [];
 		
 		// Static init -- I think this might be the 'safest' way to map keys -> values statically
 		// Trying to use the variables as object keys will use the key /text/ rather than the variable value (ie PENETRATING -> 'PENETRATING' rather than 1)
 		{
-			FlagNames[PENETRATING] 		= "Penetrating";
-			FlagNames[ABLATIVE] 		= "Ablative";
-			FlagNames[PLATED] 			= "Plated";
-			FlagNames[CRUSHING] 		= "Crushing";
-			FlagNames[BULLET] 			= "Bullet";
-			FlagNames[LASER] 			= "Laser";
-			FlagNames[MIRRORED] 		= "Mirrored";
-			FlagNames[CRYSTAL] 			= "Crystal";
-			FlagNames[PSIONIC] 			= "Psionic";
-			FlagNames[NULLIFYING] 		= "Nullifying";
-			FlagNames[AMPLIFYING] 		= "Amplifying";
-			FlagNames[EXPLOSIVE] 		= "Explosive";
-			FlagNames[ENERGY_WEAPON] 	= "Energy Weaponry";
-			FlagNames[GROUNDED]			= "Grounded";
-			FlagNames[BYPASS_SHIELD] 	= "Shield Bypass";
-			FlagNames[ONLY_SHIELD] 		= "Targets Shield";
-			FlagNames[EASY] 			= "Easy";
+			FlagNames[PENETRATING] 			= "Penetrating";
+			FlagNames[ABLATIVE] 			= "Ablative";
+			FlagNames[PLATED] 				= "Plated";
+			FlagNames[CRUSHING] 			= "Crushing";
+			FlagNames[BULLET] 				= "Bullet";
+			FlagNames[LASER] 				= "Laser";
+			FlagNames[MIRRORED] 			= "Mirrored";
+			FlagNames[CRYSTAL] 				= "Crystal";
+			FlagNames[PSIONIC] 				= "Psionic";
+			FlagNames[NULLIFYING] 			= "Nullifying";
+			FlagNames[AMPLIFYING] 			= "Amplifying";
+			FlagNames[EXPLOSIVE] 			= "Explosive";
+			FlagNames[ENERGY_WEAPON] 		= "Energy Weaponry";
+			FlagNames[GROUNDED]				= "Grounded";
+			FlagNames[BYPASS_SHIELD] 		= "Shield Bypass";
+			FlagNames[ONLY_SHIELD] 			= "Targets Shield";
+			FlagNames[EASY] 				= "Easy";
+			FlagNames[CHANCE_APPLY_BURN]	= "Chance to apply Burn DoT"
 		}
 		
 		private var _thisFlag:uint;
