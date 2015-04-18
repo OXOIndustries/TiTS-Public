@@ -1146,7 +1146,13 @@ public function appearance(target:Creature):void {
 				if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
 			}
-			output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
+			//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
+			if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
+			{
+				output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
+			}
+			//No dick mention? Great! Pronouns deployed!
+			else output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
 			if(Math.round(target.ballSize()) == 1) output2("inch");
 			else output2("inches");
 			var ballDisplayDiameter:Number = Math.round(target.ballDiameter()*10)/10;

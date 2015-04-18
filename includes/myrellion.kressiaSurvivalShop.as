@@ -25,7 +25,7 @@ public function kressiaSurvivalShopEntryFunc():Boolean
 
 	addButton(0, "Ant Girls", kressiaSurvivalShopAntGirls);
 
-	return true;
+	return false;
 }
 
 public function kressiaSurvivalShopMenu():void

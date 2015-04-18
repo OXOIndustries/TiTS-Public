@@ -22,7 +22,7 @@
 			this.type = GLOBAL.ACCESSORY;
 			
 			//Used on inventory buttons
-			this.shortName = "Minesweeper";
+			this.shortName = "M.Sweeper";
 			
 			//Regular name
 			this.longName = "minesweeper";
