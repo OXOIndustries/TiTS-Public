@@ -18,7 +18,7 @@ public function configureCodex():void
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
 	
-	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
@@ -1666,4 +1666,67 @@ public function nyreaCodexEntry():void
 	outputCodex("\n\n");
 
 	CodexManager.viewedEntry("Nyrea");
+}
+
+public function anataeCodexEntry():void
+{
+	outputCodex("\n<b>Sexes:</b> Male & Female. Note Reproduction below.");
+	
+	clearOutputCodex();
+	showBust("ANATAE");
+	outputCodex(header("Anatae"));
+	outputCodex("<b>Name:</b> Anatae (plural), Anat (singular)");
+	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
+	outputCodex("\n<b>Height:</b> Both sexes range between 5’11” and 6’4”");
+	outputCodex("\n<b>Weight:</b> 160 - 200 pounds");
+	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
+	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometres away.");
+	ouputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Body Structure"))
+	outputCodex("Descended from the flightless avians of Caphist, anatae are digitigrade bipeds with four clawed digits at the end of each of their keratinous limbs. The tough horn that plates their limbs also grows over their faces, forming a flat, white or orange “mask”. These masks come in a variety of shapes and sizes, and are sometimes decorated. Anatae have longer necks than most sentient creatures of a similar size, which combines with a slightly arched back to give them a bird-of-prey-analogous reared hold of the head.");
+	
+	outputCodex("\n\nAnatae are oviparous and duly have neither breasts or nipples. Other than that their torsos are similar to that of a toned, athletic human or ausar male - fleshy and tightly muscular. They have a range of skin tones varying from dark blue to rust red.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction & Sexual Dimorphism"));
+	outputCodex("Male anatae have feathered crests that in their distant past they used to attract mates; they are a minor erogenous area, similar to an ausar’s ears. Unsurprisingly male anatae generally regard their plumes with a great deal of personal pride. Limp or scruffy feathers in males are usually a sign of sickness or depression. Both sexes feature small tufts of feathers at their elbows. These are major erogenous areas.");
+
+	outputCodex("\n\nAlthough they otherwise physically differ little from males, female anatae have wide hips that allow them to lay large clutches of eggs without difficulty. Although they do not have clitorises, anatae vaginas have multiple lips, some of which are described as just as sensitive. Male anatae penises can reach around ten inches in length. Although thinner than a human or ausar’s member, they feature a large bulb at the top with a few small, blunt tips which supposedly help to induce ovulation. Without significant gene modification anatae cannot interbreed with aliens.");
+
+	outputCodex("\n\nFemale anatae lay around 15-20 eggs per clutch; the babies hatch after a month’s incubation, and reach maturity after about five years. Whether the anatae evolved their gender imbalance as a result of how swiftly they are able to breed or vice versa is a matter of scientific debate. Alien races have been politely asked not to refer to this as a ‘chicken or egg question’.");
+
+	outputCodex("\n\nFemale anatae are instinctively driven to mate with as many suitable males as possible, to widen the genetic range of their prospective children. Between each other anatae relationships rarely last longer than half a year as a result. Children are raised collectively either by the female anat’s larger family, or by the anatae state in “bevies’.");
+
+	outputCodex("\n\nAway from females male anatae usually have very low libidos, only beginning to produce their form of testosterone when in proximity of females. Cases of homosexuality, and male anatae “fooling” their bodies through the use of female garb and the hiding of crests, are well documented. The number one fetish for male anatae is harem-keeping, an impossible decadence for them in normal society; the second is long term relationships, a laughable kink to most aliens but again virtually impossible for an average male anat amongst his own kind.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("The importance that scarcity awarded females in anatae society meant their culture evolved to naturally centre around them. In traditional anatae society females generally functioned as figurehead leaders and nurses whilst the males functioned as doers at every level. In time females came to symbolize the economic side of an anatae nation, males the military and utility side. Nations would traditionally employ a king and queen analogue, who though rarely mates would sit at the top of their hierarchies and come to decisions of over-reaching importance together.");
+
+	outputCodex("\n\nTheir gender imbalance and the fairly harsh conditions of Caphist catalyzed the anatae to culturally evolve along quite militantly utilitarian means, with everything centred towards the public good. Males were expected to be self-sacrificing to the extreme, females expected to stay firmly within the bounds of home or city and breed. Anatae communities tend to be extremely safe and well run but rather drab to most aliens’ tastes, anatae having come around to the concept of art and the indulgement of creativity quite slowly.");
+
+	outputCodex("\n\nDespite this militancy the concept of the greater good came to take on enough over-reaching importance to the race for them to develop a profound distaste for war and the inflicting of unnecessary casualties. Novice alien historians are often flummoxed by the fact that the most famous and honoured war heroes in anatae history are usually ones who engaged in the shortest battles, or even ones that didn’t fight at all, having prevented war with a piece of decisive diplomacy.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The anatae were the third sentient race discovered by the newly founded U.G.C. At the time the anatae were already experimenting with faster forms of space flight, and were on the road towards global unification. The discovery of other, more advanced forms of life swiftly completed that process as a point of necessity, and the anatae joined humanity and the ausar in colonizing the stars.");
+
+	outputCodex("\n\nAlthough initially delighted to discover other peaceful races willing to share their technology with them, tensions quickly developed between the anatae and other U.G.C. members. The anatae resented what they felt was a united front directed against them from humanity and the ausar, disliked the corporate nature of humanity’s space exploration and found the speedy nature of the ausar’s deployment of warp gates chaotic and reckless. In turn humanity and ausar found both the militancy of anatae culture and the rapidity of their colonization deeply alarming. Matters had reached an almost cold war-like state when the thraggen were discovered.");
+
+	outputCodex("\n\nThe anatae served with distinction during the galactic war, their belief in self-sacrifice leading them to stubbornly hold the front line against the thraggen with a numerically inferior navy, whilst the ausar mustered the decisive counter attack behind lines.  Relatively speaking the anatae suffered more casualties than any other U.G.C. race during the war, a badge they wear with a mixture of pride and embarrassment to this day. Although memories of the war have long since faded, ties between the U.G.C. and the Anatae Empire have remained cordial if occasionally strained ever since, largely kept in place by the Galactic Rush Treaty. The anatae retain the largest and most modern land army in the galaxy; if the U.G.C. were ever threatened again, a significant proportion of the ground-side response would come from them.");
+
+	outputCodex("\n\nGalactic Relationships and Colonization: The anatae are one of if not the most active colonizers in the galaxy and this, coupled with their early membership to the U.G.C., has allowed them to spread their influence over large parts of the Milky Way. Their overwhelming, multilateral approach to colonization has earned criticism in some quarters as aggressive and repressive, and has earned them the nickname ‘the annex-y’; the anatae hierarchy maintain that it is lawful, systematic and far more beneficial to the galactic good than comparable efforts in the long run.");
+
+	outputCodex("\n\nOnce a galactic rush has begun the anatae hierarchy sends out scores of scouts through each linked gate, and screen potential planets as candidates for colonization. Unless the situation is urgent the screening process is slow and stringent, with the anatae leadership eager to avoid wasting resources on worlds either without long term benefit or on native populations likely to chafe under their rule. This often loses the anatae time over hastier races, but as they are certain in their ability to apply leverage to alien colonists and concentrated on the long term, this only troubles them if the colonists in question are liable to do damage in the duration it takes them to earmark a planet for annexation.");
+
+	outputCodex("\n\nOnce a planet has been earmarked the empire sends thousands of colonists to it, who employ state-owned companies to build upon it, who in turn are able to aggressively undercut other providers. Military spacecraft are deployed to the system to protect it against piracy; it has been noted that anatae bureaucracy makes it difficult for non-anatae-aligned ships to enter and leave systems under their control on a regular basis. Usually a system has been unofficially under anatae control for some time before it is rubber-stamped through the U.G.C., the anatae-affiliated colonists easily able to outvote any other colonists if it comes to a ballot.");
+
+	outputCodex("\n\nThis multi-level approach is only possible thanks to the militantly organized nature of a huge and overwhelmingly publically-owned society, with even the most powerful human and ausar corporations usually unable to compete with the Anatae Empire once it has set its sights. Unless the prize is particularly great the anatae generally try to avoid coming into conflict with other established colonists however, and it should be noted that races under the aegis of the anatae consistently rate a high approval of their rule, with many anatae-uplifted races serving within their navy and public works. Culturally the anatae express a paternal concern for non-uplifted sentience, and often leave particularly interesting planets they come into possession of virtually untouched, as imperially owned ‘park worlds’.");
+
+	outputCodex("\n\nOn the interstellar stage the anatae are fairly introverted and are rarely seen outside of their planets except in official capacities. During galactic rushes they are much more visible, with frontier stations and colonies sometimes flooded by anatae on shore leave. The preponderance of female or feminine-appearing races in the galaxy means that male anatae retain an ausar-like libido in alien society, and because of the general lack of opportunity on their own planets can be quite sexually aggressive. As a rule the anatae regard the U.G.C. as chaotic and corrupt, but also a useful ‘release valve’, and place great value on the sophisticated creative works that other races can produce, such as art, music and gene-mods. In turn humans and ausar resent the anatae for demeaning wider galactic society in this way, however respect the structure, industry and safety they generally bring with them.");
+	
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Anatae");
 }
