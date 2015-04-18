@@ -63,14 +63,14 @@ public function appearance(target:Creature):void {
 			//appearance for skinheads
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES) {
 				output2(" Your face is human in shape and structure, with " + target.skin(true,true));
-				if((target.skinTone == "ebony" || target.skinTone == "black") && (target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO)) output2(", though with your dusky hue, the black raccoon mask you sport isn't properly visible.");
-				else output2(", though it is decorated with a sly-looking raccoon mask over your eyes.");
+				if((target.skinTone == "ebony" || target.skinTone == "black") && (target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO)) output2(", though with your dusky hue, the black kui-tan mask you sport isn't properly visible.");
+				else output2(", though it is decorated with a sly-looking kui-tan mask over your eyes.");
 			}
 			//appearance furscales
 			else {
 				//(black/midnight furscales)
-				if(((target.hairColor == "black" || target.hairColor == "midnight") && (target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_SCALES))) output2(" Under your " + target.skinFurScales(true,true) + " hides a black raccoon mask, barely visible due to your inky hue, and");
-				else output2(" Your " + target.skinFurScales(true,true) + " are decorated with a sly-looking raccoon mask, and under them");
+				if(((target.hairColor == "black" || target.hairColor == "midnight") && (target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_SCALES))) output2(" Under your " + target.skinFurScales(true,true) + " hides a black kui-tan mask, barely visible due to your inky hue, and");
+				else output2(" Your " + target.skinFurScales(true,true) + " are decorated with a sly-looking kui-tan mask, and under them");
 				output2(" you have a human-shaped head with " + target.skin(true,true) + ".");
 			}
 		}
