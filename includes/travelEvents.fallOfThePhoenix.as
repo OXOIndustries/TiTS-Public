@@ -60,6 +60,7 @@ public function phoenixRecRoom():void
 {
 	clearOutput();
 	author("Savin");
+	phoenixLocationSetter();
 
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
@@ -162,6 +163,7 @@ public function phoenixBridge():void
 {
 	clearOutput();
 	author("Savin");
+	phoenixLocationSetter();
 	
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
@@ -297,6 +299,7 @@ public function phoenixCrewQuarters():void
 {
 	clearOutput();
 	author("Savin");
+	phoenixLocationSetter();
 	
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
@@ -351,6 +354,7 @@ public function phoenixCargo():Boolean
 {
 	clearOutput();
 	author("Savin");
+	phoenixLocationSetter();
 
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
@@ -633,6 +637,7 @@ public function phoenixEngineering():void
 	clearOutput();
 	author("Savin");
 	showBust("VALERIA");
+	phoenixLocationSetter();
 	
 	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1)
 	{
