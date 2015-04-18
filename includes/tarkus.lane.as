@@ -986,7 +986,7 @@ public function laneTalkOccupation():void
 	flags["LANE_OCCUPATION_TALK"] = 1;
 	clearOutput();
 	laneHeader();
-	output("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the Venar desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
+	output("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
 
 	output("\n\n<i>“Yeah, you’re right,”</i> [lane.heShe] says proudly. <i>“I know my way around the modern world about as well as anyone else, but I try to keep my house, and my business, as down-to-earth as possible. I specialize in....”</i> [lane.HeShe] pauses, tapping a claw against [lane.hisHer] chin. <i>“</i>Spiritualistic medicine<i> is one way of putting it.”</i> You ask [lane.himHer] to elaborate.");
 
