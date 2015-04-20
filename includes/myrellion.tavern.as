@@ -30,7 +30,7 @@ public function goldenPeakBonusFunction():Boolean
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits();
 	
-	if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] < 3)
+	if (flags["TARKUS_DESTROYED"] == 1)
 	{
 		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
 		addButton(2, "Gray Goo", grayGooAtBar);

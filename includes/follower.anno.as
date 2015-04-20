@@ -632,7 +632,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
-		addButton(8, "Nova Update", annoFollowerNovaUpdate, undefined, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		addButton(10, "Nova Update", annoFollowerNovaUpdate, undefined, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -647,6 +647,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		addDisabledButton(8, "Contacts", "Shady Contacts", "Anno doesn't have need of her shady black market contacts whilst still employed by Steele Tech.");
 	}
+	
 	if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
 	{
 		if(flags["ANNO_STRAPON_MODS_ENABLED"] == undefined) addButton(9,"Strapon Mods",annoStraponMods,undefined,"Strapon Mods","Check with Anno to see if she's modified her strapon at all.");
