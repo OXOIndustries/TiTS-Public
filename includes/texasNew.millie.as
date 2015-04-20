@@ -858,7 +858,7 @@ public function milliePersonallyDrainsYerTiTS():void
 	output(" ");
 	if(pc.milkFullness < 50) output("She’s already squeezed the first few droplets of [pc.milk] from your increasingly sensitive teats");
 	else if(pc.milkFullness < 80) output("She’s already getting her fingers wet with free-flowing [pc.milkNoun] from your increasingly sensitive teats");
-	else output("She’s already soaked her fingers with all the [pc.milk] you’re increasingly sensitive teats are spraying out");
+	else output("She’s already soaked her fingers with all the [pc.milk] your increasingly sensitive teats are spraying out");
 	output(" and doesn’t seem to be expecting any kind of response. Your breathing quickens the longer you endure her practiced, boob-draining ministrations. Arousal is welling up apace with your [pc.milk], and you squirm against the table while she works, flushing hot.");
 	output("\n\nMillie is well aware of the effect she’s having on you, and continues to lavish your areolae in attention. <i>“There we go... got a nice flow going now, wouldn’t you say?”</i>");
 	output("\n\nYou crane your head to look, watching with blushing cheeks while ");
@@ -998,7 +998,7 @@ public function millieSucksTitsVol2():void
 	{
 		output("You come to while Millie is wiping you off with a fluffy towel. She’s wearing her overalls and a shit-eating grin, her own breasts noticeably reduced in size. The scent of sweet cream hangs heavy in the air, and there’s a sticky spot at the bottom of your [pc.belly] where she was sitting.");
 		if(pc.hasCock() && pc.cumQ() >= 1500) output(" A pile of [pc.cumNoun]-stained towels has accumulated in the corner.");
-		output("\n\nMillie helps you up and over to your things, but not before giving you a goodbye kiss to remember her bye. Well, they sure are friendly here. You gather your gear and step away before she tries to pull you into something even lewder. You’re not sure ");
+		output("\n\nMillie helps you up and over to your things, but not before giving you a goodbye kiss to remember her by. Well, they sure are friendly here. You gather your gear and step away before she tries to pull you into something even lewder. You’re not sure ");
 		if(pc.isTreated()) output("you have time for another go-round, no matter how much fun.");
 		else output("your body could handle that right now.");
 	}

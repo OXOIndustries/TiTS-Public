@@ -223,8 +223,9 @@ package classes.Engine.Combat.DamageTypes
 					}
 					else if (hasFlag(DamageFlag.LASER))
 					{
-						electric.damageValue = a * 0.33;
-						burning.damageValue = a * 0.67;
+						//electric.damageValue = a * 0.33;
+						//The above makes absolutely no sense at all.
+						burning.damageValue = a;
 					}
 					else if (hasFlag(DamageFlag.ENERGY_WEAPON))
 					{

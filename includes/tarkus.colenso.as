@@ -732,14 +732,18 @@ public function leftConsole():void
 		//Intelligence check failed:
 		if(pc.intelligence()/2 + rand(20) + 1 + bonus < 15)
 		{
-			output("\n\nYou panic. What should you type? “/dl crazy bitch.exe”? You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk. You didn’t save the AI but that’s probably for the best, all things considered. You congratulate yourself on a dangerous mission well completed.");
+			output("\n\nYou panic. What should you type? “/dl crazy_bitch.exe”? You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk. You didn’t save the AI but that’s probably for the best, all things considered. You congratulate yourself on a dangerous mission well completed.\n\n");
 			processTime(20);
 			currentLocation = "256";
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 			flags["SEXBOT_FACTORY_DISABLED"] = 1;
 			flags["SEXBOT_QUEST_STATUS"] = 2;
-			clearMenu();
-			addButton(0,"Next",mainGameMenu);
+			if(inCombat()) genericVictory();
+			else
+			{
+				clearMenu();
+				addButton(0,"Next",mainGameMenu);
+			}
 			return;
 		}
 		//Int succeed (techies should get a bonus for this check):

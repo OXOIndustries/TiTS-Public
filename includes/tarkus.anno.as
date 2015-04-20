@@ -2137,7 +2137,7 @@ public function securityDroidLaserBarrage():void
 {
 	//Laser Barrage
 	//Lots of moderate laser attacks
-	output("\nSeveral of the drones lock onto you and let loose with a hail of laser bolts.");
+	output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
 	
 	var attacks:int = 2 + rand(2);
 
@@ -2153,7 +2153,7 @@ public function securityDroidChargeShot():void
 {
 	//Charge Shot
 	//Two moderate laser shots (as above) + one HEAVY one
-	output("\nAmid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
+	output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
 
 	rangedAttack(foes[0], pc, true, 1);
 	rangedAttack(foes[0], pc, true, 1);
@@ -2180,7 +2180,7 @@ public function securityDroidFlashbang():void
 {
 	// Flashbang
 	// Blind, possibly Stun attack
-	output("\nOne of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
+	output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
 
 	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind"))
 	{
@@ -2191,6 +2191,7 @@ public function securityDroidFlashbang():void
 	{
 		output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 	}
+	output("\n");
 	processCombat();
 }
 

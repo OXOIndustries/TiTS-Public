@@ -286,9 +286,12 @@ public function hasCockLossForForgGirls():void
 	showFrogGirl();
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
 	if(x < 0) x = pc.biggestCockIndex();
-	output("The lithe frog-girl walks around your helpless body, appraising her prize carefully. She makes a few short hops over to you and presses your weakened frame down onto the ground, evidently having made her decision.");
+	output("The lithe frog-girl walks around your helpless body, appraising her prize carefully. She makes a few short hops over to you and presses your ");
+	if(inCombat()) output("weakened");
+	else output("submissively kneeling");
+	output(" frame down onto the ground, evidently having made her decision.");
 	//lust:
-	if(pc.lust() >= pc.lustMax())
+	if(pc.lust() >= pc.lustMax() || !inCombat())
 	{
 		output("\n\nYou feel [pc.eachCock] begin to stiffen as the kerokoras plops herself down onto your chest. <i>“I’m glad you aren’t fighting, it’s much more satisfying when you want it,”</i> she says, tracing a drug laced finger around your lips. Her voice is more melodious than the croaking would suggest, but that might just be the toxin taking root.");
 	}

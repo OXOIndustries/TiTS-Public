@@ -45,7 +45,7 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.burning.resistanceValue = 50.0;
+			resistances.burning.resistanceValue = 25.0;
 			
 			this.version = _latestVersion;
 		}

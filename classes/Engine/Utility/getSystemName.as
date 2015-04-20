@@ -1,15 +1,15 @@
-﻿package classes.Engine.Utility
+package classes.Engine.Utility
 {
 	import classes.kGAMECLASS;
 	import classes.StringUtil;
 	
 	/**
 	 * ...
-	 * @author Gedan
+	 * @author Fenoxo, blatantly stolen from Gedan
 	 */
-	public function getPlanetName():String
+	public function getSystemName():String
 	{
-		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].planet;
+		var pName:String = kGAMECLASS.rooms[kGAMECLASS.shipLocation].system;
 
 		if (pName.indexOf(":") != -1)
 			pName = pName.split(" ")[1];

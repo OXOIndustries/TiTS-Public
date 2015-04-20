@@ -4346,6 +4346,7 @@ public function initializeRooms():void
 	rooms["PHOENIX LIFT L1"].westExit = "PHOENIX CARGO";
 	rooms["PHOENIX LIFT L1"].addFlag(GLOBAL.INDOOR);
 	rooms["PHOENIX LIFT L1"].moveMinutes = 1;
+	rooms["PHOENIX LIFT L1"].runOnEnter = phoenixLocationSetter;
 
 	rooms["PHOENIX LIFT L2"] = new RoomClass(this);
 	rooms["PHOENIX LIFT L2"].roomName = "PHOENIX:\nLIFT L2";
@@ -4357,6 +4358,7 @@ public function initializeRooms():void
 	rooms["PHOENIX LIFT L2"].system = "SYSTEM: REDACTED";
 	rooms["PHOENIX LIFT L2"].addFlag(GLOBAL.INDOOR);
 	rooms["PHOENIX LIFT L2"].moveMinutes = 1;
+	rooms["PHOENIX LIFT L2"].runOnEnter = phoenixLocationSetter;
 
 	// KIROS SHIP
 	rooms["KIROS SHIP INTERIOR"] = new RoomClass(this);

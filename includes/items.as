@@ -795,7 +795,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "CONSUMABLES":
-				if (InCollection(item.type, GLOBAL.PILL, GLOBAL.FOOD, GLOBAL.POTION, GLOBAL.DRUG))
+				if (InCollection(item.type, GLOBAL.PILL, GLOBAL.FOOD, GLOBAL.POTION, GLOBAL.DRUG, GLOBAL.EXPLOSIVECONSUMABLE))
 				{
 					items.push(item);
 				}

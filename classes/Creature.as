@@ -6505,8 +6505,8 @@
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
-			if (kaithritScore() >= 4) race = "kaithrit"
-			if (leithanScore() >= 6) race = "leithan";
+			if (kaithritScore() >= 5) race = "kaithrit"
+			if (leithanScore() >= 6 && originalRace != "half-leithan") race = "leithan";
 			if (nukiScore() >= 4) race = "kui-tan";
 			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
