@@ -1474,7 +1474,7 @@ public function wutwutindabuttbuttFap():void
 		output("Your gear quickly finds itself thrown into an assorted pile of all manner of equipment, item after item being discarded to a soundtrack comprising of clattering metal and hollow thunks;");
 		if (pc.hasArmor())
 		{
-			output("your [pc.armor] finds itself added to the pile at a rapid pace");
+			output(" your [pc.armor] finds itself added to the pile at a rapid pace");
 			if (pc.hasLowerGarment() || pc.hasUpperGarment()) output(", closely followed by");
 		} 
 		if (pc.hasUpperGarment()) output(" your [pc.upperUndergarment]");
@@ -1540,7 +1540,7 @@ public function wutwutindabuttbuttFap():void
 	output(" and move them behind you, your digits nestling themselves between your [pc.butts].");
 
 	//{pc.ass.looseness() <= 3
-	if (pc.ass.looseness() <= 3)
+	if (pc.ass.looseness() <= 2)
 	{
 		output("\n\nOwing to your lack of");
 		if (silly) output(" butt-stuff");
@@ -1583,7 +1583,7 @@ public function wutwutindabuttbuttFap():void
 	}
 
 	output("\n\nYou've soon");
-	if (pc.ass.looseness() <= 3) output(" worked");
+	if (pc.ass.looseness() <= 2) output(" worked");
 	else output(" slipped");
 	output(" your finger");
 	if (pc.ass.looseness() > 1) output("s");

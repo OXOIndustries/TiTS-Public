@@ -3019,7 +3019,7 @@ public function hideYourCumslutteryPennyYouSlut():void {
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
 	flags["PENNY_IS_A_CUMSLUT"] = 1;
-	pc.personality += 20;
+	pc.addHard(20);
 	pc.lust(10);
 	processTime(10);
 	clearMenu();
@@ -3048,7 +3048,7 @@ public function pennyLetThemWatchYouCumSlut():void {
 	output("\n\nThat last emphatic orgasm seems to have wrung most of it out of her, and within moments Penny is left leaning exhausted back in her chair, while her [penny.cock] slides slowly out of her mouth to rest between her breasts. After spending a moment appraising the impressive amount of mess she left on your fingers you casually place them next to her mouth, and reflexively she leans forward and begins to eagerly lick them clean.");
 	output("\n\n\"<i>What a good girl,</i>\"  you coo, before turning and walking out of the room, leaving the near-incoherent Penny to recover behind you. As you step outside you see a citizen of the town wandering by, and with a smirk you tell them that Penny has something to show them in her office, and they should let the rest of the town know. After all, it wouldn't do to let her talents go to waste by letting her shows go unseen.");
 	//[Add a decent amount of a-hole points]
-	pc.personality += 20;
+	pc.addHard(20);
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 1;
 	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
@@ -3082,7 +3082,7 @@ public function letThemJoinInPennyYouSlut():void {
 
 	
 	//[Add a decent amount of a-hole points]
-	pc.personality += 20;
+	pc.addHard(20);
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = 1;
 	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = undefined;
@@ -3123,7 +3123,7 @@ public function useYourCocksOnCumSluttyPenny():void {
 	output("\n\nYou turn to leave while she's still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You imagine that her new predilections will make doing her job considerably harder, but, you add to yourself with a grin, considerably more enjoyable for all involved.");
 	processTime(5+rand(10));
 	pc.orgasm();
-	pc.personality += 5;
+	pc.addHard(5);
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3141,7 +3141,7 @@ public function makeUseOfPennysCumSlutCock():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.personality += 5;
+	pc.addHard(5);
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3160,7 +3160,7 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.personality += 5;
+	pc.addHard(5);
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
