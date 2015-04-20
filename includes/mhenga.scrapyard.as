@@ -353,7 +353,7 @@ public function flirtMoreWithGeoff():void
 		
 		output("\n\nHis mouth falls open as his eyebrows raise in a classic expression of complete surprise. Then a smile spreads across his now laughing face as <i>“Thanks”</i> comes from his lips in a rush of air.");
 	}
-	else if (pc.isHard())
+	else if (pc.isAss())
 	{
 		output("You can’t help but stare at Geoff’s face as he chatters on about... well... nothing. In all honesty you have to admit that you aren’t exactly being forward and the kid is obviously quite naive.");
 		
@@ -415,7 +415,7 @@ public function dudesTopGeoffFirstTime():void
 	
 	output("\n\nThe back lot is a sprawling, open-air garage-like area, dominated by a stationary robot wrapping a large hovercraft in cleansing steam. The hissing will certainly mask any noise either of you might make. Feeling increasingly eager you deliberately press yourself into the young mechanic, feeling his tight, firm flesh warm against you. He chuckles at this, holding on to you for balance as your unexpected advanced almost knocks him over. You take the opportunity to reach down and get a good grip of his ass; the unexpected contact causes him to flinch.");
 
-	if (pc.isBro() || pc.isDitz())
+	if (pc.isBro())
 	{
 		output("\n\nHis ass is soft as you spread his cheeks through his pants. You lick, kiss and suckle his neck as you grab and grope the virgin’s ass; you can’t help but feel excited about fucking it soon. He fidgets under your hungry fingers.");
 	}
@@ -423,11 +423,11 @@ public function dudesTopGeoffFirstTime():void
 	{
 		output("\n\nDespite the pleasantly surprised smile on his face you can tell the guy is a little nervous about taking a dick for the first time. You take the time to gently rub his ass and kiss his neck to show him you’re capable of taking your time. He is suddenly putty in your hands.");
 	}
-	else if (pc.isMischevious())
+	else if (pc.isMischievous())
 	{
 		output("\n\nThe guy is obviously nervous. In response you grope his ass and kiss his neck in an attempt to get him into the mood. It works, somewhat, although from the way he begins to grind forward you suspect he’d rather be in your position.");
 	}
-	else if (pc.isHard())
+	else if (pc.isAss())
 	{
 		output("\n\nThe guy is obviously nervous. Ignoring this you grab his ass possessively, indicating that you are in charge. As you push your hips forward and pull him into you you kiss his neck, causing him to groan.");
 	}
@@ -444,7 +444,7 @@ public function dudesTopGeoffFirstTime():void
 	
 	output("\n\nAs he stammers to clarify himself you step forward and shush softly into his ear. He nods, and after gulping back the desire to say something more, he takes the initiative and reaches down to stroke your erection.");
 
-	var tCock:int = pc.cockThatFits(goeff.analCapacity());
+	var tCock:int = pc.cockThatFits(geoff.analCapacity());
 	if (tCock == -1) tCock = pc.smallestCockIndex();
 	var tLength:Number = pc.cocks[tCock].cLength();
 
@@ -542,7 +542,7 @@ public function dudesTopGeoffRepeat():void
 	
 		output("Geoff smiles when you ask him if he wants to go out back again. <i>“Alright,”</i> he says. <i>“But this time I’m ready for you.”</i>");
 
-		if (pc.isBro() || pc.isDitz())
+		if (pc.isBro() || pc.isBimbo())
 		{
 			output("\n\n<i>“Gee I sure hope so! Virgins is nice but there’s something about putting mah dick in a guy who knows how to take it that really gets my gears goin!”</i>");
 			
@@ -556,14 +556,14 @@ public function dudesTopGeoffRepeat():void
 			
 			output("\n\nSo you glance at the back door than at Geoff himself. <i>“Well... lets go make you feel good again.”</i>");
 		}
-		else if (pc.isMischevious())
+		else if (pc.isMischievous())
 		{
 		
 			output("\n\n<i>“Are you now?”</i> you say. Before he can say much else you shove him up against the counter and kiss him deeply. Your hands explore his body once again, caressing his tall form and pulling him against you body, exciting him until you feel his hard terran cock pressing against yours. Your lips grind against him as you hold the lanky boy against you. Then you pull back and for a moment he looks dazed.");
 			
 			output("\n\n<i>“Were you ready for that?”</i> you say, teeth bared in a mischievous smile. He grins sheepishly as he shakes his head. He chuckles as he disentangles himself from your [pc.arms] and heads towards the backdoor.");
 		}
-		else if (pc.isHard())
+		else if (pc.isAss())
 		{
 			output("\n\n<i>“I’ll be the judge of that,”</i> you say as you fix Geoff with a cold stare. Despite the big smile on his face he visibly cringes under your gaze. You point your gaze at the back door and then look him in the face.");
 			
@@ -585,7 +585,7 @@ public function dudesTopGeoffRepeat():void
 	
 	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand. {if (pc.cock =/= self lubing): In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].} Tightening your grip, you press your cockhead against his winking entrance.");
 
-	var tCock:int = pc.cockThatFits(goeff.analCapacity());
+	var tCock:int = pc.cockThatFits(geoff.analCapacity());
 	if (tCock == -1) tCock = pc.smallestCockIndex();
 	var tLength:Number = pc.cocks[tCock].cLength();
 

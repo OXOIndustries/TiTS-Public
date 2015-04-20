@@ -108,7 +108,7 @@ public function talkToVahnAboutStarships():void
 	output("You ask Vahn how he ended up working on starships, specifically yours.");
 	output("\n\n<i>“Only the best technicians for [pc.fullName], I guess?”</i> He playfully grins and slides his hands in his jump suit pockets. <i>“... I love working on ships and Steele Tech has a lot of them. I like yours the most, though, because it’s an exploratory vessel.”</i>");
 	output("\n\nWhen you ask why that’s important, Vahn’s eyes come alive with excitement. <i>“Oh, what isn’t to love? I’m working on a ship that’s going where nobody’s ever gone before! You’re going to be roughing it through alien skies, landing on alien worlds - all in the ship I’ve worked on!”</i>");
-	output("\n\n<i>“Without a top notch vessel, even the greatest galactic rusher is stuck twiddling their thumbs in a docking bay. Not too different from what you’re doing now, right?”</i> He teasingly winks, bushy tail swishing. <i>“... All my sweat and effort goes into your engines, shields, guns, lifve support... pretty cool, right?”</i>");
+	output("\n\n<i>“Without a top notch vessel, even the greatest galactic rusher is stuck twiddling their thumbs in a docking bay. Not too different from what you’re doing now, right?”</i> He teasingly winks, bushy tail swishing. <i>“... All my sweat and effort goes into your engines, shields, guns, life support... pretty cool, right?”</i>");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",talkToVahn);
@@ -224,20 +224,20 @@ public function giveVahnABJ():void
 	output("\n\nA thrilling flush runs through your body, tickling your [pc.skin]. You’re butt naked in a cargo bay, sucking off this gorgeous mechanic in the shadows. Anyone could come around the corner and see [pc.fullName] on [pc.hisHer] hands and knees, going down on the ground crew. Your [pc.thighs] tremble with sensual delight at the thought - part of you even <i>wants</i> to get caught!");
 	if(pc.hasCock() || pc.hasVagina()) 
 	{
-		output(" Your ");
+		output(" Your");
 		if(pc.hasCock()) 
 		{
-			output("[pc.cocks] ");
-			if(pc.cockTotal() == 1) output("is");
-			else output("are");
+			output(" [pc.cocks]");
+			if(pc.cockTotal() == 1) output(" is");
+			else output(" are");
 			output(" rock hard");
 		}
 		if(pc.hasVagina() || pc.hasCock()) output(", and your");
 		if(pc.hasVagina())
 		{
-			output("[pc.vaginas]");
-			if(pc.totalVaginas() == 1) output("is");
-			else output("are");
+			output(" [pc.vaginas]");
+			if(pc.totalVaginas() == 1) output(" is");
+			else output(" are");
 			output(" sopping wet, making a moist mess down there");
 		}
 		output(".");
@@ -257,7 +257,7 @@ public function giveVahnABJ():void
 	}
 	else output("your [pc.thighs] trembling with wave after wave of glorious ecstasy.");
 
-	output("\n\nIn your orgasmic haze, you don’t realize Vahn’s swelling knot until it’s straining your mouth wide open. Wave after wave of his delectable cream shoots down your gullet... and it just doesn’t stop. It’s forceful, but you don’t care - your oral efforts are rewarded with countless gooey ropes of his baby batter washing down your throat and down into your belly. Your mouth is literally mated with his waist, his balls pressed hard against your [pc.face].");
+	output("\n\nIn your orgasmic haze, you don’t recognize Vahn’s swelling knot until it’s straining your mouth wide open. Wave after wave of his delectable cream shoots down your gullet... and it just doesn’t stop. It’s forceful, but you don’t care - your oral efforts are rewarded with countless gooey ropes of his baby batter washing down your throat and down into your belly. Your mouth is literally mated with his waist, his balls pressed hard against your [pc.face].");
 	output("\n\nWhen he finally deswells and pulls his dripping dick out of your equally wet mouth, you’re both utterly spent. Your belly feels warm and full, and your mouth couldn’t be more filled with his slick, succulent taste. Reaching up, you rub your [pc.lips] and let out a dreamy sigh.");
 	output("\n\nVahn helps you up, though you’re a bit wobbly and he’s hardly better. He wraps his arms around you and gives you a long, passionate kiss, pressing you up against the cargo container in the process. You run your hands through his thick sandy hair, your tongue dancing with his, sharing both his taste and yours.");
 	output("\n\n<i>“...That was stellar. Any time you want to do that again, I’m free. I’ll make time if I have to,”</i> Vahn breathily tells you, stroking your cheek. You both pull away and put on your things. When you come around the corner, more than a few of the ground crew are raising an eyebrow at you both. It’s not that hard to guess what you two were doing!");

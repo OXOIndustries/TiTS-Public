@@ -1681,7 +1681,7 @@ public function anataeCodexEntry():void
 	outputCodex("\n<b>Weight:</b> 160 - 200 pounds");
 	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
 	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometres away.");
-	ouputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
+	outputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
 
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Body Structure"))
