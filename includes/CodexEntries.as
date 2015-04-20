@@ -229,7 +229,7 @@ public function galotianCodexEntry():void
 public function simiiCodex():void
 {
 	clearOutputCodex();
-	userInterface.showBust("EMBRY");
+	userInterface.showBust("EMBRY_0");
 	//Species Codex Entry
 	outputCodex(header("Simii"));
 	outputCodex("(From order name Simiiformes / Simians)");
@@ -1079,7 +1079,7 @@ public function vanaeCodexEntry():void
 	// I'm temted to look into A bookmark movement around the codex view, to link between the headers with actual clickable links (all of the "See: <section>" things here. Considering the size of the Vanae codex entry, it seems like a good idea, and it could be extended to deal with jumping between entirely different codex entries.
 
 	clearOutputCodex();
-	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
+	userInterface.showBust("VANAE_HUNTRESS", "VANAE_MAIDEN"); // Probably split this out into multiple types?
 	outputCodex(header("The Vanae"));
 	outputCodex("'Vah-nay'");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
