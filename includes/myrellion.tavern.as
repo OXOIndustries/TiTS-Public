@@ -451,11 +451,9 @@ public function grayGooAtBarSure():void
 	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
 	
 	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
-	
-	output("\n\n<b>[goo.name] has been added to your inventory!</b>");
-	// output("\n\n//Return PC to ship.");
 
-	currentLocation = "SHIP INTERIOR";
+	currentLocation = shipLocation;
+	
 	flags["ANNO_NOVA_UPDATE"] = 2;
 
 	processTime(45+rand(15));

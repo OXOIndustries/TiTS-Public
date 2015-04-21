@@ -1,7 +1,10 @@
 ﻿import classes.Items.Apparel.SteeleTechSuit;
+import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.AusarTreats;
 import classes.Items.Protection.JoyCoPremiumShield;
+import classes.ItemSlotClass;
+import classes.TiTS;
 import classes.Util.InCollection;
 
 /* 
@@ -632,7 +635,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
-		addButton(10, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(10, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -2691,9 +2694,17 @@ public function annoNovaUpdate(asFollower:Boolean = true):void
 
 	if (flags["ANNO_NOVA_UPDATE"] == undefined) flags["ANNO_NOVA_UPDATE"] = 1;
 
-	annoFollowerTalkMenu(false);
-	if (asFollower) addDisabledButton(10, "Nova Update");
+	if (asFollower)
+	{
+		annoFollowerTalkMenu(false);
+		addDisabledButton(10, "Nova Update");
+	}
 	else
+	{
+		annoTalkMenu();
+		addDisabledButton(7, "Nova Update");
+	}
+	
 	processTime(5+rand(3));
 }
 
@@ -2708,7 +2719,7 @@ public function grayGooArrivesAtShip():void
 	
 	output("\n\n<i>“Oh! Sure, bestest buddy. Anything you want!”</i> she says with a grin, bouncing up uncomfortably close to you. She presents her tits to you and wiggles her behind, clearly expecting your desire to be entirely sexual.");
 	
-	output("\n\nNot quite. You ask her what she’d think about working with you on your quest. Specifically, coming with you when you’re out fighting. Maybe you could wear her as armor... gray goo is incredibly touch, after all.");
+	output("\n\nNot quite. You ask her what she’d think about working with you on your quest. Specifically, coming with you when you’re out fighting. Maybe you could wear her as armor... gray goo is incredibly tough, after all.");
 	
 	output("\n\n<i>“Hehe, I knew you just wanted to get inside of me!”</i> [goo.name] teases, lunging at you and wrapping her arms around you. You shiver as the cool gray goo envelops you, squirming wetly around your body as [goo.name] conforms to your body. Goo drains around your [pc.face], plating your cheeks like a crash helmet with a pair of big, silver eyes planted just over your own. After a moment, you feel your [pc.gear] being pulled off of you, thrown to the ground as goo runs across your bare skin.");
 	
@@ -2719,10 +2730,20 @@ public function grayGooArrivesAtShip():void
 	output("\n\n<i>“I was hoping you’d ask!”</i> she giggles, shifting herself around your [pc.crotch].");
 
 	flags["ANNO_NOVA_UPDATE"] = 3;
+	
+	processTime(10+rand(5));
+	
+	eventQueue.push(function():void {
+		clearOutput();
+		clearMenu();
+		var oldArmor:ItemSlotClass = pc.armor;
+		pc.armor = new GooArmor();
+		quickLoot(oldArmor);
+	});
 
-	// {to Masturbation menu}
 	clearMenu();
-	masturbateMenu();
+	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
+	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
 }
 
 public function grayGooSpessSkype():void

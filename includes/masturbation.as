@@ -1863,7 +1863,6 @@ public function gooDickFap():void
 
 public function grayGooCockSleeve():void
 {
-
 	clearOutput();
 	author("Savin");
 

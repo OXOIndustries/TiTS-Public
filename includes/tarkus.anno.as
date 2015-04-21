@@ -779,7 +779,7 @@ public function annoTalkMenu():void
 	else if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		addButton(6, "Join Crew", joinCrewMissionComplete, undefined, "Join Crew", "Offer Anno a new job working directly with yourself.");
-		addButton(7, "Nova Update", annoNovaUpdate, false, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(7, "Nova Update", annoNovaUpdate, false, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 
 	addButton(14,"Back",repeatAnnoApproach);
@@ -2537,7 +2537,7 @@ public function deck13ShieldControlFunc():Boolean
 
 		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(1, "Goo Sample", deck13GooSample);
 		
-		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(2, "Make Goo", deck13MakeGoo);
+		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(5, "Make Goo", deck13MakeGoo);
 
 		return false;
 	}
@@ -2559,7 +2559,10 @@ public function deck13MakeGoo():void
 	if (flags["TARKUS_DESTROYED"] == 1) output(" once");
 	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
 	
-	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super {pretty / handsome}! Are we going to be friends?”</i>");
+	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
+	if (pc.isFeminine()) output(" pretty");
+	else output(" handsome");
+	output("! Are we going to be friends?”</i>");
 	
 	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
 	
@@ -2574,8 +2577,7 @@ public function deck13MakeGooII():void
 	showName("GOO\nCONTAINER");
 	
 	output("<b>Enter the Gray Goo’s name:</b>");
-	//[		]
-	if (!stage.contains(this.userInterface.textInput)) this.displayInput();
+	this.displayInput();
 
 	clearMenu();
 	addButton(0, "Next", nameThaGoo);
@@ -2647,11 +2649,9 @@ public function nameThaGooII():void
 	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
 	
 	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
-	
-	output("\n\n<b>[goo.name] has been added to your inventory!</b>");
-	//output("\n\n//Return PC to ship.");
 
-	currentLocation = "SHIP INTERIOR";
+	currentLocation = shipLocation;
+	
 	processTime(45+rand(15));
 
 	addButton(0, "Next", mainGameMenu);
