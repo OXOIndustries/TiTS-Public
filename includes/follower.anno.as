@@ -632,7 +632,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
-		addButton(10, "Nova Update", annoFollowerNovaUpdate, undefined, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		addButton(10, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -2658,7 +2658,7 @@ public function annosTriberatorGatorMatorHater():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function annoFollowerNovaUpdate():void
+public function annoNovaUpdate(asFollower:Boolean = true):void
 {
 	clearOutput();
 	annoFollowerHeader();
@@ -2692,7 +2692,8 @@ public function annoFollowerNovaUpdate():void
 	if (flags["ANNO_NOVA_UPDATE"] == undefined) flags["ANNO_NOVA_UPDATE"] = 1;
 
 	annoFollowerTalkMenu(false);
-	addDisabledButton(10, "Nova Update");
+	if (asFollower) addDisabledButton(10, "Nova Update");
+	else
 	processTime(5+rand(3));
 }
 

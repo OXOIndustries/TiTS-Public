@@ -779,8 +779,8 @@ public function annoTalkMenu():void
 	else if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		addButton(6, "Join Crew", joinCrewMissionComplete, undefined, "Join Crew", "Offer Anno a new job working directly with yourself.");
+		addButton(7, "Nova Update", annoNovaUpdate, false, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
-	
 
 	addButton(14,"Back",repeatAnnoApproach);
 }
@@ -2563,7 +2563,17 @@ public function deck13MakeGoo():void
 	
 	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
 	
-	output("\n\n<b>Enter the Gray Goo’s name:</b>");
+	clearMenu();
+	addButton(0, "Next", deck13MakeGooII);
+}
+
+public function deck13MakeGooII():void
+{
+	clearOutput();
+	author("Savin");
+	showName("GOO\nCONTAINER");
+	
+	output("<b>Enter the Gray Goo’s name:</b>");
 	//[		]
 	if (!stage.contains(this.userInterface.textInput)) this.displayInput();
 
