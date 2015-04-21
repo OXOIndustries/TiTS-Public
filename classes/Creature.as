@@ -6499,7 +6499,7 @@
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
-			if (nukiScore() >= 2 && race == "human") race = "half-kui-tan"
+			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (horseScore() >= 4) race = "horse-morph";
@@ -6507,7 +6507,7 @@
 			if (ausarScore() >= 4) race = "ausar"
 			if (kaithritScore() >= 5) race = "kaithrit"
 			if (leithanScore() >= 6 && originalRace != "half-leithan") race = "leithan";
-			if (nukiScore() >= 4) race = "kui-tan";
+			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 4) race = "zil";

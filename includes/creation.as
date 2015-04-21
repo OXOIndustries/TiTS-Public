@@ -527,48 +527,55 @@ public function chooseYourJunkSize():void {
 	clearOutput();
 	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
 	output("The doctor smiles knowingly and moves on, <i>“All right, now what about the penis? It looks like we could pretty easily have it be anywhere from ");
-	if(pc.originalRace != "half-leithan")
+	
+	clearMenu();
+	
+	switch (pc.originalRace)
 	{
-		output("four to ");
-		if(pc.originalRace != "half-kaithrit") output("eight ");
-		else output("six ");
+		case "half-leithan":
+			output("thirteen to twenty ");
+			
+			for (var i:uint = 0; i <= 7; i++)
+			{
+				addButton(i, String(13 + i) + "”", applyJunkSize, 13 + i);
+			}
+			
+			break;
+			
+		case "half kui-tan":
+			output("five to ten ");
+			
+			for (i = 0; i <= 5; i++)
+			{
+				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
+			}
+			
+			break;
+		
+		case "half-kaithrit":
+			output("four to six ");
+			
+			for (i = 0; i <= 2; i++)
+			{
+				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
+			}
+			
+			break;
+			
+		default:
+			output("four to eight ");
+			
+			for (i = 0; i <= 4; i++)
+			{
+				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
+			}
+			
+			break;
+			
 	}
-	else
-	{
-		output("thirteen to twenty ");
-	}
+
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
-	this.clearMenu();
-	if(pc.originalRace == "half-leithan")
-	{
-		this.addButton(0,"13\"",applyJunkSize,13);
-		this.addButton(1,"14\"",applyJunkSize,14);
-		this.addButton(2,"15\"",applyJunkSize,15);
-		this.addButton(3,"16\"",applyJunkSize,16);
-		this.addButton(4,"17\"",applyJunkSize,17);
-		this.addButton(5,"18\"",applyJunkSize,18);
-		this.addButton(6,"19\"",applyJunkSize,19);
-		this.addButton(7,"20\"",applyJunkSize,20);
-	}
-	else if(pc.originalRace == "half kui-tan")
-	{
-		this.addButton(0,"5\"",applyJunkSize,5);
-		this.addButton(1,"6\"",applyJunkSize,6);
-		this.addButton(2,"7\"",applyJunkSize,7);
-		this.addButton(3,"8\"",applyJunkSize,8);
-		this.addButton(4,"9\"",applyJunkSize,9);
-		this.addButton(5,"10\"",applyJunkSize,10);
-	}
-	else
-	{
-		this.addButton(0,"4\"",applyJunkSize,4);
-		this.addButton(1,"5\"",applyJunkSize,5);
-		this.addButton(2,"6\"",applyJunkSize,6);
-		if (pc.originalRace !=  "half-kaithrit") {
-			this.addButton(3,"7\"",applyJunkSize,7);
-			this.addButton(4,"8\"",applyJunkSize,8);
-		}
-	}
+	
 	this.addButton(14,"Back",chooseBreastSize);
 }
 
