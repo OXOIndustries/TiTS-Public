@@ -155,7 +155,7 @@ public var regularFeedMimbranes:Array =
 	"Mimbrane Face",
 ];
 
-public var mimbraneDebug:Boolean = false;
+public var mimbraneDebug:Boolean = true;
 
 // Figure out the total number of attached mimbranes
 public function attachedMimbranes():int
@@ -542,6 +542,56 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 	}
 }
 
+public function resetAllMimbraneFeedings():void
+{
+	for (var i:uint = 0; i < mimbraneEffects.length; i++)
+	{
+		var tEff:String = mimbraneEffects[i];
+		
+		if (pc.hasStatusEffect(tEff))
+		{
+			pc.willpowerMod = 0;
+			pc.setStatusValue(tEff, 3, 0);
+			
+			switch (tEff)
+			{
+				case "Mimbrane Cock":
+					pc.cocks[0].cThicknessRatioMod = 0;
+					pc.cocks[0].cLengthMod = 0;
+					break;
+					
+				case "Mimbrane Pussy":
+					pc.vaginas[0].loosenessMod = 0;
+					pc.vaginas[0].wetnessMod = 0;
+					break;
+					
+				case "Mimbrane Ass":
+					pc.ass.loosenessMod = 0;
+					pc.ass.wetnessMod = 0;
+					pc.buttRatingMod = 0;
+					break;
+					
+				case "Mimbrane Balls":
+					pc.cumMultiplierMod = 0;
+					pc.ballSizeMod = 0;
+					break;
+					
+				case "Mimbrane Boobs":
+					pc.breastRows[0].breastRatingMod = 0;
+					break;
+					
+				case "Mimbrane Face":
+					pc.lipMod = 0;
+				
+				default:
+					break;
+			}
+		}
+	}
+	
+	mimbraneMenu();
+}
+
 public function resetMimbraneEffects(effectName:String):void
 {
 	if (mimbraneDebug) trace("Resetting Mimbrane Part Modifiers for [" + effectName + "] @ " + pc.statusEffectv3(effectName));
@@ -550,7 +600,6 @@ public function resetMimbraneEffects(effectName:String):void
 	if (pc.statusEffectv3(effectName) >= 3) willMod += 0.2;
 	if (pc.statusEffectv3(effectName) >= 8) willMod += 0.2;
 	if (pc.statusEffectv3(effectName) >= 13) willMod += 0.2;
-	
 	pc.willpowerMod += willMod;
 	
 	if (effectName == "Mimbrane Cock")
@@ -568,10 +617,8 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
 		
 		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
-		pc.vaginas[0].loosenessMod -= pussyMod;
-		//if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
-		pc.vaginas[0].wetnessMod -= pussyMod;
-		//if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
+		if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
+		if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
 	}
 	else if (effectName == "Mimbrane Ass")
 	{
@@ -584,9 +631,7 @@ public function resetMimbraneEffects(effectName:String):void
 		
 		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.ass.loosenessMod -= buttMod;
-		//if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
 		pc.ass.wetnessMod -= buttMod;
-		//if(pc.ass.wetnessMod < 0) pc.ass.wetnessMod = 0;
 		pc.buttRatingMod -= Number(pc.statusEffectv3(effectName)) / 2.0;
 	}
 	else if (effectName == "Mimbrane Balls")
@@ -603,7 +648,6 @@ public function resetMimbraneEffects(effectName:String):void
 		var lipMod:int = 0;
 		if (pc.statusEffectv3(effectName) >= 6) lipMod++;
 		if (pc.statusEffectv3(effectName) >= 12) lipMod++;
-		
 		pc.lipMod -= lipMod;
 	}
 	
@@ -4465,6 +4509,19 @@ public function mimbraneMenu():void
 		addDisabledGhostButton(10, "Face Hide");
 		addDisabledGhostButton(11, "Face B.Marks")
 		addDisabledGhostButton(12, "Face Lip Pc.Ing");
+	}
+	
+	if 
+	(
+		(pc.hasVagina() && (pc.vaginas[0].loosenessMod < -5 || pc.vaginas[0].wetnessMod < -5))
+	||	(pc.hasCock() && (pc.cocks[0].cLengthMod < -5 || pc.cocks[0].cThicknessRatioMod < -5))
+	||	(pc.lipMod < -4)
+	||	(pc.ass.loosenessMod < -5 || pc.ass.wetnessMod < -5 || pc.buttRatingMod < -5)
+	||	(pc.breastRows[0].breastRatingMod < -5)
+	||	(pc.willpowerMod < -10)
+	)
+	{
+		addButton(4, "RstFeed", resetAllMimbraneFeedings, undefined, "Reset Feed Effects", "Reset all current mimbrane feed values to zero, and revert all applicable part-modification values to match. This is a 'recovery' features to attempt to 'fix' broken saves that have built up huge negative modification values. BE CAREFUL!");
 	}
 	
 	addGhostButton(14, "Back", appearance, pc);
