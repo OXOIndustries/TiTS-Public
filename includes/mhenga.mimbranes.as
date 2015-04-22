@@ -259,15 +259,109 @@ public function hasFeedableMimbranes():Boolean
 	return false;
 }
 
+public function logAllEffects(old:Object = null):Object
+{
+	if (old == null)
+	{
+		var log:Object = { };
+		
+		log.lip = { };
+		log.lip.old = pc.lipMod;
+		
+		if (pc.vaginas.length > 0)
+		{
+			log.vwet = { };
+			log.vwet.old = pc.vaginas[0].wetnessMod;
+			log.vloose = { };
+			log.vloose.old = pc.vaginas[0].loosenessMod;
+		}
+		
+		log.awet = { };
+		log.awet.old = pc.ass.wetnessMod;
+		
+		log.aloose = { };
+		log.aloose.old = pc.ass.loosenessMod;
+		
+		if (pc.balls > 0)
+		{
+			log.balls = { };
+			log.balls.old = pc.ballSizeMod;
+			
+			log.cumq = { };
+			log.cumq.old = pc.cumMultiplierMod;
+		}
+		
+		if (pc.cocks.length > 0)
+		{
+			log.cthick = { };
+			log.cthick.old = pc.cocks[0].cThicknessRatioMod;
+			
+			log.clen = { };
+			log.clen.old = pc.cocks[0].cLengthMod;
+		}
+		
+		log.brating = { };
+		log.brating.old = pc.breastRows[0].breastRatingMod;
+		
+		log.buttrating = { };
+		log.buttrating.old = pc.buttRatingMod;
+		
+		return log;
+	}
+	else
+	{
+		old.lip.newval = pc.lipMod;
+		old.awet.newval = pc.ass.wetnessMod;
+		old.aloose.newval = pc.ass.loosenessMod;
+		
+		if (pc.vaginas.length > 0)
+		{
+			old.vwet.newval = pc.vaginas[0].wetnessMod;
+			old.vloose.newval = pc.vaginas[0].loosenessMod;
+		}
+		
+		if (pc.balls > 0)
+		{
+			old.balls.newval = pc.ballSizeMod;
+			old.cumq.newval = pc.cumMultiplierMod;
+		}
+		
+		if (pc.cocks.length > 0)
+		{
+			old.cthick.newval = pc.cocks[0].cThicknessRatioMod;
+			old.clen.newval = pc.cocks[0].cLengthMod;
+		}
+		
+		old.brating.newval = pc.breastRows[0].breastRatingMod;
+		old.buttrating.newval = pc.buttRatingMod;
+		
+		for (var key:String in old)
+		{
+			if (old[key].old != old[key].newval)
+			{
+				trace(key + " [Old: " + old[key].old + "] [New: " + old[key].newval + "]"); 
+			}
+		}
+		
+		return null;
+	}
+}
+
 public function feedCost(effectName:String, feedCost:int):void
 {
+	var tLog:Object;
+	if (mimbraneDebug) tLog = logAllEffects();
+	
 	var pDays:int = pc.statusEffectv2(effectName);
 	var pFeeds:int = pc.statusEffectv3(effectName);
 	
 	var nFeedCount:int = Math.max(0, pFeeds - feedCost);
 	
 	resetMimbraneEffects(effectName);
-	if (nFeedCount > 0) feedAMimbrane(effectName, nFeedCount);
+	pc.setStatusValue(effectName, 3, 0);
+	if (nFeedCount > 0) feedAMimbrane(effectName, nFeedCount, true);
+	
+	if (mimbraneDebug) logAllEffects(tLog);
 }
 
 /**
@@ -315,9 +409,10 @@ public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 	{
 		throw new Error("target property string was an unexpected value. Only 'all', 'regular', 'cock', 'vag', 'ass' or 'mouth' are supported.");
 	}
+	
 }
 
-public function feedAMimbrane(effectName:String, feedValue:int = 1):void
+public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolean = false):void
 {	
 	if (mimbraneDebug) trace("Feeding Mimbrane [" + effectName + "] " + feedValue + " time(s)");
 	
@@ -336,9 +431,9 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 	
 	var tPC:PlayerCharacter = pc;
 
-	if (tPC.hasStatusEffect(effectName) && tPC.statusEffectv2(effectName) > 0 && tPC.statusEffectv3(effectName) < 15)
+	if (tPC.hasStatusEffect(effectName) && (force || tPC.statusEffectv2(effectName) > 0) && tPC.statusEffectv3(effectName) < 15)
 	{
-		tPC.setStatusValue(effectName, 2, 0);
+		if (!force) tPC.setStatusValue(effectName, 2, 0);
 		
 		var oldFeedValue:int = tPC.statusEffectv3(effectName);
 		
@@ -356,7 +451,6 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		var newFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		// Calc willpower change
-		//tPC.willpowerMod += tPC.willpowerRaw * -(0.004 * actualFeed);
 		// Making this a flat change at certain breakpoints, becuase otherwise it's going to be a nightmare to track and undo later
 		if (oldFeedValue < 3 && newFeedValue >= 3) tPC.willpowerMod -= 0.2;
 		if (oldFeedValue < 8 && newFeedValue >= 8) tPC.willpowerMod -= 0.2;
@@ -372,36 +466,26 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw == 0) (tPC.vaginas[0] as VaginaClass).loosenessMod = 1;
-				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw == 0) (tPC.vaginas[0] as VaginaClass).wetnessMod = 1;
 				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
 				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 1) (tPC.vaginas[0] as VaginaClass).loosenessMod = 2;
-				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 1) (tPC.vaginas[0] as VaginaClass).wetnessMod = 2;
 				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
 				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 2) (tPC.vaginas[0] as VaginaClass).loosenessMod = 3;
-				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 2) (tPC.vaginas[0] as VaginaClass).wetnessMod = 3;
 				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
 				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 3) (tPC.vaginas[0] as VaginaClass).loosenessMod = 4;
-				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 3) (tPC.vaginas[0] as VaginaClass).wetnessMod = 4;
 				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
 				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				//if ((tPC.vaginas[0] as VaginaClass).loosenessRaw <= 4) (tPC.vaginas[0] as VaginaClass).loosenessMod = 5;
-				//if ((tPC.vaginas[0] as VaginaClass).wetnessRaw <= 4) (tPC.vaginas[0] as VaginaClass).wetnessMod = 5;
 				(tPC.vaginas[0] as VaginaClass).wetnessMod++;
 				(tPC.vaginas[0] as VaginaClass).loosenessMod++;
 			}
@@ -410,35 +494,26 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		{
 			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
-				//if (tPC.ass.loosenessRaw == 0) tPC.ass.loosenessMod = 1;
-				//if (tPC.ass.wetnessRaw == 0) tPC.ass.wetnessMod = 1;
 				(tPC.ass as VaginaClass).wetnessMod++;
 				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
-				//if ((tPC.ass as VaginaClass).loosenessRaw <= 1) (tPC.ass as VaginaClass).loosenessMod = 2;
-				//if ((tPC.ass as VaginaClass).wetnessRaw <= 1) (tPC.ass as VaginaClass).wetnessMod = 2;
 				(tPC.ass as VaginaClass).wetnessMod++;
-				(tPC.ass as VaginaClass).loosenessMod++;			}
+				(tPC.ass as VaginaClass).loosenessMod++;			
+			}
 			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
-				//if ((tPC.ass as VaginaClass).loosenessRaw <= 2) (tPC.ass as VaginaClass).loosenessMod = 3;
-				//if ((tPC.ass as VaginaClass).wetnessRaw <= 2) (tPC.ass as VaginaClass).wetnessMod = 3;
 				(tPC.ass as VaginaClass).wetnessMod++;
 				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
-				//if ((tPC.ass as VaginaClass).loosenessRaw <= 3) (tPC.ass as VaginaClass).loosenessMod = 4;
-				//if ((tPC.ass as VaginaClass).wetnessRaw <= 3) (tPC.ass as VaginaClass).wetnessMod = 4;
 				(tPC.ass as VaginaClass).wetnessMod++;
 				(tPC.ass as VaginaClass).loosenessMod++;
 			}
 			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
-				//if ((tPC.ass as VaginaClass).loosenessRaw <= 4) (tPC.ass as VaginaClass).loosenessMod = 5;
-				//if ((tPC.ass as VaginaClass).wetnessRaw <= 4) (tPC.ass as VaginaClass).wetnessMod = 5;
 				(tPC.ass as VaginaClass).wetnessMod++;
 				(tPC.ass as VaginaClass).loosenessMod++;
 			}
@@ -469,7 +544,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 
 public function resetMimbraneEffects(effectName:String):void
 {
-	if (mimbraneDebug) trace("Resetting Mimbrane Part Modifiers for [" + effectName + "]");
+	if (mimbraneDebug) trace("Resetting Mimbrane Part Modifiers for [" + effectName + "] @ " + pc.statusEffectv3(effectName));
 
 	var willMod:Number = 0;
 	if (pc.statusEffectv3(effectName) >= 3) willMod += 0.2;
@@ -531,6 +606,7 @@ public function resetMimbraneEffects(effectName:String):void
 		
 		pc.lipMod -= lipMod;
 	}
+	
 }
 
 private var mimbraneEventHeaderDone:Boolean = false;

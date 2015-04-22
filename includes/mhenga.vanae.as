@@ -438,7 +438,7 @@ public function vanaeCamoflage(justUpdate:Boolean = true):void
 {
 	if (foes[0].hasStatusEffect("Camouflage"))
 	{
-		foes[0].addStatusValue("Camouflage", 1 -1);
+		foes[0].addStatusValue("Camouflage", 1, -1);
 	}
 	
 	if (!justUpdate)

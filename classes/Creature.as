@@ -4298,16 +4298,16 @@
 			trace("ERROR: Looking for status '" + storageName + "' to change value " + storageValueNum + ", and " + short + " does not have the status affect.");
 			return;
 		}
-		public function addStatusValue(statusName: String, statusValueNum: Number = 1, newNum: Number = 0):void {
+		public function addStatusValue(statusName: String, statusValueNum:Number, newNum:Number):void {
 			addStorageValue(statusEffects, statusName, statusValueNum, newNum);
 		}
-		public function addPerkValue(perkName: String, perkValueNum: Number = 1, newNum: Number = 0):void {
+		public function addPerkValue(perkName: String, perkValueNum:Number, newNum:Number):void {
 			addStorageValue(perks, perkName, perkValueNum, newNum);
 		}
-		public function addKeyValue(statusName: String, statusValueNum: Number = 1, newNum: Number = 0):void {
+		public function addKeyValue(statusName: String, statusValueNum:Number, newNum:Number):void {
 			addStorageValue(keyItems, statusName, statusValueNum, newNum);
 		}
-		public function addStorageValue(array:Array, storageName: String, storageValueNum: Number = 1, newNum: Number = 0):void {
+		public function addStorageValue(array:Array, storageName: String, storageValueNum:Number, newNum:Number):void {
 			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) {
