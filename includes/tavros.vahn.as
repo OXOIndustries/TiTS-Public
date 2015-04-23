@@ -232,7 +232,7 @@ public function giveVahnABJ():void
 			else output(" are");
 			output(" rock hard");
 		}
-		if(pc.hasVagina() || pc.hasCock()) output(", and your");
+		if(pc.hasVagina() && pc.hasCock()) output(", and your");
 		if(pc.hasVagina())
 		{
 			output(" [pc.vaginas]");
