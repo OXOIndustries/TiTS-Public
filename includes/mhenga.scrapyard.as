@@ -157,7 +157,19 @@ public function flirtWithGeoff():void {
 		if(pc.cockTotal() == 1) output("s");
 		output(" outwards impatiently.");
 		
-		output("\n\n<i>“Woah, woah, woah,”</i>  he cries out, taking half a step back. <i>“You’re a guy?!”</i>  You can’t help but giggle at the expression of complete bewilderment which has replaced the look of deep concentration - and yet you can’t also help but notice the fervent bulge which has been steadily growing in his own jeans over the last couple of minutes hasn’t abated. You wriggle, letting the sinuous movements of your girl-boy body drop your underclothes away, and when he doesn’t move, his eyes frozen on your form, step into him and begin to move your hands along their own slow path of seduction.");
+		if (pc.isFeminine())
+		{
+			output("\n\n<i>“Woah, woah, woah,”</i>  he cries out, taking half a step back. <i>“You’re a guy?!”</i>");
+		}
+		else
+		{
+			output("\n\nHis eyes fall upon your burgeoning length");
+			if (pc.cocks.length > 1) output("s");
+			output(" and he falters momentarily.");
+		}
+		
+		output(" You can’t help but giggle at the expression of complete bewilderment which has replaced the look of deep concentration - and yet you can’t also help but notice the fervent bulge which has been steadily growing in his own jeans over the last couple of minutes hasn’t abated. You wriggle, letting the sinuous movements of your girl-boy body drop your underclothes away, and when he doesn’t move, his eyes frozen on your form, step into him and begin to move your hands along their own slow path of seduction.");
+	
 		output("\n\nYou murmur into his ear that he shouldn’t worry about what you are, as you move your hands downwards, enjoying the pockets of softness to be found upon his frame here and there, ameliorating his firm, bony form. He doesn’t stop you and he groans softly as your hand slides into his pants and finds his hardening, sturdy six inch prick. After all, this guy isn’t, you say softly, grinning as you move your hand over and around his prick before focusing on his raphe, stroking it gently until he is straining.");
 		output("\n\nAll reservations replaced by pulsing need, Geoff moves into you, his ragged breath harsh upon your face as he pushes into you, using his tight mass to push you against the wall. As you pull off his belt and let his faded jeans fall, he pauses- as unsure about what to do with you as if you’d handed him a strange new machine - before his hands form around your [pc.butt] and he rolls your hips so your [pc.asshole] faces outwards. He squeezes your ass and you laugh as you stroke his nape and fuzzy hair - clearly there’s at least one part of your body he’s reasonably assured about. You close your eyes as you feel his bulging hardness press against your sphincter.");
 		output("\n\n<i>“Are you sure this is-?”</i>  he mumbles. <i>“I don’t want to-“</i>  Insistently, you tell him to keep going. The humid atmosphere, the slow movement of his hands and now his strong, wiry mass bent into you have made you feel soft and warm, your [pc.cock] still standing to attention. Given fresh purpose by the urgency in your voice, he pushes forward, penetrating you slowly.");
@@ -384,7 +396,9 @@ public function flirtMoreWithGeoff():void
 	}
 	else
 	{
-		output("\n\nHe is, however, looking at the your concealed [pc.eachCock] with an understandable mixture of curiosity and trepidation.");
+		output("\n\nHe is, however, looking at your concealed cock");
+		if (pc.cocks.length > 1) output("s");
+		output(" with an understandable mixture of curiosity and trepidation.");
 	}
 
 	flags["SEXED_GEOFF_MASC"] = 1;
@@ -392,7 +406,7 @@ public function flirtMoreWithGeoff():void
 	clearMenu();
 	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff's virgin ass.");
 	else addDisabledButton(0, "Top", "Top", "If you had a cock you could probably take the initiative and fuck Geoff in the ass.")
-	if (flags["SEXED_GEOFF"] == undefined) addButton(0, "Bottom", flirtWithGeoff, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
+	if (flags["SEXED_GEOFF"] == undefined) addButton(1, "Bottom", flirtWithGeoff, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
 	else addButton(1, "Bottom", GeoffRepeatFuck, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
 }
 
@@ -411,7 +425,9 @@ public function dudesTopGeoffFirstTime():void
 
 	flags["GEOFF_TOPPED"] = 1;
 
-	output("<i>“I told you you wouldn’t gain anything spiritual talking to him...”</i> a reedy, sighing voice follows you out.");
+	output("You slide your hand into his, and without a word the two of you debunk to the humidity and steam in the back.");
+	
+	output("\n\n<i>“I told you you wouldn’t gain anything spiritual talking to him...”</i> a reedy, sighing voice follows you out.");
 	
 	output("\n\nThe back lot is a sprawling, open-air garage-like area, dominated by a stationary robot wrapping a large hovercraft in cleansing steam. The hissing will certainly mask any noise either of you might make. Feeling increasingly eager you deliberately press yourself into the young mechanic, feeling his tight, firm flesh warm against you. He chuckles at this, holding on to you for balance as your unexpected advanced almost knocks him over. You take the opportunity to reach down and get a good grip of his ass; the unexpected contact causes him to flinch.");
 
