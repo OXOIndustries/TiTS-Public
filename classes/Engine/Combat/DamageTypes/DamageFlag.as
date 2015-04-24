@@ -30,8 +30,6 @@ package classes.Engine.Combat.DamageTypes
 		public static const EXPLOSIVE:uint		= 12;
 		public static const ENERGY_WEAPON:uint	= 13;
 		public static const GROUNDED:uint		= 14;
-		
-		// System flags
 		public static const BYPASS_SHIELD:uint	= 15;	// An attack with this flag will only influence HP and/or lust
 		public static const ONLY_SHIELD:uint	= 16;	// An attack with this flag will only influence shields and/or lust
 		public static const EASY:uint 			= 17;	// Basically adds an extra 50% resistance up to a maximum of 100% resistance to any given type.

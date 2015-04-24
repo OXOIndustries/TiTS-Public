@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
@@ -9,6 +10,7 @@ import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
+import classes.Items.Guns.MyrBow;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
@@ -164,10 +166,10 @@ public function debugMenusTwo():void
 		quickLoot(new TachyonBeamLaser());
 	});
 	
-	addItemButton(2, new TSTArmorMkII(), function():void {
-		output("\n\nTST Mk 2.\n");
+	addItemButton(2, new MyrBow(), function():void {
+		output("\n\nMyr Bow.\n");
 		
-		quickLoot(new TSTArmorMkII());
+		quickLoot(new MyrBow());
 	});
 	
 	addButton(5, "Kaede", function():void {
@@ -554,33 +556,50 @@ public function esbethFastTravelOfficeBonus():Boolean
 	}
 	output(".");
 
-	addButton(0,"Scout",mhengaScoutAuthority);
-	return false;
+	addButton(0, (hasMetTanis() ? "Tanis" : "Scout"), mhengaScoutAuthority);
+	return false ;
 }
 
 public function mhengaScoutAuthority():void
 {
-	//I call him Tanis in my head, and he likes coffee. And he keeps a nerf gun under his desk for office wars. >>; That is my story for him and I'm sticking to it.
 	clearOutput();
 	showBust("TANIS");
+	if (hasMetTanis()) showName("\nTANIS");
+	author("Savin");
+	
+	if (flags["TANIS_APPROACHED"] != undefined && flags["TANIS_BOW_INTRO"] == undefined && pc.hasBowWeaponAvailable())
+	{
+		tanisBowIntro();
+		return;
+	}
+	
 	if(flags["SALVAGED VANAE CAMP"] != 2) 
 	{
-		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
 		output("\n\n<i>\"Ah. Sorry to bother you,”</i> you say, turning to leave.");
 		output("\n\n<i>“No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b>”</i>");
 		processTime(1);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+
+		addButton(0, "Next", mainGameMenu);
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+		
+		flags["TANIS_APPROACHED"] = 1;
 	}
 	//[Scout] (PC has fixed a comm array)
 	else
 	{
-		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
 		processTime(1);
 		clearMenu();
 		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
 		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
-		addButton(14,"Back",mainGameMenu);
+
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+
+		addButton(14, "Back", mainGameMenu);
+		
+		flags["TANIS_APPROACHED"] = 1;
 	}
 }
 

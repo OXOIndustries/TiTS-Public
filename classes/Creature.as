@@ -4,6 +4,7 @@
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
@@ -1789,6 +1790,17 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		public function hasItemByType(ref:Class, amount:int = 1):Boolean
+		{
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if (inventory[i] is ref) amt += inventory[i].quantity;
+			}
+			if (amt >= amount) return true;
+			return false;
+		}
 		public function destroyItemByName(arg:String,amount:int = 1):void
 		{
 			if(inventory.length == 0) return;
@@ -2268,6 +2280,11 @@
 			return Math.round(intelligence()/intelligenceMax()*100);
 		}
 		
+		public function AQ():Number
+		{
+			return Math.round(aim() / aimMax() * 100);
+		}
+		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply)
@@ -2420,7 +2437,7 @@
 			if(hasPerk("Drug Fucked")) bonus += 40;
 			return (0 + bonus);
 		}
-		public function slowStatGain(stat: String, arg: Number = 0): Number {
+		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
 			var change: Number = 0;
 			if (stat == "physique") statCurrent = physique();
@@ -2492,6 +2509,23 @@
 				if (hasStatusEffect("Combat Drone Disabled")) return false;
 				return true;
 			}
+			return false;
+		}
+		public function hasBowWeaponAvailable():Boolean
+		{
+			if (hasBowWeaponEquipped()) return true;
+			
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if ((inventory[i] as ItemSlotClass).hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return true;
+			}
+			
+			return false;
+		}
+		public function hasBowWeaponEquipped():Boolean
+		{
+			if (meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return true;
+			if (rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return true;
 			return false;
 		}
 		

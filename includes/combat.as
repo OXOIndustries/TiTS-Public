@@ -408,6 +408,27 @@ public function specialsMenu():void {
 		}
 		offset++;
 	}
+	
+	if (pc.hasPerk("Concussive Shot"))
+	{
+		if (!pc.hasBowWeaponEquipped())
+		{
+			addDisabledButton(offset, "Concussive Shot", "Concussive Shot", "Concussive Shot requires a bow-like weapon.");
+		}
+		else if (pc.hasStatusEffect("Disarmed"))
+		{
+			addDisabledButton(offset, "Concussive Shot", "Concussive Shot", "You cannot use Concussive Shot whilst disarmed.");
+		}
+		else if (pc.energy() < 25)
+		{
+			addDisabledButton(offset++, "Concussive Shot", "Concussive Shot", "Concussive shot requires 25 energy.");
+		}
+		else
+		{
+			addButton(offset, "Concussive Shot", attackRouter, pcConcShot, "Concussive Shot", "Fire an explosive arrow at your target, potentially stunning them for 2-4 rounds.");
+		}
+		offset++;
+	}
 }
 
 public function updateCombatStatuses():void {
@@ -3652,6 +3673,42 @@ public function goozookaCannon(target:Creature):void
 			output(teaseReactions(damageResult.lustDamage, target));
 			output(" (<b>" + damageResult.lustDamage + "</b>)\n");
 		}
+	}
+	
+	processCombat();
+}
+
+public function pcConcShot(target:Creature):void
+{
+	clearOutput();
+	pc.energy( -25);
+	
+	output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.short + ".");
+	
+	if (rangedCombatMiss(pc, target, 0))
+	{
+		output(" You let fly, but the arrow sails clean past your intended target.");
+	}
+	else
+	{
+		output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
+		
+		if (rand(3) == 0)
+		{
+			output(" though " + target.a + target.short + " seems to resist the blast. Your stun-shot failed!");
+		}
+		else
+		{
+			output(", stunning your enemy!");
+			
+			var rounds:int = 2 + rand(3);
+			target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
+		}
+		
+		// Add some burning damage for the explosion
+		var damage:TypeCollection = pc.rangedDamage();
+		damage.add(new TypeCollection( { burning: 10 } ));
+		applyDamage(damage, pc, target, "ranged");
 	}
 	
 	processCombat();
