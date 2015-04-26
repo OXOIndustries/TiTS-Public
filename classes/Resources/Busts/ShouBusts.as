@@ -38,6 +38,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
+		public var Bust_ADULTCOCKVINE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
+		public var Bust_COCKVINESEEDLING:Class;		
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
 
