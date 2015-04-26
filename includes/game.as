@@ -748,6 +748,24 @@ public function variableRoomUpdateCheck():void
 		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
 		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
 	}
+	
+	// Steph Myrellion shit
+	if (flags["STEPH_WATCHED"] == undefined)
+	{
+		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		if (flags["STEPH_WORK_CHOICE"] == undefined)
+		{
+			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
+		}
+		else
+		{
+			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+		}
+	}
+	
 }
 
 public function processTime(arg:int):void {

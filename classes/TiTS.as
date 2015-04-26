@@ -199,6 +199,7 @@
 		include "../includes/myrellion.renvra.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
+		include "../includes/myrellion.steph.as";
 		include "../includes/myrellion.tavern.as";
 		include "../includes/myrellion.wetraxxel.as";
 		include "../includes/myrellion.xanthe.as";

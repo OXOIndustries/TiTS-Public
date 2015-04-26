@@ -427,6 +427,9 @@ public function stephIrsonEpisodeTwo():void
 	author("Savin");
 	showName("STEPH\nIRSON");
 	showBust("STEPH_2");
+	
+	flags["STEPH_WATCHED"] = 1;
+	
 	output("You flop down in a quiet booth in the corner of the bar, looking up at a sizable Super-HD Viewscreen mounted above the bar. As you sit down, the last commercial break is just coming to an end, telling you to buy JoyCo brand healing services before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a bright sunrise to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her. Despite her obvious humanity, the hostess is sporting a pair of perky kitty-ears atop her sandy hair, which twitch cutely as the camera focuses in on them.");
 	output("\n\nA U.G.C. mandated warning appears on the screen in tiny letters:");
 	output("\n\n<b>\"The U.G.C. Scout Authority apologizes for content in previous episodes of <i>Steph Irson: Galactic Huntress</i>, and warns that interacting with unidentified xeno-biotics can result in erratic and unexpected mutations or grievous injury. Do not attempt anything seen in this series at home, or without professional guidance.\"</b>");

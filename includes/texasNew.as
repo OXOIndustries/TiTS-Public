@@ -1201,6 +1201,9 @@ public function stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerAT
 	clearOutput();
 	showName("STEPH\nIRSON");
 	showBust("STEPH_2");
+	
+	flags["STEPH_WATCHED"] = 1;
+	
 	output("You seat yourself on one of the benches in the grill, kicking your [pc.feet] up onto the table and turning your attention to the sizable Super-HD Viewscreen mounted above the bar. As you sit, the last commercial break is just coming to an end, instructing you to purchase the Treatment from the gift shop in the lobby before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. Beneath the title script, a warning appears in large red letters: \"<i>This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.</i>\"");
 	output("\n\nThe camera pans down from a wide-angled shot of the vast, sweeping plains of Grand Teh to finally focus on the hostess, Steph, sitting atop a simple wooden fence at the field’s edge, one leg crossed over the other, showing off the calves beneath her sheer short-shorts. To her right and left are a pair of prodigiously-endowed cow-girls, their massive breasts bare, resting atop the fence-posts as they look placidly off into the distance behind the camera, both chewing on what looks like lettuce.");
 	output("\n\n<i>“Welcome to a special edition of </i>Galactic Huntress,”</i> Steph Irson says, as ever in her strong New Brisbane accent. As the camera zooms in on her face, you’re treated to a close-up view of the perky cat-ears now resting atop her hair, as well as the odd, almost metallic-gray color of her lips and irises. Every time she blinks or speaks, the colors seem to shift and swim, as if alive and moving.");

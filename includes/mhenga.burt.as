@@ -1250,6 +1250,9 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	author("Savin");
 	showName("STEPH\nIRSON");
 	showBust("STEPH");
+	
+	flags["STEPH_WATCHED"] = 1;
+	
 	output("You flop down in a comfy couch near the front of the bar, looking up at a huge Super-HD Viewscreen mounted on the wall. As you sit down, the last commercial break is just coming to an end, telling you to buy Naughty Wyvern brand fibrecondoms before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a ");
 	if(hours < 11) output("bright sunrise ");
 	else if(hours < 17) output(" mellow afternoon sun ");
