@@ -1,4 +1,4 @@
-package classes.Characters 
+﻿package classes.Characters 
 {
 	import classes.CockClass;
 	import classes.Creature;
@@ -205,7 +205,7 @@ package classes.Characters
 			{
 				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			}
-			
+			kGAMECLASS.nyreaHeader(1,"FIGHT:");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

@@ -193,7 +193,7 @@ package classes.Characters
 			{
 				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			}
-			
+			kGAMECLASS.nyreaHeader(2,"FIGHT:");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

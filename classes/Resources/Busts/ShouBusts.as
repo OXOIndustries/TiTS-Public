@@ -101,6 +101,11 @@
 		public var Bust_KARA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
 		public var Bust_KARA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
+		public var Bust_NYREA_BETA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
+		public var Bust_NYREA_ALPHA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
