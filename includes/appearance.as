@@ -1149,7 +1149,7 @@ public function appearance(target:Creature):void {
 			//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
 			if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
 			{
-				output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
+				output2(" You estimate each of testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
 			}
 			//No dick mention? Great! Pronouns deployed!
 			else output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");

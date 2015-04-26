@@ -19,13 +19,13 @@ public function nyreaHeader(nyreaType:uint = NYREA_UNKNOWN, prefix:String = null
 		case NYREA_ALPHA:
 			if (prefix == null ) showName("ALPHA\nNYREA");
 			else showName(prefix + "\nALPHA NYREA");
-			showBust("ALPHANYREA");
+			showBust("NYREA_ALPHA");
 			break;
 			
 		case NYREA_BETA:
 			if (prefix == null ) showName("BETA\nNYREA");
 			else showName(prefix + "\nBETA NYREA");
-			showBust("BETANYREA");
+			showBust("NYREA_BETA");
 			break;
 		
 		default:
@@ -51,8 +51,6 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	var nyreaType:uint = NYREA_UNKNOWN;
 	var nyreaEggs:Boolean = false;
 
-	nyreaHeader(nyreaType);
-
 	if ((rand(10) < 4 && forceType == NYREA_UNKNOWN) || forceType == NYREA_ALPHA)
 	{
 		nyreaType = NYREA_ALPHA;
@@ -71,6 +69,7 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 			trace("Nyrea has eggs!");
 		}
 	}
+	nyreaHeader(nyreaType);
 
 	output("\n\nAs you make your way through the dark caverns, you become increasingly aware of a mounting feeling of unease. As if something is watching you, hidden just out of sight in the darkness of the tunnel. You slow your pace, hand drifting down to the");
 	if (pc.hasRangedWeapon()) output(" butt of your gun");
