@@ -622,11 +622,12 @@ public function initializeMyrellionRooms():void
 	//727 Girella’s Avenue
 	rooms["727"] = new RoomClass(this);
 	rooms["727"].roomName = "GIRELLA'S\nAVENUE";
-	rooms["727"].description = "More streetlamps burn here than anywhere else in the city, bathing the region in so much yellowish-white glow that you can almost forget the luminescent blue that’s so common everywhere else. You have to blink a few times to adjust to the brightness. Once you do, you realize why there are so many lights set up here - a club of some sort is positioned to the west. Maybe the lights attract myr like moths to a flame, or perhaps they’ve been set up to make surface races more comfortable.";
+	rooms["727"].description = "More streetlamps burn here than anywhere else in the city, bathing the region in so much yellowish-white glow that you can almost forget the luminescent blue that’s so common everywhere else. You have to blink a few times to adjust to the brightness. Once you do, you realize why there are so many lights set up here - a club of some sort is positioned to the west. A sign labels it \"The Honey Nozzle\". Maybe the lights attract myr like moths to a flame, or perhaps they’ve been set up to make surface races more comfortable.";
 	rooms["727"].planet = "PLANET: MYRELLION";
 	rooms["727"].system = "SYSTEM: SINDATHU";
 	rooms["727"].northExit = "726";
 	rooms["727"].southExit = "728";
+	rooms["727"].westExit = "748";
 	rooms["727"].moveMinutes = 2;
 	rooms["727"].runOnEnter = gildenmereStreetBonus;
 	rooms["727"].addFlag(GLOBAL.INDOOR);
@@ -900,6 +901,18 @@ public function initializeMyrellionRooms():void
 	rooms["747"].runOnEnter = irelliasThroneroomBonus;
 	rooms["747"].addFlag(GLOBAL.INDOOR);
 	rooms["747"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["748"] = new RoomClass(this);
+	rooms["748"].roomName = "THE\nHONEY NOZZLE";
+	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stores leads east back to the street.";
+	rooms["748"].planet = "PLANET: MYRELLION";
+	rooms["748"].system = "SYSTEM: SINDATHU";
+	rooms["748"].eastExit = "727";
+	rooms["748"].moveMinutes = 1;
+	rooms["748"].runOnEnter = dallySplash;
+	rooms["748"].addFlag(GLOBAL.INDOOR);
+	rooms["748"].addFlag(GLOBAL.PUBLIC);
+	rooms["748"].addFlag(GLOBAL.NPC);
 
 	//=========================================//
 	//     KRESSIA ROOMS. 800-899 reserved  //

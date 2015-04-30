@@ -2071,7 +2071,10 @@
 			if (isTreated() && this.mf("m", "f") == "m") return true;
 			return false;
 		}
-		
+		public function exhibitionism():Number
+		{
+			return 0;
+		}
 		public function cumflationEnabled():Boolean
 		{
 			return false;
