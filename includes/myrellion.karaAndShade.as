@@ -532,7 +532,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
+	if(!pc.meleeWeapon is Rock) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -549,7 +549,7 @@ public function helpKaraOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
-	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
+	if(!pc.meleeWeapon is Rock) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside Kara. The bounty hunter curses, waving her weapon between the two of you as she realizes things just took a turn for the worse.");
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";

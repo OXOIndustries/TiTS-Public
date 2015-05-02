@@ -227,7 +227,7 @@ public function defeatDane():void
 	userInterface.showName("DANE AND\n" + chars["RIVAL"].short.toUpperCase());
 	output("Slumping, the hulking ausar thug looks like he's close to giving in. Before you can finish this, explosions stitch up the ground in front of you, forcing you to dive for cover. The bass hum of thrusters in atmosphere greets you before the gusting backwash does, giving you enough time to put your arm up to block the worst of it. Dane stumbles into the ship, one blade falling from a numb grip to the ground behind him.");
 	output("\n\nThe hatch closes, but you're able to see [rival.short]'s pearly teeth behind [rival.eir] smile as it does. You ");
-	if(pc.rangedWeapon.shortName == "") output("chuck a few rocks");
+	if(pc.rangedWeapon is Rock) output("chuck a few rocks");
 	else output("crack off a few, half-hearted shots");
 	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you alone with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");

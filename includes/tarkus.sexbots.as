@@ -203,7 +203,7 @@ public function sexbotAI():void
 	}
 	//Disable ranged weapon
 	//(Procs if PC does not have shields and has fired at the sexbot)
-	if(pc.rangedWeapon.shortName != "" && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
+	if(!pc.rangedWeapon is Rock && !pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
 	//Recharge shield
 	//(Procs if Sexbot has lost shields)
 	if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;

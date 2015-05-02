@@ -81,7 +81,7 @@ public function approachCustomsFirstTime():void
 	clearMenu();
 	addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
 	addButton(1,"No Way!",noWayTexasJose,undefined,"No Way!","Refuse to be disarmed.");
-	if(pc.meleeWeapon.shortName == "" && pc.rangedWeapon.shortName == "") addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren't carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
+	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren't carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
 	else addDisabledButton(2,"No Weapons","No Weapons","You can't get by for having no weapons while actually carrying weapons. It just doesn't work. Come on, man.");
 
 }
