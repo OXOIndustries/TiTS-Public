@@ -110,7 +110,7 @@ public function noWeaponsInTexasHoss():void
 	showName("\nOGRAM");
 	showBust("OGRAM");
 	flags["REFUSED_TEXAN_DISARM"] = undefined;
-	output("\n\n<i>“I’m unarmed anyway,”</i> you say with a shrug.");
+	output("<i>“I’m unarmed anyway,”</i> you say with a shrug.");
 	output("\n\nOgram blinks. <i>“Huh. Did somebody actually read the FAQ on the website for once, or do you just prefer to lay in with your fists? Anyway, just sign the paperwork and you’re all good.”</i>");
 	//{Resume from Disarm, below}
 	customsPassFinale();
