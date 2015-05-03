@@ -1069,7 +1069,7 @@ public function intoDickgirlsAnno():void
 	output("<i>\"So, you're into girls with a little more?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form... as well as what lies");
 	if(pc.legCount > 1) output(" between");
 	else output(" along");
-	output(" your [pc.legOrlegs].");
+	output(" your [pc.legOrLegs].");
 	output("\n\nAnno grins. <i>\"I should hope so, or I've got some bad news for Kaede!\"</i> She laughs, taking a few moments to compose herself. <i>\"Yeah, yeah I do. There's something just... </i>right<i> about a curvy, sexy lady's body with a big, throbbing cock between her legs, you know? Soft and squishy in all the right places, but hard and powerful where it counts.\"</i>");
 	output("\n\n<i>\"So, why do you ask?\"</i> she teases, pressing herself close. <i>\"Thinking about asking little ol' me out?\"</i>");
 	output("\n\nThat sounded a little more serious than you expected...");
