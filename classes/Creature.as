@@ -6218,6 +6218,12 @@
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "black";
 			}
+			if (type == GLOBAL.TYPE_VANAE)
+			{
+				vaginas[slot].clits = 2;
+				vaginas[slot].vaginaColor = "luminous violet";
+				vaginas[slot].wetnessRaw = 4;
+			}
 		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
@@ -9592,7 +9598,7 @@
 				else return "rich";
 			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				if (temp <= 5) return "sweet";
-        		else return "fruity";
+				else return "fruity";
         	}
 			return "bland";
 		}

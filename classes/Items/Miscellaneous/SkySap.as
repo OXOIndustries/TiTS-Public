@@ -206,7 +206,7 @@
 				//Female TFs
 				choices = new Array();
 				for(x = 0; x < target.totalVaginas(); x++) {
-					if(target.vaginas[x].type != GLOBAL.TYPE_VANAE && target.vaginaTypeUnlocked(x, GLOBAL.TYPE_NAGA)) choices[choices.length] = x;
+					if(target.vaginas[x].type != GLOBAL.TYPE_VANAE && target.vaginaTypeUnlocked(x, GLOBAL.TYPE_VANAE)) choices[choices.length] = x;
 				}
 				if(choices.length == 0) x = -1;
 				else x = choices[rand(choices.length)];
