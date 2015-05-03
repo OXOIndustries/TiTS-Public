@@ -2547,7 +2547,7 @@ public function annosTriberatorGatorMatorHater():void
 	}
 	else //(Repeat encounter)
 	{
-		output("\n\nYou pick up the multi-purpose vibrator lying on Anno’s ");
+		output("You pick up the multi-purpose vibrator lying on Anno’s ");
 		if(annoIsCrew()) output("desk");
 		else output("bench");
 		output(" and playfully wave it in the air. As soon as you do, Anno straightens up, pushing out her bourgeoning breasts. Her snowy ears perk up and her tail excitedly swishes back and forth.");

@@ -2337,7 +2337,7 @@ public function cunnilingusWithEmbry():void
 	if(flags["GOTTEN_CUNNILINGUS_FROM_EMBRY"] == undefined) output("The");
 	else output("You nod and the");
 	output(" monkey girl ");
-	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerUnderGarments]. She then ");
+	if(pc.isCrotchGarbed()) output("strips off your [pc.lowerGarments]. She then ");
 	output("drapes her slender fingers down your belly, scraping it lightly with her fingertips. You shiver with delight as her fingers trail downwards, eventually reaching the threshold of your loins.");
 	output("\n\nHer hands slide around your [pc.thighs], and she pulls herself closer. Her perfect, pink lips press gently against the [pc.skinFurScales] of your ");
 	if(pc.legCount >= 2) output("inner thigh");
