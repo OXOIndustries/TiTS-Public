@@ -125,13 +125,13 @@ package classes.Items.Transformatives
 				output("Water splashing your face rouses you. At some point you passed out, but there’s a nice blue lady there with cute little antennae and big, bouncy breasts of her own. You try to remember how to string together words while your fingers go back to work, pumping and tugging on backed-up teats. The [pc.milk] pours in out thick streams made all the thicker by your dehydration.");
 				output("\n\nShe supplies the words for you. <i>“Too much Gush?”</i>");
 				output("\n\nYou moan and nod, giving her pleading eyes. Maybe she’ll suck on your nipple.");
-				output("\n\nSighing, she plugs your mouth with a water bottle and stands up, pulling out some kind of communicator. In this light, you can see that her blue skin is semi-translucent and as smooth as a latex sheet. She’s a rahn for sure, bound up in a nice, tight jump-suit that lets the her rounded asscheeks hang free. You suckle the water, too fucked on your own sensuous milking to care about an ounce of propriety.");
+				output("\n\nSighing, she plugs your mouth with a water bottle and stands up, pulling out some kind of communicator. In this light, you can see that her blue skin is semi-translucent and as smooth as a latex sheet. She’s a rahn for sure, bound up in a nice, tight jump-suit that lets her rounded asscheeks hang free. You suckle the water, too fucked on your own sensuous milking to care about an ounce of propriety.");
 				output("\n\nAfter a while, the blue woman turns back to you with a smile. <i>“You’re not going to be much good on your own anymore, babe, but don’t you worry.”</i>");
 				output("\n\nYou moan into the water bottle, aroused by your own helplessness and yet unable to care. It feels too good to worry.");
 				output("\n\n<i>“We’ll take good care of you, even get some top of the line milkers from New Texas to hook you up to. The governor owes me and Andgi a favor anyway.”</i>");
 				output("\n\nThe sound of suckling on an empty water bottle fills the air until your host tires of it and yanks it from your mouth. In a moment of clarify, you think to slur, <i>“Wass yer name?”</i>");
 				output("\n\nThe buxon alien pats your head. <i>“Aww, so you can still talk! Maybe I’ll sell you after all. Ones that can talk fetch a higher price.”</i> One hand crudely gropes at your plus-sized milkers, forcing out a thick eruption from a straining nipple. <i>“I’m Zo’dee, not that a prized milker like you will need to know that.”</i> She pauses and licks her lips. <i>“You don’t mind if I take a sample of my new property, do you?”</i>");
-				output("\n\nNew property? Sample? Your head is swimming but you’re milking so damned good that you forget how to say no. What could be wrong with agreeing? You nod your head.");
+				output("\n\nNew property? Sample? Your head is swimming but your milking feels so damned good that you forget how to say no. What could be wrong with agreeing? You nod your head.");
 				output("\n\nZo’dee giggles. <i>“Of course you’ll say yes, won’t you, my eager little [pc.milkNoun]-slut?”</i> She bends low for a drink, and when her lips meet your [pc.nipple], all you can do is moan your assent, forgetting your mission almost as fast as your new owner’s name.");
 			}
 			kGAMECLASS.badEnd();
@@ -286,9 +286,12 @@ package classes.Items.Transformatives
 					}
 					output("\n\nThe flesh under your palm feels <i>good</i> and... right, like it was molded to support the firm press of your digits, to feel every nook and cranny of your hand cup it and support it.");
 					if(pc.biggestTitSize() < 1) output(" There’s more than there used to be too, a wonderful softness that can only be the beginnings of a decent rack.");
-					else output(" There’s so much to hold on to, a marvellous new softness that can only be evidence of a perfectly swelling reck.");
+					else output(" There’s so much to hold on to, a marvellous new softness that can only be evidence of a perfectly swelling rack.");
 					output(" A throaty " + pc.mf("growl","purr") + " escapes your throat as you give yourself over to the sensations, aware for the first time that Gush has well and truly kicked in.");
-					output("\n\nJust like before, you find your sweater-puppies practically purring. They irresistibly demand your attention, suddenly the most important thing in the ");
+					output("\n\n");
+					if(kGAMECLASS.flags["USED_GUSH"] != undefined) output("Just like before, y");
+					else output("Y");
+					output("ou find your sweater-puppies practically purring. They irresistibly demand your attention, suddenly the most important thing in the ");
 					if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.INDOOR)) output("room");
 					else output("area");
 					output(". How could you have ignored them for so long? The regret inside you is soon replaced by delight, washed away by a need to live in the moment, worshipping your ");
@@ -364,7 +367,7 @@ package classes.Items.Transformatives
 			clearOutput();
 			var pc:PlayerCharacter = kGAMECLASS.pc;
 			output("You lose track of time under the psychosensory assault blasting out of your plentiful boobs. Thoughts of delight and pleasure bounce around, unattached to any sort of linear progression or chain of cognition as if they’re the only thing your brain has room for, and in a way, that’s true. Your beautiful bosom has monopolized your mind for its own ends, forcing your hands to endlessly worship your [pc.nipples]. Who are you to stop it, and why would you want to? It feels so good to pinch and tug and squirt!");
-			output("\n\nSeconds, minutes, and maybe even hours are passing, but they’re of little consequence to you. You’re lead, squirming and moaning, from one [pc.milk]-dripping orgasm to the next, coating yourself so thickly in the [pc.milkVisc] fluid that you its all you can smell anymore. Even if a whole crowd of aliens were to stop and stare, you wouldn’t be aware of them; your eyes are rolled back to far, and if they weren’t, you wouldn’t be looking at anything but your own fecund chest, drooling over how mind-meltingly sensual the very act of lactation has become.");
+			output("\n\nSeconds, minutes, and maybe even hours are passing, but they’re of little consequence to you. You’re lead, squirming and moaning, from one [pc.milk]-dripping orgasm to the next, coating yourself so thickly in the [pc.milkVisc] fluid that its all you can smell anymore. Even if a whole crowd of aliens were to stop and stare, you wouldn’t be aware of them; your eyes are rolled back to far, and if they weren’t, you wouldn’t be looking at anything but your own fecund chest, drooling over how mind-meltingly sensual the very act of lactation has become.");
 			output("\n\nSquirt. Gasp. Dribble. Moan and quiver. On and on, the cascades of ecstasy wash over you, exuded from your [pc.nipples] as easily as the constant streams, but eventually, even seemingly timeless pleasure must abate. You dimly become aware that your [pc.milkNoun] has stopped flowing, your reserves exhausted.");
 			output("\n\nYour [pc.nipples] still feel amazing, of course, so you continue to gently tug at them, begging them to give you a few last drops of [pc.milkNoun], but all they give is gradually fading delight. You manage to drag your eyes out from behind half-closed lids to look down and sigh in disappointment. Your [pc.chest] are no longer quite so mesmerizing.... Yes, they’re absolutely gorgeous, but you’re sure that you could look away or stop milking them... if you wanted to.");
 			output("\n\nAfter a few more minutes of raptly watching your finger’s attempts, you manage to stop yourself and catch your breath. What a trip! You still feel a wondrous kind of kinship with your [pc.chest] too, less like they’re a part of you and more like you’ve become a part of them, but that’s okay. There are worse things than having an enhanced portion of your body become so important.");
@@ -445,7 +448,7 @@ package classes.Items.Transformatives
 			//Increased ability to store milk (capacity multiplier). Maxes out at 3x normal.
 			else if(pc.milkStorageMultiplier < 3 && rand(2) == 0)
 			{
-				output("\n\nAfter a workout like that, you’re pretty confident <b>your [pc.chest] are going to be even better at holding milk</b>, something about more elastic mammary and duct tissue and fat deposit conversion. You remember reading it in your codex before, but it can’t compare to knowing you’re turning into a [pc.milkNoun]-squirting who could win milking competitions while cumming nonstop.");
+				output("\n\nAfter a workout like that, you’re pretty confident <b>your [pc.chest] are going to be even better at holding milk</b>, something about more elastic mammary and duct tissue and fat deposit conversion. You remember reading it in your codex before, but it can’t compare to knowing you’re turning into a [pc.milkNoun]-squirting machine who could win milking competitions while cumming nonstop.");
 				pc.milkStorageMultiplier += 0.25;
 				pc.lust(10);
 			}
