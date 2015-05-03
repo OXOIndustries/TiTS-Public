@@ -302,7 +302,7 @@
 		}
 		public function femininityLockedMessage():String 
 		{
-			return "";
+			return "Your face warms, but nothing happens.";
 		}
 		
 		public var eyeType: Number = 0;
@@ -312,7 +312,7 @@
 		}
 		public function eyeTypeLockedMessage():String
 		{
-			return "";
+			return "Your eye twitches, resisting a change.";
 		}
 		
 		public var eyeColor: String = "";
@@ -322,7 +322,7 @@
 		}
 		public function eyeColorLockedMessage():String 
 		{
-			return "";
+			return "Your eye twitches, resisting a change.";
 		}
 		
 		public var tallness: Number = 0;
@@ -332,7 +332,7 @@
 		}
 		public function tallnessLockedMessage():String
 		{
-			return "";
+			return "You feel momentarily drawn out, stretched even. The sensation passes as soon as it came.";
 		}
 
 		public var thickness: Number = 0;
@@ -342,7 +342,7 @@
 		}
 		public function thicknessLockedMessage():String
 		{
-			return "";
+			return "You feel momentarily bloated. It passes without incident.";
 		}
 
 		public var tone: Number = 0;
@@ -352,7 +352,7 @@
 		}
 		public function toneLockedMessage():String
 		{
-			return "";
+			return "Your twitch, feeling momentarily sore. Nothing seems to come of it.";
 		}
 
 		public var hairColor: String = "no";
@@ -363,7 +363,7 @@
 
 		public function hairColorLockedMessage():String
 		{
-			return "";
+			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
 		}
 
 		public var scaleColor: String = "blue";
@@ -373,7 +373,7 @@
 		}
 		public function scaleColorLockedMessage():String
 		{
-			return "";
+			return "Your scales briefly itch.";
 		}
 
 		public var furColor: String = "brown";
@@ -383,7 +383,7 @@
 		}
 		public function furColorLockedMessage():String
 		{
-			return "";
+			return "Your fur briefly itches.";
 		}
 
 		public var hairLength: Number = 0;
@@ -393,7 +393,7 @@
 		}
 		public function hairLengthLockedMessage():String
 		{
-			return "";
+			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
 		}
 
 		public var hairType: Number = 0;
@@ -403,7 +403,7 @@
 		}
 		public function hairTypeLockedMessage():String
 		{
-			return "";
+			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
 		}
 		
 		public var beardLength: Number = 0;
@@ -413,7 +413,7 @@
 		}
 		public function beardLengthLockedMessage():String
 		{
-			return "";
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
 		public var beardStyle: Number = 0;
@@ -423,7 +423,7 @@
 		}
 		public function beardStyleLockedMessage():String
 		{
-			return "";
+			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
 		public var skinType: Number = 0;
@@ -433,7 +433,7 @@
 		}
 		public function skinTypeLockedMessage():String
 		{
-			return "";
+			return "Your [pc.skin] briefly itches, but nothing happens.";
 		}
 
 		public var skinTone: String = "albino";
@@ -444,7 +444,7 @@
 		}
 		public function skinToneLockedMessage():String
 		{
-			return "";
+			return "Your [pc.skin] briefly itches, but nothing happens.";
 		}
 
 		public var skinFlags: Array = new Array();
@@ -454,7 +454,7 @@
 		}
 		public function skinFlagsLockedMessage():String
 		{
-			return "";
+			return "Your [pc.skin] briefly itches, but nothing happens.";
 		}
 
 		public var faceType: Number = 0;
@@ -464,7 +464,7 @@
 		}
 		public function faceTypeLockedMessage():String
 		{
-			return "";
+			return "Your [pc.face] briefly itches, but nothing happens.";
 		}
 
 		public var faceFlags: Array = new Array();
@@ -474,7 +474,7 @@
 		}
 		public function faceFlagsLockedMessage():String
 		{
-			return "";
+			return "Your [pc.face] briefly itches, but nothing happens.";
 		}
 
 		public var tongueType: Number = 0;
@@ -484,7 +484,7 @@
 		}
 		public function tongueTypeLockedMessage():String
 		{
-			return "";
+			return "Your [pc.tongue] feels odd in your mouth but doesn't change.";
 		}
 
 		public var tongueFlags: Array = new Array();
@@ -494,7 +494,7 @@
 		}
 		public function tongueFlagsLockedMessage():String
 		{
-			return "";
+			return "Your [pc.tongue] feels odd in your mouth but doesn't change.";
 		}
 
 		public var lipMod:Number = 0;
@@ -504,7 +504,7 @@
 		}
 		public function lipModLockedMessage():String
 		{
-			return "";
+			return "Your lips feel momentarily hot, but a quick lick confirms that nothing has changed.";
 		}
 		public var lipColor:String = "peach";
 
@@ -515,7 +515,7 @@
 		}
 		public function earTypeLockedMessage():String
 		{
-			return "";
+			return "Your ears are burning. Someone must be talking about you.";
 		}
 
 		public var antennae: Number = 0;
@@ -525,7 +525,7 @@
 		}
 		public function antennaeLockedMessage():String
 		{
-			return "";
+			return "Your antennae are burning. Someone must be thinking about you.";
 		}
 		
 		public var antennaeType: Number = 0;
@@ -535,7 +535,7 @@
 		}
 		public function antennaeTypeLockedMessage():String
 		{
-			return "";
+			return "Your antennae are burning. Someone must be thinking about you.";
 		}
 		
 		public var horns: Number = 0;
@@ -545,7 +545,7 @@
 		}
 		public function hornsLockedMessage():String
 		{
-			return "";
+			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
 		public var hornType: Number = 0;
@@ -555,7 +555,7 @@
 		}
 		public function hornTypeLockedMessage():String
 		{
-			return "";
+			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
 		public var hornLength: Number = 0;
@@ -565,7 +565,7 @@
 		}
 		public function hornLengthLockedMessage():String
 		{
-			return "";
+			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
 		public var armType: Number = 0;
@@ -575,7 +575,7 @@
 		}
 		public function armTypeLockedMessage():String
 		{
-			return "";
+			return "You arms twitch yet resist changing.";
 		}
 		
 		public var gills: Boolean = false;
@@ -585,7 +585,7 @@
 		}
 		public function gillsLockedMessage():String
 		{
-			return "";
+			return "You gills flutter but do not change.";
 		}
 		
 		public var wingType: Number = 0;
@@ -595,7 +595,7 @@
 		}
 		public function wingTypeLockedMessage():String
 		{
-			return "";
+			return "You wings flutter but do not change.";
 		}
 
 		public var legType: Number = 0;
@@ -608,7 +608,7 @@
 		{
 			if (this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right") || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
 			if (this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
-			return "";
+			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
 		
 		public var legCount: Number = 2;
@@ -621,7 +621,7 @@
 		{
 			if ((this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right")) || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Your " + foot() + " clenches to an uncomfortable degree, refusing to be removed. The Mimbrane surrounding the extremity seems to counteract any attempts to remove its home.";
 			if (this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Your " + feet() + " clench to an uncomfortable degree, refusing to be removed. The Mimbranes surrounding the extremities seem to counteract any attempts to remove their home.";
-			return "";
+			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
 		
 		public var legFlags: Array = new Array();
@@ -631,7 +631,7 @@
 		}
 		public function legFlagsLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
 		
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
@@ -641,7 +641,7 @@
 		}
 		public function cumTypeLockedMessage():String
 		{
-			return "";
+			return "Your body fights an internal change, resisting a transformation.";
 		}
 		
 		//0 - Waist
@@ -655,7 +655,7 @@
 		}
 		public function genitalSpotLockedMessage():String
 		{
-			return "";
+			return "Your body fights an internal change, resisting a transformation.";
 		}
 
 		public function genitalLocation(): Number {
@@ -681,7 +681,7 @@
 				else msg += " it's busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
 				return msg;
 			}
-			return "";
+			return "Despite the heat at the base of your spine, nothing changes back there.";
 		}
 		
 
@@ -692,7 +692,7 @@
 		}
 		public function tailCountLockedMessage():String
 		{
-			return "";
+			return "Despite the heat at the base of your spine, nothing changes back there.";
 		}
 
 		public var tailFlags: Array = new Array();
@@ -702,7 +702,7 @@
 		}
 		public function tailFlagsLockedMessage():String
 		{
-			return "";
+			return "Despite the heat at the base of your spine, nothing changes back there.";
 		}
 		
 		//Used to set cunt or dick type for cunt/dick tails!
@@ -713,7 +713,7 @@
 		}
 		public function tailGenitalArgLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your [pc.tails], nothing changes back there.";
 		}
 		
 		//tailGenital:
@@ -727,7 +727,7 @@
 		}
 		public function tailGenitalLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your [pc.tails], nothing changes back there.";
 		}
 		
 		public var tailGenitalColor:String = "pink";
@@ -737,7 +737,7 @@
 		}
 		public function tailGenitalColorLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your [pc.tails], nothing changes back there.";
 		}
 
 		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
@@ -784,7 +784,7 @@
 		}
 		public function hipRatingLockedMessage():String
 		{
-			return "";
+			return "Your [pc.hips] tremble, assaulted by sudden warmth, but it fades away without changing a thing. Your body resisted that transformation for some reason.";
 		}
 
 		//buttRating
@@ -829,7 +829,7 @@
 		}
 		public function buttRatingLockedMessage():String
 		{
-			return "";
+			return "Your [pc.butt] warms, but nothing happens.";
 		}
 		
 		//Key items
@@ -863,7 +863,7 @@
 		}
 		public function cockLengthLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 
 		public function cockThicknessUnlocked(cockIndex:int, newCockThickness:Number):Boolean
@@ -872,7 +872,7 @@
 		}
 		public function cockThicknessLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 
 		public function cockTypeUnlocked(cockIndex:int, newCockType:Number):Boolean
@@ -881,7 +881,7 @@
 		}
 		public function cockTypeLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 
 		public function knotMultiplierUnlocked(cockIndex:int, newKnotMulti:Number):Boolean
@@ -890,7 +890,7 @@
 		}
 		public function knotMultiplierLockedMessage():String
 		{
-			return "";
+			return "Your knot warms, but nothing happens.";
 		}
 
 		public function flacidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
@@ -899,7 +899,7 @@
 		}
 		public function flacidMultiplierLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 
 		public function cockFlagsUnlocked(cockIndex:int, newFlags:*):Boolean
@@ -908,7 +908,7 @@
 		}
 		public function cockFlagsLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 
 		//balls
@@ -921,7 +921,8 @@
 		public function ballsLockedMessage():String
 		{
 			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " +  sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
-			return "";
+			if(balls > 0) return "Despite the heat in your [pc.balls], nothing changed down there.";
+			else return "Despite the heat in your groin, nothing changed down there.";
 		}
 
 		public var ballSizeRaw:Number = 1;
@@ -967,7 +968,8 @@
 		}
 		public function ballSizeLockedMessage():String
 		{
-			return "";
+			if(balls > 0) return "Despite the heat in your [pc.balls], nothing changed down there.";
+			else return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
 		public var ballFullness: Number = 50;
@@ -978,7 +980,8 @@
 		}
 		public function ballFullnessLockedMessage():String
 		{
-			return "";
+			if(balls > 0) return "Despite the heat in your [pc.balls], nothing changed down there.";
+			else return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
 		//Number of cumshots a day the PC can hold
@@ -996,7 +999,7 @@
 		}
 		public function vaginaTypeLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 
 		public function clitsUnlocked(vagIndex:int, newClitNumber:int):Boolean
@@ -1005,7 +1008,7 @@
 		}
 		public function clitsLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 
 		public function wetnessUnlocked(vagIndex:int, newWetness:Number):Boolean
@@ -1014,7 +1017,7 @@
 		}
 		public function wetnessLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 
 		public function loosenessUnlocked(vagIndex:int, newLooseness:Number):Boolean
@@ -1023,7 +1026,7 @@
 		}
 		public function loosenessLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 
 		public var clitLength: Number = .5;
@@ -1033,7 +1036,7 @@
 		}
 		public function clitLengthLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
 		public var elasticity: Number = 1;
@@ -1045,7 +1048,7 @@
 		}
 		public function girlCumTypeLockedMessage():String
 		{
-			return "";
+			return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
 		public var vaginalVirgin: Boolean = true;
@@ -1057,7 +1060,8 @@
 		}
 		public function breastsLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 
 		public function nippleTypeUnlocked(bRowIndex:int, newNippleType:Number):Boolean
@@ -1066,7 +1070,8 @@
 		}
 		public function nippleTypeLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
@@ -1075,7 +1080,8 @@
 		}
 		public function breastRatingLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 
 		public var nippleColor: String = "pink";
@@ -1085,7 +1091,8 @@
 		}
 		public function nippleColorLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		
 		public var nipplesPerBreast: int = 1;
@@ -1095,7 +1102,8 @@
 		}
 		public function nipplesPerBreastLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		
 		public var nippleLengthRatio: Number = 1;
@@ -1105,7 +1113,8 @@
 		}
 		public function nippleLengthRatioLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		
 		public var nippleWidthRatio: Number = 1;
@@ -1115,7 +1124,8 @@
 		}
 		public function nippleWidthRatioLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		
 		public var dickNippleMultiplier: int = 3;
@@ -1125,7 +1135,8 @@
 		}
 		public function dickNippleMultiplierLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		
 		public var dickNippleType: int = 0;
@@ -1135,7 +1146,8 @@
 		}
 		public function dickNippleTypeLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		//This tracks whether or not the PC is actually producing yet. 0 to 100 with milk lactation starting above 50.
 		public var milkMultiplier: Number = 0;
@@ -1146,7 +1158,8 @@
 		}
 		public function milkTypeLockedMessage():String
 		{
-			return "";
+			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
+			else return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
 		//This effects how much milk your tits can hold relative to human norms. High numbers = milk singularity
 		public var milkStorageMultiplier:Number = 1;
@@ -4825,7 +4838,11 @@
 			return (total >= arg);
 		}
 		public function hasKnot(arg: int = 0): Boolean {
-			if (arg > cockTotal() - 1 || arg < 0) return false;
+			if (arg > cockTotal() - 1 || arg < 0) 
+			{
+				trace("ERROR: tried to check for a knot on a penis (#" + arg + ") that doesn't exist.");
+				return false;
+			}
 			return (cocks[arg].hasFlag(GLOBAL.FLAG_KNOTTED));
 		}
 		public function hasAKnot(): Boolean {
@@ -6379,7 +6396,7 @@
 		}
 		public function createCockLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 		
 		//create vagoo
@@ -6414,7 +6431,7 @@
 		}
 		public function createVaginaLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 		
 		//create a row of breasts
@@ -6430,7 +6447,7 @@
 		}
 		public function createBreastRowsLockedMessage():String
 		{
-			return "";
+			return "Your crotch warms, but nothing happens.";
 		}
 		
 		public function removeJunk(array:Array, arraySpot:int, totalRemoved:int): void {
@@ -6466,7 +6483,7 @@
 		public function removeCocksLockedMessage():String 
 		{
 			if (this.hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
-			return "";
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 		
 		//Remove cock
@@ -6482,7 +6499,7 @@
 		public function removeCockLockedMessage():String
 		{
 			if (cocks.length == 1 && this.hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
-			return "";
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 		
 		//Remove vaginas
@@ -6499,7 +6516,7 @@
 		public function removeVaginasLockedMessage():String
 		{
 			if (this.hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
-			return "";
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";;
 		}
 
 		//Remove vaginas
@@ -6514,7 +6531,7 @@
 		public function removeVaginaLockedMessage():String
 		{
 			if (vaginas.length == 1 && this.hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
-			return "";
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";;
 		}
 
 		//Remove a breast row
@@ -6529,7 +6546,7 @@
 		public function removeBreastRowLockedMessage():String
 		{
 			if (breastRows.length == 1 && this.hasStatusEffect("Mimbrane Boobs")) return "Your " + allChestDesc() + " pulls from your body with a tremendous force, resisting the attempt to flatten your girlish curves. The Mimbrane mounds refuse to be deflated, it seems.";
-			return "";
+			else return "Your body practically glows with chest-focused effort, keeping you from losing your [pc.chest].";;
 		}
 
 		public function race(): String {
