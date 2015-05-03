@@ -232,7 +232,7 @@
 				if(!pc.hasVagina() && changes < changeLimit && rand(4) == 0 && hasVanaeSkinColor(pc))
 				{
 					outputB("\n\nDeep in your lower abdomen, you feel a hot pooling sensation growing and coiling tight. You rub your belly, moaning as it steadily intensifies. Soon you're on the ground touching between your [pc.thighs], stroking a place that is now becoming incredibly hot. It feels like you're about to cum, but ");
-					if(pc.hasCock()) outputB("not from your " + pc.cocksDescript);
+					if(pc.hasCock()) outputB("not from your " + pc.cocksDescript());
 					else outputB("not from your [pc.ass]");
 					outputB("!");
 
@@ -242,6 +242,7 @@
 					pc.vaginas[0].type = GLOBAL.TYPE_VANAE;
 					pc.vaginas[0].vaginaColor = getVanaeAccentColor(pc);
 					pc.vaginas[0].clits = 2;
+					pc.clitLength = 0.25;
 					pc.vaginas[0].wetnessRaw = 4;
 					changes++;
 				}
