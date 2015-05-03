@@ -5948,7 +5948,12 @@
 			trace("Cum produced: " + quantity);
 			if (quantity < 2) quantity = 2;
 			//Super high refractory raises minimum.
-			if (refractoryRate >= 50 && quantity < 15) quantity = 15;
+			if (refractoryRate >= 3 && quantity < 15) quantity = 15;
+			if (refractoryRate >= 5 && quantity < 30) quantity = 30;
+			if (refractoryRate >= 8 && quantity < 50) quantity = 50;
+			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
+			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
+			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			return quantity;

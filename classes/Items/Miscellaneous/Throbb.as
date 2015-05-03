@@ -205,7 +205,7 @@
 
 				pc.ballSizeRaw = newBallSize;
 				
-				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>You got bigger [pc.balls]!</b>");
+				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>Your [pc.balls] got bigger!</b>");
 				changes++;
 			}
 			else if (!pc.ballSizeUnlocked(newBallSize))
