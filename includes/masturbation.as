@@ -78,7 +78,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 	
-	if ((pc.canLactate() && !roundTwo) || (pc.isLactating() && pc.milkFullness >= 70 && roundTwo))
+	if (((pc.canLactate() || pc.milkQ() >= 200) && !roundTwo) || (pc.isLactating() && pc.milkFullness >= 70 && roundTwo))
 	{
 		if (pc.hasItem(new MagicMilker(), 1))
 		{
@@ -1017,7 +1017,7 @@ public function milkturbation():void
 	output(", you grab your [pc.chest] and squeeze, rubbing gently towards your [pc.nipples] to coax yourself into letting down. The lactating flesh feels wonderful in your hands, and you shudder with barely suppressed delight at how good it feels to get yourself ready.");
 
 	//No Milk, Bra. Try but fail. Minor lust increase.
-	if(!pc.isLactating() || pc.milkQ() < 200) 
+	if(!pc.isLactating() && pc.milkQ() < 200) 
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
@@ -1056,9 +1056,9 @@ public function milkturbation():void
 			output("\n\nPerhaps a minute passes; you can feel the liquid slowly moving inside of you, letting down towards your [pc.nipples]. You groan when the moisture hits your questing fingertips, lubricating their busy strokes across your bust. The [pc.milk] is soon leaking out enough to form droplets on the ends of your teats. You smile down at yourself, gloating over your own [pc.milkColor]-leaking chest as you get ready to drain your [pc.fullChest].");
 		}
 		//Gotta work pretty hard to start intro
-		else {
+		/*else {
 			output("\n\nNo amount of tugging, squeezing, and pulling seems to be making any difference. You know you have some [pc.milk] inside you, not much but certainly enough to lactate. If only you could get it started! Groaning softly as your efforts turn your [pc.nipples], you keep at it with a persistence born of lactic desire. Dribbles of moisture trickle out eventually. To you, they're the texture of success, and you beam with enjoyment as you prepare to drain the rest.");
-		}
+		}*/
 		//Middle: Express a small amount of milk for a human
 		if(pc.milkQ() < 300)
 		{
