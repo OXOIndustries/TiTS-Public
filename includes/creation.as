@@ -182,6 +182,7 @@ public function setStartingSex(sex:int = 1):void {
 		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
 		return;
 	}
+	//Male or herm? Dick stuff.
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
 		pc.balls = 2;
@@ -233,6 +234,7 @@ public function setStartingSex(sex:int = 1):void {
 		}
 
 	}
+	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
 		pc.createVagina();
 		if(pc.originalRace == "half-leithan")
@@ -249,6 +251,10 @@ public function setStartingSex(sex:int = 1):void {
 		if(pc.originalRace == "half-ausar") {
 			pc.vaginas[0].bonusCapacity = 20;
 			pc.elasticity = 1.3;
+		}
+		if(pc.originalRace == "half kui-tan")
+		{
+			pc.vaginas[0].vaginaColor = "black";
 		}
 		if(sex == 3) {
 			pc.femininity = 75;
