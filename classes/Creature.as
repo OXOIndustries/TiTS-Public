@@ -6246,6 +6246,10 @@
 				vaginas[slot].vaginaColor = "luminous violet";
 				vaginas[slot].wetnessRaw = 4;
 			}
+			if(type == GLOBAL.TYPE_KUITAN)
+			{
+				vaginas[slot].vaginaColor = "black";
+			}
 		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {

@@ -12,6 +12,8 @@ import classes.Characters.PlayerCharacter;
 import classes.Characters.SecurityDroids;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
+import classes.Characters.Varmint;
+import classes.Characters.gooArmor;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -19,7 +21,6 @@ import classes.Items.Accessories.TamWolfDamaged;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
-import classes.Characters.Varmint;
 import classes.Engine.Combat.applyDamage;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
@@ -3721,9 +3722,9 @@ public function pcGooClone(target:Creature):void
 	
 	target.lust(3 + rand(3));
 	
-	pc.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", "[goo.name] has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
+	pc.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
 	pc.armor.defense = 1;
-	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", "[goo.name] is busy distracting your foes!", true, 0);
+	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
 	processCombat();
 }
 

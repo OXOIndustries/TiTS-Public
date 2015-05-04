@@ -115,7 +115,7 @@
 		public static const TYPE_DEMONIC:int                                = 15;
 		public static const TYPE_GOOEY:int                                  = 16;
 		public static const TYPE_KANGAROO:int                               = 17;
-		public static const TYPE_TANUKI:int                                 = 18;
+		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
 		public static const TYPE_DEER:int                                   = 21;
@@ -311,7 +311,6 @@
 			TYPE_LIZAN,
 			TYPE_DEMONIC,
 			TYPE_KANGAROO,
-			TYPE_TANUKI,
 			TYPE_DEER,
 			TYPE_PANDA,
 			TYPE_MLP,
@@ -599,6 +598,7 @@
 			TYPE_SYNTHETIC,
 			TYPE_LAPINARA,
 			TYPE_VANAE,
+			TYPE_KUITAN,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

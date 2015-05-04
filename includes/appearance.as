@@ -526,7 +526,11 @@ public function appearance(target:Creature):void {
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_DRACONIC) output2(" A thin, scaly, prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");		
-		else if(target.tailType == GLOBAL.TYPE_KUITAN) output2(" A black-and-" + target.hairColor + "-ringed kui-tan tail waves behind you.");
+		else if(target.tailType == GLOBAL.TYPE_KUITAN) 
+		{
+			if(target.furColor == "black") output2(" A solid-black kui-tan tail waves behind you.");
+			else output2(" A black-and-" + target.furColor + "-ringed kui-tan tail waves behind you.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");

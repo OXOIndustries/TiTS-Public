@@ -29,7 +29,7 @@
 			this.description = "a suit of armor constructed from an active gray goo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You busty, bouncing resident bodysuit of goo. [goo.name] is a silvery-gray bimbo programmed to seek pleasure and friendship, and who will valiantly defend you so long as you give her all the benefits that your special friendship brings.";
+			this.tooltip = "Your busty, bouncing resident bodysuit of goo. [goo.name] is a silvery-gray bimbo programmed to seek pleasure and friendship, and who will valiantly defend you so long as you give her all the benefits that your special friendship brings.";
 		
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
