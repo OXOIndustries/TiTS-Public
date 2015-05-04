@@ -9621,7 +9621,7 @@
 			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				if (temp <= 5) return "sweet";
 				else return "fruity";
-        	}
+			}
 			return "bland";
 		}
 		public function fluidViscosity(arg: int):String {

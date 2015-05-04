@@ -375,10 +375,14 @@ public function flyMenu():void {
 	clearOutput();
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
 	{
-		output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
-		clearMenu();
-		addButton(14,"Back",mainGameMenu);
-		return;
+		if(pc.hasEquippedWeapon())
+		{
+			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
+			clearMenu();
+			addButton(14,"Back",mainGameMenu);
+			return;
+		}
+		else pc.removeStatusEffect("Disarmed");
 	}
 	output("Where do you want to go?");
 	this.clearMenu();
