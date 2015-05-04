@@ -1728,9 +1728,9 @@ public function gooDickFap():void
 	if (pc.isCrotchGarbed() || pc.isChestGarbed())
 	{
 		output(" Tendrils of goo peel off your");
-		if (pc.isCrotchGarbed()) output(" [pc.lowerUnderGarment]");
+		if (pc.isCrotchGarbed()) output(" [pc.lowerGarment]");
 		if (pc.isCrotchGarbed() && pc.isChestGarbed()) output(" and");
-		if (pc.isChestGarbed()) output(" [pc.upperUnderGarment]");
+		if (pc.isChestGarbed()) output(" [pc.upperGarment]");
 		output(", taking time to");
 		if (pc.hasCock() || pc.hasVagina())
 		{
@@ -1798,7 +1798,7 @@ public function gooDickFap():void
 
 	output("\n\n<i>“Mmm, you’re");
 	if (tLooseness >= 4) output(" nice and loose for me!”</i> [goo.name] giggles, shifting her goo like a hand caressing your asscheeks. <i>“Been finding some big, fat cocks to sit on? Or are you just loosening up until I can fit, like, all the way inside you?”</i>");
-	else if (tLooseness <= 1) output(" sooooo, like, tight and squeezy!”</i> to goo giggles, pumping her slick hips against your [pc.butt]. <i>“We’re gonna have to loosen you up a little!”</i>");
+	else if (tLooseness <= 1) output(" sooooo, like, tight and squeezy!”</i> the goo giggles, pumping her slick hips against your [pc.butt]. <i>“We’re gonna have to loosen you up a little!”</i>");
 	else
 	{
 		output(" all kinds of amazing back here!”</i> [goo.name] grins, wiggling her dick");
@@ -1828,7 +1828,7 @@ public function gooDickFap():void
 	if (pc.hasVagina()) output(" and pussy");
 	output(", pounding you with fast, hard strokes. The gooey prick in your mouth begins to throb and sputter, drooling grey faux-spunk onto your [pc.tongue] in simulated orgasm - [goo.name]’s really going all out to give you the complete fucked-into-submission experience!");
 	
-	output("\n\nYou groan appreciatively around her twitching goo-cock, feeling your body approaching climax. With a final cry. Surrendering to the pleasure, your [pc.asshole]");
+	output("\n\nYou groan appreciatively around her twitching goo-cock, feeling your body approaching climax. With a final cry, surrendering to the pleasure, your [pc.asshole]");
 	if (pc.hasVagina()) output(" and cunt");
 	output(" contract");
 	if (!pc.hasVagina()) output("s");

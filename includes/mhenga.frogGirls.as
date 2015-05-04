@@ -487,10 +487,10 @@ public function frogGirlFootJoerb():void
 	if(pc.cumQ() > 250) output("and chest");
 	output(" with [pc.cum].");
 	if(pc.cumQ() > 1000) output(" Ropes of [pc.cumColor] jizz land on her face, obscuring her vision as she gasps for breath, recovering from the onslaught of pleasure that you’ve burdened her with.");
-	output("\n\nYou collect your [pc.gear], leaving the beleaguered frog-girl to rest. A flush runs through your body as you return to your mission. Her venomous sweat must not have completely worn off.");
+	output("\n\nYou collect your [pc.gear], leaving the beleaguered frog-girl to rest. A flush runs through your body as you return to your mission. Her venomous sweat must not have completely worn off.\n\n");
 	processTime(45+rand(15));
 	pc.orgasm();
-	genericLoss();
+	genericVictory();
 }
 
 //Naleen huntress rescue/ambush
