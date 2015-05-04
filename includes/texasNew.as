@@ -79,7 +79,8 @@ public function approachCustomsFirstTime():void
 	processTime(2);
 	//[Disarm] [No Way!] [No Weapons!]
 	clearMenu();
-	addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
+	if(pc.hasEquippedWeapon()) addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
+	else addDisabledButton(0,"Disarm","Disarm","You don't have any weapons to disarm!");
 	addButton(1,"No Way!",noWayTexasJose,undefined,"No Way!","Refuse to be disarmed.");
 	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren't carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
 	else addDisabledButton(2,"No Weapons","No Weapons","You can't get by for having no weapons while actually carrying weapons. It just doesn't work. Come on, man.");
@@ -135,6 +136,7 @@ public function customsPassFinale():void
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n<i>“Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...”</i> He shudders a little bit, barely muting a curse. <i>“Uh, real soon.”</i>");
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	if(pc.hasEquippedWeapon()) flags["CHECKED_GEAR_AT_OGGY"] = 1;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",visitorDeskApproach);
@@ -187,7 +189,7 @@ public function customsFucksYourShitUp():void
 	author("Savin");
 	showName("\nOGRAM");
 	showBust("OGRAM");
-	output("<i>“Hey, " + pc.mf("buddy","beautiful") + ", where do you think you’re going?”</i> Ogram says, standing up behind his desk. <i>“No weapons past this point. Come over here and check ‘em, or you’re going nowhere.”</i>");
+	output("<i>“Hey, " + pc.mf("buddy","beautiful") + ", where do you think you’re going?”</i> Ogram says, standing up behind his desk. <i>“Nobody passes the checkpoint without a search, even repeat VIPs.”</i>");
 	output("\n\nWhoops.");
 	currentLocation = "TEXAS CUSTOMS";
 	clearMenu();
@@ -246,6 +248,7 @@ public function rearmAtOgram():void
 	output("<i>“Alright, let’s see what we’ve got here,”</i> Ogram says, popping open the container behind his desk and pulling out your gear. He compares the bundle to the tag attached to it, checks something on his holo-terminal, and hands it over to you. <i>“Just sign here, and you’re all set.”</i>");
 	output("\n\nYou do so, and are promptly handed a bundle with your weapons in it. <i>“Cool. Take care out there, " + pc.mf("buddy","beautiful") + ".”</i>");
 	pc.removeStatusEffect("Disarmed");
+	flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -258,9 +261,19 @@ public function getDisarmedRepeat():void
 	author("Savin");
 	showName("\nOGRAM");
 	showBust("OGRAM");
-	output("<i>“Ready to check your weapons? Cool, just hand ‘em over and put your Hancock on this form here,”</i> Ogram says, handing over a dataslate. You fill out the form and hand your gear over, watching as Og tags it and stows your armaments away in the container behind his desk.");
-	output("\n\n<i>“Alright, good to go,”</i> he says, closing the container and checking the forms. <i>“Have a good one.”</i>");
+	output("<i>“Ready to check your weapons? Cool, just hand ‘em over and put your Hancock on this form here,”</i> Ogram says, handing over a dataslate. ");
+	if(pc.hasEquippedWeapon())
+	{
+		output("You fill out the form and hand your gear over, watching as Og tags it and stows your armaments away in the container behind his desk.");
+		output("\n\n<i>“Alright, good to go,”</i> he says, closing the container and checking the forms. <i>“Have a good one.”</i>");
+		flags["CHECKED_GEAR_AT_OGGY"] = 1;
+	}
+	else
+	{
+		output("You casually inform him that you don't have any weapons, watching as Og's eyebrow climbs steadily higher.\n\n<i>“I'll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you're clear. Have a good one.”</i>");
+	}
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You've checked all forms of weaponry at New Texas' customs.",false,0);
+	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
