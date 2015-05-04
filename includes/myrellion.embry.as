@@ -283,7 +283,7 @@ this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 public function showEmbry(nude:Boolean = false):void
 {
-	showName("\nEMBRY");
+	showName("\n" + embry.short.toUpperCase());
 	if(flags["EMBRY_TREATMENTS"] == undefined || flags["EMBRY_TREATMENTS"] == 0) 
 	{
 		if(nude) showBust("EMBRY_0_NUDE");
@@ -1503,6 +1503,7 @@ public function youPickYerNameBabe():void
 // Merge
 public function chooseANewNameEmbryFinal():void
 {
+	showSimii();
 	output("\n\nShe leans over, and ");
 	if(flags["EMBRY_RELATIONSHIP"] != 3) output("kisses you on the cheek.");
 	else output("gives you a sweet, little kiss.");
