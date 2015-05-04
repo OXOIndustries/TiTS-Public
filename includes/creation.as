@@ -245,16 +245,13 @@ public function setStartingSex(sex:int = 1):void {
 		}
 		if(pc.originalRace == "half-ausar") {
 			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity = 10;
-			pc.elasticity = 1.25;
-		}
-		if(pc.originalRace == "half-ausar") {
 			pc.vaginas[0].bonusCapacity = 20;
-			pc.elasticity = 1.3;
+			pc.elasticity = 1.25;
 		}
 		if(pc.originalRace == "half kui-tan")
 		{
-			pc.vaginas[0].vaginaColor = "black";
+			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
+			//pc.vaginas[0].wetnessRaw = 1;
 		}
 		if(sex == 3) {
 			pc.femininity = 75;
