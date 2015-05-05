@@ -1923,3 +1923,186 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+
+
+//Masturbation (Public)
+// By JimThermic
+// Libido req: 30+
+// Need to be in public place, obv.
+// Taurs play with their tits. Non-taurs play with their cocks, pussies, or ass, searching for their existence in that order. This is an everybody scene with a number of 'if' statements.
+
+function goddamnitJimTAndYourExhibitionism():void
+{
+	clearOutput();
+	showName("BLOWING\nOFF STEAM");
+	if(silly) author("JimThermite the Termite");
+	else author("JimThermic");
+
+	//GotLowerGarment - armor or underwear:
+	if(pc.isCrotchGarbed())
+	{
+		output("Void, you're so damn horny! Beneath your [pc.lowerGarment], your loins ache needily.");
+		if(pc.hasCock() || pc.hasVagina()) 
+		{
+			output("Throbbing with need,");
+			if(pc.hasCock()) 
+			{
+				output(" your [pc.cocks] ");
+				if(pc.cockTotal() == 1) output("is pitching a tent");
+				else output("are pitching tents");
+				if(pc.hasVagina()) output(", and ");
+				else output(" in");
+			}
+			//GotPussies:
+			if(pc.hasVagina()) 
+			{
+				output(" your [pc.pussies] ");
+				if(pc.totalVaginas() == 1) output("is");
+				else output("are");
+				output(" rubbing wetly against");
+			}
+			output(" the all-too constricting fabric.");
+		}
+	}
+	//else / Bottom Nudefucker:
+	else
+	{
+		output("Void, you're so damn horny! Your loins ache with need, your bare crotch begging to be attended to.");
+	}
+
+	output("\n\nWith a flushing face, you look around. You're still in public. Could you masturbate... here? In front of all these people?");
+
+	output("\n\nYou look into their eyes as the ");
+	//Tavros:
+	if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
+	else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbethian citizens");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("Raskvel");
+	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
+	else output("onlookers");
+	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
+
+	//PCWearingArmor:
+	if(!pc.armor is EmptySlot)
+	{
+		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
+		//GotUpperUndergarment:
+		if(!pc.upperUndergarment is EmptySlot) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
+		if(!pc.lowerUndergarment is EmptySlot) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
+	}
+	//Else if (PCNoArmor but wearing Upper and/or Lower Undergarment):
+	else if(!pc.isNude())
+	{
+		output("\n\nBefore their gaze, you begin touching yourself. Of course, they're already <i>looking</i>, what with you traipsing around in nothing but your ");
+		if(pc.isChestGarbed()) output("[pc.upperGarment]");
+		if(pc.isChestGarbed() && pc.isCrotchGarbed()) output(" and ");
+		if(pc.isCrotchGarbed()) output("[pc.lowerGarment]. The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
+		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
+		else output("a mixture of scandal and lust");
+		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
+	}
+	//Else // PC is nude:
+	else
+	{
+		output("\n\nYou're already butt-naked, of course, wearing nothing but your [pc.skinFurScales]. ");
+		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("Even here, such blatant nudity is met with lusty looks.");
+		else output("The shocked and scandalized looks on their faces gives you a thrill - what you are doing is really, obviously <i>naughty</i>.");
+		output(" They watch on with wide open eyes and mouths as you begin touching your bare body before the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
+	}
+	output("\n\nAs a number of ");
+	if(rooms[currentLocation].planet == "TAVROS STATION") output("station visitors");
+	else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("frontier folk");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("the rabbit-like aliens");
+	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("curious New Texans");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("female myr");
+	else output("onlookers");
+	output(" gather around you, you ");
+	if(pc.biggestTitSize() > 2) output("heft");
+	else output("stroke");
+	output(" your [pc.chest] for their benefit. They're totally fixated on every detail of ");
+	if(pc.biggestTitSize() < 1) output("it");
+	else output("them");
+	output(" and your [pc.nipples]. You grin and slide your hands down and along your [pc.belly]. Their ");
+	if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("longing looks");
+	else output("scandalized and stirred-up stares");
+	output(" follow.");
+	if(!pc.isTaur()) output(" You reach to your loins, drawing their attention <i>there</i>.");
+
+	if(pc.isTaur())
+	{
+		output("\n\nGrabbing your [pc.nipples] once more, you tease and pinch them before their very eyes.");
+	}
+	else if(pc.hasCock()) output("\n\nGrabbing [pc.oneCock], you stroke it before their eyes.");
+	else if(pc.hasVagina()) output("\n\nYou begin to stroke [pc.oneVagina] before their eyes.");
+	else output("\n\nReaching behind you, you begin to finger your [pc.ass] before their eyes.");
+	//NewTexas/Myrellion/Tarkus: 
+	var lustPlanet:Boolean = (rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS");
+	if(lustPlanet) output(" A number of them lick their lips.");
+	else output(" There are a few loud gasps and <i>lots</i> of whispering.");
+	output(" You can feel all of them staring at your ");
+	if(pc.isTaur()) output("[pc.chest]");
+	else if(pc.hasCock()) output("[pc.cockHead]");
+	else if(pc.hasVagina()) output("[pc.pussyColor] slit");
+	else output("spread buttocks");
+	output(", burning each and every detail of your ");
+	if(pc.isTaur()) output("erect buds");
+	else if(pc.hasCock()) output("swelling crown");
+	else if(pc.hasVagina()) output("snatch");
+	else output("fingered pucker");
+	output(" into glorious memory.");
+
+	output("\n\nYour sense of excitement skyrockets as they begin to whip out recording devices. Here you are, [pc.name], ");
+	if(pc.isTaur()) output("playing with your [pc.nipples]");
+	else if(pc.hasCock()) output("jerking");
+	else if(pc.hasVagina()) output("frigging");
+	else output("fingering your ass");
+	output(" in public, and everyone can see it - it's such a rush!");
+
+	output("\n\n<i>“Go on, record me - spread it around!”</i> You cry out. The idea of a whole ");
+	if(rooms[currentLocation].planet == "TAVROS STATION") output("station");
+	else output("planet");
+	output(" seeing you wildly masturbating makes you tremble and quake with delight. No matter how they look at you, you know half of them will be taking it home later, masturbating themselves to your ");
+	if(pc.isTaur()) output("[pc.chest]....");
+	else output("[pc.groin]....");
+
+	output("\n\nYou simply lack the self control to keep it up. You let out a loud, lewd cry and the crowd of ");
+	if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
+	else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbeth citizens");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("raskvel");
+	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
+	else output("onlookers");
+	output(" gasp.");
+
+	if(pc.hasCock())
+	{
+		output(" [pc.EachCock] flexes and fires");
+		if(pc.cumQ() < 5) output(" blank shots, only the smallest droplets of [pc.cum] escaping your [pc.cockHeads]");
+		else if(pc.cumQ() < 100) output(" thick spurts of [pc.cum] up and into the air. Some of shoot into the crowd. Your spunk splatters on one of their faces, and they let out a shocked noise!");
+		else output(" fountanous gushes of [pc.cum]. It surges forth from your [pc.cockheads], splattering into the crowd and raising shocked cries.");
+	}
+	if(pc.hasVagina())
+	{
+		output(" Clenching your quaking thighs, you utterly cream yourself in front of them. Your [pc.thighs] are utterly drenched in your [pc.girlCum] as you tremble and twitch");
+		if(pc.hasVagina()) output(", even squirting a little");
+		output(" in delight.");
+	}
+	else 
+	{
+		output(" You tremble and dry-orgasm from your ");
+		if(pc.isTaur()) output("tit-play");
+		else output("ass fingering");
+		output(", [pc.thighs] quaking in delight.");
+	}
+	output("\n\nDimly, you're aware of flashing around you as the assembled voyeurs take photos of your [pc.skinColor], ");
+	if(pc.hasCock() && pc.cumQ() >= 5) output("[pc.cumNoun]-splattered");
+	else output("sweaty");
+	output(" body. You bask in the afterglow for a good long while. Once you start getting cold, you pick yourself up and gather your things, feeling a fuzzy sense of fulfilment.");
+	output("\n\nYou smile brightly and slip on your [pc.gear]. Sex really is better when you've got an audience, even when it's with yourself.");
+	processTime(20);
+
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}

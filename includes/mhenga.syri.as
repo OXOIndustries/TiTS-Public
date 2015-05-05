@@ -305,6 +305,7 @@ public function victoryFuckSyrisBunghole():void {
 	chars["SYRI"].orgasm();
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -363,6 +364,7 @@ public function rideSyrisCockYouWinner():void {
 	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	chars["SYRI"].orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu)
 }
@@ -482,6 +484,7 @@ public function pcLosesToSyriBettingHisAss():void {
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
 	chars["SYRI"].orgasm();
+	pc.exhibitionism(1);
 	processTime(30+rand(15));
 	pc.orgasm();
 	pc.loadInAss(chars["SYRI"]);

@@ -317,6 +317,7 @@ public function buttStretchDelsAnus():void
 	flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
 	pc.orgasm();
 	timesDelilahSexed(1);
+	pc.exhibitionism(1);
 	processTime(30+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -397,6 +398,7 @@ public function sitOnDelilahsFace():void
 	}
 	processTime(30+rand(5));
 	pc.orgasm();
+	pc.exhibitionism(1);
 	timesDelilahAteOut(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -615,6 +617,7 @@ public function delSlutTraining2():void
 	output("\n\nWith a grunt, the last john of the day pulls out of you, still leaking cum, and wipes himself off on your thigh. You give him a wink and blow a kiss after him before collapsing back, trying to catch your breath. Delilah's beside you still, though you're not sure if she's still conscious: that horsecock'd woman left her pretty well ruined for the moment, and only the best-endowed men have used her since. But she's certainly gotten her taste of what it REALLY means to be a cock-hungry whore. You lean over and give her a peck on the cheek before unsteadily clambering off the bar and searching for your gear. Nice and cum-soaked....");
 	processTime(15);
 	timesDelilahSexed(1);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

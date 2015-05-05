@@ -1867,10 +1867,18 @@ public function spendTimeWithXantheYouSlut():void
 	clearOutput();
 	showXanthe();
 	output("You spend some time ");
-	if(rand(4) == 0) output("worshipping Xanthe’s body, prostrating yourself before her and licking her feet. Afterwards your Mistress tells you that you’ve done a good job, and you feel fulfilled.");
+	if(rand(4) == 0) 
+	{
+		output("worshipping Xanthe’s body, prostrating yourself before her and licking her feet. Afterwards your Mistress tells you that you’ve done a good job, and you feel fulfilled.");
+		pc.exhibitionism(1);
+	}
 	else if(rand(3) == 0) output("snuggled up to Xanthe hearing about her day. You’re glad that your Mistress felt it was worth sharing with you.");
 	else if(rand(2) == 0) output("putting stock on the shelves for Xanthe while she sews some new ones. Afterwards, she rewards you with a pat on the head!");
-	else output("modelling off Xanthe’s new clothes while customers stare at you. Your Mistress uses you as a living mannequin!");
+	else 
+	{
+		output("modelling off Xanthe’s new clothes while customers stare at you. Your Mistress uses you as a living mannequin!");
+		pc.exhibitionism(2);
+	}
 
 	// Four hours is spent.
 	// Only RP benefit, though there may be others in the future depending on if she’s popular or not.

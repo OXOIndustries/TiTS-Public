@@ -328,6 +328,7 @@ public function getSpitRoastedForPenny():void {
 	//Pass 2 hours.
 	processTime(120+rand(20));
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
+	pc.exhibitionism(1);
 	this.clearMenu();
 	this.addButton(0,"Next",getFucked4PennyEpilogue);
 }

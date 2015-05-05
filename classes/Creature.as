@@ -219,6 +219,7 @@
 		public var affinity: String = "intelligence";
 		public var characterClass: int = GLOBAL.CLASS_SMUGGLER;
 		public var personality: int = 50;
+		public var exhibitionismRaw: int = 0;
 
 		//Combat Stats
 		// I think some of my UI work has highlighted some areas where stats are doing things that aren't intended, or otherwise possibly broken.
@@ -2084,9 +2085,51 @@
 			if (isTreated() && this.mf("m", "f") == "m") return true;
 			return false;
 		}
-		public function exhibitionism():Number
+		//Mild exhib scene: arg = +1;
+		//Full exhib scene: arg = +2
+		public function exhibitionism(arg:Number = 0):Number
 		{
-			return 0;
+			trace("Initial exhibition level: " + exhibitionismRaw);
+			if(arg > 0)
+			{
+				//Mild exhib scene gainz! GET SWOLE
+				if(arg <= 1)
+				{
+					//Diminishing returns at different thresholds
+					if(exhibitionismRaw < 20) arg *= 2;
+					else if(exhibitionismRaw < 40) {} //Nuttin'!
+					else if(exhibitionismRaw < 50) arg /= 2;
+					//Cannot push it past 50
+					if(exhibitionismRaw < 50)
+					{
+						if(exhibitionismRaw + arg > 50) exhibitionismRaw = 50;
+						else exhibitionismRaw += arg;
+					}
+					//Already at cap for this tier of exhibition gain
+				}
+				//Full exhib scene gainz. VERY SWOLE.
+				else
+				{
+					if(exhibitionismRaw < 50) {} //No adjustments at this tier
+					else if(exhibitionismRaw < 60) arg /= 2;
+					else arg /= 4;
+					//Cannot push it past 100
+					if(exhibitionismRaw < 100)
+					{
+						if(exhibitionismRaw + arg > 100) exhibitionismRaw = 100;
+						else exhibitionismRaw += arg;
+					}
+				}
+			}
+			//Negative points
+			else if(arg < 0) 
+			{
+				//no mods!
+				exhibitionismRaw += arg;
+				if(exhibitionismRaw < 0) exhibitionismRaw = 0;
+			}
+			trace("Final reported exhibition level: " + exhibitionismRaw);
+			return exhibitionismRaw;
 		}
 		public function cumflationEnabled():Boolean
 		{

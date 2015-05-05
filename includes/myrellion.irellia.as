@@ -538,6 +538,7 @@ public function tailFuck():void
 		output("\n\nAt least the shower is kind of pleasant, and she gives you appreciative squeezes in all the right places while you wash her back. It’s a shame you slip out just before it ends, but at least you’re free to go your separate ways.");
 	}
 	processTime(33);
+	pc.exhibitionism(1);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -700,6 +701,7 @@ public function cumInsideIrellia(x:int):void
 	output("\n\nThe servile ants force you into the shower. They won’t take no for an answer, and you don’t really have the energy to protest after that. So what other choice do you have? You lather up and enjoy these primitives' luxuries, coming out feeling at least a little rested.");
 	output("\n\nIrellia is awake once more, and her egg basket has been replaced with a fresh one. She’s beaming and gently rubbing her abdomen with one of her hands. The others give you a tired but friendly wave, the kind of wave you might have gotten from a girl in the hallways of your school after fucking her bareback in her parent’s house the night before. You grin and wave back.");
 	processTime(9);
+	pc.exhibitionism(1);
 	irelliaSexBreak(3);
 	pc.orgasm();
 	clearMenu();
@@ -803,6 +805,7 @@ public function cumOntopOfIrellia(x:int):void
 	output("\n\nA handmaiden offers you a towel and a shower once you climb down. You take both. By the time you leave, noone would guess you had fucked a myr queen... unless they smelled the faint, lingering scent of sweetness on you.");
 	//IT’S OVER!
 	processTime(9);
+	pc.exhibitionism(1);
 	irelliaSexBreak(8);
 	pc.orgasm();
 	clearMenu();
@@ -968,6 +971,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 		irelliaSexBreak(6);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
+		pc.exhibitionism(1);
 		return;
 	}
 	//Passed out - hugeclit or has at least 1 dix
@@ -982,6 +986,7 @@ public function lady69Epilogue4PassedOutFolks():void
 	output("You come to just as one of Irellia’s attendants is finishing sponging you off. Your whole body gleams from the wash, and the blushing attendant hands you your things with a knowing smile. Irellia lies a short distance away, giggling while you dress.\n\n<i>“Good job, Captain Steele. Don’t be a stranger!”</i>");
 	processTime(33);
 	irelliaSexBreak(8);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1111,6 +1116,7 @@ public function quadTitfuckPartDues():void
 	processTime(23);
 	irelliaSexBreak();
 	pc.orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1529,6 +1535,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 	processTime(7);
 	pc.orgasm();
 	irelliaSexBreak(4);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -579,6 +579,7 @@ public function petPlayForAnnoAfterCheating():void
 
 	pc.lust(5);
 	processTime(10);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Go Back",takeYourPetBackToTheShop)
 	addButton(1,"Public Use",publicUsePuppyAnno,undefined,"Public Use","See how many of the locals you can get your loyal bitch to publicly service.");
@@ -625,6 +626,7 @@ public function publicUsePuppyAnno():void
 	output("\n\n<i>\"No,\"</i> you urge her, tugging her leash back toward the shop. You're forced to push back a few particularly horny raskvel who try and get at her exposed ass and pussy. You swat them away, finally resorting to dragging Anno back toward the shop. With some effort, you're able to get her in past the door and lock up shop, depriving Anno of cock long enough for her to recover from her daze.");
 
 	output("\n\n<i>\"Woof,\"</i> she finally says, rolling over and lazily spitting out a mouthful of cum. You chuckle and lean down to rub her belly, leaving the ausar slut with an affectionate pet for being such a good sport.");
+	pc.exhibitionism(2);
 	pc.lust(15+rand(10));
 	processTime(30+rand(15));
 	clearMenu();

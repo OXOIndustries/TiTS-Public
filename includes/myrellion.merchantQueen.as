@@ -420,6 +420,7 @@ public function getAntSuckedPart2():void
 	userInterface.setMapData(map);
 	showName("\nRECOVERING");
 	processTime(3);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -474,6 +475,7 @@ public function femlustWithQueen():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

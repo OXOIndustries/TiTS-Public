@@ -357,6 +357,7 @@ public function flirtWithKellyAnywayPartII():void {
 	output("\n\n<i>\"So, you're still wearing that special honey-scented perfume of yours? Might I suggest you start wearing a little less, please? The whole lobby smells like a beehive.\"</i>");
 	output("\n\n<i>\"Oh! Ah, yes, yes sir, I'll keep that in mind,\"</i> she apologetically replies.");
 	output("\n\nYou leave with a knowing chuckle.");
+	pc.exhibitionism(2);
 	processTime(10+rand(5));
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 2");

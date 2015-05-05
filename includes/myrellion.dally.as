@@ -374,7 +374,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	output("\n\nWhen hot tongues caress your cheek, you barely react, at first mistaking it for a particularly voluminous shot from the stud on stage, but more join it. More myr girls surround you, licking the rare male’s cum from your face. One slides in your mouth, sharing the load with you, curling around your tongue as lips match to lips and spit mixes with spunk. You shudder, riding high on the heady sensation, unable to voice any sort of protest. You don’t want to stop them. Their tongues are everywhere: on your ears, on your neck, lapping at the nape of it. You shiver and nearly cum from the attention alone.");
 	output("\n\nDally’s voice is barely audible over the slurping, <i>“The boss wants me to move on, but line back up at the stage if you want another dance, okay? Maybe I can pay you back sometime.”</i>");
 	output("\n\nA little later, the girls drift away with giggles and winks. You try to catch your breath, acutely aware that not a single drop of cum remains on your body. That was fun.");
-
+	pc.exhibitionism(1);
 	//No pc cums, +lotsa horniness
 	pc.lust(33);
 	processTime(6);
@@ -398,6 +398,7 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	output("\n\nWhen you can handle no more, you pull back and gasp for breath, offering his still-spurting rod to an ant-girl who has appeared beside you, mouth open in anticipation. She feeds the spurting shaft into her gullet and sucks with the kind of earnest eagerness that speaks of a sort of wanton hunger for cock. You watch and dab the dripping spooge from your face, offering it to another myr. She sucks the proffered digits clean one after another, relishing it.");
 	output("\n\nDally finishes not longer after - you clearly got the lion’s share of his load. Even now, you can feel it sloshing in your tummy. The dancer extricates himself from his fan’s sucking maw with a bit of difficulty and gives you a grateful nod. His balls actually look a little lighter thanks to your intervention. <i>“Thank you ladies, but I’ve got to walk the rest of stage before the boss gripes at me. I’ll try and return the favor if I ever get the chance.”</i> He winks at you and turns away, launching into a dance as well as his tired legs will allow.");
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.exhibitionism(1);
 	pc.loadInMouth(pp);
 	//Doesnt get the unified epilogue
 	processTime(6);
@@ -505,6 +506,7 @@ function nectarSuckFromDallyProper():void
 	output("\n\nDo you tip Dally?");
 	pc.lust(15);
 	processTime(17);
+	pc.exhibitionism(1);
 	//Gain some HP and energy whynot
 	pc.energy(pc.energyMax());
 	pc.HP(Math.round(pc.HPMax()*.3333));
@@ -823,7 +825,7 @@ public function getDallyLicked():void
 	if(!pc.isNude()) output(", shedding your [pc.gear] faster than an Ikainan whore");
 	else output(", rocking your [pc.hips] back and forth");
 	output(". <i>“I think I can handle a little stage time.”</i>");
-	if(pc.exhibitionism() < 33) output(" You try your best not to show just how nervous you’re feeling.");
+	if(pc.exhibitionism() <= 33) output(" You try your best not to show just how nervous you’re feeling.");
 
 	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“");
 	if(pc.legCount == 1) output("Stones, it’s strange to see one smack in the middle instead of you instead of on an abdomen like a normal girl’s.");
@@ -909,6 +911,7 @@ public function getDallyLicked():void
 	pc.orgasm();
 	pc.orgasm();
 	dallyFavorsBump();
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -952,8 +955,8 @@ function dallySucksYouOff():void
 	if(pc.hasSheath(pc.biggestCockIndex())) output(" Once there, he slithers his lewd muscle into the musky scabbard and licks at the sensitive, unprepared parts of your cock.");
 
 	output("\n\nYou let your eyes drift closed and moan");
-	if(pc.isTreated() || pc.exhibitionism() >= 66) output(" whorishly for the crowd. Might as well give the people a show, and if it gets you off that much harder, so much the better!");
-	else if(pc.exhibitionism() >= 33) output(" confidently. The crowd doesn’t really bother you; if anything, having so many adoring eyes locked on your shaft has your heart beating faster.");
+	if(pc.isTreated() || pc.exhibitionism() > 66) output(" whorishly for the crowd. Might as well give the people a show, and if it gets you off that much harder, so much the better!");
+	else if(pc.exhibitionism() > 33) output(" confidently. The crowd doesn’t really bother you; if anything, having so many adoring eyes locked on your shaft has your heart beating faster.");
 	else output(" nervously, too turned on by Dally’s service not to and yet still nervous in front of a crowd. Jumping on stage and displaying yourself is one thing; realizing that there’s three dozen sets of eyes watching your every move is another.");
 	output(" When that wondrous tongue reverses direction and slides up the sensitive underside of your shaft, you forget their stares entirely, letting your eyes drift closed to fully focus your attentions on the divine sensations radiating from your rod.");
 	output("\n\n<i>“You like that?”</i> Dally asks once he launches past the [pc.cockHeadBiggest].");
@@ -1079,6 +1082,7 @@ function dallySucksYouOff():void
 	}
 	dallyFavorsBump();
 	processTime(20);
+	pc.exhibitionism(2);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

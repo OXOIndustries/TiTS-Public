@@ -47,7 +47,6 @@ public function VahnTheMechanic():void
 		output("! What can I do you for?”</i>");
 		processTime(1);
 	}
-	//9999
 	//[Appearance] [Talk] [Sex]
 	clearMenu();
 	addButton(0,"Appearance",appearanceForVahn);
