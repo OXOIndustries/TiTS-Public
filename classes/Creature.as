@@ -2784,25 +2784,14 @@
 			return buffer;
 		}
 		public function lipRating(): Number {
-			var rating: int = 0;
-			//Hint of pout
-			if (femininity > 65) rating = 1;
-			//Shapely
-			if (femininity > 72) rating = 2;
-			//Full
-			if (femininity > 80) rating = 3;
-			//Full + Pouty
-			if (femininity > 90) rating = 4;
-			if (femininity > 100) rating = 5;
-
-			return rating + lipMod;
+			return lipMod + femininity / 25;
 		}
 		public function lipsDescript(forcedAdjectives:Boolean = false): String {
 			return lipDescript(forcedAdjectives);
 		}
 		public function lipDescript(forcedAdjectives:Boolean = false): String {
 			//lipMod + some femininity divided by something to get result.
-			var lips:int = lipMod + femininity / 25;
+			var lips:int = lipRating();
 			var result:String = "";
 			var adjectives:int = 0;
 			//Size Adjectives
