@@ -24,7 +24,7 @@
 			this.shortName = "A.D.Cock";
 			
 			//Regular name
-			this.longName = "KihaCorp-branded synth-phallus modelled after a mythological dragon's";
+			this.longName = "synth-phallus modelled after a dragon's";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

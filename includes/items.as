@@ -371,7 +371,7 @@ public function generalInventoryMenu():void
 	var adjustment:int = 0;
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
 		//0 = unequip menu
-		if(x+adjustment == 0) {
+		if(x+adjustment == 13) {
 			addButton(x+adjustment,"Unequip",unequipMenu,undefined,"Unequip","Unequip an item.");
 			adjustment++;
 		}

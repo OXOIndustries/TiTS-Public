@@ -664,7 +664,7 @@ public function pcLossToNyrea():void
 			if (pc.hasCock()) output(" and making your [pc.cocks] stiffen and shoot, blasting a load of that precious seed she was after all across your [pc.belly]");
 			output(". Your wringing cunt is the only thing that stops her, trapping her like a wriggling vice of pleasure that soon has her panting and gasping, trying to hold on.");
 			
-			output("\n\n<i>“Give me... your...”</i> she tries to say, but ends up just moaning and humping faster until you’re squirting around her, splattering her thighs and your with [pc.femCumNoun].");
+			output("\n\n<i>“Give me... your...”</i> she tries to say, but ends up just moaning and humping faster until you’re squirting around her, splattering her thighs and your with [pc.girlCumNoun].");
 			
 			output("\n\nBy the time she’s done, you’re a mess of ");
 			if (!pc.hasCock()) output("fem");

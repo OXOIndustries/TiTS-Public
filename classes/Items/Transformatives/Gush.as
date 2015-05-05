@@ -429,7 +429,7 @@ package classes.Items.Transformatives
 			//Sub Max (Ostensibly 100, but could be changed by bimbo mods and the like)
 			else
 			{
-				output("\n\nUgh, the comedown afterword is always the worst part. Sure, you’ve got the aftershocks of dozens of orgasms swaddling your thoughts in endorphins, but you also know that it’s over. Leaking [pc.milk] isn’t going to have you writhing on the floor all on its own. You’ll need hungry hotties to nurse at your titties if you want to feel anywhere near that good again. You catch yourself brushing your agonizingly sensitive [pc.nipplesNoun] and wonder just how soon you’ll have more [pc.milk] to give. <b>Is there anything better than getting milked? No, definitely not.</b>");
+				output("\n\nUgh, the comedown afterward is always the worst part. Sure, you’ve got the aftershocks of dozens of orgasms swaddling your thoughts in endorphins, but you also know that it’s over. Leaking [pc.milk] isn’t going to have you writhing on the floor all on its own. You’ll need hungry hotties to nurse at your titties if you want to feel anywhere near that good again. You catch yourself brushing your agonizingly sensitive [pc.nipplesNoun] and wonder just how soon you’ll have more [pc.milk] to give. <b>Is there anything better than getting milked? No, definitely not.</b>");
 			}
 			//Special shit: on new PGs
 			//Boosted lactation speed - increases up to thrice human norms.
