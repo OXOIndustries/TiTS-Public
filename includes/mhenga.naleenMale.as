@@ -1233,7 +1233,7 @@ function maleNaleenSucksPCOff():void
 	clearOutput();
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
-	author("hawke6");
+	author("Hawke56");
 	output("Your [pc.eyes] focus on the twin shafts of the defeated naleen, and you can feel the lust rise in your own loins.");
 	//if cock:
 	if(pc.hasCock())
