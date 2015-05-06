@@ -212,6 +212,15 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
+	//Exhibitionist fap! - overrides all other faps
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 50)
+	{
+		clearOutput();
+		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
+		clearMenu();
+		addButton(0,"Next",goddamnitJimTAndYourExhibitionism);
+		return;
+	}
 	//Pussy out, unless you're being force-fapped.
 	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
 	{
@@ -244,7 +253,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			else output(" roaming licentiously across your own body.");
 			output("\n\nYou whimper. The idle thoughts have you feeling even hotter now. You'd better find a good place to relieve yourself.");
 		}
-		output("\n\n(70 libido is required to masturbate in public spaces.)");
+		output("\n\n(70 libido or sufficient exhibitionism experience is required to masturbate in public spaces.)");
 		aborted = true;
 		if(pc.perkv1("'Nuki Balls") > 0) 
 		{
@@ -1944,7 +1953,7 @@ function goddamnitJimTAndYourExhibitionism():void
 		output("Void, you're so damn horny! Beneath your [pc.lowerGarment], your loins ache needily.");
 		if(pc.hasCock() || pc.hasVagina()) 
 		{
-			output("Throbbing with need,");
+			output(" Throbbing with need,");
 			if(pc.hasCock()) 
 			{
 				output(" your [pc.cocks] ");
