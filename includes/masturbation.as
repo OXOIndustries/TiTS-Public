@@ -1992,12 +1992,12 @@ function goddamnitJimTAndYourExhibitionism():void
 	output(" peer at you curiously, wondering what's the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
 
 	//PCWearingArmor:
-	if(!pc.armor is EmptySlot)
+	if(!(pc.armor is EmptySlot))
 	{
 		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 		//GotUpperUndergarment:
-		if(!pc.upperUndergarment is EmptySlot) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
-		if(!pc.lowerUndergarment is EmptySlot) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
+		if(!(pc.upperUndergarment is EmptySlot)) output(" Sliding your fingers up your bare flesh, you sensuously slide off your [pc.upperUndergarment]. The slowly gathering crowd gazes upon your [pc.chest] and you shiver with delight.");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" Making a show of it, you hook your thumbs under your [pc.lowerUndergarment]. With a long, pointed bend, you strip them off, poking your bare [pc.skinColor] buttocks at any watching bystanders. You try to control the quiver in your [pc.thighs] as you do so; it's hard to contain your mounting excitement!");
 	}
 	//Else if (PCNoArmor but wearing Upper and/or Lower Undergarment):
 	else if(!pc.isNude())

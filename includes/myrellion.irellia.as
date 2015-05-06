@@ -1278,10 +1278,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		if(!pc.isNude())
 		{
 			output("pointedly strips off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-				if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+				if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". You shiver as your protective layers are removed, leaving you naked before him. He then ");
@@ -1301,10 +1301,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		{
 			output(" You're wearing <i>way</i> too many clothes...");
 			output("\n\nYour golden-haired lover seems to have the same thought. He helps you trip off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-			 	if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+			 	if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". Even though you're so warm, you tremble as your protective layers are removed, leaving you bared before him.");
@@ -1321,10 +1321,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		if(!pc.isNude())
 		{
 			output("With deliberate slowness, you strip off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-			 	if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+			 	if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". You feel a salacious thrill as he looks upon your naked [pc.race] body, soaking in your [pc.chest], [pc.belly] and loins.");

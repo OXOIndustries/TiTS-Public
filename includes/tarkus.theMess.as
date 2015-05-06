@@ -4,7 +4,7 @@
 	else addDisabledButton(0,"Order Food","Order Food","No way are you doing that again. The service is terrible and the food looks even worse.");
 	//Also adds a button to slot 1 if tarkus 'sploded
 	auroroMessInRoomText();
-	
+	vendingMachineButton(2);
 	return false;
 }
 public function barBonusFunction():Boolean

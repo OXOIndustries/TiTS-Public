@@ -170,9 +170,9 @@ public function giveVahnABJ():void
 	if(!pc.isNude()) output("and begin to strip off your things.");
 	else output("and slide your hands down your naked form. Since you’re not wearing a scrap of clothing, everything is already on display, but here in private, he doesn’t have to pretend not to stare...");
 	//PC is wearing armor:
-	if(!pc.armor is EmptySlot) output(" You pull off your [pc.armor], letting your garb fall to the docking floor as he watches on with obvious lust.");
-	if(!pc.upperUndergarment is EmptySlot) output(" Reaching up, you slip off your [pc.upperGarment], tossing it aside and liberating your [pc.chest]");
-	if(!pc.lowerUndergarment is EmptySlot) 
+	if(!(pc.armor is EmptySlot)) output(" You pull off your [pc.armor], letting your garb fall to the docking floor as he watches on with obvious lust.");
+	if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, you slip off your [pc.upperGarment], tossing it aside and liberating your [pc.chest]");
+	if(!(pc.lowerUndergarment is EmptySlot))
 	{
 		output(" When you remove your [pc.lowerUndergarment], you take it nice and slow, letting him enjoy the sight of your slowly emerging ");
 		if(pc.hasCock()) output("cock");
@@ -289,9 +289,9 @@ public function giveVahnAnal():void
 	if(!pc.isNude())
 	{
 		output("\n\nWith a " + pc.mf("cheeky","sultry") + " smile, you decide to give him a little strip tease.");
-		if(!pc.armor is EmptySlot) output(" Slowly and sensuously, you strip off your [pc.armor] before letting it fall to the floor.");
-		if(!pc.upperUndergarment is EmptySlot) output(" Reaching up, your [pc.upperGament] comes off – tossed aside and liberating your [pc.chest].");
-		if(!pc.lowerUndergarment is EmptySlot) output(" Your [pc.lowerGarment] is slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
+		if(!(pc.armor is EmptySlot)) output(" Slowly and sensuously, you strip off your [pc.armor] before letting it fall to the floor.");
+		if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, your [pc.upperGament] comes off – tossed aside and liberating your [pc.chest].");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] is slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
 	}
 
 	output("\n\nYou " + pc.mf("stride up","saunter up") + " and, grabbing his slim hips, turn him around on the spot. Leading him up to one of the cargo crates, you bite his ear and whisper for him to bend over. Obeying your command, the handsome half ausar delightedly gulps and bends forward, lifting his fluffy tail in the air – just like a bitch in heat. As he braces himself against the crate, you grind your [pc.cockNounSimple " + x + "] between his firm butt-cheeks and he excitedly flushes.");
