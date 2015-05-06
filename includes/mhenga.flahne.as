@@ -890,6 +890,7 @@ public function eatFlahneOutUnderDesk():void {
 
 	//+lust, big MP gain
 	pc.lust(5+rand(5));
+	pc.exhibitionism(1);
 	//Pass 20 minutes + 10 if she licks you clean.
 	processTime(20);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) processTime(10);
@@ -935,7 +936,7 @@ public function flahneGetsSuckedAndSwallowed():void {
 	
 	//Unlock Gardeford's Exhibitionism Fucks
 	flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] = 1;
-
+	pc.exhibitionism(1);
 	//Pass 20 minutes.
 	processTime(20+rand(3));
 	this.clearMenu();
@@ -1029,6 +1030,7 @@ public function playAndSpray():void {
 	flags["FLAHNE_PISSED"] = 100;
 	flags["FLAHNE_DESK_DISABLED"] = 1;
 	currentLocation = "ESBETH'S NORTH PATH";
+	pc.exhibitionism(2);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -1176,6 +1178,7 @@ public function flahneExhibitionHugsGirls():void {
 	output(" she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that turns her face the color of butterscotch before she goes to get a few towels and a change of clothes. The towels handle most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
 	flags["HUGGED_FLAHNE"] = 1;
 	flahneFuckCounter(1);
+	pc.exhibitionism(2);
 	processTime(15+rand(15));
 	pc.orgasm();
 	clearMenu();
@@ -1244,6 +1247,7 @@ public function flahneIfMalesFitTheySitExhibitionism():void {
 	output("  she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that turns her face butterscotch before she goes to get a few towels and a change of clothes. The towels clean up most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
 	flags["HUGGED_FLAHNE"] = 1;
 	flahneFuckCounter(1);
+	pc.exhibitionism(2);
 	processTime(15+rand(15));
 	pc.orgasm();
 	clearMenu();

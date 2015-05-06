@@ -1329,6 +1329,7 @@ public function offerAlissYourAssPart2():void
 	chars["ALISS"].orgasm();
 	if(rand(2) == 0) chars["ALISS"].orgasm();
 	if(rand(2) == 0) chars["ALISS"].orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

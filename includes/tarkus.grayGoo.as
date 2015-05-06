@@ -578,7 +578,7 @@ public function pcDefeatByGooBitch():void
 	output("\n\n<b>You awaken two hours later</b>, sore and exhausted and so full of what you can only imagine is cum that your belly is quite literally bloated, stretching by the amount of seed that even the googirl couldn't steal from you. Around you is a pile of raskvel boys and girls, some still fucking each other, others exhausted and snoring. There must be nearly fifty here, and you have no doubt your goo girl bodysuit let every one of them bust a nut in you. At least she's gone, having gotten all she could from your body.");
 	output("\n\nYou stagger off to find your gear, leaving the rask to work out what lust they have left.\n\n");
 	processTime(120+rand(10));
-
+	pc.exhibitionism(1);
 	//This should be changed to a male raskvel once they're done.
 	pc.loadInAss(chars["GRAYGOO"]);
 	pc.loadInMouth(chars["GRAYGOO"]);

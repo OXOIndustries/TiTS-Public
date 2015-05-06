@@ -436,6 +436,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output(" playing softly with one [pc.ear]. The expression on her face has her looking for all the world as if she can see right through you at the moment. You can’t help but blush a little, and not just at the praise. Somehow, you don’t think she’ll be any nicer to you in the future, but you’re also not sure if you even want her to be. Now that you’ve seen what she’s like when her guard is down, you’re sure you can handle her even at her worst.");
 	output("\n\nYou pick yourself up off the floor and adjust your gear. That was certainly an experience, at least. Nehzara looks as if nothing had even happened, and has already organized the papers on her desk and is now casting a questioning glance your way.");
 	//(++Lust, PC can now take the shuttle to Kressia)
+	pc.exhibitionism(1);
 	pc.lust(35);
 	processTime(17);
 	flags["SEXED_NEHZARA"] = 1;

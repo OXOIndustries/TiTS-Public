@@ -1197,7 +1197,7 @@ public function specialOrdersForTreatedGals():void
 	output("\n\n<i>“Slow down, or I’m gonna... gonna...”</i> Herman starts to stay, his voice trailing off into a wordless, bestial groan. You can feel his cock expanding, the thick load moving through it, shooting towards the waiting reception of your [pc.lips]. Just before the moment of his release, the chef roughly pushes you off his cock, sending you back with a yelp of surprises and utter disappointment. Instead of your mouth, the chef leans down and catches his cockhead between the folds of a hot, greasy roast beef on rye right off the grill. His hips buck like a bronco’s as he blows his load across the open lips of the sandwich, slathering it with his own special topping.");
 	output("\n\n<i>“Order up,”</i> Herman grunts, slapping the spunk-filled roast beef closed and handing it down to you. <i>“On the house.”</i>");
 	output("\n\nTalk about eating cum. You giggle and take the sandwich, munching down on the savory, salty cock-based concoction. The taste sends shivers of pure ecstasy down your spine as you finally sate your hunger for cum... and also lunch. You slump back against the interior of the counter, feasting upon the creamy sandwich. Delicious!");
-
+	pc.exhibitionism(2);
 	pc.lust(15);
 	processTime(23);
 	pc.energy(100);
