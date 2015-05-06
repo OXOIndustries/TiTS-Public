@@ -69,6 +69,7 @@ public function publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere()
 {
 	clearOutput();
 	showName("PUBLIC\nBATHS");
+	author("Savin");
 	pc.credits -= 50;
 	output("<i>“I’d like to use the public bath,”</i> you tell the veiled matron, reaching for your Codex. She nods, and the digital kiosk next to her seems to respond to your voice, flickering over to a purchase screen. You swipe your Codex across it, letting the automated payment system drain your account. When it chimes an affirmative, the matron sweeps one of her arms towards a long, open hallway across from the counter. Another of her arms hands you a soft white towel, and a third directs you towards a changing room for your sex. You thank the matronly ant and head on over to the locker room.");
 	if(pc.mf("guy","") == "guy") output("\n\nYou have the men’s room pretty much all to yourself. You select a locker from along a long row and stow your [pc.gear] in it. A sign directs you to a small shower, insisting you scrub with soap and water before entering the hot spring pool. You do so, taking your time since you’re the only person around, and make sure to scrub as thoroughly as possible before exposing yourself to a crowd of aliens. Once finished, you wrap yourself up in your towel, enjoying the wooly warmth of it against the muggy heat radiating through the bath house, and head on towards the wide open room at the end of the hall.");
@@ -105,6 +106,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 {
 	clearOutput();
 	showRedMyrOfficer();
+	author("Savin");
 	output("You wander on up the stairs and make your way towards the obviously out-of-place red myr at the pool’s back end. She’s attractive enough: short black hair that falls in straight ridges around her elfin ears, and full red lips that match the color of her chitinous plates. A pair of insectile feelers spring up from her brow, tucked low to her head like a nervous puppy’s ears. Seeing you drawing near, the red-plated myr girl perks up a bit, shooting glances your way.");
 	output("\n\n<i>“Mind if I join you?”</i> you ask, nodding towards the crowded bath as if to say there’s nowhere else to sit. Not entirely true, but it’s a good enough in.");
 	output("\n\nDespite the fact that you were looking her way the whole way up, she still acts like it’s a total surprise you’re talking to her. <i>“Uh, s-sure,”</i> she mumbles, scooting over along the stone seat at the edge of the pool to make room for you. Giving her an appreciative nod, you toss your towel aside - and give the svelte red ant a front-row view of your buck naked body before you slide yourself down into the pool beside her.");
@@ -193,6 +195,7 @@ public function swallowThisLoadYonderOcifer():void
 {
 	clearOutput();
 	showRedMyrOfficer();
+	author("Savin");
 	output("<i>“Hope you can hold your breath,”</i> you say, pointing down at your tumescent member. After a brief moment of consideration, the red myr gives you a firm nod and takes a deep breath before disappearing under the steaming water. Brave girl!");
 	output("\n\nYou lean back and spread your arms around the lip of the pool, shifting ever so slightly on your butt to give the myr woman a better angle on your [pc.cock]. Her lips find your crown just as you’re about to pop, and she earns herself a blast of [pc.cumNoun] right down the throat in the same second. You feel her thrash around, clearly not expecting the sheer force of your pent-up load. Still, she carries on like a trooper, ramming herself down on your shaft with remarkable eagerness - you’re soon pumping your seed straight down her straining throat.");
 	output("\n\nThe red soldier’s able to hold her breath for what seems like an eternity, staying down beneath the water’s surface to suck and stroke your shaft until you’re half-sure she’s about to pass out. Only after she’s sucked down every drop of spunk does your lover surface, breaching the water with a hair-flip that sends a cascade of water splashing over the stone rim of the pool.");
@@ -211,6 +214,7 @@ public function antMouthNutBustEpilogue():void
 {
 	clearOutput();
 	showName("PUBLIC\nBATH");
+	author("Savin");
 	output("Eventually, you get tired of just sitting around. You’re as relaxed as you can be by the time you haul yourself up out of the hot spring and grab your towel. It’s a quick process to dry yourself off on the way back to the locker room, passing several gold myr on the way to the baths as you go. You toss your towel into a hamper next to your row of lockers and grab your [pc.gear], kitting back up before returning to the lobby.");
 	//[Next]
 	//Back to Bath House main room
@@ -225,6 +229,7 @@ public function waterNutBustAttack():void
 {
 	clearOutput();
 	showRedMyrOfficer();
+	author("Savin");
 	output("<i>“It’ll be fine,”</i> you urge, caressing your red lover’s cheek. <i>“Just keep stroking it... just like that.”</i>");
 	output("\n\nYour partner looks worried, casting nervous glances between you, your [pc.cock], and the nearest clump of gold myr currently occupied in washing each others’ hair. She chews her lip, trying to think... but her indecision just carries you over into orgasm. You throw your head back and grunt as the first spurt of [pc.cumNoun] spurts into the spring water. {if non-standard cum color: a wispy cloud of [pc.cumColor] spreads out from your crotch, blighting the water around you with inhuman spunk.} Thankfully, it dissipates quickly, spreading out through the pool before anybody notices. You can’t help a dirty smile that spreads across your face, knowing that more than a dozen beautiful girls are quite literally swimming in your spunk now.");
 	output("\n\nYour partner looks horrified, mouth agape as your sperm vanishes into the pool. <i>“You... you...”</i> she gasps, staring. <i>“So that’s what that looks like.”</i>");
@@ -247,6 +252,7 @@ public function rideDickWithRedMyrSloot():void
 {
 	clearOutput();
 	showRedMyrOfficer();
+	author("Savin");
 	var x:int = pc.cockThatFits(100);
 	output("<i>“If you don’t want it in the water, how about in you?”</i> you grin, reaching over and grabbing your virginal lover under the arms. She has just enough time to gasp and squeal before you’ve spun her around and into your lap, her slit grinding tantalizingly against your cockhead. Not much time left...");
 	output("\n\nShe blinks at you, black eyes looking so awe-filled that they might just pop out at any moment. <i>“You want to cum inside me?”</i> she murmurs, still pumping your prick hard enough that she’s got to be battering her fist against her own crotch. <i>“I’ve never had...”</i>");
@@ -270,6 +276,7 @@ public function bustANutMidMyrEpilogue():void
 {
 	clearOutput();
 	showName("BATH\nHOUSE");
+	author("Savin");
 	output("Eventually, you get tired of just sitting around. You’re as relaxed as you can be by the time you haul yourself up out of the hot spring and grab your towel. It’s a quick process to dry yourself off on the way back to the locker room, passing several gold myr on the way to the baths as you go. You toss your towel into a hamper next to your row of lockers and grab your [pc.gear], kitting back up before returning to the lobby.");
 	processTime(20);
 	//[Next]
@@ -293,6 +300,7 @@ public function honeyPotFunTimes():void
 {
 	clearOutput();
 	showHoneypot();
+	author("Savin");
 	output("Sighting in on the golden honeypot with the gravity-defying bosom, you make your way over to the overly curvaceous ant. She sees you coming, regarding you with black insectile eyes that are impossible to read. She does, however, move a pair of her arms up to rest on the tops of her swollen mammaries, caressing the pale flesh that seems to glow with golden nectar just below the surface. Her nipples are as vibrant yellow as their bounty promises, both saucer-sized and begging to be suckled from.");
 	output("\n\nYou’re hardly the only one eyeing the buxom babe, but as the only offworlder in the place, you think you might just be the one to catch her attention.");
 	output("\n\nYou flash her a grin and disrobe, slipping into the scalding springwater just beside her. She returns your smile, lower arms cupping her hefty bosom provocatively. <i>“Hello, star-walker,”</i> the honeypot purrs, <i>“Did you come to get a snack while you bathe?”</i>");
@@ -322,6 +330,8 @@ public function honeyPotFunTimes():void
 public function batheAloneYouSloot():void
 {
 	clearOutput();
+	showName("PUBLIC\nBATHS");
+	author("Savin");
 	output("You decide to keep to yourself here, and find somewhere not crowded by bathing myr - not an easy prospect, considering how packed the place is. You manage to find somewhere to dip in though, and set your towel down out of splash radius before you slip into the water.");
 	output("\n\nThe springwater is hotter than you expected, almost making you flinch. You have to bite your lip as your [pc.skinFurScales] slip into the steaming water, slowly but surely lowering yourself into the pool. A few gold myr girls look your way, clearly drinking in your naked body with interest, but you avoid their gazes for now. You slip into the water, shifting ");
 	if(pc.isTaur()) output("your bestial body down into the bottom of the pool and resting your humanoid weight against the side of the pool");
@@ -344,7 +354,8 @@ public function batheAloneYouSloot():void
 public function batheAloneEpilogue():void
 {
 	clearOutput();
-	showName("BATH\nHOUSE");
+	author("Savin");
+	showName("PUBLIC\nBATHS");
 	output("Eventually, you get tired of just sitting around. You’re as relaxed as you can be by the time you haul yourself up out of the hot spring and grab your towel. It’s a quick process to dry yourself off on the way back to the locker room, passing several gold myr on the way to the baths as you go. You toss your towel into a hamper next to your row of lockers and grab your [pc.gear], kitting back up before returning to the lobby.");
 	//[Next]
 	//Back to Bath House main room
