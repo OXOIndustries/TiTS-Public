@@ -1985,7 +1985,7 @@ function goddamnitJimTAndYourExhibitionism():void
 	//Tavros:
 	if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
 	else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbethian citizens");
-	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("Raskvel");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("raskvel");
 	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
 	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
 	else output("onlookers");
@@ -2088,7 +2088,7 @@ function goddamnitJimTAndYourExhibitionism():void
 		output(" [pc.EachCock] flexes and fires");
 		if(pc.cumQ() < 5) output(" blank shots, only the smallest droplets of [pc.cum] escaping your [pc.cockHeads]");
 		else if(pc.cumQ() < 100) output(" thick spurts of [pc.cum] up and into the air. Some of shoot into the crowd. Your spunk splatters on one of their faces, and they let out a shocked noise!");
-		else output(" fountanous gushes of [pc.cum]. It surges forth from your [pc.cockheads], splattering into the crowd and raising shocked cries.");
+		else output(" fountainous gushes of [pc.cum]. It surges forth from your [pc.cockHeads], splattering into the crowd and raising shocked cries.");
 	}
 	if(pc.hasVagina())
 	{
@@ -2103,10 +2103,10 @@ function goddamnitJimTAndYourExhibitionism():void
 		else output("ass fingering");
 		output(", [pc.thighs] quaking in delight.");
 	}
-	output("\n\nDimly, you're aware of flashing around you as the assembled voyeurs take photos of your [pc.skinColor], ");
+	output("\n\nDimly, you're aware of flashing around you as the assembled voyeurs take photos of your [pc.skinFurScalesColor], ");
 	if(pc.hasCock() && pc.cumQ() >= 5) output("[pc.cumNoun]-splattered");
 	else output("sweaty");
-	output(" body. You bask in the afterglow for a good long while. Once you start getting cold, you pick yourself up and gather your things, feeling a fuzzy sense of fulfilment.");
+	output(" body. You bask in the afterglow for a good long while. Once you start getting cold, you pick yourself up and gather your things, feeling a fuzzy sense of fulfillment.");
 	output("\n\nYou smile brightly and slip on your [pc.gear]. Sex really is better when you've got an audience, even when it's with yourself.");
 	processTime(20);
 

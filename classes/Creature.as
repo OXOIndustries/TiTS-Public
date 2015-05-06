@@ -219,7 +219,7 @@
 		public var affinity: String = "intelligence";
 		public var characterClass: int = GLOBAL.CLASS_SMUGGLER;
 		public var personality: int = 50;
-		public var exhibitionismRaw: int = 0;
+		public var exhibitionismRaw: Number = 0;
 
 		//Combat Stats
 		// I think some of my UI work has highlighted some areas where stats are doing things that aren't intended, or otherwise possibly broken.
