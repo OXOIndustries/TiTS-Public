@@ -1337,6 +1337,7 @@ public function milkGainNotes():void
 		
 		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if ";
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "it wasn't for your genetically engineered super-tits, your body would be slowing down production";
+		else if(pc.isPregnant()) eventBuffer += "you weren't pregnant, you'd probably be slowing production.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "you weren't wearing a <b>Bounty Bra</b>, your body would be slowing down production";
 		else eventBuffer += "you don't take care of it soon, a loss of production is likely";
 		eventBuffer += ". Right now, they're swollen up to [pc.breastCupSize]s.";
@@ -1355,6 +1356,7 @@ public function milkGainNotes():void
 		
 		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. ";
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		else if(pc.isPregnant()) eventBuffer += "<b>With a pregnancy on the way, there's no way your body will stop producing.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
 		else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
 		pc.removeStatusEffect("Pending Gain Milk Note: 200");
@@ -1369,7 +1371,7 @@ public function lactationUpdateHourTick():void
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
 	//Bounty bra never loses milkMultiplier!
-	if(pc.upperUndergarment is BountyBra)
+	if(pc.upperUndergarment is BountyBra || pc.isPregnant())
 	{
 
 	}
@@ -1387,7 +1389,7 @@ public function lactationUpdateHourTick():void
 		}
 	}
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra)) {
+	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant()) {
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
 		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
 		else pc.milkMultiplier -= 0.1;

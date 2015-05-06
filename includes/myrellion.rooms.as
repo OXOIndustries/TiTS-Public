@@ -1316,6 +1316,7 @@ public function initializeMyrellionRooms():void
 	rooms["827"].runOnEnter = renvraBonus;
 	rooms["827"].addFlag(GLOBAL.INDOOR);
 	rooms["827"].addFlag(GLOBAL.PUBLIC);
+	rooms["827"].addFlag(GLOBAL.COMMERCE);
 
 	//828 - Ted's shop
 	rooms["828"] = new RoomClass(this);
