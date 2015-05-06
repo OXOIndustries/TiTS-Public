@@ -1064,7 +1064,7 @@ public function initializeMyrellionRooms():void
 	rooms["809"].system = "SYSTEM: SINDATHU";
 	rooms["809"].eastExit = "808";
 	rooms["809"].southExit = "810";
-	//rooms["809"].northExit = "9999";
+	rooms["809"].northExit = "830";
 	rooms["809"].moveMinutes = 2;
 	rooms["809"].runOnEnter = undefined;
 	rooms["809"].addFlag(GLOBAL.INDOOR);
@@ -1340,6 +1340,30 @@ public function initializeMyrellionRooms():void
 	rooms["829"].addFlag(GLOBAL.INDOOR);
 	rooms["829"].addFlag(GLOBAL.PUBLIC);
 	rooms["829"].addFlag(GLOBAL.COMMERCE);
+
+	// Bathen Hausen H10
+	rooms["830"] = new RoomClass(this);
+	rooms["830"].roomName = "BATH\nWALK";
+	rooms["830"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.\n\nThe bath house is open for business, it seems. Several people are wandering in and out, a healthy mix of both gold and red myr. The golds you see on the marble stairs are in various states of undress, some naked outright and others in skimpy robes that leave little to the imagination. Their red counterparts take in the view with an as much arousal as disdain.";
+	rooms["830"].system = "SYSTEM: SINDATHU";
+	rooms["830"].southExit = "809";
+	rooms["830"].westExit = "831";
+	rooms["830"].moveMinutes = 1;
+	rooms["830"].runOnEnter = undefined;
+	rooms["830"].addFlag(GLOBAL.CAVE);
+	rooms["830"].addFlag(GLOBAL.PUBLIC);
+
+	// Bathen Hausen F10
+	rooms["831"] = new RoomClass(this);
+	rooms["831"].roomName = "BATH HOUSE\nFOYER";
+	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind the a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you'd talk to about using the facilities here.";
+	rooms["831"].system = "SYSTEM: SINDATHU";
+	rooms["831"].eastExit = "830";
+	rooms["831"].moveMinutes = 1;
+	rooms["831"].runOnEnter = bathHouseBonus;
+	rooms["831"].addFlag(GLOBAL.INDOOR);
+	rooms["831"].addFlag(GLOBAL.PUBLIC);
+	rooms["831"].addFlag(GLOBAL.NPC);
 
 	//=========================================//
 	// NO MANZ LAND ROOMS. 1A0 to 1Z99 Reserved//
