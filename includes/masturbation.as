@@ -1734,12 +1734,12 @@ public function gooDickFap():void
 	author("Savin");
 	
 	output("You pat your own goo-coated backside and ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
-	if (pc.isCrotchGarbed() || pc.isChestGarbed())
+	if (!(pc.lowerUndergarment is EmptySlot) || !(pc.upperUndergarment is EmptySlot))
 	{
 		output(" Tendrils of goo peel off your");
-		if (pc.isCrotchGarbed()) output(" [pc.lowerGarment]");
-		if (pc.isCrotchGarbed() && pc.isChestGarbed()) output(" and");
-		if (pc.isChestGarbed()) output(" [pc.upperGarment]");
+		if (!(pc.lowerUndergarment is EmptySlot) output(" [pc.lowerGarment]");
+		if (!(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot)) output(" and");
+		if (!(pc.upperUndergarment is EmptySlot)) output(" [pc.upperGarment]");
 		output(", taking time to");
 		if (pc.hasCock() || pc.hasVagina())
 		{
