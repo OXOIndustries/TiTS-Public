@@ -1737,7 +1737,7 @@ public function gooDickFap():void
 	if (!(pc.lowerUndergarment is EmptySlot) || !(pc.upperUndergarment is EmptySlot))
 	{
 		output(" Tendrils of goo peel off your");
-		if (!(pc.lowerUndergarment is EmptySlot) output(" [pc.lowerGarment]");
+		if (!(pc.lowerUndergarment is EmptySlot)) output(" [pc.lowerGarment]");
 		if (!(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot)) output(" and");
 		if (!(pc.upperUndergarment is EmptySlot)) output(" [pc.upperGarment]");
 		output(", taking time to");

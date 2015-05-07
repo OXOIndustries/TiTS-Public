@@ -932,7 +932,7 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 
 	output("\n\nYou wake up in a sterile room, feeling very... light and empty, for the first time in months! You feel great, too! ");
 
-	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have" + pData.pregnancyQuantity + " new child");
+	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have " + pData.pregnancyQuantity + " new child");
 	if (pData.pregnancyQuantity > 1) output("ren");
 	output(", who in accordance with your Emergency Medical Profile (when did you set <i>that</i> up?), have been delivered to Tavros Station's nursery.");
 
