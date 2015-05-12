@@ -6623,6 +6623,7 @@
 			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 4) race = "zil";
+			if (badgerScore()() >= 4) race = "badger";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 
@@ -6651,6 +6652,15 @@
 		public function tanukiScore(): int
 		{
 			return nukiScore();
+		}
+		public function badgerScore():int
+		{
+			var counter:int = 0;
+			if(tailType == GLOBAL.TYPE_BADGER && tailCount > 0) counter++;
+			if(armType == GLOBAL.TYPE_BADGER) counter++;
+			if(faceType == GLOBAL.TYPE_BADGER) counter++;
+			if(skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
+			return counter;
 		}
 		public function vanaeScore(): int
 		{

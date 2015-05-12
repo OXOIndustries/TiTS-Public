@@ -714,6 +714,12 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	this.addButton(3,"Talk:Species",talkToPennyAboutSpecies);
 	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) this.addButton(4,"Sex",pennySexFirstTime);
 	else this.addDisabledButton(4,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
+	//Go Whine to Penny that a Mustelide was Mean to You
+	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+	//Add [Badger Help] to Penny’s talk menu
+	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
+	if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+	else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 }
 
 //[Sex]
@@ -1372,6 +1378,12 @@ public function approachGirlfriendPenny():void {
 	this.addButton(0,"Talk",talkToGirfriendPenny);
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
 	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+	//Go Whine to Penny that a Mustelide was Mean to You
+	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+	//Add [Badger Help] to Penny’s talk menu
+	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
+	if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+	else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -3483,8 +3495,88 @@ public function pennyGrowsAHorseCockPart2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+function whineToPennyCauseYerABitch():void
+{
+	clearOutput();
+	author("Savin");
+	showPennyName();
+	showBust("PENNY");
+	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
+	output("\n\n<i>“Okay, ");
+	if(flags["SEXED_PENNY"] != undefined) output("my mate");
+	else output("[pc.name]");
+	output(", tell me what happened.”</i>");
 
+	output("\n\nYou sit down across from Penny and start to tell her what happened on that shop on Tarkus: you wandered in, and had a weapon pointed right at you. ");
+	if(flags["DR_BADGER_BIMBOED_PC"] == undefined) output("You had no choice but to beg for your life");
+	else 
+	{
+		output("You ended up getting hit by some kind of ray that transformed you into a hermaphroditic badger");
+		if(pc.race() == "badger") output(", as Penny can see now");
+	}
+	output(". The way the doctor talked, you doubt you were her first victim... and you won’t be her last. She’s a threat to everyone around her, especially hapless spacers like you.");
 
+	//BadgerTFed:
+	if(flags["DR_BADGER_BIMBOED_PC"] != undefined && penny.hasCock())
+	{
+		author("Savin & Fenoxo");
+		//Throbb penny (non cumslut)
+		if(flags["PENNY_IS_A_CUMSLUT"] == undefined)
+		{
+			//Big penny
+			if(penny.longestCockLength() >= 10)
+			{
+				output("\n\nPenny’s endlessly libidinous shaft squelches noisily against the underside of the table. She blushes so crimson that her tawny fur looks practically orange against it and reaches down, ostensibly to adjust herself. Instead, her arm pumps up and down a few times, and her tongue lolls from her mouth. She pants, <i>“Ah-ah... ah... ermm... uh-huh.”</i> Her arm is still moving. <i>“Damn, that’s hot.”</i>");
+			}
+			//Smaller Penny
+			else
+			{
+				output("\n\nThe more you talk, the more excited Penny looks. Her eyes are wide and almost fully dilated. Her tongue keeps slipping out of her mouth, and most telling of all, one of her hands has disappeared underneath her desk. She groans openly at a particularly sordid detail of your transformation, failing to hide the sound of her fist pumping up and down along her squelching length.");
+			}
+			//Big/small merge:
+			output("\n\n<i>“Come on, Penny! This is serious!”</i> you chide through your embiggened lips. Maybe you can help her take care of that after the report.");
+			output("\n\n<i>“Fine,”</i> the shameless prick-vixen says with a sigh, pulling her hand out from under her desk to lick clean. Her entire palm is glistening with pre-cum, you note. The flavor appears quite enjoyable.");
+		}
+		//Throbb Penny (Cumslut
+		else
+		{
+			output("\n\nThe more you talk, the harder Penny’s cock becomes, rising in fits and starts, eventually lurching so powerfully that it slaps in between the cop-herm’s mammaries hard enough to make them bounce. The over-sexed cumslut has no hope of resisting such a delicious-looking spunk-spout and leans down to lick mid story, shamelessly tonguing dollops of pre from her distended slit to every sordid detail.");
+			output("\n\n<i>“Come on, Penny! This is serious!”</i> you chide through your embiggened lips. Maybe you can help her take care of that after the report.");
+			output("\n\nPenny retorts from around a mouthful of cock. <i>“No, I got thismph!”</i> One hand wraps around the shaft to steady it while she rams it further down her throat, the other haphazardly trying to type at a keyboard, attempting to enter every lurid detail simultaneously. It doesn’t go very well for her, but you’re forced to put up with it.");
+			output("\n\nAfter all, you helped turn her into this oversexed parody of a police officer. Smiling to yourself, you can’t help but imagine how good it must taste for her, how savory the bullet-sized dollops of pre-cum she’s pouring into her mouth must taste. When did you start sucking on your finger? Shrugging, you leave it there; it ought to keep you from drooling while you watch the dick-addicted sperm-drinker cave in to her addictions. She looks so hard... maybe...");
+			output("\n\nYou barely register crawling over the desk and nuzzling into her balls, but what else can you do? They looked so lonely and so... full. Your finger just can’t compare to the taste of those virile orbs, to feeling them pulse and quiver against your cheek, to the way it feels to let your bimbofied body just do what it wants.");
+			output("\n\nPenny’s sweat is heaven on your tongue, her fuzzy nuts almost ambrosial in flavor. It’s a shame when they start to lurch and spasm, pumping their all-too-virile payload through Penny’s overblown shaft and straight into her greedy, sucking maw. She gulps so noisily, but spatters of the creamy white goo trickle from the corners of her mouth. You lick your way up the quivering rod to the dribbles of salty treat, licking every single drop you can get it.");
+			output("\n\nPenny eventually pops off, though not until she’s cum her last drop. Still, there’s a milky-white sheen on her still-rigid length, and you want more. Thinking nothing of it, you pour yourself over it, your [pc.tongue] doing its damnedest to gather every delectable drop. Penny moans and shudders, dredging up a weak spurt of white stuff to reward you. It lands on the back of your tongue, hot and delicious. You swallow it without thinking twice, leaning back and primly dabbing at your lips.");
+			output("\n\n<i>“Do you think you can like, focus now?”</i>");
+			output("\n\nPenny kisses her dick, literally frenching her still-distended cum-slit, then favors you with a wink. <i>“You betcha! Thanks for the help, by the way. It’s tough to keep a good cock down. Now tell me again while I’ve got enough cum in my belly to let me think straight.”</i>");
+			pc.lust(25);
+			processTime(10);
+		}
+	}
+	//Merge
+	output("\n\nAs you recount your misadventure, Penny’s ");
+	if(penny.hasCock() && flags["PENNY_IS_A_CUMSLUT"] == undefined) output("still-moist ");
+	output("fingers fly across her keyboard, filling out the police report for you. She grunts and shakes her head from time to time, especially when you mention the badgerfication ray, and she asks you a few questions about the doctor’s weapons and the way she grabbed you. When you’ve answered her questions to her satisfaction, Penny hits a submit button on her screen and puts a reassuring hand on yours.");
+	output("\n\n<i>“Alright, I’ve forwarded your report to the Tarkus Peacekeeper. They’ll make sure this ‘doctor’ is taken care of,”</i> ");
+	if(flags["PENNY_IS_A_CUMSLUT"] == undefined) output("your lover growls. If you didn’t know better, you’d say it might have been protectively");
+	else output("Penny says with surety");
+	output(". You nod appreciatively, and tell her you’ll feel a lot better about Tarkus with her gone.");
 
-
-
+	output("\n\n<i>“No problem, ");
+	if(flags["SEXED_PENNY"] != undefined) output("[pc.name]");
+	else output("my mate");
+	output(", though I gotta admit, I would’ve killed for one of those rays a few years ago.”</i> Penny muses. <i>“Is there anything else you’d like to take care of while you’re here?");
+	if(flags["SEXED_PENNY"] != undefined)
+	{
+		if(flags["PENNY_IS_A_CUMSLUT"] != undefined) output(" Maybe help a horny vixen blow off some steam?");
+		else output(" Maybe I can make you feel safer in my arms...");
+	}
+	output("”</i>");
+	flags["DR_BADGER_TURNED_IN"] = 1;
+	processTime(15);
+	this.clearMenu();
+	this.addButton(0,"Talk",talkToGirfriendPenny);
+	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
+	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+	this.addButton(14,"Back",mainGameMenu);
+}

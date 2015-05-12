@@ -649,6 +649,9 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	//Handle badger closure
+	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
 	//Handle planet explosions
 	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
