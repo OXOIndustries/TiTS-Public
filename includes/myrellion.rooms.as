@@ -2054,7 +2054,7 @@ public function initializeMyrellionRooms():void
 	rooms["1D18"].runOnEnter = deepCavesEntranceBonus;
 	rooms["1D18"].addFlag(GLOBAL.CAVE);
 	rooms["1D18"].addFlag(GLOBAL.INDOOR);
-	rooms["1D18"].addFlag(GLOBAL.HAZARD);
+	rooms["1D18"].addFlag(GLOBAL.LIFTDOWN);
 
 	//TEMPLATE
 	rooms["1H99"] = new RoomClass(this);
@@ -2302,7 +2302,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Y19"].runOnEnter = caveBottomEntranceBonus;
 	rooms["2Y19"].addFlag(GLOBAL.CAVE);
 	rooms["2Y19"].addFlag(GLOBAL.INDOOR);
-	rooms["2Y19"].addFlag(GLOBAL.HAZARD);
+	rooms["2Y19"].addFlag(GLOBAL.LIFTUP);
 	
 	//W19 -- Depths Intersection
 	rooms["2W19"] = new RoomClass(this);
@@ -2624,7 +2624,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I7"].runOnEnter = myrellionUndergroundCrashSiteBonus;
 	rooms["2I7"].addFlag(GLOBAL.CAVE);
 	rooms["2I7"].addFlag(GLOBAL.INDOOR);
-	rooms["2I7"].addFlag(GLOBAL.HAZARD);
+	rooms["2I7"].addFlag(GLOBAL.TAXI);
 	  
 	//M13 -- Pillar NE
 	rooms["2M13"] = new RoomClass(this);

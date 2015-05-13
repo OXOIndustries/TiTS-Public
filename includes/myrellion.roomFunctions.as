@@ -112,7 +112,7 @@ public function approachAntrias():void
 	else
 	{
 		output("<i>“Ho there, what can I do for you?”</i> the man asks, sitting up straight as you approach. <i>“Comm arrays are coming online in places we can get you, so where do you want to go, friend? <b>Only 150 credits a trip!</b>”</i>");
-		//{Destination -- 160 Credits}
+		//{Destination -- 150 Credits}
 		myrellionTaxiMenu();
 	}
 }
@@ -122,17 +122,27 @@ public function myrellionTaxiMenu():void
 	if(currentLocation == "610") addDisabledButton(0,"ScoutAuth.","Scout Authority","You're already at the scout authority!");
 	else
 	{
-		if(pc.credits >= 150) addButton(0,"ScoutAuth.",takeATransPortMyrellion,"610","Scout Authority","Spend 160 credits to go back to the scout authority in the DMZ.");
+		if(pc.credits >= 150) addButton(0,"ScoutAuth.",takeATransPortMyrellion,"610","Scout Authority","Spend 150 credits to go back to the scout authority in the DMZ.");
 		else addDisabledButton(0,"ScoutAuth.","Scout Authority","You can't afford the taxi fee.");
 	}
 	if(currentLocation == "1L18") addDisabledButton(1,"NoMan'sLand","No Man's Land","You're already at that taxi stop.");
 	else
 	{
-		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(0,"NoMan'sLand","No Man's Land","You haven't unlocked the comm array in no man's land yet.");
+		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(1,"NoMan'sLand","No Man's Land","You haven't unlocked the comm array in no man's land yet.");
 		else
 		{
-			if(pc.credits >= 150) addButton(0,"NoMan'sLand",takeATransPortMyrellion,"1L18","No Man's Land","Spend 160 credits to go to no man's land.");
-			else addDisabledButton(0,"NoMan'sLand","No Man's Land","You can't afford the taxi fee.");
+			if(pc.credits >= 150) addButton(1,"NoMan'sLand",takeATransPortMyrellion,"1L18","No Man's Land","Spend 150 credits to go to no man's land.");
+			else addDisabledButton(1,"NoMan'sLand","No Man's Land","You can't afford the taxi fee.");
+		}
+	}
+	if(currentLocation == "2I7") addDisabledButton(2,"Deep Caves","Deep Caves","You're already at the deep caves taxi beacon!");
+	else
+	{
+		if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) addDisabledButton(2,"Deep Caves","Deep Caves","You haven't unlocked the comm array in the deep caves yet.");
+		else
+		{
+			if(pc.credits >= 150) addButton(2,"Deep Caves",takeATransPortMyrellion,"2I7","Deep Caves","Spend 150 credits to go to no man's land.");
+			else addDisabledButton(2,"Deep Caves","Deep Caves","You can't afford the taxi fee.");
 		}
 	}
 	addButton(14,"Leave",mainGameMenu);
@@ -140,13 +150,14 @@ public function myrellionTaxiMenu():void
 
 public function myrellionTaxiUnlocked():Boolean
 {
-	return (flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined);
+	return (flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined || flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined);
 }
 
 public function takeATransPortMyrellion(arg:String = ""):void
 {
 	clearOutput();
 	author("Savin");
+	//Leaving scout authority.
 	if(currentLocation == "610")
 	{
 		showBust("ANTRIAS");
@@ -154,6 +165,12 @@ public function takeATransPortMyrellion(arg:String = ""):void
 		output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the blasted surface of Myrellion, towards one of the subterranean entrances you need.");
 		output("\n\nNot long after, you arrive at your destination, a large crack in the ground allowing entrance. Carefully, your drone pilot lowers the car down into the blackness of Myrellion’s heart. You have to take a jump out, though, dropping down the last few feet into the uneven ground. The hover-car zips away a minute later, leaving you behind.");
 	}
+	//Deep caves -> scout authority
+	else if(currentLocation == "2I7" && arg == "610")
+	{
+		output("You send a databurst to the local Scout Authority base, requesting a shuttle pickup. It only takes a few minutes for the shuttle to arrive, slipping precariously through the crack in the cavern ceiling and puttering down to your level. The door pops open and the robot driver inside beckons you in; moments later you're racing through the desert skyline over Myrellion, headed back to the DMZ.\n\nYou're dropped off just behind the Scout office, and make your way inside.");
+	}
+	//Anything else
 	else
 	{
 		output("You send a databurst to the Scout Authority, requesting transit. You receive what amounts to a Morse code affirmation over the radio in return, and spend the next few minutes waiting for your ride.");
@@ -225,15 +242,32 @@ public function searchDatBunker():void
 	processTime(18);
 	quickLoot(new MyrRifle());
 }
-/*
-Deep Caves Beacon
-There's a shaft of light beaming down from on high here, traceable up to a pretty sizable gash in the cavern ceiling, drilling all the way down to your depth. Buried in the dirt at the bottom is a small data probe, proudly bearing a scuffed up version of the U.G.C. Scouts emblem. {You could probably activate it, setting up a taxi pick-up point. // The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.}
 
+public function myrellionUndergroundCrashSiteBonus():Boolean
+{
+	if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) 
+	{
+		output("\n\nStill, it seems functional enough. You could probably activate it, setting up a taxi pick-up point.");
+		addButton(0,"Activate",repairBeacon,undefined,"Activate","Get the old beacon working again.");
+	}
+	else 
+	{
+		output(" The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
+	}
+	return false;
+}
 
-[Activate Beacon]
-You give the beacon a kick, and it buzzes to life. That was easy. Should be able to call in a taxi from here, now, thanks to the fuck-off huge hole it made landing here.
-*/
-
+//[Repair Beacon]
+public function repairBeacon():void
+{
+	clearOutput();
+	output("You give the beacon a kick, and it buzzes to life. That was easy. Should be able to call in a taxi from here, now, thanks to the fuck-off huge hole it made landing here.");
+	flags["DEEP_CAVES_TAXI_UNLOCKED"] = 1;
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
 public function kressiaGatesBonus():Boolean
 {
@@ -529,30 +563,6 @@ public function ascendFromDeepCaves():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function myrellionUndergroundCrashSiteBonus():Boolean
-{
-	if(9999) output("\n\nStill, it seems functional enough. You could probably activate it, setting up a taxi pick-up point.");
-	else output(" The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.");
-	//9999
-	return false;
-}
-
-//[Repair Beacon]
-public function repairBeacon():void
-{
-	clearOutput();
-	output("You give the beacon a kick, and it buzzes to life. That was easy. Should be able to call in a taxi from here, now, thanks to the fuck-off huge hole it made landing here.");
-	processTime(4);
-}
-
-public function callATaxiOnMyrellionYo():void
-{
-	clearOutput();
-	output("You hook your Codex up to the probe and send a databurst to the local Scout Authority base, requesting a shuttle pickup. It only takes a few minutes for the shuttle to arrive, slipping precariously through the crack in the cavern ceiling and puttering down to your level. The door pops open and the robot driver inside beckons you in; moments later you're racing through the desert skyline over Myrellion, headed back to the DMZ.\n\nYou're dropped off just behind the Scout office, and make your way inside.");
-
-	//[Deep Caves] //From Taxi Station
-	//(Use same text as per No Man's Land destination)
-}
 public function k13Bonus():Boolean
 {
 	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward read ");
