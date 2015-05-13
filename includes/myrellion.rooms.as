@@ -1992,8 +1992,8 @@ public function initializeMyrellionRooms():void
 	rooms["1J10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1H18"] = new RoomClass(this);
-	rooms["1H18"].roomName = "\n";
-	rooms["1H18"].description = "PLACEHOLDER";
+	rooms["1H18"].roomName = "SLOPING\nPASSAGE";
+	rooms["1H18"].description = "This tunnel branches off from the carved-out myr tunnels above, sloping unevenly downwards. The tunnel seems naturally formed, roughly carved out by the forces of nature rather than myrmedion drills. Patches of glowing fungus adorn the walls, casting a deep green light over your path.\n\nTo the east, you can see craggy hole in the myr tunnels that allowed you access here. The tunnel sags down to the south, delving deeper into the bowels of the planet.";
 	rooms["1H18"].planet = "PLANET: MYRELLION";
 	rooms["1H18"].system = "SYSTEM: SINDATHU";
 	rooms["1H18"].eastExit = "1J18";
@@ -2005,8 +2005,8 @@ public function initializeMyrellionRooms():void
 	rooms["1H18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1H20"] = new RoomClass(this);
-	rooms["1H20"].roomName = "\n";
-	rooms["1H20"].description = "PLACEHOLDER";
+	rooms["1H20"].roomName = "STONE\nPILLARS";
+	rooms["1H20"].description = "The caverns here are wide and open, giving access to a sloping passage to the far north, and a further access westward. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and crude cave drawings. You can see evidence of several humanoids passing through here, coming up from the depths below.";
 	rooms["1H20"].planet = "PLANET: MYRELLION";
 	rooms["1H20"].system = "SYSTEM: SINDATHU";
 	rooms["1H20"].northExit = "1H18";
@@ -2018,21 +2018,21 @@ public function initializeMyrellionRooms():void
 	rooms["1H20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1F20"] = new RoomClass(this);
-	rooms["1F20"].roomName = "\n";
-	rooms["1F20"].description = "PLACEHOLDER";
+	rooms["1F20"].roomName = "LONG\nCORRIDOR";
+	rooms["1F20"].description = "The caverns are wide and open, connecting the long passage going east to west. You can see a faint glimmer of light to the west, coming down from the myr tunnels above. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and cride cave drawings.";
 	rooms["1F20"].planet = "PLANET: MYRELLION";
 	rooms["1F20"].system = "SYSTEM: SINDATHU";
 	rooms["1F20"].eastExit = "1H20";
 	rooms["1F20"].westExit = "1D20";
 	rooms["1F20"].moveMinutes = 5;
-	rooms["1F20"].runOnEnter = noManzLandBonus;
+	rooms["1F20"].runOnEnter = pillarsBonusFunc;
 	rooms["1F20"].addFlag(GLOBAL.CAVE);
 	rooms["1F20"].addFlag(GLOBAL.INDOOR);
 	rooms["1F20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["1D20"] = new RoomClass(this);
-	rooms["1D20"].roomName = "\n";
-	rooms["1D20"].description = "PLACEHOLDER";
+	rooms["1D20"].roomName = "GLOWING\nLAKE";
+	rooms["1D20"].description = "The caverns are wide and open, connecting the long passage stretching out to the east. To the north, you can see a shelf of rock overlooking a black precipice, down into the deepest depths of the bug planet. A large pool of water sits in a basic nearby - it's nearly crystal clear, and illuminated by a ceiling covered in glowing moss. Water pours down from a crack in the cavern, a small rivulet of liquid that burbles pleasantly.";
 	rooms["1D20"].planet = "PLANET: MYRELLION";
 	rooms["1D20"].system = "SYSTEM: SINDATHU";
 	rooms["1D20"].northExit = "1D18";
@@ -2043,14 +2043,15 @@ public function initializeMyrellionRooms():void
 	rooms["1D20"].addFlag(GLOBAL.INDOOR);
 	rooms["1D20"].addFlag(GLOBAL.HAZARD);
 
+
 	rooms["1D18"] = new RoomClass(this);
-	rooms["1D18"].roomName = "\n";
-	rooms["1D18"].description = "PLACEHOLDER";
+	rooms["1D18"].roomName = "CAVES\nDESCENT";
+	rooms["1D18"].description = "A shelf of rock looms precariously over what seems like a bottomless pit to the west. The abyss ahead of you in black, lightless, an all-consuming void. Several pitons have been hammered into the rock near the cliff's edge, dangling ropes down into the depths. You could climb down into the deepest recesses of Myrellion's caves from here.";
 	rooms["1D18"].planet = "PLANET: MYRELLION";
 	rooms["1D18"].system = "SYSTEM: SINDATHU";
 	rooms["1D18"].southExit = "1D20";
 	rooms["1D18"].moveMinutes = 5;
-	rooms["1D18"].runOnEnter = noManzLandBonus;
+	rooms["1D18"].runOnEnter = deepCavesEntranceBonus;
 	rooms["1D18"].addFlag(GLOBAL.CAVE);
 	rooms["1D18"].addFlag(GLOBAL.INDOOR);
 	rooms["1D18"].addFlag(GLOBAL.HAZARD);
@@ -2282,4 +2283,769 @@ public function initializeMyrellionRooms():void
 	rooms["1N11"].addFlag(GLOBAL.CAVE);
 	rooms["1N11"].addFlag(GLOBAL.INDOOR);
 	rooms["1N11"].addFlag(GLOBAL.HAZARD);
+
+	/*************************************
+	** 		DEEP CAVES SHIIIIT			**
+	*************************************/
+	
+	//Y19 -- Ascension Point
+	rooms["2Y19"] = new RoomClass(this);
+	rooms["2Y19"].roomName = "ASCENTION\nPOINT";
+	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet's heart.\n\nStrange, blurred colors smear the walls of the cavern.  On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone.  The result is a formless, but aesthetically pleasing fresco on all sides.";
+	rooms["2Y19"].planet = "PLANET: MYRELLION";
+	rooms["2Y19"].system = "SYSTEM: SINDATHU";
+	rooms["2Y19"].northExit = "";
+	rooms["2Y19"].eastExit = "";
+	rooms["2Y19"].southExit = "";
+	rooms["2Y19"].westExit = "2W19";
+	rooms["2Y19"].moveMinutes = 5;
+	rooms["2Y19"].runOnEnter = caveBottomEntranceBonus;
+	rooms["2Y19"].addFlag(GLOBAL.CAVE);
+	rooms["2Y19"].addFlag(GLOBAL.INDOOR);
+	rooms["2Y19"].addFlag(GLOBAL.HAZARD);
+	
+	//W19 -- Depths Intersection
+	rooms["2W19"] = new RoomClass(this);
+	rooms["2W19"].roomName = "DEPTHS\nINTERSECTION";
+	rooms["2W19"].description = "A three-way intersection has formed here, with the west-east tunnel branching off into a northern passage, its walls covered in the same glowing fungus from the upper caves. To the west, you can see what looks like some kind of armored vehicle.";
+	rooms["2W19"].planet = "PLANET: MYRELLION";
+	rooms["2W19"].system = "SYSTEM: SINDATHU";
+	rooms["2W19"].northExit = "2W17";
+	rooms["2W19"].eastExit = "2Y19";
+	rooms["2W19"].southExit = "";
+	rooms["2W19"].westExit = "2U19";
+	rooms["2W19"].moveMinutes = 5;
+	rooms["2W19"].runOnEnter = undefined;
+	rooms["2W19"].addFlag(GLOBAL.CAVE);
+	rooms["2W19"].addFlag(GLOBAL.INDOOR);
+	rooms["2W19"].addFlag(GLOBAL.HAZARD);
+
+	//U19 -- Armored Husk
+	rooms["2U19"] = new RoomClass(this);
+	rooms["2U19"].roomName = "ARMORED\nHUSK";
+	rooms["2U19"].description = "An abandoned armored car sits here, rusting with the passage of time. It's not a tank per se, just a four-wheel motor car with heavy plates bolted to it. You can see evidence of a weapons mount on it, though the gun's long since been looted. There's no indication left as to which side of the war the derelict fought on, or how it got all the way down here.\n\nOn closer inspection, you can see the car's interior is all but flooded with empty shell casings.";
+	rooms["2U19"].planet = "PLANET: MYRELLION";
+	rooms["2U19"].system = "SYSTEM: SINDATHU";
+	rooms["2U19"].northExit = "";
+	rooms["2U19"].eastExit = "2W19";
+	rooms["2U19"].southExit = "2U21";
+	rooms["2U19"].westExit = "";
+	rooms["2U19"].moveMinutes = 5;
+	rooms["2U19"].runOnEnter = undefined;
+	rooms["2U19"].addFlag(GLOBAL.CAVE);
+	rooms["2U19"].addFlag(GLOBAL.INDOOR);
+	rooms["2U19"].addFlag(GLOBAL.HAZARD);
+	 
+	//U21 -- Mushroom Forest
+	rooms["2U21"] = new RoomClass(this);
+	rooms["2U21"].roomName = "MUSHROOM\nFOREST";
+	rooms["2U21"].description = "A series of shelf-like mushrooms line the walls of this room, tiny terraces upon which bone-white insects sit, completely still until you approach them.  In your presence, the tiny invertebrates glow red and skitter beneath the fungus, still alight.  As you stride through the room, the shelves of fungus turn into red-light lamps, an interesting, albeit eerie effect.";
+	rooms["2U21"].planet = "PLANET: MYRELLION";
+	rooms["2U21"].system = "SYSTEM: SINDATHU";
+	rooms["2U21"].northExit = "2U19";
+	rooms["2U21"].eastExit = "";
+	rooms["2U21"].southExit = "2U23";
+	rooms["2U21"].westExit = "";
+	rooms["2U21"].moveMinutes = 5;
+	rooms["2U21"].runOnEnter = undefined;
+	rooms["2U21"].addFlag(GLOBAL.CAVE);
+	rooms["2U21"].addFlag(GLOBAL.INDOOR);
+	rooms["2U21"].addFlag(GLOBAL.HAZARD);
+	
+	//U23 -- Hanging Fungus
+	rooms["2U23"] = new RoomClass(this);
+	rooms["2U23"].roomName = "HANGING\nFUNGUS";
+	rooms["2U23"].description = "Fungus hangs in unhealthy-looking streamers in this cave.  Fleshy strips of barely-glowing fungus tatter down to the floor, often connected to each other by skin-like membranes.  You shudder a bit as you make your way through the strangely flesh-like curtains, trying hard to ignore the way they feel like hands on your skin.";
+	rooms["2U23"].planet = "PLANET: MYRELLION";
+	rooms["2U23"].system = "SYSTEM: SINDATHU";
+	rooms["2U23"].northExit = "2U21";
+	rooms["2U23"].eastExit = "";
+	rooms["2U23"].southExit = "2U25";
+	rooms["2U23"].westExit = "";
+	rooms["2U23"].moveMinutes = 5;
+	rooms["2U23"].runOnEnter = undefined;
+	rooms["2U23"].addFlag(GLOBAL.CAVE);
+	rooms["2U23"].addFlag(GLOBAL.INDOOR);
+	rooms["2U23"].addFlag(GLOBAL.HAZARD);
+	
+	//U25 -- Fungal Depths
+	rooms["2U25"] = new RoomClass(this);
+	rooms["2U25"].roomName = "FUNGAL\nDEPTHS";
+	rooms["2U25"].description = "A papery rasp fills this section of tunnel and as you walk through, you happen to glance up halfway through the cavern and realize that the ceiling is moving.  A moment of peering at it reveals the horrifying truth--it's covered in segmented coils, wound over each other in countless, slithering layers, all bristling with spiny, twitching legs. You don't see a head or even and end, so it's unclear if it's a colony of something or just one monstrous organism.  You'd rather not find out and hurry your way through the otherwise empty cave.";
+	rooms["2U25"].planet = "PLANET: MYRELLION";
+	rooms["2U25"].system = "SYSTEM: SINDATHU";
+	rooms["2U25"].northExit = "2U23";
+	rooms["2U25"].eastExit = "";
+	rooms["2U25"].southExit = "";
+	rooms["2U25"].westExit = "";
+	rooms["2U25"].moveMinutes = 5;
+	rooms["2U25"].runOnEnter = undefined;
+	rooms["2U25"].addFlag(GLOBAL.CAVE);
+	rooms["2U25"].addFlag(GLOBAL.INDOOR);
+	rooms["2U25"].addFlag(GLOBAL.HAZARD);
+	
+	//W17 -- Pillar Arch
+	rooms["2W17"] = new RoomClass(this);
+	rooms["2W17"].roomName = "PILLAR\nARCH";
+	rooms["2W17"].description = "The stone pillars that line the passage from here to the ascent point begin to grow more and more bent, until at the northernmost edge of the cavern several of them have formed a towering archway that is covered with a healthy coat of glowing blue fungus. Whether this is a naturally-wrought wonder or made by the hands of the creatures the dwell down here, you can't say.";
+	rooms["2W17"].planet = "PLANET: MYRELLION";
+	rooms["2W17"].system = "SYSTEM: SINDATHU";
+	rooms["2W17"].northExit = "2W15";
+	rooms["2W17"].eastExit = "";
+	rooms["2W17"].southExit = "2W19";
+	rooms["2W17"].westExit = "";
+	rooms["2W17"].moveMinutes = 5;
+	rooms["2W17"].runOnEnter = undefined;
+	rooms["2W17"].addFlag(GLOBAL.CAVE);
+	rooms["2W17"].addFlag(GLOBAL.INDOOR);
+	rooms["2W17"].addFlag(GLOBAL.HAZARD);
+
+	//W15 -- Collapsed Passage
+	rooms["2W15"] = new RoomClass(this);
+	rooms["2W15"].roomName = "PILLAR\nARCH";
+	rooms["2W15"].description = "You can see the remnants of a very large tunnel stretching north, though a cave-in has blocked your passage in that direction. Several cave-drawings adorn the stonework nearby, depicting what kind of looks like a tribe of stick figures, all of whom are drawn with a very impressive third leg.\n\nThe remaining passages curve south, back towards the ascent, or westwards down a sharp incline. And here you thought you couldn't get any deeper...";
+	rooms["2W15"].planet = "PLANET: MYRELLION";
+	rooms["2W15"].system = "SYSTEM: SINDATHU";
+	rooms["2W15"].northExit = "";
+	rooms["2W15"].eastExit = "";
+	rooms["2W15"].southExit = "2W17";
+	rooms["2W15"].westExit = "2U15";
+	rooms["2W15"].moveMinutes = 5;
+	rooms["2W15"].runOnEnter = undefined;
+	rooms["2W15"].addFlag(GLOBAL.CAVE);
+	rooms["2W15"].addFlag(GLOBAL.INDOOR);
+	rooms["2W15"].addFlag(GLOBAL.HAZARD);
+	
+	//U15 -- Sloping Passage
+	rooms["2U15"] = new RoomClass(this);
+	rooms["2U15"].roomName = "SLOPING\nPASSAGE";
+	rooms["2U15"].description = "This east-west passage slopes sharply downwards. Several uneven handholds have been worn out by the passage of thousands over the years, making the going fairly easy.";
+	rooms["2U15"].planet = "PLANET: MYRELLION";
+	rooms["2U15"].system = "SYSTEM: SINDATHU";
+	rooms["2U15"].northExit = "";
+	rooms["2U15"].eastExit = "2W15";
+	rooms["2U15"].southExit = "";
+	rooms["2U15"].westExit = "2S15";
+	rooms["2U15"].moveMinutes = 5;
+	rooms["2U15"].runOnEnter = undefined;
+	rooms["2U15"].addFlag(GLOBAL.CAVE);
+	rooms["2U15"].addFlag(GLOBAL.INDOOR);
+	rooms["2U15"].addFlag(GLOBAL.HAZARD);
+	
+	//S15 -- Underground Well
+	rooms["2S15"] = new RoomClass(this);
+	rooms["2S15"].roomName = "UNDERGROUND\nWELL";
+	rooms["2S15"].description = "You stand in the middle of a three-way intersection, with a northern passage breaking off from the east-west one. The intersection seems to have been formed around a small well of water, burbling up from below. You can see some iron buckets and clay jugs scattered around. Clearly the locals are using this... they must have scattered at your approach.";
+	rooms["2S15"].planet = "PLANET: MYRELLION";
+	rooms["2S15"].system = "SYSTEM: SINDATHU";
+	rooms["2S15"].northExit = "2S13";
+	rooms["2S15"].eastExit = "2U15";
+	rooms["2S15"].southExit = "";
+	rooms["2S15"].westExit = "2Q15";
+	rooms["2S15"].moveMinutes = 5;
+	rooms["2S15"].runOnEnter = undefined;
+	rooms["2S15"].addFlag(GLOBAL.CAVE);
+	rooms["2S15"].addFlag(GLOBAL.INDOOR);
+	rooms["2S15"].addFlag(GLOBAL.HAZARD);
+	
+	//S13 -- Insect Grave
+	rooms["2S13"] = new RoomClass(this);
+	rooms["2S13"].roomName = "UNDERGROUND\nWELL";
+	rooms["2S13"].description = "A large hexapedal insect about the size of a water buffalo has died here, collapsed with a spear in its side. Several thousand smaller insects are streaming over its body, slowly breaking it down.";
+	rooms["2S13"].planet = "PLANET: MYRELLION";
+	rooms["2S13"].system = "SYSTEM: SINDATHU";
+	rooms["2S13"].northExit = "2S11";
+	rooms["2S13"].eastExit = "";
+	rooms["2S13"].southExit = "2S15";
+	rooms["2S13"].westExit = "";
+	rooms["2S13"].moveMinutes = 5;
+	rooms["2S13"].runOnEnter = undefined;
+	rooms["2S13"].addFlag(GLOBAL.CAVE);
+	rooms["2S13"].addFlag(GLOBAL.INDOOR);
+	rooms["2S13"].addFlag(GLOBAL.HAZARD);
+	 
+	//S11 -- Branching Path
+	rooms["2S11"] = new RoomClass(this);
+	rooms["2S11"].roomName = "BRANCHING\nPATH";
+	rooms["2S11"].description = "";
+	rooms["2S11"].planet = "PLANET: MYRELLION";
+	rooms["2S11"].system = "SYSTEM: SINDATHU";
+	rooms["2S11"].northExit = "2S9";
+	rooms["2S11"].eastExit = "";
+	rooms["2S11"].southExit = "2S13";
+	rooms["2S11"].westExit = "2Q11";
+	rooms["2S11"].moveMinutes = 5;
+	rooms["2S11"].runOnEnter = fungus1Bonus;
+	rooms["2S11"].addFlag(GLOBAL.CAVE);
+	rooms["2S11"].addFlag(GLOBAL.INDOOR);
+	rooms["2S11"].addFlag(GLOBAL.HAZARD);
+
+	//S9 -- Dense Passage
+	//Garde Here
+	rooms["2S9"] = new RoomClass(this);
+	rooms["2S9"].roomName = "DENSE\nPASSAGE";
+	rooms["2S9"].description = "Spongy toadstools strobe with pulses of yellow as you're forced to step on them to pass by. You can see an open area at the end of the short hallway, but it still takes you a while to maneuver through the dense fungus.";
+	rooms["2S9"].planet = "PLANET: MYRELLION";
+	rooms["2S9"].system = "SYSTEM: SINDATHU";
+	rooms["2S9"].northExit = "2S7";
+	rooms["2S9"].eastExit = "";
+	rooms["2S9"].southExit = "2S11";
+	rooms["2S9"].westExit = "";
+	rooms["2S9"].moveMinutes = 5;
+	rooms["2S9"].runOnEnter = undefined;
+	rooms["2S9"].addFlag(GLOBAL.CAVE);
+	rooms["2S9"].addFlag(GLOBAL.INDOOR);
+	rooms["2S9"].addFlag(GLOBAL.HAZARD);
+	
+	//S7 -- Abandoned Tanks
+	//Garde Here
+	rooms["2S7"] = new RoomClass(this);
+	rooms["2S7"].roomName = "FUNGAL\nPASSAGE";
+	rooms["2S7"].description = "Mushrooms the size of buildings pulse with soft colors that match the pale blue of the abandoned chambers. Clouds of tiny spores flutter around in the open air, reminding you of what happened here.";
+	rooms["2S7"].planet = "PLANET: MYRELLION";
+	rooms["2S7"].system = "SYSTEM: SINDATHU";
+	rooms["2S7"].northExit = "";
+	rooms["2S7"].eastExit = "";
+	rooms["2S7"].southExit = "2S9";
+	rooms["2S7"].westExit = "";
+	rooms["2S7"].moveMinutes = 5;
+	rooms["2S7"].runOnEnter = undefined;
+	rooms["2S7"].addFlag(GLOBAL.CAVE);
+	rooms["2S7"].addFlag(GLOBAL.INDOOR);
+	rooms["2S7"].addFlag(GLOBAL.HAZARD);
+	
+	//Q11 -- Long Passage, East
+	rooms["2Q11"] = new RoomClass(this);
+	rooms["2Q11"].roomName = "LONG\nPASSAGE";
+	rooms["2Q11"].description = "A lengthy passage runs east to west, surprisingly slender and smooth. Perhaps this cavern was man-made... or at least refined by local miners.";
+	rooms["2Q11"].planet = "PLANET: MYRELLION";
+	rooms["2Q11"].system = "SYSTEM: SINDATHU";
+	rooms["2Q11"].northExit = "";
+	rooms["2Q11"].eastExit = "2S11";
+	rooms["2Q11"].southExit = "";
+	rooms["2Q11"].westExit = "2O11";
+	rooms["2Q11"].moveMinutes = 5;
+	rooms["2Q11"].runOnEnter = undefined;
+	rooms["2Q11"].addFlag(GLOBAL.CAVE);
+	rooms["2Q11"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q11"].addFlag(GLOBAL.HAZARD);
+	
+	//O11 -- Long Passage, Center
+	rooms["2O11"] = new RoomClass(this);
+	rooms["2O11"].roomName = "LONG\nPASSAGE";
+	rooms["2O11"].description = "The long passage continues, a narrow passage stretching on and on through the darkness. Thick coverings of cave drawings coat the walls, obscured behind rows of dark stalagmites.";
+	rooms["2O11"].planet = "PLANET: MYRELLION";
+	rooms["2O11"].system = "SYSTEM: SINDATHU";
+	rooms["2O11"].northExit = "";
+	rooms["2O11"].eastExit = "2Q11";
+	rooms["2O11"].southExit = "";
+	rooms["2O11"].westExit = "2M11";
+	rooms["2O11"].moveMinutes = 5;
+	rooms["2O11"].runOnEnter = undefined;
+	rooms["2O11"].addFlag(GLOBAL.CAVE);
+	rooms["2O11"].addFlag(GLOBAL.INDOOR);
+	rooms["2O11"].addFlag(GLOBAL.HAZARD);
+	
+	//M11 -- Long Passage, West
+	rooms["2M11"] = new RoomClass(this);
+	rooms["2M11"].roomName = "LONG\nPASSAGE";
+	rooms["2M11"].description = "A lengthy eastern passage widens out into a circular chamber, running north to south. The cragginess of this cave makes it barely navigatable.  You manage to hop from one safe foothold to the next, almost losing your balance when something skitters out of the darkness and over your [pc.foot].  It disappears when you try to get a closer look at it.  You continue across the crags at a somewhat more hurried pace.";
+	rooms["2M11"].planet = "PLANET: MYRELLION";
+	rooms["2M11"].system = "SYSTEM: SINDATHU";
+	rooms["2M11"].northExit = "2M9";
+	rooms["2M11"].eastExit = "2O11";
+	rooms["2M11"].southExit = "2M13";
+	rooms["2M11"].westExit = "";
+	rooms["2M11"].moveMinutes = 5;
+	rooms["2M11"].runOnEnter = undefined;
+	rooms["2M11"].addFlag(GLOBAL.CAVE);
+	rooms["2M11"].addFlag(GLOBAL.INDOOR);
+	rooms["2M11"].addFlag(GLOBAL.HAZARD);
+	
+	//M9 -- Northern Reach
+	rooms["2M9"] = new RoomClass(this);
+	rooms["2M9"].roomName = "NORTHERN\nREACH";
+	rooms["2M9"].description = "The passage winds north to south, connecting the craggy chamber south of you to a long tunnel that seems to wind west from here. You can see a pillar of light shining down from above through a crack in the ceiling.";
+	rooms["2M9"].planet = "PLANET: MYRELLION";
+	rooms["2M9"].system = "SYSTEM: SINDATHU";
+	rooms["2M9"].northExit = "2M7";
+	rooms["2M9"].eastExit = "";
+	rooms["2M9"].southExit = "2M11";
+	rooms["2M9"].westExit = "";
+	rooms["2M9"].moveMinutes = 5;
+	rooms["2M9"].runOnEnter = undefined;
+	rooms["2M9"].addFlag(GLOBAL.CAVE);
+	rooms["2M9"].addFlag(GLOBAL.INDOOR);
+	rooms["2M9"].addFlag(GLOBAL.HAZARD);
+	
+	//M7 -- Pillar of Light
+	rooms["2M7"] = new RoomClass(this);
+	rooms["2M7"].roomName = "PILLAR\nOF LIGHT";
+	rooms["2M7"].description = "You're standing directly under a tremendous crack in the ceiling of the cavern, some hundred feet above you. It looks like the ground above was shattered by some great impact, barreling down to the west.";
+	rooms["2M7"].planet = "PLANET: MYRELLION";
+	rooms["2M7"].system = "SYSTEM: SINDATHU";
+	rooms["2M7"].northExit = "";
+	rooms["2M7"].eastExit = "";
+	rooms["2M7"].southExit = "2M9";
+	rooms["2M7"].westExit = "2K7";
+	rooms["2M7"].moveMinutes = 5;
+	rooms["2M7"].runOnEnter = undefined;
+	rooms["2M7"].addFlag(GLOBAL.CAVE);
+	rooms["2M7"].addFlag(GLOBAL.INDOOR);
+	rooms["2M7"].addFlag(GLOBAL.HAZARD);
+	
+	//K7 -- Derelict Approach
+	rooms["2K7"] = new RoomClass(this);
+	rooms["2K7"].roomName = "DERELICT\nAPPROACH";
+	rooms["2K7"].description = "You're standing between a crack in the cavern ceiling, from which shines down a beam of light from on high, and a huge impact crater blasted into the stone to the west. You can see bits of metal debris scattered across the stone floor already, and you carefully tread around them.";
+	rooms["2K7"].planet = "PLANET: MYRELLION";
+	rooms["2K7"].system = "SYSTEM: SINDATHU";
+	rooms["2K7"].northExit = "";
+	rooms["2K7"].eastExit = "2M7";
+	rooms["2K7"].southExit = "";
+	rooms["2K7"].westExit = "2I7";
+	rooms["2K7"].moveMinutes = 5;
+	rooms["2K7"].runOnEnter = undefined;
+	rooms["2K7"].addFlag(GLOBAL.CAVE);
+	rooms["2K7"].addFlag(GLOBAL.INDOOR);
+	rooms["2K7"].addFlag(GLOBAL.HAZARD);
+	
+	//I7 -- Crash Site
+	rooms["2I7"] = new RoomClass(this);
+	rooms["2I7"].roomName = "CRASH\nSITE";
+	rooms["2I7"].description = "Sitting underneath a bright light streaming down from the ceiling, almost like a spotlight, sits a huge probe marked with the U.G.C. Scout Authority emblem. The robe is badly damaged, and bits of its hull have been looted by the locals.";
+	rooms["2I7"].planet = "PLANET: MYRELLION";
+	rooms["2I7"].system = "SYSTEM: SINDATHU";
+	rooms["2I7"].northExit = "";
+	rooms["2I7"].eastExit = "2K7";
+	rooms["2I7"].southExit = "";
+	rooms["2I7"].westExit = "";
+	rooms["2I7"].moveMinutes = 5;
+	rooms["2I7"].runOnEnter = myrellionUndergroundCrashSiteBonus;
+	rooms["2I7"].addFlag(GLOBAL.CAVE);
+	rooms["2I7"].addFlag(GLOBAL.INDOOR);
+	rooms["2I7"].addFlag(GLOBAL.HAZARD);
+	  
+	//M13 -- Pillar NE
+	rooms["2M13"] = new RoomClass(this);
+	rooms["2M13"].roomName = "PILLAR\nNORTHEAST";
+	rooms["2M13"].description = "You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. You can see several insectile humanoids scamper off as you make your way through the cavern, clearly not interested in a fight.";
+	rooms["2M13"].planet = "PLANET: MYRELLION";
+	rooms["2M13"].system = "SYSTEM: SINDATHU";
+	rooms["2M13"].northExit = "2M11";
+	rooms["2M13"].eastExit = "";
+	rooms["2M13"].southExit = "2M15";
+	rooms["2M13"].westExit = "2K13";
+	rooms["2M13"].moveMinutes = 5;
+	rooms["2M13"].runOnEnter = undefined;
+	rooms["2M13"].addFlag(GLOBAL.CAVE);
+	rooms["2M13"].addFlag(GLOBAL.INDOOR);
+	rooms["2M13"].addFlag(GLOBAL.HAZARD);
+	
+	//K13 -- Pillar NW
+	rooms["2K13"] = new RoomClass(this);
+	rooms["2K13"].roomName = "PILLAR\nNORTHWEST";
+	rooms["2K13"].description = "";
+	rooms["2K13"].planet = "PLANET: MYRELLION";
+	rooms["2K13"].system = "SYSTEM: SINDATHU";
+	rooms["2K13"].northExit = "";
+	rooms["2K13"].eastExit = "2M13";
+	rooms["2K13"].southExit = "2K15";
+	rooms["2K13"].westExit = "2I13";
+	rooms["2K13"].moveMinutes = 5;
+	rooms["2K13"].runOnEnter = k13Bonus;
+	rooms["2K13"].addFlag(GLOBAL.CAVE);
+	rooms["2K13"].addFlag(GLOBAL.INDOOR);
+	rooms["2K13"].addFlag(GLOBAL.HAZARD);
+	
+	//I13 -- Queen's Road Trading Post
+	//No random encounters here! 
+	rooms["2I13"] = new RoomClass(this);
+	rooms["2I13"].roomName = "TRADING\nPOST";
+	rooms["2I13"].description = "";
+	rooms["2I13"].planet = "PLANET: MYRELLION";
+	rooms["2I13"].system = "SYSTEM: SINDATHU";
+	rooms["2I13"].northExit = "2I11";
+	rooms["2I13"].eastExit = "2K13";
+	rooms["2I13"].southExit = "";
+	rooms["2I13"].westExit = "";
+	rooms["2I13"].moveMinutes = 5;
+	rooms["2I13"].runOnEnter = queensRoadTradingPost;
+	rooms["2I13"].addFlag(GLOBAL.CAVE);
+	rooms["2I13"].addFlag(GLOBAL.INDOOR);
+	rooms["2I13"].addFlag(GLOBAL.HAZARD);
+
+	//I11 -- Queen's Road North
+	//No random encounters here! 
+	rooms["2I11"] = new RoomClass(this);
+	rooms["2I11"].roomName = "QUEEN'S\nROAD NORTH";
+	rooms["2I11"].description = "Several stone pillars line the passage on either side, clearly hand-carved and polished to a shine. Rather than glowing fungus coating the walls, several small clay sconces have been bolted onto the pillars, filled with colonies of the glowing fungus that sheds a soft, warm light across the tunnel. To the west, you can see what looks like a pair of heavy gates, flanked by a pair of large sconces filled with pulsing, glowing fungus.";
+	rooms["2I11"].planet = "PLANET: MYRELLION";
+	rooms["2I11"].system = "SYSTEM: SINDATHU";
+	rooms["2I11"].northExit = "";
+	rooms["2I11"].eastExit = "";
+	rooms["2I11"].southExit = "2I13";
+	rooms["2I11"].westExit = "2G11";
+	rooms["2I11"].moveMinutes = 5;
+	rooms["2I11"].runOnEnter = undefined;
+	rooms["2I11"].addFlag(GLOBAL.CAVE);
+	rooms["2I11"].addFlag(GLOBAL.INDOOR);
+	rooms["2I11"].addFlag(GLOBAL.HAZARD);
+	
+	//G11 -- Gate Exterior
+	//No random encounters here! 
+	rooms["2G11"] = new RoomClass(this);
+	rooms["2G11"].roomName = "GATE\nEXTERIOR";
+	rooms["2G11"].description = "";
+	rooms["2G11"].planet = "PLANET: MYRELLION";
+	rooms["2G11"].system = "SYSTEM: SINDATHU";
+	rooms["2G11"].northExit = "";
+	rooms["2G11"].eastExit = "2I11";
+	rooms["2G11"].southExit = "";
+	rooms["2G11"].westExit = "";
+	rooms["2G11"].moveMinutes = 5;
+	rooms["2G11"].runOnEnter = gateExteriorBonusNyreaVillage;
+	rooms["2G11"].addFlag(GLOBAL.CAVE);
+	rooms["2G11"].addFlag(GLOBAL.INDOOR);
+	rooms["2G11"].addFlag(GLOBAL.HAZARD);
+
+	//M15 -- Pillar SE
+	rooms["2M15"] = new RoomClass(this);
+	rooms["2M15"].roomName = "PILLAR\nSOUTHEAST";
+	rooms["2M15"].description = "You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Several crystals are jutting out for the rock, reflecting the glistening fungal light.";
+	rooms["2M15"].planet = "PLANET: MYRELLION";
+	rooms["2M15"].system = "SYSTEM: SINDATHU";
+	rooms["2M15"].northExit = "2M13";
+	rooms["2M15"].eastExit = "";
+	rooms["2M15"].southExit = "";
+	rooms["2M15"].westExit = "2K15";
+	rooms["2M15"].moveMinutes = 5;
+	rooms["2M15"].runOnEnter = undefined;
+	rooms["2M15"].addFlag(GLOBAL.CAVE);
+	rooms["2M15"].addFlag(GLOBAL.INDOOR);
+	rooms["2M15"].addFlag(GLOBAL.HAZARD);
+
+	//K15 -- Pillar SW
+	rooms["2K15"] = new RoomClass(this);
+	rooms["2K15"].roomName = "PILLAR\nSOUTHWEST";
+	rooms["2K15"].description = "You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. A curving passage is to the south, vanishing into the dark.";
+	rooms["2K15"].planet = "PLANET: MYRELLION";
+	rooms["2K15"].system = "SYSTEM: SINDATHU";
+	rooms["2K15"].northExit = "2K13";
+	rooms["2K15"].eastExit = "2M15";
+	rooms["2K15"].southExit = "2K17";
+	rooms["2K15"].westExit = "";
+	rooms["2K15"].moveMinutes = 5;
+	rooms["2K15"].runOnEnter = undefined;
+	rooms["2K15"].addFlag(GLOBAL.CAVE);
+	rooms["2K15"].addFlag(GLOBAL.INDOOR);
+	rooms["2K15"].addFlag(GLOBAL.HAZARD);
+
+	//K17 -- Twisting Passage, North
+	rooms["2K17"] = new RoomClass(this);
+	rooms["2K17"].roomName = "TWISTING\nPASSAGE";
+	rooms["2K17"].description = "A twisting passage leads from the south to a wide open chamber, centered around a pillar. The southern passage is dark, almost blindingly so, with no hint of the bioluminescent entities you've grown accustomed to here in the depths.";
+	rooms["2K17"].planet = "PLANET: MYRELLION";
+	rooms["2K17"].system = "SYSTEM: SINDATHU";
+	rooms["2K17"].northExit = "2K15";
+	rooms["2K17"].eastExit = "";
+	rooms["2K17"].southExit = "2K19";
+	rooms["2K17"].westExit = "";
+	rooms["2K17"].moveMinutes = 5;
+	rooms["2K17"].runOnEnter = undefined;
+	rooms["2K17"].addFlag(GLOBAL.CAVE);
+	rooms["2K17"].addFlag(GLOBAL.INDOOR);
+	rooms["2K17"].addFlag(GLOBAL.HAZARD);
+	 
+	//K19 -- Twisting Corridor
+	rooms["2K19"] = new RoomClass(this);
+	rooms["2K19"].roomName = "TWISTING\nCORRIDOR";
+	rooms["2K19"].description = "The twisting passage you're traveling through is dark, and the going is slow. You occasionally trip over stalagmites and potholes in the path, forced to all but feel your way along the walls. You can hear skittering sounds, tiny movements along the stone floor, but never quite manage to lay eyes on the sources...";
+	rooms["2K19"].planet = "PLANET: MYRELLION";
+	rooms["2K19"].system = "SYSTEM: SINDATHU";
+	rooms["2K19"].northExit = "2K15";
+	rooms["2K19"].eastExit = "";
+	rooms["2K19"].southExit = "";
+	rooms["2K19"].westExit = "2I19";
+	rooms["2K19"].moveMinutes = 5;
+	rooms["2K19"].runOnEnter = undefined;
+	rooms["2K19"].addFlag(GLOBAL.CAVE);
+	rooms["2K19"].addFlag(GLOBAL.INDOOR);
+	rooms["2K19"].addFlag(GLOBAL.HAZARD);
+
+	//I19 -- Ancient Skeleton
+	rooms["2I19"] = new RoomClass(this);
+	rooms["2I19"].roomName = "ANCIENT\nSKELETON";
+	rooms["2I19"].description = "The skeleton of a great, ten-legged beast is splayed out along the edge of this passage, half-consumed by the stone. Spear-like teeth grin at you from a cheekless face, black sockets where its eyes one were regarding you cooly.";
+	rooms["2I19"].planet = "PLANET: MYRELLION";
+	rooms["2I19"].system = "SYSTEM: SINDATHU";
+	rooms["2I19"].northExit = "";
+	rooms["2I19"].eastExit = "2K19";
+	rooms["2I19"].southExit = "2I21";
+	rooms["2I19"].westExit = "";
+	rooms["2I19"].moveMinutes = 5;
+	rooms["2I19"].runOnEnter = undefined;
+	rooms["2I19"].addFlag(GLOBAL.CAVE);
+	rooms["2I19"].addFlag(GLOBAL.INDOOR);
+	rooms["2I19"].addFlag(GLOBAL.HAZARD);
+	
+	//I21 -- Twisting Passage
+	rooms["2I21"] = new RoomClass(this);
+	rooms["2I21"].roomName = "TWISTING\nPASSAGE";
+	rooms["2I21"].description = "The tunnels here snake back and forth, almost serpentine in the way it winds around. The darkness here is abated by legions of small, glowing rodents scurrying around. They're almost cute, if you like six-eyed creatures with large reptilian tails.";
+	rooms["2I21"].planet = "PLANET: MYRELLION";
+	rooms["2I21"].system = "SYSTEM: SINDATHU";
+	rooms["2I21"].northExit = "2I19";
+	rooms["2I21"].eastExit = "";
+	rooms["2I21"].southExit = "2I23";
+	rooms["2I21"].westExit = "";
+	rooms["2I21"].moveMinutes = 5;
+	rooms["2I21"].runOnEnter = undefined;
+	rooms["2I21"].addFlag(GLOBAL.CAVE);
+	rooms["2I21"].addFlag(GLOBAL.INDOOR);
+	rooms["2I21"].addFlag(GLOBAL.HAZARD);
+	 
+	//I23 -- Twisting Depths
+	rooms["2I23"] = new RoomClass(this);
+	rooms["2I23"].roomName = "TWISTING\nDEPTHS";
+	rooms["2I23"].description = "This \"L\"-shaped tunnel dives deep down near the elbow, making you walk down a steep incline, and back up again to get out. Twisting, vine-like fungal growths cling to the depths of the ditch, soaking up water that's pooling there from a crack in the ceiling above.";
+	rooms["2I23"].planet = "PLANET: MYRELLION";
+	rooms["2I23"].system = "SYSTEM: SINDATHU";
+	rooms["2I23"].northExit = "2I21";
+	rooms["2I23"].eastExit = "2K23";
+	rooms["2I23"].southExit = "";
+	rooms["2I23"].westExit = "";
+	rooms["2I23"].moveMinutes = 5;
+	rooms["2I23"].runOnEnter = undefined;
+	rooms["2I23"].addFlag(GLOBAL.CAVE);
+	rooms["2I23"].addFlag(GLOBAL.INDOOR);
+	rooms["2I23"].addFlag(GLOBAL.HAZARD);
+
+	//K23 -- Twisting Passage, South
+	rooms["2K23"] = new RoomClass(this);
+	rooms["2K23"].roomName = "TWISTING\nPASSAGE";
+	rooms["2K23"].description = "A particularly dark passage westward spills out into a brightly-lit cavern to the south. Murky rivulets of water run down the walls here, thick and polluted. Something tells you you're underneath a myr city high above...";
+	rooms["2K23"].planet = "PLANET: MYRELLION";
+	rooms["2K23"].system = "SYSTEM: SINDATHU";
+	rooms["2K23"].northExit = "";
+	rooms["2K23"].eastExit = "";
+	rooms["2K23"].southExit = "2K25";
+	rooms["2K23"].westExit = "2I23";
+	rooms["2K23"].moveMinutes = 5;
+	rooms["2K23"].runOnEnter = undefined;
+	rooms["2K23"].addFlag(GLOBAL.CAVE);
+	rooms["2K23"].addFlag(GLOBAL.INDOOR);
+	rooms["2K23"].addFlag(GLOBAL.HAZARD);
+	
+	//K25 -- Lake Passage
+	//No random encounters at the lake! 
+	rooms["2K25"] = new RoomClass(this);
+	rooms["2K25"].roomName = "LAKE\nPASSAGE";
+	rooms["2K25"].description = "The tunnel twists here, going north to east. Part of the wall has collapsed, however, revealing the shores of an underground river which quickly spills out into a lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2K25"].planet = "PLANET: MYRELLION";
+	rooms["2K25"].system = "SYSTEM: SINDATHU";
+	rooms["2K25"].northExit = "2K23";
+	rooms["2K25"].eastExit = "2M25";
+	rooms["2K25"].southExit = "2K27";
+	rooms["2K25"].westExit = "";
+	rooms["2K25"].moveMinutes = 5;
+	rooms["2K25"].runOnEnter = undefined;
+	rooms["2K25"].addFlag(GLOBAL.CAVE);
+	rooms["2K25"].addFlag(GLOBAL.INDOOR);
+	rooms["2K25"].addFlag(GLOBAL.HAZARD);
+	
+	//K27 -- Lakeshore
+	//No random encounters at the lake! 
+	rooms["2K27"] = new RoomClass(this);
+	rooms["2K27"].roomName = "LAKE\nSHORE";
+	rooms["2K27"].description = "You stand at the shore of a wide underground lake, wide deep. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2K27"].planet = "PLANET: MYRELLION";
+	rooms["2K27"].system = "SYSTEM: SINDATHU";
+	rooms["2K27"].northExit = "2K25";
+	rooms["2K27"].eastExit = "";
+	rooms["2K27"].southExit = "";
+	rooms["2K27"].westExit = "2I27";
+	rooms["2K27"].moveMinutes = 5;
+	rooms["2K27"].runOnEnter = undefined;
+	rooms["2K27"].addFlag(GLOBAL.CAVE);
+	rooms["2K27"].addFlag(GLOBAL.INDOOR);
+	rooms["2K27"].addFlag(GLOBAL.HAZARD);
+	
+	//I27 -- Shallow Lake
+	//No random encounters at the lake! 
+	rooms["2I27"] = new RoomClass(this);
+	rooms["2I27"].roomName = "SHALLOW\nLAKE";
+	rooms["2I27"].description = "You've waded out into the shallow portions of the subterranean lake, admiring the hanging fangs of sharpened stone that drip clear water down into the lake. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2I27"].planet = "PLANET: MYRELLION";
+	rooms["2I27"].system = "SYSTEM: SINDATHU";
+	rooms["2I27"].northExit = "";
+	rooms["2I27"].eastExit = "2K27";
+	rooms["2I27"].southExit = "";
+	rooms["2I27"].westExit = "2G27";
+	rooms["2I27"].moveMinutes = 5;
+	rooms["2I27"].runOnEnter = undefined;
+	rooms["2I27"].addFlag(GLOBAL.CAVE);
+	rooms["2I27"].addFlag(GLOBAL.INDOOR);
+	rooms["2I27"].addFlag(GLOBAL.HAZARD);
+	
+	//G27 -- Deep Lake
+	//No random encounters at the lake! 
+	rooms["2G27"] = new RoomClass(this);
+	rooms["2G27"].roomName = "DEEP\nLAKE";
+	rooms["2G27"].description = "The deepest parts of the lake stretch out before you, a wide-open and circular cavern with a vaulted ceiling reaching high above. The ceiling glitters with crystals, but the coat of glowing fungus that you've waded through thus far is fairly sparse here, making the cavern dark and foreboding. Even the water, clear as it is, is black and opaque now.";
+	rooms["2G27"].planet = "PLANET: MYRELLION";
+	rooms["2G27"].system = "SYSTEM: SINDATHU";
+	rooms["2G27"].northExit = "";
+	rooms["2G27"].eastExit = "2I27";
+	rooms["2G27"].southExit = "";
+	rooms["2G27"].westExit = "";
+	rooms["2G27"].moveMinutes = 5;
+	rooms["2G27"].runOnEnter = undefined;
+	rooms["2G27"].addFlag(GLOBAL.CAVE);
+	rooms["2G27"].addFlag(GLOBAL.INDOOR);
+	rooms["2G27"].addFlag(GLOBAL.HAZARD);
+
+	//M25 -- Crevasse
+	rooms["2M25"] = new RoomClass(this);
+	rooms["2M25"].roomName = "\nCREVASSE";
+	rooms["2M25"].description = "This passage has been shattered by the movements of the earth, torn open to reveal a deep crevasse. Stalactites hang down from above, giving you just enough hand-hold to leap across the hold.";
+	rooms["2M25"].planet = "PLANET: MYRELLION";
+	rooms["2M25"].system = "SYSTEM: SINDATHU";
+	rooms["2M25"].northExit = "";
+	rooms["2M25"].eastExit = "2O25";
+	rooms["2M25"].southExit = "";
+	rooms["2M25"].westExit = "2K25";
+	rooms["2M25"].moveMinutes = 5;
+	rooms["2M25"].runOnEnter = undefined;
+	rooms["2M25"].addFlag(GLOBAL.CAVE);
+	rooms["2M25"].addFlag(GLOBAL.INDOOR);
+	rooms["2M25"].addFlag(GLOBAL.HAZARD);
+	
+	//O25 -- Twisting Deep
+	rooms["2O25"] = new RoomClass(this);
+	rooms["2O25"].roomName = "TWISTING\nDEEP";
+	rooms["2O25"].description = "The wall of the tunnel has collapsed to the south, revealing a sloping passage going deeper down. The passage is relatively smooth, and seems oddly slick...";
+	rooms["2O25"].planet = "PLANET: MYRELLION";
+	rooms["2O25"].system = "SYSTEM: SINDATHU";
+	rooms["2O25"].northExit = "";
+	rooms["2O25"].eastExit = "2Q25";
+	rooms["2O25"].southExit = "";
+	rooms["2O25"].westExit = "2M25";
+	rooms["2O25"].moveMinutes = 5;
+	rooms["2O25"].runOnEnter = undefined;
+	rooms["2O25"].addFlag(GLOBAL.CAVE);
+	rooms["2O25"].addFlag(GLOBAL.INDOOR);
+	rooms["2O25"].addFlag(GLOBAL.HAZARD);
+	 
+	/*O27 -- 
+	//Garde Here
+
+
+	O29 --
+	//Garde Here
+
+
+	Q29 -- 
+	//Garde Here
+
+
+	S29 --
+	//Garde Here
+	*/
+
+	//Q25 -- Southern Turn
+	rooms["2Q25"] = new RoomClass(this);
+	rooms["2Q25"].roomName = "SOUTHERN\nTURN";
+	rooms["2Q25"].description = "A long passage stretches out to the north, going on for what seems like an eternity in the darkness. To the west is a path riddled with cracks and holes, possibly the victim of a recent earthquake.";
+	rooms["2Q25"].planet = "PLANET: MYRELLION";
+	rooms["2Q25"].system = "SYSTEM: SINDATHU";
+	rooms["2Q25"].northExit = "2Q23";
+	rooms["2Q25"].eastExit = "";
+	rooms["2Q25"].southExit = "";
+	rooms["2Q25"].westExit = "2O25";
+	rooms["2Q25"].moveMinutes = 5;
+	rooms["2Q25"].runOnEnter = undefined;
+	rooms["2Q25"].addFlag(GLOBAL.CAVE);
+	rooms["2Q25"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q25"].addFlag(GLOBAL.HAZARD);
+	
+	//Q23 -- Jagged Sloping Passage
+	rooms["2Q23"] = new RoomClass(this);
+	rooms["2Q23"].roomName = "JAGGED\nPASSAGE";
+	rooms["2Q23"].description = "This passage slopes downwards, from north to a deeper south. The ground here is particularly uneven, making the going hard and slow - your [pc.feet] constantly snag against jagged outcroppings, or nearly trip you over invisible cracks.";
+	rooms["2Q23"].planet = "PLANET: MYRELLION";
+	rooms["2Q23"].system = "SYSTEM: SINDATHU";
+	rooms["2Q23"].northExit = "2Q21";
+	rooms["2Q23"].eastExit = "";
+	rooms["2Q23"].southExit = "2Q25";
+	rooms["2Q23"].westExit = "";
+	rooms["2Q23"].moveMinutes = 5;
+	rooms["2Q23"].runOnEnter = undefined;
+	rooms["2Q23"].addFlag(GLOBAL.CAVE);
+	rooms["2Q23"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q23"].addFlag(GLOBAL.HAZARD);
+	 
+	//Q21 -- Mossy Sloping Passage
+	rooms["2Q21"] = new RoomClass(this);
+	rooms["2Q21"].roomName = "MOSSY\nPASSAGE";
+	rooms["2Q21"].description = "This passage slopes downwards, from north to a deeper south. A glowing blue moss is covering the walls all around you - floor, ceiling, every inch of rock seems covered with the stuff. Small creatures move through the moss, glowing the same color.";
+	rooms["2Q21"].planet = "PLANET: MYRELLION";
+	rooms["2Q21"].system = "SYSTEM: SINDATHU";
+	rooms["2Q21"].northExit = "2Q19";
+	rooms["2Q21"].eastExit = "";
+	rooms["2Q21"].southExit = "2Q23";
+	rooms["2Q21"].westExit = "";
+	rooms["2Q21"].moveMinutes = 5;
+	rooms["2Q21"].runOnEnter = undefined;
+	rooms["2Q21"].addFlag(GLOBAL.CAVE);
+	rooms["2Q21"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q21"].addFlag(GLOBAL.HAZARD);
+	 
+	//Q19 -- Craggy Sloping Passage
+	rooms["2Q19"] = new RoomClass(this);
+	rooms["2Q19"].roomName = "CRAGGY\nPASSAGE";
+	rooms["2Q19"].description = "This passage slopes downwards, from north to a deeper south. There westward wall has been shattered by some kind of impact, scattering rock and debris all over. The ground is cracked and hard to traverse, and the walls are covered with jagged, painful points.";
+	rooms["2Q19"].planet = "PLANET: MYRELLION";
+	rooms["2Q19"].system = "SYSTEM: SINDATHU";
+	rooms["2Q19"].northExit = "2Q17";
+	rooms["2Q19"].eastExit = "";
+	rooms["2Q19"].southExit = "2Q21";
+	rooms["2Q19"].westExit = "";
+	rooms["2Q19"].moveMinutes = 5;
+	rooms["2Q19"].runOnEnter = undefined;
+	rooms["2Q19"].addFlag(GLOBAL.CAVE);
+	rooms["2Q19"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q19"].addFlag(GLOBAL.HAZARD);
+	
+	//Q17 -- Sloping River Passage
+	rooms["2Q17"] = new RoomClass(this);
+	rooms["2Q17"].roomName = "RIVER\nPASSAGE";
+	rooms["2Q17"].description = "This passage slopes downwards, from north to a deeper south. A river flows through this passage, bisecting the tunnel from east to west. Several small creatures, the local equivalent of fish, swim through it.";
+	rooms["2Q17"].planet = "PLANET: MYRELLION";
+	rooms["2Q17"].system = "SYSTEM: SINDATHU";
+	rooms["2Q17"].northExit = "2Q15";
+	rooms["2Q17"].eastExit = "";
+	rooms["2Q17"].southExit = "2Q19";
+	rooms["2Q17"].westExit = "";
+	rooms["2Q17"].moveMinutes = 5;
+	rooms["2Q17"].runOnEnter = undefined;
+	rooms["2Q17"].addFlag(GLOBAL.CAVE);
+	rooms["2Q17"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q17"].addFlag(GLOBAL.HAZARD);
+	
+	//Q15 -- Sloping Curve 
+	rooms["2Q15"] = new RoomClass(this);
+	rooms["2Q15"].roomName = "SLOPING\nCURVE";
+	rooms["2Q15"].description = "You can see the well to the east, a small circle of stone that draws your attention away from the dark, smooth passage south of you. The southbound tunnel slopes down sharply, deeper into the bowels of Myrellion and into darkness.";
+	rooms["2Q15"].planet = "PLANET: MYRELLION";
+	rooms["2Q15"].system = "SYSTEM: SINDATHU";
+	rooms["2Q15"].northExit = "";
+	rooms["2Q15"].eastExit = "2S15";
+	rooms["2Q15"].southExit = "2Q17";
+	rooms["2Q15"].westExit = "";
+	rooms["2Q15"].moveMinutes = 5;
+	rooms["2Q15"].runOnEnter = undefined;
+	rooms["2Q15"].addFlag(GLOBAL.CAVE);
+	rooms["2Q15"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q15"].addFlag(GLOBAL.HAZARD);
 }

@@ -468,3 +468,118 @@ public function wetraxxelCavesBonusFunc():Boolean
 	
 	return false;
 }
+
+public function pillarsBonusFunc():Boolean
+{
+	output("\n\nAs you move through the area, you see several ")
+	if(CodexManager.entryUnlocked("Nyrea")) output("nyrea");
+	else output("semi-chitinous women");
+	output(" clinging to the shadows, quickly retreating whenever you approach.");
+	return noManzLandBonus();
+}
+public function deepCavesEntranceBonus():Boolean
+{
+	if(9999 == 9999) output(" Something tells you Dad's probe is down there somewhere...");
+	output("\n\nTo the south, you can see a glowing lake, illuminated by luminescent fungus and surrounded by pillars of stone that guard a passage eastward, back to the myrmedion tunnel network");
+	addButton(7,"Descend",deepCavesDescend,undefined,"Descend","Climbind down will take at least an hour and wear you out a good bit. Who knows what terrors lie down there.");
+	return false;
+}
+public function fungus1Bonus():Boolean
+{
+	output("To the north ");
+	if(9999 == 9999) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
+	else output("is a cascade of rock and jagged burn scars that marks what used to be a glowing cavern");
+	output(". South lies a short passage, starting with the dessicated corpse of a giant insect.\n\nWest lies a much longer passage, the end lost in darkness.");
+	return false;
+}
+
+public function caveBottomEntranceBonus():Boolean
+{
+	addButton(5,"Ascend",ascendFromDeepCaves,undefined,"Ascend","Climb up and out of these caves to get closer to the surface... and civilization.");
+	return false;
+}
+
+public function deepCavesDescend():void
+{
+	clearOutput();
+	showName("CLIMBING\nDOWN");
+	//Pass 1 hour. Drain 50 Energy. 
+	pc.energy(-50);
+	output("You grab some of the ropes hanging off the cliff face and test their strength - they seem solid enough to hold your weight");
+	if(pc.isGoo() || pc.isTaur() || pc.isNaga() || pc.isDrider()) output(", at least if you use several of them together");
+	output(". Once you've secured yourself, you hop off the cliff's edge and start to rappel down in the chasm below.\n\nThe descent takes what feels like an eternity, muscles straining as you pass further down into the heart of the world. Just as you think your arms are going to give out, you finally make it down to the bottom of the chasm, finding dusty black-gray rock beneath your [pc.feet]. You all but collapse on the ground, breathing hard after your exhertion...");
+	processTime(61);
+	currentLocation = "2Y19";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function ascendFromDeepCaves():void
+{
+	clearOutput();
+	showName("CLIMBING\nUP");
+	//Pass 90 minutes. Drain 50 Energy. For the lulz, could make ton-weight centaurs unable to climb back up. 
+	output("You grab the ropes dangling from above and begin the arduous task of hauling yourself back up the chasm, towards the myrmedion caves. It takes ages to climb back up what feels like hundreds or thousands of feet, scrambling up the cliffside up you finally see the dim light of the glowing fungus native to the myrmedion tunnels. When you haul yourself up onto the cliff's top, you end up collapsing in a panting, gasping heap, desperately trying to catch your breath. There's got to be a better way to get out of there...");
+	pc.energy(-50);
+	currentLocation = "1D18";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function myrellionUndergroundCrashSiteBonus():Boolean
+{
+	if(9999) output("\n\nStill, it seems functional enough. You could probably activate it, setting up a taxi pick-up point.");
+	else output(" The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.");
+	//9999
+	return false;
+}
+
+//[Repair Beacon]
+public function repairBeacon():void
+{
+	clearOutput();
+	output("You give the beacon a kick, and it buzzes to life. That was easy. Should be able to call in a taxi from here, now, thanks to the fuck-off huge hole it made landing here.");
+	processTime(4);
+}
+
+public function callATaxiOnMyrellionYo():void
+{
+	clearOutput();
+	output("You hook your Codex up to the probe and send a databurst to the local Scout Authority base, requesting a shuttle pickup. It only takes a few minutes for the shuttle to arrive, slipping precariously through the crack in the cavern ceiling and puttering down to your level. The door pops open and the robot driver inside beckons you in; moments later you're racing through the desert skyline over Myrellion, headed back to the DMZ.\n\nYou're dropped off just behind the Scout office, and make your way inside.");
+
+	//[Deep Caves] //From Taxi Station
+	//(Use same text as per No Man's Land destination)
+}
+public function k13Bonus():Boolean
+{
+	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward read ");
+	if(9999) output("\"Long live Queen Taivra!\"");
+	else output("\"Down with Queen Taivra!\"");
+	return false;
+}
+
+public function queensRoadTradingPost():Boolean
+{
+	output("You find yourself walking among several humanoids, peacefully talking and trading under the glowing light of fungal lamps -- a welcome sight against the dark, hostile caves you've traveled through until now. You see around you several myr of both colors, wearing tattered remains of uniforms or rough clothes that look stitched together from scraps; several ");
+	if(CodexManager.entryUnlocked("Nyrea")) output("nyrea");
+	else output("chitinous women with spiky hair and bulging crotch-plates");
+	output(" are among the crowd, along with ");
+	if(CodexManager.entryUnlocked("Wetraxxel")) output("burly wetraxxel males");
+	else output("burly, dark bug-men of some other race");
+	output(". A few guards armed with spears stand around, ready to repel the more aggressive creatures in the deep caves.");
+
+	output("\n\nSeveral stone pillars line the passage on either side, clearly hand-carved and polished to a shine. Rather than glowing fungus coating the walls, several small clay sconces have been bolted onto the pillars, filled with colonies of the glowing fungus that sheds a soft, warm light across the tunnel.");
+	return false;
+}
+
+public function gateExteriorBonusNyreaVillage():Boolean
+{
+	output("You stand before a large, stone gate. ");
+	if(9999 == 0) output("The gate is standing open, as you left it. The nyrea camp lies ahead, open for your investigation.");
+	else output("The gate is standing closed, a stark barrier against entry. Beyond it, you can hear the sounds of talking, and smell the alluring aroma of cooked meat. Somebody's living beyond this gate...");
+	//If not open: [Open Gate]
+	return false;
+}
