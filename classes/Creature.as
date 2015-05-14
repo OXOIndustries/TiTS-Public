@@ -6624,7 +6624,7 @@
 			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 4) race = "zil";
-			if (badgerScore()() >= 4) race = "badger";
+			if (badgerScore() >= 4) race = "badger";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 
