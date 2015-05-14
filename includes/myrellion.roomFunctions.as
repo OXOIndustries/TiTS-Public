@@ -524,7 +524,7 @@ public function fungus1Bonus():Boolean
 	if(9999 == 9999) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
 	else output("is a cascade of rock and jagged burn scars that marks what used to be a glowing cavern");
 	output(". South lies a short passage, starting with the dessicated corpse of a giant insect.\n\nWest lies a much longer passage, the end lost in darkness.");
-	return false;
+	return DeepCavesBonus();
 }
 
 public function caveBottomEntranceBonus():Boolean
@@ -568,7 +568,7 @@ public function k13Bonus():Boolean
 	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward read ");
 	if(9999) output("\"Long live Queen Taivra!\"");
 	else output("\"Down with Queen Taivra!\"");
-	return false;
+	return DeepCavesBonus();
 }
 
 public function queensRoadTradingPost():Boolean
@@ -591,5 +591,37 @@ public function gateExteriorBonusNyreaVillage():Boolean
 	if(9999 == 0) output("The gate is standing open, as you left it. The nyrea camp lies ahead, open for your investigation.");
 	else output("The gate is standing closed, a stark barrier against entry. Beyond it, you can hear the sounds of talking, and smell the alluring aroma of cooked meat. Somebody's living beyond this gate...");
 	//If not open: [Open Gate]
+	return false;
+}
+
+public function DeepCavesBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["NO_MANS_STEP"] == undefined) flags["NO_MANS_STEP"] = 1;
+	else {
+		//if(pc.accessory is JungleLure) flags["NO_MANS_STEP"]++;
+		flags["NO_MANS_STEP"]++;
+	}
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["NO_MANS_STEP"] = 0;
+		
+		//Build possible encounters
+		choices[choices.length] = encounterNyreaAlpha;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	
+	// Hook landmines on the end as a fall-back to fightable encounters
+	if (tryEncounterLandmines())
+	{
+		return true;
+	}
+	
 	return false;
 }

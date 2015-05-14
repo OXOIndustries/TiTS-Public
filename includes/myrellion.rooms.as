@@ -2315,7 +2315,7 @@ public function initializeMyrellionRooms():void
 	rooms["2W19"].southExit = "";
 	rooms["2W19"].westExit = "2U19";
 	rooms["2W19"].moveMinutes = 5;
-	rooms["2W19"].runOnEnter = undefined;
+	rooms["2W19"].runOnEnter = DeepCavesBonus;
 	rooms["2W19"].addFlag(GLOBAL.CAVE);
 	rooms["2W19"].addFlag(GLOBAL.INDOOR);
 	rooms["2W19"].addFlag(GLOBAL.HAZARD);
@@ -2331,7 +2331,7 @@ public function initializeMyrellionRooms():void
 	rooms["2U19"].southExit = "2U21";
 	rooms["2U19"].westExit = "";
 	rooms["2U19"].moveMinutes = 5;
-	rooms["2U19"].runOnEnter = undefined;
+	rooms["2U19"].runOnEnter = DeepCavesBonus;
 	rooms["2U19"].addFlag(GLOBAL.CAVE);
 	rooms["2U19"].addFlag(GLOBAL.INDOOR);
 	rooms["2U19"].addFlag(GLOBAL.HAZARD);
@@ -2347,7 +2347,7 @@ public function initializeMyrellionRooms():void
 	rooms["2U21"].southExit = "2U23";
 	rooms["2U21"].westExit = "";
 	rooms["2U21"].moveMinutes = 5;
-	rooms["2U21"].runOnEnter = undefined;
+	rooms["2U21"].runOnEnter = DeepCavesBonus;
 	rooms["2U21"].addFlag(GLOBAL.CAVE);
 	rooms["2U21"].addFlag(GLOBAL.INDOOR);
 	rooms["2U21"].addFlag(GLOBAL.HAZARD);
@@ -2363,7 +2363,7 @@ public function initializeMyrellionRooms():void
 	rooms["2U23"].southExit = "2U25";
 	rooms["2U23"].westExit = "";
 	rooms["2U23"].moveMinutes = 5;
-	rooms["2U23"].runOnEnter = undefined;
+	rooms["2U23"].runOnEnter = DeepCavesBonus;
 	rooms["2U23"].addFlag(GLOBAL.CAVE);
 	rooms["2U23"].addFlag(GLOBAL.INDOOR);
 	rooms["2U23"].addFlag(GLOBAL.HAZARD);
@@ -2379,7 +2379,7 @@ public function initializeMyrellionRooms():void
 	rooms["2U25"].southExit = "";
 	rooms["2U25"].westExit = "";
 	rooms["2U25"].moveMinutes = 5;
-	rooms["2U25"].runOnEnter = undefined;
+	rooms["2U25"].runOnEnter = DeepCavesBonus;
 	rooms["2U25"].addFlag(GLOBAL.CAVE);
 	rooms["2U25"].addFlag(GLOBAL.INDOOR);
 	rooms["2U25"].addFlag(GLOBAL.HAZARD);
@@ -2395,7 +2395,7 @@ public function initializeMyrellionRooms():void
 	rooms["2W17"].southExit = "2W19";
 	rooms["2W17"].westExit = "";
 	rooms["2W17"].moveMinutes = 5;
-	rooms["2W17"].runOnEnter = undefined;
+	rooms["2W17"].runOnEnter = DeepCavesBonus;
 	rooms["2W17"].addFlag(GLOBAL.CAVE);
 	rooms["2W17"].addFlag(GLOBAL.INDOOR);
 	rooms["2W17"].addFlag(GLOBAL.HAZARD);
@@ -2411,7 +2411,7 @@ public function initializeMyrellionRooms():void
 	rooms["2W15"].southExit = "2W17";
 	rooms["2W15"].westExit = "2U15";
 	rooms["2W15"].moveMinutes = 5;
-	rooms["2W15"].runOnEnter = undefined;
+	rooms["2W15"].runOnEnter = DeepCavesBonus;
 	rooms["2W15"].addFlag(GLOBAL.CAVE);
 	rooms["2W15"].addFlag(GLOBAL.INDOOR);
 	rooms["2W15"].addFlag(GLOBAL.HAZARD);
@@ -2427,7 +2427,7 @@ public function initializeMyrellionRooms():void
 	rooms["2U15"].southExit = "";
 	rooms["2U15"].westExit = "2S15";
 	rooms["2U15"].moveMinutes = 5;
-	rooms["2U15"].runOnEnter = undefined;
+	rooms["2U15"].runOnEnter = DeepCavesBonus;
 	rooms["2U15"].addFlag(GLOBAL.CAVE);
 	rooms["2U15"].addFlag(GLOBAL.INDOOR);
 	rooms["2U15"].addFlag(GLOBAL.HAZARD);
@@ -2443,7 +2443,7 @@ public function initializeMyrellionRooms():void
 	rooms["2S15"].southExit = "";
 	rooms["2S15"].westExit = "2Q15";
 	rooms["2S15"].moveMinutes = 5;
-	rooms["2S15"].runOnEnter = undefined;
+	rooms["2S15"].runOnEnter = DeepCavesBonus;
 	rooms["2S15"].addFlag(GLOBAL.CAVE);
 	rooms["2S15"].addFlag(GLOBAL.INDOOR);
 	rooms["2S15"].addFlag(GLOBAL.HAZARD);
@@ -2459,7 +2459,7 @@ public function initializeMyrellionRooms():void
 	rooms["2S13"].southExit = "2S15";
 	rooms["2S13"].westExit = "";
 	rooms["2S13"].moveMinutes = 5;
-	rooms["2S13"].runOnEnter = undefined;
+	rooms["2S13"].runOnEnter = DeepCavesBonus;
 	rooms["2S13"].addFlag(GLOBAL.CAVE);
 	rooms["2S13"].addFlag(GLOBAL.INDOOR);
 	rooms["2S13"].addFlag(GLOBAL.HAZARD);
@@ -2492,7 +2492,7 @@ public function initializeMyrellionRooms():void
 	rooms["2S9"].southExit = "2S11";
 	rooms["2S9"].westExit = "";
 	rooms["2S9"].moveMinutes = 5;
-	rooms["2S9"].runOnEnter = undefined;
+	rooms["2S9"].runOnEnter = DeepCavesBonus;
 	rooms["2S9"].addFlag(GLOBAL.CAVE);
 	rooms["2S9"].addFlag(GLOBAL.INDOOR);
 	rooms["2S9"].addFlag(GLOBAL.HAZARD);
@@ -2509,7 +2509,7 @@ public function initializeMyrellionRooms():void
 	rooms["2S7"].southExit = "2S9";
 	rooms["2S7"].westExit = "";
 	rooms["2S7"].moveMinutes = 5;
-	rooms["2S7"].runOnEnter = undefined;
+	rooms["2S7"].runOnEnter = DeepCavesBonus;
 	rooms["2S7"].addFlag(GLOBAL.CAVE);
 	rooms["2S7"].addFlag(GLOBAL.INDOOR);
 	rooms["2S7"].addFlag(GLOBAL.HAZARD);
@@ -2525,7 +2525,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q11"].southExit = "";
 	rooms["2Q11"].westExit = "2O11";
 	rooms["2Q11"].moveMinutes = 5;
-	rooms["2Q11"].runOnEnter = undefined;
+	rooms["2Q11"].runOnEnter = DeepCavesBonus;
 	rooms["2Q11"].addFlag(GLOBAL.CAVE);
 	rooms["2Q11"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q11"].addFlag(GLOBAL.HAZARD);
@@ -2541,7 +2541,7 @@ public function initializeMyrellionRooms():void
 	rooms["2O11"].southExit = "";
 	rooms["2O11"].westExit = "2M11";
 	rooms["2O11"].moveMinutes = 5;
-	rooms["2O11"].runOnEnter = undefined;
+	rooms["2O11"].runOnEnter = DeepCavesBonus;
 	rooms["2O11"].addFlag(GLOBAL.CAVE);
 	rooms["2O11"].addFlag(GLOBAL.INDOOR);
 	rooms["2O11"].addFlag(GLOBAL.HAZARD);
@@ -2557,7 +2557,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M11"].southExit = "2M13";
 	rooms["2M11"].westExit = "";
 	rooms["2M11"].moveMinutes = 5;
-	rooms["2M11"].runOnEnter = undefined;
+	rooms["2M11"].runOnEnter = DeepCavesBonus;
 	rooms["2M11"].addFlag(GLOBAL.CAVE);
 	rooms["2M11"].addFlag(GLOBAL.INDOOR);
 	rooms["2M11"].addFlag(GLOBAL.HAZARD);
@@ -2573,7 +2573,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M9"].southExit = "2M11";
 	rooms["2M9"].westExit = "";
 	rooms["2M9"].moveMinutes = 5;
-	rooms["2M9"].runOnEnter = undefined;
+	rooms["2M9"].runOnEnter = DeepCavesBonus;
 	rooms["2M9"].addFlag(GLOBAL.CAVE);
 	rooms["2M9"].addFlag(GLOBAL.INDOOR);
 	rooms["2M9"].addFlag(GLOBAL.HAZARD);
@@ -2589,7 +2589,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M7"].southExit = "2M9";
 	rooms["2M7"].westExit = "2K7";
 	rooms["2M7"].moveMinutes = 5;
-	rooms["2M7"].runOnEnter = undefined;
+	rooms["2M7"].runOnEnter = DeepCavesBonus;
 	rooms["2M7"].addFlag(GLOBAL.CAVE);
 	rooms["2M7"].addFlag(GLOBAL.INDOOR);
 	rooms["2M7"].addFlag(GLOBAL.HAZARD);
@@ -2605,7 +2605,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K7"].southExit = "";
 	rooms["2K7"].westExit = "2I7";
 	rooms["2K7"].moveMinutes = 5;
-	rooms["2K7"].runOnEnter = undefined;
+	rooms["2K7"].runOnEnter = DeepCavesBonus;
 	rooms["2K7"].addFlag(GLOBAL.CAVE);
 	rooms["2K7"].addFlag(GLOBAL.INDOOR);
 	rooms["2K7"].addFlag(GLOBAL.HAZARD);
@@ -2637,7 +2637,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M13"].southExit = "2M15";
 	rooms["2M13"].westExit = "2K13";
 	rooms["2M13"].moveMinutes = 5;
-	rooms["2M13"].runOnEnter = undefined;
+	rooms["2M13"].runOnEnter = DeepCavesBonus;
 	rooms["2M13"].addFlag(GLOBAL.CAVE);
 	rooms["2M13"].addFlag(GLOBAL.INDOOR);
 	rooms["2M13"].addFlag(GLOBAL.HAZARD);
@@ -2687,7 +2687,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I11"].southExit = "2I13";
 	rooms["2I11"].westExit = "2G11";
 	rooms["2I11"].moveMinutes = 5;
-	rooms["2I11"].runOnEnter = undefined;
+	rooms["2I11"].runOnEnter = DeepCavesBonus;
 	rooms["2I11"].addFlag(GLOBAL.CAVE);
 	rooms["2I11"].addFlag(GLOBAL.INDOOR);
 	rooms["2I11"].addFlag(GLOBAL.HAZARD);
@@ -2720,7 +2720,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M15"].southExit = "";
 	rooms["2M15"].westExit = "2K15";
 	rooms["2M15"].moveMinutes = 5;
-	rooms["2M15"].runOnEnter = undefined;
+	rooms["2M15"].runOnEnter = DeepCavesBonus;
 	rooms["2M15"].addFlag(GLOBAL.CAVE);
 	rooms["2M15"].addFlag(GLOBAL.INDOOR);
 	rooms["2M15"].addFlag(GLOBAL.HAZARD);
@@ -2736,7 +2736,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K15"].southExit = "2K17";
 	rooms["2K15"].westExit = "";
 	rooms["2K15"].moveMinutes = 5;
-	rooms["2K15"].runOnEnter = undefined;
+	rooms["2K15"].runOnEnter = DeepCavesBonus;
 	rooms["2K15"].addFlag(GLOBAL.CAVE);
 	rooms["2K15"].addFlag(GLOBAL.INDOOR);
 	rooms["2K15"].addFlag(GLOBAL.HAZARD);
@@ -2752,7 +2752,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K17"].southExit = "2K19";
 	rooms["2K17"].westExit = "";
 	rooms["2K17"].moveMinutes = 5;
-	rooms["2K17"].runOnEnter = undefined;
+	rooms["2K17"].runOnEnter = DeepCavesBonus;
 	rooms["2K17"].addFlag(GLOBAL.CAVE);
 	rooms["2K17"].addFlag(GLOBAL.INDOOR);
 	rooms["2K17"].addFlag(GLOBAL.HAZARD);
@@ -2768,7 +2768,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K19"].southExit = "";
 	rooms["2K19"].westExit = "2I19";
 	rooms["2K19"].moveMinutes = 5;
-	rooms["2K19"].runOnEnter = undefined;
+	rooms["2K19"].runOnEnter = DeepCavesBonus;
 	rooms["2K19"].addFlag(GLOBAL.CAVE);
 	rooms["2K19"].addFlag(GLOBAL.INDOOR);
 	rooms["2K19"].addFlag(GLOBAL.HAZARD);
@@ -2784,7 +2784,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I19"].southExit = "2I21";
 	rooms["2I19"].westExit = "";
 	rooms["2I19"].moveMinutes = 5;
-	rooms["2I19"].runOnEnter = undefined;
+	rooms["2I19"].runOnEnter = DeepCavesBonus;
 	rooms["2I19"].addFlag(GLOBAL.CAVE);
 	rooms["2I19"].addFlag(GLOBAL.INDOOR);
 	rooms["2I19"].addFlag(GLOBAL.HAZARD);
@@ -2800,7 +2800,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I21"].southExit = "2I23";
 	rooms["2I21"].westExit = "";
 	rooms["2I21"].moveMinutes = 5;
-	rooms["2I21"].runOnEnter = undefined;
+	rooms["2I21"].runOnEnter = DeepCavesBonus;
 	rooms["2I21"].addFlag(GLOBAL.CAVE);
 	rooms["2I21"].addFlag(GLOBAL.INDOOR);
 	rooms["2I21"].addFlag(GLOBAL.HAZARD);
@@ -2816,7 +2816,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I23"].southExit = "";
 	rooms["2I23"].westExit = "";
 	rooms["2I23"].moveMinutes = 5;
-	rooms["2I23"].runOnEnter = undefined;
+	rooms["2I23"].runOnEnter = DeepCavesBonus;
 	rooms["2I23"].addFlag(GLOBAL.CAVE);
 	rooms["2I23"].addFlag(GLOBAL.INDOOR);
 	rooms["2I23"].addFlag(GLOBAL.HAZARD);
@@ -2832,7 +2832,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K23"].southExit = "2K25";
 	rooms["2K23"].westExit = "2I23";
 	rooms["2K23"].moveMinutes = 5;
-	rooms["2K23"].runOnEnter = undefined;
+	rooms["2K23"].runOnEnter = DeepCavesBonus;
 	rooms["2K23"].addFlag(GLOBAL.CAVE);
 	rooms["2K23"].addFlag(GLOBAL.INDOOR);
 	rooms["2K23"].addFlag(GLOBAL.HAZARD);
@@ -2849,7 +2849,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K25"].southExit = "2K27";
 	rooms["2K25"].westExit = "";
 	rooms["2K25"].moveMinutes = 5;
-	rooms["2K25"].runOnEnter = undefined;
+	rooms["2K25"].runOnEnter = DeepCavesBonus;
 	rooms["2K25"].addFlag(GLOBAL.CAVE);
 	rooms["2K25"].addFlag(GLOBAL.INDOOR);
 	rooms["2K25"].addFlag(GLOBAL.HAZARD);
@@ -2866,7 +2866,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K27"].southExit = "";
 	rooms["2K27"].westExit = "2I27";
 	rooms["2K27"].moveMinutes = 5;
-	rooms["2K27"].runOnEnter = undefined;
+	rooms["2K27"].runOnEnter = DeepCavesBonus;
 	rooms["2K27"].addFlag(GLOBAL.CAVE);
 	rooms["2K27"].addFlag(GLOBAL.INDOOR);
 	rooms["2K27"].addFlag(GLOBAL.HAZARD);
@@ -2883,7 +2883,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I27"].southExit = "";
 	rooms["2I27"].westExit = "2G27";
 	rooms["2I27"].moveMinutes = 5;
-	rooms["2I27"].runOnEnter = undefined;
+	rooms["2I27"].runOnEnter = DeepCavesBonus;
 	rooms["2I27"].addFlag(GLOBAL.CAVE);
 	rooms["2I27"].addFlag(GLOBAL.INDOOR);
 	rooms["2I27"].addFlag(GLOBAL.HAZARD);
@@ -2900,7 +2900,7 @@ public function initializeMyrellionRooms():void
 	rooms["2G27"].southExit = "";
 	rooms["2G27"].westExit = "";
 	rooms["2G27"].moveMinutes = 5;
-	rooms["2G27"].runOnEnter = undefined;
+	rooms["2G27"].runOnEnter = DeepCavesBonus;
 	rooms["2G27"].addFlag(GLOBAL.CAVE);
 	rooms["2G27"].addFlag(GLOBAL.INDOOR);
 	rooms["2G27"].addFlag(GLOBAL.HAZARD);
@@ -2916,7 +2916,7 @@ public function initializeMyrellionRooms():void
 	rooms["2M25"].southExit = "";
 	rooms["2M25"].westExit = "2K25";
 	rooms["2M25"].moveMinutes = 5;
-	rooms["2M25"].runOnEnter = undefined;
+	rooms["2M25"].runOnEnter = DeepCavesBonus;
 	rooms["2M25"].addFlag(GLOBAL.CAVE);
 	rooms["2M25"].addFlag(GLOBAL.INDOOR);
 	rooms["2M25"].addFlag(GLOBAL.HAZARD);
@@ -2932,7 +2932,7 @@ public function initializeMyrellionRooms():void
 	rooms["2O25"].southExit = "";
 	rooms["2O25"].westExit = "2M25";
 	rooms["2O25"].moveMinutes = 5;
-	rooms["2O25"].runOnEnter = undefined;
+	rooms["2O25"].runOnEnter = DeepCavesBonus;
 	rooms["2O25"].addFlag(GLOBAL.CAVE);
 	rooms["2O25"].addFlag(GLOBAL.INDOOR);
 	rooms["2O25"].addFlag(GLOBAL.HAZARD);
@@ -2964,7 +2964,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q25"].southExit = "";
 	rooms["2Q25"].westExit = "2O25";
 	rooms["2Q25"].moveMinutes = 5;
-	rooms["2Q25"].runOnEnter = undefined;
+	rooms["2Q25"].runOnEnter = DeepCavesBonus;
 	rooms["2Q25"].addFlag(GLOBAL.CAVE);
 	rooms["2Q25"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q25"].addFlag(GLOBAL.HAZARD);
@@ -2980,7 +2980,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q23"].southExit = "2Q25";
 	rooms["2Q23"].westExit = "";
 	rooms["2Q23"].moveMinutes = 5;
-	rooms["2Q23"].runOnEnter = undefined;
+	rooms["2Q23"].runOnEnter = DeepCavesBonus;
 	rooms["2Q23"].addFlag(GLOBAL.CAVE);
 	rooms["2Q23"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q23"].addFlag(GLOBAL.HAZARD);
@@ -2996,7 +2996,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q21"].southExit = "2Q23";
 	rooms["2Q21"].westExit = "";
 	rooms["2Q21"].moveMinutes = 5;
-	rooms["2Q21"].runOnEnter = undefined;
+	rooms["2Q21"].runOnEnter = DeepCavesBonus;
 	rooms["2Q21"].addFlag(GLOBAL.CAVE);
 	rooms["2Q21"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q21"].addFlag(GLOBAL.HAZARD);
@@ -3012,7 +3012,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q19"].southExit = "2Q21";
 	rooms["2Q19"].westExit = "";
 	rooms["2Q19"].moveMinutes = 5;
-	rooms["2Q19"].runOnEnter = undefined;
+	rooms["2Q19"].runOnEnter = DeepCavesBonus;
 	rooms["2Q19"].addFlag(GLOBAL.CAVE);
 	rooms["2Q19"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q19"].addFlag(GLOBAL.HAZARD);
@@ -3028,7 +3028,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q17"].southExit = "2Q19";
 	rooms["2Q17"].westExit = "";
 	rooms["2Q17"].moveMinutes = 5;
-	rooms["2Q17"].runOnEnter = undefined;
+	rooms["2Q17"].runOnEnter = DeepCavesBonus;
 	rooms["2Q17"].addFlag(GLOBAL.CAVE);
 	rooms["2Q17"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q17"].addFlag(GLOBAL.HAZARD);
@@ -3044,7 +3044,7 @@ public function initializeMyrellionRooms():void
 	rooms["2Q15"].southExit = "2Q17";
 	rooms["2Q15"].westExit = "";
 	rooms["2Q15"].moveMinutes = 5;
-	rooms["2Q15"].runOnEnter = undefined;
+	rooms["2Q15"].runOnEnter = DeepCavesBonus;
 	rooms["2Q15"].addFlag(GLOBAL.CAVE);
 	rooms["2Q15"].addFlag(GLOBAL.INDOOR);
 	rooms["2Q15"].addFlag(GLOBAL.HAZARD);
