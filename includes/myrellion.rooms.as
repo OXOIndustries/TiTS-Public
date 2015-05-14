@@ -2673,7 +2673,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I13"].runOnEnter = queensRoadTradingPost;
 	rooms["2I13"].addFlag(GLOBAL.CAVE);
 	rooms["2I13"].addFlag(GLOBAL.INDOOR);
-	rooms["2I13"].addFlag(GLOBAL.HAZARD);
+	rooms["2I13"].addFlag(GLOBAL.COMMERCE);
 
 	//I11 -- Queen's Road North
 	//No random encounters here! 

@@ -328,6 +328,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["GOO"] = new gooArmor();
 	}
+	if (!justUpdate || (justUpdate && chars["SEIFYN"] == undefined))
+	{
+		chars["SEIFYN"] = new Seifyn();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

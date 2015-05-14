@@ -573,7 +573,7 @@ public function k13Bonus():Boolean
 
 public function queensRoadTradingPost():Boolean
 {
-	output("You find yourself walking among several humanoids, peacefully talking and trading under the glowing light of fungal lamps -- a welcome sight against the dark, hostile caves you've traveled through until now. You see around you several myr of both colors, wearing tattered remains of uniforms or rough clothes that look stitched together from scraps; several ");
+	output("You find yourself walking among several humanoids, peacefully talking and trading under the glowing light of fungal lamps - a welcome sight against the dark, hostile caves you've traveled through until now. You see around you several myr of both colors, wearing tattered remains of uniforms or rough clothes that look stitched together from scraps; several ");
 	if(CodexManager.entryUnlocked("Nyrea")) output("nyrea");
 	else output("chitinous women with spiky hair and bulging crotch-plates");
 	output(" are among the crowd, along with ");
@@ -582,7 +582,7 @@ public function queensRoadTradingPost():Boolean
 	output(". A few guards armed with spears stand around, ready to repel the more aggressive creatures in the deep caves.");
 
 	output("\n\nSeveral stone pillars line the passage on either side, clearly hand-carved and polished to a shine. Rather than glowing fungus coating the walls, several small clay sconces have been bolted onto the pillars, filled with colonies of the glowing fungus that sheds a soft, warm light across the tunnel.");
-	return false;
+	return queensRoadBonusShit();
 }
 
 public function gateExteriorBonusNyreaVillage():Boolean

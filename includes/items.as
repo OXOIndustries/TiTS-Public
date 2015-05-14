@@ -166,6 +166,11 @@ public function shop(keeper:Creature):void {
 		introductionToMerchantQueenSloot();
 		return;
 	}
+	else if(keeper is Seifyn)
+	{
+		repeatSeifynMeeting();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
