@@ -22,6 +22,7 @@ import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Engine.Combat.applyDamage;
+import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -217,7 +218,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Take Cover")) 
 		{
 			
-			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack this turn.\n\nConsumes 20 energy.");
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack for 3 turns.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
@@ -441,7 +442,6 @@ public function updateCombatStatuses():void {
 		pc.shields(Math.round(pc.shieldsMax()/4));
 		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 	}
-	if(pc.hasStatusEffect("Taking Cover")) pc.removeStatusEffect("Taking Cover");
 	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
 	if(pc.hasPerk("Juggernaught"))
 	{
@@ -570,6 +570,18 @@ public function updateCombatStatuses():void {
 		}
 		else {
 			output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
+		}
+	}
+	if(pc.hasStatusEffect("Taking Cover"))
+	{
+		pc.addStatusValue("Taking Cover",1,-1);
+		if(pc.statusEffectv1("Taking Cover") <= 0)
+		{
+			pc.removeStatusEffect("Taking Cover");
+			output("<b>You are no longer taking cover!</b>\n");
+		}
+		else {
+			output("<b>Your enemies will have a hard time hitting you behind your cover!</b>\n");
 		}
 	}
 	if(pc.hasStatusEffect("Deflector Regeneration"))
@@ -766,6 +778,7 @@ public function updateCombatStatuses():void {
 			}
 		}
 	}
+	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
 }
 public function stunRecover(target:Creature):void 
 {
@@ -3826,7 +3839,7 @@ public function takeCover():void {
 	clearOutput();
 	pc.energy(-20);
 	output("You seek cover against ranged attacks.\n");
-	pc.createStatusEffect("Taking Cover",0,0,0,0,true,"","",true);
+	pc.createStatusEffect("Taking Cover",3,0,0,0,false,"DefenseUp","You are taking cover! Ranged attacks will almost always miss!",true);
 	processCombat();
 }
 
