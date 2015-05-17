@@ -31,6 +31,7 @@ public function approachBathMatron():void
 	addButton(1,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
 	if(pc.credits >= 50) addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
 	else addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Talk: Bath House
