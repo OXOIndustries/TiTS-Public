@@ -3636,7 +3636,7 @@ public function gasGrenade(target:Creature):void
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 	}
 	
-	var damageResult:DamageResult = applyDamage(damage, pc, pc, "supress");
+	var damageResult:DamageResult = applyDamage(damage, pc, target, "supress");
 	output("\n");
 	output(teaseReactions(damageResult.lustDamage, target));
 	output(" (<b>"+ Math.round(damageResult.lustDamage) + "</b>)\n");
