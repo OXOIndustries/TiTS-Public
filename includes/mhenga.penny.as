@@ -2114,9 +2114,9 @@ public function getAssFuckedByPenny():void {
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight
 	if(pc.analCapacity() * 1.25 <= penny.cockVolume(0)) output("<i>“so t-tiiiight...”</i>");
-	else if(pc.analCapacity() * .6 <= penny.cockVolume(0)) output("<i>“fits just like a glove...”</i>");
+	else if(pc.ass.looseness() <= 3) output("<i>“fits just like a glove...”</i>");
 	//if PC is SUPAH LOOSE:
-	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]. I wanna fill this [pc.asshole] of yours someday....”</i>");
+	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]... if I want to keep up with a gaped slut like you....”</i>");
 	pc.buttChange(penny.cockVolume(0),true,true,false);
 	
 	output("\n\nYou silence her with another kiss, pinning her back as your arms wrap around her neck, steadying yourself as your hips begin to rise. Your breath comes ragged as you rise off her cock, feeling the hollow emptiness overwhelm your hole as you nearly dismount her rod, only to be filled with inch after inch of foxy cock again. The feeling of completeness, of wholeness, is undeniable. You sit a moment, relishing the sensation, before rising again, dragging out the heavenly feeling your anal walls being spread and sphincter ravaged across bounce after bounce.");
