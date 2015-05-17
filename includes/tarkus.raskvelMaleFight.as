@@ -1055,7 +1055,7 @@ public function raskMaleButtfuckery():void
 		output("\n\nThe sight and texture of their polished, taut bodies feeds your growing lust until it feels like it’s thudding just behind your eyes – not that it needs much of an excuse to reach over your higher thinking and grab your impulses’ reigns these days anyway. The raskvels’ wide, muscular butts raised in supplication to you seems like a challenge being made directly to your " + pc.mf("masculine","hermaphrodite") + " prowess, one that makes your blood quicken and your [pc.cock " + x + "] strain upwards, demanding that you meet it, demanding that you pound into submission both... no, all three of these ill-mannered assholes that had the audacity to accost you.");
 		output("\n\nPresumably some of what you are thinking is showing on your face, because the one that handed you the oil is backing away as quickly and unassumingly as he can. Grinning, you silently point at him and then at the space besides the big one. Shakily, he comes.");
 		//1 cock:
-		if(pc.cockTotal() == 1) output("\n\n<i>“Ass up, and wait your turn,”</i> you say tartly. You slide your [pc.cock " + x + "] between their valleys and over their purple puckers in turn, revelling in the sight, tantalizing yourself with what is to come. The smallest raskvel has a pretty cute ass; rounder, softer and more pert than the other two. That’s for later, though. You concentrate on the big one in front of you, the one you adjudge to be most in need of a good ass-fucking. Even now he’s shooting his mouth off.");
+		if(y < 0 || pc.cockTotal() == 1) output("\n\n<i>“Ass up, and wait your turn,”</i> you say tartly. You slide your [pc.cock " + x + "] between their valleys and over their purple puckers in turn, revelling in the sight, tantalizing yourself with what is to come. The smallest raskvel has a pretty cute ass; rounder, softer and more pert than the other two. That’s for later, though. You concentrate on the big one in front of you, the one you adjudge to be most in need of a good ass-fucking. Even now he’s shooting his mouth off.");
 		//>1 cock: 
 		else
 		{
@@ -1075,7 +1075,7 @@ public function raskMaleButtfuckery():void
 		//1 cock: 
 		else output("\n\nWhilst you sink your cock again and again into the big raskvel you keep your hands on the other two, cupping their ass cheeks and reaching between their legs, teasing their cocks out of their pockets. You want to keep them involved in the action – and to stop them from going anywhere.");
 		//>1 cock:
-		if(pc.cockTotal() > 1) output("\n\nWhilst you sink your cock again and again into the big raskvel you keep one hand wrapped around the smallest one’s head, gently pushing him into your [pc.cock " + y + "], and the other on the medium one, still crouched to the side. You cup his ass cheeks and reach between his legs, teasing his cock well out of its pocket. You want to keep him involved in the action... and ensure he doesn’t go anywhere.");
+		if(y >= 0) output("\n\nWhilst you sink your cock again and again into the big raskvel you keep one hand wrapped around the smallest one’s head, gently pushing him into your [pc.cock " + y + "], and the other on the medium one, still crouched to the side. You cup his ass cheeks and reach between his legs, teasing his cock well out of its pocket. You want to keep him involved in the action... and ensure he doesn’t go anywhere.");
 		output("\n\n<i>“You’re next, handsome!”</i> you sigh, squeezing your fingers through the ring of the middle one’s anus, testing and loosening him as you thrust ");
 		if(pc.cockVolume(x) > foes[0].analCapacity()) output("as much of your");
 		else output("every inch of your");
@@ -1088,7 +1088,7 @@ public function raskMaleButtfuckery():void
 		if(pc.cumQ() < 1500) output("has your cum dribbling out around your girth");
 		else output("quickly rounds the raskvel’s belly out with your copious seed, spurting out around your girth as you completely fill him out.");
 		//>1 cock: 
-		if(pc.cockTotal() > 1)
+		if(y >= 0)
 		{
 			output("\n\nThe smallest raskvel copes with your change of pace admirably, even when you penetrate the tight squeeze of his throat in your mania, keeping his wet lips and tongue moving across your urgently thrusting [pc.cockNounSimple " + y + "]. Just as much [pc.cum] surges into his mouth as his brethren’s butt, however he swallows it down uncomplainingly. You wheeze deliriously to the twin orgasm rocketing through you, made all the better by having both dicks mired deep in warm, clinging hole.");
 		}
@@ -1150,6 +1150,16 @@ public function redRidingRaskvel():void
 {
 	clearOutput();
 	showRaskGang();
+	var x:int = rand(pc.totalVaginas());
+	var y:int = x-1;
+	if(pc.totalVaginas() > 1)
+	{
+		//If we picked an out of bounds number because x got picked as index 0, pick on the other side.
+		if(y < 0)
+		{
+			y = x+1;
+		}
+	}
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("<i>“On the floor,”</i> you say curtly to the largest one, <i>“and let’s see it. Now.”</i> The raskvel is clearly not used to this treatment; cheeks burgundy and with no idea where to put his eyes, he clumsily sits down and ");
 	if(foes[0].lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his wad-like sheath, curling his hand around it in an almost protective gesture");
