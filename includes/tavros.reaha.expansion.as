@@ -1010,7 +1010,7 @@ public function reahaAddictionTherapyDickwielder():void
 	output("\n\n");
 	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) output("<i>“I can... I can feel the difference,”</i> Reaha admits, cupping the tit underneath your lips. <i>“Everything’s less... intense, I guess? But you make it feel amazing anyway.”</i>");
 	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output("<i>“I can barely feel the difference,”</i> Reaha giggles, smiling down at you. <i>“Some of me knows it would be better with them, but with you... you already make me feel amazing anyway.”</i>");
-	output("<i>“Better!”</i> she grins, wiggling under your wandering fingers. <i>“It’s like... like I can finally feel for myself now. Like I’m not getting everything all muddied up and confused. And I wouldn’t miss a beat of your lovemaking for the world.”</i>");
+	else output("<i>“Better!”</i> she grins, wiggling under your wandering fingers. <i>“It’s like... like I can finally feel for myself now. Like I’m not getting everything all muddied up and confused. And I wouldn’t miss a beat of your lovemaking for the world.”</i>");
 	
 	output("\n\nYou pull yourself off her teat and smile at the compliment.");
 	if (reahaConfidence() >= REAHA_CONFIDENCE_HIGH) output(" Reaha, in turn, leans down and plants a quick, affectionate kiss on your [pc.lips].");
