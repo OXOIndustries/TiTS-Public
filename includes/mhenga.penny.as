@@ -2732,7 +2732,7 @@ public function jackinPennyOffWithAnOnahole():void {
 	if(pc.isMischievous() || pc.isNice()) 
 	{
 		if(flags["TIMES_JACKED_PENNY_OFF_WITH_ONAHOLE"] > 1) output("<i>You know I am. How else will I see how big you can make it?</i>");
-		else output("<i>Well we aren't done yet. I bet you can do it again!"</i>);
+		else output("<i>Well we aren't done yet. I bet you can do it again!</i>");
 	}
 	else output("<i>We aren’t done yet. You’re going to go again. After all, how else will we see how big a balloon you can make?</i>");
 	output("<i>”</i>");
