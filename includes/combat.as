@@ -3629,7 +3629,7 @@ public function gasGrenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
 	
-	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level } ), 10);
+	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level*2 } ), 10);
 
 	if (foes[0] is Cockvine)
 	{
