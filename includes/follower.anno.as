@@ -2733,13 +2733,17 @@ public function grayGooArrivesAtShip():void
 	
 	processTime(10+rand(5));
 	
-	eventQueue.push(function():void {
-		clearOutput();
-		clearMenu();
-		var oldArmor:ItemSlotClass = pc.armor;
-		pc.armor = new GooArmor();
-		quickLoot(oldArmor);
-	});
+	if(!(pc.armor is EmptySlot))
+	{
+		eventQueue.push(function():void {
+			clearOutput();
+			clearMenu();
+			var oldArmor:ItemSlotClass = pc.armor;
+			quickLoot(oldArmor);
+			pc.armor = new GooArmor();
+		});
+	}
+	else pc.armor = new GooArmor();
 
 	clearMenu();
 	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");

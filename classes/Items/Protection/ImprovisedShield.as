@@ -45,8 +45,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = -40.0;
-			resistances.electric.resistanceValue = 10.0;
+			resistances.kinetic.resistanceValue = 35.0;
+			resistances.electric.resistanceValue = -25.0;
 			
 			this.version = _latestVersion;
 		}

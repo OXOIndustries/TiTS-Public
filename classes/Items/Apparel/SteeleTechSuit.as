@@ -49,8 +49,8 @@ package classes.Items.Apparel
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.electric.resistanceValue = -30.0;
-			resistances.burning.resistanceValue = -30.0;
+			resistances.electric.resistanceValue = 30.0;
+			resistances.burning.resistanceValue = 30.0;
 			
 			this.version = _latestVersion;
 		}
