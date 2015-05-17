@@ -843,7 +843,7 @@ public function celiseSleezeLactation():void {
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
 	//(If possible, have Celise retain the colour on her description screen for a day or two if it changed)
 	if(pc.lactationQ() > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She'll be back to her old self in no time.");
-	pc.milked(pc.milkFullness);1
+	pc.milked(pc.milkFullness);
 	//reset lust, add lust
 	processTime(30+rand(10));
 	pc.lust(5+rand(5));
@@ -1129,8 +1129,9 @@ public function getDrainedSexyTimes():void {
 	if(rand(3) == 0) pc.orgasm();
 	if(rand(3) == 0) pc.orgasm();
 	if(rand(3) == 0) pc.orgasm();
-
+	pc.createStatusEffect("Milk Paused",0,0,0,0,true,"","",false,10000);
 	sleep(false);
+	pc.removeStatusEffect("Milk Paused");
 	pc.orgasm();
 
 	/*(old text that will not be used) Celise is hungry

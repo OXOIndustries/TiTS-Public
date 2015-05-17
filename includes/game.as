@@ -840,9 +840,13 @@ public function processTime(arg:int):void {
 	//milk is chunked out all at once due to lazies
 	if(arg > 0 && pc.canLactate()) 
 	{
-		//trace("time rested: " + arg);
-		pc.milkProduced(arg);
-		milkGainNotes();
+		//Celise overnights halt milkstuff.
+		if(!pc.hasStatusEffect("Milk Paused"))
+		{
+			//trace("time rested: " + arg);
+			pc.milkProduced(arg);
+			milkGainNotes();
+		}
 	}
 	
 	if (flags["MIMBRANES BITCH TIMER"] == undefined)
@@ -973,7 +977,7 @@ public function processTime(arg:int):void {
 				else flags["IRELLIA_SEX_COOLDOWN"]--;
 			}
 			//Lactation effect updates
-			lactationUpdateHourTick();
+			if(!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
 			//Horse pill procs!
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
