@@ -1343,7 +1343,7 @@ function dickBonusForAppearance(x:int = 0):void
 	}
 	//Cat cock flavor
 	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) {
-		if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output2(" It ends in a single point, much like a spike, and is covered in small, fleshy barbs. The barbs are larger at the base and shrink in size as they get closer to the tip. Each of the spines is soft and flexible, and shouldn't be painful for any of your partners.");
+		if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output2(" It ends in a tapered head, ringed in small, fleshy nubs that terrans have taken to calling \"barbs\" in spite of their softness. More of these \"barbs\" line the shaft, but they're largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
 		else output2(" It is covered in barb-like nubs, soft and rounded enough to massage any passage into which it is inserted. ");
 	}
 	//Snake cock flavor
