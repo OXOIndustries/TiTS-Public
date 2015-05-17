@@ -2617,7 +2617,7 @@ public function nameThaGooII():void
 
 	output("<i>“[goo.name]?”</i> you suggest.");
 	
-	output("\n\n<i>“Wow! That’s awesome. I’m soooo " + indefiniteArticle("[goo.name]") + ",”</i> [goo.name] announces, bouncing giddily. <i>“You’re the bestest friend in the whoooole wide universe. It’s the best name EVER!”</i>");
+	output("\n\n<i>“Wow! That’s awesome. I’m soooo " + indefiniteArticle(chars["GOO"].short) + ",”</i> [goo.name] announces, bouncing giddily. <i>“You’re the bestest friend in the whoooole wide universe. It’s the best name EVER!”</i>");
 	
 	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
 	if (pc.tallness > goo.tallness + 6) output(" up");

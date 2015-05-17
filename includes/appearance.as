@@ -32,16 +32,22 @@ public function appearance(target:Creature):void {
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you're ");
-		if(target.armor.longName == "empty") output2("not wearing a single scrap of armor");
+		if(target.armor is EmptySlot) output2("not wearing a single scrap of armor");
 		else output2("wearing " + target.armor.description + ", ");
-		if(target.lowerUndergarment.longName == "empty") output2("going commando down south, ");
+		if(target.lowerUndergarment is EmptySlot) output2("going commando down south, ");
 		else output2("using " + target.lowerUndergarment.longName + " for underwear, ");
-		if(target.upperUndergarment.longName == "empty") output2("and letting your torso breathe, unrestricted by any undertop.");
+		if(target.upperUndergarment is EmptySlot) output2("and letting your torso breathe, unrestricted by any undertop.");
 		else output2("and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(target.armor.longName == "empty" && target.lowerUndergarment.longName == "empty" && target.upperUndergarment.longName == "empty") {
-			output2(" If anyone sees you now, they're sure to think you're a nudist!");
+		if(target.isNude()) {
+			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
+			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public's gaze.");
+			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");
+			else if(target.exhibitionism() >= 33) output2(" It's okay to show some nudity once in a while, right?");
+			else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can't help but be aroused a little.");
+			else if(target.exhibitionism() == 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
+			else output2(" If anyone sees you now, they're sure to think you're a nudist!");
 		}
-		
+
 		//Face
 		output2("\n\n");
 		if(target.faceType == GLOBAL.TYPE_NALEEN_FACE || target.faceType == GLOBAL.TYPE_HUMAN || target.faceType == GLOBAL.TYPE_SHARK || target.faceType == GLOBAL.TYPE_SIREN || target.faceType == GLOBAL.TYPE_LAPINE || target.faceType == GLOBAL.TYPE_NAGA) {

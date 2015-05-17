@@ -258,6 +258,7 @@ public function rideDickWithRedMyrSloot():void
 	output("<i>“If you don’t want it in the water, how about in you?”</i> you grin, reaching over and grabbing your virginal lover under the arms. She has just enough time to gasp and squeal before you’ve spun her around and into your lap, her slit grinding tantalizingly against your cockhead. Not much time left...");
 	output("\n\nShe blinks at you, black eyes looking so awe-filled that they might just pop out at any moment. <i>“You want to cum inside me?”</i> she murmurs, still pumping your prick hard enough that she’s got to be battering her fist against her own crotch. <i>“I’ve never had...”</i>");
 	output("\n\n<i>“Just slide it in!”</i> you groan, using your grasp on her underarms to try and guide her down onto your rod. She gives you a nervous look, but slowly allows you to move her down. You just about lose what’s left of your willpower when your [pc.cockHead " + x + "] brushes the quivering lips of her sex, pushing firmly against her tight little box. You can tell she was serious about never having handled a cock before: it’s a struggle to get her to loosen up enough for you to actually enter her.");
+	pc.cockChange();
 	output("\n\nThe surge of vice-like pleasure is enough to push you over the edge, barely giving you enough time to thrust in ");
 	if(pc.cockVolume(x) <= 65) output("to the hilt");
 	else output("until you’re battering the back of the myr’s cunt");

@@ -505,7 +505,7 @@ A dinged-up vending machine has been shoved into the corner. A big, in-your-face
 
 public function vendingMachineButton(arg:int = 0):Boolean
 {
-	addButton(arg,"V.Machine",vendingMachineMenu,undefined,"V.Machine","See what these energy drinks are all about.");
+	addButton(arg,"V.Machine",vendingMachineMenu,undefined,"Vending Machine","See what these energy drinks are all about.");
 	if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("\n\nA vending machine sits next to the door, advertising <i>JoyCo Power-up Potions</i>.");
 	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("\n\nA long line of raskvel are crowded around a big, yellow vending machine. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>.");
 	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("\n\nA row of vending machines sit at the back of the gift shop, advertising <i>JoyCo Power-up Potions</i>.");
@@ -520,7 +520,7 @@ public function vendingMachineMenu():void
 	processTime(1);
 	clearMenu();
 	if(pc.credits >= 5) addButton(0,"P.Potion",buyAPowahPotion,undefined,"Power Potion","Get yourself an energy drink. Only 5 credits!");
-	else addDisabledButton(0,"P.Potion","P.Potion","You can't even afford a five credit drink. Any poorer and you'll be living out of a box.");
+	else addDisabledButton(0,"P.Potion","Power Potion","You can't even afford a five credit drink. Any poorer and you'll be living out of a box.");
 	addButton(14,"Back",mainGameMenu);
 }
 

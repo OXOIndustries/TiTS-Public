@@ -282,27 +282,27 @@ public function unequipMenu():void
 	clearMenu();
 	if (pc.upperUndergarment.shortName != "") 
 	{
-		this.addOverrideItemButton(0, pc.upperUndergarment, "Undertop", unequip, "bra");
+		this.addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
 	}
 	else this.addDisabledButton(0,"Undertop");
 
 	if (pc.shield.shortName != "") 
 	{
-		this.addOverrideItemButton(1, pc.shield, "Shield", unequip, "shield");
+		this.addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
 	}
 	else this.addDisabledButton(1,"Shield");
 	
 	if (pc.lowerUndergarment.shortName != "")
 	{
-		this.addOverrideItemButton(5, pc.lowerUndergarment, "UnderwearOff", unequip, "underwear");
+		this.addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
 	}
-	else this.addDisabledButton(5,"UnderwearOff");
+	else this.addDisabledButton(5,"Underwear");
 	
 	if (pc.meleeWeapon.shortName != "Rock") 
 	{
 		this.addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
 	}
-	else this.addDisabledButton(2,"Melee Off");
+	else this.addDisabledButton(2,"Melee");
 	
 	if (pc.armor.shortName != "") 
 	{
@@ -314,13 +314,13 @@ public function unequipMenu():void
 	{
 		this.addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
 	}
-	else this.addDisabledButton(7,"Ranged Off");
+	else this.addDisabledButton(7,"Ranged");
 	
 	if (pc.accessory.shortName != "") 
 	{
 		this.addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
 	}
-	else this.addDisabledButton(3,"Acc. Off");
+	else this.addDisabledButton(3,"Accessory");
 	
 	//Set user and target.
 	itemUser = pc;
