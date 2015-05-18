@@ -1,7 +1,7 @@
 ﻿//Author: Savin
 
 //Add to Room Descript:
-function queensRoadBonusShit():Boolean
+public function queensRoadBonusShit():Boolean
 {
 	//Not Talked: 
 	if(flags["MET_SEIFYN"] == undefined)
@@ -27,7 +27,7 @@ function queensRoadBonusShit():Boolean
 //[Merchant]
 //Tooltip: See what the very vocal merchant girl has to offer.
 //First Time
-function approachSeifynFirstTime():void
+public function approachSeifynFirstTime():void
 {
 	clearOutput();
 	showSeifyn();
@@ -56,7 +56,7 @@ function approachSeifynFirstTime():void
 
 //Repeat Greeting
 //Tooltip: See what Siefyn’s got to offer you.
-function repeatSeifynMeeting():void
+public function repeatSeifynMeeting():void
 {
 	clearOutput();
 	showSeifyn();
@@ -82,7 +82,7 @@ public function showSeifyn():void
 	showBust("SEIFYN");
 }
 
-function seifynShopScreen(buy:Boolean = true):void
+public function seifynShopScreen(buy:Boolean = true):void
 {
 	shopkeep = chars["SEIFYN"];
 	chars["SEIFYN"].keeperBuy = "“You wanna buy something? Great! Take a look around, let me know if anything catches your interest!”</i>\n";
@@ -107,7 +107,7 @@ output("\n\n//Red Myr Venom");
 */
 
 //Talk
-function seifynTalkMenu(arg = undefined):void
+public function seifynTalkMenu(arg:Function = undefined):void
 {
 	showSeifyn();
 	clearMenu();
@@ -128,7 +128,7 @@ function seifynTalkMenu(arg = undefined):void
 
 //Credits
 //You have to admit, it’s a little surprising that she’s willing to take credits. How are they useful to her?
-function seifynCreditTalk():void
+public function seifynCreditTalk():void
 {
 	clearOutput();
 	showSeifyn();
@@ -149,7 +149,7 @@ function seifynCreditTalk():void
 
 //Nyrea
 //Ask about her species.
-function seifynNyreaTalk():void
+public function seifynNyreaTalk():void
 {
 	clearOutput();
 	showSeifyn();
@@ -195,7 +195,7 @@ function seifynNyreaTalk():void
 //Taivra
 //Ask about the nyrean queen she mentioned.
 //PC has done the Nyrea talk. Hasn’t done the Nyrea Palace dungeon.
-function seifynTaivraTalk():void
+public function seifynTaivraTalk():void
 {
 	clearOutput();
 	showSeifyn();

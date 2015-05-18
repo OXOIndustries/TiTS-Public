@@ -1778,7 +1778,7 @@ public function anataeCodexEntry():void
 	CodexManager.viewedEntry("Anatae");
 }
 
-function dzaanCodex():void
+public function dzaanCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Dzaan"));
@@ -1822,8 +1822,7 @@ function dzaanCodex():void
 	CodexManager.viewedEntry("Dzaan");
 }
 
-
-function myrFungusCodex():void
+public function myrFungusCodex():void
 {
 	clearOutputCodex();
 	outputCodex(header("Myr Fungus"));

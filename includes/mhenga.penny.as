@@ -3495,7 +3495,7 @@ public function pennyGrowsAHorseCockPart2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-function whineToPennyCauseYerABitch():void
+public function whineToPennyCauseYerABitch():void
 {
 	clearOutput();
 	author("Savin");
