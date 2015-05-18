@@ -1046,6 +1046,12 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				 // New Texas cockmilker repair cooldown.
+				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+				{
+					if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]--;
+					else flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 0;
+				}
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined) newTexasEmail();
