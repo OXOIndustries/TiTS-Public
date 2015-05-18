@@ -45,8 +45,8 @@ package classes.Items.Protection
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = -20.0;
-			resistances.electric.resistanceValue = 20.0;
+			resistances.kinetic.resistanceValue = 30.0;
+			resistances.electric.resistanceValue = -50.0;
 			
 			this.version = _latestVersion;
 		}

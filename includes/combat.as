@@ -22,6 +22,7 @@ import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.Engine.Combat.applyDamage;
+import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -217,7 +218,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Take Cover")) 
 		{
 			
-			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack this turn.\n\nConsumes 20 energy.");
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack for 3 turns.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
@@ -299,7 +300,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "G. Disrupt.");
 			offset++;
 		}
@@ -441,7 +442,6 @@ public function updateCombatStatuses():void {
 		pc.shields(Math.round(pc.shieldsMax()/4));
 		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 	}
-	if(pc.hasStatusEffect("Taking Cover")) pc.removeStatusEffect("Taking Cover");
 	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
 	if(pc.hasPerk("Juggernaught"))
 	{
@@ -570,6 +570,18 @@ public function updateCombatStatuses():void {
 		}
 		else {
 			output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
+		}
+	}
+	if(pc.hasStatusEffect("Taking Cover"))
+	{
+		pc.addStatusValue("Taking Cover",1,-1);
+		if(pc.statusEffectv1("Taking Cover") <= 0)
+		{
+			pc.removeStatusEffect("Taking Cover");
+			output("<b>You are no longer taking cover!</b>\n");
+		}
+		else {
+			output("<b>Your enemies will have a hard time hitting you behind your cover!</b>\n");
 		}
 	}
 	if(pc.hasStatusEffect("Deflector Regeneration"))
@@ -766,6 +778,7 @@ public function updateCombatStatuses():void {
 			}
 		}
 	}
+	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
 }
 public function stunRecover(target:Creature):void 
 {
@@ -2993,7 +3006,7 @@ public function buttTeaseText():void {
 	//Reqs: PC has a cock-tail
 	else if(select == 7)
 	{
-		output("You curl your [pc.tailcock] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
+		output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
 	}
 	//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
 	else if(select == 8)
@@ -3616,14 +3629,14 @@ public function gasGrenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
 	
-	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level } ), 10);
+	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level*2 } ), 10);
 
 	if (foes[0] is Cockvine)
 	{
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 	}
 	
-	var damageResult:DamageResult = applyDamage(damage, pc, pc, "supress");
+	var damageResult:DamageResult = applyDamage(damage, pc, target, "supress");
 	output("\n");
 	output(teaseReactions(damageResult.lustDamage, target));
 	output(" (<b>"+ Math.round(damageResult.lustDamage) + "</b>)\n");
@@ -3826,7 +3839,7 @@ public function takeCover():void {
 	clearOutput();
 	pc.energy(-20);
 	output("You seek cover against ranged attacks.\n");
-	pc.createStatusEffect("Taking Cover",0,0,0,0,true,"","",true);
+	pc.createStatusEffect("Taking Cover",3,0,0,0,false,"DefenseUp","You are taking cover! Ranged attacks will almost always miss!",true);
 	processCombat();
 }
 

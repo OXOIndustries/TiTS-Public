@@ -209,7 +209,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	
 	if (flags["TANIS_BOW_TRAINING"] == 8)
 	{
-		output("\n\nYou cover your eyes, gasping as the shockwave rolls over you. The first thing you hear, once you’re able to again, is Tanis laughing hysterically. <i>“I guess I should have said, uh, ‘fire in the hole’ or something, right?");
+		output("\n\nYou cover your eyes, gasping as the shockwave rolls over you. The first thing you hear, once you’re able to again, is Tanis laughing hysterically. <i>“I guess I should have said, uh, ‘fire in the hole’ or something, right?”</i>");
 		
 		output("\n\n<i>“Trick arrows are the key to keeping bow hunting relevant today,”</i> he says. <i>“I made these myself - concussive arrows. Sends a shockwave that’ll stun just about anything, even most robots. Give you time to plunge a few more arrows, or a good blade, into whatever’s trying to fight you. Here, take a few to test out. I’ll show you how to make ‘em later.”</i>");
 		

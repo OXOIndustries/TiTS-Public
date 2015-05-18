@@ -646,7 +646,7 @@ public function gotJob():void
 {
 	clearOutput();
 	showDally();
-	output("You give him and a friendly squeeze and ask, <i>“How’d you get the job then? It does seem pretty cushy.”</i>");
+	output("You give him a riendly squeeze and ask, <i>“How’d you get the job then? It does seem pretty cushy.”</i>");
 	output("\n\nDally laughs richly at that. <i>“I didn’t even want this job at first. I was convinced it would be degrading.”</i>");
 	output("\n\nYou tilt your head quizzically. <i>“So why’d you take it?”</i>");
 	output("\n\n<i>“Because I couldn’t get anything else.”</i> Dally sighs heavily. <i>“You star-walkers wouldn’t really understand.”</i>");
@@ -657,7 +657,7 @@ public function gotJob():void
 	output("”</i>");
 	output("\n\nDally’s shoulders slump as he gives in. <i>“I-I’ll try. You know how few males there are in our society, right?”</i>");
 	output("\n\nYou nod. <i>“One for every nine girls, or so I’m told.”</i>");
-	output("\n\n<i>“Exactly. No matter where I went, I was a curiosity, different even in the homology of our hive. My coworkers would inevitably see me as little more than a sex object. My bosses would try to seduce me or fire me to keep their subordinates for competing for my affection. Customers wouldn’t take me serious. They saw me as little more than eye candy. When I walked home at night, I’d have to look over my shoulder to make sure a few girls drunk on mead didn’t try to force themselves on me. It’s happened more than a few times.”</i> His antennae droop.");
+	output("\n\n<i>“Exactly. No matter where I went, I was a curiosity, different even in the homology of our hive. My coworkers would inevitably see me as little more than a sex object. My bosses would try to seduce me or fire me to keep their subordinates from competing for my affection. Customers wouldn’t take me serious. They saw me as little more than eye candy. When I walked home at night, I’d have to look over my shoulder to make sure a few girls drunk on mead didn’t try to force themselves on me. It’s happened more than a few times.”</i> His antennae droop.");
 	output("\n\nYou squeeze his shoulder.");
 	output("\n\nDally continues on, his lopsided smile returning, <i>“It wasn’t that bad, honestly - more an inconvenience than a violation. We don’t view sex the same way as your people. Public orgies aren’t exactly uncommon, and inebriated passersby hooking up is more common than the queens care to admit. Still, it adds up, another annoyance piled on top of hundreds of others. The girls don’t realize how good they have it, being able to be valued for their minds instead of just their bodies.”</i>");
 	output("\n\nThat sounds pretty similar to things you’ve heard about a number of planets, New Texas included");
@@ -725,7 +725,7 @@ public function talkToDallyAbootHisFamiry():void
 	if(flags["DALLY_IRELLIA_STORY_TOLD"] != undefined) output(" I guess I was almost part of that minority, huh? Fuck, if wanting Irellia is wrong, I don’t know if anything can be right.");
 	output("”</i> Tugging thoughtfully at his ponytail, he adds, <i>“Maybe that’s how the reds and us got so screwed up. They wound up all red and near-infertile, and we wound up with only a few queens to propagate our race.”</i>");
 	output("\n\nYou shrug. <i>“It’d take a scientist to know for sure.”</i>");
-	output("\n\nNodding in agreement, Dally adds, <i>“Good thing your governments and corporations seem intend on smothering us in biologists. Barely a day passes without some scientist knocking at my door wanting a sample. I’m tempted to give them a jar of sugar water and see if they have a mental breakdown trying to process it.”</i>");
+	output("\n\nNodding in agreement, Dally adds, <i>“Good thing your governments and corporations seem intent on smothering us in biologists. Barely a day passes without some scientist knocking at my door wanting a sample. I’m tempted to give them a jar of sugar water and see if they have a mental breakdown trying to process it.”</i>");
 	output("\n\nThe two of you share a grin at the thought.");
 	output("\n\n<i>“Got anything else to talk about, or shall I go titillate the rest of the club with my exciting talks of inbred children?”</i> Dally asks with a sarcastic-looking wink.");
 	processTime(6);
@@ -930,7 +930,9 @@ public function dallySucksYouOff():void
 	else output("aren’t the only one needing a good suck.");
 	output("”</i>");
 	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“Stones, it’s strange to look at someone else’s up close.”</i> He flashes a white-toothed smile your way. <i>“Not saying I mind, just that most of my practice has been... self-fulfilling.”</i>");
-	output("\n\nYou grab hold{ of your biggest cock} and wagle it back and forth in front of him. <i>“");
+	output("\n\nYou grab hold");
+	if(pc.cockTotal() > 1) output(" of your biggest cock");
+	output(" and wagle it back and forth in front of him. <i>“");
 	if(pc.isNice()) output("Go on, then. There’s no better way to get practice, right?");
 	else if(pc.isMischievous()) output("Go ahead, it’s more of a spitter than a biter.");
 	else 

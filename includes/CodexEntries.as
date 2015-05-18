@@ -21,6 +21,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Dzaan", dzaanCodex,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Humans", humanTerranCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
@@ -35,7 +36,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
-	
+
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
@@ -47,8 +48,11 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+
+	
 		
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
@@ -1774,6 +1778,81 @@ public function anataeCodexEntry():void
 	CodexManager.viewedEntry("Anatae");
 }
 
+function dzaanCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Dzaan"));
+	outputCodex("<i>Dzaan are as beautiful as they are addictive...</i>\n");
+
+	showBust("KASKA");
+	outputCodex("\n<b>Name (Singular & Plural):</b> Dzaan");
+	outputCodex("\n<b>Sexes:</b> Female (<i>“Beta”</i>) and Hermaphrodite (<i>“Alpha”</i>)");
+	outputCodex("\n<b>Height:</b> 6’2”</i> to 8’");
+	outputCodex("\n<b>Weight:</b> 180 to 300 lbs, depending on build.");
+	outputCodex("\n<b>Hair:</b> Extremely varied and often colorful.");
+	outputCodex("\n<b>Eyes:</b> Extremely varied, usually matching hair color.");
+	outputCodex("\n<b>Average Lifespan:</b> 150 Earth years");
+	outputCodex("\n<b>Homeworld:</b> Heloith IV\n\n");
+
+	outputCodex(blockHeader("History"));
+	outputCodex("Despite their heavy presence on the rim in modern times, Dzaan society did not react well to the introduction of the greater galaxy, creating a schism that divides their peoples to this day. One camp, fiercely tribal and independent, avoided contact with the “sky people” and maintained a strictly isolationist worldview. The other, led by curiosity or courage, chose to embrace change, seeing a chance to fulfill prophecies of a promised land that had been unfulfilled for generations.\n\n");
+	outputCodex("Both sides proved to be correct. The isolationists’ viewpoints were reinforced by abductions perpetrated by unscrupulous slavers intent on smuggling sapient cargo. Meanwhile, the explorers integrated well into galactic society, throwing themselves at the edges of the known universe with religious fervor. Pockets were lined with riches, allowing for rich enclaves to be constructed on promising planets.\n\n");
+	outputCodex("Now, many of those enclaves have become tourist hotspots, providing fabulous weather, luxurious amenities, and exotic company for those well-off enough to afford the cost. The near endless flows of credits have funded countless expenditures aimed at discovering what they now call “The Wonder World.” Indeed, adventuring dzaan almost always have custom-made craft and top-of-the-line weaponry.\n\n");
+	outputCodex("With the latest rush, many resorts have closed; these strange aliens’ attentions are firmly on the heavens. Only the isolationist tribes on their homeworld continue as they have, avoiding outsiders at all costs.\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Dzaan are almost entirely human-like in appearance, leading many exotic races to have difficulty distinguishing the two. Leithans in particular seem to struggle to identify these <i>“two-legs,”</i> but significant biological disparities do exist between the two races. First and foremost, dzaan have longer spinal cords than terrans, containing six more vertebrae, giving them a longer torso.\n\n");
+	outputCodex("Their sinuous posture does a good job at concealing the extra size, giving them an outthrust chest and subtly arched behind. Their wide hips and strong, muscular legs give them something of a sensuous gait, always seeming to display their secondary sexual characteristics for maximum effect, and the short tendons in their heels keep them on the balls of their feet.\n\n");
+	outputCodex("Dark skin colors are the norm for both sexes, a leftover from their tropical homeworld (and preferred climes). The only hair a dzaan will ever grow sprouts from her head, much like a human’s, though alphas typically have less than betas, owing to the keratin protrusions that often form on their foreheads, sometimes even manifesting as rounded horns. Alphas may also have these ridges on their cheeks, shoulders, elbows, knees, and feet. It is uncommon for any one alpha to have growths in all these places; many never get anything more than horns.\n\n");
+	outputCodex("Betas lack the keratin protrusions but are ornamented with a variety of spots or stripes, sometimes both in complementary locations. The mechanisms behind their formation were studied for years with only middling success before being abandoned entirely. Why spend tens of millions of credits researching a gene-mod when anyone can get their own markings from a cheap tattoo artist?\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Alpha dzaan, though much rarer than betas, universally take the place of males within their society, using their lengthy phalli to impregnate harems of beta females. Though alphas have functional female genitalia, there is no record of one alpha ever successfully inseminating another, though whether this is due to cultural taboos or a biological quirk is unknown - alphas can be impregnated by humans, ausar, and other similar races, strangely enough.\n\n");
+	outputCodex("Thanks to their larger torsos, dzaan have much longer vaginal canals than humans, and alphas have grown to fill them. The average alpha’s phallus typically ranges from 9 to 11 inches in length, though rare cases can fall far to either side of the spectrum. Two plump balls power these reproductive powerhouses, manufacturing seed laced with numerous mildly addictive compounds.\n\n");
+	outputCodex("Incubation lasts just shy of seven months, culminating in a surprisingly easy birth, owing to the excessively wide hips that many dzaan have. Mothers will lactate just like humans, providing nourishment for their growing young.\n\n");
+	outputCodex("As they grow, they undergo two puberties, the first at age eight to nine and the second around 14 to 15. The first gives them their skin markings or keratin growths as well as increased height and muscle mass. The second brings them to full maturity, enlarging both primary and secondary sexual characteristics, particularly breasts. Alphas’ balls, prostate, seminal vesicles, and penises greatly expand at this point.\n\n");
+	outputCodex("The changes females undergo are much more subdued and internally focused. The only visible one is the growth of the clitoris. It greatly expands, becoming large enough to pop out of its hood at the first hint of arousal. Tribal dzaan attach great significance to their females’ first time <i>“popping their nub.”</i>\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Nearly every alpha has a harem of his or her own, though the ones with the largest balls and most noticeable keratin typically attract the most mates. It does not take long for the beta females to become addicted to their alpha’s sexual fluids, ensuring that couplings are both frequent and binding.\n\n");
+	outputCodex("Less successful alphas may only have one or two females to themselves, placing themselves in subservient, supportive roles to the alphas with the largest harem in the settlement. These hierarchical structures are more rigid amongst the traditional isolationists than the space faring explorers. Exposure to the rest of the U.G.C. has allowed a few females to mate outside their race and given rise to a small but vocal crowd of monogamous alphas.\n\n");
+	outputCodex("There is little strife within their leadership structure. Power struggles are virtually unheard of - she with the largest harem is obviously in charge, and should a usurper try to upset the balance, the leading alpha’s harem would simply pin the troublemaker (and her harem) down until they’re thoroughly and completely addicted to the clan leader, creating a larger, even more powerful harem.\n\n");
+	outputCodex("Actual violence and murder are quite rare, and despite their harshness with their own species, they prize freedom of choice, allowing females to select their own alpha once they come of age. Addicting an outsider is a massive faux pas; forcefully addicting an outsider is a crime worthy of exile.	Due to their addictive abilities, lone alphas are generally to be treated with caution. Lone females are even more rare, but much less dangerous.\n\n");
+	outputCodex(blockHeader("Addiction"));
+	outputCodex("Addiction the fluids of a dzaan alpha is a serious and difficult to break habit. Few attempt it, and fewer still succeed. Researchers theorize that cause lies in the effects of the narcotic-like cum. It enhances submissive tendencies, relaxes the imbiber, and promotes general feelings of empathy and euphoria. Tolerance can build up, but the process is slow. More importantly, even the most well-fucked beta will tell you that she still receives a thrill from servicing her mistress.\n\n");
+	outputCodex("Individual alphas have slightly different chemical mixes, but it is possible for a harem member to transition to a new mistress with only a modicum of discomfort as she adapts to her new lady’s particular blend.\n\n");
+	outputCodex("Because of this, many dzaan alphas interested in coupling with members of other races avail themselves of over the counter drugs designed to suppress their semen’s naturally addictive qualities. Whether this is to give their partners peace of mind or to avoid the discussion altogether varies from individual to individual.\n");
+	CodexManager.viewedEntry("Dzaan");
+}
+
+
+function myrFungusCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Myr Fungus"));
+	outputCodex("<i>Gross.</i>\n");
+	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
+	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
+	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
+	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
+	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom <i>“hats.”</i> Fungal queens have clear hair that pulses with colored light.");
+	outputCodex("\n<b>Skin:</b> All members of the species have chalk white skin.");
+	outputCodex("\n<b>Eyes:</b> Humanoid eyes that shift with bright colors.");
+	outputCodex("\n<b>Ears:</b> Fungal manifestations have ears shaped similarly to their host, though the shapes are only for show as they hear everything that their hosts hear and communicate telepathically.\n\n");
+
+	outputCodex(blockHeader("Parasitism"));
+	outputCodex("The infection begins from breathing in spores that are either acquired while exploring the caves, or brought back on the clothing of returning hosts. Newly infected myr act no differently than the average member of the race, but after about a week they have a compulsion to leave their city or place of dwelling and travel to the deep caves of myrellion. Once there, they are beset with the more unpleasant part of the infection. For a period of between two days and week, they are racked with uncomfortable lust as the fungus merges with their immune system. During this time, the host will attempt to initiate intercourse with any being they come upon in the caves, though such attempts usually result in failure. Multiple infected will often try to ride out this rough phase together if they meet in the caves. This week culminates in the first manifestation of the fungus’ full form.");
+	outputCodex("\n\nA full formed fungus projects its physical form from the hosts hips, often leaning against them while they sit or lie down. They are tethered by a lattice of micro tendrils that look similar to wispy clouds. This link is rather weak, and the physical form will disperse if it is wrenched away with any effort.");
+	outputCodex("\n\nAfter the rough patch, the subject commonly returns to their home, often somewhat agitated from the ordeal. Apart from this initial agitation there are not many, if any, visible symptoms of the infection. An exception to this is a female myr with a male identifying manifestation. Such hosts grow a cock that ranges from four to eight inches, usually resulting in swift discovery of hosts living with family or friends. The host will feel a compulsion to travel back to the caves that dulls over time. If the host does not follow this compulsion, they can live out the remainder of their lives peacefully – or as peacefully as they can with a fungal symbiont connected to them.\n\n");
+	outputCodex(blockHeader("Combat"));
+	outputCodex("Infected individuals may gain physical strength (in the case of male identifying spores) or increased awareness (in the case of female identifying spores) in the later stages of infection. Initial stages are usually capable of functioning in society and appear no different than an uninfected individual unless tested by offworld medical technology. Infected with access to weaponry will allow their manifestations to wield weapons. Typically, the host will wield a melee weapon while the fungus uses a number of tricks associated with their spores, as the manifested bodies aren’t physically powerful.\n\nFully developed fungal queens fight using something akin to psionic power in addition to using <i>“possessed”</i> species as guards. Most queens would rather not fight, however, as using their spores expedites their dispersion. Queens often position themselves in rooms filled with a cloud of spores and can exhale thicker clouds during combat. They can speed the growth of mushrooms with enough concentrated spores, causing the normally (physically) harmless infestation to become painful and immobilizing.\n\n");
+	outputCodex(blockHeader("Gender Differences & Reproduction"));
+	outputCodex("While spores do not start out with genders, there are two definite genders of manifestations that are easily distinguishable. Male-identifying fungi will have leaner bodies and smaller caps, but will still have B-cup breasts and feminine faces. Female-identifying fungi will have fuller bodies and larger caps with breasts ranging between D and E-cups. Neither gender have nipples or sexual orifices, relying on their host for such things. Fungal queens, on the other hand, vary in appearance. For instance, some may have flower-like nipples or sexual orifices.");
+	outputCodex("\n\nMyrmedius reproduces asexually with the fungal queens producing millions of spores during their lifetime. Once a queen has produced a finite number of spores she is dispersed, spreading her consciousness into another hundred thousand spores that spread through whatever room she was in and form smaller, luminescent mushrooms. The memories of this queen are retained by any queen formed from the dispersed particles. A queen is produced if an individual infected to the manifestation point repeatedly returns to one of these dispersal zones after the parasitic drive to do so has worn off. After a dispersal, the host of the queen is left uninfected. Manifestation-stage fungi can produce spores, but they are noninfectious and used for combat or feeding of less-than-willing hosts.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited"));
+	outputCodex("While myrmedius fungus is capable of surviving outside of deep caves, it can only reproduce inside them. The specific temperature and humidity level of the cave provides the perfect breeding ground. Manifestation-level fungi can survive in any environment that their host can, but their performance will suffer if their host’s functioning is impaired, and they may not be able to show themselves at all if the host is grievously injured. The fungus can adapt to survive in other circumstances, but it can only reproduce in the specific conditions of the cave. Nearly any insectile organism and some other species can be used as hosts, but non-insectoid hosts will receive a less intense bonding and subsequent nerve melding.\n\n");
+	outputCodex(blockHeader("Relationships"));
+	outputCodex("The manifested symbiotes are very loving, attempting to support their host as best they can if they think the host is feeling out of sorts or in danger. They are, however, not the most intelligent things. Their help is usually limited to cuddles or directed actions outside stressful situations. Unless called at another time, they will usually only manifest during masturbation and will attempt to assist their host in achieving orgasm. They will try to ease the host’s nervousness about having a giant mushroom bonded with themselves and share their host’s stronger emotions.\n\n");
+	CodexManager.viewedEntry("Myr Fungus");
+}
+
 
 public function dragonsHordeCodexStory():void
 {
@@ -2006,3 +2085,4 @@ public function dragonsHordeCodexStory():void
 	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...\n");
 	CodexManager.viewedEntry("Dragon's Hoard");
 }
+

@@ -1306,7 +1306,7 @@ public function tieAndTeaseWithXanthe():void
 	else output("strip off your clothes");
 	output(" and you immediately do so, not even registering the instruction before you comply. When she tells you to ");
 	if(pc.legCount > 1) output("spread your [pc.legsNoun] and ");
-	output("lift your hands, you do so without without question.");
+	output("lift your hands, you do so without question.");
 
 	output("\n\nShe could tell you to leap out the window and you would happily do it. You’re simply that confident that she would never ask you to do something that wasn’t for your own good. Xanthe is your Mistress, and she cares for you - why would she harm her own pet?");
 

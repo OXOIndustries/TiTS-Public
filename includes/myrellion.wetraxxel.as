@@ -849,7 +849,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 		output("\n\nYour own [pc.cock] throbs, bouncing against the brawler’s belly with every wannabe-bounce you make. Pre is starting to bead on your [pc.cockHead], drooling onto the chitinous belly beneath you. ");
 	}
 	else output("\n\n");
-	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes every more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves for mile around hear you.");
+	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes ever more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves for mile around hear you.");
 	
 	output("\n\nThe wetraxxel joins you with a gruff grunt of pleasure, and a sudden flood of wet heat into your "+holeTag+" as he cums. With one final push, you take him as deep as you can and surrender yourself to pleasure, letting orgasm wash over your in tidal waves of ecstasy. Your "+holeTag+" clenches powerfully around the wetraxxel’s dick, milking his hot seed out with your every orgasmic motion.");
 	if (useVag) pc.loadInCunt(foes[0], pc.biggestVaginaIndex());

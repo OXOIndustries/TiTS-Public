@@ -591,6 +591,9 @@ public function meetUpWithKaraInTheBackAlley():void
 public function shadeAI():void
 {
 	var target:Creature = pc;
+	//Quickdraw (Free action) - end of enemyAI
+	//if PC is immune to electricity after getting shot by the Arc Caster
+	shadeQuickdrawsDisarmed();
 	if(pc.statusEffectv1("Round") <= 1)
 	{
 		//Shoot First (First round)
@@ -610,7 +613,7 @@ public function shadeAI():void
 	
 	//Quickdraw (Free action) - end of enemyAI
 	//if PC is immune to electricity after getting shot by the Arc Caster
-	shadeQuickdraws(pc);
+	shadeQuickdrawsSwap(pc);
 
 	//Kara's AI in here:
 	output("\n\n");
@@ -942,19 +945,41 @@ public function tazerForShade(target:Creature):void
 
 //Quickdraw (Free action) - end of enemyAI
 //if PC is immune to electricity after getting shot by the Arc Caster
-public function shadeQuickdraws(target:Creature):void
+public function shadeQuickdrawsDisarmed():void
 {
-	//if she’s disarmed from her Arc Caster
-	if(foes[0].hasStatusEffect("Disarmed") && foes[0].rangedWeapon is ArcCaster)
+	if(foes[0].rangedWeapon is ArcCaster)
 	{
-		output("\n\nJust as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.");
-		foes[0].rangedWeapon = new HoldOutPistol();
+		//if she’s disarmed from her Arc Caster
+		if(foes[0].hasStatusEffect("Disarmed"))
+		{
+			output("Just as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.\n");
+			foes[0].rangedWeapon = new HoldOutPistol();
+			foes[0].removeStatusEffect("Disarmed");
+		}
 	}
-	else if(target.getHPResistances().electric.resistanceValue >= 100 || target.getShieldResistances().electric.resistanceValue >= 100)
+	//Other gun disarmed
+	else if(foes[0].hasStatusEffect("Disarmed"))
 	{
-		output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+		output("Just as soon as you’ve shot the gun out of her hand, Shade produces another one, identical to the last. <b>Just how many of those things is she carrying!?</b> You might need to try another tactic...\n");
 		foes[0].rangedWeapon = new HoldOutPistol();
-	}	
+		foes[0].removeStatusEffect("Disarmed");
+	}
+}
+public function shadeQuickdrawsSwap(target:Creature):void
+{
+	if(foes[0].rangedWeapon is ArcCaster)
+	{
+		if(target.getHPResistances().electric.resistanceValue >= 100 && target.shields() <= 0)
+		{
+			output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+			foes[0].rangedWeapon = new HoldOutPistol();
+		}
+		else if(target.getShieldResistances().electric.resistanceValue >= 100 && target.shields() > 0)
+		{
+			output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+			foes[0].rangedWeapon = new HoldOutPistol();
+		}
+	}
 }
 
 //Combat End
@@ -1332,6 +1357,7 @@ public function shadeAtTheBar():Boolean
 {
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
+	if(karaAndShadeUnfinished()) return false;
 	if(flags["MET_KARA"] != undefined) return true;
 	else return false;
 }

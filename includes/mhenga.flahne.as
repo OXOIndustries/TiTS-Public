@@ -517,8 +517,6 @@ public function bendFlahneOver():void {
 	if(pc.cumQ() >= 10000) output(". So much seed vanishes into the girl’s golden gap that halfway through your climax, she’s already doubled in size, splayed liberally over the desk like a spilled custard");
 	output(". Her body is quick to engulf the offering, never letting a drop escape her slick depths.");
 	processTime(20 + rand(10));
-	pc.orgasm();
-	flahne.loadInCunt(pc);
 	output("\n\nYour hips pound into her a few last times as your " + pc.cockDescript(x) + " empties, panting and heaving as you collapse and sink into your gel-lover. She giggles playfully, reaching a hand back around to pull your prick from her hole, still twitching and dribbling - until she gets down on her knees to clean you up, lapping up every last drop. You rest your arms on her desk, examining the spilled coffee, papers, and pens strewn across her workspace. She sure made a mess....");
 	
 	output("\n\nRunning a hand across Flahne's gooey hair, you give her a gentle push off of your dick, letting it come free with a wet, squishy pop. The curvy rahn licks her lips, chest jiggling as she wipes a little stray cum from the tops of her ");
@@ -542,6 +540,8 @@ public function bendFlahneOver():void {
 		
 		output("\n\n<i>“Bye cutie!”</i>  Flahne calls after you. <i>“I hope you’ll come in here again!”</i>  You can almost hear the snicker in her voice at the double entendre.");
 	}
+	pc.orgasm();
+	flahne.loadInCunt(pc);
 	flahneFuckCounter(1);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);

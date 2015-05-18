@@ -350,7 +350,7 @@ public function crabbstBlueRibbonPurchase():void {
 			pc.willpowerMod--;
 			pc.lust(5);
 		}
-		else output("\n\nYou're about as drunk on Crabbst as you're going to get.");
+		else output("\n\nYou've gotten everything from Crabbst you're going to get.");
 	}
 	else {
 		pc.createStatusEffect("Crabbst",0,1,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
@@ -363,6 +363,7 @@ public function crabbstBlueRibbonPurchase():void {
 	}
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
+	pc.imbibeAlcohol(7);
 	pc.credits--;
 	processTime(8);
 	this.clearMenu();
@@ -393,7 +394,7 @@ public function buyMeadFromBurt():void {
 			pc.willpowerMod-= .5;
 			pc.lust(5);
 		}
-		else output("\n\nYou're about as drunk on Mead as you're going to get.");
+		else output("\n\nYou've gotten as much from the mead as you're going to get.");
 	}
 	else {
 		pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
@@ -404,6 +405,7 @@ public function buyMeadFromBurt():void {
 		pc.willpowerMod-= .5;
 		pc.lust(5);
 	}
+	pc.imbibeAlcohol(10);
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.credits-= 10;
@@ -431,7 +433,7 @@ public function burtXilErAte():void {
 			pc.physiqueMod+=5;
 			pc.lust(5);
 		}
-		else output("\n\nYou're about as drunk on X-Zil-rate as you're going to get.");
+		else output("\n\nYou're as hopped up on X-Zil-rate as you're going to get.");
 	}
 	else {
 		pc.createStatusEffect("X-Zil-rate",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
@@ -440,6 +442,7 @@ public function burtXilErAte():void {
 	}
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
+	pc.imbibeAlcohol(15);
 	pc.credits-= 50;
 	processTime(10);
 	this.clearMenu();

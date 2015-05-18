@@ -123,8 +123,9 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 
 	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl's body, much to the girl's obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy's breast looms in and blocks your view.");
 	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. \"<i>How's that sweetie? Taste good?</i>\"  she asks rather girlishly, apparently already certain of the answer, \"<i>I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...</i>\"  she utters softly, shuddering slightly from your unbidden gentle nibbling on her nipple.");
-
+	pc.imbibeAlcohol(50);
 	processTime(5+rand(5));
+
 	//[The following scenes are effective no matter character type, size/stature. It is assumed Sellesy and the chair adjust for any difference in height, or in the case of being awkwardly largely endowed, she just straddles their cock with a wider berth between her legs.]
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Next",firstTimeWithSellesyForCocks);

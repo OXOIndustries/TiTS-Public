@@ -1,4 +1,15 @@
-﻿//Doc Badger’s Clinic
+﻿public function bimbotoriumHallBonus():Boolean
+{
+	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
+	{
+		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shake has been all but mummified in flickering holographic police tape. A couple of uniformed Peacekeepers are standing outside, keeping the curious raskvel from entering the premises. <b>It looks like Doctor Badger’s offices have been shut down for good.</b>");
+		rooms[currentLocation].northExit = "";
+	}
+	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	return false;
+}
+
+//Doc Badger’s Clinic
 //[text to be added to hub location where Doc Badger’s Clinic is]
 //There’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.
 //[Add button for “Doc Badger’s Shack” to options menu for location]
@@ -400,6 +411,7 @@ public function heyDocImAHero():void
 	processTime(40+rand(15));
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
+	output("\n\n(You could probably like, report this troublemaker to the a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }
@@ -414,6 +426,7 @@ public function heyDocImJustHereToShop():void
 	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
 	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well.”");
 	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want</i>?”");
+	output("\n\n(You could probably report this troublemaker to the a U.G.C. peacekeeper and get her arrested. Nothing about this seems legal.)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }

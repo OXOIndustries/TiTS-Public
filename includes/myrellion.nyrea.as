@@ -45,6 +45,10 @@ public function encounterNyreaBeta():void
 {
 	encounterNyreaHuntress(NYREA_BETA);
 }
+public function encounterNyreaAlpha():void
+{
+	encounterNyreaHuntress(NYREA_ALPHA);
+}
 
 public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 {

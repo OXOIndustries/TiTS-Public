@@ -577,7 +577,7 @@ public function dudesTopGeoffRepeat():void
 		
 			output("\n\n<i>“Are you now?”</i> you say. Before he can say much else you shove him up against the counter and kiss him deeply. Your hands explore his body once again, caressing his tall form and pulling him against you body, exciting him until you feel his hard terran cock pressing against yours. Your lips grind against him as you hold the lanky boy against you. Then you pull back and for a moment he looks dazed.");
 			
-			output("\n\n<i>“Were you ready for that?”</i> you say, teeth bared in a mischievous smile. He grins sheepishly as he shakes his head. He chuckles as he disentangles himself from your [pc.arms] and heads towards the backdoor.");
+			output("\n\n<i>“Were you ready for that?”</i> you say, teeth bared in a mischievous smile. He grins sheepishly as he shakes his head. He chuckles as he disentangles himself from your arms and heads towards the backdoor.");
 		}
 		else if (pc.isAss())
 		{

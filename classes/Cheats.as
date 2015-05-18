@@ -64,6 +64,14 @@
 				kGAMECLASS.flags["INFINITE_ITEMS"] = undefined;
 			}
 		}
+		public static function exploreUnlock():void
+		{
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n<b>All locations have been unlocked.</b>");
+			kGAMECLASS.flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
+			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
+			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
+		}
 		public static function toggleDebug():void
 		{
 			Cheats.OutputStuff();

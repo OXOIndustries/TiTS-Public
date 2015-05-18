@@ -1444,7 +1444,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	}
 	else if(pc.hasVagina())
 	{
-		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.cumType].");
+		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.girlCumNoun].");
 	}
 	else output("cream yourself around " + partner + "'s deeply buried cock.");
 	output(" Wracking spasms of pleasure seize your body, and your legs go out from under you. Just in time, the ");

@@ -224,6 +224,14 @@
 		true);
 
 	inputManager.AddBindableControl(
+		"Destinations Unlocked",
+		"Unlocks travelling to any planet.",
+		function():void {
+			Cheats.exploreUnlock();
+		},
+		true);
+
+	inputManager.AddBindableControl(
 		"Toggle Debug",
 		"Enables or disables debug mode. Please do not share.",
 		function():void {
@@ -237,6 +245,7 @@
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
+	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

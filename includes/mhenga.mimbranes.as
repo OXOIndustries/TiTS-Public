@@ -4521,7 +4521,7 @@ public function mimbraneMenu():void
 	||	(pc.willpowerMod < -10)
 	)
 	{
-		addButton(4, "RstFeed", resetAllMimbraneFeedings, undefined, "Reset Feed Effects", "Reset all current mimbrane feed values to zero, and revert all applicable part-modification values to match. This is a 'recovery' features to attempt to 'fix' broken saves that have built up huge negative modification values. BE CAREFUL!");
+		addGhostButton(4, "RstFeed", resetAllMimbraneFeedings, undefined, "Reset Feed Effects", "Reset all current mimbrane feed values to zero, and revert all applicable part-modification values to match. This is a 'recovery' features to attempt to 'fix' broken saves that have built up huge negative modification values. BE CAREFUL!");
 	}
 	
 	addGhostButton(14, "Back", appearance, pc);

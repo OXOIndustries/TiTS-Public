@@ -384,9 +384,20 @@ public function newTexasRoadFirstTime():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
-	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
-	return false;
+    if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+    {
+        if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
+        {
+            if(flags["MILK_BARN_COCKMILKER_SCANNED"] == undefined) addButton(0,"Fix Milker",yesFixDaMilkar,true,"Repair Milker","The male milker looks to be broken from your previous use... It'll need to be repaired before you can use it again.");
+            else addButton(0,"Fix Milker",yesFixDaMilkar,false,"Repair Milker","The male milker looks to be broken from your previous use... You'll need to pay for the repairs before you can use it again.");
+        }
+        else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
+        else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
+    }
+    else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
+    return false;
 }
+
 public function NTGiftShopBonusFunc():Boolean
 {
 	//First Time Entering the Shop

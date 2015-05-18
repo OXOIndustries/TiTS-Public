@@ -649,6 +649,9 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	//Handle badger closure
+	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
 	//Handle planet explosions
 	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
@@ -837,9 +840,13 @@ public function processTime(arg:int):void {
 	//milk is chunked out all at once due to lazies
 	if(arg > 0 && pc.canLactate()) 
 	{
-		//trace("time rested: " + arg);
-		pc.milkProduced(arg);
-		milkGainNotes();
+		//Celise overnights halt milkstuff.
+		if(!pc.hasStatusEffect("Milk Paused"))
+		{
+			//trace("time rested: " + arg);
+			pc.milkProduced(arg);
+			milkGainNotes();
+		}
 	}
 	
 	if (flags["MIMBRANES BITCH TIMER"] == undefined)
@@ -970,7 +977,7 @@ public function processTime(arg:int):void {
 				else flags["IRELLIA_SEX_COOLDOWN"]--;
 			}
 			//Lactation effect updates
-			lactationUpdateHourTick();
+			if(!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
 			//Horse pill procs!
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
@@ -1039,6 +1046,12 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				 // New Texas cockmilker repair cooldown.
+				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+				{
+					if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]--;
+					else flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 0;
+				}
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined) newTexasEmail();

@@ -173,11 +173,14 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function setDefaultSexualPreferences():void
+		{
+			this.sexualPreferences.setRandomPrefs(4 + rand(3),2);
+		}
 		override public function prepForCombat():void
 		{
 			var brawler:WetraxxelBrawler = this.makeCopy();
-			
+			brawler.setDefaultSexualPreferences();
 			kGAMECLASS.userInterface.showBust("WETRAXXEL");
 			kGAMECLASS.userInterface.showName("FIGHT:\nWETRAXXEL");
 			

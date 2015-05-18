@@ -565,7 +565,7 @@ public function giannaAppearance():void
 	//E Cup
 	else if(gianna.biggestTitSize() < 9) output("\n\nNo description of the Gianna would be complete without mentioning her perfectly symmetrical, teardrop-shaped breasts. They’re positioned high on her torso and miraculously appear to support themselves, still jiggly but somehow supported well enough to keep from sagging awkwardly. If you had to guess, you’d judge they’d fit well into an E-cup bra. Large, ink-black areolae cap her impressive peaks, gleaming in a way that makes them appear to have been freshly oiled. Her nipples erect just as you would expect during arousal, sticking out three-quarters of an inch, firm and pebbly.");
 	//GG Cup
-	else if(gianna.biggestTitSize() < 18) 
+	else if(gianna.biggestTitSize() <= 18) 
 	{
 		output("\n\nGianna’s breasts are impossible to ignore. Originally teardrop-shaped E-cups, she’s shifted enough silicone into them to pump them up to round, GG-cup behemoths. Some quirk of her engineering keeps them from sagging, but they still dominate the top-half of her torso, jiggling with wild abandon every time the companion makes the slightest movement. They’re pillowy enough that you’re sure your fingers could vanish into them if you gave them a squeeze. Tits like that are made for fucking or admiring and little else.");
 		output("\n\nInk-black areolae the size of small plates crown the mountainous melons, gleaming in a way that makes them appear to have been freshly spit-shined or oiled. Their pebbly texture is visible at a distance, extending all the way to the tips of her prominent nipples. Just like most mammalian and similar species, her teats erect when stimulated or aroused, extending almost an inch forward, easily fatter than the biggest pencil erasers.");

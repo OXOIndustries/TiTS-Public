@@ -540,7 +540,7 @@
 				//#13 Mane? YES LETS FUCKING CALL IT A MANE!
 				else if(select == 13) 
 				{
-					kGAMECLASS.eventBuffer += "When you idly run your fingers through your hair, you're surprised to feel more of it than you recall. As a matter of fact, it trails all the way down to the nape of your neck in mane-like fashion. Why, you've grown a rather equine-looking mane!";
+					kGAMECLASS.eventBuffer += "When you idly run your fingers through your hair, you're surprised to feel more of it than you recall. As a matter of fact, it trails all the way down to the nape of your neck in mane-like fashion. Why, <b>you've grown a rather equine-looking mane!</b>";
 					target.createPerk("Mane", 0,0,0,0,"Your hair grows out much like an equine's mane.");
 				}
 				//#14 Vag capacity! Req's horsecunt

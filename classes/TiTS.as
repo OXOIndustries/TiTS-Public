@@ -204,6 +204,7 @@
 		include "../includes/myrellion.roomFunctions.as";
 		include "../includes/myrellion.steph.as";
 		include "../includes/myrellion.tavern.as";
+		include "../includes/myrellion.tradingPost.as";
 		include "../includes/myrellion.wetraxxel.as";
 		include "../includes/myrellion.xanthe.as";
 		
@@ -289,7 +290,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.36";
+			version = "0.5.37";
 
 			//temporary nonsense variables.
 			temp = 0;

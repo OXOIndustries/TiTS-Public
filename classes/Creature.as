@@ -2670,6 +2670,7 @@
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
 			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
+			if (hasStatusEffect("Crystal Coated")) temp += 4;
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;
@@ -6230,12 +6231,12 @@
 			if (!hasCock()) return false;
 			if (arg >= 0) {
 				if (arg >= cocks.length) return false;
-				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1);
+				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1);
 			}
 			//Negative is code for see if any can.
 			else {
 				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
+					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness >= 1 / 3) && genitalLocation() <= 1)
 						return true;
 				}
 				return false;
@@ -6615,7 +6616,7 @@
 			//Determine race type
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
-			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
+			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (raskvelScore() >= 2) race = "rask-morph";
@@ -6629,6 +6630,7 @@
 			if (vanaeScore() >= 4) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 4) race = "zil";
+			if (badgerScore() >= 4) race = "badger";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 
@@ -6657,6 +6659,15 @@
 		public function tanukiScore(): int
 		{
 			return nukiScore();
+		}
+		public function badgerScore():int
+		{
+			var counter:int = 0;
+			if(tailType == GLOBAL.TYPE_BADGER && tailCount > 0) counter++;
+			if(armType == GLOBAL.TYPE_BADGER) counter++;
+			if(faceType == GLOBAL.TYPE_BADGER) counter++;
+			if(skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
+			return counter;
 		}
 		public function vanaeScore(): int
 		{
@@ -6726,12 +6737,14 @@
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
-			if (eyeType == GLOBAL.TYPE_FELINE) counter++;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (legType == GLOBAL.TYPE_FELINE) counter++;
-			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter++;
-			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter+=2;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (armType == GLOBAL.TYPE_FELINE && counter > 1) counter++;
+			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_HUMAN && counter > 2) counter++;
 			return counter;
 		}
 		public function zilScore(): int {
@@ -6750,12 +6763,12 @@
 			if (isNaga()) counter += 2;
 			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			if (armType == GLOBAL.TYPE_FELINE) counter++;
-			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (hasStatusEffect("Genital Slit")) counter++;
 			if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			return counter;
 		}
 		public function raskvelScore(): int

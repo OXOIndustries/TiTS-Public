@@ -188,6 +188,7 @@
 			var combatVine:Cockvine = this.makeCopy();
 
 			kGAMECLASS.foes.push(combatVine);
+			kGAMECLASS.userInterface.showBust("ADULTCOCKVINE");
 		}
 	}
 }

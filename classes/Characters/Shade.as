@@ -48,13 +48,13 @@
 			this.libidoRaw = 50;
 			this.HPMod = 125;
 			this.shieldsRaw = this.shieldsMax();
-			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
 			
 			this.XPRaw = 400;
 			this.level = 7;
 			this.credits = 0;
+			this.HPRaw = this.HPMax();
 			
 			this.femininity = 85;
 			this.eyeType = 0;
