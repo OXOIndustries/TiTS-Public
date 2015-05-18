@@ -6,6 +6,7 @@ package classes.Items.Miscellaneous
 	import classes.GameData.TooltipManager;
 	import classes.GLOBAL;
 	import classes.StringUtil;
+	import classes.Characters.PlayerCharacter;
 	
 	/**
 	 * ...

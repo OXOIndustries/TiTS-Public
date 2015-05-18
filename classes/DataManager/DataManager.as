@@ -10,6 +10,7 @@
 	import flash.display.Shader;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.NetStatusEvent;
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	import flash.net.SharedObject;
@@ -449,25 +450,79 @@
 			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
 			if (verified)
 			{
-				// Verification successful, do things
 				this.replaceDataWithBlob(dataFile, dataBlob);
-				if (dataFile.flush() == SharedObjectFlushStatus.FLUSHED)
+				var flushStatus:Object;
+				
+				try
 				{
-					kGAMECLASS.clearOutput2();
-					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
-					kGAMECLASS.userInterface.clearGhostMenu();
-					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+					flushStatus = dataFile.flush();
 				}
-				else
+				catch (e:Error)
 				{
-					kGAMECLASS.clearOutput2();
-					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click retry.");
-					kGAMECLASS.userInterface.clearGhostMenu();
-					kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob, slotNumber]);
+					trace("Flush failed.");
+				}
+				
+				if (flushStatus)
+				{
+					switch(flushStatus)
+					{
+						case SharedObjectFlushStatus.PENDING:
+							trace("Requesting additional storage.");
+							dataFile.addEventListener(NetStatusEvent.NET_STATUS, onFlushStatusChanged);
+							
+							kGAMECLASS.clearOutput2();
+							kGAMECLASS.userInterface.dataButton.Glow();
+							kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click retry.");
+							kGAMECLASS.userInterface.clearGhostMenu();
+							kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob, slotNumber]);
+					
+							break;
+							
+						case SharedObjectFlushStatus.FLUSHED:
+							trace("File saved.");
+							
+							kGAMECLASS.clearOutput2();
+							kGAMECLASS.userInterface.dataButton.Glow();
+							kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+							kGAMECLASS.userInterface.clearGhostMenu();
+							kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+					
+							break;
+					}
 				}
 			}
+		}
+		
+		private function onFlushStatusChanged(e:NetStatusEvent):void
+		{
+			trace("User should have requested additional storage...");
+			
+			switch(e.info.code)
+			{
+				case "SharedObject.Flush.Success":
+					trace("Save successful.");
+					
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Game saved!");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+					
+					break;
+					
+				case "SharedObject.Flush.Failed":
+					trace("Save failed.");
+					
+					kGAMECLASS.clearOutput2();
+					kGAMECLASS.userInterface.dataButton.Glow();
+					kGAMECLASS.output2("Save failed. Presumably this is because not enough storage space is available for the save file to be created. Please try again.");
+					kGAMECLASS.userInterface.clearGhostMenu();
+					kGAMECLASS.addGhostButton(0, "Back", this.showDataMenu);
+							
+					break;
+			}
+			
+			(e.target as SharedObject).removeEventListener(NetStatusEvent.NET_STATUS, onFlushStatusChanged);
 		}
 		
 		private function retrySave(args:Array):void
