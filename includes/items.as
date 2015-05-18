@@ -308,7 +308,7 @@ public function unequipMenu():void
 	{
 		this.addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
 	}
-	else this.addDisabledButton(6,"Armor Off");
+	else this.addDisabledButton(6,"Armor");
 	
 	if (pc.rangedWeapon.shortName != "Rock")
 	{

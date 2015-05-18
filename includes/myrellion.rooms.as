@@ -2613,7 +2613,7 @@ public function initializeMyrellionRooms():void
 	//I7 -- Crash Site
 	rooms["2I7"] = new RoomClass(this);
 	rooms["2I7"].roomName = "CRASH\nSITE";
-	rooms["2I7"].description = "Sitting underneath a bright light streaming down from the ceiling, almost like a spotlight, sits a huge probe marked with the U.G.C. Scout Authority emblem. The robe is badly damaged, and bits of its hull have been looted by the locals.";
+	rooms["2I7"].description = "Sitting underneath a bright light streaming down from the ceiling, almost like a spotlight, sits a huge probe marked with the U.G.C. Scout Authority emblem. The probe is badly damaged, and bits of its hull have been looted by the locals.";
 	rooms["2I7"].planet = "PLANET: MYRELLION";
 	rooms["2I7"].system = "SYSTEM: SINDATHU";
 	rooms["2I7"].northExit = "";

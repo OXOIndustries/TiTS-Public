@@ -52,8 +52,19 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			if(!kGAMECLASS.infiniteItems()) this.quantity++;
-			kGAMECLASS.output("There is nothing you can do with this yet.");
+			 // Player uses this!
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
+				kGAMECLASS.output("There is nothing you can do with this yet.");
+				if(!kGAMECLASS.infiniteItems()) this.quantity++;
+			}
+			// Not the player!
+			else
+			{
+				kGAMECLASS.output("\n\n");
+				kGAMECLASS.output(target.capitalA + target.short + " fails to use the seed correctly and inadvertently destroys it in the process.");
+			}
 			return false;
 		}
 	}

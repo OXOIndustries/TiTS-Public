@@ -170,6 +170,8 @@ public function quiveringQuasar():void
 		pc.physiqueMod+=5;
 		pc.lust(5);
 	}
+	processTime(6);
+	pc.imbibeAlcohol(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -201,6 +203,8 @@ public function sexOnAMeteor():void
 		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
 	}
 	pc.lust(15);
+	pc.imbibeAlcohol(16);
+	processTime(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -218,6 +222,8 @@ public function haveABeer():void
 	//if 5+ times sex'd:
 	if(timesDelilahSexed() >= 5) output("trying to ignore the fact that she's quickly called on to \"service\" a pair of raskvel guys mid-conversation, "); 
 	output("before standing to go.");
+	pc.imbibeAlcohol(6);
+	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
