@@ -92,7 +92,7 @@ public function genesModsInterior():void
 			if (pc.tallness < 120) output(" tower over");
 			else output(" look you in the eye");
 			output(" and consider you more closely. His synthetic arms gesticulate with his words gracefully. <i>“An offworlder, curious enough to explore a frontier threatened with annihilation, curious enough to there wander into another offworlder’s shop,");
-			if (CodexManager.hasUnlockedEntry("Fanfir")) output(" yet is spooked by a fanfir?");
+			if (CodexManager.entryUnlocked("Fanfir")) output(" yet is spooked by a fanfir?");
 			else output(" yet has never encountered a fanfir before?");
 			output(" Curious.”</i> He laughs at his own joke, making the surrounding cabinets shake. <i>“Don’t worry, I do not bite. Not customers, as a rule. I sell gene mods, many different types, many of which are not available elsewhere. Ask, fellow stranger in a strange land, and you may receive. And relax.”</i> This last word is drawn out as a low, whispery susurration. You do suddenly feel rather more relaxed.");
 		}
@@ -108,8 +108,8 @@ public function genesModsInterior():void
 			geneLustIncrease();
 
 			output("\n\n<i>“Captain Steele.”</i> Gene draws the syllables out in a low, pleased tone, making them vibrate in your bones. <i>“To what do I owe this rare pleasure?”</i>");
-			if (pc.lustQ() < 50 || (pc.vaginas.length == 0 && pc.cocks.length == 0)) output(" The day suddenly feels a lot warmer, your thoughts turning inward to your body’s pulsing needs as you step inwards.");
-			else if (pc.lustQ() >= 50)
+			if (pc.lust() <= 33 || (pc.vaginas.length == 0 && pc.cocks.length == 0)) output(" The day suddenly feels a lot warmer, your thoughts turning inward to your body’s pulsing needs as you step inwards.");
+			else
 			{
 				output(" The frustrations and need you’ve been feeling steadily building over the last few hours step suddenly forward, your pulse quickening as");
 				if (pc.cocks.length > 0)
@@ -127,18 +127,18 @@ public function genesModsInterior():void
 				}
 				output(", pleading with you to find release.");
 			}
-			if (pc.lustQ() < 100) output(" You shake your head and try and concentrate.");
+			if (pc.lust() == pc.lustMax()) output(" You shake your head and try and concentrate.");
 		}
 		else if (geneSubmissionLevel() >= 7 && geneSubmissionLevel() <= 10)
 		{
 			geneLustIncrease();
 
 			output("\n\n<i>“Captain Steele.”</i> Gene eyes you knowingly as he draws the low, pleased syllables out, making them send shivers down your spine. <i>“To what do I owe this rare pleasure?”</i>");
-			if (pc.lustQ() < 50 || (pc.vaginas.length == 0 && pc.cocks.length == 0))
+			if (pc.lust() < 33 || (pc.vaginas.length == 0 && pc.cocks.length == 0))
 			{
 				output(" The day immediately feels a lot warmer, and you welcome it, basking in the heat sinking down to your [pc.groin]. One minute you’re any old person going about their business in Gildenmere; the next you’re a sensuous being, relaxed and ready to immerse yourself in pleasure.");
 			}
-			else if (pc.lustQ() >= 50)
+			else
 			{
 				output(" You bite your lip and gasp slightly as lust overtakes you, the background of your needs becoming the blaring foreground as");
 				if (pc.cocks.length > 0)
@@ -156,7 +156,7 @@ public function genesModsInterior():void
 				}
 				output(", begging for release.");
 			}
-			if (pc.lustQ() < 100) output(" You smirk lazily back at the fanfir and think about what it is you want.");
+			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
 		if (pc.lust() == pc.lustMax())
@@ -178,7 +178,7 @@ public function genesModsMenu(cFunc:Function = null):void
 	if (cFunc != genesModsBuyStuff) addButton(0, "Buy", genesModsBuyStuff);
 	else addDisabledButton(0, "Buy");
 
-	if (cFunc != ) addButton(1, "Talk", geneTalk);
+	if (cFunc != geneTalk) addButton(1, "Talk", geneTalk);
 	else addDisabledButton(1, "Talk");
 
 	if (flags["GENE_TALKED_TO"] != undefined && (pc.hasVagina() || pc.hasCock()))
@@ -417,9 +417,11 @@ public function genesModsTalkModsCombine():void
 		return;
 	}
 
-	if (pc.isFeminine() && pc.lustQ() >= 33)
+	if (pc.isFeminine() && pc.lust() >= 33)
 	{
-		output("\n\nAn ivory claw lands upon your shoulder{, sliding beneath your [pc.upperGarment]}. Gene’s eyes glare down at you, hawkish and lit with lust.");
+		output("\n\nAn ivory claw lands upon your shoulder");
+		if (pc.isChestGarbed()) output(", sliding beneath your [pc.upperGarment]");
+		output(". Gene’s eyes glare down at you, hawkish and lit with lust.");
 		
 		output("\n\n<i>“After putting on such a display,”</i> he husks, <i>“I think perhaps it’s time you showed me what you are made of, hmm?”</i>");
 
@@ -465,7 +467,7 @@ public function genesModsTalkBackOff(nFunc:Function = null):void
 	output("You shrug the fanfir’s claw off irritably.");
 	
 	output("\n\n<i>“It’s strange, I’m pretty certain I told you not to do that once,”</i> you say. <i>“And here I am telling you again. Next time you aren’t getting that paw of yours back.");
-	if (pc.IQ() >= 50 && CodexManager.hasViewedCodexEntry("Fanfir")) output(" And don’t think I don’t know what you’re trying to pull with that treacly voice of yours either.");
+	if (pc.IQ() >= 50 && CodexManager.hasUnlockedEntry("Fanfir")) output(" And don’t think I don’t know what you’re trying to pull with that treacly voice of yours either.");
 	output(" So knock it off, alright?”</i>");
 	
 	output("\n\nGene looks stunned by this - and then, momentarily, thunderously angry. Finally though, he takes several steps back and groans theatrical despair at the ceiling.");
@@ -599,12 +601,12 @@ public function genesModsTalkMyr():void
 		return;
 	}
 
-	if (pc.isFeminine() && pc.lustQ() >= 33)
+	if (pc.isFeminine() && pc.lust() >= 33)
 	{
 		output("\n\nHe gazes");
 		if (pc.tallness < 120) output(" down");
 		else output(" at you, wild lust filling his yellow eyes. <i>“I make no apologies for who I am - anymore than I shall make one for wanting every inch of you, right here and right now.”</i> An ivory claw lands upon your shoulder");
-		if (pc.chestGarbed()) output(", sliding beneath your [pc.upperGarment]");
+		if (pc.isChestGarbed()) output(", sliding beneath your [pc.upperGarment]");
 		output(".");
 
 		// [Yes] [No] [Back Off!]
@@ -638,9 +640,12 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 		}
 		else if (pc.isTreated() || pc.isBimbo())
 		{
-			output("<i>“You know, you, um, talk a whole lot,”</i> you giggle, eyes running up and down his massive, masculine frame. <i>“But all I can think about is that big, frustrated cock {of yours} {you must have}.”</i> You lick your [pc.lips]. <i>“Why don’t we cut to the chase?”</i>");
+			output("<i>“You know, you, um, talk a whole lot,”</i> you giggle, eyes running up and down his massive, masculine frame. <i>“But all I can think about is that big, frustrated cock");
+			if (flags["GENE_FUCKED"] != undefined) output(" of yours");
+			else output(" you must have");
+			output(".”</i> You lick your [pc.lips]. <i>“Why don’t we cut to the chase?”</i>");
 		}
-		else if (pc.isNice() || pc.isMischevious())
+		else if (pc.isNice() || pc.isMischievous())
 		{
 			output("<i>“Got time between jawing off and doing myr to spend a bit of time with me?”</i> you inquire with a smile.");
 		}
@@ -719,7 +724,7 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 	}
 
 	clearMenu();
-	addButton(0, "OverCounter", );
+	addButton(0, "OverCounter", genesModsOverCounter);
 
 	if (!pc.hasCock())
 	{
@@ -783,17 +788,31 @@ public function genesModsBlowjob():void
 	}
 	else
 	{
-		output("\n\nThe fanfir braces himself on the glass and slowly drags the blunt spearhead of his cock down your face, enveloping you in his masculine smell; humid overgrowth. You are glad he no longer offers the silly choice of which of his dicks to suck; it reduces the amount of time it takes to get here, salivating in wet anticipation, lips almost kissing the moist tip of his massive, arching bulge-cock. Still, arching well over you, your Master teases you with it first, gently brushing his massive beading dick over your cheeks and lips, enveloping your senses in his sharp, masculine smell until you are practically drunk with it, {[pc.eachVagina] seeping with arousal} {and} {[pc.eachCock helplessly hard and pressed against your belly}.");
+		output("\n\nThe fanfir braces himself on the glass and slowly drags the blunt spearhead of his cock down your face, enveloping you in his masculine smell; humid overgrowth. You are glad he no longer offers the silly choice of which of his dicks to suck; it reduces the amount of time it takes to get here, salivating in wet anticipation, lips almost kissing the moist tip of his massive, arching bulge-cock. Still, arching well over you, your Master teases you with it first, gently brushing his massive beading dick over your cheeks and lips, enveloping your senses in his sharp, masculine smell until you are practically drunk with it,");
+		if (pc.hasVagina()) output(" [pc.eachVagina] seeping with arousal");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" [pc.eachCock helplessly hard and pressed against your belly");
+		output(".");
 		
 		output("\n\n<i>“Begin,”</i> orders Gene at last, and you do so immediately, as if the impulse arrived from your own will, grasping and tugging at the trunk-like base whilst dabbing at his gleaming, cone-like cockhead with your [pc.lips] and [pc.tongue] lovingly. <i>“It’s been altogether too long since I used that sweet mouth of yours. And if you do well... lick every inch... you can have every last drop.”</i>");
 		
 		output("\n\nThe thought sends a thrill sparking down your spine, the spicy, musky tang of his pre in your mouth and nose spurring you on to earn the proffered prize. After you’ve spent a short while suckling on the fanfir’s tip, sending your [pc.tongue] teasing across his cum-slit until he is granite hard, groaning softly in enjoyment, you travel inwards, dipping your head deep beneath the huge, winged beast so that no part of his gigantic cock goes unfavored by your wet, worshipful mouth.");
 		
-		output("\n\nAs before, he allows you the initiative at first, holding still whilst your head moves up and down. You savour the different textures that travel over your lapping tongue: the ribs across his massive bulge, the smoothness at the base, the sturdiness of his smaller prick as you wank it with slow rotations of your fist whilst continuing to lick his alpha cock. Whenever the faintest fatigue creeps into you Gene rumbles a sigh of deep satisfaction, quivering straight through to your [pc.groin], intensifying how {wet} {and} {hard} you feel. You feel an intense urge to shove a hand down there, alleviate how achingly turned on you are - but you cannot do so, because both your hands are needed, fondling and stroking your Master the very best you can.");
+		output("\n\nAs before, he allows you the initiative at first, holding still whilst your head moves up and down. You savour the different textures that travel over your lapping tongue: the ribs across his massive bulge, the smoothness at the base, the sturdiness of his smaller prick as you wank it with slow rotations of your fist whilst continuing to lick his alpha cock. Whenever the faintest fatigue creeps into you Gene rumbles a sigh of deep satisfaction, quivering straight through to your [pc.groin], intensifying how");
+		if (pc.hasVagina()) output(" wet");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" hard");
+		output(" you feel. You feel an intense urge to shove a hand down there, alleviate how achingly turned on you are - but you cannot do so, because both your hands are needed, fondling and stroking your Master the very best you can.");
 
-		output("\n\nThe very fact you are being denied by your own obedience only makes it hotter, {the arousal so bad the [pc.girlCum] dribbles freely down your thighs} / {the arousal so bad pre seeps freely from your own needy [pc.cock0]}. Whilst your hands continue to slide over the bulky, veined flesh of his cock, you channel that fierce heat into reaching in far to lick at his four, plump testicles, enveloping each within your mouth to give them the attention they deserve. It is all you can do not to moan when they clench up underneath your lips, preparing the load you so desperately wish to earn. Once they gleam with your saliva, you pull back and gaze up at the fanfir coquettishly.");
+		output("\n\nThe very fact you are being denied by your own obedience only makes it hotter,");
+		if (pc.hasVagina()) output(" the arousal so bad the [pc.girlCum] dribbles freely down your thighs");
+		else output(" the arousal so bad pre seeps freely from your own needy [pc.cock0]");
+		output(". Whilst your hands continue to slide over the bulky, veined flesh of his cock, you channel that fierce heat into reaching in far to lick at his four, plump testicles, enveloping each within your mouth to give them the attention they deserve. It is all you can do not to moan when they clench up underneath your lips, preparing the load you so desperately wish to earn. Once they gleam with your saliva, you pull back and gaze up at the fanfir coquettishly.");
 		
-		output("\n\n<i>“Isn’t life pleasurable now you have found where you truly belong?”</i> he rumbles leisurely, the sugared waves of resonance flooding over and through you. <i>“{On your knees} {Down in front of me}, sucking my balls and polishing my cock like a trained whore? Thank me for the privilege.”</i>");
+		output("\n\n<i>“Isn’t life pleasurable now you have found where you truly belong?”</i> he rumbles leisurely, the sugared waves of resonance flooding over and through you. <i>“");
+		if (pc.hasKnees()) output("On your knees");
+		else output(" Down in front of me");
+		output(", sucking my balls and polishing my cock like a trained whore? Thank me for the privilege.”</i>");
 		
 		output("\n\n<i>“Thank you, sir,”</i> you say sincerely, gazing up at him. You lick your [pc.lips] and turn them into an <i>“o”</i> shape. <i>“Would you like to fuck my mouth now?”</i>");
 		
@@ -801,9 +820,17 @@ public function genesModsBlowjob():void
 		
 		output("\n\nWith increasingly deep swivels of his hips, Gene sinks more and more of his hot, girthed dick past your lips. You have no problem taking the bulge now: indeed you thrill when it opens your mouth as wide as it can go, filling your mouth with ribbed, veined meat, a ceaseless, reminding thrust of the size of your Master and your own submission to him. Warm android hands grasp your head and hold you still as he penetrates your throat. His movements are steady and smooth, absolutely sure of your ability to swallow his cock - and you meet his confidence, easily quelling your gag reflex in order to let that cinnamon-oozing hardness spread and claim every inch of your gorge with slow, sensual pushes, each time reaching his dick all the way out so you can treasure the conical tip with your [pc.tongue].");
 		
-		output("\n\nIncrementally he picks up the pace, grunting as he pumps his supple thighs around your face until finally he’s thrusting in and out it with something like all his strength, holding your head still with his unremittingly powerful android arms, lost in the succulent suck you’re providing him. You close your eyes and tease your [pc.nipples] helplessly, entranced by the brutality of being used like this, {[pc.eachVagina] trembling with more wet heat} {and} {[pc.eachCock] becoming more tightly engorged} to each dominating thrust of Gene’s dick into your throat.");
+		output("\n\nIncrementally he picks up the pace, grunting as he pumps his supple thighs around your face until finally he’s thrusting in and out it with something like all his strength, holding your head still with his unremittingly powerful android arms, lost in the succulent suck you’re providing him. You close your eyes and tease your [pc.nipples] helplessly, entranced by the brutality of being used like this,");
+		if (pc.hasVagina()) output(" [pc.eachVagina] trembling with more wet heat");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" [pc.eachCock] becoming more tightly engorged");
+		output(" to each dominating thrust of Gene’s dick into your throat.");
 		
-		output("\n\nFinally, with a roaring groan, he pushes you as far up his sixteen inch cock as he can and unloads a fountain of hot cum straight into your stomach. The knowledge of the satisfaction you’ve given your Master is too much, and you tremble into orgasm yourself. You spasm around his pulsating cock, eyes rolling as {[pc.eachVagina] clenches up and spurts [pc.girlCum]} {and} {[pc.eachCock] spattering [pc.cum] over the floor in slutty abandon}, fingers stroking and pinching your [pc.nipples] mercilessly all the while.");
+		output("\n\nFinally, with a roaring groan, he pushes you as far up his sixteen inch cock as he can and unloads a fountain of hot cum straight into your stomach. The knowledge of the satisfaction you’ve given your Master is too much, and you tremble into orgasm yourself. You spasm around his pulsating cock, eyes rolling as");
+		if (pc.hasVagina()) output(" [pc.eachVagina] clenches up and spurts [pc.girlCum]");
+		if (pc.hasVagina() && pc.hasCock()) output(" and");
+		if (pc.hasCock()) output(" [pc.eachCock] spattering [pc.cum] over the floor in slutty abandon");
+		output(", fingers stroking and pinching your [pc.nipples] mercilessly all the while.");
 		
 		output("\n\n<i>“Did you really just... cum?”</i> gasps the winged monster currently almost balls-deep in your gullet. <i>“Honestly, how much of a... <i>“ he forgets it and concentrates on jetting liters of spicy, tingling seed into your belly. Still holding your head firmly, the vibrations of his contented groans travelling straight through you, he fills your gut until you feel absolutely stuffed with it, your [pc.belly] steadily more protuberant. At last he pulls out of your throat, allowing you a single ragged breath before blissfully ejaculating again, immediately filling your mouth and causing you to splutter and drool the orange goo down your chin and [pc.chest]. At least you can taste it, now... and the sweet spiciness of it, heavily interwoven with his musk, is heavenly. You swallow three more hot, cheek-swelling loads that come out of the fanfir’s pumping cock like a champ, but that isn’t enough, when he finally pulls out, to stop him giving your face and [pc.chest] a final, heavy spraying. At least his ribbed bulge has noticeably decreased in size, meaning that though your jaw aches from your Herculean efforts, his drooling, bulbous dick does part from your lips with reasonable ease.");
 		
@@ -847,19 +874,30 @@ public function genesModsFrot():void
 
 	output("\n\nIn response you grease up your other hand with saliva, boldly step behind his desk, duck underneath a wing and lay it on the red, bulging, spearheaded club that is the bigger of his two dicks. The shallow lines of muscle now surrounding you initially tense up, then relax as you briskly begin to jerk him, moving your grasp up and down the ribbed underbelly of his cock until it is arching upwards, an orange bead beginning to form on his inch-big cum-slit. Still grasping your own [pc.cockBiggest] you tug, working both wrists until the handfuls of trapped cock are hot and practically bursting with hardness underneath your touch. Hot now with exertion and tightening arousal, you press your prick into his, and wrap both hands around the bundle of hard, saliva-slicked masculine lust. Gently, you begin to rub, the ribbed underside of Gene’s massive endowment sending pulses of pleasure slivering down your own.");
 	
-	output("\n\n<i>“I see,”</i> the fanfir hisses, drawing the vowel sound out into a gratified exhalation. <i>“What a novel concept! Oof. Please do continue.”</i> He paws the ground as you pick up the pace slightly, bumping his protuberant chest against {your face} {your [pc.chest]}. Although the sensation of stuffed, slick dick sliding against each other is decent enough, the way that your big, winged partner is built makes it all rather awkward; you’re having to lean into his groin from the side to get at it. A ivory-clad claw bangs down on the counter behind you impatiently.");
+	output("\n\n<i>“I see,”</i> the fanfir hisses, drawing the vowel sound out into a gratified exhalation. <i>“What a novel concept! Oof. Please do continue.”</i> He paws the ground as you pick up the pace slightly, bumping his protuberant chest against");
+	if (pc.tallness < 112) output(" your face");
+	else output(" your [pc.chest]");
+	output(". Although the sensation of stuffed, slick dick sliding against each other is decent enough, the way that your big, winged partner is built makes it all rather awkward; you’re having to lean into his groin from the side to get at it. A ivory-clad claw bangs down on the counter behind you impatiently.");
 	
-	output("\n\n<i>“This is no good,”</i> he declares. <i>“The intent is well-placed, but we shan’t make the most of it unless - <i>“ His synthetic arms suddenly reach out and grasp you under the armpits. A small thrill of fright leaps up your belly as you are lifted bodily onto the counter, [pc.butt] pressed onto the glass. Braced by his wing claws, Gene’s huge frame rears over you, heat radiating off of it as, grinning {down at you} {into your face} he begins to work his thighs, thrusting his bulge-cock into your [pc.cockBiggest] demandingly. <i>“Much better,”</i> he breathes.");
+	output("\n\n<i>“This is no good,”</i> he declares. <i>“The intent is well-placed, but we shan’t make the most of it unless - <i>“ His synthetic arms suddenly reach out and grasp you under the armpits. A small thrill of fright leaps up your belly as you are lifted bodily onto the counter, [pc.butt] pressed onto the glass. Braced by his wing claws, Gene’s huge frame rears over you, heat radiating off of it as, grinning");
+	if (pc.tallness < 112) output(" down at you");
+	else output(" into your face");
+	output(" he begins to work his thighs, thrusting his bulge-cock into your [pc.cockBiggest] demandingly. <i>“Much better,”</i> he breathes.");
 	
-	output("\n\nHis bulging, rooster-like front moulds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can { - almost impossible, given the trunk-like size of each}. Gene gazes down at you with a certain goading look in his yellow eyes; evidently delighted with this new sensation, and delighted to have found a way to take it on his own terms, trapping you underneath his bulk and rubbing you silly.");
+	output("\n\nHis bulging, rooster-like front moulds into your [pc.chest] as the smooth rub of your two cocks intensifies tenfold, the fanfir pinning you down and using his strength to rut against you. You keep one hand wrapped around the thrusting cocks as best you can");
+	if (pc.tallness < 64) output(" - almost impossible, given the trunk-like size of each"); // 9999 on dis shit
+	output(". Gene gazes down at you with a certain goading look in his yellow eyes; evidently delighted with this new sensation, and delighted to have found a way to take it on his own terms, trapping you underneath his bulk and rubbing you silly.");
 
 	if (geneSubmissionLevel() < 8 && flags["GENE_BELLYRUBS_ENABLED"] != undefined)
 	{
 		output("\n\nYou know exactly how to turn the tables, though. You stare right back up at him and, smirking, press your free hand onto a certain, pink spot on his underbelly. All the domineering confidence runs right out of Gene’s face.");
 
-		output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“Please... <i>“ whether he was going to beg you to do it or beg you not to, it disappears in a hoarse bellow when you press your fingers deep into his weak spot. He arches his back and thrusts himself into your hand and against your own bulging cock reactively, all of his brute strength now being moved and directed by the stroke of your teasing fingers on his soft belly. Your soft {giggles} {chuckles} twine with his roaring moans as the savage, reactive thrusts of his ribbed cock against your [pc.cockBiggest] pushes tenseness deeper and deeper into you, building towards orgasm.");
+		output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“Please... <i>“ whether he was going to beg you to do it or beg you not to, it disappears in a hoarse bellow when you press your fingers deep into his weak spot. He arches his back and thrusts himself into your hand and against your own bulging cock reactively, all of his brute strength now being moved and directed by the stroke of your teasing fingers on his soft belly. Your soft " + pc.mf("chuckles", "giggles") +" twine with his roaring moans as the savage, reactive thrusts of his ribbed cock against your [pc.cockBiggest] pushes tenseness deeper and deeper into you, building towards orgasm.");
 
-		output("\n\nYou attack the pink spot with vigorous wags of your finger whilst continuing the mutual wank, and you are rewarded when Gene cums in a total delirium, clutching you with his synthetic arms, chest bumping into yours and claws clenching the surface so hard you can hear them leave grating marks, geysers of hot, orange cum exploding out of his engorged slit and pasting your [pc.chest] and face. You close your eyes and immerse yourself in the smell of spicy musk, the heartfelt groans of your partner, the bump and grind of his taut body, and reach it yourself - your [pc.thighs] {and [pc.balls]} tensing up to surge [pc.cum] gleefully out of your [pc.eachCock], mixing with Gene’s all over your upper body. {Your juicy cum spurts are every bit as voluble as his, and by the end a small waterfall of mixed musk is oozing through your [pc.hair] and forming a small lake on the shop floor below.}");
+		output("\n\nYou attack the pink spot with vigorous wags of your finger whilst continuing the mutual wank, and you are rewarded when Gene cums in a total delirium, clutching you with his synthetic arms, chest bumping into yours and claws clenching the surface so hard you can hear them leave grating marks, geysers of hot, orange cum exploding out of his engorged slit and pasting your [pc.chest] and face. You close your eyes and immerse yourself in the smell of spicy musk, the heartfelt groans of your partner, the bump and grind of his taut body, and reach it yourself - your [pc.thighs]");
+		if (pc.balls > 0) output(" and [pc.balls]");
+		output(" tensing up to surge [pc.cum] gleefully out of [pc.eachCock], mixing with Gene’s all over your upper body.");
+		if (pc.cumQ() > 1000) output(" Your juicy cum spurts are every bit as voluble as his, and by the end a small waterfall of mixed musk is oozing through your [pc.hair] and forming a small lake on the shop floor below.");
 
 		output("\n\nGene rests on top of you once you’re both done, his bulging chest heaving for breath against yours, oozing prick still tangled with yours. You wipe the slime out of your eyes and enjoy the gentle prickle of post-coitus and the heat radiating off of him.");
 		
@@ -867,9 +905,15 @@ public function genesModsFrot():void
 	}
 	else if (geneSubmissionLevel() >= 8)
 	{
-		output("\n\nThe fact of his brute power and dominance over you sends shivers of delight coursing through your core, twining with the sensual delight of his big cock wanking you silly. He slows down momentarily, and you almost moan in frustration - until you feel a warm, blunt shape press against your [pc.vagOrAss]. Gene continues the frotting in the slower, sensual rhythm for a while whilst he teases your {pussy} {sensitive asshole} with his tail, enjoying watching you squirm beneath him; then you gasp, clenching up hard as he ruthlessly pushes it in deep, swelling your {wet girl tunnel} {colon} deep with its bulbous tip, picking up the pace of his slick, ribbed grinding against your [pc.cockBiggest] as he does.");
+		output("\n\nThe fact of his brute power and dominance over you sends shivers of delight coursing through your core, twining with the sensual delight of his big cock wanking you silly. He slows down momentarily, and you almost moan in frustration - until you feel a warm, blunt shape press against your [pc.vagOrAss]. Gene continues the frotting in the slower, sensual rhythm for a while whilst he teases your");
+		if (pc.hasVagina()) output(" pussy");
+		else output(" sensitive asshole");
+		output(" with his tail, enjoying watching you squirm beneath him; then you gasp, clenching up hard as he ruthlessly pushes it in deep, swelling your");
+		if (pc.hasVagina()) output(" wet girl tunnel");
+		else output(" colon");
+		output(" deep with its bulbous tip, picking up the pace of his slick, ribbed grinding against your [pc.cockBiggest] as he does.");
 		
-		output("\n\nYou moan and then scream your way to orgasm, bucking your [pc.hips] into his hard dick and tail, unable to control your [pc.cock0] bulging up and then rocketing lines of [pc.cum] right up your body in a series of ecstatic clenches. Gene holds you down, his soft laughter reverberating in your ears as you lose your load over your [pc.chest] and face. Only when you’re finished, your cock oozing seed onto your [pc.belly] does he ratchet his own rhythm up. You groan and roll your eyes in softened, aching pleasure as his bulbous tail tip rams into your [pc.vagOrAss] whilst his trunk-like cock thrusts across your softened prick. You manage to keep your hand around both, and feel it thrum with pressure before it releases all over you, a second wave of hot, spicy orange seed pasting your [pc.chest], slathering over your face and drooling into your [pc.hair] as the monstrous avian uses the soft rub of your hand and groin to get his melon-sized rocks off.");
+		output("\n\nYou moan and then scream your way to orgasm, bucking your [pc.hips] into his hard dick and tail, unable to control your [pc.cock] bulging up and then rocketing lines of [pc.cum] right up your body in a series of ecstatic clenches. Gene holds you down, his soft laughter reverberating in your ears as you lose your load over your [pc.chest] and face. Only when you’re finished, your cock oozing seed onto your [pc.belly] does he ratchet his own rhythm up. You groan and roll your eyes in softened, aching pleasure as his bulbous tail tip rams into your [pc.vagOrAss] whilst his trunk-like cock thrusts across your softened prick. You manage to keep your hand around both, and feel it thrum with pressure before it releases all over you, a second wave of hot, spicy orange seed pasting your [pc.chest], slathering over your face and drooling into your [pc.hair] as the monstrous avian uses the soft rub of your hand and groin to get his melon-sized rocks off.");
 
 		output("\n\nGene rests on top of you once you’re both done, his bulging chest heaving for breath against yours, oozing prick still tangled with yours. You wipe the slime out of your eyes and enjoy the gentle prickle of post-coitus and the heat radiating off of him.");
 
@@ -879,7 +923,10 @@ public function genesModsFrot():void
 	{
 		output("\n\nYou lock eyes with the fanfir and thrust your [pc.cockBiggest] against the hot, oily piston of his cock, caught up in the lust rhythm, determined not to be outdone. He gasps and laughs slightly as you tighten your grip up ruthlessly around both your erections; after pausing for a moment, the muscles in his lithe thighs bulge and then he’s rutting into your hand and cock as hard as he can. Pinned down like this it’s hard to generate the same power as the beast looming over you but you do your best, bucking your thighs into the luscious rub, working your way up to orgasm.");
 		
-		output("\n\nGene cums soon after, clutching you with his synthetic arms, chest bumping into yours and claws grating the counter, geysers of hot, orange cum exploding out of his engorged slit and pasting your [pc.chest] and face. You close your eyes and immerse yourself in the smell of spicy musk, the heartfelt groans of your partner, the bump and grind of his taut body, and reach it yourself - your [pc.thighs] {and [pc.balls]} tensing up to surge [pc.cum] gleefully out of your [pc.eachCock], mixing with Gene’s all over your upper body. {Your juicy cum spurts are every bit as voluble as his, and by the end a small waterfall of mixed musk is oozing through your [pc.hair] and forming a small lake on the shop floor below.}");
+		output("\n\nGene cums soon after, clutching you with his synthetic arms, chest bumping into yours and claws grating the counter, geysers of hot, orange cum exploding out of his engorged slit and pasting your [pc.chest] and face. You close your eyes and immerse yourself in the smell of spicy musk, the heartfelt groans of your partner, the bump and grind of his taut body, and reach it yourself - your [pc.thighs]");
+		if (pc.balls > 0) output(" and [pc.balls]");
+		output(" tensing up to surge [pc.cum] gleefully out of [pc.eachCock], mixing with Gene’s all over your upper body.");
+		if (pc.cumQ() > 1000) output(" Your juicy cum spurts are every bit as voluble as his, and by the end a small waterfall of mixed musk is oozing through your [pc.hair] and forming a small lake on the shop floor below.");
 		
 		output("\n\nGene rests on top of you once you’re both done, his bulging chest heaving for breath against yours, oozing prick still tangled with yours. You wipe the slime out of your eyes and enjoy the gentle prickle of post-coitus and the heat radiating off of him.");
 		
@@ -905,9 +952,16 @@ public function genesModsBellyrub():void
 
 		if (flags["GENE_BELLYRUBS"] == undefined)
 		{
-			output("\n\nAn expression of amused bafflement has spread across the proud, straight-nosed face {in front of} {above} you.");
+			output("\n\nAn expression of amused bafflement has spread across the proud, straight-nosed face");
+			if (pc.tallness >= 112) output(" in front of");
+			else output(" above");
+			output(" you.");
 			
-			output("\n\n<i>“Some sort of alien erotic technique, I assume?”</i> he says. <i>“Our physiques are not the same, Steele, and I very much doubt you will do anything but tickle me.”</i> He laughs, then {lowers you to the ground,} unfastens his robot arms and rolls over onto one side, a landslide of red bulk. <i>“But do go on. I would be ashamed to say I wasn’t ready to experience something new.{PC has vagina, < 9’4”</i>: A word of warning, though... <i>“ His eyes eat up your naked form. <i>“If whatever you think you’re going to do doesn’t work, I am going to return the favor. And I assure you: my massaging will be mercilessly effective.”</i>}{Otherwise: <i>“}");
+			output("\n\n<i>“Some sort of alien erotic technique, I assume?”</i> he says. <i>“Our physiques are not the same, Steele, and I very much doubt you will do anything but tickle me.”</i> He laughs, then");
+			if (pc.tallness < 112) output(" lowers you to the ground,");
+			output(" unfastens his robot arms and rolls over onto one side, a landslide of red bulk. <i>“But do go on. I would be ashamed to say I wasn’t ready to experience something new.");
+			if (pc.hasVagina() && pc.tallness < 112) output(" A word of warning, though...”</i> His eyes eat up your naked form. <i>“If whatever you think you’re going to do doesn’t work, I am going to return the favor. And I assure you: my massaging will be mercilessly effective.");
+			output("”</i>");
 		}
 		else if (pc.hasVagina() && pc.tallness < 112 && geneSubmissionLevel() >= 8)
 		{
@@ -917,7 +971,7 @@ public function genesModsBellyrub():void
 
 			clearMenu();
 			
-			addButton(0, "Yes", ); // 9999 - Go to licked out
+			addButton(0, "Yes", genesModsLickedOut); // 9999 - Go to licked out
 			
 			if (pc.lust() < pc.lustMax()) addButton(1, "No", genesModsBellyrubNo);
 			else addDisabledButton(1, "No");
@@ -928,14 +982,18 @@ public function genesModsBellyrub():void
 		{
 			output("\n\nGene sighs, a billow of exasperation.");
 			
-			output("\n\n<i>“This again? Why do we waste time with this when there are so many more amusing things I could be doing with a {pretty} {boyish} tidbit like you?”</i> Still, he undoes his robot arms, {lowers you to the floor and} rolls over onto one side, a landslide of red bulk. His yellow eyes remain fixed on you. {PC has vagina, < 9’4”</i>: <i>“You know the penalty for tickling me though, Steele. I tickle back.”</i>} {Otherwise: <i>“You’re lucky I have such a patient attitude towards alien foibles, Steele. Break a leg, you odd little {fellow} {woman}.”</i>}");
+			output("\n\n<i>“This again? Why do we waste time with this when there are so many more amusing things I could be doing with a " + pc.mf("boyish", "pretty") + " tidbit like you?”</i> Still, he undoes his robot arms,");
+			if (pc.tallness < 112) output(" lowers you to the floor and");
+			output(" rolls over onto one side, a landslide of red bulk. His yellow eyes remain fixed on you.");
+			if (pc.hasVagina() && pc.tallness < 112) output(" <i>“You know the penalty for tickling me though, Steele. I tickle back.”</i>");
+			else output(" <i>“You’re lucky I have such a patient attitude towards alien foibles, Steele. Break a leg, you odd little "+pc.mf("fellow", "woman") + ".”</i>");
 		}
 
 		genesModsBellyrubFirst();
 	}
 	else
 	{
-		output("\n\n<i>“I think,”</i> you say with a knowing grin, <i>“somebody might want their belly rubbed again. What do you think?”</i> Gene rears back instinctively, like a massive dog who’s just heard the word <i>“bath”</i>. His expression is a taut mixture of apprehension and lust.");
+		output("\n\n<i>“I think,”</i> you say with a knowing grin, <i>“somebody might want their belly rubbed again. What do you think?”</i> Gene rears back instinctively, like a massive dog who’s just heard the word ‘bath’. His expression is a taut mixture of apprehension and lust.");
 		
 		output("\n\n<i>“I- I’m fine in that particular department, thank you very much,”</i> he mutters. <i>“Are you - quite sure you wouldn’t like to - ?”</i>");
 		
@@ -1020,15 +1078,17 @@ public function genesModsBellyrubFirstNotTheSpot():void
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
 
 		clearMenu();
-		addButton(0, "Blowjob", );
-		addButton(1, "Frot", );
-		addButton(2, "OverCounter", );
+		addButton(0, "Blowjob", genesModsBlowjob);
+		addButton(1, "Frot", genesModsFrot);
+		addButton(2, "OverCounter", genesModsOverCounter);
 	}
 	else
 	{
 		output("”</i> He suddenly rears up, tails swinging around to encircle you, eyes gleaming lustily down at you. <i>“Time,”</i> he husks, <i>“for you to pay the price of your presumption.”</i>");
 
 		// 9999 - Go to licked out
+		clearMenu();
+		addButton(0, "Next", genesModsLickedOut);
 	}
 }
 
@@ -1109,15 +1169,36 @@ public function genesModsLickedOut():void
 	clearOutput();
 	geneHeader();
 
-	output("Once again, ivory claws clasp you firmly around the shoulders, and you find yourself being lifted off the floor. You try to keep your breathing level as Gene easily raises you above his head, dangling you naked and helpless in the air. Your fight-or-flight response rabbits that if the worst comes to worst, you could probably give him a good {kick} {whip of the tail} {goo smack} from here - but that line of thought runs right out of you, your [pc.lowerBody] going limp, the moment the fanfir opens his mouth and trails his hot, wet, rough tongue between the lips of your [pc.vagina0].");
+	output("Once again, ivory claws clasp you firmly around the shoulders, and you find yourself being lifted off the floor. You try to keep your breathing level as Gene easily raises you above his head, dangling you naked and helpless in the air. Your fight-or-flight response rabbits that if the worst comes to worst, you could probably give him a good");
+	if (pc.isGoo()) output(" goo smack");
+	else if (pc.hasTail()) output(" whip of the tail");
+	else if (pc.hasFeet()) output(" kick");
+	else output(" smack upside the face");
+	output(" from here - but that line of thought runs right out of you, your [pc.lowerBody] going limp, the moment the fanfir opens his mouth and trails his hot, wet, rough tongue between the lips of your [pc.vagina].");
 	
-	output("\n\nHe gazes up at you, drinking in your expression as he sends the tip of it slathering between your folds, sending pulses of heat coursing up your tunnel and wetness {dripping} {drooling} back down, every drop of it disappearing into his mouth.");
+	output("\n\nHe gazes up at you, drinking in your expression as he sends the tip of it slathering between your folds, sending pulses of heat coursing up your tunnel and wetness");
+	if (pc.wettestVaginalWetness() <= 2) output(" dripping");
+	else output(" drooling");
+	output(" back down, every drop of it disappearing into his mouth.");
 	
-	output("\n\n{Girlcum = honey/chocolate/treated: <i>“Sweet!”</i> he proclaims with a delighted clack of his horn lips. <i>“Like the golds, then? Carrying around a sticky, needy honey-pot that all but demands to be mercilessly licked out at regular intervals? Good {girl} {boy}.”</i>}");
+	if (pc.isTreated() || pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY || pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
+	{
+		output("\n\n<i>“Sweet!”</i> he proclaims with a delighted clack of his horn lips. <i>“Like the golds, then? Carrying around a sticky, needy honey-pot that all but demands to be mercilessly licked out at regular intervals? Good "+pc.mf("boy", "girl") + "”</i>");
+	}
 	
-	output("\n\nThe sensation goes from sensually pleasurable to unbearably ecstatic when he swaps his attention to your [pc.clit0], lapping at it until he forces it to bulge out of its hood, then attacking it with brisk flicks of the tip of his tongue. {He repeats the process with all your lady buds, until they are singing in sensitive, synchronized joy and you are cringing with the inhumane pleasure of it.}");
+	output("\n\nThe sensation goes from sensually pleasurable to unbearably ecstatic when he swaps his attention to your [pc.oneClit], lapping at it until he forces it to bulge out of its hood, then attacking it with brisk flicks of the tip of his tongue.");
+	if (pc.totalClits() > 1) output(" He repeats the process with all your lady buds, until they are singing in sensitive, synchronized joy and you are cringing with the inhumane pleasure of it.");
 	
-	output("\n\nHe keeps going, still gloatingly watching you as you sway helplessly in his claws, clenching up and gasping to the stern rubbing over your clit{s}, pushed relentlessly to orgasm. You throw your head back and wail as your bitch button{s} pulse{s} uncontrollably, writhing your [pc.lowerBody] and {dribbling} {gushing} [pc.girlCum] deliriously, unable to comprehend anything but that wet, rough lapping at your sensitive [pc.cuntColor]. When it’s finally over you sag in the fanfir’s claws, [pc.chest] heaving.");
+	output("\n\nHe keeps going, still gloatingly watching you as you sway helplessly in his claws, clenching up and gasping to the stern rubbing over your clit");
+	if (pc.totalClits() > 1) output("s");
+	output(", pushed relentlessly to orgasm. You throw your head back and wail as your bitch button");
+	if (pc.totalClits() > 1) output("s");
+	output(" pulse");
+	if (pc.totalClits() == 1) output("s"); 
+	output(" uncontrollably, writhing your [pc.lowerBody] and");
+	if (pc.wettestVaginalWetness() <= 2) output(" dribbling");
+	else output(" gushing");
+	output(" [pc.girlCum] deliriously, unable to comprehend anything but that wet, rough lapping at your sensitive [pc.cuntColor]. When it’s finally over you sag in the fanfir’s claws, [pc.chest] heaving.");
 	
 	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit0] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
 
@@ -1132,13 +1213,29 @@ public function genesModsLickedOut():void
 		output("\n\nYou moan woozily as he trails that devilishly long, prehensile muscle over your [pc.vagina], pushing inside to swab at its entrance, obviously intent now on the pussy proper. It’s over-sensitive and flared from orgasm, intensifying the sensation of his teasing - and then the sensation of ten inches of hot, thick tongue suddenly ramming straight up your tunnel, wriggling further and further and further in to caress and tease at your most sensitive spots. You writhe and squeal as Gene deftly lowers you slightly in his claws and then up again, making you bounce on his obscenely long mouth tentacle.");
 	}
 
-	output("\n\nThe fanfir packs your pussy full of his wet tongue, the vibrations of his soft, deep laughter reverberating through you as you are quickly brought to another clenching high by its rubbing and curling roughness, deeper and inward this time, [pc.girlCum] dripping onto his lips whilst you rock and moan to the juicy, filthy rhythms of orgasm. Then he just keeps going, withdrawing only to lick and lap at your tender [pc.clit0] again, with apparently unquenchable lust. {2 < Pussy: Not one of your many, moist cunts escapes his wet, ruthless touch; the lithe, purple meat strokes and then deeply penetrates each one, owning them and making them quiver together in such ridiculous ecstasy you think you might go completely mad with it.}");
+	output("\n\nThe fanfir packs your pussy full of his wet tongue, the vibrations of his soft, deep laughter reverberating through you as you are quickly brought to another clenching high by its rubbing and curling roughness, deeper and inward this time, [pc.girlCum] dripping onto his lips whilst you rock and moan to the juicy, filthy rhythms of orgasm. Then he just keeps going, withdrawing only to lick and lap at your tender [pc.clit0] again, with apparently unquenchable lust.");
+	if (pc.vaginas.length > 2) output(" Not one of your many, moist cunts escapes his wet, ruthless touch; the lithe, purple meat strokes and then deeply penetrates each one, owning them and making them quiver together in such ridiculous ecstasy you think you might go completely mad with it.");
 	
 	output("\n\nWhenever you gaze down from your stocks-like perch you meet his yellow eyes, gloatingly drinking in every moment of the over-fucked delirium he’s causing you. His heavy breath resonates through you, making you feel soft and simple, and eventually you completely surrender yourself to it, bouncing, moaning and squealing gleefully to the fanfir’s masterful, sadistic touch, feeling like nothing more than a piece of ripe, dangling fruit, leaking a steady stream of your slutty juices in deference to his thirsty, powerful mouth.");
 	
-	output("\n\nAt long, long last, way after keeping count of the number of times you came ceases to be of any importance, the wet friction recedes from your [pc.eachVagina]. You loll, open-mouthed and gazing blearily at the ceiling as you are lowered carefully to the ground, where there is no power in your [pc.lowerBody] to do anything but puddle onto it at Gene’s feet. The way your {pussy} {pussies} feel, you are vaguely surprised there isn’t steam coming from between your [pc.hips].");
+	output("\n\nAt long, long last, way after keeping count of the number of times you came ceases to be of any importance, the wet friction recedes from your [pc.eachVagina]. You loll, open-mouthed and gazing blearily at the ceiling as you are lowered carefully to the ground, where there is no power in your [pc.lowerBody] to do anything but puddle onto it at Gene’s feet. The way your");
+	if (pc.vaginas.length == 1) output(" pussy");
+	else output(" pussies");
+	output(" feel, you are vaguely surprised there isn’t steam coming from between your [pc.hips].");
 	
-	output("\n\n<i>“And that,”</i> says the fanfir primly, <i>“is how you massage someone, sweetly over-eager novice of mine.”</i> A bulrush-like tail tip caresses your shoulder and neck fondly. <i>“Although it’s obvious to us both, I think, that you just wanted me to do that.”</i> {Submission > 8: It’s difficult to deny, lying at his feet, bathing in the sensation of being reduced to an over-sensitized pool of fuck. You stroke the curling tail and doze happily for a short time before getting up{, stepping back into your [pc.gear]}, quietly enjoying the throbbing, pleasurable ache in your [pc.groin] as you gingerly move back around the counter.} {Otherwise: You fight back an immediate, puppyish urge to agree. Certainly if this isn’t what you want - and a large part of you thinks it is - you’re going to have to choose your tactics more carefully next time. After a few more moments of rest you get up{, step back into your [pc.gear]} and shuffle back around the counter; gingerly, thanks to the throbbing, pleasurable ache in your [pc.groin].");
+	output("\n\n<i>“And that,”</i> says the fanfir primly, <i>“is how you massage someone, sweetly over-eager novice of mine.”</i> A bulrush-like tail tip caresses your shoulder and neck fondly. <i>“Although it’s obvious to us both, I think, that you just wanted me to do that.”</i>");
+	if (geneSubmissionLevel() >= 8)
+	{
+		output(" It’s difficult to deny, lying at his feet, bathing in the sensation of being reduced to an over-sensitized pool of fuck. You stroke the curling tail and doze happily for a short time before getting up");
+		if (!pc.isNude()) output(", stepping back into your [pc.gear]");
+		output(", quietly enjoying the throbbing, pleasurable ache in your [pc.groin] as you gingerly move back around the counter.");
+	}
+	else
+	{
+		output(" You fight back an immediate, puppyish urge to agree. Certainly if this isn’t what you want - and a large part of you thinks it is - you’re going to have to choose your tactics more carefully next time. After a few more moments of rest you get up");
+		if (!pc.isNude()) output(", step back into your [pc.gear]");
+		output(" and shuffle back around the counter; gingerly, thanks to the throbbing, pleasurable ache in your [pc.groin].");
+	}
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1154,13 +1251,14 @@ public function genesModsOverCounter():void
 
 	if (geneSubmissionLevel() <= 7)
 	{
-		output("<i>“Do me over the counter,”</i> you respond, holding his eye steadily. {Hard: <i>“Make it good.”</i>}");
+		output("<i>“Do me over the counter,”</i> you respond, holding his eye steadily.");
+		if (pc.isAss()) output(" <i>“Make it good.”</i>");
 		
 		output("\n\n<i>“I think,”</i> says Gene, clacking his hard lips together and returning your stare, <i>“I can maybe manage that.”</i>");
 	}
 	else
 	{
-		output("<i>“Do me,”</i> you sigh. The fanfir’s hot breath washes over you, making you feel like an ear of corn, rippling in a summer wind. Smooth, synthetic fingers find your [pc.vagina0] and trace its wet lips, circling your [pc.clit0], making you squirm and clutch at his wings, lust pulsing through you.");
+		output("<i>“Do me,”</i> you sigh. The fanfir’s hot breath washes over you, making you feel like an ear of corn, rippling in a summer wind. Smooth, synthetic fingers find your [pc.vagina] and trace its wet lips, circling [pc.oneClit], making you squirm and clutch at his wings, lust pulsing through you.");
 		
 		output("\n\n<i>“How?”</i> he murmurs, his deep voice shaking you right down to your pussy, intensifying the helpless heat there. <i>“You’re going to have to say how, or this is as far as we go.”</i>");
 		
@@ -1169,54 +1267,119 @@ public function genesModsOverCounter():void
 		output("\n\n<i>“Ah, there it is: the perfect timbre,”</i> he smiles at you proudly. <i>“Shamelessly slutty, yet earnestly polite.”</i>");
 	}
 
-	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina0]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.anus].");
+	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.anus].");
 
 	if (pc.biggestVaginalCapacity() <= geneCockVolume())
 	{
-		output("\n\n<i>“Hmm,”</i> he murmurs a moment later. <i>“A pretty and charmingly sized lady-hole you have down here. Am I the type of brute to resize it as he pleases?”</i> You inhale sharply as you feel the spear-head of his bigger dick restlessly press against your lips, stretching them wide. <i>“No, of course not.”</i> You exhale, a sigh of relief spiked with frustration as it withdraws. Gene arches his hips, bulky chest shifting down the small of your back, and the next moment you feel a more compact protrusion bump against your [pc.vagina0]. <i>“Not when I deliberately come equipped for sweet pixies like you,”</i> the fanfir growls. He thrusts forward, filling your tight tunnel with six inches of human cock.");
+		output("\n\n<i>“Hmm,”</i> he murmurs a moment later. <i>“A pretty and charmingly sized lady-hole you have down here. Am I the type of brute to resize it as he pleases?”</i> You inhale sharply as you feel the spear-head of his bigger dick restlessly press against your lips, stretching them wide. <i>“No, of course not.”</i> You exhale, a sigh of relief spiked with frustration as it withdraws. Gene arches his hips, bulky chest shifting down the small of your back, and the next moment you feel a more compact protrusion bump against your [pc.vagina]. <i>“Not when I deliberately come equipped for sweet pixies like you,”</i> the fanfir growls. He thrusts forward, filling your tight tunnel with six inches of human cock.");
 		
 		output("\n\nThe winged colossus’s hard thighs slap rhythmically against your [pc.butt] as he pumps you, pressing deep into your wet depths, making you tingle with pleasure with each returning thrust. His huge, turgid bulge-cock slides between your [pc.thighs] as he goes at you; you clench down, tightening your pussy up around his human cock at the same time as squeezing the soft flesh of your thighs around his bigger dick. Gene rumbles his enjoyment to this, and rewards you by picking up the pace, wing claws clutching the counter in order to provide the ballast to stretch the sensitive, clasping pocket you’ve provided with heavy, fervent strokes.");
 		
-		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast mounting you, his hot, bullish dick pressing against a hidden spot which makes a steady stream of sparks run up your spine. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples], {stroking and pinching them until they are erect and inflamed} / {pushing into their wet depths until they are oozing [pc.girlCum] eagerly around his fingers}. You arch your back as orgasm grasps you; you thrust back into Gene’s human dick gleefully, using its hard, full girth to clench up and squeal to the irrepressible joy of it, [pc.girlCum] {dripping} {spurting} around the hot wood filling you {and [pc.milk] spurting freely from your kneaded [pc.nipples]}.");
+		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast mounting you, his hot, bullish dick pressing against a hidden spot which makes a steady stream of sparks run up your spine. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples],");
+		if (!pc.hasFuckableNipples()) output(" stroking and pinching them until they are erect and inflamed");
+		else output(" pushing into their wet depths until they are oozing [pc.girlCum] eagerly around his fingers");
+		output(". You arch your back as orgasm grasps you; you thrust back into Gene’s human dick gleefully, using its hard, full girth to clench up and squeal to the irrepressible joy of it, [pc.girlCum]");
+		if (pc.wettestVaginalWetness() <= 2) output(" dripping");
+		else output(" spurting");
+		output(" around the hot wood filling you");
+		if (pc.isLactating()) output(" and [pc.milk] spurting freely from your kneaded [pc.nipples]");
+		output(".");
 		
-		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina0], bending it this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit0] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again{Submission > 7: , whining your approval as he gives your [pc.butt] a hard swat for good measure}.");
+		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina], bending it this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
+		if (geneSubmissionLevel() >= 8) output(", whining your approval as he gives your [pc.butt] a hard swat for good measure.");
 		
-		output("\n\nGene pushes you to a second hot, heaving high, sweat rolling down your face as your whole body tenses up around the endless thick propulsion of his sex; then, when you feel reduced to a fuck-dazed puddle, he thrusts his way to his own high, claiming and stretching your pussy strenuously, android hands clutching your [pc.chest] for support, heavy balls slapping against your [pc.thighs] and semi-erect dragon dick rubbing over your {[pc.clit0]} / {[pc.cock0]}. Hazily you imagine a myr coming into the shop and taking in this sight, you flagrantly bent over the counter, {flesh} / {[pc.chest]} jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks.");
+		output("\n\nGene pushes you to a second hot, heaving high, sweat rolling down your face as your whole body tenses up around the endless thick propulsion of his sex; then, when you feel reduced to a fuck-dazed puddle, he thrusts his way to his own high, claiming and stretching your pussy strenuously, android hands clutching your [pc.chest] for support, heavy balls slapping against your [pc.thighs] and semi-erect dragon dick rubbing over");
+		if (pc.hasVagina()) output(" [pc.clits]");
+		else output(" [pc.cock]");
+		output(". Hazily you imagine a myr coming into the shop and taking in this sight, you flagrantly bent over the counter,");
+		if (pc.biggestTitSize() < 2) output(" flesh");
+		else output(" [pc.chest]");
+		output(" jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina0]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well. {Submission 10: The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.}");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well.");
+		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
-		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit0] and onto the floor.");
+		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit] and onto the floor.");
 	}
 	else
 	{
-		output("\n\n<i>“My word,”</i> he murmurs. You sigh blissfully as he sinks first one long digit, then two, then finally a whole smooth, android fist into the wet suck of your [pc.vagina0]. <i>“You’re... spaciously designed, aren’t you?”</i> There is an edge of excitement to his lava-like tones. A slight thrill runs through you when his caressing fingers are replaced by a big, hot conical shape, oozing pre and restlessly spreading your gaping pussy lips. <i>“I wonder. Shall I?...”</i>");
+		output("\n\n<i>“My word,”</i> he murmurs. You sigh blissfully as he sinks first one long digit, then two, then finally a whole smooth, android fist into the wet suck of your [pc.vagina]. <i>“You’re... spaciously designed, aren’t you?”</i> There is an edge of excitement to his lava-like tones. A slight thrill runs through you when his caressing fingers are replaced by a big, hot conical shape, oozing pre and restlessly spreading your gaping pussy lips. <i>“I wonder. Shall I?...”</i>");
 		
 		output("\n\n<i>“Do it,”</i> you husk. You open your mouth in sheer bliss, tightening your grip on the counter when Gene complies, flexing his hips to penetrate you with sixteen inches of ribbed bulge-cock.");
-		output("\n\nHe carefully pushes his way in with slow, patient thrusts, the massive bulge below his oozing head sliding its ribbed denseness deeper and deeper into your core, murmuring amazement and then simply pure joy at how much of your wet, sensitive breeding bay he can fit inside. For your part that ribbed goodness, filling and rubbing you from wall to wall in a way very few others can, is indecently pleasurable, making you tense up and {drip} {dribble} [pc.girlCum] around it freely. He sighs in intense satisfaction when his quad touches your [pc.hips], his soda-can sized base mired in your heat.");
+
+		output("\n\nHe carefully pushes his way in with slow, patient thrusts, the massive bulge below his oozing head sliding its ribbed denseness deeper and deeper into your core, murmuring amazement and then simply pure joy at how much of your wet, sensitive breeding bay he can fit inside. For your part that ribbed goodness, filling and rubbing you from wall to wall in a way very few others can, is indecently pleasurable, making you tense up and");
+		if (pc.wettestVaginalWetness() <= 2) output(" drip");
+		else output(" dribble");
+		output(" [pc.girlCum] around it freely. He sighs in intense satisfaction when his quad touches your [pc.hips], his soda-can sized base mired in your heat.");
 		
-		output("\n\n{F Treated: you go slightly cross-eyed and moo softly when he pulls out, your elastic cunt clinging eagerly to every inch of his dick as it recedes, unhappy to see such a well-sized member leave even for a second.");
+		if (pc.isTreated())
+		{
+			output("\n\nYou go slightly cross-eyed and moo softly when he pulls out, your elastic cunt clinging eagerly to every inch of his dick as it recedes, unhappy to see such a well-sized member leave even for a second.");
 		
-		output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“That size, and that tightness... it’s perfect. You have the perfect pussy. How can I possibly let you go when you’ve got that between your thighs {and you suck it down so well, too}?”</i>");
+			output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“That size, and that tightness... it’s perfect. You have the perfect pussy. How can I possibly let you go when you’ve got that between your thighs");
+			// 9999
+			// {and you suck it down so well, too");
+			output("?”</i>");
+		}
 		
 		output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, k?”</i>  Gene readily responds by shoving his cock right up to the quick in you, and everything becomes a deep, golden, mooing bliss again for you.}");
 		
-		output("\n\nOnce he has spent a moment glorying in it, the fanfir pulls almost all the way out, so the ribbed bulge is distending your lips, before ramming all sixteen inches succulently home, his hard hips patting against your [pc.butt] as he quickly finds a good rhythm. The way it arches makes the tip of his massive cock drags across the roof of your sopping tunnel, sending tingles of pure pleasure run up your spine with every {shiver of your taut} / {jiggle of your generous} flesh.");
+		output("\n\nOnce he has spent a moment glorying in it, the fanfir pulls almost all the way out, so the ribbed bulge is distending your lips, before ramming all sixteen inches succulently home, his hard hips patting against your [pc.butt] as he quickly finds a good rhythm. The way it arches makes the tip of his massive cock drags across the roof of your sopping tunnel, sending tingles of pure pleasure run up your spine with every");
+		if (pc.thickness <= 10) output(" shiver of your taut");
+		else output(" jiggle of your generous");
+		output(" flesh.");
 		
 		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.anus]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina0] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
 		
-		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast completely stuffing you, his hot, bullish dicks pressing together through your tender walls. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples], {stroking and pinching them until they are erect and inflamed} / {pushing into their wet depths until they are oozing [pc.girlCum] eagerly around his fingers}. You arch your back as orgasm grasps you; you thrust back into Gene’s double sex gleefully, the roughness of the cock taking your asshole contrasting brilliantly with the huge cock sliding and rubbing in your [pc.vagina0], clenching up and squealing to the irrepressible joy of it, [pc.girlCum] {dripping} / {spurting} around the hot wood filling you {and [pc.milk] spurting freely from your kneaded [pc.nipples]}.");
+		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast completely stuffing you, his hot, bullish dicks pressing together through your tender walls. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples],");
+		if (!pc.hasFuckableNipples()) output(" stroking and pinching them until they are erect and inflamed");
+		else output(" pushing into their wet depths until they are oozing [pc.girlCum] eagerly around his fingers");
+		output(". You arch your back as orgasm grasps you; you thrust back into Gene’s double sex gleefully, the roughness of the cock taking your asshole contrasting brilliantly with the huge cock sliding and rubbing in your [pc.vagina], clenching up and squealing to the irrepressible joy of it, [pc.girlCum]");
+		if (pc.wettestVaginalWetness() <= 2) output(" dripping");
+		else output(" spurting");
+		output(" around the hot wood filling you");
+		if (pc.isLactating()) output(" and [pc.milk] spurting freely from your kneaded [pc.nipples]");
+		output(".");
 		
-		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina0] and opened [pc.anus], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit0] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again{Submission > 7: , whining your approval as he gives your [pc.butt] a hard swat for good measure.}");
+		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina0] and opened [pc.anus], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit0] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
+		if (geneSubmissionLevel() >= 8) output(", whining your approval as he gives your [pc.butt] a hard swat for good measure");
+		output(".");
 		
-		output("\n\nGene pushes you to a second hot, heaving high, sweat rolling down your face as your whole body tenses up around the endless thick propulsion of his sex; then, when you feel reduced to a fuck-dazed puddle, he thrusts his way to his own high, claiming and stretching your pussy and ass strenuously, android hands clutching your [pc.chest] for support, heavy balls slapping against your [pc.thighs]. Hazily you imagine a myr coming into the shop and taking in this sight, you flagrantly bent over the counter, {flesh} / {[pc.chest]} jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks, your own lubricant {dripping} / {streaming} freely down your insides of your thighs.");
+		output("\n\nGene pushes you to a second hot, heaving high, sweat rolling down your face as your whole body tenses up around the endless thick propulsion of his sex; then, when you feel reduced to a fuck-dazed puddle, he thrusts his way to his own high, claiming and stretching your pussy and ass strenuously, android hands clutching your [pc.chest] for support, heavy balls slapping against your [pc.thighs]. Hazily you imagine a myr coming into the shop and taking in this sight, you flagrantly bent over the counter,");
+		if (pc.biggestTitSize() < 2) output(" flesh");
+		else output(" [pc.chest]");
+		output(" jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks, your own lubricant");
+		if (pc.wettestVaginalWetness() <= 2) output(" dripping");
+		else output(" streaming");
+		output(" freely down your insides of your thighs.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina0] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below. {Submission 10: The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.}");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina0] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below.");
+		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
 		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy and ass in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit0] and onto the floor.");
 	}
 
-	output("\n\n<i>“I sometimes think I should invest in some mods that tone down my semen production,”</i> says Gene lowly, resting his chest carefully on your sweat-slicked back, his heat and heavy voice vibrating through your skin. <i>“It makes such a wretched mess. But it’s the style of the thing, isn’t it? Nobody would take you seriously if you were my size and came like a kaithrit. {Submission > 8: Anyway, I have never had a treasure-slut complain about it.”</i> You hear that. After you’ve rested for a couple moments more you turn and slide down between his legs and lap his semi-erect {human cock} {fanfir cock} to a saliva-burnished gleam, enjoying the mixed taste of [pc.girlCum] and musky spice with wet smacks of your [pc.lips]. A {fond rub behind the ears} /  {fond hand sliding through your [pc.hair]} and another firm swat to the [pc.butt] when you get back up are your rewards.} {Otherwise: <i>“ The thought forms that his pride should come a distant second to the considerations of the person he busts his ridiculously sized nut in. However, you’re not really in a state to articulate it, and being absolutely stuffed with cum like this does feel quite satisfying.");
+	output("\n\n<i>“I sometimes think I should invest in some mods that tone down my semen production,”</i> says Gene lowly, resting his chest carefully on your sweat-slicked back, his heat and heavy voice vibrating through your skin. <i>“It makes such a wretched mess. But it’s the style of the thing, isn’t it? Nobody would take you seriously if you were my size and came like a kaithrit.");
+	if (geneSubmissionLevel() >= 8)
+	{
+		output(" Anyway, I have never had a treasure-slut complain about it.”</i> You hear that. After you’ve rested for a couple moments more you turn and slide down between his legs and lap his semi-erect");
+		if (pc.biggestVaginalCapacity() < geneCockVolume()) output(" human cock");
+		else output(" fanfir cock");
+		output(" to a saliva-burnished gleam, enjoying the mixed taste of [pc.girlCum] and musky spice with wet smacks of your [pc.lips]. A");
+		if (pc.hairLength == 0) output(" fond rub behind the ears");
+		else output(" fond hand sliding through your [pc.hair]");
+		output(" and another firm swat to the [pc.butt] when you get back up are your rewards.");
+	} 
+	else
+	{
+		output("”</i> The thought forms that his pride should come a distant second to the considerations of the person he busts his ridiculously sized nut in. However, you’re not really in a state to articulate it, and being absolutely stuffed with cum like this does feel quite satisfying.");
+	}
 	
-	output("\n\nAfter you’ve rested a bit you get back up {, pulling your [pc.gear] back on} whilst Gene lumbers off in search of a mop. {You make a mental note to put your [pc.lowerUndergarment] on a heavy wash once you’re back to your ship.}");
+	output("\n\nAfter you’ve rested a bit you get back up");
+	if (!pc.isNude()) output(", pulling your [pc.gear] back on");
+	output(" whilst Gene lumbers off in search of a mop.");
+	if (pc.hasLowerGarment()) output(" You make a mental note to put your [pc.lowerUndergarment] on a heavy wash once you’re back to your ship.");
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

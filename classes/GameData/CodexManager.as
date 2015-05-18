@@ -145,10 +145,20 @@ package classes.GameData
 			return false;
 		}
 		
+		public static function hasUnlockedEntry(entryName:String):Boolean
+		{
+			return entryUnlocked(entryName);
+		}
+		
 		public static function entryViewed(entryName:String):Boolean
 		{
 			if (CodexManager.VIEWEDENTRIES.indexOf(entryName) != -1) return true;
 			return false;
+		}
+		
+		public static function hasViewedEntry(entryName:String):Boolean
+		{
+			return entryViewed(entryName);
 		}
 		
 		private static function PlaceInTree(codexType:int, treePosition:String, entryName:String, functor:Function):void

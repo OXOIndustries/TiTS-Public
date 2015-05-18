@@ -1940,7 +1940,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 // Need to be in public place, obv.
 // Taurs play with their tits. Non-taurs play with their cocks, pussies, or ass, searching for their existence in that order. This is an everybody scene with a number of 'if' statements.
 
-function goddamnitJimTAndYourExhibitionism():void
+public function goddamnitJimTAndYourExhibitionism():void
 {
 	clearOutput();
 	showName("BLOWING\nOFF STEAM");

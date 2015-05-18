@@ -281,7 +281,7 @@ public function danceNoTouchDally():void
 }
 
 //Dance - Touch
-function dallyDanceWithTheBadTouchYouAndMeBabyArentNothinButMammalsNoWaitInsects():void
+public function dallyDanceWithTheBadTouchYouAndMeBabyArentNothinButMammalsNoWaitInsects():void
 {
 	clearOutput();
 	showDally(true);
@@ -455,7 +455,7 @@ public function payDally(amount:int = 0):void
 
 
 //Nectar Suck
-function nectarSuckFromDallyProper():void
+public function nectarSuckFromDallyProper():void
 {
 	clearOutput();
 	showDally(true);
@@ -581,7 +581,7 @@ public function payDally4Talk(amount:int):void
 }
 
 //Talk menu
-public function dallyTalkMenu(arg = undefined):void
+public function dallyTalkMenu(arg:Function = undefined):void
 {
 	clearMenu();
 	if(arg == talkToDallyAboutHisJoerb) addDisabledButton(0,"His Job","His Job","You just finished talking about that.");
@@ -642,7 +642,7 @@ public function talkToDallyAboutHisJoerb():void
 
 //Talk: Got Job?
 //Ask Dally just how he came to be a dancer.
-function gotJob():void
+public function gotJob():void
 {
 	clearOutput();
 	showDally();
@@ -696,7 +696,7 @@ function gotJob():void
 
 //The War?
 //You ask Dally about the war.
-function askDallyWar():void
+public function askDallyWar():void
 {
 	clearOutput();
 	showDally();
@@ -706,7 +706,7 @@ function askDallyWar():void
 
 //Family?
 //You ask him about his family.
-function talkToDallyAbootHisFamiry():void
+public function talkToDallyAbootHisFamiry():void
 {
 	clearOutput();
 	showDally();
@@ -765,7 +765,7 @@ public function askDallyRedAnts():void
 }
 
 //Favor
-function getAFavorFromDally():void
+public function getAFavorFromDally():void
 {
 	clearOutput();
 	showDally();
@@ -800,7 +800,7 @@ function getAFavorFromDally():void
 }
 
 //[Back]
-function dallyBackFromFavorMenu():void
+public function dallyBackFromFavorMenu():void
 {
 	clearOutput();
 	showDally();
@@ -809,7 +809,7 @@ function dallyBackFromFavorMenu():void
 	dallyMenu();
 }
 
-function dallyFavorsBump():void
+public function dallyFavorsBump():void
 {
 	if(flags["DALLY_FAVORS"] == undefined) flags["DALLY_FAVORS"] = 0;
 	flags["DALLY_FAVORS"]++;
@@ -917,7 +917,7 @@ public function getDallyLicked():void
 }
 
 //Dally Suck
-function dallySucksYouOff():void
+public function dallySucksYouOff():void
 {
 	clearOutput();
 	showDally();

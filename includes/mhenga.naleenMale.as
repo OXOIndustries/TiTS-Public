@@ -1228,7 +1228,7 @@ public function feedYourCuntTailWithDudeleen():void {
 
 //Male naleen blowjob victory-scene:
 //Author: hawke56
-function maleNaleenSucksPCOff():void
+public function maleNaleenSucksPCOff():void
 {
 	clearOutput();
 	showBust("NALEEN_MALE");

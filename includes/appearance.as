@@ -1317,7 +1317,7 @@ public function appearance(target:Creature):void {
 	}
 }
 
-function dickBonusForAppearance(x:int = 0):void
+public function dickBonusForAppearance(x:int = 0):void
 {
 	trace("DICK FLAVOR FIRED!");
 	//Color shit

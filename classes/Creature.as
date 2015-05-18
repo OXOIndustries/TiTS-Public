@@ -1568,6 +1568,12 @@
 				case "oneCunt":
 					buffer = oneVagina();
 					break;
+				case "biggestVagina":
+				case "vaginaBiggest":
+				case "cuntBiggest":
+				case "biggestCunt":
+					buffer = vaginaDescript(biggestVaginaIndex());
+					break;
 				case "vagOrAss":
 				case "vagOrAsshole":
 				case "pussyOrAsshole":

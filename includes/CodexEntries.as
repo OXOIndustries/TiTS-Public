@@ -1775,7 +1775,7 @@ public function anataeCodexEntry():void
 }
 
 
-function dragonsHordeCodexStory():void
+public function dragonsHordeCodexStory():void
 {
 	clearOutputCodex();
 	outputCodex(header("The Dragon's Hoard"));
