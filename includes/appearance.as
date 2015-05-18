@@ -1348,7 +1348,7 @@ function dickBonusForAppearance(x:int = 0):void
 	}
 	//Snake cock flavor
 	else if(pc.cocks[x].cType == GLOBAL.TYPE_SNAKE) {
-		if(pc.originalRace == "snake" || pc.originalRace == "naga" || pc.originalRace == "naleen" || pc.originalRace == "leithan") output2(" It's a deep, iridescent " + pc.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
+		if(pc.originalRace == "snake" || pc.originalRace == "naga" || pc.originalRace == "naleen" || pc.originalRace == "leithan" || pc.originalRace == "half-leithan") output2(" It's a deep, iridescent " + pc.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 		else output2(" It's a deep, iridescent " + pc.cocks[x].cockColor + " in color. Unlike a " + pc.originalRace + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 	}
 	//Anemone cock flavor
