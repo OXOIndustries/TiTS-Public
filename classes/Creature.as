@@ -6610,7 +6610,7 @@
 			//Determine race type
 			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
-			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
+			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (raskvelScore() >= 2) race = "rask-morph";
@@ -6731,12 +6731,14 @@
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
-			if (eyeType == GLOBAL.TYPE_FELINE) counter++;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (legType == GLOBAL.TYPE_FELINE) counter++;
-			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter++;
-			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter+=2;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (armType == GLOBAL.TYPE_FELINE && counter > 1) counter++;
+			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_HUMAN && counter > 2) counter++;
 			return counter;
 		}
 		public function zilScore(): int {
@@ -6755,12 +6757,12 @@
 			if (isNaga()) counter += 2;
 			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			if (armType == GLOBAL.TYPE_FELINE) counter++;
-			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (hasStatusEffect("Genital Slit")) counter++;
 			if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			return counter;
 		}
 		public function raskvelScore(): int

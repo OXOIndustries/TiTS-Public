@@ -3209,7 +3209,8 @@ public function deck13GrayPrimeTalkCrew():void
 	output("\n\n<i>“You said ‘we,’”</i> Anno says. <i>“Were you... part of the ship’s computer, I guess? Primitive doctor bots that had a loooong time to gain sentience?”</i> ");
 	
 	output("\n\nThe goo eyes Anno, a look of immense sadness crossing her eyes. <i>“No. I... we... are human.");
-	if (pc.isHuman() || pc.isHalfHuman()) output(" Just as human as you are.”</i>");
+	if (pc.isHuman() || pc.isHalfHuman()) output(" Just as human as you are.");
+	output("”</i>");
 	
 	output("\n\n<i>“What?”</i> you and Anno say at once, staring at the glistening metallic maiden. ");
 	

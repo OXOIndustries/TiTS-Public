@@ -300,7 +300,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "G. Disrupt.");
 			offset++;
 		}
