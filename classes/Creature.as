@@ -8781,6 +8781,7 @@
 					break;
 					
 				case GLOBAL.TYPE_EQUINE:
+				case GLOBAL.TYPE_KUITAN:
 					collection = ["equine"];
 					break;
 					
@@ -8815,7 +8816,7 @@
 					
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
-					collection = ["cock"];
+					collection = ["bestial"];
 					break;
 			}
 			

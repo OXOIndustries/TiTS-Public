@@ -401,7 +401,7 @@ public function lieveTalkNoMansLand():void
 	output("\n\n<i>“To keep you off-worlders from blundering out there blindly, anyway,”</i> she answers, adding with a mischievous wink: <i>“Apparently it’s bad PR if too many of you step on landmines or something.”</i>");
 	
 	// Encountered landmines - 9999
-	if (flags["ENCOUNTERED_LANDMINES"] != undefined) output("\n\nYou blink. <i>“Landmines?”</i>");
+	if (flags["ENCOUNTERED_LANDMINES"] == undefined) output("\n\nYou blink. <i>“Landmines?”</i>");
 	else output("\n\n<i>“I’ve noticed a few already,”</i> you grumble.");
 	
 	output("\n\nShe nods. <i>“We can’t use artillery down here, Steele. Both sides decided to make up for it by mining the space between the front lines, making it hell for the other to advance. There’s gold myr explosive mines, and our venom vapor ones out there. Either one can ruin your day if you’re not careful. If you haven’t already, go in town and see if you can buy a minesweeper. Cunning little device that picks ‘em up before you step on them. Saved my life more than once.”</i>");

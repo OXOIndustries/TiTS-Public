@@ -1,12 +1,14 @@
 package classes.Items.Miscellaneous 
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.StringUtil;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -38,6 +40,10 @@ package classes.Items.Miscellaneous
 			this.attackVerb = "";
 			
 			this.basePrice = 100;
+			baseDamage = new TypeCollection();
+			baseDamage.electric.damageValue = 15;
+			baseDamage.addFlag(DamageFlag.EXPLOSIVE);
+			
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

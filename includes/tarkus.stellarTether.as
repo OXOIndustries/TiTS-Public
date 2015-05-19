@@ -1158,6 +1158,7 @@ public function miningLaserBarrage():void
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
 	var damage:TypeCollection;
 	var leftOverDamage:int = 0;
+	
 	for(var x:int = 3;x > 0;x--)
 	{
 		//Damage!
@@ -1181,6 +1182,7 @@ public function miningLaserBarrage():void
 			
 			//Figure out how much is left
 			damage = new TypeCollection( { burning: leftOverDamage } );
+			applyDamage(damage,foes[0],pc);
 		}
 	}
 	processCombat();
@@ -1286,6 +1288,7 @@ public function miningLaserSuperShot():void
 		
 		//Figure out how much is left
 		damage = new TypeCollection( { burning: leftOverDamage } );
+		applyDamage(damage,foes[0],pc);
 	}
 	processCombat();
 }
@@ -1322,6 +1325,7 @@ public function crateThrow():void
 		
 		//Figure out how much is left
 		damage = new TypeCollection( { burning: leftOverDamage } );
+		applyDamage(damage,foes[0],pc);
 	}
 	processCombat();
 }
