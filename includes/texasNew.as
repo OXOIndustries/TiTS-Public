@@ -1412,8 +1412,6 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	// Just broke, probably needs to be scanned!
 	if(flags["MILK_BARN_COCKMILKER_SCANNED"] != undefined) flags["MILK_BARN_COCKMILKER_SCANNED"] = undefined;
 
-	output("\n\nThat's a good question. Would you like to fix it?");
-
 	clearMenu();
 	var cumEstimate:Number = 0;
 	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
@@ -1427,6 +1425,8 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	// Fixit? [Yes] [No]
 	else
 	{
+		output("\n\nThat's a good question. Would you like to fix it?");
+		
 		addButton(0,"Yes",yesFixDaMilkar);
 		addButton(1,"No",noFixDaMilkar);
 	}
@@ -1520,7 +1520,7 @@ public function yesFixDaMilkar(bGiannaScans:Boolean = true):void
 		output("\n\nYou");
 		if(pc.isBimbo()) output(" make a surprised pout in response.");
 		else if(pc.isBro()) output("r face contorts into a unsurprising 'huh?' face after what you just heard.");
-		else if(pc.isNice()) output(" gasp aloud, concenred about the amount of damage you caused.");
+		else if(pc.isNice()) output(" gasp aloud, concerned about the amount of damage you caused.");
 		else if(pc.isMischievous()) output("r smirk visibly melts into a discontented frown at the price tag.");
 		else if(pc.isAss()) output(" curse under your breath as you let that number seep in.");
 		else output("'re somewhat shocked by the bill. Must be some pretty unique parts, you figure.");
