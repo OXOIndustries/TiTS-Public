@@ -5470,22 +5470,18 @@
 		}
 		public function hasCuntNipples(): Boolean {
 			var counter: Number = breastRows.length;
-			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) index = counter;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) return true;
 			}
-			if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) return true;
 			return false;
 		}
 		public function hasFuckableNipples(): Boolean {
 			var counter: Number = breastRows.length;
-			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].fuckable()) index = counter;
+				if (breastRows[counter].fuckable()) return true;
 			}
-			if (breastRows[index].fuckable()) return true;
 			return false;
 		}
 		public function hasLipples(): Boolean {
