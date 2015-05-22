@@ -139,7 +139,7 @@ package classes.Characters
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cThicknessRatioRaw = 3.5;
+			this.cocks[0].cThicknessRatioRaw = 1;
 			this.cocks[0].cLengthRaw = 21;
 			this.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 			this.cocks[0].cockFlags = [GLOBAL.FLAG_FLARED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_BLUNT]
