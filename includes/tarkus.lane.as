@@ -926,7 +926,7 @@ public function laneShowMenu():void
 	clearMenu();
 	addButton(0, "Talk", talkToLane);
 	addButton(1, "Services", laneServices);
-	if (hasMaxedLaneHypnosis()) addButton(2, "Taxes", payTheLaneTax);
+	if (hasMaxedLaneHypnosis() && flags["LANE_FULLY_HYPNOTISED"] == 1) addButton(2, "Taxes", payTheLaneTax);
 	else addDisabledButton(2, "Taxes");
 	addButton(5, "Appearance", lanesAppearance);
 	addButton(14, "Leave", leaveLanes);
@@ -1503,7 +1503,7 @@ public function lanePostApplyEffect(selectedService:String):void
 			break;
 	}
 
-	if (!hasMaxedLaneHypnosis() && flags["DELAY_TAXES_ADDITION"] == undefined)
+	if (!hasMaxedLaneHypnosis() || flags["DELAY_TAXES_ADDITION"] == undefined)
 	{
 		if (hasMaxedLaneHypnosis()) flags["DELAY_TAXES_ADDITION"] = 1;
 		
