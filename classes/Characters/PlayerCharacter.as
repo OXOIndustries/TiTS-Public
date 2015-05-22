@@ -33,35 +33,53 @@ package classes.Characters
 			return false;
 		}
 		
-		override public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
+		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
-			return this.tryKnockUp(cumFrom, vagIndex);
+			
+			if (cumFrom != null)
+			{
+				return this.tryKnockUp(cumFrom, vagIndex);
+			}
+			
+			return false;
 		}
 		
-		override public function loadInAss(cumFrom:Creature):Boolean
+		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
-			return this.tryKnockUp(cumFrom, 3);
+			
+			if (cumFrom != null)
+			{
+				return this.tryKnockUp(cumFrom, 3);
+			}
+			
+			return false;
 		}
 		
-		override public function loadInMouth(cumFrom:Creature):Boolean
+		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("face");
 			return false;
 		}
 		
 		// *shrug*
-		override public function loadInNipples(cumFrom:Creature):Boolean
+		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("boobs");
 			return false;
 		}
 		
-		override public function loadInCuntTail(cumFrom:Creature):Boolean
+		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake();
-			return this.tryKnockUp(cumFrom, 4);
+			
+			if (cumFrom != null)
+			{
+				return this.tryKnockUp(cumFrom, 4);
+			}
+			
+			return false;
 		}
 		
 		public var ShipStorageInventory:Array = [];

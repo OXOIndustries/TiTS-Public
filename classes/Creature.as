@@ -10246,10 +10246,10 @@
 		 * Check the PlayerCharacter class to see what I mean.
 		 */
 		
-		public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
+		public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			// Only run the knockup shit if the creature actually gets saved
-			if (this.neverSerialize == false)
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
@@ -10260,9 +10260,9 @@
 			return false;
 		}
 		
-		public function loadInAss(cumFrom:Creature):Boolean
+		public function loadInAss(cumFrom:Creature = null):Boolean
 		{
-			if (this.neverSerialize == false)
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 3);
 			}
@@ -10272,23 +10272,23 @@
 			}
 			return false;
 		}
-		public function girlCumInMouth(cumFrom:Creature):Boolean
+		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
-		public function loadInMouth(cumFrom:Creature):Boolean
-		{
-			return false;
-		}
-		
-		public function loadInNipples(cumFrom:Creature):Boolean
+		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
 		
-		public function loadInCuntTail(cumFrom:Creature):Boolean
+		public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
-			if (this.neverSerialize == false)
+			return false;
+		}
+		
+		public function loadInCuntTail(cumFrom:Creature = null):Boolean
+		{
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 4);
 			}
