@@ -78,8 +78,7 @@ package classes.GameData.Pregnancy
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 1;
 			_definedAverageLoadSize = 250;
-			_pregnancyChildType = PregnancyManager.CHILD_TYPE_LIVE;
-			
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			
 			_stageProgressions = new Array();
 			

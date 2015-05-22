@@ -13,8 +13,8 @@
 	 * @author Gedan
 	 */
 	public class PregnancyManager 
-	{
-		{
+	{		
+		{			
 			_pregHandlers = new Array();
 			
 			PregnancyManager.insertNewHandler(new VenusPitcherFertilizedSeedCarrierHandler());
@@ -24,10 +24,6 @@
 			PregnancyManager.insertNewHandler(new CockvinePregnancy());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
 		}
-		
-		public static const CHILD_TYPE_LIVE:uint = 1;
-		public static const CHILD_TYPE_EGGS:uint = 2;
-		public static const CHILD_TYPE_SEED:uint = 3;
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
 		private static var _pregHandlers:Array;

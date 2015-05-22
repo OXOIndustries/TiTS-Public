@@ -30,7 +30,7 @@
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 4;
 			_pregnancyQuantityMaximum = 9;
-			_pregnancyChildType = PregnancyManager.CHILD_TYPE_SEED;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_SEED;
 			
 			this.addStageProgression(600, kGAMECLASS.rumblyInYourTummy);
 			this.addStageProgression(240, kGAMECLASS.poppingSoonAlert1);

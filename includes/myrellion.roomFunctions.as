@@ -311,7 +311,7 @@ public function myrellionSecurityCheckpointEvents():Boolean
 
 public function DMZKressiaAirstrip():Boolean
 {
-	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined) {
+	if(!pc.hasKeyItem("Kressia Pass")) {
 		output("\n\nYou'll need clearance to visit Kressia before you can depart. You should check with the red myr diplomat on station.")
 	}
 	else
@@ -359,7 +359,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 
 public function kressiaGateBonus():Boolean
 {
-	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] == undefined)
+	if (!pc.hasKeyItem("Kressia Pass"))
 	{
 		output("\n\nYou're forced to wait while they check your clearance. When it comes up negative, you're ordered to walk back into the caves or into a hail of bullets. You'll take the caves.");
 		processTime(2);
