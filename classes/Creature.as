@@ -10439,6 +10439,11 @@
 			return -1;
 		}
 		
+		public function hasPregnancyOfChildType(type:uint):Boolean
+		{
+			return PregnancyManager.hasPregnancyOfChildType(this, type);
+		}
+		
 		/**
 		 * Find the total number of pregnancies for a given creature.
 		 * @return			total pregnancies

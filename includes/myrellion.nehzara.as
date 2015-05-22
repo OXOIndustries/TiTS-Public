@@ -71,6 +71,12 @@ public function nehzaraBonus():Boolean
 	//(After First Time)
 	else
 	{
+		if(pc.bellyRating() > 40 && pc.isPregnant() && flags["NEHZ_PREGGO_RUB_HAPPENED"] == undefined && flags["SEXED_NEHZARA"] != undefined && rand(3) == 0)
+		{
+			wannaFeelABellyYouAntSlutWhoreBitchNazi();
+			return false;
+		}
+	
 		//Special: A Warrior’s Honor
 		//Procs randomly (maybe 20% chance) one time when entering the warehouse/office room of the map. Only procs if the PC has met Nehzara, Lyralla, and Juro at least once, and has sexed Nehzara.
 		if(flags["MET_LYRALLA"] != undefined && flags["MET_JURO"] != undefined && flags["SEXED_NEHZARA"] != undefined && rand(5) == 0 && flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] == undefined)
@@ -78,6 +84,7 @@ public function nehzaraBonus():Boolean
 			nehzarasWarriorHonor();
 			return false;
 		}
+		
 		output("You ");
 		if(!pc.isNaga() && !pc.isGoo()) output("step");
 		else output("slide");
@@ -94,11 +101,6 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 {
 	//Special: Wanna Feel?
 	//Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
-	if(pc.bellyRating() > 40 && pc.isPregnant() && flags["NEHZ_PREGGO_RUB_HAPPENED"] == undefined && rand(3) == 0)
-	{
-		wannaFeelABellyYouAntSlutWhoreBitchNazi();
-		return;
-	}
 	clearOutput();
 	showNehzara();
 	showBust("MYR_RED_GUARD");
@@ -710,7 +712,7 @@ public function heyAntHitlerWannaFeel():void
 	output("\n\nThe normally composed diplomat is visibly shocked. <i>“I...”</i> she begins hesitantly, <i>“I haven’t. Those of us who can... can bear young don’t really leave the cities very often at all. An old soldier like me wouldn’t know anything about it.”</i> She looks up at you, those eyes of hers seeming sad for the first time that you can recall. There’s more she wants to say but never will. You doubt you could coerce her into spilling it if you tried.");
 	output("\n\nThen, slowly, Nehzara reaches out with an uncertain hand and places it on the curve of your midsection. The ");
 	//(if eggpreg:)
-	if(9999) output("hard, unyielding tautness of your egg-filled womb nevertheless manages to give off some feeling of vitality, enough to captivate the barren myr woman and leave her speechless");
+	if(pc.hasPregnancyOfChildType(PregnancyManager.CHILD_TYPE_EGGS)) output("hard, unyielding tautness of your egg-filled womb nevertheless manages to give off some feeling of vitality, enough to captivate the barren myr woman and leave her speechless");
 	else output("sudden kick that meets her touch surprises Nehzara enough to make her withdraw, though she quickly places her palm back where it was so she can feel another kick. You guess that since the myr have egg-based births, this must be doubly fascinating for her");
 	output(". The bewildered expression on her face isn’t one you’d normally expect to see, and you savor this rare moment while the disciplined officer’s guard is down.");
 
