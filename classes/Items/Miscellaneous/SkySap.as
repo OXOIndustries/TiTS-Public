@@ -85,6 +85,18 @@
 					
 					changes++;
 				}
+				
+				//Change Markings
+				// Prerequisites: Has vanae skin color, has existing markings
+				// Apply set color (Marking color)
+				if(hasMatchingVanaeSkinAccentColor(pc) && pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(8) == 0)
+				{
+					outputB("\n\nThere is a tingling under your " + pc.skin() + ". Your " + pc.skinAccent + " markings glow and pulse, catching your attention.");
+					pc.skinAccent = getVanaeAccentColor(pc);
+					outputB(" Suddenly, they cloud and fade, becoming " + pc.skinAccent + " in color. You take a quick moment to look over yourself using your Codex. <b>You now have " + pc.skinAccent + " body markings!</b>");
+					
+					changes++;
+				}
 
 				//Add Markings
 				// Prerequisites: No existing markings
@@ -97,6 +109,8 @@
 					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");
 					outputB("\n\nWhen the sensations subside, you shiver a little and look at your reflection in your codex. Luminous lines now break up your " + pc.skin() + ". <b>You now have " + pc.skinAccent + " body markings!</b>");
 					pc.createStatusEffect("Vanae Markings");
+					
+					changes++;
 				}
 				//Reflex Increase / Strength Decrease
 				// Must not already have 50+ reflex and strength 0.
@@ -479,6 +493,12 @@
 					return "luminous violet";
 			}
 			return "ERROR.";
+		}
+		
+		protected function hasMatchingVanaeSkinAccentColor(pc:Creature):Boolean
+		{
+			if (pc.skinAccent == getVanaeAccentColor(pc)) return true;
+			return false;
 		}
 	}
 }

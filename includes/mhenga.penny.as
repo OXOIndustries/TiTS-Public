@@ -2113,7 +2113,7 @@ public function getAssFuckedByPenny():void {
 	
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight
-	if(pc.analCapacity() * 1.25 <= penny.cockVolume(0)) output("<i>“so t-tiiiight...”</i>");
+	if(pc.ass.looseness() <= 1) output("<i>“so t-tiiiight...”</i>");
 	else if(pc.ass.looseness() <= 3) output("<i>“fits just like a glove...”</i>");
 	//if PC is SUPAH LOOSE:
 	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]... if I want to keep up with a gaped slut like you....”</i>");

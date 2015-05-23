@@ -1832,8 +1832,16 @@ public function fuckedByMaleLane():void
 	output("\n\nHaving him inside you again is the most wonderful, pleasurable feeling you can imagine, but it doesn’t make you want it any less. He teases you by going slowly; you take action and thrust back, shoving more of his now gorgeously thick dick into your waiting hole. He gasps out in surprise and clicks his tongue playfully. <i>“You’re so eager! I hope you’re not thinking of taking advantage of your master’s hospitality.”</i> His voice is low and he’s trying to sound serious, but his tone is light-hearted, and he doesn’t squeeze or press you any harder. <i>“You know what they say about rabbits and turtles, or whatever.”</i>");
 
 	output("\n\n<i>“Speaking of rabbits, let’s fuck like a pair,”</i> you say huskily, and back your ass up some more, squeezing some more of him into you. He only laughs and begins his own thrusting, cramming his dick into your [pc.vagOrAss], filling the room with the sound of his thick shaft plowing past your");
-	if (pc.hasVagina()) output(" vulva and into your wet, waiting depths");
-	else output(" [pc.asshole] and hinting at poking into your stomach.");
+	if (pc.hasVagina())
+	{
+		output(" vulva and into your wet, waiting depths.");
+		pc.cuntChange(0, lane.biggestCockVolume(), true, true, false);
+	}
+	else
+	{
+		output(" [pc.asshole] and hinting at poking into your stomach.");
+		pc.buttChange(lane.biggestCockVolume(), true, true, false);
+	}
 
 	output("\n\nYour head lowers and you relax. Your master is back inside you again – Lane wanted to fuck you, so you wanted to be fucked, and you’re getting what you wanted. You nearly don’t notice when his hands let go of your body and roughly grip onto the sheets on either side of your face. He pulls away, withdrawing from you, making you whimper at the sudden chill around your junk, and then he roughly thrusts back in.");
 
