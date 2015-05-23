@@ -973,7 +973,29 @@
 			else return "Despite the heat in your groin, nothing changed down there.";
 		}
 		
+		// @FENCUMFIX - Switch these two blocks around if you want to easily stick a breakpoint on what this value is getting set to
 		public var ballFullness: Number = 50;
+		
+		// Using getter/setters breaks my save/loading code iirc. To do with how I'm reflecting the class to find properties.
+		// I THINK you can load/save with this code active instead of the raw property, but it MAY fuck stuff up, so I just do this when I need to debug
+		// how a value is getting set.
+		
+		/*
+		private var _ballFullness:Number = 50;
+		public function get ballFullness():Number 
+		{ 
+			return _ballFullness;
+		}
+		public function set ballFullness(v:Number):void
+		{
+			if (v < 0)
+			{
+				trace("bp");
+			}
+			_ballFullness = v;
+		}
+		*/
+		
 
 		public function ballFullnessUnlocked(newBallFullness:Number):Boolean
 		{
@@ -1873,7 +1895,18 @@
 			// anything / 0 = NaN
 			if (hasCock())
 			{
-				ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
+				// @FENCUMFIX
+				// How to fix this will depend on how you want to handle it Fen:
+				// Either limit cumQ to never allow a value greater than currentCum()
+				// Or allow CumQ to produce whatever, and simply clamp the ballFullness set value here to 0.
+				
+				//ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
+				
+				var cumAmt:Number = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
+				if (cumAmt < 0) cumAmt = 0;
+				
+				ballFullness = cumAmt;
+
 				//'Nuki Ball Reduction
 				if(perkv1("'Nuki Nuts") > 0 && balls > 1 && this is PlayerCharacter)
 				{
@@ -5950,7 +5983,7 @@
 			if (refractoryRate >= 8 && quantity < 50) quantity = 50;
 			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
 			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
-			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
+			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000; // @FENCUMFIX - This is what's breaking the ballFullness being set to negative values
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			return quantity;
