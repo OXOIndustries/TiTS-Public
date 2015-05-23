@@ -605,8 +605,7 @@ package classes.GameData
 			
 			if (tPerk == null)
 			{
-				throw new Error("Couldn't find perk data for the provided search key! (" + perkName + ")");
-				return ""
+				return "";
 			}
 			
 			return tPerk.perkDescription;
