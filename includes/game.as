@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.GameData.PerkData;
 import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
@@ -180,9 +181,13 @@ public function showPerksList():void
 	for (var i:int = 0; i < perkList.length; i++)
 	{
 		var perk:StorageClass = perkList[i] as StorageClass;
+		var perkDesc:String = _perkDB.getDescriptionForPerk(perk.storageName);
+		
+		if (perkDesc.length == 0) perkDesc = perk.tooltip;
+		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b> - " + perk.tooltip + "\n");
+			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
 		}
 	}
 }

@@ -579,6 +579,38 @@ package classes.GameData
 			
 			return filterPerks;
 		}
+		
+		private function getPerkDataByName(perkName:String):PerkData
+		{
+			var ff:Function = function(t_perkName:String):Function
+			{
+				return function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean
+				{
+					if (item.perkName == t_perkName) return true;
+					return false;
+				}
+			}(perkName);
+			
+			var filterPerks:Vector.<PerkData> = _perkList.filter(ff);
+			
+			if (filterPerks.length == 0) return null;
+			if (filterPerks.length == 1) return filterPerks[0];
+			
+			throw new Error("Found multiple perks for the provided search key! (" + perkName + ")");
+		}
+		
+		public function getDescriptionForPerk(perkName:String):String
+		{
+			var tPerk:PerkData = getPerkDataByName(perkName);
+			
+			if (tPerk == null)
+			{
+				throw new Error("Couldn't find perk data for the provided search key! (" + perkName + ")");
+				return ""
+			}
+			
+			return tPerk.perkDescription;
+		}
 	}
 
 }
