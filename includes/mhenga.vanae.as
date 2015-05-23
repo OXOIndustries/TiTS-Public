@@ -366,10 +366,19 @@ public function vanaeWaitWhilstGrappled():void
 	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), foes[0], pc, "minimal");
 }
 
-public function vanaeEscapeGrapple():void
+public function vanaeEscapeGrapple(escapeCause:String = ""):void
 {
 	// [Successful Escape]: 
-	output("You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
+	if (escapeCause == "Escape Artist")
+	{
+		output("Displaying a remarkable degree of flexibility you manage to twist and turn out of her grasp,");
+	}
+	else
+	{
+		output("You finally break free of her grasp,");
+	}
+	
+	output(" pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
 
 	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. <i>“By the Sky Mother; you're so slippery! You better be worth all the effort.”</i>");
 	else output(" The blind huntress picks up her spear and stomps her foot. <i>“Arghh, I was so close! Was I really that bad?”</i>");
