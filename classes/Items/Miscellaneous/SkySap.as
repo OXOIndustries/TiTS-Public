@@ -89,7 +89,7 @@
 				//Change Markings
 				// Prerequisites: Has vanae skin color, has existing markings
 				// Apply set color (Marking color)
-				if(hasMatchingVanaeSkinAccentColor(pc) && pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(8) == 0)
+				if(!hasMatchingVanaeSkinAccentColor(pc) && pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(8) == 0)
 				{
 					outputB("\n\nThere is a tingling under your " + pc.skin() + ". Your " + pc.skinAccent + " markings glow and pulse, catching your attention.");
 					pc.skinAccent = getVanaeAccentColor(pc);
