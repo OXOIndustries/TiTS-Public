@@ -198,7 +198,7 @@ public function bodySlamByBros():void
 		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING);
 		damageRand(damage, 15);
 		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-		output(" (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

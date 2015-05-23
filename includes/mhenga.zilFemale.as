@@ -244,7 +244,7 @@ public function zilFemaleDartThrow():void {
 		
 		if (damageResult.shieldDamage > 0)
 		{
-			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields! (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
+			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields!");
 			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached."); 
 		}
 		
@@ -253,9 +253,12 @@ public function zilFemaleDartThrow():void {
 			output(" The dart punches right through your ");
 			if(pc.armor.shortName == "") output(pc.armor.longName);
 			else output("[pc.skinFurScales]");
-			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood! (<b>" + damageResult.totalDamage + "</b>) (Lust: " + 10);
+			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood!");
+			damageResult.lustDamage += 10;
 			pc.lust(10);
 		}
+		
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

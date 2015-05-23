@@ -189,13 +189,16 @@ public function tongueLashAttack():void
 			damageRand(damage, 15);
 			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 		
-			if (pc.shieldsRaw > 0) output(". It holds. (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
-			else output(". Your shield is breached! (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
+			if (pc.shieldsRaw > 0) output(". It holds.");
+			else output(". Your shield is breached!");
+			
+			outputDamage(damageResult);
 		}
 		else
 		{
 			output("and you feel the toxin in her saliva work its way into your body.");
-			applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), foes[0], pc, "minimal");
+			var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), foes[0], pc, "suppress");
+			outputDamage(dr2);
 		}
 	}
 	processCombat();

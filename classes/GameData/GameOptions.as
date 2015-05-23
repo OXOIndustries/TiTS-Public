@@ -16,6 +16,8 @@ package classes.GameData
 			easyMode = false;
 			debugMode = false;
 			fontSize = 18;
+			combineDamageValueOutput = false;
+			colourDamageValueOutput = true;
 		}
 		
 		public function setBustPriority(artist:String, priority:int):void
@@ -78,6 +80,9 @@ package classes.GameData
 		
 		// FontSize
 		public var fontSize:int;
+		
+		public var combineDamageValueOutput:Boolean;
+		public var colourDamageValueOutput:Boolean;
 		
 	}
 

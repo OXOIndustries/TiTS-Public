@@ -124,6 +124,13 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
+	output("\n\nSample damage message. Something something shot in the face something. (<b><span class='shield'>10</span>/<span class='hp'>10</span>/<span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span> / <span class='hp'>10</span> / <span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span> <span class='hp'>10</span> <span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span>, <span class='hp'>10</span>, <span class='lust'>10</span></b>)");
+	output("\n\n(<b>S:<span class='shield'>10</span> H:<span class='hp'>10</span>, L:<span class='lust'>10</span></b>)");
+	output("\n\n(<b>Shield:<span class='shield'>10</span> Health:<span class='hp'>10</span>, Lust:<span class='lust'>10</span></b>)");
+	
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
 	

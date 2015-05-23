@@ -131,7 +131,7 @@ public function naleenDudeConstrict():void {
 		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
 	}
 	
-	output(" (<b>" + damageResult.totalDamage + "</b>)");
+	outputDamage(damageResult);
 	
 	processCombat();
 }
@@ -181,9 +181,10 @@ public function dudeNaleenPounce():void
 		damage = new TypeCollection( { kinetic: 1 + rand(3) } );
 		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
 		
-		if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds. (<b>" + damageResult.totalDamage + "</b>)");
-		else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.totalDamage + "</b>)");
-		else output(" (<b>" + damageResult.totalDamage + "</b>)");
+		if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
+		else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+		
+		outputDamage(damageResult);
 		
 		calculateDamage(new TypeCollection( { electric: 3 + rand(4) } ), pc, foes[0]);
 	}
@@ -193,7 +194,8 @@ public function dudeNaleenPounce():void
 		damage = new TypeCollection( { kinetic: 10 + rand(5) } );
 		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
 		
-		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage. (<b>" + damageResult.totalDamage + "</b>)");
+		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage.");
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

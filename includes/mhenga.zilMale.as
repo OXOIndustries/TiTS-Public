@@ -146,13 +146,13 @@ public function zilFlyingSpinKickSingle():void {
 		
 		if (damageResult.shieldDamage > 0)
 		{
-			if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. (<b>" + damageResult.totalDamage + "</b>) ");
-			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + damageResult.totalDamage + "</b>)");
+			if (damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 		}
 		
 		if (damageResult.hpDamage > 0)
 		{
-			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damageResult.totalDamage + "</b>)");
+			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
 			
 			if (!pc.hasStatusEffect("Stunned"))
 			{
@@ -160,6 +160,8 @@ public function zilFlyingSpinKickSingle():void {
 				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
 		}
+		
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

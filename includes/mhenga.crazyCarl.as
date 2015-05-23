@@ -739,7 +739,7 @@ public function suicideBullshit():void {
 			output(" The hit carries on through to damage you!");
 		}
 		
-		output(" (<b>" + damageResult.totalDamage + "</b>)");	
+		outputDamage(damageResult);
 	}
 	//*PC survives by HP, dodging, whatever.*
 	if(pc.HP() >= 1 && pc.lust() <= 99) {

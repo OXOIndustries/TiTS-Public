@@ -170,7 +170,7 @@ public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 			output(" Your backside fares little better.");
 		}
 		
-		output(" (<b>" + damageResult.totalDamage + "</b>)");
+		outputDamage(damageResult);
 
 		//If cock!
 		if(pc.hasCock()) {
@@ -228,7 +228,7 @@ public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void 
 			}
 		}
 		
-		output(" (<b>" + damageResult.totalDamage + "</b>)");
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

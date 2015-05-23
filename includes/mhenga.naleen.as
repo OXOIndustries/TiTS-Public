@@ -118,7 +118,7 @@ public function naleenConstrict():void {
 		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars!");
 	}
 	
-	output(" (<b>" + damageResult.totalDamage + "</b>)");
+	outputDamage(damageResult);
 
 	processCombat();
 }

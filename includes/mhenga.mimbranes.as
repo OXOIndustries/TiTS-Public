@@ -2970,7 +2970,7 @@ public function mimbraneTrip():void
 			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 		}
 		
-		output(" (<b>" + damageResult.totalDamage + "</b>)");
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

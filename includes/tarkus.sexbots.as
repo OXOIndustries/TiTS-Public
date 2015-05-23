@@ -238,7 +238,7 @@ public function sexBotElectropulseAttack():void
 		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 	}
 	
-	output(" (<b>" + damageResult.totalDamage + "</b>)");
+	outputDamage(damageResult);
 	
 	processCombat();
 }

@@ -12,7 +12,7 @@ package classes.Engine.Combat
 	/**
 	 * Apply damage wraps all of the general output stuff and isolates it from the actual damage calculation.
 	 * If you want to include the 'standard' damage output, call applyDamage().
-	 * If you want to include no output, call applyDamage() with the special argument as 'supress' or call calculateDamage()
+	 * If you want to include no output, call applyDamage() with the special argument as 'suppress' or call calculateDamage()
 	 * If you want to just output the actual damage value, call applyDamage() with the special argument as 'minimal'.
 	 * Calling calculateDamage() is preferable - it returns a structured object that contains information about
 	 * all damage handled - shield, hp, lust, split -- and splits it into typed damage values too.
@@ -30,10 +30,13 @@ package classes.Engine.Combat
 		var damageResult:DamageResult = calculateDamage(baseDamage, attacker, target, special);
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
-		if (special == "supress") return damageResult;
+		if (special == "suppress")
+		{
+			return damageResult;
+		}
 		else if (special == "minimal" || attacker == null)
 		{
-			if (damageResult.totalDamage > 0) output(" (<b>" + Math.round(damageResult.totalDamage) + "</b>)");
+			outputDamage(damageResult);
 			return damageResult;
 		}
 		
@@ -53,17 +56,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter)
 			{
-				output(" Your shield crackles but holds. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
+				output(" Your shield crackles but holds.");
 			}
 			else
 			{
 				if (target.plural) 
 				{
-					output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
+					output(" " + target.a + possessive(target.short) + " shields crackle but hold.");
 				}
 				else
 				{
-					output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)"); 
+					output(" " + target.a + possessive(target.short) + " shield crackles but holds."); 
 				}
 			}
 		}
@@ -72,17 +75,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter) 
 			{
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
+				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 			}
 			else 
 			{
 				if (target.plural) 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
+					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached.");
 				}
 				else 
 				{
-					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + Math.round(damageResult.shieldDamage) + "</b>)");
+					output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached.");
 				}
 			}
 		}
@@ -92,17 +95,17 @@ package classes.Engine.Combat
 		{
 			if (target is PlayerCharacter) 
 			{
-				output(" The attack continues on to connect with you! (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
+				output(" The attack continues on to connect with you!");
 			}
 			else 
 			{
-				output(" The attack continues on to connect with " + target.a + target.short + "! (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
+				output(" The attack continues on to connect with " + target.a + target.short + "!");
 			}
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			output(" (<b>" + Math.round(damageResult.hpDamage) + "</b>)");
+			
 		}
 		
 		// Lust damage output
@@ -116,7 +119,7 @@ package classes.Engine.Combat
 				output("\n<b>" + target.capitalA + target.short + " ");
 				if (target.plural) output(" don't");
 				else output(" doesn't");
-				output(" seem the least bit bothered by the miniature goo crawling over them. (0)</b>\n");
+				output(" seem the least bit bothered by the miniature goo crawling over them.</b>\n");
 			}
 			else
 			{
@@ -126,7 +129,7 @@ package classes.Engine.Combat
 					output("\n<b>" + target.capitalA + target.short + " ");
 					if (target.plural) output(" don't");
 					else output(" doesn't");
-					output(" seem at all interested in your teasing. <b>(0)</b>\n");
+					output(" seem at all interested in your teasing.</b>\n");
 				}
 			}
 		}
@@ -135,14 +138,15 @@ package classes.Engine.Combat
 		{
 			if (special == "goovolver")
 			{
-				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts! <b>(" + Math.round(damageResult.lustDamage) + "</b>)");
+				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts!");
 			}
 			else
 			{
 				// TODO: Maybe move tease reaction shit here???
-				output(" (<b>" + Math.round(damageResult.lustDamage) + "</b>)");
 			}
 		}
+		
+		outputDamage(damageResult);
 		
 		return damageResult;
 	}

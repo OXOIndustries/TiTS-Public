@@ -2108,7 +2108,7 @@ public function kaskaFutaLusts():void
 	foes[0].createStatusEffect("Futa Lust",0,0,0,0);
 	//+5 lust each
 	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-	applyDamage(new TypeCollection( { tease: 5 } ), pc, foes[0], "supress");
+	applyDamage(new TypeCollection( { tease: 5 } ), pc, foes[0], "suppress");
 	processCombat();
 }
 //Tittygrapple

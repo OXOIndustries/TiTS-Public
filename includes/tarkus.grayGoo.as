@@ -65,7 +65,7 @@ public function grayGooTeaseAttackGo():void
 		if(pc.hasCock()) output("clearly offering you the chance to do the same");
 		else output("clearly offering to do the same to you!");
 	}
-	applyDamage(new TypeCollection( { tease: 3 } ), null, foes[0], "supress");
+	applyDamage(new TypeCollection( { tease: 3 } ), null, foes[0], "suppress");
 	applyDamage(new TypeCollection( { tease: 8 + rand(6) } ), foes[0], pc, "minimal");
 	processCombat();
 }
