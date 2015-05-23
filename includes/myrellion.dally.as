@@ -1031,7 +1031,7 @@ public function dallySucksYouOff():void
 			output(", hosing geysers of [pc.cum] directly into Dally’s spunk-receptacle");
 			if(pc.cockTotal() > 1) output(" and across his face and hair, completely soaking in him in [pc.cumColor]");
 			output(". He valiantly tries to swallow it, but even with his cheeks bulging and his throat noisily swallowing, beads of your [pc.cumNoun] roll out of the corners of his mouth. Not even the audience’s cheers of <i>“Chug! Chug! Chug!”</i> can help him keep up with the flow.");
-			if(pc.cumQ() >= 1500) output(" He pulls back, dazed gasping for breath while you continue to vent across his near-nude for, splattering [pc.cum] of smooth skin and gleaming carapace alike. So much hangs from his antennae that they’re nearly plastered to his forehead, droopy and limp.");
+			if(pc.cumQ() >= 1500) output(" He pulls back, dazed gasping for breath while you continue to vent across his near-nude form, splattering [pc.cum] of smooth skin and gleaming carapace alike. So much hangs from his antennae that they’re nearly plastered to his forehead, droopy and limp.");
 		}
 		output("\n\nYou thrust your hips, managing to squirt a few last droplets, and finally sag back, spent, your [pc.cocks] twitching and ever-so-slowly wilting");
 		if(pc.libido() >= 75) output(", though you doubt they’ll ever go completely soft");

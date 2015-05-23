@@ -2197,19 +2197,19 @@ public function embrySexMenu():void
 {
 	showSimii();
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Blowjob",blowjorbsFromEmbry,undefined,"Blowjob","Get a blowjob from Embry.");
+	if(pc.hasCock()) addButton(0,"Blowjob",blowjorbsFromEmbry,undefined,"Blowjob","Get a blowjob from [embry.name].");
 	else addDisabledButton(0,"Blowjob","Blowjob","You need a penis in order to receive a blowjob.");
-	if(pc.hasVagina()) addButton(1,"Cunnilingus",cunnilingusWithEmbry,undefined,"Cunnilingus","Get a eaten out by Embry.");
+	if(pc.hasVagina()) addButton(1,"Cunnilingus",cunnilingusWithEmbry,undefined,"Cunnilingus","Get eaten out by [embry.name].");
 	else addDisabledButton(1,"Cunnilingus","Cunnilingus","You need a vagina in order to receive cunnilingus.");
-	addButton(2,"Analingus",analingusWithEmbry,undefined,"Analingus","Get your ass eaten by Embry.");
+	addButton(2,"Analingus",analingusWithEmbry,undefined,"Analingus","Get your ass eaten by [embry.name].");
 	//Breast Massage
 	// [embry.name] must have transitioned at least once / She must have breasts
-	if(embry.biggestTitSize() >= 1) addButton(3,"BreastMassage",breastMassageScene4Embrah,undefined,"Breast Massage","Give Embry a breast massage.");
-	else addDisabledButton(3,"BreastMassage","Breast Massage","Embry must have breasts in order to massage them.");
+	if(embry.biggestTitSize() >= 1) addButton(3,"BreastMassage",breastMassageScene4Embrah,undefined,"Breast Massage","Give [embry.name]a breast massage.");
+	else addDisabledButton(3,"BreastMassage","Breast Massage","[embry.name] must have breasts in order to massage them.");
 	//Anal Sex
 	// [embry.name] must have undergone her second transition.
 	if(flags["EMBRY_TREATMENTS"] >= 2) addButton(4,"Pitch Anal",embryAnalSex,undefined,"Pitch Anal","Stick it in her butt.");
-	else addDisabledButton(4,"Pitch Anal","Pitch Anal","Embry needs to be further in her transition before she'll be up for anal.");
+	else addDisabledButton(4,"Pitch Anal","Pitch Anal","[embry.name] needs to be further in her transition before she'll be up for anal.");
 	//Vaginal Sex
 	// This scene is first viewed through a ‘Spend Time’ scene. The repeat / non virgin version is accessed through the normal sex menu.
 	if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] != undefined) addButton(5,"Fuck Vag",vagisilSexForEmbry,false,"Fuck Vag","Fuck her vagina.");
