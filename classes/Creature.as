@@ -4049,77 +4049,21 @@
 			
 			return sBuilder;
 		}
-		public function alphabetize(array:Array, newKeyItem:StorageClass): void {
-			//used to denote that the array has already had its new spot pushed on.
-			var arrayed: Boolean = false;
-			//used to store where the array goes
-			var keyName: String = newKeyItem.storageName.toLowerCase();
-			var keySlot: Number = 0
-			var counter: Number = 0
-			//Start the array if its the first bit
-			if (array.length == 0) {
-				array.push(newKeyItem);
-				arrayed = true;
-				keySlot = 0;
-			}
-			//If it belongs at the end, push it on
-			if (array[array.length - 1].storageName.toLowerCase() < keyName && !arrayed) {
-				array.push(newKeyItem);
-				arrayed = true;
-				keySlot = array.length - 1;
-			}
-			//If it belongs in the beginning, splice it in
-			if (array[0].storageName.toLowerCase() > keyName && !arrayed) {
-				array.splice(0, 0, newKeyItem);
-				arrayed = true;
-				keySlot = 0;
-			}
-			//Find the spot it needs to go in and splice it in.
-			if (!arrayed) {
-				counter = array.length;
-				while (counter > 0 && !arrayed) {
-					counter--;
-					//If the current slot is later than new key
-					if (array[counter].storageName.toLowerCase() > keyName) {
-						//If the earlier slot is earlier than new key && a real spot
-						if (counter - 1 >= 0) {
-							//If the earlier slot is earlier slot in!
-							if (array[counter - 1].storageName.toLowerCase() <= keyName) {
-								arrayed = true;
-								array.splice(counter, 0, newKeyItem);
-								keySlot = counter;
-							}
-						}
-						//If the item after 0 slot is later put here!
-						else {
-							//If the next slot is later we are go
-							if (array[counter].storageName.toLowerCase() <= keyName) {
-								arrayed = true;
-								array.splice(counter, 0, newKeyItem);
-								keySlot = counter;
-							}
-						}
-					}
-				}
-			}
-			//Fallback
-			if (!arrayed) {
-				array.push(newKeyItem);
-				arrayed = true;
-				keySlot = array.length - 1;
-			}
-			trace("Storage logged in slot " + keySlot + ": " + array[keySlot].storageName + " for " + short);
-		}
+
 		//Create a perk
-		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void {
-			var newKeyItem:StorageClass = new StorageClass();
-			newKeyItem.storageName = keyName;
-			newKeyItem.value1 = value1;
-			newKeyItem.value2 = value2;
-			newKeyItem.value3 = value3;
-			newKeyItem.value4 = value4;
-			newKeyItem.tooltip = desc;
-			alphabetize(perks, newKeyItem);
+		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void 
+		{
+			var newPerk:StorageClass = new StorageClass();
+			newPerk.storageName = keyName;
+			newPerk.value1 = value1;
+			newPerk.value2 = value2;
+			newPerk.value3 = value3;
+			newPerk.value4 = value4;
+			newPerk.tooltip = desc;
+			
+			perks.push(newPerk);
+			
+			perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
@@ -4140,12 +4084,15 @@
 			newStatusEffect.tooltip = tooltip;
 			newStatusEffect.combatOnly = combatOnly;
 			newStatusEffect.minutesLeft = minutesLeft;
-			alphabetize(statusEffects, newStatusEffect);
+			
+			statusEffects.push(newStatusEffect);
+			
+			statusEffects.sortOn("storageName", Array.CASEINSENSITIVE);
 
 			trace("New status applied to " + short + ": " + statusName);
 		}
 		//Create a keyItem
-		public function createKeyItem(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, description: String = ""): void {
+		public function createKeyItem(keyName: String, value1:Number = 0, value2:Number = 0, value3:Number = 0, value4:Number = 0, description: String = ""): void {
 			var newKeyItem:StorageClass = new StorageClass();
 			newKeyItem.storageName = keyName;
 			newKeyItem.value1 = value1;
@@ -4153,7 +4100,11 @@
 			newKeyItem.value3 = value3;
 			newKeyItem.value4 = value4;
 			newKeyItem.tooltip = description;
-			alphabetize(keyItems, newKeyItem);
+			
+			keyItems.push(newKeyItem);
+			
+			keyItems.sortOn("storageName", Array.CASEINSENSITIVE);
+			
 			trace("New key item applied to " + short + ": " + keyName);
 		}
 		//REMOVING THINGS!
@@ -10246,10 +10197,10 @@
 		 * Check the PlayerCharacter class to see what I mean.
 		 */
 		
-		public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
+		public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			// Only run the knockup shit if the creature actually gets saved
-			if (this.neverSerialize == false)
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
@@ -10260,9 +10211,9 @@
 			return false;
 		}
 		
-		public function loadInAss(cumFrom:Creature):Boolean
+		public function loadInAss(cumFrom:Creature = null):Boolean
 		{
-			if (this.neverSerialize == false)
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 3);
 			}
@@ -10272,23 +10223,23 @@
 			}
 			return false;
 		}
-		public function girlCumInMouth(cumFrom:Creature):Boolean
+		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
-		public function loadInMouth(cumFrom:Creature):Boolean
-		{
-			return false;
-		}
-		
-		public function loadInNipples(cumFrom:Creature):Boolean
+		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
 		
-		public function loadInCuntTail(cumFrom:Creature):Boolean
+		public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
-			if (this.neverSerialize == false)
+			return false;
+		}
+		
+		public function loadInCuntTail(cumFrom:Creature = null):Boolean
+		{
+			if (this.neverSerialize == false && cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 4);
 			}
@@ -10437,6 +10388,11 @@
 				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return i;
 			}
 			return -1;
+		}
+		
+		public function hasPregnancyOfChildType(type:uint):Boolean
+		{
+			return PregnancyManager.hasPregnancyOfChildType(this, type);
 		}
 		
 		/**

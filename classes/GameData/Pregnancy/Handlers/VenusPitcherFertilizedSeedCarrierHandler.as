@@ -6,6 +6,7 @@
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.rand;
+	import classes.GameData.Pregnancy.PregnancyManager;
 	
 	/**
 	 * ...
@@ -29,6 +30,7 @@
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 4;
 			_pregnancyQuantityMaximum = 9;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_SEED;
 			
 			this.addStageProgression(600, kGAMECLASS.rumblyInYourTummy);
 			this.addStageProgression(240, kGAMECLASS.poppingSoonAlert1);

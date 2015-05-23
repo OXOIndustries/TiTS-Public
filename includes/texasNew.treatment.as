@@ -2002,7 +2002,7 @@ public function treatmentHourProcs():void
 
 						eventBuffer += "\n\nYou can’t keep it up, though. Your bright red length is pushing your naughty digit out of your sheath, revealing its new shape to you in all its glory. <b>You have a bright red, pointed dog-dick, complete with a slight bulge at the base from your uninflated knot.</b> The sensation of the air blowing across it is almost too much to bear. Your hand wraps around it, at first to shield it from errant breezes, and then to stroke it, pumping furiously, feeding more and more pleasure to your expanding bitch-breaker.";
 						eventBuffer += "\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]";
-						if(pc.cocks[x].cLength() < 18) eventBuffer += " and [pc.belly]";
+						if(pc.cocks[targetDick].cLength() < 18) eventBuffer += " and [pc.belly]";
 						else eventBuffer += " and [pc.face]";
 						eventBuffer += ". The climax drags on and on. Even when you go dry, you’re still pulsating in your grip, your rock-solid knot holding an imaginary cow-girl in place while she fountains milk along with you.";
 						eventBuffer += "The orgasm eventually ends, leaving you with a slowly-receding dick that would look at home on ";

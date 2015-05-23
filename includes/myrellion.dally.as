@@ -230,6 +230,7 @@ public function talkMilkAnAntGuy():void
 	flags["CUNTTAILED_DALLY"]++;
 	//[No Tip] [100 Creds] [250 Creds] [999 Creds]
 	//4-5 cums
+	pc.loadInCuntTail();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

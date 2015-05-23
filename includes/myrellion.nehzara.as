@@ -78,6 +78,7 @@ public function nehzaraBonus():Boolean
 			nehzarasWarriorHonor();
 			return false;
 		}
+		
 		output("You ");
 		if(!pc.isNaga() && !pc.isGoo()) output("step");
 		else output("slide");
@@ -94,11 +95,6 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 {
 	//Special: Wanna Feel?
 	//Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
-	if(pc.bellyRating() > 40 && pc.isPregnant() && flags["NEHZ_PREGGO_RUB_HAPPENED"] == undefined && rand(3) == 0)
-	{
-		wannaFeelABellyYouAntSlutWhoreBitchNazi();
-		return;
-	}
 	clearOutput();
 	showNehzara();
 	showBust("MYR_RED_GUARD");
@@ -133,7 +129,14 @@ public function approachNehzara4Repeats():void
 {
 	clearOutput();
 	showNehzara();
-	showBust("NEHZARA","MYR_RED_GUARD");
+	showBust("NEHZARA", "MYR_RED_GUARD");
+	
+	if(pc.bellyRating() > 40 && pc.isPregnant() && flags["NEHZ_PREGGO_RUB_HAPPENED"] == undefined && flags["SEXED_NEHZARA"] != undefined && rand(3) == 0)
+	{
+		wannaFeelABellyYouAntSlutWhoreBitchNazi();
+		return;
+	}
+		
 	output("You enter the Red Myr diplomat’s office after the guard announces your presence, and Colonel Nehzara regards you with a level gaze and a subdued smile. That’s probably a downright friendly expression by her standards. <i>“Steele,”</i> she says coolly, <i>“I can’t say I expected you to be back here. Did you have more questions?”</i> She glances at the open door and lowers her voice to where you can barely hear her. <i>“Or maybe there’s something </i>else<i> you need, hm?”</i> Something tells you that at least one of the soldiers outside heard, but they’re both too tactful to give any indication of doing so. It’s so nice to be surrounded by professionals.");
 	//(Same options as last time, plus new options)
 	nehzeraMenu(approachNehzara4Repeats);
@@ -440,7 +443,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	pc.lust(35);
 	processTime(17);
 	flags["SEXED_NEHZARA"] = 1;
-	flags["KRESSIA_SHUTTLE_UNLOCKED"] = 1;
+	pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -611,7 +614,7 @@ public function closetFuckFinaleWithNehzara():void
 	output("\n\nThe colonel pulls away, cleaning herself up and pulling on her uniform. She looks every bit as crisp and composed as when you first laid eyes on her, like she didn’t just ride you through three complete orgasms. She clears her throat and extends her hand to give you a pat on the head. <i>“I should return to the office before I’m missed.”</i> Nehzara’s voice has returned to its normal hard tone, but you know it’s only because she’s switched back to professional mode.");
 	output("\n\nNehzara gives you a curt nod and leaves the storage closet, letting you take a moment to catch your breath and step back out into the warehouse.");
 	//(--Lust, PC is returned to general area description, PC can now take the shuttle to Kressia)
-	flags["KRESSIA_SHUTTLE_UNLOCKED"] = 1;
+	pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -632,7 +635,7 @@ public function refuseToLickAntPussayOrClosetFuxx():void
 	output("\n\nWith a shrug, you explain that, as the heir of an industrial and technological development company, you’d be a great friend to have as their world is catapulted into the future. The UGC is here, and things aren’t going to return to what they were. A little cooperation now could pay dividends in the future.");
 	output("\n\nNehzara stares at you for a moment and comes to a decision. You’re sure you notice her antennae twitch and her eyes briefly widen, as if she had suddenly realized something. <i>“Yes,”</i> she says after a little more consideration, <i>“I suppose your science and technology could greatly benefit our race. Perhaps....”</i> She goes quiet suddenly, her sentence drifting off and leaving the rest unsaid.\n\n<i>“Very well, Steele. You’ve got a deal. I do hope your first impression of the Scarlet Federation was a positive one. I’d have made at least </i>one<i> good impression on someone. But... my original offer still stands, for future consideration. I’m sure I can find some way we could help one another out. Now, do you have more questions for me, or may I get back to work?”</i>");
 	//(+Lust, PC can now take the shuttle to Kressia)
-	flags["KRESSIA_SHUTTLE_UNLOCKED"] = 1;
+	pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
 	processTime(2);
 	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);	
 }
@@ -652,7 +655,7 @@ public function nehzeraMenu(arg:Function):void
 	else addButton(3,"Appearance",nehzarasAppearance,undefined,"Appearance","Take a closer look at the red myr Ambassador.");
 	
 	//[Her History] [Under Desk] [Storage Closet] [Breeder Play]
-	if(flags["KRESSIA_SHUTTLE_UNLOCKED"] != undefined)
+	if (pc.hasKeyItem("Kressia Pass"))
 	{
 		if(arg == talkToNehzaraAboutHistory) addDisabledButton(4,"Her History","Her History","You just finished talking about that. Maybe a new topic?");
 		else addButton(4,"Her History",talkToNehzaraAboutHistory,undefined,"Her History","Wars and politics are interesting and all, but what about the woman in front of you? You could ask how she got here, and why.");
@@ -710,7 +713,7 @@ public function heyAntHitlerWannaFeel():void
 	output("\n\nThe normally composed diplomat is visibly shocked. <i>“I...”</i> she begins hesitantly, <i>“I haven’t. Those of us who can... can bear young don’t really leave the cities very often at all. An old soldier like me wouldn’t know anything about it.”</i> She looks up at you, those eyes of hers seeming sad for the first time that you can recall. There’s more she wants to say but never will. You doubt you could coerce her into spilling it if you tried.");
 	output("\n\nThen, slowly, Nehzara reaches out with an uncertain hand and places it on the curve of your midsection. The ");
 	//(if eggpreg:)
-	if(9999) output("hard, unyielding tautness of your egg-filled womb nevertheless manages to give off some feeling of vitality, enough to captivate the barren myr woman and leave her speechless");
+	if(pc.hasPregnancyOfChildType(GLOBAL.CHILD_TYPE_EGGS)) output("hard, unyielding tautness of your egg-filled womb nevertheless manages to give off some feeling of vitality, enough to captivate the barren myr woman and leave her speechless");
 	else output("sudden kick that meets her touch surprises Nehzara enough to make her withdraw, though she quickly places her palm back where it was so she can feel another kick. You guess that since the myr have egg-based births, this must be doubly fascinating for her");
 	output(". The bewildered expression on her face isn’t one you’d normally expect to see, and you savor this rare moment while the disciplined officer’s guard is down.");
 

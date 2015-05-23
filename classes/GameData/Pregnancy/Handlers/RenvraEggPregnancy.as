@@ -6,6 +6,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.kGAMECLASS;
 	import classes.GameData.StatTracking;
 	import classes.Engine.Map.InPublicSpace;
+	import classes.GLOBAL;
 	
 	/**
 	 * ...
@@ -30,6 +31,7 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMinimum = 2;
 			_pregnancyQuantityMaximum = 2;
 			_definedAverageLoadSize = 720;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
 			this.addStageProgression(8000, function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 5;

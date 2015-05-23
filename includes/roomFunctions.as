@@ -137,7 +137,13 @@ public function debugMenus():void
 	
 	addButton(4, "Cashmoney", thisIsWhyWeCantHaveNiceThings, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
 	
-	addButton(5, "XP", thisIsWhyWeCantHaveNiceThings);
+	addButton(5, "KeyItems", function():void {
+		pc.createKeyItem("F");
+		pc.createKeyItem("A");
+		pc.createKeyItem("B");
+		pc.createKeyItem("G");
+		pc.createKeyItem("3");
+	});
 	
 	addButton(6, "Pass Time", thisIsWhyWeCantHaveNiceThings);
 }

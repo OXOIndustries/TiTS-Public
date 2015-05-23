@@ -789,5 +789,8 @@
 		"GEOFF_FUCKED_DUDES_TWICE"
 		*/
 
+		public static const CHILD_TYPE_LIVE:uint = 1;
+		public static const CHILD_TYPE_EGGS:uint = 2;
+		public static const CHILD_TYPE_SEED:uint = 3;
 	}
 }

@@ -171,7 +171,7 @@
 				// Medium chance of occurring .
 				if(pc.earType != GLOBAL.TYPE_VANAE && rand(4) == 0 && changes < changeLimit)
 				{
-					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What's going on? When it stops, you run your fingers along them. There's strange new contours -- you've grown a pair of finned ears!\n\nSomething else is different. The brushing of your fingers, while small, is very detailed and distinct. In fact, every noise around is you is more audible; you're being bombarded by a sea of sonorous sensation. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
+					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What's going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you're being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
 					pc.earType = GLOBAL.TYPE_VANAE;
 					changes++;
 				}
