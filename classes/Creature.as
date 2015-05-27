@@ -5986,7 +5986,7 @@
 			if (refractoryRate >= 8 && quantity < 50) quantity = 50;
 			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
 			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
-			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000; // @FENCUMFIX - This is what's breaking the ballFullness being set to negative values
+			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			return quantity;
