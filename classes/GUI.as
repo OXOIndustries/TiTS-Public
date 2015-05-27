@@ -48,6 +48,7 @@
 	import classes.UIComponents.ContentModules.CodexModule;
 	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
 	import classes.UIComponents.ContentModules.LevelUpStatsModule;
+	import classes.Engine.Interfaces.ParseText;
 
 	import classes.UIComponents.SideBarComponents.StatBar;
 
@@ -168,7 +169,7 @@
 		 */
 		private function setupRightSidebar():void
 		{
-			this._rightSideBar = new RightSideBar();
+			this._rightSideBar = new RightSideBar(false);
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
@@ -177,7 +178,7 @@
 		 */
 		private function setupLeftSidebar():void
 		{
-			this._leftSideBar = new LeftSideBar();
+			this._leftSideBar = new LeftSideBar(false);
 			this.titsClassPtr.addChild(_leftSideBar);
 			
 			this._leftSideBar.generalInfoBlock.HideScene();
@@ -664,6 +665,8 @@
 		
 		public function showName(name:String):void
 		{
+			//APRIL FOOLS! roomText = name;
+			//roomText = ParseText(name);
 			roomText = name;
 		}
 
@@ -904,6 +907,8 @@
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
+			//APRIL FOOLS!
+			//cap = kGAMECLASS.parser.recursiveParser(cap);
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		

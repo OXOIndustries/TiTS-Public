@@ -5,6 +5,7 @@
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class Naleen extends Creature
 	{
@@ -25,10 +26,11 @@
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability.";
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 1;
+			this.meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "shimmering scales";
@@ -44,7 +46,6 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 50;
 			this.level = 2;
 			this.credits = 0;

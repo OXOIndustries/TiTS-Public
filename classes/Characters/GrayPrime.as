@@ -38,15 +38,15 @@ package classes.Characters
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
 			this.plural = false;
-			this.lustVuln = 1;
-			this.meleeWeapon = new GooeyPsuedopod();
-			(this.meleeWeapon as GooeyPsuedopod).attack = 2;
-			(this.meleeWeapon as GooeyPsuedopod).damage = 11;
-			(this.meleeWeapon as GooeyPsuedopod).hasRandomProperties = true;
 			
-			this.armor = new GooeyCoverings();
-			(this.armor as GooeyCoverings).defense = 3;
-			(this.armor as GooeyCoverings).hasRandomProperties = true;
+			meleeWeapon = new GooeyPsuedopod();
+			meleeWeapon.attack = 2;
+			meleeWeapon.baseDamage.kinetic.damageValue = 11;
+			meleeWeapon.hasRandomProperties = true;
+			
+			armor = new GooeyCoverings();
+			armor.defense = 3;
+			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
 			
@@ -59,7 +59,6 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
 			this.XPRaw = 250;
 			this.level = 5;
 			this.credits = 0;

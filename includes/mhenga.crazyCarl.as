@@ -1,4 +1,7 @@
-﻿import classes.Items.Guns.HammerPistol;
+﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Guns.HammerPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.MagnumPistol;
 import classes.Items.Guns.TheShocker;
@@ -192,7 +195,7 @@ public function aboutTheRobotFromCrazyCarl():void {
 
 		// SKIP DIS: *If non-mercenary: You nod dizzily, having difficulty parsing the wealth of information as he throws at you. Slowly you catch up with the rambling and are able to piece it together; he took a pretty good gun and made it a even more reliable gun.*
 		output("\n\nFollowing along without missing a beat, you nod firmly in understanding. The ZK series was already known for being a solid go-to carbine and this fixes up some of the flaws. A less egregious action that won’t catch on anything, reinforcement prevents the vulnerable wiring from being affected by environmental circumstances or attacks and the poor accuracy has been improved by adding more coolant, making the rails take longer to heat up and warp. The weapon is still marked for short ranges, ");
-		if(pc.rangedWeapon.damage < 13) output("but you’re confident that you would have a much more dependable weapon.");
+		if(pc.rangedWeapon.baseDamage.getTotal() < 13) output("but you’re confident that you would have a much more dependable weapon.");
 		else output("of course.");
 		output("\n\n\"<i>And it’s yours. As a reward.”</i>");
 
@@ -579,17 +582,17 @@ public function carlsEncounterStart():Boolean {
 		userInterface.showBust("MACHINA");
 		userInterface.showName("\nMACHINA");
 		output("You crunch your way through the brush, swatting irritability at the odd fern that decides to accost you - which is most of them. As much as you’d like to avoid it, the thick, choking ferns rustle rather noisily with every step you make. The jungle life isn’t exactly quiet either, what with the shrill cries of the birds and bees. And the local avian and bee-inspired population, too. Despite all the noise, however, you can still make out something distinctly unnatural whispering from a bit away, like thick fans of some bit of industrial machinery. Like, say, something that hovers.");
-		output("\n\nYou glance down to your codex, curiously. The scanner doesn’t appear to be detecting anything, though whether it’s because whatever is making the noise doesn’t register as a threat or its simply out of the diminutive range you’re not sure. Figures. Probably just a survey probe drone....");
+		output("\n\nYou glance down to your codex, curiously. The scanner doesn’t appear to be detecting anything, though whether it’s because whatever is making the noise doesn’t register as a threat or is simply out of the diminutive range you’re not sure. Figures. Probably just a survey probe drone....");
 		output("\n\nThe task of finding Carl’s wayward robot suddenly springs to mind. That’s probably it! You thrust your way through the greens once again, yanking at any leaves that come your way for propulsion as you chase after that whispering sound. Soon enough it gets louder and louder, until....");
 		output("\n\nYou poke your head out from a bush and find yourself looking into a clearing in the jungle floor. While there are plenty of low hanging plants still, the sky is mercifully visible up above and the space is relatively clear of trees and other obstructions, at least any tall ones. A perfect arena to fight the prey that’s hovering in the middle!");
-		output("\n\nThe machina isn’t exactly large as far as industrial robots go, about the size of an average human torso - just like Carl said. The machine looks to be comprised of two steel-grey colored parts; a circular core, shaped in a way very similar to a tire made of uncompromising metal while the top is a sometimes-translucent dome, with an insignificant gap in between the two pieces. Small, flickering lights shines through the faux-glass, identifying its various visible sensors and the like. Below, attached to the undercarriage is the main concern, though; a dozen spindly little robotic arms all holding onto various tools and gadgets. You recognize one of them as a welder, while there are a few grasping hands among them. Everything else is a bit of a toss-up, though.");
+		output("\n\nThe machina isn’t exactly large as far as industrial robots go, about the size of an average human torso - just like Carl said. The machine looks to be comprised of two steel-grey colored parts; a circular core, shaped in a way very similar to a tire made of uncompromising metal while the top is a sometimes-translucent dome, with an insignificant gap in between the two pieces. Small, flickering lights shine through the faux-glass, identifying its various visible sensors and the like. Below, attached to the undercarriage is the main concern, though; a dozen spindly little robotic arms all holding onto various tools and gadgets. You recognize one of them as a welder, while there are a few grasping hands among them. Everything else is a bit of a toss-up, though.");
 		output("\n\nYou look away from the machine after a moment, surveying the ‘arena’ as you realize something smells off. The smell of death fills your nostrils for one grisly moment as you realize just what that corrupted machine has been doing to the local wildlife. As a point of order, it lifts up the corpse of a small local marsupial from the cloak of leaves in its grasping hand, tugging out its messy bones before chirping.");
 		output("\n\n<i>“Insufficient material.”</i>");
 		output("\n\nThat’s... rather macabre!");
 		if(silly) output(" The worst kind of fell mood!");
 
 		output("\n\nYou know full well this is Carl’s machina, gone off the deep end with whatever programming corruption it received. You’ll have to defeat this thing before it hurts someone - or someone else maybe, you can’t see the mess under the sometimes bloodied plants.");
-		output("\n\n<b>This will be a hard fight</b> just looking at the tools its carrying and it’s thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>");
+		output("\n\n<b>This will be a hard fight</b> just looking at the tools its carrying and its thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>");
 		output("\n\nThe machina hasn’t noticed you yet, though. You could engage it or fight another day.");
 		//[Fight] [Back off]
 		clearMenu();
@@ -640,33 +643,42 @@ public function machinaAttackNormal():void {
 public function theSpinner():void {
 	output("You hear a loud whir from the corrupt machine before it jerks forwards, coming at you as the main body starts to rotate. Not too soon after it is spinning at a blur of a pace, appendages sprawled outwards and in range of you! Watch out!\n");
 	//*Up to seven normal damage attacks.*
-	foes[0].meleeWeapon.damage -= 3;
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	attack(foes[0],pc,true,1);
-	output("\n");
-	if(rand(2) == 0) {
-		attack(foes[0],pc,true,1);
-		output("\n");
-	}
-	if(rand(3) == 0) 
+	var damage:TypeCollection = (foes[0] as Creature).meleeDamage();
+	damage.kinetic.damageValue -= 3;
+	if (damage.kinetic.damageValue < 1) damage.kinetic.damageValue = 1;
+	
+	var attacks:uint = 5 + ((rand(2) == 0) ? 1 : 0) + ((rand(3) == 0) ? 1 : 0);
+	
+	for (var i:uint = 0; i < attacks; i++)
 	{
-		attack(foes[0],pc,true,1);
+		if (combatMiss(foes[0], pc))
+		{
+			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].meleeWeapon.attackVerb + ".");
+		}
+		else if (rand(100) <= 45 && !pc.isImmobilized())
+		{
+			if (pc.customDodge.length > 0) output(pc.customDodge);
+			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].meleeWeapon.attackVerb + ".");
+		}
+		else if (mimbraneFeetBonusEvade(pc))
+		{
+			output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		}
+		else
+		{
+			output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " " + foes[0].meleeWeapon.longName + "!");
+			
+			applyDamage(damage, foes[0], pc, "melee");
+		}
 		output("\n");
 	}
-	attack(foes[0],pc,false,1);
-	foes[0].meleeWeapon.damage += 3;
+	processCombat();
 }
 
 //Weld-gun
 public function weldGunAttack():void {
 	output("One of the machine’s appendages raises upwards and flattens out in the span of half a second, and molten-red flames burst out and fly across the arena at you! The intense heat only lasts for a moment, however, as the modified welder immediately overheats.");
-	var damage:int = 10+rand(5);
-	genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	applyDamage(new TypeCollection( { burning: 10 + rand(5) } ), foes[0], pc);
 	processCombat();
 }
 
@@ -710,26 +722,24 @@ public function suicideBullshit():void {
 	//Shit, got hit.
 	else
 	{
-		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " massive gun!");
-		//Damage bonuses:
-		var damage:int = 15 + foes[0].aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(pc.shieldsRaw > 0) {
-			sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " massive gun!");
+		var damage:TypeCollection = new TypeCollection( { kinetic: 15 } );
+		damage.add(foes[0].aim() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "ranged");
+
+		if (damageResult.shieldDamage > 0)
+		{
+			if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 		}
-		if(damage >= 1) {
-			damage = HPDamage(pc,damage,foes[0].rangedWeapon.damageType,"ranged");
-			if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
-			else output(" (<b>" + damage + "</b>)");	
+		
+		if (damageResult.hpDamage > 0)
+		{
+			output(" The hit carries on through to damage you!");
 		}
+		
+		outputDamage(damageResult);
 	}
 	//*PC survives by HP, dodging, whatever.*
 	if(pc.HP() >= 1 && pc.lust() <= 99) {

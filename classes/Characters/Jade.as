@@ -11,7 +11,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -23,7 +23,6 @@
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
@@ -42,7 +41,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 4;
 			this.credits = 0;
@@ -192,6 +191,16 @@
 		public function UpgradeVersion4(dataObject:Object):void
 		{
 			dataObject.inventory.push(new NukiCookies().getSaveObject());
+		}
+		
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.armor;
+			delete dataObject.meleeWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

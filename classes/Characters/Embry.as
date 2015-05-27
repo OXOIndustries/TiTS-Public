@@ -11,7 +11,7 @@
 		//constructor
 		public function Embry()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -23,7 +23,6 @@
 			this.customDodge = "Syri Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -44,7 +43,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 350;
 			this.level = 3;
 			this.credits = 0;
@@ -154,6 +153,15 @@
 			this.ass.loosenessRaw = 1;
 			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			delete dataObject.meleeWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

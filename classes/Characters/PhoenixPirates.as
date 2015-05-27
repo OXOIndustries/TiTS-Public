@@ -24,7 +24,7 @@ package classes.Characters
 			this.long = "A gang of unruly, vicious-looking space toughs, these Black Void pirates are armed to the teeth with machine-pistols, rifles, shotguns, and everything in between. Ausar, humans, kaithrit girls, and even a Centaurin packing a gatling-laser make up their ranks. They’re all wearing skintight black space suits and peppering the cover around you with bullets. ";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.plural = true;
-			this.lustVuln = 0;
+			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon = new MagnumPistol();
@@ -43,7 +43,7 @@ package classes.Characters
 			this.shieldsRaw = 40;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 2500;

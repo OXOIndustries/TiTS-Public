@@ -1,5 +1,7 @@
-import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -577,6 +579,7 @@ public function petPlayForAnnoAfterCheating():void
 
 	pc.lust(5);
 	processTime(10);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Go Back",takeYourPetBackToTheShop)
 	addButton(1,"Public Use",publicUsePuppyAnno,undefined,"Public Use","See how many of the locals you can get your loyal bitch to publicly service.");
@@ -623,6 +626,7 @@ public function publicUsePuppyAnno():void
 	output("\n\n<i>\"No,\"</i> you urge her, tugging her leash back toward the shop. You're forced to push back a few particularly horny raskvel who try and get at her exposed ass and pussy. You swat them away, finally resorting to dragging Anno back toward the shop. With some effort, you're able to get her in past the door and lock up shop, depriving Anno of cock long enough for her to recover from her daze.");
 
 	output("\n\n<i>\"Woof,\"</i> she finally says, rolling over and lazily spitting out a mouthful of cum. You chuckle and lean down to rub her belly, leaving the ausar slut with an affectionate pet for being such a good sport.");
+	pc.exhibitionism(2);
 	pc.lust(15+rand(10));
 	processTime(30+rand(15));
 	clearMenu();
@@ -696,6 +700,8 @@ public function sexWIthAnnoPostTease():void
 	else addDisabledButton(0,"Face Fuck","Face Fuck","You need a penis in order to have Anno give you a blowjob.");
 	if(pc.hasVagina()) addButton(1,"GetSlurped",getSlurpedOnByAnnoz,undefined,"GetSlurped","Have Anno put that ausar tongue to work somewhere it can be truly appreciated.");
 	else addDisabledButton(1,"GetSlurped","GetSlurped","You need a vagina for her to eat you out.");
+	if(flags["ANNO_TRIBERATOR_USED"] == undefined) addButton(2,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Is that an ausar vibrator over there? Maybe you can use it on her.");
+	else addButton(2,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Use Anno's vibrator on her again.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -775,8 +781,8 @@ public function annoTalkMenu():void
 	else if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		addButton(6, "Join Crew", joinCrewMissionComplete, undefined, "Join Crew", "Offer Anno a new job working directly with yourself.");
+		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(7, "Nova Update", annoNovaUpdate, false, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
-	
 
 	addButton(14,"Back",repeatAnnoApproach);
 }
@@ -846,7 +852,7 @@ public function tellAnnoAboutSyri():void
 		output("\n\nYou quickly assure her you aren't. They're on different planets, after all.");
 		if(pc.isMischievous()) output(" The logistics would be a nightmare.");
 		output("\n\n<i>\"Well... you and I aren't exactly together, really, and knowing Syri she's just looking for a bum to fuck, so... yeah, I guess that's alright. Kinda weird, though...\"</i>");
-		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Sysy found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
+		output("\n\nAnno stares at you for an uncomfortable moment before shrugging. <i>\"Well, I'm glad Syri found someone to love. Or fuck. Whatever. Couldn't ask for a better " + pc.mf("boy","girl") + "friend for her, if that's what you two are. Better tell her to watch out, though, or I might snatch you away!\"</i>");
 		output(" She smirks. <i>\"Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>");
 	}
 	else output("\n\n<i>\"Cool! I didn't even know she moved. Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>\n\nYou chuckle and say you will.");
@@ -897,7 +903,7 @@ public function syriTalksAboutAnno():void
 	//If PC has a cock: 
 	if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
 	else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
-	output(" Your eyes eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
+	output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
 	output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
 	if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
 	else output("shoulders");
@@ -1065,7 +1071,7 @@ public function intoDickgirlsAnno():void
 	output("<i>\"So, you're into girls with a little more?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form... as well as what lies");
 	if(pc.legCount > 1) output(" between");
 	else output(" along");
-	output(" your [pc.legOrlegs].");
+	output(" your [pc.legOrLegs].");
 	output("\n\nAnno grins. <i>\"I should hope so, or I've got some bad news for Kaede!\"</i> She laughs, taking a few moments to compose herself. <i>\"Yeah, yeah I do. There's something just... </i>right<i> about a curvy, sexy lady's body with a big, throbbing cock between her legs, you know? Soft and squishy in all the right places, but hard and powerful where it counts.\"</i>");
 	output("\n\n<i>\"So, why do you ask?\"</i> she teases, pressing herself close. <i>\"Thinking about asking little ol' me out?\"</i>");
 	output("\n\nThat sounded a little more serious than you expected...");
@@ -1177,7 +1183,7 @@ public function faceFuckAnno():void
 
 	output("\n\nBut the feeling of your cock pounding their owners' face, her chest heaving with every thrust, dissuades you. Content to fondle and squeeze, you let your thumbs run across the stiff, pink peaks of her nipples, rolling their rounded points under your digits in slow, wide circles, one full rotation for every half-dozen pumps of your [pc.cock " + x + "]. Anno moans, her back arching at your touch as her breath catches between mouthfuls of cock. Still, her fingers travel down, pulling open her uniform straight down her belly to the crotch, where her hand quickly disappears.");
 
-	output("\n\nYou thought she was moaning before... Her voice breaks into a high-pitched whine as her fingers delve her sex, her cries only stifled when your [pc.cock " + x + "] is occupying her throat. You fuck faster, hips hammering to the beat of her wrist's movements, reciprocating her every movement with one of your own. Soon, your voice joins hers, quiet moans turning into bestial grunts as your hips batter her face, her oh-so-skilled tongue, mouth, and throat working in concert to milk every inch of cockflesh that comes their way.");
+	output("\n\nYou thought she was moaning before... Her voice breaks into a high-pitched whine as her fingers delve into her sex, her cries only stifled when your [pc.cock " + x + "] is occupying her throat. You fuck faster, hips hammering to the beat of her wrist's movements, reciprocating her every movement with one of your own. Soon, your voice joins hers, quiet moans turning into bestial grunts as your hips batter her face, her oh-so-skilled tongue, mouth, and throat working in concert to milk every inch of cockflesh that comes their way.");
 
 	output("\n\nBetween the lewd show of your lover jilling off and your own oral-induced pleasure, you find yourself hurtling toward climax. You have just enough time to warn Anno before, with a grunt and a ");
 	if(pc.balls > 0) output("balls");
@@ -1894,12 +1900,12 @@ public function annoTalkAboutDaMission():void
 	
 	output("\n\n<i>“You see it, right?”</i> Anno says, jabbing a white-furred finger into the display, towards");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 75) output(" the");
-	output(" a");
+	else output(" a");
 	output(" section of the ship that seems to be drawing an inordinate amount of power. <i>“Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.”</i>");
 	
 	output("\n\n<i>“A ghost deck?”</i>");
 	
-	output("\n\nShe nods, and presses a button that zooms your view close in on the deck, giving you a cross-section view of it. <i>“It’s an old, old Earth custom, I found out. Skipping floor 13 on buildings, decks on ship. Unlucky number. Nobody even noticed it wasn’t there: Deck 13 in the stair wells and elevators just leads to a mechanical closet, every time. Nothing to look at but old tools. But in the center of the deck? There’s something MASSIVE drawing power from all over the ship.”</i>");
+	output("\n\nShe nods, and presses a button that zooms your view close in on the deck, giving you a cross-section view of it. <i>“It’s an old, old Earth custom, I found out. Skipping floor 13 on buildings, deck 13 on ships and the like. Unlucky number. Nobody even noticed it wasn’t there: Deck 13 in the stair wells and elevators just leads to a mechanical closet, every time. Nothing to look at but old tools. But in the center of the deck? There’s something MASSIVE drawing power from all over the ship.”</i>");
 	
 	output("\n\n<i>“Alright. So what? What’s that got to do with your work?”</i>");
 	
@@ -2035,7 +2041,7 @@ public function annoRegularAttack(bonusDamage:int = 0):void
 
 		if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
 
-		genericDamageApply(14 + bonusDamage, anno, foes[0], GLOBAL.KINETIC);
+		applyDamage(new TypeCollection( { kinetic: 14 + bonusDamage } ), anno, foes[0]);
 	}
 	
 	output("\n");
@@ -2133,7 +2139,7 @@ public function securityDroidLaserBarrage():void
 {
 	//Laser Barrage
 	//Lots of moderate laser attacks
-	output("\nSeveral of the drones lock onto you and let loose with a hail of laser bolts.");
+	output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
 	
 	var attacks:int = 2 + rand(2);
 
@@ -2149,7 +2155,7 @@ public function securityDroidChargeShot():void
 {
 	//Charge Shot
 	//Two moderate laser shots (as above) + one HEAVY one
-	output("\nAmid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
+	output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
 
 	rangedAttack(foes[0], pc, true, 1);
 	rangedAttack(foes[0], pc, true, 1);
@@ -2165,7 +2171,7 @@ public function securityDroidChargeShot():void
 	{
 		output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
 
-		genericDamageApply(30, foes[0], pc, GLOBAL.LASER);
+		applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), foes[0], pc);
 	}
 
 	output("\n");
@@ -2176,7 +2182,7 @@ public function securityDroidFlashbang():void
 {
 	// Flashbang
 	// Blind, possibly Stun attack
-	output("\nOne of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
+	output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
 
 	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind"))
 	{
@@ -2187,6 +2193,7 @@ public function securityDroidFlashbang():void
 	{
 		output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 	}
+	output("\n");
 	processCombat();
 }
 
@@ -2530,10 +2537,126 @@ public function deck13ShieldControlFunc():Boolean
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
-		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(2, "Goo Sample", deck13GooSample);
+		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(1, "Goo Sample", deck13GooSample);
+		
+		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(5, "Make Goo", deck13MakeGoo);
 
 		return false;
 	}
+}
+
+public function deck13MakeGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("GOO\nCONTAINER");
+
+	output("You step up to the one vat of gray goo remaining on the deck. Its humming slightly, churning as it produces and maintains a little sea of goop. There’s a spigot about six feet off the deck, controlled by a dark computer monitor that looks like it belongs in a museum. You walk over and push the screen. Nothing happens.");
+	
+	output("\n\nPoke. Nothing again.");
+	
+	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down to a [pc.knee] and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
+	
+	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
+	if (flags["TARKUS_DESTROYED"] == 1) output(" once");
+	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
+	
+	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
+	if (pc.isFeminine()) output(" pretty");
+	else output(" handsome");
+	output("! Are we going to be friends?”</i>");
+	
+	output("\n\nWell, that’s not exactly what you were expecting from the fuck-happy creatures that escaped the <i>Nova</i>. Still, you nod and say that you are. The gray goo swells up, making a high-pitch squealing sound and hugging herself. <i>“Yaaaaaay! Best friends forever and ever and ever!”</i> she giggles, beaming at you. <i>“Oh! I’m... uh... um... I need a name!”</i>");
+	
+	clearMenu();
+	addButton(0, "Next", deck13MakeGooII);
+}
+
+public function deck13MakeGooII():void
+{
+	clearOutput();
+	author("Savin");
+	showName("GOO\nCONTAINER");
+	
+	output("<b>Enter the Gray Goo’s name:</b>");
+	this.displayInput();
+
+	clearMenu();
+	addButton(0, "Next", nameThaGoo);
+}
+
+public function nameThaGoo():void
+{
+	if (userInterface.textInput.text.length == 0)
+	{
+		deck13MakeGoo();
+		output("\n\n\n<b>You must enter a name.</b>");
+		return;
+	}
+	if (userInterface.textInput.text.length > 14)
+	{
+		deck13MakeGoo();
+		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
+		return;
+	}
+
+	goo.short = userInterface.textInput.text;
+	this.removeInput();
+
+	processTime(5+rand(3));
+	flags["ANNO_NOVA_UPDATE"] = 2;
+
+	nameThaGooII();
+}
+
+public function nameThaGooII():void
+{
+	clearOutput();
+	author("Savin");
+	showName("GOO\nCONTAINER");
+
+	output("<i>“[goo.name]?”</i> you suggest.");
+	
+	output("\n\n<i>“Wow! That’s awesome. I’m soooo " + indefiniteArticle(chars["GOO"].short) + ",”</i> [goo.name] announces, bouncing giddily. <i>“You’re the bestest friend in the whoooole wide universe. It’s the best name EVER!”</i>");
+	
+	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
+	if (pc.tallness > goo.tallness + 6) output(" up");
+	else if (pc.tallness < goo.tallness - 6) output("down");
+	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
+	
+	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
+	
+	output("\n\n<i>“[pc.name]. [pc.name] Steele,”</i> you answer, extending a hand.");
+	
+	output("\n\nShe stares at your hand quizzically. Slowly, [goo.name] leans in and wraps her big cock-pillow lips around one of your fingers and sucks on it. The sensation is cool, wet, with just enough suckling pressure to send a shiver of pleasure through your arm. You gently push her off you, and instead offer her Anno’s thumb drive to suckle on.");
+	
+	output("\n\n<i>“What’s that?”</i> she coos, cocking her head to the side. You tell her it’s loaded with extra programming for her. <i>“No waaaay, is it going to make me super smart and stuff?”</i>");
+	
+	output("\n\nYou nod. <i>“It sure is.”</i>");
+	
+	output("\n\n<i>“Yaaaaaaaaaaaay!”</i> she cheers, plucking the drive out of your hand and swallowing it.");
+	
+	output("\n\nWell shit. [goo.name] beams at you, giggling to herself as you stare and her. Looks like that plan just went out the window.");
+	
+	output("\n\n<i>“I don’t feel any different,”</i> she pouts, absently cupping one of her huge breasts. <i>“Oh well! Hey, wanna... I dunno, wanna fuck?”</i>");
+	
+	output("\n\nTime to put this new gray goo to the test.");
+	if (pc.libido() >= 66) output(" As much as you would like to see what she’s capable of, you need to make sure she’s not as forcefully amorous as her sisters.");
+	output(" <i>“Not right now,”</i> you tell her.");
+	
+	output("\n\n[goo.name] shrugs. <i>“Kay! Um... what do you wanna do?”</i>");
+	
+	output("\n\nYou smile, relieved, and ask if [goo.name] would like to come with you back to your ship.");
+	
+	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
+	
+	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
+
+	currentLocation = shipLocation;
+	
+	processTime(45+rand(15));
+
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function grayPrimeAI():void
@@ -2595,9 +2718,9 @@ public function grayPrimeGooSword():void
 	{
 		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!\n");
 
-		var damage:int = foes[0].damage(true) + foes[0].aim()/2;
-		damage *= ((100 + (15-rand(30)))/100);
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -2675,7 +2798,7 @@ public function grayPrimeFailEscape():void
 			break;
 	}
 
-	pc.lustDamage(10+rand(5));
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 }
 
 //Force Punch
@@ -2692,9 +2815,10 @@ public function grayPrimeForcePunch():void
 	{
 		output(" Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt!");
 
-		var damage:int = foes[0].damage(true) + foes[0].aim() / 2 + 20;
-		damage *= ((100 + (15-rand(30)))/100);
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(20);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 
 		// 25% of knockdown
 		if (rand(4) == 0)
@@ -2727,7 +2851,7 @@ public function grayPrimeLustfulClones():void
 public function grayPrimeCloneLustAttack():void
 {
 	output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
-	pc.lustDamage(foes[0].statusEffectv1("Gooclones"));
+	applyDamage(new TypeCollection( { tease: foes[0].statusEffectv1("Gooclones") } ), foes[0], pc, "minimal");
 }
 
 //Attack Clone
@@ -3085,7 +3209,8 @@ public function deck13GrayPrimeTalkCrew():void
 	output("\n\n<i>“You said ‘we,’”</i> Anno says. <i>“Were you... part of the ship’s computer, I guess? Primitive doctor bots that had a loooong time to gain sentience?”</i> ");
 	
 	output("\n\nThe goo eyes Anno, a look of immense sadness crossing her eyes. <i>“No. I... we... are human.");
-	if (pc.isHuman() || pc.isHalfHuman()) output(" Just as human as you are.”</i>");
+	if (pc.isHuman() || pc.isHalfHuman()) output(" Just as human as you are.");
+	output("”</i>");
 	
 	output("\n\n<i>“What?”</i> you and Anno say at once, staring at the glistening metallic maiden. ");
 	
@@ -3378,10 +3503,10 @@ public function gigaGooPunch():void
 		(pc as Creature).createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
 		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 	}
-
-	var damage:int = foes[0].damage(true) + foes[0].aim() / 2;
-	damage *= (100 + (15-rand(30)))/100;
-	genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+	
+	var damage:TypeCollection = foes[0].meleeDamage();
+	damageRand(damage, 15);
+	applyDamage(damage, foes[0], pc);
 }
 
 //Sword Thrust
@@ -3397,10 +3522,11 @@ public function gigaGooSwordThrust():void
 	else
 	{
 		output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
-
-		var damage:int = foes[0].damage(true) + ((foes[0].aim() + foes[0].reflexes()) / 2) + 5;
-		damage *= (100 + (25-rand(50)))/100;
-		genericDamageApply(damage, foes[0], pc, GLOBAL.PIERCING);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(foes[0].reflexes() + 5);
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -3414,13 +3540,13 @@ public function gigaGooCageRattle():void
 
 	for (var i:int = 0; i < 7; i++)
 	{
-		var damage:int = 5;
-		damage *= (100+(15-rand(30)))/100;
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+		damageRand(damage, 15);
 		
 		if (!combatMiss(foes[0], pc, -1, 2))
 		{
-			totalDamage += damage;
-			genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+			var damageResult:DamageResult = applyDamage(damage, foes[0], pc);
+			totalDamage += damageResult.totalDamage;
 		}
 	}
 

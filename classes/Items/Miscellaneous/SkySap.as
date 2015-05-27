@@ -39,8 +39,6 @@
 			//Information
 			this.basePrice = 5;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -48,7 +46,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = this._latestVersion;
 		}
@@ -88,6 +85,18 @@
 					
 					changes++;
 				}
+				
+				//Change Markings
+				// Prerequisites: Has vanae skin color, has existing markings
+				// Apply set color (Marking color)
+				if(!hasMatchingVanaeSkinAccentColor(pc) && pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(8) == 0)
+				{
+					outputB("\n\nThere is a tingling under your " + pc.skin() + ". Your " + pc.skinAccent + " markings glow and pulse, catching your attention.");
+					pc.skinAccent = getVanaeAccentColor(pc);
+					outputB(" Suddenly, they cloud and fade, becoming " + pc.skinAccent + " in color. You take a quick moment to look over yourself using your Codex. <b>You now have " + pc.skinAccent + " body markings!</b>");
+					
+					changes++;
+				}
 
 				//Add Markings
 				// Prerequisites: No existing markings
@@ -100,6 +109,8 @@
 					outputB("\n\nAcross your " + pc.skin() + ", " + pc.skinAccent + " markings suddenly begin blossom and bloom. You watch in wonderment as the swiftly growing tattoo tree spreads across every inch of your body. It's like dozens of fingers are tracing across your form and using your body as a living canvas.");
 					outputB("\n\nWhen the sensations subside, you shiver a little and look at your reflection in your codex. Luminous lines now break up your " + pc.skin() + ". <b>You now have " + pc.skinAccent + " body markings!</b>");
 					pc.createStatusEffect("Vanae Markings");
+					
+					changes++;
 				}
 				//Reflex Increase / Strength Decrease
 				// Must not already have 50+ reflex and strength 0.
@@ -174,7 +185,7 @@
 				// Medium chance of occurring .
 				if(pc.earType != GLOBAL.TYPE_VANAE && rand(4) == 0 && changes < changeLimit)
 				{
-					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What's going on? When it stops, you run your fingers along them. There's strange new contours -- you've grown a pair of finned ears!\n\nSomething else is different. The brushing of your fingers, while small, is very detailed and distinct. In fact, every noise around is you is more audible; you're being bombarded by a sea of sonorous sensation. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
+					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What's going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you're being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
 					pc.earType = GLOBAL.TYPE_VANAE;
 					changes++;
 				}
@@ -209,7 +220,7 @@
 				//Female TFs
 				choices = new Array();
 				for(x = 0; x < target.totalVaginas(); x++) {
-					if(target.vaginas[x].type != GLOBAL.TYPE_VANAE && target.vaginaTypeUnlocked(x, GLOBAL.TYPE_NAGA)) choices[choices.length] = x;
+					if(target.vaginas[x].type != GLOBAL.TYPE_VANAE && target.vaginaTypeUnlocked(x, GLOBAL.TYPE_VANAE)) choices[choices.length] = x;
 				}
 				if(choices.length == 0) x = -1;
 				else x = choices[rand(choices.length)];
@@ -235,16 +246,17 @@
 				if(!pc.hasVagina() && changes < changeLimit && rand(4) == 0 && hasVanaeSkinColor(pc))
 				{
 					outputB("\n\nDeep in your lower abdomen, you feel a hot pooling sensation growing and coiling tight. You rub your belly, moaning as it steadily intensifies. Soon you're on the ground touching between your [pc.thighs], stroking a place that is now becoming incredibly hot. It feels like you're about to cum, but ");
-					if(pc.hasCock()) outputB("not from your [pc.cocks]");
+					if(pc.hasCock()) outputB("not from your " + pc.cocksDescript());
 					else outputB("not from your [pc.ass]");
 					outputB("!");
 
 					outputB("\n\nYou throw back your head and let out a shrill cry as glistening pussy petals emerge from your [pc.skinColor] mound. Your new womanhood blossoms like a flower, parting softly and exposing your slick wetness to the air. You feverishly fondle your your warm, damp entrance, plunging your fingers inside and stirring about inside of your virgin pussy. It feels so good, is this what all women enjoy having...?\n\nWith a shrill cry, your [pc.hips] madly buck the air and you squirt a stream of [pc.girlCum] out from your new pussy, violently climaxing all over the place. A thin sheen of sweat coats your [pc.skinFurScales] as you fall, utterly spent, on the surface below you. That--that was something else. What would it feel like to have something in it, you wonder...?\n\nNow that you've settled down, you explore your new vanae pussy with your fingertips. You can feel the little feelers inside designed for stroking and teasing cocks. A little further in, and you feel a slight obstruction - you've definitely got a hymen - and it seems you're a squirter to boot. Roaming a little higher, your digits brush two very sensitive clits. Oh--! Just brushing a finger between those sets your loins alight with pleasure. This is definitely going to be fun.");
-					outputB("\n\n<b>You now have a virgin, [pc.pussyColor] vanae pussy and two clits -- you're also a squirter!</b>");
+					outputB("\n\n<b>You now have a virgin, [pc.pussyColor] vanae pussy and two clits - you're also a squirter!</b>");
 					pc.createVagina();
 					pc.vaginas[0].type = GLOBAL.TYPE_VANAE;
 					pc.vaginas[0].vaginaColor = getVanaeAccentColor(pc);
 					pc.vaginas[0].clits = 2;
+					pc.clitLength = 0.25;
 					pc.vaginas[0].wetnessRaw = 4;
 					changes++;
 				}
@@ -481,6 +493,12 @@
 					return "luminous violet";
 			}
 			return "ERROR.";
+		}
+		
+		protected function hasMatchingVanaeSkinAccentColor(pc:Creature):Boolean
+		{
+			if (pc.skinAccent == getVanaeAccentColor(pc)) return true;
+			return false;
 		}
 	}
 }

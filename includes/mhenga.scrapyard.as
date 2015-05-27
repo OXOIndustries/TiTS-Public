@@ -49,19 +49,30 @@ public function buyFromGeoff():void {
 	this.clearMenu();
 	this.addButton(0,"Buy",buyItem);
 	this.addButton(1,"Talk",talkToGeoff);
-	if(flags["SEXED_GEOFF"] == 1) {
-		if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga()) {
-			this.addDisabledButton(3,"Sex","Sex","You aren't feminine enough for sex with Geoff.");
+
+	if(flags["SEXED_GEOFF"] == 1) 
+	{
+		if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined || pc.isTaur() || pc.isNaga())
+		{
+			addDisabledButton(3,"Sex","Sex","You aren't feminine enough for sex with Geoff.");
 			output("\n\nGeoff doesn't seem interested in sex with the way you look right now...");
 		}
-		else {
-			if(pc.lust() >= 33) this.addButton(3,"Sex",GeoffRepeatFuck);
-			else {
-				this.addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
-				output("\n\nYou aren't aroused enough for sex.");
+
+		if (pc.lust() >= 33)
+		{
+			if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == 1 || pc.isFeminine())
+			{
+				addButton(3, "Bottom", GeoffRepeatFuck);
+				if (pc.hasCock()) addButton(4, "Top", dudesTopGeoff);
 			}
 		}
+		else
+		{
+			addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
+			output("\n\nYou aren't aroused enough for sex.");
+		}
 	}
+
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -71,15 +82,20 @@ public function talkToGeoff():void {
 	author("Nonesuch");
 	userInterface.showBust("GEOFF");
 	userInterface.showName("\nGEOFF");
-	if(flags["SEXED_GEOFF"] == undefined) {
+	if(flags["SEXED_GEOFF"] == undefined || (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined)) 
+	{
 		output("You ask the lanky, dreadlocked young man what brought him out to the frontier.");
 		output("\n\n<i>“Tuition fees,”</i>  he says simply, as he goes on cleaning engine parts. <i>“I grew up on Sigius VI and wanted to go into engineering. Got the grades, but my folks don’t have the money. When my dad mentioned my uncle was going to come out here with a business and was looking for an assistant, it seemed to me like a win-win: make the money I need, and see the stars. Once in a century opportunity for a hell of a gap year, man.”</i>  He sighs. <i>“I, uh, kinda forgot what my uncle is like.”</i>");
 		output("\n\nYou ask if he regrets taking the job.");
 		output("\n\n<i>“Oh no, don’t get me wrong, I’m not complaining! I’m not earning as fast as I’d hoped, but it’s great out here. It’s nice to be in a place where the sun’s not coming through a blanket of smog, the people you meet in this job you wouldn’t believe, and the natives here are friendly. Uh. Real friendly.”</i>  His eyes glaze slightly, and you have to cough to make him focus back on you. <i>“And Uncle Artie might be... Uncle Artie... but he’s got me doing what I like doing. I love working with my hands, it’s what got me into engineering in the first place. Taking a broken thing apart, working out how it functions and putting it back together so it works, there’s nothing more satisfying than that.”</i>  He does sound genuinely impassioned when he says that, gripping the air with his strong but smooth hands as he talks.");
 		processTime(3);
 		this.clearMenu();
-		if(pc.lust() >= 33) this.addButton(0,"Flirt",flirtWithGeoff);
-		else {
+		if(pc.lust() >= 33)
+		{
+			addButton(0,"Flirt",flirtWithGeoff);
+		}
+		else 
+		{
 			output("\n\nIf you were more turned on, you could flirt with him.");
 			this.addDisabledButton(0,"Flirt");
 		}
@@ -98,21 +114,33 @@ public function talkToGeoff():void {
 public function flirtWithGeoff():void {
 	clearOutput();
 	author("Nonesuch");
-	output("You smile suggestively and ask if he’s that good with his hands, perhaps he could give you a personal demonstration?");
-	
-	//PC is andro/masculine male/herm OR centaur/some other stupid shape with the genitals on the back:
-	if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga() || (!pc.hasCock() && !pc.hasVagina())) {
-		userInterface.showBust("GEOFF");
-		userInterface.showName("\nGEOFF");
-		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
-		output("\n\nYou decide you’re better off not explaining what you actually meant.");
-		this.clearMenu();
-		this.addButton(0,"Next",buyFromGeoff);
-		return;
-	}
-	flags["SEXED_GEOFF"] = 1;
 	userInterface.showBust("GEOFF_NUDE");
 	userInterface.showName("\nGEOFF");
+
+	output("You smile suggestively and ask if he’s that good with his hands, perhaps he could give you a personal demonstration?");
+		
+	// Genderless & Not Bipeds get fucked off
+	if (!pc.isBiped() || (!pc.hasCock() && !pc.hasVagina()))
+	{
+		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
+
+		output("\n\nYou decide you’re better off not explaining what you actually meant.");
+		addButton(0, "Next", buyFromGeoff);
+		return;
+	}
+
+	// Masculine players who haven't flirted harder with him get options.
+	if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined)
+	{
+		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
+
+		addButton(0, "Flirt More", flirtMoreWithGeoff);
+		addButton(1, "Nevermind", buyFromGeoff);
+		return;
+	}
+
+	flags["SEXED_GEOFF"] = 1;
+	
 	output("\n\n<i>“You?... I, uh.”</i>  says Geoff. He blushes, but then a wide grin breaks out on his long, pleasant face and he meets your eye. <i>“No, I could probably take a few minutes out to, uh, demonstrate a few things.”</i>  He slides his warm hand into yours before turning and leading you out into the shop’s back lot.");
 	output("\n\n<i>“I told you you wouldn’t gain anything spiritual talking to him...”</i>  a reedy, sighing voice follows you out.");
 	output("\n\nThe back lot is a sprawling, open-air garage-like area, dominated by a stationary robot wrapping a large hovercraft in cleansing steam. The hissing will certainly mask any noise of your own you will make, and increasingly eager, you deliberately press into the tall young mechanic, feeling his tight, firm flesh warm against you. Laughing, he responds by sending his hand roaming down your side, sliding down until he finds and cups your [pc.butt]. The garage is shielded from the worst of the hot sun by a metal roof, but sunlight still stubbornly pushes through its grimy skylights. The humidity couples with the haze of water in the air to give the place, for all that it smells of oil and metal, a sauna-like atmosphere. Moisture beads upon your skin as Geoff presses you into a free space on the wall, his gleeful grin replaced by an expression of concentration as he slides his hands over your skin, his breath coming heavier as he begins to remove your clothing and his fingers come into contact with the warmer, softer parts of your body. You smile, hang your arms around his skinny shoulders, and let him do the work.");
@@ -129,7 +157,19 @@ public function flirtWithGeoff():void {
 		if(pc.cockTotal() == 1) output("s");
 		output(" outwards impatiently.");
 		
-		output("\n\n<i>“Woah, woah, woah,”</i>  he cries out, taking half a step back. <i>“You’re a guy?!”</i>  You can’t help but giggle at the expression of complete bewilderment which has replaced the look of deep concentration - and yet you can’t also help but notice the fervent bulge which has been steadily growing in his own jeans over the last couple of minutes hasn’t abated. You wriggle, letting the sinuous movements of your girl-boy body drop your underclothes away, and when he doesn’t move, his eyes frozen on your form, step into him and begin to move your hands along their own slow path of seduction.");
+		if (pc.isFeminine())
+		{
+			output("\n\n<i>“Woah, woah, woah,”</i>  he cries out, taking half a step back. <i>“You’re a guy?!”</i>");
+		}
+		else
+		{
+			output("\n\nHis eyes fall upon your burgeoning length");
+			if (pc.cocks.length > 1) output("s");
+			output(" and he falters momentarily.");
+		}
+		
+		output(" You can’t help but giggle at the expression of complete bewilderment which has replaced the look of deep concentration - and yet you can’t also help but notice the fervent bulge which has been steadily growing in his own jeans over the last couple of minutes hasn’t abated. You wriggle, letting the sinuous movements of your girl-boy body drop your underclothes away, and when he doesn’t move, his eyes frozen on your form, step into him and begin to move your hands along their own slow path of seduction.");
+	
 		output("\n\nYou murmur into his ear that he shouldn’t worry about what you are, as you move your hands downwards, enjoying the pockets of softness to be found upon his frame here and there, ameliorating his firm, bony form. He doesn’t stop you and he groans softly as your hand slides into his pants and finds his hardening, sturdy six inch prick. After all, this guy isn’t, you say softly, grinning as you move your hand over and around his prick before focusing on his raphe, stroking it gently until he is straining.");
 		output("\n\nAll reservations replaced by pulsing need, Geoff moves into you, his ragged breath harsh upon your face as he pushes into you, using his tight mass to push you against the wall. As you pull off his belt and let his faded jeans fall, he pauses- as unsure about what to do with you as if you’d handed him a strange new machine - before his hands form around your [pc.butt] and he rolls your hips so your [pc.asshole] faces outwards. He squeezes your ass and you laugh as you stroke his nape and fuzzy hair - clearly there’s at least one part of your body he’s reasonably assured about. You close your eyes as you feel his bulging hardness press against your sphincter.");
 		output("\n\n<i>“Are you sure this is-?”</i>  he mumbles. <i>“I don’t want to-“</i>  Insistently, you tell him to keep going. The humid atmosphere, the slow movement of his hands and now his strong, wiry mass bent into you have made you feel soft and warm, your [pc.cock] still standing to attention. Given fresh purpose by the urgency in your voice, he pushes forward, penetrating you slowly.");
@@ -298,3 +338,315 @@ public function GeoffRepeatFuck():void {
 	this.addButton(0,"Next",mainGameMenu);
 }
 
+public function flirtMoreWithGeoff():void
+{
+	clearOutput();
+	author("Foxxling");
+	userInterface.showBust("GEOFF_NUDE");
+	userInterface.showName("\nGEOFF");
+
+	if (pc.isBro())
+	{
+		output("You look at Geoff’s lips, those luscious lips that would go perfect on your... everything. The smooth brown skin, the lean musculature and even his long dreads have your body heating up. You watch him as he chatters on while moving around. You don’t pay any attention to what he’s doing, you just rub your crotch as you watch him bend this way and that. When he raises his arms to get something high up you get a good view of his bronzed lower back and the little dimples located there. There is something about the way his ass looks in those faded jeans, the way his soft cock shifts the material as he moves.");
+		
+		output("\n\n<i>“Uh...”</i> he says, suddenly noticing the way you’re rubbing [pc.eachCock]. You look up at his long, pleasant face and there you see confusion, <i>“What are you doing?”</i>");
+		
+		output("\n\nTo which you answer, <i>“Thinking about fucking you.”</i>");
+		
+		output("\n\n<i>“Oh,”</i> is all he says as his lips curl and his head cocks to the side. The look he gives you is one of bewilderment but not disgust... so that’s saying something.");
+	}
+	if (pc.isNice())
+	{
+		output("You look at Geoff’s smile, trying to judge if he seriously has no clue what you were talking about. When he begins chattering about his job you come to the only logical conclusion: he doesn’t.");
+		
+		output("\n\nAs he keeps talking about you watching him work he isn’t even looking at you. He moves around: cleaning, adjusting inventory, organizing tools and being restless in general.");
+		
+		output("\n\nSo, as he passes, you reach out and take his chin in your hand and say, <i>“Actually, I was trying to let you know that I think you’re cute.”</i>");
+		
+		output("\n\nHis mouth falls open as his eyebrows raise in a classic expression of complete surprise. Then a smile spreads across his now laughing face as <i>“Thanks”</i> comes from his lips in a rush of air.");
+	}
+	else if (pc.isAss())
+	{
+		output("You can’t help but stare at Geoff’s face as he chatters on about... well... nothing. In all honesty you have to admit that you aren’t exactly being forward and the kid is obviously quite naive.");
+		
+		output("\n\nOnce you’ve grown annoyed with his sudden idiocy you slam your hand into the wall right in front of his face, halting his incessant chatter and restless movement as he jumps out of his skin.");
+		
+		output("\n\n<i>“Newsflash...”</i> you calmly say, your face an inch from his, <i>“I want to fuck you.”</i>");
+		
+		output("\n\nHis face screws up in incredulous surprise for a moment before a bark of laughter sends his handsome features into relieved merriment. <i>“Dude you scared me half to death, I thought you were going to hurt me.”</i> He chuckles.");
+		
+		output("\n\n<i>“Well...”</i> you say with a devilish grin, <i>“I might.”</i> This stops his laughter, but from the way he bites his lip you know he’s turned on.");
+	}
+	else
+	{
+		output("You look at Geoff’s lips. Your initial purpose was to try and gauge if he honestly doesn’t know you are flirting with him but it is forgotten when you imagine those lips on your body. As he casually talks about his job you figure he mustn’t know your true intentions. What kind of crazy person would pass up a hot [pc.race] like you?");
+		
+		output("\n\nSo as the oblivious college student continues talking about junk he moves around: adjusting inventory, organizing tools, cleaning and being restless in general. You can’t help but notice the way his little ass looks in those jeans, the way his soft cock shifts as he moves. You lick your lips as thoughts of making him moan so loud his weirdo uncle blushes stream through your mind.");
+		
+		output("\n\nWhen he suddenly stops you look up at his face to find his eyes on you. From the way his eyebrows are raised in surprise you know you’ve been caught ogling his goodies. Unabashed and unashamed you let your eyes make one more luxurious round trip before returning to his face.");
+		
+		output("\n\n<i>“Oh,”</i> is all he says as his lips curl and his head bows in embarrassment.");
+	}
+
+	output("\n\n<i>“Well?... I, uh....”</i> Geoff stammers, his hand flying up to muss his hair with a huge embarrassed smile that puts his alabaster teeth on prominent display, <i>“I’ve.. uh... I’ve never... you know... with a guy.”</i> Despite the sheepishness with which he approaches the situation he doesn’t seem closed to the idea.");
+
+	if (pc.isNude())
+	{
+		output("\n\nHe is, however, regarding [pc.eachCock] with an understandable mixture of excitement and trepidation.");
+	}
+	else
+	{
+		output("\n\nHe is, however, looking at your concealed cock");
+		if (pc.cocks.length > 1) output("s");
+		output(" with an understandable mixture of curiosity and trepidation.");
+	}
+
+	flags["SEXED_GEOFF_MASC"] = 1;
+
+	clearMenu();
+	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff's virgin ass.");
+	else addDisabledButton(0, "Top", "Top", "If you had a cock you could probably take the initiative and fuck Geoff in the ass.")
+	if (flags["SEXED_GEOFF"] == undefined) addButton(1, "Bottom", flirtWithGeoff, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
+	else addButton(1, "Bottom", GeoffRepeatFuck, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
+}
+
+public function dudesTopGeoff():void
+{
+	if (flags["GEOFF_TOPPED"] == undefined) dudesTopGeoffFirstTime();
+	else dudesTopGeoffRepeat();
+}
+
+public function dudesTopGeoffFirstTime():void
+{
+	clearOutput();
+	author("Foxxling");
+	userInterface.showBust("GEOFF_NUDE");
+	userInterface.showName("\nGEOFF");
+
+	flags["GEOFF_TOPPED"] = 1;
+
+	output("You slide your hand into his, and without a word the two of you debunk to the humidity and steam in the back.");
+	
+	output("\n\n<i>“I told you you wouldn’t gain anything spiritual talking to him...”</i> a reedy, sighing voice follows you out.");
+	
+	output("\n\nThe back lot is a sprawling, open-air garage-like area, dominated by a stationary robot wrapping a large hovercraft in cleansing steam. The hissing will certainly mask any noise either of you might make. Feeling increasingly eager you deliberately press yourself into the young mechanic, feeling his tight, firm flesh warm against you. He chuckles at this, holding on to you for balance as your unexpected advanced almost knocks him over. You take the opportunity to reach down and get a good grip of his ass; the unexpected contact causes him to flinch.");
+
+	if (pc.isBro())
+	{
+		output("\n\nHis ass is soft as you spread his cheeks through his pants. You lick, kiss and suckle his neck as you grab and grope the virgin’s ass; you can’t help but feel excited about fucking it soon. He fidgets under your hungry fingers.");
+	}
+	if (pc.isNice())
+	{
+		output("\n\nDespite the pleasantly surprised smile on his face you can tell the guy is a little nervous about taking a dick for the first time. You take the time to gently rub his ass and kiss his neck to show him you’re capable of taking your time. He is suddenly putty in your hands.");
+	}
+	else if (pc.isMischievous())
+	{
+		output("\n\nThe guy is obviously nervous. In response you grope his ass and kiss his neck in an attempt to get him into the mood. It works, somewhat, although from the way he begins to grind forward you suspect he’d rather be in your position.");
+	}
+	else if (pc.isAss())
+	{
+		output("\n\nThe guy is obviously nervous. Ignoring this you grab his ass possessively, indicating that you are in charge. As you push your hips forward and pull him into you you kiss his neck, causing him to groan.");
+	}
+
+	output("\n\nThe garage is shielded from the worst of the hot sun by a metal roof, but sunlight still stubbornly pushes through its grimy skylights. Geoff’s long fingertips begin to explore your body, growing more bold as the two of you continue to make out.  He makes sure to rub your [pc.ass], possibly wondering what happened that he isn’t going to get the chance to be the one doing the fucking this time. The humidity couples with the haze of water in the air to give the place a sauna-like atmosphere, despite the smell of oil and machines in the air. Moisture begins to bead against your skin as you take Geoff by his slender waist and silently indicate that its time for the back door virgin to turn around, which he does with a minimal amount of hesitation.");
+	
+	output("\n\nSo you press Geoff into a free space on the wall, his nervous grin replaced by an expression of slight apprehension as he does his best to poke what little ass he has out for you. The position is a little awkward until you push that weird bend out of his back, making him toot his little ass up the right way. Biting your lip you rub your [pc.cocksLight] against his still clothed backside. He trembles as you grind against him for a second. His deep breaths become ragged huffs as you begin to tug at his clothes. At first he tries to help you disrobe him but all it takes is for you to simply say, <i>“Let me”</i> to get him to stop.");
+	
+	output("\n\nYour hands rub his thin body as you slide his shirt up, his nipples becoming erect as your fingers graze them. When the simple fabric gets tangled in his dreads you both can’t help releasing a quick chuckle as his hands rise to help you. Once the shirt is gone you slide your hands across every inch of his exposed upper half, enjoying the pockets of softness you find here and there before kissing the area between neck and shoulder. Then your hands glide down his warm body to the front of his pants, which fall as soon as they are undone. You take his slim waist and pull his cute little round rump back until your [pc.cock] slides up his hot crack. With your [pc.chest] resting against his back you grind against him, enjoying the softness of his cute little butt.");
+	
+	output("\n\nThen you begin pulling off your [pc.gear]. Geoff watches you intently, lip bitten as he waits for you to finish.");
+	
+	output("\n\nHe looks down at [pc.eachCock], his expression thoughtful. <i>“I can’t believe I’m doing this with a dude.”</i> His eyes widen as he looks up. <i>“Uh... I mean... Not that you aren’t... What I mean to say is....”</i>");
+	
+	output("\n\nAs he stammers to clarify himself you step forward and shush softly into his ear. He nods, and after gulping back the desire to say something more, he takes the initiative and reaches down to stroke your erection.");
+
+	var tCock:int = pc.cockThatFits(geoff.analCapacity());
+	if (tCock == -1) tCock = pc.smallestCockIndex();
+	var tLength:Number = pc.cocks[tCock].cLength();
+
+	if (tLength < 6)
+	{
+		output("\n\nHe handles your [pc.cock " + tCock + "] with ease, grinning from ear to ear as his warm hands cause you to shudder. <i>“This won’t be so bad,”</i> he says as he continues to massage your [pc.cockNounComplex " + tCock + "]");
+	}
+	else if (tLength < 7)
+	{
+		output("\n\nHe handles your [pc.cock " + tCock + "] with ease, grinning from ear to ear as his warm hands softly jerk your dick. <i>“Well...”</i> he says as he rubs his thumb across your [pc.cockHead " + tCock + "] to collect your pre, <i>“I guess I should at least be able to take a dick that’s as big as my own... right?”</i>");
+
+		output("\n\nYou nod, that seems more than reasonable.");
+	}
+	else if (tLength < 8)
+	{
+		output("\n\nHe looks at your [pc.cock " + tCock + "] with a furrowed brow. Then he looks up. <i>“It’s... big,”</i> is all he says as he squeezes your cock. He lifts it and flattens his palm, almost as if trying to gauge its weight.");
+
+		output("\n\nYou ask him if he is having second thoughts.");
+
+		output("\n\nHe looks into your [pc.eyes] and smiles. <i>“Well... not really. I should be able to handle it... I think... I hope.”</i>");
+	}
+	else
+	{
+		output("\n\nHe gawks as he handles your [pc.cock " + tCock + "], his head tilting to the side as if to get a better view. <i>“Is this even going to fit?”</i> he says, his warm hand, slickened by the humidity, still massaging your cock as he complains. <i>“I mean, does it even really need to be this big?”</i>");
+		
+		output("\n\nYou ask him if he’s having second thoughts.");
+		
+		output("\n\nHe avoids your gaze as he says, <i>“Yes... but, I guess. I mean, I can try at least... right?”</i> You don’t answer, you simply grin, feeling relieved that your size hasn’t completely scared the virgin off.");
+	}
+
+	output("\n\nWhen you twirl your fingers, he drops your [pc.cock " + tCock +"] and turns around. Geoff releases a soft groan as you lift his dreadlocks and begin to plant a trail of wet kisses down his neck. You rub your [pc.cockNounSimple " + tCock + "] against his ass, hotdogging his smooth virginal entrance.");
+	
+	output("\n\n<i>“Mmmmm,”</i> you breathe into his ear as one hand slides from his slender waist to his semi-hard six-inch cock. The moment you wrap your hand around it you hear a sharp gasp and feel him back his soft cheeks up into you. The hand that isn’t rubbing his now-leaking cock roves his body, massaging his flesh and occasionally tweaking his hard nipples. He reaches back, rubbing your [pc.legs] as he squeezes his tight little ass against your [pc.cock]. When you lean in to taste him he tastes you, a wet tongue tunneling into your [pc.ear] as you kiss his trapezius.");
+	
+	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand.");
+	if (9999 == 0) output(" {if (pc.cock =/= self lubing): In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].}");
+	output(" Tightening your grip, you press your cockhead against his winking entrance.");
+
+	if (tLength < 6)
+	{
+		output("\n\nHe grunts as you increase the pressure on his virginal back door, using your weight to keep him pinned to the wall. When your [pc.cock " + tCock +"] pops into him he actually growls.");
+		
+		output("\n\n<i>“I’m good, I’m gooood,”</i> he says, talking more to himself than he is to you. The humidity and lubricant help to make the sex liquid. Your [pc.cockHead " + tCock + "] is able to slide through the squeezing tunnel with relative ease. As you gently work yourself in and out of him his breath rushes out out, accompanied by an almost musical note of pleasure. Now that he can handle it, you begin to eagerly fuck his tight ass and he takes every inch you have to offer and you fuck him hard against the wall.");
+	}
+	else if (tLength < 8)
+	{
+		output("\n\nHe growls as you increase the pressure on his little virgin back door, using your weight to keep him pinned against the wall. It takes a little effort, but thanks to your lube you find yourself sliding into his hot untouched rectal tunnel.");
+		
+		output("\n\n<i>“Shiiiiiit!”</i> he snaps as you split him open. Your [pc.cockHead " + tCock + "] is able to slide halfway into the uncooperative anal passage. When you try to continue Geoff yelps, his hands flying down to your [pc.thighs] in an attempt to slow your advance. His back bends at an odd angle as he squirms, each involuntary motion an attempt to dislodge your [pc.cockNounSimple " + tCock + "]. You have to hold tight onto him in order to stay inside. Soon enough he has given up trying to dance away from the pressure of your dick filling his ass you steady yourself.");
+		
+		output("\n\n<i>“It feels weeeiiiird,”</i> he complains. You take a moment to massage the odd hump out of his back, telling him he’ll get used to the sensation if he just sticks with it. Then you move and he releases a sharp gasp as you completely hilt him, holding your full [pc.cockNounComplex " + tCock + "] inside his quivering anal sleeve.");
+		
+		output("\n\n<i>“Relax,”</i> you whisper into his ear as you press him full against the wall. He nods to the wall and presses back, legs tensed for what is to come. Good thing too, because the slickness of his lubed passage combined with the milking sensation caused by the flexing of his rectal muscles is making you crazy. Try as you might there is little you can do to stop your [pc.legs] from shoving the full length of your hard cock into the virgin. So if he isn’t ready, he better get ready because the tempo of your thrusts is slowly increasing. Soon your ass-slapping thrusts have fucked Geoff flat against the wall where he howls and groans, each sound dripping with equal shares of pleasure and pain. The sounds of pain soon die off, replaced with sexy groans of pure ecstasy. He even pushes back against your thrusts, giving you deeper access as he finally gets into the swing of things.");
+	}
+	else
+	{
+		output("\n\nHe whines as you increase the pressure on his little virgin back door, using your weight to keep him pinned against the wall. It is hard work penetrating a virgin with a cock as big as yours but with equal measures patience, persistence and spit you find the uncooperative opening grudgingly allowing your [pc.cockNounComplex " + tCock +"] access.");
+		
+		output("\n\n<i>“FUCK!”</i> Geoff curses to the heavens as you stretch his virgin hole wide. Your [pc.cockHead " + tCock +"] is barely able to make headway due to the crushing tightness of his rectal sleeve. His hands grab your [pc.thighs] as he tries to squirm away from the intense pressure of your hot cock spearing his insides. Thanks to the wall and your hands you manage to stay inside him, allowing him to adjust and experiment until he becomes comfortable. His back is bent at an odd angle but he has stopped trying to dislodge so that’s something at least. You begin the slow work of massaging that fucking hump out of his back while whispering soft affirmations of how good he is doing into his ear.");
+		
+		output("\n\n<i>“Ouch,”</i> he jests, a soft single word dropped in a deep voiced whisper. You tell him he’ll get used to it as you feed more dick into his brown buns.");
+		
+		output("\n\n<i>“Uggghhhh,”</i> he goes as he forces himself to remain in place while you rearrange his bowels. Its slow work but the sounds he keeps making more than make up for the pace.");
+		
+		output("\n\n<i>“Very good,”</i> you whisper into his ear once you’ve somehow managed to fully submerge your [pc.cock " + tCock +"] in his tight back door. He looks back, his face covered in sweat and wearing a pained expression, and tries to smile. You force yourself to stay here with your cock being so tightly gripped by his cute ass. Tension travels through his back in a visible ripple of contorting muscle and yet he holds himself on your dick.");
+		
+		output("\n\nHe grunts as you begin moving through him. His legs suddenly go straight, forcing you to wrap your arms around his slim waist. He clutches at your arms, his body twisting against you as you begin to really fuck. The tempo of your thrusts increases with every thrust until your trunk is slapping against his bare butt. He howls in a voice fueled by both pleasure and pain as you take him. Yet as you continue to batter his back door with your long dick the pain slowly leaves his voice, replaced by groans of pure ecstasy. Your [pc.cockNounSimple " + tCock +"] feels like it’s in heaven as you force it in and out of Geoff’s hot hole, relishing in the amazing tightness as you fuck the now ex-virgin with jackhammer intensity.");
+	}
+
+	output("\n\nYou roughly pound him, listening to those sexy sounds he makes as you fuck him into the wall. Then he is throwing his brown ass back against the [pc.skinFurScales] of your trunk as he fucks himself on your dick. So you sit back as he explores the urge to be fucked, his asshole wringing your dick as his soft ass bounces against your thighs. He makes the sexiest noises as he fucks himself on your dick and soon the way he is fucking your cock pushes you over the edge.");
+	
+	output("\n\nWith a deep groan that reverberates in your chest your [pc.cock] explodes. [pc.cum] violently fires from you as your sudden ejaculation causes you to fully hilt Geoff and hold, forcing him flat against the wall once more. You hold him close as his fluttering rectal cavity milks you of every drop of your [pc.cumColor] seed.");
+	
+	output("\n\nOnce your orgasm has subsided you withdraw from him and collapse, angling your body towards a low metallic wall you decide to use as a seat. Geoff simple crumples to the floor, the [pc.cumVisc] mess of your orgasm falling from his wrecked hole. It takes a second for the two of you to catch your respective breaths as the hissing steam continues to billow around you.");
+	
+	output("\n\nGeoff stands first and looks over at you. <i>“I... uh... was I good? I mean, you came but... like...”</i> You interrupt him, telling him it was great. Then you laugh - his good-natured awkwardness fits his lanky physique perfectly somehow. You rise and give him a quick peck on the lips before grabbing your [pc.gear] and leaving the scrapyard through the back. Although you find yourself more than a bit damp from the physical exertion and sauna-like atmosphere, the hot sun will quickly take care of that.");
+
+	processTime(45+rand(10));
+	pc.orgasm();
+	geoff.orgasm();
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
+}
+
+public function dudesTopGeoffRepeat():void
+{
+	clearOutput();
+	author("Foxxling");
+	userInterface.showBust("GEOFF_NUDE");
+	userInterface.showName("\nGEOFF");
+
+	if (flags["GEOFF_TOPPED"] == 1)
+	{
+		flags["GEOFF_TOPPED"] = 2;
+	
+		output("Geoff smiles when you ask him if he wants to go out back again. <i>“Alright,”</i> he says. <i>“But this time I’m ready for you.”</i>");
+
+		if (pc.isBro() || pc.isBimbo())
+		{
+			output("\n\n<i>“Gee I sure hope so! Virgins is nice but there’s something about putting mah dick in a guy who knows how to take it that really gets my gears goin!”</i>");
+			
+			output("\n\nHe does this cute little eye roll and turns around. When you slap his ass he releases this weird chuckle.");
+		}
+		else if (pc.isNice())
+		{
+			output("\n\n<i>“Oh really?”</i> you say, [pc.lips] spreading into a grin before you ask him if he’s been practicing.");
+			
+			output("\n\nThats when he gets all embarrassed again. <i>“Well... kind of? Like when I’m... you know... by myself I play with it now, sometimes. Its like... I don’t know. I didn’t know it could feel good before... you know.”</i> He chuckles at the end. Then you notice the soft mound of his bulge lengthening in his faded jeans and decide its time to get this road on the show.");
+			
+			output("\n\nSo you glance at the back door than at Geoff himself. <i>“Well... lets go make you feel good again.”</i>");
+		}
+		else if (pc.isMischievous())
+		{
+		
+			output("\n\n<i>“Are you now?”</i> you say. Before he can say much else you shove him up against the counter and kiss him deeply. Your hands explore his body once again, caressing his tall form and pulling him against you body, exciting him until you feel his hard terran cock pressing against yours. Your lips grind against him as you hold the lanky boy against you. Then you pull back and for a moment he looks dazed.");
+			
+			output("\n\n<i>“Were you ready for that?”</i> you say, teeth bared in a mischievous smile. He grins sheepishly as he shakes his head. He chuckles as he disentangles himself from your arms and heads towards the backdoor.");
+		}
+		else if (pc.isAss())
+		{
+			output("\n\n<i>“I’ll be the judge of that,”</i> you say as you fix Geoff with a cold stare. Despite the big smile on his face he visibly cringes under your gaze. You point your gaze at the back door and then look him in the face.");
+			
+			output("\n\n<i>“Oh... yeah... right.”</i> He says as he rushes towards the back door.");
+		}
+
+		output("\n\n");
+	}
+	
+	output("\n\nGeoff leads you out of the shop and to the usual spot where the garage is shielded from the worst of the hot sun by an old metal roof. Once the two of you are there Geoff takes the initiative and wraps his long arms around your waist, pulling you into a kiss. As your [pc.lips] move against his his hands begin to explore your body, growing more bold as the two of you continue to make out.  He makes sure to rub your [pc.ass], silently expressing his preference for the position you’ll be taking this bout.");
+	
+	output("\n\nThen the two of you break apart. Unlike the first time you do not make a ceremony of disrobing and neither does he. You pull your [pc.gear] off and set it aside and when you look up he is shoving his pants toward the ground, his hard brown cock bobbing in the air as he exposes himself to the open air.");
+	
+	output("\n\nThe planet’s humidity couples with the haze of water in the air to give the place a sauna-like atmosphere, despite the smell of oil and machines in the air. Moisture begins to bead against your skin as you twirl your finger, indicating to Geoff that he should turn around. He bends at the waist, pressing himself chest first against the wall and poking his cute brown ass in your direction.");
+	
+	output("\n\nYou close the small distance between Geoff and yourself. With a smile you plant a trail of wet kisses down his neck while grinding your [pc.cockNounSimple] against his ass.");
+	
+	output("\n\n<i>“Mmmmm,”</i> you breathe into his ear as one hand slides from his slender waist to his semi-hard six-inch cock. The moment you wrap your hand around it you hear a sharp gasp and feel him back his soft cheeks up into you. The hand that isn’t rubbing his now-leaking cock roves his body, massaging his flesh and occasionally tweaking his hard nipples. He reaches back, rubbing your [pc.legs] as he squeezes his tight little ass against your [pc.cock].");
+	
+	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand. {if (pc.cock =/= self lubing): In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].} Tightening your grip, you press your cockhead against his winking entrance.");
+
+	var tCock:int = pc.cockThatFits(geoff.analCapacity());
+	if (tCock == -1) tCock = pc.smallestCockIndex();
+	var tLength:Number = pc.cocks[tCock].cLength();
+
+	if (tLength < 6)
+	{
+		output("\n\nYou spread the soft warm cleft of his ass as you drive your hips forward. His hot little hole opens up to accept your [pc.cockHead " + tCock + "], its owner releasing a soft gasp as he is penetrated.");
+		
+		output("\n\nGeoff pushes back into you as you bury your bone in his proverbial backyard. The combination of humidity and your natural lubricant help to make the sex liquid. Your [pc.cockHead " + tCock + "] is able to slide through the squeezing tunnel with ease.");
+		
+		output("\n\nAs you slide your [pc.cockNounSimple " + tCock + "] in and out of him Geoff’s hard breaths are accompanied by an almost musical note of pleasure. You grin as you grab him by the waist and begin to eagerly fuck his tight ass. He takes your passionate sex like a champ as you pound him hard against the wall.");
+	}
+	else if (tLength < 8)
+	{
+		output("\n\nYou hold yourself against the the soft warm cleft of his ass, tightening your grip on your [pc.cock " + tCock + "] as you increase the pressure until your [pc.cockHead " + tCock + "] sinks into his tight hole. Geoff grunts when you fully hilt him in one fluid motion. His insides are a hot tight sleeve that massages your dick.");
+		
+		output("\n\n<i>“Fuck.”</i> he gasps as you hit his little ass with another sharp thrust. He claws at the wall as you begin to really pound his quivering hole inward. Each of your full length thrusts bring another curse from his lips. Soon your ass-slapping thrusts have fucked Geoff flat against the wall where he howls and groans, each sound dripping with a pleasure so intense it causes your [pc.chest] to swell with pride. Geoff even presses back against your thrusts, giving you deeper access as you fuck him with everything you’ve got.");
+	}
+	else
+	{
+		output("\n\nHe grunts as you increase the pressure on his little back door, using your weight to keep him pinned against the wall. Despite his not being a virgin anymore you still have to be careful here since you’re so big. Knowing this you begin to rock back and forth, adding plenty of oral lube to the process until your [pc.cockHead " + tCock + "] is able to properly penetrate him.");
+		
+		output("\n\n<i>“Fuh...”</i> Geoff groans as you work yourself into him. Slowly your patience and persistence are rewarded as you sink into the tight, hot ass before you.");
+		
+		output("\n\n<i>“Oh damn!”</i> Geoff suddenly groans as you stretch his tight hole wide. Your [pc.cockHead " + tCock + "] slowly advances inch by inch. His body goes flat against the wall as he does everything he can to not squirm away from the intense pressure of your hot cock spearing his insides. Then your trunk softly presses against his brown buns. You hold yourself inside of Geoff until he gets used to the sensation of your [pc.cock " + tCock +"] rearranging his bowels.");
+		
+		output("\n\nHe grunts when you begin to move through him. His legs suddenly go straight, prompting you to wrap your arms around his slim waist. He has to force himself to remain stationary. The tempo of your thrusts increases with every thrust until your trunk is slapping against his bare butt. As you continue to batter his back door with your long dick he begins to press back against you like a good little bottom. Your [pc.cockNounSimple " + tCock +"] feels like it’s in heaven as you force it in and out of Geoff’s hot hole, relishing in the amazing tightness as you fuck him with jackhammer intensity.");
+	}
+
+	output("\n\nYou watch Geoff as reaches between his legs and begin to furiously jerk his terran cock. An idea occurs to you and you begin working to synchronize your thrusts with his arm. When a deep chested groan rends the air you know that you did the right thing. From the way he arches his back and spreads his legs while still jerking his cock you can tell he is falling in love with the dual sensations.");
+	
+	output("\n\nAfter you’ve fucked him like that for a while you grab his hips and pull him back until his back is horizontal. As you continue roughly taking his ass you reach forward and grab a handful of his long dreads. The sound of your hips hitting his upturned ass is music to your ears as you roughly pound him. Then his knees buckle and the two of you end up on the floor.");
+	
+	output("\n\nYou release his hair and make his voice climb to the sky as you roughly dominate the sexy college student. Then you feel a familiar sensation building in your [pc.groin].");
+	
+	output("\n\nWith a deep groan that reverberates in your chest your [pc.cock " + tCock + "] explodes. [pc.cum] violently fires from you as your sudden ejaculation causes you to fully hilt Geoff and hold, pressing him into the garage floor as you shiver with the intensity of the sensations coursing through your being. You hold him close as his fluttering rectal cavity milks you of every drop of your [pc.cumColor] seed.");
+	
+	output("\n\nFor a moment you sit there, cock softening as you allow yourself to recover both physically and sexually from the mind blowing fuck. When you rise you see Geoff tug a cum covered hand from beneath him, having came while you were fucking him.");
+	
+	output("\n\nHe reaches for you with his cum covered hand and you grab it without hesitation, helping him up on wobbly legs. It takes a second for the two of you to catch your respective breaths as the hissing steam continues to billow around you.");
+	
+	output("\n\nThe two of you have a nice little conversation as you grab your [pc.gear] and he pulls on his pants. Once the post-sex conversation has run its course you say your goodbyes and Geoff, like a perfect gentleman, limps over to the back door and holds it open for you. As you go through the door you give him a quick peck on the lips before leaving. You do, however, find yourself more than a bit damp from the physical exertion and sauna-like atmosphere. Luckily the hot sun will quickly take care of that.");
+
+	processTime(45+rand(10));
+	pc.orgasm();
+	geoff.orgasm();
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
+}

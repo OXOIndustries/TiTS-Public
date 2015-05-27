@@ -92,7 +92,7 @@ public function auroraBonus():Boolean
 		addButton(0,"Next",move,"213");
 		return true;
 	}
-	output("\n\nThe one saving grace is also one if it’s biggest (if structural) flaws; there’s a massive tear in the far away wall, exposing the room to the outside and, most importantly, fresh air. The outside light is a lovely appeal to comfort, too. Musing, you realize it’s all rather reminiscent to a cave.");
+	output("\n\nThe one saving grace is also one of its biggest (if structural) flaws; there’s a massive tear in the far away wall, exposing the room to the outside and, most importantly, fresh air. The outside light is a lovely appeal to comfort, too. Musing, you realize it’s all rather reminiscent to a cave.");
 	output("\n\nDespite the mess, it’s rather easier to find the shopkeeper in all her batty, kid-mechanist glory as she zooms about the room while doing her upside down work, causing the rubbery rigging clinging to the ceiling to stretch and the metal rafters groan under her modest weight. It’d be a lot safer for her to come to you instead of trying to mimic her behavior, so you figure it’d be prudent to get her attention.");
 
 	// [Aurora] [South]
@@ -151,7 +151,7 @@ public function approachAurora():void
 
 		output("\n\n<i>\"Could you narrow it down some? I don’t really need ship-\"</i>");
 
-		output("\n\n<i>\"I make weapons, too! And armor and normal stuff. For aspiring scavengers and stewart captains");
+		output("\n\n<i>\"I make weapons, too! And armor and normal stuff. For aspiring scavengers and stalwart captains");
 		if(silly) output(" and aspiring indie bands");
 		output("!\"</i>");
 
@@ -460,7 +460,7 @@ public function aurorasCannonThing():void
 	auroraBust();
 	output("There’s a thing over there that looks a awful lot like a old cannon....");
 	output("\n\nThis is like a treasure hunt in a mad scientist’s lair! One shape in particular literally peeks out from the heaps of misused wreckage and assorted paraphernalia at a relatively shallow angle, betraying its rather noticeable size, almost like... A cannon?");
-	output("\n\n<i>\"A howitzer, actually! C’mon, even I know that!\"</i> Comes the rapid if teasing, reply for a question you hadn’t even realized you said out loud. <i>\"But it’s too ruined to work to well, and you’d need like, shells and stuff to do all the </i>actual<i> work. So I fiddled with it some! I use it as a trash bin now!\"</i> Sensible recycling? <i>\"Uh huh! When I find something just too ruined or I mess up to bad I just toss it down the barrel and then when something is about to explode I toss it in the pan and it goes out the hole in the wall!\"</i> This sounds both terrifying and exceedingly dangerous, as well as simply counterproductive. Why not just toss it outside to begin with? <i>\"It’s fine! It’s never failed and I’ve been doing it for a month! Besides, tossing it is a hassle and can scratch the paint whenever someone gets around to prettying up the hull. Gotta make a routine! Besides, I don’t want those rusties below sniffing around and figuring out I got all this quality junk! Keeping it hidden, quiet.\"</i> ...O-oookay.");
+	output("\n\n<i>\"A howitzer, actually! C’mon, even I know that!\"</i> Comes the rapid if teasing, reply for a question you hadn’t even realized you said out loud. <i>\"But it’s too ruined to work to well, and you’d need like, shells and stuff to do all the </i>actual<i> work. So I fiddled with it some! I use it as a trash bin now!\"</i> Sensible recycling? <i>\"Uh huh! When I find something just too ruined or I mess up too bad I just toss it down the barrel and then when something is about to explode I toss it in the pan and it goes out the hole in the wall!\"</i> This sounds both terrifying and exceedingly dangerous, as well as simply counterproductive. Why not just toss it outside to begin with? <i>\"It’s fine! It’s never failed and I’ve been doing it for a month! Besides, tossing it is a hassle and can scratch the paint whenever someone gets around to prettying up the hull. Gotta make a routine! Besides, I don’t want those rusties below sniffing around and figuring out I got all this quality junk! Keeping it hidden, quiet.\"</i> ...O-oookay.");
 	processTime(2);
 	lookAroundShopMenu(1);
 }

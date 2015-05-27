@@ -4,6 +4,7 @@ package classes.Items.Melee
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -19,7 +20,7 @@ package classes.Items.Melee
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
 			
-			this.shortName = "Nyrean Spear";
+			this.shortName = "N.Spear";
 			this.longName = "Nyrean spear";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
@@ -33,8 +34,8 @@ package classes.Items.Melee
 			
 			this.basePrice = 350;
 			this.attack = 3;
-			this.damage = 10;
-			this.damageType = GLOBAL.PIERCING;
+			baseDamage.kinetic.damageValue = 10.0;
+			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;	
 		}	

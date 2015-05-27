@@ -9,6 +9,7 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class RaskvelFemale extends Creature
 	{
@@ -26,10 +27,11 @@
 			this.long = "Dressed in a [INSERT SHIT HERE], the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
 			this.plural = false;
-			this.lustVuln = 1;
 			this.meleeWeapon = new RaskvelWrench();
 			
-			this.rangedWeapon.damage = 10;
+			rangedWeapon.baseDamage.kinetic.damageValue = 10;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
+			
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
 			this.rangedWeapon.attackVerb = "shot";
@@ -50,7 +52,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 150;
 			this.level = 3;
 			this.credits = 100;

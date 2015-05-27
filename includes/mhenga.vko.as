@@ -31,6 +31,7 @@ public function mhengaMedicalThingerBonusFunc():void {
 	if(flags["MET_VKO"] == undefined) output("\n\nAn artificial, almost robotic looking woman is sitting on the bed with her legs crossed demurely. Your codex chimes, <i>\"V-Ko model nursedroid detected. Manufactured by Joyco. Provides basic medical services. More data available upon request.\"</i> A nurse-droid, huh? Neat.");
 	//Seen before
 	else output("\n\nV-Ko, a JoyCo nursedroid, is seated on the edge of the bed with her legs crossed demurely. At the sight of you, she offers, <i>\"Medical services are currently available.\"</i>");
+	vendingMachineButton(1);
 	addButton(0,"Nursedroid",approachVKo);
 }
 

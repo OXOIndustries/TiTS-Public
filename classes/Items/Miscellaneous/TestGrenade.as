@@ -6,6 +6,8 @@ package classes.Items.Miscellaneous
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.applyDamage;
 	
 	/**
 	 * ...
@@ -37,15 +39,17 @@ package classes.Items.Miscellaneous
 			
 			this.basePrice = 100;
 			this.attack = 0;
-			this.damage = 15;
-			this.damageType = GLOBAL.THERMAL;
+			
+			baseDamage.burning.damageValue = 7.5;
+			baseDamage.kinetic.damageValue = 7.5;
+			baseDamage.addFlag(DamageFlag.EXPLOSIVE);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.combatUsable = true;
 			this.targetsSelf = false;
@@ -92,7 +96,8 @@ package classes.Items.Miscellaneous
 			// Ideally, should probably rebuild this function on a per-item basis to weave item-specific text
 			// into the combat, and lean on the shield/hp damage functions
 			// Or possibly open up genericDamageApply to also accept override text for its output
-			kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			applyDamage(baseDamage, usingCreature, targetCreature);
 			
 			kGAMECLASS.output("\n");
 		}
@@ -103,7 +108,8 @@ package classes.Items.Miscellaneous
 			if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output(" you!");
 			else kGAMECLASS.output(" " + targetCreature.short);
 			
-			kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			applyDamage(baseDamage, usingCreature, targetCreature);
 		}
 		
 	}

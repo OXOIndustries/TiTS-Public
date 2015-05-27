@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Encounters
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
 public function encounterASexBot():void
@@ -201,7 +203,7 @@ public function sexbotAI():void
 	}
 	//Disable ranged weapon
 	//(Procs if PC does not have shields and has fired at the sexbot)
-	if(pc.rangedWeapon.shortName != "" && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
+	if(!pc.rangedWeapon is Rock && !pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
 	//Recharge shield
 	//(Procs if Sexbot has lost shields)
 	if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;
@@ -223,29 +225,21 @@ public function sexBotElectropulseAttack():void
 	author("Nonesuch");
 	userInterface.showName("FIGHT:\nSEXBOT");
 	output("<i>“Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,”</i> says the sexbot, in a tone of infinite patience. <i>“Please switch all such devices off.”</i> It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
-	var attacker:Creature = foes[0];
-	var target:Creature = pc;
-	var damTypeOverride:int = GLOBAL.ELECTRIC;
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	var damage:int = 15;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
-	//Apply damage reductions
-	if (target.shieldsRaw > 0) 
+	
+	var damage:TypeCollection = new TypeCollection( { electric: 15 }, DamageFlag.ONLY_SHIELD );
+	damageRand(damage, 15);
+	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+	
+	// TODO: Apply only to shields...
+	
+	if (damageResult.shieldDamage > 0)
 	{
-		sDamage = shieldDamage(target,damage,damTypeOverride);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if (target.shieldsRaw > 0)
-		{
-			output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		}
-		else 
-		{
-			output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
+		if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 	}
+	
+	outputDamage(damageResult);
+	
 	processCombat();
 }
 
@@ -345,7 +339,7 @@ public function grappleWithASexbot():void
 			if(pc.cockTotal() == 1) output("s");
 		}
 		output(" eagerly to the warm, seeking vibrations of the tentacle attached to your groin.");
-		pc.lustDamage(5+rand(5));
+		applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
 	}
 	else
 	{
@@ -368,7 +362,7 @@ public function grappleWithASexbot():void
 			output(".");
 
 			output("\n\n<i>“You are encouraged to struggle as hard as you can,”</i> says the sexbot, green eyes glittering as it forcibly masturbates you. <i>“This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.”</i>");
-			pc.lustDamage(10+rand(5));
+			applyDamage(new TypeCollection( { tease: 10 + rand(5)}), foes[0], pc, "minimal");
 			pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 		}
 	}

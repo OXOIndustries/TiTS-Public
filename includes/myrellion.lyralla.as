@@ -60,7 +60,7 @@ public function approachingLyralla(backFromMenu:Boolean = false):void
 		if(pc.isNice()) output("introduce yourself and shake her hand, a gesture she seems to already have adapted to.");
 		else if(pc.isMischievous()) output("introduce yourself as Captain [pc.name] Steele and strike a ludicrously exagerrated pose.");
 		else output("tersely inform her of your name.");
-		output("\n\nShe places her lower arms’ elbows on the desk and interlaces her fingers, resting her chin upon them as she smiles up at you. <i>“An interesting name for an interesting [pc.man]. Tell me, what can a I do for you?”</i>");
+		output("\n\nShe places her lower arms’ elbows on the desk and interlaces her fingers, resting her chin upon them as she smiles up at you. <i>“An interesting name for an interesting [pc.man]. Tell me, what can I do for you?”</i>");
 		flags["MET_LYRALLA"] = 1;
 	}
 	//Back From A Previous Menu

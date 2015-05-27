@@ -6,6 +6,7 @@ package classes.Items.Miscellaneous
 	import classes.GameData.TooltipManager;
 	import classes.GLOBAL;
 	import classes.StringUtil;
+	import classes.Characters.PlayerCharacter;
 	
 	/**
 	 * ...
@@ -39,8 +40,6 @@ package classes.Items.Miscellaneous
 			//Information
 			this.basePrice = 5;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -48,15 +47,25 @@ package classes.Items.Miscellaneous
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = this._latestVersion;
 		}
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			if (!kGAMECLASS.debug) this.quantity++;
-			kGAMECLASS.output("Nothing you can do with this yet.");
+			 // Player uses this!
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
+				kGAMECLASS.output("There is nothing you can do with this yet.");
+				if(!kGAMECLASS.infiniteItems()) this.quantity++;
+			}
+			// Not the player!
+			else
+			{
+				kGAMECLASS.output("\n\n");
+				kGAMECLASS.output(target.capitalA + target.short + " fails to use the seed correctly and inadvertently destroys it in the process.");
+			}
 			return false;
 		}
 	}

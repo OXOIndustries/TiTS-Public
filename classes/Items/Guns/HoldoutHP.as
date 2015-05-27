@@ -1,5 +1,7 @@
 package classes.Items.Guns 
 {
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
@@ -41,8 +43,11 @@ package classes.Items.Guns
 			//Information
 			this.basePrice = 3000;
 			this.attack = 4;
-			this.damage = 10;
-			this.damageType = GLOBAL.KINETIC;
+			
+			baseDamage = new TypeCollection();
+			baseDamage.kinetic.damageValue = 10;
+			baseDamage.addFlag(DamageFlag.PENETRATING);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,7 +55,6 @@ package classes.Items.Guns
 			this.critBonus = 2;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

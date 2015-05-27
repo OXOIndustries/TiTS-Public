@@ -14,6 +14,7 @@ public function goldenPeakBonusFunction():Boolean
 		karaFirstTimeBarStuff();
 		return true;
 	}
+	vendingMachineButton(6);
 	if(shadeAtTheBar())
 	{
 		//Shade Repeat Encounters
@@ -29,6 +30,13 @@ public function goldenPeakBonusFunction():Boolean
 	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits();
+	
+	if (flags["TARKUS_DESTROYED"] == 1)
+	{
+		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
+		addButton(2, "Gray Goo", grayGooAtBar);
+	}
+	
 	return false;
 }
 
@@ -266,6 +274,8 @@ public function stephIrson4Go():void
 	author("Savin");
 	showName("STEPH\nIRSON");
 	showBust("STEPH_4");
+	
+	flags["STEPH_WATCHED"] = 1;
 
 	output("You take a seat at the bar and pick up the remote sitting unattended, flicking the Super-HD viewscreen nearby over to another channel. The first thing you stumble upon is the start of the latest episode of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. Beneath the title script, a warning appears in large red letters: <i>“This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board for Graphic, Sexual, and Disturbing Imagery. You Have Been Warned.”</i> A smaller notice underneath announces <i>“This show brought to you by the New Texas Council for Entertainment,”</i> followed by a cute cartoon image of an overly-busty cow-girl giving you a wink and a thumbs up.");
 	output("\n\nThe title card fades away, replaced with a shaky camera shot that’s exploding with obviously digital color - a small disclaimer at the screen’s bottom tells you that the camera is operating in nightvision mode, with computer coloration added in real time by the producer A.I. The view resolves into a picture of the show’s host, Steph Irson, wearing her familiar khaki short-shorts and shirt, straining against the sheer size of her massive bust.\n\nThe hostess doesn’t look much like the iconic nature presenter you remember from years past: she’s sporting a pair of cute little cat ears atop her head that twitch and fidget as she moves, and her lips and eyes glisten with a metallic gray. Perhaps most noticeable, though, is her immense bust, more than double in size over the perky D-cups she sports in her promotional material.\n\nYou don’t think that shirt of hers is going to hold up to much - even a deep breath might burst those buttons and let her tits pop free on galactic TV. A big three-optic night vision rig is stuck on her forehead, awkwardly hooked around her kitty-ears.");
@@ -391,4 +401,145 @@ public function stephIrsonEpisode4Part5():void
 	pc.lust(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function grayGooAtBar():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+
+	output("<i>“Oh, hi!”</i> she says, perking up as you approach. <i>“Holy wow, it’s really you!”</i>");
+	
+	output("\n\nYou cock an eyebrow. <i>“Do I know you?”</i>");
+	
+	output("\n\n<i>“Sure you do! Um, well, maybe? You’ve totally </i>seen<i> me, anyway. I’m Nova!”</i> she grins, shifting her form momentarily to that of the tall, slender, handsome woman you met on Deck 13 of the <i>Nova</i>, dressed in a facsimile of an officer’s uniform. The goo squirms and shifts back to her normally buxom form and giggles playfully. <i>“Recognize me now?”</i>");
+	
+	output("\n\nWait, wasn’t she going to be getting a new cyber body?");
+	
+	output("\n\n<i>“</i>She<i> sure did,”</i> the goo-girl laughs, <i>“Captain what’s-her-butt and her crew are all off getting their fancy new bodies. Which means I got to wake up after she left! The nice people in lab coats said I should go find somebody to take care of me, sooooo I’m looking for someone really nice to be my friend! Oh! Do you want to be my friend? Pretty please? You were so nice to all my friends already...”</i>");
+
+	processTime(5+rand(3));
+
+	// [Sure] [Not now]
+	clearOutput();
+	addButton(0, "Sure", grayGooAtBarSure, undefined, "Sure", "Tell the goo-girl you'll take her with you. Considering what she was able to do when you fought her, maybe you can get some use out of her in battle...");
+	addButton(1, "Not Now", grayGooAtBarNotNow);
+}
+
+public function grayGooAtBarSure():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+
+	goo.short = "Nova";
+
+	output("<i>“Sure. I’m [pc.name],”</i> you say, extending a hand to the goo.");
+	
+	output("\n\n<i>“Yaaaaaaaaay!”</i> she cheers, leaping onto you and giving you a huge, wet hug, pressing her massive tits against your chest. <i>“Bestest friends forever and ever and ever!”</i> ");
+	
+	output("\n\nYou chuckle and pat the goo on the head, your fingers coming away slightly wet and sticky. She slips back out of your grasp, going straight through your arm. <i>“You can call me Nova! I guess. I dunno, that’s what all the people that used to live in my head called me. Oh well! Hey, since we’re super best friends, wanna... I dunno, wanna fuck?”</i>");
+	
+	output("\n\n");
+	if (pc.lust() >= pc.lustMax() * 0.75) output("As much as you really could use a little relief.... ");
+	output("<i>“Not right now,”</i> you say. Might as well make sure she isn’t going to force herself on you.");
+	
+	output("\n\n[goo.name] shrugs. <i>“Kay! Um... what do best friends do other than fuck all the time?”</i>");
+	
+	output("\n\nYou smile, relieved, and ask if [goo.name] would like to come with you back to your ship.");
+	
+	output("\n\n<i>“Oh wow! A SPACE SHIP!? That’s awesome. I wanna see. I wanna see!”</i>");
+	
+	output("\n\nLaughing, you take [goo.name]’s hand and lead her up toward the hangar.");
+
+	currentLocation = shipLocation;
+	
+	flags["ANNO_NOVA_UPDATE"] = 2;
+
+	processTime(45+rand(15));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function grayGooAtBarNotNow():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+	
+	output("<i>“Sorry,”</i> you say, taking a step back from the over-eager pile of goo.");
+	
+	output("\n\nShe visibly deflates. <i>“Aww. Nobody around here wants to be friends with me,”</i> the goo groans.");
+
+	processTime(1);
+
+	//{Back to bar menu}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+/*Room Descript Additions
+
+Esbeth Hospital
+//After bit about doors leading east
+A vending machine sits next to the office's door, advertising <i>JoyCo Power-up Potions</i>. 
+
+The Mess
+//Add to bottom of description
+A long line of raskvel are crowded around a big, yellow vending machine. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>. 
+
+Ellie's Gift Shop
+//Add new pg to end of room descript.
+A row of vending machines sit at the back of the gift shop, advertising <i>JoyCo Power-up Potions</i>.
+
+Myrellion Bar
+//Add new pg to end of room descript.
+A dinged-up vending machine has been shoved into the corner. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>. 
+*/
+
+
+public function vendingMachineButton(arg:int = 0):Boolean
+{
+	addButton(arg,"V.Machine",vendingMachineMenu,undefined,"Vending Machine","See what these energy drinks are all about.");
+	if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("\n\nA vending machine sits next to the door, advertising <i>JoyCo Power-up Potions</i>.");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("\n\nA long line of raskvel are crowded around a big, yellow vending machine. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>.");
+	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("\n\nA row of vending machines sit at the back of the gift shop, advertising <i>JoyCo Power-up Potions</i>.");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("\n\nA dinged-up vending machine has been shoved into the corner. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>. ");
+	return false;
+}
+public function vendingMachineMenu():void
+{
+	clearOutput();
+	showName("VENDING\nMACHINE");
+	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you're feeling down, just five measly credits!");
+	processTime(1);
+	clearMenu();
+	if(pc.credits >= 5) addButton(0,"P.Potion",buyAPowahPotion,undefined,"Power Potion","Get yourself an energy drink. Only 5 credits!");
+	else addDisabledButton(0,"P.Potion","Power Potion","You can't even afford a five credit drink. Any poorer and you'll be living out of a box.");
+	addButton(14,"Back",mainGameMenu);
+}
+
+//[Power Potion]
+//Get yourself an energy drink. Only 5 credits!
+//Restore all Energy
+public function buyAPowahPotion():void
+{
+	clearOutput();
+	showName("VENDING\nMACHINE");
+	author("Savin");
+	output("You swipe your Codex over a small scanner on the front. The vending machine beeps happily as it siphons off a few credits from your account and rumbles as the replicator inside it works. After a moment, an ice-cold yellow can pops out of the dispenser at the bottom. You take it and crack the tab open, and are instantly overwhelmed by the too-sweet taste of the sugary drink. The can is small enough to knock back its contents in a matter of moments, leaving a slightly burning aftertaste in your mouth as the <i>“potion”</i> goes down.");
+	//if PC had less than 100 ENG:
+	if(pc.energy() < pc.energyMax()) output("\n\nTrue to its purpose, you quickly feel reinvigorated, like you could spring a marathon or wrestle a leithan to the ground! Whoo!");
+	//if PC had 100+ ENG:
+	else output("\n\nYou have to admit, you don't feel much different. Maybe you should just find a water fountain to wash the taste out... yuck.");
+	pc.credits -= 5;
+	pc.energy(100);
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",vendingMachineMenu);
 }

@@ -34,25 +34,25 @@ package classes.GameData.Pregnancy.Handlers
 			// First stage messages/reminders
 			addStageProgression(58 * 24 * 60, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
-				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
+				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 1"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(56 * 24 * 60, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
-				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
+				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 1"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(54 * 24 * 60, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
-				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
+				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 1"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
 			addStageProgression(52 * 24 * 60, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5);
-				if (!kGAMECLASS.pc.hasStatusEffect("Revnra Full Pregnancy Message 1"))
+				if (!kGAMECLASS.pc.hasStatusEffect("Renvra Full Pregnancy Message 1"))
 					kGAMECLASS.pc.createStatusEffect("Renvra Full Pregnancy Message 1", pregSlot, 0, 0, 0, true, "", "", false, 0);
 			}, true);
 			
@@ -146,20 +146,22 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				var effects:Array =
 				[
-					"Revnra Full Pregnancy Message 1",
-					"Revnra Full Pregnancy Message 2",
-					"Revnra Full Pregnancy Bellyrubs",
-					"Revnra Full Pregnancy Message 3",
-					"Revnra Full Pregnancy Message 4",
-					"Revnra Milky Titties Go",
-					"Revnra Full Pregnancy Message 5",
-					"Revnra Full Pregnancy Almost Due"
+					"Renvra Full Pregnancy Message 1",
+					"Renvra Full Pregnancy Message 2",
+					"Renvra Full Pregnancy Bellyrubs",
+					"Renvra Full Pregnancy Message 3",
+					"Renvra Full Pregnancy Message 4",
+					"Renvra Milky Titties Go",
+					"Renvra Full Pregnancy Message 5",
+					"Renvra Full Pregnancy Almost Due"
 				];
 				
 				for (var i:int = 0; i < effects.length; i++)
 				{
 					if (mother.hasStatusEffect(effects[i]))
+					{
 						mother.removeStatusEffect(effects[i]);
+					}
 				}
 			}
 		}

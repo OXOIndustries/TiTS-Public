@@ -21,7 +21,7 @@ package classes.Characters
 	{
 		public function Saendra() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -33,7 +33,6 @@ package classes.Characters
 			this.customDodge = "Saen casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new MechaFist();
 			this.rangedWeapon = new HammerPistol();
@@ -51,7 +50,7 @@ package classes.Characters
 			this.shieldsRaw = 40;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
+			
 			this.XPRaw = 250;
 			this.credits = 650;
 			this.HPMod = 60;
@@ -165,6 +164,17 @@ package classes.Characters
 			this.createStatusEffect("Uniball");
 			this.cumMultiplierRaw = 2;
 			this.refractoryRate = 10;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 

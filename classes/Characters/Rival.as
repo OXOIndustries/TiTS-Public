@@ -11,7 +11,7 @@
 		//constructor
 		public function Rival()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -23,7 +23,6 @@
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Fists();
 			
@@ -42,7 +41,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 25;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 1000;
@@ -165,6 +164,15 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.armor;
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 	}
 }

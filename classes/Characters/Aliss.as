@@ -10,7 +10,7 @@
 		//constructor
 		public function Aliss()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -22,7 +22,6 @@
 			this.customDodge = "Syri Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -43,7 +42,6 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 350;
 			this.level = 3;
 			this.credits = 0;
@@ -159,6 +157,23 @@
 			this.ass.loosenessRaw = 3;
 			
 			this._isLoading = false;
-		}		
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			// ???
+		}
+		
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
+			delete dataObject.armor;
+		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿/*Intro
+﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+/*Intro
 Combat Description
 Attacks
 Normal Attack
@@ -114,28 +116,23 @@ public function naleenDudeConstrict():void {
 	{
 		output("The naleen grins predatorily, constricting his lower half in a painful vice. You groan as well as you can under the pressure of his bone-crushing coils.");
 	}
-	var attacker:Creature = foes[0];
-	var target:Creature = pc;
-	//Damage bonuses:
-	var damage:int = 5 + rand(5);
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
 	
-	//Apply damage reductions
-	if(target.shieldsRaw > 0) {
-		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
+	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "dudeconstrict");
+	
+	if (damageResult.shieldDamage > 0)
+	{
+		if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
+		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
 	}
-	if(damage >= 1) {
-		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		if(sDamage[0] > 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! (<b>" + damage + "</b>)");
-		else output(" (<b>" + damage + "</b>)");	
+	
+	if (damageResult.hpDamage > 0)
+	{
+		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
 	}
+	
+	outputDamage(damageResult);
+	
 	processCombat();
 }
 
@@ -165,10 +162,13 @@ public function biteAttackDudeleen():void {
 //If PC is shielded, deal some damage to the Naleen too.
 //Deals Heavy Damage, is a bit easier to avoid than his claws.
 //Meant to hurt the PC’s health rather than their shields. Is there a way to amplify HP damage and reduce shield’s damage?
-public function dudeNaleenPounce():void {
+public function dudeNaleenPounce():void 
+{
 	output("With a snarl ending in a hiss, he launches to the air. He strikes at you with claw and fang in a mighty pounce!");
-	var damage:int = 0;
-	var sDamage:Array = new Array();
+	
+	var damage:TypeCollection;
+	var damageResult:DamageResult;
+	
 	//Miss:
 	if(combatMiss(foes[0],pc))
 	{
@@ -178,19 +178,24 @@ public function dudeNaleenPounce():void {
 	else if(pc.shieldsRaw > 0) 
 	{
 		output("You yelp as you are brought crashing down onto the ground. Luckily your shield seems to have taken the brunt of his blow. You push him off, watching as he flops on the ground with a pained yowl. He quickly gets back on his coils, though it seems like he didn’t get out of this unscathed.");
-		damage = 1 + rand(3);
-		sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
-		if(pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		HPDamage(foes[0],3+rand(4),GLOBAL.ELECTRIC);
-		//No bleed thru!
+		damage = new TypeCollection( { kinetic: 1 + rand(3) } );
+		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
+		
+		if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
+		else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+		
+		outputDamage(damageResult);
+		
+		calculateDamage(new TypeCollection( { electric: 3 + rand(4) } ), pc, foes[0]);
 	}
 	//Hit HP for BIG DAMAGE!
 	else
 	{
-		damage = 10+rand(5);
-		damage = HPDamage(pc,damage,foes[0].meleeWeapon.damageType);
-		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage. (" + damage + ")");
+		damage = new TypeCollection( { kinetic: 10 + rand(5) } );
+		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
+		
+		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage.");
+		outputDamage(damageResult);
 	}
 	processCombat();
 }
@@ -220,12 +225,14 @@ public function defeatAMaleNaleen():void {
 	clearMenu();
 	//Ride Him
 	//Requires PC has at least one vagina and not taur
-	if(pc.hasVagina() && pc.lust() >= 33 && !pc.isTaur()) addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah);
-	else addDisabledButton(0,"Ride Him");
+	if(pc.hasVagina() && pc.lust() >= 33 && !pc.isTaur()) addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah,undefined,"Ride Him","Ride that snake-cat to the ground. Your [pc.vagina] won't brook anything else.");
+	else addDisabledButton(0,"Ride Him","Ride Him","You need suitable arousal, a vagina, and not to be a taur in order to pursue this action.");
 	//Get Blown
 	//Requires PC has at least one penis
-	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get Blown",getBlownByDudeleen);
-	else addDisabledButton(1,"Get Blown");
+	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get Blown",getBlownByDudeleen,undefined,"Get Blown","Put the mouthy kitty to work tending to your needs.");
+	else addDisabledButton(1,"Get Blown","Get Blown","You need a penis and to be suitably aroused in order to get a blowjob.");
+	if(pc.lust() >= 33) addButton(2,"Blow Him",maleNaleenSucksPCOff,undefined,"Blow Him","The poor kitty just needed some loving. Now that he's no longer dangerous, you can send him on his way with a smile...");
+	else addDisabledButton(2,"Blow Him","Blow Him","You're not really in the mood to hand out blowjobs.");
 
 	addButton(14,"Leave",leaveDefeatedDudeleen);
 }
@@ -1219,4 +1226,196 @@ public function feedYourCuntTailWithDudeleen():void {
 	processTime(30+rand(10));
 	genericLoss();
 }
+
+
+//Male naleen blowjob victory-scene:
+//Author: hawke56
+public function maleNaleenSucksPCOff():void
+{
+	clearOutput();
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
+	author("Hawke56");
+	output("Your [pc.eyes] focus on the twin shafts of the defeated naleen, and you can feel the lust rise in your own loins.");
+	//if cock:
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] harden");
+		if(pc.cockTotal() == 1) output("s");
+		output(" noticeably");
+		if(pc.hasVagina()) output(", and y");
+	}
+	else if(pc.hasVagina()) output(" Y");
+	if(pc.hasVagina())
+	{
+		output("our [pc.vaginas] start");
+		if(pc.totalVaginas() == 1) output("s");
+		output(" to drool feminine juices");
+	}
+	if(pc.hasCock() || pc.hasVagina()) output(".");
+	output("\n\nBut more importantly right now, your mouth starts to water at the sight of these magnificent penises. Absentmindedly, you flick your [pc.tongue] over your [pc.lips].");
+	if(pc.isBimbo()) output("\n\nThey look so yummy. Your eyes glaze over with whorish lust as you imagine slipping one of the bulbous, reptilian pricks into your warm, wet mouth and sucking on it until it spurts a big load of creamy cum down your throat. A needy whimper escapes you just thinking about it.");
+	else output("\n\nThey look very inviting and delicious to you. You wonder what they’d taste like. Well, no time like the present to find out you guess.");
+	output("\n\nHaving decided what you want to do with the defeated kitty-naga, you ");
+	if(!pc.isNude()) output("strip out of your [pc.gear] and ");
+	output("seductively ");
+	if(pc.isNaga()) output("slither");
+	else output("strut");
+	output(" over to him" + pc.mf("",", wiggling your [pc.hips] in an erotic fashion") + ". The naleen male still looks up at you defiantly through his golden eyes, but his hard cocks twitch with excitement and give away his eagerness. Letting your gaze roam over your prey sitting before you, you note that you’ve caught yourself quite a fine specimen here. His features are attractive; masculine, but not overly developed, giving him smooth, clean lines. Atop his head are his cat-like ears, which flick from time to time.");
+	if(pc.isBimbo()) output("\n\nYou giggle and give him a suggestive wink. <i>“You are a total cutie. Don’t worry I’ll make you feel so good, just wait.</i>”");
+	else if(pc.isBro()) output("\n\nYou leer down at your prey and bluntly say: <i>“Hah, nice try boy. Now let’s fuck.”</i>");
+	else if(pc.isNice()) output("\n\nYou give the feline a reassuring smile and say: <i>“Well I don’t appreciate being attacked, but I am willing to have some fun. As long as you behave from now, I’m sure I can make you feel good as well.”</i>");
+	else if(pc.isMischievous()) output("\n\nYou give the feline a big grin and tell him: <i>“Well, tiger, today seems to be your lucky day because I’m actually in the mood. Just be a dear and behave then I bet we can get along just fine.”</i>");
+	else output("\n\nYou laugh at the defeated feline and shoot him a lusty look: <i>“You didn’t even put up a fight at all, did you? I bet you wanted to lose and be dominated by a " + pc.mfn("real man","beautiful girl","awesome alien") + " you little kitty-bitch. Don’t worry my little plaything, I know just how to deal with submissive fucktoys like you. So just do as I tell you and maybe I’ll give you just what you want.”</i>");
+	output("\n\nYour only response from the male naleen is a small");
+	if(pc.isAss()) output(", obedient mewl.");
+	else output(", acknowledging grunt.");
+
+	if(pc.isTaur()) 
+	{
+		output("\n\nLowering the tauric half of you body to the ground in front of your soon to be lover you lean your humanoid upper torso forward to cup the naleen’s cheek with one of your hands, forcing him to look into your ");
+		if(pc.isBimbo()) output("lust-fogged ");
+		output("eyes.");
+	}
+	else
+	{
+		output("\n\nYou slowly sink to your knees, getting to the same height as your soon to be lover and cup his cheek in one of your hands, forcing him to look into your ");
+		if(pc.isBimbo()) output("lust-fogged ");
+		output("eyes.");
+	}
+	output("\n\nThen you lean forward and press your [pc.lips] against his in an aggressive kiss.The poor kitty is surprised at first but you soon enough he kisses you back with eagerness. Your bodies press together, your [pc.skinFurScales] rubbing against his black fur sensually.");
+	if(pc.biggestTitSize() >= 2) output("\n\nYour [pc.fullChest] presses into the naleen’s toned front, and you can’t help but " + pc.mf("groan","moan") + " into the kiss as your rock hard [pc.nipples] grind against your lover.");
+	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both, your own mammaries and the fur of the naga-kitty.");
+
+	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze.The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
+	output("\n\nWith a ");
+	if(pc.isBimbo()) output("delighted giggle");
+	else output("self-assured smile");
+	output(" you decide to finally get to the main event.");
+
+	if(!pc.isAss()) 
+	{
+		output("\n\nGently, you push your partner onto his back while you move yourself down his body, trailing your entire way with kisses to your lover’s fur");
+		if(pc.isLactating()) output(" and occasionally lapping up the wet stains your own [pc.milk] left on him earlier");
+		output(". Meanwhile you also start to slowly pump his rigid shaft in your hand, caressing the glands on its underside and gently massaging his entire length with skillful strokes.");
+		output("\n\nYou lover groans: <i>“Oh, yes! Are all offworlder" + pc.mf("s so good at this?","-girls so skilled at pleasing a male?") + "”</i> His body shudders with pleasure before you can answer");
+		if(pc.isNaga()) output(", and his tail wriggles itself around your own [pc.leg], trying to entwine your two tails. Seeing no harm in letting him continue you let it happen");
+		output(".");
+		output("\n\nEventually your head reaches it’s destination, right in the crotch of the kitty-naga. The musky smell of his twin reptile-cocks assaults your nose, and ");
+		if(pc.isBimbo()) output("you swoon in sheer delight as ");
+		output("it makes you lick your [pc.lips] in anticipation.");
+	}
+	else
+	{
+		output("\n\nYou give your partner a quick shove which knocks him on his back hard.");
+		output("\n\n<i>“Hey, " + pc.mf("man","girl") + "! Can you be a bit more care-”</i> the naleen starts to complain, but is cut short when pinch one of his nipples hard. He let’s out a half-pained half-aroused hiss instead.");
+		if(pc.isBimbo()) output("\n\n<i>“Like be quiet, I’m your mitress.... missess? Uh...you know... I’m like the one in charge here.”</i>");
+		else output("\n\n<i>“Silence, my submissive fucktoy. I want to hear nothing from you but moans for your [pc.master].”</i>");
+		output(" You start to slowly pump his rigid shaft in your hand, caressing the glands on its underside and gently massaging his entire length with skillful strokes, enjoying the sight of your toy as it squirms in your grasp afraid to make any noise but low pleasured groans.");
+		output("\n\nYou pinch his nipple once more for emphasis then, without further ado, you slide yourself down his body until your head rests close to his twin shafts. The musky smell of his reptile-cocks assaults your nose and ");
+		if(pc.isBimbo()) output("you swoon in sheer delight as ");
+		output("it makes you lick your [pc.lips] in anticipation.");
+	}
+
+	output("\n\nLetting your [pc.tongue] flop out of your mouth, you slowly run it over your lover’s lower shaft, tasting the reptilian cock for the first time. It tastes a little bit salty and slightly alien but not in a bad way. Eagerly, you start to lick the entire length of the reptilian prick, slathering it with you salvia. At the same time you keep jerking the second dick with your hand. The feline naga-man is putty in your capable hands by now and unable to vocalize anything but needy groans. Your tongue moves up to the head of his shaft, where you teasingly lap at his cumslit. Immediately, you are rewarded by a spurt of delicious pre.");
+	if(pc.isBimbo()) output("\n\nMmmh. You love the taste of cum. You are almost drooling at this point and the salty taste leaves you craving for more. There is nothing better than sucking on big fat cock until it fills your mouth with a big, nice load of delicious cream. Well except for getting fucked maybe. You unashamedly moan and finally wrap your [pc.lips] around the naleen’s cockhead and start to suckle on his crown.");
+	else output("\n\nThe salty taste is delicious and it leaves pleasant tingles on your tongue. Finally you wrap your [pc.lips] around the naleen’s cockhead and start to suckle on his crown.");
+	output(" His erection throbs in your mouth, and more precum leaks into your eager maw. Shivering with need you " + pc.mf("let out a needy groan around the cock in your mouth.","moan around the cock in your mouth like a bitch in heat."));
+
+	if(pc.lipRating() >= 6) output("\n\nYour whorish, cocksucker lips seal around the penis tightly, and their smooth, soft  flesh makes the naleen shiver under your ministrations. You decide to really get going and descend on his shaft. Your [pc.lips] slide down the reptilian prick with ease and massage the senitive dickfesh almost as well as a terran pussy. Your sensitive, pornstar-level dickpillows tingle with pleasure as you wrap them around the naleen’s length.");
+	else output("\n\nGently you circle the penis with your tongue, before you descend on his shaft. You stretch your jaw wide and slide your [pc.lips] down on the reptilian prick.");
+	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes in your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skinFurScales] is flushed with arousal and you can barely think straight.");
+	if(pc.isBimbo()) output("\n\nSucking a big cock always gets so so hot and bothered and it feels just soooo good. It’s way more fun to use your mouth for cocksucking than for talking at any rate.");
+	else if(pc.legCount == 1) output("\n\nIn your groin");
+	else 
+	{
+		output("\n\nBetween your");
+		if(pc.isTaur()) output(" hind");
+		output(" [pc.legs]");
+	}
+	output(", you can feel your");
+	//if cock: 
+	if(pc.hasCock()) 
+	{
+		output(" [pc.cocks] throb and ache with unattended desire.");
+		if(pc.cumQ() < 250) 
+		{
+			if(pc.cockTotal() == 1) output(" It spurts little droplets of precum on the ground from time to time.");
+			else output(" They spurt little droplets of precum on the ground from time to time.");
+		}
+		else 
+		{
+			if(pc.cockTotal() == 1) output("It practically leaks pre like a faucet.");
+			else output("They practically leak pre like faucets.");
+			output(" The ground beneath you is getting drenched in your copious fluids.");
+		}
+		//if herm: 
+		if(pc.hasVagina()) output("Similarly ");
+	}
+	//if vagina: 
+	if(pc.hasVagina())
+	{
+		if(pc.hasCock()) output("your");
+		output(" [pc.vaginas] ");
+		if(pc.totalVaginas() == 1) output("is");
+		else output("are");
+		output(" completely wet and drip continually");
+		if(pc.wetness() >= 3) 
+		{
+			//if high wetness:
+			output(", ");
+			if(pc.hasCock() && pc.cumQ() >= 250) output("contributing to the puddles of sexual fluids below");
+			else output("already forming a puddle of sexual fluids below");
+			output(". ");
+			if(pc.totalVaginas() == 1) output("It aches for a nice cock to fill it.");
+			else output("They ache for some nice cocks to fill them.");
+		}
+	}
+	//if genderless: 
+	if(!pc.hasCock() && !pc.hasVagina()) output("[pc.asshole] contract and spasm in jealousy of your filled mouth but it this time it remains ignored.");
+	output("\n\nNow you start to bob  your head up and down on the kitty-naga’s shaft, relentlessly spearing your own throat on it. Every inch of cock that isn’t engulfed in the tight passage of your gullet gets caressed by your hungry tongue. At the same time, you still jerk of the naleen’s second dick with expertise. Soon enough you have built a steady rhythm, and you give your lover the blowjob of his lifetime.");
+	//if if lips >= bee stung:
+	if(pc.lipRating() >= 6) output(" Well, after all, your [pc.lips] were practically made for sucking cock.");
+
+	output("\n\nHe groans above you and warns, <i>“If you keep this up I’m going to cum soon.”</i>");
+
+
+	if(!pc.isAss()) 
+	{
+		output("\n\nContinuing to work his turgid prick with your mouth, you look up at his face and give your lover a reassuring wink, telling him it’s okay for him to climax.");
+		if(pc.isBimbo()) output(" You hope he’ll give you a huge, tasty load of yummy cum.");
+		output("\n\nEncouraged by that, the naleen surprises you when he suddenly grabs you by your [pc.hair] and thrusts your head down into his crotch, forcing his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air and quite a lot of it lands in you [pc.hair] and on your face.");
+		output("\n\nOnce he is spent and his dicks dribble their last drops into your throat and hair respectively, the naleen sighs happily and lets go of you. You let his dick slide out of your well fucked throat.");
+	}
+	else
+	{
+		output("\n\nWell didn’t you ");
+		if(pc.isBimbo()) output("like ");
+		output("tell him to be quiet. Seems like some punishment is required. You grin deviously around your kitty play toy’s turgid shaft and give his second bulbous length, which you are still jerking, a hard, slightly painful squeeze. The poor guy screams out in pain and pleasure and is brought over the edge. His hips jerk upwards and push his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air, and quite a lot of it lands in you [pc.hair] and on your face.");
+		output("\n\nOnce he is and his dicks dribble their last drops into your throat and hair respectively the naleen sighs happily and you let his dick slide out of your well fucked throat.");
+	}
+	output("\n\n It leaves your ");
+	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output("maw");
+	else output("mouth");
+	output(" with a wet pop.");
+	output("\n\nYou partner mumbles a quiet: <i>“Thank you offworlder, that was great.”</i> before he slumps down exhausted already snoring.");
+	if(pc.isBimbo()) output("\n\nYou giggle at the cute kitty-naga boy and give his lower cock a parting kiss, barely resisting the urge to start sucking on it again.");
+	else if(pc.isNice()) output("\n\nYou smile at the spent naleen and  give him a little peck on the cheek.");
+	else if(pc.isMischievous()) output("\n\nYou grin at the spent naleen and give him a gentle pat on the shoulder.");
+	else output("\n\nNow the little fucktoy has the nerve to speak without your permission again and then doze of right afterwards? He’s lucky that you have more important things to do than giving him the  punishment he would deserve.");
+	output("\n\nYou ");
+	if(pc.isNaga() && !pc.isAss()) output("gently untangle your tail from your sleeping lover, ");
+	output("get up, clean the worst cum from your face, and [pc.hair], grab your [pc.gear] and, with a last look back at the peacefully sleeping naleen male, leave the area.");
+
+	//Probably add +20? 30? lust here since PC doesn’t actually cum.
+	pc.lust(20+rand(10));
+	pc.loadInMouth(chars["NALEEN_MALE"]);
+	output("\n\n");
+	processTime(20+rand(3));
+	genericVictory();
+}
+
+
+
+
 

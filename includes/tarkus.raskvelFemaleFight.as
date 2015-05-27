@@ -1,4 +1,5 @@
-﻿//Hostile Female Raskvel Encounter
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
 //Crotchless Mechanic's Overalls/Tattered Shirt and Skirt
 //Giant wrench shotgun.
@@ -78,11 +79,9 @@ public function raskvelPunch():void
 	}
 	else
 	{
-		var damage:int = foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: (foes[0].physique() / 2)});
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -106,22 +105,19 @@ public function enemyAphrodisiacDarts():void
 	else if(rangedCombatMiss(foes[0], pc)) 
 	{
 		output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but it's payload is already spent, injected inside you.");
-		damage = 3 + rand(3);
-		pc.lustDamage(damage);
+		applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//Medium hit
 	else if(rangedCombatMiss(foes[0],pc))
 	{
 		output("\nTwo needles slam into your body, imparting bursts of searing pain when they penetrate your flesh. You yank them out in irritation, but whatever they contained is inside you now.");
-		damage = 7 + rand(3);
-		pc.lustDamage(damage);
+		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//Full Hit
 	else
 	{
 		output("\nAll three needles hit you before you can react.");
-		damage = 11 + rand(3);
-		pc.lustDamage(damage);
+		applyDamage(new TypeCollection( { tease: 11 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//Reactions
 	if(hit)
@@ -183,13 +179,10 @@ public function enemyWrenchAttack():void
 				output("<b> The hit was hard enough to stun you!</b>");
 				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
-			var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-			//OVER CHAAAAAARGE
-			damage *= 2;
-			//Randomize +/- 15%
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
-			genericDamageApply(damage,foes[0],pc);
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damage.multiply(2);
+			damageRand(damage, 15);
+			applyDamage(damage, foes[0], pc);
 		}
 		foes[0].removeStatusEffect("Wrench Charge");
 	}
@@ -206,12 +199,9 @@ public function raskvelFemShotgun():void
 	else
 	{
 		output("\nYou are struck by the projectiles!");
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		//OVER CHAAAAAARGE
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = foes[0].rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -222,13 +212,13 @@ public function raskvelGirlsTeasingCockwielders():void
 	if(rand(4) == 0) 
 	{
 		output("The short female swivels to show you her rump, shaking it up and down to show off her puffed-up pussy and second clit from behind. She shakes and wobbles, bouncing her cheeks enticingly for your enjoyment while asking, \"<i>Come over here and give me some eggs, and we can forget all about this.</i>\"");
-		pc.lustDamage(7+rand(3));
+		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//#2
 	else if(rand(3) == 0)
 	{
 		output("Pulling down her top to expose her nipples, " + foes[0].a + foes[0].short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
-		pc.lustDamage(6+rand(7));
+		applyDamage(new TypeCollection( { tease: 6 + rand(7) } ), foes[0], pc, "minimal");
 	}
 	//#3
 	else if(rand(2) == 0) 
@@ -237,7 +227,7 @@ public function raskvelGirlsTeasingCockwielders():void
 		if(!pc.isCrotchGarbed()) output(" [pc.oneCock]");
 		else output(" [pc.oneCock] through your [pc.lowerGarments]");
 		output(". \"<i>Come play, we can forget about the money.</i>\"");
-		pc.lustDamage(10+rand(4));
+		applyDamage(new TypeCollection( { tease: 10 + rand(4) } ), foes[0], pc, "minimal");
 	}
 	//#4
 	else
@@ -252,7 +242,7 @@ public function raskvelGirlsTeasingCockwielders():void
 			if(pc.hasHair()) output("through your [pc.hair]");
 			else output("over your head");
 			output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
-			pc.lustDamage(15+rand(6));
+			applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), foes[0], pc, "minimal");
 		}
 	}
 	processCombat();
@@ -561,37 +551,77 @@ public function quotePayUnquoteFemRasks():void
 //Loss vs Raskvel Scenes
 public function defeatRoutingForFemRasks():void
 {
-	var choices:Array = new Array();
-	var args:Array = new Array();
+	var choices:Array = [];
 	
 	//Face-Sitting Footjobs
 	//Dick Req
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
-		choices[choices.length] = raskvelGirlsSitsIfTheyFits;
-		args[args.length] = true;
+	if (pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
+		choices.push( { func: raskvelGirlsSitsIfTheyFits, arg: true } );
 	}
 	//Tail-pegging
 	//Nondix
 	if(!pc.hasCock())
 	{
-		choices[choices.length] = getRaskVelTailPegged;
-		args[args.length] = true;
+		choices.push( { func: getRaskVelTailPegged, arg: true } );
 	}
 	//Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 	if(pc.hasCock() && pc.biggestCockVolume() > foes[0].vaginalCapacity())
 	{
-		choices[choices.length] = hugeDicksGetForceWorshippedByFemRaskvel;
-		args[args.length] = undefined;
+		choices.push( { func: hugeDicksGetForceWorshippedByFemRaskvel, arg: undefined } );
 	}
 	//Get Pegged while Double Penetrating Her
-	if(pc.cockTotal() > 1 && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && pc.cockThatFits2(foes[0].vaginalCapacity()))
+	if (pc.cockTotal() > 1 && 
+		pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && 
+		pc.cockThatFits2(foes[0].vaginalCapacity()) >= 0
+	   )
 	{
-		choices[choices.length] = getPeggedWhileDoublePenetrate;
-		args[args.length] = undefined;	
+		choices.push( { func: getPeggedWhileDoublePenetrate, arg: undefined } );
 	}
-	var select:int = rand(choices.length);
-	if(args[select] == undefined) choices[select]();
-	else choices[select](args[select]);
+	
+	if (choices.length > 0)
+	{
+		var select:int = rand(choices.length);
+		if(choices[select].arg == undefined) choices[select].func();
+		else choices[select].func(choices[select].arg);
+	}
+	else
+	{
+		// Catch-all for un-accounted body types etc etc.
+		// This was the only thing I could think of when I stumbled over some bug report, so fuck it.
+		raskyNotInterestedInYerWeirdShit();
+	}
+}
+
+public function raskyNotInterestedInYerWeirdShit():void
+{
+	showBust("RASKVEL");
+	showName("LOST VS: F.\nRASKVEL");
+	author("Gedan");
+	
+	output("<i>“Yeaaah! Showed you didn't I!”</i> she exclaims over top of your crumpled frame, ");
+	if (pc.HP() <= 0) output(" utterly beaten and unable to fight back against the raskvel.");
+	else output(" utterly lost to your arousal at the hands of the raskvel.");
+	
+	output("\n\nShe rummages around with your [pc.gear] searching for a suitable tribute now that she's victorious.");
+	if (pc.credits >= 1)
+	{
+		output(" <i>“Score! I knew you were holdin’ out on me.");
+		if (silly) output(" Silly fuckers, always gotta try to ice skate uphill,");
+		else output(" Let this be a lesson for the next time!");
+		output("”</i> she warns as she tosses a slightly-lighter credit chit onto your chest.");
+		payRaskvel();
+	}
+	else
+	{
+		output("<i>Oh. Oh man, do I feel like a jerk now- you really didn’t have anything to pay me,”</i> she sheepishly admits, having discovered your total lack of credits. <i>“I, err- let that be a warning to you! Yeah! You better have something for me if we ever cross paths again, ya got it?”</i>.");
+		output("\n\nSeemingly satisfied having chastised you for being a broke-ass space-bum she takes off in a flash, leaving you to");
+		if (pc.HP() <= 0) output(" recover from your beating");
+		else output(" cool yourself off");
+		output(" some before you grab your [pc.gear] and set yourself back on your [pc.feet] ready to carry on.");
+	}
+	
+	processTime(3+rand(7));
+	genericLoss();
 }
 
 //Face-Sitting Footjobs

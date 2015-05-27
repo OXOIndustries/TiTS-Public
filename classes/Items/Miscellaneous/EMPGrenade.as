@@ -1,11 +1,14 @@
 package classes.Items.Miscellaneous 
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.StringUtil;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * ...
@@ -37,16 +40,17 @@ package classes.Items.Miscellaneous
 			this.attackVerb = "";
 			
 			this.basePrice = 100;
+			baseDamage = new TypeCollection();
+			baseDamage.electric.damageValue = 15;
+			baseDamage.addFlag(DamageFlag.EXPLOSIVE);
+			
 			this.attack = 0;
-			this.damage = 15;
-			this.damageType = GLOBAL.ELECTRIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.combatUsable = true;
 			this.targetsSelf = false;
@@ -93,7 +97,7 @@ package classes.Items.Miscellaneous
 			// Ideally, should probably rebuild this function on a per-item basis to weave item-specific text
 			// into the combat, and lean on the shield/hp damage functions
 			// Or possibly open up genericDamageApply to also accept override text for its output
-			kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			applyDamage(baseDamage, usingCreature, targetCreature);
 			
 			// Apply stun to types that are electronic in nature
 			if (!targetCreature.hasStatusEffect("Blind") && (targetCreature.originalRace == "robot" || targetCreature.originalRace == "Automaton"))
@@ -111,7 +115,8 @@ package classes.Items.Miscellaneous
 			if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output(" you!");
 			else kGAMECLASS.output(" " + targetCreature.short);
 			
-			kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
+			applyDamage(baseDamage, usingCreature, targetCreature);
 		}
 	}
 

@@ -913,7 +913,7 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 
 	output("\n\n<i>“Ah, that’s not so bad...”</i> Yancy groans, planting one of his big, strong hands on the top of your head. He sighs contentedly, bucking his hips into your welcoming lips and letting you taste every inch of that big slab of meat. Just got to make him relax a little more, and he’ll be all yours....");
 
-	output("\n\nAs your suckling on his rod, though, the big bull remembers his job, and grabs the milker cups back up. You ");
+	output("\n\nAs you're suckling on his rod, though, the big bull remembers his job, and grabs the milker cups back up. You ");
 	if(pc.hasKnees()) output("awkwardly lean back on your [pc.knees]");
 	else if(pc.isNaga()) output("languidly lean back on your serpentine lower body");
 	else output("awkwardly lean back");

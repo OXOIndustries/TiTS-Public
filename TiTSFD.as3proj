@@ -43,7 +43,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->

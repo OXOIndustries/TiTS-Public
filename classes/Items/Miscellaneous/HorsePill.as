@@ -40,8 +40,6 @@
 			//Information
 			this.basePrice = 1500;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -49,7 +47,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -376,7 +373,7 @@
 						kGAMECLASS.eventBuffer += " from the change. You whicker without meaning to. Mares aren't really supposed to be that stacked anyway.";
 						for(x = 0; x < target.bRows(); x++)
 						{
-							if(target.breastRows[x].breastRatingRaw > 10) target.breastRows[x].breastRatingRaw -= (-4 + -1 * rand(3));
+							if(target.breastRows[x].breastRatingRaw > 10) target.breastRows[x].breastRatingRaw -= (4 + rand(3));
 							else target.breastRows[x].breastRatingRaw -= 1;
 						}
 					}
@@ -543,7 +540,7 @@
 				//#13 Mane? YES LETS FUCKING CALL IT A MANE!
 				else if(select == 13) 
 				{
-					kGAMECLASS.eventBuffer += "When you idly run your fingers through your hair, you're surprised to feel more of it than you recall. As a matter of fact, it trails all the way down to the nape of your neck in mane-like fashion. Why, you've grown a rather equine-looking mane!";
+					kGAMECLASS.eventBuffer += "When you idly run your fingers through your hair, you're surprised to feel more of it than you recall. As a matter of fact, it trails all the way down to the nape of your neck in mane-like fashion. Why, <b>you've grown a rather equine-looking mane!</b>";
 					target.createPerk("Mane", 0,0,0,0,"Your hair grows out much like an equine's mane.");
 				}
 				//#14 Vag capacity! Req's horsecunt
@@ -764,7 +761,8 @@
 					kGAMECLASS.eventBuffer += "Your gut churns and heaves similarly to when you've gotten sick in the past. This time, rather than resulting in a need to go to the bathroom, the discomfort merely migrates south, growing in intensity as it does. When you can take it no more, you groan as something slips within you, bringing with it immeasurable relief. The pain is reduced by perhaps half. The odd slipping sensation repeats. This time, you're left sighing in contentment. Whatever just happened, it's over now.";
 					kGAMECLASS.eventBuffer += "\n\nYou check up on your groin once you've caught your breath, and to your shock, you discover a pair of nicely-rounded balls contained in a leathery sack. <b>You grew balls!</b>";
 					target.balls = 2;
-					target.ballSizeRaw = 2;
+					target.ballSizeRaw = 3;
+					if (target.hasPerk("Bulgy")) target.ballSizeRaw = 5;
 				}
 				//#6 GROW A SECOND BALL IF ONLY ONE
 				else if(select == 6)

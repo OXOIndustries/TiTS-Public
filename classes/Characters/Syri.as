@@ -10,7 +10,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -22,7 +22,6 @@
 			this.customDodge = "Syri Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -43,7 +42,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 350;
 			this.level = 3;
 			this.credits = 0;
@@ -168,6 +167,17 @@
 			dataObject.aimRaw = 15;
 			dataObject.intelligenceRaw = 9;
 			dataObject.willpowerRaw = 4;
-		}			
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

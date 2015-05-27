@@ -307,10 +307,10 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 	if(pc.isNude()) output("blushing profusely");
 	else output("motioning that you can put your outfit there as well");
 	output(". You ");
-	if(!pc.armor is EmptySlot)
+	if(!(pc.armor is EmptySlot))
 	{
 		output("strip down to your ");
-		if(!pc.upperUndergarment is EmptySlot || !pc.lowerUndergarment is EmptySlot) output("underthings");
+		if(!(pc.upperUndergarment is EmptySlot) || !(pc.lowerUndergarment is EmptySlot)) output("underthings");
 		else output("birthday suit");
 		output(", putting your [pc.armor] on the shelf next to hers.");
 	}

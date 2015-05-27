@@ -41,8 +41,6 @@
 			//Information
 			this.basePrice = 200;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,7 +48,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -208,7 +205,7 @@
 
 				pc.ballSizeRaw = newBallSize;
 				
-				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>You got bigger [pc.balls]!</b>");
+				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>Your [pc.balls] got bigger!</b>");
 				changes++;
 			}
 			else if (!pc.ballSizeUnlocked(newBallSize))

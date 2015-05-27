@@ -843,7 +843,7 @@ public function celiseSleezeLactation():void {
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
 	//(If possible, have Celise retain the colour on her description screen for a day or two if it changed)
 	if(pc.lactationQ() > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She'll be back to her old self in no time.");
-	pc.milked(pc.milkFullness);1
+	pc.milked(pc.milkFullness);
 	//reset lust, add lust
 	processTime(30+rand(10));
 	pc.lust(5+rand(5));
@@ -1129,8 +1129,9 @@ public function getDrainedSexyTimes():void {
 	if(rand(3) == 0) pc.orgasm();
 	if(rand(3) == 0) pc.orgasm();
 	if(rand(3) == 0) pc.orgasm();
-
+	pc.createStatusEffect("Milk Paused",0,0,0,0,true,"","",false,10000);
 	sleep(false);
+	pc.removeStatusEffect("Milk Paused");
 	pc.orgasm();
 
 	/*(old text that will not be used) Celise is hungry
@@ -1291,15 +1292,15 @@ public function zeiksCeliseSubmersionTechnique():void
 	}
 	else 
 	{
-		output("drift back together, sliding into your own, piling up green flesh and parting around your huge rack like an enormously slow wave breaking over rocks. Your [pc.biggestBreastDescrip] are painstakingly covered in a layer of warm, thick Celise, stopping just short of the areolae. Errant strands of goo creep from the rings to tweak and moisten your exposed nipples as Celise playfully bites your ear");
+		output("drift back together, sliding into your own, piling up green flesh and parting around your huge rack like an enormously slow wave breaking over rocks. Your [pc.biggestBreastDescript] are painstakingly covered in a layer of warm, thick Celise, stopping just short of the areolae. Errant strands of goo creep from the rings to tweak and moisten your exposed nipples as Celise playfully bites your ear");
 		if(pc.hasDickNipples() || pc.hasCuntNipples() || pc.isLactating()) 
 		{
 			output(" and your ");
 			if(pc.hasDickNipples()) output("concealed nipplecocks");
 			else if(pc.hasCuntNipples()) output("fuckable nipple-holes");
 			else output("lactating teats");
+			output(" muster a dribble of [pc.milk] to answer them");
 		}
-		output(" muster a dribble of [pc.milk] to answer them");
 		output(".");
 	}
 
@@ -1384,26 +1385,25 @@ public function zeiksCeliseSubmersionTechnique():void
 	if(pc.hasCock())
 	{
 		output("\n\nThe sensation of the gooey sex toy is more than orgasmic, and ");
-		if(pc.balls > 1) 
+		if(pc.balls > 1) output("your [pc.balls] tighten up as ");
+		else if(pc.balls == 1) output("your [pc.ball] tightens up as ");
+		output("you near your climax, fucking your slimy sleeve faster and faster. Goo shifts under your hand, sliding along your [pc.cockBiggest] and gathering at the tip just in time for the first stroke. ");
+		if(pc.cumQ() < 1000) output("The impromptu condom balloons with [pc.cumColor] as you empty your load into the slimy sleeve, twitching. Celise giggles behind you as her gooey form redistributes the nutrients, and you can feel the hot cum sliding back down the outside your cock as it makes its way to Celise’s core. The sensation is enough to trigger aftershocks in your swollen, sensitive prick.");
+		else
 		{
-			output("your [pc.balls] tighten up as }you near your climax, fucking your slimy sleeve faster and faster. Goo shifts under your hand, sliding along your [pc.cockBiggest] and gathering at the tip just in time for the first stroke. ");
-			if(pc.cumQ() < 1000) output("The impromptu condom balloons with [pc.cumColor] as you empty your load into the slimy sleeve, twitching. Celise giggles behind you as her gooey form redistributes the nutrients, and you can feel the hot cum sliding back down the outside your cock as it makes its way to Celise’s core. The sensation is enough to trigger aftershocks in your swollen, sensitive prick.");
+			output("It’s not enough; the impromptu condom balloons with [pc.cumColor] and then bursts, freeing you to spray [pc.cumVisc] ejaculate into the air.");
+			if(pc.isTaur()) 
+			{
+				output(" Celise gasps and moves her gooey hands over the tip to hold in the energetic spooge, but you blow through those as well with one powerful stroke, scattering [pc.cumNoun] and bits of goo. The next squirt hits your chest unimpeded; Celise’s slime is lined with your jizz as you fire stroke after powerful stroke into your ");
+				if(pc.biggestTitSize() < 1) output("fake ");
+				output("breasts and neck. She tries her best to control your twitching [pc.cockNoun], but your bucking hips point the last major spurt right at your face, where it impacts with a giggle from Celise and drips down your chin.");
+			}
+			//(non-taur)
 			else
 			{
-				output("It’s not enough; the impromptu condom balloons with [pc.cumColor] and then bursts, freeing you to spray [pc.cumVisc] ejaculate into the air.");
-				if(pc.isTaur()) 
-				{
-					output(" Celise gasps and moves her gooey hands over the tip to hold in the energetic spooge, but you blow through those as well with one powerful stroke, scattering [pc.cumNoun] and bits of goo. The next squirt hits your chest unimpeded; Celise’s slime is lined with your jizz as you fire stroke after powerful stroke into your ");
-					if(pc.biggestTitSize() < 1) output("fake ");
-					output("breasts and neck. She tries her best to control your twitching [pc.cockNoun], but your bucking hips point the last major spurt right at your face, where it impacts with a giggle from Celise and drips down your chin.");
-				}
-				//(non-taur)
-				else
-				{
-					output("Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
-					if(pc.cumColor() == "green") output("deep green");
-					else output("sickly, greenish-[pc.cumColor]] swamp.");
-				}
+				output("Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
+				if(pc.cumColor() == "green") output("deep green");
+				else output("sickly, greenish-[pc.cumColor]] swamp.");
 			}
 		}
 	}

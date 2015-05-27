@@ -1,4 +1,5 @@
-﻿//The Gray Goo
+﻿import classes.Creature;
+//The Gray Goo
 //A TiTS Combat Encounter
 //By Savin: Age 12
 
@@ -18,8 +19,9 @@ public function encounterDasGooGray():void
 	output("\n\n<i>\"Hi!\"</i> she giggles in a voice just faintly synthetic, more bubbly than menacing. Seeing that she's caught your attention, the metallic babe arches her back, making her great big tits stand even further out, literally dripping");
 	//first time: 
 	if(flags["MET_GRAY_GOO"] == undefined) {
-		output(" whatever strange stuff she's made out of onto the ground around her \"feet\". As she preens for you, your Codex beeps an urgent warning: \"Gray goo detected. These active micro-machine clusters are known to attack without provocation. U.G.C. Scout Authority suggests extreme caution, as well as hydration, around the native goo.\"");
+		output(" whatever strange stuff she's made out of onto the ground around her \"feet\". As she preens for you, your Codex beeps an urgent warning: <i>\"Gray goo detected. These active micro-machine clusters are known to attack without provocation. U.G.C. Scout Authority suggests extreme caution, as well as hydration, around the native goo.\"</i>");
 		output("\n\n<i>\"Aww, so much for surprise!\"</i> the gray goo giggles, licking her lips. <i>\"I just need some all-natural lubricant, " + pc.mf("Mister","Miss") + " - and you're gonna give it to me!\"</i>");
+		flags["MET_GRAY_GOO"] = 1;
 	}
 	else output(" down her feet. The gray goo steps forward on her unsteady legs, licking her lips hungrily. <i>\"I just need some all-natural lubricant, " + pc.mf("Mister","Miss") + " - and you're gonna give it to me!\"</i>");
 	output("\n\nIt doesn't look like she'll take no for an answer!");
@@ -63,8 +65,8 @@ public function grayGooTeaseAttackGo():void
 		if(pc.hasCock()) output("clearly offering you the chance to do the same");
 		else output("clearly offering to do the same to you!");
 	}
-	foes[0].lust(3);
-	pc.lustDamage(8+rand(6));
+	applyDamage(new TypeCollection( { tease: 3 } ), null, foes[0], "suppress");
+	applyDamage(new TypeCollection( { tease: 8 + rand(6) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 
@@ -84,7 +86,7 @@ public function grayGooRestrain():void
 	{
 		output("Seeing that you can't quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
 		pc.addStatusValue("Grappled",3,1);
-		pc.lustDamage(10+rand(6));
+		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
 	}
 	//Turn 2
 	else
@@ -107,7 +109,7 @@ public function grayGooRestrain():void
 			else output(" [pc.legs] together");
 			output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear]");
 		}
-		pc.lustDamage(10+rand(6));
+		applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
@@ -119,10 +121,10 @@ public function grayGooReformatting():void
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	//{Restores light HP, removes status effects}
-	foes[0].clearCombatStatuses();
+	(foes[0] as Creature).clearCombatStatuses();
 	output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15HP and all statuses cleared!)");
-	foes[0].lustDamage(5);
-	foes[0].HP(15);
+	(foes[0] as Creature).lust(5);
+	(foes[0] as Creature).HP(15);
 	processCombat();
 }
 
@@ -134,7 +136,11 @@ public function grayGooHarden():void
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
-	if(!foes[0].hasStatusEffect("Harden")) foes[0].createStatusEffect("Harden",0,30,0,0,false,"DefenseUp","Defense against all forms of attack has been increased!",true,0);
+	if (!foes[0].hasStatusEffect("Harden"))
+	{
+		foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+		(foes[0] as Creature).baseHPResistances.kinetic.resistanceValue += 10.0;
+	}
 	//PC has options here!
 	//[Do Nothing] [Quickie!]
 	clearMenu();
@@ -403,7 +409,7 @@ public function mutualGooMasturbation():void
 	output("\n\nTry as you might, with an invitation like that your body's natural instincts take over. Arching your back with head thrown back, you let out a primal grunt of pleasure as a thick wad of cum shoots through your shaft towards sweet release. The goo gasps as your nut busts in her silver-sheened cock, and you both watch in rapture as her gooey flesh turns a brighter shade of gray as your [pc.cumColor] spunk shoots into it, filling the tight milker of her faux-phallus. Her sheathe goes wild as it's filled with [pc.cum], the sea of microbots surrounding your cock moving madly across your sensitive skin, lapping up every drop of seed they can find, which only serves to coerce more and more from your spasming schlong. Both her hands sweep down to grab your cock, pumping hard and fast, letting her insides suck and squeeze to draw your orgasm out, leaving you a moaning, panting, gasping lump of pleasure atop her, barely able to move by the time you think your [pc.cock] has finally given its last hurrah. Not that you'd want to; the micromachines that make up the sheath around your member are still wiggling around, eagerly massaging your twitching prick even in the afterglow, sending shockwaves of sensation up your spine.");
 	output("\n\nWrapped in the goo's tender embrace, you all but lose track of time, too enthralled with the wondrous pleasure her willing body's able to provide. You're aware of another orgasm pending, but do nothing but lie atop her and let it wash over you, [pc.cock] erupting inside its gooey prison once again... and again... each time leaving you more and more addled by the sexual pleasure. The ceaseless sensation threatens to overwhelm you, orgasm after orgasm eroding at your already fleeting desire to leave.");
 	output("\n\nThankfully, even your reservoirs of cum are not infinite. With a lurch and a moan, you shudder through another orgasm, shooting a slim load into the now cum-swollen sack of her schlong, itself bulbous and heavy with the sheer load of your many orgasms. Your cock is now surrounded by a shifting, roiling sea of spunk and goo, constantly massaged and caressed by the sticky, smooth fluids. But with no more to give her, the goo-girl tsks her tongue and props herself up on her elbows, causing your head to finally roll from her bust, rousing you from your sexual reverie.");
-	output("\n\n<i>\"Aww, no more? Well, thanks for all the cum! It was a blast!\"</i> She giggles, gently rolling you off her. Your [pc.cock] slips out of its gooey twin with an audible POP, trickles of goo and seed smearing on your thighs and the red dirt as your member's set free. Giving a contented sigh, the gray goo slithers up to her feet to stroke your head with surprising affection before departing, leaving you a helpless, sexually exhausted heap on the group.");
+	output("\n\n<i>\"Aww, no more? Well, thanks for all the cum! It was a blast!\"</i> She giggles, gently rolling you off her. Your [pc.cock] slips out of its gooey twin with an audible POP, trickles of goo and seed smearing on your thighs and the red dirt as your member's set free. Giving a contented sigh, the gray goo slithers up to her feet to stroke your head with surprising affection before departing, leaving you a helpless, sexually exhausted heap on the ground.");
 	output("\n\nYou're gonna be sore in the morning.\n\n");
 	pc.orgasm();
 	pc.energy(-5);
@@ -572,7 +578,7 @@ public function pcDefeatByGooBitch():void
 	output("\n\n<b>You awaken two hours later</b>, sore and exhausted and so full of what you can only imagine is cum that your belly is quite literally bloated, stretching by the amount of seed that even the googirl couldn't steal from you. Around you is a pile of raskvel boys and girls, some still fucking each other, others exhausted and snoring. There must be nearly fifty here, and you have no doubt your goo girl bodysuit let every one of them bust a nut in you. At least she's gone, having gotten all she could from your body.");
 	output("\n\nYou stagger off to find your gear, leaving the rask to work out what lust they have left.\n\n");
 	processTime(120+rand(10));
-
+	pc.exhibitionism(1);
 	//This should be changed to a male raskvel once they're done.
 	pc.loadInAss(chars["GRAYGOO"]);
 	pc.loadInMouth(chars["GRAYGOO"]);

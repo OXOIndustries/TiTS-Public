@@ -1,14 +1,18 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.NaleenArmor;
 import classes.Items.Apparel.TSTArmorMkII;
 import classes.Items.Apparel.UGCUniform;
+import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
+import classes.Items.Guns.MyrBow;
 import classes.Items.Guns.ScopedPistol;
+import classes.Items.Guns.TachyonBeamLaser;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Melee.ShockBlade;
 import classes.Items.Miscellaneous.EmptySlot;
@@ -69,19 +73,41 @@ public function hangarBonus():Boolean
 
 public function tavrosHangarStuff():Boolean
 {
+	if(flags["MET_VAHN"] == undefined) {
+		output("\n\nYou spot a blond, half-ausar technician standing next to your ship, looking down at a datapad.");
+		addButton(0,"Tech",VahnTheMechanic);
+	}
+	else
+	{
+		output("\n\nVahn's around here somewhere, if you want to look for him.");
+		addButton(0,"Vahn",VahnTheMechanic);
+	}
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighbouring hangar.");
+		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 		
 		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
-			addButton(0, "The Phoenix", move, "PHOENIX RECROOM");
+			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
 	}
 	//Celise In Tavros
 	if(celiseIsFollower() && !celiseIsCrew())
 	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the stations mechanics.");
+		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
 		addButton(5,"Celise",approachNonCrewCelise);
-	}	
+	}
+	return false;
+}
+
+//Drop this shit in every Phoenix room cause Savin is a jerk.
+public function phoenixLocationSetter():Boolean
+{
+	if(flags["FALL OF THE PHOENIX STATUS"] == 1)
+	{
+		rooms[currentLocation].planet = getPlanetName();
+		rooms[currentLocation].system = "SYSTEM: " + getSystemName();
+	}
+	//Reset soz it updates automagically.
+	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
 	return false;
 }
 
@@ -98,14 +124,12 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
-	output("\n\nIndefinite Article Tests:");
-	output("\n\n" + indefiniteArticle("C-cup"));
-	output("\n\n" + indefiniteArticle("D-cup"));
-	output("\n\n" + indefiniteArticle("DD-cup"));
-	output("\n\n" + indefiniteArticle("time"));
-	output("\n\n" + indefiniteArticle("university"));
-	output("\n\n" + indefiniteArticle("NSA"));
-	output("\n\n" + indefiniteArticle("NASA"));
+	output("\n\nSample damage message. Something something shot in the face something. (<b><span class='shield'>10</span>/<span class='hp'>10</span>/<span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span> / <span class='hp'>10</span> / <span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span> <span class='hp'>10</span> <span class='lust'>10</span></b>)");
+	output("\n\n(<b><span class='shield'>10</span>, <span class='hp'>10</span>, <span class='lust'>10</span></b>)");
+	output("\n\n(<b>S:<span class='shield'>10</span> H:<span class='hp'>10</span>, L:<span class='lust'>10</span></b>)");
+	output("\n\n(<b>Shield:<span class='shield'>10</span> Health:<span class='hp'>10</span>, Lust:<span class='lust'>10</span></b>)");
 	
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
@@ -120,7 +144,13 @@ public function debugMenus():void
 	
 	addButton(4, "Cashmoney", thisIsWhyWeCantHaveNiceThings, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
 	
-	addButton(5, "XP", thisIsWhyWeCantHaveNiceThings);
+	addButton(5, "KeyItems", function():void {
+		pc.createKeyItem("F");
+		pc.createKeyItem("A");
+		pc.createKeyItem("B");
+		pc.createKeyItem("G");
+		pc.createKeyItem("3");
+	});
 	
 	addButton(6, "Pass Time", thisIsWhyWeCantHaveNiceThings);
 }
@@ -143,31 +173,16 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new ShockBlade(), function():void {
-		output("\n\Shockblade Get.\n");
+	addItemButton(1, new TachyonBeamLaser(), function():void {
+		output("\n\nTach Beam.\n");
 		
-		var foundLootItems:Array = [new ShockBlade()];
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
+		quickLoot(new TachyonBeamLaser());
 	});
 	
-	addItemButton(2, new Bovinium(), function():void {
-		output("\n\nBovinium Get.\n");
+	addItemButton(2, new MyrBow(), function():void {
+		output("\n\nMyr Bow.\n");
 		
-		var items:Array = [];
-		var bov:Bovinium = new Bovinium();
-		bov.quantity = 10;
-		items.push(bov);
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(items);
+		quickLoot(new MyrBow());
 	});
 	
 	addButton(5, "Kaede", function():void {
@@ -185,6 +200,10 @@ public function debugMenusTwo():void
 		
 		itemCollect(items);
 	});
+	
+	addItemButton(9, new GooArmor(), function():void {
+		quickLoot(new GooArmor());
+	});
 }
 
 public function debugFuckWithRival():void
@@ -197,10 +216,11 @@ public function debugMenusThree():void
 	clearOutput();
 	output("Debug combat room.");
 	
-	addButton(0, "R. Nyrea", encounterNyreaHuntress, NYREA_UNKNOWN); // arg optional
-	addButton(1, "Alpha N.", encounterNyreaHuntress, NYREA_ALPHA);
-	addButton(2, "Beta N.", encounterNyreaHuntress, NYREA_BETA);
-	addButton(3, "SexBot", encounterASexBot);
+	addButton(0, "Sydian", encounterMaleSydian);
+	addButton(1, "Kaska", meetUpWithKaskaZeBossSloot);
+	addButton(2, "Nyrea", encounterNyreaHuntress);
+	addButton(3, "Frog", frogGirlsEncounter);
+	// addButton(3, "SexBot", encounterASexBot);
 }
 
 public function thisIsWhyWeCantHaveNiceThings():void
@@ -234,7 +254,7 @@ public function bountyBoardExtra():Boolean
 public function checkOutBountyBoard():void
 {
 	clearOutput();
-	output("The bounty board is covered in simple leaflets, papers, all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	output("The bounty board is covered in simple leaflets, papers, and all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
 	output("\n\n");
 	if(flags["SEEN_JULIANS_AD"] == undefined) {
 		output("<b>New: </b>");
@@ -294,7 +314,7 @@ public function firstTimeOnTarkusBonus():Boolean
 public function BonusFunction210():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
-	output("\n\nThe cargo elevator seems to be working down here - it's doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
+	output("\n\nThe cargo elevator seems to be working down here - its doors sit open to the north, awaiting a passenger. Now if only the raskvel could get it to go to the hangar, you could save yourself a lot of walking.");
 	return false;
 }
 
@@ -338,7 +358,7 @@ public function novaElevatorControlPanel():void
 	author("Gedan");
 	showName("NOVA\nELEVATOR");
 	
-	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevators doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
 	
 	clearMenu();
 	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
@@ -377,9 +397,20 @@ public function newTexasRoadFirstTime():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
-	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
-	return false;
+    if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+    {
+        if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
+        {
+            if(flags["MILK_BARN_COCKMILKER_SCANNED"] == undefined) addButton(0,"Fix Milker",yesFixDaMilkar,true,"Repair Milker","The male milker looks to be broken from your previous use... It'll need to be repaired before you can use it again.");
+            else addButton(0,"Fix Milker",yesFixDaMilkar,false,"Repair Milker","The male milker looks to be broken from your previous use... You'll need to pay for the repairs before you can use it again.");
+        }
+        else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
+        else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
+    }
+    else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
+    return false;
 }
+
 public function NTGiftShopBonusFunc():Boolean
 {
 	//First Time Entering the Shop
@@ -387,9 +418,9 @@ public function NTGiftShopBonusFunc():Boolean
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
 		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you've just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
-		pc.lustDamage(10);
+		applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
 	}
-	else pc.lustDamage(5);
+	else applyDamage(new TypeCollection( { tease: 5 } ), null, pc, "minimal");
 	output("The gift shop looks like every other gift shop in the 'verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There's a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled \"The Treatment.\" ");
 	if(flags["MET_ELLIE"] != undefined) output("Ellie");
 	else output("A tauric woman with black scales on her lower body and a massive GG-cup rack, only barely restrained by a semi-translucent bra that's stained with milky moisture");
@@ -476,7 +507,7 @@ public function randomBarnEventFunc():Boolean
 		//Gianna
 		else if(flags["MET_GIANNA"] != undefined && rand(4) == 0 && currentLocation != "512")
 		{
-			output("\n\n<b>Gianna is stepping out of the stall as you pass by,</b> a mop slung over her shoulder and a big pail of milk in her left hand, sloshing over with fullness. \"<i>Oh, hi, [pc.name],</i>\" she says, stopping to give you a bright smile. \"<i>Don't mind me, just doing a little bit of cleaning. Some of the cow-girls get a little.... messy sometimes.</i>\"");
+			output("\n\n<b>Gianna is stepping out of the stall as you pass by,</b> a mop slung over her shoulder and a big pail of milk in her left hand, sloshing over with fullness. \"<i>Oh, hi, [pc.name],</i>\" she says, stopping to give you a bright smile. \"<i>Don't mind me, just doing a little bit of cleaning. Some of the cow-girls get a little... messy sometimes.</i>\"");
 		}
 		//Dane
 		//Rare chance. Only outside of male milker. PC can't have beaten the Myrellion boss fight. 
@@ -502,7 +533,7 @@ public function randomBarnEventFunc():Boolean
 			if(rand(2) == 0)
 			{
 				output("\n\n<b>You see Ogram standing outside this stall</b>, leaning against the door with his arms crossed over his broad chest. \"<i>Hey there, " + pc.mf("buddy","beautiful") + ",</i>\" he says, inclining his head to you as you pass. \"<i>Just waiting on the little lady in there.\"</i>");
-				output("\n\nThrough the stall door, you can hear pleasure moans and cries as his partner gets a little lactic relief.");
+				output("\n\nThrough the stall door, you can hear pleasured moans and cries as his partner gets a little lactic relief.");
 			}
 			//Amma and Ogram II
 			else
@@ -549,33 +580,50 @@ public function esbethFastTravelOfficeBonus():Boolean
 	}
 	output(".");
 
-	addButton(0,"Scout",mhengaScoutAuthority);
-	return false;
+	addButton(0, (hasMetTanis() ? "Tanis" : "Scout"), mhengaScoutAuthority);
+	return false ;
 }
 
 public function mhengaScoutAuthority():void
 {
-	//I call him Tanis in my head, and he likes coffee. And he keeps a nerf gun under his desk for office wars. >>; That is my story for him and I'm sticking to it.
 	clearOutput();
 	showBust("TANIS");
+	if (hasMetTanis()) showName("\nTANIS");
+	author("Savin");
+	
+	if (flags["TANIS_APPROACHED"] != undefined && flags["TANIS_BOW_INTRO"] == undefined && pc.hasBowWeaponAvailable())
+	{
+		tanisBowIntro();
+		return;
+	}
+	
 	if(flags["SALVAGED VANAE CAMP"] != 2) 
 	{
-		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>\"Sorry, friend, we're just getting set up here on Mhen'ga. Jungle's a little too dense for the scout drones to map and plan landing zones, so there's no transports going out yet.\"</i>");
 		output("\n\n<i>\"Ah. Sorry to bother you,”</i> you say, turning to leave.");
 		output("\n\n<i>“No worries. <b>If you come across any inactive ones out there, get them going, and we’ll be able to get you anywhere they cover.</b>”</i>");
 		processTime(1);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+
+		addButton(0, "Next", mainGameMenu);
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+		
+		flags["TANIS_APPROACHED"] = 1;
 	}
 	//[Scout] (PC has fixed a comm array)
 	else
 	{
-		output("When you step up to the leithan man, he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
+		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>\"Hey there! Welcome to the Scout Authority base. We're running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma'am") + "?\"</i>");
 		processTime(1);
 		clearMenu();
 		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
 		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don't have enough credits to ride there.");
-		addButton(14,"Back",mainGameMenu);
+
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+
+		addButton(14, "Back", mainGameMenu);
+		
+		flags["TANIS_APPROACHED"] = 1;
 	}
 }
 
@@ -697,7 +745,7 @@ public function eastTransitStationBonus():Boolean
 {
 	if(flags["TARKUS_TAXI_STOP_UNLOCKED"] == undefined)
 	{
-		output("\n\nA forgotten comm relay is sitting here, its antennas corroded with rust. If you knocked all the crud loose, it could probably get signal again, allowing you to call for transport.");
+		output("\n\nA forgotten comm relay is sitting here, its antennas corroded with rust. If you knocked all the crud loose, it could probably get a signal again, allowing you to call for transport.");
 		addButton(0,"Fix Comms",fixCommsOnTarkus);
 	}
 	else

@@ -29,7 +29,6 @@
 			this.customDodge = "The zil zips out of the way with a swift contortion of his agile frame.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
 			this.plural = false;
-			this.lustVuln = 1;
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
@@ -45,7 +44,6 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 45;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 20;
 			this.level = 1;
 			this.credits = 0;

@@ -1,3 +1,4 @@
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function wetraxxelCaveEncounters():void
 {
 	if (flags["WETRAXXEL_ENCOUNTER_WEIGHT"] == undefined)
@@ -87,7 +88,9 @@ public function wetraHoundBite():Boolean
 
 			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
 		}
-		genericDamageApply(damageRand(15, 15), foes[0], pc, GLOBAL.PIERCING);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -112,7 +115,9 @@ public function wetraHoundPunch():Boolean
 		}
 		output("!");
 
-		genericDamageApply(damageRand(10, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -135,7 +140,9 @@ public function wetraHoundOverrun():Boolean
 	{
 		output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
 
-		genericDamageApply(damageRand(20, 20), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 		return true;
 	}
 	else
@@ -154,7 +161,9 @@ public function wetraHoundRend():void
 	{
 		output(" tearing into your flesh");
 
-		genericDamageApply(damageRand(20, 10), foes[0], pc, GLOBAL.SLASHING);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING);
+		damageRand(damage, 10);
+		applyDamage(damage, foes[0], pc);
 	}
 	else
 	{
@@ -310,10 +319,9 @@ public function wetraxxelBrawlerOneTwoPunch():void
 
 	if (numHits > 0)
 	{
-		var damage:Number = 15;
-		if (numHits == 2) damage += 20;
-
-		genericDamageApply(damageRand(damage, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: numHits * 15 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -345,7 +353,9 @@ public function wetraxxelBrawlerSweepKick():void
 			}
 		}
 
-		genericDamageApply(damageRand(20, 25), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -362,7 +372,9 @@ public function wetraxxelBrawlerDropKick():void
 	{
 		output(" His feet slam into your [pc.chest], knocking the wind out of you and sending you stumbling back. It’s agony to catch your breath after that, and you find yourself clutching at your chest, wheezing painfully. <b>Your aim and reflexes are temporarily reduced</b> while you catch your breath.");
 
-		genericDamageApply(damageRand(18, 15), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 
 		if (pc.hasStatusEffect("Staggered"))
 		{
@@ -388,7 +400,9 @@ public function wetraxxelBrawlerLariat():void
 	{
 		output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-		genericDamageApply(damageRand(10, 10), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
+		damageRand(damage, 10);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -404,7 +418,9 @@ public function wetraxxelBrawlerBodyslam():void
 	else
 	{
 		output(" The brawler body-slams you at full force, crashing into your [pc.chest] with rib-cracking impact! You’ll be feeling that for days!");
-		genericDamageApply(damageRand(18, 20), foes[0], pc, GLOBAL.KINETIC);
+		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -420,7 +436,10 @@ public function wetraxxelBrawlerElbowDive():void
 	else
 	{
 		output(" He drops down on you like a hammer, cracking his elbow right into your gut! You cry out as the massive blow connects, leaving your writhing in pain.");
-		genericDamageApply(damageRand(22, 25), foes[0], pc, GLOBAL.KINETIC);
+		
+		var damage:TypeCollection = new TypeCollection( { kinetic: 22 } );
+		damageRand(damage, 25);
+		applyDamage(damage, foes[0], pc);
 	}
 }
 
@@ -691,6 +710,7 @@ public function wetraxxelBrawlerPCVictory():void
 	{
 		output("With a grunt, the brawler slumps to his knees, leaning heavily against the craggy rockface beside himself. <i>“I yield,”</i> he groans, relaxing his fists into raised hands. <i>“You fight with fire, alien. Fire and honor. Do with me as you will.”</i>");
 	}
+	output("\n\n");
 
 	clearMenu();
 
@@ -707,6 +727,8 @@ public function wetraxxelBrawlerPCVictory():void
 
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
 	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
+
+	addButton(14,"Leave",genericVictory);
 }
 
 public function wetraxxelBrawlerPCVictoryFuckHisButt():void
@@ -827,7 +849,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 		output("\n\nYour own [pc.cock] throbs, bouncing against the brawler’s belly with every wannabe-bounce you make. Pre is starting to bead on your [pc.cockHead], drooling onto the chitinous belly beneath you. ");
 	}
 	else output("\n\n");
-	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes every more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves for mile around hear you.");
+	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes ever more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves for mile around hear you.");
 	
 	output("\n\nThe wetraxxel joins you with a gruff grunt of pleasure, and a sudden flood of wet heat into your "+holeTag+" as he cums. With one final push, you take him as deep as you can and surrender yourself to pleasure, letting orgasm wash over your in tidal waves of ecstasy. Your "+holeTag+" clenches powerfully around the wetraxxel’s dick, milking his hot seed out with your every orgasmic motion.");
 	if (useVag) pc.loadInCunt(foes[0], pc.biggestVaginaIndex());
@@ -865,7 +887,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nSubjected to your teasing hands, the brawler bug grunts with pleasure. His plated fingers dig into the rock, and his mammoth shaft stirs before your eyes. You watch with glee as the pronged crown of the wetraxxel’s dick starts its slow but inexorable journey towards your [pc.lips], the three slits on its head looking like dark little eyes gazing down upon you. After a moment’s restraint, your willpower seems to evaporate as the alien prick draws nearer, bringing with it the thick and musky odor of masculinity you’ve come to crave.");
 	
-	output("\n\nReverently, you open your [pc.lips] and reach out with your [pc.tongue], licking across the valley of fleshy cockhead. Between your tongue’s caress and your hands’ worshipful groping of his sack, the wetraxxel can’t supress a groan of pleasure. His cock rises faster, meeting your lips and parting them with practiced ease. You barely have time to blink before his pronged cockhead is battering the back of your throat, and one of his strong hands is on top of your head trying to force you down on more of his monumental man-meat.");
+	output("\n\nReverently, you open your [pc.lips] and reach out with your [pc.tongue], licking across the valley of fleshy cockhead. Between your tongue’s caress and your hands’ worshipful groping of his sack, the wetraxxel can’t suppress a groan of pleasure. His cock rises faster, meeting your lips and parting them with practiced ease. You barely have time to blink before his pronged cockhead is battering the back of your throat, and one of his strong hands is on top of your head trying to force you down on more of his monumental man-meat.");
 	
 	output("\n\nYou put up a token resistance to his efforts - just enough to say <i>“I’m in charge this time”</i> - before sliding your head as deep down his cock as you can. The pronged cockhead refuses to bend with your throat, battering against the back of your mouth until your tonsils are slathered with a thick glaze of salty-sweet alien pre. The length of cockmeat you can’t swallow down earns the attention of your hands, pumping his shaft from the balls and base all the way to your lips.");
 	

@@ -32,7 +32,6 @@
 			this.customDodge = "PLACEHOLDAH";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			//PLACEHOLDAH STATS & NO EQUIPPED SHIT
 			this.level = 1;
@@ -47,7 +46,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 70;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 500;
 			
 			this.credits = 1200;

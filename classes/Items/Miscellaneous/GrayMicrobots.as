@@ -37,15 +37,12 @@
 			
 			this.basePrice = 250;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.THERMAL;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.combatUsable = true;
 			this.targetsSelf = true;
@@ -59,7 +56,7 @@
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.\n");
-				if(!kGAMECLASS.debug) quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else

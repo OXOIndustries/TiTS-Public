@@ -25,8 +25,9 @@
 			this.customDodge = "The frog-girl twists out of the way on powerful legs.";
 			this.customBlock = "The frog-girl's skin proves remarkably durable!";
 			this.plural = false;
-			this.lustVuln = 1;
 			
+			meleeWeapon.baseDamage.kinetic.damageValue = 3;
+			meleeWeapon.attack = 2;
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.hasRandomProperties = true;
@@ -44,7 +45,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 30;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 2;
 			this.credits = 0;

@@ -1,4 +1,5 @@
-﻿//Conspiracy Colenso
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Conspiracy Colenso
 //By Nonesuch
 
 public function showColenso():void
@@ -280,7 +281,7 @@ public function sexbotQuestRoom2():Boolean
 
 		output("\n\nAfter patting yourself down, you explore the perimeter, trying to be stealthy as possible. It’s definitely an old factory of some sort – the area is littered with remains of production lines and haulage vehicles. Beneath your [pc.feet] you can feel the faintest throb of activity, and you can just about make out the hum and crackle of the radio tower. Something is definitely going on here. Determination renewed, you continue around to the front to find an entrance.");
 
-		output("\n\nThere is a huge robot standing in front of the gaping delivery bays. Its body is an amalgam of salvage: its trunk a round, riveted bathysphere, its limbs pistons tipped with industrial grapnels, its head a rectangular flat screen, flickering with static. This latter item it slowly turns to you as you cautiously approach. Once you are a few feet away a green light appears on the screen and it slowly extends its arm to the side, silently proffering the entrance to you; an almost comically polite gesture from a machine built like a gorilla. It makes no attempt to take your weapons off you, and shrugging you step into the echoingly empty ruin, trying to remain on your guard as the heavy, clanking step of the robot follows you in.");
+		output("\n\nThere is a huge robot standing in front of the gaping delivery bays. Its body is an amalgam of salvage: its trunk a round, riveted bathysphere, its limbs pistons tipped with industrial grapnels, its head a rectangular flat screen, flickering with static. This latter item slowly turns to you as you cautiously approach. Once you are a few feet away a green light appears on the screen and it slowly extends its arm to the side, silently proffering the entrance to you; an almost comically polite gesture from a machine built like a gorilla. It makes no attempt to take your weapons off you, and shrugging you step into the echoingly empty ruin, trying to remain on your guard as the heavy, clanking step of the robot follows you in.");
 		showBust("FIREWALL");
 		//[pg break]
 		processTime(23);
@@ -514,8 +515,8 @@ public function electropulseAttack(target:Creature):void
 	if(target == pc)
 	{
 		output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
-		var damage:Number = Math.round(15 + rand(5));
-		genericDamageApply(damage,foes[0],pc,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = new TypeCollection( { electric: 15 + rand(5) } );
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -546,8 +547,8 @@ public function flameThrowerAttack(target:Creature):void
 			output("\n<b>The flames licking at your flesh intensify!</b>");
 			pc.addStatusValue("Burning",1,2);
 		}
-		var damage:Number = Math.round(5 + rand(5));
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		var damage:TypeCollection = new TypeCollection( { burning: 5 + rand(5) } );
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -731,14 +732,18 @@ public function leftConsole():void
 		//Intelligence check failed:
 		if(pc.intelligence()/2 + rand(20) + 1 + bonus < 15)
 		{
-			output("\n\nYou panic. What should you type? “/dl crazy bitch.exe”? You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk. You didn’t save the AI but that’s probably for the best, all things considered. You congratulate yourself on a dangerous mission well completed.");
+			output("\n\nYou panic. What should you type? “/dl crazy_bitch.exe”? You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk. You didn’t save the AI but that’s probably for the best, all things considered. You congratulate yourself on a dangerous mission well completed.\n\n");
 			processTime(20);
 			currentLocation = "256";
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 			flags["SEXBOT_FACTORY_DISABLED"] = 1;
 			flags["SEXBOT_QUEST_STATUS"] = 2;
-			clearMenu();
-			addButton(0,"Next",mainGameMenu);
+			if(inCombat()) genericVictory();
+			else
+			{
+				clearMenu();
+				addButton(0,"Next",mainGameMenu);
+			}
 			return;
 		}
 		//Int succeed (techies should get a bonus for this check):

@@ -37,9 +37,16 @@ public function investigateSlashShelly():void
 	//Repeat [shelly]
 	else
 	{
-		output("You walk up to Shelly, and she waves happily when she sees you coming.");
-		if(flags["KNOW_SHELLYS_NAME"] == undefined) output("\n\n<i>“Hello again. You need something?”</i>");
-		else output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
+		if(flags["KNOW_SHELLYS_NAME"] != undefined) 
+		{
+			output("You walk up to Shelly, and she waves happily when she sees you coming.");
+			output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
+		}
+		else 
+		{
+			output("You walk up to the bunny woman, and she locks you with a hopeful look when she sees you approaching.");
+			output("\n\n<i>“Hello again. You need something?”</i>");
+		}
 		output(" she asks with a warm grin.");
 	}
 	//[talk] [assist] [sex] [leave](at first only talk and leave available, after talk you get assist, after assist cock weilders get other sex)
@@ -142,6 +149,7 @@ public function sexWithShelly():void
 	if(!pc.isTaur())
 	{
 		output("\n\nYou grasp your [pc.cock " + x + "], bringing its length to bear and slipping it between her thighs. You hear her gasp with surprised pleasure as the top of your [pc.cock " + x + "] slides over her slit, parting her folds slightly and rubbing her heated entrance. She turns her head to kiss you, and you return it, playing with her tongue and tasting her candy sweet saliva. You rub her legs and grip them, preparing to lift her up.");
+		pc.cockChange();
 		output("\n\nWhen you hoist, you're surprised to find her to be incredibly light and end up nearly flinging her onto the bed. She gives a surprised giggle, not realizing your overzealous lift was an error. You’re happy to go with it, lowering her back until your [pc.cockHead " + x + "] slightly pushes her folds apart, hovering just above penetration. After a few seconds of teasing rubs, you slowly lower her over your [pc.cockNounSimple " + x + "].");
 		output("\n\nShe sighs with ecstasy as you fill her, her heated insides clamping down on your [pc.cock " + x + "], until soon ");
 		if(pc.cockVolume(x) <= 50) output("you hilt inside her");
@@ -168,6 +176,7 @@ public function sexWithShelly():void
 		if(pc.cockVolume(x) <= 50) output(" till you hilt inside her");
 		else output(" till your tip bumps into her cervix");
 		output(".");
+		pc.cockChange();
 		output("\n\nYou smile as you see her sink onto the bed, eyes fluttering with bliss as she tightly grips the sheets. You begin rhythmically pumping your hips, starting slow enough for her to feel every inch of your length as it glides in and out of her. You gradually pick up the pace, your thrusts gaining speed until you can hear your hips slapping against her plush buttocks.");
 		output("\n\nShelly’s tongue has lolled out of her mouth, and you can see a growing stain of sugary milk soaking the sheets, spreading from under her chest. She grunts and moans with every thrust until finally she shouts in a rapturous orgasm. Her insides clasp around [pc.cock " + x + "], wringing you for everything you’ve got. You feel your own end coming, and she seemingly notices your rapidly approaching release.");
 		output("\n\n<i>“W-wait! please. Shoot it outside!”</i> she gasps between moans of ecstasy. It looks like you have a decision to make.");

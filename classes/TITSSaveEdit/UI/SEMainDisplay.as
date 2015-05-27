@@ -58,7 +58,6 @@ package classes.TITSSaveEdit.UI
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
 		public function get combatStats():CombatStats { return _combatStats; }
-		public function get resistances():Resistances { return _resistances; }
 		public function get tailAppearance():TailAppearance { return _tailAppearance; }
 		public function get fluidSettings():FluidSettings { return _fluidSettings; }
 		public function get generalGender():GeneralGender { return _generalGender; }

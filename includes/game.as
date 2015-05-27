@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.GameData.PerkData;
 import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
@@ -180,9 +181,13 @@ public function showPerksList():void
 	for (var i:int = 0; i < perkList.length; i++)
 	{
 		var perk:StorageClass = perkList[i] as StorageClass;
+		var perkDesc:String = _perkDB.getDescriptionForPerk(perk.storageName);
+		
+		if (perkDesc.length == 0) perkDesc = perk.tooltip;
+		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b> - " + perk.tooltip + "\n");
+			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
 		}
 	}
 }
@@ -318,6 +323,7 @@ public function sleep(outputs:Boolean = true):void {
 	processTime(minutes);
 
 	mimbraneSleepEvents();
+	grayGooSpessSkype();
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
@@ -352,6 +358,12 @@ public function shipMenu():Boolean {
 	{
 		return true;
 	}
+	
+	if (flags["ANNO_NOVA_UPDATE"] == 2)
+	{
+		grayGooArrivesAtShip();
+		return true;
+	}
 
 	this.addButton(9,"Fly",flyMenu);
 	if(currentLocation == "SHIP INTERIOR") {
@@ -368,10 +380,17 @@ public function flyMenu():void {
 	clearOutput();
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
 	{
-		output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
-		clearMenu();
-		addButton(14,"Back",mainGameMenu);
-		return;
+		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+		{
+			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
+			clearMenu();
+			addButton(14,"Back",mainGameMenu);
+			return;
+		}
+		else 
+		{
+			pc.removeStatusEffect("Disarmed");
+		}
 	}
 	output("Where do you want to go?");
 	this.clearMenu();
@@ -444,7 +463,7 @@ public function flyTo(arg:String):void {
 		output("You slow your ship down as you near the orbit of your next destination, Tarkus. As you scale down past a third of the speed of light, the planet begins to come into view: surrounded by a dense field of asteroids loom the two sundered halves of the goblin world. At first glance this appears to be a lifeless system, however, as the ships sensor suite comes online instruments alert you to extreme electromagnetic interference emanating from the planet below, suggesting a power source in the multi-petawatt range. The planet, or perhaps more accurately the rended halves of the former planet, is blatantly chained together with a massive space tether whose every link must be the size of a Terran cruiser! Surely it must have taken the resources of the entire system to erect such a technological marvel: No wonder new pioneers are so interested in this place.");
 		output("\n\nSlowly but surely, the ship picks through shards of rock that must have once been part of the planet's core and mantle. Further in however the field seems to largely consist of orbital debris rather than planetary ejecta: hulls of space ships and ruined clumps of satellites mashed together over centuries of disuse flit past you at thousands of kilometers per hour, making your approach difficult. More than once unidentified high velocity particles are intercepted by your shields, a grim reminder your ship is barely equipped to survive this landing. Finally you're through. The console to your front chirps as heat shields engage and you enter the upper atmosphere.");
 		output("\n\n For several minutes all you can hear is the hum of the shield generator much louder than before as it works to deflect and absorb much of the heat created by drag as you descend. \n\n\ Finally the vibration subsides and your view is restored as the heat shields slide open, just in time for you to see yourself punch through a thick cloud layer that leaves a mask of water droplets at the edges of your cockpit window. Although still high above the planet, you make out the surface below as mostly red speckled with flecks of silver and gray. The sea resembles acrylic paints that have undergone mixing at the hands of an overzealous toddler; hideous black and green hues garishly reflect the harsh light of Tarkus's star KP0384128J");
-		output("\n\n Entry process winks green and your altitude control system switches to local ref. 300 kilometers out from the beacon you slow to a polite mach one in towards the impact site of the ancient and disintegrating capital ship you saw from orbit. The ship is surrounded by mechanical detritus from all sides and powdered with red dusts from a wasteland which stretches as far as your eye can see to the east. It rests on the shore of the strange shimmering black sea. The land here is little more than a junkyard, one more world ravished by the march of progress until it was little more than a skeleton. The dead land sends a chill down your spine while you wait for permission to land. As you vector to one of the dimly lit hangers you fly past an ancient QR code dating from the brief but colorful Information Age of Man that reads simply; NOVA. \"Goddamn the ship is prehistoric!\" you think as the Z14 eases into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
+		output("\n\n Entry process winks green and your altitude control system switches to local ref. 300 kilometers out from the beacon you slow to a polite mach one in towards the impact site of the ancient and disintegrating capital ship you saw from orbit. The ship is surrounded by mechanical detritus from all sides and powdered with red dusts from a wasteland which stretches as far as your eye can see to the east. It rests on the shore of the strange shimmering black sea. The land here is little more than a junkyard, one more world ravished by the march of progress until it was little more than a skeleton. The dead land sends a chill down your spine while you wait for permission to land. As you vector to one of the dimly lit hangers you fly past an ancient QR code dating from the brief but colorful Information Age of Man that reads simply; NOVA. \"<i>Goddamn the ship is prehistoric!</i>\" you think as the Z14 eases into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
 	}
 	else if(arg == "New Texas") {
 		shipLocation = "500";
@@ -635,6 +654,9 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	//Handle badger closure
+	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
 	//Handle planet explosions
 	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
@@ -741,6 +763,24 @@ public function variableRoomUpdateCheck():void
 		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
 		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
 	}
+	
+	// Steph Myrellion shit
+	if (flags["STEPH_WATCHED"] == undefined)
+	{
+		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		if (flags["STEPH_WORK_CHOICE"] == undefined)
+		{
+			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
+		}
+		else
+		{
+			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+		}
+	}
+	
 }
 
 public function processTime(arg:int):void {
@@ -805,9 +845,13 @@ public function processTime(arg:int):void {
 	//milk is chunked out all at once due to lazies
 	if(arg > 0 && pc.canLactate()) 
 	{
-		//trace("time rested: " + arg);
-		pc.milkProduced(arg);
-		milkGainNotes();
+		//Celise overnights halt milkstuff.
+		if(!pc.hasStatusEffect("Milk Paused"))
+		{
+			//trace("time rested: " + arg);
+			pc.milkProduced(arg);
+			milkGainNotes();
+		}
 	}
 	
 	if (flags["MIMBRANES BITCH TIMER"] == undefined)
@@ -938,7 +982,7 @@ public function processTime(arg:int):void {
 				else flags["IRELLIA_SEX_COOLDOWN"]--;
 			}
 			//Lactation effect updates
-			lactationUpdateHourTick();
+			if(!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick();
 			//Horse pill procs!
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
@@ -1007,6 +1051,12 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				 // New Texas cockmilker repair cooldown.
+				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+				{
+					if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]--;
+					else flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 0;
+				}
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined) newTexasEmail();
@@ -1305,6 +1355,7 @@ public function milkGainNotes():void
 		
 		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if ";
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "it wasn't for your genetically engineered super-tits, your body would be slowing down production";
+		else if(pc.isPregnant()) eventBuffer += "you weren't pregnant, you'd probably be slowing production.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "you weren't wearing a <b>Bounty Bra</b>, your body would be slowing down production";
 		else eventBuffer += "you don't take care of it soon, a loss of production is likely";
 		eventBuffer += ". Right now, they're swollen up to [pc.breastCupSize]s.";
@@ -1323,6 +1374,7 @@ public function milkGainNotes():void
 		
 		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. ";
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		else if(pc.isPregnant()) eventBuffer += "<b>With a pregnancy on the way, there's no way your body will stop producing.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
 		else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
 		pc.removeStatusEffect("Pending Gain Milk Note: 200");
@@ -1337,7 +1389,7 @@ public function lactationUpdateHourTick():void
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
 	//Bounty bra never loses milkMultiplier!
-	if(pc.upperUndergarment is BountyBra)
+	if(pc.upperUndergarment is BountyBra || pc.isPregnant())
 	{
 
 	}
@@ -1355,7 +1407,7 @@ public function lactationUpdateHourTick():void
 		}
 	}
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra)) {
+	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant()) {
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
 		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
 		else pc.milkMultiplier -= 0.1;

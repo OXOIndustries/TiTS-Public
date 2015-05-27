@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.possessive;
 	
 	public class Pandaneen extends ItemSlotClass
 	{
@@ -38,8 +39,6 @@
 			//Information
 			this.basePrice = 500;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -47,7 +46,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = this._latestVersion;
 		}
@@ -183,7 +181,7 @@
 							{
 								kGAMECLASS.output("\n\nPleasant pressure appears ");
 								if(!target.hasSheath(x)) kGAMECLASS.output("at the base of your [pc.cock " + x + "]");
-								else kGAMECLASS.output("inside your " + kGAMECLASS.possessive(target.cockDescript(x)) + " sheath");
+								else kGAMECLASS.output("inside your " + possessive(target.cockDescript(x)) + " sheath");
 								kGAMECLASS.output(". It's just enough warning for you to ");
 								if(!target.isCrotchGarbed()) kGAMECLASS.output("look down");
 								else kGAMECLASS.output("pull open your [pc.lowerGarments]");
@@ -215,22 +213,32 @@
 						if(((target.ballSizeRaw < 3 && target.ballSizeUnlocked(3) && !target.hasPerk("Bulgy")) || (target.ballSizeRaw < 6 && target.ballSizeUnlocked(6) && target.hasPerk("Bulgy"))) && rand(4) == 0 && changes < changeLimit)
 						{
 							//Ballsize <= 1
-							if(target.ballSizeRaw <= 1)
+							if(target.ballSizeRaw < 1)
 							{
-								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, large ball");
+								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, ");
+								kGAMECLASS.output("baseball-sized ball");
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(".</b>");
-								target.ballSizeRaw = 1;
+								target.ballSizeRaw = 4;
 							}
 							//Ballsize == 2
 							else
 							{
 								kGAMECLASS.output("\n\nYou gasp in delight in surprise when you feel the familiar weight of your [pc.balls] surge. Reaching down");
 								if(target.isCrotchGarbed()) kGAMECLASS.output(" into your [pc.lowerGarment]");
-								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, apple-sized endowment");
+								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, ");
+								if(!target.hasPerk("Bulgy")) 
+								{
+									kGAMECLASS.output("apple-sized endowment");
+									target.ballSizeRaw = 9.5;
+								}
+								else 
+								{
+									kGAMECLASS.output("baseball-sized endowment");
+									target.ballSizeRaw = 7.85;
+								}
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" will be sure to make your orgasms a little more productive.</b>");
-								target.ballSizeRaw = 3;
 							}
 							changes++;
 							target.lust(7+rand(3));

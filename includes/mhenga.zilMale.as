@@ -1,4 +1,7 @@
-﻿//Male Zil Encounter
+﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//Male Zil Encounter
 
 // Flags:
 // TIMES_LOST_TO_ZIL  : TODO - FIXME
@@ -136,36 +139,29 @@ public function zilFlyingSpinKickSingle():void {
 	}
 	else 
 	{
-		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		trace("HEEL KICK DAMAGE: " + damage);
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if (target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (target.shieldsRaw > 0) 
-				output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
-		if(damage >= 1) 
+		var damage:TypeCollection = attacker.damage(true);
+		damage.add(attacker.physique() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (sDamage[0] > 0) 
-				output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damage + "</b>)");
-			else 
-				output(" (<b>" + damage + "</b>)");	
+			if (damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+		}
+		
+		if (damageResult.hpDamage > 0)
+		{
+			if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
+			
 			if (!pc.hasStatusEffect("Stunned"))
 			{
 				output("<b> It's concussive enough to leave you stunned.</b>");
 				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
 		}
+		
+		outputDamage(damageResult);
 	}
 	processCombat();
 }
@@ -180,25 +176,18 @@ public function zilDrop():void {
 		processCombat();
 		return;
 	}
-	var damage:int = 0;
-	var sDamage:int = 0;
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
 	//{lift fail}
 	if((pc.thickness + 100) * pc.tallness >= 9900) {
 		output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
 		//{low damage}
-		damage = rand(4)+1;
-		genericDamageApply(damage,foes[0],pc);
+		applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), foes[0], pc);
 	}
 	else 
 	{
 		output(" He proves strong enough to separate you from your footing. You struggle, but the ground gets further and further away. Then, he lets you go. ");
 		if(!pc.canFly()) {
 			output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
-			damage = rand(5)+5;
-			genericDamageApply(damage,foes[0],pc);		
+			applyDamage(new TypeCollection( { kinetic: 5 + rand(5) } ), foes[0], pc);
 		}
 		else output("You flutter down safely under your own power. It's so good to be able to fly.");
 		
@@ -209,9 +198,11 @@ public function zilDrop():void {
 //Buffs kinetic defenses?
 public function zilHardenSingle():void {
 	output("Closing his onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	foes[0].resistances[GLOBAL.KINETIC] *= .8;
-	foes[0].resistances[GLOBAL.SLASHING] *= .8;
-	foes[0].resistances[GLOBAL.PIERCING] *= .8;
+	
+	var newRes:Number = (100 - foes[0].baseHPResistances.kinetic.resistanceValue) / 5;
+	foes[0].baseHPResistances.kinetic.resistanceValue += newRes;
+	foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+	
 	processCombat();
 }
 	
@@ -402,7 +393,7 @@ public function rideDatZilCawk():void {
 	userInterface.showName("MALE\nZIL");
 	if(pc.isNice()) output("Smiling amiably, you tell him that you plan to take his seed in the most pleasurable way possible.");
 	else if(pc.isMischievous()) output("Smiling roguishly, you tell him that he's going to have a hard time walking when you finish.");
-	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once your done with him.");
+	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once you're done with him.");
 	output(" The zil gasps as you push him flat on his back, and he openly ogles your [pc.chest]");
 	if(!pc.isNice()) output(" as you strip off your [pc.gear]");
 	else output(" as you admire his smooth, polished figure");
@@ -842,7 +833,7 @@ public function getABJFromAManzil():void
 	//Bimbo:
 	if(pc.isBimbo()) output(" He’s so cute, but he looks uneasy! You know what always makes you feel better - lots and lots of yummy cum!");
 	else if(pc.isBro()) output(" You’ve shown him who the alpha is. Time to get your reward.");
-	else output("Calmy, you discard your [pc.gear] and slowly step towards him.");
+	else output(" Calmy, you discard your [pc.gear] and slowly step towards him.");
 	output(" His gaze has shifted from your face to your crotch, mesmerised by your rising [pc.cocksNounSimple]. His mouth is hanging open by the time you reach him - your ");
 	if(pc.cockTotal() > 1) output("biggest dick");
 	else output("[pc.cockBiggest]");

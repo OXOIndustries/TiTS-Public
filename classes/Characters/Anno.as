@@ -20,7 +20,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 7;
+			this._latestVersion = 8;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -48,7 +48,6 @@
 			this.customDodge = "Anno Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
@@ -71,7 +70,6 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 350;
 			this.level = 4;
 			this.credits = 0;
@@ -225,6 +223,15 @@
 		public function UpgradeVersion6(dataObject:Object):void
 		{
 			dataObject.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
+		}
+		public function UpgradeVersion7(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			delete d.bonusResistances;
+			delete d.resistances;
+			delete d.lustVuln;
+			delete d.bonusLustVuln;
 		}
 	}
 }

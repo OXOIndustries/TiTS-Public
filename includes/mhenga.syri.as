@@ -124,7 +124,7 @@ public function betYourselfAgainstSyri():void {
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) {
 		output("\n\n<i>“Well, well, feeling brave are we?”</i>  the ausar girl says, slipping down from her perch to stalk toward you, hips swaying. She slips around you, one furry hand trailing across your [pc.hip]. <i>“Well, you're not bad looking and not the worst gamer I've seen... not by a long shot... but I feel like I ought to warn you, [pc.name],”</i>  she says, pressing herself up against you. At first, your mind can only think of the hefty, oh-so-soft orbs smushed against your back, a pert little teat on each rubbing across your [pc.armor]. After a moment, though, you feel a throbbing something... else... pressing against your [pc.butt].");
 
-		output("\n\n<i>“I've got a little something extra, stranger. And if you lose, I'm going to bend you over this here table and fuck your ass with a big knotty prick until I've got you nice and tied and screaming like a bitch in heat. Of course, if you somehow manage to win, you can ride my cock");
+		output("\n\n<i>“I've got a little something extra, stranger. And if you lose, I'm going to bend you over this table and fuck your ass with a big knotty prick until I've got you nice and tied and screaming like a bitch in heat. Of course, if you somehow manage to win, you can ride my cock");
 		//if PC has a dick:
 		if(pc.hasCock()) output(" or pound my little pucker all you want, whichever suits your fancy. I don't judge.");
 		else output(".");
@@ -242,7 +242,7 @@ public function victoryFuckSyrisBunghole():void {
 	output("Unable to resist the urge to spread this dog-slut's legs and fuck her like the bitch she is, you flip Syri around and push her down onto the nearest table, pinning her arms behind her back. She squirms, struggling against you as your hand plays across her wide hips, squeezing one of her full cheeks beneath her pants. It's like putty in your hand, so soft and kneadable. Her tail twitches and flickers, swatting across your face as its owner tries to pretend she doesn't enjoy you playing with her big, delicious ass. You let her carry on for a few minutes as you grope her ass, starting to grind on her, cock swelling as it rubs against the coarse fabric of her clothes, feeling the radiant warmth of the ausar's body and the hypnotic movements of her hips.");
 	output("\n\n<i>“Come on,”</i>  she growls, finally settling down a bit in your unrelenting grip. <i>“Just fucking get it over with already.”</i>");
 
-	output("\n\nYou grin and with one deft motion hike her pants down, letting her throbbing erection pop free, slapping helplessly against the edge of the table as you drink in the thick crescents of Syri's bared ass. Moving her tail out of the way, you slip down and spread her cheeks with a probing pair of fingers, trailing from the base of her knotting red pecker across her taint and up to the puckered little ring of her ass.");
+	output("\n\nYou grin and with one deft motion hike her pants down, letting her throbbing erection pop free, slapping helplessly against the edge of the table as you drink in the thick crescents of Syri's bared ass. Moving her tail out of the way, you slip down and spread her cheeks with a probing pair of fingers, trailing from the base of her knotty red pecker across her taint and up to the puckered little ring of her ass.");
 
 	output("\n\nSyri shivers as your finger passes across the clenched hole, but the unconscious wriggle of her hips is all you need to know she's ready for a pounding, even if she's casting haughty death glares over her shoulder. Chuckling, you spit right on her asshole, leaving a thick dollop of saliva right on the mark.");
 
@@ -305,6 +305,7 @@ public function victoryFuckSyrisBunghole():void {
 	chars["SYRI"].orgasm();
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -363,6 +364,7 @@ public function rideSyrisCockYouWinner():void {
 	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	chars["SYRI"].orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu)
 }
@@ -482,6 +484,7 @@ public function pcLosesToSyriBettingHisAss():void {
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
 	chars["SYRI"].orgasm();
+	pc.exhibitionism(1);
 	processTime(30+rand(15));
 	pc.orgasm();
 	pc.loadInAss(chars["SYRI"]);
@@ -1010,7 +1013,7 @@ public function getVagFukkedBySyri():void {
 
 	output("\n\nYou feel yourself cumming, [pc.vagina " + x + "] spasming hard around the massive intruder spearing it open");
 	if(pc.hasCock()) output(" as [pc.eachCock] explodes in a shower of seed, smearing Syri's belly with a sudden gush of your cum");
-	output(". Syri groans in response, her cock spasming in return, knot swelling again as your cunny clamps and squeezes, milking it even through the microfiber condom. With a quiet roar, Syri grabs your ass and pulls your hard onto her lap, shoving as much of her dick into you as she can before cumming; you can feel the condom balloon out as her hot seed pours into it, swelling the condom until it feels like a sloshing second knot pressing against your cervix.");
+	output(". Syri groans in response, her cock spasming in return, knot swelling again as your cunny clamps and squeezes, milking it even through the microfiber condom. With a quiet roar, Syri grabs your ass and pulls you hard onto her lap, shoving as much of her dick into you as she can before cumming; you can feel the condom balloon out as her hot seed pours into it, swelling the condom until it feels like a sloshing second knot pressing against your cervix.");
 
 	output("\n\n<i>“Gods,”</i>  Syri pants, hands clasping your [pc.butt], <i>“that was awesome, Steele. You're an animal...”</i>  Suddenly, you're hefted up into her arms as the ausar girl hobbles to her feet, shakily carrying you back to the bed before you both fall in, laughing like kids until Syri rolls onto you, face inches from your own.");
 

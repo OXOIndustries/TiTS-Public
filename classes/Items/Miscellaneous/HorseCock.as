@@ -43,8 +43,6 @@
 			//Information
 			this.basePrice = 1000;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -52,7 +50,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -101,7 +98,7 @@
  					if(eligableHorseTFDicks(pc) == 0)
  					{
  						kGAMECLASS.output("You don't have any suitable place to stick this - you're already packing some fine horsemeat.");
- 						if(!kGAMECLASS.debug) quantity++;
+ 						if(!kGAMECLASS.infiniteItems()) quantity++;
  					}
  					else if(eligableHorseTFDicks(pc) == 1) HorseCockHorseCockConversion(eligableHorseDick(pc));
  					else

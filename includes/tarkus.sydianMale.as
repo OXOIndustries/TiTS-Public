@@ -1,4 +1,5 @@
-﻿import classes.Items.Miscellaneous.NoItem;
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Miscellaneous.NoItem;
 public function encounterMaleSydian():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
@@ -10,7 +11,7 @@ public function encounterMaleSydian():void
 		author("Lukadoc");
 		flags["MET_SYDIAN_MALE"] = 0;
 		output("\n\nA nearby junkpile shudders, drawing your attention. You look closer, and this time you see something besides rotten rubber and discarded machinery: a pair of wiggling antennae that seem to be groping around rusted metal, further corroding it with every touch. Then, as if somehow aware of your presence, the creature below moves, sending the concealing mound shuddering. Tiny cascades of detritus roll down the side as a vaguely humanoid mass rises up out of it, chewing metallic flakes as the dust settles.");
-		output("\n\nThe creature cocks dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. It's shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
+		output("\n\nThe creature dusts itself off as it regards you, giving you time to do the same. It stands about seven feet tall. It's shape is the fairly common bipedal configuration with thick, powerful limbs covered in reddish armor plating. A long, powerful tail sways behind it, tipped feathery feelers that look similar to its antennae and plumage.");
 		//No new PG
 		//Met lady rust monster
 		if(flags["MET_FEMALE_SYDIAN"] != undefined) output(" It has to be a male sydian!");
@@ -94,7 +95,7 @@ public function rustBroDegrade():void
 		else
 		{
 			output(" The strike smacks cleanly into your [pc.skinFurScales], leaving a veneer of viscous goo behind. It rapidly wicks into your body, leaving your surfaces clean but your heart hammering with excitement. It's some kind of mild aphrodisiac!");
-			pc.lustDamage(5+rand(5));
+			applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
 		}
 		foes[0].createStatusEffect("Use Grope Next");
 	}
@@ -107,13 +108,13 @@ public function sydianMaleGropesYou():void
 	foes[0].removeStatusEffect("Use Grope Next");
 	output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
 	if(pc.reflexes()/2 + rand(20) + 1 > foes[0].physique()) {
-		output(" You manage to slip out of his hold before he excite you too much.");
-		pc.lustDamage(3);
+		output(" You manage to slip out of his hold before he can excite you too much.");
+		applyDamage(new TypeCollection( { tease: 3 } ), foes[0], pc, "minimal");
 	}
 	else
 	{
 		output(" His big, thick fingers cup and squeeze, then explore and caress, manhandling you with enough precision to give away that this isn't the first time he's done this.");
-		pc.lustDamage(15+rand(10));
+		applyDamage(new TypeCollection( { tease: 15 + rand(10) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
@@ -121,8 +122,8 @@ public function sydianMaleGropesYou():void
 //Antennae Tickle - raises lust, less damage than grope
 public function sydianAntennaeTickle():void
 {
-	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the food long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
-	pc.lustDamage(10+rand(5));
+	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the foot long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 
@@ -130,7 +131,7 @@ public function sydianAntennaeTickle():void
 public function sydianLickAttack():void
 {
 	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva. He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	pc.lustDamage(15+rand(5));
+	applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 //Tackle
@@ -143,8 +144,8 @@ public function sydianTackleAttack():void
 	{
 		output("He connects, knocking you backwards and putting him in the perfect position for another blow.");
 		foes[0].createStatusEffect("Hammer Punch Next");
-		var damage:int = 5+rand(4);
-		genericDamageApply(damage,foes[0],pc);
+		
+		applyDamage(new TypeCollection( { kinetic: 5 + rand(4) }, DamageFlag.CRUSHING), foes[0], pc);
 	}
 	processCombat();
 }
@@ -159,8 +160,8 @@ public function tripAttack():void
 	{
 		output("You go down to the ground! <b>You're going to have a difficult time fighting from down here!</b>");
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		var damage:int = 1;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		
+		applyDamage(new TypeCollection( { kinetic: 1 } ), foes[0], pc);
 	}
 	processCombat();
 }
@@ -177,10 +178,9 @@ public function hammerPunch():void
 	else
 	{
 		output(" He connects!");
-		var damage:int = 15 + foes[0].physique()/2;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = new TypeCollection( { kinetic: (15 + foes[0].physique() / 2) } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	foes[0].removeStatusEffect("Hammer Punch Next");
 	processCombat();
@@ -193,12 +193,12 @@ public function bodySlamByBros():void
 	else
 	{
 		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
-		if(pc.shields() > 0) output(" Not even your shields protect you!");
-		var damage:int = 5 + foes[0].physique()/2;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		damage = HPDamage(pc,damage,GLOBAL.KINETIC);
-		output(" (<b>" + damage + "</b>)");
+		
+		if (pc.shields() > 0) output(" Not even your shields protect you!");
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+		outputDamage(damageResult);
 	}
 	processCombat();
 }
@@ -449,7 +449,7 @@ public function chicksRideASydian():void
 		output(" ");
 	}
 	output("fuckdoll, slapping his bitch-breaking girth into you with bruising force. Your composure slips once more, and this time, you're sure you're going to cum.");
-	output("\n\nThe sydian must sense this because grabs hold of ");
+	output("\n\nThe sydian must sense this because he grabs hold of ");
 	if(pc.hasCock()) {
 		output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
 	}

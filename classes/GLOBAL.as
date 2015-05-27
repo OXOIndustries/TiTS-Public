@@ -115,7 +115,7 @@
 		public static const TYPE_DEMONIC:int                                = 15;
 		public static const TYPE_GOOEY:int                                  = 16;
 		public static const TYPE_KANGAROO:int                               = 17;
-		public static const TYPE_TANUKI:int                                 = 18;
+		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
 		public static const TYPE_DEER:int                                   = 21;
@@ -311,7 +311,6 @@
 			TYPE_LIZAN,
 			TYPE_DEMONIC,
 			TYPE_KANGAROO,
-			TYPE_TANUKI,
 			TYPE_DEER,
 			TYPE_PANDA,
 			TYPE_MLP,
@@ -525,6 +524,9 @@
 			FLUID_TYPE_MILKSAP,
 			FLUID_TYPE_CHOCOLATE_MILK,
 			FLUID_TYPE_STRAWBERRY_MILK,
+			FLUID_TYPE_VANAE_MAIDEN_MILK,
+			FLUID_TYPE_VANAE_HUNTRESS_MILK,
+			FLUID_TYPE_NECTAR,
 		];
 		
 		// HAIRTYPES
@@ -598,6 +600,8 @@
 			TYPE_BEE,
 			TYPE_SYNTHETIC,
 			TYPE_LAPINARA,
+			TYPE_VANAE,
+			TYPE_KUITAN,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -609,53 +613,6 @@
 			FLAG_NUBBY,
 		];
 		
-		//DAMAGE TYPES
-		//Guns and blunt weapons
-		public static const KINETIC:int                                = 0;
-		//Swords and the like.
-		public static const SLASHING:int                               = 1;
-		//Horns, knives, etc.
-		public static const PIERCING:int                               = 2;
-		//Lasers - less effective against HP
-		public static const LASER:int                                  = 3;
-		//Equally murders everything.
-		public static const PLASMA:int                                 = 4;
-		//Pretty good against everything
-		public static const GRAVITIC:int                               = 5;
-		//ELECTRIC - good vs shields
-		public static const ELECTRIC:int                               = 6;
-		//THERMAL
-		public static const THERMAL:int                                = 7;
-		public static const NO_TYPE:int								   = 8;
-		
-		public static const MAX_DAMAGE_TYPES:int						= 9; // damageType bookend, probably gonna roll its usage into things like array generation and shit.
-		
-		public static const DamageTypeStrings:Array = 
-		[
-			"Kinetic",
-			"Slashing",
-			"Piercing",
-			"Laser",
-			"Plasma",
-			"Gravitic",
-			"Electrical",
-			"Thermal",
-			"Not Applicable",
-		];
-		
-		public static const DamageTypeShortStrings:Array = 
-		[
-			"Kntc",
-			"Slsh",
-			"Prcn",
-			"Lasr",
-			"Plsm",
-			"Grvt",
-			"Elec",
-			"Thrm",
-			"N/A ",
-		];
-
 		//ROOM FLAGS
 		public static const INDOOR:int                                 = 0;
 		public static const OUTDOOR:int                                = 1;
@@ -690,7 +647,6 @@
 		public static const RECRUITED_CELISE:int                       = 0;
 		public static const CELISE_ONBOARD:int                         = 1;
 		public static const TIMES_CELISE_IN_BALLS:int                  = 2;
-		
 
 		//ITEM TYPES
 		public static const PILL:int                                   = 0;
@@ -730,7 +686,9 @@
 		public static const REAHA:int 								   = 18;
 		public static const KELLY:int 								   = 19;
 
-		public static var ITEMS:Object = {};
+		// ITEM FLAGS
+		public static const ITEM_FLAG_BOW_WEAPON:int					= 0;
+		public static const ITEM_FLAG_ENERGY_WEAPON:int					= 1;
 		
 		/**
 		 * You have a couple of ways of querying the preference values to get useful information back out; it's why I've set the LIKES/DISLIKES values like I have.
@@ -831,5 +789,8 @@
 		"GEOFF_FUCKED_DUDES_TWICE"
 		*/
 
+		public static const CHILD_TYPE_LIVE:uint = 1;
+		public static const CHILD_TYPE_EGGS:uint = 2;
+		public static const CHILD_TYPE_SEED:uint = 3;
 	}
 }

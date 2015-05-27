@@ -8,7 +8,7 @@ package classes.Characters
 	{
 		public function Lane()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -20,7 +20,7 @@ package classes.Characters
 			this.customDodge = "Dodge Placeholder";
 			this.customBlock = "Block Placeholder";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -41,7 +41,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 350;
 			this.level = 3;
 			this.credits = 0;
@@ -211,6 +211,17 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 2;
 			this.lipMod = 1;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 	}
 }

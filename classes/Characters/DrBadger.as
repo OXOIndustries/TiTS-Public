@@ -4,16 +4,18 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
+	import classes.Items.Transformatives.Gush;
 	public class DrBadger extends Creature
 	{
 		//constructor
 		public function DrBadger()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.inventory.push(new Dumbfuck());
+			this.inventory.push(new Gush());
 			this.inventory.push(new Throbb());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -33,7 +35,6 @@
 			this.customDodge = "Dr. Badger Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
@@ -54,7 +55,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 45;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 450;
 			this.level = 5;
 			this.credits = 1000;
@@ -174,6 +175,22 @@
 			this.ass.loosenessRaw = 2;
 			
 			this._isLoading = false;
-		}	
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new Gush().getSaveObject());
+		}
 	}
 }

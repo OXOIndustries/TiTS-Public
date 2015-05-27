@@ -1,5 +1,7 @@
 package classes.Items.Guns 
 {
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
@@ -40,8 +42,13 @@ package classes.Items.Guns
 			//Information
 			this.basePrice = 1; // Intentionally giving the items from Kiro a shit value so that they won't outweigh the 1k credit reward from /not/ taking any items.
 			this.attack = 3;
-			this.damage = 7;
-			this.damageType = GLOBAL.LASER;
+			
+			baseDamage = new TypeCollection();
+			baseDamage.electric.damageValue = 2;
+			baseDamage.burning.damageValue = 5;
+			baseDamage.addFlag(DamageFlag.LASER);
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -49,7 +56,6 @@ package classes.Items.Guns
 			this.critBonus = 3;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}

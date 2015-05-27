@@ -48,7 +48,6 @@
 			this.long = "PLACEHOLDER";
 			this.customBlock = "BLOOP";
 			this.plural = false;
-			this.lustVuln = 1;
 			//this.meleeWeapon = new RaskvelWrench();
 			
 			//this.rangedWeapon.damage = 10;
@@ -72,7 +71,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 40;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 9999;
 			this.level = 6;
 			this.credits = 4000;

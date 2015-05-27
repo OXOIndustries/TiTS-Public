@@ -55,7 +55,7 @@ public function introductionToMerchantQueenSloot():void
 	{
 		clearOutput();
 		showMerchantQueen();
-		output("Still resting on her probably less-than-comfortable padded perch, the queen glances up from her simple reading material before immediately tossing it aside haphazardly and putting on a big, golden smile. You’re not really sure if she was actually reading or just putting on a show for effect. <i>“Valuable customer! Welcome. I hope our gracious Red hosts didn’t accost you too much today. Now then, how many I help you? My stock is, as always, on display and available. If it’s not on a shelf then I’m afraid it’s not prepared for purchase, for whatever reason - don’t ask about backroom things. As much as I enjoy conversation, I </i>am<i> running a business.”</i>");
+		output("Still resting on her probably less-than-comfortable padded perch, the queen glances up from her simple reading material before immediately tossing it aside haphazardly and putting on a big, golden smile. You’re not really sure if she was actually reading or just putting on a show for effect. <i>“Valuable customer! Welcome. I hope our gracious Red hosts didn’t accost you too much today. Now then, how may I help you? My stock is, as always, on display and available. If it’s not on a shelf then I’m afraid it’s not prepared for purchase, for whatever reason - don’t ask about backroom things. As much as I enjoy conversation, I </i>am<i> running a business.”</i>");
 		output("\n\nThe mercantile queen goes through her nearly mechanical, though lively rhetoric while you distract yourself, all too aware of the woman’s illicit multitasking in the other <i>“room.”</i> Her body sways gently, pressing hardened body-plates into the firm padding with faint squeaks of pleather upon each unknown thrust into her. That and the delicious, subtle bounce of those all-too-motorboatable tits are the");
 		if(silly) output(" only signs of her doggy-style sex for the sole purpose of recreation.");
 		else output(" only signs of her active, literally-backroom sex.");
@@ -171,7 +171,7 @@ public function talkToAntQueenButt(arg:Function = undefined):void
 
 	//Lifestyle
 	//The place is occupied by Reds and the military is everywhere...
-	if(arg == soWhatsTheDealWithAllTheseCommies) addDisabledButton(4,"Lifestyle`","Lifestyle","You just finished that discussion");
+	if(arg == soWhatsTheDealWithAllTheseCommies) addDisabledButton(4,"Lifestyle","Lifestyle","You just finished that discussion");
 	else addButton(4,"Lifestyle",soWhatsTheDealWithAllTheseCommies,undefined,"Lifestyle","The place is occupied by Reds and the military is everywhere...");
 
 	//Influence?
@@ -248,10 +248,10 @@ public function soWhatsTheDealWithAllTheseCommies():void
 	clearOutput();
 	showMerchantQueen();
 	output("The merchant nods solemnly, pausing in thought for a moment before simply shrugging her four arms lazily. <i>“Every off-worlder asks about this. The curiosity is fair, I suppose... yes, there is a mess outside. It’s practically ruined Kressia, though it’s not like the war was for our benefit. Kressia was taken a while ago, so there’s been plenty of time to settle in with the occupation. For both sides. The threat and paranoia of military remnants hiding out in the ruins has gone away, and so have the constant searches and soldiers breathing down our necks. It’s still far from comfortable, though, just less... invasive. Which, for an invasion, is pretty good!”</i> The queen cracks a quick grin at her own joke before continuing. <i>“It’s all pretty heavy-handed, more like a police state. Aggressive curfews, nervous soldiers, random interrogations... I mean, it’s all a given. I can’t honestly blame their paranoia. A single fit gold myr could probably tear this building down in a few minutes with her bare hands! Domestic disputes are a bitch; we aren’t some squishy people like you off-worlders are. Firearms just let us kill each other slightly farther away.”</i>");
-	output("\n\n<i>“Food is probably a more pressing thing than trigger-happy guards, though. The Reds have to ship it through a war-torn hellhole to get here, so delays are pretty frequent. Rationing spurs up unrest much more then some strict rules backed by bullets... it’s all about food. Now, of course, </i>I<i> have people in my pocket. I’m practically exempt! That fact has allowed me to keep running things despite the occupation - that and you off-worlders, of course. The military cabinet is rather terrified of you. Like I said, though, the difference between a myr with and without a pistol is just a few meters, so it’s not worth the effort to police.”</i>");
+	output("\n\n<i>“Food is probably a more pressing thing than trigger-happy guards, though. The Reds have to ship it through a war-torn hellhole to get here, so delays are pretty frequent. Rationing spurs up unrest much more than some strict rules backed by bullets... it’s all about food. Now, of course, </i>I<i> have people in my pocket. I’m practically exempt! That fact has allowed me to keep running things despite the occupation - that and you off-worlders, of course. The military cabinet is rather terrified of you. Like I said, though, the difference between a myr with and without a pistol is just a few meters, so it’s not worth the effort to police.”</i>");
 	output("\n\nHm. Aren’t the queens pretty important, though? No one keeping an eye on her is pretty weird.");
 	output("\n\n<i>“We are! Glad you noticed. We’re so important that if the army so much as touched us inappropriately the entire city would be up in arms in bloody rebellion. If much of anyone, let alone a soldier, started to give me trouble... even myr that aren’t my children would go into a frenzy about it... they’re all rather protective.”</i> She chuckles darkly. <i>“If anything, the Reds are stuck holding massive hand-fans and waiting on our every need. Not that I abuse such a thing, of </i>course<i>! It’s far too much of a bother.”</i>");
-	output("\n\n<i>“Although. They </i>do<i> steal away the drones. No one cares as much about them; it’s not like they’re getting mistreated. Just bred. It is pretty amusing to see an oh-so-holier-than-thou Red book it with some flailing sap over her shoulder while being chased by some half naked Gold, though.”</i>");
+	output("\n\n<i>“Although. They </i>do<i> steal away the drones. No one cares as much about them; it’s not like they’re getting mistreated. Just breed. It is pretty amusing to see an oh-so-holier-than-thou Red book it with some flailing sap over her shoulder while being chased by some half naked Gold, though.”</i>");
 	output("\n\nRude.");
 	output("\n\n<i>“Quite.”</i>");
 	processTime(6);
@@ -420,6 +420,7 @@ public function getAntSuckedPart2():void
 	userInterface.setMapData(map);
 	showName("\nRECOVERING");
 	processTime(3);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -474,6 +475,7 @@ public function femlustWithQueen():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

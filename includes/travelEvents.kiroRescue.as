@@ -185,7 +185,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	}
 	else
 	{
-		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
+		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a position to attempt fixing the machine for the beached Kui-Tan.")
 	}
 	addButton(4,"Nope!",kirosShipNopeFuckThisShit,undefined,"Nope, I'm Out","You don't get paid enough to deal with this kind of shit.");
 	return true;
@@ -206,7 +206,7 @@ public function kirosShipChubnookiUpDaButt():void
 	output("\n\n");
 	if (pc.isCrotchGarbed()) output("You unzip your fly");
 	else output("You toss your kit aside");
-	output(" and step up behind the alien's gigantic nads. Perched atop those massive things, though, there's no real way to get at her sex even if she's spreading 'em wide. Welp. You sigh and, grabbing the fuck-me-boots of darker fur on her legs for support, clamber up onto her gigantic sack. \"<i>A-ah gods, it's heeaaavvvyyyyyy,</i>\" she cries as you climb on, and you watch a sudden huge gush of pearly cum blast out of the tanuki's equine dong, sloshing into the defunct cock-milker in a milky flood, your body weight literally squeezing the spunk out of her. Though that won't be nearly enough you can tell; her balls still seem to be growing underneath you, the momentum of their huge size meaning her production of cum far outweighs whatever you'll be able to squeeze out of her that way. Not that this was Plan A, anyway.");
+	output(" and step up behind the alien's gigantic nads. Perched atop those massive things, though, there's no real way to get at her sex even if she's spreading 'em wide. Welp. You sigh and, grabbing the fuck-me-boots of darker fur on her legs for support, clamber up onto her gigantic sack. \"<i>A-ah gods, it's heeaaavvvyyyyyy,</i>\" she cries as you climb on, and you watch a sudden huge gush of pearly cum blast out of the tanuki's equine dong, sloshing into the defunct cock-milker in a milky flood, your body weight literally squeezing the spunk out of her. Though you can tell that won't be nearly enough; her balls still seem to be growing underneath you, the momentum of their huge size meaning her production of cum far outweighs whatever you'll be able to squeeze out of her that way. Not that this was Plan A, anyway.");
 
 	output("\n\nThe tanuki looks plaintively over her shoulder, her dark fingers digging into her taut ass to spread her cheeks wide, overtly begging you to fuck her, hips shaking wildly, grinding her bare cunt against your crotch for the barest hint of pleasure. You grab your [pc.cock " + selCock + "], stroking yourself as you discard the last of your gear. You let your member flop down into the spread valley of the tanuki's cheeks and pull her hands away, letting it squeeze around your prick as you decide what, exactly, to do.");
 
@@ -227,14 +227,14 @@ public function kirosShipChubnookiUpDaButt():void
 	output("\n\nYou figured, given the porn she's been watching. Still, you've got a cock, and she's got an ass with what's gotta be a massive prostate, ripe for the milking. And if there's one way to get that cum out of her, that's the key. Squeezing her ass, you tell her to brace herself. She nods, biting her lips as your cock presses in against her dark star.");
 
 	// small cock
-	if (pc.cockVolume(selCock) <= 10 * 2)
+	if (pc.cockVolume(selCock) <= kiro.biggestCockVolume() - 100)
 	{
 		output("\n\nIt doesn't take as much effort as you'd thought to get your [pc.cock " + selCock + "] in. She gives a little whine, pushes back for a moment, and you're in. Looks like she's played with this hole more than she lets on... ");
 		pc.cockChange(false, true);
 		kiro.buttChange(pc.cockVolume(selCock), false, false, false);
 	}
 	// big cock
-	else if (pc.cockVolume(selCock) <= 21 * 3.5)
+	else if (pc.cockVolume(selCock) <= kiro.biggestCockVolume()+100)
 	{
 		output("\n\nYou push against her asshole, grunting with effort as her tight little hole resists you, shoving back against your stiff cock until finally with a cry of pain she yields, and your [pc.cockHead " + selCock + "] plunges in. ");
 		pc.cockChange(false, true);
@@ -250,7 +250,7 @@ public function kirosShipChubnookiUpDaButt():void
 		output("\n\n");
 	}
 
-	output("The tanuki shrieks and moans, arms reaching out to brace against the sides of the machine as your [pc.cock " + selCock +"] sinks into her. The muscles of her ass are inexperienced but pleasure-wracked, squeezing wildly as her balls quake and shudder beneath you. You nearly fall off, cock falling out till just the head is in again. Looking down, you can see the absolute flood of spooge gushing out of her now, a veritable sea of spunk flooding from her engorged horsecock, and that just from the initial penetration. Oh, she's in for a wild ride.");
+	output("The tanuki shrieks and moans, arms reaching out to brace against the sides of the machine as your [pc.cock " + selCock +"] sinks into her. The muscles of her ass are inexperienced but pleasure-wracked, squeezing wildly as her balls quake and shudder beneath you. You nearly fall off, cock falling out until just the head is in again. Looking down, you can see the absolute flood of spooge gushing out of her now, a veritable sea of spunk flooding from her engorged horsecock, and that's just from the initial penetration. Oh, she's in for a wild ride.");
 
 	output("\n\n\"<i>A-ah... gods, that's amaaaaazing,</i>\" she groans, her big tits bouncing as her chest heaves, breath ragged. \"<i>I only ever use toys... a real cock's soooo much better,</i>\" she breathes, eyes practically rolled back in her head as you can feel her balls deflating, shrinking beneath you.");
 
@@ -445,7 +445,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	else output(" they're");
 	output(" experiencing, and you feel a subtle heat building in your crotch, the only warning you're given about the orgasm you're about to have.");
 
-	output("\n\nGroaning in sync, neither one of you notices the dripping spunk pools below, and when you become so enamored by your sexual friction that you both slip, the fall is as unavoidable as it is unexpected. The big-balled alien's cock slides out of its encapsulating sleeve as you hit the ground, slowing her fall just enough that you slip halfway out before she drops the rest of the way, hilting herself with the ass-jarring impact of her body bouncing into yours. Her balls have dropped down to the size of beach balls, but she's still cumming, still spurting. And now, her member is left free and unrestrained to tower above you both, spraying its waves of alabaster up into a cloud of jism. The droplets sparkle in the artificial light, seeming to hang there an eternity. Then, they drop down over the both of you in a rain, spattering off the tanuki's tits, soaking her squishy thighs and soft fur, even dripping off her hair in long curtains.");
+	output("\n\nGroaning in sync, neither one of you notices the dripping spunk pools below, and when you become so enamored by your sexual friction that you both slip, the fall is as unavoidable as it is unexpected. The big-balled alien's cock slides out of its encapsulating sleeve as you hit the ground, slowing her fall just enough that you slip halfway out before she drops the rest of the way, hilting herself with the ass-jarring impact of her body bouncing into yours. Her balls have dropped down to the size of beach balls, but she's still cumming, still spurting. Now her member is left free and unrestrained to tower above you both, spraying its waves of alabaster up into a cloud of jism. The droplets sparkle in the artificial light, seeming to hang there an eternity. Then, they drop down over the both of you in a rain, spattering off the tanuki's tits, soaking her squishy thighs and soft fur, even dripping off her hair in long curtains.");
 
 	output("\n\nGrabbing her tits and moaning, the hermaphrodite plants her feet on either side of you and starts lifting herself up and down, dragging herself along your dick");
 	if (pc.cockTotal() > 1) output("s"); 
@@ -512,18 +512,18 @@ public function kirosShipChubnookiFucksYouGud():void
 	}
 	output(" You cast a lusty look towards the tanuki and tell her, \"<i>Pull out of that fake pussy. I've got something for you right here.</i>\" You drop your gear and bend over to show her just what you're talking about, grabbing [pc.onePussy] with both hands and spreading it wide, showing off the juicy, slick interior to the nearly-insensate tanuki-woman.");
 
-	output("\n\n\"<i>R-really?</i>\" the half-crazed hermaphrodite pants, \"<i>I c-can put inside you? I can use you like a little cum-bloated cocksleeve until my balls are empty and you're waddling around full of jizz?</i>\" She bites her lip, grabs her nipple and gasps, violently lurching her hips forward, slamming them into the entrance of the fake pussy with aroused desperation. She jackhammers it a few times before exhaustion overwhelms her, forcing her to give up with a mewl of disappointment. \"<i>Please, do it!</i>\" She roughly yanks back, revealing a glistening fuckpole at least a foot and a half long, pulsating so violently that it visibly throbs in place. It's big, flat flare is stretched wide like it's about to cum, and a steady stream of pre-cum is just rolling out of the distended cum-slit.");
+	output("\n\n\"<i>R-really?</i>\" the half-crazed hermaphrodite pants, \"<i>I c-can put inside you? I can use you like a little cum-bloated cocksleeve until my balls are empty and you're waddling around full of jizz?</i>\" She bites her lip, grabs her nipple and gasps, violently lurching her hips forward, slamming them into the entrance of the fake pussy with aroused desperation. She jackhammers it a few times before exhaustion overwhelms her, forcing her to give up with a mewl of disappointment. \"<i>Please, do it!</i>\" She roughly yanks back, revealing a glistening fuckpole at least a foot and a half long, pulsating so violently that it visibly throbs in place. Its big, flat flare is stretched wide like it's about to cum, and a steady stream of pre-cum is just rolling out of the distended cum-slit.");
 
-	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like its the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
+	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like it's the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
 	if (pc.hasHair()) output(" [pc.hair]");
 	else output(" head");
 	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to [pc.eachVagina] until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering, before you remember your promise. You're going to let this beast-girl cum inside you.");
 
-	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as its twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need, and your own feminine fuck-scent mixes with it into a soupy sexual haze. Both panting now, you lock eyes with each other and smile.");
+	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need, and your own feminine fuck-scent mixes with it into a soupy sexual haze. Both panting now, you lock eyes with each other and smile.");
 
 	output("\n\nThe tanuki mentions via stuttering groan, \"<i>The l-lube is elasticizing. So, don't worry about the size. It'll fit.</i>\" Her balls quake under you, nearly tossing you from your perch. Clearly she's imagining what's about to happen.");
 
-	output("\n\nYou smile to yourself. Her imagination has no idea how good you're going to make that bloated horse-dick of hers feel. Placing your hands on her shoulders, you pull yourself up onto just your [pc.feet], balancing yourself as you straddle her splayed legs and align yourself with the pre-spouting pecker. You lower slowly, as her head is at least three or four inches across thanks to its flare, feeling the hot kiss of her efflux as you come within a hairsbreadth touching her spasming flesh. The slick pre soaks your [pc.vaginas] with a clear coat of sopping-wet lust before your own dripping passion causes it to drizzle out onto the tanuki-woman's increasingly slippery nutsack. You decide that you can hold out no longer.");
+	output("\n\nYou smile to yourself. Her imagination has no idea how good you're going to make that bloated horse-dick of hers feel. Placing your hands on her shoulders, you pull yourself up onto just your [pc.feet], balancing yourself as you straddle her splayed legs and align yourself with the pre-spouting pecker. You lower slowly, as her head is at least three or four inches across thanks to its flare, feeling the hot kiss of her efflux as you come within a hairsbreadth of touching her spasming flesh. The slick pre soaks your [pc.vaginas] with a clear coat of sopping-wet lust before your own dripping passion causes it to drizzle out onto the tanuki-woman's increasingly slippery nutsack. You decide that you can hold out no longer.");
 
 	output("\n\nRelaxing your [pc.legOrLegs], you let her flare smash into your juiced-up gates, spreading them slowly as the rock-hard pillar of cock presses against them, flat with just enough of a curve to make you spread out wider and wider. Whatever chemical lubricant she was using");
 	if (pc.biggestVaginalCapacity() >= kiro.biggestCockVolume()) output(" doesn't matter with as much sexual experience as you've had. This is just a walk in the park for a flexible cunt like yours.");
@@ -692,7 +692,7 @@ public function kirosShipPostFirstFuck():void
 
 	output("\n\n\"<i>You haven't? Shit, I thought I was at least making the news,</i>\" she says, stomping a padded foot in irritation. \"<i>What's your name, angel?</i>\"");
 
-	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help but to keep glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
+	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
 
 	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel.");
 	if (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined) output(" I'd love to fuck a few more times, but");

@@ -1,5 +1,6 @@
 ﻿import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.VaginaClass;
 public function encounterVanae(isHuntress:Boolean):void
 {
@@ -268,17 +269,16 @@ public function vanaeSpearStrike():void
 				output(" One minute you're fighting, the next you're seeing stars as she drives the flat end right into your temple. Your world spins, your head feeling as if it suddenly exploded.");
 			}
 			
-			var damage:int = foes[0].meleeWeapon.damage + 8;
-			var randInf:Number = (rand(10) + 90) / 100;
-			damage *= randInf;
-			
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damageRand(damage, 10);
+						
 			if (isCrit)
 			{
-				dMulti += 1;
+				damage.multiply(2);
 				pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stunned", "Cannot act for a turn.", true, 0);
 			}
 			
-			genericDamageApply(damage * dMulti, foes[0], pc, GLOBAL.KINETIC);
+			applyDamage(damage, foes[0], pc);
 		}
 	}		
 	processCombat();
@@ -294,9 +294,9 @@ public function vanaeTailSwipe():void
 	if (combatMiss(foes[0], pc)) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");
 	else
 	{
-		var isCrit:Boolean = false;
-		var dMulti:Number = 1.0;
 		var critChance:int = 15;
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 20);
 		
 		if (rand(100) > critChance)
 		{
@@ -305,20 +305,15 @@ public function vanaeTailSwipe():void
 		}
 		else
 		{
-			isCrit = true;
-			dMulti += 1;
+			damage.multiply(2);
 			
 			// [Crit]: 
 			output(" You're struck by her tail, falling to the ground and hitting your head - hard. Your world spins as she closes in on you. You're too disoriented to do anything about it...");
 		}
 		
-		var damage:int = foes[0].meleeWeapon.damage;
-		var randInf:Number = (rand(20) + 80) / 100;
-		damage *= randInf;
+		applyDamage(damage, foes[0], pc);
 		
 		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
 	processCombat();
 }
@@ -347,7 +342,7 @@ public function vanaeGrapple():void
 			output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
 
 			pc.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
-			pc.lustDamage(8 + rand(8));
+			applyDamage(new TypeCollection( { tease: 8 + rand(8) } ), foes[0], pc, "minimal");
 		}
 	}
 	else
@@ -356,7 +351,7 @@ public function vanaeGrapple():void
 	if (foes[0] is MaidenVanae) output(" meager");
 	else output(" sizable");
 	output(" mounds, your [pc.groin] burning with arousal.");
-		pc.lustDamage(8 + rand(8));
+		applyDamage(new TypeCollection( { tease: 8 + rand(8) } ), foes[0], pc, "minimal");
 	}
 	
 	processCombat();
@@ -368,13 +363,22 @@ public function vanaeWaitWhilstGrappled():void
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
 	if (foes[0] is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have good time - okay?”</i>");
 	else output(" <i>“...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...”</i>");
-	pc.lustDamage(16 + rand(8));
+	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), foes[0], pc, "minimal");
 }
 
-public function vanaeEscapeGrapple():void
+public function vanaeEscapeGrapple(escapeCause:String = ""):void
 {
 	// [Successful Escape]: 
-	output("You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
+	if (escapeCause == "Escape Artist")
+	{
+		output("Displaying a remarkable degree of flexibility you manage to twist and turn out of her grasp,");
+	}
+	else
+	{
+		output("You finally break free of her grasp,");
+	}
+	
+	output(" pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
 
 	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. <i>“By the Sky Mother; you're so slippery! You better be worth all the effort.”</i>");
 	else output(" The blind huntress picks up her spear and stomps her foot. <i>“Arghh, I was so close! Was I really that bad?”</i>");
@@ -408,7 +412,7 @@ public function vanaeMilkSquirtBreasts():void
 			pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 		}
 		
-		pc.lustDamage(8 + rand(4));
+		applyDamage(new TypeCollection( { tease: 8 + rand(4) } ), foes[0], pc, "minimal");
 	}
 	
 	processCombat();
@@ -428,11 +432,11 @@ public function vanaeSpiralKick():void
 		// [Hit & Stun]: 
 		output(" Her [monster.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...");
 		
-		var damage:int = foes[0].meleeWeapon.damage + 25;
-		var randInf:Number = (rand(20) + 80) / 100;
-		damage *= randInf;
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(12);
+		damageRand(damage, 20);
+		applyDamage(damage, foes[0], pc);
 		
-		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 		pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 	}
 
@@ -443,7 +447,7 @@ public function vanaeCamoflage(justUpdate:Boolean = true):void
 {
 	if (foes[0].hasStatusEffect("Camouflage"))
 	{
-		foes[0].addStatusValue("Camouflage", 1 -1);
+		foes[0].addStatusValue("Camouflage", 1, -1);
 	}
 	
 	if (!justUpdate)
@@ -1222,7 +1226,7 @@ public function vanaeHuntressVaginalSex():void
 		output("\n\nYou assure her it will despite your size, though she looks dubious. <i>“If you leave me ruined from your stupidly huge cock, I'm holding you responsible,”</i> she warns.");
 	}
 
-	output("\n\nOnce she has finishes appraising your [pc.cock " + selCock + "] she stretches out her [monster.tongue], gently lapping at your [pc.cockhead " + selCock +"]. The bumps of her tongue bristle and stroke your sensitive glans, her saliva drooling lewdly on it and down your [pc.cock " + selCock +"]. Soon she is moving down, her tongue curling hungrily around the underside of your shaft. You quickly stiffen and groan as she masterfully lashes your length, leaving it rigid and glistening in her spit.");
+	output("\n\nOnce she finishes appraising your [pc.cock " + selCock + "] she stretches out her [monster.tongue], gently lapping at your [pc.cockhead " + selCock +"]. The bumps of her tongue bristle and stroke your sensitive glans, her saliva drooling lewdly on it and down your [pc.cock " + selCock +"]. Soon she is moving down, her tongue curling hungrily around the underside of your shaft. You quickly stiffen and groan as she masterfully lashes your length, leaving it rigid and glistening in her spit.");
 
 	if (pc.balls > 0)
 	{

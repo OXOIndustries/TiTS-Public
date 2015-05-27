@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
 	import classes.Items.Protection.ImprovisedShield;
@@ -9,6 +10,7 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class SexBot extends Creature
 	{
@@ -26,14 +28,18 @@
 			this.long = "";
 			this.customBlock = "Your attack fails to damage the 'bot.";
 			this.plural = false;
-			this.lustVuln = 0;
-			this.meleeWeapon.damage = 5;
+			
+			isLustImmune = true;
+			
+			meleeWeapon.baseDamage.kinetic.damageValue = 5;
+			meleeWeapon.baseDamage.addFlag(DamageFlag.CRUSHING);
 			this.meleeWeapon.attack = 5;
 			this.meleeWeapon.longName = "tentacle";
 			this.meleeWeapon.attackVerb = "smack";
 			this.meleeWeapon.hasRandomProperties = true;
 
-			this.rangedWeapon.damage = 10;
+			rangedWeapon.baseDamage.kinetic.damageValue = 10;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
 			this.rangedWeapon.attackVerb = "shot";
@@ -54,7 +60,10 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 30;
-			this.resistances = new Array(1,1,1,1,1,1,1.4,1);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.electric.damageValue = -40.0;
+			
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 100;

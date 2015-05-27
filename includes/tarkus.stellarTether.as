@@ -1,4 +1,7 @@
-﻿//{If Dungeon not completed, add:}
+﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+//{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
 {
 	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
@@ -215,13 +218,11 @@ public function laserSightShot():void
 	else
 	{
 		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she's a deadeye!");
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 2.2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		var damage:TypeCollection = foes[0].damage(false);
+		damage.add(foes[0].aim() / 2);
+		damage.multiply(2.2);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -259,12 +260,10 @@ public function thermalDisruptorFromTam():void
 		output("\n\nHer grin turns savage. <i>\"Just kidding! I like it rough!");
 		if(silly && foes[0].hasStatusEffect("Tamwolf Out")) output("\"ruff\"!");
 		output("\"</i>");
-		var damage:int = 18;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
-
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 18 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -302,11 +301,11 @@ public function tamwolfBiteGogogogogogo():void
 		if(pc.armor.shortName == "") output("you");
 		else output("your [pc.armor]");
 		output(".");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number  = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+		
+		var damage:TypeCollection = foes[0].damage(true);
+		damage.add(foes[0].physique() / 2);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 } 
@@ -795,7 +794,7 @@ public function liftDownEvent():void
 		output("stars is blocked out by the rise of huge earthen cliff sides as you descend into the chasm. You step up to the glass fore of the car, squinting to see the tether station far below. You can't at first, but as time passes (and the elevator picks up speed), it comes into view. It's a large installation, circular, surrounded by a wide walkway with a lengthy bridge leading from the bottom of the lift tracks to the door of the station proper.");
 
 		output("\n\nWhat a long way down. You take a moment to catch your breath after the deadly shootout with that crazed cat-girl and her robotic friend; ");
-		if(pc.rangedWeapon.shortName != "" && pc.rangedWeapon.damageType == GLOBAL.KINETIC) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
+		if(pc.rangedWeapon.shortName != "" && (pc as PlayerCharacter).rangedWeapon.baseDamage.hasFlag(DamageFlag.BULLET)) output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
 		else if(pc.rangedWeapon.shortName != "") output("you check the ammunition readings on your weapon, satisfied you're up for another encounter");
 		else output("you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]");
 		output(". Satisfied you're ready for a proper fight, you step back from the window and steel yourself from what's to come.");
@@ -1003,11 +1002,10 @@ public function rocketPodRocketAttk():void
 	else
 	{
 		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
-		var damage:int = 15;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -1158,9 +1156,9 @@ public function khorganSuitAI():void
 public function miningLaserBarrage():void
 {
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
-	var damage:int = 0;
+	var damage:TypeCollection;
 	var leftOverDamage:int = 0;
-	var randomizer:Number = 0;
+	
 	for(var x:int = 3;x > 0;x--)
 	{
 		//Damage!
@@ -1172,15 +1170,19 @@ public function miningLaserBarrage():void
 		else
 		{
 			output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
-			damage = 10;
-			randomizer = (rand(31)+ 85)/100;
-			damage *= randomizer;
+			
+			damage = new TypeCollection( { burning: 10 } );
+			damageRand(damage, 15);
+			
 			//Leftover damage is what doesn't get eaten by cover.
-			leftOverDamage = damage - Math.round(damage * coverPercent());
+			leftOverDamage = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+			
 			//Cover soaks up it's % in damage.
-			coverDamage(damage * coverPercent());
+			coverDamage(damage.getTotal() * coverPercent());
+			
 			//Figure out how much is left
-			genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+			damage = new TypeCollection( { burning: leftOverDamage } );
+			applyDamage(damage,foes[0],pc);
 		}
 	}
 	processCombat();
@@ -1274,15 +1276,19 @@ public function miningLaserSuperShot():void
 		output("\n\nYou try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
 		if(pc.shields() > 0) output("shields and ");
 		output("gear.");
-		var damage:int = 30;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 30 } );
+		damageRand(damage, 15);
+		
 		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+		
 		//Cover soaks up it's % in damage.
-		coverDamage(damage * coverPercent());
+		coverDamage(damage.getTotal() * coverPercent());
+		
 		//Figure out how much is left
-		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+		damage = new TypeCollection( { burning: leftOverDamage } );
+		applyDamage(damage,foes[0],pc);
 	}
 	processCombat();
 }
@@ -1307,15 +1313,19 @@ public function crateThrow():void
 			output(", but find yourself STUNNED");
 		}
 		output(".");
-		var damage:int = 15;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
+		
+		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
+		damageRand(damage, 15);
+		
 		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
+		
 		//Cover soaks up it's % in damage.
-		coverDamage(damage * coverPercent());
+		coverDamage(damage.getTotal() * coverPercent());
+		
 		//Figure out how much is left
-		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
+		damage = new TypeCollection( { burning: leftOverDamage } );
+		applyDamage(damage,foes[0],pc);
 	}
 	processCombat();
 }
@@ -1385,11 +1395,12 @@ public function missileIncoming():void
 			output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you're tossed about like a ragdoll.");
 			flags[flags["MISSILE_TARGET"]] = 0;
 			output(" <b>(-100% Cover)</b>");
-			var damage:int = 20;
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
+			
+			var damage:TypeCollection = new TypeCollection( { burning: 20 } );
+			damageRand(damage, 15);
+			
 			//Figure out how much is left
-			genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+			applyDamage(damage,foes[0],pc);
 		}
 	}
 	processCombat();
@@ -1406,7 +1417,7 @@ public function victoriousVsCaptainOrcButt():void
 	output("\n\nBut she's not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit's powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it's strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust.");
 	output("\n\nWith a pneumatic hiss, the mech suit's cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core.");
 	output("\n\n<i>\"You stupid " + pc.mf("bastard","bitch") + ",\"</i> the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist's pose. <i>\"All you and the damn Peacekeepers had to do was was stay back a few hours... nobody had to get hurt. But you... now you've ruined everything. Probably killed half my crew, haven't you? And now my suit! My beautiful suit!\"</i>");
-	output("\n\nYou have just enough time to pull your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
+	output("\n\nYou have just enough time to ready your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
 	output("\n\nShe circles, breathing hard. <i>\"You're strong, I'll give you that. That suit should have been able to mow through a whole squad of soldiers, but you...\"</i>");
 	output("\n\nKhorgan sighs, a slight grin crossing her lips. She charges, swinging low. You parry, leaping back as you see the feint for what it is, only just dodging a left hook that would have had you on your ass. She follows up with a few swings which you alternatively dodge or parry before countering with your own attack, pushing her back -- and giving you some room to breathe.");
 	output("\n\n<i>\"Good!\"</i> the captain grins, the fury in her voice fading to what you might venture to call mirth. <i>\"You're good, Steele. Maybe even good enough...\"</i>");
@@ -1494,11 +1505,10 @@ public function captainCutlassAttk():void
 	else 
 	{
 		output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -1521,8 +1531,8 @@ public function roundHouseKickFromCapn():void
 		}
 		else output(".");
 		output(" Oof!");
-		var damage:int = 4;
-		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+		
+		applyDamage(new TypeCollection( { kinetic: 4 } ), foes[0], pc);
 	}
 	processCombat();
 }
@@ -1536,12 +1546,12 @@ public function crotchFaceSmash():void
 	if(pc.willpower() + rand(20) + 1 < 20)
 	{
 		output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
-		pc.lustDamage(15);
+		applyDamage(new TypeCollection( { tease: 15 } ), foes[0], pc, "minimal");
 	}
 	else 
 	{
 		output("\n\nYou hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance.");
-		pc.lust(2);
+		applyDamage(new TypeCollection( { tease: 2 } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
@@ -1555,7 +1565,7 @@ public function motorboatedByASpork():void
 	if(pc.willpower() + rand(20) + 1 < 25)
 	{
 		output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
-		pc.lustDamage(7+rand(3));
+		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
 	}
 	//Failure:
 	else output("\n\nYou shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing.");
@@ -1944,7 +1954,9 @@ public function meetUpWithKaskaZeBossSloot():void
 	output("\n\nThe sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to");
 	if(pc.shields() > 0) output(". Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you");
 	output(". You finger your [pc.rangedWeapon] while looking around for the source of fire, only to have the shooter reveal herself. Holy hell, does she reveal herself!");
-	output("\n\nThe dzaan that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable.");
+	output("\n\nThe alien woman that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable.");
+	output("\n\nYour Codex beeps something about her being a \"dzaan,\" but you're hard-pressed to pay attention. <b>('Dzaan' Codex entry unlocked!)</b>");
+	CodexManager.unlockEntry("Dzaan");
 	output("\n\nThe hermaphrodite's (you have to assume - it's hard to see past that swollen pouch) height and distinctive posture keep your gaze from lingering too long on the rest of her impressive assets. The double-barreled gun she's hefting one-handed is bigger than her leg, and by the looks of it, it's a combination slug-gun and laser weapon. The bottom barrel has a small drum magazine, and power indicators along the top indicate that it's fully charged.");
 	//Cap'n Buttsloot downed:
 	if(flags["STARTED_KHORGAN_FIGHT"] != undefined) output("\n\n<i>\"I can't believe you took out the Captain,\"</i> the newcomer says wonderingly. <i>\"Not that it matters. I'm twice the woman she was, and I've got the balls to back it up!\"</i>\n\nYou... wait... what?\n\nSeeing, your look of incredulity, the well-endowed pirate snorts, <i>\"Oh, sod off. You're dealing with Kaska Beamfury, first mate of the Tarasque, and it's time a piece of jetsam like you learned [pc.his] place.\"</i> She levels her impressive weapon in your direction.");
@@ -1980,12 +1992,12 @@ public function kaskaFightAI():void
 	//HP Shit
 	if(!foes[0].hasStatusEffect("Futa Lust"))
 	{
-		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed"))
+		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed") && foes[0].energy() >= 20)
 		{
 			NPCDisarmingShot(foes[0]);
 			return;
 		}
-		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0)
+		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0 && foes[0].energy() >= 20)
 		{
 			NPCstealthFieldActivation(foes[0]);
 			return;
@@ -2043,25 +2055,45 @@ public function shieldBustah():void
 public function kaskaVolleyShot():void
 {
 	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	//LAZORS!
-	foes[0].rangedWeapon.damageType = GLOBAL.THERMAL;
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	output("\n");
-	rangedAttack(foes[0],pc,true,1);
-	//Set back to Kinetic for normal shots!
-	foes[0].rangedWeapon.damageType = GLOBAL.KINETIC;
+	
+	// Ideally copypasta and run this twice.
+	var damage:TypeCollection = (foes[0] as Creature).damage(false);
+	damage.add(new TypeCollection( { burning: 1, electric: 1 } ));
+	damage.addFlag(DamageFlag.LASER);
+	damage.add(foes[0].aim() / 2);
+	
+	damage.kinetic.damageValue -= 3;
+	damage.burning.damageValue -= 3;
+	damage.electric.damageValue -= 3;
+	if (damage.kinetic.damageValue < 1) damage.kinetic.damageValue = 1;
+	if (damage.burning.damageValue < 1) damage.burning.damageValue = 1;
+	if (damage.electric.damageValue < 1) damage.electric.damageValue = 1;
+	
+	var attacks:uint = 4;
+	
+	for (var i:uint = 0; i < attacks; i++)
+	{
+		if (rangedCombatMiss(foes[0], pc))
+		{
+			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+		}
+		else if (rand(100) <= 45 && !pc.isImmobilized())
+		{
+			if (pc.customDodge.length > 0) output(pc.customDodge);
+			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+		}
+		else if (mimbraneFeetBonusEvade(pc))
+		{
+			output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		}
+		else
+		{
+			output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " " + foes[0].rangedWeapon.longName + "!");
+			
+			applyDamage(damage, foes[0], pc, "ranged");
+		}
+		output("\n");
+	}
 	processCombat();
 }
 
@@ -2075,8 +2107,8 @@ public function kaskaFutaLusts():void
 	output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
 	foes[0].createStatusEffect("Futa Lust",0,0,0,0);
 	//+5 lust each
-	pc.lustDamage(5);
-	foes[0].lustDamage(5);
+	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 5 } ), pc, foes[0], "suppress");
 	processCombat();
 }
 //Tittygrapple
@@ -2109,7 +2141,7 @@ public function doNothingWhileTittyGrappled():void
 public function failToStruggleKaskaBoobs():void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
-	pc.lustDamage(10+rand(5));
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
 	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
@@ -2123,8 +2155,8 @@ public function pinchKaskaNipple():void
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
 	pc.removeStatusEffect("Grappled");
-	pc.lustDamage(4+rand(3));
-	foes[0].lustDamage(7+rand(3));
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, foes[0], "minimal");
 	processCombat();
 }
 //Crate Tease
@@ -2132,7 +2164,7 @@ public function pinchKaskaNipple():void
 public function crateTeaseFromKaska():void
 {
 	output("Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>");
-	pc.lustDamage(8+rand(10));
+	applyDamage(new TypeCollection( { tease: 8 + rand(10) } ), foes[0], pc, "minimal");
 	processCombat();
 }
 //Futasnuggle
@@ -2143,7 +2175,7 @@ public function futaSnuggleAttack():void
 	if(pc.armor.shortName == "") output("leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]");
 	else output("leaving you intimately aware of the pressure of her dick on your [pc.armor]");
 	output(". She licks the lobe of your ear, whispering, <i>\"I could do things to you that no mere woman or man could dream of.\"</i>");
-	pc.lustDamage(9+rand(5));
+	applyDamage(new TypeCollection( { tease: 9 + rand(5) } ), foes[0], pc, "minimal");
 	if(pc.lust() < pc.lustMax()) output("\n\nThe horny dick-girl doesn't bother resisting when you push her away, but her scent and warmth remain.");
 	else output("You're enjoying this far too much to push her away.");
 	processCombat();
@@ -2154,7 +2186,7 @@ public function futaSnuggleAttack():void
 public function kaskaHighKick():void
 {
 	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
-	pc.lustDamage(3+rand(4));
+	applyDamage(new TypeCollection( { tease: 3 + rand(4) } ), foes[0], pc, "minimal");
 	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	if(pc.lust() >= pc.lustMax()) output("\n\nIt's too much. You can't keep up the facade of fighting her any longer.");
 	else output("\n\nYou stumble back, more aroused by the view than you care to admit.");
@@ -3083,7 +3115,7 @@ public function bid16k():void
 	showBust("RIVAL","SHEKKA");
 	output("<i>\"16,000,\"</i> you announce.");
 	//Fucked Shekka
-	if(flags["TIMES_SEXED_SHEKKA"] != 0)
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined && flags["TIMES_SEXED_SHEKKA"] != 0)
 	{
 		output("\n\nShekka smiles radiantly and turns towards you. <i>\"I can't turn down an offer like that.\"</i> She graces you with a sly wink, sure to hide it from your cousin. <i>\"16,000 is more than I've made in a long time.\"</i>");
 		output("\n\n[rival.name] sniffs angrily and turns on [rival.his] heel. <i>\"You clearly have some relationship with this... this... creature. 16,000 was barely within her asking price before.\"</i> [rival.He] snaps his fingers. <i>\"Dane, we're leaving. Have [pc.name]'s ship tracked. We'll get the next one.\"</i>");
@@ -3217,7 +3249,7 @@ public function giveTheProbeToShekkaForNuttin():void
 	showName("\nSHEKKA");
 	showBust("SHEKKA");
 	output("<i>\"");
-	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it someone? I'm sure you guys could use the cash more than me.");
+	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it to someone? I'm sure you guys could use the cash more than me.");
 	else if(pc.isMischievous()) output("I must be nuts, but I don't have a use for this thing. How about you take it back to sell to someone else, and you can just owe me a favor, all right?");
 	else output("Hey, Shekka. I'm not carrying this piece of crap around with me. You can keep it.");
 	output("\"</i>");

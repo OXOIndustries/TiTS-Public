@@ -67,6 +67,7 @@
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	import flash.events.UncaughtErrorEvent;
 	import flash.events.UncaughtErrorEvents;
@@ -121,6 +122,7 @@
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
 		include "../includes/tavros.shelly.as";
+		include "../includes/tavros.vahn.as";
 		
 		//First planet
 		include "../includes/mhenga.burt.as";
@@ -137,6 +139,7 @@
 		include "../includes/mhenga.roomFunctions.as";
 		include "../includes/mhenga.scrapyard.as";
 		include "../includes/mhenga.syri.as";
+		include "../includes/mhenga.tanis.as";
 		include "../includes/mhenga.vanae.as";
 		include "../includes/mhenga.venusPitchers.as";
 		include "../includes/mhenga.vko.as";
@@ -176,14 +179,18 @@
 		include "../includes/texasNew.zephyr.as";
 		
 		//Fourth planet
+		include "../includes/myrellion.bathHouse.as";
 		include "../includes/myrellion.cockvines.as";
 		include "../includes/myrellion.cockvineseedling.as";
+		include "../includes/myrellion.dally.as";
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.genesmods.as";
 		include "../includes/myrellion.irellia.as";
 		include "../includes/myrellion.irelliaQuest.as";
 		include "../includes/myrellion.kaede.as";
 		include "../includes/myrellion.karaAndShade.as";
+		include "../includes/myrellion.kressiaSurvivalShop.as";
 		include "../includes/myrellion.landmines.as";
 		include "../includes/myrellion.lieve.as";
 		include "../includes/myrellion.liliana.as";
@@ -195,7 +202,9 @@
 		include "../includes/myrellion.renvra.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
+		include "../includes/myrellion.steph.as";
 		include "../includes/myrellion.tavern.as";
+		include "../includes/myrellion.tradingPost.as";
 		include "../includes/myrellion.wetraxxel.as";
 		include "../includes/myrellion.xanthe.as";
 		
@@ -281,7 +290,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.28";
+			version = "0.5.37";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1005,6 +1014,14 @@
 		public function get lane():Lane
 		{
 			return chars["LANE"];
+		}
+		public function get anarrie():Anarrie
+		{
+			return chars["ANARRIE"];
+		}
+		public function get goo():gooArmor
+		{
+			return chars["GOO"];
 		}
 	}
 }

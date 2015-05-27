@@ -1,5 +1,7 @@
 ﻿package classes.Characters
 {
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
@@ -18,19 +20,22 @@
 			
 			this.short = "Kaska";
 			this.originalRace = "Dzaan";
-			this.a = "";
+			this.a = ""; 
 			this.capitalA = "";
 			this.long = "Kaska is an imposing woman, standing seven and a half feet tall and toting a weapon bigger than a fair number of coreward races. Half her reddish purple hair is bound in tightly-cropped dreadlocks while the rest hangs over one bare shoulder. She'd cut an attractive, if oversized, figure in any number of drinking establishments if it wasn't for her aggressive, warlike expression. Then there's the matter of the seven inch python between her legs. It isn't even hard, and it already matches the average size of terran erections. She's unarmed save for a pair of armor plated shinguards. Tight leather wrappings cover her up elsewhere, covering up her nipples in a kind of obscene, faux modesty.";
 			this.customBlock = "She springs out of the way of your attack.";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			this.rangedWeapon.damage = -2;
+			rangedWeapon.baseDamage.kinetic.damageValue = 1;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
+			
 			this.rangedWeapon.attack = -5;
 			this.rangedWeapon.longName = "dual-barreled machine gun";
 			this.rangedWeapon.attackVerb = "shot";
-			this.rangedWeapon.damageType = GLOBAL.KINETIC;
+			this.rangedWeapon.baseDamage.kinetic.damageValue = 1;
+			this.rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "revealing leathers";
@@ -48,7 +53,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 20;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 450;
 			this.level = 5;
 			this.credits = 987;

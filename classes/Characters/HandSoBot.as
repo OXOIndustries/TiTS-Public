@@ -1,6 +1,10 @@
 ﻿package classes.Characters
 {
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
@@ -24,12 +28,15 @@
 			this.customDodge = "The firewall's erratic motions somehow carry the lumbering hulk out of the way of your attack!";
 			this.customBlock = "The firewall’s thick plates cause the attack to glance off harmlessly.";
 			this.plural = false;
-			this.lustVuln = 0;
+			
+			isLustImmune = true;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
-			this.meleeWeapon.damage = 3;
-			this.meleeWeapon.damageType = GLOBAL.SLASHING;
+			
+			meleeWeapon.baseDamage.kinetic.damageValue = 3;
+			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
+			
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "metal plates";
@@ -46,7 +53,10 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.resistances = new Array(1,1,1,1.15,1.1,1,1.4,.75);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.electric.damageValue = -40.0;
+			
 			this.XPRaw = 750;
 			this.level = 5;
 			this.credits = 0;

@@ -306,7 +306,7 @@ public function flirtWithKellyAnyway():void {
 	else output("struggling a bit before you can get her belt undone, ");
 	output("and pulling her skirt down.");
 
-	output("\n\nHer twin erections spring out of the once-restraining fabric, bouncing eagerly into place before you, already starting to ooze an orangey syrup-like precum from their flat heads, a sweet scent wafting from them. She moans plaintively. \"[pc.short], seriously... we can't... I can't get caught,\"</i> she protests.");
+	output("\n\nHer twin erections spring out of the once-restraining fabric, bouncing eagerly into place before you, already starting to ooze an orangey syrup-like precum from their flat heads, a sweet scent wafting from them. She moans plaintively. <i>\"[pc.short], seriously... we can't... I can't get caught,\"</i> she protests.");
 
 	output("\n\n<i>\"Then you’ll just have to stay quiet and pretend nothing is happening,\"</i> you reply without a care. Now to give these tasty morsels before you the treatment they deserve....");
 	output("\n\nShe bites her lip at that, visibly wrestling with the dilemma before her. On the one hand, she clearly does fear for her job. On the other hand, that this has her turned on is as obvious as the straining cocks in your hands. <i>\"I... oooh, alright. Make sure no one spots you,\"</i> she says, sliding her chair forwards in an attempt to further conceal you, unintentionally thrusting one of her flared tips against your lips.");
@@ -357,6 +357,7 @@ public function flirtWithKellyAnywayPartII():void {
 	output("\n\n<i>\"So, you're still wearing that special honey-scented perfume of yours? Might I suggest you start wearing a little less, please? The whole lobby smells like a beehive.\"</i>");
 	output("\n\n<i>\"Oh! Ah, yes, yes sir, I'll keep that in mind,\"</i> she apologetically replies.");
 	output("\n\nYou leave with a knowing chuckle.");
+	pc.exhibitionism(2);
 	processTime(10+rand(5));
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 2");

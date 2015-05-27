@@ -1,4 +1,5 @@
-﻿//The Lapinara (Junkyard Planet Enemy)
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+//The Lapinara (Junkyard Planet Enemy)
 //By WorldofDrakan
 
 //Enemy Lapinara Encounter:
@@ -57,13 +58,14 @@ public function lapinaraHornCharge():void
 	//Hit (shield is down): 
 	else
 	{
-		var damage:int = foes[0].meleeWeapon.damage + 8;
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.add(8);
+		damageRand(damage, 15);
+		
 		if(pc.shields() > 0) 
 		{
 			output("The lapinara charges at you, ramming your shield.");
-			genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+			applyDamage(damage, foes[0], pc);
 		}
 		else
 		{
@@ -76,7 +78,7 @@ public function lapinaraHornCharge():void
 			else 
 			{
 				output("The lapinara charges at you, ramming you, the painful impact briefly staggering you.");
-				genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+				applyDamage(damage, foes[0], pc);
 			}
 		}
 	}
@@ -87,15 +89,15 @@ public function lapinaraHornCharge():void
 //Punch:
 public function lapinaraFalconPunch():void
 {
-	var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
 	//Dodge:
 	if(combatMiss(foes[0],pc)) output("The lapinara attempts to swing at you, but you deftly dodge and deflect every punch she sends your way.");
 	else {
 		if(pc.shields() > 0) output("The lapinara punches, aiming for your gut, but instead connecting with your shield.");
 		else output("The lapinara delivers a swift blow to your gut, briefly doubling you over. Ow.");
-		genericDamageApply(damage,foes[0],pc);
+		
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -103,9 +105,9 @@ public function lapinaraFalconPunch():void
 //Bite:
 public function lapinaraBite():void
 {
-	var damage:int = 5 + foes[0].physique()/2;
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
+	var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.PENETRATING);
+	damageRand(damage, 15);
+	
 	//Dodge: 
 	if(combatMiss(foes[0],pc)) output("The lapinara lunges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
 	else
@@ -114,7 +116,7 @@ public function lapinaraBite():void
 		if(pc.shields() > 0) output("The lapinara lunges forward, attempting to bite you. Instead, her powerful teeth connect with your shield. She jumps back, rubbing her mouth in pain.");
 		//Hit (shield is down):
 		else output("The lapinara lunges forward, grabbing ahold of your arm and painfully sinking her teeth into your flesh.");
-		genericDamageApply(damage,foes[0],pc,GLOBAL.PIERCING);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }

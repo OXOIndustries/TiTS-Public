@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.GooeyCoverings;
 	import classes.Items.Melee.GooeyPsuedopod;
@@ -12,7 +13,7 @@
 		//constructor
 		public function Celise()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -24,7 +25,6 @@
 			this.customDodge = "The goo twists a portion of its body out of the way of the attack, moving in a way that would be fatal for any vertebrate.";
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
 			this.plural = false;
-			this.lustVuln = 1;
 			this.meleeWeapon = new GooeyPsuedopod();
 			this.armor = new GooeyCoverings();
 			this.physiqueRaw = 3;
@@ -38,7 +38,18 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 85;
-			this.resistances = new Array(0,0,0,0,0,0,0,0);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = 100.0;
+			baseHPResistances.electric.damageValue = 100.0;
+			baseHPResistances.burning.damageValue = 100.0;
+			baseHPResistances.freezing.damageValue = 100.0;
+			baseHPResistances.corrosive.damageValue = 100.0;
+			baseHPResistances.poison.damageValue = 100.0;
+			baseHPResistances.psionic.damageValue = 100.0;
+			baseHPResistances.drug.damageValue = 100.0;
+			baseHPResistances.pheromone.damageValue = 100.0;
+			
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 0;
@@ -165,6 +176,16 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_AMORPHOUS);
 			}
+		}
+		
+		public function UpgradeVersion2(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			delete d.bonusResistances;
+			delete d.resistances;
+			delete d.lustVuln;
+			delete d.bonusLustVuln;
 		}
 		
 		override public function prepForCombat():void

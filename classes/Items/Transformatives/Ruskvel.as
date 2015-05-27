@@ -38,8 +38,6 @@
 			//Information
 			this.basePrice = 30;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -47,7 +45,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = this._latestVersion;
 		}
@@ -305,11 +302,15 @@
 					else kGAMECLASS.output(target.tailTypeLockedMessage());
 				}
 				//Grow long tongue
-				if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && rand(6) == 0 && changes < changeLimit)
+				if(pc.tongueType != GLOBAL.TYPE_RASKVEL && rand(6) == 0 && changes < changeLimit)
 				{
 					kGAMECLASS.output("\n\nYour tongue feels tickly and slack as it changes; its color shifting, becoming far longer. It’s rather annoying to cope with at first, what with your wet, purple muscle continuously hanging out of your mouth as more and more inches are added to it. Fortunately it seems your throat has become more voluble to compensate, and after you’ve spent a couple of minutes getting used to it you find you are able to house the remarkably long, wide, flexible tongue you’ve grown without even thinking about it.");
+					pc.clearTongueFlags();
+					pc.tongueType = GLOBAL.TYPE_RASKVEL;
 					pc.addTongueFlag(GLOBAL.FLAG_LONG);
 					pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+					pc.addTongueFlag(GLOBAL.FLAG_LUBRICATED);
+					pc.addTongueFlag(GLOBAL.FLAG_SQUISHY);
 					changes++;
 				}
 				//Lose hair, grow feathers

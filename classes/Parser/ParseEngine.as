@@ -287,313 +287,6 @@
 			return argResult;
 		}
 
-		// Provides the conditionalOptions object
-		include "./conditionalConverters.as";
-
-		// converts a single argument to a conditional to
-		// the relevant value, either by simply converting to a Number, or
-		// through lookup in the above conditionalOptions oject, and then calling the
-		// relevant function
-		// Realistally, should only return either boolean or numbers.
-		private function convertConditionalArgumentFromStr(arg:String):*
-		{
-			// convert the string contents of a conditional argument into a meaningful variable.
-			var argLower:* = arg.toLowerCase()
-			var argResult:* = -1;
-
-			// Note: Case options MUST be ENTIRELY lower case. The comparaison string is converted to
-			// lower case before the switch:case section
-
-			// Try to cast to a number. If it fails, go on with the switch/case statement.
-			if (!isNaN(Number(arg)))
-			{
-				if (printConditionalEvalDebug) trace("Converted to float. Number = ", Number(arg))
-				return Number(arg);
-			}
-			if (argLower in conditionalOptions)
-			{
-				if (printConditionalEvalDebug) trace("Found corresponding anonymous function");
-				argResult = conditionalOptions[argLower](this._ownerClass);
-				if (printConditionalEvalDebug) trace("Called, return = ", argResult);
-				return argResult;
-			}
-
-
-			var obj:* = this.getObjectFromString(this._ownerClass, arg);
-
-			if (printConditionalEvalDebug) trace("Looked up ", arg, " in ", this._ownerClass, "Result was:", obj);
-			if (obj != null)
-			{
-				if (printConditionalEvalDebug) trace("Found corresponding function for conditional argument lookup.");
-
-				if (obj is Function)
-				{
-					if (printConditionalEvalDebug) trace("Found corresponding function in owner class");
-					argResult = Number(obj());
-					return argResult;
-				}
-				else
-				{
-					if (printConditionalEvalDebug) trace("Found corresponding aspect in owner class");
-					argResult = Number(obj);
-					return argResult;
-				}
-			}
-			else
-			{
-				if (printConditionalEvalDebug) trace("No lookups found!");
-				return null
-			}
-
-
-			if (printConditionalEvalDebug) trace("Could not convert to number. Evaluated ", arg, " as", argResult)
-			return argResult;
-		}
-
-
-		// Evaluates the conditional section of an if-statement.
-		// Does the proper parsing and look-up of any of the special nouns
-		// which can be present in the conditional
-		private function evalConditionalStatementStr(textCond:String):Boolean
-		{
-			// Evaluates a conditional statement:
-			// (varArg1 [conditional] varArg2)
-			// varArg1 & varArg2 can be either numbers, or any of the
-			// strings in the "conditionalOptions" object above.
-			// numbers (which are in string format) are converted to a Number type
-			// prior to comparison.
-
-			// supports multiple comparison operators:
-			// "=", "=="  - Both are Equals or equivalent-to operators
-			// "<", ">    - Less-Than and Greater-Than
-			// "<=", ">=" - Less-than or equal, greater-than or equal
-			// "!="       - Not equal
-
-			// proper, nested parsing of statements is a WIP
-			// and not supported at this time.
-
-
-			var isExp:RegExp = /([\w\.]+)\s?(==|=|!=|<|>|<=|>=)\s?([\w\.]+)/;
-			var expressionResult:Object = isExp.exec(textCond);
-			if (!expressionResult)
-			{
-				var condArg:* = convertConditionalArgumentFromStr(textCond);
-				if (condArg != null)
-				{
-					if (printConditionalEvalDebug) trace("Conditional \"", textCond, "\" Evalueated to: \"", condArg, "\"")
-					return condArg
-				}
-				else
-				{
-					trace("Invalid conditional! \"(", textCond, ")\" Conditionals must be in format:")
-					trace(" \"({statment1} (==|=|!=|<|>|<=|>=) {statement2})\" or \"({valid variable/function name})\". ")
-					return false
-				}
-			}
-			if (printConditionalEvalDebug) trace("Expression = ", textCond, "Expression result = [", expressionResult, "], length of = ", expressionResult.length);
-
-			var condArgStr1:String    = expressionResult[1];
-			var operator:String       = expressionResult[2];
-			var condArgStr2:String    = expressionResult[3];
-
-			var retVal:Boolean = false;
-
-			var condArg1:* = convertConditionalArgumentFromStr(condArgStr1);
-			var condArg2:* = convertConditionalArgumentFromStr(condArgStr2);
-
-			//Perform check
-			if(operator == "=")
-				retVal = (condArg1 == condArg2);
-			else if(operator == ">")
-				retVal = (condArg1 > condArg2);
-			else if(operator == "==")
-				retVal = (condArg1 == condArg2);
-			else if(operator == "<")
-				retVal = (condArg1 < condArg2);
-			else if(operator == ">=")
-				retVal = (condArg1 >= condArg2);
-			else if(operator == "<=")
-				retVal = (condArg1 <= condArg2);
-			else if(operator == "!=")
-				retVal = (condArg1 != condArg2);
-			else
-				retVal = (condArg1 != condArg2);
-
-
-			if (printConditionalEvalDebug) trace("Check: " + condArg1 + " " + operator + " " + condArg2 + " result: " + retVal);
-
-			return retVal;
-		}
-
-		// Splits the result from an if-statement.
-		// ALWAYS returns an array with two strings.
-		// if there is no else, the second string is empty.
-		private function splitConditionalResult(textCtnt:String): Array
-		{
-			// Splits the conditional section of an if-statemnt in to two results:
-			// [if (condition) OUTPUT_IF_TRUE]
-			//                 ^ This Bit   ^
-			// [if (condition) OUTPUT_IF_TRUE | OUTPUT_IF_FALSE]
-			//                 ^          This Bit            ^
-			// If there is no OUTPUT_IF_FALSE, returns an empty string for the second option.
-			if (conditionalDebug) trace("------------------4444444444444444444444444444444444444444444444444444444444-----------------------")
-			if (conditionalDebug) trace("Split Conditional input string: ", textCtnt)
-			if (conditionalDebug) trace("------------------4444444444444444444444444444444444444444444444444444444444-----------------------")
-
-
-			var ret:Array = new Array("", "");
-
-
-			var i:int;
-
-			var sectionStart:int = 0;
-			var section:int = 0;
-			var nestLevel:int = 0;
-
-			for (i = 0; i < textCtnt.length; i += 1)
-			{
-				switch (textCtnt.charAt(i))
-				{
-					case "[":    //Statement is nested one level deeper
-						nestLevel += 1;
-						break;
-
-					case "]":    //exited one level of nesting.
-						nestLevel -= 1;
-						break;
-
-					case "|":                  // At a conditional split
-						if (nestLevel == 0)   // conditional split is only valid in this context if we're not in a nested bracket.
-						{
-							if (section == 1)  // barf if we hit a second "|" that's not in brackets
-							{
-								if (this._settingsClass.haltOnErrors) throw new Error("Nested IF statements still a WIP")
-								ret = ["<b>Error! Too many options in if statement!</b>",
-									"<b>Error! Too many options in if statement!</b>"];
-							}
-							else
-							{
-								ret[section] = textCtnt.substring(sectionStart, i);
-								sectionStart = i + 1
-								section += 1
-							}
-						}
-						break;
-
-					default:
-						break;
-				}
-
-			}
-			ret[section] = textCtnt.substring(sectionStart, textCtnt.length);
-
-
-			if (conditionalDebug) trace("------------------5555555555555555555555555555555555555555555555555555555555-----------------------")
-			if (conditionalDebug) trace("Outputs: ", ret)
-			if (conditionalDebug) trace("------------------5555555555555555555555555555555555555555555555555555555555-----------------------")
-
-			return ret;
-		}
-
-
-
-		// Called to evaluate a if statment string, and return the evaluated result.
-		// Returns an empty string ("") if the conditional rvaluates to false, and there is no else
-		// option.
-		private function parseConditional(textCtnt:String, depth:int):String
-		{
-			// NOTE: enclosing brackets are *not* included in the actual textCtnt string passed into this function
-			// they're shown in the below examples simply for clarity's sake.
-			// And because that's what the if-statements look like in the raw string passed into the parser
-			// The brackets are actually removed earlier on by the recParser() step.
-
-			// parseConditional():
-			// Takes the contents of an if statement:
-			// [if (condition) OUTPUT_IF_TRUE]
-			// [if (condition) OUTPUT_IF_TRUE | OUTPUT_IF_FALSE]
-			// splits the contents into an array as such:
-			// ["condition", "OUTPUT_IF_TRUE"]
-			// ["condition", "OUTPUT_IF_TRUE | OUTPUT_IF_FALSE"]
-			// Finally, evalConditionalStatementStr() is called on the "condition", the result
-			// of which is used to determine which content-section is returned
-			//
-
-
-			// TODO: (NOT YET) Allows nested condition parenthesis, because I'm masochistic
-
-
-			// POSSIBLE BUG: A actual statement starting with "if" could be misinterpreted as an if-statement
-			// It's unlikely, but I *could* see it happening.
-			// I need to do some testing
-			// ~~~~Fake-Name
-
-
-			if (conditionalDebug) trace("------------------2222222222222222222222222222222222222222222222222222222222-----------------------")
-			if (conditionalDebug) trace("If input string: ", textCtnt)
-			if (conditionalDebug) trace("------------------2222222222222222222222222222222222222222222222222222222222-----------------------")
-
-
-			var ret:Array = new Array("", "", "");	// first string is conditional, second string is the output
-
-			var i:Number = 0;
-			var parenthesisCount:Number = 0;
-
-			//var ifText;
-			var conditional:*;
-			var output:*;
-
-			var condStart:Number = textCtnt.indexOf("(");
-
-			if (condStart != -1)		// If we have any open parenthesis
-			{
-				for (i = condStart; i < textCtnt.length; i += 1)
-				{
-					if (textCtnt.charAt(i) == "(")
-					{
-						parenthesisCount += 1;
-					}
-					else if (textCtnt.charAt(i) == ")")
-					{
-						parenthesisCount -= 1;
-					}
-					if (parenthesisCount == 0)	// We've found the matching closing bracket for the opening bracket at textCtnt[condStart]
-					{
-						// Pull out the conditional, and then evaluate it.
-						conditional = textCtnt.substring(condStart+1, i);
-						conditional = evalConditionalStatementStr(conditional);
-
-						// Make sure the contents of the if-statement have been evaluated to a plain-text string before trying to
-						// split the base-level if-statement on the "|"
-						output = textCtnt.substring(i+1, textCtnt.length)
-
-						// And now do the actual splitting.
-						output = splitConditionalResult(output);
-
-						// LOTS of debugging
-						if (conditionalDebug) trace("prefix = '", ret[0], "' conditional = ", conditional, " content = ", output);
-						if (conditionalDebug) trace("-0--------------------------------------------------");
-						if (conditionalDebug) trace("Content Item 1 = ", output[0])
-						if (conditionalDebug) trace("-1--------------------------------------------------");
-						if (conditionalDebug) trace("Item 2 = ", output[1]);
-						if (conditionalDebug) trace("-2--------------------------------------------------");
-
-						if (conditional)
-							return recParser(output[0], depth);
-						else
-							return recParser(output[1], depth);
-
-					}
-				}
-			}
-			else
-			{
-				if (this._settingsClass.haltOnErrors) throw new Error("Invalid if statement!", textCtnt);
-				return "<b>Invalid IF Statement<b/>" + textCtnt;
-			}
-			return "";
-		}
-
-
 		// ---------------------------------------------------------------------------------------------------------------------------------------
 		// SCENE PARSING ---------------------------------------------------------------------------------------------------------------
 		// ---------------------------------------------------------------------------------------------------------------------------------------
@@ -674,14 +367,6 @@
 
 			this.parserState[sceneName] = stripStr(sceneCont);
 
-		}
-
-		private function isIfStatement(textCtnt:String):Boolean
-		{
-			if (textCtnt.toLowerCase().indexOf("if") == 0)
-				return true;
-			else
-				return false;
 		}
 
 		// Called to determine if the contents of a bracket are a parseable statement or not
@@ -801,14 +486,7 @@
 						// evalForSceneControls swallows scene controls, so they won't get parsed further now.
 						// therefore, you could *theoretically* have nested scene pages, though I don't know WHY you'd ever want that.
 
-						if (isIfStatement(tmpStr))
-						{
-							if (conditionalDebug) trace("early eval as if")
-							retStr += parseConditional(tmpStr, depth)
-							if (conditionalDebug) trace("------------------0000000000000000000000000000000000000000000000000000000000000000-----------------------")
-							//trace("Parsed Ccnditional - ", retStr)
-						}
-						else if (tmpStr)
+						if (tmpStr)
 						{
 
 							if (printCcntentDebug) trace("Parsing bracket contents = ", tmpStr);
@@ -906,13 +584,36 @@
 			// And repeated spaces (this has to be done after markdown processing)
 			ret = ret.replace(/  +/g, " ");
 
-
 			/*
 			for (var prop in this.parserState)
 			{
 				trace("this.parserState."+prop+" = "+this.parserState[prop]);
 			}
 			*/
+			/*APRIL FOOLS!
+			ret = ret.replace(/credits/g,"dogecoins");
+			ret = ret.replace(/Credits/g,"Dogecoins");
+			ret = ret.replace(/ausar/g,"dogesar");
+			ret = ret.replace(/Ausar/g,"Dogesar");
+			ret = ret.replace(/Anno/g,"Oh-No");
+			ret = ret.replace(/ANNO/g,"OH-NO");
+			ret = ret.replace(/Syri/g,"ChoderDog");
+			ret = ret.replace(/SYRI/g,"CHODERDOG");
+			ret = ret.replace(/Kiro/g,"Phallesia");
+			ret = ret.replace(/KIRO/g,"PHALLESIA");
+			ret = ret.replace(/Penny/g,"Space Urta");
+			ret = ret.replace(/PENNY/g,"SPACE URTA");
+			ret = ret.replace(/Gianna/g,"Sexbox");
+			ret = ret.replace(/GIANNA/g,"SEXBOX");
+			ret = ret.replace(/Celise/g,"Slimyface");
+			ret = ret.replace(/CELISE/g,"SLIMYFACE");
+			ret = ret.replace(/Steele/g,"Steelestein");
+			ret = ret.replace(/STEELE/g,"STEELESTEIN");
+			ret = ret.replace(/Dane/g,"Cockthulu");
+			ret = ret.replace(/DANE/g,"COCKTHULU");
+			ret = ret.replace(/Dr. Badger/g,"Dr. Horrible");
+			ret = ret.replace(/Dr.Badger/g,"Dr.Horrible");
+			ret = ret.replace(/BADGER/g,"HORRIBLE");*/
 
 			//trace(ret);
 			// trace("Maintext content @ recursiveParser = ", mainText.htmlText.length)
@@ -929,9 +630,9 @@
 		private function makeQuotesPrettah(inStr:String):String
 		{
 			inStr = inStr.replace(/(?<= )'|^'/g,									"‘")
-						 .replace(/(?<=\w)'(?![^<]*>)'/g,							"’")
+						 .replace(/(?<=\w)'(?![^<]*>)/g,							"’")
 						 .replace(/(\w)'(\w)/g,										"$1’$2")
-						 .replace(/"(?=<i>)|(?<=<i>)"|^"/g,								"\u201c")
+						 .replace(/"(?=<i>)|(?<=<i>)"|^"|(?<=\s)"/g,								"\u201c")
 						 .replace(/\"$|\"(?<=[^ ])(?![A-z])/g,						"\u201d")
 						 .replace(/--/g,											"\u2014");
 			return inStr;

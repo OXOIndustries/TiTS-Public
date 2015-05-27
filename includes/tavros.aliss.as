@@ -743,7 +743,7 @@ public function hardLightDiscussion(arg:*):void
 	author("Third");
 	userInterface.showBust("ALISS");
 	userInterface.showName("\nALISS");
-	output("You question the holographic tag that proclaims \"HARDLIGHT COMPATIBLE\". \"<i>Ohoh, that's a fun feature. We're one of the first shops to offer this, and it certainly has been popular. See, by incorporating miniaturized hardlight projectors across the outside of the fabric, we can set it up so that it will project a holographic, fully corporeal strap-on. No need for complicated straps, and no worries about potentially addictive or harmful drugs, you can simple wear these panties and be good to go, whenever, wherever. It will even interface with your own nervous system and give you a real time tactile feedback! And it should be noted, these projectors are so miniscule and well hidden you'd never even know they were there.</i>\"");
+	output("You question the holographic tag that proclaims \"HARDLIGHT COMPATIBLE\". \"<i>Ohoh, that's a fun feature. We're one of the first shops to offer this, and it certainly has been popular. See, by incorporating miniaturized hardlight projectors across the outside of the fabric, we can set it up so that it will project a holographic, fully corporeal strap-on. No need for complicated straps, and no worries about potentially addictive or harmful drugs, you can simply wear these panties and be good to go, whenever, wherever. It will even interface with your own nervous system and give you a real time tactile feedback! And it should be noted, these projectors are so miniscule and well hidden you'd never even know they were there.</i>\"");
 	output("\n\n\"<i>If you want to upgrade it to include these projectors, that'll be an extra " + (getAlissPrice(arg) + 3000) + " credits.</i>\"");
 	//[Buy Normal] [Buy Hardlight] [Back]
 	clearMenu();
@@ -1329,6 +1329,7 @@ public function offerAlissYourAssPart2():void
 	chars["ALISS"].orgasm();
 	if(rand(2) == 0) chars["ALISS"].orgasm();
 	if(rand(2) == 0) chars["ALISS"].orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

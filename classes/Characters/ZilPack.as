@@ -23,7 +23,6 @@
 			this.customDodge = "The two zil zip out of the way with a swift contortion of their agile frames.";
 			this.customBlock = "The two zil's chitinous armor deflects your attack.";
 			this.plural = true;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Fists();
 			
@@ -40,7 +39,6 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 45;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 55;
 			this.level = 1;
 			this.credits = 0;

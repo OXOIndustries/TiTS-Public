@@ -8,13 +8,21 @@ import classes.Characters.Mimbrane;
 import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
+import classes.Characters.PlayerCharacter;
 import classes.Characters.SecurityDroids;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
+import classes.Characters.Varmint;
+import classes.Characters.gooArmor;
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Accessories.TamWolfDamaged;
+import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
-import classes.Characters.Varmint;
+import classes.Engine.Combat.applyDamage;
+import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -210,7 +218,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Take Cover")) 
 		{
 			
-			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack this turn.\n\nConsumes 20 energy.");
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack for 3 turns.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
@@ -254,7 +262,7 @@ public function specialsMenu():void {
 		
 		if(pc.hasPerk("Overcharge"))
 		{
-			if(pc.rangedWeapon.damageType == GLOBAL.KINETIC || pc.rangedWeapon.damageType == GLOBAL.SLASHING || pc.rangedWeapon.damageType == GLOBAL.PIERCING)
+			if (!(pc as PlayerCharacter).hasRangedEnergyWeapon())
 			{
 				addDisabledButton(offset,"Overcharge","Overcharge","Only energy weapons may be overcharged.");
 			}
@@ -292,7 +300,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset, "G. Disrupt.");
 			offset++;
 		}
@@ -387,6 +395,41 @@ public function specialsMenu():void {
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Goozooka","Goozooka","You cannot use a goozooka while disarmed.");
 			else addButton(offset, "Goozooka", attackRouter, goozookaCannon, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
 		}
+		offset++;
+	}
+	
+	if (pc.armor is GooArmor)
+	{
+		if (!pc.hasStatusEffect("Reduced Goo"))
+		{
+			addButton(offset, "Goo Clone", attackRouter, pcGooClone, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
+		}
+		else
+		{
+			addButton(offset, "Recall Goo", pcRecallGoo, undefined, "Recall Goo", "Call [goo.name] back to you, restoring your gooey armor.");
+		}
+		offset++;
+	}
+	
+	if (pc.hasPerk("Concussive Shot"))
+	{
+		if (!pc.hasBowWeaponEquipped())
+		{
+			addDisabledButton(offset, "Concussive Shot", "Concussive Shot", "Concussive Shot requires a bow-like weapon.");
+		}
+		else if (pc.hasStatusEffect("Disarmed"))
+		{
+			addDisabledButton(offset, "Concussive Shot", "Concussive Shot", "You cannot use Concussive Shot whilst disarmed.");
+		}
+		else if (pc.energy() < 25)
+		{
+			addDisabledButton(offset++, "Concussive Shot", "Concussive Shot", "Concussive shot requires 25 energy.");
+		}
+		else
+		{
+			addButton(offset, "Concussive Shot", attackRouter, pcConcShot, "Concussive Shot", "Fire an explosive arrow at your target, potentially stunning them for 2-4 rounds.");
+		}
+		offset++;
 	}
 }
 
@@ -399,7 +442,6 @@ public function updateCombatStatuses():void {
 		pc.shields(Math.round(pc.shieldsMax()/4));
 		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 	}
-	if(pc.hasStatusEffect("Taking Cover")) pc.removeStatusEffect("Taking Cover");
 	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
 	if(pc.hasPerk("Juggernaught"))
 	{
@@ -426,7 +468,7 @@ public function updateCombatStatuses():void {
 		else
 		{
 			output("<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + pc.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-			genericDamageApply(rand(4) + foes[0].level,foes[0],pc,GLOBAL.THERMAL);
+			applyDamage(new TypeCollection( { burning: 4 + foes[0].level } ), foes[0], pc);
 			output("\n");
 		}
 	}
@@ -434,7 +476,7 @@ public function updateCombatStatuses():void {
 	{
 		//2% of HP per tic.
 		output("<b>The poison continues to take its toll on your body; you need to end this fight as soon as possible!</b>");
-		genericDamageApply(Math.round(pc.HPMax() * 0.02),foes[0],pc,GLOBAL.GRAVITIC);
+		applyDamage(new TypeCollection( { poison: Math.round(pc.HPMax() * 0.02) } ), foes[0], pc);
 		output("\n");
 	}
 	if(pc.hasStatusEffect("Burn"))
@@ -451,7 +493,7 @@ public function updateCombatStatuses():void {
 			pc.removeStatusEffect("Burn");
 			output(" refusing to go out until they've done their foul work.</b>");
 		}		
-		genericDamageApply(3+rand(4),foes[0],pc,GLOBAL.THERMAL);
+		applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), foes[0], pc);
 		output("\n");
 	}
 	if (pc.hasStatusEffect("Bleeding"))
@@ -467,7 +509,7 @@ public function updateCombatStatuses():void {
 			pc.removeStatusEffect("Bleeding");
 			output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>");
 		}
-		genericDamageApply(damageRand(pc.statusEffectv1("Bleeding") * pc.statusEffectv3("Bleeding"), 15), foes[0], pc, GLOBAL.SLASHING);
+		applyDamage(damageRand(new TypeCollection( { kinetic: pc.statusEffectv1("Bleeding") * pc.statusEffectv3("Bleeding") } ), 15), foes[0], pc);
 		output("\n");
 	}
 	if (pc.hasStatusEffect("Staggered"))
@@ -528,6 +570,18 @@ public function updateCombatStatuses():void {
 		}
 		else {
 			output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
+		}
+	}
+	if(pc.hasStatusEffect("Taking Cover"))
+	{
+		pc.addStatusValue("Taking Cover",1,-1);
+		if(pc.statusEffectv1("Taking Cover") <= 0)
+		{
+			pc.removeStatusEffect("Taking Cover");
+			output("<b>You are no longer taking cover!</b>\n");
+		}
+		else {
+			output("<b>Your enemies will have a hard time hitting you behind your cover!</b>\n");
 		}
 	}
 	if(pc.hasStatusEffect("Deflector Regeneration"))
@@ -652,7 +706,7 @@ public function updateCombatStatuses():void {
 				foes[x].removeStatusEffect("Burn");
 				output(" refusing to go out until they've done their foul work.</b>");
 			}		
-			genericDamageApply(3+rand(4),pc,foes[x],GLOBAL.THERMAL);
+			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, foes[x]);
 			output("\n");
 		}
 		if(foes[x].hasStatusEffect("Blind"))
@@ -695,7 +749,38 @@ public function updateCombatStatuses():void {
 		{
 			cloudDebuffHandler(foes[x]);
 		}
+		if (foes[x].hasStatusEffect("Stealth Field Generator"))
+		{
+			foes[x].addStatusValue("Stealth Field Generator", 1, -1);
+			if (foes[x].statusEffectv1("Stealth Field Generator") <= 0) foes[x].removeStatusEffect("Stealth Field Generator");
+		}
+		if (foes[x].hasStatusEffect("Gray Goo Clone"))
+		{
+			var lFailed:Boolean = false;
+			
+			if ((foes[x] as Creature).isLustImmune == true) lFailed = true;
+			if ((foes[x] as Creature).getLustResistances().tease.resistanceValue >= 100.0) lFailed = true;
+			
+			if (!lFailed)
+			{
+				var lDamage:TypeCollection = new TypeCollection( { tease: 5 + rand(3) } );
+				var dResult:DamageResult = applyDamage(lDamage, pc, foes[x], "suppress");
+			}
+			
+			output("[goo.name] dances around, flashing plenty of tits and ass for " + foes[x].a + foes[x].short + ".");
+			if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
+			{
+				output(" " + foes[x].capitalA + foes[x].short + " looks on, clearly unimpressed.");
+			}
+			else
+			{
+				output(" " + foes[x].capitalA + foes[x].short + " stares mesmerized at [goo.name]'s dance, flushing with lust.");
+			}
+			
+			outputDamage(dResult);
+		}
 	}
+	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
 }
 public function stunRecover(target:Creature):void 
 {
@@ -766,13 +851,13 @@ public function celiseMenu():void
 	if(pc.statusEffectv1("Round") == 1) 
 		this.addButton(0,"Attack",attackRouter,playerAttack);
 	else if(pc.statusEffectv1("Round") == 2) 
-		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack);
 	else 
 		this.addButton(5,"Tease",attackRouter,tease);
 }
 
 public function processCombat():void 
-{
+{	
 	flags["COMBAT MENU SEEN"] = undefined;
 	combatStage++;
 	trace("COMBAT STAGE:" + combatStage);
@@ -875,6 +960,7 @@ public function grappleStruggle():void {
 	{
 		if(pc.reflexes() + rand(20) + 7 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+			if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple("Escape Artist");
 			else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 			pc.removeStatusEffect("Grappled");
 		}
@@ -1146,52 +1232,8 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.meleeWeapon.longName + "!");
 		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
-		//Damage bonuses:
-		var damage:int = attacker.damage() + attacker.physique()/2;
-		var crit:Boolean = false;
-		//Critical hits! 
-		if(attacker.critBonus(true) >= rand(100) + 1 && attacker == pc)
-		{
-			crit = true;
-			damage *= 2;
-			output("\n<b>Critical hit!</b>");
-		}
-		//Bonus damage for "sneak attack perk!"
-		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) {
-			output("\n<b>Sneak attack!</b>");
-			damage += attacker.level * 2;
-			if(attacker.hasStatusEffect("Take Advantage")) damage += attacker.level * 2;
-			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
-		}
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(attacker == pc) {
-				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
-			}
-			else {
-				if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-		if(damage >= 1) {
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if(attacker == pc) {
-				if(sDamage[0] > 0) output(" Your " + attacker.meleeWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
-				else output(" (<b>" + damage + "</b>)");			
-			}
-			else {
-				if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
-				else output(" (<b>" + damage + "</b>)");	
-			}
-		}
+		
+		applyDamage(attacker.meleeDamage(), attacker, target, "melee");
 	}
 	//Do multiple attacks if more are queued (does not stack with special!)
 	if(attacker.hasStatusEffect("Multiple Attacks") && special == 0) {
@@ -1209,7 +1251,6 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 //Special 2: Flurry attack with no new screen display.
 public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void 
 {
-	trace("Ranged shot...");
 	//Set drone target
 	setDroneTarget(target);
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
@@ -1282,85 +1323,14 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + attacker.rangedWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
-		if (!(attacker.rangedWeapon is Goovolver))
+		if (attacker.rangedWeapon is Goovolver)
 		{
-			//Damage bonuses:
-			var damage:int = attacker.damage(false) + attacker.aim()/2;
-			var crit:Boolean = false;
-			//Now that damage values are grabbed, check for "Concentrated Fire" stuff
-			concentratedFire();
-			//Critical hits! 
-			if(attacker.critBonus(false) >= rand(100) + 1 && attacker == pc)
-			{
-				crit = true;
-				damage *= 2;
-				output("\n<b>Critical hit!</b>");
-			}
-			//Bonus damage for "sneak attack perk!"
-			if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
-				output("\n<b>Aimed shot!</b>");
-				damage += attacker.level * 2;
-				if(attacker.hasStatusEffect("Take Advantage")) damage += attacker.level * 2;
-				if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
-			}
-			//Randomize +/- 15%
-			var randomizer:Number = (rand(31)+ 85)/100;
-			damage *= randomizer;
-			var sDamage:Array = new Array();
-			//Apply damage reductions
-			if(target.shieldsRaw > 0) {
-				sDamage = shieldDamage(target,damage,attacker.rangedWeapon.damageType);
-				//Set damage to leftoverDamage from shieldDamage
-				damage = sDamage[1];
-				if(attacker == pc) {
-					if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
-					else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
-				}
-				else {
-					if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-				}
-			}
-			if(damage >= 1) {
-				damage = HPDamage(target,damage,attacker.rangedWeapon.damageType,"ranged");
-				if(attacker == pc) {
-					if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
-					else output(" (<b>" + damage + "</b>)");			
-				}
-				else {
-					if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
-					else output(" (<b>" + damage + "</b>)");	
-				}
-			}
+			applyDamage(attacker.rangedDamage(), attacker, target, "goovolver");
 		}
-		// Goovolver attack!
 		else
 		{
-			var lustDamage:int = 0;
-			var randomiser:Number = (rand(31) + 85) / 100;
-
-			if (target.lustDamageMultiplier() == 0)
-			{
-				output("\n<b>" + target.capitalA + target.short + " ");
-				if (target.plural) output("don’t");
-				else output("doesn’t");
-				output(" seem the least bit bothered by the miniature goo crawling over them. (0)</b>\n");
-			}
-			else
-			{
-				lustDamage += 15;
-				lustDamage *= randomiser;
-				lustDamage *= target.lustDamageMultiplier();
-
-				if (target.lust() + lustDamage > target.lustMax()) lustDamage = target.lustMax() - target.lust();
-				damage = Math.ceil(lustDamage);
-
-				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts!");
-				output(" (" + lustDamage +")");
-				target.lust(lustDamage);
-			}
-		}
-		
+			applyDamage(attacker.rangedDamage(), attacker, target, "ranged");
+		}		
 	}
 	//Do multiple attacks if more are queued.
 	if(attacker.hasStatusEffect("Multiple Shots") && special == 0) {
@@ -1381,7 +1351,7 @@ public function droneAttack(target:Creature):void {
 		// Tam-wolf has the same stats as a normal Attack Drone in terms of damage -- maybe a little higher. Though he doesn't boost your shields, he can operate even after yours collapse. Handy!
 		//Attack!
 		output("<i>\"Enemy detected, " + pc.mf("master","mistress") + " [pc.name]! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting " + target.a + target.short + ".");
-		genericDamageApply(droneDamage(),pc,target,GLOBAL.PIERCING);
+		applyDamage(droneDamage(), pc, target, "minimal");
 		output(" Good boy!");
 	}
 	else if(pc.accessory is TamWolfDamaged) 
@@ -1394,144 +1364,23 @@ public function droneAttack(target:Creature):void {
 		else
 		{
 			output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.short + ". He hits!");
-			genericDamageApply(droneDamage()-1,pc,target,GLOBAL.PIERCING);
+			applyDamage(droneDamage(), pc, target, "minimal");
 			output(" Good boy!");
 		}
 	}
 	else 
 	{
 		output("Your drone repeatedly zaps " + target.a + target.short + ".");
-		genericDamageApply(droneDamage(),pc,target,GLOBAL.ELECTRIC);
+		applyDamage(droneDamage(), pc, target, "minimal");
 	}
 	processCombat();
 }
 //Broke this out so all can be adjusted at once as buffed/nerfed.
-public function droneDamage():int
+public function droneDamage():TypeCollection
 {
-	return (1+pc.level + rand(2 + pc.level/2));
-}
-
-public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
-	//Randomize +/- 15%
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
-	//Apply damage reductions
-	if (target.shieldsRaw > 0) 
-	{
-		//use melee weapon 
-		if(damTypeOverride == -1) sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		else sDamage = shieldDamage(target,damage,damTypeOverride);
-		//Set damage to leftoverDamage from shieldDamage
-		damage = sDamage[1];
-		if (target.shieldsRaw > 0)
-		{
-			if(target == pc) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			else 
-			{
-				if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>)");
-				else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-		else 
-		{
-			if(target == pc) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-			else 
-			{
-				if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-	}
-	if(damage >= 1) 
-	{
-		if(damTypeOverride == -1) damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		else damage = HPDamage(target,damage,damTypeOverride);
-		if (sDamage[0] > 0) 
-		{
-			if(target == pc) output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
-			else output(" The attack continues on to connect with " + foes[0].a + foes[0].short + "! (<b>" + damage + "</b>)");
-		}
-		else 
-			output(" (<b>" + damage + "</b>)");
-	}
-}
-
-
-public function HPDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC,special:String = ""):Number 
-{
-	var temp:Number = 0;
-	//Reduce damage by defense value
-	temp = victim.defense();
-	if(special == "ranged" && pc.hasPerk("Armor Piercing"))
-	{
-		if(temp > 0) temp -= (pc.level+rand(3));
-		if(temp < 0) temp = 0;
-	}
-	damage -= temp;
-	
-	//Apply type reductions!
-	damage *= victim.getResistance(damageType);
-	//None yet!
-	
-	damage = Math.round(damage);
-	
-	//Damage cannot exceed HP amount.
-	if(damage > victim.HP()) {
-		damage = victim.HP();
-	}
-	//If we're this far, damage can't be less than one. You did get hit, after all.
-	if(damage < 1) damage = 1;
-	//Apply the damage
-	victim.HP(-1 * damage);
-	//Pass back how much was done.
-	return damage;
-}
-
-public function shieldDamage(victim:Creature,damage:Number = 0, damageType:int = GLOBAL.KINETIC, special:String = ""):Array 
-{
-	var initialDamage:Number = damage;
-	var soakedDamage:Number = 0;
-	var leftoverDamage:int = 0;
-	var shieldDefense:Number = 0;
-	//Reduce damage by shield defense value
-	shieldDefense += victim.shieldDefense();
-	if(special == "ranged" && pc.hasPerk("Armor Piercing") && pc != victim)
-	{
-		if(shieldDefense > 0) shieldDefense -= (pc.level+rand(3));
-		if(shieldDefense < 0) shieldDefense = 0;
-	}
-	damage -= shieldDefense;
-	
-	//Apply victim resistances vs damage
-	damage *= victim.getShieldResistance(damageType);
-
-	//Debug trace statements to help me doublecheck that all this is working right
-	//trace("INITIAL DAMAGE: " + initialDamage);
-	//trace("SHIELD DEFENSE VALUE: " + victim.shieldDefense());	
-	//trace("SHIELD DAMAGE MULTIPLIER: " + victim.getShieldResistance(damageType));
-	
-	damage = Math.round(damage);
-	
-	//Damage cannot exceed shield amount.
-	if(damage > victim.shieldsRaw) {
-		damage = victim.shieldsRaw;
-		soakedDamage = (damage - shieldDefense) / victim.getShieldResistance(damageType);
-		leftoverDamage = initialDamage - soakedDamage;
-		//If shit rounded up, that might put leftover damage in negs.
-		//Prevent dat.
-		if(leftoverDamage < 0) leftoverDamage = 0;
-		
-		//Second half of checking shield stuff.
-		//trace("Damage soaked up by shields: " + soakedDamage);
-		//trace("New leftover damage: " + leftoverDamage);
-	}
-	//If we're this far, damage can't be less than one. You did get hit, after all.
-	if(damage < 1) damage = 1;
-	//Apply the damage
-	victim.shieldsRaw -= damage;
-	//Pass back how much was done and how much is leftover.
-	return [damage,leftoverDamage];
+	var d:Number = 1 + pc.level + rand(2 + pc.level/2)
+	if (pc.accessory is TamWolfDamaged) d -= 1;
+	return new TypeCollection( { kinetic: d } );
 }
 
 public function teaseMenu(target:Creature):void 
@@ -1636,7 +1485,7 @@ public function displayMonsterStatus(targetFoe:Creature):void
 
 public function showMonsterArousalFlavor(targetFoe:Creature):void 
 {
-	if(targetFoe.lust() < 50 || targetFoe.lustVuln <= 0) { 
+	if(targetFoe.lust() < 50 || targetFoe.isLustImmune == true) { 
 		return; 
 	}
 	else if(targetFoe.plural) {
@@ -2368,7 +2217,6 @@ public function runAway():void {
 		//Very hard: PC IS FUCKING SLOW
 		else difficulty = 4;
 
-
 		//Multiple NPCs? Raise difficulty class for each one!
 		difficulty += foes.length - 1;
 		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
@@ -2382,7 +2230,13 @@ public function runAway():void {
 		if(pc.canFly() && (!foes[0].canFly() || foes[0].isImmobilized())) difficulty--;
 		//Lower difficulty for immobilized foe
 		if(foes[0].isImmobilized()) difficulty--;
-		
+		//Easy mode is magic!
+		if(easy)
+		{
+			if(difficulty > 0) difficulty--;
+			if(difficulty > 0) difficulty--;
+			if(difficulty > 0) difficulty--;
+		}		
 
 		//Set threshold value and check!
 		if(difficulty < 0) difficulty = 100;
@@ -2591,13 +2445,13 @@ public function tease(target:Creature, part:String = "chest"):void {
 		if(part == "squirt") bonus += 2;
 
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.lustDamageMultiplier() == 0)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.isLustImmune == true)
 		{
 			if(target is HandSoBot)
 			{
 				output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>\n");
 			}
-			else if(target.lustDamageMultiplier() == 0) 
+			else if(target.isLustImmune == true) 
 			{
 				output("\n<b>" + target.capitalA + target.short + " ");
 				if(target.plural) output("don't");
@@ -2643,7 +2497,10 @@ public function tease(target:Creature, part:String = "chest"):void {
 			damage *= randomizer;
 			//Apply like adjustments
 			damage *= totalFactor;
-			damage *= target.lustDamageMultiplier();
+			
+			// Resistances
+			damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
+			
 			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 
@@ -3152,7 +3009,7 @@ public function buttTeaseText():void {
 	//Reqs: PC has a cock-tail
 	else if(select == 7)
 	{
-		output("You curl your [pc.tailcock] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
+		output("You curl your [pc.cockTail] around to flex it back and forth a bit in front of your foe, showing off the alien endowment you’ve picked up.  You arrange your tail into a spiral shape and then piston it sharply like a coiled spring, making a loud snapping sound from the force of it striking the air.");
 	}
 	//Reqs: PC is clothed, PC has a cock and either a trap-pouch, internal gonads or no balls, PC has no vagina, PC is feminine-looking
 	else if(select == 8)
@@ -3389,7 +3246,7 @@ public function sense(target:Creature):void {
 	}
 	
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
-	if(target.lustDamageMultiplier() == 0) output("You don't think sexuality can win this fight!\n");
+	if(target.isLustImmune) output("You don't think sexuality can win this fight!\n");
 	var buffer:String = "";
 	var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
 	if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
@@ -3510,14 +3367,11 @@ public function overcharge(target:Creature):void {
 		output("You <b>overcharge</b> your " + pc.rangedWeapon.longName + " and land a hit on " + target.a + target.short + "!");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.damage(false) + pc.aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 1.5;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,pc,target,pc.rangedWeapon.damageType);
+		var damage:TypeCollection = pc.damage(false);
+		damage.add(pc.aim() / 2);
+		damage.multiply(1.5);
+		damageRand(damage, 15);
+		applyDamage(damage, pc, target, "overcharge");
 	}
 	output("\n");
 	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
@@ -3540,14 +3394,11 @@ public function NPCOvercharge():void {
 	else {
 		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackVerb + "!");
 		//Damage bonuses:
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 1.75;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		var damage:TypeCollection = foes[0].damage(false);
+		damage.add(foes[0].aim() / 2);
+		damage.multiply(1.75);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc, "overcharge");
 		if(foes[0].aim()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned")) {
 			output(" <b>You are stunned!</b>");
 			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You cannot act for one turn!",true,0);
@@ -3561,8 +3412,7 @@ public function gravidicDisruptor(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("Raising the disruptor, you unleash a targetted gravitic disruption on " + target.a + target.short + "! ");
-	var damage:Number = Math.round(10 + pc.intelligence()/2 + rand(10));
-	genericDamageApply(damage,pc,target,GLOBAL.GRAVITIC);
+	applyDamage(new TypeCollection( { unresistablehp: Math.round(10 + pc.intelligence() / 2 + rand(10)) } ), pc, target, "grav_disruptor");
 	output("\n");
 	processCombat();
 }
@@ -3571,8 +3421,7 @@ public function thermalDisruptor(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.short + "! ");
-	var damage:Number = Math.round(25 + pc.intelligence()/2 + rand(10));
-	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	applyDamage(new TypeCollection( { burning: Math.round(25 + pc.intelligence() / 2 + rand(10)) } ), pc, target, "therm_disruptor");
 	output("\n");
 	processCombat();
 }
@@ -3615,7 +3464,7 @@ public function flashGrenade(target:Creature):void {
 
 public function NPCFlashGrenade():void {
 	pc.energy(-10);
-	output(monster.capitalA + monster.short + "produces a flash grenade and hucks it in your direction!\n");
+	output(monster.capitalA + monster.short + " produces a flash grenade and hucks it in your direction!\n");
 	//Chance of bliiiiiiiind
 	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind")) {
 		output("\n<b>You're blinded by </b>");
@@ -3655,15 +3504,10 @@ public function properHeadbutt(attacker:Creature,target:Creature):void {
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You connect with your target!");
-		else output(attacker.mfn("He","She","It") + " connects with you.");
-		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
-		//Damage bonuses:
-		var damage:int = attacker.physique()/2 + attacker.level;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target);
+		else output(attacker.mfn("He", "She", "It") + " connects with you.");
+		
+		applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 + attacker.level } ), 15), attacker, target, "headbutt");
+
 		if(attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
 			if(target == pc)
 			{
@@ -3705,14 +3549,9 @@ public function lowBlow(target:Creature):void {
 	//Attack connected!
 	else {
 		output("You connect with your target!");
-		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
-		//Damage bonuses:
-		var damage:int = pc.damage() + pc.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,pc,target);
+
+		applyDamage(damageRand(new TypeCollection( { kinetic: pc.damage() + pc.physique() / 2 } ), 15), pc, target, "lowblow");
+
 		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
 			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
@@ -3773,14 +3612,15 @@ public function grenade(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "! ");
-	var damage:Number = Math.round(40 + rand(10));
+	
+	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 20, burning: 20 } ), 15);
 	
 	if (foes[0] is Cockvine)
 	{
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
 	}
 	
-	genericDamageApply(damage, pc, target, GLOBAL.THERMAL);
+	applyDamage(damage, pc, target);
 	
 	output("\n");
 	processCombat();
@@ -3792,21 +3632,17 @@ public function gasGrenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
 	
-	var damage:Number = 14 + pc.level + rand(10);
+	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level*2 } ), 10);
 
 	if (foes[0] is Cockvine)
 	{
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 	}
 	
-	//Any perks or shit go below here.
-	damage *= target.lustDamageMultiplier();
-	if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-	damage = Math.ceil(damage);
+	var damageResult:DamageResult = applyDamage(damage, pc, target, "suppress");
 	output("\n");
-	output(teaseReactions(damage,target));
-	target.lustDamage(damage);
-	output(" ("+ damage + ")\n");
+	output(teaseReactions(damageResult.lustDamage, target));
+	outputDamage(damageResult);
 	processCombat();
 }
 
@@ -3824,7 +3660,8 @@ public function goozookaCannon(target:Creature):void
 	}
 	else
 	{
-		var damage:Number;
+		var damage:TypeCollection;
+		var damageResult:DamageResult
 		
 		// Hit
 		if (target is GrayGoo)
@@ -3834,30 +3671,98 @@ public function goozookaCannon(target:Creature):void
 			var heal:Number = target.HPMax() * 0.2;
 			if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
 			
-			damage = 5 * target.lustDamageMultiplier();
-			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
+			damage = new TypeCollection( { tease: 5 } );
+			damageResult = applyDamage(damage, pc, target, "suppress");
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
 			output(" (Heals " + heal + ")");
-			output(" (Lust Damage " + damage + ")\n");
 			
 			target.HP(heal);
-			target.lust(damage);
 		}
 		else
 		{
 			output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
 		
-			damage = 33 * target.lustDamageMultiplier();
-			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-			damage = Math.ceil(damage);
+			damage = new TypeCollection( { tease: 33 } );
+			damageResult = applyDamage(damage, pc, target, "suppress");
 			output("\n");
-			output(teaseReactions(damage, target));
-			target.lustDamage(damage);
-			output(" (" + damage + ")\n");
+			output(teaseReactions(damageResult.lustDamage, target));
+		}
+		
+		outputDamage(damageResult);
+	}
+	
+	processCombat();
+}
+
+public function pcConcShot(target:Creature):void
+{
+	clearOutput();
+	pc.energy( -25);
+	
+	output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.short + ".");
+	
+	if (rangedCombatMiss(pc, target, 0))
+	{
+		output(" You let fly, but the arrow sails clean past your intended target.");
+	}
+	else
+	{
+		output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
+		
+		if (rand(3) == 0)
+		{
+			output(" though " + target.a + target.short + " seems to resist the blast. Your stun-shot failed!");
+		}
+		else
+		{
+			output(", stunning your enemy!");
+			
+			var rounds:int = 2 + rand(3);
+			target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
+		}
+		
+		// Add some burning damage for the explosion
+		var damage:TypeCollection = pc.rangedDamage();
+		damage.add(new TypeCollection( { burning: 10 } ));
+		applyDamage(damage, pc, target, "ranged");
+	}
+	
+	processCombat();
+}
+
+public function pcGooClone(target:Creature):void
+{
+	clearOutput();
+	output("<i>“Go get 'em, [goo.name]!”</i> you shout. She cheers and leaps off of you, half her gooey mass plopping down beside you and reforming into a miniature, big-tittied dancing goo-girl. The mini-goo bounces around, showing off her tits or bending over, flashing her ass and crotch at " + target.a + target.short + ".");
+	
+	target.lust(3 + rand(3));
+	
+	pc.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
+	pc.armor.defense = 1;
+	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
+	processCombat();
+}
+
+public function pcRecallGoo():void
+{
+	clearOutput();
+	
+	var target:Creature;
+	
+	for (var i:uint = 0; i < foes.length; i++)
+	{
+		if (foes[i].hasStatusEffect("Gray Goo Clone"))
+		{
+			target = foes[i];
+			break;
 		}
 	}
 	
+	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
+	pc.removeStatusEffect("Reduced Goo");
+	pc.armor.defense = 8;
+	target.removeStatusEffect("Gray Goo Clone");
 	processCombat();
 }
 
@@ -3923,14 +3828,11 @@ public function powerStrike(target:Creature):void {
 		output("You <b>draw back</b> your " + pc.meleeWeapon.longName + " and land a hit on " + target.a + target.short + "!");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.damage() + pc.physique()/2;
-		//OVER CHAAAAAARGE
-		damage *= 2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,pc,target,pc.meleeWeapon.damageType);
+		var damage:TypeCollection = pc.damage();
+		damage.add(pc.physique() / 2);
+		damage.multiply(2);
+		damageRand(damage, 15);
+		applyDamage(damage, pc, target, "powerstrike");
 	}
 	output("\n");
 	processCombat();
@@ -3940,7 +3842,7 @@ public function takeCover():void {
 	clearOutput();
 	pc.energy(-20);
 	output("You seek cover against ranged attacks.\n");
-	pc.createStatusEffect("Taking Cover",0,0,0,0,true,"","",true);
+	pc.createStatusEffect("Taking Cover",3,0,0,0,false,"DefenseUp","You are taking cover! Ranged attacks will almost always miss!",true);
 	processCombat();
 }
 
@@ -3950,7 +3852,7 @@ public function carpetGrenades():void
 	pc.energy(-25);
 	output("You sling an array of microgrenades at everything in the area! ");
 	
-	var damage:Number = Math.round(30 + rand(10));
+	var damage:TypeCollection = damageRand(new TypeCollection( { burning: 30 } ), 15);
 	
 	if (foes[0] is Cockvine)
 	{
@@ -3959,9 +3861,14 @@ public function carpetGrenades():void
 
 	for(var x:int = 0; x < foes.length; x++)
 	{
+		var tDamage:TypeCollection = damage.makeCopy();
+		
 		//Double damage against plural enemies
-		if(foes[x].plural) genericDamageApply(damage*2,pc,foes[x],GLOBAL.THERMAL);
-		else genericDamageApply(damage,pc,foes[x],GLOBAL.THERMAL);
+		if (foes[x].plural)
+		{
+			tDamage.multiply(2);
+		}
+		applyDamage(tDamage, pc, foes[x], "carpetgrenade");
 	}
 	
 	aoeAttack(damage);
@@ -3975,13 +3882,14 @@ public function detCharge(target:Creature):void
 	pc.energy(-25);
 	output("You toss a bundle of explosives in the direction of " + target.a + target.short + "! ");
 	
-	var damage:Number = Math.round(50 + rand(10));
+	var damage:TypeCollection = damageRand(new TypeCollection( { burning: 50 } ), 15);
 	
 	if (foes[0] is Cockvine)
 	{
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
 	}
-	genericDamageApply(damage, pc, target, GLOBAL.THERMAL);
+	
+	applyDamage(damage, pc, target, "detcharge");
 
 	output("\n");
 	processCombat();
@@ -3998,21 +3906,25 @@ public function shieldHack(target:Creature):void
 		return;
 	}
 	output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "! ");
-	var damage:Number = Math.round(25 + pc.level*5);
-	var randomizer:Number = (rand(31)+ 85)/100;
-	damage *= randomizer;
-	var sDamage:Array = new Array();
-	sDamage = shieldDamage(target,damage,GLOBAL.ELECTRIC);
+	
+	var damage:TypeCollection = damageRand(new TypeCollection( { electric: 25 + pc.level * 5 } ), 15);
+	damage.addFlag(DamageFlag.ONLY_SHIELD);
+	
+	var damageResult:DamageResult = calculateDamage(damage, pc, target, "suppress");
+	
 	if(target.shields() > 0)
 	{
-		if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>)");
-		else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+		if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold.");
+		else output(" " + target.a + possessive(target.short) + " shield crackles but holds.");
 	}
 	else
 	{
-		if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + sDamage[0] + "</b>)");
-		else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + sDamage[0] + "</b>)");
+		if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached.");
+		else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached.");
 	}
+	
+	outputDamage(damageResult);
+	
 	output("\n");
 	processCombat();
 }
@@ -4030,10 +3942,10 @@ public function weaponHack(target:Creature):void {
 	processCombat();
 }
 
-public function aoeAttack(damage:int):void
+public function aoeAttack(damage:TypeCollection):void
 {
 	// Add function to anything that does AOE damage so we can cheese shit
-	if (damage > 0)
+	if (damage.getTotal() > 0)
 	{
 		if (foes[0].hasStatusEffect("Gooclones")) foes[0].removeStatusEffect("Gooclones");
 	}

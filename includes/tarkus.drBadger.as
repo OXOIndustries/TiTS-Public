@@ -1,4 +1,15 @@
-﻿//Doc Badger’s Clinic
+﻿public function bimbotoriumHallBonus():Boolean
+{
+	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
+	{
+		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shake has been all but mummified in flickering holographic police tape. A couple of uniformed Peacekeepers are standing outside, keeping the curious raskvel from entering the premises. <b>It looks like Doctor Badger’s offices have been shut down for good.</b>");
+		rooms[currentLocation].northExit = "";
+	}
+	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	return false;
+}
+
+//Doc Badger’s Clinic
 //[text to be added to hub location where Doc Badger’s Clinic is]
 //There’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.
 //[Add button for “Doc Badger’s Shack” to options menu for location]
@@ -66,7 +77,7 @@ public function repeatBadgerApproach():void
 	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined && pc.hasPerk("Ditz Speech"))
 	{
 		output("The Doctor looks up as you enter, her expression changes into a faint smile at your presence. <i>“Well well, if it isn’t my special customer!”</i> She pauses for a moment as you let out a bubbly giggle and a pink fog of lust clouds your mind. <i>“It seems you've gone to the right place - then again, all bimbos tend to end up here, don't they?”</i> She licks her lips and continues. <i>“So, did you come here to do some shopping? I’ve still got those little happy pills in stock if you want them, but I'm not sure if they will do much for your, ehm, condition...”</i>");
-		pc.lustDamage(5);
+		applyDamage(new TypeCollection( { tease: 5 } ), null, pc, "minimal");
 	}
 	//REPEAT GREETING BIMBOIFIED
 	else
@@ -74,7 +85,7 @@ public function repeatBadgerApproach():void
 		output("The Doctor looks up as you enter, her face sliding into a lecherous grin as she sees you. <i>“Well well”</i>, she says, <i>“if it isn’t my little bimbo pet. Back from slutting your way around the galaxy, are you? I hope you’ve been a good little bimbo and sucked some nice alien cock while you’ve been away, hmm</i>?”");
 		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
 		output("\n\nIn the end however, she simply sighs heartily without standing. <i>“Unfortunately, my supplies are a little low right now”</i>, she says, indicating her ramshackle surroundings with a lazy sweep of her arm, <i>“so I’m afraid I can’t offer you anything more… intense… right now. I do still have some of those happy pills if you want them though. How does that sound</i>?”");
-		pc.lustDamage(10);
+		applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
 	}
 	drBadgerMenu();
 }
@@ -400,6 +411,7 @@ public function heyDocImAHero():void
 	processTime(40+rand(15));
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
+	output("\n\n(You could probably like, report this troublemaker to the a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }
@@ -414,21 +426,53 @@ public function heyDocImJustHereToShop():void
 	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
 	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well.”");
 	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want</i>?”");
+	output("\n\n(You could probably report this troublemaker to the a U.G.C. peacekeeper and get her arrested. Nothing about this seems legal.)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }
 
-/*
-[BREAK YOURSELF FREE]
-//9999
-//Author("Abe E. Seedy");
-You don’t fancy going along with whatever plans this mad doctor has, but at the same time you’re not about to meekly beg her to let you go either. You’re [pc.name] Steele, dammit! Who is she to try to tell you what you can do?
-	{If the PC has a goo form = You pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club}
-	{If PC does not have a goo form, and Intelligence is higher than both Physique or Reflexes = Given that Dr Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realise that the ramshackle nature of the doctor’s hut looks like it could be used against her You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.}
-	{If PC does not have a goo form, and Physique or Reflexes or both is higher than or equal to Intelligence = You grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.}
-	You’re expecting a fight, but instead Dr Badger just laughs. The contempt of it almost makes you want to attack her more, but seeing the anger in your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little… back and forth with</i>.”
-	She raises herself to her feet, her hands lowered and non-threatening, and in response you begrudgingly lower your weapon a little too, although you still keep your eyes on her warily.
-	<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we do get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i> 
-	Somehow that last part seems almost like a threat, as though as far as she’s concerned the worst outcome of fight between the two of you would be a few broken items. You’re inclined to disagree, but that said, she seems to consider any conflict you had resolved, and you’re not sure enough in your abilities that you want to risk forcing the issue.
-	She moves behind a pile of junk which you only now realise conceals a desk, pulling up a chair nonchalantly and sitting down. She fishes around in the pile of detritus, pulling out what look like a pair of elaborate sunglasses, except silver and completely opaque. She hits a button on the side and suddenly you notice an array of red dots flicking on around the room, seemingly signalling a web of cameras you can only assume feed into her new eyewear.
-	<i>“Now”</i>, she says, <i>“if you’d like to shop instead, I could certainly use some income to get things a little more off the ground here. I don’t have much now, but I’ve got big plans…”</i>
+
+//[BREAK YOURSELF FREE]
+//9999 - unused. Feels like a copout. Maybe thread the goo bit into with non-goos still getting screwed.
+public function omgBreakFreeFromDat():void
+{
+    clearOutput();
+    userInterface.showBust("DRBADGER");
+    userInterface.showName("DR.\nBADGER");
+    author("Abe E. Seedy");
+    output("You don’t fancy going along with whatever plans this mad doctor has, but at the same time you’re not about to meekly beg her to let you go either. You’re [pc.name] Steele");
+    if(pc.isNice()) output(" and you are not going to put up with any of that!");
+    else if(pc.isMischievous()) output(", dammit! Who is she to try to tell you what you can do?");
+    else output("! No one fucks with you and gets away with it!");
+    // If the PC has a goo form
+    if(pc.isGoo()) output("\n\nYou pause for a moment to roll your eyes dramatically, then you simply <i>relax</i>. In moments whatever grip Dr Badger had on you is lost, your entire body melting away into formlessness, and the sudden shift puts her so off-balance that she slumps awkwardly to the floor. You flow past her as an unstoppable mass, reforming in moments on the other side of the room. You grab a comfortingly solid piece of machinery as your limbs re-emerge, raising it over your head like a club.");
+    // If PC does not have a goo form, and Intelligence is higher than both Physique or Reflexes
+    else if((pc.intelligence() > pc.physique()) || (pc.intelligence() > pc.reflexes())) output("\n\nGiven that Dr Badger has you firmly by the throat you’re left at a distinct disadvantage, but as your eyes flick frantically across the room you manage to catch sight of a way to get out of this. You spot a support beam in the wall already straining under a heavy load, and realise that the ramshackle nature of the doctor’s hut looks like it could be used against her. You swing yourself out towards it, catching the doctor by surprise as you manage to land a heavy blow with one flailing limb. At first she’s simply confused, surprised by your seemingly random movements, but soon she catches sight of the smile on your face and the expectant look in your eyes. Following your gaze upwards, she manages to see just in time that a section of the roof is already beginning to slip, and she has barely half a second to throw herself backwards before several feet of metal collapses right where she was standing. She lands heavily, sprawled on her ass by the awkward dodge, and in the few seconds it takes her to recover you’re already readying your weapon and resetting your disabled equipment.");
+    // If PC does not have a goo form, and Physique or Reflexes or both is higher than or equal to Intelligence
+    else output("\n\nYou grit your teeth and push away from the door behind you, which fortunately manages to hold together despite the impressive force you put on it. Your sudden surge manages to catch Dr Badger off-guard, and the two of you tumble forwards onto the floor, her hand losing its grip around your throat as you fall. You manage to roll to your feet faster than she does, and before she can ready herself again you’ve managed to get a hold of some comfortingly solid piece of machinery, holding it up like a club and fully ready to defend yourself.");
+    // Merged
+    output("\n\nYou’re expecting a fight, but instead Dr Badger just laughs.");
+    if(pc.isNice()) output(" You don't understand why she would mock you in such a way, but seeing the serious look on");
+    else if(pc.isMischievous()) output(" Alright, if she wants to dance, you'll make her fucking dance... Though seeing the wry smirk on");
+    else output(" The contempt of it almost makes you want to attack her more, but seeing the anger in");
+    output(" your face she raises her hands in apology. <i>“No, no, don’t get me wrong. I’m just surprised. It’s been so long since anyone actually </i>challenged<i> me. The locals are fun to play with and all, but they have so little </i>fight<i> in them. It’s nice to meet someone I can have a little... back and forth with</i>.”");
+    output("\n\nShe raises herself to her feet, her hands lowered and non-threatening, and in response you");
+    if(pc.isNice()) output(" carefully");
+    else output(" begrudgingly");
+    output(" lower your weapon a little too, although you still keep your eyes on her warily.");
+    output("\n\n<i>“If it’s all the same to you though”</i>, she continues, <i>“I would prefer if we don't get into an actual fight. I feel like we can respect each other, and I have so little equipment with me here, I’d hate for any of it to get broken.”</i>");
+    output("\n\nSomehow that last part seems almost like a threat, as though, as far as she’s concerned, the worst outcome of a fight between the two of you would be a few broken items.");
+    if(pc.isNice()) output(" With that said,");
+    else if(pc.isMischievous()) output(" You’re inclined to disagree, but that said,");
+    else output(" You would probably floor her on the spot, but");
+    output(" she seems to consider any conflict you had resolved, and you’re not sure");
+    if(pc.isNice()) output(" enough in your");
+    else output(" of her");
+    output(" abilities that you want to risk forcing the issue.");
+    output("\n\nShe moves behind a pile of junk which you only now realize conceals a desk, pulling up a chair nonchalantly and sitting down. She fishes around in the pile of detritus, pulling out what look like a pair of elaborate sunglasses, except silver and completely opaque. She hits a button on the side and suddenly you notice an array of red dots flicking on around the room, seemingly signalling a web of cameras you can only assume feed into her new eyewear.");
+    output("\n\n<i>“Now”</i>, she says, <i>“if you’d like to shop instead, I could certainly use some income to get things a little more off the ground here. I don’t have much now, but I’ve got big plans...”</i>");
+    
+    clearMenu();
+    if(silly) addButton(0,"Next",drBadgerMenu,undefined,"Hmm...","Welp, that happened.");
+    else addButton(0,"Next",drBadgerMenu);
+}

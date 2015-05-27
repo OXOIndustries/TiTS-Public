@@ -195,7 +195,7 @@ public function askRenvraAboutKids():void
 	output("\n\nHer package shifts visibly under her clothes, straining against your thigh. <i>“Oh, good, aliens traveled all the way across space and the first thing they want to do is have my babies. It’s comforting to know life works the same everywhere,”</i> she groans, rolling her eyes. <i>“If you want a bellyfull of my get, you’re welcome to ‘em.”</i>");
 	output("\n\n<i>“That was... easy.”</i>");
 	output("\n\nThe halfbreed in your arms snorts and slips a hand ");
-	if(!pc.armor is EmptySlot) output("under your [pc.armor]");
+	if(!(pc.armor is EmptySlot)) output("under your [pc.armor]");
 	else if(pc.isCrotchGarbed()) output("under your [pc.lowerUndergarment]");
 	else output("between your [pc.thighs]");
 	output(" and brushes her fingers along the cleft of your sex. <i>“What? You’d think you’d realize by now... I’m easy.”</i>");
@@ -236,7 +236,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	{
 		output("<i>“Lets,”</i> you say, nodding towards the back room.");
 		output("\n\nRenvra’s thin, red lips twitch into something that might be a smile. <i>“I guess I did have a smoke break coming up, after all.”</i> Turning to one of her subordinates, she tells the other girl to <i>“mind the shop for few minutes,”</i> before hooking her hand ");
-		if(!pc.armor is EmptySlot) output("through your [pc.armor]");
+		if(!(pc.armor is EmptySlot)) output("through your [pc.armor]");
 		else output("under your arm");
 		output(" and hurriedly pulling you through the curtain. Renvra leads you through a short span of the back room, to a small office with shaded windows and <i>“Quartermaster”</i> printed on the door. She unlocks it and leads you in, her hands already moving to the buttons on her uniform.\n\n");
 	}
@@ -246,7 +246,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 		output("You step a little closer to the halfbreed shopkeeper and ask if she’s got another smoke break coming up.");
 		output("\n\nShe gives you a look and smirks, <i>“I guess I must have just missed mine. Must be working too hard. Think you could give a girl a light?”</i>");
 		output("\n\nYou play along, saying that you’d be happy to. Renvra tells one of her subordinates to mind the shop for a few minutes before hooking her hand ");
-		if(!pc.armor is EmptySlot) output("through your [pc.armor]");
+		if(!(pc.armor is EmptySlot)) output("through your [pc.armor]");
 		else output("under your arm");
 		output(" and hurriedly pulling you through the curtain. Renvra leads you through a short span of the back room, to a small office with shaded windows and <i>“Quartermaster”</i> printed on the door. She unlocks it and leads you in, her hands already moving to the buttons on her uniform.\n\n");
 	}
@@ -932,7 +932,7 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 
 	output("\n\nYou wake up in a sterile room, feeling very... light and empty, for the first time in months! You feel great, too! ");
 
-	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have" + pData.pregnancyQuantity + " new child");
+	output("\n\nA local medical droid approaches when you've woken up, saying that you've recently given birth -- congratulations! You now have " + pData.pregnancyQuantity + " new child");
 	if (pData.pregnancyQuantity > 1) output("ren");
 	output(", who in accordance with your Emergency Medical Profile (when did you set <i>that</i> up?), have been delivered to Tavros Station's nursery.");
 

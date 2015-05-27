@@ -37,15 +37,12 @@
 			
 			this.basePrice = 200;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.THERMAL;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.combatUsable = true;
 			this.targetsSelf = true;
@@ -59,14 +56,14 @@
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
-				if(!kGAMECLASS.debug) quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else if (targetCreature.hasStatusEffect("Shield Boosted"))
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
-				if(!kGAMECLASS.debug) quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else

@@ -538,6 +538,7 @@ public function tailFuck():void
 		output("\n\nAt least the shower is kind of pleasant, and she gives you appreciative squeezes in all the right places while you wash her back. It’s a shame you slip out just before it ends, but at least you’re free to go your separate ways.");
 	}
 	processTime(33);
+	pc.exhibitionism(1);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -700,6 +701,7 @@ public function cumInsideIrellia(x:int):void
 	output("\n\nThe servile ants force you into the shower. They won’t take no for an answer, and you don’t really have the energy to protest after that. So what other choice do you have? You lather up and enjoy these primitives' luxuries, coming out feeling at least a little rested.");
 	output("\n\nIrellia is awake once more, and her egg basket has been replaced with a fresh one. She’s beaming and gently rubbing her abdomen with one of her hands. The others give you a tired but friendly wave, the kind of wave you might have gotten from a girl in the hallways of your school after fucking her bareback in her parent’s house the night before. You grin and wave back.");
 	processTime(9);
+	pc.exhibitionism(1);
 	irelliaSexBreak(3);
 	pc.orgasm();
 	clearMenu();
@@ -803,6 +805,7 @@ public function cumOntopOfIrellia(x:int):void
 	output("\n\nA handmaiden offers you a towel and a shower once you climb down. You take both. By the time you leave, noone would guess you had fucked a myr queen... unless they smelled the faint, lingering scent of sweetness on you.");
 	//IT’S OVER!
 	processTime(9);
+	pc.exhibitionism(1);
 	irelliaSexBreak(8);
 	pc.orgasm();
 	clearMenu();
@@ -968,6 +971,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 		irelliaSexBreak(6);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
+		pc.exhibitionism(1);
 		return;
 	}
 	//Passed out - hugeclit or has at least 1 dix
@@ -982,6 +986,7 @@ public function lady69Epilogue4PassedOutFolks():void
 	output("You come to just as one of Irellia’s attendants is finishing sponging you off. Your whole body gleams from the wash, and the blushing attendant hands you your things with a knowing smile. Irellia lies a short distance away, giggling while you dress.\n\n<i>“Good job, Captain Steele. Don’t be a stranger!”</i>");
 	processTime(33);
 	irelliaSexBreak(8);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1111,6 +1116,7 @@ public function quadTitfuckPartDues():void
 	processTime(23);
 	irelliaSexBreak();
 	pc.orgasm();
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1272,10 +1278,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		if(!pc.isNude())
 		{
 			output("pointedly strips off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-				if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+				if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". You shiver as your protective layers are removed, leaving you naked before him. He then ");
@@ -1295,10 +1301,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		{
 			output(" You're wearing <i>way</i> too many clothes...");
 			output("\n\nYour golden-haired lover seems to have the same thought. He helps you trip off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-			 	if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+			 	if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". Even though you're so warm, you tremble as your protective layers are removed, leaving you bared before him.");
@@ -1315,10 +1321,10 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 		if(!pc.isNude())
 		{
 			output("With deliberate slowness, you strip off your ");
-			if(!pc.armor is EmptySlot) 
+			if(!(pc.armor is EmptySlot)) 
 			{
 				output("[pc.armor]");
-			 	if(!pc.lowerUndergarment is EmptySlot) output(" and then your [pc.lowerUndergarment]");
+			 	if(!(pc.lowerUndergarment is EmptySlot)) output(" and then your [pc.lowerUndergarment]");
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". You feel a salacious thrill as he looks upon your naked [pc.race] body, soaking in your [pc.chest], [pc.belly] and loins.");
@@ -1438,7 +1444,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	}
 	else if(pc.hasVagina())
 	{
-		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.cumType].");
+		output("clench and spasm around him, your [pc.girlCum] mixing with his potent alien spunk. A mixture of liquids liberally runs down your [pc.legOrLegs] - myr and [pc.girlCumNoun].");
 	}
 	else output("cream yourself around " + partner + "'s deeply buried cock.");
 	output(" Wracking spasms of pleasure seize your body, and your legs go out from under you. Just in time, the ");
@@ -1529,6 +1535,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 	processTime(7);
 	pc.orgasm();
 	irelliaSexBreak(4);
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

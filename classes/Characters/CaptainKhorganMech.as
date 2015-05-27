@@ -1,6 +1,8 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
@@ -23,10 +25,14 @@
 			this.long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
 			this.customBlock = "The exoskeleton easily absorbs your attack.";
 			this.plural = false;
-			this.lustVuln = 0;
+			
+			isLustImmune = true;
+			
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			this.rangedWeapon.damage = 10;
+			rangedWeapon.baseDamage.burning.damageValue = 10;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "mining laser";
 			this.rangedWeapon.attackVerb = "laser";
@@ -47,7 +53,12 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.resistances = new Array(.9,.9,.9,1.1,1.1,1,1.25,1);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = 10.0;
+			baseHPResistances.burning.damageValue = -10.0;
+			baseHPResistances.electric.damageValue = -25.0;
+			
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 987;

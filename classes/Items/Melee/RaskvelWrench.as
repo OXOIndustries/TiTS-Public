@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;	
 	
 	public class RaskvelWrench extends ItemSlotClass
 	{
@@ -40,8 +41,10 @@
 			//Information
 			this.basePrice = 850;
 			this.attack = -2;
-			this.damage = 14;
-			this.damageType = GLOBAL.KINETIC;
+			
+			baseDamage.kinetic.damageValue = 14;
+			baseDamage.addFlag(DamageFlag.CRUSHING);
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -49,7 +52,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

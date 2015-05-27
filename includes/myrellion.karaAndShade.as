@@ -1,4 +1,5 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 /*FLAGS
 SHADE_PAID_YOU
@@ -531,7 +532,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
+	if(!pc.meleeWeapon is Rock) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -548,7 +549,7 @@ public function helpKaraOutLastChance():void
 	showBust("KARA","SHADE");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
-	if(pc.meleeWeapon.shortName != "") output("draw your weapon");
+	if(!pc.meleeWeapon is Rock) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside Kara. The bounty hunter curses, waving her weapon between the two of you as she realizes things just took a turn for the worse.");
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";
@@ -590,6 +591,9 @@ public function meetUpWithKaraInTheBackAlley():void
 public function shadeAI():void
 {
 	var target:Creature = pc;
+	//Quickdraw (Free action) - end of enemyAI
+	//if PC is immune to electricity after getting shot by the Arc Caster
+	shadeQuickdrawsDisarmed();
 	if(pc.statusEffectv1("Round") <= 1)
 	{
 		//Shoot First (First round)
@@ -609,7 +613,7 @@ public function shadeAI():void
 	
 	//Quickdraw (Free action) - end of enemyAI
 	//if PC is immune to electricity after getting shot by the Arc Caster
-	shadeQuickdraws(pc);
+	shadeQuickdrawsSwap(pc);
 
 	//Kara's AI in here:
 	output("\n\n");
@@ -734,12 +738,9 @@ public function karaPlasmaShot(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -761,12 +762,9 @@ public function karaHitsWivASwordChuck(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(true) + attacker.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target);
+		var damage:TypeCollection = attacker.meleeDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -786,14 +784,10 @@ public function karaDoesChargeShot(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//OVER CHAAAAAARGE
-		damage *= 1.5;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.PLASMA);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damage.multiply(1.5);
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 
 		//{It hits for X damage! // } {If burn: ");
 		if(!target.hasStatusEffect("Burn") && rand(2) == 0)
@@ -835,12 +829,9 @@ public function shadeUsesArcCaster(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 
 }
@@ -861,12 +852,9 @@ public function shadeShootHoldoutPistol(target:Creature):void
 	}
 	else
 	{
-		var damage:int = attacker.damage(false) + attacker.aim()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.KINETIC);
+		var damage:TypeCollection = attacker.rangedDamage();
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
 	}
 }
 
@@ -944,12 +932,10 @@ public function tazerForShade(target:Creature):void
 	else
 	{
 		//The dart hits and unleashes a shock of electricity, zapping {target} for X damage and stunning {you / her}! "
-		var damage:int = 10;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		genericDamageApply(damage,attacker,target,GLOBAL.ELECTRIC);
+		var damage:TypeCollection = new TypeCollection( { electric: 10 } );
+		damageRand(damage, 15);
+		applyDamage(damage, attacker, target);
+		
 		if(foes[0].aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
 			target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
 			output(" <b>You are stunned!</b>");
@@ -959,19 +945,41 @@ public function tazerForShade(target:Creature):void
 
 //Quickdraw (Free action) - end of enemyAI
 //if PC is immune to electricity after getting shot by the Arc Caster
-public function shadeQuickdraws(target:Creature):void
+public function shadeQuickdrawsDisarmed():void
 {
-	//if she’s disarmed from her Arc Caster
-	if(foes[0].hasStatusEffect("Disarmed") && foes[0].rangedWeapon is ArcCaster)
+	if(foes[0].rangedWeapon is ArcCaster)
 	{
-		output("\n\nJust as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.");
-		foes[0].rangedWeapon = new HoldOutPistol();
+		//if she’s disarmed from her Arc Caster
+		if(foes[0].hasStatusEffect("Disarmed"))
+		{
+			output("Just as soon as you’ve shot the gun out of her hand, Shade produces another one, a snub-nosed holdout pistol drawn from the back of her belt.\n");
+			foes[0].rangedWeapon = new HoldOutPistol();
+			foes[0].removeStatusEffect("Disarmed");
+		}
 	}
-	else if(target.getResistance(GLOBAL.ELECTRIC) <= 0)
+	//Other gun disarmed
+	else if(foes[0].hasStatusEffect("Disarmed"))
 	{
-		output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+		output("Just as soon as you’ve shot the gun out of her hand, Shade produces another one, identical to the last. <b>Just how many of those things is she carrying!?</b> You might need to try another tactic...\n");
 		foes[0].rangedWeapon = new HoldOutPistol();
-	}	
+		foes[0].removeStatusEffect("Disarmed");
+	}
+}
+public function shadeQuickdrawsSwap(target:Creature):void
+{
+	if(foes[0].rangedWeapon is ArcCaster)
+	{
+		if(target.getHPResistances().electric.resistanceValue >= 100 && target.shields() <= 0)
+		{
+			output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+			foes[0].rangedWeapon = new HoldOutPistol();
+		}
+		else if(target.getShieldResistances().electric.resistanceValue >= 100 && target.shields() > 0)
+		{
+			output("\n\nShade looks from you to her seemingly ineffectual lightning pistol before slamming it back in her holster and drawing a snub-nosed holdout pistol from the back of her belt.");
+			foes[0].rangedWeapon = new HoldOutPistol();
+		}
+	}
 }
 
 //Combat End
@@ -1099,7 +1107,7 @@ public function cuntTailShadeFux():void
 	output("\n\n");
 	if(!pc.isAss()) output("Well, it’s only fair. ");
 	else output("Bitch. ");
-	output("You swat her taut ass but settle back into her thighs, slurping at her sweet little cunt. Your [pc.tongue] males quick, shallow, rhythmic motions, probing in to find the kaithrit’s most sensitive spot; your fingers slip back around her hips and make for the perky red pleasure-buzzer over her slit. One touch makes her shiver in pleasure - a few careful strokes have her quivering in your hands, her dominant tone fading to moans of pleasure and bucks of her hips, trying to draw your tongue deeper. You lick and kiss your way ");
+	output("You swat her taut ass but settle back into her thighs, slurping at her sweet little cunt. Your [pc.tongue] makes quick, shallow, rhythmic motions, probing in to find the kaithrit’s most sensitive spot; your fingers slip back around her hips and make for the perky red pleasure-buzzer over her slit. One touch makes her shiver in pleasure - a few careful strokes have her quivering in your hands, her dominant tone fading to moans of pleasure and bucks of her hips, trying to draw your tongue deeper. You lick and kiss your way ");
 	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("through her inner walls");
 	else output("deep inside her, your inhumanly long tongue like a writhing tentacle inside her");
 	output(", teasing and caressing for minute after minute. Her breathing grows faster and more shallow, her heart racing enough to let you feel it through the walls of her drooling pussy. She’s so close that you can - literally - taste it, feeling the sweltering heat of her sex washing over your cheeks and chin, bathing you in moisture.");
@@ -1349,6 +1357,7 @@ public function shadeAtTheBar():Boolean
 {
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
+	if(karaAndShadeUnfinished()) return false;
 	if(flags["MET_KARA"] != undefined) return true;
 	else return false;
 }

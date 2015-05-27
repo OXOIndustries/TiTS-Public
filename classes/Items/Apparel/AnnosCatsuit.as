@@ -36,15 +36,12 @@ package classes.Items.Apparel
 			
 			this.basePrice = 200;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 1;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 1;
-			this.bonusResistances = new Array(0, 0, 0, 0.3, 0.3, 0.1, 0.2, 0.2);
 			
 			this.version = this._latestVersion;
 		}

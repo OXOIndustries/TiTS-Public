@@ -129,7 +129,7 @@ public function kaedeMyrellionBarTalkMenu():void
 {
 	clearMenu();
 	addButton(0, "Her Job", kaedeMyrellionTalkJob, undefined, "Her Job", "Ask Kaede about her space-trucker job.");
-	addButton(1, "RenWorld", kaedeMyrellionTalkRenWorld, undefined, "RenWorld", "Ask Kaede about this RenWorld contract she's got.");
+	addButton(1, "RhenWorld", kaedeMyrellionTalkRenWorld, undefined, "RhenWorld", "Ask Kaede about this RhenWorld contract she's got.");
 	addButton(2, "Herself", kaedeMyrellionTalkHerself, undefined, "Herself", "Ask Kaede a little about, well, Kaede.");
 	addButton(3, "Finish", kaedeMyrellionTalkFinish, undefined, "Finish", "Finish your drink.")
 }
@@ -149,7 +149,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\n<i>“You bought a ship? That’s not cheap,”</i> you say, remembering what Kaede mentioned about noodles and crackers just a few minutes ago.");
 	
-	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
+	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i>  off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
 	output("\n\n<i>“Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	
@@ -171,7 +171,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	clearOutput();
 	kaedeHeader();
 
-	output("<i>“So, this RenWorld contract...”</i>");
+	output("<i>“So, this RhenWorld contract...”</i>");
 	
 	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh.... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
 	
@@ -211,7 +211,7 @@ public function kaedeMyrellionTalkRenWorld():void
 
 	processTime(15);
 
-	addDisabledButton(1, "RenWorld");
+	addDisabledButton(1, "RhenWorld");
 }
 
 public function kaedeMyrellionTalkHerself():void
@@ -234,7 +234,7 @@ public function kaedeMyrellionTalkHerself():void
 	
 	output("\n\n<i>“Yeah, that’s him!”</i> Kaede laughs, <i>“Zeke Entara. Y’know, I walked in on him talking about some big Steele Tech contract way back.  Months ago now, it must have been. Must have been your ship, now that I think about it.”</i>");
 	
-	output("\n\n<i>“Must have,”</i> you say. smiling now that Kaede’s opening up a little more. <i>“So, your dad’s the mechanic who put my");
+	output("\n\n<i>“Must have,”</i> you say, smiling now that Kaede’s opening up a little more. <i>“So, your dad’s the mechanic who put my");
 	if (9999 == 0) output(" old");
 	output(" ship back together. And your mom? Is she a mechanic too?”</i>");
 	
@@ -509,7 +509,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\nWith that little encouragement to urge her on, Kaede starts to move faster. She wraps her arms around your neck, pulling herself into your lips for a long, drawn-out kiss. You accept it eagerly, relaxing into the halfbreed’s embrace and letting her ride you. Soon, her occasional little moans turn into a symphony of passionate cries and lusty groans as your cock spears her over and over again, and your hand jerks her shaft until she’s babbling <i>“C-cumming cumming cumming!”</i>");
 	
-	output("\n\nThat was fast! You give the edging half-ausar an understanding look and move your own hand a little quicker, jacking her shaft faster than she can bounce her hips. A few seconds of that treatment, and Kaede’s throwing her head back and arching her spine, howling as a streak of creamy white squirts out and splatters onto your belly. You just keep sliding your hand across her lubed-up shaft until the climactic cumshut trickles down to a little drool of watery aftershocks that dribble onto your fingers.");
+	output("\n\nThat was fast! You give the edging half-ausar an understanding look and move your own hand a little quicker, jacking her shaft faster than she can bounce her hips. A few seconds of that treatment, and Kaede’s throwing her head back and arching her spine, howling as a streak of creamy white squirts out and splatters onto your belly. You just keep sliding your hand across her lubed-up shaft until the climactic cumshot trickles down to a little drool of watery aftershocks that dribble onto your fingers.");
 	
 	output("\n\nBashfully, Kaede looks pointedly away and mumbles <i>“S-sorry, [pc.name]. It’s been a while...”</i>");
 	
@@ -542,7 +542,7 @@ public function kaedeMyrellionFuckAssFacial():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("A wicked through crosses your mind, only just managing to drown out the spasms of pleasure starting to wrack your body long enough to entice you into action. At the apex of a thrust, you rock your hips just a little further back, enough to pull yourself completely out of Kaede’s clenching hole. You lunge forward, grabbing Kaede’s head of auburn hair and lifting her up to look your one-eyed snake dead on.");
+	output("A wicked throught crosses your mind, only just managing to drown out the spasms of pleasure starting to wrack your body long enough to entice you into action. At the apex of a thrust, you rock your hips just a little further back, enough to pull yourself completely out of Kaede’s clenching hole. You lunge forward, grabbing Kaede’s head of auburn hair and lifting her up to look your one-eyed snake dead on.");
 	
 	output("\n\nShe goes wide-eyed, just in time for the first spurt of [pc.cumNoun] to squirt out from your [pc.cock] and splatter across her face. Kaede yelps and laughs as spunk smears over her lips and cheeks. You furiously stroke your prick, milking out every drop onto Kaede’s face and breasts, then trickles out onto her belly as your orgasm starts to subside.");
 
@@ -683,7 +683,7 @@ public function kaedeMyrellionSucknRide():void
 	output(". The feeling of that wonderfully sticky heat and the forceful stretch as Kaede hammers her knot into you sends you over the edge with her. You moan into the kiss, letting your [pc.vagOrAss] contract and squeeze around Kaede’s cock. The sensation of semen slathering over your");
 	if (!pc.hasVagina()) output(" anal");
 	else output(" vaginal");
-	output(" walls sends shivers all through you, and your moans redouble into your lover’s lips. Your [pc.chest] presses against her breasts, and your arms wrap around Kaede to pull her tight against you. Both your hips grind against each other, ramming her knot deeper into her your straining hole.");
+	output(" walls sends shivers all through you, and your moans redouble into your lover’s lips. Your [pc.chest] presses against her breasts, and your arms wrap around Kaede to pull her tight against you. Both your hips grind against each other, ramming her knot deeper into your straining hole.");
 	
 	output("\n\nSeveral minutes of pleasurable moans and sighs follow as you and Kaede bask in the afterglow. Your hips gently rock, enjoying the fullness of the knot stretching you and grinding against your tender walls. Slowly but surely, the tie holding you together starts to deflate, releasing you from Kaede’s grasp.");
 	

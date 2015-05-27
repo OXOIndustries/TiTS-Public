@@ -1,4 +1,5 @@
-﻿/*Rival Encounter
+﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+/*Rival Encounter
 Notes
 Approach
 Fight
@@ -210,13 +211,10 @@ public function daneCrossSlashAttack():void {
 	else
 	{
 		output("\nThe blades hit you while crossed in a perfect 'x'!");
-		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
-		//OVER CHAAAAAARGE
-		damage *= 3;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		genericDamageApply(damage,foes[0],pc);
+		var damage:TypeCollection = foes[0].meleeDamage();
+		damage.multiply(3);
+		damageRand(damage, 15);
+		applyDamage(damage, foes[0], pc);
 	}
 	processCombat();
 }
@@ -229,7 +227,7 @@ public function defeatDane():void
 	userInterface.showName("DANE AND\n" + chars["RIVAL"].short.toUpperCase());
 	output("Slumping, the hulking ausar thug looks like he's close to giving in. Before you can finish this, explosions stitch up the ground in front of you, forcing you to dive for cover. The bass hum of thrusters in atmosphere greets you before the gusting backwash does, giving you enough time to put your arm up to block the worst of it. Dane stumbles into the ship, one blade falling from a numb grip to the ground behind him.");
 	output("\n\nThe hatch closes, but you're able to see [rival.short]'s pearly teeth behind [rival.eir] smile as it does. You ");
-	if(pc.rangedWeapon.shortName == "") output("chuck a few rocks");
+	if(pc.rangedWeapon is Rock) output("chuck a few rocks");
 	else output("crack off a few, half-hearted shots");
 	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you alone with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");
@@ -262,7 +260,7 @@ public function loseToDane():void {
 
 	output("\n\nDane's cock hangs large and half-erect, red and thick, pulsating visibly with the veins that web its surface. He smirks when he sees your eyes upon it and visibly stiffens, lurching to a fuller, harder state of tumescence. <i>\"Now for the fun part.\"</i> All four of his hands grab you at once, lifting you up and turning you to face the ground. Grimly, you think, <i>\"Doggy-style, of course.\"</i> His length presses between your butt-cheeks, just above your [pc.asshole], and the burly thug growls. <i>\"More jobs need these kinds of perks.\"</i>");
 
-	output("\n\nThe multi-limbed warrior's lower arms are firmly holding your [pc.hips] while his upper ones steady your shoulders. Together, they push you down on his pointed phallus, pressing the rigid, dog-like dick hard against your [pc.asshole]. Whether you were prepare for it or not, there's too much force for you to do anything but stretch accommodatingly, accepting his hot, swollen tool into yourself. It's narrow-tipped, broadening shape does much to keep the insertion from being overly painful, but it doesn't stop his already-swelling knot from slamming against you, too big to fit in just yet.");
+	output("\n\nThe multi-limbed warrior's lower arms are firmly holding your [pc.hips] while his upper ones steady your shoulders. Together, they push you down on his pointed phallus, pressing the rigid, dog-like dick hard against your [pc.asshole]. Whether you were prepared for it or not, there's too much force for you to do anything but stretch accommodatingly, accepting his hot, swollen tool into yourself. Its narrow-tipped, broadening shape does much to keep the insertion from being overly painful, but it doesn't stop his already-swelling knot from slamming against you, too big to fit in just yet.");
 	output("\n\nDane ");
 	if(pc.hasHair()) output("grabs your [pc.hair], yanking your head back");
 	else output("grabs the back of your neck, squeezing painfully hard");
@@ -282,7 +280,7 @@ public function loseToDane():void {
 	output("\n\nWait, what? You try to look back over your shoulder at him to voice your question, but his hand holds you firm.");
 	output("\n\n<i>\"Eyes down, bitch. You don't get to look at me,\"</i> Dane commands. As an afterthought, he adds, <i>\"Never fucked somebody as spliced-up as me, have you?\"</i> He doesn't wait for an answer. <i>\"If you thought four arms was the extent of my modifications, you're sorely mistaken. The little bit of cock you've got inside you is just my tip.\"</i> Dane thrusts, pushing his knot up into your large intestine. Incredibly, you feel inches more of his phallus pounding into you behind it, the insertion made easy thanks to the reaming he's given you. <i>\"I got myself a proper tentacle cock with an ausar twist. It can reach out nine feet, and every six inches, there's another knot. I wonder how many I can push out into you?\"</i>");
 	output("\n\nYou groan in distress and arousal, shivering as you feel a second knot push up against your ring.");
-	output("\n\n<i>\"What's the matter, slut? Don't squeeze down just yet. I've got another foot I can slip inside you, I'm sure.\"</i> Dane's arms pump your body up and down, popping that first knot out and then thrusting two back in. You can feel a third emerging from the slit in his groin, pressing between your cheeks, hot and slick with some kind of lubricating oil. It's making you feel so full, and yet... and yet you're getting a little curious to see how much this chiselled, canine adonis will be able to cram into your [pc.asshole]. He's pounding you full, taking you utterly, and there's nothing you can do but sag in his grip and try to enjoy it. Your body certainly seems to be");
+	output("\n\n<i>\"What's the matter, slut? Don't squeeze down just yet. I've got another foot I can slip inside you, I'm sure.\"</i> Dane's arms pump your body up and down, popping that first knot out and then thrusting two back in. You can feel a third emerging from the slit in his groin, pressing between your cheeks, hot and slick with some kind of lubricating oil. It's making you feel so full, and yet... and yet you're getting a little curious to see how much this chiseled, canine adonis will be able to cram into your [pc.asshole]. He's pounding you full, taking you utterly, and there's nothing you can do but sag in his grip and try to enjoy it. Your body certainly seems to be");
 	if(pc.hasCock() || pc.hasVagina()) output(" if the dripping from your crotch is any indication");
 	output(".");
 	if(pc.hasCock()) output(" [pc.EachCock] is trembling, half-hard and bouncing along with the thrusts, too cowed by the pressure on your prostate to be fully hard but loving the pleasant squeezing too much to be soft.");

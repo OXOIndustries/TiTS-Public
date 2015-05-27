@@ -46,8 +46,6 @@ package classes.Items.Miscellaneous
 			//Information
 			this.basePrice = 1;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -55,7 +53,6 @@ package classes.Items.Miscellaneous
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -80,31 +77,31 @@ package classes.Items.Miscellaneous
 				if(!CodexManager.entryViewed("The Treatment"))
 				{
 					kGAMECLASS.output("You roll the strange medipen over in your hand. All it would take is a touch to the activation stud to trigger it. It'd be easy. But you don't really know that much about it yet. Maybe you ought to look this one up on your codex.");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				//Use - repeat unbimboed/bro'ed
 				else if(!pc.isBimbo() && !pc.isBro() && pc.isTreated())
 				{
 					kGAMECLASS.output("You consider another of the medipens containing the Treatment. You already took your dose. Taking more of it won't do anything but waste it. Maybe you can find an interested friend to try it out with you? This'll be fun!");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				//Bimbo repeat use
 				else if(pc.isBimbo() && pc.isTreated())
 				{
 					kGAMECLASS.output("Your attention briefly flicks over one of the medipens that made everything so awesome. Giggling, you remember how weird but amazingly hot those days after your dose were. It's too bad that taking it wouldn't make you any more sensitive or happy. Maybe you can find a friend to give it to?");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				//Faux-cow repeat use
 				else if(pc.isBimbo() && 9999 == 0 && pc.isTreated())
 				{
 					output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn't take away your dick. The warnings say it won't do anything if you've already taken one, but maybe you can find someone cute to get to take it. Then you'll have someone to help keep your balls from getting so painfully full!");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}	
 				//Bull repeat use
 				else if(pc.isBro() && pc.isTreated())
 				{
 					output("You grunt when you look down at the little medipen. Such a tiny thing changed you so much. A shame you can't just take another dose and get even more virile. Fuckin' one hit wonders. Maybe you could get a friend to take it? Male or female, they're bound to love the results!");
-					if(!kGAMECLASS.debug) quantity++;
+					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				else
 				{

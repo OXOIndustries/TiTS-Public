@@ -41,8 +41,6 @@
 			//Information
 			this.basePrice = 600;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,7 +48,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -231,8 +228,16 @@
 							else kGAMECLASS.output("\n\nY");
 							kGAMECLASS.output("our attention is drawn down to your [pc.butt] - directly above it, actually. There’s an upraised lump forming at the base of your spine. You can feel the bones down there shifting slightly, adjusting as the protrusion grows larger. There’s less pain than you would have thought. The existing nervous connections have been broken and are still growing in behind your expanding flesh.");
 							kGAMECLASS.output("\n\nYour tail grows in long and thick, lined with powerful muscles. You could probably use it as a bludgeon if the need arose.");
-							if(!pc.hasFur()) kGAMECLASS.output(" Of course, the fur that’s growing all over it would diminish its effectiveness as a weapon. At least it has a stylish brown and black ringed pattern!");
-							else kGAMECLASS.output(" Of course, your natural fur would diminish its effectiveness as a weapon. At least the tail is growing its own stylish black and brown pattern.");
+							if(!pc.hasFur()) 
+							{
+								kGAMECLASS.output(" Of course, the fur that’s growing all over it would diminish its effectiveness as a weapon.");
+								if(pc.furColor != "black") kGAMECLASS.output(" At least it has a stylish brown and black ringed pattern!");
+							}
+							else 
+							{
+								kGAMECLASS.output(" Of course, your natural fur would diminish its effectiveness as a weapon.");
+								if(pc.furColor != "black") kGAMECLASS.output(" At least the tail is growing its own stylish black and brown pattern.");
+							}
 							kGAMECLASS.output(" Hugging the thick thing to your chest, you feel its growth slowly come to a stop. <b>You have a big, bushy tail.</b>");
 							pc.tailCount = 1;
 							pc.clearTailFlags();
@@ -250,8 +255,18 @@
 							kGAMECLASS.output("our attention is drawn down to your [pc.tail]. It’s twitching wildly, the skin visibly shifting as the microscopic machines trick your cells into assuming a new shape. ");
 							if(!pc.hasTailFlag(GLOBAL.FLAG_LONG)) kGAMECLASS.output("The shortened shape of your tail stretches longways, filling out before your eyes.");
 							else kGAMECLASS.output("The already long shape of your tail is well suited its form. Not much adjustment is needed.");
-							if(!pc.hasFur()) kGAMECLASS.output(" Fur springs up across the whole thing, revealing a ringed black and brown pattern.");
-							else kGAMECLASS.output(" Your existing fur remains, tinted into a familiar-looking black and brown pattern.");
+							if(!pc.hasFur()) 
+							{
+								kGAMECLASS.output(" Fur springs up across the whole thing");
+								if(pc.furColor != "black") kGAMECLASS.output(", revealing a ringed black and brown pattern");
+								kGAMECLASS.output(".");
+							}
+							else 
+							{
+								kGAMECLASS.output(" Your existing fur remains, tinted into a familiar-looking black");
+								if(pc.furColor == "black") kGAMECLASS.output("-ringed pattern.");
+								else kGAMECLASS.output(" and brown pattern.");
+							}
 							kGAMECLASS.output(" You wiggle it around a few times for fun. It’s heavy enough that you could really wallop someone! <b>You’ve got a tanuki tail!</b>");
 							pc.clearTailFlags();
 							pc.tailType = GLOBAL.TYPE_KUITAN;
@@ -266,7 +281,9 @@
 							if(changes > 0) kGAMECLASS.output("\n\nIn addition, y");
 							else kGAMECLASS.output("\n\nY");
 							kGAMECLASS.output("our attention is drawn down to your [pc.tails]. They’re writhing against one another like wild, pressed so tightly into a single bundle that even you are having trouble telling them apart. Then, before your very eyes, they begin to merge together. You aren’t sure how to describe it. It feels sort of like when your arm all falls asleep - all tingle and yet still half numbed.");
-							kGAMECLASS.output("\n\nThe ‘Nuki Cookies are undoubtedly going to work on your [pc.tails], reshaping them into a single powerful limb, one that’s covered in a luscious coat of black and brown rings. The muscular thing is weighty enough that you could probably batter someone with it quite effectively. If only it wasn’t so padded. <b>You have a tanuki tail!</b>");
+							kGAMECLASS.output("\n\nThe ‘Nuki Cookies are undoubtedly going to work on your [pc.tails], reshaping them into a single powerful limb, one that’s covered in a luscious coat of black");
+							if(pc.furColor != "black") kGAMECLASS.output(" and brown rings");
+							kGAMECLASS.output(". The muscular thing is weighty enough that you could probably batter someone with it quite effectively. If only it wasn’t so padded. <b>You have a tanuki tail!</b>");
 							pc.tailCount = 1;
 							pc.clearTailFlags();
 							pc.tailType = GLOBAL.TYPE_KUITAN;

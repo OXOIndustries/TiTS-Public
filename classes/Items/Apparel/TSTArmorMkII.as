@@ -4,6 +4,7 @@ package classes.Items.Apparel
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	/**
 	 * aka Thanks for using muh test items SAVIN :||||||
@@ -36,16 +37,27 @@ package classes.Items.Apparel
 			
 			this.basePrice = 200;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 1;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 1;
-			this.bonusResistances = new Array(0, 0, 0, -0.3, -0.3, -0.1, -0.2, -0.2);
-			this.bonusLustVuln = -0.15;
+			
+			this.resistances.kinetic.resistanceValue = 5;
+			this.resistances.electric.resistanceValue = 10;
+			this.resistances.burning.resistanceValue = 15;
+			this.resistances.freezing.resistanceValue = 20;
+			this.resistances.corrosive.resistanceValue = 25;
+			this.resistances.poison.resistanceValue = 30;
+			this.resistances.psionic.resistanceValue = 35;
+			this.resistances.drug.resistanceValue = 40;
+			this.resistances.pheromone.resistanceValue = 45;
+			this.resistances.tease.resistanceValue = 50;
+			
+			this.resistances.addFlag(DamageFlag.ABLATIVE);
+			this.resistances.addFlag(DamageFlag.MIRRORED);
+			this.resistances.addFlag(DamageFlag.GROUNDED);
 			
 			this.version = this._latestVersion;
 		}

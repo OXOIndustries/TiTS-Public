@@ -13,7 +13,7 @@
 		//constructor
 		public function ADCock()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.hasRandomProperties = true;
 			
 			this.quantity = 1;
@@ -24,7 +24,7 @@
 			this.shortName = "A.D.Cock";
 			
 			//Regular name
-			this.longName = "KihaCorp-branded synth-phallus modelled after a mythological dragon's";
+			this.longName = "synth-phallus modelled after a dragon's";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
@@ -41,8 +41,6 @@
 			//Information
 			this.basePrice = 15000;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,14 +48,13 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}	
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			if(!kGAMECLASS.debug) quantity++;
+			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.clearOutput();
@@ -69,6 +66,14 @@
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use this.");
 			}
 			return true;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+			delete d.damage;
+			delete d.damageType;
 		}
 	}
 }

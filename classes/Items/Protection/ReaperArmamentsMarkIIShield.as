@@ -37,8 +37,6 @@ package classes.Items.Protection
 			//Information
 			this.basePrice = 6000;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 100;
@@ -46,11 +44,9 @@ package classes.Items.Protection
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.bonusResistances[GLOBAL.KINETIC] = 0.2;
-			this.bonusResistances[GLOBAL.SLASHING] = 0.2;
-			this.bonusResistances[GLOBAL.PIERCING] = 0.2;
-			this.bonusResistances[GLOBAL.ELECTRIC] = -0.2;
+			
+			resistances.kinetic.resistanceValue = 30.0;
+			resistances.electric.resistanceValue = -50.0;
 			
 			this.version = _latestVersion;
 		}

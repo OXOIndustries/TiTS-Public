@@ -67,6 +67,8 @@ package classes.UIComponents.ContentModules
 			//addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
 			addToggleControl("Toggle easy mode game difficulty.", "Easy Mode", "easyMode");
 			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
+			addToggleControl("Toggle combined damage output display.", "Combine Damge", "combineDamageValueOutput");
+			addToggleControl("Toggle color in damage output display.", "Color Damage", "colourDamageValueOutput");
 			
 			addBustPreferenceControl();
 			

@@ -11,7 +11,7 @@
 		//constructor
 		public function Reaha()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -23,7 +23,6 @@
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Knife();
 			this.armor = new EmptySlot();
@@ -37,7 +36,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 85;
-			this.resistances = new Array(0,0,0,0,0,0,0,0);
+			
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 0;
@@ -156,6 +155,17 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 150;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

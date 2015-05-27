@@ -4,7 +4,7 @@
 	else addDisabledButton(0,"Order Food","Order Food","No way are you doing that again. The service is terrible and the food looks even worse.");
 	//Also adds a button to slot 1 if tarkus 'sploded
 	auroroMessInRoomText();
-	
+	vendingMachineButton(2);
 	return false;
 }
 public function barBonusFunction():Boolean
@@ -170,6 +170,8 @@ public function quiveringQuasar():void
 		pc.physiqueMod+=5;
 		pc.lust(5);
 	}
+	processTime(6);
+	pc.imbibeAlcohol(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -201,6 +203,8 @@ public function sexOnAMeteor():void
 		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
 	}
 	pc.lust(15);
+	pc.imbibeAlcohol(16);
+	processTime(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -218,6 +222,8 @@ public function haveABeer():void
 	//if 5+ times sex'd:
 	if(timesDelilahSexed() >= 5) output("trying to ignore the fact that she's quickly called on to \"service\" a pair of raskvel guys mid-conversation, "); 
 	output("before standing to go.");
+	pc.imbibeAlcohol(6);
+	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -317,6 +323,7 @@ public function buttStretchDelsAnus():void
 	flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
 	pc.orgasm();
 	timesDelilahSexed(1);
+	pc.exhibitionism(1);
 	processTime(30+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -397,6 +404,7 @@ public function sitOnDelilahsFace():void
 	}
 	processTime(30+rand(5));
 	pc.orgasm();
+	pc.exhibitionism(1);
 	timesDelilahAteOut(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -427,6 +435,9 @@ public function stephIrsonEpisodeTwo():void
 	author("Savin");
 	showName("STEPH\nIRSON");
 	showBust("STEPH_2");
+	
+	flags["STEPH_WATCHED"] = 1;
+	
 	output("You flop down in a quiet booth in the corner of the bar, looking up at a sizable Super-HD Viewscreen mounted above the bar. As you sit down, the last commercial break is just coming to an end, telling you to buy JoyCo brand healing services before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a bright sunrise to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her. Despite her obvious humanity, the hostess is sporting a pair of perky kitty-ears atop her sandy hair, which twitch cutely as the camera focuses in on them.");
 	output("\n\nA U.G.C. mandated warning appears on the screen in tiny letters:");
 	output("\n\n<b>\"The U.G.C. Scout Authority apologizes for content in previous episodes of <i>Steph Irson: Galactic Huntress</i>, and warns that interacting with unidentified xeno-biotics can result in erratic and unexpected mutations or grievous injury. Do not attempt anything seen in this series at home, or without professional guidance.\"</b>");
@@ -467,7 +478,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	output("\n\nPants gone, the goo shimmies down to the ground, planting her ass on the dusty plain and lifting her long, toned legs up, slowly pulling off her boots one by one, leaving Steph's long stockings bare to the camera. <i>\"Oooh, sexy! Maybe I'll just leave these on!\"</i> the goo giggles, rolling onto her knees and showing off her backside and legs for the camera.");
 	output("\n\nThe goo's absolutely putting on a show of her own, now, crawling toward the camera on all fours, slowly letting her machines tear apart Steph's shirt to reveal her impressive bust, barely held back by a tight black bra. She exaggerates her movements, making sure her heavy chest is nice and bouncy for the camera as she approaches.");
 	output("\n\n<i>\"Do you like my tits, galaxy?\"</i> the googirl grins, groping her Steph-shaped bosom. <i>\"Maybe you want a closer look?\"</i>");
-	output("\n\nWith a saucy smile, the goo covers her lace-clad breasts with her arms, immitating a show of modesty... only for the bra covering them to tear a moment later from the sheer amount of goo straining beneath it, letting her tits bounce free. Steph's stiff, small nipples quickly draw the camera drone's auto-focus.");
+	output("\n\nWith a saucy smile, the goo covers her lace-clad breasts with her arms, imitating a show of modesty... only for the bra covering them to tear a moment later from the sheer amount of goo straining beneath it, letting her tits bounce free. Steph's stiff, small nipples quickly draw the camera drone's auto-focus.");
 	output("\n\n<i>\"Oh, no, my big, bouncy tits are exposed! The whole galaxy can see my boobs... how embarrassing...\"</i> the goo says with mock shyness, barely able to contain her laughter. <i>\"Does that mean I'm a slut now? Oh, I bet so many people are masturbating to me now...\"</i>");
 	output("\n\nShe giggles to herself, but looking around the bar, she's not wrong. Plenty of other folk in the smoky back-room tavern are sporting impressive bulges in their pants, and some are even shamelessly jerking it.");
 
@@ -528,7 +539,7 @@ public function delilahSlutTraining():void
 	author("Savin");
 	output("<i>\"Not me, no,\"</i> you say, taunting the cute trap. You curl your finger in a come-hither, drawing her out from behind the bar, and take a look at your trappy protege. She's lithe and feminine, whether by gene-mod or naturally, you don't know; either way, she's certainly more girly than man, especially in the cross between maid uniform and outright lingerie she's dressed up in, complete with thigh-high stockings and garter hidden under a sinfully short skirt that can't quite reach to her knees. The perfect combination of cute and slutty, just right for someone like the two of you.");
 	output("\n\n<i>\"Watch and learn,\"</i> you breathe into her ear, close enough that your [pc.lips] brush against her ear as you slip over to the bar, bending over it and wiggling your [pc.hips] toward the patrons of the bar. A few boys look your way as you shimmy up onto the bar, ass in the air, giving everyone who even glances your way a full-force show as you start to peel off your [pc.gear], revealing the full cheeks of your [pc.butt]. That gets their attention: a few wolf-whistles and cat-calls come your way as you let your hind end slip free, making sure to spread 'em wide as your welcoming little hole comes into view while simultaneously keeping your [pc.cock] well out of view");
-	if(pc.legCount > 1) output(", trapped between your [pc.legs]");
+	if(pc.legCount > 1) output(", trapped between your [pc.legs].");
 	else output(".");
 	output("\n\nYou cast a glance over your shoulder to your impromptu audience, gratified to see several tented trousers among the gathering of humans, ausar, and other coreward races sitting in the booths, all with a front-row seat to your show. Now for a little audience participation....");
 	output("\n\nYou reach back and give yourself a slap on the ass, drawing a sharp breath at the gratifying snap of pain, and the motion of your jiggling cheeks as they recoil from the blow. Your hand moves in, spreading your cheeks wide so everyone can get a good look at your [pc.asshole], shamelessly on display and already craving cock. You can <i>feel</i> the need in your loins and hole, hungry for the familiar taste of cock inside you, pounding you into the cold, unforgiving wood of the bar, stretching your slutty hole wide open.");
@@ -554,10 +565,12 @@ public function delilahSlutTraining():void
 	output("\n\n<i>\"Yeah, yeah,\"</i> the ausar says, already sliding his hips forwards into you. You bite your lip, stifling a groan as that hollowness in you, that need, is suddenly and wonderfully filled. Your back arches as the ausar stretches you wide on thick canid cock, thrusting deep in until you can feel the bulb of his knot against your hole. For a moment, you're afraid he'll ruin your fun; but he's a good sport and pulls right back out until there's just his tapered tip inside you.");
 	pc.buttChange(130,true,false);
 	output("\n\nYou squeeze down on the intruding member, giving the ausar a nice, tight, wet hole to thrust into - and he does so with gusto. A few slow, even strokes to start you off, and then he's pounding away at you, hammering his crotch into your ass, forcing you into the bar with every smack of flesh-on-flesh. You moan, crying out as his meaty prick stretches you wide, putting just enough pressure on that wonderful bud inside your clenching hole to make your [pc.cock] jump back to attention, bobbing as your hips are rocked by the impact of his cock slamming home.");
-	output("\n\nIt doesn't take long before the man's grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score you flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your boypussy.");
+	output("\n\nIt doesn't take long before the man's grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score you flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your");
+	if (!pc.hasVagina()) output(" boypussy.");
+	else output(" ass.");
 	output("\n\nPanting, the ausar man stumbles back, red cock slathered with his own cum as it flops out of you. You push back a little as he withdraws, and shudder as you feel a little trickle of his hot, creamy spunk drool out of your hole");
-	if(pc.legCount > 1) output("\n\n, pooling between your wide-spread [pc.legs]");
-	output("\n\n. That's how it's done! You give Del a sultry wink as the first of many men leaves you, only to be quickly replaced by a second: a human man, if the bulbous crown pressing into your now-gaping, cum-filled hole is any indication.");
+	if(pc.legCount > 1) output(", pooling between your wide-spread [pc.legs]");
+	output(". That's how it's done! You give Del a sultry wink as the first of many men leaves you, only to be quickly replaced by a second: a human man, if the bulbous crown pressing into your now-gaping, cum-filled hole is any indication.");
 	output("\n\n<i>\"Oh yeah! Fuck me!\"</i> your purr, even as his cock's halfway inside you, using the previous tenant's spunk as a thicker, longer-lasting lube to slide easily into your unopposing depths. As the man hilts himself inside you, you can't hold back a long, moaning <i>\"Ooohhh fuck.\"</i>");
 	output("\n\nYou pull yourself up onto your elbows as the man gets to ass-fucking you, tearing off what remains of your [pc.gear] to get at your [pc.chest], tweaking one of your stiff nipples to add to your pleasure. From this angle, you can see more than half the bar's on their feet, tented pants (and a few skirts, you note) on display as a bit of a line forms up behind you, everyone eager to get their turn at your [pc.asshole]. Now there's a thought you can relish for a while. Between lewd moans and husky words of encouragement to your current butt-lover, you whistle over to another man in the crowd, wiggling a finger until he's in front of you, cock flopping out of his jeans. You twist a bit to get a good angle on the juicy-looking cock on display, brushing your fingertips up the turgid length until your hand is wrapped around it, guiding it toward your mouth.");
 	output("\n\nAs your tongue lashes out toward the man's prick, your eyes roll back at the wonderful, earthy taste of cock. You feel yourself trembling as you take the dick into your mouth, wrapping your [pc.lips] around the head and tasting the salty flavor. You guide your third john in, opening wide to let him bury himself in your mouth, even as number two's pounding away at your other hole. You lose yourself into the mindless bliss of the double-team, eyes fluttering closed as you let your cock-wielding customers use your body as they like. You barely even notice this time as the man fucking your ass cums, spraying your colon with another load of seed to ease the entrance of the next.");
@@ -576,8 +589,8 @@ public function delilahSlutTraining():void
 	output("\n\nYou reach out and take Del's hand, lacing your fingers through the dusky whore's as she's filled with almost as much cock as you are. Her muscles are going crazy, chest heaving and back arching as she's fucked hard and fast, pounding her into the hardwood with you. That a girl. You turn your attention back to your own lucky customers, slipping a few fingers into the dark star of the man plunging into your open mouth, giving him a thrill and a quick cumshot that leaves your face fully plastered with spunk.");
 	output("\n\nYou lick up a few drops during your short reprieve before a large, vaguely equine woman steps up and unleashes a mammoth member in front of you: two feet of solid horsecock that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and.... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive equine member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the huge swells of her hefty breasts, which heave and strain against the sheer fabric constraining them as you suck her off.");
 	output("\n\nThe horsey babe puts a hand on your [pc.hair], cooing softly as you manhandle the majority of her mammoth member into your mouth. You reach down and cup her heavy balls, practically able to feel them churning with pent-up seed, straining against their thick sack. It takes a moment for you to realize you're trembling with excitement at the thought of her emptying those thick, meaty nads down your throat, bloating your belly with cum until you look");
-	if(!pc.hasPregnancy()) output("positively pregnant");
-	else output("even more pregnant than you are");
+	if(!pc.hasPregnancy()) output(" positively pregnant");
+	else output(" even more pregnant than you are");
 	output(". Slowly, though, it dawns on you that hogging this magnificent cock all for yourself would just be too greedy. And besides, Del needs to learn how to handle a real monster cock.");
 	output("\n\nMarshalling your willpower, you manage to pull yourself off the horse-girl's prick. She gives a low grunt, clearly displeased, until you point to your friend beside you. Just in time, too: the two of you glance over just as Del throws her head back with a whimpering cry of pleasure. Her john's hilt-deep in her hold, chest heaving as he pumps his load into her quivering hole, filling her with her first load of the day. You give the massively-endowed horsegirl a little push toward the now-vacant slut as her first cock is withdrawn from her, its owner staggering off to recover.");
 	output("\n\nYou watch with glee as the horsecock-toting hermaphrodite circles around you and the fellow currently making use of your ass, stepping up behind Del as the lithe little trap recovers from her ass-pounding. She goes wide-eyed as a two-inch thick rod of horsemeat suddenly flops onto her back, looking almost as long as her torso at this angle. You lick your lips, suddenly reminded of just how <i>hard</i> you are as you watch the horse-herm rub the flare of her prick through Del's spread crack, slathering the her crown with the runoff seed of the last john to take your trappy protege.");
@@ -606,10 +619,11 @@ public function delSlutTraining2():void
 	output("<b>Time passes...</b>");
 	output("\n\nYou lost count of how many men (and women!) have used your body. At least thirty; probably more. Someone got on their holoband and called their friends over after the line got thinned out, and pretty soon you and Del were swimming in an ocean of spooge coating yourselves and the bar. You can't feel your [pc.legOrLegs] anymore... but in a good, contented, tired-from-getting-your-brains-fucked-out sort of way. You lie with your back atop the bar");
 	if(pc.legCount > 1) output(", your [pc.legs] spread almost to your ears");
-	output(" as the last man standing finishes himself inside you. You give an approving gasp, nearly joining him - though you've already cum on yourself enough for one day, perhaps: your [pc.chest] is completely soaked, with rivulets running off your bare body to stain the hardwood below you.");
+	output(" as the last man standing finishes himself inside you. You give an approving gasp, nearly joining him - though you've already cum on yourself enough for one day, perhaps: your [pc.chest] are completely soaked, with rivulets running off your bare body to stain the hardwood below you.");
 	output("\n\nWith a grunt, the last john of the day pulls out of you, still leaking cum, and wipes himself off on your thigh. You give him a wink and blow a kiss after him before collapsing back, trying to catch your breath. Delilah's beside you still, though you're not sure if she's still conscious: that horsecock'd woman left her pretty well ruined for the moment, and only the best-endowed men have used her since. But she's certainly gotten her taste of what it REALLY means to be a cock-hungry whore. You lean over and give her a peck on the cheek before unsteadily clambering off the bar and searching for your gear. Nice and cum-soaked....");
 	processTime(15);
 	timesDelilahSexed(1);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

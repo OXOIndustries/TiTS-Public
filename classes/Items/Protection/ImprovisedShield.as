@@ -37,8 +37,6 @@
 			//Information
 			this.basePrice = 150;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.PIERCING;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 30;
@@ -46,11 +44,9 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.bonusResistances[GLOBAL.KINETIC] = .4;
-			this.bonusResistances[GLOBAL.SLASHING] = .30;
-			this.bonusResistances[GLOBAL.PIERCING] = .20;
-			this.bonusResistances[GLOBAL.ELECTRIC] = -.1;
+			
+			resistances.kinetic.resistanceValue = 35.0;
+			resistances.electric.resistanceValue = -25.0;
 			
 			this.version = _latestVersion;
 		}

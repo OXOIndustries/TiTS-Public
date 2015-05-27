@@ -37,8 +37,13 @@ package classes.Items.Guns
 			//Information
 			this.basePrice = 4280;
 			this.attack = 0;
+			/*
+			 Goovolver needs to be unwound from combat code. We can now convey lust damage as a damage type on weapons.
 			this.damage = 0;
 			this.damageType = GLOBAL.NO_TYPE;
+			*/
+			baseDamage.tease.damageValue = 15;
+			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -46,7 +51,6 @@ package classes.Items.Guns
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 			this.version = _latestVersion;
 		}

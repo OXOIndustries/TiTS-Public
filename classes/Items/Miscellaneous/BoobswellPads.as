@@ -41,8 +41,6 @@
 			//Information
 			this.basePrice = 200;
 			this.attack = 0;
-			this.damage = 0;
-			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -50,7 +48,6 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
 			this.version = _latestVersion;
 		}
@@ -70,13 +67,13 @@
 					if(target.bRows() == 1) 
 					{
 						kGAMECLASS.output("You're already wearing the pads. You'll have to remove them before you put on another set.");
-						if(!kGAMECLASS.debug) quantity++;
+						if(!kGAMECLASS.infiniteItems()) quantity++;
 						return false
 					}
 					else
 					{
 						kGAMECLASS.output("You can only wear one set of pads at a time.");
-						if(!kGAMECLASS.debug) quantity++;
+						if(!kGAMECLASS.infiniteItems()) quantity++;
 						return false
 					}
 				}

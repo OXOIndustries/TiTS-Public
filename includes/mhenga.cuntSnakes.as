@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 // Flags:
 // MET_CUNT_SNAKE                : TODO - FIXME
@@ -152,25 +154,24 @@ public function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 		if(pc.legCount == 1) output(" is");
 		else output(" are");
 		output(" swept out from beneath you and you land hard");
-		//Damage bonuses:
-		var damage:int = 5;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,GLOBAL.KINETIC);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(target.shieldsRaw > 0) output(", shield cushioning your impact. (<b>" + sDamage[0] + "</b>)");
-			else output(", shattering your energy shield. (<b>" + sDamage[0] + "</b>)");
+		
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+		
+		if (damageResult.shieldDamage > 0)
+		{
+			if (pc.shieldsRaw > 0) output(", shield cushioning your impact.");
+			else output(", shattering your energy shield.");
 		}
-		if(damage >= 1) {
-			damage = HPDamage(target,damage,GLOBAL.KINETIC);
-			if(sDamage[0] > 0) output(" Your backside fares little better. (<b>" + damage + "</b>)");
-			else output(". (<b>" + damage + "</b>)");	
+		
+		if (damageResult.hpDamage > 0)
+		{
+			output(" Your backside fares little better.");
 		}
+		
+		outputDamage(damageResult);
+
 		//If cock!
 		if(pc.hasCock()) {
 			output("\n\nThe end of the snake loops around your waist and rubs against ");
@@ -204,31 +205,30 @@ public function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void 
 	else
 	{
 		output(" It twists to slap at your [pc.face]");
-		//Damage bonuses:
-		var damage:int = 5;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,GLOBAL.KINETIC);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(target.shieldsRaw > 0) output(", bouncing off your shield with loud 'snap'! (<b>" + sDamage[0] + "</b>)");
-			else output(", breaching your shield. (<b>" + sDamage[0] + "</b>)");
-			
+		
+		var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, attacker, target);
+		
+		if (damageResult.shieldDamage > 0)
+		{
+			if (target.shieldsRaw > 0) output(", bouncing off your shield with loud 'snap'!");
+			else output(", breaching your shield.");
 		}
-		if(damage >= 1 ) {
-			damage = HPDamage(target,damage,GLOBAL.KINETIC);
-			if(sDamage[0] > 0) output(" You're sent reeling from the impact while it flops onto the ground. (<b>" + damage + "</b>)");
-			else output(", sending you reeling from the impact while it flaps onto the ground. (<b>" + damage + "</b>)");	
+		
+		if (damageResult.hpDamage > 0)
+		{
+			if (damageResult.shieldDamage > 0) output(" You're sent reeling from the impact while it flops onto the ground.");
+			else output(", sending you reeling from the impact while it flaps onto the ground.");
+			
 			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
 			{
 				output("<b> The hit was hard enough to stun you!</b>");
 				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
 		}
+		
+		outputDamage(damageResult);
 	}
 	processCombat();
 }

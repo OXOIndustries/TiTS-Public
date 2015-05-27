@@ -1110,6 +1110,27 @@ package classes.UIComponents
 					marginRight: 5
 				};
 				
+				var shieldDamage:Object = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00CCFF",
+					marginRight: 5
+				}
+				
+				var hpDamage:Object = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00CC2F",
+					marginRight: 5
+				}
+				
+				var lustDamage:Object = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#DD597E",
+					marginRight: 5
+				}
+				
 				var good:Object = { 
 					fontFamily: "Lato", 
 					fontSize: 18, 
@@ -1184,6 +1205,9 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".new", newCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".viewed", viewedCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".active", activeCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".shield", shieldDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".hp", hpDamage);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".lust", lustDamage);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}

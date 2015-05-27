@@ -13,8 +13,8 @@
 	 * @author Gedan
 	 */
 	public class PregnancyManager 
-	{
-		{
+	{		
+		{			
 			_pregHandlers = new Array();
 			
 			PregnancyManager.insertNewHandler(new VenusPitcherFertilizedSeedCarrierHandler());
@@ -108,6 +108,21 @@
 			}
 			
 			return "ERROR: No handler found for the pregnancy. Some shit is fucked yo.";
+		}
+		
+		public static function hasPregnancyOfChildType(tarCreature:Creature, childType:uint):Boolean
+		{
+			if (!tarCreature.isPregnant()) return false;
+			
+			for (var i:uint = 0; i < tarCreature.pregnancyData.length; i++)
+			{
+				if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
+				{
+					if ((_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] as BasePregnancyHandler).pregnancyChildType == childType) return true;
+				}
+			}
+			
+			return false;
 		}
 	}
 

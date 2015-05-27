@@ -51,7 +51,7 @@ public function startCharacterCreation(e:Event = null):void
 	this.addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
 	this.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
 	this.addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-
+	this.addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 }
 
@@ -70,6 +70,9 @@ public function confirmRaceChoice(race:String = "human"):void {
 	{
 		output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
 	}
+	else if(race == "kui-tan") {
+		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and a balls that engorge with seed the longer they go without release.");
+	}
 	output("\n\nIs this the race Victor chooses?")
 	this.clearMenu();
 	this.addButton(0,"Yes",chooseStartingRace,race);
@@ -86,6 +89,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	output("\n\nVictor’s doctor sits him down while his chosen wife is taken to the medbay, and he tucks his holo-glasses into his coat pocket as he starts to grill Victor on the attributes he’d like the embryo to have, beginning with the sex. Should his heir be ");
 	//Set da race!
 	if(race == "human") pc.originalRace = race;
+	else if(race == "kui-tan") pc.originalRace = "half " + race;
 	else pc.originalRace = "half-" + race;
 	//Menus vary based on race.
 	this.clearMenu();
@@ -144,18 +148,20 @@ public function chooseStartingRace(race:String = "human"):void {
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
-	else if(pc.originalRace == "half-multicock") {
-		pc.earType = GLOBAL.TYPE_FELINE;
-		pc.tailType = GLOBAL.TYPE_FELINE;
-		pc.tailCount = 2;
+	else if(pc.originalRace == "half kui-tan")
+	{
+		pc.earType = GLOBAL.TYPE_KUITAN;
+		pc.tailCount = 1;
+		pc.tailType = GLOBAL.TYPE_KUITAN;
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
-		output("male or female");
+		pc.faceType = GLOBAL.TYPE_HUMANMASKED;
+		pc.armType = GLOBAL.TYPE_KUITAN;
+		output("male or hermaphroditic");
 		this.addButton(0,"Male",setStartingSex,1);
-		this.addButton(1,"Female",setStartingSex,3);
-		pc.createCock();
-		pc.createCock();
-		//addButton(2,"Herm.",setStartingSex,2);
+		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
+		this.addButton(2,"Herm",setStartingSex,2);
 	}
 	output(", and what should the unborn child be named?");
 	this.displayInput();
@@ -176,6 +182,7 @@ public function setStartingSex(sex:int = 1):void {
 		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
 		return;
 	}
+	//Male or herm? Dick stuff.
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
 		pc.balls = 2;
@@ -191,6 +198,13 @@ public function setStartingSex(sex:int = 1):void {
 		}
 		if (pc.originalRace ==  "half-kaithrit") {
 			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
+		}
+		if (pc.originalRace == "half kui-tan")
+		{
+			pc.shiftCock(0,GLOBAL.TYPE_KUITAN);
+			pc.ballSizeRaw = 5;
+			pc.createPerk("'Nuki Drunk",0,0,0,0,"Get drunk twice as slow and sober up four times slower.");
+			pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
 		}
 		//MALE!
 		if(sex == 1) {
@@ -218,7 +232,9 @@ public function setStartingSex(sex:int = 1):void {
 				pc.buttRatingRaw = 5;
 			}
 		}
+
 	}
+	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
 		pc.createVagina();
 		if(pc.originalRace == "half-leithan")
@@ -229,8 +245,13 @@ public function setStartingSex(sex:int = 1):void {
 		}
 		if(pc.originalRace == "half-ausar") {
 			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity = 10;
+			pc.vaginas[0].bonusCapacity = 20;
 			pc.elasticity = 1.25;
+		}
+		if(pc.originalRace == "half kui-tan")
+		{
+			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
+			//pc.vaginas[0].wetnessRaw = 1;
 		}
 		if(sex == 3) {
 			pc.femininity = 75;
@@ -345,6 +366,13 @@ public function chooseHairColor():void {
 		this.addButton(2,"Silver",applyHairColor,"silver");
 		this.addButton(3,"Dark Gold",applyHairColor,"dark gold");
 	}
+	else if(pc.originalRace == "half kui-tan")
+	{
+		this.addButton(0,"Brown",applyHairColor,"brown");
+		this.addButton(1,"Chocolate",applyHairColor,"chocolate");
+		this.addButton(2,"D.Brown",applyHairColor,"dark brown","Dark Brown","Dark brown hair. Pardon the abbreviation.");
+		this.addButton(3,"Black",applyHairColor,"black");
+	}
 	else
 	{
 		this.addButton(0,"Black",applyHairColor,"black");
@@ -379,19 +407,31 @@ public function chooseEyeColor():void {
 	output("<i>“I thought you’d choose " + pc.hairColor + ", boss. How about eye color? Got anything in mind?”</i> The doctor glances up from his tablet and awaits Victor’s response.");
 	//[Normal Eye colors + bonus half race ones]
 	this.clearMenu();
-	this.addButton(0,"Blue",applyeEyeColor,"blue");
-	this.addButton(1,"Green",applyeEyeColor,"green");
-	this.addButton(2,"Hazel",applyeEyeColor,"hazel");
-	this.addButton(3,"Brown",applyeEyeColor,"brown");
-	if (pc.originalRace ==  "half-kaithrit") {
-		this.addButton(4,"Amber",applyeEyeColor,"amber");
-		this.addButton(5,"Yellow",applyeEyeColor,"yellow");
-		this.addButton(6,"Orange",applyeEyeColor,"orange");
-		this.addButton(7,"Violet",applyeEyeColor,"violet");
-		this.addButton(8,"Copper",applyeEyeColor,"copper");
+	if(pc.originalRace == "half kui-tan")
+	{
+		addButton(0,"Brown",applyeEyeColor,"brown");
+		addButton(1,"Green",applyeEyeColor,"green");
+		addButton(2,"Hazel",applyeEyeColor,"hazel");
+		addButton(3,"Amber",applyeEyeColor,"amber");
+		addButton(4,"Gold",applyeEyeColor,"gold");
+		addButton(5,"Copper",applyeEyeColor,"copper");
 	}
-	if(pc.originalRace == "half-ausar") {
-		this.addButton(4,"Gold",applyeEyeColor,"gold");
+	else
+	{
+		this.addButton(0,"Blue",applyeEyeColor,"blue");
+		this.addButton(1,"Green",applyeEyeColor,"green");
+		this.addButton(2,"Hazel",applyeEyeColor,"hazel");
+		this.addButton(3,"Brown",applyeEyeColor,"brown");
+		if (pc.originalRace ==  "half-kaithrit") {
+			this.addButton(4,"Amber",applyeEyeColor,"amber");
+			this.addButton(5,"Yellow",applyeEyeColor,"yellow");
+			this.addButton(6,"Orange",applyeEyeColor,"orange");
+			this.addButton(7,"Violet",applyeEyeColor,"violet");
+			this.addButton(8,"Copper",applyeEyeColor,"copper");
+		}
+		if(pc.originalRace == "half-ausar") {
+			this.addButton(4,"Gold",applyeEyeColor,"gold");
+		}
 	}
 	this.addButton(14,"Back",chooseHairColor);
 }
@@ -459,7 +499,7 @@ public function chooseBreastSize():void {
 	this.addButton(3,"C",applyBreastSize,3);
 	if(pc.hasVagina()) {
 		this.addButton(4,"D",applyBreastSize,4);
-		this.addButton(5,"DD",applyBreastSize,5);
+		if(pc.originalRace != "half kui-tan") this.addButton(5,"DD",applyBreastSize,5);
 		if(pc.originalRace == "half-leithan")
 		{
 			this.addButton(6,"Big DD",applyBreastSize,6);
@@ -490,39 +530,55 @@ public function chooseYourJunkSize():void {
 	clearOutput();
 	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
 	output("The doctor smiles knowingly and moves on, <i>“All right, now what about the penis? It looks like we could pretty easily have it be anywhere from ");
-	if(pc.originalRace != "half-leithan")
+	
+	clearMenu();
+	
+	switch (pc.originalRace)
 	{
-		output("four to ");
-		if(pc.originalRace != "half-kaithrit") output("eight ");
-		else output("six ");
+		case "half-leithan":
+			output("thirteen to twenty ");
+			
+			for (var i:uint = 0; i <= 7; i++)
+			{
+				addButton(i, String(13 + i) + "”", applyJunkSize, 13 + i);
+			}
+			
+			break;
+			
+		case "half kui-tan":
+			output("five to ten ");
+			
+			for (i = 0; i <= 5; i++)
+			{
+				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
+			}
+			
+			break;
+		
+		case "half-kaithrit":
+			output("four to six ");
+			
+			for (i = 0; i <= 2; i++)
+			{
+				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
+			}
+			
+			break;
+			
+		default:
+			output("four to eight ");
+			
+			for (i = 0; i <= 4; i++)
+			{
+				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
+			}
+			
+			break;
+			
 	}
-	else
-	{
-		output("thirteen to twenty ");
-	}
+
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
-	this.clearMenu();
-	if(pc.originalRace == "half-leithan")
-	{
-		this.addButton(0,"13\"",applyJunkSize,13);
-		this.addButton(1,"14\"",applyJunkSize,14);
-		this.addButton(2,"15\"",applyJunkSize,15);
-		this.addButton(3,"16\"",applyJunkSize,16);
-		this.addButton(4,"17\"",applyJunkSize,17);
-		this.addButton(5,"18\"",applyJunkSize,18);
-		this.addButton(6,"19\"",applyJunkSize,19);
-		this.addButton(7,"20\"",applyJunkSize,20);
-	}
-	else
-	{
-		this.addButton(0,"4\"",applyJunkSize,4);
-		this.addButton(1,"5\"",applyJunkSize,5);
-		this.addButton(2,"6\"",applyJunkSize,6);
-		if (pc.originalRace !=  "half-kaithrit") {
-			this.addButton(3,"7\"",applyJunkSize,7);
-			this.addButton(4,"8\"",applyJunkSize,8);
-		}
-	}
+	
 	this.addButton(14,"Back",chooseBreastSize);
 }
 
@@ -613,7 +669,7 @@ public function chooseSexualGift():void {
 	if(pc.hasPerk("Hung"))
 	{
 		if(pc.hasCock()) {
-			pc.cocks[0].cLengthRaw -= 1+rand(3);
+			pc.cocks[0].cLengthRaw -= 2;
 			pc.cocks[0].cThicknessRatioRaw = 1.0;
 		}
 		pc.removePerk("Hung");
@@ -628,6 +684,7 @@ public function chooseSexualGift():void {
 	if(pc.hasPerk("Bulgy"))
 	{
 		pc.ballSizeRaw -= 4;
+		if(pc.originalRace == "half kui-tan") pc.ballSizeRaw -= 5;
 		pc.ballEfficiency -= 1;
 		pc.removePerk("Bulgy");
 	}
@@ -687,7 +744,7 @@ public function applySexualGift(arg:String = "none"):void {
 	else if(arg == "hung") {
 		pc.createPerk("Hung",0,0,0,0,"Increases the size of your penis and how fast it grows.");
 		if(pc.hasCock()) {
-			pc.cocks[0].cLengthRaw += 1+rand(3);
+			pc.cocks[0].cLengthRaw += 2;
 			if(pc.cocks[0].cThicknessRatioRaw < 1.1) pc.cocks[0].cThicknessRatioRaw = 1.1;
 		}
 	}
@@ -700,6 +757,8 @@ public function applySexualGift(arg:String = "none"):void {
 	else if(arg == "bulgy") {
 		pc.createPerk("Bulgy",0,0,0,0,"Increase the size of any gonads and the speed at which they are enhanced.");
 		pc.ballSizeRaw += 4;
+		//HUEG BALLZ
+		if(pc.originalRace == "half kui-tan") pc.ballSizeRaw += 5;
 		pc.ballEfficiency += 1;
 	}
 	else if(arg == "extra ardor") {

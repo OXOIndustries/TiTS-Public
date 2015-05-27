@@ -5,6 +5,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
 	import classes.GameData.StatTracking;
+	import classes.GLOBAL;
 	
 	/**
 	 * This is effectively very similar to the Renvra pregnancy implementation, so I'm copypasting it over
@@ -30,6 +31,7 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMinimum = 6;
 			_pregnancyQuantityMaximum = 10;
 			_definedAverageLoadSize = 720;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
 			this.addStageProgression(8000, function(pregSlot:int):void {
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);

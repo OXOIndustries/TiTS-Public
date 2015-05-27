@@ -1,7 +1,8 @@
-package classes.Characters 
+﻿package classes.Characters 
 {
 	import classes.CockClass;
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.NyreanSpear;
 	import classes.Items.Protection.DecentShield;
 	import classes.ItemSlotClass;
@@ -38,7 +39,6 @@ package classes.Characters
 			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, and weakness, and she'll be on you!";
 			
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.shield = new DecentShield();
 			this.meleeWeapon = new NyreanSpear();
@@ -52,7 +52,13 @@ package classes.Characters
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
-			this.resistances = new Array(0.75, 0.75, 0.75, 0.75, 0.75, 1, 0.75, 0.75);
+			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.burning.damageValue = 25.0;
+			
+			
 			this.XPRaw = 300;
 			this.level = 7;
 			this.credits = 0;
@@ -199,7 +205,7 @@ package classes.Characters
 			{
 				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			}
-			
+			kGAMECLASS.nyreaHeader(1,"FIGHT:");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

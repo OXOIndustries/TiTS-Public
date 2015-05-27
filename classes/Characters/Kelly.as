@@ -21,7 +21,7 @@
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .4;
 
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -33,7 +33,6 @@
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
@@ -51,7 +50,7 @@
 			this.libidoRaw = 75;
 			this.energyRaw = 100;
 			this.lustRaw = 85;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 3;
 			this.credits = 0;
@@ -182,6 +181,17 @@
 			this.ass.bonusCapacity = 120;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 	}
 

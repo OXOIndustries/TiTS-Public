@@ -24,15 +24,17 @@
 			this.customDodge = "Dane casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new ShockBlade();
 			this.meleeWeapon.hasRandomProperties = true;
-			this.meleeWeapon.damage = 3;
+			
+			meleeWeapon.baseDamage.electric.damageValue = 3;
+			
 			this.rangedWeapon = new HammerPistol();
 			this.rangedWeapon.hasRandomProperties = true;
 			this.rangedWeapon.attackVerb = "shot";
-			this.rangedWeapon.damage = 3;
+			
+			rangedWeapon.baseDamage.kinetic.damageValue = 3;
 			
 			this.armor.longName = "armor";
 			this.armor.defense = 3;
@@ -51,7 +53,6 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 500;
 			
 			this.credits = 1200;

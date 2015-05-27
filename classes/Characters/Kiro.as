@@ -20,7 +20,7 @@ package classes.Characters
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -32,16 +32,15 @@ package classes.Characters
 			this.customDodge = "Kiro casually sidesteps out of the way";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new ShockBlade();
 			this.meleeWeapon.hasRandomProperties = true;
-			this.meleeWeapon.damage = 3;
+			meleeWeapon.baseDamage.electric.damageValue = 3;
 			
 			this.rangedWeapon = new HammerCarbine();
 			this.rangedWeapon.hasRandomProperties = true;
 			this.rangedWeapon.attackVerb = "shot";
-			this.rangedWeapon.damage = 3;
+			rangedWeapon.baseDamage.kinetic.damageValue = 3;
 			
 			this.armor.longName = "armor";
 			this.armor.defense = 3;
@@ -60,7 +59,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 500;
 			
 			this.credits = 1200;
@@ -140,7 +139,7 @@ package classes.Characters
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cThicknessRatioRaw = 3.5;
+			this.cocks[0].cThicknessRatioRaw = 1;
 			this.cocks[0].cLengthRaw = 21;
 			this.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 			this.cocks[0].cockFlags = [GLOBAL.FLAG_FLARED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_BLUNT]
@@ -188,6 +187,17 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.armor;
+			delete d.meleeWeapon;
+			delete d.rangedWeapon;
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
 		}
 		
 	}

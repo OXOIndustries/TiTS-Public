@@ -15,7 +15,7 @@
 		//constructor
 		public function Geoff()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -27,7 +27,6 @@
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
-			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Fists();
 			this.armor = new ComfortableClothes();
@@ -44,7 +43,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 25;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
+			
 			this.XPRaw = 50;
 			this.level = 1;
 			this.credits = 1000;
@@ -195,6 +194,16 @@
 		public function UpgradeVersion3(dataObject:Object):void
 		{
 
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			// Clear out this shit and let the default constructor handle it.
+			delete dataObject.meleeWeapon;
+			delete dataObject.rangedWeapon;
+			delete dataObject.lustVuln;
+			delete dataObject.resistances;
+			delete dataObject.bonusResistances;
+			delete dataObject.bonusLustVuln;
 		}
 	}
 }

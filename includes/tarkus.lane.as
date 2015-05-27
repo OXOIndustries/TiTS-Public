@@ -909,7 +909,7 @@ public function lanesShopFullyUnder():void
 	output("You approach Lane’s Plane, eager for another dose of your "+ lane.mf("master", "mistress") +"’s medicine. [lane.HisHer] hut has been taking on a rather extravagant turn lately, with all that extra money [lane.heShe]’s been siphoning from you. When you enter, you see [lane.himHer] lounging languidly, [lane.hisHer] legs spread and [lane.hisHer] chair leaned back, waiting for some other unlucky- or lucky, from your twisted, controlled perspective- customer to walk into [lane.hisHer] trap.");
 
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops [lane.hisHer] feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
-	output(" [lane.heShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
+	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
 	if (pc.hasCock() && !pc.hasVagina()) output(" your [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
 	else if (pc.hasVagina() && !pc.hasCock()) output(" your [pc.vagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over to you give you another life-altering orgasm.");
 	else if (pc.hasVagina() && pc.hasCock()) output(" each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
@@ -926,7 +926,7 @@ public function laneShowMenu():void
 	clearMenu();
 	addButton(0, "Talk", talkToLane);
 	addButton(1, "Services", laneServices);
-	if (hasMaxedLaneHypnosis()) addButton(2, "Taxes", payTheLaneTax); // TODO: Confirm this is the proper check.
+	if (hasMaxedLaneHypnosis() && flags["LANE_FULLY_HYPNOTISED"] == 1) addButton(2, "Taxes", payTheLaneTax);
 	else addDisabledButton(2, "Taxes");
 	addButton(5, "Appearance", lanesAppearance);
 	addButton(14, "Leave", leaveLanes);
@@ -986,7 +986,7 @@ public function laneTalkOccupation():void
 	flags["LANE_OCCUPATION_TALK"] = 1;
 	clearOutput();
 	laneHeader();
-	output("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the Venar desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
+	output("You ask Lane what [lane.hisHer] occupation is, out here in the middle of the desert, setting up shop in some little mud hut. Beyond the codex lying atop [lane.hisHer] desk, [lane.hisHer] business seems very... rustic. There’s very little in the way of modernization here.");
 
 	output("\n\n<i>“Yeah, you’re right,”</i> [lane.heShe] says proudly. <i>“I know my way around the modern world about as well as anyone else, but I try to keep my house, and my business, as down-to-earth as possible. I specialize in....”</i> [lane.HeShe] pauses, tapping a claw against [lane.hisHer] chin. <i>“</i>Spiritualistic medicine<i> is one way of putting it.”</i> You ask [lane.himHer] to elaborate.");
 
@@ -1032,8 +1032,7 @@ public function laneTalkDaynar():void
 	output("\n\nYou ask Lane about the weird membranes connecting [lane.hisHer] jaw to [lane.hisHer] shoulders. <i>“Oh, these,”</i> [lane.heShe] says, flapping them open. Your eyes are caught on them, watching how [lane.hisHer] blood glows brightest through them, and how the veins in [lane.hisHer] skin work with the tattoos on - [lane.heShe] closes them before you get a little <i>too</i> distracted. <i>“We Daynar call them ‘tassels’. They’re used to regulate our body temperature, and, if we’re in the middle of a fight, we can open them in a flash to scare our opponent. In today’s modern world, though, with air-conditioning, climate control, and not much in the way of natural predators, they don’t see much use anymore.”</i>");
 
 	output("\n\n[lane.HeShe] opens [lane.hisHer] eyes wide – unusually wide, making you fidget in your seat – and, just like that, the colour of Lane’s irises begin to change, into every colour you can imagine. <i>“Daynar don’t have the best night vision, so we can open our eyes really wide to draw in more light to compensate. As for the irises... nobody is really sure why we can do that. Our best guess is to unnerve predators: to make us look sickly and unappetizing. Whatever the purpose, they sure make my job easier.”</i> [lane.HeShe] points to the sides of [lane.hisHer] head. <i>“Our ears are pretty plain,”</i> [lane.heShe] begins. You have to lean forward to see where [lane.hisHer] ears even are: they’re just a pair of holes in [lane.hisHer] head, nothing more. <i>“But we have</i> great <i>hearing. Some Daynar pick up jobs as interpreters because we have an easier time picking up different languages than most.”</i>");
-
-	// TODO: Tweak this.
+	
 	output("\n\n[lane.HeShe] leans forward in [lane.hisHer] seat. <i>“There’s just one more thing I want to mention. It’s about Steele Tech.”</i> You match [lane.hisHer] posture, interested. <i>“I don’t know if you knew this, but most Daynar on the planet are employed by Steele Tech. Venar, it turns out, has a lot of minerals and ores that the rest of the universe is interested in, but no other race can withstand the harsh climate of the hot desert or the planet core like a Daynar can. Which makes us</i> highly <i>desirable for a mining company. Your dad paid us pretty well, and his stickler for safety carried over to Venar; there isn’t a Daynar here that wouldn’t mind calling you ‘boss’ if you kept up his legacy, [pc.name].”</i>");
 
 	output("\n\nYou shift in your seat, uncomfortable with the sudden pressure, but you assure [lane.himHer] that you’ll do what you can. Lane leans back, relaxing. <i>“That about covers it, I think. Is there anything else I can help you with?”</i>");
@@ -1170,7 +1169,6 @@ public function laneServicesMenu():void
 {
 	clearMenu();
 
-	// TODO: ensure this works with the hypno/non-hypno split etc
 	if (pc.credits >= 100)
 	{
 		addButton(0, "Physique", laneServicePhysique);
@@ -1505,7 +1503,7 @@ public function lanePostApplyEffect(selectedService:String):void
 			break;
 	}
 
-	if (!hasMaxedLaneHypnosis() && flags["DELAY_TAXES_ADDITION"] == undefined)
+	if (!hasMaxedLaneHypnosis() || flags["DELAY_TAXES_ADDITION"] == undefined)
 	{
 		if (hasMaxedLaneHypnosis()) flags["DELAY_TAXES_ADDITION"] = 1;
 		
@@ -1523,7 +1521,6 @@ public function lanePostApplyEffect(selectedService:String):void
 		}
 		
 		// Place PC one square outside of Lane’s Plane
-		// TODO: figure out where PC is gonna go.
 		clearMenu();
 		addButton(0, "Next", move, "287");
 	}
@@ -1793,7 +1790,7 @@ public function fuckedByMaleLane():void
 
 	output("\n\nYou obligingly keep up your pace, slathering his penis with your saliva. You can taste the occasional bead of precum from the his tip whet your gullet and then wash down your throat. By the time Lane’s had enough and pulls away, his cock is considerably thicker: it’s easily twelve centimeters thick when it leaves your lips again, a far cry from the spindly thing it was when it went in. You almost feel proud.");
 
-	output("\n\n<i>“There you go,”</i> he praises warmly, <i>“you’ve done well. You’re an excellent cock fluffer.”</i> You’re a little confused as to what he wants, but it gets clearer when he lifts you by your armpits and then throws you onto the bed, face down and bent at the waist, your [pc.vagorass] exposed and winking vulnerably to him.");
+	output("\n\n<i>“There you go,”</i> he praises warmly, <i>“you’ve done well. You’re an excellent cock fluffer.”</i> You’re a little confused as to what he wants, but it gets clearer when he lifts you by your armpits and then throws you onto the bed, face down and bent at the waist, your [pc.vagOrAss] exposed and winking vulnerably to him.");
 
 	output("\n\nHe claps his hands down on your [pc.ass] painfully. The sound of his hands slapping you echo off the wall, followed by your pained yell. He thrusts his hips forward, his cock jamming between your thighs;");
 	if (pc.hasVagina()) 
@@ -1826,7 +1823,7 @@ public function fuckedByMaleLane():void
 	if (pc.hasFuckableNipples()) output(" His claws sink into your sensitive [pc.nipples] as he fondles them, eliciting a familiar groan from you. <i>“I don’t think having an extra pair of cunts is normal, either, but who am I to say in this universe of ours?”</i>");
 	else if (pc.hasNippleCocks()) output(" His claws scratch and grip along your [pc.nipples] as he fondles them, eliciting a familiar moan from you. <i>“Is having a pair of extra dicks a ‘thing’ with your species? Should I be jealous? Was I born the wrong species?”</i>");
 
-	output("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagOrAss], you whimper in need. <i>“You sound... needy.</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
+	output("\n\nHe rocks himself against you some more. His dick is hot and, you guess, about as hard and thick as it’s going to get. Every time you feel it spear between your legs, and not into your [pc.vagOrAss], you whimper in need. <i>“You sound... needy.”</i> Lane, already leaning almost totally over you, lowers his body and presses you into the bed below you. You’re pinned motionless, but Lane keeps teasing you by rubbing his entire body against yours. <i>“What do you need, [pc.name]? Tell your master. I’m in a generous mood.”</i>");
 
 	output("\n\n<i>“You!”</i> you should through clenched teeth and pressed lungs. <i>“I need you, master Lane! Please, I need you inside me!”</i>");
 
@@ -1835,8 +1832,16 @@ public function fuckedByMaleLane():void
 	output("\n\nHaving him inside you again is the most wonderful, pleasurable feeling you can imagine, but it doesn’t make you want it any less. He teases you by going slowly; you take action and thrust back, shoving more of his now gorgeously thick dick into your waiting hole. He gasps out in surprise and clicks his tongue playfully. <i>“You’re so eager! I hope you’re not thinking of taking advantage of your master’s hospitality.”</i> His voice is low and he’s trying to sound serious, but his tone is light-hearted, and he doesn’t squeeze or press you any harder. <i>“You know what they say about rabbits and turtles, or whatever.”</i>");
 
 	output("\n\n<i>“Speaking of rabbits, let’s fuck like a pair,”</i> you say huskily, and back your ass up some more, squeezing some more of him into you. He only laughs and begins his own thrusting, cramming his dick into your [pc.vagOrAss], filling the room with the sound of his thick shaft plowing past your");
-	if (pc.hasVagina()) output(" vulva and into your wet, waiting depths");
-	else output(" [pc.asshole] and hinting at poking into your stomach.");
+	if (pc.hasVagina())
+	{
+		output(" vulva and into your wet, waiting depths.");
+		pc.cuntChange(0, lane.biggestCockVolume(), true, true, false);
+	}
+	else
+	{
+		output(" [pc.asshole] and hinting at poking into your stomach.");
+		pc.buttChange(lane.biggestCockVolume(), true, true, false);
+	}
 
 	output("\n\nYour head lowers and you relax. Your master is back inside you again – Lane wanted to fuck you, so you wanted to be fucked, and you’re getting what you wanted. You nearly don’t notice when his hands let go of your body and roughly grip onto the sheets on either side of your face. He pulls away, withdrawing from you, making you whimper at the sudden chill around your junk, and then he roughly thrusts back in.");
 
@@ -1874,7 +1879,7 @@ public function fuckedByMaleLane():void
 	}
 	if (!pc.hasVagina() && !pc.hasCock()) output(" You clench your ass with his every inward thrust, trying to make the sensation last as long as you can, but it’s all a vain effort. Without genitals to release with, you can’t help but feel your release build and build and build, and have nowhere to go at the end of it. It’s torturous and maddening, and you love every second of it. Only Lane can make you feel so wonderfully contradictory!");
 
-	output("\n\nHis grip gets tighter, and he drags his claws over your [pc.skinfurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagOrAss]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.");
+	output("\n\nHis grip gets tighter, and he drags his claws over your [pc.skinFurScales] painfully as a consequence. You wince a bit, but the sound of his breath coming out faster and faster distracts you. He’s nearly at his peak! You’re eager for his seed and you back against him every time he thrusts, wanting him to shoot his load as deep as he can into your [pc.vagOrAss]. At the same time, you lament that he’s nearly done fucking you – if only you could be like this with your master at all hours of the day! You try to cherish the time you have remaining and the coming climax to it all.");
 
 	output("\n\nHe bucks thrice more, then he grunts, and then you feel a magnificent warmth spread inside you, shooting");
 	if (pc.hasVagina()) output(" deep into your waiting cunny and towards your patient womb");

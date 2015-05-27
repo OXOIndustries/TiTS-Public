@@ -14,7 +14,7 @@ package classes.Characters
 		//constructor
 		public function Amma()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -26,7 +26,7 @@ package classes.Characters
 			this.customDodge = "Anno Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.plural = false;
-			this.lustVuln = 1;
+			
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
@@ -47,7 +47,6 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 350;
 			this.level = 4;
 			this.credits = 0;
@@ -163,6 +162,17 @@ package classes.Characters
 			this.vaginas[0].bonusCapacity = 40;
 			
 			this._isLoading = false;
-		}		
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			delete d.meleeWeapon;
+			delete d.armor;
+			
+			delete d.lustVuln;
+			delete d.resistances;
+			delete d.bonusResistances;
+			delete d.bonusLustVuln;
+		}
 	}
 }

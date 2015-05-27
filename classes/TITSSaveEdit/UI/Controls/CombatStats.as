@@ -22,8 +22,6 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		private var _lust:InputLabelPair;
 		
-		private var _lustVuln:InputLabelPair;
-		
 		public function get hpMod():int { return int(_hpMod.inputValue); }
 		public function set hpMod(v:int):void { _hpMod.inputValue = String(v); }
 		
@@ -32,9 +30,6 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function get lust():int { return int(_lust.inputValue); }
 		public function set lust(v:int):void { _lust.inputValue = String(v); }
-		
-		public function get lustVuln():Number { return Number(_lustVuln.inputValue); }
-		public function set lustVuln(v:Number):void { _lustVuln.inputValue = String(v); }
 		
 		public function CombatStats() 
 		{
@@ -80,11 +75,6 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_lust)
 			_lust.labelText = "Lust";
 			_lust.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
-			
-			_lustVuln = new InputLabelPair();
-			AddControl(_lustVuln);
-			_lustVuln.labelText = "Lust Vuln.";
-			_lustVuln.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 		}
 		
 		private function AddControl(control:DisplayObject):void

@@ -4,11 +4,11 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\AirTemplateProj.swf" />
+    <movie path="bin\TITS_AIR.swf" />
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
-    <movie version="15" />
+    <movie version="13" />
     <movie minorVersion="0" />
     <movie platform="AIR Mobile" />
     <movie background="#3D5174" />
@@ -43,7 +43,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="-managers flash.fonts.AFEFontManager" />
-    <option compilerConstants="CONFIG::IMAGEPACK,false" />
+    <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::AIR,true&#xA;CONFIG::FLASH,false" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->

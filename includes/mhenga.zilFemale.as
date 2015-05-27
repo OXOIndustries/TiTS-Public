@@ -1,4 +1,6 @@
 ﻿import classes.Creature;
+import classes.Engine.Combat.DamageTypes.DamageResult;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 // Flags:
 // FOUGHT_FEMZIL_LAST_TIME  : Last time you encountered the FemZil, you fought it rather then fucked it (?)
@@ -233,33 +235,30 @@ public function zilFemaleDartThrow():void {
 		output("\nYou twist to avoid the dart!");
 	}
 	//It hits!
-	else {
-		var attacker:Creature = foes[0];
-		var target:Creature = pc;
-		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
-		//Randomize +/- 15%
-		var randomizer:Number = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		if(pc.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if (target.shieldsRaw > 0) 
-				output(" The dart spangs uselessly off your shields! (<b>" + sDamage[0] + "</b>)");
-			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-		}
-		if(damage >= 1) 
+	else 
+	{
+		var damage:TypeCollection = foes[0].damage(true);
+		damage.add(foes[0].physique() / 2);
+		damageRand(damage, 15);
+		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+		
+		if (damageResult.shieldDamage > 0)
 		{
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+			if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields!");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached."); 
+		}
+		
+		if (damageResult.hpDamage > 0)
+		{
 			output(" The dart punches right through your ");
 			if(pc.armor.shortName == "") output(pc.armor.longName);
 			else output("[pc.skinFurScales]");
-			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood! (" + damage + ") (Lust: " + 10);
+			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood!");
+			damageResult.lustDamage += 10;
 			pc.lust(10);
 		}
+		
+		outputDamage(damageResult);
 	}
 	processCombat();
 }
@@ -358,9 +357,11 @@ public function zilFemHarden():void {
 	author("Savin");
 	//Buffs kinetic defenses?
 	output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	foes[0].resistances[GLOBAL.KINETIC] *= .8;
-	foes[0].resistances[GLOBAL.SLASHING] *= .8;
-	foes[0].resistances[GLOBAL.PIERCING] *= .8;
+	
+	var newRes:Number = (100 - foes[0].baseHPResistances.kinetic.resistanceValue) / 5;
+	foes[0].baseHPResistances.kinetic.resistanceValue += newRes;
+	foes[0].createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+	
 	processCombat();
 }
 
@@ -1322,7 +1323,7 @@ public function forceFemzilToLickYourHoneypot():void {
 	if(pc.legCount > 1) output("in between your [pc.legs]");
 	else output("over to straddle your [pc.leg]");
 	output(", her large breasts swaying delightfully beneath her with every movement. You reach out to grab one, roughly pinching a dusky nipple between your fingertips. A trickle of honey emerges at your touch, and the sweet, sticky fluid coats your fingers. The zil moans huskily, her other breast leaking alongside. You release her with a smirk and press your fingers to her sable lips.");
-	output("\n\nTentatively extending her tongue, the fey creature surprises you by opening up the tip of her long muscle to expose its hollow interior, slick with alien saliva. She presses on, enveloping your paired fingers in a cocoon of spit, slipping back and forth in a way that's cruelly reminiscent of actual sex. She finishes, and her tongue retracts to leave you completely and utterly clean, if a little wet. The oral organ slips back into her mouth like a snake into a hidden burrow. Her eyes twinkle with a sultry glow as she allows the tip to squeeze back out, and she cocks her head to the side questioning, flicking her eyes meaningfully between your crotch and your face as if asking for permission.");
+	output("\n\nTentatively extending her tongue, the fey creature surprises you by opening up the tip of her long muscle to expose its hollow interior, slick with alien saliva. She presses on, enveloping your paired fingers in a cocoon of spit, slipping back and forth in a way that's cruelly reminiscent of actual sex. She finishes, and her tongue retracts to leave you completely and utterly clean, if a little wet. The oral organ slips back into her mouth like a snake into a hidden burrow. Her eyes twinkle with a sultry glow as she allows the tip to squeeze back out, and she cocks her head to the side questioningly, flicking her eyes meaningfully between your crotch and your face as if asking for permission.");
 	
 	output("\n\nYou don't let her or her tongue wander. Grabbing her by the back of her head, you firmly yet gently force her face down to your [pc.vagina " + x + "], feeling her hot, panting breath wash across your labia as she nears. ");
 	if(pc.hasCock()) 
@@ -1356,7 +1357,7 @@ public function forceFemzilToLickYourHoneypot():void {
 		output(". It closes around your tremendously sensitive organ and begins to suck, and the portion of her muscle buried inside lurches, starting to rise and fall along with the pulsing rhythm of suction she exposes your bud to. You throw your head back and moan out loud, the zil's transgressions completely forgotten under the care of her talented tongue and lips as they resume kissing.");
 	}
 	//Merge
-	output("\n\nGrabbing the wanton creature once more, you encouragingly guide the motions of her head, grinding yourself off on her sable slit-kissers. Her face is quickly getting a coat of [pc.girlCumColor]; it's most noticable on her plush lips, which appear almost swollen under their many layers of liquid pleasure. Her affections don't slow or relent either. She seems genuinely interested in giving you the most absolutely pleasurable bout of cunnilingus you've ever received. It's obviously not her first time being forced to serve in such a manner.");
+	output("\n\nGrabbing the wanton creature once more, you encouragingly guide the motions of her head, grinding yourself off on her sable slit-kissers. Her face is quickly getting a coat of [pc.girlCum]; it's most noticable on her plush lips, which appear almost swollen under their many layers of liquid pleasure. Her affections don't slow or relent either. She seems genuinely interested in giving you the most absolutely pleasurable bout of cunnilingus you've ever received. It's obviously not her first time being forced to serve in such a manner.");
 	output("\n\nNoisy slurps and smooches fill the air along with the scent of alien pheromones and musky pussy-scent as she worships your [pc.vagina " + x + "], tending to your [pc.clit] with equal desire. She already has your [pc.legOrLegs] quivering and your [pc.hips] giving little jerky twitches, making you instinctively hump against her face as she works. Your body is alight with pleasure, radiating outward from your [pc.clit] as it is fully engulfed and pumped oh-so-pleasantly.");
 	if(pc.totalClits() > 1) output(" The busy cunt-slobberer finds another pleasure-organ to touch, and when she does, you screech like a banshee, mashing your [pc.vagina " + x + "] against her hard enough to feel her nose digging into your [pc.skinFurScales].");
 	else output(" The busy cunt-slobberer kicks up the tempo, at the same time sliding her tongue almost fully off you, and then she's pumping it up and down, tongue-fucking you while you start to screech in ecstasy.");
@@ -1442,7 +1443,7 @@ public function numbPussyFuck(dick:Boolean = true):void {
 	if(x >= 0) output("[pc.cock " + x + "]");
 	else output("[pc.clit]");
 	output(" and sink it in. A flood of arousal washes through the area; your ");
-	if(x >= 0) output("dick stands on end, more proud and erect that you can remember seeing it recently");
+	if(x >= 0) output("dick stands on end, more proud and erect than you can remember seeing it recently");
 	else output("clit swells to incredible size, resembling a large ruddy-colored dildo more than any feminine button");
 	output(".");
 	
