@@ -292,17 +292,21 @@ public function barBackRoomBonus():Boolean
 }
 
 public function anonsBarAddendums():Boolean {
-	
+	//Button #7
 	if (saendraBarAddendum())
 	{
 		return true;
 	}
-	
+	//Button #0
 	anonsBarWaitressAddendum();
+	//Button #1
 	alexManHermIntro();
+	//Button #5
 	ShellyBlurb();
+	//#8
 	annoAtAnonsAddendum();
-	
+	//#6 it is!
+	roamingBarEncounter(9);
 	return false;
 }
 
