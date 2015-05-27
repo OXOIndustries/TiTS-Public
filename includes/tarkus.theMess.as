@@ -16,6 +16,7 @@ public function barBonusFunction():Boolean
 	if(flags["MET_DEL"] == undefined) addButton(0,"Bartender",approachDCLTrap,undefined,"Bartender","Approach the bartender for a drink or something.");
 	else addButton(0,"Del",approachDCLTrap,undefined,"Del","Approach Del the bartender for a drink or some other service.");
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
+	roamingBarEncounter(5);
 	return false;
 }
 //Order Food

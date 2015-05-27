@@ -44,6 +44,7 @@ public function burtsBarFunc():void {
 	}
 	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
 	else this.addButton(0,"Burt",burtapproach);
+	roamingBarEncounter(6);
 	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
 }
 
