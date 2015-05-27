@@ -1255,7 +1255,7 @@ public function maleNaleenSucksPCOff():void
 	if(pc.hasCock() || pc.hasVagina()) output(".");
 	output("\n\nBut more importantly right now, your mouth starts to water at the sight of these magnificent penises. Absentmindedly, you flick your [pc.tongue] over your [pc.lips].");
 	if(pc.isBimbo()) output("\n\nThey look so yummy. Your eyes glaze over with whorish lust as you imagine slipping one of the bulbous, reptilian pricks into your warm, wet mouth and sucking on it until it spurts a big load of creamy cum down your throat. A needy whimper escapes you just thinking about it.");
-	else output("\n\nThey look very inviting and delicious to you. You wonder what they’d taste like. Well, no time like the present to find out you guess.");
+	else output("\n\nThey look very inviting and delicious to you. You wonder what they’d taste like. Well, no time like the present to find out.");
 	output("\n\nHaving decided what you want to do with the defeated kitty-naga, you ");
 	if(!pc.isNude()) output("strip out of your [pc.gear] and ");
 	output("seductively ");
@@ -1283,7 +1283,7 @@ public function maleNaleenSucksPCOff():void
 		if(pc.isBimbo()) output("lust-fogged ");
 		output("eyes.");
 	}
-	output("\n\nThen you lean forward and press your [pc.lips] against his in an aggressive kiss.The poor kitty is surprised at first but you soon enough he kisses you back with eagerness. Your bodies press together, your [pc.skinFurScales] rubbing against his black fur sensually.");
+	output("\n\nThen you lean forward and press your [pc.lips] against his in an aggressive kiss.The poor kitty is surprised at first, but soon enough, he kisses you back with eagerness. Your bodies press together, your [pc.skinFurScales] rubbing against his black fur sensually.");
 	if(pc.biggestTitSize() >= 2) output("\n\nYour [pc.fullChest] presses into the naleen’s toned front, and you can’t help but " + pc.mf("groan","moan") + " into the kiss as your rock hard [pc.nipples] grind against your lover.");
 	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both, your own mammaries and the fur of the naga-kitty.");
 
@@ -1317,14 +1317,14 @@ public function maleNaleenSucksPCOff():void
 		output("it makes you lick your [pc.lips] in anticipation.");
 	}
 
-	output("\n\nLetting your [pc.tongue] flop out of your mouth, you slowly run it over your lover’s lower shaft, tasting the reptilian cock for the first time. It tastes a little bit salty and slightly alien but not in a bad way. Eagerly, you start to lick the entire length of the reptilian prick, slathering it with you salvia. At the same time you keep jerking the second dick with your hand. The feline naga-man is putty in your capable hands by now and unable to vocalize anything but needy groans. Your tongue moves up to the head of his shaft, where you teasingly lap at his cumslit. Immediately, you are rewarded by a spurt of delicious pre.");
+	output("\n\nLetting your [pc.tongue] flop out of your mouth, you slowly run it over your lover’s lower shaft, tasting the reptilian cock for the first time. It tastes a little bit salty and slightly alien but not in a bad way. Eagerly, you start to lick the entire length of the reptilian prick, slathering it with your saliva. At the same time you keep jerking the second dick with your hand. The feline naga-man is putty in your capable hands by now and unable to vocalize anything but needy groans. Your tongue moves up to the head of his shaft, where you teasingly lap at his cumslit. Immediately, you are rewarded by a spurt of delicious pre.");
 	if(pc.isBimbo()) output("\n\nMmmh. You love the taste of cum. You are almost drooling at this point and the salty taste leaves you craving for more. There is nothing better than sucking on big fat cock until it fills your mouth with a big, nice load of delicious cream. Well except for getting fucked maybe. You unashamedly moan and finally wrap your [pc.lips] around the naleen’s cockhead and start to suckle on his crown.");
 	else output("\n\nThe salty taste is delicious and it leaves pleasant tingles on your tongue. Finally you wrap your [pc.lips] around the naleen’s cockhead and start to suckle on his crown.");
 	output(" His erection throbs in your mouth, and more precum leaks into your eager maw. Shivering with need you " + pc.mf("let out a needy groan around the cock in your mouth.","moan around the cock in your mouth like a bitch in heat."));
 
 	if(pc.lipRating() >= 6) output("\n\nYour whorish, cocksucker lips seal around the penis tightly, and their smooth, soft  flesh makes the naleen shiver under your ministrations. You decide to really get going and descend on his shaft. Your [pc.lips] slide down the reptilian prick with ease and massage the senitive dickfesh almost as well as a terran pussy. Your sensitive, pornstar-level dickpillows tingle with pleasure as you wrap them around the naleen’s length.");
 	else output("\n\nGently you circle the penis with your tongue, before you descend on his shaft. You stretch your jaw wide and slide your [pc.lips] down on the reptilian prick.");
-	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes in your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skinFurScales] is flushed with arousal and you can barely think straight.");
+	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes into your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skinFurScales] is flushed with arousal and you can barely think straight.");
 	if(pc.isBimbo()) output("\n\nSucking a big cock always gets so so hot and bothered and it feels just soooo good. It’s way more fun to use your mouth for cocksucking than for talking at any rate.");
 	else if(pc.legCount == 1) output("\n\nIn your groin");
 	else 
@@ -1359,7 +1359,7 @@ public function maleNaleenSucksPCOff():void
 		output(" [pc.vaginas] ");
 		if(pc.totalVaginas() == 1) output("is");
 		else output("are");
-		output(" completely wet and drip continually");
+		output(" completely wet and drips continually");
 		if(pc.wetness() >= 3) 
 		{
 			//if high wetness:
@@ -1398,7 +1398,7 @@ public function maleNaleenSucksPCOff():void
 	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output("maw");
 	else output("mouth");
 	output(" with a wet pop.");
-	output("\n\nYou partner mumbles a quiet: <i>“Thank you offworlder, that was great.”</i> before he slumps down exhausted already snoring.");
+	output("\n\nYour partner mumbles a quiet: <i>“Thank you offworlder, that was great.”</i> before he slumps down exhausted already snoring.");
 	if(pc.isBimbo()) output("\n\nYou giggle at the cute kitty-naga boy and give his lower cock a parting kiss, barely resisting the urge to start sucking on it again.");
 	else if(pc.isNice()) output("\n\nYou smile at the spent naleen and  give him a little peck on the cheek.");
 	else if(pc.isMischievous()) output("\n\nYou grin at the spent naleen and give him a gentle pat on the shoulder.");
