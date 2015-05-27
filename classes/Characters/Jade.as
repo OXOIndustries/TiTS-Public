@@ -3,6 +3,8 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Transformatives.OvirAce;
+	import classes.Items.Transformatives.OvirPositive;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -11,7 +13,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 6;
+			this._latestVersion = 7;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -54,6 +56,8 @@
 			this.inventory.push(new KnotAProblem());
 			this.inventory.push(new HorsePill());
 			this.inventory.push(new AusarTreats());
+			inventory.push(new OvirAce());
+			inventory.push(new OvirPositive());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -201,6 +205,12 @@
 			delete dataObject.meleeWeapon;
 			delete dataObject.lustVuln;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		public function UpgradeVersion6(d:Object):void
+		{
+			d.inventory.push(new OvirAce().getSaveObject());
+			d.inventory.push(new OvirPositive().getSaveObject());
 		}
 	}
 }

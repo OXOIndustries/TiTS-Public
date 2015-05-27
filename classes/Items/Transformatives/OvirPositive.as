@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 
 			TooltipManager.addTooltip(shortName, tooltip);
 
-			basePrice = 500;
+			basePrice = 32150;
 
 			this.version = _latestVersion;
 		}
