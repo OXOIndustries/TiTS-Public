@@ -995,7 +995,6 @@
 			_ballFullness = v;
 		}
 		*/
-		
 
 		public function ballFullnessUnlocked(newBallFullness:Number):Boolean
 		{
@@ -1039,6 +1038,15 @@
 			return true;
 		}
 		public function wetnessLockedMessage():String
+		{
+			return "Despite the heat in your groin, nothing changed down there.";
+		}
+		
+		public function analWetnessUnlocked(newWetness:Number):Boolean
+		{
+			return true;
+		}
+		public function analWetnessLockedMessage():String
 		{
 			return "Despite the heat in your groin, nothing changed down there.";
 		}
@@ -2815,6 +2823,13 @@
 			}
 			return false;
 		}
+		public function removeFaceFlag(arg:int):void
+		{
+			if (hasFaceFlag(arg))
+			{
+				faceFlags = faceFlags.splice(faceFlags.indexOf(arg), 1);
+			}
+		}
 		public function addFaceFlag(arg:int): void {
 			if (!hasFaceFlag(arg)) faceFlags[faceFlags.length] = arg;
 		}
@@ -3047,7 +3062,7 @@
 				adjectives[adjectives.length] = "extensive";
 				//adjectives[adjectives.length] = "protracted"; //This is a turrible tongue adjective.
 				//adjectives[adjectives.length] = "telescopic"; //Only works if it extends in telescopic fashion
-				if (tongueType == GLOBAL.TYPE_LEITHAN) adjectives[adjectives.length] = "extendable";
+				if (tongueType == GLOBAL.TYPE_LEITHAN || tongueType == GLOBAL.TYPE_OVIR) adjectives[adjectives.length] = "extendable";
 				if (tongueType == GLOBAL.TYPE_DEMONIC) adjectives[adjectives.length] = "two-foot long";
 				if (tongueType == GLOBAL.TYPE_DRACONIC) adjectives[adjectives.length] = "four-foot long";
 			}
@@ -3121,6 +3136,12 @@
 				types[types.length] = "narrow";
 				types[types.length] = "forked";
 				types[types.length] = "leithan";
+			}
+			else if (tongueType == GLOBAL.TYPE_OVIR)
+			{
+				types.push("smooth");
+				types.push("ovir");
+				types.push("thick");
 			}
 			else if(tongueType == GLOBAL.TYPE_LAPINE)
 			{
@@ -3555,6 +3576,11 @@
 				adjectives[adjectives.length] = "smooth";
 				adjectives[adjectives.length] = "sleek";
 			}
+			if (hasTailFlag(GLOBAL.FLAG_SCALED))
+			{
+				adjectives.push("scaled");
+				adjectives.push("scaly");
+			}
 			if(tailType == GLOBAL.TYPE_LAPINE)
 			{
 				adjectives[adjectives.length] = "twitching";
@@ -3582,6 +3608,13 @@
 				adjectives.push("writhing");
 				adjectives.push("tentacle-like");
 				adjectives.push("cock-tipped");
+			}
+			else if (tailType == GLOBAL.TYPE_OVIR)
+			{
+				adjectives.push("thick");
+				adjectives.push("ovir");
+				adjectives.push("lizard-like");
+				adjectives.push("tapered");
 			}
 			//Show color 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";

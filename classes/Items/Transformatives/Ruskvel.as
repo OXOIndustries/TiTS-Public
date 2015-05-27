@@ -465,7 +465,7 @@
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " it to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " uses it to no effect.");
 			}
 			return false;
 		}

@@ -51,6 +51,7 @@
 	import classes.Items.Apparel.*
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
+	import classes.Items.Transformatives.*;
 
 	import classes.Parser.ParseEngine;
 

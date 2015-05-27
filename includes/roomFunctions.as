@@ -28,7 +28,9 @@ import classes.Items.Apparel.TSTArmor;
 import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
 import classes.Items.Transformatives.Bovinium;
+import classes.Items.Transformatives.OvirAce;
 import classes.Util.RandomInCollection;
+import flash.net.drm.DRMAddToDeviceGroupContext;
 
 public function mhengaShipHangarFunc():Boolean
 {
@@ -185,8 +187,14 @@ public function debugMenusTwo():void
 		quickLoot(new MyrBow());
 	});
 	
-	addButton(5, "Kaede", function():void {
-		flags["MET_KAEDE"] = 1;
+	addButton(5, "OvirTF", function():void {
+		var oa:OvirAce = new OvirAce();
+		oa.quantity = 10;
+		
+		var op:OvirPositive = new OvirPositive();
+		op.quantity = 5;
+		
+		quickLoot(oa, op);
 	});
 	
 	addButton(7, "Creds", function():void {

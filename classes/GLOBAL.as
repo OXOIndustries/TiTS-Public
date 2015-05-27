@@ -151,6 +151,7 @@
 		public static const TYPE_COCKVINE:int								= 54;
 		public static const TYPE_NYREA:int									= 55;
 		public static const TYPE_INHUMAN:int 								= 56; //For when you want things to be vaguely like a human's but not quite the same
+		public static const TYPE_OVIR:int									= 57;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
