@@ -110,6 +110,7 @@
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
+		include "../includes/travelEvents.kiro.as";
 		
 		// Holiday Events
 		include "../includes/event.puppyslutmas.as";

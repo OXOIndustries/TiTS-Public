@@ -1540,6 +1540,9 @@
 				case "tits":
 					buffer = breastDescript(arg2);
 					break;
+				case "lowestBreasts":
+					buffer = breastDescript(bRows()-1);
+					break;
 				case "cockClit":
 					buffer = cockClit(arg2);
 					break;
@@ -6016,7 +6019,7 @@
 			if (refractoryRate >= 8 && quantity < 50) quantity = 50;
 			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
 			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
-			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000; // @FENCUMFIX - This is what's breaking the ballFullness being set to negative values
+			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			return quantity;
@@ -10742,7 +10745,11 @@
 					if(spacingsB) output(" ");
 				}
 				
-				if (hole >= 0 && vaginalVirgin) vaginalVirgin = false;
+				if (hole >= 0 && vaginalVirgin) 
+				{
+					vaginalVirgin = false;
+					holePointer.hymen = false;
+				}
 				else if (analVirgin) analVirgin = false;
 				devirgined = true;
 			}
@@ -10817,6 +10824,7 @@
 			addStatusValue("Alcohol",1,alcoholRating);
 			//100% alcohol is yer cap
 			if(statusEffectv1("Alcohol") >= 100) setStatusValue("Alcohol",1,100);
+			tolerance(1);
 		}
 		public function alcoholTic():void
 		{
@@ -10826,8 +10834,11 @@
 			{
 				//Absorb some into blood.
 				addStatusValue("Alcohol",1,-1);
-				addStatusValue("Alcohol",2,1);
 				setStatusValue("Alcohol",3,0);
+				//Nuki drunk takes twice as much to get drank!
+				if(hasPerk("'Nuki Drunk")) addStatusValue("Alcohol",2,.5);
+				//Normal folks don't!
+				else addStatusValue("Alcohol",2,1);
 				
 				//Updated current hammered level
 				currentLevel = statusEffectv2("Alcohol")
@@ -10878,7 +10889,9 @@
 			else if(statusEffectv2("Alcohol") > 0)
 			{
 				//Pee some out
-				addStatusValue("Alcohol",2,-1);
+				//Nuki drunk takes four times as long to sober up!
+				if(hasPerk("'Nuki Drunk")) addStatusValue("Alcohol",2,-.25);
+				else addStatusValue("Alcohol",2,-1);
 				
 				//Updated current hammered level
 				currentLevel = statusEffectv2("Alcohol")
@@ -10922,6 +10935,19 @@
 			{
 				removeStatusEffect("Alcohol");
 			}
+		}
+		public function tolerance(arg:Number = 0):Number
+		{
+			if(!hasStatusEffect("Tolerance")) createStatusEffect("Tolerance",0,0,0,0);
+			var currentTolerance:Number = statusEffectv1("Tolerance");
+			if(arg != 0) 
+			{
+				addStatusValue("Tolerance",1,arg);
+				//Bounds check
+				if(currentTolerance < 0) setStatusValue("Tolerance",1,0);
+				else if(currentTolerance > 100) setStatusValue("Tolerance",1,100);
+			}
+			return statusEffectv1("Tolerance");
 		}
 		public function isDrunk():Boolean
 		{
