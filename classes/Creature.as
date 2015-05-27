@@ -10712,7 +10712,11 @@
 					if(spacingsB) output(" ");
 				}
 				
-				if (hole >= 0 && vaginalVirgin) vaginalVirgin = false;
+				if (hole >= 0 && vaginalVirgin) 
+				{
+					vaginalVirgin = false;
+					holePointer.hymen = false;
+				}
 				else if (analVirgin) analVirgin = false;
 				devirgined = true;
 			}
