@@ -194,7 +194,7 @@ public function debugMenusTwo():void
 		var op:OvirPositive = new OvirPositive();
 		op.quantity = 5;
 		
-		quickLoot(oa, op);
+		quickLoot(oa);
 	});
 	
 	addButton(7, "Creds", function():void {

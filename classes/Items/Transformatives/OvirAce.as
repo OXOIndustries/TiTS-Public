@@ -108,7 +108,7 @@ package classes.Items.Transformatives
 				if (target.breastRows[0].breastRatingRaw < 9 && target.breastRatingUnlocked(0, 9) && (forceChanges || (rand(10) >= target.breastRows[0].breastRatingRaw && changes < changeLimit)))
 				{
 					//Gain A-cups first!
-					if (target.breastRows[0].breastRatingRaw == 0)
+					if (target.breastRows[0].breastRatingRaw < 1)
 					{
 						output("\n\nYou feel a sudden warmth in your chest. Before your eyes your bosom blossoms, taking on feminine curves. You'd estimate you're probably an A-cup now.");
 						target.breastRows[0].breastRatingRaw = 1;
@@ -178,7 +178,7 @@ package classes.Items.Transformatives
 				{
 					var skinDesc:String = target.skinFurScales();
 					output("\n\nYour entire body tightens for a moment before your ");
-					if (skinDesc[skinDesc.length] == "s") output(skinDesc + " go");
+					if (skinDesc.charAt(skinDesc.length - 1) == "s") output(skinDesc + " go");
 					else output(skinDesc + " goes")
 					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath. It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
@@ -187,6 +187,8 @@ package classes.Items.Transformatives
 
 					var remColors:Array = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));
 					target.skinTone = RandomInCollection(remColors);
+					
+					target.armType = GLOBAL.TYPE_OVIR;
 
 					changes++;
 				}
@@ -481,7 +483,7 @@ package classes.Items.Transformatives
 				{
 					skinDesc = target.skinFurScales();
 					output("\n\nYour entire body tightens for a moment before your ");
-					if (skinDesc[skinDesc.length] == "s") output(skinDesc + " go");
+					if (skinDesc.charAt(skinDesc.length - 1) == "s") output(skinDesc + " go");
 					else output(skinDesc + " goes")
 					output(" cold. Quirking an eyebrow, you give it a few pokes and worriedly note that it's completely numb. After a moment you notice your dermis growing pale and... looser? You experimentally pull at your [pc.skinFurScales], and to your surprise it tears away easily, revealing shiny new " + tarColor + " reptilian-like skin beneath. It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
@@ -491,6 +493,8 @@ package classes.Items.Transformatives
 					remColors = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));
 					target.skinTone = RandomInCollection(remColors);
 
+					target.armType = GLOBAL.TYPE_OVIR;
+					
 					changes++;
 				}
 	
@@ -614,13 +618,18 @@ package classes.Items.Transformatives
 			}
 
 			//Make lower body bipedal if it wasn't already.
-			var tfLowerBody:Boolean = target.legCount != 2 && target.legCountUnlocked(2);
+			var tfLowerBody:Boolean = (target.legCount != 2 && target.legCountUnlocked(2)) || (target.legType != GLOBAL.TYPE_OVIR && target.legTypeUnlocked(GLOBAL.TYPE_OVIR));
 			if (tfLowerBody && (forceChanges || (changes < changeLimit && rand(2) == 0)))
 			{
-				output("\n\nA small twinge of pain hits you, then another one, and another. Suddenly your entire body is on fire. You double over and collapse. Your vision slowly slips away, and you black out. When you come to again, you stand up on shaky feet... two shaky feet. You look down, perplexed. It seems that when you were unconscious, your lower body has reshaped, taking on a bipedal, humanoid appearance!");
+				output("\n\nA small twinge of pain hits you, then another one, and another. Suddenly your entire body is on fire. You double over and collapse. Your vision slowly slips away, and you black out. When you come to again, you stand up on shaky feet");
+				if (target.legCount != 2) output("... two shaky feet");
+				output(". You look down, perplexed. It seems that when you were unconscious, your lower body has reshaped,");
+				if (target.legCount != 2 || target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" taking on a bipedal, humanoid appearance!");
+				else output(" gaining a lusiously scaled covering!");
 
 				target.legCount = 2;
 				target.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SCALED];
+				target.legType = GLOBAL.TYPE_OVIR;
 
 				changes++;
 			}

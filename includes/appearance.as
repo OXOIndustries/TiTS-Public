@@ -27,7 +27,10 @@ public function appearance(target:Creature):void {
 	if(target == pc) {
 		//Overall
 		if(target.originalRace == target.race()) output2("You are a " + target.originalRace + ".");
-		else output2("You started your journey as a " + target.originalRace + ", but you've become a " + target.race() + " over the course of your adventures.");
+		else
+		{
+			output2("You started your journey as a " + target.originalRace + ", but you've become "+indefiniteArticle(target.race())+" over the course of your adventures.");
+		}
 		output2(" You're a good " + Math.floor(target.tallness / 12) + " feet");
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");

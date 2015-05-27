@@ -25,6 +25,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
+	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	import classes.Engine.Utility.num2Text;
@@ -6631,7 +6632,8 @@
 			var race:String = "human";
 			//Determine race type
 			if (horseScore() >= 2) race = "part horse-morph";
-			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
+			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
+			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
@@ -6648,9 +6650,25 @@
 			if (zilScore() >= 4) race = "zil";
 			if (badgerScore() >= 4) race = "badger";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
+			if (ovirScore() >= 5) race = "ovir";
 			else if (isNaga()) race = "naga";
 
 			return race;
+		}
+		
+		public function ovirScore():int
+		{
+			var score:int = 0;
+			if (skinType == GLOBAL.SKIN_TYPE_SCALES && InCollection(scaleColor, "green", "purple", "red", "yellow", "brown", "tan", "olive green")) score++;
+			if (tailType == GLOBAL.TYPE_OVIR) score++;
+			if (hasCock() && balls == 0 && hasStatusEffect("Uniball")) score++;
+			if ((hasCock() || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
+			if (eyeType == GLOBAL.TYPE_SNAKE && InCollection(eyeColor, "green", "blue", "yellow", "red", "grey")) score++;
+			if (tongueType == GLOBAL.TYPE_OVIR) score++;
+			if (legType == GLOBAL.TYPE_OVIR) score++;
+			if (score > 0 && (faceType == GLOBAL.TYPE_HUMAN && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))) score++;
+
+			return score;
 		}
 		
 		public function isHuman():Boolean
