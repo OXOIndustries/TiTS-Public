@@ -206,7 +206,9 @@
 			"Simii",
 			"Daynar",
 			"Cockvine",
-			"Nyrea"
+			"Nyrea",
+			"Inhuman",
+			"Ovir"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -387,7 +389,8 @@
 			TYPE_RASKVEL,
 			TYPE_NAGA,
 			TYPE_SYDIAN,
-			TYPE_COCKVINE
+			TYPE_COCKVINE,
+			TYPE_OVIR
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
