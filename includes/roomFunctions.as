@@ -30,7 +30,6 @@ import classes.Items.Accessories.JungleRepel;
 import classes.Items.Transformatives.Bovinium;
 import classes.Items.Transformatives.OvirAce;
 import classes.Util.RandomInCollection;
-import flash.net.drm.DRMAddToDeviceGroupContext;
 
 public function mhengaShipHangarFunc():Boolean
 {
