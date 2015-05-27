@@ -477,7 +477,7 @@ public function askAmmaAbootZeTreatManz():void
 	showName("\nAMMA");
 	showBust("AMMA");
 	output("<i>“Could you tell me a little about this Treatment?”</i>");
-	output("\n\nAmma grins and nods, a little too eagerly. <i>“I’d be happy to! The Treatment’s what makes New Texas such a great, fun place. It’s a special gene-therapy developed right here on NT; everyone gets it when they reach maturity, and have for the last couple hundred years. The Treatment makes sex super fun -- that’s the really important part. But it also gives us girls these,”</i> she says, jiggling her shirt-straining chest, <i>“and just plain makes us sexier!");
+	output("\n\nAmma grins and nods, a little too eagerly. <i>“I’d be happy to! The Treatment’s what makes New Texas such a great, fun place. It’s a special gene-therapy developed right here on NT; everyone gets it when they reach maturity, and have for the last couple hundred years. The Treatment makes sex super fun -- that’s the really important part. But it also gives us girls these,”</i> she says, jiggling her shirt-straining chest, <i>“and just plain makes us sexier!”</i>");
 	output("\n\n<i>“Boys like Oggy over there get all muscley and big, plus some other awesome benefits...”</i> she winks, pointing a finger down between her legs. <i>“Without the Treatment, New Texas would just be any other rural colony. With it, we’ve got ourselves a pleasure paradise!”</i>");
 	output("\n\nShe sure seems excited about it, that’s for sure.");
 	output("\n\n<i>“Even better, the Treatment’s free in the gift shop. You should try it: you’ll never regret it!”</i>");
