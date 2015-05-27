@@ -1679,7 +1679,7 @@ public function annoFollowerShowerSex():void
 		output(" boiling with need, running slick with excitement as you drink in your lover’s scent. You give a little moan as Anno finally returns the favor, one of her white-clad hands brushing aside your [pc.gear] and tracing across the lips of your [pc.cunt].");
 	}
 
-	output(" Breathless, Anno desperately pulls your [pc.gear] off to let it clatter to the floor before giving you a push through the bathroom door.");
+	output(" Breathless, Anno desperately pulls your [pc.gear] before giving you a push through the bathroom door.");
 	
 	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and");
 	if(pc.legCount > 1) output(" spreading your [pc.legs] apart.");
