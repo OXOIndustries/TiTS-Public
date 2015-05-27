@@ -150,6 +150,7 @@ package classes.Characters
 			this.vaginas[0].hymen = true;
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 2;
+			this.vaginas[0].vaginaColor = "black";
 			this.vaginas[0].vagooFlags = [];
 			
 			//balls
@@ -159,7 +160,7 @@ package classes.Characters
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 0;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 3;
+			this.ballSizeRaw = 10;
 			this.ballFullness = 100;
 			
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -199,7 +200,11 @@ package classes.Characters
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
 		}
-		
+		//Gotta reset 'dem balls!'
+		override public function orgasm(): void {
+			super.orgasm();
+			ballSizeRaw = 10;
+		}
 	}
 
 }

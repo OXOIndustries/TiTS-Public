@@ -34,8 +34,9 @@ public function goldenPeakBonusFunction():Boolean
 	if (flags["TARKUS_DESTROYED"] == 1)
 	{
 		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
-		addButton(2, "Gray Goo", grayGooAtBar);
+		addButton(8, "Gray Goo", grayGooAtBar);
 	}
+	roamingBarEncounter(9);
 	
 	return false;
 }

@@ -931,7 +931,25 @@ public function processTime(arg:int):void {
 			//Cooters
 			else treatedVagNote(false);
 		}
-
+		//Kiro stuff
+		if(flags["KIRO_BAR_MET"] != undefined)
+		{
+			if (this.minutes >= 60) 
+			{
+				kiro.ballSizeRaw++;
+				//Ball despunkification!
+				if(kiro.ballDiameter() > 20)
+				{
+					if(rand(200) < kiro.ballDiameter()) kiro.orgasm();
+				}
+			}
+			//Kiro's disabled timer!
+			if(flags["KIRO_DISABLED_MINUTES"] != undefined)
+			{
+				flags["KIRO_DISABLED_MINUTES"]--;
+				if(flags["KIRO_DISABLED_MINUTES"] <= 0) flags["KIRO_DISABLED_MINUTES"] = undefined;
+			}
+		}
 		//Tick hours!
 		if (this.minutes >= 60) {
 			

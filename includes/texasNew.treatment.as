@@ -1815,7 +1815,7 @@ public function treatmentHourProcs():void
 				case 2:
 				case 3:
 					chosenDickType = GLOBAL.TYPE_CANINE;
-					break
+					break;
 				case 4:
 					chosenDickType = GLOBAL.TYPE_FELINE;
 					break;
