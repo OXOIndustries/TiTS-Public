@@ -1,4 +1,4 @@
-package classes.Items.Transformatives
+﻿package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
 	import classes.GLOBAL;
@@ -204,7 +204,7 @@ package classes.Items.Transformatives
 						hasNoneOvirCock = true;
 						break;
 					}
-					else if (target.cocks[ci].cockColor != String("dark " + target.skinTone) && InCollection(target.skinTone, scaleColors));
+					else if (target.cocks[ci].cockColor != String("dark " + target.skinTone) && InCollection(target.skinTone, scaleColors))
 					{
 						hasNoneOvirCock = true;
 						break;
