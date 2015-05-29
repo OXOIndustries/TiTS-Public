@@ -1158,7 +1158,7 @@ public function nutSwellUpdates():void
 		//Hit basketball size >= 9
 		if(pc.ballDiameter() >= 9 && !pc.hasStatusEffect("Egregiously Endowed"))
 		{
-			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nUgh, you could really a chance to offload some [pc.cumNoun]. Your balls have reached the size of basketballs and show no signs of stopping. The squishy, sensitive mass will definitely slow your movements.";
+			if(pc.hasPerk("'Nuki Nuts") && pc.balls > 1) eventBuffer += "\n\nUgh, you could really use a chance to offload some [pc.cumNoun]. Your balls have reached the size of basketballs and show no signs of stopping. The squishy, sensitive mass will definitely slow your movements.";
 			//Status - Egregiously Endowed - Movement between rooms takes twice as long, and fleeing from combat is more difficult.
 			pc.createStatusEffect("Egregiously Endowed", 0,0,0,0,false,"Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
 		}
