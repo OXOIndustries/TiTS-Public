@@ -824,7 +824,7 @@ public function talkToXantheAboutSpaceJesus():void
 	output("You ask ");
 	if(xantheIsDommingPC()) output("your Mistress");
 	else output("Xanthe");
-	output(" what a Zyist is is, since you heard her mention that earlier. She waves a hand airily in the air, as if the subject is of no great importance.");
+	output(" what a Zyist is, since you heard her mention that earlier. She waves a hand airily in the air, as if the subject is of no great importance.");
 
 	output("\n\n<i>\"Just someone who believes in Zyi, and Zyi’s just the creator of the universe. It’s nothing overly important.”</i>Her sultry tone is dead serious, yet the statement hardly makes any sense. Does that mean she’s religious...?");
 
