@@ -640,7 +640,7 @@ public function refuseToLickAntPussayOrClosetFuxx():void
 	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);	
 }
 
-public function nehzeraMenu(arg:Function):void
+public function nehzeraMenu(arg:Functionm = null):void
 {
 	clearMenu();
 	//[Her People] [The War] [Your Mission] [Appearance]
@@ -674,6 +674,9 @@ public function nehzeraMenu(arg:Function):void
 		if(arg == talkToNehzaraAboutHistory) addButton(9,"Trench Wives?",trenchWives,undefined,"Trench Wives?","Wait... trench wives? There’s an unusual term, and she said something about <i>“war trophies.”</i> You could ask her to elaborate on that.");
 		if(arg == trenchWives) addDisabledButton(9,"Trench Wives","You just finished that discussion.");
 	}
+
+	if (flags["NEVRIE_QUEST"] == 1 && flags["NEHZARA_BLOOD_SAMPLE"] == undefined) addButton(10, "BloodSample", nehzaraBloodSample, undefined, "Blood Sample", "Ask Colonel Nehzara if she'd be interested in providing a sample of her blood for the purpose of myr gene-mod development.");
+
 	addButton(14,"Leave",leaveNehzara);
 }
 
@@ -782,4 +785,52 @@ public function leaveNehzara():void
 	//(Returns PC to the warehouse area description, and allows for movement back to the hangar)
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function nehzaraBloodSample():void
+{
+	clearOutput();
+	showNehzara();
+
+	output("After a moment of thinking over precisely how to breach the subject, you");
+	if (pc.isNice()) output(" carefully");
+	else if (pc.isMischievous()) output(" archly");
+	else output(" curtly");
+	output(" mention to Nehzara that you happen to be in need of a red myr blood sample and that you’d appreciate it if she were to generously provide you with a donation.");
+	
+	output("\n\nThe colonel just gives you a quizzical look before steepling her fingers in front of her and leaning forward. <i>“Ah, so one of your people wants to study our genetics. I’d heard that one of your research firms was performing preliminary work on some manner of transformative, but I hadn’t expected to hear anything about it for another few weeks.”</i>");
+	
+	output("\n\nYou have to admit that you’re a little surprised. You hadn’t expected her to immediately guess exactly what you had in mind.");
+	
+	output("\n\n<i>“Really, Steele?”</i> She sighs and locks eyes with you, her gaze level and unwavering. <i>“It’s my job to know what the UGC assets on-planet are up to. And I do my damn job, no matter how I may feel about it.”</i>");
+	
+	output("\n\nFair enough, you suppose. So, does that mean she’s willing to donate?");
+	
+	output("\n\nNehzara sits back and places one hand under her chin, regarding you with a subtle smile. <i>“After all");
+	if (flags["SEXED_NEHZARA"] != undefined) output(" you’ve done for me, [pc.name]?”</i> Her eyes light up and you think you can see her face grow just a shade more crimson. <i>“I suppose I could find it in my heart to lend you a hand.");
+	else output(" the UGC has done for me?”</i> Her question is sarcastic, but her expression isn’t as severe as the tone. <i>“Well, I suppose I could help them out anyways; a good diplomat has to be willing to open negotiations with an offer and merely hope her compliance is reciprocated. Fine.");
+	output(" Do you have the container?”</i>");
+	
+	output("\n\nYou nod and produce the vial you were given earlier, placing it on Nehzara’s desk.");
+	
+	output("\n\n<i>“Let’s not waste any time,”</i> she says casually, and with a lightning-fast movement that catches you by surprise, she reaches down to her waist and draws out a gleaming knife you hadn’t noticed before, flicking it into the air and catching the handle dextrously to hold the weapon in front of her face. Where had she been hiding that?");
+	if (flags["SEXED_NEHZARA"] != undefined) output(" You’ve watched her strip down entirely and never caught a glimpse of any blade on her!");
+	output(" The silvery stiletto isn’t very large, but it’s sharp enough to easily cut flesh, and you can imagine it’s plenty deadly with the proper application of precision and force.");
+	
+	output("\n\nWithout hesitating for a moment, Nehzara holds her left hand above the vial and draws the blade along her palm. You almost mention that a finger-prick would have sufficed, but you decide to just let her show off this time around. With her large cut, it does not take long at all for Colonel Nehzara to provide you with enough blood.");
+	
+	output("\n\nThe Red diplomat sets about applying a bandage to her hand, something you can’t help but point out wouldn’t have been required if she’d just pricked her damn finger instead.");
+	
+	output("\n\n<i>“Oh, I’m aware,”</i> she says flippantly, brushing off your comment. <i>“But I don’t have all day to bleed for my people. Not anymore, anyways. Now,”</i> she huffs, <i>“did you get what you came for?”</i>");
+	
+	output("\n\nYou shrug and take the vial back, screwing on the lid and placing it where it’ll be safe. Leave it to Nehzara to end things on a sour note like that. Maybe she’s just feeling especially broody at the moment. You could cheer her up, take her mind off things, or just get out and take care of your own business.");
+
+	// 9999
+	quickLoot(new RedMyrBlood());
+
+	processTime(15+rand(5));
+
+	flags["NEHZARA_BLOOD_SAMPLE"] = 1;
+
+	nehzeraMenu()
 }

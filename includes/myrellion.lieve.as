@@ -386,6 +386,11 @@ public function lieveTalkMenu():void
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
 	
+	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined)
+	{
+		addButton(8, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
+	}
+	
 	addButton(14, "Back", lieveMenu);
 }
 
@@ -2318,6 +2323,44 @@ public function lieveLateGoodbyeAlright():void
 
 	processTime(10 + rand(5));
 	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lieveBloodSample():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+
+	flags["LIEVE_BLOOD_SAMPLE"] = 1;
+
+	output("Surely Lieve can see the benefit of helping out the Xenogen scientists. A myr gene mod for her race would certainly spike the popularity of the reds among offworlders, and get Xenogen on her side. As diplomatically as you can, you ask the perky ant-girl if she wouldn’t mind donating a little blood to the cause.");
+	
+	output("\n\n<i>“Blood?”</i> Lieve echoes, cocking an eyebrow at you. <i>“What do scientists need my blood for?”</i>");
+	
+	output("\n\n");
+	if (pc.isBimbo()) output("<i>“For, like, science and stuff!”</i> you answer giddily. <i>“They wanna help people like me be more like you!”</i>");
+	else output("<i>“They want to make a gene-mod that’ll turn people like me into gold and red myr. The Xenogen scientists just need some samples from a red myr like you to finish it.”</i>");
+	
+	output("\n\n<i>“Your scientists can do that? Really? That’s... even more amazing than the medicine they gave us after the war ended,”</i> Lieve says. <i>“So you offworlders really can just... change whatever race you are? I’d heard that, but I’m not sure I ever really believed it.”</i>");
+	
+	output("\n\nYou assure her that they can, and that a few droplets of her blood - plus maybe a few strands of hair and flakes of skin for good measure - could help make sure there’s a galaxy full of wanna-be reds in no time.");
+	
+	output("\n\nShe grins. <i>“Well, when you put it like that... I guess I ought to help you, huh? It’s practically my patriotic duty.”</i>");
+	
+	output("\n\nNow that’s the spirit. Lieve pulls the hatchet off of her belt and makes quick work of drawing its blade across one of her fingers. She squeezes several droplets of blood into a vial you hand her before tasking Mayren to go fetch her a bandage. You put a cap on the vial and flash Lieve a smile. Giving her your thanks, you flip the vial into your pack, ready to be delivered to Nevrie back at the DMZ.");
+	
+	output("\n\n<i>“Hard to believe that’s all it takes,”</i> Lieve says with a chuckle, starting to wrap her finger up. <i>“So, they’re going to be making transmutations for both myr races, aren’t they?”</i>");
+	
+	output("\n\nYou nod. That’s why you needed her blood, after all. They’re already working on one for the Golds.");
+	
+	output("\n\nShe nods thoughtfully. <i>“I’m glad. I’ll be interested in seeing what they come up with.”</i>");
+	
+	if (pc.isFeminine()) output("\n\nWith a teasing wink, she adds <i>“Maybe I’ll see </i>you<i> as a hot little piece of red myr ass some day?”</i>");
+
+	// 9999
+	quickLoot(new RedMyrBlood());
+
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
