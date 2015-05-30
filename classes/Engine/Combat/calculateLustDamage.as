@@ -43,6 +43,7 @@ package classes.Engine.Combat
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
+		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
 		if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
