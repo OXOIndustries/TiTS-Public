@@ -246,7 +246,9 @@ public function appearance(target:Creature):void {
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy [pc.tongueNoun] that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible [pc.tongueNoun] that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 		else if(pc.tongueType == GLOBAL.TYPE_RASKVEL) output2(" Your mouth contains a thick, purple tongue that, if you so desire, can extend a fair portion from your mouth. Its tip is blunted slightly.");
+		else if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains a [pc.tongue].");
+
 		//Horns
 		if(pc.horns > 0)
 		{
