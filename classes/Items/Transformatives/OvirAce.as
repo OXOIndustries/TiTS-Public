@@ -1,4 +1,4 @@
-﻿package classes.Items.Transformatives
+package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
 	import classes.GLOBAL;
@@ -174,7 +174,7 @@
 				var tarColor:String = RandomInCollection(scaleColors);
 				var scaletfColor:Boolean = !InCollection(target.scaleColor, scaleColors) && target.scaleColorUnlocked(tarColor);
 
-				if (tfScales || scaletfColor && (forceChanges || (changes < changeLimit && rand(5) == 0)))
+				if ((tfScales || scaletfColor) && (forceChanges || (changes < changeLimit && rand(5) == 0)))
 				{
 					var skinDesc:String = target.skinFurScales();
 					output("\n\nYour entire body tightens for a moment before your ");
@@ -479,7 +479,7 @@
 				tarColor = RandomInCollection(scaleColors);
 				scaletfColor = !InCollection(target.scaleColor, scaleColors) && target.scaleColorUnlocked(tarColor);
 
-				if (tfScales && scaletfColor && (forceChanges || (changes < changeLimit && rand(5) == 0)))
+				if ((tfScales || scaletfColor) && (forceChanges || (changes < changeLimit && rand(5) == 0)))
 				{
 					skinDesc = target.skinFurScales();
 					output("\n\nYour entire body tightens for a moment before your ");
