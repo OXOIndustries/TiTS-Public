@@ -30,11 +30,11 @@ package classes.Engine.Combat
 		var damageResult:DamageResult = calculateDamage(baseDamage, attacker, target, special);
 		
 		// Damage has already been applied by this point, so we can skip output if we want...
-		if (special == "suppress")
+		if (special == "suppress" || attacker == null)
 		{
 			return damageResult;
 		}
-		else if (special == "minimal" || attacker == null)
+		else if (special == "minimal")
 		{
 			outputDamage(damageResult);
 			return damageResult;

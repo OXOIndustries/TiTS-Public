@@ -217,6 +217,16 @@
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
+		
+		// Get a 'packed' version of the current in-game time. Useful for date/time passage comparisons stored in flags.
+		public function GetGameTimestamp():uint
+		{
+			var value:uint = 0;
+			value += minutes;
+			value += hours * 60;
+			value += days * 24 * 60;
+			return value;
+		}
 
 		// Queued event system
 		public var eventBuffer:String;

@@ -37,8 +37,8 @@ package classes.Engine.Combat
 				}
 				if (damageResult.lustDamage > 0)
 				{
-					if (colour) tMsg += "L: -<span class='lust>" + Math.round(damageResult.lustDamage) + "</span>";
-					else tMsg += "L: " + Math.round(damageResult.lustDamage);
+					if (colour) tMsg += "L: -<span class='lust'>" + Math.round(damageResult.lustDamage) + "</span>";
+					else tMsg += "L: -" + Math.round(damageResult.lustDamage);
 				}
 				tMsg += "</b>)";
 			}
