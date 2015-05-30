@@ -640,7 +640,7 @@ public function refuseToLickAntPussayOrClosetFuxx():void
 	nehzeraMenu(refuseToLickAntPussayOrClosetFuxx);	
 }
 
-public function nehzeraMenu(arg:Functionm = null):void
+public function nehzeraMenu(arg:Function = null):void
 {
 	clearMenu();
 	//[Her People] [The War] [Your Mission] [Appearance]
