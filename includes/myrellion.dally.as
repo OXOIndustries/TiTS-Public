@@ -933,6 +933,7 @@ public function dallySucksYouOff():void
 	output("\n\n<i>“Is that so?”</i> Dally makes a show of dropping to his knees, grabbing the stripper pole and slowing his slide to the stage floor into a sensuous display. <i>“Stones, it’s strange to look at someone else’s up close.”</i> He flashes a white-toothed smile your way. <i>“Not saying I mind, just that most of my practice has been... self-fulfilling.”</i>");
 	output("\n\nYou grab hold");
 	if(pc.cockTotal() > 1) output(" of your biggest cock");
+	else output(" of your cock");
 	output(" and wagle it back and forth in front of him. <i>“");
 	if(pc.isNice()) output("Go on, then. There’s no better way to get practice, right?");
 	else if(pc.isMischievous()) output("Go ahead, it’s more of a spitter than a biter.");
