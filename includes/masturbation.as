@@ -183,44 +183,29 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
-		//KIRO!
-		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless."))
+		//Has panties for faps:
+		if(pantyFapCount() > 0)
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Panty Fap";
-			fap.ttHeader = "Penny's Panties Fap"
-			fap.ttBody = "Grab Penny's cum-stained panties and use them to wring out another load.";
-			fap.func = futaBabePantyfaps;
-			fap.arg = "Kiro";
+			fap.ttHeader = "Panty Fap"
+			fap.ttBody = "Use a pair of panties that you've collected as a cumrag.";
+			fap.func = futaBabePantyfapsRouter;
 			fap.ignoreRandomSelection = false;
 			faps.push(fap);
-		}
-		//PENNY!
-		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless."))
-		{
-			fap = new FapCommandContainer();
-			fap.text = "Panty Fap";
-			fap.ttHeader = "Penny's Panties Fap"
-			fap.ttBody = "Grab Penny's cum-stained panties and use them to wring out another load.";
-			fap.func = futaBabePantyfaps;
-			fap.arg = "Penny";
-			fap.ignoreRandomSelection = false;
-			faps.push(fap);
-		}
-		//Syri!
-		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room."))
-		{
-			fap = new FapCommandContainer();
-			fap.text = "Panty Fap";
-			fap.ttHeader = "Syri's Panties Fap"
-			fap.ttBody = "Grab Syri's cute blue panties and use them to wring out another load.";
-			fap.func = futaBabePantyfaps;
-			fap.arg = "Syri";
-			fap.ignoreRandomSelection = false;
-			faps.push(fap);
-		}
+		}		
 	}
 	return faps;
+}
+
+public function pantyFapCount():Number
+{
+	var count:int = 0;
+	if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
+	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
+	if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
+	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
+	return count;
 }
 
 public function selectRandomFap(faps:Array):void
@@ -2157,6 +2142,48 @@ public function goddamnitJimTAndYourExhibitionism():void
 
 //Futa Babe Pantyfaps
 //Add [PantyFap] to masturbation menu. PC must have a dick + waifu panties. Open sub-menu to select which waifu's panties to jerk it into. 
+public function futaBabePantyfapsRouter():void
+{
+	//Just one? Figure out which and send to the scene:	
+	if(pantyFapCount() == 1) 
+	{
+		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) futaBabePantyfaps("Kiro");
+		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) futaBabePantyfaps("Penny");
+		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) futaBabePantyfaps("Saendra");
+		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) futaBabePantyfaps("Syri");
+	}	
+	//More than one pair? Build a menu.
+	else
+	{
+		clearOutput();
+		output("You've collected " + pantyFapCount() + " of 4 possible pairs of ladies' underwear. Which will you use?");
+		clearMenu();
+		var button:int = 0;
+		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
+		{
+			addButton(button,"Kiro's",futaBabePantyfaps,"Kiro","Kiro's Panties","Use Kiro's lacy, crotchless panties for a quick wank.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
+		{
+			addButton(button,"Penny's",futaBabePantyfaps,"Penny","Penny's Panties","Use Penny's blue (but crotchless) panties for a quick fap.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
+		{
+			addButton(button,"Saendra's",futaBabePantyfaps,"Saendra","Saendra's Panties","Use Saendra's tight, pink panties to stroke one out.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
+		{
+			addButton(button,"Syri's",futaBabePantyfaps,"Syri","Syri's Panties","Use Syri's sky-blue, silky bloomers for a little self-pleasure.");
+			button++;
+		}
+		addButton(14,"Back",masturbateMenu);
+	}
+}
+
+
 public function futaBabePantyfaps(waifu:String = ""):void
 {
 	clearOutput();
@@ -2166,6 +2193,7 @@ public function futaBabePantyfaps(waifu:String = ""):void
 	if(waifu == "Kiro") pantyColor = "black";
 	else if(waifu == "Penny") pantyColor = "blue";
 	else if(waifu == "Syri") pantyColor = "blue";
+	else if(waifu == "Saendra") pantyColor = "bright pink";
 
 	output("Overcome by your mounting lusts and the yearning desire for the warm touch of your lover, you pull out the underthings you got from " + waifu + ", eyes wandering over the " + pantyColor + " fabric. Memories of your prior entanglements, the tender embraces and lusty encounters you’ve shared in the past. Your [pc.cocks] start");
 	if(pc.cockTotal() == 1) output("s");

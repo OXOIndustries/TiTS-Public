@@ -185,7 +185,7 @@ public function saendrasBarMenu():void
 public function saendraSexMenu():void
 {
 	clearMenu();
-	
+
 	if (saendra.hasCock()) addButton(0, "Get Buttfucked", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra's new cock to work on your ass.");
 	else addButton(0, "Take Strapon", takeSaensStrappedyDappedyCock, undefined, "Take Strapon", "Saendra dons a strapon and goes to town on your ass.");
 
@@ -1126,6 +1126,16 @@ public function saendraSexTalk():void
 	else output(" grabbing the throbbing, turgid shaft of her bristly cock");
 	output(". She hooks a clawed hand through your [pc.gear], pulling you into her, trailing kisses along your neck and cheek.");
 	
+	//Getting Futa!Saendra's Panties
+	//Replace her normal sex scenes after Futafication. 10% chance to play when fucking her. 
+	//Replace 3rd paragraph in sex intro with:
+	if(saendra.hasCock() && rand(10) == 0)
+	{
+		clearMenu();
+		addButton(0,"Next",newFutaSaendraScenes);
+		return;
+	}
+
 	output("\n\nFor a second, you part; you’re both panting with lust and desire, hands roaming all over each other. Her voice dripping with raw sexuality, your lover asks, <i>“So how do you want me, hero? I’m all yours....”</i>");
 
 	saendraSexMenu();
@@ -1620,11 +1630,11 @@ public function saendraPostFuckscene():void
 //Getting Futa!Saendra's Panties
 //Replace her normal sex scenes after Futafication. 10% chance to play when fucking her. 
 //Replace 3rd paragraph in sex intro with:
-
 public function newFutaSaendraScenes():void
 {
 	clearOutput();
 	saenHeader();
+	author("Savin");
 	var x:int = -1;
 	if(pc.hasVagina())
 	{
@@ -1710,7 +1720,7 @@ public function newFutaSaendraScenes():void
 	output("\n\n<i>“Mff mumph,”</i> you answer around a mouthful of panties.");
 
 	//first time, get panties
-	if(pc.hasKeyItem("9999"))
+	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 	{
 		output("\n\n<i>“You can hang onto those,”</i> Saen laughs, reaching down to give you a kiss on the lips around her cummy pink undies. <i>“Since we can’t be together </i>all<i> the time... maybe");
 		if(pc.hasCock()) output(" when you get lonely you can use ‘em to jerk off and think of me, huh? Or maybe");
@@ -1719,6 +1729,8 @@ public function newFutaSaendraScenes():void
 		output("\n\nYou give a weak thumbs up and roll onto your side, yawning contentedly.");
 		//[Next], back down to bar.
 		//Acquired new panties: Saendra’s - Ultra-tight and bright pink.
+		output("\n\n<b>You’ve acquired Saendra's panties!</b>");
+		pc.createKeyItem("Panties - Saendra's - Ultra-tight and bright pink.");
 	}
 	//Repeat, has panties
 	else
