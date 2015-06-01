@@ -1,4 +1,4 @@
-package classes.Resources.Busts 
+﻿package classes.Resources.Busts 
 {
 	/**
 	 * ...
@@ -30,6 +30,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
+		public var Bust_IRELLIA:Class;
 		
 		//[Embed(source = "../../../assets/images/npcs/juro.png", mimeType = "image/png")]
 		//public var Bust_JURO:Class;
