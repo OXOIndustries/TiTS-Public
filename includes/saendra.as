@@ -1638,7 +1638,7 @@ public function newFutaSaendraScenes():void
 	var x:int = -1;
 	if(pc.hasVagina())
 	{
-		x = pc.cuntThatFits(chars["SYRI"].cockVolume(0));
+		x = pc.cuntThatFits(chars["SAENDRA"].cockVolume(0));
 		if(x < 0) x = rand(pc.totalVaginas());
 	}
 	output("For a second, you part; you’re both panting with lust and desire, hands roaming all over each other. Her voice dripping with raw sexuality, Saendra reaches between her legs and starts to stroke her dick. <i>“I think it’s about time you took responsibility for this big slab of cockmeat,”</i> she purrs, kissing you and grinding the nub-ringed crown against your [pc.leg]. <i>“You wanted it soooo bad, didn’t you? Still want it now?”</i>");
