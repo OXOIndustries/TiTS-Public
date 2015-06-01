@@ -1405,7 +1405,7 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	pc.orgasm();
 	pc.orgasm();
 
-	output("Still a bit excited by the whole event, Carrie takes one final look at the milker before concluding, <i>“Well, this milker is definitely out of commission. These pumps are made to handle a herd of Treated studs in rut, how you managed to break it is beyond me!”</i>. Pressing the red button, the gears audibly grind and squeak and the broken milker retracts back into the ceiling from whence it came. Recovering from her disbelief that such an industrial-grade machine could be destroyed by one person, she regains her composure and calmly turns to you. <i>“Now what are we going to do with a broken milker?”</i>");
+	output("Still a bit excited by the whole event, Carrie takes one final look at the milker before concluding, <i>“Well, this milker is definitely out of commission. These pumps are made to handle a herd of Treated studs in rut, how you managed to break it is beyond me!”</i> Pressing the red button, the gears audibly grind and squeak and the broken milker retracts back into the ceiling from whence it came. Recovering from her disbelief that such an industrial-grade machine could be destroyed by one person, she regains her composure and calmly turns to you. <i>“Now what are we going to do with a broken milker?”</i>");
 
 	// Set the flag!
 	if(flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined) flags["MILK_BARN_COCKMILKER_BROKEN"] = 1;

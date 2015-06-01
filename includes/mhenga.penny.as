@@ -723,8 +723,12 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-	else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	{
+		if(flags["MET_DR_BADGER"] != undefined) addButton(5,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		else addDisabledButton(5,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+	}
+	else addDisabledButton(5,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
 }
 
 //[Sex]
@@ -1298,6 +1302,13 @@ public function approachGirlfriendPenny():void {
 			output("\n\n\"<i>Now, [pc.name],</i>\"  Penny says happily, \"<i>what can I do for </i>you<i>?</i>\"  After locking eyes with you for a moment you hear the familiar thump of flesh contacting wood beneath the desk. \"<i>After all,</i>\"  Penny continues seamlessly, \"<i>it seems like you're already doing something for me...</i>\"");
 			output("\n\nIt looks like she's up for just about anything - including being under control enough to just talk, if you'd prefer. That said, despite how much you've worked her into being a nice little submissive, from the look in her eyes she'd be just as comfortable going back to being on top. If you let her, of course.");
 			//[Give all normal Penny girlfriend menu. Include new cumslut sex options and talk to change her cumslut status (keep it secret/let others watch/join in)]
+			if(flags["SEEN_PENNY_HIDE_CUMSLUTTERY"] == undefined) flags["SEEN_PENNY_HIDE_CUMSLUTTERY"] = 1;
+			//Repeat times can unlock her giving you panties!
+			else if(needPennyPanties())
+			{
+				acquireCumslootPennyPanties();
+				return;
+			}
 		}
 		//IF TOLD TO LET OTHERS WATCH
 		else if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
@@ -1310,6 +1321,15 @@ public function approachGirlfriendPenny():void {
 				output("\n\nShe settles back in her chair, which you only notice now is sitting high enough that it keeps her entirely above the desk, so that now as she relaxes her entirely-unrestrained cock simply settles down on top of it. It seems she's reorganized her work space so that she's completely on display, whether she's actively masturbating or not.");
 				output("\n\nNoticing you taking that in, Penny smiles. \"<i>Like the new set up?</i>\"  she asks. \"<i>I sure do.</i>\"");
 				flags["PENNY_BEEN_IN_WATCH_CUMSLUT_MODE_AND_BLOWN_IN_FRONT_OF_PC"] = 1;
+			}
+			//Repeat times can unlock her giving you panties!
+			else
+			{
+				if(needPennyPanties())
+				{
+					acquireCumslootPennyPanties();
+					return;
+				}
 			}
 			output("\n\nShe gives her shaft a long lazy stroke as she looks up at you. \"<i>So lover, what do you want to do?</i>\"");
 			output("\n\nIt looks like she's up for just about anything - including being under control enough to just talk, if you'd prefer. That said, despite how much you've worked her into being a nice little submissive, from the look in her eyes she'd be just as comfortable going back to being on top. If you let her, of course.");
@@ -1333,6 +1353,12 @@ public function approachGirlfriendPenny():void {
 			//REPEAT ENCOUNTERS:
 			else 
 			{
+				//Repeat times can unlock her giving you panties!
+				if(needPennyPanties())
+				{
+					acquireCumslootPennyPanties();
+					return;
+				}
 				output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
 				output("\n\n\"<i>[pc.name]!</i>\"  she calls out happily when she sees you, idly stroking her shaft along the top of her desk.");
 			}
@@ -1379,7 +1405,12 @@ public function approachGirlfriendPenny():void {
 		else output("  There’s the quiet sound of a zipper opening from beneath the desk. <i>“Did you want to play with the toy you talked me into getting? I must admit, I’m rather taken by the little guy.”</i>");
 	}
 	processTime(1);
-	this.clearMenu();
+	pennyGirlfriendMenu();
+}
+
+public function pennyGirlfriendMenu():void
+{
+	clearMenu();
 	this.addButton(0,"Talk",talkToGirfriendPenny);
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
 	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
@@ -1391,6 +1422,7 @@ public function approachGirlfriendPenny():void {
 	else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 	this.addButton(14,"Back",mainGameMenu);
 }
+
 
 //Talk to Girlfriend Penny
 public function talkToGirfriendPenny():void {
@@ -3584,4 +3616,73 @@ public function whineToPennyCauseYerABitch():void
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
 	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
 	this.addButton(14,"Back",mainGameMenu);
+}
+
+public function needPennyPanties():Boolean
+{
+	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) return false;
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) return true;
+	return false;
+}
+
+//Acquire Cumslut Penny Panties - 1000 wrds
+public function acquireCumslootPennyPanties():void
+{
+	clearOutput();
+	userInterface.showBust("PENNY_NUDE");
+	showPennyName();
+	output("<b><u>Something unusual happens...</u></b>\n\n");
+	//PUBLIC USE PENNY
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined)
+	{
+		output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
+		output("\n\n\"<i>[pc.name]!</i>\" she calls out happily when she sees you, idly stroking her shaft along the top of her desk.");
+		//No new PG, merge in with dialogue.
+		output(" <i>“Just the sexy mate I was hoping to see.”</i> Her [penny.cock] stiffens tremendously as you approach, almost in greeting. You note that it’s coated in a few strangely-colored blobs of cum that definitely didn’t originate from inside of her. She uses them as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+	}
+	//Autofellatio Penny
+	else if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
+	{
+		output("Penny looks up at you as you come close, the edges of her lips curling upwards in a smile before she breaks contact with her cock, jizz and spit snapping as pulls back. <i>“[pc.name],”</i> calls after swallowing what must be a cocktail of saliva and dickjuice. <i>“Just the sexy " + pc.mf("guy","girl") + " I was hoping to see!”</i>");
+		output("\n\nSomehow, her [penny.cock] seems to get ever stiffer at the sight of you. You note that it’s covered with so much fennec spunk that it practically gleams white. Penny uses it as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+	}
+	//SECRET CUMSLUT PENNY
+	else
+	{
+		output("You approach the desk Penny normally works at, but she herself is nowhere to be seen. Before you have a chance to look around, you hear her voice call from underneath, <i>“Just a minute!”</i>");
+		output("\n\nLooking down, you catch sight of her snout peeking out from under the desk to sneak a look at you. You wave jokingly, and she responds with a sigh of relief.");
+		output("\n\n<i>“Thank god it’s you, [pc.name]. Do you have any idea how hard it is to find time to jerk this monster off under the desk all the time?”</i> She climbs up into her chair and pivots, unashamedly slapping her stiff cock down on the hard surface. If you had to guess, you’d wager that her rigid tool is the firmer of the two right now. You could swear it actually gets bigger at the sight of you.");
+		output("\n\n<i>“Uh... no?”</i>");
+		output("\n\nPenny nods, and begins to stroke herself off one-handed. <i>“It’s tough, particularly if you’re trying to uh... ah... talk to someone at the same time.”</i> She sighs and fumbles at a nearby drawer. <i>“Anyway, I’ve got a present for you.”</i>");
+		output("\n\nYou look at her dick as it rises up to jut angrily toward you. <i>“It had better not be your dick.”</i>");
+		output("\n\nPenny giggles almost drunkenly. <i>“No, no, of course not.”</i>\n\n");
+	}
+	//MERGE: No new PG
+	output("\n\nYou hear a latch open and the gravelly sound of poorly lubricated rollers giving way.");
+	output("\n\nTriumphantly, Penny pulls a pair of functional blue panties - or what were functional blue panties once, long ago. A thick hole was clearly cut in the center of the gusset, then reinforced by an amateur seamstress’ hand. She lays them out across the tip of her pre-oozing cock and sighs. <i>“They didn’t fit right after all the throbb, and after a while, I couldn’t get them to stop smelling like cum. I even tried soaking them in my pussy while I jerked off, and it didn’t help.”</i>");
+	output("\n\nYou arch an eyebrow, <i>“Did you try washing them?”</i>");
+	output("\n\nPenny points her cock your way, allowing you to see the center of the fabric beginning to darken with her pre-cum. <i>“Of course! What kind of cum-addled sexpot do you think I am?”</i> She giggles inanely and ");
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("scoops a stray strand of spunk into her mouth");
+	else output("bends down to suck some of her pre-cum out of the moistening panties");
+	output(". <i>“Mmmm... once they get all spunky, I usually just throw them out so I can break in a new pair, but these ones are special.”</i>");
+	output("\n\nThis close, you’ve got to admit, they smell a lot like the dick they’re mounted on... and a little like very wet pussy. <i>“How’s that?”</i> you barely remember to ask.");
+	output("\n\n<i>“They’re the ones I was wearing when you talked me into growing that dick. The first ones that ever got soaked in pre-cum from how horny I got or were used to wipe up all the gooey spunk I shot.”</i> Penny moans, and more of the fabric darkens, wicking the lusty prick-vixen’s pre-cum up.");
+	output("\n\nYou snatch them off her pole before she soaks them, having no desire to carry around a pair of cum-soaked panties.");
+	output("\n\nPenny’s dick snaps back up to full attention, and the spermy fox-girl grabs it in both hands, feverishly pumping it, jerking her hips upward with each thrust. ");
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("She starts shooting cum all over herself before you can say another word. There’s no denying the eroticism of the situation, or the way it’s making your pulse race.");
+	else output("Her mouth manages to seal around the head just before it begins to unload, stretching obscenely to allow such a large object to push into her throat. You can actually hear her belly gurgling as those urethra-distending bulges fire off into her stomach, one after another.");
+	output("\n\nYou look down at the dampened panties in your hand, your trophy for helping unleash the fennec-girl’s inner jizz-queen.");
+	output("\n\n<b>You’ve acquired Penny’s panties!</b>");
+	output("\n\nPenny pants, ");
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("spattering herself with a few weak squirts");
+	else output("licking a few stray droplets");
+	output(" from her seemingly always erect dick. <i>“I know you can’t always come here to use me, but maybe when you’re out there a planet away, you can");
+	if(pc.hasCock()) output(" jerk off with them, and you’ll think of me, moaning and cumming for you.");
+	else output(" rub your pussy off with them and think of me, moaning and cumming for you whenever you want.");
+	output("”</i>");
+	processTime(8);
+	pc.lust(13);
+	pc.createKeyItem("Panties - Penny's - Plain, blue, and crotchless.");
+	clearMenu();
+	addButton(0,"Next",pennyGirlfriendMenu);
 }

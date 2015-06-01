@@ -180,7 +180,46 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	
+	//PANTY FAPS!
+	if(pc.hasCock()) 
+	{
+		//KIRO!
+		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless."))
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Panty Fap";
+			fap.ttHeader = "Penny's Panties Fap"
+			fap.ttBody = "Grab Penny's cum-stained panties and use them to wring out another load.";
+			fap.func = futaBabePantyfaps;
+			fap.arg = "Kiro";
+			fap.ignoreRandomSelection = false;
+			faps.push(fap);
+		}
+		//PENNY!
+		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless."))
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Panty Fap";
+			fap.ttHeader = "Penny's Panties Fap"
+			fap.ttBody = "Grab Penny's cum-stained panties and use them to wring out another load.";
+			fap.func = futaBabePantyfaps;
+			fap.arg = "Penny";
+			fap.ignoreRandomSelection = false;
+			faps.push(fap);
+		}
+		//Syri!
+		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room."))
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Panty Fap";
+			fap.ttHeader = "Syri's Panties Fap"
+			fap.ttBody = "Grab Syri's cute blue panties and use them to wring out another load.";
+			fap.func = futaBabePantyfaps;
+			fap.arg = "Syri";
+			fap.ignoreRandomSelection = false;
+			faps.push(fap);
+		}
+	}
 	return faps;
 }
 
@@ -2114,4 +2153,51 @@ public function goddamnitJimTAndYourExhibitionism():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//Futa Babe Pantyfaps
+//Add [PantyFap] to masturbation menu. PC must have a dick + waifu panties. Open sub-menu to select which waifu's panties to jerk it into. 
+public function futaBabePantyfaps(waifu:String = ""):void
+{
+	clearOutput();
+	showName("PANTY\nNAUGHTINESS");
+	author("Savin");
+	var pantyColor:String = "some dickgirl";
+	if(waifu == "Kiro") pantyColor = "black";
+	else if(waifu == "Penny") pantyColor = "blue";
+	else if(waifu == "Syri") pantyColor = "blue";
+
+	output("Overcome by your mounting lusts and the yearning desire for the warm touch of your lover, you pull out the underthings you got from " + waifu + ", eyes wandering over the " + pantyColor + " fabric. Memories of your prior entanglements, the tender embraces and lusty encounters you’ve shared in the past. Your [pc.cocks] start");
+	if(pc.cockTotal() == 1) output("s");
+	output(" to stiffen with excitement at the fond memories, and your hand slowly works its way down to your crotch. Smiling to yourself, you gently stroke yourself and slink down ");
+	if(currentLocation != "SHIP INTERIOR") output("onto the ground");
+	else output("onto the edge of your bed");
+	output(".");
+
+	output("\n\nReclining back, you bring " + waifu + "’s panties up to your face and drink deep of the rich, musky scent of them, smelling so wonderfully of your lover that you could easily imagine her here with you, her crotch pressed into your face with a big, throbbing hard-on for you to worship. The thought of your lover’s tumescent cock rubbing against your face, her body wrapped around yours in a passionate embrace... her hands around your [pc.cock], stroking you... yeah, that’s enough to get you going.");
+
+	output("\n\nYou pull off your [pc.gear] and get comfortable, stopping to run your tongue along the palm of your ");
+	if(silly) output("fapping ");
+	output("hand before reaching back down to encircle your prick, starting to jack off nice and easy, pretending that it’s " + waifu + "’s mouth instead. Chewing your lip, you sigh into the wonderful little shockwaves of pleasure spilling up from your dick. <i>“Ah yeah,”</i> you murmur to yourself, moving a little faster, caressing every inch of your stiffening cockflesh.");
+
+	output("\n\nYou take a last, long sniff of your lover’s panties - and the intoxicating, masculine aroma clinging to them - before taking them down and wrapping the " + pantyColor + " fabric around your cock. You can’t help but smile at yourself, grinning at the perverse shame of using your lover’s cute " + pantyColor + " panties to jerk yourself off. Still, they feel wonderful on your sensitive cockflesh, and you let out a sultry little moan as you strike yourself with " + waifu + "’s panties.");
+
+	output("\n\nThe longer you go, the heavier your breathing gets, and the more your cock throbs in its sheath of silky panty. You move them faster and faster, gliding along your [pc.cock] as your lust builds ever higher. Your [pc.hips] buck into the " + pantyColor + " panties, drooling thick streaks of [pc.cumColor] pre across the fabric with every thrust and adding your own flavor to your lover’s well-used underthings.");
+
+	output("\n\n<i>“Gonna... gonna...”</i> you murmur under your breath, trying to hold back... and failing miserably. The perversion and pleasure and smell of sex all combine to overwhelm your senses, and your cock bulges with a rush of seed waiting to stain the " + pantyColor + " fabric [pc.cumColor]. With a final, exhilarated moan, you arch your back and thrust deep into the wadded mass of " + waifu + "’s panties, busting your nut into the musky crotch, right where she’d want it...");
+
+	output("\n\nMoaning, panting, and cumming, you ");
+	if(pc.cumQ() < 10) output("spurt trickles of [pc.cumFlavor] spooge all over " + waifu + "’s panties");
+	else if(pc.cumQ() < 50) output("squirt thick load after load all over the panties");
+	else if(pc.cumQ() < 250) output("blast the panties with cum, soaking them in your [pc.cumNoun]");
+	else output("unleash an ungodly torrent of [pc.cumNoun] into the poor, abused panties, soaking them in what looks like buckets of [pc.cum]. They definitely are carrying <i>your</i> smell more than " + waifu + "’s now.");
+
+	output("\n\nYou flop back and take a deep, satiated breath, mind flooded with fantasies of a pleasant afterglow in " + waifu + "’s arms. Slowly, [pc.eachCock] deflates from inside her bunched-up panties, and you eventually pick yourself up and ");
+	if(currentLocation != "SHIP INTERIOR") output("do what you can to clean your lover’s underwear off");
+	else output("dump the panties into your clothes washer");
+	output(" before you leave.");
+	processTime(17+rand(4));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

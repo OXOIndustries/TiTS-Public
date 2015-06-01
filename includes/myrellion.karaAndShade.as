@@ -1067,7 +1067,7 @@ public function cuntTailShadeFux():void
 	showShade();
 	var x:int = pc.cockThatFits(chars["SHADE"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	output("As Shade looms over you, you feel her scaled tail coiling around your [pc.leg], the wet slit at its tip leaving a drooling tail up your bare thigh. Its owner casts a quick glance over her shoulder, watching her tail caress you. She leans back, planting her hands on her hips, and gives you a smirking grin. <i>“Looks like somebody likes you, Steele,”</i> she chuckles as her parasitic tail traces up your [pc.leg], slowly meandering towards your [pc.crotch]. Shade shifts up on her knees, giving her cunt-tail room to work its way up to your [pc.cock " + x + "], ");
+	output("As Shade looms over you, you feel her scaled tail coiling around your [pc.leg], the wet slit at its tip leaving a drooling trail up your bare thigh. Its owner casts a quick glance over her shoulder, watching her tail caress you. She leans back, planting her hands on her hips, and gives you a smirking grin. <i>“Looks like somebody likes you, Steele,”</i> she chuckles as her parasitic tail traces up your [pc.leg], slowly meandering towards your [pc.crotch]. Shade shifts up on her knees, giving her cunt-tail room to work its way up to your [pc.cock " + x + "], ");
 	if(pc.cockTotal() > 2) output("selecting that particular member out of your bundle of cocks and ");
 	else if(pc.cockTotal() == 2) output("choosing it over its brother and ");
 	output("rubbing its wet, slitted head up along your shaft. You try and suppress a groan as her tail takes hold of your prick, working its way up towards your crown.");

@@ -1,8 +1,9 @@
-package classes.Characters 
+﻿package classes.Characters 
 {
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
+	import classes.StorageClass;
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Protection.JoyCoPremiumShield;
@@ -20,7 +21,7 @@ package classes.Characters
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -199,6 +200,14 @@ package classes.Characters
 			delete d.resistances;
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
+		}
+		public function UpgradeVersion2(d:Object):void
+		{
+			var se:StorageClass = new StorageClass();
+			se.storageName = "Nuki Drunk";
+
+			d.perks.push(se.getSaveObject());
+			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {

@@ -373,6 +373,7 @@ public function shipMenu():Boolean {
 	}
 	if (hasShipStorage()) addButton(5, "Storage", shipStorageMenuRoot);
 	else addDisabledButton(5, "Storage");
+
 	return false;
 }
 
@@ -449,6 +450,20 @@ public function flyTo(arg:String):void {
 		currentLocation = "SHIP HANGAR";
 		output("You fly to Mhen'ga");
 		output(" and step out of your ship.");
+		if(flags["LANDING_EVENT_CHECK"] == 1)
+		{
+			if(syriIsAFuckbuddy() && !pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
+			{
+				gettingSyrisPanties();
+				return;
+			}
+			else if(syriIsAFuckbuddy() && rand(4) == 0)
+			{
+				gettingSyrisPanties();
+				return;
+			}
+			flags["LANDING_EVENT_CHECK"] = undefined;
+		}
 	}
 	else if(arg == "Tavros") {
 		shipLocation = "TAVROS HANGAR";
@@ -477,6 +492,7 @@ public function flyTo(arg:String):void {
 		flyToMyrellion();
 	}
 	processTime(600 + rand(30));
+	flags["LANDING_EVENT_CHECK"] = 1;
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }

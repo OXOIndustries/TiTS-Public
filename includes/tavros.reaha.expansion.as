@@ -511,7 +511,7 @@ public function reahaTalkAddiction():void
 	output("\n\n<i>“A couple of patches and I was a drooling, horny mess begging whoever they sent into the room to fuck me. I’d do </i>anything<i> to get off... just to get a little relief. It was awful at first... until I started getting used to it, but then they’d just put </i>more<i> patches on me, and back on the fuck-Reaha-senseless merry-go-round we went until you found me with my ass covered in the stupid things... and also in the air, chained up in a fuck-room so all I could do was wiggle my butt and beg you for a fuck.”</i>");
 	
 	output("\n\nShe shivers at the thought. <i>“I’m just glad to be out of there.");
-	if (flags["REAHA_ADDICTION_HELP"] == undefined) output(" Even if I’m probably going to be addicted to these stupid patches for the rest of forever.”</i>");
+	if (reahaAddicted()) output(" Even if I’m probably going to be addicted to these stupid patches for the rest of forever.”</i>");
 	else
 	{
 		if (reahaAddiction() > REAHA_ADDICTION_MED) output(" Especially with you helping me, now. I’d probably never have gotten up the willpower to pull the patches off on my own.”</i>");

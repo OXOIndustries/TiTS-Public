@@ -1,4 +1,4 @@
-public function saenHeader(nude:Boolean = false):void
+﻿public function saenHeader(nude:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -1615,4 +1615,126 @@ public function saendraPostFuckscene():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//Getting Futa!Saendra's Panties
+//Replace her normal sex scenes after Futafication. 10% chance to play when fucking her. 
+//Replace 3rd paragraph in sex intro with:
+
+public function newFutaSaendraScenes():void
+{
+	clearOutput();
+	saenHeader();
+	var x:int = -1;
+	if(pc.hasVagina())
+	{
+		x = pc.cuntThatFits(chars["SYRI"].cockVolume(0));
+		if(x < 0) x = rand(pc.totalVaginas());
+	}
+	output("For a second, you part; you’re both panting with lust and desire, hands roaming all over each other. Her voice dripping with raw sexuality, Saendra reaches between her legs and starts to stroke her dick. <i>“I think it’s about time you took responsibility for this big slab of cockmeat,”</i> she purrs, kissing you and grinding the nub-ringed crown against your [pc.leg]. <i>“You wanted it soooo bad, didn’t you? Still want it now?”</i>");
+	output("\n\nYou nod eagerly, ready and willing to take advantage of your lover’s throbbing masculinity. The moment you do, you feel Saen’s fingers grab your [pc.hips] and suddenly you’re getting flipped around, your face buried in her pillow and your [pc.butt] in the air. Her metallic hand grabs the back of your head and forces you down, and you’re pretty sure you hear something about <i>“bite the pillow”</i> as she gets you right where she wants you - and where you want to be.");
+	if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" Your tail lifts up eagerly, inviting the beautiful bitchkitten to ravage you however she wants.");
+
+	output("\n\nShe slaps your ass and sidles up behind you, making you cry out in that wonderful mix of pleasure and pain that sends fire through your loins.");
+	if(pc.hasCock()) output(" Your [pc.cock] jumps to attention, throbbing powerful and already beading with pre. Something tells you it isn’t going to get much attention while Saen’s masculinized libido is flaring like this, and you reach back between your legs to stroke it.");
+	output(" You feel Saendra’s knotty kitty-cock grind against your [pc.butt], running her ring of spines between your asscheeks and prodding gently against your [pc.vagOrAss " + x + "].");
+
+	output("\n\n<i>“Mmm, let’s make things a little sloppier back here,”</i> your lover suggests, reaching into her nightstand and pulling out a bottle of a clear, thick liquid that your mind automatically identifies as lube. She pops it, and a second later you feel a cold drizzle hitting your backside; Saen sucks in a sharp breath ");
+	output("of appreciation");
+	if(silly) output(" and mutters <i>“Dat ass,”</i>");
+	output(" as she rubs the lube in, fingering your [pc.vagOrAss " + x + "] and spreading the shockingly cold stuff around.");
+
+	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. ");
+	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
+	else if(pc.buttRating()  <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
+	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
+	output("”</i>");
+
+	output("\n\nShe smacks your lubed-up butt again, harder this time, and you wiggle your [pc.butt] at her and push back against her cock. She’s got it nice and slicked up, too, slathered in so much lube that it’s dripping a nice little puddle between her legs. Even her balls, pressed against your hind end, seem nice and juicy with all that wetness on them... maybe when Saen’s done emptying them into your [pc.vagOrAss " + x + "] you can convince her to let your give them some well-deserved worship.");
+
+	output("\n\n<i>“So eager,”</i> Saendra says, and as she speaks you feel two of her fingers slip along your rump and down to the tip of her cock, pushing it down until her nubby ring is flush against the ");
+	if(pc.hasVagina()) output("lips");
+	else output("ring");
+	output(" of your [pc.vagOrAss " + x + "]. <i>“You really must love dickgirls, huh? Wanna feel my tits on your back while I fuck you doggystyle... ugh, can’t tease you that much, or I might just cum all over your ass before we start.”</i>");
+
+	output("\n\nWith a whine, you beg Saendra to go ahead and fuck you already. The thought of all this leadup ending into a butt-basting before it even begins is too much to bear - you need her <i>now</i>!");
+	output("\n\nIn one rough, forceful motion Saendra pistons her hips forward and grabs you");
+	if(pc.hasHair()) output("r hair");
+	else output("by the scruff of the neck");
+	output(", pulling your head up and into a passionate kiss that muffles your screams of excitement. Her kitty-cock slides into you, all but gliding along your sensitive walls on a glaze of cold lubricant; the ring of feline spines around her tapered crown digs into you, stretching you just a little wider, and rubbing against your most tender places with vigorous purpose.");
+
+	output("\n\nSaen slides in to the hilt, grunting in your [pc.ear] as she pounds your ");
+	if(pc.hasVagina()) output("cunt");
+	else output("ass");
+	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into you hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
+	if(pc.IQ() > 75) output(" Definitely one of your best investments yet.");
+	else if(pc.isBimbo()) output(" Everything’s better with dicks - especially your girlfriends!");
+
+
+
+	if(pc.hasVagina()) pc.cuntChange(x, saendra.cockVolume(0));
+	else pc.buttChange(saendra.cockVolume(0));
+
+	output("\n\n<i>“Keep the noise down, lover,”</i> Saen giggles mid-thrust. <i>“I don’t want the neighbors to get angry.”</i>");
+	output("\n\nYou try to keep it down - you really do - but the feeling of Saen’s spiny dick grinding against your ");
+	if(pc.hasVagina()) output("vaginal");
+	else output("anal");
+	output(" walls, the way her breasts press against your back, her breath hot against your cheeks as your lover humps away at you... it’s all too much. Your cries of pleasure only escalate, getting louder and faster until you feel like your voice is a constant stream of pleasured cries.");
+
+	output("\n\nFinally, Saen seems to get annoyed with your screams. Rather than letting up on ");
+	if(!pc.hasVagina()) output("reaming you");
+	else output("pounding your pussy");
+	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. Its the latter one that overpowers you the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
+
+	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
+	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", my favorite little bottom bitch");
+	output("!");
+
+	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");
+	if(pc.hasVagina()) output("pussy");
+	else output("ass");
+	output(" so forcefully you’re half-sure you’ll have bruises on your butt in the morning. Your [pc.butt] bounces to the beat of her thrusts, and the bed creaks noisily underneath you. Your fingers dig into the sheets, clawing at Saen’s bed to take some comfort against the more and more brutal ");
+	if(!pc.hasVagina()) output("ass-");
+	output("fucking you’re taking.");
+
+	output("\n\n<i>“Oh, that’s good,”</i> Saen growls, pressing the turgid knot against your spasming hole. <i>“Ugh, gonna... gonna cum soon... Hang on down there, Hero!”</i>");
+
+	output("\n\nOh God. You clench your teeth around her musky panties, trying to relax your body as best you can in order to admit the meaty wad of dog-flesh at the base of Saen’s thrusting cock. Even then, the amorous bitch-kitten meets enough resistance that she ends up grabbing the bottle of lube and spraying down her bitch-breaker, lathering it up until she’s finally able to push it into you.");
+
+	output("\n\nEven her panties can’t stop the sound of you screaming now, crying out in overwhelming pleasure as you’re stretched to the limit by the halfbreed’s turgid knot. Then again, Saen’s crying out as well, back arched and tails swishing at full-speed; your [pc.vagOrAss " + x + "] clenches hard on her knot, enough to send her right over the edge and in orgasm. Your eyes bulge as your ");
+	if(pc.hasVagina() && !pc.isPregnant(x)) output("womb is");
+	else if(pc.hasVagina()) output("tunnel");
+	output(" flooded with bitch-kitten spunk, a wash of hot, sticky white cream that gives you the most wonderfully full sensation.");
+
+	output("\n\n<i>“Fuck,”</i> she grunts, flopping on top of you. Her big, bouncy breasts press heavily against your back, <i>“That was... that was worth getting a dick.”</i>");
+	output("\n\n<i>“Mff mumph,”</i> you answer around a mouthful of panties.");
+
+	//first time, get panties
+	if(pc.hasKeyItem("9999"))
+	{
+		output("\n\n<i>“You can hang onto those,”</i> Saen laughs, reaching down to give you a kiss on the lips around her cummy pink undies. <i>“Since we can’t be together </i>all<i> the time... maybe");
+		if(pc.hasCock()) output(" when you get lonely you can use ‘em to jerk off and think of me, huh? Or maybe");
+		output(" you can be a real pervert and wear ‘em around. A big, girly, pink sign that you’re aaaaallllll mine,”</i> she giggles, kissing you again.");
+		output("\n\n <i>“Okay, I’m gonna go back down,”</i> she laughs, running a hand along your bare side. <i>“See you later, babe. Lock up when you can feel your legs again, okay.”</i>");
+		output("\n\nYou give a weak thumbs up and roll onto your side, yawning contentedly.");
+		//[Next], back down to bar.
+		//Acquired new panties: Saendra’s - Ultra-tight and bright pink.
+	}
+	//Repeat, has panties
+	else
+	{
+		output("\n\n<i>“Oh, yeah, lemme grab those,”</i> Saen laughs, yanking her panties out of your mouth. You gasp and drool as soon as they come out, and watch them tumble to the floor.");
+		output("\n\n<i>“Gross. Anyway,”</i> you feel Saen’s hand on your ass and, with a little push and a lot of help from lube, Saen pulls her knot out of your well-fucked ");
+		if(pc.hasVagina()) output("cunt");
+		else output("ass");
+		output(". She grins to herself when some of her cum drools out of your hole, and she gives you a playful swat. <i>“I’m gonna head out. Lock up when you can feel your legs again, okay, Hero?”</i>");
+		output("\n\nYou give a weak thumbs up and roll onto your side, yawning contentedly.");
+	}
+	//[Next], back down to bar.
+	if(pc.hasVagina()) pc.loadInCunt(saendra,x);
+	else pc.loadInAss(saendra);
+	processTime(24);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
