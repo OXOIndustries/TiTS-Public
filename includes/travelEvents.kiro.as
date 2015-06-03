@@ -2140,7 +2140,7 @@ public function inviteAFriendForKiroPlays():void
 	clearMenu();
 	if(flags["SAEN MET AT THE BAR"] != undefined)
 	{
-		if(rooms[currentLocation].planet == "TAVROS STATION") addDisabledButton(0,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+		if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(0,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
 		else if(pc.hasCock()) addButton(0,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
 		else addDisabledButton(0,"Saendra","Saendra","This scene requires a penis to participate in.");
 	}

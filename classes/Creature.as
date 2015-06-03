@@ -5528,6 +5528,17 @@
 			}
 			return false;
 		}
+
+		public function hasInvertedNipples(): Boolean
+		{
+			var counter: Number = breastRows.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) return true;
+			}
+			return false;
+		}
 		public function hasFlatNipples(): Boolean {
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
