@@ -211,7 +211,7 @@ public function getMilkedWithMillie():void
 	output("\n\nMillie is openly ogling your [pc.fullChest], her eyes tracing figure eights over every sensuous");
 	if(pc.milkFullness >= 90) output(", [pc.milkNoun]-packed");
 	else output(", lactating");
-	output(" curve. Her nipples have grown even more prominent, if such a thing is even possible. They look hard enough to cut two holes in the top of her too-tight overalls. She licks her lips, offering, “Did you want to use the machines or would you rather I take care of you the old fashioned way? I’m feeling a little thirsty...”</i>");
+	output(" curve. Her nipples have grown even more prominent, if such a thing is even possible. They look hard enough to cut two holes in the top of her too-tight overalls. She licks her lips, offering, <i>“Did you want to use the machines or would you rather I take care of you the old fashioned way? I’m feeling a little thirsty...”</i>");
 	processTime(15);
 	pc.lust(15);
 	clearMenu();

@@ -1518,7 +1518,7 @@ public function reahaBootOffShip():void
 		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
 		else if (pc.isMischievous())
 		{
-			output(" <i>“Guess what?");
+			output(" <i>“Guess what?”</i>");
 		
 			output("\n\n<i>“What?”</i> she says, blinking at you.");
 		
