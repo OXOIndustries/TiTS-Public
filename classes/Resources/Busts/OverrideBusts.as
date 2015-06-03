@@ -40,6 +40,21 @@
 		//[Embed(source = "../../../assets/images/npcs/kara.png", mimeType = "image/png")]
 		//public var Bust_KARA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana.png", mimeType = "image/png")]
+		public var Bust_LILIANA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_blanket.png", mimeType = "image/png")]
+		public var Bust_LILIANA_BLANKET:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_nude.png", mimeType = "image/png")]
+		public var Bust_LILIANA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_cyborg.png", mimeType = "image/png")]
+		public var Bust_LILIANA_CYBORG:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_cyborg_nude.png", mimeType = "image/png")]
+		public var Bust_LILIANA_CYBORG_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_regen.png", mimeType = "image/png")]
+		public var Bust_LILIANA_REGEN:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_regen_nude.png", mimeType = "image/png")]
+		public var Bust_LILIANA_REGEN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla.png", mimeType = "image/png")]
 		public var Bust_LYRALLA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla_nude.png", mimeType = "image/png")]

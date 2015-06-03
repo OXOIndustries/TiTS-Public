@@ -18,11 +18,29 @@ public function lilianaBonusShits():void
 	}
 }
 
-public function showLiliana():void
+public function showLiliana(nude:Boolean = false):void
 {
 	author("Gardeford");
 	showName("\nLILIANA");
-	showBust("LILIANA");
+	if(lilianaArms() == 3)
+	{
+		if(!nude) showBust("LILIANA");
+		else showBust("LILIANA_NUDE");
+	}
+	else
+	{
+		if(flags["LILIANA_ARMS"] == 2) 
+		{
+			if(!nude) showBust("LILIANA_REGEN");
+			else showBust("LILIANA_REGEN_NUDE");
+		}
+		else 
+		{
+			if(!nude) showBust("LILIANA_CYBORG");
+			else showBust("LILIANA_CYBORG_NUDE");
+		}
+	}
+
 }
 
 public function lilianaEncouraged():Boolean
@@ -45,6 +63,7 @@ public function approachLiliana():void
 	showLiliana();
 	if(flags["MET_LILIANA"] == undefined)
 	{
+		showBust("LILIANA_BLANKET");
 		flags["MET_LILIANA"] = 1;
 		output("You walk over to the light haired myrmedion, planning to ask her if she wants a drink. Her features are as fair as her hair, pale white skin with rosy cheeks and dark obsidian eyes. Her arms are hidden under a blanket that surrounds her body below the neck. The blanket prevents any detailed examination of her body, but judging by how tightly she's hugging it to herself she could be quite curvaceous and you wouldn't be able to tell. She retains her nervous look as you come closer, avoiding direct eye contact until you're standing at her table.");
 		output("\n\n<i>“Hey there, could I buy you a-”</i>");
@@ -58,6 +77,7 @@ public function approachLiliana():void
 	}
 	else
 	{
+		showBust("LILIANA_BLANKET");
 		output("<i>“");
 		//if (pre/post) encourage:
 		if(!lilianaEncouraged()) output("O-o");
@@ -102,6 +122,7 @@ public function talkToLilianaLater():void
 {
 	clearOutput();
 	showLiliana();
+	showBust("LILIANA_BLANKET");
 	output("You tell Liliana that you have something to do, but promise you won’t tell anyone about her. She looks a little sad, but nods and makes no attempt to stop you as you leave.");
 	processTime(1);
 	clearMenu();
@@ -140,6 +161,7 @@ public function talkToLilianaYouBafoooooon():void
 {
 	clearOutput();
 	showLiliana();
+	showBust("LILIANA_BLANKET");
 	//[talk 1]
 	if(flags["LILIANA_TALKS"] == undefined)
 	{
@@ -344,7 +366,7 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 public function sexUpDatAntBitch():void
 {
 	clearOutput();
-	showLiliana();
+	showLiliana(true);
 	//ifnaked:
 	if(pc.isNude()) 
 	{
@@ -398,7 +420,7 @@ public function sexUpDatAntBitch():void
 public function maleFuxLiliana():void
 {
 	clearOutput();
-	showLiliana();
+	showLiliana(true);
 	var x:int = pc.cockThatFits(300);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You line up your [pc.cock " + x  + "] with her glistening hole, pressing the [pc.cockHead " + x + "] against it. You gently ease into her, reveling in the tightness of her passage. She clenches instinctively as you enter her, tight as a vice but not quite painful. Her hands clench the sheet of the bed as her legs splay out to the sides.");
@@ -447,7 +469,7 @@ public function maleFuxLiliana():void
 public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferentPeople():void
 {
 	clearOutput();
-	showLiliana();
+	showLiliana(true);
 	var x:int = rand(pc.totalVaginas());
 	output("You lean in close, pressing your ");
 	if(pc.biggestTitSize() >= 3) output("larger");
