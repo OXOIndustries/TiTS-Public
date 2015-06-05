@@ -2168,7 +2168,7 @@ public function inviteSaenForKiroFilling():void
 {
 	clearOutput();
 	showBust("SAENDRA_NUDE","KIRO_NUDE");
-	showName("KIRO\n& SANEDRA");
+	showName("KIRO\n& SAENDRA");
 	author("Adjatha");
 
 	output("You step back into the pirate’s chambers, Saendra close at your heels, eager to check out the surprise you promised her. When the halfbreed’s eyes fall on Kiro’s nubile form, her eyes go wide. Yours go a little wide too, for that matter- though you were only gone for a short while, the anticipation must’ve done a number on the kui-tan’s libido. Though you left her with " + kiro.ballsDescript(false, true) + ", they’ve inflated well over the size of a pair of beachballs, hanging past her knees, her legs partly swallowed by the soft, supple surface. Her expression is one of impatience and annoyance.");
