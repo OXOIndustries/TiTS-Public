@@ -1418,8 +1418,12 @@ public function pennyGirlfriendMenu():void
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-	else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	{
+		if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+	}
+	else addDisabledButton(2,"ReportBadger","ReportBadger","You already turned in Doctor Badger.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
