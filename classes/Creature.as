@@ -10388,7 +10388,6 @@
 		public function pregnancyMultiplier():Number
 		{
 			var bonus:Number = 0;
-			if(hasPerk("Breed Hungry")) bonus += .5;
 			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
 		}
 		
@@ -10407,6 +10406,7 @@
 		{
 			var bonus:Number = 0;
     		if(hasPerk("Incubator")) bonus += perkv1("Incubator");
+    		if(hasPerk("Breed Hungry")) bonus += 1;
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
 		}
 		
