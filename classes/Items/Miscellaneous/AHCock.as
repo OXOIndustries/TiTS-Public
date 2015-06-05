@@ -24,7 +24,7 @@
 			this.shortName = "A.H.Cock";
 			
 			//Regular name
-			this.longName = "synth-phallus modelled after a horse’s";
+			this.longName = "synth-phallus - horse";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

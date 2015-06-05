@@ -67,7 +67,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon's Hoard", dragonsHordeCodexStory, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 }
 
 public function codexHomeFunction():void
@@ -1635,7 +1635,7 @@ public function sionachCodexEntry():void
 public function cockvinesCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("COCKVINE");
+	showBust("ADULTCOCKVINE");
 	outputCodex(header("Cockvine"));
 	outputCodex("<b>Name (Singular & Plural):</b> Cockvine");
 	
@@ -1677,7 +1677,7 @@ public function cockvinesCodexEntry():void
 public function nyreaCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("NYREA");
+	showBust("NYREA_ALPHA");
 	outputCodex(header("Nyrea"));
 	outputCodex("<b>Name (Singular & Plural):</b> Nyrea");
 	outputCodex("\n<b>Sexes:</b> Male & Female. Note Reproduction below.");

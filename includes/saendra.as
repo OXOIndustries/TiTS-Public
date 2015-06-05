@@ -1720,7 +1720,7 @@ public function newFutaSaendraScenes():void
 	output("\n\n<i>“Mff mumph,”</i> you answer around a mouthful of panties.");
 
 	//first time, get panties
-	if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
+	if(!pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 	{
 		output("\n\n<i>“You can hang onto those,”</i> Saen laughs, reaching down to give you a kiss on the lips around her cummy pink undies. <i>“Since we can’t be together </i>all<i> the time... maybe");
 		if(pc.hasCock()) output(" when you get lonely you can use ‘em to jerk off and think of me, huh? Or maybe");

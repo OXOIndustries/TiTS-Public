@@ -595,6 +595,7 @@
 			FLAG_NUBBY,
 			FLAG_AMORPHOUS,
 			FLAG_BLUNT,
+			FLAG_SMOOTH,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
@@ -606,7 +607,7 @@
 			TYPE_LAPINARA,
 			TYPE_VANAE,
 			TYPE_KUITAN,
-		]
+		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
 		// So I'm winging it.

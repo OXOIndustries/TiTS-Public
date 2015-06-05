@@ -1459,6 +1459,12 @@
 				case "cockTail":
 					buffer = tailCockDescript();
 					break;
+				case "cockOrStrapon":
+					buffer = cockOrStrapon();
+					break;
+				case "cockOrStraponNoun":
+					buffer = cockOrStrapon(-1);
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -9925,6 +9931,67 @@
 		{
 			return tailGenitalColor;
 		}
+		// Always picks the main anatomy--no need to complicate it!
+		public function cockOrStrapon(forceAdjective: int = 0): String {
+			var descript: String = "";
+			var sAdjective:Array = [];
+			var sNoun:Array = [];
+			
+			// Strapons! Always takes precedence, I guess!
+			if(lowerUndergarment.hardLightEquipped)
+			{
+				sAdjective = ["hardlight", "hardlight", "hardlight", "hardlight", "holo-", "holo-", "holo-", "projected", "projected", "holographic"];
+				sNoun = ["strapon", "strapon", "strapon", "dildo", "dildo"];
+				if(kGAMECLASS.silly)
+				{
+					sAdjective.push("lite-brite");
+					sAdjective.push("glow-in-the-dark");
+					sNoun.push("beam saber");
+					sNoun.push("lazer beam");
+					sNoun.push("funstick");
+					sNoun.push("disco stick");
+					sNoun.push("pillar of ecstasy");
+				}
+				//Force an adjective
+				if(forceAdjective == 1)
+				{
+					descript += RandomInCollection(sAdjective);
+					if(descript != "holo-") descript += " ";
+				}
+				//Chance of adjective!
+				else if(forceAdjective == 0 && rand(2) == 0)
+				{
+					descript += RandomInCollection(sAdjective);
+					if(descript != "holo-") descript += " ";
+				}
+				descript += RandomInCollection(sNoun);
+				return descript;
+			}
+			// Penis?
+			else if(hasCock())
+			{
+				if(forceAdjective) descript += cockAdjective(0) + " ";
+				descript += cockNoun(0);
+				return descript;
+			}
+			// Giant Clits?
+			else if(hasVagina() && vaginas[0].clits >= 1 && clitLength >= 4)
+			{
+				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
+				{
+					if(forceAdjective) descript += "mighty ";
+					descript += "clitosaurus";
+					return descript;
+				}
+				else
+				{
+					if(forceAdjective) return clitDescript(0);
+					else return clitDescript(0);
+				}
+			}
+			// Error, return something though!
+			else return "strapon";
+		}
 		public function cockDescript(cockNum: Number = 0): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 			if (cockTotal() <= cockNum && cockNum != 99) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
@@ -10405,8 +10472,8 @@
 		public function pregnancyIncubationBonusMother():Number
 		{
 			var bonus:Number = 0;
-    		if(hasPerk("Incubator")) bonus += perkv1("Incubator");
-    		if(hasPerk("Breed Hungry")) bonus += 1;
+			if(hasPerk("Incubator")) bonus += perkv1("Incubator");
+			if(hasPerk("Breed Hungry")) bonus += 1;
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
 		}
 		

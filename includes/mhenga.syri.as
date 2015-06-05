@@ -1750,7 +1750,7 @@ public function gettingSyrisPanties():void
 	{
 		output("\n\n<i>“Hey, I thought we were best friends!”</i> Anno shouts from her quarters.");
 		output("\n\n<i>“Oh my GOD. BLOW ME.”</i> Syri snaps back, rolling her eyes. As barely a whisper, she adds, <i>“You... uh... don’t think she actually will, do you?”</i>");
-		output("\n\nLaughing, you shake your head and tell Syri to get back to what she was doing. Don’t ruin the mood.}");
+		output("\n\nLaughing, you shake your head and tell Syri to get back to what she was doing. Don’t ruin the mood.");
 	}
 	output("\n\n<i>“Missed you too,”</i> you tell your lover, reaching up to grab her ass, digging your fingers into those sexy blue fishnets. Syri moans, rocking forward over you, pressing her tits into your face.");
 	output("\n\n<i>“You have no idea how happy I am to hear that,”</i> she whispers wrapping her arms around your head to trap you in between her breasts. She moves forward, onto the couch and straddling your [pc.hips]; your hands move in turn, around her waist and down between her legs, teasing her red puppy prick until it’s nice and hard, tenting her panties like a proper dog pole. Syri moans, rewarding your exploratory movements with hotter and heavier groans of pleasure as you seek out those familiar, tender spots along her sex or cup her balls, rolling the churning, full orbs in your hands.");

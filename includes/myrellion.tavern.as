@@ -208,8 +208,8 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		if(pc.isNice()) output(", even if you would like to thank her for the motherly treatment");
 		output(". You pack your gear up and head out shortly.");
 		processTime(189);
-		//PC in back alley
-		currentLocation = shipLocation;
+		//PC in Shade's ship
+		currentLocation = "602";
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
