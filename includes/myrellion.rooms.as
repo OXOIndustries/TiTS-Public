@@ -1020,6 +1020,7 @@ public function initializeMyrellionRooms():void
 	rooms["806"] = new RoomClass(this);
 	rooms["806"].roomName = "\nSTREET";
 	rooms["806"].description = "Civilian traffic here is starting to give way to Federation military presence. While the military seems to be trying to keep to themselves here in town, you can see a few sandbag redoubts up ahead as well as parked armored cars bearing heavy machineguns on turrets. They seem to be defending a northern tunnel that branches off further west.\n\nSeveral Federation infantrymen and officers are walking to and fro here. Whenever they see them, gold myr pedestrians cross to the other side of the street.";
+	rooms["806"].planet = "PLANET: MYRELLION";
 	rooms["806"].system = "SYSTEM: SINDATHU";
 	rooms["806"].eastExit = "805";
 	rooms["806"].westExit = "807";
@@ -1033,6 +1034,7 @@ public function initializeMyrellionRooms():void
 	rooms["807"] = new RoomClass(this);
 	rooms["807"].roomName = "\nSTREET";
 	rooms["807"].description = "The street here is largely devoid of anybody. The locals of Kressia seem to avoid the area, leaving the street barren. Those that do have to come this way hurry past a huge, wrought iron gate to the north, built into the edge of the bowl-like Kressia cavern. A smaller tunnel leads off beyond the gate towards a large manor house built in its own, smaller cavern. Several cars, including a few painted in a military fashion, are parked along the tunnel walls, and a handful of soldiers are walking to and from the mansion.";
+	rooms["807"].planet = "PLANET: MYRELLION";
 	rooms["807"].system = "SYSTEM: SINDATHU";
 	rooms["807"].eastExit = "806";
 	rooms["807"].westExit = "808";
@@ -1048,6 +1050,7 @@ public function initializeMyrellionRooms():void
 	rooms["808"] = new RoomClass(this);
 	rooms["808"].roomName = "\nSTREET";
 	rooms["808"].description = "Civilian traffic here is starting to give way to Federation military presence. While the military seems to be trying to keep to themselves here in town, you can see a few sandbag redoubts up ahead as well as parked armored cars bearing heavy machineguns on turrets. They seem to be defending a northern tunnel that branches off further east.\n\nSeveral small, posh-looking shops are set up along the street here, including watchmakers and dressmakers and a trendy cafe that seems to be attracting several wealthy gold myr.";
+	rooms["808"].planet = "PLANET: MYRELLION";
 	rooms["808"].system = "SYSTEM: SINDATHU";
 	rooms["808"].eastExit = "807";
 	rooms["808"].westExit = "809";
@@ -1061,6 +1064,7 @@ public function initializeMyrellionRooms():void
 	rooms["809"] = new RoomClass(this);
 	rooms["809"].roomName = "\nSTREET";
 	rooms["809"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.";
+	rooms["809"].planet = "PLANET: MYRELLION";
 	rooms["809"].system = "SYSTEM: SINDATHU";
 	rooms["809"].eastExit = "808";
 	rooms["809"].southExit = "810";
@@ -1075,6 +1079,7 @@ public function initializeMyrellionRooms():void
 	rooms["810"] = new RoomClass(this);
 	rooms["810"].roomName = "\nSTREET";
 	rooms["810"].description = "The street here is lined with shops, varying from \"expensive\" to \"decadent.\"";
+	rooms["810"].planet = "PLANET: MYRELLION";
 	rooms["810"].system = "SYSTEM: SINDATHU";
 	//rooms["810"].westExit = "9999";
 	rooms["810"].southExit = "811";
@@ -1090,6 +1095,7 @@ public function initializeMyrellionRooms():void
 	rooms["811"] = new RoomClass(this);
 	rooms["811"].roomName = "\nSTREET";
 	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the west leads into the city park, called \"Queen's Solace.\"";
+	rooms["811"].planet = "PLANET: MYRELLION";
 	rooms["811"].system = "SYSTEM: SINDATHU";
 	rooms["811"].eastExit = "824";
 	rooms["811"].southExit = "812";
@@ -1104,6 +1110,7 @@ public function initializeMyrellionRooms():void
 	rooms["812"] = new RoomClass(this);
 	rooms["812"].roomName = "\nSTREET";
 	rooms["812"].description = "More Federation soldiers are standing around here, perhaps a squad's worth, all armed. They seem fairly relaxed, though, and give you friendly nods as you pass by. Still, most gold myr who come by avoid the guards here, scurrying by with eyes down at their feet.";
+	rooms["812"].planet = "PLANET: MYRELLION";
 	rooms["812"].system = "SYSTEM: SINDATHU";
 	//rooms["812"].westExit = "9999";
 	rooms["812"].southExit = "813";
@@ -1121,6 +1128,7 @@ public function initializeMyrellionRooms():void
 	rooms["813"].roomName = "\nSTREET";
 	rooms["813"].description = "The corner of the street here is built into the side of the cave, with jagged rock overlooking the road. Electric lights flicker dimly over a short, aborted tunnel that seems to have intended to go westward. A sign indicates that a new shopping mall would be here next year, followed by another sign that says construction is canceled due to the declaration of war.\n\nThe city gates lie to the south-east, and the airfield to the northeast, a directional sign points out.\n\nOne of the signs on the merchant row indicates a “Survival Shop”. Some Federation soldiers are coming in and out of it, arms full of warm-looking clothing or admiring knives, guns, and axes.";
 	rooms["813"].system = "SYSTEM: SINDATHU";
+	rooms["813"].planet = "PLANET: MYRELLION";
 	rooms["813"].eastExit = "814";
 	rooms["813"].northExit = "812";
 	rooms["813"].westExit = "829";
@@ -1135,6 +1143,7 @@ public function initializeMyrellionRooms():void
 	rooms["814"].roomName = "\nSTREET";
 	rooms["814"].description = "This street is narrow and almost completely devoid of traffic. Nobody seems to want to venture too close to the city gates, likely because of the Federation garrison there. Some graffiti decorates the smaller shops here, many of which have closed.";
 	rooms["814"].system = "SYSTEM: SINDATHU";
+	rooms["814"].planet = "PLANET: MYRELLION";
 	rooms["814"].eastExit = "815";
 	rooms["814"].westExit = "813";
 	rooms["814"].moveMinutes = 2;
@@ -1148,6 +1157,7 @@ public function initializeMyrellionRooms():void
 	rooms["815"].roomName = "\nSTREET";
 	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen's Solace city park, and east towards Kressia's airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
 	rooms["815"].system = "SYSTEM: SINDATHU";
+	rooms["815"].planet = "PLANET: MYRELLION";
 	rooms["815"].eastExit = "816";
 	rooms["815"].northExit = "823";
 	rooms["815"].westExit = "814";
@@ -1163,6 +1173,7 @@ public function initializeMyrellionRooms():void
 	rooms["816"].roomName = "\nSTREET";
 	rooms["816"].description = "The street here is largely dominated by a parked Federation army vehicle that looks like a cross between a tank and a fuel truck, and reeks of promethium. A handful of red myr troops are huddled around the vehicle, squabbling over how to repair it.";
 	rooms["816"].system = "SYSTEM: SINDATHU";
+	rooms["816"].planet = "PLANET: MYRELLION";
 	rooms["816"].eastExit = "817";
 	rooms["816"].westExit = "815";
 	rooms["816"].moveMinutes = 2;
@@ -1176,6 +1187,7 @@ public function initializeMyrellionRooms():void
 	rooms["817"].roomName = "\nSTREET";
 	rooms["817"].description = "A corner store here offers massages, hair treatments, and honey milkings for cheap. It seems to be closed at the moment, though, and most of its windows are covered with recruitment posters for the Republic Defense Force. Grafitti on the walls condemns the Federation occupation, and the war in general.";
 	rooms["817"].system = "SYSTEM: SINDATHU";
+	rooms["817"].planet = "PLANET: MYRELLION";
 	rooms["817"].northExit = "818";
 	rooms["817"].westExit = "816";
 	rooms["817"].moveMinutes = 2;
@@ -1189,6 +1201,7 @@ public function initializeMyrellionRooms():void
 	rooms["818"].roomName = "\nSTREET";
 	rooms["818"].description = "A large building to the east advertises a \"thollum,\" a titanic domed structure that reaches several stories high, almost half way up to the ceiling of the great cavern. Several marble statues stand proudly along the steps up to the doors, many carrying books or scrolls.";
 	rooms["818"].system = "SYSTEM: SINDATHU";
+	rooms["818"].planet = "PLANET: MYRELLION";
 	rooms["818"].northExit = "819";
 	rooms["818"].southExit = "817";
 	rooms["818"].moveMinutes = 2;
@@ -1202,6 +1215,7 @@ public function initializeMyrellionRooms():void
 	rooms["819"].roomName = "\nSTREET";
 	rooms["819"].description = "This street has a small footpath branching off towards a city park, labeled \"Queen's Solace.\" A lot of gold myr are hanging around here, coming and going from several housing blocks off to the east and north.";
 	rooms["819"].system = "SYSTEM: SINDATHU";
+	rooms["819"].planet = "PLANET: MYRELLION";
 	rooms["819"].northExit = "820";
 	rooms["819"].southExit = "818";
 	rooms["819"].westExit = "826";
@@ -1218,6 +1232,7 @@ public function initializeMyrellionRooms():void
 	rooms["820"].roomName = "\nSTREET";
 	rooms["820"].description = "This street connects the main thoroughfare in the north with the road to the city gates down south. A sign indicates Kressia's airfield lies to the northeast, and the city park to the southwest.";
 	rooms["820"].system = "SYSTEM: SINDATHU";
+	rooms["820"].planet = "PLANET: MYRELLION";
 	rooms["820"].northExit = "805";
 	rooms["820"].southExit = "819";
 	rooms["820"].moveMinutes = 2;
@@ -1231,6 +1246,7 @@ public function initializeMyrellionRooms():void
 	rooms["821"].roomName = "\nSTREET";
 	rooms["821"].description = "The edge of the bowl-like cavern that Kressia lies in approaches, culminating in a long, windling tunnel leading south. A pair of a large, wrought-iron gates covered in concertina wire have been erected south of you, and several Scarlet Federation soldiers patrol the road. While they've gone to great lengths to disguise them, you can see a few pillboxes tucked into nearby alleyways, or sandbagged machinegun nests in the windows of an abandoned apartment building.";
 	rooms["821"].system = "SYSTEM: SINDATHU";
+	rooms["821"].planet = "PLANET: MYRELLION";
 	rooms["821"].northExit = "815";
 	rooms["821"].southExit = "803";
 	rooms["821"].moveMinutes = 2;
@@ -1244,6 +1260,7 @@ public function initializeMyrellionRooms():void
 	rooms["822"].roomName = "\nSTREET";
 	rooms["822"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A busker is playing some strange wind instrument to herself, and several small children are traipsing about under a caregiver's supervision.";// {9999Red Myr TF'd: Seeing you coming, the women gather up the children and scoot them off before you get too close.}
 	rooms["822"].system = "SYSTEM: SINDATHU";
+	rooms["822"].planet = "PLANET: MYRELLION";
 	rooms["822"].northExit = "825";
 	rooms["822"].southExit = "823";
 	rooms["822"].eastExit = "826";
@@ -1259,6 +1276,7 @@ public function initializeMyrellionRooms():void
 	rooms["823"].roomName = "\nSTREET";
 	rooms["823"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. A large fountain stands here, depicting several gold myr women with huge breasts spraying arcs of water rather than nectar. A few off-duty Federation soldiers are standing near it, giggling to each other and pointing at the statues' tits.";
 	rooms["823"].system = "SYSTEM: SINDATHU";
+	rooms["823"].planet = "PLANET: MYRELLION";
 	rooms["823"].northExit = "822";
 	rooms["823"].southExit = "815";
 	rooms["823"].moveMinutes = 2;
@@ -1272,6 +1290,7 @@ public function initializeMyrellionRooms():void
 	rooms["824"].roomName = "\nSTREET";
 	rooms["824"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making them most of the fungal gardens and quiet ambiance.";
 	rooms["824"].system = "SYSTEM: SINDATHU";
+	rooms["824"].planet = "PLANET: MYRELLION";
 	rooms["824"].westExit = "811";
 	rooms["824"].eastExit = "822";
 	rooms["824"].moveMinutes = 2;
@@ -1285,6 +1304,7 @@ public function initializeMyrellionRooms():void
 	rooms["825"].roomName = "\nSTREET";
 	rooms["825"].description = "The Queen's Solace park is quiet and relaxing, much less crowded than the rest of the city you've seen so far. Several gold myr are gathered around, reading a variety of books and taking turns reading passages aloud.";
 	rooms["825"].system = "SYSTEM: SINDATHU";
+	rooms["825"].planet = "PLANET: MYRELLION";
 	rooms["825"].northExit = "807";
 	rooms["825"].southExit = "822";
 	rooms["825"].moveMinutes = 2;
@@ -1298,6 +1318,7 @@ public function initializeMyrellionRooms():void
 	rooms["826"].roomName = "\nSTREET";
 	rooms["826"].description = "You can see that a statue once stood here, some sort of towering marble monument that stretched up to the heights of the cavern. A pair of stone hands still grasp the craggy top of the cavern, chiseled off from the wrists down. Its feet still stand on a wide pedestal, surrounded by rubble and what you assume to be some sort of police line, cordoning it off. Graffiti has been sprayed over the marble in spite of the warnings, which your translator quickly shifts to messages like \"Fuck the Reds!\" and \"Go home Federation!\"\n\nSeveral gold myr are milling around, sitting in benches and reading. A few military police stand in the background, mostly out of sight but keeping an eye on the statue for possible vandalism.";
 	rooms["826"].system = "SYSTEM: SINDATHU";
+	rooms["826"].planet = "PLANET: MYRELLION";
 	rooms["826"].westExit = "822";
 	rooms["826"].eastExit = "819";
 	rooms["826"].moveMinutes = 2;
@@ -1311,6 +1332,7 @@ public function initializeMyrellionRooms():void
 	rooms["827"].roomName = "TRADING\nPOST";
 	rooms["827"].description = "A sign has been posted up outside one of the buildings here, labeling it as a <i>“Federation Supply and Trading Post. Offworlders, inquire within.”</i> Several other planet-rushers are coming and going from the building, in addition to red myr troops - and even a few golds.";
 	rooms["827"].system = "SYSTEM: SINDATHU";
+	rooms["827"].planet = "PLANET: MYRELLION";
 	rooms["827"].westExit = "819";
 	rooms["827"].moveMinutes = 2;
 	rooms["827"].runOnEnter = renvraBonus;
@@ -1323,6 +1345,7 @@ public function initializeMyrellionRooms():void
 	rooms["828"].roomName = "A\nSHOP";
 	rooms["828"].description = "";
 	rooms["828"].system = "SYSTEM: SINDATHU";
+	rooms["828"].planet = "PLANET: MYRELLION";
 	rooms["828"].eastExit = "812";
 	rooms["828"].moveMinutes = 1;
 	rooms["828"].runOnEnter = merchantQueenRoomBonus;
@@ -1335,6 +1358,7 @@ public function initializeMyrellionRooms():void
 	rooms["829"].roomName = "KRESSIA\nSURVIVAL SHOP";
 	rooms["829"].description = "The shop's interior is rather small, but surprisingly cozy compared to the uncomfortably cool city outside. A fire crackles in a hearth against the west wall, just beside a staircase that leads up to another floor. The shop's main show floor is a haphazard array of display cases and clothing racks laden with military-style jackets and coats. A few primitive firearms are on offer under a glass case, though there's plenty of knives, hatchets, and swords for you to peruse. ";
 	rooms["829"].system = "SYSTEM: SINDATHU";
+	rooms["829"].planet = "PLANET: MYRELLION";
 	rooms["829"].eastExit = "813";
 	rooms["829"].moveMinutes = 1;
 	rooms["829"].runOnEnter = kressiaSurvivalShopEntryFunc;
@@ -1347,6 +1371,7 @@ public function initializeMyrellionRooms():void
 	rooms["830"].roomName = "BATH\nWALK";
 	rooms["830"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.\n\nThe bath house is open for business, it seems. Several people are wandering in and out, a healthy mix of both gold and red myr. The golds you see on the marble stairs are in various states of undress, some naked outright and others in skimpy robes that leave little to the imagination. Their red counterparts take in the view with an as much arousal as disdain.";
 	rooms["830"].system = "SYSTEM: SINDATHU";
+	rooms["830"].planet = "PLANET: MYRELLION";
 	rooms["830"].southExit = "809";
 	rooms["830"].westExit = "831";
 	rooms["830"].moveMinutes = 1;
@@ -1359,6 +1384,7 @@ public function initializeMyrellionRooms():void
 	rooms["831"].roomName = "BATH HOUSE\nFOYER";
 	rooms["831"].description = "The main room of the bath house is as opulent as you might have expected from a gold myr palace of pleasure: the structure seems to be made entirely of polished marble, gleaming white in the flicker of the electric lights mounted in the chandeliers. Despite the technological apparatus illuminating the hall, several sconces full of candles burn in alcoves set in regular intervals along the walls. The air is heavy with the luxurious smells of burning incense, bath salts, and just a hint of rich honey.\n\nMyr of both colorations are lounging around the lobby, either waiting their turns for the baths or wrapped up in toasty bathrobes after a dip. While most are keeping themselves discreetly segregated, there are a few red myr enjoying the attentions of their golden trench wives, or free golds flirtatiously teasing unsuspecting Federation soldiers.\n\nA matronly gold myr woman in a revealing white robe stands behind the a simple stone desk near the front door, her pillowy lips turned up into an ever-present smile. The hood of her robe is drawn up, and a veil covers her eyes down to the ridge of her nose, effectively blinding her. She seems to be the person you'd talk to about using the facilities here.";
 	rooms["831"].system = "SYSTEM: SINDATHU";
+	rooms["831"].planet = "PLANET: MYRELLION";
 	rooms["831"].eastExit = "830";
 	rooms["831"].moveMinutes = 1;
 	rooms["831"].runOnEnter = bathHouseBonus;

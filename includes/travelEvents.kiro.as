@@ -102,8 +102,8 @@ public function kiroMenu():void
 	addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
 	addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
 	if(pc.lust() < 33) addDisabledButton(3,"Sex","Sex","You aren't really interested in sex at the moment.");
-	else if(kiro.ballDiameter() > 14) addButton(3,"Sex",kiroBallsSexMenu);
-	else addButton(3,"Sex",kiroSexMenu);
+	else if(kiro.ballDiameter() > 14) addButton(3,"Sex",letsFuckKiro);
+	else addButton(3,"Sex",letsFuckKiro);
 	if(kiro.ballDiameter() > 7) addButton(4,"Relief BJ",giveKiroSomeRelief,undefined,"Relief BJ","Slink under the concealing surface above and give Kiro's poor balls the release they so desperately need. Besides, you were a little hungry, weren't you?");
 	else addDisabledButton(4,"Relief BJ","Relief BJ","Kiro's balls don't look swollen enough to need the relief right now, though they are quite large.");
 	addButton(14,"Leave",mainGameMenu);
@@ -1020,9 +1020,25 @@ public function kiroBallsSexMenu():void
 {
 	clearMenu();
 	showKiro(true);
-	if(pc.hasCock()) addButton(0,"Balljob",balljobFromKiro,undefined,"Balljob","Stick your cock between those oversized balls and squeeze out an orgasm - maybe for both of you.");
-	else addDisabledButton(0,"Balljob","Balljob","You need a penis to get a balljob from Kiro.");
-	addButton(1,"Catch Anal",bodyBloatingButtObliteratingBowelBasting,undefined,"Catch Anal","One way or another, Kiro's going to fill you up.");
+	//[Done] Take Her Virginity - 3800 words
+	//High trust only - get her panties.
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0)
+		{
+			if(kiro.vaginas[0].hymen) addButton(0,"Fuck Vag.",takeKirosVirginity,undefined,"Fuck Her Vagina","Kiro seems excessively focused on her dick. Why not share the loving with her vagina?");
+			else addButton(0,"Fuck Vag.",repeatVagFuckKiro,undefined,"Fuck her Vagina","You took her virginity; might as well see if she's still just as tight.");
+		}
+		else addDisabledButton(0,"Fuck Vag","Fuck Her Vagina","You don't have an appropriately-sized member for such an action. You'd split her in half!");
+	}
+	else addDisabledButton(0,"Fuck Vag.","Fuck Her Vagina","You need a penis to do this.");
+
+	if(pc.hasCock()) addButton(1,"Balljob",balljobFromKiro,undefined,"Balljob","Stick your cock between those oversized balls and squeeze out an orgasm - maybe for both of you.");
+	else addDisabledButton(1,"Balljob","Balljob","You need a penis to get a balljob from Kiro.");
+	addButton(2,"Catch Anal",bodyBloatingButtObliteratingBowelBasting,undefined,"Catch Anal","One way or another, Kiro's going to fill you up.");
+
+
+
 	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 }

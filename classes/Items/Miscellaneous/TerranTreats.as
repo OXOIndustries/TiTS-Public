@@ -156,7 +156,7 @@
 					
 					var ss:String = pc.skinFurScales();
 					
-					if (ss[ss.length - 1] == "s") kGAMECLASS.output(" " + ss + " are");
+					if (ss.charAt(ss.length - 1) == "s") kGAMECLASS.output(" " + ss + " are");
 					else kGAMECLASS.output(" " + ss + " is");
 					
 					kGAMECLASS.output(" bare of the intricate designs. <b>You have lost your body markings!</b>");

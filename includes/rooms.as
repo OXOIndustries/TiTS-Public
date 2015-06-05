@@ -3174,7 +3174,7 @@ public function initializeRooms():void
 	rooms["353"].moveMinutes = 1;
 	rooms["353"].addFlag(GLOBAL.OUTDOOR);
 	rooms["353"].addFlag(GLOBAL.HAZARD);
-	rooms["353"].addFlag(GLOBAL.COMMERCE);
+	rooms["353"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["354"] = new RoomClass(this);
 	rooms["354"].roomName = "\nWALKWAY";
@@ -3186,7 +3186,7 @@ public function initializeRooms():void
 	rooms["354"].moveMinutes = 1;
 	rooms["354"].addFlag(GLOBAL.OUTDOOR);
 	rooms["354"].addFlag(GLOBAL.HAZARD);
-	rooms["354"].addFlag(GLOBAL.COMMERCE);
+	rooms["354"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["355"] = new RoomClass(this);
 	rooms["355"].roomName = "\nWALKWAY";
