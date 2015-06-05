@@ -430,6 +430,11 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 	}
 	
 	var tPC:PlayerCharacter = pc;
+	//Update 
+	if(tPC.statusEffectv2(effectName) > 0)
+	{
+		if (!force) tPC.setStatusValue(effectName, 2, 0);
+	}
 
 	if (tPC.hasStatusEffect(effectName) && (force || tPC.statusEffectv2(effectName) > 0) && tPC.statusEffectv3(effectName) < 15)
 	{
@@ -4811,7 +4816,7 @@ public function feedMimbranesWithCock():void
 	output(" satisfied, you retrieve your gear and go back to something a little more self-gratifying.");
 
 	mimbraneFeed("all", 3);
-	
+	processTime(15);
 	pc.orgasm();
 	pc.orgasm();
 
@@ -4915,7 +4920,7 @@ public function feedMimbranesWithPussy():void
 	output(" satisfied, you retrieve your equipment and go back to something a little more self-gratifying.");
 
 	mimbraneFeed("all", 3);
-	
+	processTime(15);
 	pc.orgasm();
 	pc.orgasm();
 	
