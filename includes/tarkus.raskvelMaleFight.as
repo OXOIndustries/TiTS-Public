@@ -1781,8 +1781,7 @@ public function feetLickingGoodTimes(raskWinner:String = "big"):void
 
 	output("\n\n<i>“Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
 
-	output("\n\n<i>“Good boy,”</i> you grin down at him, before getting up");
-	output("\n\n<i>“Good boy,”</i> you leer down at him, before getting up");
+	output("\n\n<i>“Good boy.”</i> You leer down at him, before getting up");
 	if(!pc.isNude()) output(", rearranging your clothes,");
 	output(" and then setting off again, leaving all three of them unconscious on the ground having never lifted a finger. Well, except one.");
 
