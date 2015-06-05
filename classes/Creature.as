@@ -10810,7 +10810,7 @@
 					if (spacingsF) output(" ");
 					if (this is PlayerCharacter)
 					{
-						if (holePointer.hymen)
+						if (holePointer.hymen && hole >= 0)
 						{
 							output("<b>Your hymen is torn</b>");
 							holePointer.hymen = false;
