@@ -290,7 +290,7 @@ public function giveVahnAnal():void
 	{
 		output("\n\nWith a " + pc.mf("cheeky","sultry") + " smile, you decide to give him a little strip tease.");
 		if(!(pc.armor is EmptySlot)) output(" Slowly and sensuously, you strip off your [pc.armor] before letting it fall to the floor.");
-		if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, your [pc.upperGament] comes off – tossed aside and liberating your [pc.chest].");
+		if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, your [pc.upperGarment] comes off – tossed aside and liberating your [pc.chest].");
 		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] is slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
 	}
 
@@ -330,7 +330,7 @@ public function giveVahnAnal():void
 	{
 		output("\n\n<i>“Y-you, my ass belongs to you-!”</i> Vahn lustily moans. The dirty talk really turns him on, his half-doggie dick straining and slapping against his belly. His own pre-cum dribbles down his shaft and balls, a river of spunk that gushes as you pound his perfectly defined ass.");
 	}
-	output("\n\nThe air is filled with the lewd sound of your slapping thighs and your shared moans. You fuck him hot and hard against the crate, passionately pressing forward to meet his every backwards thrust.  As you feverishly fuck his backside, Yahn groans and needily clenches your [pc.cockNounSimple " + x + "], the half ausar quickly reaching his limit...");
+	output("\n\nThe air is filled with the lewd sound of your slapping thighs and your shared moans. You fuck him hot and hard against the crate, passionately pressing forward to meet his every backwards thrust.  As you feverishly fuck his backside, Vahn groans and needily clenches your [pc.cockNounSimple " + x + "], the half ausar quickly reaching his limit...");
 	output("\n\nBoth of you reach that fiery crescendo within moments of each other, letting out sweet, uninhibited cries. As his insides clench and convulse, you grab his hips and bury yourself to the hilt inside of his ass. Climaxing in unison, his butt and insides tremble and he spurts his spunk all over his belly, while you shoot your [pc.cumVisc] hot [pc.cumNoun] inside of the ausar boy’s butt. His tail trembles from tip to base and his pucker deliciously squeezes your base for every last [pc.cumColor] drop.");
 
 	//Pc.hasAKnot:
