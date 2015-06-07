@@ -2005,9 +2005,9 @@ public function getCombatPrizes(newScreen:Boolean = false):void
 		output("\nYou also find ");
 		clearList();
 		for(x = 0; x < foundLootItems.length; x++) {
-			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")\n\n");
+			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")");
 		}
-		output(formatList());
+		output(formatList() + "\n\n");
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
 		useItemFunction = mainGameMenu;

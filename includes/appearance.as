@@ -246,6 +246,11 @@ public function appearance(target:Creature):void {
 		else if(pc.tongueType == GLOBAL.TYPE_DRACONIC) output2(" Your mouth contains a thick, fleshy [pc.tongueNoun] that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		else if(pc.tongueType == GLOBAL.TYPE_LEITHAN) output2(" Your mouth contains a narrow but flexible [pc.tongueNoun] that, if you so desire, can extend a good distance out from your mouth. Its tip is forked, and you are capable of moving it around in an almost prehensile manner.");
 		else if(pc.tongueType == GLOBAL.TYPE_RASKVEL) output2(" Your mouth contains a thick, purple tongue that, if you so desire, can extend a fair portion from your mouth. Its tip is blunted slightly.");
+		else if(pc.tongueType == GLOBAL.TYPE_OVIR)
+		{
+			if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" A lengthy, tapered tongue fills your mouth, able to stretch out almost nine inches in order to taste the very air.");
+			else output2(" A tapered tongue fills your mouth, able to taste the very air when extended beyond your oral cavity.");
+		}
 		else if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains a [pc.tongue].");
 
@@ -562,6 +567,11 @@ public function appearance(target:Creature):void {
 			if(target.tailCount == 1) output2(" Protruding from above your butt, a long, slippery tail wiggles behind you. It is lined with octopus-like suckers on the bottom, very much like a tentacle of some underwater... or perhaps tree-dwelling, creature.");
 			else output2(" Protruding from above your butt, " + num2Text(target.tailCount) + " long, slippery tails wiggle behind you. They is lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
 		}
+		else if(target.tailType == GLOBAL.TYPE_OVIR)
+		{
+			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
+			else output2(upperCase(num2Text(target.tailCount))  + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming their scales against one another.");
+		}
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
 			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
@@ -674,6 +684,12 @@ public function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.TYPE_DRACONIC) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
 		else if (target.legType == GLOBAL.TYPE_PANDA) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		//Catch all (mostly there for Ovir feet)
+		else if (target.legType == GLOBAL.TYPE_OVIR)
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+		}
 
 		// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
 		if (target.legCount == 2 && !target.isTaur())
