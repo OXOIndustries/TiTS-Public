@@ -584,7 +584,7 @@ public function catchVaginalFromAlex():void {
 		if(pc.hasCock()) output(", your [pc.cocks] twitching and leaking pre-cum over his stomach in sympathetic lust");
 		if(pc.totalVaginas() > 1) 
 		{
-			output(" and even the causing the walls of your unused ");
+			output(" and even causing the walls of your unused ");
 			if(pc.totalVaginas() == 2) output("snatch");
 			else output("snatches");
 			output(" to rub against each other wonderfully");
@@ -606,7 +606,7 @@ public function catchVaginalFromAlex():void {
 		}
 		if(pc.totalVaginas() > 1)
 		{
-			output(" and even the causing your unused ");
+			output(" and even causing your unused ");
 			if(pc.totalVaginas() == 2) output("snatch to feel full, its");
 			else output("snatches to feel full, their");
 			output(" walls rubbing against each other");

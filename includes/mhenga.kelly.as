@@ -3865,7 +3865,7 @@ public function getDPedByKelly():void
 	//Kind:
 	if(pc.isNice())
 	{
-		output("\n\nWhat’s the verdict? You ready yet or do is she going to lick you till you orgasm? Because you certainly feel ready. You hump the air for emphasis.");
+		output("\n\nWhat’s the verdict? You ready yet or is she going to lick you till you orgasm? Because you certainly feel ready. You hump the air for emphasis.");
 		output("\n\n<i>\"Just making sure you were ready for me,\"</i> she grins back. <i>\"But I think you're all lubed up now; time for the real fun,\"</i> she announces hungrily.");
 	}
 	//Mischievous:
@@ -3886,7 +3886,7 @@ public function getDPedByKelly():void
 	else if(pc.totalVaginas() == 2) output("both of your pussies");
 	else output("two of your " + num2Text(pc.totalVaginas()) + " cunts");
 	output(". <i>\"Hope you’re ready for this, honey. Because I can’t hold back any more!\"</i> she exclaims, smiling. Her first shaft pierces your [pc.vagina " + x + "] with a wet squelch. Saliva, honeyed pre and your own [pc.girlCum] mingle to form a potent lubricant, perfect for the flared tip demanding entrance within your confines.");
-	if(y < 0) output(" You’re thankful that she went through the trouble of getting your [pc.asshole] ready too. Her insistent pushing knocking your sphincter wide open as you’re forced to grant her entry.");
+	if(y < 0) output(" You’re thankful that she went through the trouble of getting your [pc.asshole] ready too. Her insistent pushing knocks your sphincter wide open as you’re forced to grant her entry.");
 	else output(" Your other [pc.vagina " + y + "] welcomes her as easily as your first one.");
 	output(" Inch by inch she feeds you, hands roaming over your body, tracing your [pc.chest], teasing your [pc.nipples]. When she gives your chest an appreciative lick you cry out in pleasure. Kelly’s warmth spreads throughout you, and you find yourself instinctively clamping down on her intruding shafts.");
 	pc.cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);

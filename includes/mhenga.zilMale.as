@@ -975,7 +975,7 @@ public function getBredByZil():void {
 	output("\n\n<i>“Very nice,”</i> the wasp-like alien admits. <i>“You look a fine mother for my young, assuming you can bear a zil.”</i> His hand connects with one of your cheeks, slapping it just hard enough to make your [pc.skin] sting. <i>“Very nice, indeed.”</i> He squeezes it affectionately and ");
 	if(pc.tone >= 65) output("squeezes your bottock, admiring the firmness of it.");
 	else output("jiggles your bottock, admiring the way it ripples while your juices stream unchecked from your fingers.");
-	output(" The male's fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folks, adding a second sensation to your already overburdened vagina.");
+	output(" The male's fingers join yours in exploring your netherlips. Gingerly, he rubs the outside of your soaked folds, adding a second sensation to your already overburdened vagina.");
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = 0;
 	output("\n\n<i>“Are you ready to be bred?”</i> the zil asks with a hint of politeness. His tone brooks no disagreement. The question is a formality - you both know you want, no, need it. You bite your lip and nod. At the same time, you pull your fingers free of the steaming-hot honeypot between your [pc.legOrLegs]. Your " + possessive(pc.vaginaDescript(x)) + " lips are slightly parted, spread and open, ready to be taken.");

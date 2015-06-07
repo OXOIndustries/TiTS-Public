@@ -517,7 +517,7 @@ public function kirosShipChubnookiFucksYouGud():void
 	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like it's the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
 	if (pc.hasHair()) output(" [pc.hair]");
 	else output(" head");
-	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to [pc.eachVagina] until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering, before you remember your promise. You're going to let this beast-girl cum inside you.");
+	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to [pc.eachVagina] until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering lick, before you remember your promise. You're going to let this beast-girl cum inside you.");
 
 	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need, and your own feminine fuck-scent mixes with it into a soupy sexual haze. Both panting now, you lock eyes with each other and smile.");
 
@@ -550,7 +550,7 @@ public function kirosShipChubnookiFucksYouGud():void
 	output("\n\nTouching down, your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" touches");
 	else output(" contact");
-	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skin] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
+	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skinFurScales] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
 	{
 		output(" Your [pc.cocks] spew");

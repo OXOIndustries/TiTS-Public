@@ -38,10 +38,10 @@ public function furEffectBonusFunction():Boolean {
 	//Met Jade
 	else output("\n\nJade, the pudgy panda-girl is minding her shop, as always. Still wearing her skirt and nothing else, she graces you with a radiant smile. <i>\"Let me know if you need anything!\"</i>");
 	shopkeep = chars["JADE"];
-	chars["JADE"].keeperBuy = "Jade's console lists off the modification she has in stock along with their prices.\n";
+	chars["JADE"].keeperBuy = "Jade's console lists off the modifications she has in stock along with their prices.\n";
 	//List prices and whatnot. Back should go back to Jade's main menu.
 	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not.\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not?\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
 	
 	if(flags["KNOW_JADES_NAME"] == undefined) addButton(0,"Panda",approachJade);
 	else addButton(0,"Jade",approachJade);
@@ -83,7 +83,7 @@ public function approachJade():void {
 	chars["JADE"].keeperBuy = "Jade's console lists off the modification she has in stock along with their prices.\n";
 	//List prices and whatnot. Back should go back to Jade's main menu.
 	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not.\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not?\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
 	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>\"See anything I can help you with?\"</i>";
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -209,7 +209,7 @@ public function askJadeAboutHerShop():void {
 	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_SHOP"] = 1;
 	output("<i>\"My shop?\"</i> Jade asks. <i>\"I guess you could say that it's like my hopes and dreams rolled together into my baby.</i>\"  She smirks a little. <i>\"I wanted to share what I had discovered with everyone, and a shop seemed the best way to do it. I can support myself and meet furries all day long! Hell, I can even work with people that don't have the credits to make the transformation on their own. You'd be amazed by what solid financial planning can accomplish.\"</i>");
-	output("\n\nTicking off one finger, Jade explains, <i>\"First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn't easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That's not even mentioning all adventurers coming out of the new systems with wallets full of credit chits.\"</i>  She gestures at her shop. <i>\"I've done well enough to redecorate twice, and each time I wind up making the place cosier. I've even managed to open up a few new locations out there on the rim.</i>\"  She sighs. <i>\"I can't run all of them personally of course. I mainly stay here... this place has kind of become my home.\"</i>  She brushes a stray strand of hair out of her eyes. <i>\"Not much more to tell.\"</i>");
+	output("\n\nTicking off one finger, Jade explains, <i>\"First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn't easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That's not even mentioning all the adventurers coming out of the new systems with wallets full of credit chits.\"</i>  She gestures at her shop. <i>\"I've done well enough to redecorate twice, and each time I wind up making the place cozier. I've even managed to open up a few new locations out there on the rim.</i>\"  She sighs. <i>\"I can't run all of them personally of course. I mainly stay here... this place has kind of become my home.\"</i>  She brushes a stray strand of hair out of her eyes. <i>\"Not much more to tell.\"</i>");
 	output("\n\nThe cuddly-looking woman begs a story or two out of you before saying, <i>\"You're easy to talk to, you know that? I can tell you've got at least one more question.\"</i>  She gives you a sultry blink. <i>\"I saw you looking back when I touched them and talked about growing them...\"</i>  she says with a gesture at her breasts. <i>\"Just ask. I won't bite.\"</i>  She snaps her jaws. <i>\"Much.\"</i>");
 	talkToJade(false);
 	removeButton(2);
@@ -273,7 +273,7 @@ public function jadeSexMenu(display:Boolean = true):void {
 			else
 			{
 				output("\n\nJade grabs your hands and pulls them against her weighty chest, letting your fingers sink deep into the sumptuous mounds, her furred flesh bulging out around them, making your digits appear to vanish into the squishy surface. You can't help but give them a squeeze, and while you are so distracted, she grabs your waist and practically drags you to the door, letting you grope her all the while.");
-				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautify","my dear") + ", lets get in private so you can have some alone time with them.");
+				output("\n\n<i>\"Come on, " + pc.mfn("handsome","beautiful","my dear") + ", let's gp somewhere private so you can have some alone time with them.");
 			}
 		}
 		//Merge
@@ -423,7 +423,7 @@ public function titfuckJade():void {
 		//(Big)
 		else if(pc.biggestCockLength() <= 15) output("<i>\"Wow, you're big! I mean, with all the splices out there, I've seen some whoppers, but this... I bet you could ram the whole thing into my tits and bop me in the chin! I could smother you in tit and still take the time to polish your [pc.cockHeadBiggest].\"</i>");
 		//Huge
-		else output("<i>\"Holy-! You're gigantic! Jeeze, do you need a sling just to carry that around? I don't even think I could fit my breasts the whole way around that if I get an augmentation. Still...\"</i> she pauses in thought, \"</i>...I bet having such sizable melons rubbing against you would feel way better than a paw or a mouth.\"</i>");
+		else output("<i>\"Holy-! You're gigantic! Jeeze, do you need a sling just to carry that around? I don't even think I could fit my breasts the whole way around that if I got an augmentation. Still...\"</i> she pauses in thought, \"</i>...I bet having such sizable melons rubbing against you would feel way better than a paw or a mouth.\"</i>");
 		//Merge
 		output("  She slowly pulls her alabaster-furred hand away from her mouth to reveal a greedy smile. <i>\"I've actually never done this before. Usually guys just stick it in and grope me while they fuck. I guess pussy is a motivator that crosses most species' bounds.\"</i>");
 	}
@@ -437,7 +437,7 @@ public function titfuckJade():void {
 	}
 	//Merge
 	output("\n\nDropping to her knees, the breast-obsessed panda beckons you closer. She's already naked and on display, luring you in with her exposed cleavage, her arms crossed beneath her bust to maximize the lurid display. <i>\"Come on then, let's do this.\"</i>  She squeezes her breasts once more for encouragement before stretching behind her and coming up with a liter-sized bottle of lubricant. Upending it and drizzling her chest with slipperiness, Jade purrs, <i>\"Come on then, I'm ready for you.\"</i>");
-	output("\n\nMaintaining a steady pace instead of rushing headlong takes every bit of your willpower. There's nothing you'd like more than to slam your [pc.cockBiggest] right into her mammaries' embrace, but you manage to swagger up and gently lay it into the welcoming, sensuous crevice with a degree of restraint. Your eagerness shows plainly in your eyes as you gaze down at Jade. She doesn't seem to mind. In fact, her smile broadens at the first contact of  your cock on her teats. <i>\"Just make yourself at home and let me take care of you. It'll feel like you're fucking heaven itself.\"</i>");
+	output("\n\nMaintaining a steady pace instead of rushing headlong takes every bit of your willpower. There's nothing you'd like more than to slam your [pc.cockBiggest] right into her mammaries' embrace, but you manage to swagger up and gently lay it into the welcoming, sensuous crevice with a degree of restraint. Your eagerness shows plainly in your eyes as you gaze down at Jade. She doesn't seem to mind. In fact, her smile broadens at the first contact of your cock on her teats. <i>\"Just make yourself at home and let me take care of you. It'll feel like you're fucking heaven itself.\"</i>");
 	output("\n\nWith the kind of goofy smile one inevitably gets when " + pc.mf("his","her") + " dick is about to be wrapped in tits, you give an excited nod, awaiting the panda's pleasure.");
 	output("\n\nJade carefully grabs her chest and presses her mammoth chest inward, compressing her boobs around your length");
 	var length:Number = pc.biggestCockLength();
@@ -450,7 +450,7 @@ public function titfuckJade():void {
 	output(" you a sultry wink, smiling broadly as she slides down to your ");
 	if(pc.hasSheath(pc.biggestCockIndex())) output("sheath");
 	else output("base");
-	output(". The sound of her soaked tits slipping and sliding against your " + pc.mf("man","herm") + " hood more than a little audible, squelching noisily as she starts to work on you, nearly drowning out the pleasured gasp you release at her naturally gifted cock-massage.");
+	output(". The sound of her soaked tits slipping and sliding against your " + pc.mf("man","herm") + " hood is more than a little audible, squelching noisily as she starts to work on you, nearly drowning out the pleasured gasp you release at her naturally gifted cock-massage.");
 	output("\n\n<i>\"Atta " + pc.mf("boy","girl") + ",\"</i>  Jade moans back at you, visibly shuddering from the friction. <i>\"You like this, doncha?\"</i>");
 	if(length >= 20) output(" She kisses and slurps along the underside of your [pc.cockBiggest], polishing you with long, wet licks, licking the flavored lubricants off you with each drag through her tits, mixing enough saliva in to make frothy bubbles form on her chest.");
 	else if(length >= 10) output(" She kisses and slurps at your [pc.cockHeadBiggest], polishing you with long, wet licks, laying them on you with every downward slide she takes.");
@@ -498,7 +498,7 @@ public function titfuckJade():void {
 	{
 		if(pc.cumQ() < 6) output("trickles out in a few drops before abating. They roll down your length and into Jade's sloppy bosom, quickly subsumed by the sea of lubricants there. Even after, your quivering pole tries to launch ejaculate more, there's just nothing to shoot out. Maybe you should give yourself a break in between intergalactic fucks?");
 		else if(pc.cumQ() < 50) output("shoots a few long ropes up into the air. They hang there, glimmering in the light, before falling down across Jade's nose, lips, and neckline. Her tongue darts out to grab a gob off her cheek.");
-		else if(pc.cumQ() < 250) output("spurts out in nice, thick ropes. Each one hangs in precipitously in the air for a moment before splattering down across Jade's face, painting her into a [pc.cumColor] mask with a matching pearl necklace. She revels in it, opening her mouth to let you fill her mouth. Trickles of the stuff run down the nape of her neck to puddle in her cleavage, some leaking out the bottom to stain her belly.");
+		else if(pc.cumQ() < 250) output("spurts out in nice, thick ropes. Each one hangs precipitously in the air for a moment before splattering down across Jade's face, painting her into a [pc.cumColor] mask with a matching pearl necklace. She revels in it, opening her mouth to let you fill her mouth. Trickles of the stuff run down the nape of her neck to puddle in her cleavage, some leaking out the bottom to stain her belly.");
 		else if(pc.cumQ() < 750) output("launches out in huge, sparkling arcs that seem perfectly aimed to fall upon the climaxing panda. She doesn't move. She doesn't resist. She just lets her eyelids close and her mouth open. Her tongue rolls out like a welcoming carpet, and your [pc.cum] rolls right on in, immediately flooding her maw with liquid love. Blind, she fails to catch the next shot inside. It splatters off her forehead and cheeks. The one after smothers her cheeks and neck. Each successive shot falls a little shorter until you're flooding her tits with [pc.cum], enough that it rolls out over the sides in thick rivers. Strands of it drip down to her tummy, forming a tiny stream.");
 		else 
 		{
@@ -561,11 +561,11 @@ public function sitOnjadesFace():void {
 	output(" just before you touch down, feeling her hot breath a moment before her cold nose brushes against you.");
 	output("\n\nThe contrasting temperatures momentarily paralyze you, but Jade's softly padded paws pull you down by the [pc.hips], firmly pressing your womanly entrance against her hungry muzzle. Her girthy organ emerges from between her luscious lips to dive into yours, and you gasp in surprise at how nicely its warmth fills you. You start rubbing and squeezing the plush shopkeeper's sizeable bust before you lose yourself in pleasure, letting your fingers sink deep into her soft flesh when you squeeze.");
 	output("\n\nJade rewards you with a throaty purr of excitement. It isn't feline in origin but it is enough to make her tongue vibrate pleasantly inside your increasingly wet channel. The panda works her short, thick length as far in as she can, then rapidly withdraws it before punching it in once more, fucking the first two inches of sensitive pussy. She twists and adjusts herself to make sure that her sable kissers get to brush [pc.eachClit] again and again, and soon, she has you whimpering and moaning, your juices running free and unrestrained.");
-	output("\n\nLikewise, your palms are doing quite a number on her sensitive bosom. When you aren't squeezing, you're stroking, or caressing... or even pressing them together while your thumbs slide over her fur. You can see from your vantage just how much your curvy lover is appreciating the attention; her pussy practically gleams with leaking lust. Her hips are even beginning to undulate against an imaginary lover, though you are doing little better. You begin to grope her more aggressively in an effort to get her first.");
+	output("\n\nLikewise, your palms are doing quite a number on her sensitive bosom. When you aren't squeezing, you're stroking, or caressing... or even pressing them together while your thumbs slide over her fur. You can see from your vantage just how much your curvy lover is appreciating the attention; her pussy practically gleams with leaking lust. Her hips are even beginning to undulate against an imaginary lover, though you are doing little better. You begin to grope her more aggressively in an effort to get her to cum first.");
 	output("\n\nJade trembles beneath you, holding onto your [pc.hips] with such passion that the tips of her claws are pricking at your skin. She varies her movements, sometimes tongue-fucking you, other times dragging her slippery organ up and down across your entrance, sometimes suckling ");
 	if(pc.totalClits() > 1) output("a ");
 	else output("your ");
-	output("bud humming her muffled screams of excitement into your mound. You're grinding back against her in short order, watching her pussy leak in a way that likely mirrors your own until climax interposes itself between you and your rational thoughts.");
+	output("bud, humming her muffled sounds of excitement into your mound. You're grinding back against her in short order, watching her pussy leak in a way that likely mirrors your own until climax interposes itself between you and your rational thoughts.");
 	output("\n\nYour back arches, but so does Jade's, keeping her melons firmly in your spasming fingers for further molestation. [pc.EachVagina] ");
 	if(pc.isSquirter()) output("erupts in gushes of [pc.girlCum], splattering the poor panda's face.");
 	else if(pc.wetness() <= 2) output("drips");
@@ -575,7 +575,7 @@ public function sitOnjadesFace():void {
 	output("\n\nJade giggles, and smiles. <i>\"I suppose we should get cleaned.\"</i>\n\nYou nod.");
 	if(pc.hasPerk("Ditz Speech")) 
 	{
-		output(" <i>\"You lick pussy, so well! You could be like, a galactic champion cunt-licker!\"</i>");
+		output(" <i>\"You lick pussy so well! You could be like, a galactic champion cunt-licker!\"</i>");
 		output("\n\nJade just shakes her head and smiles wistfully.");
 	}
 	output("\n\nThere's a bathroom around a corner where you wash your face alongside the panda. You catch her lapping your juices off her face and fingers when she thinks you aren't looking.");

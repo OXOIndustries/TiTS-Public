@@ -1946,7 +1946,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 		
 		output("\n\nSomewhere in the back of your drug addled mind you wonder if you should use it to call for help. But would anyone come? By the time they arrive it will be too late - this octopus girl will have finished mating with you.");
 		
-		output("\n\nYour head swirls with indecision as the vanae huntress positions her [pc.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
+		output("\n\nYour head swirls with indecision as the vanae huntress positions her [monster.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
 		
 		output("\n\nAs it touches your sensitive flesh, your [pc.cocks] swell");
 		if (pc.cocks.length == 1) output("s");
@@ -1969,7 +1969,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 		if (pc.cocks.length == 1) output("s");
 		output(" ready and raring to go. <i>“Ohh, you want to breed with me that badly? I guess there’s no helping it then - you’re going to be a daddy.”</i>");
 		
-		output("\n\nYou’re pretty sure you already are one, but you can’t bring yourself to speak. You simply lie back and take it as she positions her [pc.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
+		output("\n\nYou’re pretty sure you already are one, but you can’t bring yourself to speak. You simply lie back and take it as she positions her [monster.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
 		
 		output("\n\nAs it touches your sensitive flesh, your [pc.cocks] swell");
 		if (pc.cocks.length == 1) output("s");
@@ -1996,7 +1996,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 
 	output("\n\nWhen even more of your [pc.cumNoun] drools from your [pc.cockHeads], she reaches down and scoops it up - forbidding it to dribble down with the rest of your spilled seed.");
 
- 	output("\n\n<i>“Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?”</i> she coos, lapping up your [pc.cumFlav] [pc.cumNoun] from her webbed fingers.");
+ 	output("\n\n<i>“Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?”</i> she coos, lapping up your [pc.cumFlavor] [pc.cumNoun] from her webbed fingers.");
 
 	output("\n\nYou nod drunkenly in response. Soon you feel her grabbing [pc.oneCock] and bringing it upward, lifting herself higher to hover over your [pc.cockHead " + selCock + "]. She then slowly lowers back down, sliding you into her otherworldly cooch.");
 
