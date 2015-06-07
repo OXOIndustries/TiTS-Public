@@ -565,7 +565,7 @@ public function ascendFromDeepCaves():void
 
 public function k13Bonus():Boolean
 {
-	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward read ");
+	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward reading ");
 	if(9999) output("\"Long live Queen Taivra!\"");
 	else output("\"Down with Queen Taivra!\"");
 	return DeepCavesBonus();

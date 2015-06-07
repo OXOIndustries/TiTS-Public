@@ -2045,7 +2045,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F20"] = new RoomClass(this);
 	rooms["1F20"].roomName = "LONG\nCORRIDOR";
-	rooms["1F20"].description = "The caverns are wide and open, connecting the long passage going east to west. You can see a faint glimmer of light to the west, coming down from the myr tunnels above. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and cride cave drawings.";
+	rooms["1F20"].description = "The caverns are wide and open, connecting the long passage going east to west. You can see a faint glimmer of light to the west, coming down from the myr tunnels above. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and crude cave drawings.";
 	rooms["1F20"].planet = "PLANET: MYRELLION";
 	rooms["1F20"].system = "SYSTEM: SINDATHU";
 	rooms["1F20"].eastExit = "1H20";
@@ -2058,7 +2058,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1D20"] = new RoomClass(this);
 	rooms["1D20"].roomName = "GLOWING\nLAKE";
-	rooms["1D20"].description = "The caverns are wide and open, connecting the long passage stretching out to the east. To the north, you can see a shelf of rock overlooking a black precipice, down into the deepest depths of the bug planet. A large pool of water sits in a basic nearby - it's nearly crystal clear, and illuminated by a ceiling covered in glowing moss. Water pours down from a crack in the cavern, a small rivulet of liquid that burbles pleasantly.";
+	rooms["1D20"].description = "The caverns are wide and open, connecting the long passage stretching out to the east. To the north, you can see a shelf of rock overlooking a black precipice, down into the deepest depths of the bug planet. A large pool of water sits in a basin nearby - it's nearly crystal clear, and illuminated by a ceiling covered in glowing moss. Water pours down from a crack in the cavern, a small rivulet of liquid that burbles pleasantly.";
 	rooms["1D20"].planet = "PLANET: MYRELLION";
 	rooms["1D20"].system = "SYSTEM: SINDATHU";
 	rooms["1D20"].northExit = "1D18";
@@ -2072,7 +2072,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1D18"] = new RoomClass(this);
 	rooms["1D18"].roomName = "CAVES\nDESCENT";
-	rooms["1D18"].description = "A shelf of rock looms precariously over what seems like a bottomless pit to the west. The abyss ahead of you in black, lightless, an all-consuming void. Several pitons have been hammered into the rock near the cliff's edge, dangling ropes down into the depths. You could climb down into the deepest recesses of Myrellion's caves from here.";
+	rooms["1D18"].description = "A shelf of rock looms precariously over what seems like a bottomless pit to the west. The abyss ahead of you is black, lightless, an all-consuming void. Several pitons have been hammered into the rock near the cliff's edge, dangling ropes down into the depths. You could climb down into the deepest recesses of Myrellion's caves from here.";
 	rooms["1D18"].planet = "PLANET: MYRELLION";
 	rooms["1D18"].system = "SYSTEM: SINDATHU";
 	rooms["1D18"].southExit = "1D20";
@@ -2882,7 +2882,7 @@ public function initializeMyrellionRooms():void
 	//No random encounters at the lake! 
 	rooms["2K27"] = new RoomClass(this);
 	rooms["2K27"].roomName = "LAKE\nSHORE";
-	rooms["2K27"].description = "You stand at the shore of a wide underground lake, wide deep. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
+	rooms["2K27"].description = "You stand at the shore of an underground lake, wide and deep. The surface of the water is crystal clear, easily letting you see all the way to the bottom, and illuminated by floating strands of some bioluminescent plant - they're almost like lily pads, though much more slender and flexible, floating like tendrils through the water.";
 	rooms["2K27"].planet = "PLANET: MYRELLION";
 	rooms["2K27"].system = "SYSTEM: SINDATHU";
 	rooms["2K27"].northExit = "2K25";
@@ -2932,7 +2932,7 @@ public function initializeMyrellionRooms():void
 	//M25 -- Crevasse
 	rooms["2M25"] = new RoomClass(this);
 	rooms["2M25"].roomName = "\nCREVASSE";
-	rooms["2M25"].description = "This passage has been shattered by the movements of the earth, torn open to reveal a deep crevasse. Stalactites hang down from above, giving you just enough hand-hold to leap across the hold.";
+	rooms["2M25"].description = "This passage has been shattered by the movements of the earth, torn open to reveal a deep crevasse. Stalactites hang down from above, giving you just enough hand-hold to leap across the hole.";
 	rooms["2M25"].planet = "PLANET: MYRELLION";
 	rooms["2M25"].system = "SYSTEM: SINDATHU";
 	rooms["2M25"].northExit = "";
@@ -3028,7 +3028,7 @@ public function initializeMyrellionRooms():void
 	//Q19 -- Craggy Sloping Passage
 	rooms["2Q19"] = new RoomClass(this);
 	rooms["2Q19"].roomName = "CRAGGY\nPASSAGE";
-	rooms["2Q19"].description = "This passage slopes downwards, from north to a deeper south. There westward wall has been shattered by some kind of impact, scattering rock and debris all over. The ground is cracked and hard to traverse, and the walls are covered with jagged, painful points.";
+	rooms["2Q19"].description = "This passage slopes downwards, from north to a deeper south. The westward wall has been shattered by some kind of impact, scattering rock and debris all over. The ground is cracked and hard to traverse, and the walls are covered with jagged, painful points.";
 	rooms["2Q19"].planet = "PLANET: MYRELLION";
 	rooms["2Q19"].system = "SYSTEM: SINDATHU";
 	rooms["2Q19"].northExit = "2Q17";

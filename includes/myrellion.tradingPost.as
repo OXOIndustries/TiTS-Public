@@ -9,7 +9,7 @@ public function queensRoadBonusShit():Boolean
 		output("\n\nA young ");
 		if(CodexManager.entryUnlocked("Nyrea")) output("nyrea ");
 		else output("alien ");
-		output("woman with spiky black hair pulled back into a ponytail is standing behind one of the stalls, hawking her wares with a song-like voice, trying to entice the passing crown of ");
+		output("woman with spiky black hair pulled back into a ponytail is standing behind one of the stalls, hawking her wares with a song-like voice, trying to entice the passing crowd of ");
 		if(CodexManager.entryUnlocked("Nyrea")) output("nyrea ");
 		else output("women like her ");
 		output("and other deep-dwellers.");
@@ -200,7 +200,7 @@ public function seifynTaivraTalk():void
 	clearOutput();
 	showSeifyn();
 	output("<i>“So, you’re part of this Queen Taivra’s harem?”</i> you ask, thinking back to your previous conversation.");
-	output("\n\n<i>“Sort of,”</i> Siefyn says, absently fiddling with the strap on her chain bikini top. <i>“Queen Taivra keeps a harem of her favorite girls in the palace - in the big cave with the gate west of here. Technically, here harem is maybe... I want to say two hundred of us? She spent years rounding us up from the caves here before she founded the town. We’ve all been forced to pleasure her at least once. Most of us have carried her eggs, too. But after that, she’s usually quite content to let us live out here in peace.”</i>");
+	output("\n\n<i>“Sort of,”</i> Siefyn says, absently fiddling with the strap on her chain bikini top. <i>“Queen Taivra keeps a harem of her favorite girls in the palace - in the big cave with the gate west of here. Technically, her harem is maybe... I want to say two hundred of us? She spent years rounding us up from the caves here before she founded the town. We’ve all been forced to pleasure her at least once. Most of us have carried her eggs, too. But after that, she’s usually quite content to let us live out here in peace.”</i>");
 	output("\n\nLooking the cute nyrea cunt-boy up and down, you ask <i>“So you’re not exactly intimate with your queen?”</i>");
 	output("\n\nShe laughs at that, a hearty chuckle that makes her small breasts bounce in thoroughly pleasing way. <i>“No, no... I barely know her. Once a month or so, she’ll come down through the village to visit a male she misses, or to lay a clutch in one of her beta females, but she rarely leaves her palace anymore. I haven’t shared her bed in years, honestly. I was bathing in the lake when, all of a sudden, she and several of her guards arrived. She barely recognized me... not that that stopped her from making me fertilize a clutch of eggs on the spot. And carry them for her.”</i>");
 	output("\n\nSo Siefyn’s a father, then?");
@@ -214,14 +214,14 @@ public function seifynTaivraTalk():void
 	output("\n\nSeifyn blinks, staring at you for a long moment. <i>“I... I guess? I could pack my bags and sneak off in the night if I wanted to. I doubt Taivra would send her betas out to chase me down if I did, but... why would I? Life’s not perfect in the village, but it’s a lot safer that living on my own out in the caves. I have a home here. A bed, a shop of my own, even friends. I remember sleeping on rocks all alone, having to keep one eye open for a horny female... or some other creature... trying to jump me in my sleep. Even if I was incredibly careful, somebody could just come up and overpower me, and there’d be nothing I could do about it. I’d trade all of that fear and anxiety for having to bear children for and give service to a woman I barely know any day.”</i>");
 	if(flags["SEIFYN_TAIVRA_TALK"] == undefined) 
 	{
-		output("\n\nThere’s not much left of Siefyn’s normally cheerful disposition by this point. She’s leaning far foward over her counter, arms crossed and eyes down on the stone floor of the marker. A few nearby merchants have stopped to glance at her... you hadn’t even noticed how loud her voice had grown.");
+		output("\n\nThere’s not much left of Siefyn’s normally cheerful disposition by this point. She’s leaning far foward over her counter, arms crossed and eyes down on the stone floor of the market. A few nearby merchants have stopped to glance at her... you hadn’t even noticed how loud her voice had grown.");
 		output("\n\nYou");
 		if(pc.isAss()) output("’re about to step back");
 		else if(pc.isBimbo()) output(" ask if a good fuck would cheer her back up");
 		else output(" comfort her");
 		output(", when another nyrean male walks over to her and puts a hand on her shoulder, rousing Siefyn enough to turn her around.");
 		output("\n\n<i>“You alright, father?”</i> the nyrea asks with a concerned smile.");
-		output("\n\n<i>“V-vesryn?”</i> the merchant blinks. <i>“I’m fine, sweetie. I was just talking to [pc.name] here... I guess I upset myself. Just bad memories.”</i>");
+		output("\n\n<i>“V-Vesryn?”</i> the merchant blinks. <i>“I’m fine, sweetie. I was just talking to [pc.name] here... I guess I upset myself. Just bad memories.”</i>");
 		output("\n\nThe other nyrea - one of Siefyn’s daughters - gives you a reproachful look and squeezes her father’s shoulder. You decide to let the two of them catch up, and quietly walk back into the crowd.");
 		flags["SEIFYN_TAIVRA_TALK"] = 1;
 		processTime(16);
