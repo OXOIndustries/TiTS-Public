@@ -289,10 +289,10 @@ public function nyreaPowerStrike():void
 public function nyreaPoledance():void
 {
 	//Her preferred lust attack against males. 
-	output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...");
-	if (foes[0] is NyreaBeta) output(" I promise you’ll be glad you did");
-	else if (foes[0] is NyreaAlpha) output(" You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to");
-	output(".”</i>\n");
+	output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...</i>");
+	if (foes[0] is NyreaBeta) output("<i> I promise you’ll be glad you did</i>");
+	else if (foes[0] is NyreaAlpha) output("<i> You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to</i>");
+	output("<i>.”</i>\n");
 
 	// 9999
 	if (pc.lust() >= pc.lustMax() * 0.75)
