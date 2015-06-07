@@ -1465,6 +1465,9 @@
 				case "cockOrStraponNoun":
 					buffer = cockOrStrapon(-1);
 					break;
+				case "cockOrStraponFull":
+					buffer = cockOrStrapon(1);
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -9970,7 +9973,7 @@
 			// Penis?
 			else if(hasCock())
 			{
-				if(forceAdjective) descript += cockAdjective(0) + " ";
+				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(0) + " ";
 				descript += cockNoun(0);
 				return descript;
 			}
@@ -9979,14 +9982,13 @@
 			{
 				if(kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0)
 				{
-					if(forceAdjective) descript += "mighty ";
+					if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += "mighty ";
 					descript += "clitosaurus";
 					return descript;
 				}
 				else
 				{
-					if(forceAdjective) return clitDescript(0);
-					else return clitDescript(0);
+					return clitDescript(0);
 				}
 			}
 			// Error, return something though!

@@ -611,6 +611,7 @@ public function DeepCavesBonus():Boolean
 		
 		//Build possible encounters
 		choices[choices.length] = encounterNyreaAlpha;
+		choices[choices.length] = encounterNyreaBeta;
 
 		//Run the event
 		choices[rand(choices.length)]();

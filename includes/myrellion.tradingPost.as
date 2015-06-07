@@ -215,10 +215,10 @@ public function seifynTaivraTalk():void
 	if(flags["SEIFYN_TAIVRA_TALK"] == undefined) 
 	{
 		output("\n\nThere’s not much left of Siefyn’s normally cheerful disposition by this point. She’s leaning far foward over her counter, arms crossed and eyes down on the stone floor of the marker. A few nearby merchants have stopped to glance at her... you hadn’t even noticed how loud her voice had grown.");
-		output("\n\nYou’re ");
-		if(pc.isAss()) output("about to step back");
-		else if(pc.isBimbo()) output("ask if a good fuck would cheer her back up");
-		else output("comfort her");
+		output("\n\nYou");
+		if(pc.isAss()) output("’re about to step back");
+		else if(pc.isBimbo()) output(" ask if a good fuck would cheer her back up");
+		else output(" comfort her");
 		output(", when another nyrean male walks over to her and puts a hand on her shoulder, rousing Siefyn enough to turn her around.");
 		output("\n\n<i>“You alright, father?”</i> the nyrea asks with a concerned smile.");
 		output("\n\n<i>“V-vesryn?”</i> the merchant blinks. <i>“I’m fine, sweetie. I was just talking to [pc.name] here... I guess I upset myself. Just bad memories.”</i>");

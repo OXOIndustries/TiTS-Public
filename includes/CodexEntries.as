@@ -2082,6 +2082,6 @@ public function dragonsHordeCodexStory():void
 	outputCodex("\n\nShe laid it in the third week, screaming in pleasure as Eryxienne and her kobold minions tended to her. The little reptiles had all delivered eggs of their own during Lusina’s stay, filling Eryxienne’s nest with more and more nascent young - though the moth took pride in seeing that her egg was by far the largest and most colorful of the clutch, and as she curled up to sleep with her arms around it, legs spread for the inevitable arrival of her egg’s father ready to put another in her, she felt more like a queen than she’d ever felt in her silly dreams.");
 
 	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...\n");
-	CodexManager.viewedEntry("Dragon's Hoard");
+	CodexManager.viewedEntry("Dragon’s Hoard");
 }
 

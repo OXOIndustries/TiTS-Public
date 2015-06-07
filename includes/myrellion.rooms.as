@@ -2716,7 +2716,6 @@ public function initializeMyrellionRooms():void
 	rooms["2I11"].runOnEnter = DeepCavesBonus;
 	rooms["2I11"].addFlag(GLOBAL.CAVE);
 	rooms["2I11"].addFlag(GLOBAL.INDOOR);
-	rooms["2I11"].addFlag(GLOBAL.HAZARD);
 	
 	//G11 -- Gate Exterior
 	//No random encounters here! 
@@ -2733,7 +2732,6 @@ public function initializeMyrellionRooms():void
 	rooms["2G11"].runOnEnter = gateExteriorBonusNyreaVillage;
 	rooms["2G11"].addFlag(GLOBAL.CAVE);
 	rooms["2G11"].addFlag(GLOBAL.INDOOR);
-	rooms["2G11"].addFlag(GLOBAL.HAZARD);
 
 	//M15 -- Pillar SE
 	rooms["2M15"] = new RoomClass(this);
