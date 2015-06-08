@@ -6206,6 +6206,11 @@
 			if (cocks.length > 1) return true;
 			return false;
 		}
+
+		public function hasGenitals():Boolean
+		{
+			return (hasCocks() || hasVagina());
+		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
 			if (tailType == GLOBAL.TYPE_COCKVINE && tailCount > 0) return true;

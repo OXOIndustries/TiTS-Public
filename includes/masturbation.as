@@ -252,12 +252,21 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		aborted = true;
 	}
 	//Exhibitionist fap! - overrides all other faps
-	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 50)
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
 	{
 		clearOutput();
 		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
 		clearMenu();
 		addButton(0,"Next",goddamnitJimTAndYourExhibitionism);
+		return;
+	}
+	//Low Exhibitionist fap! - overrides all other faps
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
+	{
+		clearOutput();
+		output("Out here? In public?\n\n...<b>it'll have to do</b>.");
+		clearMenu();
+		addButton(0,"Next",moderateExhibitionOmniFap);
 		return;
 	}
 	//Pussy out, unless you're being force-fapped.
@@ -2377,3 +2386,235 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 }
 
 		
+// By JimThermic
+// Exhibition Score: Whatever 'moderate' is. Somewhere between won't publically masturbate at all and total exhibition whore.
+// Need to be in public place, obv.
+// Taurs and Neuters play with their tits.  Males and Herms play with their dicks. Women play with their pussies. This is an everybody scene with a number of 'if' statements.
+
+public function moderateExhibitionOmniFap():void
+{
+	clearOutput();
+	author("JimThermic");
+	showName("PUBLIC\nMASTURBATION");
+	// PC is crotch garbed, not a neuter && not a taur OR a chestgarbed taur OR chestgarbed neuter.
+	if((pc.isCrotchGarbed() && pc.hasGenitals() && !pc.isTaur()) || (pc.isTaur && pc.isChestGarbed()) || (!pc.hasGenitals() && pc.isChestGarbed()))
+	{
+		output("Void, it's so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Your ");
+		//TaurOrNeuter:
+		if(pc.isTaur() || !pc.hasGenitals()) output(" [pc.breasts] and [pc.nipples]");
+		//Else if PC.GotCock: 
+		else if(pc.hasCock()) output("[pc.cocks]");
+		else output("[pc.vaginas]");
+		output(" deliciously rub");
+		if(!pc.isTaur() || pc.cockTotal() == 1 || (pc.totalVaginas() == 1 && !pc.hasCock())) output("s");
+		output(" against your ");
+		if(pc.isTaur() || !pc.hasGenitals()) output("[pc.upperGarment]");
+		else output("[pc.lowerGarment]");
+		output(". You sigh with pleasure - the subtle, sensuous friction is slowly driving you nuts!");
+	}
+	// else
+	else
+	{
+		output("Void, it's so hard to <i>think</i> right now! Instead, your senses are reeling, your head filled with an all-consuming, lusty haze. Walking around ");
+		if(!pc.isNude()) output("half-");
+		output("naked has wound you all up - now your lewdly exposed ");
+		if(pc.isTaur() || !pc.hasGenitals()) output("[pc.chest]");
+		else if(pc.hasCock()) output("[pc.cocks]");
+		else output("[pc.vaginas]");
+		if(pc.isTaur() || !pc.hasGenitals() || pc.cockTotal() > 1 || (!pc.hasCock() && pc.totalVaginas() > 1)) output("are");
+		else output("is");
+		output(" thrumming with pent-up pleasure.");
+	}
+	output("\n\nShould you walk back to the ship to deal with it? Find somewhere private to touch yourself? Both of these options are going to take so long! In the meantime, your ");
+	if(pc.isTaur()  || !pc.hasGenitals()) output("[pc.nipples]");
+	else output("aching loins");
+	output(" are practically <i>begging</i> to be attended to - you’re not sure how much longer you can hold out");
+	if(pc.isCrotchGarbed() && pc.hasGenitals()) output(" before you’re creaming in your [pc.lowerGarment]");
+	output("!");
+
+
+	output("\n\nWhat if... you weren’t to hold out? Just play with yourself here, in front of everyone? The mere thought sends a delicious shiver down your spine. You’ll just touch yourself ... just a <i>little</i> bit to calm yourself down.. then you’ll stop...");
+
+	output("\n\n");
+	if((pc.isTaur() || !pc.hasGenitals()) && pc.isChestGarbed()) output("You groan and quickly strip off your [pc.upperGarments].");
+	//Crotchgarbed && Non-Neuter && Non Taur:
+	else output("You groan and quickly strip off your [pc.lowerGarments].");
+	output(" With trembling fingers, you slide your hands down ");
+	var taurNeuter:Boolean = (pc.isTaur() || !pc.hasGenitals());
+	//TaurORNeuter:
+	if(taurNeuter) output("and stroke your [pc.chest]");
+	else
+	{
+		output("your [pc.belly] and ");
+		if(pc.hasCock())
+		{
+			output("wrap them around ");
+			if(pc.cockTotal() > 2) output("a pair of ");
+			output("your needy [pc.cocks]");
+		}
+		else output("seek out your needy [pc.pussies]");
+	}
+	output(". You can’t believe you’re really going to do this, out here where anyone could catch you!");
+
+	output("\n\nYou’re definitely attracting the attention of ");
+	if(rooms[currentLocation].planet == "TAVROS STATION") output("various station-goers");
+	else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("the Esbethian citizens");
+	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("the raskvel");
+	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("the local bulls and cows");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("the myr");
+	else output("those around you");
+
+	output(". They peer at you, blinking as you begin to shyly stroke yourself before their curious gaze. They’re staring right at your ");
+	if(taurNeuter) output("[pc.chest] and [pc.nipples] as you pinch and squeeze them.");
+	else if(pc.hasCock())
+	{
+		output("[pc.cocks] as you wring and jerk ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(", pre-cum already lazily dribbling down your turgid shaft");
+		if(pc.cockTotal() > 1) output("s");
+		if(pc.balls > 0) output(" and rolling over your [pc.balls]");
+		output(".");
+	}
+	else
+	{
+
+		output("[pc.vaginas] as you finger ");
+		if(pc.totalVaginas() == 1) output("it");
+		else output("them");
+		output(", plunging your digits inside and wiggling it around inside of your wetness.");
+	}
+	output("\n\nYou flush as they");
+	if(rooms[currentLocation].planet == "PLANET: TARKUS" || rooms[currentLocation].planet == "PLANET: NEW TEXAS") output(" stare lustily at");
+	//else if Myrellion: 
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output(" stare in awe of");
+	else output(" stare, utterly scandalized, at");
+	output(" your ");
+	if(taurNeuter) output("bared chest");
+	else output("loins");
+	output(". You can feel them burning each and every detail of your ");
+	if(taurNeuter) output("[pc.nipples] and [pc.skinFurScalesColor] body");
+	else
+	{
+		if(pc.hasCock()) output("[pc.cockHeads]");
+		if(pc.hasCock() && pc.hasVagina()) output(" and ");
+		if(pc.hasVagina()) output("[pc.pussies]");
+		output(" into glorious memory as you ");
+		if(pc.hasCock()) output("stroke");
+		if(pc.hasVagina() && pc.hasCock()) output(" and ");
+		if(pc.hasVagina()) output("finger");
+		output(" yourself!");
+	}
+
+	//pc.notTaur:
+	if(!pc.isTaur())
+	{
+		output("\n\nThe excitement makes you bolder, more confident. Driven by lusty need, you impulsively lay down on the ground");
+		if(pc.legCount > 1) output(" and spread your [pc.thighs] wide");
+		output(". With one hand, you ");
+		if(pc.hasCock()) output("continue to jerk off [pc.oneCock]");
+		else if(pc.hasVagina()) output("spread your pussy lips for all to see, winking your wetness at them");
+		else output("continue to tease your [pc.chest]");
+		output(". With the other, you press two fingers inside of your [pc.asshole] and wiggle them lewdly about - naughtily ");
+		if(pc.hasCock()) output("jerking off and fingering your [pc.butt]");
+		else if(pc.hasVagina()) output("fingering [pc.oneVagina] and [pc.ass] at the same time");
+		else output("fingering your [pc.ass] in front of them");
+		output("!");
+
+		output("\n\nBucking your hips wildly in the air, you groan and shiver, hearing the clicking and flashing of ");
+		if(rooms[currentLocation].planet != "PLANET: MYRELLION") output("holo-");
+		output("cameras around you. You can’t believe you - [pc.fullName] - are finger-fucking yourself in front of all these people");
+		if(pc.hasCock()) output(", wildly jerking yourself off");
+		output(" and show showing them just how much of a slut you are!");
+	}
+	else
+	{
+		output("\n\nYou groan and shiver as you tease your [pc.chest], hearing clicking and flashing of ");
+		//notMyrellion:
+		if(rooms[currentLocation].planet != "PLANET: MYRELLION") output("holo-");
+		output("cameras around you. You can’t believe you - [pc.fullName] - are lewdly pinching your [pc.nipples] in front of all these people, showing them just how much of a slut you are!");
+	}
+	//pc is taur or Neuter:
+	if(taurNeuter)
+	{
+		output("\n\nThat naughty little thought pushes you right over the edge. With a sharp, high-pitched cry, you shiver and ");
+		if(pc.hasCock()) output("shoot your [pc.cum] all over the ground");
+		if(pc.hasCock() && pc.hasVagina()) output(" and ");
+		if(pc.hasVagina()) 
+		{
+			if(pc.isSquirter()) output("squirt your");
+			else output("gush");
+			output(" [pc.girlCum] from your [pc.pussies]");
+		}
+		if(pc.hasGenitals()) output("utterly cream yourself");
+		output(". ");
+		//pc.lactating:
+		if(pc.isLactating())
+		{
+			output("At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] as you boob-gasm in front of everyone! ");
+		}
+		output("You can hear the ");
+		if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
+		else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbethians");
+		else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("raskvel");
+		else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
+		else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
+		else output("onlookers");
+		output(" gasping as you groan and tremble, riding out your glorious orgasm for all it’s worth.");
+	}
+	else if(pc.hasCock())
+	{
+		output("\n\nThat naughty little thought pushes you right over the edge. With a sharp, high-pitched cry, you shiver and shoot your [pc.cumVisc], hot [pc.cumNoun] all over your [pc.belly], ");
+		if(pc.cumQ() < 50) output("lightly splattering it with [pc.cumColor]");
+		else if(pc.cumQ() < 250) output("coating it in glistening [pc.cumColor]");
+		else if(pc.cumQ() < 1000) output("utterly coating it in glistening [pc.cumColor] as well as your [pc.chest] and chin.");
+		else output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
+		//pc.lactating:
+		if(pc.canMilkSquirt() && pc.isLactating()) output(" At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] and up in the air as you boob-gasm in front of everyone!");
+		output(" You can hear the ");
+		if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
+		else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbethians");
+		else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("raskvel");
+		else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
+		else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
+		else output("onlookers");
+		output(" gasping as you groan and milk your [pc.cocks] for all ");
+		if(pc.cockTotal() == 1) output("it’s");
+		else output("they’re");
+		output(" worth, perversely milking ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" and your prostate until you’ve fired every last drop.");
+	}
+	else // pc.hasPussy:
+	{
+		output("\n\nThat naughty little thought pushes you right over the edge. With a sharp, high-pitched cry, you shiver and ");
+		if(pc.isSquirter()) output("squirt your");
+		else output("gush");
+		output(" [pc.girlCum] from your [pc.vaginas]");
+		output(".");
+		if(pc.isLactating() && pc.canMilkSquirt()) output(" At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] and up in the air as you boob-gasm in front of everyone!");
+		//ElseNotLactating:
+		else 
+		{
+			output(" It’s not long before your [pc.ass] is utterly covered in your lady juice, not to mention the floor ");
+			if(pc.legCount > 1) output("between your [pc.thighs]");
+			else output("underneath");
+			output(".");
+		}
+		output(" You can hear the ");
+		if(rooms[currentLocation].planet == "TAVROS STATION") output("station-goers");
+		else if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("Esbethians");
+		else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("raskvel");
+		else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("New Texans");
+		else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
+		else output("onlookers");
+		output(" gasping as you groan and rub your [pc.vaginas] and [pc.asshole], perversely stretching out your orgasmic high for as long as you can!");
+	}
+	output("\n\nAfter the afterglow wears off, your cheeks burn as you realise just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
+	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
+	processTime(20+rand(10));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
