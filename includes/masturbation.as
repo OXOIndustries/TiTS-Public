@@ -2159,6 +2159,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	processTime(20);
 
 	pc.orgasm();
+	pc.exhibitionism(1);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2614,6 +2615,7 @@ public function moderateExhibitionOmniFap():void
 	output("\n\nAfter the afterglow wears off, your cheeks burn as you realise just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
 	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
 	processTime(20+rand(10));
+	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
