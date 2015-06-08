@@ -144,7 +144,7 @@ public function mainGameMenu():void {
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
 	this.addButton(14, "Codex", showCodex);
-	
+	addButton(13,"Stats",statisticsScreen);
 	// Show the minimap too!
 	this.userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
@@ -1547,4 +1547,19 @@ public function badEnd():void
 	
 	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
+}
+
+public function statisticsScreen():void
+{
+	clearOutput2();
+	output2("<b><u>Personal Statistics:</u></b>\n");
+	output2("<b>Alcohol Tolerance: </b>" + pc.tolerance() + "/100\n");
+	output2("<b>Cum, Current Internal: </b>" + pc.currentCum() + " mLs\n");
+	output2("<b>Cum, Probable Ejaculation: </b> " + pc.cumQ() + "\n");
+	output2("<b>Cum, Max: </b>" + pc.maxCum() + " mLs\n");
+	output2("<b>Exhibitionism: </b>" + pc.exhibitionism() + "/100\n");
+	output2("<b>Fertility: </b>" + pc.fertility()*100 + "%\n");
+	output2("<b>Fertility Speed Modifier: </b>" + pc.pregnancyIncubationBonusMother()*100 + "%\n");
+	output2("<b>Fertility Quantity Bonus: </b>" + pc.pregnancyMultiplier() + "\n");
+	output2("<b>Orgasms, Total: </b>" + StatTracking.getStat("sex/player/orgasms") + "\n");
 }
