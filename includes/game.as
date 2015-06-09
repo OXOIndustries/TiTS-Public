@@ -144,7 +144,6 @@ public function mainGameMenu():void {
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
 	this.addButton(14, "Codex", showCodex);
-	addButton(13,"Stats",statisticsScreen);
 	// Show the minimap too!
 	this.userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
