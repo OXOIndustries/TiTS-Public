@@ -536,14 +536,26 @@ public function caveBottomEntranceBonus():Boolean
 public function deepCavesDescend():void
 {
 	clearOutput();
-	showName("CLIMBING\nDOWN");
-	//Pass 1 hour. Drain 50 Energy. 
-	pc.energy(-50);
-	output("You grab some of the ropes hanging off the cliff face and test their strength - they seem solid enough to hold your weight");
-	if(pc.isGoo() || pc.isTaur() || pc.isNaga() || pc.isDrider()) output(", at least if you use several of them together");
-	output(". Once you've secured yourself, you hop off the cliff's edge and start to rappel down in the chasm below.\n\nThe descent takes what feels like an eternity, muscles straining as you pass further down into the heart of the world. Just as you think your arms are going to give out, you finally make it down to the bottom of the chasm, finding dusty black-gray rock beneath your [pc.feet]. You all but collapse on the ground, breathing hard after your exhertion...");
-	processTime(61);
-	StatTracking.track("movement/time travelled", 61);
+	//If PC has wings vers.
+	if(pc.canFly())
+	{
+		showName("GLIDING\nDOWN");
+		output("Rather than climbing down the rappelling lines, you stretch your wings and start to fly down, zipping down like a diving bird of prey into the fathomless depths of the bug world. The cavern is much, much deeper than you had expected, you quickly realize: minutes pass in controlled descent, to the point that you start to wonder if there even <i>is</i> a bottom... until you suddenly see several large, stone spikes rushing up to meet you.\n\nYou pull up at the last minute, landing between several of the largest outcroppings.");
+		pc.energy(-5);
+		processTime(4);
+		StatTracking.track("movement/time travelled", 4);
+	}
+	else
+	{
+		showName("CLIMBING\nDOWN");
+		//Pass 1 hour. Drain 50 Energy. 
+		pc.energy(-50);
+		output("You grab some of the ropes hanging off the cliff face and test their strength - they seem solid enough to hold your weight");
+		if(pc.isGoo() || pc.isTaur() || pc.isNaga() || pc.isDrider()) output(", at least if you use several of them together");
+		output(". Once you've secured yourself, you hop off the cliff's edge and start to rappel down in the chasm below.\n\nThe descent takes what feels like an eternity, muscles straining as you pass further down into the heart of the world. Just as you think your arms are going to give out, you finally make it down to the bottom of the chasm, finding dusty black-gray rock beneath your [pc.feet]. You all but collapse on the ground, breathing hard after your exhertion...");
+		processTime(61);
+		StatTracking.track("movement/time travelled", 61);
+	}
 	currentLocation = "2Y19";
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
@@ -553,12 +565,23 @@ public function deepCavesDescend():void
 public function ascendFromDeepCaves():void
 {
 	clearOutput();
-	showName("CLIMBING\nUP");
-	//Pass 90 minutes. Drain 50 Energy. For the lulz, could make ton-weight centaurs unable to climb back up. 
-	output("You grab the ropes dangling from above and begin the arduous task of hauling yourself back up the chasm, towards the myrmedion caves. It takes ages to climb back up what feels like hundreds or thousands of feet, scrambling up the cliffside up you finally see the dim light of the glowing fungus native to the myrmedion tunnels. When you haul yourself up onto the cliff's top, you end up collapsing in a panting, gasping heap, desperately trying to catch your breath. There's got to be a better way to get out of there...");
-	pc.energy(-50);
-	processTime(91);
-	StatTracking.track("movement/time travelled", 91);
+	if(!pc.canFly())
+	{
+		showName("CLIMBING\nUP");
+		//Pass 90 minutes. Drain 50 Energy. For the lulz, could make ton-weight centaurs unable to climb back up. 
+		output("You grab the ropes dangling from above and begin the arduous task of hauling yourself back up the chasm, towards the myrmedion caves. It takes ages to climb back up what feels like hundreds or thousands of feet, scrambling up the cliffside up you finally see the dim light of the glowing fungus native to the myrmedion tunnels. When you haul yourself up onto the cliff's top, you end up collapsing in a panting, gasping heap, desperately trying to catch your breath. There's got to be a better way to get out of there...");
+		pc.energy(-50);
+		processTime(91);
+		StatTracking.track("movement/time travelled", 91);
+	}
+	else
+	{
+		showName("FLYING\nUP");
+		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you spread your [pc.wings] and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land, stopping to catch your breath for a few long minutes. Whew, going up's certainly a lot more work than going down...");
+		pc.energy(-25);
+		processTime(20);
+		StatTracking.track("movement/time travelled", 20);
+	}
 	currentLocation = "1D18";
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);

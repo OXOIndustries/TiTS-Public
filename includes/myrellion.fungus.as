@@ -402,6 +402,11 @@ public function leaveDatSlutBitch():void
 	processTime(5);
 }
 
+public function showInfectedMyrMale(): void
+{
+	
+}
+
 //Male myr intro
 //(triggered first time you enter the cave tunnel on map)
 public function maleInfectedMyrEncounter():void
