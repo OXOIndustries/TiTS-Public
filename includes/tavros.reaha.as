@@ -18,6 +18,12 @@
 	}
 }
 
+public function reahaRecruited():Boolean
+{
+	return (flags["REAHA_IS_CREW"] != undefined);
+}
+
+//Is she onboard the ship?
 public function reahaIsCrew():Boolean
 {
 	if(flags["REAHA_IS_CREW"] == 1) return true;
