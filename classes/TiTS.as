@@ -187,6 +187,7 @@
 		include "../includes/myrellion.dally.as";
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.fungus.as";
 		include "../includes/myrellion.genesmods.as";
 		include "../includes/myrellion.irellia.as";
 		include "../includes/myrellion.irelliaQuest.as";

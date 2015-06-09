@@ -937,7 +937,7 @@ public function tazerForShade(target:Creature):void
 		applyDamage(damage, attacker, target);
 		
 		if(foes[0].aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
-			target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 			output(" <b>You are stunned!</b>");
 		}
 	}

@@ -615,17 +615,14 @@ public function DeepCavesBonus():Boolean
 		//Build possible encounters
 		choices[choices.length] = encounterNyreaAlpha;
 		choices[choices.length] = encounterNyreaBeta;
+		choices[choices.length] = infectedMyrmedionShit;
+		choices[choices.length] = infectedMyrmedionShit;
+		choices[choices.length] = infectedMyrmedionShit;
+		choices[choices.length] = infectedMyrmedionShit;
 
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
 	}
-	
-	// Hook landmines on the end as a fall-back to fightable encounters
-	if (tryEncounterLandmines())
-	{
-		return true;
-	}
-	
 	return false;
 }
