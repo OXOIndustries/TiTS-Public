@@ -246,6 +246,7 @@
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 			this._leftSideBar.levelUpButton.addEventListener(MouseEvent.CLICK, titsClassPtr.levelUpHandler);
 			this._leftSideBar.perksButton.addEventListener(MouseEvent.CLICK, titsClassPtr.showPerkListHandler);
+			this._leftSideBar.statsButton.addEventListener(MouseEvent.CLICK, titsClassPtr.showStatsHandler);
 		}
 		
 		private function mainMenuToggle(e:Event = null):void
@@ -654,6 +655,7 @@
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
 		public function get levelUpButton():SquareButton { return _leftSideBar.levelUpButton; }
 		public function get perkDisplayButton():SquareButton { return _leftSideBar.perksButton; }
+		public function get statsDisplayButton():SquareButton { return _leftSideBar.statsButton; }
 		
 		// Direct module access because LAZY
 		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }

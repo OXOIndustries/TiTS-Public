@@ -152,6 +152,7 @@ public function mainGameMenu():void {
 	
 	// Enable the perk list button
 	(userInterface as GUI).perkDisplayButton.Activate();
+	(userInterface as GUI).statsDisplayButton.Activate();
 }
 
 // Temp display stuff for perks
@@ -161,6 +162,21 @@ public function showPerkListHandler(e:Event = null):void
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		showPerksList();
+		pButton.Highlight();
+	}
+	else if (pButton.isActive && pButton.isHighlighted)
+	{
+		userInterface.showPrimaryOutput();
+		pButton.DeHighlight();
+	}
+}
+
+public function showStatsHandler(e:Event = null):void
+{
+	var pButton:SquareButton = (userInterface as GUI).statsDisplayButton;
+	if (pButton.isActive && !pButton.isHighlighted)
+	{
+		statisticsScreen();
 		pButton.Highlight();
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
