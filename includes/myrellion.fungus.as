@@ -402,23 +402,43 @@ public function leaveDatSlutBitch():void
 	processTime(5);
 }
 
+//Male myr intro
+//(triggered first time you enter the cave tunnel on map)
+public function maleInfectedMyrEncounter():void
+{
+	clearOutput();
+	showInfectedMyrMale();
+	author("Gardeford");
+	output("You decide to explore the passage nearly buried under glowing fungi. Mushrooms cover nearly every surface of the stone walls, and you notice that the passage looks more hewn than natural. Deciding to investigate, you carefully avoid the fungi as you step through the rocky corridor, noticing that the toadstools alternate between a number of soft colors, mostly shades of blue and green.");
+	output("\n\nThe passage would be totally dark, but the pulsing lights help you see rather clearly. The soft glow lets you walk for a minute or two before the walls begin to widen into a bigger cavern. The inside is brighter than the tunnel, and the reason for it is a sight to behold. A number of gigantic crystals dot the room, covered in titanic mushrooms. Most of the crystals are covered in a myriad of cracks, each full of sprouting mushrooms.");
+	output("\n\nYou pause, thinking you see something amongst the shining crystals, but the strobing lights prevent you from focusing on one place for long enough to tell for sure. Dulled creaking emanates from the larger crystals, and you wonder how much the fungi have affected their structural stability.");
+	output("\n\nAs you listen you hear another sound, like the buzzing of an insect’s wings, and you have just enough time to jump back before a pair of large creatures fall atop the spot you had been standing. The tiny toadstools nearby are squashed in the confusion, flashing red and yellow as they lie flattened, and begin to slowly reform even as they’re knocked around.");
+	output("\n\n<i>“Another one? I must be the luckiest male ever! First I fall asleep and wake up with superpowers, then I get not one but two slaves,”</i> he says with glee. You don’t like the tone in his voice. The person talking is a pale myr with golden blond hair. He stands totally naked and unashamed. A human-like, alabaster cock hangs between his legs, looking to be about 14 inches long.");
+	output("\n\nHis companion remains quiet, and you notice that it ");
+	if (!CodexManager.entryUnlocked("Nyrea"))
+	{
+		output("is a carapace armored creature your Codex identifies as a nyrea");
+	}
+	else output("is a nyrean female");
+	output(". She kneels next to the myr, totally naked with large amethyst breasts and pseudo-penis exposed to the cavern’s cool air. ");
+	if (!CodexManager.entryUnlocked("Nyrea"))
+	{
+		CodexManager.unlockEntry("Nyrea");
+		output("Your Codex mentions they are a very domineering race");
+	}
+	else output("You know the females of the race to be dominant");
+	output(", so the sight of the proud looking myr holding her by one of her nearly foot long ears while she begrudgingly eyes the ground is somewhat unnerving.");
+	output("\n\n<i>“At first this slut thought she was the one hitting the jackpot, but then I realised I had super powers and she changed her mind,”</i> he says, leaning down next to her and kissing one of her ears. The nyrea shudders but hides whatever feelings she has as her captor stands. What you thought was a human looking cock opens like a three jawed mouth, with a slimy red tendril for a tongue. The tentacle slides up her cheek, leaving a shiny line of what you assume is pre-cum before it slides back and returns to a normal look.");
+	output("\n\n<i>“So what do you say? I’m sure you two will get along wonderfully together!”</i> he says as if you’ve already agreed. When you inform him that joining his harem is not on your list of things to do his features change in an instant. Instead of the jovial ant-man you’d been treated to he smiles wickedly and speaks in a calm, calculated tone.");
+	output("\n\n<i>“I guess I’ll have to convince you then.”</i>\n\nIt looks like you’ll have to fight.");
+	//[fightshit]
+	clearMenu();
+	processTime(2);
+	startCombat("male infected myr");
+}
+
+//14" DONGER! (ALABASTER!)
 /*
-output("\n\nMale myr intro");
-
-output("\n\n(triggered first time you enter the cave tunnel on map)");
-
-output("\n\nYou decide to explore the passage nearly buried under glowing fungi. Mushrooms cover nearly every surface of the stone walls, and you notice that the passage looks more hewn than natural. Deciding to investigate, you carefully avoid the fungi as you step through the rocky corridor, noticing that the toadstools alternate between a number of soft colors, mostly shades of blue and green.");
-output("\n\nThe passage would be totally dark, but the pulsing lights help you see rather clearly. The soft glow lets you walk for a minute or two before the walls begin to widen into a bigger cavern. The inside is brighter than the tunnel, and the reason for it is a sight to behold. A number of gigantic crystals dot the room, covered in titanic mushrooms. Most of the crystals are covered in a myriad of cracks, each full of sprouting mushrooms.");
-output("\n\nYou pause, thinking you see something amongst the shining crystals, but the strobing lights prevent you from focusing on one place for long enough to tell for sure. Dulled creaking emanates from the larger crystals, and you wonder how much the fungi have affected their structural stability.");
-output("\n\nAs you listen you hear another sound, like the buzzing of an insect’s wings, and you have just enough time to jump back before a pair of large creatures fall atop the spot you had been standing. The tiny toadstools nearby are squashed in the confusion, flashing red and yellow as they lie flattened, and begin to slowly reform even as they’re knocked around.");
-output("\n\n<i>“Another one? I must be the luckiest male ever! First I fall asleep and wake up with superpowers, then I get not one but two slaves,”</i> he says with glee. You don’t like the tone in his voice. The person talking is a pale myr with golden blond hair. He stands totally naked and unashamed. A humanoid alabaster cock hangs between his legs, looking to be about 14 inches long.");
-output("\n\nHis companion remains quiet, and you notice that it (is a carapace armored creature your Codex identifies as a nyrea/is a nyrean female). She kneels next to the myr, totally naked with large amethyst breasts and pseudo-penis exposed to the cavern’s cool air. (Your Codex mentions they are a very dominant race/You know the females of the race to be dominant), so the sight of the proud looking myr holding her by one of her nearly foot long ears while she begrudgingly eyes the ground is somewhat unnerving.");
-output("\n\n<i>“At first this slut thought she was the one hitting the jackpot, but then I realised I had super powers and she changed her mind,”</i> he says, leaning down next to her and kissing one of her ears. The nyrea shudders but hides whatever feelings she has as her captor stands. What you thought was a human looking cock opens like a three jawed mouth, with a slimy red tendril for a tongue. The tentacle slides up her cheek, leaving a shiny line of what you assume is pre-cum before it slides back and returns to a normal look.");
-output("\n\n<i>“So what do you say? I’m sure you two will get along wonderfully together!”</i> he says as if you’ve already agreed. When you inform him that joining his harem is not on your list of things to do his features change in an instant. Instead of the jovial ant-man you’d been treated to he smiles wickedly and speaks in a calm, calculated tone.");
-output("\n\n<i>“I guess I’ll have to convince you then.”</i> It looks like you’ll have to fight.");
-
-output("\n\n[fightshit]");
-
 output("\n\nPhase punch");
 output("\n\n//basic attack");
 output("\n\nThe Gold myr punches with both of his right fists, leaping at you with harmful intent.");
@@ -439,10 +459,15 @@ output("\n\nThe myr steeples both his sets of fingers, and the mushroom creature
 output("\n\n//hit: As soon as one of the spores connects with your (shield/body) a shattering blast of electricity courses along the path, igniting the small number of spores and nearly blinding you with light.");
 output("\n\n//miss: The spores fly by you harmlessly, their course thrown off by cave air currents.");
 
+*/
 
-output("\n\nMale victory");
+/*
+//Male victory
+//requires a dick
+public function maleVictoryOverInfectedMyrMale():void
+{
 
-output("\n\n//requires a dick");
+}
 
 
 output("\n\nThe overpowered myr drops to the ground, his manifested assistant shimmering before it disappears completely. The nyrea <i>“slave”</i> is on him in a second, pinning all four of his arms beneath her knees and grinning wickedly. The gold myr struggles fearfully under her, but in his defeated state he appears to have lost his boosted strength, and she easily holds him down as she feels him up.");
