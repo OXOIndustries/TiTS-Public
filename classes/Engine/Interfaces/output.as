@@ -6,9 +6,9 @@ package classes.Engine.Interfaces
 	 */
 	import classes.TiTS;
 	import classes.kGAMECLASS;
-	public function output(msg:String):void
+	public function output(msg:String, markdown:Boolean = false, parse:Boolean = true):void
 	{
-		kGAMECLASS.output(msg);
+		kGAMECLASS.output(msg, markdown, parse);
 	}
 
 }

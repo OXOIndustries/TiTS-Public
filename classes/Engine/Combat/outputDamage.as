@@ -49,7 +49,7 @@ package classes.Engine.Combat
 				tMsg += "</b>)";
 			}
 			
-			output(tMsg);
+			output(tMsg, false, false);
 		}
 	}
 }

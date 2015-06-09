@@ -4,12 +4,10 @@
 NEVRIE_QUEST states:
 undefined/0 - not started
 1 - started
+2 - samples handled to nevrie
+3 - lab room unlocked
+4 - met the doc
 */
-public function nevrieQuestComplete():Boolean
-{
-	if (9999 == 0) return true;
-	return false;
-}
 
 public function nevrieHeader():void
 {
@@ -18,9 +16,16 @@ public function nevrieHeader():void
 	author("Savin");
 }
 
+public function mcallisterHeader():void
+{
+	showName("DOCTOR\nMCALLISTER");
+	showBust("MCALLISTER");
+	author("Savin");
+}
+
 public function myrellionBiotechExteriorAddition():Boolean
 {
-	if (!nevrieQuestComplete())
+	if (flags["NEVRIE_QUEST"] < 3)
 	{
 		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters:");
 		output("\n\nTHE DOCTOR IS <i><b>OUT</b></i>!");
@@ -36,7 +41,10 @@ public function myrellionBiotechInteriorAddition():Boolean
 	else output("Nevrie");
 	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 
-	// 9999 - button to move to lab room - locked until nevrieQuestComplete()
+	if (flags["NEVRIE_QUEST"] >= 3)
+	{
+		// 9999 - lab button
+	}
 	
 	if (flags["MET_NEVRIE"] == undefined) addButton(0, "Secretary", myrellionMeetNevrie);
 	else addButton(0, "Nevrie", myrellionNevrieApproach);
@@ -50,6 +58,10 @@ public function myrellionLabAddition():Boolean
 	if (flags["MET_MCALLISTER"] == undefined) output("A huge, bearded man");
 	else output("Doctor McAllister");
 	output(" is standing near the back of the lab, talking with several assistants gathered around a beeping device.");
+
+	clearMenu();
+	if (flags["MET_MCALLISTER"] == undefined) addButton(0, "Bearded Man", mcallisterMeeting, undefined, "Bearded Man", "The barrel-chested, bearded fellow must be Doctor McAllister. Time to go meet him.");
+	else addButton(1, "", );
 
 	// 9999 - doc menu
 }
@@ -78,6 +90,20 @@ public function myrellionNevrieApproach():void
 {
 	clearOutput();
 	nevrieHeader();
+
+	if (flags["NEVRIE_QUEST"] == 2 && flags["NEVRIE_SAMPLES_TIMESTAMP"] >= (GetGameTimestamp() - (4 * 60)))
+	{
+		flags["NEVRIE_QUEST"] = 3;
+
+		output("You step up to the desk and ask Nevrie if her boss has finally shown up.");
+		
+		output("\n\n<i>“Yeah, he’s in the back. Head on through the door - the lab’s right at the end of the hall.”</i> {if low INT/Bimbo: With a playful smirk, she adds <i>“Try not to get lost.”</i>}");
+
+		//Unlock lab room. Add [Bearded Man] to it. 
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
 
 	output("\n\nYou wander up to the desk, and the blue-haired alien sitting behind it. Nevrie gives you a slight nod as you approach, tossing the bag of junk food she was munching on into a drawer under her desk. <i>“Welcome back,");
 	if (flags["FUCKED_NEVRIE"] == undefined) output(" " + pc.mf("mister", "miss") + " Steele");
@@ -118,6 +144,11 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 	{
 		if (cFunc != myrellionNevrieCoworkers) addButton(3, "Coworkers?", myrellionNevrieCoworkers, undefined, "Coworkers?", "Ask Nevrie about the co-workers she mentioned. How come she's the only person in the store?");
 		else addDisabledButton(3, "Coworkers?");
+	}
+	else if (flags["NEVRIE_QUEST"] == 1)
+	{
+		if (pc.hasItem(new RedMyrBlood())) addButton(3, "Blood Vial", myrellionNevrieBloodVial, undefined, "Blood Vial", "Hand over a vial of red myr blood to Nevrie. Maybe you can finally get things moving about this myr gene-mod.");
+		else addDisabledButton(3, "Blood Vial", "Blood Vial", "You'd need a blood sample to hand first...");
 	}
 
 	if (cFunc != ) addButton(4, "SpecialStock", );
@@ -288,4 +319,42 @@ public function myrellionNevrieCoworkers():void
 	processTime(5+rand(3));
 
 	myrellionNevrieMenu(myrellionNevrieCoworkers);
+}
+
+public function myrellionNevrieBloodVial():void
+{
+	clearOutput();
+	nevrieHeader();
+
+	output("<i>“Here you go,”</i> you say, fishing the blood vial out of your pack and planting it on Nevrie’s desk.");
+	
+	output("\n\nThe blue-haired alien blinks in surprise, swinging her feet off her desk and snatching the offered vial up. <i>“Wow, you actually went out and got it! Lemme just run this in the back and make sure it’s viable. Hang on a sec for me.”</i>");
+	
+	output("\n\nYou nod, and Nevrie hops out of her chair for, as far as you can remember, the first time since you met her. She disappears through the back door, and after a while you hear a machine whirring, beeping, and spit out something. Nevrie comes back after that with a smile on her face and a dataslate tucked under an arm.");
+	
+	output("\n\n<i>“Everything checks out, [pc.name]. This sample should be more than enough for Doc. McAllister to synthesize for his precious mod. He’ll be back in a couple hours, I guess. If you want to talk to him feel free to wait around for a bit. Take a nap in our luxurious lobby chairs; I’ll let you know when Doctor McAllister’s in.");
+
+	pc.removeItem(new RedMyrBlood());
+
+	flags["NEVRIE_QUEST"] = 2;
+	flags["NEVRIE_SAMPLES_TIMESTAMP"] = GetGameTimestamp();
+
+	myrellionNevrieMenu();
+}
+
+public function mcallisterMeeting():void
+{
+	clearOutput();
+	mcallisterHeader();
+
+	output("The clustered scientists look up in almost comic unity when they finally notice the outsider amongst them. The lab assistants regard you with cool curiosity, like you’re another specimen to gawk at. After a moment, the towering man in the middle of them gives you a broad smile from beneath his curly moustache.");
+	
+	output("\n\n<i>“Ah, you must be [pc.name] Steele, eh?”</i> he says, thrusting his hand out at you. <i>“Doctor Byron McAllister, at your service. I hear we’ve got you to thank for find us a red myrmedion sample. Good on you for that - you’re advancing the cause of science, my {boy/girl}.”</i>");
+	
+	output("\n\nYou return the smile and shake the jolly bearded man’s hand, thinking to yourself he looks more like a lumberjack than a scientist. {He’s certainly nothing like that other Xenogen doctor you’ve worked with, Dr. Haswell.}");
+	
+	output("\n\n<i>“So, anything I can do for you, {Mr./Ms.} Steele?”</i>");
+//To McAllister's dialogue menu
+//Change to [McAllister] in room menu. 
+
 }
