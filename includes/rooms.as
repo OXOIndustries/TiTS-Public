@@ -98,18 +98,34 @@ public function initializeRooms():void
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it. The station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. The station's express lifts have entrances to the west. A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
+	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it.\n\nA neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as Shear Beauty.\n\nThe station's express lifts have entrances to the west.\n\nA glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
+
+	//9999 OLD DESC: UPDATE WITH TAVROS EXPACKThe station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. ";
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
 	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "BETHS BROADS";
+	rooms["MERCHANT'S THOROUGHFARE2"].eastExit = "SHEAR BEAUTY";
 	rooms["MERCHANT'S THOROUGHFARE2"].moveMinutes = 2;
 	//rooms["MERCHANT'S THOROUGHFARE2"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.INDOOR);
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.PUBLIC);
 	rooms["MERCHANT'S THOROUGHFARE2"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+
+	rooms["SHEAR BEAUTY"] = new RoomClass(this);
+	rooms["SHEAR BEAUTY"].roomName = "SHEAR\nBEAUTY";
+	rooms["SHEAR BEAUTY"].description = "";
+	rooms["SHEAR BEAUTY"].planet = "TAVROS STATION";
+	rooms["SHEAR BEAUTY"].system = "SYSTEM: KALAS";
+	rooms["SHEAR BEAUTY"].westExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["SHEAR BEAUTY"].moveMinutes = 1;
+	rooms["SHEAR BEAUTY"].runOnEnter = shearBeautyBonusFunc;
+	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.INDOOR);
+	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.PUBLIC);
+	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.COMMERCE);
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
