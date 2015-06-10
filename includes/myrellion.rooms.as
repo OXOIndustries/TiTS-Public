@@ -730,7 +730,7 @@ public function initializeMyrellionRooms():void
 	rooms["734"].system = "SYSTEM: SINDATHU";
 	rooms["734"].eastExit = "730";
 	rooms["734"].moveMinutes = 2;
-	rooms["734"].runOnEnter = undefined;
+	rooms["734"].runOnEnter = wrongCheckpointBonus;
 	rooms["734"].addFlag(GLOBAL.INDOOR);
 	rooms["734"].addFlag(GLOBAL.PUBLIC);
 	rooms["734"].addFlag(GLOBAL.CAVE);
@@ -782,7 +782,7 @@ public function initializeMyrellionRooms():void
 	rooms["738"].system = "SYSTEM: SINDATHU";
 	rooms["738"].eastExit = "726";
 	rooms["738"].moveMinutes = 2;
-	rooms["738"].runOnEnter = undefined;
+	rooms["738"].runOnEnter = wrongCheckpointBonus;
 	rooms["738"].addFlag(GLOBAL.INDOOR);
 	rooms["738"].addFlag(GLOBAL.PUBLIC);
 	rooms["738"].addFlag(GLOBAL.CAVE);
@@ -795,7 +795,7 @@ public function initializeMyrellionRooms():void
 	rooms["739"].system = "SYSTEM: SINDATHU";
 	rooms["739"].westExit = "718";
 	rooms["739"].moveMinutes = 2;
-	rooms["739"].runOnEnter = undefined;
+	rooms["739"].runOnEnter = rightCheckpointBonus;
 	rooms["739"].addFlag(GLOBAL.INDOOR);
 	rooms["739"].addFlag(GLOBAL.PUBLIC);
 	rooms["739"].addFlag(GLOBAL.CAVE);
@@ -808,7 +808,7 @@ public function initializeMyrellionRooms():void
 	rooms["740"].system = "SYSTEM: SINDATHU";
 	rooms["740"].westExit = "714";
 	rooms["740"].moveMinutes = 2;
-	rooms["740"].runOnEnter = undefined;
+	rooms["740"].runOnEnter = wrongCheckpointBonus;
 	rooms["740"].addFlag(GLOBAL.INDOOR);
 	rooms["740"].addFlag(GLOBAL.PUBLIC);
 	rooms["740"].addFlag(GLOBAL.CAVE);
@@ -985,6 +985,7 @@ public function initializeMyrellionRooms():void
 	rooms["LIEVE BUNKER"].moveMinutes = 1;
 	rooms["LIEVE BUNKER"].runOnEnter = lieveBunkerFunc;
 	rooms["LIEVE BUNKER"].addFlag(GLOBAL.INDOOR);
+	rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 
 
 	//Street R12

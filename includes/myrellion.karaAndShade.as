@@ -1273,6 +1273,7 @@ public function shadeTailSex():void
 {
 	clearOutput();
 	showShade();
+	author("Savin");
 	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking i your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
 	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sistive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
 	output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you. You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");

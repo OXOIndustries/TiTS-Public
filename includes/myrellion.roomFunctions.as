@@ -393,6 +393,17 @@ public function northGildenmereCheckpoint():Boolean
 	return false;
 }
 
+public function wrongCheckpointBonus():Boolean
+{
+	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES && flags["LEARNED_IAYAS_FATE"] == undefined) addButton(0,"Question",questionTheWrongGates,undefined,"Question","Ask the guards here about Sierva’s friend, Iaya. It’s a long shot, but...");
+	return false;
+}
+public function rightCheckpointBonus():Boolean
+{
+	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES && flags["LEARNED_IAYAS_FATE"] == undefined) addButton(0,"Question",questionTheRightGate,undefined,"Question","Ask the guards here about Sierva’s friend, Iaya. It’s a long shot, but...");
+	return false;
+}
+
 public function gildenmereElevatorBottomBonus():Boolean
 {
 	if(!pc.hasKeyItem("Gildenmere Pass"))
