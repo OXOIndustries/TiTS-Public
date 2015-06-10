@@ -118,7 +118,14 @@ public function jurosTalkMenu(currentFunc:Function):void
 	//Kui-Tan
 	if(currentFunc == talkWithJuroAbootHisRace) addDisabledButton(3,"Kui-tan","Kui-tan","You just finished discussing that!");
 	else addButton(3,"Kui-tan",talkWithJuroAbootHisRace,undefined,"Kui-tan","You have to admit, it seems strange that a relatively new race would be given a position as important as U.G.C. Ambassador.");
-	addButton(14,"Leave",mainGameMenu);
+	
+	if (pc.hasKeyItem("Orange Myr Data"))
+	{
+		if (currentFunc == talkWithJuroAbootOrangeMyr) addDisabledButton(4, "OrangeMyr", "Orange Myr", "You just finished discussing that.");
+		else addButton(4, "OrangeMyr", talkWithJuroAbootOrangeMyr, undefined, "Orange Myr", "Talk to the kui-tan ambassador about the possibility of peace through genetic manipulation. Maybe the U.G.C. could help distribute the stuff for Steele Tech.");
+	}
+	
+	addButton(14, "Leave", mainGameMenu);
 }
 
 
@@ -204,3 +211,45 @@ public function myrWomenTalkWithKuitanJuro():void
 
 //[Amb. Lyralla] (First Time)
 //Ambassador Lyralla represents the Gold Myr Council here at the DMZ. You’ll need to talk to her to gain clearance into Council territory. 
+
+
+public function talkWithJuroAbootOrangeMyr():void
+{
+	clearOutput();
+	juroDisplay();
+
+	output("<i>“I’d like to talk to you about something, ambassador,”</i> you say, bringing up McAllister’s data on your Codex.");
+	
+	output("\n\n<i>“Of course, "+pc.mf("mister","miss")+" Steele,”</i> Juro says, motioning to the seat across from him. <i>“What can I do for you?”</i>");
+	
+	output("\n\nYou smile and place your Codex on the desk between the two of you, and say that you’re more interested in what you can do for him - or rather, for Myrellion at large. The kui-tan’s black nose fidgets, and he adjusts his glasses while he picks up the Codex and starts to read.");
+	
+	output("\n\n<i>“Hmm, what’s this? I’m not scientist, but this appears to be genetics information. A comparison between red and gold myrmedions at the genetic level, and... ah, hybridity,”</i> he says, sighing slightly and setting your Codex aside. <i>“I met what you’ve deemed here an ‘orange’ myr once already since arriving on this planet. A Federation officer came into the medical center here in the demilitarized zone perhaps two weeks after the First Contact fleet arrived, seeking advanced medical aid, much as many other myr like her. I’d not have paid her any particular attention, if she had not been carrying a young child in her arms. Three years old, I would say, and bundled up in a blanket that hid all but her face.");
+	
+	output("\n\n<i>“While she waited for her turn with our doctors, this officer came to my desk and started talking to me. Again, I thought nothing of it at first: she questioned me about travel offworld, and the reception of alien races among my people, and other races in the Confederate core. Many myr have requested travel visas from us: I dare say the diplomatic corps will be backlogged with the them for years to come. She was, however, the first Federation officer I had seen ask - many, many gold myr and some red deserters had filed for passage offworld, but never a uniformed Federation officer. Curious, I asked her why that was.”</i>");
+	
+	output("\n\nJuro sighs and sits down, steepling his furry fingers. He’s silent for a moment, perhaps the longest pause you’ve heard the quick-talking ambassador take yet, before saying <i>“She had her child, a daughter, in her lap at that moment. I’ll never forget the sadness and fear in her face when she unbundled him: the girl had a body of dark orange plates, a shock of red hair, two arms... and her mother informed me, was a naturally-born hermaphrodite of some description. The child was, in the eyes of gold and red, an abomination. A mutation caused by unnatural union between the races. She told me she had been attacked several times since giving birth, that she feared for her child’s safety.”</i>");
+	
+	if (pc.isNice()) output("\n\n<i>“That’s horrible,”</i>");
+	else output("\n\n<i>“Shit,”</i>");
+	output("you say. <i>“What happened to her?”</i>");
+	
+	output("\n\n<i>“I arranged for her passage off world, diplomatic priority,”</i> Juro says simply. <i>“That’s beside the point, however. This formula... the people of Myrellion are not yet ready for integration. Neither the Republic nor the Federation would admit to it, of course. They both will claim they only want peace, that they have every intention of getting along with their sister race. But the fact of the matter is that hatred runs deep here, "+pc.mf("mister","miss")+" Steele. I’m afraid your orange myr solution will cause more harm than good, especially to the poor girls that take it. I have little desire to be the cause of a lynching.”</i>");
+	
+	output("\n\nYou grit your teeth and take your Codex back. <i>“Come on, ambassador, it can’t be that bad. If it was, why are you even bothering to try and help?”</i>");
+	
+	output("\n\nJuro scowls. <i>“Because I </i>do<i> have hope, "+pc.mf("mister","miss")+" Steele. But diplomacy is not an overnight achievement, and is certainly not achieved with some miracle drug that you presuppose to have any chance at impacting the generations of mistrust and disdain that has formed between two nations at war. I understand and appreciate your desire to help, "+pc.mf("mister","miss")+" Steele, but an idealistic and oversimplified view of the world is not going to do Myrellion any favors.”</i>");
+	
+	output("\n\nOuch.");
+	
+	output("\n\n<i>“Come on, ambassador. At least make it available to people. Even you have got to be able to see showing the myr how closely related they really are is a start towards peace. Sure, it’ll be a system shock to see hybrids out there, but the myr have got to find a common ground. Maybe an orange myr could be it.”</i>");
+	
+	output("\n\nJuro sighs and rubs at his temples. <i>“Doubtful, but... it would be unfair to the myrmidon not to give them that chance, I suppose. Please forward the data to my office, and I’ll ensure it makes its way to the medical staff here in the demilitarized zone. I make no promises for them, but I will at least make the data and whatever samples your company sends us available to the medical center.”</i>");
+	
+	output("\n\nYou smile and thank the ambassador, shaking his furry hand. At least that’s a chance for something better than war for Myrellion.");
+
+	pc.removeKeyItem("Orange Myr Data");
+	flags["MCALLISTER_MYR_HYBRIDITY"] = 4;
+
+	jurosTalkMenu(talkWithJuroAbootOrangeMyr);
+}
