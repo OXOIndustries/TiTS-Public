@@ -11092,8 +11092,8 @@
 			{
 				addStatusValue("Tolerance",1,arg);
 				//Bounds check
-				if(currentTolerance < 0) setStatusValue("Tolerance",1,0);
-				else if(currentTolerance > 100) setStatusValue("Tolerance",1,100);
+				if(currentTolerance + arg < 0) setStatusValue("Tolerance",1,0);
+				else if(currentTolerance + arg > 100) setStatusValue("Tolerance",1,100);
 			}
 			return statusEffectv1("Tolerance");
 		}
