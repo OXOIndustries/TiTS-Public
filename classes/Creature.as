@@ -5807,6 +5807,7 @@
 			milkFullness -= amount;
 			//Set boob swelling to new appropriate tier
 			//trace("Milk fullness: " + milkFullness);
+			if(milkFullness < 0) milkFullness = 0;
 			setBoobSwelling();
 			return milkFullness;
 		}
