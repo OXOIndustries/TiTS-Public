@@ -7864,21 +7864,31 @@
 					else descript += "trim";
 				} else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) descript += "shaggy";
-				else if (hairLength < 10) descript += "moderately long";
-				else if (hairLength < 16) {
-					if (this.rand(2) == 0) descript += "long";
+				else if (hairLength < 10) {
+					if (this.rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
-				} else if (hairLength < 26) {
+				}
+				else if (hairLength < 16) descript += "long";
+				//Relativistic hair
+				else if (hairLength < tallness / 2.5)
+				{
 					if(rand(3) == 0) descript += "very long";
 					else if(rand(2) == 0) descript += "back-length";
 					else descript += "lengthy";
-					//Disabled alternate due to weirdness:
-					//"long flowing locks, [haircolor] hair"
-					//else descript += "long flowing locks";
-				} else if (hairLength < tallness / 2) descript += "ass-length";
-				else if (hairLength < tallness) descript += "obscenely long";
+				}
+				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.3) 
+				{
+					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
+					else descript += "delightfully long";
+				}
+				else if(hairLength < tallness) {
+					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					else descript += "exquisitely long";
+				}
 				else {
-					if (this.rand(2) == 0) descript += "floor-length";
+					if (this.rand(3) == 0) descript += "floor-length";
+					else if(rand(2) == 0) descript += "obscenely long";
 					else descript += "floor-dragging";
 				}
 				descripted++;
@@ -7977,17 +7987,31 @@
 					else descript += "trim";
 				} else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) descript += "shaggy";
-				else if (hairLength < 10) descript += "moderately long";
-				else if (hairLength < 16) {
-					if (this.rand(2) == 0) descript += "long";
+				else if (hairLength < 10) {
+					if (this.rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
-				} else if (hairLength < 26) {
-					if (this.rand(2) == 0) descript += "very long";
-					else descript += "long flowing locks";
-				} else if (hairLength < 40) descript += "ass-length";
-				else if (hairLength < tallness) descript += "obscenely long";
+				}
+				else if (hairLength < 16) descript += "long";
+				//Relativistic hair
+				else if (hairLength < tallness / 2.5)
+				{
+					if(rand(3) == 0) descript += "very long";
+					else if(rand(2) == 0) descript += "back-length";
+					else descript += "lengthy";
+				}
+				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.3) 
+				{
+					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
+					else descript += "delightfully long";
+				}
+				else if(hairLength < tallness) {
+					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					else descript += "exquisitely long";
+				}
 				else {
-					if (this.rand(2) == 0) descript += "floor-length";
+					if (this.rand(3) == 0) descript += "floor-length";
+					else if(rand(2) == 0) descript += "obscenely long";
 					else descript += "floor-dragging";
 				}
 				descripted++;
