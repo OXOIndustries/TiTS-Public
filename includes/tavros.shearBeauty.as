@@ -123,6 +123,8 @@ public function hairworkFromCeria():void
 	//[Back] Go to Ceria Main
 	clearMenu();
 	addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Get your hair lengthened.");
+	addButton(1,"Cut",getHairCut,undefined,"Cut","Get your hair cut down to size.");
+	addButton(2,"Color",hairColorMainMenu,undefined,"Color","Try out a new color!");
 
 	addButton(14,"Back",approachCeria);
 }
@@ -134,7 +136,7 @@ public function lengthenHairChoices():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Alright, what kind of length are you looking for? Remember I’ll have to redo your hairstyle after this if you’re not gonna just wear it loose. We charge by the inch, I’ll give you your total when you tell me what you want.”</i>");
+	output("<i>“Alright, what kind of length are you looking for? Remember I’ll have to redo your hairstyle after this if you’re not gonna just wear it loose. We charge by the inch, and it's pretty expensive. The nano-gel doesn't come cheap! I’ll give you your total when you tell me what you want.”</i>");
 
 	//[All below options go to Lengthen Confirmation, gray out options PC already exceeds or can’t afford]
 	//[Short] 2
@@ -208,56 +210,176 @@ public function payTheLadyForLongHair(hairInches:Number):void
 	addButton(0,"Next",approachCeria);
 }
 
-/*
-output("\n\nCeria Does Your Haircut");
-output("\n\nCut Options");
-output("\n\n<i>“It’ll be 200 credits a trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
+//Ceria Does Your Haircut
+//Cut Options
+public function getHairCut():void
+{
+	clearOutput();
+	showCeria();
+	output("<i>“It’ll be 200 credits a trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
+	processTime(1);
+	//[All below options go to Cut Treatment, gray out options PC is already shorter than or can’t afford]
+	//[Short]
+	//[Shoulders]
+	//[Long]
+	//[Ass-Length]
+	//[Ankle-Length]
+	//[Back] Go to Ceria Hairwork
+	if(pc.credits >= 200 && pc.hairLength > 2) addButton(0,"Short",cutHair,2);
+	else if(pc.hairLength > 2) addDisabledButton(0,"Short","Short","You can't afford that!");
+	else addDisabledButton(0,"Short","Short","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > 8) addButton(1,"Shoulders",cutHair,8);
+	else if(pc.hairLength > 8) addDisabledButton(1,"Shoulders","Shoulders","You can't afford that!");
+	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > 13) addButton(2,"Long",cutHair,13);
+	else if(pc.hairLength > 13) addDisabledButton(2,"Long","Long","You can't afford that!");
+	else addDisabledButton(2,"Long","Long","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(3,"Back Length",cutHair,pc.tallness/2.6);
+	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(3,"Back Length","Back Length","You can't afford that!");
+	else addDisabledButton(3,"Back Length","Back Length","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(4,"Ass Length",cutHair,pc.tallness/2);
+	else if(pc.hairLength > pc.tallness/2) addDisabledButton(4,"Ass Length","Ass Length","You can't afford that!");
+	else addDisabledButton(4,"Ass Length","Ass Length","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(5,"Knee Length",cutHair,pc.tallness/1.4);
+	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(5,"Knee Length","Knee Length","You can't afford that!");
+	else addDisabledButton(5,"Knee Length","Knee Length","Your hair is already longer than that!");
+	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(6,"Ankle Length",cutHair,(pc.tallness - 1));
+	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(6,"Ankle Length","Ankle Length","You can't afford that!");
+	else addDisabledButton(6,"Ankle Length","Ankle Length","Your hair is already longer than that!");
+	addButton(14,"Back",hairworkFromCeria);
 
-output("\n\n[All below options go to Cut Treatment, gray out options PC is already shorter than or can’t afford]");
-output("\n\n[Short]");
-output("\n\n[Shoulders]");
-output("\n\n[Long]");
-output("\n\n[Ass-Length]");
-output("\n\n[Ankle-Length]");
-output("\n\n[Back] Go to Ceria Hairwork");
+}
 
-output("\n\nCut Treatment");
-output("\n\nCeria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable, and by the time she’s finished you’re left with a fresh, clean look. <b>Your hair is now {length}!</b>");
-output("\n\n[Next] Set [pc.hairstyle] to null and go to Ceria Main");
+//Cut Treatment
+public function cutHair(hairInches:Number):void
+{
+	clearOutput();
+	showCeria();
+	output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable, and by the time she’s finished you’re left with a fresh, clean look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
+	//pc.hairStyle = "null";
+	processTime(7);
+	pc.hairLength = hairInches;
+	pc.credits -= 200;
+	clearMenu();
+	addButton(0,"Next",approachCeria);
+}
 
-output("\n\nCeria Does Your Hair Color");
-output("\n\nHair Color Options");
-output("\n\n<i>“Right, so are you looking for a vanilla color, something metallic? If you’re looking for something really exotic, we’ve got these new treatments that actually make your hair glow. Personally, I like metallics.”</i> Ceria reaches up to rub one of her own glittering pink locks between her fingers for emphasis. <i>“500 credits for a vanilla or metallic, 600 for one of the glowing ones.”</i>");
+//Ceria Does Your Hair Color
+//Hair Color Options
+public function hairColorMainMenu():void
+{
+	clearOutput();
+	showCeria();
+	output("<i>“Right, so are you looking for a vanilla color, something metallic? If you’re looking for something really exotic, we’ve got these new treatments that actually make your hair glow. Personally, I like metallics.”</i> Ceria reaches up to rub one of her own glittering pink locks between her fingers for emphasis. <i>“500 credits for a vanilla or metallic, 600 for one of the glowing ones.”</i>");
+	//[Gray out options the PC can’t afford.]
+	clearMenu();
+	//[Standard] Go to Standard Hair Color
+	if(pc.credits >= 500) addButton(0,"Standard",standardHairColorMenu,undefined,"Standard","Get dyed a traditional color.");
+	else addDisabledButton(0,"Standard","Standard","You can't afford that!");
+	//[Metallic] Go to Metallic Hair Color
+	if(pc.credits >= 500) addButton(1,"Metallic",metallicHairColorMenu,undefined,"Metallic","Get dyed a metallic color.");
+	else addDisabledButton(1,"Metallic","Metallic","You can't afford that!");
+	//[Glowing] Go to Glowing Hair Color
+	if(pc.credits >= 600) addButton(2,"Glowing",glowingHairColorMenu,undefined,"Glowing","Get dyed a color that'll glow in the dark.");
+	else addDisabledButton(2,"Glowing","Glowing","You can't afford that!");
+	//[Back] Go To Hairwork
+	processTime(1);
+}
 
-output("\n\n[Gray out options the PC can’t afford.]");
-output("\n\n[Standard] Go to Standard Hair Color");
-output("\n\n[Metallic] Go to Metallic Hair Color");
-output("\n\n[Glowing] Go to Glowing Hair Color");
-output("\n\n[Back] Go To Hairwork");
+//Standard Hair Color
+public function standardHairColorMenu():void
+{
+	clearOutput();
+	showCeria();
+	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+	//[Buttons for Colors] Go to Hair Treatment
+	//[Back] Go to Hairwork
+	addButton(0,"Black",hairColorizing,"black","Black","Dye your hair black.");
+	addButton(1,"Chocolate",hairColorizing,"chocolate","Chocolate","Dye your hair chocolate.");
+	addButton(2,"Brown",hairColorizing,"brown","Brown","Dye your hair brown.");
+	addButton(3,"Dirty Blonde",hairColorizing,"dirty blonde","Dirty Blonde","Dye your hair dirty blonde.");
+	addButton(4,"Blonde",hairColorizing,"blonde","Blonde","Dye your hair blonde.");
+	addButton(5,"P.Blonde",hairColorizing,"platinum blonde","Platinum Blonde","Dye your hair platinum blonde.");
+	addButton(6,"S.B.Blonde",hairColorizing,"strawberry blonde","Strawberry Blonde","Dye your hair strawberry blonde.");
+	addButton(7,"Auburn",hairColorizing,"auburn","Auburn","Dye your hair auburn.");
+	addButton(8,"Red",hairColorizing,"red","Red","Dye your hair red.");
+	addButton(9,"Crimson",hairColorizing,"crimson","Crimson","Dye your hair crimson.");
+	addButton(10,"Orange",hairColorizing,"orange","Orange","Dye your hair orange.");
+	addButton(11,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
+	addButton(12,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
+	addButton(13,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
+	addButton(14,"Back",hairColorMainMenu);
+	addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
+	addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
+	addButton(17,"Turqoise",hairColorizing,"turqoise","Turqoise","Dye your hair turqoise.");
+	addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
+	addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
+	addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
 
-output("\n\nStandard Hair Color");
-output("\n\nCeria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-output("\n\n[Buttons for Colors] Go to Hair Treatment");
-output("\n\n[Back] Go to Hairwork");
+	//addButton(21,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
+	//addButton(22,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
+	//addButton(23,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
+	processTime(1);
 
-output("\n\nMetallic Hair Color");
-output("\n\nCeria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-output("\n\n[Buttons for Colors] Go to Hair Treatment");
-output("\n\n[Back] Go to Hairwork");
+}
+//Metallic Hair Color
+public function metallicHairColorMenu():void
+{
+	clearOutput();
+	showCeria();
+	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
+	//[Buttons for Colors] Go to Hair Treatment
+	clearMenu();
+	addButton(0,"Chrome",hairColorizing,"chrome","Chrome","Dye your hair chrome for a retro-futuristic look.");
+	addButton(1,"Bronze",hairColorizing,"bronze","Bronze","Dye your hair bronze.");
+	addButton(2,"Gold",hairColorizing,"gold","Gold","Dye your hair gold. King Midas will have nothing on you!");
+	addButton(3,"Copper",hairColorizing,"copper","Copper","Dye your hair copper.");
+	addButton(4,"Cobalt",hairColorizing,"cobalt","Cobalt","Dye your hair cobalt.");
+	addButton(5,"Silver",hairColorizing,"silver","Silver","Dye your hair silver like some kind of anime character.");
+	addButton(6,"Rusty",hairColorizing,"rusty","Rusty","Dye your hair rusty. The name of the dye is \"Rusty Venture\".");
+	addButton(7,"Steel",hairColorizing,"steel","Steel","Dye your hair steel. Really live up to your namesake.");
+	addButton(14,"Back",hairColorMainMenu);
 
-output("\n\nGlowing Hair Color");
-output("\n\nCeria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
-output("\n\n[Buttons for Colors] Go to Hair Treatment");
-output("\n\n[Back] Go to Hairwork");
+	//[Back] Go to Hairwork
+	processTime(1);
+}
 
-output("\n\nHair Treatment");
-output("\n\nOnce you’ve made your selection Ceria takes back the tablet, plugging it into a dispenser that soon spits out a small container of what looks like {color} hair gel.");
+//Glowing Hair Color
+public function glowingHairColorMenu():void
+{
+	clearOutput();
+	showCeria();
+	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
+	//[Buttons for Colors] Go to Hair Treatment
+	clearMenu();
+	addButton(0,"G.Gold",hairColorizing,"glowing gold","Glowing Gold","Dye your hair to glow like some kind of golden god.");
+	addButton(1,"G.Orange",hairColorizing,"glowing orange","Glowing Orange","Dye your hair glowing orange. You'll always be the center of attention - and probably the first to get a multipass to boot!");
+	addButton(2,"G.Red",hairColorizing,"glowing red","Glowing Red","Dye your hair to glow like the warning lights on a super-critical reactor.");
+	addButton(3,"G.Purple",hairColorizing,"glowing purple","Glowing Purple","Dye your hair glowing purple.");
+	addButton(4,"G.Blue",hairColorizing,"glowing blue","Glowing Blue","Dye your hair glowing blue for a bit of a cyber-punk look.");
+	addButton(5,"G.Green",hairColorizing,"glowing green","Glowing Green","Dye your hair glowing green. You'll be the envy of comic book monsters everywhere.");
+	addButton(14,"Back",hairColorMainMenu);
+	//[Back] Go to Hairwork
+	processTime(1);
+}
 
-output("\n\n<i>“Alright, sit down and hold still while I work this in.”</i> After getting you into the salon chair, Ceria takes out a thick glob of the gel and starts rubbing it into your scalp. As she does, you can see your former hair color being overtaken by a new shade. Ceria doesn’t stop until she’s used up all of the gel, by which time your hair color has been completely replaced and your roots are left tingling, altered by the gel to make {color} your new natural hair color. <b>Your hair is now {color}!</b>");
+//Hair Treatment
+public function hairColorizing(newColor:String = "black"):void
+{
+	clearOutput();
+	showCeria();
+	output("Once you’ve made your selection Ceria takes back the tablet, plugging it into a dispenser that soon spits out a small container of what looks like " + newColor + " hair gel.");
+	output("\n\n<i>“Alright, sit down and hold still while I work this in.”</i> After getting you into the salon chair, Ceria takes out a thick glob of the gel and starts rubbing it into your scalp. As she does, you can see your former hair color being overtaken by a new shade. Ceria doesn’t stop until she’s used up all of the gel, by which time your hair color has been completely replaced and your roots are left tingling, altered by the gel to make " + newColor + " your new natural hair color. <b>Your hair is now " + newColor + "!</b>");
+	pc.hairColor = newColor;
+	pc.credits -= 500;
+	if(newColor == "glowing green" || newColor == "glowing blue" || newColor == "glowing red" || newColor == "glowing purple" || newColor == "glowing orange" || newColor == "glowing gold") pc.credits -= 100;
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",approachCeria);
+}
 
-output("\n\n[Next] Go to Ceria Main");
-
-output("\n\nCeria Does Your Hairstyle");
+/*Ceria Does Your Hairstyle
 output("\n\nStyle Options");
 output("\n\n<i>“Okay, let me show you some of our styles.”</i> Ceria pulls out a small tablet and shows you several different pictures modeling various hairstyles. <i>“Just let me know what you’re interested in.”</i>");
 output("\n\n[All options go to Style Confirmation]");
