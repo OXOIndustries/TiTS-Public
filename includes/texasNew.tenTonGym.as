@@ -21,6 +21,7 @@ public function showQuenton():void
 public function gymEntranceBonus():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("TEN\nTON GYM");
 	output("The gym’s entry room is simple and spartan, with almost half of it taken up by an enormous desk made from plate glass propped on top of some welded-together bars from weight machines. A small computer terminal sits atop the desk. Photos adorn the walls, all local bulls and cows, flexing and posing to show off their musculature and tone.");
 	output("\n\nThe bull behind the desk is a remarkably toned example of his kind, with every muscle defined to the point that he could probably find work posing for anatomy textbooks. He’s clad in a white tank top with the gym’s logo on the front and blue workout pants made of some smooth material. His brown hair is buzzed short around a pair of stubby white horns.");
@@ -62,6 +63,7 @@ public function passDetector():Boolean
 public function mainHallWayOfGymShit():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	if(passDetector()) return true;
 	output("The gym’s main thoroughfare, this hallway is lined with mirrors and smells faintly of sweat. The patrons walk slowly through here, most of them checking themselves and others out as they head through the gym. You hear the sound of splashing from one doorway, and raised voices chanting a cadence come from another.");
 	// One of the following descriptions should appear at random between the first and third paragraphs whenever the PC enters this room:
@@ -80,6 +82,7 @@ public function mainHallWayOfGymShit():Boolean
 public function weightRoomBonusFunction():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	if(passDetector()) return true;
 	output("The sounds of grunts and clanking metal greet you as you walk into the weight room. Half the room is taken up with machines for working every possible muscle, all of them with stacks of heavy plates over a meter high, to account for the brute strength the Treatment bestows upon some of its users. The room’s other half is filled with various types of weight benches and racks of free weights, for those who want to pump iron without mechanical assistance. The gym’s front windows make up most of one wall, and the opposite wall is all mirrors.");
 	output("\n\nMost of the room’s occupants are bulls, focusing largely on their chests and arms, with a few of them pressing hard on the leg machines. A few cows are scattered around the room, working on their arms and legs or doing ab exercises on mats. Bulls and cows both ogle and catcall each other as they work, often stopping in the middle of a set to do so. A dark-skinned cowgirl is lifting heavier weights on a machine, and offers a challenging smirk to anyone who approaches her.");
@@ -99,6 +102,7 @@ public function weightRoomBonusFunction():Boolean
 public function lightWorkout():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("LIGHT\nWORKOUT");
 	output("You work your way through a row of weight machines, keeping the weights at a moderate level. There’s something oddly relaxing about putting yourself through the simple motions, and the burn sets in after a while, leaving your muscles feeling tired and springy.");
 	output("\n\nYou step away from the machines when done, wipe sweat from your forehead, and smile. Not a bad workout, but not too exhausting either. Let the bulls sweat and grunt until they can barely lift their arms; you’re just here to make sure you stay in good shape.");
@@ -116,6 +120,7 @@ public function lightWorkout():void
 public function hardWorkout():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("HARD\nWORKOUT");
 	output("Time to pump iron. You slam some weights on the bars and start hefting. The gym regulars clearly appreciate seeing you put in as much work as they do, and volunteer to spot you, so long as you can spot them in return.");
 	output("\n\nOne of the bulls starts lifting at the bar next to you, and an impromptu contest begins, both of you lifting heavier and heavier weights as the other does. You grit your teeth and push through it, determined to show the locals you’ve got what it takes.");
@@ -135,6 +140,7 @@ public function hardWorkout():void
 public function newTexasTrackBonus():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	output("The whirr of air conditioners greets you as you enter the track room. It’s longer than you expected, taken up largely by an extended oval loop of running track, with lights hanging from bars that crisscross the ceiling. The track itself is some sort of brown synthetic, and bounces slightly under the runners’ feet. White lines designate the track’s five lanes.");
 	output("\n\nA few young bulls are running the track in perfect synch, calling out their steps in time. One group of cows runs together in a loose cluster, some of them quite sweaty; another group of cows sits along the wall, calling out encouragement and lewd comments to the runners. A few other New Texans run at their own pace or catch their breath against the wall.");
 	output("\n\nAt the center of the track, some sort of aerobics class is in progress, with an older cow calling out exercises and counting down numbers for the group she leads. The sight of a group of bulls and cows all moving and bending in synch like that is oddly hypnotizing, for quite a few reasons.");
@@ -153,6 +159,7 @@ public function takeAJogInTenTonGym():void
 {
 	clearOutput();
 	showName("\nJOGGING");
+	author("Slab Bulkhead");
 	output("You hit the track at a moderate pace, working your way up to a swift walk, then a gentle jog. After about half a lap, you catch up with the group of cows, and fall in with them. It seems like they’re here to chat just as much as they’re here to work out, and most of the conversation revolves around the local bulls and who’s best in the sack, though there’s mention of some curious people working at the nearby barn.");
 	output("\n\nYou do a few more laps with the locals, then excuse yourself, slowing to a walk and heading off the track. It’s an easy workout, but it leaves you with a healthy glow and a light sweat once you’re done.");
 	output("\n\nYou feel slightly trimmer after your workout.");
@@ -171,6 +178,7 @@ public function takeARunInNewTexas():void
 {
 	clearOutput();
 	showName("\nRUNNING");
+	author("Slab Bulkhead");
 	output("Time to move, and there’s no better place for it.  You hit the track and run a quick warmup lap, then decide it’s time to push yourself. The sound of chanting comes from behind you, and you glance back to see the group of young bulls running in cadence.");
 	output("\n\nYou move over to the side to let them pass, then speed up to match their pace, running in time along with them. A few of them grunt a greeting, but every one of them is breathing hard, sweat flowing freely down their chests. They set a grueling pace, but you match it and keep up with them for at least a few miles.");
 	output("\n\nSoon, you’re dripping sweat and have to cool off. One of the bulls razzes you about not being able to keep up, but running with them until you collapse doesn’t sound like the best idea. You head off the track, then grab a gym towel and wipe yourself off.");
@@ -189,6 +197,7 @@ public function takeARunInNewTexas():void
 public function swimmingPoolBonus():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	output("Tile covers the floor in this long room, and the whole place has a pleasant yet unfamiliar smell. A pool stretches nearly the entire length of the room, with black lines crossing its floor to designate swimming lanes. A sloping ramp leads down into the shallow end.");
 	output("\n\nThis place seems more popular with the local cows than the other rooms, as there are groups of them swimming together. Many are clad in holstein-print swimsuits, while others – cow and bull alike – go naked. One naked cowgirl floats on her back, pink nipples pointing toward the ceiling, pushing herself along in a lazy backstroke.");
 	output("\n\nYou wonder why it doesn’t smell like chlorine; surely they can’t go without something to keep the pool clean, with this many people in it. You dip two fingers into the pool water to test it, and find it smooth, almost slippery, the sign of a synthetic decontaminant. That explains the unfamiliar smell, and it’s probably a safer choice here, as you’re sure more than a few people have had sex in this pool.");
@@ -210,6 +219,7 @@ public function swimmingPoolBonus():Boolean
 public function quickSwim():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("QUICK\nSWIM");
 	output("You ");
 	if(pc.exhibitionism() < 66) output("don a swimsuit");
@@ -234,6 +244,7 @@ public function quickSwim():void
 public function swimLapsAtZePool():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("SWIM\nLAPS");
 	output("You ");
 	if(pc.exhibitionism() < 66) output("don a swimsuit");
@@ -258,6 +269,7 @@ public function swimLapsAtZePool():void
 public function spaTimesFunStuff():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	output("The spa is a welcome sight. You ");
 	if(pc.exhibitionism() < 66) output("don a swimsuit");
 	else if(!pc.isNude()) output("strip naked");
@@ -279,6 +291,7 @@ public function spaTimesFunStuff():void
 public function lockerRoomAndShowersBonus():Boolean
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("LOCKER\nROOM");
 	output("Tall metal lockers cover the tiled walls of this room, with benches bolted to the floor between them. The air is moist and smells of sweat and soap. You hear showers running nearby, along with lockers slamming closed and the rustle of clothing.");
 	output("\n\nThe shower room is an open area with showerheads and knobs on the walls, as well as a long line of pipes featuring more of the same down the center. It’s a little crowded, as most everyone who uses the gym ends up here at some point. Dispensers by the shower knobs provide shampoo and body wash.");
@@ -293,6 +306,7 @@ public function lockerRoomAndShowersBonus():Boolean
 public function takeAShowerSloot():void
 {
 	clearOutput();
+	author("Slab Bulkhead");
 	showName("SHOWER\nTIME!");
 	output("Time to hit the shower. You strip down and stow your stuff in a locker, then find a shower that no one’s using and turn it on. The water splashes down on you all at once, and it takes you a moment to get the temperature set just right.");
 	output("\n\nYou shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with the slippery body wash");
@@ -348,6 +362,7 @@ public function talkToQuenton():void
 {
 	clearOutput();
 	showQuenton();
+	author("Slab Bulkhead");
 	//Hasn’t talked to Quenton: 
 	if(flags["MET_QUENTON"] == undefined)
 	{
@@ -377,6 +392,7 @@ public function purchaseTempGymMembership():void
 {
 	clearOutput();
 	showQuenton();
+	author("Slab Bulkhead");
 	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift?  I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be fifty credits, friend.”</i>");
 	processTime(1);
 	clearMenu();
@@ -392,6 +408,7 @@ public function purchaseTempGymMembershipConfirm():void
 {
 	clearOutput();
 	showQuenton();
+	author("Slab Bulkhead");
 	output("You pay Quenton with a credit chit, and he gestures toward the gym doors. <i>“Enjoy your workout, and do come back.”</i>");
 	processTime(1);
 	pc.credits -= 50;
@@ -405,6 +422,7 @@ public function buyDatLifetimeMembership():void
 {
 	clearOutput();
 	showQuenton();
+	author("Slab Bulkhead");
 	output("Quenton’s grin stretches even wider. <i>“Always happy to welcome a new member!”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“Five hundred credits, friend, and you’ve got a home at the greatest gym this side of the galaxy.”</i>");
 	clearMenu();
 	if(pc.credits >= 500) addButton(0,"Purchase",purchaseLifetimeGymMembership,undefined,"Purchase","Purchase a lifetime membership for 500 credits.");
@@ -419,6 +437,7 @@ public function purchaseLifetimeGymMembership():void
 {
 	clearOutput();
 	showQuenton();
+	author("Slab Bulkhead");
 	output("You pay him with a credit chit, and the computer plays a twangy musical fanfare. <i>“You’re all set, [pc.name]. Welcome to the Ten Ton Gym!”</i>");
 	processTime(1);
 	pc.credits -= 500;
