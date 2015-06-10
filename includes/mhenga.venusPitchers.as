@@ -26,11 +26,12 @@ public function encounterRegularTentaclePitcherYouGay():void {
 		output("\n\nYou suddenly sneeze, which draws a high-pitched giggle from the nymph-like woman, the breathy exclamations of good humor jostling her curvy tits almost mesmerizingly. She beams a friendly smile and says, <i>“These jungles are stuffy, I know. I've been stuck here for like a whole day! My foot's stuck in some sap.”</i>  She leans and shudders a bit for emphasis, her breasts swaying beneath her outstretched torso like sexy pendulums. Her plump lower lip is drawn into her mouth, gently gnawed on as she struggles. <i>“A little help?”</i>");
 		output("\n\nSneezing a few more times, you're about to come to a decision when the Codex beeps and chimes, <i>“Venus pitcher detected. Classified as a moderate danger, avoid prolonged contact with their spores if you have any respiratory illnesses. Approaching will result in restraint and the harvesting of sexual fluids.”</i>");
 		output("\n\nThe woman's face goes sour at that, and she yells, <i>“Shut up, whoever you are!”</i>  She realizes you're staring at her a moment later and covers her mouth, meekly blushing. <i>“Sorry. Uhm, that guy was wrong, the venus plant is on the other side of that tree, and I really need help!”</i>");
-		if(pc.intelligence() / 2 + rand(20) + 1 > 20) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
+		var tricked:Boolean = pc.intelligence() / 2 + rand(20) + 1 <= 20;
+		if(!tricked) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
 		else output("\n\nDo you help her?");
 		//[Help Her][Don't]
 		clearMenu();
-		addButton(0,"Help Her",firstTimeVenusEntrance,true);
+		addButton(0,"Help Her",firstTimeVenusEntrance,tricked);
 		addButton(1,"Don't",dontHelpVenusPitcher);
 	}
 	//*Repeat Venus Pitcher Encounters
@@ -954,7 +955,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	output(upperCase(num2Text(pc.totalNipples())) + " iridescent tentacles rise up in front you. They’re each about as thick as your arms. Dripping, circular openings appear on the top of them, slowly dilating as they open. Ropes of lubricant drip from the pulsing, toothless maws and hang down, swaying back and forth under the purple-lined holes. Around the entrances of the tendrils, a number of engorged bulbs are visible, almost clit-like in look and design. They close in on your chest, and their purplish-tinged interiors constrict and relax rhythmically, lined with any number of cilia, folded flesh, and muscular rings.");
 	output("\n\nYour [pc.dickNipples] swell, distending the surface of your [pc.nipples] before exposing themselves, their surfaces swelling with fresh tumescence, pulsing visibly as they jut from your chest.");
 	
-	output("\n\n<i>“Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,”</i>  the seductive plant-girl wonders aloud. <i>“You just relax and hang out while I milk these puppies-”</i>  she tugs on your [dickNipples] eagerly, <i>“-so well that they pop out whenever you think about me.”</i>");
+	output("\n\n<i>“Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,”</i>  the seductive plant-girl wonders aloud. <i>“You just relax and hang out while I milk these puppies-”</i>  she tugs on your [pc.dickNipples] eagerly, <i>“-so well that they pop out whenever you think about me.”</i>");
 	
 	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nippleDicks] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
 	
@@ -1224,7 +1225,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	userInterface.author("Fenoxo");
 	
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
-	var pSlot:int = pc.findPregnancyOfType("VenusPticherSeedCarrier");
+	var pSlot:int = pc.findPregnancyOfType("VenusPitcherSeedCarrier");
 	
 	if (pSlot == -1) pSlot = 0;
 	
