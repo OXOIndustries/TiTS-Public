@@ -2486,8 +2486,17 @@ public function tease(target:Creature, part:String = "chest"):void {
 		if(pc.hasPerk("Pheromone Cloud")) bonus = 1;
 		if(part == "squirt") bonus += 2;
 
+		var sweatyBonus:int = 0;
+		if(pc.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
+		{
+			//-5 per level normally, so add twice that since we flippin it'
+			sweatyBonus = pc.statusEffectv1("Sweaty") * 10;
+			//Furries dont benefit quite as much.
+			if(pc.hasFur()) sweatyBonus = pc.statusEffectv1("Sweaty") * 5;
+		}
+
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.isLustImmune == true)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus + sweatyBonus || target.isLustImmune == true)
 		{
 			if(target is HandSoBot)
 			{
@@ -2531,18 +2540,25 @@ public function tease(target:Creature, part:String = "chest"):void {
 		//Success!
 		else {
 			//Calc base damage
-			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
+			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2 + sweatyBonus/2;
 			if(part == "squirt") damage += 5;
 			//Any perks or shit go below here.
 			if(pc.hasPerk("Pheromone Cloud")) damage += 1+rand(4);
 			//Apply randomization
 			damage *= randomizer;
+			//Base cap dependant on level:
+			if(damage > 15 + pc.level*2) damage = 15 + pc.level*2;
+
 			//Apply like adjustments
 			damage *= totalFactor;
 			
 			// Resistances
 			damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
 			
+			//Cap possible damage.
+			if(damage > 25 + pc.level*2) damage = 25 + pc.level*2;
+			
+			//Prevent lust from being over total damage.
 			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 

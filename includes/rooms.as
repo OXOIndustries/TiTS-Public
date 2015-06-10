@@ -3560,11 +3560,12 @@ public function initializeRooms():void
 	//507 The Road
 	rooms["507"] = new RoomClass(this);
 	rooms["507"].roomName = "THE\nROAD";
-	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn't far to the northeast, and an impressive ranch house stands off the road to the northwest.";
+	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn't far to the northeast, and an impressive ranch house stands off the road to the northwest.\n\nA one-story building with smooth tan walls sits to the north of the road, with a bright neon holographic sign across the front proclaiming it to be The \"Ten Ton Gym\". The sign shows a cartoonish, overmuscled bull hefting a barbell the size of a small freighter over his head with one hand. Plate glass windows across the front give you a glimpse into a weight room filled with denizens of New Texas, cows and bulls alike lifting weights of varying sizes.\n\nAs you watch, the giant barbell on the sign changes to an actual cow, its eyes wide in surprise, then to a fit cowgirl with breasts the size of her head, raising two weights with her toned arms. The hard-bodied bull winks at you between the changes.";
 	rooms["507"].runOnEnter = icedTeatsExteriorBonusFunc;
 	rooms["507"].westExit = "506";
 	rooms["507"].eastExit = "508";
 	rooms["507"].southExit = "540";
+	rooms["507"].northExit = "569";
 	rooms["507"].planet = "PLANET: NEW TEXAS";
 	rooms["507"].system = "SYSTEM: NYE";
 	rooms["507"].addFlag(GLOBAL.OUTDOOR);
@@ -4276,6 +4277,84 @@ public function initializeRooms():void
 	rooms["540"].addFlag(GLOBAL.INDOOR);
 	rooms["540"].addFlag(GLOBAL.NPC);
 	rooms["540"].addFlag(GLOBAL.PUBLIC);
+
+	//GYM SHIT!
+	rooms["569"] = new RoomClass(this);
+	rooms["569"].roomName = "TEN\nTON GYM";
+	rooms["569"].description = "";
+	rooms["569"].runOnEnter = gymEntranceBonus;
+	rooms["569"].southExit = "507";
+	rooms["569"].northExit = "570";
+	rooms["569"].westExit = "572";
+	rooms["569"].moveMinutes = 1;
+	rooms["569"].planet = "PLANET: NEW TEXAS";
+	rooms["569"].system = "SYSTEM: NYE";
+	rooms["569"].addFlag(GLOBAL.INDOOR);
+	rooms["569"].addFlag(GLOBAL.NPC);
+	rooms["569"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["570"] = new RoomClass(this);
+	rooms["570"].roomName = "MAIN\nHALL";
+	rooms["570"].description = "";
+	rooms["570"].runOnEnter = mainHallWayOfGymShit;
+	rooms["570"].southExit = "569";
+	rooms["570"].northExit = "571";
+	rooms["570"].westExit = "573";
+	rooms["570"].eastExit = "574";
+	rooms["570"].moveMinutes = 1;
+	rooms["570"].planet = "PLANET: NEW TEXAS";
+	rooms["570"].system = "SYSTEM: NYE";
+	rooms["570"].addFlag(GLOBAL.INDOOR);
+	rooms["570"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["571"] = new RoomClass(this);
+	rooms["571"].roomName = "LOCKERS\n& SHOWERS";
+	rooms["571"].description = "";
+	rooms["571"].runOnEnter = lockerRoomAndShowersBonus;
+	rooms["571"].southExit = "570";
+	rooms["571"].moveMinutes = 1;
+	rooms["571"].planet = "PLANET: NEW TEXAS";
+	rooms["571"].system = "SYSTEM: NYE";
+	rooms["571"].addFlag(GLOBAL.INDOOR);
+	rooms["571"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["572"] = new RoomClass(this);
+	rooms["572"].roomName = "WEIGHT\nROOM";
+	rooms["572"].description = "";
+	rooms["572"].runOnEnter = weightRoomBonusFunction;
+	rooms["572"].eastExit = "569";
+	rooms["572"].moveMinutes = 1;
+	rooms["572"].planet = "PLANET: NEW TEXAS";
+	rooms["572"].system = "SYSTEM: NYE";
+	rooms["572"].addFlag(GLOBAL.INDOOR);
+	rooms["572"].addFlag(GLOBAL.PUBLIC);
+	
+	rooms["573"] = new RoomClass(this);
+	rooms["573"].roomName = "THE\nTRACK";
+	rooms["573"].description = "";
+	rooms["573"].runOnEnter = newTexasTrackBonus;
+	rooms["573"].eastExit = "570";
+	rooms["573"].moveMinutes = 1;
+	rooms["573"].planet = "PLANET: NEW TEXAS";
+	rooms["573"].system = "SYSTEM: NYE";
+	rooms["573"].addFlag(GLOBAL.INDOOR);
+	rooms["573"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["574"] = new RoomClass(this);
+	rooms["574"].roomName = "THE\nPOOL";
+	rooms["574"].description = "";
+	rooms["574"].runOnEnter = swimmingPoolBonus;
+	rooms["574"].westExit = "570";
+	rooms["574"].moveMinutes = 1;
+	rooms["574"].planet = "PLANET: NEW TEXAS";
+	rooms["574"].system = "SYSTEM: NYE";
+	rooms["574"].addFlag(GLOBAL.INDOOR);
+	rooms["574"].addFlag(GLOBAL.PUBLIC);
+	
+
+
+
+
 
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*

@@ -360,6 +360,8 @@ public function sleepHeal():void
 	{
 		pc.HP(Math.round(pc.HPMax()));
 	}
+	pc.removeStatusEffect("Sore");
+	pc.removeStatusEffect("Sore Counter");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }

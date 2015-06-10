@@ -174,6 +174,7 @@
 		include "../includes/texasNew.gianna.as";
 		include "../includes/texasNew.gobbles.as";
 		include "../includes/texasNew.millie.as";
+		include "../includes/texasNew.tenTonGym.as";
 		include "../includes/texasNew.treatment.as";
 		include "../includes/texasNew.varmint_wrangling.as";
 		include "../includes/texasNew.yammi.as";
