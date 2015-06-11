@@ -123,6 +123,7 @@
 		include "../includes/tavros.reaha.expansion.as";
 		include "../includes/tavros.sellesy.as";
 		include "../includes/tavros.sera.as";
+		include "../includes/tavros.shearBeauty.as";
 		include "../includes/tavros.shelly.as";
 		include "../includes/tavros.vahn.as";
 		
@@ -174,6 +175,7 @@
 		include "../includes/texasNew.gianna.as";
 		include "../includes/texasNew.gobbles.as";
 		include "../includes/texasNew.millie.as";
+		include "../includes/texasNew.tenTonGym.as";
 		include "../includes/texasNew.treatment.as";
 		include "../includes/texasNew.varmint_wrangling.as";
 		include "../includes/texasNew.yammi.as";
@@ -187,6 +189,7 @@
 		include "../includes/myrellion.dally.as";
 		include "../includes/myrellion.embassy.as";
 		include "../includes/myrellion.embry.as";
+		include "../includes/myrellion.fungus.as";
 		include "../includes/myrellion.genesmods.as";
 		include "../includes/myrellion.irellia.as";
 		include "../includes/myrellion.irelliaQuest.as";
@@ -302,7 +305,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.5.42";
+			version = "0.5.43";
 
 			//temporary nonsense variables.
 			temp = 0;

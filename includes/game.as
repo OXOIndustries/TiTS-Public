@@ -144,7 +144,6 @@ public function mainGameMenu():void {
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
 	this.addButton(14, "Codex", showCodex);
-	addButton(13,"Stats",statisticsScreen);
 	// Show the minimap too!
 	this.userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
@@ -206,6 +205,15 @@ public function showPerksList():void
 			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
 		}
 	}
+}
+
+public function crewRecruited():Number
+{
+	var counter:Number = 0;
+	if(flags["RECRUITED_CELISE"] > 0) counter++;
+	if(reahaRecruited()) counter++;
+	if(!annoNotRecruited()) counter++;
+	return counter;
 }
 
 public function crew(counter:Boolean = false):Number {
@@ -352,6 +360,8 @@ public function sleepHeal():void
 	{
 		pc.HP(Math.round(pc.HPMax()));
 	}
+	pc.removeStatusEffect("Sore");
+	pc.removeStatusEffect("Sore Counter");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
@@ -507,7 +517,9 @@ public function flyTo(arg:String):void {
 		currentLocation = "600";
 		flyToMyrellion();
 	}
-	processTime(600 + rand(30));
+	var timeFlown:Number = 600 + rand(30);
+	StatTracking.track("movement/time flown", timeFlown);
+	processTime(timeFlown);
 	flags["LANDING_EVENT_CHECK"] = 1;
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -552,6 +564,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 		moveMinutes -= 1;
 		if(moveMinutes < 1) moveMinutes = 1;
 	}
+	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
@@ -1101,7 +1114,12 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
-				 // New Texas cockmilker repair cooldown.
+				//Exhibitionism reduction!
+				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
+				{
+					pc.exhibitionism(-0.5);
+				}
+				// New Texas cockmilker repair cooldown.
 				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
 				{
 					if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]--;
@@ -1570,12 +1588,130 @@ public function statisticsScreen():void
 	clearOutput2();
 	output2("<b><u>Personal Statistics:</u></b>\n");
 	output2("<b>Alcohol Tolerance: </b>" + pc.tolerance() + "/100\n");
-	output2("<b>Cum, Current Internal: </b>" + pc.currentCum() + " mLs\n");
-	output2("<b>Cum, Probable Ejaculation: </b> " + pc.cumQ() + "\n");
-	output2("<b>Cum, Max: </b>" + pc.maxCum() + " mLs\n");
-	output2("<b>Exhibitionism: </b>" + pc.exhibitionism() + "/100\n");
-	output2("<b>Fertility: </b>" + pc.fertility()*100 + "%\n");
-	output2("<b>Fertility Speed Modifier: </b>" + pc.pregnancyIncubationBonusMother()*100 + "%\n");
-	output2("<b>Fertility Quantity Bonus: </b>" + pc.pregnancyMultiplier() + "\n");
+	
+	if(pc.hasCock())
+	{
+		output2("<b>Cum, Current Internal: </b>" + pc.currentCum() + " mLs\n");
+		output2("<b>Cum, Probable Ejaculation: </b> " + pc.cumQ() + " mLs\n");
+		output2("<b>Cum, Max: </b>" + pc.maxCum() + " mLs\n");
+	}
+	output2("<b>Exhibitionism: </b>" + Math.round(pc.exhibitionism()*10)/10 + "/100\n");
+	output2("<b>Femininity (Negative is Masculine): </b>" + (pc.femininity-50)*2 + "\n");
+	if(pc.hasVagina())
+	{
+		output2("<b>Fertility: </b>" + Math.round(pc.fertility()*1000)/10 + "%\n");
+		output2("<b>Fertility Speed Modifier: </b>" + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + "%\n");
+		output2("<b>Fertility Quantity Bonus: </b>" + Math.round(pc.pregnancyMultiplier()) + "\n");
+	}
+	//Milkshit!
+	if(pc.canLactate())
+	{
+		output2("<b>Milk, Current: </b>" + Math.round(pc.milkFullness/100 * pc.milkCapacity()) + " mLs\n");;
+		output2("<b>Milk, Max: </b>" + pc.milkCapacity() + " mLs\n");
+		output2("<b>Milk, Production Training: </b>" + Math.round(pc.milkMultiplier*10)/10 + "%\n");
+		output2("<b>Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + "%");
+	}
 	output2("<b>Orgasms, Total: </b>" + StatTracking.getStat("sex/player/orgasms") + "\n");
+	if(pc.hasCock()) output2("<b>Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + "%\n");
+	if(pc.hasCock()) output2("<b>Virility: </b>" + Math.round(pc.virility()*1000)/10 + "%\n");
+
+	output2("\n<b><u>Combat Statistics:</u></b>\n");
+	output2("<b>Accuracy Bonus, Melee: </b>" + pc.attack(true) + "%\n");
+	output2("<b>Accuracy Bonus, Ranged: </b>" + pc.attack(false) + "%\n");
+	output2("<b>Combat, Losses: </b>" + StatTracking.getStat("combat/losses") + "\n");
+	output2("<b>Combat, Victories: </b>" + StatTracking.getStat("combat/wins") + "\n");
+	output2("<b>Critical Chance, Melee: </b>" + pc.critBonus(true) + "%\n");
+	output2("<b>Critical Chance, Ranged: </b>" + pc.critBonus(false) + "%\n");
+	output2("<b>Evasion Bonus: </b>" + pc.evasion() + "%\n");
+
+	output2("\n<b><u>NPC Statistics:</u></b>\n");
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output2("<b>Kiro's Trust: </b>" + kiroTrust() + "%\n");
+	//Lane shit
+	if(flags["LANE_HYPNOSIS_LEVEL"] != 0 && flags["LANE_HYPNOSIS_LEVEL"] != undefined)
+	{
+		output2("\n<b>Lane, Hypnosis Level: </b>" + flags["LANE_HYPNOSIS_LEVEL"] + "\n");
+
+	}
+	if(reahaRecruited()) 
+	{
+		output2("<b>Reaha's Patch Addiction: </b>" + reahaAddiction() + "%\n");
+		output2("<b>Reaha's Confidence: </b>" + reahaConfidence() + "%\n");
+	}
+	if(flags["SAEN MET AT THE BAR"] != undefined) output2("<b>Saendra's Affection: </b>" + saendraAffection() + "% (69% Max)\n");
+
+	output2("\n<b><u>General Statistics:</u></b>\n");
+	output2("<b>Crew, Recruited: </b>" + crewRecruited() + "\n");
+	output2("<b>Crew, Onboard: </b>" + crew(true) + "\n");
+	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
+	{
+		output2("<b>Milker, Prostate, Times Used: </b>" + StatTracking.getStat("milkers/prostate milker uses") + "\n");
+		output2("<b>Milker, Prostate, Cum Milked: </b>" + StatTracking.getStat("milkers/cum milked") + "\n");
+	}
+	output2("<b>Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")) + "\n");
+	output2("<b>Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")) + "\n");
+	if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0)
+	{
+		output2("<b>Vanae Deflowered: </b>" + StatTracking.getStat("characters/maiden vanae/cherrys popped") + "\n");
+	}
+	var totalVirginitiesTaken:Number = StatTracking.getStat("characters/maiden vanae/cherrys popped");
+	if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
+	if(!embry.vaginalVirgin) totalVirginitiesTaken++;
+	if(!embry.analVirgin) totalVirginitiesTaken++;
+	output2("<b>Virginities Claimed: </b>" + totalVirginitiesTaken + "\n");
+	
+	//Births header!
+	if(StatTracking.getStat("pregnancy/total births") > 0)
+	{
+		output2("\n<b><u>Reproduction Statistics:</u></b>\n");
+		output2("<b>Births, Total: </b>" + StatTracking.getStat("pregnancy/total births") + "\n");
+		if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
+			output2("<b>Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed") + "\n");
+		if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
+			output2("<b>Births, Cockvines, Captured: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings captured") + "\n");
+		if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
+			output2("<b>Births, Nyrea Eggs: </b>" + StatTracking.getStat("pregnancy/nyrea eggs") + "\n");
+		if(StatTracking.getStat("pregnancy/renvra kids") > 0)
+			output2("<b>Births, Renvra's Children: </b>" + StatTracking.getStat("pregnancy/renvra kids") + "\n");
+		if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+			output2("<b>Births, Venus Pitcher Seeds: </b>" + StatTracking.getStat("pregnancy/venus pitcher seeds") + "\n");
+		if(StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") > 0)
+			output2("<b>Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") + "\n");
+		if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
+			output2("<b>Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") + "\n");
+		
+	}
+}
+
+public function prettifyMinutes(minutes:Number):String
+{
+	var buffer:String = "";
+	var hours:Number = 0;
+	var days:Number = 0;
+	//Days
+	if(minutes > 1440) 
+	{
+		days = Math.floor(minutes/1440);
+		minutes -= 1440 * days;
+	}
+	//Hourz
+	if(minutes > 60)
+	{
+		hours = Math.floor(minutes/60);
+		minutes -= 60 * hours;
+	}
+	if(days > 0) 
+	{
+		buffer += days + " day";
+		if(days > 1) buffer += "s";
+	}
+	if(hours > 0 || days > 0) 
+	{
+		if(days > 0) buffer += " ";
+		buffer += hours + " hour"
+		if(hours != 1) buffer += "s";
+	}
+	if(buffer != "") buffer += " ";
+	buffer += minutes + " minute";
+	if(minutes != 1) buffer += "s";
+	return buffer;
 }

@@ -82,6 +82,7 @@ public function letTheBombsGoOffApproach():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("The queens give you icy glares and little else until you decide to leave. Maybe you should've called in...");
 	processTime(4);
 	clearMenu();
@@ -94,6 +95,7 @@ public function approachAfterMeetingButQuestNotTaken():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("Scalla gently prods Irellia as you approach, ending their previous discussion.\n\nThe blue-painted queen favors you with a slight bow. <i>“Welcome back, [pc.name] Steele. Have you considered our offer? Will you assist us against the insurrectionists terrorizing our people? I assure you, our coffers could make it worth your while.”</i>");
 	processTime(1);
 	clearMenu();
@@ -107,6 +109,7 @@ public function approachWithIncompleteIrelliaQuest():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("Irellia notices you first. She gently elbows her sister to goad her into silence, then clears her throat. <i>“You return to us, [pc.name]. Any news? More of my daughters die each passing day.”</i>");
 	output("\n\nYou have to admit that you haven’t found the insurrectionists... yet.");
 	output("\n\nScalla sighs heavily while Irellia replies, <i>“Then please go find them. We must put an end to this if we are ever to find peace.”</i>");
@@ -121,6 +124,7 @@ public function firstIrelliaApproach():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	flags["MET_IRELLIA"] = 1;
 	output("A few guards eye you warily as you approach, but they do not try to bar your progress. Meanwhile, a smaller female myr scuttles past holding a freshly laid egg. The queens pay her no mind, continuing their discussion without pause, a lone birthing not worthy of comment.");
 	output("\n\nYou take the chance to get a good look at them. They all share the same gigantic stature, necessary, you assume, to support their four bulging breasts and immense, egg-swollen abdomens. Every inch of them radiates a sort of royal poise, perched atop the knowing sensuality that can only come from frequent, repeated breeding. You see why the myr call them queens.");
@@ -151,6 +155,7 @@ public function tryToCheckOnAntQuestBeforeArrests():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("Irellia notices you first. She gently elbows her sister to goad her into silence, then clears her throat. <i>“You return to us, [pc.name]. Any news? More of my daughters die each passing day.”</i>");
 	output("\n\nYou inform them that you’ve called in a report on a potential terrorist cell. The situation should be handled.");
 	output("\n\nScalla sighs heavily while Irellia replies, <i>“I pray you are right, but only time will tell. Let us see what comes of it.”</i> The blue-painted royal graces you with a smile. <i>“This may be premature, but thank you. See me after they make the arrests, and I’ll have you rewarded.”</i>");
@@ -166,6 +171,7 @@ public function approachAfterFindingOutAboutBombAndNotCallingItIn():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("Irellia notices you first. She gently elbows her sister to goad her into silence, then clears her throat. <i>“You return to us, [pc.name]. Any news? More of my daughters die each passing day.”</i>\n\nDo you report what you found out about the insurrectionist meeting or not?");
 	processTime(1);
 	clearMenu();
@@ -179,6 +185,7 @@ public function reportToIrelliaBelated():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("You pass on the information you got about the terrorist meeting personally, not trusting the radio.\n\nQueen Irellia nods gratefully. <i>“Our security forces will see to it at once. If this solves our problem, we will be greatly indebted to you. For now, you must wait.”</i>");
 	flags["IRELLIA_QUEST_STATUS"] = 4;
 	processTime(1);
@@ -217,6 +224,7 @@ public function introduceToIrelliaAndCo():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Super nice to meet you ladies! You can call me [pc.name] Steele, or just [pc.name]. It’s way easier to remember and stuff!”</i> You pause, trying to recall what else you were going to say. <i>“Oh yeah, I was just stopping in to like, say hi and see how everyone is doing, what with the war... and uh... war.”</i>\n\nMarsail scowls. <i>“Useless and empty headed.”</i>");
 	//Nice
@@ -236,6 +244,7 @@ public function introduceYourselfToIrelliaOnly():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	//Introduce yourself and explain that you came to seek audience with Irellia, not the other two.
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Uhm... I'm [pc.name] Steele and just wanted to meet with Irellia, I think, but you two are super cute too!”</i> You bat your eyelashes and continue, <i>“Your jewelry is amazing, and I wish I had silks like those to wear. The boys wouldn’t be able to look away!”</i>\n\nMarsail crosses her lower arms across one pair of breasts. A scowl is painted so deeply into her face it might as well be etched. <i>“We do not have time for useless fluff.”</i>");
@@ -255,6 +264,7 @@ public function nevermindIrelliaAndCo():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Uhmm... I was just trying to be friendly, but if you guys want to be like... rude, then I’ll just find some nicer ant-girls to say hi to. The red ones are total cuties! They’d be all, ‘Let’s hang out, [pc.name]! We’d love to hear about your quest to take the helm of Steele Inc!’”</i> You pout a moment before turning to leave.\n\nMarsail’s acerbic voice halts you in your tracks. <i>“I’m sure they’d love another brainless " + pc.mf("drone","trollop") + " for their collection of trench wives.”</i>");
 	//Nice
@@ -274,6 +284,7 @@ public function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("<i>“Enough, Marsail!”</i> The blue-painted queen, Irellia, calls.");
 	output("\n\nMarsail shrugs nonchalantly, sending her jewelry jangling. <i>“Whatever you say, </i>your highness<i>. It is no business of mine if you wish to sabotage your council standing over this piece of... riff raff.”</i> The jeweled queen turns to leave, her pregnancy-bloated abdomen dragging behind her. Similarly ornamented attendants chase after her, ready to collect any eggs that her journey might dislodge.");
 	output("\n\nSighing heavily, the silk-clad queen turns her attention down to you. <i>“Forgive Marsail. She’s still coming to terms with the idea of our own relative insignificance. Just a month ago, we saw ourselves as the greatest power and authority in all the cosmos. Now we must contend with aliens and their unimaginably advanced technology. It is quite a lot to take in.”</i>");
@@ -301,6 +312,7 @@ public function beALittleBitchInFrontOfAntQueens():void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("<i>“No thanks.”</i> You turn to leave once more.");
 	output("\n\nThe queens fall into shocked silence, unsure of just how to respond. For a short time, the only sounds come from the attendants and your own [pc.feet].\n\nJust when you think you’re going to get away without another word, Irellia shouts after you, <i>“Think twice on it. You could do some real good here, [pc.name]! The offer is open if you change your mind.”</i>\n\nYou shrug. Maybe you will, maybe you won’t.");
 	flags["IRELLIA_QUEST_STATUS"] = 0;
@@ -315,6 +327,7 @@ public function volunteerAsAntPI(repeat:Boolean = false):void
 	clearOutput();
 	showIrellia();
 	showName("GOLD\nQUEENS");
+	showBust("IRELLIA","SCALLA","MARSAIL");
 	output("<i>“");
 	//First time Intro
 	if(!repeat)

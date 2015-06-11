@@ -48,7 +48,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 

@@ -749,6 +749,36 @@ public function updateCombatStatuses():void {
 		{
 			cloudDebuffHandler(foes[x]);
 		}
+		if (foes[x].hasStatusEffect("Resolve"))
+		{
+			foes[x].addStatusValue("Resolve",1,-1);
+			if(foes[x].statusEffectv1("Resolve") <= 0)
+			{
+				foes[x].removeStatusEffect("Resolve");
+				output("<b>" + foes[x].capitalA + foes[x].short + " is no longer resolved!</b>\n");
+				foes[x].baseHPResistances.tease.resistanceValue -= 100;
+				foes[x].baseHPResistances.drug.resistanceValue -= 50;
+				foes[x].baseHPResistances.pheromone.resistanceValue -= 50;
+
+			}
+			else
+			{
+				output("<b>" + foes[x].capitalA + foes[x].short + " has a resolved, steely look in " + foes[x].mfn("his","her","its") + " eyes!</b>\n");
+			}
+		}
+		if (foes[x].hasStatusEffect("Lust Stunned"))
+		{
+			foes[x].addStatusValue("Lust Stunned",1,-1);
+			if(foes[x].statusEffectv1("Lust Stunned") <= 0)
+			{
+				foes[x].removeStatusEffect("Lust Stunned");
+			}
+		}
+		if (foes[x].hasStatusEffect("Stunned"))
+		{
+			if(foes[x].hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
+			else output("<b>" + foes[x].capitalA + foes[x].short + " is stunned and unable to act!</b>\n");
+		}
 		if (foes[x].hasStatusEffect("Stealth Field Generator"))
 		{
 			foes[x].addStatusValue("Stealth Field Generator", 1, -1);
@@ -770,11 +800,11 @@ public function updateCombatStatuses():void {
 			output("[goo.name] dances around, flashing plenty of tits and ass for " + foes[x].a + foes[x].short + ".");
 			if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
 			{
-				output(" " + foes[x].capitalA + foes[x].short + " looks on, clearly unimpressed.");
+				output(" " + foes[x].capitalA + foes[x].short + " looks on, clearly unimpressed.\n");
 			}
 			else
 			{
-				output(" " + foes[x].capitalA + foes[x].short + " stares mesmerized at [goo.name]'s dance, flushing with lust.");
+				output(" " + foes[x].capitalA + foes[x].short + " stares mesmerized at [goo.name]'s dance, flushing with lust.\n");
 			}
 			
 			outputDamage(dResult);
@@ -1567,6 +1597,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is FrogGirl) frogGirlAI();
 	else if (aggressor is WetraHound) wetraHoundAI();
 	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
+	else if (aggressor is MyrInfectedFemale) infectedMyrAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1708,6 +1739,10 @@ public function victoryRouting():void
 	{
 		wetraxxelBrawlerPCVictory();
 	}
+	else if (foes[0] is MyrInfectedFemale)
+	{
+		winVsInfectedMyr();
+	}
 	else genericVictory();
 }
 
@@ -1846,6 +1881,10 @@ public function defeatRouting():void
 	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else if (foes[0] is WetraHound) wetraHoundPCLoss();
 	else if (foes[0] is WetraxxelBrawler) wetraxxelBrawlerPCLoss();
+	else if (foes[0] is MyrInfectedFemale)
+	{
+		loseToInfectedMyrYouSubbieSloot();
+	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2165,6 +2204,9 @@ public function startCombat(encounter:String):void
 		case "wetraxxelbrawler":
 			chars["WETRAXXEL BRAWLER"].prepForCombat();
 			break;
+		case "infected myr":
+			chars["INFECTED MYR FEMALE"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
@@ -2444,8 +2486,17 @@ public function tease(target:Creature, part:String = "chest"):void {
 		if(pc.hasPerk("Pheromone Cloud")) bonus = 1;
 		if(part == "squirt") bonus += 2;
 
+		var sweatyBonus:int = 0;
+		if(pc.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
+		{
+			//-5 per level normally, so add twice that since we flippin it'
+			sweatyBonus = pc.statusEffectv1("Sweaty") * 10;
+			//Furries dont benefit quite as much.
+			if(pc.hasFur()) sweatyBonus = pc.statusEffectv1("Sweaty") * 5;
+		}
+
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus || target.isLustImmune == true)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 + pc.sexiness() + bonus + sweatyBonus || target.isLustImmune == true)
 		{
 			if(target is HandSoBot)
 			{
@@ -2489,18 +2540,25 @@ public function tease(target:Creature, part:String = "chest"):void {
 		//Success!
 		else {
 			//Calc base damage
-			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2;
+			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2 + sweatyBonus/2;
 			if(part == "squirt") damage += 5;
 			//Any perks or shit go below here.
 			if(pc.hasPerk("Pheromone Cloud")) damage += 1+rand(4);
 			//Apply randomization
 			damage *= randomizer;
+			//Base cap dependant on level:
+			if(damage > 15 + pc.level*2) damage = 15 + pc.level*2;
+
 			//Apply like adjustments
 			damage *= totalFactor;
 			
 			// Resistances
 			damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
 			
+			//Cap possible damage.
+			if(damage > 25 + pc.level*2) damage = 25 + pc.level*2;
+			
+			//Prevent lust from being over total damage.
 			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 
@@ -2514,6 +2572,13 @@ public function tease(target:Creature, part:String = "chest"):void {
 			target.lust(damage);
 			output(" ("+ damage + ")\n");
 			teaseSkillUp(part);
+			if(foes[0] is MyrInfectedFemale && damage >= 10)
+			{
+				output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
+				var stunDur:int = 1 + rand(2);
+				foes[0].createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0);
+				foes[0].createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0);
+			}
 		}
 	}
 	else output("\n");
@@ -3377,7 +3442,7 @@ public function overcharge(target:Creature):void {
 	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
 		if(target.plural) output("<b>" + target.capitalA + target.short + " are stunned.</b>\n");
 		else output("<b>" + target.capitalA + target.short + " is stunned.</b>\n");
-		target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+		target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 	}
 	processCombat();
 }
@@ -3401,7 +3466,7 @@ public function NPCOvercharge():void {
 		applyDamage(damage, foes[0], pc, "overcharge");
 		if(foes[0].aim()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned")) {
 			output(" <b>You are stunned!</b>");
-			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You cannot act for one turn!",true,0);
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
 		}
 	}
 	processCombat();
@@ -3518,7 +3583,7 @@ public function properHeadbutt(attacker:Creature,target:Creature):void {
 				if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 				else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
 			}
-			target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 		}
 		else {
 			if(attacker == pc) output("\nIt doesn't look to have stunned your foe!");
@@ -3556,8 +3621,8 @@ public function lowBlow(target:Creature):void {
 			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
-			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
-			else target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+			else target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 		}
 		else {
 			output("\nIt doesn't look like you accomplished much more than hitting your target.");
@@ -3719,7 +3784,7 @@ public function pcConcShot(target:Creature):void
 			output(", stunning your enemy!");
 			
 			var rounds:int = 2 + rand(3);
-			target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stunned","Cannot act for "+ rounds +" turns.",true,0);
+			target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
 		}
 		
 		// Add some burning damage for the explosion

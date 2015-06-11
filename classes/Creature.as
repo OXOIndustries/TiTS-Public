@@ -1910,6 +1910,10 @@
 			if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
 			return "fists";
 		}
+		public function shower():void
+		{
+			removeStatusEffect("Sweaty");
+		}
 		public function orgasm(): void {
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
@@ -2240,6 +2244,7 @@
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
+			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;
 			energyRaw += arg;
 			if (energyRaw > energyMax()) energyRaw = energyMax();
 			else if (energyRaw < energyMin()) energyRaw = energyMin();
@@ -2768,12 +2773,20 @@
 			temp += meleeWeapon.sexiness;
 			temp += rangedWeapon.sexiness;
 			temp += armor.sexiness + upperUndergarment.sexiness + lowerUndergarment.sexiness + accessory.sexiness + shield.sexiness;
+			//Sweaty penalties!
+			if(hasStatusEffect("Sweaty"))
+			{
+				if(hasFur()) temp -= statusEffectv1("Sweaty") * 5;
+				temp -= statusEffectv1("Sweaty") * 5;
+			}
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
 				if(100 - IQ() - 25 >= 0) temp += Math.round((100 - IQ() - 25)/25);
 				if(100 - WQ() - 25 >= 0) temp += Math.round((100 - WQ() - 25)/25);
 			}
+			//-10 is as bad as it gets
+			if(temp < -10) temp = -10;
 			return temp;
 		}
 		public function critBonus(melee: Boolean = true): Number {
@@ -2803,6 +2816,7 @@
 			}
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
 			if (hasStatusEffect("Evasion Reduction")) temp -= statusEffectv1("Evasion Reduction");
+			if (hasStatusEffect("Resolve")) temp += 50;
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
 			return temp;
@@ -3377,7 +3391,7 @@
 			if (hasBeard()) return "beard";
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
 		}
-		public function modThickness(change: Number):String {
+		public function modThickness(change: Number, display:Boolean = true):String {
 			var oldN: Number = thickness;
 			//Lose weight fatty!
 			//Check bounds.
@@ -3386,13 +3400,16 @@
 			//Cancel out if nowhere to go.
 			if (change == 0) return "";
 			thickness += change;
-			//Display 'U GOT FAT'
-			if (change > 0) return "\n\nYour center of balance changes a little bit as your body noticeably widens. (+" + Math.round(change * 10) / 10 + " body thickness)";
-			//GET THIN BITCH
-			else return "\n\nEach movement feels a tiny bit easier than the last.  Did you just lose a little weight!? (" + Math.round(change * 10) / 10 + " body thickness)";
+			if(display)
+			{
+				//Display 'U GOT FAT'
+				if (change > 0) return "\n\nYour center of balance changes a little bit as your body noticeably widens. (+" + Math.round(change * 10) / 10 + " body thickness)";
+				//GET THIN BITCH
+				else return "\n\nEach movement feels a tiny bit easier than the last.  Did you just lose a little weight!? (" + Math.round(change * 10) / 10 + " body thickness)";
+			}
 			return "";
 		}
-		public function modTone(change: Number):String {
+		public function modTone(change: Number, display:Boolean = true):String {
 			var oldN: Number = tone;
 			//Check bounds
 			if (change > 0 && change + tone > 100) change = 100 - tone;
@@ -3400,9 +3417,12 @@
 			if (change == tone) return "";
 			tone += change;
 			//DIsplay BITCH I WORK OUT
-			if (change > 0) return "\n\nYour body feels a little more solid as you move, and your muscles look slightly more visible. (+" + Math.round(change * 10) / 10 + " muscle tone)";
-			//Display DERP I HAVE GIRL MUSCLES
-			else return "\n\nMoving brings with it a little more jiggle than you're used to.  You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
+			if(display)
+			{
+				if (change > 0) return "\n\nYour body feels a little more solid as you move, and your muscles look slightly more visible. (+" + Math.round(change * 10) / 10 + " muscle tone)";
+				//Display DERP I HAVE GIRL MUSCLES
+				else return "\n\nMoving brings with it a little more jiggle than you're used to.  You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
+			}
 			return "";
 		}
 		public function skinFurScalesColor():String
@@ -5787,6 +5807,7 @@
 			milkFullness -= amount;
 			//Set boob swelling to new appropriate tier
 			//trace("Milk fullness: " + milkFullness);
+			if(milkFullness < 0) milkFullness = 0;
 			setBoobSwelling();
 			return milkFullness;
 		}
@@ -7844,21 +7865,31 @@
 					else descript += "trim";
 				} else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) descript += "shaggy";
-				else if (hairLength < 10) descript += "moderately long";
-				else if (hairLength < 16) {
-					if (this.rand(2) == 0) descript += "long";
+				else if (hairLength < 10) {
+					if (this.rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
-				} else if (hairLength < 26) {
+				}
+				else if (hairLength < 16) descript += "long";
+				//Relativistic hair
+				else if (hairLength < tallness / 2.5)
+				{
 					if(rand(3) == 0) descript += "very long";
 					else if(rand(2) == 0) descript += "back-length";
 					else descript += "lengthy";
-					//Disabled alternate due to weirdness:
-					//"long flowing locks, [haircolor] hair"
-					//else descript += "long flowing locks";
-				} else if (hairLength < tallness / 2) descript += "ass-length";
-				else if (hairLength < tallness) descript += "obscenely long";
+				}
+				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.3) 
+				{
+					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
+					else descript += "delightfully long";
+				}
+				else if(hairLength < tallness) {
+					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					else descript += "exquisitely long";
+				}
 				else {
-					if (this.rand(2) == 0) descript += "floor-length";
+					if (this.rand(3) == 0) descript += "floor-length";
+					else if(rand(2) == 0) descript += "obscenely long";
 					else descript += "floor-dragging";
 				}
 				descripted++;
@@ -7957,17 +7988,31 @@
 					else descript += "trim";
 				} else if (hairLength < 3) descript += "short";
 				else if (hairLength < 6) descript += "shaggy";
-				else if (hairLength < 10) descript += "moderately long";
-				else if (hairLength < 16) {
-					if (this.rand(2) == 0) descript += "long";
+				else if (hairLength < 10) {
+					if (this.rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
-				} else if (hairLength < 26) {
-					if (this.rand(2) == 0) descript += "very long";
-					else descript += "long flowing locks";
-				} else if (hairLength < 40) descript += "ass-length";
-				else if (hairLength < tallness) descript += "obscenely long";
+				}
+				else if (hairLength < 16) descript += "long";
+				//Relativistic hair
+				else if (hairLength < tallness / 2.5)
+				{
+					if(rand(3) == 0) descript += "very long";
+					else if(rand(2) == 0) descript += "back-length";
+					else descript += "lengthy";
+				}
+				else if (hairLength < tallness / 1.7) descript += "ass-length";
+				else if (hairLength < tallness / 1.3) 
+				{
+					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
+					else descript += "delightfully long";
+				}
+				else if(hairLength < tallness) {
+					if(rand(2) == 0 && hasKnees()) descript += "ankle-length";
+					else descript += "exquisitely long";
+				}
 				else {
-					if (this.rand(2) == 0) descript += "floor-length";
+					if (this.rand(3) == 0) descript += "floor-length";
+					else if(rand(2) == 0) descript += "obscenely long";
 					else descript += "floor-dragging";
 				}
 				descripted++;

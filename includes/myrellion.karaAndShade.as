@@ -408,6 +408,10 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	}
 	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
 	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
+	//Shade Tailcock v. Tailcunt Scene
+	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
+	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
+	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 }
 
 //[Trip and Fall]
@@ -937,7 +941,7 @@ public function tazerForShade(target:Creature):void
 		applyDamage(damage, attacker, target);
 		
 		if(foes[0].aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
-			target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 			output(" <b>You are stunned!</b>");
 		}
 	}
@@ -1261,6 +1265,100 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	addButton(0,"Next",shadePostCoitusHangouts);
 }
 
+//Shade Tailcock v. Tailcunt Scene
+//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
+//[Tailsex]
+//Tooltip: You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?
+public function shadeTailSex():void
+{
+	clearOutput();
+	showShade();
+	author("Savin");
+	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking i your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
+	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sistive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
+	output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you. You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");
+	output("\n\nYou murmur something like <i>“God, yes,”</i> from between her tits, kissing and licking at the insides of her fleshy mounds, loving the perfumed taste of her skin on your [pc.tongue].");
+	output("\n\nShe laughs, but the idea of lounging around for hours on end in the beautiful cat-girl’s embrace just drives you even wilder. Trapped under her as you are, your lusts can only take themselves out on your [pc.tails], ");
+	if(pc.tailCount > 1) output("one of ");
+	output("which flicks up from between your [pc.legs] to draw its way along Shade’s tight little ass.");
+
+	output("\n\n<i>“Oh, that’s how you want to play it?”</i> she purrs, leaning down to nip at your [pc.ear]. <i>“And here I was hoping you were just going to lay there and tongue-bathe my tits all ");
+	if(hours < 20 && hours >= 5) output("day");
+	else output("night");
+	output(".”</i>");
+
+	output("\n\nWell, it wouldn’t take much to talk you into that... but for right now, you’ve got a powerful lust to quench, and your cock-tipped tail is the easiest means of doing so.");
+	output("\n\nYou start guiding your tail up Shade’s thigh, leaving a nice trail of hot, sticky excitement up the insides of her legs until you’re so near to her slit that you can feel the sultry heat radiating off of it, begging for your touch... until suddenly you feel something thick and strong wrapping around the slender tendril of your cock-tail, pulling you away from Shade’s sex.");
+	output("\n\n<i>“Two can play at this game, kiddo,”</i> Shade laughs, running her fingers ");
+	if(pc.hasHair()) output("through your hair");
+	else output("across your bald pate");
+	output(" before throwing you flat against the bed, pinning you down at the shoulders with both hands. A moment of panic hits you, until your amazonian lover drops flat overtop you and presses her lips to yours, entwining your [pc.tongue] in a passionate kiss while your tails intertwine, slowly feeling their way towards each others’ tips. Shade lets out a soft little moan, barely audible from within your kiss, and you know you’ve found your mark: the hot, sodden gash on the underside of her tail’s tip, wet and ready for you...");
+	output("\n\nYou press forward, slapping Shade’s ass with both hands as you do, making the amorous cat-girl cry out in pleasure. <i>“Fuck... oh!”</i> she growls, teeth clenches as your [pc.tailCock] parts the lips of her drooling twat-tail and slithers into the squeezing, slippery channel within. You and Shade both moan, hands and lips tight against each other as your tails make passionate love.");
+	output("\n\nShade moves like liquid heat over you, rocking forward and back as her tail is filled with inch after inch of throbbing tail-cock. You feel her big, soft breasts glic over your [pc.chest]; her thighs gripping your [pc.hips] and the wet heat of her other, unused cunt ");
+	if(!pc.hasGenitals()) output("dragging across your body.");
+	else if(pc.hasVagina()) output("grinding against your [pc.cunt], sending shivers of pleasure up your spine.");
+	else output("grinding across the underside of your cock, driving you wild with even greater pleasure.");
+
+	output("\n\n<i>“Double the pleasure, right?”</i> she purrs, reaching down to ");
+	if(pc.hasGenitals()) 
+	{
+		output("run her long fingers across your ");
+		if(pc.hasVagina()) output("pussy");
+		else output("cock");
+	}
+	else output("grab the hand resting on her ass, urging you to squeeze her tighter");
+	output(".");
+
+	output("\n\nYou have to admit, having a tail-mounted cock is pretty great too... feeling her sinuous, curling cunt-tail move and squeeze around your lengthy appendage, milking it with superhuman skill is enough to drive you mad with lust, already eager to bust your nut deep inside the kaithrit’s parasitic pussy. With every one of her graceful, powerful movements, your body becomes more tense, more overloaded with sexual ecstasy until you’re fighting to keep it down.");
+
+	output("\n\n<i>“What’re you holding back for?”</i> your lover chastises, her voice nothing more than a husky whisper in your [pc.ear]. <i>“Come on... my tail’s so hungry for you...”</i>");
+	output("\n\nHer encouragement is all you need to stop holding back, and with a cry of pleasure you feel the tension draining out of you, just as [pc.cumNoun] drains from your tail-prick’s slit, splattering the wet-velvet walls of Shade’s cunt. The cat-girl moans, back arching as her tail is bred, pumped full of your creamy load. Your hands dig into her ass, gripping hard as pleasure wracks you, making you groan and buck underneath her; still, Shade’s weight keeps you pinned, and when you start to get loud, you promptly find your mouth occupied by another kiss, silencing you with her tender affection.");
+
+	output("\n\nWhen your orgasm passes, you’re left slumped back in Shade’s bed, panting and sweating in the afterglow. Your lover rests atop you, her breasts ");
+	if(pc.biggestTitSize() >= 1) output("pressed against your own [pc.chest]");
+	else output("flat against your chest");
+	output(", smiling down at you with a twinkle in her golden eyes. One of her fingers traces along your collarbone, and you can feel her breath hot against your cheek, the smells of alcohol and sex intertwining in an intoxicating aroma.");
+
+	output("\n\n<i>“You treat me like that more, and I’ll start to think we were made for each other,”</i> Shade purrs, reaching back to run a hand along your tail’s shaft, up to the lips of her cunt. You shiver as her digit pushes in ever so slightly, wiping up a trickle of escaping seed. She licks it up with lusty hunger, cleaning her finger in a way that makes you wonder what she could do to your [pc.tailCock]. <i>“Our bodies certainly seem like perfect matches, huh? I’m sure you’ll give my little friend back there a nice, plump little egg, too...”</i>");
+
+	output("\n\nNow she’s just trying to get you horny again... and its working. Sliding out of her tail-pussy is an agony of over-sensation, and when you finally pull out of her, you’re left with such a cold and exposed sensation that you can’t help but moan.");
+
+	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your writhing parasite by its tip, dragging it all the way up your boy until its stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
+	if(pc.biggestTitSize() < 1) output("on your chest.");
+	else output("between your tits. You note gleefully that your tits and Shade’s make a perfect sheathe for your tail-cock.");
+
+	output("\n\n<i>“Think you can go again, [pc.name]?”</i> Shade asks, not look at your face as she does so. You answer by spurting a little cum out of your prick, not quite able to get hard that quickly. <i>“Aww, well, I guess we’ll just have to give you a little boost first... won’t we?”</i>");
+
+	output("\n\nYour eyes go wide, but you can’t find the willpower... or the desire... to stop her from running her rough tongue along your cockhead, teasing the slit and squeezing her tits around it like a hot, soft vice of flesh. Oh, God, that’s nice...");
+
+	output("\n\nShade chuckles as she works, clearly enjoying the way you squirm and moan at her touch. Eventually, though, her laughs fall away to grunts of effort, her concentration entirely focused on pleasuring your cock, getting you back to full mast in record time. In what seems like a blissful blink of the eye, Shade’s tongue, tits, and undulating body all working in tandem.");
+
+	output("\n\n<i>“See? Ready to go already,”</i> Shade purrs, planting both hands on your chest and pushing herself up to her knees - and taking your cock with her, keeping it trapped between the pliant mounds of her breasts.");
+
+	output("\n\nIn one fluid motion, Shade flips around on her knees and catches your cock with her own tail, coiling around your squirming member as she mounts yo reverse-cowgirl");
+	if(pc.hasCock()) output(", her <i>“normal”</i> twat left rubbing dangerously against your [pc.cock]");
+	output(". Her tail pulls yours taut, dragging your cock through the crack of its mistress’s ass before enveloping your crown in her rosy lips.");
+
+	output("\n\n<i>“Oooh, that’s the stuff,”</i> Shade groans, reaching back to grab her own butt and giving you an awesome view of her tail bulging around your own. You ram deep into her, writhing down into the deepest depths of her tail-pussy using your first orgasm’s hot spunk like lube to glide easily against her clenching muscles.");
+
+	output("\n\nGiving you a wink over her shoulder, Shade grabs the bottom posts of her bed and leans way down between them to show off that ass of hers, her winking slit, and the squirming mix of your tails linking the two of you together. You reach down to get your hands on those hips and butt, sliding your hands along Shade’s rockin’ curves until your fingers are brushing her pussy, teasing the bud of her clit until she’s gasping - and her tail clenches so hard around your tail-cock that you’re afraid you might cum again already.");
+
+	output("\n\nThis time, though, you keep yourself restrained until your lover’s openly moaning, and her tail feels so luridly wet that stains are forming under her - from both cunts, you’re pleased to see. You slip your fingers into the one between her legs, making the lusty cat groan as you spread her nice and wide to the beat of your thrusting tail-cock. Shade reaches her climax with a scream that reverberates off the bulkheads, throwing her head back and arching her back in a way only a cat-girl could do, her body all but convulsing in pleasure.");
+
+	output("\n\nHer tail mirrors the rest of her body, squeezing and massaging your cock as it floods with fem-cum. You grunt and let loose, your obligations to the amorous cat-girl fulfilled in the most pleasurable way your can imagine. [pc.cumNoun] spurts from your tail’s slit, filling Shade’s sloppy passage with another hefty helping of spooge.");
+
+	output("\n\nThe cat-girl flops back beside you a moment later, breathing hard. You watch her breasts rise and fall, enjoying the feeling of her tail squeezing your still-spasming tail-cock].");
+	processTime(30);
+	pc.orgasm();
+	pc.orgasm();
+	//[Next] //to Combine
+	flags["SEXED_SHADE"] = 1;
+	inseminateShadesCuntTail();
+	clearMenu();
+	addButton(0,"Next",shadePostCoitusHangouts);
+}
+
+
 //{Combine All}
 public function shadePostCoitusHangouts():void
 {
@@ -1464,6 +1562,10 @@ public function askShade4Sex():void
 	}
 	else if(flags["TAKEN_SHADES_HARDLIGHT"] == undefined) addDisabledButton(2,"Wank?","Wank?","You have to have taken Shade's hardlight strapon to qualify for this scene, as well as be a girly femmy-type guy.");
 	else addDisabledButton(2,"Wank?","Wank?","You aren't enough of a girlyboy to get wanked off like some kind of femboy.");
+	//Shade Tailcock v. Tailcunt Scene
+	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
+	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
+	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 	addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 

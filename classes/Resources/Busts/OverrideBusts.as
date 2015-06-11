@@ -12,7 +12,14 @@
 		/**/
 		//[Embed(source = "../../../assets/images/npcs/gianna.png", mimeType = "image/png")]
 		//public var Bust_GIANNA:Class;
-		
+			
+		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
+		public var Bust_DALLY:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/dally_nude.png", mimeType = "image/png")]
+		public var Bust_DALLY_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/dally_limp_nude.png", mimeType = "image/png")]
+		public var Bust_DALLY_LIMP_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
 
@@ -77,6 +84,9 @@
 		public var Bust_NEHZARA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
 		public var Bust_NEHZARA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
+		public var Bust_SCALLA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;

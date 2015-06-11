@@ -728,6 +728,7 @@
 			
 			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") PressButton(0, kGAMECLASS.inCombat());
 			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") PressButton(14, kGAMECLASS.inCombat());
+			else if (btnArray[4].buttonName == "Back") PressButton(4, kGAMECLASS.inCombat());
 		}
 		
 		/**

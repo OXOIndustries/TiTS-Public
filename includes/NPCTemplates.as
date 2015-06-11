@@ -332,6 +332,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["SEIFYN"] = new Seifyn();
 	}
+	if (!justUpdate || (justUpdate && chars["INFECTED MYR FEMALE"] == undefined))
+	{
+		chars["INFECTED MYR FEMALE"] = new MyrInfectedFemale();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

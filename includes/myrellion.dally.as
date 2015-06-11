@@ -100,7 +100,7 @@ public function leaveDally(firstTime:Boolean = false):void
 public function askDallyAboutNectarCauseYerADip():void
 {
 	clearOutput();
-	showDally();
+	showDally(true);
 	output("You ask him for an explanation about his nectar; he’s certainly not carrying around any mugs.");
 	output("\n\nDally’s pitch-black eyes shine with alien mirth while he takes a knee in front of you. <i>“And you’re the first " + pc.mf("guy","girl") + " to request a drinking vessel to sample my wares.”</i> He brazenly squeezes his half-hard length through his meager clothing. <i>“Most just lift the loincloth and give it a tug, maybe a suck. We don’t have ‘no touching’ rules like the fancy places I hear you have in the core.”</i> A smile crooks at the corner of his slim lips, and he rests his hand on his chin. <i>“You’re serious about this, huh?”</i> His grin widens, surprisingly genuine. <i>“You don’t know how a male honeypot works?”</i>");
 	output("\n\nYou shake your head");
@@ -131,7 +131,7 @@ public function askDallyAboutNectarCauseYerADip():void
 public function askDallyForADanceYaDunce():void
 {
 	clearOutput();
-	showDally();
+	showDally(true);
 	output("<i>“A dance sounds");
 	if(pc.isBimbo()) output(", like, really great");
 	else if(pc.isNice()) output(" lovely");
@@ -435,7 +435,7 @@ public function dallyTipMenu():void
 public function payDally(amount:int = 0):void
 {
 	clearOutput();
-	showName("PAYMENT\nTERMINAL")
+	showName("PAYMENT\nTERMINAL");
 	if(amount == 0) 
 	{
 		output("You shake your head at the terminal and step back");
@@ -898,6 +898,7 @@ public function getDallyLicked():void
 	//Not taur - jerk him off. BROJOB
 	else
 	{
+		showBust("DALLY_NUDE");
 		output("\n\nIn between waves of ecstasy, you manage to take note of something else: Dally’s need. The pearlescent fabric obscuring his cock has fallen away to reveal his rigid amber length, drooling honey-tinted pre-cum as it wildly throbs. He’s making you feel so good and not getting anything in return. Maybe it’s the pleasure swimming through your head, but you reach back and take hold of him, wanting him to feel every bit as good as you.");
 		output("\n\nDally’s tongue inadvertently thrusts deeply into you in surprise, momentarily losing focus when your fingers close around his girthy, honey-scented prick, but he’s back to form a second late, stirring your honeypot like a pro. You inexpertly jack him off through the pleasure, finding it difficult to control your fingers, even for an action as simple as this. He drizzles so much pre-cum that your pumping transforms into noisily squelching jacking, and you feel his moans thundering through your [pc.vaginas].");
 		if(pc.totalVaginas() > 1) output(" He’s licking them at random, changing targets whenever he pauses to take a breath.");
@@ -921,7 +922,7 @@ public function getDallyLicked():void
 public function dallySucksYouOff():void
 {
 	clearOutput();
-	showDally();
+	showDally(true);
 	var x:int = pc.biggestCockIndex();
 	output("You vault up onto the stage as an answer and ");
 	if(!pc.isNude()) output("shed your [pc.gear], kicking out of sight backstage.");

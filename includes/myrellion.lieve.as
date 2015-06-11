@@ -273,7 +273,9 @@ public function lieveTrenchWivesMenu():void
 	clearMenu();
 	addButton(0, "Sierva", lieveTalkToSierva);
 	addButton(1, "Mayren", lieveTalkToMayren);
-
+	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] != LIEVE_LATEGOODBYE_COMPLETE && flags["LEARNED_IAYAS_FATE"] == 1) addButton(2,"Iaya",tellSiervaTheBadNews,undefined,"Iaya","Tell Sierva the bad news.");
+	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) addDisabledButton(2,"Iaya","Iaya","You've already broken the news to Sierva.");
+	else addDisabledButton(2,"Iaya","Iaya","You don't know about Iaya's fate.");
 	addButton(4, "Back", lieveMenu);
 }
 
@@ -821,7 +823,7 @@ public function lieveKissHer():void
 	clearOutput();
 	lieveHeader();
 
-	output("\n\nYou slip up into Lieve’s arms, leaning");
+	output("You slip up into Lieve’s arms, leaning");
 	if (pc.tallness < 61) output(" up");
 	else if (pc.tallness > 73) output(" down");
 	else output(" in");
@@ -1422,7 +1424,9 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 
 public function lieveSoloFucktimeII(tempVenomEnabled:Boolean = false):void
 {
-	output("\n\nThat seems to be good enough for your ant-like lover, who loosens the grip of her thighs around your neck. Rather than releasing you to tend to yourself, though, Lieve curls her leg up until her toes are planted on your forehead, and give you just the push you need to go tumbling onto your back.");
+	clearOutput();
+	lieveHeader(true, true);
+	output("That seems to be good enough for your ant-like lover, who loosens the grip of her thighs around your neck. Rather than releasing you to tend to yourself, though, Lieve curls her leg up until her toes are planted on your forehead, and give you just the push you need to go tumbling onto your back.");
 	
 	output("\n\nShe pounces on you like an animal, pinning you to the deck with both hands planted firmly on your [pc.chest] and the rest of her straddling your [pc.hips]");
 	if (pc.hasCock()) output(", dangerously close to the erect mass of your [pc.cock], pressing so tight against her thigh you’re afraid you’ll blow your pent-up wad if she so much as grinds against it");
@@ -2250,7 +2254,7 @@ public function lieveLateGoodbyeFriend():void
 	showName("\nSIERVA");
 	author("Savin");
 
-	output("\n\n<i>“Tell me about this friend of yours,”</i> you prompt.");
+	output("<i>“Tell me about this friend of yours,”</i> you prompt.");
 	
 	output("\n\nAgain, Sierva avoids your gaze, seemingly hesitant. You stare");
 	if (pc.tallness < 61) output(" up");
@@ -2281,7 +2285,6 @@ public function lieveLateGoodbyeNo():void
 	showName("\nSIERVA");
 	author("Savin");
 
-	output("\n\n");
 	if (pc.isAss()) output("<i>“I’m not delivering this for you,”</i> you say flatly");
 	else output("<i>“I’m sorry, Sierva. I can’t help you,”</i> you say");
 	output(".");
@@ -2309,7 +2312,7 @@ public function lieveLateGoodbyeAlright():void
 	showName("\nSIERVA");
 	author("Savin");
 
-	output("\n\n<i>“Alright, I’ll do it,”</i> you say, putting the rod into your pack. <i>“Now this friend of yours, how do I find her?”</i>");
+	output("<i>“Alright, I’ll do it,”</i> you say, putting the rod into your pack. <i>“Now this friend of yours, how do I find her?”</i>");
 	
 	output("\n\nYou can see a weight lifting off of Sier’s shoulders as she answers, <i>“Thank you, Steele. Thank you so much. Her name is Iaya, and she lived in Gildenmere last time I wrote to her. She’s got the lushest orange hair you’ve ever seen, and a pair of antenna rings. You’ll know her when you see her, I promise.”</i>");
 	
@@ -2363,4 +2366,67 @@ public function lieveBloodSample():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//War is Hell for the Critical Reading Deprived
+//If PC has Sierva’s rod, add to each of the four checkpoints: [Question]
+//[Question]
+//Ask the guards here about Sierva’s friend, Iaya. It’s a long shot, but...
+//At any gate by the North East
+public function questionTheWrongGates():void
+{
+	clearOutput();
+	showName("QUESTIONING\nTHE GUARDS");
+	output("You approach the guards and show them Sier’s stone rod, asking them if they recognize it, or if they knew an orange-haired soldier by the name of Iaya. Some of the guards take the stone and look it over, but none of them can identify the markings, nor do they recognize the name and description.");
+	output("\n\nSighing, you thank them for their time and move on.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//At the North East gate
+public function questionTheRightGate():void
+{
+	clearOutput();
+	showName("QUESTIONING\nTHE GUARDS");
+	output("You approach the guards, eying the strange crests on their vehicle. After a moment’s thought, a hint of recollection teases at your brain and you pull out the stone rod from your pack. Looking it over, you quickly match up one of the strange symbols on the rock to the one printed on the sides of the vehicles clustered around the barricade.");
+	output("\n\nA sentry standing a few paces away catches your gaze and stalks over, resting a tremendous warhammer on her shoulder with almost frightening ease. <i>“Offworlders aren’t permitted past this checkpoint,”</i> she informs you cooly. <i>“Please step back.”</i>");
+	output("\n\n<i>“Wait, wait,”</i> you say, holding out the rod. <i>“Do you know what this is?”</i>");
+	output("\n\nThe soldier twitches her feelers at you and reaches one of her hands out to take it from you. She looks it over a second and says <i>“It’s a soldier’s identification,”</i> she says, using another of her hands to reach under her uniform’s collar and draw out one just like it, hanging from her neck by a small chain. <i>“Where’d you get this?”</i>");
+	output("\n\nYou tell her that you’ve visited a Federation city and met one of the trench wives there, who gave it to you. The woman scrunches her nose when you mention the captive myr’s predicament, and she hands the tag back to you. <i>“This belongs to Captain Sierva Marsail. I remember her... she used to command this company, but that was years ago. She was listed as killed in action.”</i>");
+	output("\n\nYou assure her that Sierva is indeed alive, and looking to get a message to her lover - whose description you give her. <i>“Yeah, I saw her once. Came looking for the captain a couple weeks after she went missing. I hate to give you bad news, offworlder, but I heard her whole unit got wiped out a few months ago. The reds steamrolled the battalion defending Kressia not long before First Contact and the cease fire.”</i>");
+	output("\n\nWait, Iaya’s unit was defending Kressia? Shit...");
+	if(pc.isMischievous()) output(" even you can’t manage to laugh at the irony of it.");
+
+	output("\n\n<i>“Sorry, star-walker,”</i> the guard says. <i>“If you end up back that way, tell the captain we’ll be coming to get her... someday. Stay strong.”</i>");
+	output("\n\nYou nod and let the guardswoman get back to her post.");
+	flags["LEARNED_IAYAS_FATE"] = 1;
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Add [Iaya] to (Lieve:) Trench Wives
+//[Iaya]
+//Tell Sierva the bad news
+public function tellSiervaTheBadNews():void
+{
+	clearOutput();
+	showName("\nSIERVA");
+	output("<i>“I’ve got some bad news for you, Sierva,”</i> you whisper, subtly pawning the ID tag back to her while Lieve isn’t looking. <i>“Iaya’s unit got wiped out. I’m sorry.”</i>");
+	output("\n\nSierva’s black eyes go wide, and her lips tremble as her fingers close around her myr dog tags. <i>“Oh,”</i> she manages to say, voice cracking. You give her shoulder a squeeze and tell her to stay strong.”</i>");
+	output("\n\nYou excuse yourself, letting Sierva take the time she needs to process what you’ve told her.");
+	processTime(2);
+	
+	var XPBuffer:Number = 500;
+	if(XPBuffer + pc.XP() > pc.XPMax()) XPBuffer = pc.XPMax() - pc.XP();
+	pc.XP(XPBuffer);
+	if(XPBuffer > 0) output("\n\n" + XPBuffer + " XP gained.");
+	else {
+		output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
+		if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
+	}
+	flags["SIERVA_LATEGOODBYE_RESPONSE"] = LIEVE_LATEGOODBYE_COMPLETE;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
