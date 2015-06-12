@@ -212,6 +212,7 @@
 		include "../includes/myrellion.tradingPost.as";
 		include "../includes/myrellion.wetraxxel.as";
 		include "../includes/myrellion.xanthe.as";
+		include "../includes/myrellion.xenogenbiotech.as";
 		
 		public var chars:Object;
 		public var foes:Array;
@@ -1037,6 +1038,10 @@
 		public function get goo():gooArmor
 		{
 			return chars["GOO"];
+		}
+		public function get nevrie():Nevrie
+		{
+			return chars["NEVRIE"];
 		}
 	}
 }

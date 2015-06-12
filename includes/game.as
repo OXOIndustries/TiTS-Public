@@ -826,6 +826,16 @@ public function variableRoomUpdateCheck():void
 		}
 	}
 	
+	// Doc McAllister
+	if (mcallisterIsIn())
+	{
+		rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
+	}
+	
 }
 
 public function processTime(arg:int):void {

@@ -113,16 +113,41 @@ public function initializeMyrellionRooms():void
 	//606 Spacer's Row, S1 (Outside the Tavern)
 	rooms["606"] = new RoomClass(this);
 	rooms["606"].roomName = "SPACER'S\nROW";
-	rooms["606"].description = "One of the airfield's barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be \"The Golden Peak.\" The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.";
+	rooms["606"].description = "One of the airfield's barracks has been hastily converted into a standard watering hole, the same type you see in every spaceport on every damn planet. A rough sign declares it to be \"The Golden Peak.\" The sounds of music, revelry, and the smell of booze waft out of the open batwing doors.\n\nAcross the road from the Golden Peak is a small office bearing the logo of the Xenogen Biotech corporation. It's a sleek, white building probably brought in prefabricated from the core, with all the modern conveniences that entails.";
 	rooms["606"].planet = "PLANET: MYRELLION";
 	rooms["606"].system = "SYSTEM: SINDATHU";
 	rooms["606"].northExit = "605";
 	rooms["606"].southExit = "607";
 	rooms["606"].eastExit = "609";
+	rooms["606"].westExit = "XBMYRELLIONFRONT";
 	rooms["606"].moveMinutes = 2;
 	rooms["606"].runOnEnter = streetOutsideBarBonus;
 	rooms["606"].addFlag(GLOBAL.OUTDOOR);
 	rooms["606"].addFlag(GLOBAL.PUBLIC);
+	
+	// Xenogen Biotech office
+	rooms["XBMYRELLIONFRONT"] = new RoomClass(this);
+	rooms["XBMYRELLIONFRONT"].roomName = "XENOGEN\nBIOTECH";
+	rooms["XBMYRELLIONFRONT"].description = "The lobby of the Xenogen office is dominated by a single large desk, covered with several holographic displays each projecting pages and pages of indecipherable data. A few chairs are set up around the lobby, not unlike a waiting room, all facing the door into the back office. You seem to be the only customer around at the moment.";
+	rooms["XBMYRELLIONFRONT"].planet = "PLANET: MYRELLION";
+	rooms["XBMYRELLIONFRONT"].system = "SYSTEM: SINDATHU";
+	rooms["XBMYRELLIONFRONT"].eastExit = "606";
+	rooms["XBMYRELLIONFRONT"].westExit = "XBMYRELLIONLAB";
+	rooms["XBMYRELLIONFRONT"].moveMinutes = 2;
+	rooms["XBMYRELLIONFRONT"].runOnEnter = myrellionBiotechInteriorAddition;
+	rooms["XBMYRELLIONFRONT"].addFlag(GLOBAL.INDOOR);
+	rooms["XBMYRELLIONFRONT"].addFlag(GLOBAL.COMMERCE);
+	
+	rooms["XBMYRELLIONLAB"] = new RoomClass(this);
+	rooms["XBMYRELLIONLAB"].roomName = "XENOGEN\nLAB";
+	rooms["XBMYRELLIONLAB"].description = "The Xenogen lab is sleek, large, and ultra-modern. Several research assistants -- all women, you note, and rather attractive -- are working, all clad in white lab coats over form-fitting Xenogen jumpsuits. Every spare wall and counter space is covered with digital readouts and holo-projectors displaying all manner of data, doubtless related to whatever project's underway nearest them. You can't make heads or tails of any of them.";
+	rooms["XBMYRELLIONLAB"].planet = "PLANET: MYRELLION";
+	rooms["XBMYRELLIONLAB"].system = "SYSTEM: SINDATHU";
+	rooms["XBMYRELLIONLAB"].eastExit = "XBMYRELLIONFRONT";
+	rooms["XBMYRELLIONLAB"].moveMinutes = 2;
+	rooms["XBMYRELLIONLAB"].runOnEnter = myrellionLabAddition;
+	rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.INDOOR);
+	//rooms["XBMYRELLIONLAB"]
  
 	//607 Spacer's Row, S2 (Outside the Scout Authority)
 	rooms["607"] = new RoomClass(this);

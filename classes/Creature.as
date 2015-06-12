@@ -2426,7 +2426,7 @@
 			{
 				//Certain bimbo TFs reduce gains by 50%.
 				if(hasPerk("Drug Fucked") && arg > 0) arg /= 2;
-				if(hasPerk("Weak Mind") && arg < 0) arg *= 2;
+				if (hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				intelligenceRaw += arg;
 				if (intelligenceRaw > intelligenceMax())
 				{
@@ -2435,6 +2435,8 @@
 			}
 
 			var currInt:int = intelligenceRaw + intelligenceMod;
+			
+			if (hasStatusEffect("Focus Pill")) currInt += 5;
 
 			if (currInt > intelligenceMax())
 			{

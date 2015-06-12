@@ -62,12 +62,20 @@ public function flyToMyrellion():void
 
 public function streetOutsideBarBonus():Boolean
 {
-	if(karaQuestTurninNeeded()) output(" <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
+	if (karaQuestTurninNeeded()) output(" <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
+	
 	if(karaAndShadeUnfinished())
 	{
 		lastChanceForHelpingKara();
 		return true;
 	}
+	
+	if (!mcallisterIsIn())
+	{
+		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters:");
+		output("\n\nTHE DOCTOR IS <i><b>OUT</b></i>!");
+	}
+
 	return false;
 }
 public function spacersRowBonusFunc():Boolean

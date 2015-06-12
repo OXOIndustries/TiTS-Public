@@ -7,6 +7,7 @@ import classes.Characters.HuntressVanae;
 import classes.Characters.Kiro;
 import classes.Characters.Lane;
 import classes.Characters.MaidenVanae;
+import classes.Characters.Nevrie;
 import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
@@ -335,6 +336,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["INFECTED MYR FEMALE"] == undefined))
 	{
 		chars["INFECTED MYR FEMALE"] = new MyrInfectedFemale();
+	}
+	if (!justUpdate || (justUpdate && chars["NEVRIE"] == undefined))
+	{
+		chars["NEVRIE"] = new Nevrie();
 	}
 	// Check all characters have version information set
 	for (var prop:String in chars)

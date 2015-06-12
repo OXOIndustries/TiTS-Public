@@ -1,3 +1,5 @@
+import classes.Creature;
+import classes.Items.Miscellaneous.RedMyrBlood;
 // 9999 - The first time you go into the shop, Haswell's quest on Mhen'ga should close off. Too late, fool!
 
 /*
@@ -23,10 +25,11 @@ undefined/0 = not started
 
 */
 
-public function nevrieHeader():void
+public function nevrieHeader(isNude:Boolean = false):void
 {
 	showName("\nNEVRIE");
-	showBust("NEVRIE");
+	if (!isNude)showBust("NEVRIE");
+	else showBust("NEVRIE_NUDE");
 	author("Savin");
 }
 
@@ -37,14 +40,16 @@ public function mcallisterHeader():void
 	author("Savin");
 }
 
-public function myrellionBiotechExteriorAddition():Boolean
+public function mcallisterMyrGirlsHeader():void
 {
-	if (flags["NEVRIE_QUEST"] < 3)
-	{
-		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters:");
-		output("\n\nTHE DOCTOR IS <i><b>OUT</b></i>!");
-	}
+	showName("MCALLISTER\n& MYR GIRLS");
+	showBust("MCALLISTER", "REDMYR", "GOLDMYR"); // 9999 check this
+	author("Savin");
+}
 
+public function mcallisterIsIn():Boolean
+{
+	if (flags["NEVRIE_SAMPLES_TIMESTAMP"] != undefined && GetGameTimestamp() >= flags["NEVRIE_SAMPLES_TIMESTAMP"] + (4 * 60)) return true;
 	return false;
 }
 
@@ -57,7 +62,11 @@ public function myrellionBiotechInteriorAddition():Boolean
 
 	if (flags["NEVRIE_QUEST"] >= 3)
 	{
-		// 9999 - lab button
+		addButton(5, "West", move, "XBMYRELLIONLAB");
+	}
+	else
+	{
+		addDisabledButton(5, "");
 	}
 	
 	if (flags["MET_NEVRIE"] == undefined) addButton(0, "Secretary", myrellionMeetNevrie);
@@ -75,9 +84,9 @@ public function myrellionLabAddition():Boolean
 
 	clearMenu();
 	if (flags["MET_MCALLISTER"] == undefined) addButton(0, "Bearded Man", mcallisterMeeting, undefined, "Bearded Man", "The barrel-chested, bearded fellow must be Doctor McAllister. Time to go meet him.");
-	else addButton(1, "", );
-
-	// 9999 - doc menu
+	else addButton(0, "McAllister", approachMcallister, undefined);
+	
+	return false;
 }
 
 public function myrellionMeetNevrie():void
@@ -90,7 +99,7 @@ public function myrellionMeetNevrie():void
 	
 	output("\n\n<i>“‘Sup,");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" nerd");
-	else if (pc.characterClass = GLOBAL.CLASS_MERCENARY) output(" tough " + pc.mf("guy", "girl"));
+	else if (pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" tough " + pc.mf("guy", "girl"));
 	else output(" fly"+pc.mf("boy", "girl"));
 	output(". Name’s Nevrie. Welcome to Xenogen and all that. If you want to check out the mods and stuff we’ve got for sale, you’ve come to the right place. Wanna talk to the actual brains, though, you’re out of luck. I’m pretty sure I’m the only one here right now, except the lab robots.”</i>");
 	
@@ -105,13 +114,14 @@ public function myrellionNevrieApproach():void
 	clearOutput();
 	nevrieHeader();
 
-	if (flags["NEVRIE_QUEST"] == 2 && flags["NEVRIE_SAMPLES_TIMESTAMP"] >= (GetGameTimestamp() - (4 * 60)))
+	if (flags["NEVRIE_QUEST"] == 2 && mcallisterIsIn())
 	{
 		flags["NEVRIE_QUEST"] = 3;
 
 		output("You step up to the desk and ask Nevrie if her boss has finally shown up.");
 		
-		output("\n\n<i>“Yeah, he’s in the back. Head on through the door - the lab’s right at the end of the hall.”</i> {if low INT/Bimbo: With a playful smirk, she adds <i>“Try not to get lost.”</i>}");
+		output("\n\n<i>“Yeah, he’s in the back. Head on through the door - the lab’s right at the end of the hall.”</i>");
+		if (pc.IQ() < 30 || pc.isBimbo()) output(" With a playful smirk, she adds <i>“Try not to get lost.”</i>");
 
 		//Unlock lab room. Add [Bearded Man] to it. 
 		clearMenu();
@@ -133,13 +143,13 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 {
 	clearMenu();
 
-	if (cFunc != ) addButton(0, "Shop", myrellionNevrieShop, undefined, "Shop", "Ask to see the shop's inventory.");
+	if (cFunc != myrellionNevrieShop) addButton(0, "Shop", myrellionNevrieShop, undefined, "Shop", "Ask to see the shop's inventory.");
 	else addDisabledButton(0, "Shop");
 
 	if (cFunc != myrellionNevrieHerRace)
 	{
 		if (flags["NEVRIE_TALK_RACE"] == undefined) addButton(1, "Her Race", myrellionNevrieHerRace, undefined, "Her Race", "Ask Nevrie about her race.");
-		else addButton(1, "Her Race", myrellionNevrieHerRace, undefined, "Her Race", myrellionNevrieHerRace, undefined, "Her Race", "Ask Nevrie to tell you about the dzaan again.");
+		else addButton(1, "Her Race", myrellionNevrieHerRace, undefined, "Her Race", "Ask Nevrie to tell you about the dzaan again.");
 	}
 	else addDisabledButton(1, "Her Race"); 
 
@@ -161,9 +171,8 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 		if (pc.hasItem(new RedMyrBlood())) addButton(3, "Blood Vial", myrellionNevrieBloodVial, undefined, "Blood Vial", "Hand over a vial of red myr blood to Nevrie. Maybe you can finally get things moving about this myr gene-mod.");
 		else addDisabledButton(3, "Blood Vial", "Blood Vial", "You'd need a blood sample to hand first...");
 	}
-
-	if (cFunc != ) addButton(4, "SpecialStock", );
-	addDisabledButton(4, "SpecialStock");
+	
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function myrellionNevrieShop(isDiscount:Boolean = false):void
@@ -173,17 +182,25 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 
 	flags["NEVRIE_SHOPPED"] = 1;
 
-	output("You tell Nevrie you’d like to see what the Xenogen store has in stock.");
-	
-	output("\n\n<i>“Sure thing,”</i> she answers, spinning one of the holodisplays around so you can read it. <i>“Punch in whatever you want from the inventory list here, and one of the cargo bots will fetch it from storage.”</i>");
-	
-	output("\n\nWhile you peruse the shop’s holographic wares, Nevrie leans back in her swivel chair and pulls the bag of snacks she was eating earlier back out of the drawer and resumes munching, only occasionally shooting a glance your way.");
+	if (isDiscount)
+	{
+		nevrie.sellMarkup = 1.0;
+	}
+	else
+	{
+		nevrie.sellMarkup = 1.2;
+	}
 
 	processTime(8 + rand(2));
 
-	clearMenu();
-	// 9999 - don't forget discount handling!
-	addButton(14, "Back", myrellionNevrieMenu, myrellionNevrieShop);
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	shopkeep = nevrie;
+
+	// 9999 - Modify buy/sell menus to support a target back function ref
+
+	buyItem();
 }
 
 public function myrellionNevrieHerRace():void
@@ -374,7 +391,7 @@ public function myrellionNevrieBloodVial():void
 	
 	output("\n\n<i>“Everything checks out, [pc.name]. This sample should be more than enough for Doc. McAllister to synthesize for his precious mod. He’ll be back in a couple hours, I guess. If you want to talk to him feel free to wait around for a bit. Take a nap in our luxurious lobby chairs; I’ll let you know when Doctor McAllister’s in.");
 
-	pc.removeItem(new RedMyrBlood());
+	(pc as Creature).destroyItem(new RedMyrBlood()); // 9999 - consume ALL that the player may have?
 
 	flags["NEVRIE_QUEST"] = 2;
 	flags["NEVRIE_SAMPLES_TIMESTAMP"] = GetGameTimestamp();
@@ -508,7 +525,7 @@ public function mcallisterXenogen():void
 	output("\n\n<i>“In all seriousness, Xenogen is the company that makes sure young worlds like Mhen’ga and Myrellion have a fair chance. They don’t have a lot to offer the galaxy at large, at least without being exploited, but the recent trend in cosmetic gene therapies means every race has something the rest of the galaxy wants: their appearance. People will pay top dollar back in the core to look like these newly-discovered races: it’s something of a fad amongst the wealthy, and every therapy we design broadens the horizon for everyone’s self-fulfillment. If you want to mix fanfir draconic traits with honey-laden myr and the tremendous musculature of a thraggen, then that’s your right.”</i>");
 	
 	output("\n\n");
-	if (pc.isMischevious()) output("Cheekily, you ask if that’s why there’s a fleet in orbit around Myrellion.");
+	if ((pc as Creature).isMischievous()) output("Cheekily, you ask if that’s why there’s a fleet in orbit around Myrellion.");
 	else output("<i>“So is that why there’s a fleet in orbit?”</i>");
 	
 	output("\n\nMcAllister balks at that, but quickly turns that into a boisterous laugh. <i>“I suppose it is! I was part of the first team that discovered Myrellion here, just on the brink of nuclear war. The two races were ready to destroy each other - there wouldn’t be much for us to study, to mimic in cosmetics, if they managed to glass the planet, would there? The corporate executives jumped on the idea to sell the public we’re saving the myr race, of course, after I convinced them the gold myr could provide a smash hit gene therapy. I didn’t expect that much of a response - the whole fleet business - but it’s certainly kept the peace. That’s a net good, isn’t it?”</i>");
@@ -805,7 +822,7 @@ public function mcallisterMyrGirlsCocky():void
 	
 	output("\n\nThe red grunts and reaches back to plunge a couple of plated fingers into her tragically vacant gash. <i>“Speak for yourself. This is </i>amazing<i>! Sex has never felt like this before!”</i>");
 	
-	if (pc.isBrute() || pc.isTreatedMale()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
+	if (pc.isBro() || pc.isTreatedMale()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
 	
 	output("\n\nSounds like an invitation to switch back to railing her, but before you can transition from gold to red, you hear McAllister grunt and buck his hips against the red’s lips. She grunts and gasps, and you see her throat bulging with a sudden influx of the doctor’s spunk; the red ends up gagging and coughing some of it up, and earns herself the last couple of squirts right on her cheeks when McAllister staggers back, pulling out of her spasming maw.");
 	
@@ -1002,7 +1019,7 @@ public function mcallisterMyrHybrids():void
 	output("\n\nThe doctor’s eyes widen, and he lets out a croaking laugh. <i>“Ha! I thought you were different than your run of the mill rusher... yeah, if you can get Steele Tech to sponsor the therapy, we’re golden. Assuming Xenogen doesn’t take offense to me doing a little work for the competition, anyway. Heck, it’s a mega corp., it barely remembers I exist unless it needs me. I think I can swing a few off days to work. Tell you what, have your chief of research get in touch me with me and-”</i>");
 	
 	output("\n\nWith a flush of embarrassment, you cut McAllister off and mention that you don’t exactly have <i>full</i> access to Steele Tech’s resources at the moment. You might be able to talk to some people");
-	if (crewmemberAnno()) output(", including a head researcher conveniently parked outside on the tarmac");
+	if (annoIsCrew()) output(", including a head researcher conveniently parked outside on the tarmac");
 	output(", but you don’t have the kind of pull to make the company go full force on your pet projects.");
 	
 	output("\n\n<i>“Ah,”</i> McAllister says. <i>“Well then. If you can somehow convince Steele Tech to run production of the mod - call it a new designer formula, I don’t care - that’ll at least give you a chance of pulling this off. That still leaves you the problems of initial funding and distribution here on Myrellion, though.”</i>");

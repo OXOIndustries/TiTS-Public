@@ -1,5 +1,5 @@
 ﻿//Bar Preview Blurb
-function kiroSetup(button:int = 0):void
+public function kiroSetup(button:int = 0):void
 {
 	if(kiro.ballDiameter() <= 7) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here sipping on a drink and thumbing idly through a data slate.");
 	else if(kiro.ballDiameter() <= 14) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, casting lecherous looks over everyone else in the bar. She spots you and waves you over, but the look in her eyes is more hungry than friendly.");
@@ -51,7 +51,7 @@ public function kiroTrust(arg:Number = 0):Number
 	return flags["KIRO_TRUST"];
 }
 
-function approachKiroAtTheBar():void
+public function approachKiroAtTheBar():void
 {
 	clearOutput();
 	showKiro();
@@ -112,7 +112,7 @@ public function kiroMenu():void
 //Kiro Buys You a Drink & Exposits a Bit About Herself.
 //Learn about her spooginess and backstory somehow.
 //Drink Intro
-function kiroIntroductoryScene(drank:Boolean = false):void
+public function kiroIntroductoryScene(drank:Boolean = false):void
 {
 	clearOutput();
 	showKiro();
@@ -158,7 +158,7 @@ function kiroIntroductoryScene(drank:Boolean = false):void
 }
 
 //Yes, Tell Kiro About Codex
-function tellKiroAboutTheCodex():void
+public function tellKiroAboutTheCodex():void
 {
 	clearOutput();
 	showKiro();
@@ -178,7 +178,7 @@ function tellKiroAboutTheCodex():void
 }
 
 //No, Don’t Tell Kiro About Codex
-function dontTellKiroAboutTheCodex():void
+public function dontTellKiroAboutTheCodex():void
 {
 	clearOutput();
 	showKiro();
@@ -193,7 +193,7 @@ function dontTellKiroAboutTheCodex():void
 }
 
 //Definitely No.
-function definitelyDontTellAboutTheCodex():void
+public function definitelyDontTellAboutTheCodex():void
 {
 	clearOutput();
 	showKiro();
@@ -207,7 +207,7 @@ function definitelyDontTellAboutTheCodex():void
 }
 
 //Play Wingman
-function playWingmanWithKiro():void
+public function playWingmanWithKiro():void
 {
 	clearOutput();
 	showKiro();
@@ -237,7 +237,7 @@ function playWingmanWithKiro():void
 }
 
 //Wingman - Embellished
-function embellishForKiro():void
+public function embellishForKiro():void
 {
 	clearOutput();
 	showKiro();
@@ -258,7 +258,7 @@ function embellishForKiro():void
 }
 
 //Wingman - Played Straight
-function playItStraightForKiro():void
+public function playItStraightForKiro():void
 {
 	clearOutput();
 	showKiro();
@@ -301,7 +301,7 @@ function playItStraightForKiro():void
 }
 
 //Drinking Contest
-function kiroDrankinConterst():void
+public function kiroDrankinConterst():void
 {
 	clearOutput();
 	showKiro();
@@ -341,7 +341,7 @@ public function drinkContestScore(arg:Creature):Number
 }
 
 //Drinking Contest!
-function drinkingContestGo(cheated:Boolean = false):void{
+public function drinkingContestGo(cheated:Boolean = false):void{
 	clearOutput();
 	showKiro();
 	output("Kiro smiles at that. <i>“You have no idea what you’re getting into, angel.</i>” She pats her tummy. <i>“This cute little tummy has handled more drinks than you could count. I hope you’re ready for a bit of stretching.</i>”");
@@ -409,7 +409,7 @@ function drinkingContestGo(cheated:Boolean = false):void{
 
 //Lost The Contest - LIKE A BITCH
 //Girls and Unsexed Turned Into a Drunken Cocksleeve
-function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
+public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 {
 	clearOutput();
 	showKiro(true);
@@ -456,7 +456,7 @@ function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 }
 
 //Unisex Loser Handjob
-function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
+public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 {
 	clearOutput();
 	showKiro(true);
@@ -506,7 +506,7 @@ function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 }
 
 //Lose Epilogue Stand-in
-function lostDrankinContestToKiroz():void
+public function lostDrankinContestToKiroz():void
 {
 	clearOutput();
 	showKiro(true);
@@ -534,7 +534,7 @@ function lostDrankinContestToKiroz():void
 
 //Won the Contest
 //Drunken Kiro Blowjobs - Slobbery Jaw-Filling Goodness
-function wonKirosContestLikeAChampAndGotBlown():void
+public function wonKirosContestLikeAChampAndGotBlown():void
 {
 	clearOutput();
 	showKiro(true);
@@ -600,7 +600,7 @@ function wonKirosContestLikeAChampAndGotBlown():void
 }
 
 //Drunken Kiro Twat Oral
-function youWinAContestAndKiroSlobbersYerPussy():void
+public function youWinAContestAndKiroSlobbersYerPussy():void
 {
 	clearOutput();
 	showKiro(true);
@@ -696,7 +696,7 @@ public function kiroVictoryDrinkEpilogueRouter(blowjobbed:Boolean = false):void
 }
 
 //Victory Epilogue Stand-in
-function victoryEpilogueLazyOne():void
+public function victoryEpilogueLazyOne():void
 {
 	clearOutput();
 	showKiro(true);
@@ -717,7 +717,7 @@ function victoryEpilogueLazyOne():void
 
 //Epilogue Scene: Get tongue-bathed [QB/LD]
 //Set PC up to get some rimming. Paragraphs that deal with cocks and pussies
-function getTongueBathedEpilogue():void
+public function getTongueBathedEpilogue():void
 {
 	clearOutput();
 	showKiro(true);
@@ -800,7 +800,7 @@ function getTongueBathedEpilogue():void
 }
 
 //[=JustButt=]
-function justButtStuffForKiroNoAsslickery():void
+public function justButtStuffForKiroNoAsslickery():void
 {
 	clearOutput();
 	showKiro(true);
@@ -813,7 +813,7 @@ function justButtStuffForKiroNoAsslickery():void
 }
 
 //[=Rim=]
-function getRimmedBecauseYouHaveBadTastesJustLikeSavin():void
+public function getRimmedBecauseYouHaveBadTastesJustLikeSavin():void
 {
 	clearOutput();
 	showKiro(true);
@@ -830,7 +830,7 @@ function getRimmedBecauseYouHaveBadTastesJustLikeSavin():void
 }
 
 //Both variants converge here.
-function rimOrNoRimVictoryEpilogueForKiro():void
+public function rimOrNoRimVictoryEpilogueForKiro():void
 {
 	clearOutput();
 	showKiro(true);
@@ -851,7 +851,7 @@ function rimOrNoRimVictoryEpilogueForKiro():void
 //Use the PC’s pussy/ass to ride Kiro like a bull.
 //Not compatible with centaurs.
 //Requires Kiro's balls be pretty big!
-function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
+public function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
 {
 	clearOutput();
 	showKiro(true);
@@ -931,7 +931,7 @@ function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
 // Savin
 //Tool Tip: Put some cum in Kiro’s drink - as a Kui-Tan, her balls will swell way faster when she consumes spunk, so be ready for big balled tanuki loving!
 //{Requires some kind of bottled spooge}
-function cumSpikeKirosDrink():void
+public function cumSpikeKirosDrink():void
 {
 	clearOutput();
 	showKiro();
@@ -950,7 +950,7 @@ function cumSpikeKirosDrink():void
 
 //Reduce Ball Size
 // Savin
-function reduceKirosBallSize():void
+public function reduceKirosBallSize():void
 {
 	clearOutput();
 	showKiro();
@@ -964,7 +964,7 @@ function reduceKirosBallSize():void
 
 //Let's Fuck
 //Savin
-function letsFuckKiro():void
+public function letsFuckKiro():void
 {
 	clearOutput();
 	showKiro();
@@ -1081,7 +1081,7 @@ public function kiroSexMenu():void
 //[Done] Take Her Virginity - 3800 words
 //High trust only - get her panties.
 //Tooltip: Kiro seems excessively focused on her dick. Why not share the loving with her vagina?
-function takeKirosVirginity():void
+public function takeKirosVirginity():void
 {
 	clearOutput();
 	showKiro(true);
