@@ -138,6 +138,16 @@
 			throw new Error("useFunction must be overriden in a child class!");
 		}
 		
+		public function onEquip(targetCreature:Creature):void
+		{
+			
+		}
+		
+		public function onRemove(targetCreature:Creature):void
+		{
+			
+		}
+		
 		/**
 		 * Compare this item's stats against another item object.
 		 * @param	item	Item to compare against

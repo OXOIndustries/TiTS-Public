@@ -492,6 +492,7 @@
 		public static const FLUID_TYPE_VANAE_MAIDEN_MILK:int					= 10;
 		public static const FLUID_TYPE_VANAE_HUNTRESS_MILK:int					= 11;
 		public static const FLUID_TYPE_NECTAR:int 								= 12;
+		public static const FLUID_TYPE_LEITHAN_MILK:int							= 13;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
