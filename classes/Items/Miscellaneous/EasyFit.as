@@ -103,7 +103,7 @@
 				}
 				else
 				{
-					ItemTargetChoice(3);
+					ItemTargetChoice([target, 3]);
 					return false;
 				}
 				
@@ -153,7 +153,7 @@
 			else if (targetHole.wetnessRaw < 4) targetHole.wetnessRaw += 0.25;
 			
 			if (targetHole.loosenessRaw < 2) targetHole.loosenessRaw += 1;
-			else if (targetHole.loosnessRaw < 3) targetHole.loosenessRaw += 0.2;
+			else if (targetHole.loosenessRaw < 3) targetHole.loosenessRaw += 0.2;
 			
 			if (targetHole.bonusCapacity < 500) targetHole.bonusCapacity += 40;
 			

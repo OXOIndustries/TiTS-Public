@@ -529,6 +529,9 @@ public function equipItem(arg:ItemSlotClass):void {
 	}
 	else output("  <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b>  ");
 	
+	removedItem.onRemove(pc);
+	arg.onEquip(pc);
+	
 	//If item to loot after!
 	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 
 	{

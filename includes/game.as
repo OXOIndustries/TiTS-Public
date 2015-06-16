@@ -1,9 +1,11 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.GameData.PerkData;
 import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
+import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -70,6 +72,20 @@ public function mainGameMenu():void {
 		this.eventQueue.splice(0,1);
 		return;
 	}
+	
+	if (pc.hasStatusEffect("Leitha Charm"))
+	{
+		if (pc.statusEffectv1("Leitha Charm") > 0)
+		{
+			// Add about two hours of variance to the proc time.
+			if (rand(pc.statusEffectv1("Leitha Charm")) > 60)
+			{
+				pc.setStatusValue("Leitha Charm", 1, -720 - rand(360));
+				if ((pc.accessory as LeithaCharm).attemptTF(pc)) return;
+			}
+		}
+	}
+	
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
@@ -866,6 +882,20 @@ public function processTime(arg:int):void {
 	
 	//Half time.
 	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
+	
+	if (pc.hasStatusEffect("Leitha Charm"))
+	{
+		// Hardcoding checks because we might have issues with items being replaced without running through equipItem() and
+		// thus calling onEquip/onRemove.
+		if (!(pc.accessory is LeithaCharm))
+		{
+			throw new Error("Leitha Charm status effect present, but the item isn't presently equipped to the player!");
+		}
+		else
+		{
+			pc.addStatusValue("Leitha Charm", 1, arg);
+		}
+	}
 
 	//Used to establish a cap
 	var lustCap:Number = Math.round(pc.lustMax() * .75);

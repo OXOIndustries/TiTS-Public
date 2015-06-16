@@ -15,19 +15,18 @@ package classes.Engine.Utility
 		
 		return words[tNum];
 	}
-	
-	internal static const words:Array = [
-		"zero",
-		"first",
-		"second",
-		"third",
-		"fourth",
-		"fifth",
-		"sixth",
-		"seventh",
-		"eighth",
-		"ninth",
-		"tenth"
-	];
-
 }
+	
+const words:Array = [
+	"zero",
+	"first",
+	"second",
+	"third",
+	"fourth",
+	"fifth",
+	"sixth",
+	"seventh",
+	"eighth",
+	"ninth",
+	"tenth"
+];

@@ -8,6 +8,7 @@
 	import classes.VaginaClass;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.rand;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -55,9 +56,16 @@
 			this.version = _latestVersion;
 		}
 		
-		override public function onEquip(targetCreature:Creature);
+		// Using Leitha Charm as the test for this system, so there's going to be some hard-coded checks in various places
+		// to ensure this stuff works.
+		override public function onEquip(targetCreature:Creature):void
 		{
-			targetCreature.createStatusEffect("Leitha Charm", 60, 0, 0, 0, false, "", "Your leitha charm necklace hangs from your neck, infusing your body with targetted transformative nanomachines.", false, 0);
+			/*
+			 * se1 + deltaT
+			 * if (se1 > 0) trigger
+			 */
+			
+			targetCreature.createStatusEffect("Leitha Charm", -720 + rand(360), 0, 0, 0, false, "", "Your leitha charm necklace hangs from your neck, infusing your body with targetted transformative nanomachines.", false, 0);
 		}
 		
 		override public function onRemove(targetCreature:Creature):void
@@ -74,7 +82,7 @@
 			if ((target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) || (target.skinTone != "gray" && target.skinToneUnlocked("gray"))) availableTFs.push(skinTF);
 			if (((target.legType != GLOBAL.TYPE_LIZAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS)) && target.legTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || (target.legCount != 6 && target.legCountUnlocked(6))) availableTFs.push(legTF);
 			if (target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) availableTFs.push(faceTF);
-			if ((target.tongueType != GLOBAL.TYPE_LEITHAN && target.tongueTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || !target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) || !target.hasTongueFlag(GLOBAL.FLAG_LONG)) availableTFs.push(tongueTF);
+			//if ((target.tongueType != GLOBAL.TYPE_LEITHAN && target.tongueTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || !target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) || !target.hasTongueFlag(GLOBAL.FLAG_LONG)) availableTFs.push();
 			
 			var nonLCock:Boolean = false;
 			
@@ -97,7 +105,7 @@
 			}
 			if (nonLCock) availableTFs.push(cockTF);
 			
-			if (target.milkType != GLOBAL.FLUID_TYPE_LEITHAN) availableTFs.push(milkTF);
+			if (target.milkType != GLOBAL.FLUID_TYPE_LEITHAN_MILK) availableTFs.push(milkTF);
 			
 			var nonLVag:Boolean = false;
 			
@@ -126,9 +134,14 @@
 			
 			if (availableTFs.length > 0)
 			{
-				clearOutput();
-				availableTFs[rand(availableTFs.length)](target);
-				return true;
+				var tfState:Boolean = availableTFs[rand(availableTFs.length)](target);
+				
+				if (tfState)
+				{
+					clearMenu();
+					addButton(0, "Next", kGAMECLASS.mainGameMenu);
+					return true;
+				}
 			}
 			
 			return false;
@@ -136,6 +149,8 @@
 		
 		private function earTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			output("You feel a burning sensation in your [pc.ears], aching and straining and tearing. You clutch at your head, rubbing at your ears. The Leitha Charm hanging around your neck works its scientific wonders, slowly starting to morph the shape of your ears. They become long and tapered, elfin in shape over the course of a few minutes.");
 
 			output("\n\nSuddenly, you feel a pressure building in the center of your forehead. Running your fingers along it, you feel a lump forming dead center of your brow. The lump becomes hard and plated, smooth like chitin rather than the same texture of your [pc.skinFurScales]. After a long moment, the lump splits off, growing two prongs out of the top. While they start off as amorphous, chitinous blobs growing off of your head, the two lumps eventually begin to coalesce and solidify into what seem to be a pair of reversed, plated bunny ears. <b>It looks like you now have the strange, four-part ears of a leithan!</b>");
@@ -147,6 +162,8 @@
 		
 		private function tailTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			if (target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0)
 			{
 				output("You feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You grunt and look behind yourself, desperately reaching for [pc.oneTail] -- only to realize that it's changing. Your tail");
@@ -175,6 +192,8 @@
 		
 		private function skinTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//Change skinColor to gray. Gain normal skin.
 			// NOTE: Leithan at creation get /scales/ not skin.
 			output("You feel an itch start to spread across you, starting at your [pc.chest] near where your Leitha Charm is hanging and creeping out across your entire body. You start to scratch yourself... only to see splotches of grey starting to spread across your body.");
@@ -193,6 +212,8 @@
 		
 		private function legTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//Change legtype to Leithan. Gain centaur body. Increase capacity of orifices. Gain six legs. 
 
 			if (target.legType != GLOBAL.TYPE_LEITHAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS) || target.legCount < 2)
@@ -253,7 +274,7 @@
 				if (buttInc && vagIncs > 0) output(" and");
 				if (vagIncs > 0) output(" [pc.cunts]");
 				output(" seem");
-				if ((buttInc && vagIncs == 0) || (!buttInc && vagIncs == 1) output("s");
+				if ((buttInc && vagIncs == 0) || (!buttInc && vagIncs == 1)) output("s");
 				output(" to grow deeper, much more cavernous. You feel like you could take much longer, thicker insertions now. Your tauric body certainly has room for it!");
 				if (target.isBimbo()) output(" You can't wait to find a hung leithan boy to pound his mammoth lizard-dick deep into your deep, hungry hole.");
 
@@ -281,6 +302,8 @@
 		
 		private function faceTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//PC doesn't have a human face. Gain a human face.
 			output("You feel your [pc.face] start to strain, becoming");
 			if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" harder and firmer, taking on a more defined shape");
@@ -298,6 +321,8 @@
 		
 		private function cockTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//Changes cocktype to lizard. Increases in size, up to 3 ft. long.
 			//Massive Lust spike. 
 			output("You feel a sudden rush of arousal building up in your prick");
@@ -306,7 +331,7 @@
 			if (target.cocks.length > 1) output(" gaggle of");
 			output(" monumental boner");
 			if (target.cocks.length > 1) output("s");
-			if (target.crotchGarbed()) output(", straining against your [pc.lowerUnderGarment]");
+			if (target.isCrotchGarbed()) output(", straining against your [pc.lowerUnderGarment]");
 			output(". You can’t resist the urge to grab your manhood");
 			if (target.cocks.length > 1) output("s");
 			output(", stroking the length of your shaft");
@@ -349,7 +374,7 @@
 				output(" new shape, slowly but steadily reforming into <b>");
 				if (tfType == 1) output("a");
 				output(" thick, bulbous reptilian cock");
-				if (tfTYpe > 1) output("s")
+				if (tfType > 1) output("s")
 				output("!</b>");
 			}
 
@@ -374,6 +399,8 @@
 			//Change MilkType to Leithan Milk
 			if (target.isFeminine() || target.isLactating())
 			{
+				clearOutput();
+				
 				output("Your [pc.chest] aches slightly, though by the time you shuck your [pc.gear] enough to rub at them, the sensation has turned to a heady pleasure.");
 				if (target.isLactating()) output(" A gush of milk squirts out of your [pc.boobs], splattering your [pc.gear]. After a moment, your milk changes ever so slightly in color, and becomes thicker and sweeter-smelling. Your Codex beeps, informing you that your milk is now that of a proper leithan, complete with semi-alcoholic properties.");
 				else output(" Your Codex beeps, informing you that your genetics have been modified: if you ever start to lactate, your breasts will fill with the semi-alcoholic milk of a leithan.");
@@ -388,6 +415,8 @@
 		
 		private function vagTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			var tfType:int = 0;
 			var tfSize:int = 0;
 
@@ -410,7 +439,7 @@
 			if (tfType + tfSize <= 2) output(" [pc.cunt] clenches");
 			else output(" [pc.cunts] clench")
 			output(" hard all of a sudden, squirting an ungodly amount of pussy-juice");
-			if (!target.crotchGarbed()) output(" onto your thighs");
+			if (!target.isCrotchGarbed()) output(" onto your thighs");
 			else output(" onto the inside of your [pc.lowerUnderGarment]");
 			output(". You almost double over as waves of pleasure crash into your crotch, sending trembling shockwaves all through your body in reaction.");
 
@@ -427,17 +456,23 @@
 			return true;
 		}
 		
-		private function eyeTF(target:Creature):void
+		private function eyeTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//Change PC eye type to Leithan.
 			output("You feel an aching burn start to crop up in your eyes, just enough to make your blink rapidly and rub at them. Between groans and gasps, you feel your eyes... changing, shifting under the weight of the Leitha Charm's nanomachine magic. For an instant, you're completely blinded, then after a grunt of agony, your vision returns -- though you can see a slightly wider angle than you did before. You pull your Codex out to act as a mirror, looking your reflection in its blue, star-struck eyes. <b>You now have leithan eyes!</b>");
 
 			target.eyeType = GLOBAL.TYPE_LEITHAN;
 			target.eyeColor = "blue";
+			
+			return true;
 		}
 		
-		private function heightTF(target:Creature):void
+		private function heightTF(target:Creature):Boolean
 		{
+			clearOutput();
+			
 			//Growth, up to about 9'
 			target.tallness += 6;
 			if (target.tallness > 108) target.tallness = 108;
