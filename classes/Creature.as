@@ -389,6 +389,7 @@
 		}
 
 		public var hairLength: Number = 0;
+		public var hairStyle:String = "null";
 		public function hairLengthUnlocked(newHairLength:Number):Boolean
 		{
 			return true;
@@ -7861,7 +7862,7 @@
 				return descript;
 			}
 			//50% odds of adjectives
-			if (forceLength || this.rand(2) == 0) {
+			if ((forceLength || this.rand(2) == 0) && hairStyle != "afro" && hairStyle != "mohawk") {
 				if (hairLength < 1) {
 					if (this.rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
@@ -7938,7 +7939,16 @@
 					if(rand(2) == 0) descript += "plumage";
 					else descript += "feather-hair";
 				}
-				else descript += "hair";
+				else 
+				{
+					if(hairStyle == "ponytail") descript += "ponytail";
+					else if(hairStyle == "pigtails") descript += "pigtailed hair";
+					else if(hairStyle == "curls") descript += "curled hair";
+					else if(hairStyle == "braided") descript += "braid";
+					else if(hairStyle == "afro") descript += "afro";
+					else if(hairStyle == "mohawk") descript += "mohawk";
+					else descript += "hair";
+				}
 			}
 			return descript;
 		}
@@ -8038,7 +8048,16 @@
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
-			else descript += "locks";
+			else 
+			{
+				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
+				else if(hairStyle == "pigtails") descript += "pigtails";
+				else if(hairStyle == "curls") descript += "curls";
+				else if(hairStyle == "braided") descript += "braid-bound locks";
+				else if(hairStyle == "afro") descript += "afro-puffed locks";
+				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
+				else descript += "locks";
+			}
 			return descript;
 		}
 		public function eachClit(): String {
