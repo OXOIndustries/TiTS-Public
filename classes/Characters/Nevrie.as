@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Combat.CrystalShard;
 	import classes.Items.Melee.NyreanSpear;
@@ -30,6 +31,7 @@
 			inventory.push(new Chocolac());
 			inventory.push(new FocusPill());
 			inventory.push(new EasyFit());
+			inventory.push(new LeithaCharm());
 			
 			this.typesBought = [];
 			

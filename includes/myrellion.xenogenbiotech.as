@@ -106,6 +106,7 @@ public function myrellionMeetNevrie():void
 	output("\n\nYou introduce yourself, and think of what to ask her.");
 
 	flags["MET_NEVRIE"] = 1;
+	processTime(3 + rand(2));
 	myrellionNevrieMenu();
 }
 
@@ -136,6 +137,8 @@ public function myrellionNevrieApproach():void
 	if (flags["FUCKED_NEVRIE"] == undefined) output("?”</i>");
 	else output("... or </i>to<i> you?”</i> she says with a flirtatious smile.");
 
+	processTime(3 + rand(2));
+	
 	myrellionNevrieMenu();
 }
 
@@ -243,6 +246,7 @@ public function myrellionNevrieHerRace():void
 	if (flags["NEVRIE_TALK_RACE"] == undefined) flags["NEVRIE_TALK_RACE"] = 0;
 	flags["NEVRIE_TALK_RACE"]++;
 
+	processTime(5 + rand(5));
 	myrellionNevrieMenu(myrellionNevrieHerRace);
 }
 
@@ -343,6 +347,8 @@ public function myrellionNevrieBlowjerb():void
 
 	flags["NEVRIE_DISCOUNT"] = 1;
 	flags["FUCKED_NEVRIE"] = 1;
+	
+	processTime(10 + rand(5));
 
 	clearMenu();
 	addButton(0, "Next", myrellionNevrieShop, true);
@@ -395,6 +401,8 @@ public function myrellionNevrieBloodVial():void
 
 	flags["NEVRIE_QUEST"] = 2;
 	flags["NEVRIE_SAMPLES_TIMESTAMP"] = GetGameTimestamp();
+	
+	processTime(3 + rand(2));
 
 	myrellionNevrieMenu();
 }
@@ -417,6 +425,8 @@ public function mcallisterMeeting():void
 
 	flags["MET_MCALLISTER"] = 1;
 
+	processTime(3 + rand(2));
+	
 	//To McAllister's dialogue menu
 	clearMenu();
 	addButton(0, "Next", mcallisterMenu);
@@ -445,6 +455,8 @@ public function approachMcallister():void
 		
 		output("\n\nNow all you need to do is find somebody to start distributing the stuff...");
 
+		processTime(3 + rand(2));
+		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -532,6 +544,7 @@ public function mcallisterXenogen():void
 	
 	output("\n\nYou suppose that’s true.");
 
+	processTime(10 + rand(5));
 	mcallisterMenu(mcallisterXenogen);
 }
 
@@ -556,6 +569,7 @@ public function mcallisterRedMyr():void
 	
 	output("\n\nMcAllister grunts and runs a hand through his curly red beard. <i>“As I said, they’re strong, and their venom will be a popular cosmetic treatment... maybe have some medical uses. But of the people themselves? They’re hard workers, make no mistake, and loyal to a fault. I’ve never heard one speak ill of her kin or country. First I thought they’d all been, I suppose brainwashed, but... I don’t believe that’s the case. Be it culture or nature, they are remarkably loyal and steadfast creatures. Admirable, I suppose, in their way.”</i>");
 
+	processTime(5 + rand(5));
 	mcallisterMenu(mcallisterRedMyr);
 }
 
@@ -582,6 +596,7 @@ public function mcallisterGoldMyr():void
 	
 	output("\n\nOf that, you have no doubt.");
 
+	processTime(5 + rand(5));
 	mcallisterMenu(mcallisterGoldMyr);
 }
 
@@ -606,6 +621,7 @@ public function mcallisterMyrQueens():void
 	
 	output("\n\nMcAllister sighs and shakes his head. <i>“But yes, in the end, it’s all about rebuilding their populations. I should think I’m offering a better way than what Ambassador Juro wants, turning Myrellion into a kui-tan colony where the furry bastards can put a race full of cocks to use on a race almost completely lacking them. As much as I’d like to see the kui-tan spread, the myr should be protected as they are, not used as breeding stock for other species.”</i>");
 
+	processTime(5 + rand(5));
 	mcallisterMenu(mcallisterMyrQueens);
 }
 
@@ -628,6 +644,8 @@ public function mcallisterMyrTFs():void
 
 	flags["MCALLISTER_MYR_TFS"] = 1;
 
+	processTime(5 + rand(5));
+	
 	//[Meet Them] [No Thanks]
 	clearMenu();
 	addButton(0, "Meet Them", mcallisterMyrTFsMeetThem, undefined, "Meet Them", "Meet the very first faux-myr girls.");
@@ -852,7 +870,7 @@ public function mcallisterMyrGirlsCocky():void
 	output("\n\nThe other myr laughs, resting her head on the golden’s shoulder. <i>“I know, right!”</i> Turning to you, she adds, <i>“And thanks again for helping with the mods. I </i>really<i> like them.”</i>");
 	
 	output("\n\n<i>“Me too!”</i> the other confirms, flashing you a cum-stained smile.");
-
+	
 	//[Next] //To Combine
 	clearMenu();
 	addButton(0, "Next", mcallisterMeetThemGoAlongII);
@@ -862,6 +880,8 @@ public function mcallisterMyrGirlsCunty():void
 {
 	clearOutput();
 	mcallisterHeader();
+	
+	var selCunt:int = (pc as Creature).biggestVaginaIndex();
 
 	output("You let the amorous gold have her way with you, pulling the front of your robe open and guiding you towards the bed she and her crimson companion are splayed out on. You join the giggling beauties on the bed, giving them a gentle push apart and crawling in between them. The ant babes moan and giggle as you join them, running your hands along their legs and thighs, brushing your fingertips through the clefts of a pair of sultry pussies as you go.");
 		
@@ -889,11 +909,12 @@ public function mcallisterMyrGirlsCunty():void
 	
 	output("\n\nTo be honest, you’re starting to feel a little left out.");
 	
-	output("\n\nDeciding you’ve got enough nectar churning around in your stomach, you pop off of the goldie’s tit and slip up onto your [pc.knees] over the moaning ant-girls. After a bit of adjusting, you end up with your [pc.cunt] hovering just over the faux-myrs’ faces. Their eyes light up, clearly eager to return the favors you’ve been doing them, and you quickly have a pair of tongues running all across your thighs and crotch, narrowing in on your eager cunt.");
+	output("\n\nDeciding you’ve got enough nectar churning around in your stomach, you pop off of the goldie’s tit and slip up onto your [pc.knees] over the moaning ant-girls. After a bit of adjusting, you end up with your [pc.cunts] hovering just over the faux-myrs’ faces. Their eyes light up, clearly eager to return the favors you’ve been doing them, and you quickly have a pair of tongues running all across your thighs and crotch, narrowing in on your eager cunt.");
 	
-	output("\n\n<i>“That’s more like it,”</i> you groan, running a hand through both ant-girls’ hair and guiding them towards your [pc.cunt].");
+	output("\n\n<i>“That’s more like it,”</i> you groan, running a hand through both ant-girls’ hair and guiding them towards your [pc.cunt "+selCunt+"].");
 	
 	output("\n\n<i>“Hope you like venom,”</i> the red coos, running her tongue to the very bottom of your sex, circling it there and leaving a heady dose of her pink-tinged saliva on your pussylips.");
+	// 9999 - red myr venom?
 	if (pc.hasCock()) output(" As she does so, the gold’s hands reach up and caress your [pc.cock], latex-smooth fingers gripping you tight and starting to piston.");
 	output(" The girls both smile up at you, playing their lips and tongues around your sex, never quite penetrating you. Still, the sensation’s almost overwhelming with the red’s venom starting to seep into you, to set your sex afire with lust.");
 	
@@ -914,9 +935,10 @@ public function mcallisterMyrGirlsCunty():void
 	output("\n\nIt takes you a moment to distinguish the bulbous heft of a cockhead joining the fingers caressing you. You gasp, but find yourself wiggling your [pc.hips] invitingly, spurred on by the intoxicating touch of red venom to accept any new pleasure you can grab.");
 	
 	output("\n\nTaking your movements as silent encouragement, the doctor moves ahead until his cockhead is grazing the envenomed, drooling lips of your twat. You suck in a sharp breath, letting it out with a moan as he eases into you. The myr girls giggle and coo, running their hands across your body, caressing your [pc.chest] and [pc.hips], doing all they can to heighten your pleasure while McAllister penetrates you.");
+	pc.cuntChange(selCunt, 250, true, true, false); // 9999 - volume
 	
-	output("\n\nHis cock might have <i>looked</i> big at first, but feeling it spreading your [pc.cunt] apart makes it feel like you’re taking a horse’s shaft, a massive, thick length of dick that");
-	if (pc.gapestVaginaLooseness() >= 4) output(" fills even your stretched-out sex");
+	output("\n\nHis cock might have <i>looked</i> big at first, but feeling it spreading your [pc.cunt "+selCunt+"] apart makes it feel like you’re taking a horse’s shaft, a massive, thick length of dick that");
+	if (pc.vaginas[selCunt].looseness() >= 4) output(" fills even your stretched-out sex");
 	else output(" stretches you in wondrous ways");
 	output(", making you scream with pleasure.");
 	
@@ -938,7 +960,7 @@ public function mcallisterMyrGirlsCunty():void
 	output("\n\nThen again, so are you. Though you’re still on the heels of the first climax, you can feel the tell-tale contractions starting your [pc.cunt], squeezing tight around McAllister’s shaft. All you can do is grip the headboard and hold on for dear life while McAllister and the myr take you for a hell of a ride.");
 	
 	output("\n\nMcAllister grunts and hilts himself in you, burying his unnaturally long prick into your quivering slit and unleashing a torrent of seed. A gasp rends its way out of your mouth, but nothing else: no scream of pleasure, no lewd moans... all you can manage is a silent bulge of your eyes - and your [pc.belly] - as you take the doctor’s load.");
-	if (pc.hasCock()) output(" As if to balance your body out,your [pc.cock] erupts across the myr girls’ faces, slathering the faux-ants with [pc.cumNoun]. They take it eagerly, mouths open and giggling.");
+	if (pc.hasCock()) output(" As if to balance your body out, your [pc.cock] erupts across the myr girls’ faces, slathering the faux-ants with [pc.cumNoun]. They take it eagerly, mouths open and giggling.");
 	
 	output("\n\nSo much for the sterile feeling of the lab.");
 	
@@ -969,6 +991,9 @@ public function mcallisterMeetThemGoAlongII():void
 	
 	output("\n\nYou nod as you’re guided back to the main lab. <i>“They sure were...”</i>");
 
+	processTime(60 + rand(15));
+	pc.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -982,7 +1007,9 @@ public function mcallisterMeetThemNoThanks():void
 
 	//[Next]
 	//9999
-	currentLocation = "";
+	currentLocation = "XBMYRELLIONFRONT";
+	
+	processTime(30 + rand(15));
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1031,6 +1058,8 @@ public function mcallisterMyrHybrids():void
 	output("\n\n20,000 credits? That’s not cheap... you’ll have to think about it.");
 	if (pc.credits < 20000) output(" Not that you have that much to begin with anyway.");
 
+	processTime(15 + rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1042,6 +1071,8 @@ public function mcallisterMyrHybridsII():void
 
 	output("<i>“Twenty thousand credits, [pc.name],”</i> McAllister says, crossing his arms. <i>“I wish I could go lower, but that’s the minimum for lab costs and my time. And there’s still the problem of distribution... you’ll need to find somebody willing to spread these out to the myr, talk to them about the treatment, if you want to actually make an impact here. If we can at all.”</i>");
 
+	processTime(3);
+	
 	clearMenu();
 	mcallisterMenu(mcallisterMyrHybridsII);
 }
@@ -1065,6 +1096,8 @@ public function mcallisterMyrHybridResearch():void
 	
 	output("\n\nAwesome. You tell McAllister you’ll check back with him then.");
 
+	processTime(5);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
