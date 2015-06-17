@@ -11,6 +11,7 @@
 	
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.num2Ordinal;
+	import classes.Engine.Utility.formatFloat;
 	
 	public class EasyFit extends ItemSlotClass
 	{
@@ -74,27 +75,25 @@
 						if (target.vaginas.length > 1)
 						{
 							output("\n\n" + StringUtil.capitalize(num2Ordinal(i + 1)) + " vagina - ");
+							addButton(0, String("Vagina " + (i + 1)), ItemTargetChoice, [target, i]);
 						}
 						else
 						{
-							output("\n\nVagina - ");
+							output("\n\nVagina:");
+							addButton(0, "Vagina", ItemTargetChoice, [target, i]);
 						}
 						
-						output("(Looseness: " + (target.vaginas[i] as VaginaClass).loosenessRaw);
-						output(" Bonus Capacity: " + (target.vaginas[i] as VaginaClass).bonusCapacity);
-						output(" Wetness: " + (target.vaginas[i] as VaginaClass).wetnessRaw);
-						output(")");
-						
-						addButton(0, String("Vagina " + (i + 1)), ItemTargetChoice, [target, i]);
+						output("\nLooseness: " + formatFloat((target.vaginas[i] as VaginaClass).loosenessRaw, 3));
+						output("\nBonus Capacity: " + formatFloat((target.vaginas[i] as VaginaClass).bonusCapacity, 3));
+						output("\nWetness: " + formatFloat((target.vaginas[i] as VaginaClass).wetnessRaw, 3));
 					}
 					
 					if (target.vaginas.length > 0)
 					{
-						output("\n\nButthole  - ");
-						output("(Looseness: " + target.ass.loosenessRaw);
-						output(" Bonus Capacity: " + target.ass.bonusCapacity);
-						output(" Wetness: " + target.ass.wetnessRaw);
-						output(")");
+						output("\n\nButthole:");
+						output("\nLooseness: " + formatFloat(target.ass.loosenessRaw, 3));
+						output("\nBonus Capacity: " + formatFloat(target.ass.bonusCapacity, 3));
+						output("\nWetness: " + formatFloat(target.ass.wetnessRaw, 3));
 					}
 					
 					addButton(i, "Butthole", ItemTargetChoice, [target, 3]);

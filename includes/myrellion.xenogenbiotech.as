@@ -1,6 +1,5 @@
 import classes.Creature;
 import classes.Items.Miscellaneous.RedMyrBlood;
-// 9999 - The first time you go into the shop, Haswell's quest on Mhen'ga should close off. Too late, fool!
 
 /*
 NEVRIE_QUEST states:
@@ -60,10 +59,13 @@ public function myrellionBiotechInteriorAddition():Boolean
 	else output("Nevrie");
 	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 
-	if (flags["NEVRIE_QUEST"] < 3)
+	if (flags["NEVRIE_QUEST"] == undefined || flags["NEVRIE_QUEST"] < 3)
 	{
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 	}
+	
+	// Disable Haswells quest
+	flags["JULIANS_QUEST_DISABLED"] = 1;
 	
 	if (flags["MET_NEVRIE"] == undefined) addButton(0, "Secretary", myrellionMeetNevrie);
 	else addButton(0, "Nevrie", myrellionNevrieApproach);
@@ -91,7 +93,13 @@ public function myrellionMeetNevrie():void
 	nevrieHeader();
 	showName("XENOGEN\nBIOTECH");
 
-	output("You wander up to the desk, and the blue-haired alien sitting behind it. {if Stellar Tether done: Now that you think of it, she’s got more than a passing resemblance to that hermaphroditic mercenary guarding the bomb back on Tarkus. Same species, perhaps?} She looks up from her data-screens like she’s just noticing your presence for the first time.");
+	output("You wander up to the desk, and the blue-haired alien sitting behind it.");
+	
+	// iirc the det is never removed from the players inventory once collected, and it's the only simple marker I can find
+	// for "player has specifically encountered Kaska"
+	if (pc.hasKeyItem("Kaska's Detonator")) output(" Now that you think of it, she’s got more than a passing resemblance to that hermaphroditic mercenary guarding the bomb back on Tarkus. Same species, perhaps?");
+	
+	output(" She looks up from her data-screens like she’s just noticing your presence for the first time.");
 	
 	output("\n\n<i>“‘Sup,");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" nerd");
@@ -126,7 +134,7 @@ public function myrellionNevrieApproach():void
 		return;
 	}
 
-	output("\n\nYou wander up to the desk, and the blue-haired alien sitting behind it. Nevrie gives you a slight nod as you approach, tossing the bag of junk food she was munching on into a drawer under her desk. <i>“Welcome back,");
+	output("You wander up to the desk, and the blue-haired alien sitting behind it. Nevrie gives you a slight nod as you approach, tossing the bag of junk food she was munching on into a drawer under her desk. <i>“Welcome back,");
 	if (flags["FUCKED_NEVRIE"] == undefined) output(" " + pc.mf("mister", "miss") + " Steele");
 	else output(" [pc.name]");
 	output(". Anything I can do for you");
@@ -154,7 +162,7 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 
 	if (cFunc != myrellionNevrieDiscount)
 	{
-		if (flags["NEVRIE_SHOPPED"] == undefined) addDisabledButton(2, "Discount", "Discount", "You should probably check out the proces she's offering to begin with before you start begging for a discount!");
+		if (flags["NEVRIE_SHOPPED"] == undefined) addDisabledButton(2, "Discount", "Discount", "You should probably check out the prices she's offering to begin with before you start begging for a discount!");
 		else if (flags["NEVRIE_DISCOUNT"] == undefined) addButton(2, "Discount", myrellionNevrieDiscount, undefined, "Discount", "Maybe you could convince Nevrie here to give you a discount....");
 		else addButton(2, "Discount", myrellionNevrieDiscount, undefined, "Discount", "Try and wrangle the shop's prices down, though something tells you you'll be using your mouth to do more than smooth-talk....");
 	}
@@ -196,10 +204,20 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
 	shopkeep = nevrie;
-
-	// 9999 - Modify buy/sell menus to support a target back function ref
+	shopkeepBackFunctor = myrellionNevrieShopBack;
 
 	buyItem();
+}
+
+public function myrellionNevrieShopBack():void
+{
+	clearOutput();
+	nevrieHeader();
+	
+	output("Finished with the display, you spin it back around to face Nevrie.");
+	output("\n\n<i>“So, anything else I can do for you [pc.name]?”</i> she asks.");
+	
+	myrellionNevrieMenu();
 }
 
 public function myrellionNevrieHerRace():void
@@ -285,7 +303,7 @@ public function myrellionNevrieBlowjerb():void
 
 	if (flags["FUCKED_NEVRIE"] == undefined)
 	{
-		output("\n\nHer eyes widen as you approach. <i>“Uh, hey, I didn’t </i>actually<i> mean I’d give you a discount for sucking my dick.");
+		output("\n\nHer eyes widen as you approach. <i>“Uh, hey, I didn’t </i>actually<i> mean I’d give you a discount for sucking my dick.”</i>");
 
 		output("\n\nYou give her a look and reach down to her crotch, giving the bulge between her legs an appreciative squeeze. Nevrie groans and arches her back, legs squirming around your firm but gentle hold. <i>“H-hey, what... you... oooh, that feels good...”</i>");
 	}
@@ -1002,7 +1020,6 @@ public function mcallisterMeetThemNoThanks():void
 	output("This might be a little more than you were bargaining for. You slip away, heading towards the decontamination chamber and quickly cycling through it. The handful of research assistants gathered outside give you queer looks as you pass them by, adjusting your gear as you go. You note that the one-way mirror is still open, giving you a front-row view of the proceedings inside. By the time you get out there, you’re treated to a show of Doctor McAllister balls-deep in the cunt of the gold myr girl while the red uses her venom-laced mouth to lick around his nipples, rubbing her pussy all across the gold’s face as she does so. You find the button that changes the position of the screen, and quickly bring it down to give the trio what privacy you can.");
 
 	//[Next]
-	//9999
 	currentLocation = "XBMYRELLIONFRONT";
 	
 	processTime(30 + rand(15));

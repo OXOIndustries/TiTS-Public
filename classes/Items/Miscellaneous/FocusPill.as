@@ -28,7 +28,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a rather bland looking pill labelled 'focus'";
+			this.description = "a pill labelled 'focus'";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Created in joint venture between JoyCo and Xenogen to help their scientists on important projects, Focus Pills give you a momentary sense of calm and emotionless insight. Reduces active lust, and grants a short-term bonus to Intelligence.";
 			

@@ -25,10 +25,10 @@
 			this.type = GLOBAL.ACCESSORY;
 			
 			//Used on inventory buttons
-			this.shortName = "LeithaCharm";
+			this.shortName = "LeithaChrm";
 			
 			//Regular name
-			this.longName = "a leitha charm necklace";
+			this.longName = "leitha charm necklace";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

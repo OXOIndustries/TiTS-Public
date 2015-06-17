@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			
-			this.shortName = "nepeta";
+			this.shortName = "Nepeta";
 			this.longName = "Nepeta";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));

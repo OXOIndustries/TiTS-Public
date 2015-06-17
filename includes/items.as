@@ -124,7 +124,17 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 	else processCombat();
 }
 
+public var shopkeepBackFunctor:Function = null;
+
 public function shop(keeper:Creature):void {
+	
+	if (shopkeepBackFunctor != null)
+	{
+		shopkeepBackFunctor();
+		shopkeepBackFunctor = null; // Clear it after use so we don't accidently do shit with it later.
+		return;
+	}
+	
 	if(keeper is Geoff) {
 		mainGameMenu();
 		return;

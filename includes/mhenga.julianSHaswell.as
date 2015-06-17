@@ -24,27 +24,27 @@ public function approachJulianRouter():void {
 		introductionToJulian();
 	}
 	//Repeat if haven't taken job yet
-	else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == undefined) 
+	else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		julianFirstOfferRepeat();
 	}
 	//Bagged a zil yet?
-	else if((flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined ) && flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined) 
+	else if((flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined ) && flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		zilBaggedApproach();
 	}
 	//Second zil report?
-	else if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) 
+	else if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		finalZilCaptureTurnInEpilogue();
 	}
 	//Repeat second offer?
-	else if(!pc.hasKeyItem("Capture Harness") && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined) 
+	else if(!pc.hasKeyItem("Capture Harness") && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && flags["JULIANS_QUEST_DISABLED"] == undefined) 
 	{
 		repeatSecondHarnessOffer();
 	}
 	//Have the harness already?
-	else if(pc.hasKeyItem("Capture Harness"))
+	else if(pc.hasKeyItem("Capture Harness") && flags["JULIANS_QUEST_DISABLED"] == undefined)
 	{
 		clearOutput();
 		userInterface.showBust("DR_HASWELL");
