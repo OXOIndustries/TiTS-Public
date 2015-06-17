@@ -3934,7 +3934,7 @@
 		public function shortHeight():String
 		{
 			var retStr:String = "";
-			retStr += Math.floor(tallness / 12) + "\\\’";
+			retStr += Math.floor(tallness / 12) + "’";
 			if (tallness % 12 > 0) retStr += " " + tallness % 12 + "”";
 			return retStr;
 		}
@@ -6830,7 +6830,7 @@
 		public function kaithritScore(): int {
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_FELINE) counter++;
-			if (legType == GLOBAL.TYPE_FELINE) counter++;
+			if (legType == GLOBAL.TYPE_HUMAN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter+=2;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;

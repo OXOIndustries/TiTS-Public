@@ -59,14 +59,14 @@
 				target.lust( -25);
 				if (!target.hasStatusEffect("Focus Pill"))
 				{
-					target.createStatusEffect("Focus Pill", 0, 0, 0, 0, false, "PILL", "You feel shaper, more able to focus and process your senses.", false, 60);
+					target.createStatusEffect("Focus Pill", 0, 0, 0, 0, false, "Pill", "You feel shaper, more able to focus and process your senses.", false, 60);
 				}
 				else
 				{
 					target.setStatusMinutes("Focus Pill", 60);
 				}
 				
-				output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth. After a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
+				output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
 			}
 			//Not player!
 			else

@@ -56,10 +56,19 @@ package classes.Items.Transformatives
 			var changes:int = 0;
 			
 			clearOutput();
-			output("You up-end a baggie filled with a handful of the nepeta treats into the palm of your [pc.hand]. To some level of mild amusement you count " + num2Text(changeLimit) + " cute little cat-face shaped treats mixed in amongst some crumbly remnants of more complete foodstuffs.");
+			output("You up-end a baggie filled with a handful of the nepeta treats into the palm of your hand. To some level of mild amusement you count " + num2Text(changeLimit) + " cute little cat-face shaped treat");
+			if (changeLimit > 1) output("s");
+			output(" mixed in amongst some crumbly remnants of more complete foodstuffs.");
 
 			var nomText:Array = [];
-			nomText.push("Wasting no more time, you pick out one of the cutesy biscuits and nibble down on the edge. Pleased with the taste, you make quick work of it.");
+			
+			var nom1:String = "Wasting no more time, you pick out";
+			if (changeLimit > 1) nom1 += " one of";
+			nom1 += " the cutesy biscuit";
+			if (changeLimit > 1) nom1 += "s";
+			nom1 += " and nibble down on the edge. Pleased with the taste, you make quick work of it."
+			
+			nomText.push(nom1);
 			nomText.push("The first treat polished off in short order, you reach for another and quickly bite into the crunchy treat.");
 			nomText.push("With only one whole biscuit left cupped in your palm, you greedily scoop it into your mouth -- a little rain of crumbs falling from your face as you bite into the final treat.");
 
@@ -68,8 +77,8 @@ package classes.Items.Transformatives
 			
 			while (eaten < changeLimit)
 			{
-				output(nomText[changes]);
 				output("\n\n");
+				output(nomText[eaten]);
 
 				tfs = [];
 				
@@ -77,7 +86,7 @@ package classes.Items.Transformatives
 				if (target.eyeType != GLOBAL.TYPE_FELINE && target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(eyeTF);
 				if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) tfs.push(skinTF);
 				if ((target.tailCount != 2 && target.tailCountUnlocked(2)) || (target.tailType != GLOBAL.TYPE_FELINE && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE))) tfs.push(tailTF);
-				if ((target.legCount != 2 && target.legCountUnlocked(2)) || !target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || (target.legType != GLOBAL.TYPE_FELINE && target.legTypeUnlocked(GLOBAL.TYPE_FELINE))) tfs.push(legTF);
+				if ((target.legCount != 2 && target.legCountUnlocked(2)) || !target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || (target.legType != GLOBAL.TYPE_HUMAN && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))) tfs.push(legTF);
 				if ((target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN)) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) tfs.push(faceTF);
 				
 				if (target.femininity < 75 && target.femininityUnlocked(75)) tfs.push(femTF);
@@ -128,8 +137,8 @@ package classes.Items.Transformatives
 				if (tfs.length > 0)
 				{
 					var selectedTF:Function = RandomInCollection(tfs);
-					selectedTF(target);
 					output("\n\n");
+					selectedTF(target);
 					changes++;
 				}
 				eaten++;
@@ -149,7 +158,7 @@ package classes.Items.Transformatives
 			output("Your [pc.ears] start to burn, forcing you to stop and rub at them.");
 			// 9999
 			// " {if not top-placed ears: As you run your fingers across them, your ears begin to quiver and... move... altering their place on your head until they're perched near the top of your head.}");
-			output(" They begin to change shape, growing pointed and sprouting a thin layer of fuzz. Before long, you realize <b>you've grown a pair of feline ears!</b>. Meow!");
+			output(" They begin to change shape, growing pointed and sprouting a thin layer of fuzz. Before long, you realize <b>you've grown a pair of feline ears!</b> Meow!");
 			target.earType = GLOBAL.TYPE_FELINE;
 		}
 		
