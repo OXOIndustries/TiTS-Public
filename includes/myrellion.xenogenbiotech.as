@@ -60,13 +60,9 @@ public function myrellionBiotechInteriorAddition():Boolean
 	else output("Nevrie");
 	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 
-	if (flags["NEVRIE_QUEST"] >= 3)
+	if (flags["NEVRIE_QUEST"] < 3)
 	{
-		addButton(5, "West", move, "XBMYRELLIONLAB");
-	}
-	else
-	{
-		addDisabledButton(5, "");
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 	}
 	
 	if (flags["MET_NEVRIE"] == undefined) addButton(0, "Secretary", myrellionMeetNevrie);

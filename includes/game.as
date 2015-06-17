@@ -56,6 +56,20 @@ public function processEventBuffer():Boolean
 	return false;
 }
 
+public static const NAV_NORTH_DISABLE:uint 	= 1;
+public static const NAV_EAST_DISABLE:uint 	= 1 << 1;
+public static const NAV_SOUTH_DISABLE:uint 	= 1 << 2;
+public static const NAV_WEST_DISABLE:uint 	= 1 << 3;
+public static const NAV_IN_DISABLE:uint 	= 1 << 4;
+public static const NAV_OUT_DISABLE:uint 	= 1 << 5;
+
+public function isNavDisabled(umask:uint):Boolean
+{
+	if (flags["NAV_DISABLED"] != undefined && flags["NAV_DISABLED"] & umask) return true;
+	
+	return false;
+}
+
 public function mainGameMenu():void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -126,37 +140,62 @@ public function mainGameMenu():void {
 
 	if(pc.hasStatusEffect("Endowment Immobilized"))
 	{
-		if(this.rooms[this.currentLocation].northExit) 
-			this.addDisabledButton(6,"North","North","You can't move - you're immobilized!");
-		if(this.rooms[this.currentLocation].eastExit) 
-			this.addDisabledButton(12,"East","East","You can't move - you're immobilized!");
-		if(this.rooms[this.currentLocation].southExit) 
+		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		{
+			this.addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
+		}
+		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
+		{
+			this.addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
+		}
+		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
+		{
 			this.addDisabledButton(11,"South","South","You can't move - you're immobilized!");
-		if(this.rooms[this.currentLocation].westExit) 
+		}
+		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
+		{
 			this.addDisabledButton(10,"West","West","You can't move - you're immobilized!");
-		if(this.rooms[this.currentLocation].inExit) 
-			this.addDisabledButton(5,rooms[currentLocation].inText,rooms[currentLocation].inText,"You can't move - you're immobilized!");
-		if(rooms[currentLocation].outExit) 
+		}
+		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
+		{
+			this.addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
+		}
+		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE)) 
+		{
 			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can't move - you're immobilized!");
+		}
 	}
 	else
 	{
-		if(this.rooms[this.currentLocation].northExit) 
-			this.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
-		if(this.rooms[this.currentLocation].eastExit) 
-			this.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
-		if(this.rooms[this.currentLocation].southExit) 
+		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		{
+			this.addButton(6, "North", move, this.rooms[this.currentLocation].northExit);
+		}
+		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
+		{
+			this.addButton(12, "East", move, this.rooms[this.currentLocation].eastExit);
+		}
+		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
+		{
 			this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
-		if(this.rooms[this.currentLocation].westExit) 
-			this.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
-		if(this.rooms[this.currentLocation].inExit) 
-			this.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
-		if(this.rooms[this.currentLocation].outExit) 
-			this.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
+		}
+		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
+		{
+			this.addButton(10, "West", move, this.rooms[this.currentLocation].westExit);
+		}
+		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
+		{
+			this.addButton(5, this.rooms[this.currentLocation].inText, move, this.rooms[this.currentLocation].inExit);
+		}
+		if (this.rooms[this.currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
+		{
+			this.addButton(7, this.rooms[this.currentLocation].outText, move, this.rooms[this.currentLocation].outExit);
+		}
 	}
 	if(this.currentLocation == shipLocation) 
 		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
+	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
 	this.addButton(14, "Codex", showCodex);

@@ -72,8 +72,7 @@ public function streetOutsideBarBonus():Boolean
 	
 	if (!mcallisterIsIn())
 	{
-		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters:");
-		output("\n\nTHE DOCTOR IS <i><b>OUT</b></i>!");
+		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters: THE DOCTOR IS <i><b>OUT</b></i>!");
 	}
 
 	return false;

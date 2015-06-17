@@ -3930,6 +3930,15 @@
 			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
 			return buffer;
 		}
+		
+		public function shortHeight():String
+		{
+			var retStr:String = "";
+			retStr += Math.floor(tallness / 12) + "\\\’";
+			if (tallness % 12 > 0) retStr += " " + tallness % 12 + "”";
+			return retStr;
+		}
+		
 		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			// Plural check:
 			if(legCount == 1) return foot(forceType,forceAdjective);

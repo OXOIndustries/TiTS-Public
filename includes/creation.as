@@ -106,6 +106,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
 		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
@@ -117,6 +118,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.tailCount = 2;
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);

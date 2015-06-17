@@ -33,7 +33,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an aim-assisting eyepiece";
+			this.description = "a leitha charm necklace";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A cosmetic transformative released by Xenogen, this amulet slowly releases nanomachines and gene splices over several hours that will modify you into one of the huge, tauric reptilians from Alpha Centauri -- and keep you one so long as you wear it.";

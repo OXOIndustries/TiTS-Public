@@ -10,6 +10,7 @@
 	import classes.Items.Armor.ChitinArmor;
 	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Transformatives.Bovinium;
+	import classes.Items.Transformatives.Nepeta;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -32,6 +33,7 @@
 			inventory.push(new FocusPill());
 			inventory.push(new EasyFit());
 			inventory.push(new LeithaCharm());
+			inventory.push(new Nepeta());
 			
 			this.typesBought = [];
 			
