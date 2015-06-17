@@ -932,7 +932,7 @@ public function processTime(arg:int):void {
 		}
 		else
 		{
-			pc.addStatusValue("Leitha Charm", 1, arg);
+			pc.addStatusValue("Leitha Charm", 1, arg * 20); // temp debug shit
 		}
 	}
 
