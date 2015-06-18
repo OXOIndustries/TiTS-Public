@@ -90,7 +90,7 @@ public function weightRoomBonusFunction():Boolean
 	if(pc.energy() >= 30 && !pc.hasStatusEffect("Sore")) addButton(0,"Light Workout",lightWorkout,undefined,"Light Workout","A light workout that'll help you build a little bit of muscle.");
 	else addDisabledButton(0,"Light Workout","Light Workout","You're too tired for that workout.");
 	//[Hard Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 50 energy}
-	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Hard Workout",lightWorkout,undefined,"Hard Workout","A hard workout that'll help you build muscle <b>and</b> strength.");
+	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Hard Workout",hardWorkout,undefined,"Hard Workout","A hard workout that'll help you build muscle <b>and</b> strength.");
 	else addDisabledButton(1,"Hard Workout","Hard Workout","You're too tired for that workout.");
 
 	//[Cowgirl] Go to Simone
@@ -131,6 +131,7 @@ public function hardWorkout():void
 	pc.energy(-50);
 	soreDebuff(2);
 	sweatyDebuff(2);
+	pc.modTone(3, false);
 	pc.slowStatGain("physique",1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

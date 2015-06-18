@@ -835,13 +835,16 @@ public function getOralFromCeria():void
 	output(" out into the open air.");
 
 	var dick:Boolean = false;
-	//PC has multiple cocks, multiple vaginas, or a mixed set, Ceria picks one sex organ at random: 
-	if(pc.hasCock() && pc.hasVagina()) dick = (rand(2) == 0);
-	else if(pc.hasCock() && !pc.hasVagina()) dick = true;
-	output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
-	if(dick) output("[pc.oneCock]");
-	else output("[pc.oneVagina]");
-	output(". <i>“...This one.”</i>");
+	//PC has multiple cocks, multiple vaginas, or a mixed set, Ceria picks one sex organ at random:
+	if ((pc.hasCock() && pc.hasVagina()) || pc.cocks.length > 1 || pc.vaginas.length > 1)
+	{
+		if(pc.hasCock() && pc.hasVagina()) dick = (rand(2) == 0);
+		else if(pc.hasCock() && !pc.hasVagina()) dick = true;
+		output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
+		if(dick) output("[pc.oneCock]");
+		else output("[pc.oneVagina]");
+		output(". <i>“...This one.”</i>");
+	}
 	var x:int = 0;
 	if(dick) 
 	{
@@ -1010,10 +1013,9 @@ public function fuckCeria():void
 
 		output("\n\n<i>“Aah...aahnyeah, [pc.name], more! More!”</i> Ceria’s moans soon grow louder, more desperate, more hungry for her impending release. You give her a grin that’s practically feral, relishing the way her voice just keeps getting higher as she nears her climax. Soon she lets out a scream of relief, her bubblegum cunny gripping your dick as she douses it with a veritable fountain of sugary nectar. Your response is a guttural grunt; with your [pc.balls] feeling tight and ready to burst, the stimulation is plenty enough for you to hit your own climax.");
 
-		output("\n\n");
 		if(pc.cumQ() < 1000) 
 		{
-			output("You cum, mixing that sweet nectar with your own [pc.cumFlavor] spunk. Ceria’s cunt squeezes even tighter at the first spurt, milking you for all you’re worth until there’s a frothy mix of pink and [pc.cumColor] bubbling out around the sides of your dick.");
+			output("\n\nYou cum, mixing that sweet nectar with your own [pc.cumFlavor] spunk. Ceria’s cunt squeezes even tighter at the first spurt, milking you for all you’re worth until there’s a frothy mix of pink and [pc.cumColor] bubbling out around the sides of your dick.");
 			if(pc.hasVagina()) output(" Underneath your cock, you feel [pc.eachVagina] clench as if gripping a dick of its own, sending [pc.girlCumNoun] streaming down your thighs.");
 			output(") You pause, breathless, soaking in the afterglow for a few long seconds before finally pulling out with one last wet pop. Ceria looks dazed, letting go of your back as her arms drop limp at her sides.");
 

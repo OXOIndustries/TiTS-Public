@@ -21,24 +21,24 @@ package classes.Items.Miscellaneous
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.QUESTITEM;
 			//Used on inventory buttons
-			this.shortName = "VenusPod";
+			this.shortName = "MyrBlood";
 			//Regular name
-			this.longName = "venus pitcher seed pod";
+			this.longName = "red myr blood";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an unfertilized venus pitcher seed pod";
+			this.description = "a blood sample taken from a red myr";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "You laid dis, you sloot. (Totes placeholder gtfo)";
+			this.tooltip = "A small medical vial filled with a sample of red myr blood.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			//Information
-			this.basePrice = 5;
+			this.basePrice = 0;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

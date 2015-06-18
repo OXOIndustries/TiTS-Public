@@ -34,13 +34,13 @@ public function appearance(target:Creature):void {
 		output2(" You're a good " + Math.floor(target.tallness / 12) + " feet");
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
-		output2(" Right now, you're ");
-		if(target.armor is EmptySlot) output2("not wearing a single scrap of armor");
-		else output2("wearing " + target.armor.description + ", ");
-		if(target.lowerUndergarment is EmptySlot) output2("going commando down south, ");
-		else output2("using " + target.lowerUndergarment.longName + " for underwear, ");
-		if(target.upperUndergarment is EmptySlot) output2("and letting your torso breathe, unrestricted by any undertop.");
-		else output2("and girding your upper body with " + target.upperUndergarment.description + ".");
+		output2(" Right now, you're");
+		if(target.armor is EmptySlot) output2(" not wearing a single scrap of armor");
+		else output2(" wearing " + target.armor.description + ",");
+		if(target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
+		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
+		if(target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
+		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
 		if(target.isNude()) {
 			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public's gaze.");

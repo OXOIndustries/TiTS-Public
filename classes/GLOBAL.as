@@ -670,6 +670,7 @@
 		public static const ALL:int                                    = 12; //Used for pawn shops!
 		public static const GADGET:int 								   = 13;
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
+		public static const QUESTITEM:int							   = 15;
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;
