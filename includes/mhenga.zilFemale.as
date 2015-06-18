@@ -251,7 +251,7 @@ public function zilFemaleDartThrow():void {
 		if (damageResult.hpDamage > 0)
 		{
 			output(" The dart punches right through your ");
-			if(pc.armor.shortName == "") output(pc.armor.longName);
+			if(!(pc.armor is EmptySlot)) output(pc.armor.longName);
 			else output("[pc.skinFurScales]");
 			output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood!");
 			damageResult.lustDamage += 10;

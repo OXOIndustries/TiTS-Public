@@ -2160,7 +2160,7 @@ public function getAssFuckedByPenny():void {
 	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]... if I want to keep up with a gaped slut like you....”</i>");
 	pc.buttChange(penny.cockVolume(0),true,true,false);
 	
-	output("\n\nYou silence her with another kiss, pinning her back as your arms wrap around her neck, steadying yourself as your hips begin to rise. Your breath comes ragged as you rise off her cock, feeling the hollow emptiness overwhelm your hole as you nearly dismount her rod, only to be filled with inch after inch of foxy cock again. The feeling of completeness, of wholeness, is undeniable. You sit a moment, relishing the sensation, before rising again, dragging out the heavenly feeling your anal walls being spread and sphincter ravaged across bounce after bounce.");
+	output("\n\nYou silence her with another kiss, pinning her back as your arms wrap around her neck, steadying yourself as your hips begin to rise. Your breath comes ragged as you rise off her cock, feeling the hollow emptiness overwhelm your hole as you nearly dismount her rod, only to be filled with inch after inch of foxy cock again. The feeling of completeness, of wholeness, is undeniable. You sit a moment, relishing the sensation, before rising again, dragging out the heavenly feeling of your anal walls being spread and sphincter ravaged across bounce after bounce.");
 	
 	output("\n\nYou don't have any warning at all when Penny cums: only a quiet, feminine grunt and a sudden warmth in your ass as her [penny.cock] twitches and churns, blasting in a sticky white load deep in your bowels. You gasp and moan, quickening your pace to milk her spasming prick.");
 	if(pc.biggestTitSize() >= 3) output(" Throwing her head back, Penny grabs your tits, roughly squeezing the full mounds of your breasts as you ride her cock to fulfilment.");
@@ -2170,7 +2170,7 @@ public function getAssFuckedByPenny():void {
 	//If PC has a cock:
 	if(pc.hasCock()) 
 	{
-		output("\n\nThe feeling of Penny's seed coating your prostate, slathering the sensitive bud in hot cum, is too much for you. With " + pc.mf("primal roar","feminine whimper") + " you feel [pc.eachCock] spasming, [pc.balls] churning as your own [pc.cumColor] spunk rushes up your cumvein");
+		output("\n\nThe feeling of Penny's seed coating your prostate, slathering the sensitive bud in hot cum, is too much for you. With a " + pc.mf("primal roar","feminine whimper") + " you feel [pc.eachCock] spasming, [pc.balls] churning as your own [pc.cumColor] spunk rushes up your cumvein");
 		if(pc.cockTotal() > 1) output("s");
 		output(". Penny yelps as a blast of hot, sticky jizz splats onto her belly, staining her dark fur [pc.cumColor]");
 		if(pc.cumQ() >= 50) output(" as a particularly powerful spurt shoots upward, smearing onto her neck to dribble down onto her breasts");
@@ -2179,7 +2179,7 @@ public function getAssFuckedByPenny():void {
 	//IF PC has a cunt:
 	if (pc.hasVagina())
 	{
-		output("\n\nYour quim clenches and spasms as Penny's cock spears your ass, desperate for some semblance of pleasure, for a big, thick foxcock to milk. Your fingers delve into your [pc.vagina], swirling around [pc.oneClit], trying to bring it a little pleasure, tiding it over as your [pc.asshole] clenches hard on Penny's [penny.cock], an anal orgasm working through your body until your shivering and moaning in rectal pleasure.");
+		output("\n\nYour quim clenches and spasms as Penny's cock spears your ass, desperate for some semblance of pleasure, for a big, thick foxcock to milk. Your fingers delve into your [pc.vagina], swirling around [pc.oneClit], trying to bring it a little pleasure, tiding it over as your [pc.asshole] clenches hard on Penny's [penny.cock], an anal orgasm working through your body until you're shivering and moaning in rectal pleasure.");
 	}
 	output("\n\nExhausted, you collapse onto Penny, chin resting on her shoulder as you both heave and sigh, basking in the exquisite pleasure, feeling your lover's rod still moving inside you, depositing its last drops of salty seed deep in your bowels. Penny groans, holding you close as her ");
 	if(penny.hasKnot(0)) output("knot");
