@@ -72,75 +72,74 @@ package classes.Items.Transformatives
 			nomText.push("The first treat polished off in short order, you reach for another and quickly bite into the crunchy treat.");
 			nomText.push("With only one whole biscuit left cupped in your palm, you greedily scoop it into your mouth -- a little rain of crumbs falling from your face as you bite into the final treat.");
 
-			var tfs:Array;
-			var lastExec:Function;
+			var tfs:Array = [];
 			
+			if (target.earType != GLOBAL.TYPE_FELINE && target.earTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(earTF);
+			if (target.eyeType != GLOBAL.TYPE_FELINE && target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(eyeTF);
+			if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) tfs.push(skinTF);
+			if ((target.tailCount != 2 && target.tailCountUnlocked(2)) || (target.tailType != GLOBAL.TYPE_FELINE && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE))) tfs.push(tailTF);
+			if ((target.legCount != 2 && target.legCountUnlocked(2)) || !target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || (target.legType != GLOBAL.TYPE_HUMAN && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))) tfs.push(legTF);
+			if ((target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN)) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) tfs.push(faceTF);
+			
+			if (target.femininity < 75 && target.femininityUnlocked(75)) tfs.push(femTF);
+			
+			if (target.hasCock())
+			{
+				for (var ci:int = 0; ci < target.cocks.length; ci++)
+				{
+					if ((target.cocks[ci] as CockClass).cType != GLOBAL.TYPE_FELINE && target.cockTypeUnlocked(ci, GLOBAL.TYPE_FELINE))
+					{
+						if (tfs.indexOf(cockTF) == -1) tfs.push(cockTF);
+					}
+					if ((target.cocks[ci] as CockClass).cLengthRaw > 4 && target.cockLengthUnlocked(ci, 4))
+					{
+						if (tfs.indexOf(cockShrinkTF) == -1) tfs.push(cockShrinkTF);
+					}
+				}
+				
+				if ((target.breastRows[0] as BreastRowClass).breastRatingRaw < 1 && target.breastRatingUnlocked(0, 1))
+				{
+					tfs.push(breastTF);
+				}
+			}
+			else
+			{
+				if ((target.breastRows[0] as BreastRowClass).breastRatingRaw < 9 && target.breastRatingUnlocked(0, 9))
+				{
+					tfs.push(breastTF);
+				}
+			}
+			
+			for (var bi:int = 0; bi < target.breastRows.length; bi++)
+			{
+				if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) tfs.push(nipTF);
+			}
+			
+			if (target.hasCock() && !target.hasVagina())
+			{
+				if (target.tallness < 60 && target.tallnessUnlocked(60)) tfs.push(heightTF);
+				if (target.tallness > 74 && target.tallnessUnlocked(74)) tfs.push(heightTF);
+			}
+			else
+			{
+				if (target.tallness < 66 && target.tallnessUnlocked(66)) tfs.push(heightTF);
+				if (target.tallness > 87 && target.tallnessUnlocked(87)) tfs.push(heightTF);
+			}
+				
 			while (eaten < changeLimit)
 			{
 				output("\n\n");
 				output(nomText[eaten]);
-
-				tfs = [];
-				
-				if (target.earType != GLOBAL.TYPE_FELINE && target.earTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(earTF);
-				if (target.eyeType != GLOBAL.TYPE_FELINE && target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(eyeTF);
-				if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) tfs.push(skinTF);
-				if ((target.tailCount != 2 && target.tailCountUnlocked(2)) || (target.tailType != GLOBAL.TYPE_FELINE && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE))) tfs.push(tailTF);
-				if ((target.legCount != 2 && target.legCountUnlocked(2)) || !target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || (target.legType != GLOBAL.TYPE_HUMAN && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))) tfs.push(legTF);
-				if ((target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN)) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) tfs.push(faceTF);
-				
-				if (target.femininity < 75 && target.femininityUnlocked(75)) tfs.push(femTF);
-				
-				if (target.hasCock())
-				{
-					for (var ci:int = 0; ci < target.cocks.length; ci++)
-					{
-						if ((target.cocks[ci] as CockClass).cType != GLOBAL.TYPE_FELINE && target.cockTypeUnlocked(ci, GLOBAL.TYPE_FELINE))
-						{
-							if (tfs.indexOf(cockTF) == -1) tfs.push(cockTF);
-						}
-						if ((target.cocks[ci] as CockClass).cLengthRaw > 4 && target.cockLengthUnlocked(ci, 4))
-						{
-							if (tfs.indexOf(cockShrinkTF) == -1) tfs.push(cockShrinkTF);
-						}
-					}
-					
-					if ((target.breastRows[0] as BreastRowClass).breastRatingRaw < 1 && target.breastRatingUnlocked(0, 1))
-					{
-						tfs.push(breastTF);
-					}
-				}
-				else
-				{
-					if ((target.breastRows[0] as BreastRowClass).breastRatingRaw < 9 && target.breastRatingUnlocked(0, 9))
-					{
-						tfs.push(breastTF);
-					}
-				}
-				
-				for (var bi:int = 0; bi < target.breastRows.length; bi++)
-				{
-					if (target.breastRows[bi].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL && target.nippleTypeUnlocked(bi, GLOBAL.NIPPLE_TYPE_NORMAL)) tfs.push(nipTF);
-				}
-				
-				if (target.hasCock() && !target.hasVagina())
-				{
-					if (target.tallness < 60 && target.tallnessUnlocked(60)) tfs.push(heightTF);
-					if (target.tallness > 74 && target.tallnessUnlocked(74)) tfs.push(heightTF);
-				}
-				else
-				{
-					if (target.tallness < 66 && target.tallnessUnlocked(66)) tfs.push(heightTF);
-					if (target.tallness > 87 && target.tallnessUnlocked(87)) tfs.push(heightTF);
-				}
 				
 				if (tfs.length > 0)
 				{
 					var selectedTF:Function = RandomInCollection(tfs);
 					output("\n\n");
 					selectedTF(target);
+					tfs.splice(tfs.indexOf(selectedTF), 1);
 					changes++;
 				}
+				
 				eaten++;
 			}
 
@@ -436,8 +435,8 @@ package classes.Items.Transformatives
 			{
 				if (target.cocks[ci].cType != GLOBAL.TYPE_FELINE && target.cockTypeUnlocked(ci, GLOBAL.TYPE_FELINE))
 				{
-					target.cocks[ci].cType = GLOBAL.TYPE_FELINE;
-					target.cocks[ci].flags = [GLOBAL.FLAG_NUBBY];
+					target.cocks[ci].cType = GLOBAL.TYPE_FELINE;					
+					(target.cocks[ci] as CockClass).cockFlags = [GLOBAL.FLAG_NUBBY];
 				}
 			}
 
