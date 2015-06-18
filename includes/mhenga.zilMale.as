@@ -1050,8 +1050,8 @@ public function getBredByZil():void {
 		else if(pc.cumQ() <= 1000) output(", forming a big puddle");
 		else if(pc.cumQ() <= 4000) output(", forming a small lake");
 		else output(", forming a huge lake");
-		output(".");
 	}
+	output(".");
 	if(pc.hasFuckableNipples()) output(" [pc.Cum] erupts from your [pc.nippleCocks] in long streams of phallic pleasure while the zil looks on, bemused by your copious fluid production.");
 	else if(pc.canMilkSquirt()) 
 	{

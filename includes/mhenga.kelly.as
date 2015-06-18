@@ -10,10 +10,9 @@ public function showKellyName():void
 public function kellyAttraction(modValue:int = 0):int
 {
 	if(flags["KELLY_ATTRACTION"] == undefined) flags["KELLY_ATTRACTION"] = 0;
-	flags["KELLY_ATTRACTION"]++;
+	flags["KELLY_ATTRACTION"] += modValue;
 	return flags["KELLY_ATTRACTION"];
 }
-
 
 public function kellyFucked():void
 {
@@ -597,7 +596,7 @@ public function endOfLoppeConfession():void
 	output("\n\n<i>\"So... thanks for the company this evening. But....\"</i> she trails off with a mischievous smile.");
 	output("\n\nBut?");
 	output("\n\n<i>\"You did come to see me at the bar, and I can’t help but think you were expecting something when you did,\"</i> she smirks.");
-	output("\n\nThat's when she stops, and you realise you’re standing just outside her house.");
+	output("\n\nThat's when she stops, and you realize you’re standing just outside her house.");
 	output("\n\nShe raises her arms above her head in a full-body stretch, breasts jiggling nicely as she does so. <i>\"So, what do you say, honey? Care to come in for a nice hot coffee? My own special blend,\"</i> she promises, eye closing in a teasing wink.");
 	processTime(10);
 	//[Yes][No]
@@ -2171,7 +2170,10 @@ public function kellyBarSexMenu():void
 	if(pc.hasCock() || pc.hasVagina()) addButton(3,"Oral Her",oralHer,undefined,"Oral Her","Go down on Kelly or suck her cocks, whichever you prefer.");
 	else addDisabledButton(3,"Oral Her","Oral Her","This scene does not current support genderless characters.");
 	if(pc.hasVagina()) addButton(4,"Get DPed",getDPedByKelly,undefined,"Get DPed","Take one of Kelly's lengths in each hole. Priority is given to multiple vaginas over assholes.");
-	else addDisabledButton(4,"Get DPed","Get DPed","You need to have two holes close together for this scene to work.");
+	else addDisabledButton(4, "Get DPed", "Get DPed", "You need to have two holes close together for this scene to work.");
+	if (kellyAttraction() >= 50 && pc.cockThatFits(chars["KELLY"].analCapacity()) >= 0) addButton(5, "Assfuck", doKellyInTheBumBUMBUMMMMMMMM, undefined, "Assfuck", "Do her right up the bumhole!");
+	else addDisabledButton(5, "Assfuck", "Assfuck", "You need a cock that'll fit into her butt, and Kelly's affection for you must be fairly high.");
+	
 	addButton(14,"Leave",move,"SOUTH ESBETH 2");
 }
 
@@ -2442,7 +2444,7 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	else output(" is");
 	output(".");
 
-	output("\n\nThe treatment seems to be working; the scent of honey is overpowering now, and you realise you can actually see the heads of her shafts even when her own hips are thrusting away; she's grown up and through her boob-canyon.");
+	output("\n\nThe treatment seems to be working; the scent of honey is overpowering now, and you realize you can actually see the heads of her shafts even when her own hips are thrusting away; she's grown up and through her boob-canyon.");
 
 	output("\n\nShe giggles absently. <i>\"You think that's something? I'm not done yet,\"</i> she chuckles, opening her mouth and closing her eyes. You watch in fascination as her tongue stretches out...and out; a foot long bright yellow appendage that coils itself around her heads in a figure-8 loop. Muffled hums escape her throat as she wriggles and undulates, teasing her slowly-flaring tips even as you continue to fuck her womanhood and use her tits on the lower parts of her shaft. Under your combined ministrations, she just keeps getting bigger and bigger; by the time she stops, she's got twin meter-long shafts jutting from her loins, each four inches thick and gushing honeyed precum like an open tap. Her tongue-tip lifts itself to each flared head in turn, and you can actually see it bulging as it somehow sucks her juices through the tip.");
 
@@ -2768,6 +2770,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 	}
 	processTime(21);
 	pc.orgasm();
+	kellyFucked();
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 2");
 }
@@ -2983,6 +2986,8 @@ public function deepFuckKellysButthole():void
 		}
 	}
 	processTime(20+rand(5));
+	
+	kellyFucked();
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 2");
 }
@@ -3046,16 +3051,16 @@ public function kellysCocksGetBLOWN():void
 
 	output("\n\nNaturally, you’re not going to forget about the delicious honey-baguette inside your mouth. You roll her shaft around, smearing her delicious pre all over your taste buds, enjoying each throb as you deepen your bobs, intent on deep throating her.");
 
-	output("\n\nFrom the moans and grunts bubbling from the laquine's throat, she's enjoying your ministrations all too well. You can hear her tongue slapping wetly against her breast as it lolls from pleasure-slackened jaws, slurping noisily as she realises what she's done and sucks it back inside. Her fingers atop your scalp start to clench, but she forces herself to stop before she might hurt you in her enthusiasm. Instead, her hand moves slightly, to keep you in place and to help her balance, even as her hips start to buck slowly, thrusting her into your mouth in clumsy time with your own bobbing, spare cock sliding through your fingers and bobbing meatily against your chin. In her eagerness, she wriggles forward on her knees, inching closer to the edge.");
+	output("\n\nFrom the moans and grunts bubbling from the laquine's throat, she's enjoying your ministrations all too well. You can hear her tongue slapping wetly against her breast as it lolls from pleasure-slackened jaws, slurping noisily as she realizes what she's done and sucks it back inside. Her fingers atop your scalp start to clench, but she forces herself to stop before she might hurt you in her enthusiasm. Instead, her hand moves slightly, to keep you in place and to help her balance, even as her hips start to buck slowly, thrusting her into your mouth in clumsy time with your own bobbing, spare cock sliding through your fingers and bobbing meatily against your chin. In her eagerness, she wriggles forward on her knees, inching closer to the edge.");
 
 	output("\n\nYou move a hand to knead her balls, coaxing them to produce more tasty honey for you. Kelly’s movements help you open your throat and her moving a bit closer makes your job easier. You redouble your efforts at pleasuring her. Collecting some pre leaking from her lower shaft to smear it atop her upper shaft like a perverted frosting. This slows your rhythm a bit, but you make up for it by gently using your lips to massage her shaft, just behind her flare.");
 
 	output("\n\nA trill of bliss bursts from Kelly's lips, interrupted when you start smearing her precum along her upper shaft by a faint giggle and a full-body shiver that you can feel right through the cock in your mouth. The laquine's ticklish, it seems... but it also seems that she rather enjoys it, since she inches forward again, trying to avoid moving in such a way that she'll accidentally pop her dick from your mouth, her other hand joining the first atop your head to help her balance.");
 
-	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. But surely she must realise this?");
+	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. But surely she must realize this?");
 	if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
 
-	output("\n\nEvidently, no, she doesn't realise it. She just keeps on blindly inching forward, a slave to her lusts and her fixation on your mouth, pumping her hips even as she crawls forward. Finally, she pushes her luck too far; as you are lifting your head back along her shaft, she pumps forward in an effort to keep it inside of your mouth, only to lose her balance completely! With a startled yelp, Kelly falls clean off the table, sending it clattering off its legs behind her as she hurtles down right on top of you!");
+	output("\n\nEvidently, no, she doesn't realize it. She just keeps on blindly inching forward, a slave to her lusts and her fixation on your mouth, pumping her hips even as she crawls forward. Finally, she pushes her luck too far; as you are lifting your head back along her shaft, she pumps forward in an effort to keep it inside of your mouth, only to lose her balance completely! With a startled yelp, Kelly falls clean off the table, sending it clattering off its legs behind her as she hurtles down right on top of you!");
 
 	output("\n\n");
 	if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("Oh bother, not again! ");
@@ -3845,7 +3850,7 @@ public function getDPedByKelly():void
 	}
 	output("\n\nHer eyes close and her mouth opens, letting her bright yellow tongue roll out - all twelve inches of it. Bending her head forward, the inhuman appendage slithers through the air and reaches for your [pc.vagina " + x + "], gliding warm and wet across the netherlips there before starting to insinuate itself inside of you. You gasp at her initial penetration. Her dexterous tongue worming its way is just what you needed to really get going.");
 
-	output("\n\nKelly's lips twitch in the best smirk she can manage as she ravages your cunny with her tongue. With unnatural dexterity it plumbs your depths, rolling around your labia and tasting your juices, coating you nice and thick with Kelly's saliva. It reaches in to penetrate every nook and cranny you have - and a few you didn't realise you had - until it draws itself wetly from your depths, the laquine deeming you sufficiently lubed.");
+	output("\n\nKelly's lips twitch in the best smirk she can manage as she ravages your cunny with her tongue. With unnatural dexterity it plumbs your depths, rolling around your labia and tasting your juices, coating you nice and thick with Kelly's saliva. It reaches in to penetrate every nook and cranny you have - and a few you didn't realize you had - until it draws itself wetly from your depths, the laquine deeming you sufficiently lubed.");
 
 	if(y >= 0) 
 	{
@@ -4122,7 +4127,7 @@ public function getDoubleStuffedByKellyCancelled():void
 
 	output("\n\nIt’s hard to believe how far Kelly is stretching you. And it feels so good too. You fight your instinct to buck against her as you wait for her to continue.");
 
-	output("\n\nPatiently the laquine works at lubing and stretching, stretching and lubing, her thrusts falling down in pace as she works on pulling your anal lips further and further apart. You realise that you are starting to feel her cock less and less, as she stretches you so wide that you aren't touching it anymore. There comes a point when you can barely feel it, as if she only has the tip inside of you, and a moan of dismay at being so empty rumbles out of you.");
+	output("\n\nPatiently the laquine works at lubing and stretching, stretching and lubing, her thrusts falling down in pace as she works on working your butthole further and further open. You realize that you are starting to feel her cock less and less, as she stretches you so wide that you aren't touching it anymore. There comes a point when you can barely feel it, as if she only has the tip inside of you, and a moan of dismay at being so empty rumbles out of you.");
 
 	output("\n\n<i>\"Aw, you don't like that, do you sugar?\"</i> Kelly notes sadly. Then, in a tone dripping with mischief, she adds, <i>\"Well, this will fix that!\"</i> You can feel one set of fingers remove themselves from your gaping hole, the other applying themselves do your ass below the cock, pulling it down towards your ");
 	if(!pc.hasVagina()) output("taint");

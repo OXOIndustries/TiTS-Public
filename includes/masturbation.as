@@ -2616,6 +2616,7 @@ public function moderateExhibitionOmniFap():void
 	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
 	processTime(20+rand(10));
 	pc.exhibitionism(1);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

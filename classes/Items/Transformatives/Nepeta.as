@@ -421,8 +421,22 @@ package classes.Items.Transformatives
 			{
 				if (target.cockLengthUnlocked(ci, 4) && target.cocks[ci].cLengthRaw > 4)
 				{
-					target.cocks[ci].cLengthRaw -= (2 + rand(3));
-					if (target.cocks[ci].cLengthRaw < 4) target.cocks[ci].cLengthRaw = 4;
+					var sizeOver:int = target.cocks[ci].cLengthRaw - 4;
+					
+					// Removing less than 1", take us to 4"
+					if (sizeOver < 1)
+					{
+						sizeOver = 4 - target.cocks[ci].cLengthRaw;
+					}
+					else
+					{
+						// Take 25% length, cap to min of 1" loss
+						sizeOver = Math.max(1, sizeOver * 0.25);
+						// Similarly cap to max 3" loss
+						if (sizeOver > 3) sizeOver = 3;
+					}
+					
+					target.cocks[ci].cLengthRaw -= sizeOver;
 				}
 			}
 

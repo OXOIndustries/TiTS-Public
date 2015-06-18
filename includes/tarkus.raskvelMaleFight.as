@@ -1716,7 +1716,7 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	}
 	output(" His eyes are closed as he does it, dizzily lost in the “prize” he’s won.");
 
-	output("\n\nYou sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.legsOrLeg] made all the better by the steady warm rasp moving across your throbbing clit");
+	output("\n\nYou sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.legOrLegs] made all the better by the steady warm rasp moving across your throbbing clit");
 	if(pc.totalClits() > 1) output("s");
 	output(" and inner walls. As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.girlCum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.");
 

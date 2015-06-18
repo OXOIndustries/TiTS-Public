@@ -1037,7 +1037,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
-	output("You spread your [pc.legOrLegs] around the ausar beauty's hips, leaving your [pc.butt] perfectly vulnerably to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You're just an insatiable slut, aren't you, Steele?”</i> Syri laughs, giving you a sharp slap on the thigh. <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>");
+	output("You spread your [pc.legOrLegs] around the ausar beauty's hips, leaving your [pc.butt] perfectly vulnerable to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You're just an insatiable slut, aren't you, Steele?”</i> Syri laughs, giving you a sharp slap on the thigh. <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>");
 
 	output("\n\nYou start to answer, but she chuckles and winks, <i>“Yeah, yeah. I prefer you all to myself, anyway.”</i>  Syri leans down, lips brushing along the nape of your neck as she trails kisses across your [pc.skin], culminating with a long tongue-tying embrace. It's a long, pleasant moment before she breaks the kiss, bracing on her elbows an inch above your face, lips still bridged to yours with little ropes of crystal-clear saliva. Her soft, furry hand cups your cheek gently, thumb running just under your eye as your lover smiles prettily down at you, hips moving almost imperceptibly closer to your eager ass.");
 
