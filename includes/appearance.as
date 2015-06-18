@@ -190,6 +190,17 @@ public function appearance(target:Creature):void {
 			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by a " + target.eyeColor + " iris.");
 		}
+		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
+		{
+			output2(" Your eyes each feature a secondary pupil, ");
+			if (target.eyeColor = "blue")
+			{
+				output2("forming an intensely striking symbol of infinity nestled as they are amongst a single brilliantly bright blue iris.");
+			}
+			else if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
+			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
+			else output2("surrounded by a single " + target.eyeColor + " iris.");
+		}
 		else 
 		{
 			if (target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");

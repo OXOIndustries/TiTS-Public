@@ -44,7 +44,7 @@
 			
 			//Information
 			this.basePrice = 25000;
-			this.attack = 2;
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -65,7 +65,7 @@
 			 * if (se1 > 0) trigger
 			 */
 			
-			targetCreature.createStatusEffect("Leitha Charm", -720 + rand(360), 0, 0, 0, false, "", "Your leitha charm necklace hangs from your neck, infusing your body with targetted transformative nanomachines.", false, 0);
+			targetCreature.createStatusEffect("Leitha Charm", -720 + rand(360), 0, 0, 0, false, "Pill", "Your leitha charm necklace hangs from your neck, infusing your body with targeted transformative nanomachines.", false, 0);
 		}
 		
 		override public function onRemove(targetCreature:Creature):void
@@ -216,21 +216,21 @@
 			
 			//Change legtype to Leithan. Gain centaur body. Increase capacity of orifices. Gain six legs. 
 
-			if (target.legType != GLOBAL.TYPE_LEITHAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS) || target.legCount < 2)
+			if (target.legType != GLOBAL.TYPE_LIZAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS) || target.legCount < 2)
 			{
 				output("Your [pc.legs] start to tremble, suddenly wracked with an aching agony that quickly has you on your ass, clutching at your mutating lower body. Eventually, your");
-				if (target.legCount < 1) output(" lower body splits, becoming a pair of legs! They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
+				if (target.legCount <= 1) output(" lower body splits, becoming a pair of legs! They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
 				else output(" your legs begin to look like those of a leithan, growing chitinous plates and luminescent streaks.");
 				output(" You clamber up onto your clawed toes and experimentally stagger around, trying to get used to your new, equine gait. <b>You now have leithan legs!</b>");
 
-				target.legType = GLOBAL.TYPE_LEITHAN;
+				target.legType = GLOBAL.TYPE_LIZAN;
 				target.legCount = 2;
 				target.legFlags = [];
 				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 				target.addLegFlag(GLOBAL.FLAG_SCALED);
 				target.addLegFlag(GLOBAL.FLAG_PAWS);
 			}
-			else if (target.legCount < 4 || target.legCount > 6)
+			else if (target.legCount < 4)
 			{
 				output("Suddenly, your whole body is assailed by a sensation of stretching. Your body contorts and strains, growing");
 				if (target.legCount < 4) output(" larger");
@@ -241,6 +241,7 @@
 				if (kGAMECLASS.silly) output(" Giddyup!");
 
 				target.legCount = 4;
+				target.genitalSpot = 2;
 			}
 			/* 9999 - Creation-leithans don't do shit with this.
 			else
@@ -248,11 +249,17 @@
 				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side's skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your body is now that of a leithan!</b>");
 			}
 			*/
-			else if (target.legCount < 6)
+			else
 			{
-				output("You feel a rush of pressure hammering at the middle of your tauric body, between your two sets of legs. You grunt and stagger around as a new pair of legs begins to grow out of the center of your body, twisting muscles beginning to take shape before being covered by scaly skin, and then a coating of chitinous plates. After a few minutes, they solidify into <b>a pair of powerful, long leithan legs.You've got six of them in total now!</b>");
+				output("You feel a rush of pressure hammering at the middle of your tauric body, between");
+				if (target.legCount < 6) output(" your two sets of");
+				else output(" two of your sets of");
+				output(" legs. You grunt and stagger around as");
+				if (target.legCount < 6) output(" a new pair of legs begins to grow out of the center of your body, twisting muscles beginning to take shape before being covered by scaly skin, and then a coating of chitinous plates. After a few minutes, they solidify into <b>a pair of powerful, long leithan legs. You've got six of them in total now!</b>");
+				else output(" some of your extra legs begin to diminish, the muscle and scales wasting away as the nanomachines lacing your bloodstream seek to recover the extra appendages. After a few minutes, you find yourself stood simply <b>on a set of six powerful, long leithan legs.</b>");
 
 				target.legCount = 6;
+				target.genitalSpot = 2;
 			}
 
 			var buttInc:Boolean = false;

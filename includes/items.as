@@ -470,6 +470,9 @@ public function unequip(arg:String, next:Boolean = true):void
 		unequippedItems[unequippedItems.length] = pc.rangedWeapon;
 		pc.rangedWeapon = new classes.Items.Melee.Rock();
 	}
+	
+	unequippedItems[unequippedItems.length - 1].onRemove(pc);
+	
 	clearOutput();
 	itemCollect(unequippedItems);
 }
