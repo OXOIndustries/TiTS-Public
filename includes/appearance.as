@@ -193,7 +193,7 @@ public function appearance(target:Creature):void {
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
 		{
 			output2(" Your eyes each feature a secondary pupil, ");
-			if (target.eyeColor = "blue")
+			if (target.eyeColor == "blue")
 			{
 				output2("forming an intensely striking symbol of infinity nestled as they are amongst a single brilliantly bright blue iris.");
 			}

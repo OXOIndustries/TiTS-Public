@@ -77,9 +77,22 @@ package classes.Items.Transformatives
 			if (target.earType != GLOBAL.TYPE_FELINE && target.earTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(earTF);
 			if (target.eyeType != GLOBAL.TYPE_FELINE && target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(eyeTF);
 			if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) tfs.push(skinTF);
-			if ((target.tailCount != 2 && target.tailCountUnlocked(2)) || (target.tailType != GLOBAL.TYPE_FELINE && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE))) tfs.push(tailTF);
-			if ((target.legCount != 2 && target.legCountUnlocked(2)) || !target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) || (target.legType != GLOBAL.TYPE_HUMAN && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))) tfs.push(legTF);
-			if ((target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN)) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) tfs.push(faceTF);
+			
+			if ((target.tailType == 0 && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE)) || (target.tailCount == 0 && target.tailCountUnlocked(1))) tfs.push(growTail);
+			else if (target.tailType != GLOBAL.TYPE_FELINE && target.tailTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(changeTail);
+			else if (target.tailType == GLOBAL.TYPE_FELINE && target.tailCount < 2 && target.tailCountUnlocked(2)) tfs.push(grow2ndTail);
+			
+			if (target.legCount == 2 && target.legType == GLOBAL.TYPE_HUMAN)
+			{
+				// nop
+				// slightly nicer way to organise the condition checks
+			}
+			else if (target.legCountUnlocked(2) && target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
+			{
+				tfs.push(legTF);
+			}
+			
+			if (target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN)) tfs.push(faceTF);
 			
 			if (target.femininity < 75 && target.femininityUnlocked(75)) tfs.push(femTF);
 			
@@ -181,84 +194,83 @@ package classes.Items.Transformatives
 			target.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		}
 		
-		private function tailTF(target:Creature):void
+		private function growTail(target:Creature):void
 		{
-			//Gain a cat tail. If you already have a cat tail, gain a second one!
-			if (target.tailCount == 0)
-			{
-				output("You feel a mounting pressure on your backside, culminating in what feels like a knot forming just over your [pc.butt]. You give a yelp as the knot bursts, and suddenly flesh is spilling out behind you, forming into a slender tendril. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
+			output("You feel a mounting pressure on your backside, culminating in what feels like a knot forming just over your [pc.butt]. You give a yelp as the knot bursts, and suddenly flesh is spilling out behind you, forming into a slender tendril. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
 				if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
 				output(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you've definitely got a cat's tail now.</b>");
 
-				target.tailCount = 1;
-				target.tailType = GLOBAL.TYPE_FELINE;
-				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
-			}
-			else if (target.tailType != GLOBAL.TYPE_FELINE)
+			target.tailCount = 1;
+			target.tailType = GLOBAL.TYPE_FELINE;
+			target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+		}
+		
+		private function changeTail(target:Creature):void
+		{
+			output("Your tail");
+			if (target.tailCount == 1) output(" is");
+			else output("s are");
+			output(" wracked with a strange pleasure,");
+			if (target.tailCount == 1) output(" and starts to");
+			else output(" and start to");
+			if (target.hasTailFlag(GLOBAL.FLAG_SCALED))
 			{
-				output("Your tail");
-				if (target.tailCount == 1) output(" is");
-				else output("s are");
-				output(" wracked with a strange pleasure,");
-				if (target.tailCount == 1) output(" and starts to");
-				else output(" and start to");
-				if (target.hasTailFlag(GLOBAL.FLAG_SCALED))
-				{
-					if (target.tailCount == 1) output(" molt its scales");
-					else output(" molt their scales");
-				}
-				else if (target.hasTailFlag(GLOBAL.FLAG_FLUFFY))
-				{
-					if (target.tailCount == 1) output(" lose some of its bushy fur");
-					else output(" lose some of their bushy fur");
-				}
-				else
-				{
-					output(" mutate");
-				}
-
-				if (target.tailCount > 2)
-				{
-					output(". The sensation starts to fade away much faster in");
-					if (target.tailCount == 3) output(" one")
-					else output(" a number");
-					output(" of your tails, the lively and unconcious movement calming in concert with the feeling. With a curiously sharp pull, one of your tails falls away to the ground leaving you one shorter than you started off.");
-					if (target.tailCount > 3) output(" Another pull, and another tail falls away....");
-					if (target.tailCount > 4) output(" And again....");
-					output("\n\nWith only two tails left, their uncontrolled movement kicks back into high-gear");
-					target.tailCount = 2;
-				}
-
-				output(". You watch as");
-				if (target.tailCount == 1) output(" it becomes");
-				else output(" they become");
-				output(" small, slender, and the muscles within");
-				if (target.tailCount == 1) output(" it");
-				else output(" them");
-				output(" contract, causing");
-				if (target.tailCount == 1) output(" it");
-				else output(" them");
-				output(" to curl around your [pc.leg]. With a flick, you find that");
-				if (target.tailCount == 1) output(" it moves");
-				else output(" they move");
-				output(" with prehensile grace.");
-				if (target.tailCount == 1) output(" <b>Your tail's just like a cat's now!</b>");
-				else output(" <b>Your tails are just like a cat's now!</b>");
-
-				target.tailType = GLOBAL.TYPE_FELINE;
-				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+				if (target.tailCount == 1) output(" molt its scales");
+				else output(" molt their scales");
 			}
-			else if (target.tailCount == 1 && target.tailType == GLOBAL.TYPE_FELINE)
+			else if (target.hasTailFlag(GLOBAL.FLAG_FLUFFY))
 			{
-				output("You feel a gentle tug beside your feline tail, swelling into a knot of flesh. You have just enough time to");
-				if (!target.isNude()) output(" pull your [pc.gear] off");
-				else output(" look over your shoulder");
-				output(" before the knot erupts into a rapidly-growing tendril of flesh and muscle. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
-				if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
-				output(". You give it a little flex, and find that it curls playfully around your existing kitty-tail: <b>you've got two cat-tails now!</b>");
+				if (target.tailCount == 1) output(" lose some of its bushy fur");
+				else output(" lose some of their bushy fur");
+			}
+			else
+			{
+				output(" mutate");
+			}
 
+			// Drop to 2 tails if over 2 & unlocked
+			if (target.tailCount > 2 && target.tailCountUnlocked(2))
+			{
+				output(". The sensation starts to fade away much faster in");
+				if (target.tailCount == 3) output(" one")
+				else output(" a number");
+				output(" of your tails, the lively and unconcious movement calming in concert with the feeling. With a curiously sharp pull, one of your tails falls away to the ground leaving you one shorter than you started off.");
+				if (target.tailCount > 3) output(" Another pull, and another tail falls away....");
+				if (target.tailCount > 4) output(" And again....");
+				output("\n\nWith only two tails left, their uncontrolled movement kicks back into high-gear");
 				target.tailCount = 2;
 			}
+
+			output(". You watch as");
+			if (target.tailCount == 1) output(" it becomes");
+			else output(" they become");
+			output(" small, slender, and the muscles within");
+			if (target.tailCount == 1) output(" it");
+			else output(" them");
+			output(" contract, causing");
+			if (target.tailCount == 1) output(" it");
+			else output(" them");
+			output(" to curl around your [pc.leg]. With a flick, you find that");
+			if (target.tailCount == 1) output(" it moves");
+			else output(" they move");
+			output(" with prehensile grace.");
+			if (target.tailCount == 1) output(" <b>Your tail's just like a cat's now!</b>");
+			else output(" <b>Your tails are just like a cat's now!</b>");
+
+			target.tailType = GLOBAL.TYPE_FELINE;
+			target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+		}
+		
+		private function grow2ndTail(target:Creature):void
+		{
+			output("You feel a gentle tug beside your feline tail, swelling into a knot of flesh. You have just enough time to");
+			if (!target.isNude()) output(" pull your [pc.gear] off");
+			else output(" look over your shoulder");
+			output(" before the knot erupts into a rapidly-growing tendril of flesh and muscle. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
+			if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
+			output(". You give it a little flex, and find that it curls playfully around your existing kitty-tail: <b>you've got two cat-tails now!</b>");
+
+			target.tailCount = 2;
 		}
 		
 		private function legTF(target:Creature):void
@@ -268,7 +280,7 @@ package classes.Items.Transformatives
 			{
 				output("Your bestial lower body begins to change, spurred on by the sweet Nepeta treats. You feel your body contracting, crunching down and compacting. You feel your bones and organs changing place, steadily mutating until it no longer resembles the body of a beast, but a human. With wide eyes, you watch yourself slink down from your previous height, no longer resting atop your lower body but forced to stand on wobbly legs -- strikingly human legs, at that. Your additional legs are absorbed, drawing into your vanishing lower body until <b>you have a humanoid figure</b>, complete with two arms and two legs.");
 			}
-			else if (target.isTaur())
+			else if (target.isNaga())
 			{
 				output("Your serpentine coils are suddenly torn by convulsions... and begin to split apart. You stumble and collapse as your lower body fails you, throwing you on your ass and down on the ground. With a wet, tearing sound, your lower body cracks in half and starts to reshape itself into a pair of blatantly humanoid legs. After a few awkward minutes, your body seems to finalize into its new form, and you scrabble up onto your new-found legs. You stumble around on them for a few moments, trying to get your balance right. <b>Your new human legs</b> are perfectly smooth, covered with [pc.skinColor]. Very nice!");
 			}

@@ -77,15 +77,54 @@
 		{
 			var availableTFs:Array = [];
 			
+			// Tail TF
+			var wrongTailType:Boolean = target.tailType != GLOBAL.TYPE_LEITHAN && target.tailTypeUnlocked(GLOBAL.TYPE_LEITHAN);
+			if (wrongTailType)
+			{
+				availableTFs.push(tailTF);
+			}
+			
+			// Skin TF
+			var wrongSkinType:Boolean = target.skinType != GLOBAL.SKIN_TYPE_SCALES && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SCALES);
+			if (wrongSkinType)
+			{
+				availableTFs.push(skinTF);
+			}
+			
+			// Leg TF
+			var legTypeUnlocked:Boolean = target.legTypeUnlocked(GLOBAL.TYPE_LIZAN);
+			
+			var wrongLegType:Boolean = target.legType != GLOBAL.TYPE_LIZAN && legTypeUnlocked;
+			var wrongLegFlagDigit:Boolean = !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) && legTypeUnlocked;
+			var wrongLegFlagScaled:Boolean = !target.hasLegFlag(GLOBAL.FLAG_SCALED) && legTypeUnlocked;
+			var wrongLegFlagPaws:Boolean = !target.hasLegFlag(GLOBAL.FLAG_PAWS) && legTypeUnlocked;
+			
+			var wrongLegFlags:Boolean = wrongLegFlagDigit || wrongLegFlagScaled || wrongLegFlagPaws;
+			
+			var wrongLegCount:Boolean = target.legCount != 6 && target.legCountUnlocked(6);
+			
+			if (wrongLegType || wrongLegFlags || wrongLegCount)
+			{
+				availableTFs.push(legTF);
+			}
+			
+			// Ear TF
 			if (target.earType != GLOBAL.TYPE_LEITHAN && target.earTypeUnlocked(GLOBAL.TYPE_LEITHAN)) availableTFs.push(earTF);
-			if ((target.tailType != GLOBAL.TYPE_LEITHAN && target.tailTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || target.tailCount != 1 || !target.hasTailFlag(GLOBAL.FLAG_LONG) || !target.hasTailFlag(GLOBAL.FLAG_SCALED) || !target.hasTailFlag(GLOBAL.FLAG_PREHENSILE)) availableTFs.push(tailTF);
-			if ((target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) || (target.skinTone != "gray" && target.skinToneUnlocked("gray"))) availableTFs.push(skinTF);
-			if (((target.legType != GLOBAL.TYPE_LIZAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS)) && target.legTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || (target.legCount != 6 && target.legCountUnlocked(6))) availableTFs.push(legTF);
-			if (target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN) || target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) availableTFs.push(faceTF);
-			//if ((target.tongueType != GLOBAL.TYPE_LEITHAN && target.tongueTypeUnlocked(GLOBAL.TYPE_LEITHAN)) || !target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) || !target.hasTongueFlag(GLOBAL.FLAG_LONG)) availableTFs.push();
 			
+			// Face TF
+			var wrongFaceType:Boolean = target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN);
+			var wrongFaceFlags:Boolean = target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && target.faceFlagsUnlocked(GLOBAL.FLAG_MUZZLED)
+			
+			if (wrongFaceType && wrongFaceFlags) availableTFs.push(faceTF);
+			
+			// Tongue TF
+			if (target.tongueType != GLOBAL.TYPE_LEITHAN && target.tongueTypeUnlocked(GLOBAL.TYPE_LEITHAN)) availableTFs.push(tongueTF);
+			
+			// Arm TF
+			if (target.armType != GLOBAL.TYPE_LEITHAN && target.armTypeUnlocked(GLOBAL.TYPE_LEITHAN)) availableTFs.push(armTF);
+			
+			// Cock changes
 			var nonLCock:Boolean = false;
-			
 			if (target.hasCock())
 			{
 				for (var i:int = 0; i < target.cocks.length; i++)
@@ -105,10 +144,11 @@
 			}
 			if (nonLCock) availableTFs.push(cockTF);
 			
+			// Milk Changes
 			if (target.milkType != GLOBAL.FLUID_TYPE_LEITHAN_MILK) availableTFs.push(milkTF);
 			
+			// Vag changes
 			var nonLVag:Boolean = false;
-			
 			if (target.hasVagina())
 			{
 				for (i = 0; i < target.vaginas.length; i++)
@@ -164,7 +204,7 @@
 		{
 			clearOutput();
 			
-			if (target.tailType != GLOBAL.TYPE_HUMAN && target.tailCount > 0)
+			if (target.tailType != 0 && target.tailCount > 0)
 			{
 				output("You feel a strange pressure building in your [pc.tails], and a distinct itchiness to boot. You grunt and look behind yourself, desperately reaching for [pc.oneTail] -- only to realize that it's changing. Your tail");
 				if (target.tailCount > 1) output("s are");
@@ -180,12 +220,16 @@
 				output("\n\nInstead of hurting, though, the growing tail bursts out in a wave of pleasure. You moan as the lengthy reptilian appendage sprouts out, growing longer and thicker as it does so. Though it starts out as a soft, fleshy mass, the tail quickly begins to harden, gaining chitinous plates and scales, and starting to glow yellow in places. By the time it settles into its new form, you realize that <b>you've got yourself a long, thick, reptilian tail -- just like a leithan's!</b>");
 			}
 
-			target.tailCount = 1;
-			target.tailType = GLOBAL.TYPE_LEITHAN;
-			target.tailFlags = [];
-			target.addTailFlag(GLOBAL.FLAG_LONG);
-			target.addTailFlag(GLOBAL.FLAG_SCALED);
-			target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			if (target.tailCount == 0 || (target.tailCount > 1 && target.tailCountUnlocked(1)))
+			{
+				target.tailCount = 1;
+			}
+			
+			if (target.tailType != GLOBAL.TYPE_LEITHAN && target.tailTypeUnlocked(GLOBAL.TYPE_LEITHAN))
+			{
+				target.tailType = GLOBAL.TYPE_LEITHAN;
+				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_PREHENSILE];
+			}
 
 			return true;
 		}
@@ -194,12 +238,12 @@
 		{
 			clearOutput();
 			
-			//Change skinColor to gray. Gain normal skin.
+			//Change skinColor to gray. Gain scales.
 			// NOTE: Leithan at creation get /scales/ not skin.
 			output("You feel an itch start to spread across you, starting at your [pc.chest] near where your Leitha Charm is hanging and creeping out across your entire body. You start to scratch yourself... only to see splotches of grey starting to spread across your body.");
 			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body's furry covering starts to fall off, giving way to the growing spread of gray scales underneath.");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the leithan you're striving to become! Before long, your body is covered with scales!");
-			else output(" The patches stretch across your flesh erratically, the flesh left in the wake of the expanding areas visibly hardening.")
+			else output(" The patches stretch across your dermis erratically, the flesh left in the wake of the expanding areas visibly hardening.")
 			output(" <b>You now have scales with a gray, leithan pallette!</b>");
 
 			target.skinType = GLOBAL.SKIN_TYPE_SCALES;
@@ -215,22 +259,50 @@
 			clearOutput();
 			
 			//Change legtype to Leithan. Gain centaur body. Increase capacity of orifices. Gain six legs. 
-
-			if (target.legType != GLOBAL.TYPE_LIZAN || !target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS) || target.legCount < 2)
+			
+			var wrongLegType:Boolean = target.legType != GLOBAL.TYPE_LIZAN && target.legTypeUnlocked(GLOBAL.TYPE_LIZAN);
+			
+			// Wrong legs or not biped
+			if (wrongLegType || (target.legCount < 2 && target.legCountUnlocked(2)))
 			{
 				output("Your [pc.legs] start to tremble, suddenly wracked with an aching agony that quickly has you on your ass, clutching at your mutating lower body. Eventually, your");
-				if (target.legCount <= 1) output(" lower body splits, becoming a pair of legs! They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
+				if (target.legCount <= 1)
+				{
+					output(" lower body splits, becoming a pair of legs!");
+					if (wrongLegType) output(" They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
+				}
 				else output(" your legs begin to look like those of a leithan, growing chitinous plates and luminescent streaks.");
-				output(" You clamber up onto your clawed toes and experimentally stagger around, trying to get used to your new, equine gait. <b>You now have leithan legs!</b>");
 
+				if (wrongLegType)
+				{
+					target.legType = GLOBAL.TYPE_LIZAN;
+					target.legFlags = [];
+					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+					target.addLegFlag(GLOBAL.FLAG_SCALED);
+					target.addLegFlag(GLOBAL.FLAG_PAWS);
+				}
+				if (target.legCount < 2 && target.legCountUnlocked(2)) target.legCount = 2;
+				
+				output(" You clamber up onto your");
+				if (wrongLegType) output(" clawed toes");
+				else output(" [pc.feet]");
+				output(" and experimentally stagger around, trying to get used to your new, equine gait. <b>You now have two");
+				if (wrongLegType) output(" leithan");
+				output(" legs!</b>");
+			}
+			// Wrong legs and taur
+			else if (wrongLegType && target.isTaur())
+			{
+				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side's skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your legs are now that of a leithan!</b>");
+				
 				target.legType = GLOBAL.TYPE_LIZAN;
-				target.legCount = 2;
 				target.legFlags = [];
 				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 				target.addLegFlag(GLOBAL.FLAG_SCALED);
 				target.addLegFlag(GLOBAL.FLAG_PAWS);
 			}
-			else if (target.legCount < 4)
+			// Right legs but not taur
+			else if (target.legCount < 4 && target.legCountUnlocked(4))
 			{
 				output("Suddenly, your whole body is assailed by a sensation of stretching. Your body contorts and strains, growing");
 				if (target.legCount < 4) output(" larger");
@@ -243,12 +315,7 @@
 				target.legCount = 4;
 				target.genitalSpot = 2;
 			}
-			/* 9999 - Creation-leithans don't do shit with this.
-			else
-			{
-				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side's skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your body is now that of a leithan!</b>");
-			}
-			*/
+			// Right legs but not 6-legged taur
 			else
 			{
 				output("You feel a rush of pressure hammering at the middle of your tauric body, between");
@@ -322,6 +389,33 @@
 
 			target.faceType = GLOBAL.TYPE_HUMAN;
 			target.faceFlags = [];
+
+			return true;
+		}
+		
+		private function tongueTF(target:Creature):Boolean
+		{
+			clearOutput();
+			
+			output("Your mouth is starting to feel a little... strange. Numb perhaps, but that's not just it. It feels a little more... cramped? It definitely seems more full than usual. Maybe you've eaten something recently that hasn't been all that agreeable? Before you can think much more about what the cause might be a sudden shooting pain along the underside of your jaw strikes, and you open your mouth reflexively -- allowing a long, forked tongue to roll free from your mouth.");
+
+			output("\n\nYou lash it around experimentally as the feeling in your mouth gradually returns to normal. Slurping it back home with a wet pop, you realise <b>you now have a forked leithan tongue!<b>");
+			
+			target.tongueType = GLOBAL.TYPE_LEITHAN;
+			target.tongueFlags = [GLOBAL.FLAG_PREHENSILE, GLOBAL.FLAG_LONG];
+			
+			return true;
+		}
+		
+		private function armTF(target:Creature):Boolean
+		{
+			clearOutput();
+			
+			output("A strange itch tickles at the tips of your fingers, slowly building in intensity until it feels as though your hands are throbbing in time to the beat of your heart. You flex your digits to the beat, the activity helping to mask the discomfort, and slowly fall into an automatic pattern -- until the throbbing seems to skip a beat.");
+
+			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that's when you realise <b>you now have leithan-like arms!</b>");
+			
+			target.armType = GLOBAL.TYPE_LEITHAN;
 
 			return true;
 		}
