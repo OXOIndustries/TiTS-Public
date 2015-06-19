@@ -835,16 +835,19 @@ public function getOralFromCeria():void
 	output(" out into the open air.");
 
 	var dick:Boolean = false;
+	
+	if(pc.hasCock() && pc.hasVagina()) dick = (rand(2) == 0);
+	else if (pc.hasCock() && !pc.hasVagina()) dick = true;
+		
 	//PC has multiple cocks, multiple vaginas, or a mixed set, Ceria picks one sex organ at random:
 	if ((pc.hasCock() && pc.hasVagina()) || pc.cocks.length > 1 || pc.vaginas.length > 1)
 	{
-		if(pc.hasCock() && pc.hasVagina()) dick = (rand(2) == 0);
-		else if(pc.hasCock() && !pc.hasVagina()) dick = true;
 		output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
 		if(dick) output("[pc.oneCock]");
 		else output("[pc.oneVagina]");
 		output(". <i>“...This one.”</i>");
 	}
+	
 	var x:int = 0;
 	if(dick) 
 	{
@@ -873,7 +876,7 @@ public function getOralFromCeria():void
 	else
 	{
 		output("\n\nCeria starts off by licking two of her own fingers, showing off her glittering fairy gloves in the process. <i>“Mmm...totally worth not having nails, these are way better.”</i> Once the metallic blue is glistening with a thin layer of saliva, she slips her fingers into your pussy, gently working them around to help loosen you up a bit and give her a feel for your snatch’s shape. She also takes a moment to rub ");
-		x = rand(pc.totalVaginas());
+		x = rand(pc.vaginas.length - 1);
 		if(pc.vaginas[x].clits == 1) output("your clit");
 		else output("each of your clits, with a level of familiarity that suggests she’s no stranger to alien pussy");
 		output(", stopping only when her fingers have a nice coating of your [pc.girlCumNoun] for her to taste.");

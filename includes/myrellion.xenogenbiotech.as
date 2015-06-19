@@ -487,7 +487,7 @@ public function mcallisterMenu(cFunc:Function = null):void
 
 	if (flags["MCALLISTER_MYR_TFS"] == undefined)
 	{
-		if (flags["MCALLISTER_MEETING_TIMESTAMP"] >= (GetGameTimestamp() - (24 * 60))) addButton(0, "Myr TFs", mcallisterMyrTFs, undefined, "Myr Transformations", "Check in on the myr transformations McAllister was supposed to be working on.");
+		if (flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) addButton(0, "Myr TFs", mcallisterMyrTFs, undefined, "Myr Transformations", "Check in on the myr transformations McAllister was supposed to be working on.");
 		addDisabledButton(0, "Myr TFs", "Myr Transformations", "You probably need to give Dr. McAllister more time to work.");
 	}
 	else if (flags["MCALLISTER_MYR_TFS"] == 1)
