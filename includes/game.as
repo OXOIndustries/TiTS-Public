@@ -244,7 +244,7 @@ public function showPerksList():void
 {
 	clearOutput2();
 	clearGhostMenu();
-	addGhostButton(0, "Next", showPerkListHandler);
+	addGhostButton(0, "Back", showPerkListHandler);
 	
 	var perkList:Array = (pc as PlayerCharacter).perks;
 	
@@ -1665,6 +1665,9 @@ public function badEnd():void
 public function statisticsScreen():void
 {
 	clearOutput2();
+	clearGhostMenu();
+	addButton(14, "Back", showStatsHandler);
+	
 	output2("<b><u>Personal Statistics:</u></b>\n");
 	output2("<b>Alcohol Tolerance: </b>" + pc.tolerance() + "/100\n");
 	
@@ -1688,7 +1691,7 @@ public function statisticsScreen():void
 		output2("<b>Milk, Current: </b>" + Math.round(pc.milkFullness/100 * pc.milkCapacity()) + " mLs\n");;
 		output2("<b>Milk, Max: </b>" + pc.milkCapacity() + " mLs\n");
 		output2("<b>Milk, Production Training: </b>" + Math.round(pc.milkMultiplier*10)/10 + "%\n");
-		output2("<b>Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + "%");
+		output2("<b>Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + "%\n");
 	}
 	output2("<b>Orgasms, Total: </b>" + StatTracking.getStat("sex/player/orgasms") + "\n");
 	if(pc.hasCock()) output2("<b>Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + "%\n");
@@ -1716,7 +1719,8 @@ public function statisticsScreen():void
 		output2("<b>Reaha's Patch Addiction: </b>" + reahaAddiction() + "%\n");
 		output2("<b>Reaha's Confidence: </b>" + reahaConfidence() + "%\n");
 	}
-	if(flags["SAEN MET AT THE BAR"] != undefined) output2("<b>Saendra's Affection: </b>" + saendraAffection() + "% (69% Max)\n");
+	if (flags["SAEN MET AT THE BAR"] != undefined) output2("<b>Saendra's Affection: </b>" + saendraAffection() + "% (69% Max)\n");
+	if (flags["KELLY_ATTRACTION"] != undefined) output2("<b>Kelly's Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%\n");
 
 	output2("\n<b><u>General Statistics:</u></b>\n");
 	output2("<b>Crew, Recruited: </b>" + crewRecruited() + "\n");

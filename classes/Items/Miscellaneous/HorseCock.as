@@ -179,6 +179,7 @@
 				pc.shiftCock(target, GLOBAL.TYPE_EQUINE);
 				pc.cocks[target].cLengthRaw += 4;
 				pc.cocks[target].cockColor = "mottled pink and black";
+				pc.shower();
 			}
 			//{ifRegularCock/LargeCockles}
 			else

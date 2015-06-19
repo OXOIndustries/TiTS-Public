@@ -2116,7 +2116,7 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	}
 	
 	processTime(25 + rand(10));
-
+	
 	clearMenu();
 	addButton(0, "Sure", lieveTourSureFollow, undefined, "Sure", "Follow her in.");
 	addButton(1, "Later", lieveTourMaybeLater, undefined, "Later", "Tell Lieve you've got places to be.");
@@ -2362,6 +2362,7 @@ public function lieveBloodSample():void
 	if (pc.isFeminine()) output("\n\nWith a teasing wink, she adds <i>“Maybe I’ll see </i>you<i> as a hot little piece of red myr ass some day?”</i>");
 
 	// 9999
+	output("\n\n");
 	quickLoot(new RedMyrBlood());
 
 	clearMenu();

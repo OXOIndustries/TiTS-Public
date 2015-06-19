@@ -451,6 +451,7 @@ public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 	processTime(25);
 	kiro.orgasm();
 	pc.lust(3000);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",lostDrankinContestToKiroz);
 }
@@ -528,6 +529,7 @@ public function lostDrankinContestToKiroz():void
 	kiro.orgasm();
 	kiro.orgasm();
 	kiro.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -595,6 +597,7 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 	//Pass 30m and reset lust.
 	processTime(30);
 	pc.orgasm();
+	pc.shower();
 	kiro.loadInMouth(pc);
 	kiroVictoryDrinkEpilogueRouter(true);
 }
@@ -677,6 +680,7 @@ public function youWinAContestAndKiroSlobbersYerPussy():void
 	//Pass 30m
 	processTime(30);
 	pc.orgasm();
+	pc.shower();
 	kiro.orgasm();
 	kiroVictoryDrinkEpilogueRouter(false);
 }
@@ -842,6 +846,7 @@ public function rimOrNoRimVictoryEpilogueForKiro():void
 
 	output("\n\nShe gives you a nod, croaking softly at the lack of water in her mouth, already turning her head up towards the showerhead and opening her lips in anticipation of a nice deluge of water. As you watch her, you wonder what else you should do with your slave-for-a-day. The possibilities are endless. And from the looks of it, Kiro is really enjoying herself. Perhaps even more than you are. Winning feels good!");
 	processTime(15);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",victoryEpilogueLazyOne);
 }
@@ -1277,6 +1282,7 @@ public function tookKiroginityPartIII():void
 	kiro.vaginas[0].hymen = false;
 	kiro.vaginalVirgin = false;
 	processTime(7);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",kiroginityEpilogue);
 }
@@ -1526,6 +1532,7 @@ public function kiroFucksYourCuntPartIII(x:int = 0):void
 	else output("trying not to get turned on enough for round two. You’ve got a busy day ahead of you, and she has a mess to clean up.");
 	output("\n\nThe trip back to the bar is blessedly short, at least.	");
 	processTime(16);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1674,6 +1681,7 @@ public function repeatFillingKirosCuntEpilogue():void
 	if(pc.isBimbo()) output(" Mmm, you wouldn’t mind having that as a to-go snack...");
 	output(" Your lover offers you her arm, and the two of you make your way quickly back to the bar.");
 	processTime(10);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2044,6 +2052,7 @@ public function balljobFromKiro():void
 	output("\n\nYou smile smugly. Knowing her, she’ll do this every chance she gets. Then again, she’s the one left to clean up the bedroom.");
 	processTime(45);
 	pc.orgasm();
+	pc.shower();
 	kiro.orgasm();
 	clearMenu();
 	flags["KIRO_BALLJOBBED_YOU"] = 1;
@@ -2140,6 +2149,7 @@ public function bodyBloatingButtObliteratingBowelBasting():void
 	output("\n\n<i>“Come on, [pc.name]. Let’s go get cleaned up,”</i> she says as she pulls you out of the sexual muck. You follow the suddenly small-balled tanuki towards the showers with a grin, trying to hold in as much of the cum as you can while you waddle. You’re so... full.");
 	processTime(60);
 	pc.orgasm();
+	pc.shower();
 	kiro.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2390,6 +2400,7 @@ public function tribDemLips():void
 	//Pass 2-2.5 hours.
 	processTime(22);
 	pc.orgasm();
+	pc.shower();
 	kiro.orgasm();
 	processTime(120);
 	clearMenu();
@@ -2458,6 +2469,7 @@ public function kiroGrindFrot():void
 	//Pass 2-2.5 hours!
 	processTime(100);
 	pc.orgasm();
+	pc.shower();
 	kiro.orgasm();
 	processTime(30);
 	clearMenu();

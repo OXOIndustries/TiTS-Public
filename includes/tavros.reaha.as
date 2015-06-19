@@ -3,7 +3,8 @@
 	if(flags["REAHA_IS_CREW"] == undefined) {
 		author("Savin")
 		if(flags["TALK_TO_LADY_1ST"] == undefined) addButton(0,"Woman",talkToBrothelLady);
-		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0,"Woman",talkToBrothelLadyRepeat);
+		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0, "Woman", talkToBrothelLadyRepeat);
+		else addButton(0,"Woman",talkToBrothelLadyRepeatAgain);
 	}
 
 	if (reahaAtBeths())
@@ -874,4 +875,20 @@ public function RideReahasStraponAtTheBrothel():void
 	//addButton(0,"Repeat",exampleGrinding);
 	addButton(0,"Next",mainGameMenu);
 
+}
+
+public function talkToBrothelLadyRepeatAgain():void
+{
+    clearOutput();
+    showName("BROTHEL\nMISTRESS");
+    showBust("BORING_MISTRESS");
+	author("JJ-Cup");
+    output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones, \"<i>Welcome to Beth's Busty Broads. If you're here for our");
+    if(silly) output(" big ass, blow-out sale-a-thon");
+    else output(" going out of business sale");
+    output(", you're out of luck. The selection of available sluts have dried up.</i>\"");
+    output("\n\nHm... Maybe better luck next time?");
+    
+    clearMenu();
+    addButton(14,"Leave",mainGameMenu);
 }

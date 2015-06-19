@@ -546,6 +546,7 @@ public function pitchIntoAlexsBoyPussy():void {
 	flags["FUCKED_ALEX"]++;
  	processTime(30+rand(15));
  	pc.orgasm();
+	pc.shower();
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
  }
@@ -707,6 +708,7 @@ public function catchVaginalFromAlex():void {
  	pc.orgasm();
 	if(pc.hasVagina()) pc.loadInCunt(getAlexPregContainer());
  	clearMenu();
+	pc.shower();
  	addButton(0,"Next",mainGameMenu);
 }
 
@@ -1007,6 +1009,7 @@ public function frottageWithAlex():void {
 	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;
 	flags["FUCKED_ALEX"]++;
+	pc.shower();
 	processTime(30+rand(15));
  	pc.orgasm();
  	clearMenu();
@@ -1149,6 +1152,7 @@ public function catchAnalFromAlex():void {
 	output("\n\n<i>“Oh wow,”</i>  he groans, panting as he collapses onto the bed beside you");
 	if(pc.hasTailCock()) output(", your [pc.tailCock] finally slipping out of him");
 	output(". <i>“You’re one hell of a fuck, [pc.name]. Shit. Give me a bit to recover - I’m gonna need it. Feel free to use the shower.”</i>");
+	pc.shower();
 
 	output("\n\nYou get yourself cleaned up, retrieve your clothes, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["FUCKED_ALEX"] = 0;

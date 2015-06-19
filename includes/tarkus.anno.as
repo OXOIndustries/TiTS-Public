@@ -3677,6 +3677,7 @@ public function annoPostQuestSexytimes():void
 	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and");
 	if(pc.legCount > 1) output(" spreading your [pc.legs] apart.");
 	else output(" moving in on your [pc.leg].");
+	pc.shower();
 	
 	// Cockwielder Variant
 	if (pc.hasCock())

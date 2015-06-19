@@ -541,6 +541,7 @@ public function tailFuck():void
 	pc.exhibitionism(1);
 	pc.orgasm();
 	clearMenu();
+	pc.shower();
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -704,6 +705,7 @@ public function cumInsideIrellia(x:int):void
 	pc.exhibitionism(1);
 	irelliaSexBreak(3);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -808,6 +810,7 @@ public function cumOntopOfIrellia(x:int):void
 	pc.exhibitionism(1);
 	irelliaSexBreak(8);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -968,6 +971,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 		output("\n\nIt takes a few minutes to get the sticky stuff cleaned off you, and when you emerge, she’s just as clean as she promised. You gather your things, exchanging knowing grins with the queen before setting out.");
 		processTime(22);
 		pc.orgasm();
+		pc.shower();
 		irelliaSexBreak(6);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -987,6 +991,7 @@ public function lady69Epilogue4PassedOutFolks():void
 	processTime(33);
 	irelliaSexBreak(8);
 	pc.exhibitionism(1);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

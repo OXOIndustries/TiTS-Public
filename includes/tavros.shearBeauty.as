@@ -1,4 +1,5 @@
-﻿//AUTHOR - COUCH!
+﻿import classes.Creature;
+//AUTHOR - COUCH!
 
 //Room Descriptions
 //Added to room on Tavros outside the salon
@@ -164,7 +165,7 @@ public function lengthenHairChoices():void
 	processTime(1);
 	clearMenu();
 	if(pc.hairLength < 2) addButton(0,"Short",lengthenHairConfirmation,2);
-	else addDisabledButton(0,"Short","Short","Your hair is already longer than that!");
+	else addDisabledButton(0,"Short","Short","Your hair is already shorter than that!");
 	if(pc.hairLength < 8) addButton(1,"Shoulders",lengthenHairConfirmation,8);
 	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already longer than that!");
 	if(pc.hairLength < 13) addButton(2,"Long",lengthenHairConfirmation,13);
@@ -214,11 +215,11 @@ public function payTheLadyForLongHair(hairInches:Number):void
 	showCeria();
 	author("Couch");
 	var cost:Number = Math.round((hairInches - pc.hairLength) * 150);
-	if(!fuckedCeria()) output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp, not stopping until she’s used up the entire container’s worth. As she does, you can feel inch after inch of new hair spilling forth, growing out with every motion of Ceria’s fingers until finally it winds down to a stop. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!!</b>");
+	if(!fuckedCeria()) output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp, not stopping until she’s used up the entire container’s worth. As she does, you can feel inch after inch of new hair spilling forth, growing out with every motion of Ceria’s fingers until finally it winds down to a stop. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
 	else
 	{
 		output("Ceria double-checks the length on her tape and taps her tablet a few times before plugging it into a dispenser which soon spits out a small container of a dull gray hair gel. The elven girl sits you down in one of the salon chairs and sets to work rubbing the gel into your scalp. Her flawlessly smooth fingers are heavenly on your [pc.skinFurScalesNoun], and she teases them in slow circles as inch after inch of new hair spills forth around them.");
-		output("\n\n<i>“Look at all that, [pc.name]. You look so much hotter with your hair grown out, " + pc.mf("so wild and manly","so cute and girly") + " . Let it all spill out, let me tease out every - last - inch.”</i> The last three words are spoken as breaths blown across your ear from behind, feeling as if they’re accompanied by your new length jumping out in response. Finally the flowing feeling in your scalp draws to a close as your hair ceases its growth, and Ceria draws back, the salon mirror giving you a glimpse of her licking her lips at the view of your face framed by your new hair. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!!</b>");
+		output("\n\n<i>“Look at all that, [pc.name]. You look so much hotter with your hair grown out, " + pc.mf("so wild and manly","so cute and girly") + " . Let it all spill out, let me tease out every - last - inch.”</i> The last three words are spoken as breaths blown across your ear from behind, feeling as if they’re accompanied by your new length jumping out in response. Finally the flowing feeling in your scalp draws to a close as your hair ceases its growth, and Ceria draws back, the salon mirror giving you a glimpse of her licking her lips at the view of your face framed by your new hair. The stylist steps aside to wash her gloved hands clean of any lingering gel, allowing you time to admire your new look in the mirror. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
 	processTime(33);
@@ -344,12 +345,14 @@ public function standardHairColorMenu():void
 	addButton(14,"Back",hairColorMainMenu);
 	addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
 	addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
-	addButton(17,"Turqoise",hairColorizing,"turqoise","Turqoise","Dye your hair turqoise.");
+	addButton(17,"turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
 	addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
 	addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
 	addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
 	addButton(21,"Pink",hairColorizing,"pink","Pink","Dye your hair pink.");
 
+	addButton(29, "Back", hairColorMainMenu); // 9999 -- refactor to always keep a back button on every page?
+	
 	//addButton(21,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
 	//addButton(22,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
 	//addButton(23,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
@@ -555,11 +558,6 @@ public function furColor():void
 	addButton(11,"Gray",furColorApplication,"gray","Gray","Dye your fur gray.");
 	addButton(12,"White",furColorApplication,"white","White","Dye your fur white.");
 	addButton(14,"Back",furColorMenu);
-
-	//[Back] Go to Hairwork
-	clearMenu();
-
-	addButton(14,"Back",furColorMenu);
 }
 
 //Metallic Fur Color
@@ -672,7 +670,7 @@ public function ceriaTalk():void
 		//[Herself] Go to Herself
 		addButton(0,"Herself",ceriaTalkAboutHerself,undefined,"Herself","Ask her about herself");
 		//[Working Here] Go to Working Here
-		addButton(1,"Working Here",talkToCeriaAboutWorkingHere,undefined,"Working Her","Ask her how working is.");
+		addButton(1,"Working Here",talkToCeriaAboutWorkingHere,undefined,"Working Here","Ask her how working is.");
 		//[Her Race] Go to Her Race
 		addButton(2,"Her Race",talkToCeriaAboutHerRace,undefined,"Her Race","Ask her about her race.");
 		//[TouchPointyEars] Gray out until Her Race is done, go to Touch Pointy Ears
@@ -979,11 +977,15 @@ public function fuckCeria():void
 	}
 
 	output("\n\nCeria sits back on the break room couch, putting her hands behind her head and arching her back just a little bit to push out her chest. You climb up on top of her and kiss her again, ");
-	if(pc.biggestTitSize() >= 1) output(" pressing your ");
-	if(pc.biggestTitSize() < 4) output("smaller");
-	else if(pc.biggestTitSize() <= 6) output("matching");
-	else output("larger");
-	output(" bust against hers and} bringing her down onto her side and then her back so that you can properly mount her. Her legs end up wrapped around your waist, your ");
+	if ((pc as Creature).biggestTitSize() >= 1)
+	{
+		output(" pressing your ");
+		if(pc.biggestTitSize() < 4) output("smaller");
+		else if(pc.biggestTitSize() <= 6) output("matching");
+		else output("larger");
+		output(" bust against hers and");
+	}
+	output(" bringing her down onto her side and then her back so that you can properly mount her. Her legs end up wrapped around your waist, your ");
 	if(y < 0) output("dick");
 	else output("dicks");
 	output(" quickly getting a bit of Ceria’s sweet nectar all over ");

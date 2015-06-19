@@ -326,7 +326,7 @@ public function myrellionNevrieBlowjerb():void
 	else output(" the hot slab of girl-cock at the tip of your tongue");
 	output(", you give Nevrie a lascivious wink and gulp down the first inches of her petite member. She’s got maybe six inches to her name, just enough to give you a nice mouth-filling prick to suckle on while planting your lips against her crotch, and the great big pair of balls still tucked under her pants. Now <i>those</i> look even more succulent than her dick.");
 
-	output("\n\nSuppressing a little smile, you reach into Nevrie’s pants and fish out her cum-swollen sack. Your partner moans loudly when your hands wrap around her nads, putting just enough of a squeeze on them to make her prick throb in your mouth, drooling a drop of pre onto the back of your tongue. You roll Nevrie’s full sack between your fingers, enjoying the weight of them: you can all but her the musky alien spunk roiling inside them, waiting to surge out and splatter your face with hot seed.");
+	output("\n\nSuppressing a little smile, you reach into Nevrie’s pants and fish out her cum-swollen sack. Your partner moans loudly when your hands wrap around her nads, putting just enough of a squeeze on them to make her prick throb in your mouth, drooling a drop of pre onto the back of your tongue. You roll Nevrie’s full sack between your fingers, enjoying the weight of them: you can all but hear the musky alien spunk roiling inside them, waiting to surge out and splatter your face with hot seed.");
 
 	output("\n\nThe thought of it makes you suck a little more fiercely, eagerly working for your lover’s orgasm - and the sizable discount that entails.");
 

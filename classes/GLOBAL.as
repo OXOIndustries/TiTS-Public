@@ -246,6 +246,7 @@
 			TYPE_FELINE,
 			TYPE_SNAKE,
 			TYPE_SYNTHETIC,
+			TYPE_LEITHAN,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -508,6 +509,7 @@
 			"Vanae Maiden Milk",
 			"Vanae Huntress Milk",
 			"Nectar",
+			"Leithan Milk",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -532,6 +534,7 @@
 			FLUID_TYPE_VANAE_MAIDEN_MILK,
 			FLUID_TYPE_VANAE_HUNTRESS_MILK,
 			FLUID_TYPE_NECTAR,
+			FLUID_TYPE_LEITHAN_MILK,
 		];
 		
 		// HAIRTYPES

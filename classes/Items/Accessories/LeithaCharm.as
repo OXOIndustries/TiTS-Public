@@ -78,7 +78,7 @@
 			var availableTFs:Array = [];
 			
 			// Tail TF
-			var wrongTailType:Boolean = target.tailType != GLOBAL.TYPE_LEITHAN && target.tailTypeUnlocked(GLOBAL.TYPE_LEITHAN);
+			var wrongTailType:Boolean = target.tailType != GLOBAL.TYPE_LIZAN && target.tailTypeUnlocked(GLOBAL.TYPE_LIZAN);
 			if (wrongTailType)
 			{
 				availableTFs.push(tailTF);
@@ -225,9 +225,9 @@
 				target.tailCount = 1;
 			}
 			
-			if (target.tailType != GLOBAL.TYPE_LEITHAN && target.tailTypeUnlocked(GLOBAL.TYPE_LEITHAN))
+			if (target.tailType != GLOBAL.TYPE_LIZAN && target.tailTypeUnlocked(GLOBAL.TYPE_LIZAN))
 			{
-				target.tailType = GLOBAL.TYPE_LEITHAN;
+				target.tailType = GLOBAL.TYPE_LIZAN;
 				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_PREHENSILE];
 			}
 
@@ -256,6 +256,8 @@
 		
 		private function legTF(target:Creature):Boolean
 		{
+			var nl:Boolean = false;
+			
 			clearOutput();
 			
 			//Change legtype to Leithan. Gain centaur body. Increase capacity of orifices. Gain six legs. 
@@ -265,6 +267,7 @@
 			// Wrong legs or not biped
 			if (wrongLegType || (target.legCount < 2 && target.legCountUnlocked(2)))
 			{
+				nl = true;
 				output("Your [pc.legs] start to tremble, suddenly wracked with an aching agony that quickly has you on your ass, clutching at your mutating lower body. Eventually, your");
 				if (target.legCount <= 1)
 				{
@@ -293,6 +296,7 @@
 			// Wrong legs and taur
 			else if (wrongLegType && target.isTaur())
 			{
+				nl = true;
 				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side's skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your legs are now that of a leithan!</b>");
 				
 				target.legType = GLOBAL.TYPE_LIZAN;
@@ -304,6 +308,7 @@
 			// Right legs but not taur
 			else if (target.legCount < 4 && target.legCountUnlocked(4))
 			{
+				nl = true;
 				output("Suddenly, your whole body is assailed by a sensation of stretching. Your body contorts and strains, growing");
 				if (target.legCount < 4) output(" larger");
 				else output(" smaller");
@@ -318,6 +323,7 @@
 			// Right legs but not 6-legged taur
 			else
 			{
+				nl = true;
 				output("You feel a rush of pressure hammering at the middle of your tauric body, between");
 				if (target.legCount < 6) output(" your two sets of");
 				else output(" two of your sets of");
@@ -343,6 +349,7 @@
 
 			if (buttInc || vagIncs > 0)
 			{
+				if (nl) output("\n\n");
 				output("As your body slowly transforms to be more leithan-like, you feel your");
 				if (buttInc) output(" [pc.asshole]");
 				if (buttInc && vagIncs > 0) output(" and");
@@ -432,7 +439,7 @@
 			if (target.cocks.length > 1) output(" gaggle of");
 			output(" monumental boner");
 			if (target.cocks.length > 1) output("s");
-			if (target.isCrotchGarbed()) output(", straining against your [pc.lowerUnderGarment]");
+			if (target.isCrotchGarbed()) output(", straining against your [pc.lowerUndergarment]");
 			output(". You can’t resist the urge to grab your manhood");
 			if (target.cocks.length > 1) output("s");
 			output(", stroking the length of your shaft");
@@ -537,11 +544,11 @@
 
 			//Change vagina type to Leithan/Horse/whatever. Huge capacity increase.
 			output("Your");
-			if (tfType + tfSize <= 2) output(" [pc.cunt] clenches");
-			else output(" [pc.cunts] clench")
+			if (tfType + tfSize <= 2) output(" cunt clenches");
+			else output(" cunts clench")
 			output(" hard all of a sudden, squirting an ungodly amount of pussy-juice");
 			if (!target.isCrotchGarbed()) output(" onto your thighs");
-			else output(" onto the inside of your [pc.lowerUnderGarment]");
+			else output(" onto the inside of your [pc.lowerUndergarment]");
 			output(". You almost double over as waves of pleasure crash into your crotch, sending trembling shockwaves all through your body in reaction.");
 
 			if (tfType > 0)

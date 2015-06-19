@@ -293,7 +293,7 @@
 						kGAMECLASS.output("\n\nYou feel a powerful itch spread across your [pc.legs]. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your legs are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer <b>with your ausar legs.</b>");
 						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
-						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}
@@ -316,7 +316,7 @@
 						pc.legCount = 2;
 						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
-						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}

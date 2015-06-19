@@ -825,7 +825,7 @@ public function nehzaraBloodSample():void
 	
 	output("\n\nYou shrug and take the vial back, screwing on the lid and placing it where it’ll be safe. Leave it to Nehzara to end things on a sour note like that. Maybe she’s just feeling especially broody at the moment. You could cheer her up, take her mind off things, or just get out and take care of your own business.");
 
-	// 9999
+	output("\n\n");
 	quickLoot(new RedMyrBlood());
 
 	processTime(15+rand(5));

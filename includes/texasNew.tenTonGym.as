@@ -232,7 +232,8 @@ public function quickSwim():void
 	output("\n\nYou feel a little stronger and fitter after your swim.");
 	//{+1 muscle tone, -1 frame, +1 toward [Sore] debuff, -30 energy}{Time: 30 minutes}
 	pc.modTone(1,false);
-	pc.modThickness(-1,false);
+	pc.modThickness( -1, false);
+	pc.shower();
 
 	soreDebuff(1);
 	processTime(30);
@@ -261,7 +262,8 @@ public function swimLapsAtZePool():void
 	pc.energy(-50);
 	soreDebuff(2);
 	pc.modThickness(-2,false);
-	pc.modTone(2,false);
+	pc.modTone(2, false);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

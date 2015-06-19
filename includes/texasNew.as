@@ -1643,6 +1643,7 @@ public function ohNoSillyCumFloodsPtII():void
     
     output("\n\nShaking your head, you pull yourself together. You thank Carrie for the help and she allows you to wash off in her shower. As soon as you dry up, you wear your [pc.gear] and are on your way.");
     
+	pc.shower();
     processTime(60);
     
     clearMenu();

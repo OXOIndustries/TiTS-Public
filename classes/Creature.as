@@ -1800,6 +1800,25 @@
 				case "tailGenitalColor":
 					buffer = tailGenitalColorDesc();
 					break;
+				case "horn":
+					buffer = hornDescript();
+					break;
+				case "eachHorn":
+					buffer = eachHorn();
+					break;
+				case "oneHorn":
+					buffer = oneHorn();
+					break;
+				case "horns":
+					buffer = hornsDescript();
+					break;
+				case "hornNoun":
+					buffer = hornNoun();
+					break;
+				case "hornsNoun":
+					buffer = hornsNoun();
+					break;
+					
 				default:
 					// error production is now done up-stream in the parser
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.
@@ -6707,8 +6726,8 @@
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 4) race = "zil";
 			if (badgerScore() >= 4) race = "badger";
-			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			if (ovirScore() >= 5) race = "ovir";
+			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 
 			return race;
@@ -9819,9 +9838,15 @@
 				else if (temp <= 5) return "sweet";
 				else if (temp <= 8) return "chocolatey";
 				else return "rich";
-			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
 				if (temp <= 5) return "sweet";
 				else return "fruity";
+			}
+			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
+			{
+				if (temp <= 4) return "tangy";
+				else if (temp <= 7) return "sweet";
+				return "intoxicating";
 			}
 			return "bland";
 		}
@@ -9851,10 +9876,15 @@
 				if (temp <= 4) return "slick";
 				else if (temp <= 7) return "sticky";
 				else return "syrupy";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK || GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
 				if(temp <= 5) return "creamy";
 				else return "sticky";
-			} 
+			}
+			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
+			{
+				if (temp <= 5) return "thick";
+				return "creamy";
+			}
 			return "fluid";
 		}
 		public function fluidColor(arg: int): String {
@@ -9864,7 +9894,14 @@
 				if (temp <= 4) return "white";
 				else if (temp <= 7) return "alabaster";
 				else return "ivory";
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
+			}
+			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
+			{
+				if (temp <= 4) return "alabaster";
+				else if (temp <= 7) return "semi-transparent";
+				return "off-white";
+			} 
+			else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				if (temp <= 4) return "amber";
 				else if (temp <= 7) return "yellow";
 				else if (temp <= 8) return "gold";
@@ -9924,6 +9961,9 @@
 			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				return "milk";
 			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				return "milk";
+			}
+			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				return "milk";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
@@ -11138,6 +11178,168 @@
 		public function isBuzzed():Boolean
 		{
 			return (hasStatusEffect("Buzzed") || hasStatusEffect("Drunk") || hasStatusEffect("Smashed"));
+		}
+		
+		public function hasHorns():Boolean
+		{
+			return (horns != 0 || hasStatusEffect("Horn Bumps")); 
+		}
+		
+		public function eachHorn():String
+		{
+			if (horns > 1) return "each of your " + pluralize(hornDescript());
+			return "your " + hornDescript();
+		}
+		
+		public function oneHorn():String
+		{
+			if (horns > 1) return "one of your " + pluralize(hornDescript());
+			return "your " + hornDescript();
+		}
+		
+		public function hornsDescript():String
+		{
+			if (horns > 1) return pluralize(hornDescript());
+			return hornDescript();
+		}
+		
+		public function hornDescript(): String 
+		{
+			var descript: String = "";
+			var randt: Number = this.rand(10);
+			var descripted: Number = 0;
+    
+			if(hasStatusEffect("Horn Bumps"))
+			{
+				if (this.rand(3) == 0)
+				{
+					if (randt < 5) descript += "visible ";
+					else descript += "upraised ";
+				}
+				descript += "horn-bump";
+			}
+			else
+			{
+				//Length Adjective - 50% chance
+				if (this.rand(3) == 0) {
+					//tiny
+					if (hornLength < 1) {
+						if (randt < 3) descript += "tiny";
+						else if (randt < 6) descript += "little";
+						else if (randt < 8) descript += "petite";
+						else if (randt == 8) descript += "diminutive";
+						else descript += "miniature";
+						descripted++;
+					}
+					//small
+					else if (hornLength < 2) {
+						if (randt < 5) descript += "one-inch";
+						else descript += "small";
+						descripted++;
+					}
+					//two-inch
+					else if (hornLength < 3) {
+						descript += "two-inch";
+						descripted++;
+					}
+					//three-inch
+					else if (hornLength < 4) {
+						descript += "three-inch";
+						descripted++;
+					}
+					//medium
+					else if (hornLength < 5) {
+						if (randt < 5) descript += "four-inch";
+						else descript += "noticeable";
+						descripted++;
+					}
+					//big
+					else if (hornLength < 6) {
+						if (randt < 5) descript += "five-inch";
+						else descript += "big";
+						descripted++;
+					}
+					//half-foot
+					else if (hornLength < 8) {
+						descript += "half-foot";
+						descripted++;
+					}
+					//large
+					else if (hornLength < 12) {
+						if (randt < 4) descript += "long";
+						else if (randt < 6) descript += "substantial";
+						else descript += "large";
+						descripted++;
+					}
+					//foot
+					else if (hornLength == 12)
+					{
+						descript += "foot-long";
+						descripted++;
+					}
+					//huge
+					else if (hornLength < 20) {
+						if (randt < 3) descript += "very large";
+						else if (randt < 6) descript += "considerable";
+						else if (randt == 9) descript += "hulking";
+						else descript += "huge";
+						descripted++;
+					}
+					//ginormous
+					else {
+						if (randt < 3) descript += "monster";
+						else if (randt < 6) descript += "tremendous";
+						else if (randt < 8) descript += "colossal";
+						else if (randt == 8) descript += "enormous";
+						else descript += "oversized";
+						descripted++;
+					}
+				}
+				//Descriptive descriptions - 50% chance of being called
+				if (this.rand(3) == 0 && descripted < 2) {
+					if (hornType == GLOBAL.TYPE_DEMONIC) {
+						if (descripted > 0) descript += ", ";
+						descript += "demonic";
+						descripted++;
+					}
+					if (hornType == GLOBAL.TYPE_BOVINE) {
+						if (descripted > 0) descript += ", ";
+						descript += "bovine";
+						descripted++;
+					}
+					if (hornType == GLOBAL.TYPE_LIZAN) {
+						if (descripted > 0) descript += ", ";
+						descript += "reptilian";
+						descripted++;
+					}
+					if (hornType == GLOBAL.TYPE_DEER) {
+						if (descripted > 0) descript += ", ";
+						descript += "deer-like";
+						descripted++;
+					}
+					if (hornType == GLOBAL.TYPE_GOAT) {
+						if (descripted > 0) descript += ", ";
+						descript += "ram";
+						descripted++;
+					}
+				}
+				//Horn nouns
+				if (descripted > 0) descript += " ";
+				descript += hornNoun();
+			}
+    
+			return descript;
+		}
+		public function hornsNoun():String 
+		{
+			if (horns > 1) return pluralize(hornNoun());
+			else return hornNoun();
+		}
+		public function hornNoun():String 
+		{
+			//Horn nouns
+			if(hornType == GLOBAL.TYPE_DEER) return "antler";
+			return "horn";
 		}
 	}
 }

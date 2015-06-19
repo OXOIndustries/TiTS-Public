@@ -211,6 +211,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		//PC in Shade's ship
 		currentLocation = "602";
 		clearMenu();
+		pc.shower();
 		addButton(0,"Next",mainGameMenu);
 	}
 	//PC has no friends in the bar or lovers applicable

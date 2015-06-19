@@ -26,7 +26,7 @@
 			this.shortName = "L.Duster";
 			
 			//Regular name
-			this.longName = "a lightning duster";
+			this.longName = "lightning duster";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

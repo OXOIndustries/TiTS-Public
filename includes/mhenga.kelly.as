@@ -2771,6 +2771,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 	processTime(21);
 	pc.orgasm();
 	kellyFucked();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 2");
 }
@@ -3235,7 +3236,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 	}
 	else
 	{
-		output("\n\n<i>\"You sure you need a bath? YOu look good enough to eat, to me,\"</i> Kelly giggles. At your look, she huffs and pouts in a jokingly offended manner. <i>\"Oh, very well; come here, lover,\"</i> she tells you, a crooked finger motioning you to approach, a knowing leer on her lips. When you get close enough, she pulls you into her lap, as best she can, and bends her head forward, her long yellow tongue telescoping out. WIthout hesitation she starts to lap at your front, licking her way from the crook of your neck down towards your loins, hungrily slurping up her own perverse leavings.");
+		output("\n\n<i>\"You sure you need a bath? Yuu look good enough to eat, to me,\"</i> Kelly giggles. At your look, she huffs and pouts in a jokingly offended manner. <i>\"Oh, very well; come here, lover,\"</i> she tells you, a crooked finger motioning you to approach, a knowing leer on her lips. When you get close enough, she pulls you into her lap, as best she can, and bends her head forward, her long yellow tongue telescoping out. WIthout hesitation she starts to lap at your front, licking her way from the crook of your neck down towards your loins, hungrily slurping up her own perverse leavings.");
 		output("\n\nBut there's more than simple hunger for jism motivating her. Any doubts about that are quickly lost when she first reaches your [pc.nipples], her tongue trailing across them with deliberate, purposeful motions. She circles your areolas with quick, teasing flicks, then slowly");
 		if(!pc.hasFuckableNipples())
 		{
@@ -3295,6 +3296,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 
 		processTime(10);
 		pc.lust(20);
+		pc.shower();
 		//[GetBlown] [GetLicked]
 		clearMenu();
 		if(pc.hasCock()) addButton(0,"GetBlown",getBlownByKelly);
@@ -3550,6 +3552,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 			addButton(0,"Next",kellyCunnilingusHardEndingNap);
 		}
 	}
+	pc.shower();
 	tempNudeOff();
 }
 

@@ -370,6 +370,7 @@ public function annoMorningHandy():void
 	output("\n\nYou give Anno a scratch between the ears when she finishes, thanking your favorite alarm ausar for starting your day off right.");
 
 	pc.orgasm();
+	pc.shower();
 
 	processTime(20);
 

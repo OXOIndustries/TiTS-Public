@@ -631,8 +631,20 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
 		{
-			if(pc.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
-			else output2(" You have digitigrade legs that end in " + target.feet(true,true) + ".");
+			if (pc.legCount < 4) 
+			{
+				output2(" " + upperCase(num2Text(target.legCount)));
+				if (pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else output2(" plantigrade");
+				output2(" legs grow downwards from your waist, ending in " + target.feet(true, true) + ".");
+			}
+			else
+			{
+				output2(" You have");
+				if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else output2(" plantigrade");
+				output2(" legs that end in " + target.feet(true,true) + ".");
+			}
 		}
 		else if(target.legType == GLOBAL.TYPE_NAGA) 
 		{
@@ -968,7 +980,7 @@ public function appearance(target:Creature):void {
 				if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
 				else output2(" is ");
 				output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
-				if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this.");
+				if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this. ");
 			}
 			else if(target.isTaur() && (target.hasCock() || target.hasVagina()) && target.originalRace == "half-leithan") output2("Your sexual equipment is positioned at the back of your tauric hindquarters, rather than at your humanoid waist. ");
 			else if(target.isTaur() && (target.hasCock() || target.hasVagina())) output2("Your sexual equipment is no longer below your waist, but instead at the back of your equine hindquarters. ");
