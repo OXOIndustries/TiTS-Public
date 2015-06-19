@@ -31,8 +31,8 @@
 			
 			this.short = "nyrea huntress";
 			this.originalRace = "nyrea";
-			this.a = "a ";
-			this.capitalA = "A ";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.tallness = 72;
 			this.scaleColor = "green";
 			

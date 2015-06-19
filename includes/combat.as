@@ -807,7 +807,10 @@ public function updateCombatStatuses():void {
 				output(" " + foes[x].capitalA + foes[x].short + " stares mesmerized at [goo.name]'s dance, flushing with lust.\n");
 			}
 			
-			outputDamage(dResult);
+			if (!lFailed)
+			{
+				outputDamage(dResult);
+			}
 		}
 	}
 	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
