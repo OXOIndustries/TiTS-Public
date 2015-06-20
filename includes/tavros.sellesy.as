@@ -351,7 +351,7 @@ public function sellesyTribadismIsBadYoByZ():void
 	userInterface.showBust("SELLESY_NUDE");
 	output("<i>“I don’t know, honey,”</i> Sellesy temporizes, when you state your request. <i>“I like my sex to be a bit more... well, fluid. The last time was fun and all, but I get so... so </i>thirsty<i>");
 	if(!pc.hasCock()) output(" when there are no drinks on tap");
-	else output("the taps are off-limits");
+	else output(" the taps are off-limits");
 	output(".”</i> She giggles brazenly at her own joke, then licks her lips.");
 
 	output("\n\nYou know damn well she’ll do you anyway. The tipsy throb in your head begins to hammer in time with the swaying of her breasts as she sashays over to your side. With a smile and a bump, she pushes her soft, yielding chest into you, knocking you ");
@@ -437,11 +437,10 @@ public function sellesyTribadismIsBadYoByZ():void
 	}
 	//(merge legs)
 	output("\n\nYou smile yourself when she moves again. Sellesy’s hips shift to the side, then down, then back. Your labia are gently probed first with one of the server’s protruding nubs, then another and another, in a steady-but-chaotic dance. Moisture trapped within is given the chance to slip out in small licks as she moves, lubricating the pinwheel that rubs against you. Sellesy’s speed increases as the resistance lessens.");
-	output("\n\n");
 	//(no quadrupeds)
 	if(!pc.isTaur()) 
 	{
-		output("”</i><i>Mmm,”</i> she hums, arching her back. Her breasts dangle fetchingly over you, and your hands automatically grab the outer pair. When you pinch a nipple, Sellesy’s head rolls back and a low moan fills the room. <i>“Do that again,”</i> she demands, <i>“harder.”</i> Her hands clap over yours, forcing you to squeeze and pull her nipples. A small jet of fluid erupts from them, squirting you in the neck and face; it smells strongly of alcohol. Sellesy looks down at you, eyes heavily shaded with pleasure. <i>“Sorry about that, lover.”</i> She leans down, brushing her dribbling breasts against ");
+		output("\n\n<i>“Mmm,”</i> she hums, arching her back. Her breasts dangle fetchingly over you, and your hands automatically grab the outer pair. When you pinch a nipple, Sellesy’s head rolls back and a low moan fills the room. <i>“Do that again,”</i> she demands, <i>“harder.”</i> Her hands clap over yours, forcing you to squeeze and pull her nipples. A small jet of fluid erupts from them, squirting you in the neck and face; it smells strongly of alcohol. Sellesy looks down at you, eyes heavily shaded with pleasure. <i>“Sorry about that, lover.”</i> She leans down, brushing her dribbling breasts against ");
 		if(pc.biggestTitSize() > 1) output("yours");
 		else output("your chest");
 		output(", and her tongue runs over your collarbone. She sponges the fluid from the underside of your chin and moves up to your face. The lick turns into a kiss at the corner of your mouth, and then a second one on your lips. As her hands clasp your head on either side, her tongue forces its way into your mouth alongside the taste of the alcohol. Just as you begin to explore it with your own, she pulls it out as quickly as it came and breaks the kiss with a playful love-bite. <i>“It’s quite a bit stronger when I’m excited,”</i> she says huskily, licking her lips");

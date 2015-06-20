@@ -61,7 +61,7 @@
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
 				target.energy(25);
-				target.thickness += 2;
+				target.modThickness(2, false);
 				if(target.thickness >= 100) target.thickness = 100;
 			}
 			else {

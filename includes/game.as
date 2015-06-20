@@ -244,7 +244,7 @@ public function showPerksList():void
 {
 	clearOutput2();
 	clearGhostMenu();
-	addGhostButton(0, "Back", showPerkListHandler);
+	addGhostButton(14, "Back", showPerkListHandler);
 	
 	var perkList:Array = (pc as PlayerCharacter).perks;
 	
@@ -1666,7 +1666,7 @@ public function statisticsScreen():void
 {
 	clearOutput2();
 	clearGhostMenu();
-	addButton(14, "Back", showStatsHandler);
+	addGhostButton(14, "Back", showStatsHandler);
 	
 	output2("<b><u>Personal Statistics:</u></b>\n");
 	output2("<b>Alcohol Tolerance: </b>" + pc.tolerance() + "/100\n");

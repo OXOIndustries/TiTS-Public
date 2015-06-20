@@ -22,6 +22,11 @@ package classes.GameData
 			StatTracking._STORAGE = o;
 		}
 		
+		public static function resetStorage():void
+		{
+			StatTracking._STORAGE = { };
+		}
+		
 		public static function track(stat:String, value:Number = 1.0):void
 		{
 			StatTracking.PlaceInTree(stat, value);

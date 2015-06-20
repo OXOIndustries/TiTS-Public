@@ -385,7 +385,7 @@ public function myrellionNevrieCoworkers():void
 	
 	output("\n\nAfter a moment’s consideration, Nevrie laughs and adds, <i>“Well, I’d take a pass on it, anyway. Wouldn’t mind getting my hands on a couple of girls modded like that for my harem. Uh, if I had a harem, anyway. Someday!”</i>");
 	
-	output("\n\nShe gives a dreamy sigh and leans back in her chair, crossing a leg over the other. <i>“I don’t know when Doc. McAllister’s gonna be back. And when he does, he probably won’t stick around long. Keeps saying he can’t find one of the red ants to get samples from. Don’t know how expects to find a red myr between a goldie Queen’s tits, but whatever. I guess the hospital and the Red embassy don’t feel like helping.");
+	output("\n\nShe gives a dreamy sigh and leans back in her chair, crossing a leg over the other. <i>“I don’t know when Doc. McAllister’s gonna be back. And when he does, he probably won’t stick around long. Keeps saying he can’t find one of the red ants to get samples from. Don’t know how she expects to find a red myr between a goldie Queen’s tits, but whatever. I guess the hospital and the Red embassy don’t feel like helping.");
 	
 	output("\n\n<i>“If you want to talk to Doc. McAllister, maybe </i>you<i> should go find the stupid samples. Otherwise, I guess I’ll just have to sit here getting paid to do nothing all day. Woe is me.”</i>");
 	
@@ -569,7 +569,7 @@ public function mcallisterRedMyr():void
 
 	output("<i>“What do you think about the red myr?”</i>");
 	
-	output("\n\n<i>“Not much to tell,”</i> McAllister responds, lacking his prior jovialness. <i>“At least, not that you probably haven’t gathered already. The reds are the aggressor race in this world war we’ve stopped. Violent by nature, value dispassion and determination over expression and artistry. Heh, that sounds awfully condemning when I say it out loud, doesn’t it? I’m sure they’re not that bad, but there’s little enough for me to latch onto with them. I’m sure their natural venom, lethargic and lust-inducing as it is, will make an excellent modification. They’re also considerably stronger, physically, than gold myr - who themselves are stronger than humans on average. Finding a way to harness their strength would certainly be popular, perhaps have military applications.");
+	output("\n\n<i>“Not much to tell,”</i> McAllister responds, lacking his prior jovialness. <i>“At least, not that you probably haven’t gathered already. The reds are the aggressor race in this world war we’ve stopped. Violent by nature, value dispassion and determination over expression and artistry. Heh, that sounds awfully condemning when I say it out loud, doesn’t it? I’m sure they’re not that bad, but there’s little enough for me to latch onto with them. I’m sure their natural venom, lethargic and lust-inducing as it is, will make an excellent modification. They’re also considerably stronger, physically, than gold myr - who themselves are stronger than humans on average. Finding a way to harness their strength would certainly be popular, perhaps have military applications.”</i>");
 	
 	output("\n\n<i>“All thanks to you, of course.”</i>");
 	

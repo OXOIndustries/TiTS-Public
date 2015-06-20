@@ -505,8 +505,8 @@ public function getBlownByDudeleen():void {
 	if(pc.isAss()) output("\n\nYou deliver a slap across his face, immediately silencing him. You remind him of his position, and warn him that unless he fancies being left helpless for the zil, he had best cooperate.\n\nHe looks away; it’s clear that your slap hurt his ego more than it hurt him. When he gazes back at you, you observe he seems much more mellow and accepting. Good.");
 	//Mischievous:
 	else if(pc.isMischievous()) output("\n\nYou warn the little kitty to play nice. You took him down once already, and you can take him down as many times as you need. So he might as well as be good a boy and save you both the trouble.\n\nHe looks away with a scowl, but otherwise seems compliant. Now that’s much better.");
-	else output("\n\nYou simply continue to look down at the him, not reacting to his threatening growl at all.\n\nHe tries to struggle against his bindings, but you pin him down by his shoulders. Your message is clear, either he stays quiet and lets do your thing or you’re not budging and neither is he.\n\nHe snorts in frustration, but after a few moments he decides to comply. You release him as he goes slack, patting him on the head for his cooperation.");
-	output("\n\nNow that he’s calmed down you’re free to secure his hands behind his back so you can start with the fun stuff. After all, he seemed pretty intend on doing this kind of stuff to you. He's probably more upset about being on the bottom than he is about the sex. Stepping closer to him, you adjust your [pc.gear] to expose your ");
+	else output("\n\nYou simply continue to look down at him, not reacting to his threatening growl at all.\n\nHe tries to struggle against his bindings, but you pin him down by his shoulders. Your message is clear, either he stays quiet and lets do your thing or you’re not budging and neither is he.\n\nHe snorts in frustration, but after a few moments he decides to comply. You release him as he goes slack, patting him on the head for his cooperation.");
+	output("\n\nNow that he’s calmed down you’re free to secure his hands behind his back so you can start with the fun stuff. After all, he seemed pretty intent on doing this kind of stuff to you. He's probably more upset about being on the bottom than he is about the sex. Stepping closer to him, you adjust your [pc.gear] to expose your ");
 	if(pc.cockTotal() == 1) output("half-erect [pc.cockNounSimple], letting it wave in the naleen's face");
 	else output("[pc.cocks]. Then, you take your [pc.cockBiggest] in hand and wave it in the naleen’s face");
 	output(". He considers it for a moment, but you command him to lick it before he can give any response.");
@@ -521,11 +521,11 @@ public function getBlownByDudeleen():void {
 
 	output("\n\nDetecting just the faintest hint of what might be a purr, you smile as he noses your throbbing shaft. He sniffs you softly, taking in your scent as he extends his tongue once more. Though his movements are slow, you notice that he seems to be more eager than before. Perhaps the erotic contact and scent of your [pc.cockBiggest] is starting to get to him?");
 
-	output("\n\nHe takes his time lapping along the underside, the sides, and even the top of your shaft all the way from the [pc.sheath " + x + "] to the tip. A bead of pre form on your [pc.cockHeadBiggest] and is eagerly swiped by the naleen’s feline tongue, drawn deep into his rumbling throat.");
+	output("\n\nHe takes his time lapping along the underside, the sides, and even the top of your shaft all the way from the [pc.sheath " + x + "] to the tip. A bead of pre forms on your [pc.cockHeadBiggest] and is eagerly swiped by the naleen’s feline tongue, drawn deep into his rumbling throat.");
 
 	output("\n\nYou purr in pleasure as his tongue caresses your sensitive flesh, your [pc.cockBiggest] growing harder under his ministrations, rewarding him with ever-more pre-cum to lap up. Unable to remain passive, you start to buck against his tongue, rolling your shaft along the hot, wet length of his caressing muscle until you find yourself almost accidentally thrusting against his lips, dragging your [pc.cockHeadBiggest] back against them, leaving a trail of shining pre in your wake.");
 
-	output("\n\nYou continue your soft motions until - with a gasp of surprise - you finally find yourself inside the naleen’s warm mouth. He looks strangely pleased, pursing his lips over [pc.cockHeadBiggest] and beginning to suckle it like a teat. His tongue, not missing a beat, begins circling around it, pushing against your cumvein as you hiss in pleasure.");
+	output("\n\nYou continue your soft motions until - with a gasp of surprise - you finally find yourself inside the naleen’s warm mouth. He looks strangely pleased, pursing his lips over your [pc.cockHeadBiggest] and beginning to suckle it like a teat. His tongue, not missing a beat, begins circling around it, pushing against your cumvein as you hiss in pleasure.");
 
 	output("\n\nSqueezing with your [pc.legOrLegs], you pull back slightly, just enough to keep your cock out of his mouth, well beyond his reach. As you do so, you praise him for getting into the spirit of things; he's doing very well.");
 
@@ -823,7 +823,7 @@ public function cuntailOnDudeleen():void {
 
 	output("\n\nEven as you continue slapping your cock inside your victim's throat, you try and concentrate on your tail's slavering fuckhole. With an act of will, you force it to release his first drooling, bulbous prick. Quick as the snake it once was, it snatches up his other shaft, ravenously sucking him down to the hilt and starting to bob and squeeze just as it did the first one.");
 
-	output("\n\nHis eyes roll to the back of his skull, a muffled scream ripping through his throat for a moment. In his currently overloaded state, his tongue start darting around your [pc.cockBiggest], unintentionally teasing you in all the right spots. Damn, you’re getting close.");
+	output("\n\nHis eyes roll to the back of his skull, a muffled scream ripping through his throat for a moment. In his currently overloaded state, his tongue starts darting around your [pc.cockBiggest], unintentionally teasing you in all the right spots. Damn, you’re getting close.");
 
 	output("\n\nSpurred on by that thought, you slam him harder than ever, facefucking him like the living onahole he is in pursuit of your release, tailcunt doing its best to suck his balls out through his shaft behind you. The feel of him around you, inside you, it's too much. With one last thrust, you arch your back and cry out as your male orgasm washes over you, sending [pc.cum] gushing into the naleen's mouth.");
 

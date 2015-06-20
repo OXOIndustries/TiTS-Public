@@ -165,7 +165,7 @@ public function lengthenHairChoices():void
 	processTime(1);
 	clearMenu();
 	if(pc.hairLength < 2) addButton(0,"Short",lengthenHairConfirmation,2);
-	else addDisabledButton(0,"Short","Short","Your hair is already shorter than that!");
+	else addDisabledButton(0,"Short","Short","Your hair is already longer than that!");
 	if(pc.hairLength < 8) addButton(1,"Shoulders",lengthenHairConfirmation,8);
 	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already longer than that!");
 	if(pc.hairLength < 13) addButton(2,"Long",lengthenHairConfirmation,13);
@@ -248,25 +248,25 @@ public function getHairCut():void
 	//[Back] Go to Ceria Hairwork
 	if(pc.credits >= 200 && pc.hairLength > 2) addButton(0,"Short",cutHair,2);
 	else if(pc.hairLength > 2) addDisabledButton(0,"Short","Short","You can't afford that!");
-	else addDisabledButton(0,"Short","Short","Your hair is already longer than that!");
+	else addDisabledButton(0,"Short","Short","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 8) addButton(1,"Shoulders",cutHair,8);
 	else if(pc.hairLength > 8) addDisabledButton(1,"Shoulders","Shoulders","You can't afford that!");
-	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already longer than that!");
+	else addDisabledButton(1,"Shoulders","Shoulders","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > 13) addButton(2,"Long",cutHair,13);
 	else if(pc.hairLength > 13) addDisabledButton(2,"Long","Long","You can't afford that!");
-	else addDisabledButton(2,"Long","Long","Your hair is already longer than that!");
+	else addDisabledButton(2,"Long","Long","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(3,"Back Length",cutHair,pc.tallness/2.6);
 	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(3,"Back Length","Back Length","You can't afford that!");
-	else addDisabledButton(3,"Back Length","Back Length","Your hair is already longer than that!");
+	else addDisabledButton(3,"Back Length","Back Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(4,"Ass Length",cutHair,pc.tallness/2);
 	else if(pc.hairLength > pc.tallness/2) addDisabledButton(4,"Ass Length","Ass Length","You can't afford that!");
-	else addDisabledButton(4,"Ass Length","Ass Length","Your hair is already longer than that!");
+	else addDisabledButton(4,"Ass Length","Ass Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(5,"Knee Length",cutHair,pc.tallness/1.4);
 	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(5,"Knee Length","Knee Length","You can't afford that!");
-	else addDisabledButton(5,"Knee Length","Knee Length","Your hair is already longer than that!");
+	else addDisabledButton(5,"Knee Length","Knee Length","Your hair is already shorter than that!");
 	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(6,"Ankle Length",cutHair,(pc.tallness - 1));
 	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(6,"Ankle Length","Ankle Length","You can't afford that!");
-	else addDisabledButton(6,"Ankle Length","Ankle Length","Your hair is already longer than that!");
+	else addDisabledButton(6,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
 	addButton(14,"Back",hairworkFromCeria);
 
 }
@@ -345,7 +345,7 @@ public function standardHairColorMenu():void
 	addButton(14,"Back",hairColorMainMenu);
 	addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
 	addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
-	addButton(17,"turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
+	addButton(17,"Turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
 	addButton(18,"White",hairColorizing,"white","White","Dye your hair white.");
 	addButton(19,"Ivory",hairColorizing,"ivory","Ivory","Dye your hair ivory.");
 	addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
@@ -922,7 +922,7 @@ public function giveDatElfSlootOral():void
 	output("\n\nCeria looks down at you, still sporting that grin. <i>“Something wrong?”</i>");
 	output("\n\n<i>“Not at all, just figured you were going to taste like bubblegum.”</i>");
 	output("\n\nCeria laughs. <i>“I considered it! But no, I like this better for my pussy. Drink all you want, I’ve got plenty.”</i>");
-	output("\n\n<i>“Oh,you bumped up the volume too?”</i> you ask, sweeping a finger over the elf’s snatch and coming away with quite a bit more nectar than you’d expect from a human. She just giggles.");
+	output("\n\n<i>“Oh, you bumped up the volume too?”</i> you ask, sweeping a finger over the elf’s snatch and coming away with quite a bit more nectar than you’d expect from a human. She just giggles.");
 	output("\n\n<i>“Maybe just a little. Now c’mon, [pc.name], get licking.”</i>");
 
 	output("\n\nYou obediently put your hands on Ceria’s hips and start licking, earning a sultry coo from the elf as well as a fresh dose of your sweet reward. One of her hands comes to rest on the back of your head, while the other slips under her shirt to grope her own tit while you tend to her sweet sylvan twat.");
@@ -1039,10 +1039,10 @@ public function fuckCeria():void
 	}
 	else
 	{
-		output("\n\nShe may have said she’s not big on anal, but you can hardly tell with how little resistance Ceria’s sphincter offers, taking [pc.cockHead " + y + "] with a whimper from the elf. At the same time, [pc.cock " + x + "] is enjoying the pleasure of her pussy, which is so wet and slippery that it’s an absolute breeze to sink inside to the hilt. You’re rewarded with Ceria’s wide-eyed pleasure face as she tries to maintain steady breathing while you fill both of her holes with dick.");
+		output("\n\nShe may have said she’s not big on anal, but you can hardly tell with how little resistance Ceria’s sphincter offers, taking your [pc.cockHead " + y + "] with a whimper from the elf. At the same time, your [pc.cock " + x + "] is enjoying the pleasure of her pussy, which is so wet and slippery that it’s an absolute breeze to sink inside to the hilt. You’re rewarded with Ceria’s wide-eyed pleasure face as she tries to maintain steady breathing while you fill both of her holes with dick.");
 		pc.cockChange();
 		output("\n\n<i>“Nngh...o-okay, I got this...just go slow, [pc.name], okay?”</i>");
-		output("\n\nYou agree, wanting to savor this anyway. The tight, rhythmic squeezing of her ass, the drenched softness of her pussy, each of your dicks soaking in a different kind of pleasure that combine for a truly heavenly fuck as you slowly roll your hips. Every time [pc.cock " + y + "] starts to pull out of her ass it’s with the same motion that [pc.cock " + x + "] buries itself to the hilt in her cunt. Every time draws a little gasp of shock from Ceria as the slightly desynchronized fucking keeps her from ever quite relaxing between thrusts. Oh yes, having two cocks is just the <i>best</i>.");
+		output("\n\nYou agree, wanting to savor this anyway. The tight, rhythmic squeezing of her ass, the drenched softness of her pussy, each of your dicks soaking in a different kind of pleasure that combine for a truly heavenly fuck as you slowly roll your hips. Every time your [pc.cock " + y + "] starts to pull out of her ass it’s with the same motion that your other [pc.cock " + x + "] buries itself to the hilt in her cunt. Every motion draws a little gasp of shock from Ceria as the slightly desynchronized fucking keeps her from ever quite relaxing between thrusts. Oh yes, having two cocks is just the <i>best</i>.");
 		output("\n\nCeria draws her arms around your back");
 		if(pc.hasWings()) output(", her fingers caressing your wingpoints");
 		output(" as you plow her.");
@@ -1068,8 +1068,8 @@ public function fuckCeria():void
 		}
 		else
 		{
-			output("\n\nYou can feel the first pulse come flowing up your dual cumveins, a thick dose of [pc.cumNoun] that gushes out of [pc.cock " + x + "] into Ceria’s waiting cunt. The second follows a moment later, blasting into her ass as you start cumming in a continuous back-and-forth rhythm. Both of her holes squeeze even tighter, her ass practically vicelike around [pc.cock " + y + "] as if trying to prevent you from filling her in back, but your inhuman output will not be so easily denied. Soon her cries of ecstacy turn to moans of shock as you fill her with so much cum that it makes her once-slim belly swell until she looks practically gravid, her twat and tailpipe alike packed to the brim with your [pc.cumVisc] seed.\n\nYou’d gladly fill her even more, but her tightness isn’t quite so great as to allow that. The excess [pc.cumColor] spunk floods out around the sides of your cocks to cover your thighs in your own [pc.cumNoun].");
-			if(pc.hasVagina()) output("Underneath your dicks, you feel [pc.eachVagina] twitching as if wishing it was getting so gloriously filled, having to settle for adding a wash of [pc.girlCum] to the mess between your legs.");
+			output("\n\nYou can feel the first pulse come flowing up your dual cumveins, a thick dose of [pc.cumNoun] that gushes out of your [pc.cock " + x + "] into Ceria’s waiting cunt. The second follows a moment later, blasting into her ass as you start cumming in a continuous back-and-forth rhythm. Both of her holes squeeze even tighter, her ass practically vicelike around your [pc.cock " + y + "] as if trying to prevent you from filling her in back, but your inhuman output will not be so easily denied. Soon her cries of ecstacy turn to moans of shock as you fill her with so much cum that it makes her once-slim belly swell until she looks practically gravid, her twat and tailpipe alike packed to the brim with your [pc.cumVisc] seed.\n\nYou’d gladly fill her even more, but her tightness isn’t quite so great as to allow that. The excess [pc.cumColor] spunk floods out around the sides of your cocks to cover your thighs in your own [pc.cumNoun].");
+			if(pc.hasVagina()) output(" Underneath your dicks, you feel [pc.eachVagina] twitching as if wishing it was getting so gloriously filled, having to settle for adding a wash of [pc.girlCum] to the mess between your legs.");
 			output("\n\nYou pull out to find Ceria’s gone limp and slack-jawed, letting out a dazed groan. Her eyes are half-shut and her ears drooping low, fucked and stuffed so thoroughly that she’s gone completely insensate. The moment you pull out, massive spurts of [pc.cumNoun] start belching from her pussy, her own juices completely swallowed up by your titanic flood. It looks like she’s not going to come back to her senses for a little while after a fucking like that, so you clean up as best you can and make sure she’s comfortable, giving the elf girl a kiss on the forehead before you take your leave.");
 			output("\n\nIt’s quite a while before Ceria comes back out to the counter, looking back to normal. She shoots you an annoyed look, but you can’t help but notice she’s got a bit of a smile tugging at her cheeks...and she’s looking just a little less trim than usual.");
 		}
@@ -1100,7 +1100,7 @@ public function fairyFootjob():void
 
 	output("\n\nCeria sits down on the cushion and crosses her right leg over her left as if concealing her pussy, letting you get a good view of how slender and flawlessly smooth her legs are. There’s not a single blemish or even any visible joints to be found even when she moves, the skin perfectly retaining its contours. It’s as though her legs were sculpted from liquid azure metal.");
 
-	output("\n\n<i>“Mmm, you like these, don’t you, [pc.name]? Look at that, you’re getting hard just looking at them.”</i> Ceria runs a hand along her leg, cooing as she does. <i>“They really are so much better than human legs. No nails to worry about, no need to shave, no need to wear heels...oh so low-maintenance and oh so sexy.”</i>");
+	output("\n\n<i>“Mmm, you like these, don’t you, [pc.name]? Look at that, you’re getting hard just looking at them.”</i> Ceria runs a hand along her leg, cooing as she does. <i>“They really are so much better than human legs. No nails to worry about, no need to shave, no need to wear heels... oh so low-maintenance and oh so sexy.”</i>");
 
 	output("\n\nCeria slowly lifts the leg she’s folded and extends it outward, letting the tip of her slipper come to rest against your [pc.cockHeadBiggest]. Whatever her legs are made out of is pleasantly cool to the touch, and you swiftly become fully erect as she rubs the slipper around the edge of your cocktip");
 	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED,pc.biggestCockIndex())) output(", dipping underneath your flare to caress the underside");
@@ -1109,7 +1109,7 @@ public function fairyFootjob():void
 	else if(pc.hasCockFlag(GLOBAL.FLAG_NUBBY,pc.biggestCockIndex())) output(" and weaves the tip deftly back and forth between your nubs");
 	output(".");
 
-	output("\n\n<i>“Oh, you naughty " + pc.mf("boy","girl") + ", you like my foot that much? Here, then, try the other.”</i> Her left leg comes up, this one going to the base of your dick and woking it up and down");
+	output("\n\n<i>“Oh, you naughty " + pc.mf("boy","girl") + ", you like my foot that much? Here, then, try the other.”</i> Her left leg comes up, this one going to the base of your dick and working it up and down");
 	if(pc.hasKnot(pc.biggestCockIndex())) output(", caressing the underside of your knot");
 	output(". She shows off the ability to flex her non-existent toes, the shape of her slipper practically molding itself to the contours of your cock. Her right foot continues to work your [pc.cockHeadBiggest], teasing your dick at both ends.");
 

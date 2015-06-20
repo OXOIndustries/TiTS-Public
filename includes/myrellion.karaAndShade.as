@@ -1220,7 +1220,7 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 
 	output("\n\n<i>“I love a woman with a nice, hard cock between her legs.");
 	if(pc.isGoo() || pc.isNaga()) output(" Or [pc.legOrLegs], in your case.");
-	output("”</i> Shade says, leaning in an planting a kiss ");
+	output("”</i> Shade says, leaning in and planting a kiss ");
 	if(pc.balls > 0) output("on your [pc.balls], sending an electric wave of pleasure tingling through your body");
 	else 
 	{
@@ -1228,7 +1228,7 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 		if(pc.hasVagina()) output("[pc.oneClit]");
 		else output("taint");
 	}
-	output(". You curl your arms under the pillow, resting your head against it, and gives your [pc.hips] an enticing little wiggle.");
+	output(". You curl your arms under the pillow, resting your head against it, and give your [pc.hips] an enticing little wiggle.");
 
 	output("\n\nShade answers it with a playful grope, sinking her fingers into your [pc.butt] until you draw a sharp, gasping breath. A glance over your shoulder shows Shade grinning, her pussy-tail swishing happily behind her as she stretches languidly out behind you, nestling her cheeks against your raised behind. You feel her tongue snake out again, this time caressing the ");
 	if(y >= 0) output("outer lips of ");

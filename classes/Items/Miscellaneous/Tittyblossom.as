@@ -283,7 +283,7 @@
 				else if(select == 5)
 				{
 					kGAMECLASS.output("\n\nYour body is looking a little softer. Muscles are less distinct and hard angles are more rounded.");
-					target.tone -= 5+rand(3);
+					target.modTone( -(5 + rand(3)), false);
 					if(target.tone < 0) target.tone = 0;
 				}
 				//Hair lengthening

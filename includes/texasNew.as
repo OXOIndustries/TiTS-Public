@@ -1139,21 +1139,21 @@ public function orderUp(order:String = ""):void
 	if(order == "Ribs")
 	{
 		pc.energy(100);
-		pc.thickness += (3);
+		pc.modThickness(3, false);
 		pc.credits -= 20;
 		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
 	}
 	else if(order == "Roast Beef")
 	{
 		pc.energy(75);
-		pc.thickness += (2);
+		pc.modThickness(2, false);
 		pc.credits -= 10;
 		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
 	}
 	else if(order == "Burger")
 	{
 		pc.energy(60);
-		pc.thickness += (2);
+		pc.modThickness(2, false);
 		pc.credits -= 9;
 		output("\n\nYou feel a little thicker after. All that food probably isn't good for you.");
 	}
@@ -1162,7 +1162,6 @@ public function orderUp(order:String = ""):void
 		pc.energy(40);
 		pc.credits -= 5;
 	}
-	if(pc.thickness > 100) pc.thickness = 100;
 
 	processTime(12);
 	clearMenu();
@@ -1224,7 +1223,8 @@ public function specialOrdersForTreatedGals():void
 	pc.lust(15);
 	processTime(23);
 	pc.energy(100);
-	pc.thickness += (1);
+	//pc.thickness += (1);
+	pc.modThickness(1, false);
 	if(pc.thickness > 100) pc.thickness = 100;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -30,6 +30,9 @@ public function startCharacterCreation(e:Event = null):void
 
 	// Codex entries
 	CodexManager.unlockedEntryList = new Array();
+	
+	// Stat Tracking
+	StatTracking.resetStorage();
 
 	this.userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
