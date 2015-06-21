@@ -1,4 +1,5 @@
-﻿/*Basic Concept
+﻿import classes.Items.Miscellaneous.RedMyrBlood;
+/*Basic Concept
 Outline
 Room Description
 After First Time
@@ -675,7 +676,7 @@ public function nehzeraMenu(arg:Function = null):void
 		if(arg == trenchWives) addDisabledButton(9,"Trench Wives","You just finished that discussion.");
 	}
 
-	if (flags["NEVRIE_QUEST"] == 1 && flags["NEHZARA_BLOOD_SAMPLE"] == undefined) addButton(10, "BloodSample", nehzaraBloodSample, undefined, "Blood Sample", "Ask Colonel Nehzara if she'd be interested in providing a sample of her blood for the purpose of myr gene-mod development.");
+	if (flags["NEVRIE_QUEST"] == 1 && flags["NEHZARA_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood")) addButton(10, "BloodSample", nehzaraBloodSample, undefined, "Blood Sample", "Ask Colonel Nehzara if she'd be interested in providing a sample of her blood for the purpose of myr gene-mod development.");
 
 	addButton(14,"Leave",leaveNehzara);
 }
@@ -826,7 +827,8 @@ public function nehzaraBloodSample():void
 	output("\n\nYou shrug and take the vial back, screwing on the lid and placing it where it’ll be safe. Leave it to Nehzara to end things on a sour note like that. Maybe she’s just feeling especially broody at the moment. You could cheer her up, take her mind off things, or just get out and take care of your own business.");
 
 	output("\n\n");
-	quickLoot(new RedMyrBlood());
+	pc.createKeyItem("Red Myr Blood", 0, 0, 0, 0, "A vial of blood sampled from a red myr.");
+	output("<b>(Key Item Acquired: Red Myr Blood)</b>");
 
 	processTime(15+rand(5));
 

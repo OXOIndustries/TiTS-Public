@@ -1,3 +1,4 @@
+import classes.Items.Miscellaneous.RedMyrBlood;
 public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");
@@ -388,7 +389,7 @@ public function lieveTalkMenu():void
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
 	
-	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined)
+	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood"))
 	{
 		addButton(8, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
 	}
@@ -2363,7 +2364,8 @@ public function lieveBloodSample():void
 
 	// 9999
 	output("\n\n");
-	quickLoot(new RedMyrBlood());
+	pc.createKeyItem("Red Myr Blood", 0, 0, 0, 0, "A vial of blood sampled from a red myr.");
+	output("<b>(Key Item Acquired: Red Myr Blood)</b>");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

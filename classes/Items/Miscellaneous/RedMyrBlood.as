@@ -48,6 +48,8 @@ package classes.Items.Miscellaneous
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			isUsable = false;
+			
 			this.version = this._latestVersion;
 		}
 		

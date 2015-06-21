@@ -113,7 +113,7 @@ public function mainGameMenu():void {
 	//Standard buttons:
 	this.clearMenu(false);
 	this.userInterface.showBust("none");
-	this.inSceneBlockSaving = false
+	this.inSceneBlockSaving = false;
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;

@@ -80,7 +80,6 @@ public function myrellionLabAddition():Boolean
 	else output("Doctor McAllister");
 	output(" is standing near the back of the lab, talking with several assistants gathered around a beeping device.");
 
-	clearMenu();
 	if (flags["MET_MCALLISTER"] == undefined) addButton(0, "Bearded Man", mcallisterMeeting, undefined, "Bearded Man", "The barrel-chested, bearded fellow must be Doctor McAllister. Time to go meet him.");
 	else addButton(0, "McAllister", approachMcallister, undefined);
 	
@@ -175,7 +174,7 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 	}
 	else if (flags["NEVRIE_QUEST"] == 1)
 	{
-		if (pc.hasItem(new RedMyrBlood())) addButton(3, "Blood Vial", myrellionNevrieBloodVial, undefined, "Blood Vial", "Hand over a vial of red myr blood to Nevrie. Maybe you can finally get things moving about this myr gene-mod.");
+		if (pc.hasKeyItem("Red Myr Blood")) addButton(3, "Blood Vial", myrellionNevrieBloodVial, undefined, "Blood Vial", "Hand over a vial of red myr blood to Nevrie. Maybe you can finally get things moving about this myr gene-mod.");
 		else addDisabledButton(3, "Blood Vial", "Blood Vial", "You'd need a blood sample to hand first...");
 	}
 	
@@ -409,8 +408,9 @@ public function myrellionNevrieBloodVial():void
 	
 	output("\n\nYou nod, and Nevrie hops out of her chair for, as far as you can remember, the first time since you met her. She disappears through the back door, and after a while you hear a machine whirring, beeping, and spit out something. Nevrie comes back after that with a smile on her face and a dataslate tucked under an arm.");
 	
-	output("\n\n<i>“Everything checks out, [pc.name]. This sample should be more than enough for Doc. McAllister to synthesize for his precious mod. He’ll be back in a couple hours, I guess. If you want to talk to him feel free to wait around for a bit. Take a nap in our luxurious lobby chairs; I’ll let you know when Doctor McAllister’s in.");
+	output("\n\n<i>“Everything checks out, [pc.name]. This sample should be more than enough for Doc. McAllister to synthesize for his precious mod. He’ll be back in a couple hours, I guess. If you want to talk to him feel free to wait around for a bit. Take a nap in our luxurious lobby chairs; I’ll let you know when Doctor McAllister’s in.”</i>");
 
+	pc.removeKeyItem("Red Myr Blood");
 	(pc as Creature).destroyItem(new RedMyrBlood()); // 9999 - consume ALL that the player may have?
 
 	flags["NEVRIE_QUEST"] = 2;
@@ -442,8 +442,7 @@ public function mcallisterMeeting():void
 	processTime(3 + rand(2));
 	
 	//To McAllister's dialogue menu
-	clearMenu();
-	addButton(0, "Next", mcallisterMenu);
+	mcallisterMenu();
 }
 
 public function approachMcallister():void
@@ -488,7 +487,7 @@ public function mcallisterMenu(cFunc:Function = null):void
 	if (flags["MCALLISTER_MYR_TFS"] == undefined)
 	{
 		if (flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) addButton(0, "Myr TFs", mcallisterMyrTFs, undefined, "Myr Transformations", "Check in on the myr transformations McAllister was supposed to be working on.");
-		addDisabledButton(0, "Myr TFs", "Myr Transformations", "You probably need to give Dr. McAllister more time to work.");
+		else addDisabledButton(0, "Myr TFs", "Myr Transformations", "You probably need to give Dr. McAllister more time to work.");
 	}
 	else if (flags["MCALLISTER_MYR_TFS"] == 1)
 	{
@@ -654,7 +653,7 @@ public function mcallisterMyrTFs():void
 	
 	output("\n\nYou have to admit, it’s incredibly convincing work.");
 	
-	output("\n\nSeeing your reaction, McAllister’s grin widens. <i>“Care to meet our subjects? I’m sure our newly-made Red would love to meet the {man/woman} responsible for her... insectification.”</i>");
+	output("\n\nSeeing your reaction, McAllister’s grin widens. <i>“Care to meet our subjects? I’m sure our newly-made Red would love to meet the " + pc.mf("man","woman") + " responsible for her... insectification.”</i>");
 
 	flags["MCALLISTER_MYR_TFS"] = 1;
 
@@ -1047,7 +1046,7 @@ public function mcallisterMyrHybrids():void
 	
 	output("\n\nIs that so? Surely, though - as someone who spends a great deal of quality time with the queens - the good doctor would want to do everything he can to help Myrellion.");
 	
-	output("\n\nMcAllister sighs and runs his hand through his beard, glancing between you and the gaggle of female assistants at his heels, all waiting with bated breath for his response. <i>“I do, believe me. But if - </i>if<i> - I were to sit down, design, and produce some sort of... hybrid myr treatment... you have to understand that process isn’t cheap. Mostly because I couldn’t do it on Xenogen’s time; I’ve got other responsibilities with the company now that the two main myr transformatives are finished, and more than one of my superiors are starting to talk about moving me to a lab on another world already. I’d effectively have to rent my own lab space from the company.");
+	output("\n\nMcAllister sighs and runs his hand through his beard, glancing between you and the gaggle of female assistants at his heels, all waiting with bated breath for his response. <i>“I do, believe me. But if - </i>if<i> - I were to sit down, design, and produce some sort of... hybrid myr treatment... you have to understand that process isn’t cheap. Mostly because I couldn’t do it on Xenogen’s time; I’ve got other responsibilities with the company now that the two main myr transformatives are finished, and more than one of my superiors are starting to talk about moving me to a lab on another world already. I’d effectively have to rent my own lab space from the company.”</i>");
 	
 	output("\n\n<i>“More importantly, though, you’d have problems of distribution and education.”</i> McAllister says, an almost venomous hiss on the last word. He glances in the direction of the Federation embassy, and adds, <i>“Most myr wouldn’t take it just </i>because<i>, you know. They’ve had seven years to entrench themselves in racial jingoism, especially the reds. Even if you convinced enough myr to take the therapy, you’d actually have to distribute it, and neither of us have the resources to mass produce and distribute expensive gene mods on our own dime.”</i>");
 	
