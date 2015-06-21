@@ -1,5 +1,4 @@
-﻿import classes.Items.Miscellaneous.RedMyrBlood;
-/*Basic Concept
+﻿/*Basic Concept
 Outline
 Room Description
 After First Time

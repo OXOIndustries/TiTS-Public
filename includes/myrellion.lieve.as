@@ -1,4 +1,3 @@
-import classes.Items.Miscellaneous.RedMyrBlood;
 public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");

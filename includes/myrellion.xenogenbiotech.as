@@ -1,5 +1,4 @@
 import classes.Creature;
-import classes.Items.Miscellaneous.RedMyrBlood;
 
 /*
 NEVRIE_QUEST states:
@@ -411,7 +410,6 @@ public function myrellionNevrieBloodVial():void
 	output("\n\n<i>“Everything checks out, [pc.name]. This sample should be more than enough for Doc. McAllister to synthesize for his precious mod. He’ll be back in a couple hours, I guess. If you want to talk to him feel free to wait around for a bit. Take a nap in our luxurious lobby chairs; I’ll let you know when Doctor McAllister’s in.”</i>");
 
 	pc.removeKeyItem("Red Myr Blood");
-	(pc as Creature).destroyItem(new RedMyrBlood()); // 9999 - consume ALL that the player may have?
 
 	flags["NEVRIE_QUEST"] = 2;
 	flags["NEVRIE_SAMPLES_TIMESTAMP"] = GetGameTimestamp();
