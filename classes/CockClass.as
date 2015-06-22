@@ -124,6 +124,13 @@
 			if(!hasFlag(arg)) cockFlags[cockFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to cock of type " + cType + ".");
 		}
+		public function delFlag(arg:int):void
+		{
+			//Find and destroy it.
+			for(var x:int = 0; x < cockFlags.length;x++) {
+				if(arg == cockFlags[x]) cockFlags.splice(x,1);
+			}
+		}
 		public function clearFlags():void {
 			cockFlags = new Array();
 		}

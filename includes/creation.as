@@ -200,6 +200,8 @@ public function setStartingSex(sex:int = 1):void {
 		}
 		if (pc.originalRace == "half-ausar") {
 			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
+			//Get rid of sheath for reasons
+			pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
 		}
 		if (pc.originalRace ==  "half-kaithrit") {
 			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
