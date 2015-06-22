@@ -113,6 +113,8 @@
 						pc.libido(2);
 						changes++;
 						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
+						//Cause ausar are too cool for sheaths.
+						pc.cocks[x].delFlag(GLOBAL.FLAG_SHEATHED);
 					}
 					else
 					{
