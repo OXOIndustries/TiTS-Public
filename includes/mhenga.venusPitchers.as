@@ -572,8 +572,7 @@ public function elderVenusPitcherEncounter():void {
 		//[BEEN HYPNOTIZED]
 		else {
 			output("it worked so very, very well. Every erogenous zone on your body begins to tingle and engorge at the memory of your submission. It was damn hot! ");
-			var bonus:Number = flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]/2;
-			if(bonus > 30) bonus = 30;
+			var bonus:Number = Math.round(venusSubmission()/100 * 30);
 			if(pc.willpower() - pc.libido()/3 + rand(20) + 1 > 9 + bonus) {
 				output("Do you stay and watch the show again, knowing what will happen?");
 				//[yes][no]
@@ -1181,29 +1180,29 @@ public function elderVenusPitcherEpilogue():void {
 	//Some energy damage!
 	pc.energy(-45);
 	output("You wake up more than a little sore, all alone. The venus pitcher is gone as far as you can tell. If she’s hiding in her pod, the entrance is closed and concealed under the jungle brush and detritus with such skill that you doubt you could find it again.");
+	//Apply submission
+	venusSubmission(10);
+	//Keep count for reasons...
+	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined) flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] = 0;
+	flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
 	//{First Time}
-	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined) {
-		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] = 1;
+	if(venusSubmission() <= 10) {
 		output("\n\nYou head is swimming with thoughts and memories of the venus pitcher woman, from her enticing mammaries to the way she made you cum your way into unconsciousness. There’s just something unmistakably sexy about a woman who snares your mind so effectively that you’ll willingly let her milk you through orgasm after orgasm. A quiet thrill runs through you when you wonder if all venus pitchers are like this one, and if not, if you can find this one again when she’s ready for another meal....");
 	}
 	//{Second}
-	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == 1) {
-		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+	else if(venusSubmission() <= 25) {
 		output("\n\nWhoah, that sexy, chlorophyl-laden slut did a number on you! You can still make out every detail of her tits in your mind, softly swaying back and forth... their beauty slowly entrancing you.... Shaking out of your stupor, you smile ruefully and rub the sore, sensitive parts of your body, shuddering at the aftershocks that assault you even now. The realization that you fell into a venus pitcher’s trap again has your heart starting to beat faster, and you idly wonder if volunteering to join them would be so bad.");
 	}
 	//{Third}
-	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == 2) {
-		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+	else if(venusSubmission() <= 40) {
 		output("\n\nWow! That felt sooo good. Your whole body is sore and tired, but in a really, REALLY good way. The aches are just like little reminders of how good the venus pitcher made you feel, and how badly your body wants to recover so it can do it again. You know that you really shouldn’t crave them so, but it’s not like they’re hurting you, right?");
 	}
 	//{4-5}
-	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] <= 4) {
-		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+	else if(venusSubmission() <= 60) {
 		output("\n\nMmmm, you lie there for a moment, trying to recall every detail of the exquisite pleasure you just endured. She worked you over so good, and her nipples, they must be psionic focuses or something. Whenever you look at them, you just kind of float away and give her whatever she wants, which surely isn’t good, right? Though it does feel good... so good.");
 	}
 	//{6+}
 	else {
-		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
 		output("\n\nAhhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to bother resisting any longer.");
 	}
 	processTime(120+rand(20));
@@ -1215,6 +1214,17 @@ public function elderVenusPitcherEpilogue():void {
 	processTime(20+rand(20));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function venusSubmission(arg:Number = 0):Number {
+	if(flags["PITCHER_HYPO_SCORE"] == undefined) flags["PITCHER_HYPO_SCORE"] = 0;
+	if(arg != 0)
+	{
+		flags["PITCHER_HYPO_SCORE"] += arg;
+		if(flags["PITCHER_HYPO_SCORE"] > 100) flags["PITCHER_HYPO_SCORE"] = 100;
+		if(flags["PITCHER_HYPO_SCORE"] < 0) flags["PITCHER_HYPO_SCORE"] = 0;
+	}
+	return flags["PITCHER_HYPO_SCORE"];
 }
 
 public function venusPitcherLayUnfertilizedEgg():void {
