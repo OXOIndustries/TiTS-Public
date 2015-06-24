@@ -206,7 +206,7 @@ public function mainGameMenu():void {
 	
 	// Enable the perk list button
 	(userInterface as GUI).perkDisplayButton.Activate();
-	(userInterface as GUI).statsDisplayButton.Activate();
+	(userInterface as GUI).mailsDisplayButton.Activate();
 }
 
 // Temp display stuff for perks
@@ -225,12 +225,12 @@ public function showPerkListHandler(e:Event = null):void
 	}
 }
 
-public function showStatsHandler(e:Event = null):void
+public function showMailsHandler(e:Event = null):void
 {
-	var pButton:SquareButton = (userInterface as GUI).statsDisplayButton;
+	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
-		statisticsScreen();
+		showMails();
 		pButton.Highlight();
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
@@ -238,6 +238,18 @@ public function showStatsHandler(e:Event = null):void
 		userInterface.showPrimaryOutput();
 		pButton.DeHighlight();
 	}
+}
+
+public function showMails():void
+{
+	userInterface.showCodex();
+	codexMailFunction();
+}
+
+public function codexMailFunction():void
+{
+	clearGhostMenu();
+	addGhostButton(14, "Back", 
 }
 
 public function showPerksList():void

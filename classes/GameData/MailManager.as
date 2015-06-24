@@ -156,10 +156,10 @@ package classes.GameData
 			// Then override each of them that we have from our save object.
 			for (var k:String in d)
 			{
-				var bo:Object = MailManager.ENTRIES[k];
-				
-				if (bo !== undefined)
+				if (MailManager.ENTRIES[k] !== undefined)
 				{
+					var bo:Object = MailManager.ENTRIES[k];
+					
 					bo.UnlockedTimestamp = d[k].UnlockedTimestamp;
 					bo.ViewedTimestamp = d[k].ViewedTimestamp;
 					
@@ -197,7 +197,7 @@ package classes.GameData
 		{
 			for (var k:String in MailManager.ENTRIES)
 			{
-				if (k.UnlockedTimestamp !== undefined) return true;
+				if (MailManager.ENTRIES[k].UnlockedTimestamp !== undefined) return true;
 			}
 			
 			return false;

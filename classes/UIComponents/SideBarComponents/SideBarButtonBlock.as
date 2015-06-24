@@ -19,7 +19,7 @@ package classes.UIComponents.SideBarComponents
 		private var _menuButton:SquareButton;
 		private var _dataButton:SquareButton;
 		private var _quickSaveButton:SquareButton;
-		private var _statsButton:SquareButton;
+		private var _mailsButton:SquareButton;
 		private var _perksButton:SquareButton;
 		private var _levelUpButton:SquareButton;
 		private var _appearanceButton:SquareButton;
@@ -30,7 +30,7 @@ package classes.UIComponents.SideBarComponents
 		public function get menuButton():SquareButton { return _menuButton; }
 		public function get dataButton():SquareButton { return _dataButton; }
 		public function get quickSaveButton():SquareButton { return _quickSaveButton; }
-		public function get statsButton():SquareButton { return _statsButton; }
+		public function get mailsButton():SquareButton { return _mailsButton; }
 		public function get perksButton():SquareButton { return _perksButton; }
 		public function get levelUpButton():SquareButton { return _levelUpButton; }
 		public function get appearanceButton():SquareButton { return _appearanceButton; }
@@ -90,10 +90,10 @@ package classes.UIComponents.SideBarComponents
 			xPos = 0;
 			yPos = _menuButton.y + _menuButton.height + spacing;
 			
-			_statsButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Stats, padding);
-			_statsButton.name = "statsButton";
-			_buttonLayer.addChild(_statsButton);
-			xPos = _statsButton.x + _statsButton.width + spacing;
+			_mailsButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Stats, padding);
+			_mailsButton.name = "mailsButton";
+			_buttonLayer.addChild(_mailsButton);
+			xPos = _mailsButton.x + _mailsButton.width + spacing;
 			
 			_perksButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Perks, padding);
 			_perksButton.name = "perksButton";
@@ -116,7 +116,7 @@ package classes.UIComponents.SideBarComponents
 			_menuButton.DeGlow();
 			_dataButton.DeGlow();
 			_quickSaveButton.DeGlow();
-			_statsButton.DeGlow();
+			_mailsButton.DeGlow();
 			_perksButton.DeGlow();
 			_levelUpButton.DeGlow();
 			_appearanceButton.DeGlow();

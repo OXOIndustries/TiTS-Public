@@ -92,6 +92,7 @@
 		include "../includes/game.as";
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
+		include "../includes/MailEntries.as";
 		include "../includes/masturbation.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rooms.as";
@@ -394,6 +395,7 @@
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 			this.configureCodex();
+			this.configureMails();
 			this.userInterface.showMainMenu();
 			this.userInterface.toggleBarTweens();
 			buildWTF();

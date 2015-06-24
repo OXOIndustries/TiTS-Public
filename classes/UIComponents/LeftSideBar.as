@@ -51,7 +51,7 @@ package classes.UIComponents
 		public function get menuButton():SquareButton { return _menuButtonBlock.menuButton; }
 		public function get dataButton():SquareButton { return _menuButtonBlock.dataButton; }
 		public function get quickSaveButton():SquareButton { return _menuButtonBlock.quickSaveButton; }
-		public function get statsButton():SquareButton { return _menuButtonBlock.statsButton; }
+		public function get mailsButton():SquareButton { return _menuButtonBlock.mailsButton; }
 		public function get perksButton():SquareButton { return _menuButtonBlock.perksButton; }
 		public function get levelUpButton():SquareButton { return _menuButtonBlock.levelUpButton; }
 		public function get appearanceButton():SquareButton { return _menuButtonBlock.appearanceButton; }

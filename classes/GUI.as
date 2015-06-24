@@ -655,7 +655,7 @@
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
 		public function get levelUpButton():SquareButton { return _leftSideBar.levelUpButton; }
 		public function get perkDisplayButton():SquareButton { return _leftSideBar.perksButton; }
-		public function get statsDisplayButton():SquareButton { return _leftSideBar.statsButton; }
+		public function get mailsDisplayButton():SquareButton { return _leftSideBar.mailsButton; }
 		
 		// Direct module access because LAZY
 		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }
