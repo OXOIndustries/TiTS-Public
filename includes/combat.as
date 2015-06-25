@@ -1601,6 +1601,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is WetraHound) wetraHoundAI();
 	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
 	else if (aggressor is MyrInfectedFemale) infectedMyrAI();
+	else if (aggressor is DoctorLash) docLashAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1746,6 +1747,10 @@ public function victoryRouting():void
 	{
 		winVsInfectedMyr();
 	}
+	else if(foes[0] is DoctorLash)
+	{
+		winVsDoctorLash();
+	}
 	else genericVictory();
 }
 
@@ -1887,6 +1892,10 @@ public function defeatRouting():void
 	else if (foes[0] is MyrInfectedFemale)
 	{
 		loseToInfectedMyrYouSubbieSloot();
+	}
+	else if(foes[0] is DoctorLash)
+	{
+		loseToDoctorLash();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2209,6 +2218,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "infected myr":
 			chars["INFECTED MYR FEMALE"].prepForCombat();
+			break;
+		case "Dr. Lash":
+			chars["DRLASH"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
