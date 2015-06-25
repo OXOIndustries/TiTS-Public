@@ -121,6 +121,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade.png", mimeType = "image/png")]
 		public var Bust_SHADE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shiare.png", mimeType = "image/png")]
+		public var Bust_SHIARE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/shiare_nude.png", mimeType = "image/png")]
+		public var Bust_SHIARE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/seifyn.png", mimeType = "image/png")]
 		public var Bust_SEIFYN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/seifyn_nude.png", mimeType = "image/png")]
