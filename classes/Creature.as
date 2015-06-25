@@ -3503,8 +3503,9 @@
 			}
 			//Setup for words
 			if (output != "") output += " ";
-			//Set skin words.
-			output += skinNoun(skin);
+			//Set flag to cut down skin nouns to "normal" ones for appearance screens and the like.
+			var appearance:Boolean = (forceAdjective || forceTone);
+			output += skinNoun(skin,appearance);
 			return output;
 		}
 		public function hasFur():Boolean
@@ -3524,7 +3525,7 @@
 		{
 			return (hasLegFlag(GLOBAL.FLAG_FLUFFY) || hasLegFlag(GLOBAL.FLAG_FURRED) || skinType == GLOBAL.SKIN_TYPE_FUR)
 		}
-		public function skinNoun(skin: Boolean = false): String {
+		public function skinNoun(skin: Boolean = false,appearance:Boolean = false): String {
 			var output: String = "";
 			var temp: int = 0;
 			//Set skin words.
@@ -3535,16 +3536,16 @@
 				//else output += "dermis";
 			} else if (skinType == GLOBAL.SKIN_TYPE_FUR) {
 				temp = this.rand(10);
-				if (temp <= 7) output += "fur";
+				if (temp <= 7 || appearance) output += "fur";
 				else if (temp <= 8) output += "pelt";
 				else output += "coat";
 			} else if (skinType == GLOBAL.SKIN_TYPE_SCALES) {
 				temp = this.rand(10);
-				if (temp <= 7) output += "scales";
+				if (temp <= 7 || appearance) output += "scales";
 				else if (temp <= 8) output += "plates";
 				else output += "lamina";
 			} else if (skinType == GLOBAL.SKIN_TYPE_GOO) {
-				if (temp <= 7) output += "goo";
+				if (temp <= 7 || appearance) output += "goo";
 				else output += "membrane";
 			}
 			return output;
