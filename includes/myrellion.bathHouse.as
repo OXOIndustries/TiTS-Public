@@ -17,7 +17,7 @@ public function bathHouseBonus():Boolean
 public function showMatron():void
 {
 	showName("GOLD\nMATRON");
-	showBust("GOLD_MATRON");
+	showBust("MATRON_OSERRE");
 }
 
 //[Matron] / Bath House Menu

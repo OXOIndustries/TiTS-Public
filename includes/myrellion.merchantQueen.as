@@ -4,7 +4,7 @@
 public function showMerchantQueen():void
 {
 	showName("MERCHANT\nQUEEN");
-	showBust("MERCHANT_QUEEN");
+	showBust("FUZZLEBOTTOM");
 	author("Magic_Ted");
 }
 
