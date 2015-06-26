@@ -934,8 +934,12 @@
 								kGAMECLASS.eventBuffer += " The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.";
 								target.legCount = 4;
 							}
+							if(target.genitalSpot != 2) 
+							{
+								if(target.hasGenitals()) kGAMECLASS.eventBuffer += " Your crotch has even moved back to the rear of your frame, just like an equine's.";
+								target.genitalSpot = 2;
+							}
 							kGAMECLASS.eventBuffer += " For better or worse, you've got horse-legs now.";
-
 						}
 						//Double legs - DA CATCH ALLZ
 						else

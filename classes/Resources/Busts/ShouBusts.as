@@ -9,6 +9,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/anarrie.png", mimeType = "image/png")]
+		public var Bust_ANARRIE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/anarrie_nude.png", mimeType = "image/png")]
+		public var Bust_ANARRIE_NUDE:Class;		
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/antrias.png", mimeType = "image/png")]
 		public var Bust_ANTRIAS:Class;
 
@@ -37,7 +42,6 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
-
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
 		public var Bust_ADULTCOCKVINE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
