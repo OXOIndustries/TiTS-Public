@@ -1,4 +1,4 @@
-import classes.Characters.Mimbrane;
+﻿import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -3160,6 +3160,7 @@ public function playerMimbraneSpitAttack():void
 			}
 			else
 			{
+				var damage:TypeCollection;
 				// Succesful attack, calculate if critical
 				if (pc.statusEffectv3(eligibleMimbranes[ii]) >= 10 && rand(10) <= 2) // 10+ food, 3 in 10 [0-9]
 				{
@@ -3204,7 +3205,7 @@ public function playerMimbraneSpitAttack():void
 					{
 						output("\nYour [pc.face] feels tense, as if an powerful pressure were caving it in. Just when you start to worry, the pressure builds in your [pc.lips], culminating into a powerful blast of liquid lust aimed directly for your opponent. The attack bursts upon contact, hitting you with a little splash damage.");
 					}
-					var damage:TypeCollection = new TypeCollection( { drug: 25 } );
+					damage = new TypeCollection( { drug: 25 } );
 					damageRand(damage, 15);
 					applyDamage(damage, pc, foes[0]);
 					output("\n");
@@ -3250,7 +3251,7 @@ public function playerMimbraneSpitAttack():void
 					{
 						output("\nA surprising pressure builds over your cheeks, surging towards your [pc.lips]. The Mimbrane covering your [pc.face] forces you into spitting a large, dense ball of pure lechery right towards your opponent!");
 					}
-					var damage:TypeCollection = new TypeCollection( { drug: 15 } );
+					damage = new TypeCollection( { drug: 15 } );
 					damageRand(damage, 15);
 					applyDamage(damage, pc, foes[0]);
 					output("\n");
