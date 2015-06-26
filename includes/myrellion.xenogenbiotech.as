@@ -685,7 +685,7 @@ public function mcallisterMyrTFsMeetThem(fromRootMenu:Boolean = false):void
 	
 	output("\n\nCompletely nonchalantly, McAllister starts to undo the buttons on his lab coat, lets it fall to the ground, and starts to unbuckle his belt.");
 	if (pc.isNude()) output(" You chuck your [pc.gear] into the bin and wait for the doctor to join you in nudity.");
-	else if (pc.libido() < 70)
+	else if (pc.libido() < 70 || pc.exhibitionism() < 66)
 	{
 		output(" You feel a blush come over you as you realize you’re going to have to disrobe not just in front of Doctor McAllister, but the dozen or so female assistants standing placidly just outside the glass. You can feel their eyes on you, taking you in like just another specimen to study.");
 	
@@ -724,7 +724,7 @@ public function mcallisterMeetThemII():void
 	
 	output("\n\n<i>“Great!”</i> the faux-red beams, running a hand up her svelte, naked body until she’s cupping one of her perky breasts. She barely puts any pressure at all on it before a bead of myr nectar wells up on the tip of her nipple, staining her chitin-black digits. She giggles and makes a bit of a show of licking the nectar from her fingers.");
 	
-	output("\n\nThe other myr nods, running a hand through her long golden hair. Her other arms busies itself supporting her very, very generous bosom: while the wanna-be red isn’t exactly petite, her gold companion is absolutely stacked, rocking a honey-swollen rack that must be at least in the H-cup region.");
+	output("\n\nThe other myr nods, running a hand through her long golden hair. Her other arm busies itself supporting her very, very generous bosom: while the wanna-be red isn’t exactly petite, her gold companion is absolutely stacked, rocking a honey-swollen rack that must be at least in the H-cup region.");
 	
 	output("\n\n<i>“The last round of mods did this to us,”</i> the gold says, pointing a plated finger at her companion’s leaky bosom. <i>“There’s so much coming out now, we can barely keep up with it!”</i>");
 	
@@ -757,7 +757,7 @@ public function mcallisterMeetThemIII():void
 	output("\n\n<i>“Hi!”</i> the red myr says, still fondling herself. Your eyes are immediately drawn to to pink peak of her teat, beading with golden moisture. She grins up at you. <i>“Haven’t seen you before. Are you one of Doctor McAllister’s assistants?”</i>");
 	
 	if (pc.isMasculine()) output("\n\n<i>“Can’t be,”</i> the gold giggles. <i>“He’s a dude! And... pretty handsome, too!”</i>");
-	else output("The gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be a another scientist!”</i>");
+	else output("\n\nThe gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be a another scientist!”</i>");
 	
 	output("\n\nYou introduce yourself: <i>“I’m [pc.name] Steele, the one who helped Doctor McAllister finish the red myr therapy.”</i>");
 	
