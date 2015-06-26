@@ -429,7 +429,7 @@ public function buyDatLifetimeMembership():void
 	output("Quenton’s grin stretches even wider. <i>“Always happy to welcome a new member!”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“10,000 credits, friend, and you’ve got a home at the greatest gym this side of the galaxy.”</i>");
 	clearMenu();
 	if(pc.credits >= 10000) addButton(0,"Purchase",purchaseLifetimeGymMembership,undefined,"Purchase","Purchase a lifetime membership for 10,000 credits.");
-	else addDisabledButton(500,"Purchase","Purchase","You cannot afford that.");
+	else addDisabledButton(0,"Purchase","Purchase","You cannot afford that.");
 	//[Purchase Life]{Set global flag GYM_MEMBER_LIFE to true}{Deduct 500 credits} Go to Purchased Life
 	//[Never Mind] Go to Entrance
 	addButton(14,"Back",talkToQuenton);
