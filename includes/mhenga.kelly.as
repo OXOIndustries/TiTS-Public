@@ -2291,7 +2291,7 @@ public function kellyHyperPlayAwwwYiss():void
 	output("\n\n<i>\"No, I'm always this hot and bothered, with my cunt gushing like a drinking fountain and my cocks trying to be waterspouts,\"</i> she replies dryly. Her follow-up giggle undercuts her words. <i>\"So come on baby, light my fire, I feel ready to burn...\"</i> she purrs to you.");
 
 	output("\n\nIgnoring the somewhat cheesy invitation, you align [pc.oneCock] with her slavering pussy");
-	if(y >= 0) output("and your second cock with her asshole; she's got two, she must like taking it up both holes, right?");
+	if(y >= 0) output(" and your second cock with her asshole; she's got two, she must like taking it up both holes, right?");
 	else output(".");
 	output(" Steadying yourself on her hips, you slide home; so well-lubed is she that you glide in, sliding into warm, wet, velvety depths that wring your dick with greedy eagerness.");
 	if(y >= 0) output(" Her ass accepts you with equal fervour, the laquine's tailhole not quite as slick, but still loose and tight at just the right moments.");
@@ -2333,8 +2333,9 @@ public function keepGoingWithFuckingHyperModeKelly():void
 	output("Your hands remain right where they are, locked onto her hips for support. Let her tend to her own maleness; you're more interested in her female parts. With this in mind, you start to thrust even harder than before, your fur-covered lover grunting in effort as she matches you thrust for thrust, moaning her pleasure for all to hear.");
 
 	output("\n\nYou both give yourselves over to the rhythm, feeling the pleasure washing through your bodies, letting yourselves drown in the sensations of each other's bodies. Kelly's cunt");
-	if(y >= 0) output(" and ass");
-	output(" milk you like a well-oiled machine, hot fluids slopping over your ");
+	if(y >= 0) output(" and ass milk");
+	else output("s");
+	output(" you like a well-oiled machine, hot fluids slopping over your ");
 	if(y >= 0) output("shafts");
 	else output("shaft");
 	output(" even as velvety flesh grips you like a vice. From the lustful noises that wring their way out of Kelly's throat, the feel of your ");
@@ -2376,7 +2377,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 		{
 			output("\n\n<i>\"F-fuck! Fuck me, fuck me, fuck me!\"</i> Kelly cries out, writhing helplessly as your deluge of semen crashes against her womb, swamping her interior in an enormous flood of [pc.cum]. So huge does her belly grow, and so rapidly, that she has to wriggle slightly onto her side and cock a leg to let her own male climax erupt, painting great streaks of honey all over the floor, filling the air with the scent of her modified semen even as some of your own spunk spurts back out around her desperately grasping netherlips, mixing your scent with hers. By the time you are both finished, the floor is covered in an inches-deep puddle of honey undercut with");
 			if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) output(" more honey");
-			else output("[pc.cumNoun]");
+			else output(" [pc.cumNoun]");
 			output(", whilst Kelly is wobbling slightly atop a belly like a beachball. She gasps and pants, too dazed from the fucking she just received to say anything coherent... though she does eventually mumble a dreamy, <i>\"Where have you been all my life?\"</i> in your direction.");
 		}
 	}
@@ -2545,7 +2546,7 @@ public function doKellyInTheBumBUMBUMMMMMMMM():void
 
 		output("\n\nJust getting some lube, you explain, giving her back a kiss. She hums softly, smiling, but turns her head back away from you, squeezing your fingers a little tighter with her cunt, silky flesh rippling around the intruding digits before releasing you.");
 
-		output("\n\nWhen you deem her sufficiently wet, you remove your fingers and begin gathering her juices with your hands. Your [pc.cock " + x + "] throbs in hands as you apply a shining layer of Kelly’s honey to your length. Her pretty little rosebud receives a similar treatment. You rub plenty of her honey around and inside her little hole, taking the opportunity to stretch her out a little.");
+		output("\n\nWhen you deem her sufficiently wet, you remove your fingers and begin gathering her juices with your hands. Your [pc.cock " + x + "] throbs in your hands as you apply a shining layer of Kelly’s honey to your length. Her pretty little rosebud receives a similar treatment. You rub plenty of her honey around and inside her little hole, taking the opportunity to stretch her out a little.");
 
 		output("\n\nShe moans softly as you worm your fingers inside of her, tailhole tensing as she fights to keep it from clamping down on your intruding digits, quietly squelching shut once your fingers are out.");
 
@@ -2692,11 +2693,11 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 		output("\n\nShe moans loud and exultantly as your cascade of [pc.cum] pours inside of her, belly bloating second after second. <i>\"Oh, yeah, fill me up!\"</i> she hollers joyously as your load keeps flooding her guts, puffing her stomach out into a pregnant-looking swell that she rubs with both hands.");
 	}
 	//CumQuantity=Extreme:
-	else output("\n\nA squeal of pleasure escapes her, eyes rolling back in their sockets and back arching as your inhuman tidal wave of [pc.cum] fills her to her very limits. Her greedy asshole gorges itself on your seed, gush after belly-bloating gush washing inside the exuberant laquine, swelling her to pregnancy and beyond as you empty yourself. Rounder and rounder she gets, weighed back down against her seat, pinned helplessly beneath her new liquid immensity before you finally finish. Eyes open and stare in wonder at her cum-gut, hands tracing it almost reverently. <i>\"...where have you been all my life?\"</i> she dreamily wonders to herself.");
+	else output("\n\nA squeal of pleasure escapes her, eyes rolling back in their sockets and back arching as your inhuman tidal wave of [pc.cum] fills her to her very limits. Her greedy asshole gorges itself on your seed, gush after belly-bloating gush washing inside the exuberant laquine, swelling her to pregnancy and beyond as you empty yourself. Rounder and rounder she gets, weighed back down against her seat, pinned helplessly beneath her new liquid immensity before you finally finish. Her eyes open and stare in wonder at her cum-gut, hands tracing it almost reverently. <i>\"...where have you been all my life?\"</i> she dreamily wonders to herself.");
 
 	output("\n\nThat was the last straw for her; her tailhole clamps down on you like a vice, milking the last of your seed from you as she cries out in pleasure. Balls clench down and cocks bulge as they erupt like twin fountains, spraying thick streamers of orange-yellow semen squarely at you.");
 
-	output("\n\nYou close your eyes as her seed spray all over yourself, only to rain back down at her. By the time she’s done you look like a mess, she looks like a mess, the couch looks like a mess.");
+	output("\n\nYou close your eyes as her seed sprays all over yourself, only to rain back down at her. By the time she’s done you look like a mess, she looks like a mess, the couch looks like a mess.");
 
 	output("\n\nA deep, loud groan escapes Kelly, who bonelessly collapses back against her seat, cocks falling limply against her ");
 	if(pc.cumQ() > 1000) output("swollen ");
@@ -2783,6 +2784,8 @@ public function deepFuckKellysButthole():void
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
+	var x:int = pc.cockThatFits(chars["KELLY"].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	author("Quiet Browser & LD");
 	output("In one fell swoop, you hook your arms around her middle and pull her with you as you spin around.");
 
@@ -2801,7 +2804,7 @@ public function deepFuckKellysButthole():void
 	//CumQuantity=VeryHigh:
 	else if(pc.cumQ() <= 10000) output("\n\nYou can feel the weight of the laquine in your lap increasing as your [pc.cum] pours inside of her, bloating her belly into a pregnant-looking bulge. Throughout it all her ass suckles from you, its hunger insatiable, gobbling down each great globule of jism without pause. When you finally run dry, it clamps down on you, determined to not let a single drop escape.");
 	//CumQuantity=Extreme:
-	else output("\n\nKelly's stomach balloons outwards under the inhuman tidal wave of [pc.cum] that is your orgasm, whole body writhing atop you as you fill her to her very limits. If she weren't so busy catching her own cum with her mouth, she'd probably be crying out in ecstasy at being crammed so very full, stomach visible to you even from your position behind and under her. Through it all, her ravenous ass shows no signs of relenting its efforts of milking you, even as her cum-gut sloshes and wobbles with each twitch of her orgasmic form. Only the slightest of moisture escapes to wet your dick once you have finished, the rest locked away inside her stomach.");
+	else output("\n\nKelly's stomach balloons outwards under the inhuman tidal wave of [pc.cum] that is your orgasm, her whole body writhing atop you as you fill her to her very limits. If she weren't so busy catching her own cum with her mouth, she'd probably be crying out in ecstasy at being crammed so very full, stomach visible to you even from your position behind and under her. Through it all, her ravenous ass shows no signs of relenting its efforts of milking you, even as her cum-gut sloshes and wobbles with each twitch of her orgasmic form. Only the slightest of moisture escapes to wet your dick once you have finished, the rest locked away inside her stomach.");
 	output("\n\nYou hug your lapful of laquine. Not really caring that you wind up with a bit of her honey on your arms. You feel pretty warm right now. The afterglow after such a great climax must be settling in. Without thinking you hug Kelly just a bit tighter, feeling her bosom press against your [pc.skinFurScales]. Her little nipples feel like small pebbles poking against your arm.");
 	output("\n\nKelly moans softly and shifts gingerly in your arms, audibly wincing as she does so. <i>\"[pc.name]? Honey? That was incredible, but...\"</i> she groans again and shifts once more. <i>\"I am going to be feeling this for days,\"</i> she whimpers.");
 	var bigCum:Boolean = false;
@@ -2823,7 +2826,7 @@ public function deepFuckKellysButthole():void
 		output("\n\nOh, you certainly do. You appreciate everything, you say, giving her a kiss on the back of her neck.");
 		output("\n\nShe giggles and wriggles a little at your gesture, only to let out a soft hiss. <i>\"Nnn... honey? Do you think I can maybe get up now? I really am kind of sore down there,\"</i> she admits, abused rosebud rippling around your shaft, still plugged inside of her.");
 		output("\n\nYou promptly release her.");
-		output("\n\nWith a sigh and a moan, Kelly squirms free of your lap and shuffles awkwardly to the floor, groaning softly. Rivulets of [pc.cumColor] begin visibly leaking from her ass, currently gaping in the perfect shape to contour to your mighty [pc.cockBiggestFits]. She staggers slightly, and then straightens up, turning to give you a slightly strained smile. <i>\"Oooh,\"</i> she moans softly to herself, hand reaching behind her to gently play with her ass. <i>\"It feels kind of empty now... don't think I like that,\"</i> she pouts.");
+		output("\n\nWith a sigh and a moan, Kelly squirms free of your lap and shuffles awkwardly to the floor, groaning softly. Rivulets of [pc.cumColor] begin visibly leaking from her ass, currently gaping in the perfect shape to contour to your mighty prick. She staggers slightly, and then straightens up, turning to give you a slightly strained smile. <i>\"Oooh,\"</i> she moans softly to herself, hand reaching behind her to gently play with her ass. <i>\"It feels kind of empty now... don't think I like that,\"</i> she pouts.");
 		output("\n\nYou ask if she has anything you could get her to dull the pain. Maybe a lotion or something?");
 		output("\n\nShe looks thoughtful, visibly contemplating. <i>\"I have a jar of Peggy's Elasticizing Oil brand lubricant in my room, near the bed; that ought to help,\"</i> she suggests.");
 		output("\n\nNodding, you run off to fetch the jar. Locating it in a moment, you bring her the requested jar.");

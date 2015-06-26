@@ -2935,7 +2935,7 @@ public function crotchTeaseText(target:Creature):void {
 			output("One of your hands");
 		}
 		else if(pc.hasVagina()) output("Your other hand");
-		if(pc.hasVagina()) output(" opens your [pc.oneVagina], giving your foe a good view of the glorious [pc.vaginaColor] interior. ");
+		if(pc.hasVagina()) output(" opens [pc.oneVagina], giving your foe a good view of the glorious [pc.vaginaColor] interior. ");
 		output("After a bit, ");
 		if(pc.hasCock()) output("[pc.cum] begins to bubble from your dick");
 		if(pc.hasVagina() && pc.hasCock()) output(" while");
@@ -2979,7 +2979,7 @@ public function crotchTeaseText(target:Creature):void {
 		//PC is relevantly clothed: 
 		if(pc.isCrotchGarbed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
 		else output("You adjust your thighs to highlight");
-		output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of your [pc.oneVagina], drawing your target’s gaze.");
+		output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of [pc.oneVagina], drawing your target’s gaze.");
 		output("\n\n<i>“Surprised? When I saw ");
 		if(foes[0] is ZilFemale) output("you girls");
 		else output("your zil girls");

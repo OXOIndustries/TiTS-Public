@@ -190,6 +190,7 @@ public function takeARunInNewTexas():void
 	pc.modThickness(-3,false);
 	soreDebuff(2);
 	sweatyDebuff(2);
+	pc.energy(-50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
