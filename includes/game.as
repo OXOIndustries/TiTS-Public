@@ -1718,6 +1718,8 @@ public function statisticsScreen():void
 	output2("<b>Critical Chance, Ranged: </b>" + pc.critBonus(false) + "%\n");
 	output2("<b>Evasion Bonus: </b>" + pc.evasion() + "%\n");
 
+
+	//======NPC STATISTICS=====//
 	output2("\n<b><u>NPC Statistics:</u></b>\n");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output2("<b>Kiro's Trust: </b>" + kiroTrust() + "%\n");
 	//Lane shit
@@ -1734,6 +1736,9 @@ public function statisticsScreen():void
 	if (flags["SAEN MET AT THE BAR"] != undefined) output2("<b>Saendra's Affection: </b>" + saendraAffection() + "% (69% Max)\n");
 	if (flags["KELLY_ATTRACTION"] != undefined) output2("<b>Kelly's Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%\n");
 
+
+
+	//=====GENERAL STATS=====//
 	output2("\n<b><u>General Statistics:</u></b>\n");
 	output2("<b>Crew, Recruited: </b>" + crewRecruited() + "\n");
 	output2("<b>Crew, Onboard: </b>" + crew(true) + "\n");
@@ -1748,6 +1753,7 @@ public function statisticsScreen():void
 	{
 		output2("<b>Vanae Deflowered: </b>" + StatTracking.getStat("characters/maiden vanae/cherrys popped") + "\n");
 	}
+	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output2("<b>Venus Pitcher Elders, Times Hypnotized By: </b>" + flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] + "\n");
 	var totalVirginitiesTaken:Number = StatTracking.getStat("characters/maiden vanae/cherrys popped");
 	if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
 	if(!embry.vaginalVirgin) totalVirginitiesTaken++;
