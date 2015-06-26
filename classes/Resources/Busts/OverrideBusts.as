@@ -28,6 +28,9 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/firewall_battle.png", mimeType = "image/png")]
 		public var Bust_FIREWALL_BATTLE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/queen_fuzzlebottom.png", mimeType = "image/png")]
+		public var Bust_FUZZLEBOTTOM:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
@@ -67,6 +70,12 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/lyralla_nude.png", mimeType = "image/png")]
 		public var Bust_LYRALLA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jacques00/queen_marsail.png", mimeType = "image/png")]
+		public var Bust_MARSAIL:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/matron_oserre.png", mimeType = "image/png")]
+		public var Bust_MATRON_OSERRE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
@@ -74,6 +83,16 @@
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_pilot.png", mimeType = "image/png")]
 		public var Bust_MYR_GOLD_PILOT:Class;
+
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_soldier.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_GUARD:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_guard.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_GUARD_HAMMER:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_rebel.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_REBEL:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_student.png", mimeType = "image/png")]
+		public var Bust_MYR_GOLD_STUDENT:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD:Class;

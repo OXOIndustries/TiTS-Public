@@ -364,6 +364,7 @@ public function volunteerAsAntPI(repeat:Boolean = false):void
 public function unificationInvitationEventProcInGildenmere():void
 {
 	showName("A CHANCE\nENCOUNTER!");
+	showBust("MYR_GOLD_STUDENT");
 	output("\n\nA young, barely-matured ant-girl brushes past you, forcing a flyer into your hand. She’s gone before you question her. Curious, you take a look at the pamphlet. It’s an advertisement for a unification rally - something about creating a unified Myrellion where golds and reds can live as one species, together. They have meetings in the southwest corner of the mushroom park at 18:00.");
 	output("\n\n(<b>Gained Key Item: Unification Rally Invite</b> - This piece of paper invites you to a unification rally at 18:00 hours in the southwest corner of Mushroom Park.)");
 	pc.createKeyItem("Unification Rally Invite: 18:00, Mushroom Park",0,0,0,0);
@@ -376,6 +377,7 @@ public function unificationInvitationEventProcInGildenmere():void
 public function unificationRallyEvent():void
 {
 	showName("UNIFICATION\nRALLY");
+	showBust("MYR_GOLD_REBEL");
 	output("\n\nThe area may have seemed empty at first, but over the span of a few minutes, gold myr filed in from all directions, surrounding you in a sea of gleaming chitin and exposed bosoms. The press of bodies is barely tolerable. These ant women have no regard for personal space. Dangling abdomens butt against your [pc.legOrLegs]. Doubled shoulders bounce off your own. You can barely move without accidentally brushing against a nipple.");
 	output("\n\nIndividuality is celebrated amongst the assembled ants, who are dressed and ornamented far in excess of their more mundane countrywomen. Even the few males here are odd-looking. One is shaved bald and tattooed. Another is heavily pierced. Most startling of all are the women wearing red lipstick - a color you’ve rarely seen displayed in Gildenmere thanks to its association with the Scarlet Federation.");
 	output("\n\nOne woman, taller than the rest, stands at the front of it all. Her hair is dyed crimson, her lips painted a brilliant ruby. When she speaks, it is with a voice full of conviction and confidence, decrying the Council of Queen’s decision to resist the Scarlet Federation and the Scarlet Federation’s decision to invade in the first place. According to her, the way forward is fraught with peril, but only through communication and love can peace be achieved.\n\nNext to you, an ant-girl with red-painted chitin snorts. <i>“Hippy bullshit. We should just join the Federation. They’re the strong ones.”</i>");

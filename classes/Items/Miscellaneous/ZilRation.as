@@ -146,6 +146,7 @@
 					target.addLegFlag(GLOBAL.FLAG_SMOOTH);
 					target.legType = GLOBAL.TYPE_BEE;
 					target.legCount = 2;
+					target.genitalSpot = 0;
 					changes++;
 				}
 				else if (!target.legCountUnlocked(2))

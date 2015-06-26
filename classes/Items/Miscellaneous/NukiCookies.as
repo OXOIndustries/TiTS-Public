@@ -524,6 +524,7 @@
 					kGAMECLASS.output("\n\nOne moment, you’re savoring the last few crumbs from your cookies, the next, you’re dropping hard on your [pc.butt]. It feels like you’ve lost all control over your [pc.leg]... and not just all control - all feeling! In a panic, you look down at your quivering appendage, watching it ripple and shift, slowly revealing a divot in the center that all-too-soon becomes a total split.\n\nYou’ve got two masses, shaped roughly like bipedal legs, filling out before your eyes. Knees appear. New-grown toes wiggle, tipped with short claws. You can even feel soft pads forming on the bottoms of your freshly-minted feet. Not long after, a thick coat of fur springs up across your flesh, bringing with it a tingling so intense that it makes your recently-shaped muscles jerk and twitch. You can feel again!\n\nThe new limbs get easier to control over the next minute, and in no time you’re standing up and walking around on <b>your new, tanuki-like legs</b> just fine.");
 					pc.clearLegFlags();
 					pc.legCount = 2;
+					pc.genitalSpot = 0;
 					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 					pc.addLegFlag(GLOBAL.FLAG_FLUFFY);

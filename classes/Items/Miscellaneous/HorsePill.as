@@ -923,6 +923,7 @@
 						{
 							kGAMECLASS.eventBuffer += "Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.";
 							target.legCount = 2;
+							target.genitalSpot = 0;
 						}
 						//Quad+ legs
 						else if (target.legCount >= 3 && target.legCountUnlocked(4)) 
@@ -933,8 +934,12 @@
 								kGAMECLASS.eventBuffer += " The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.";
 								target.legCount = 4;
 							}
+							if(target.genitalSpot != 2) 
+							{
+								if(target.hasGenitals()) kGAMECLASS.eventBuffer += " Your crotch has even moved back to the rear of your frame, just like an equine's.";
+								target.genitalSpot = 2;
+							}
 							kGAMECLASS.eventBuffer += " For better or worse, you've got horse-legs now.";
-
 						}
 						//Double legs - DA CATCH ALLZ
 						else

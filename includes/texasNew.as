@@ -1346,9 +1346,28 @@ public function carrieFinishedMilking(amount:Number = 0):void
 public function cumCreditValue(amount:Number = 0):int
 {
     var x:int = 2;
-    x += Math.round(amount/100);
-    if(x > 50) x = 50 + Math.round((amount-5000)/200);
-    
+    //Payout = 1/100th of volume for first 5000.
+    if(amount < 5000) x = Math.round(amount/100);
+    else x = 50;
+    amount -= 5000;
+    //Next 15000 - 1/500th
+    if(amount >= 0)
+    {
+		
+		if(amount < 15000) x += Math.round(amount/500);
+		else x += 30;
+		amount -= 15000;
+	}
+	//Next 100L - 1/2000
+	if(amount >= 0)
+	{
+		if(amount < 100000) x += Math.round(amount/2000);
+		else x += 50;
+		amount -= 100000;
+	}
+	//Super low payouts now
+	if(amount >= 0) x += Math.round(amount/20000);
+  	
     //honey worth more!
     if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) x *= 2;
     return x;

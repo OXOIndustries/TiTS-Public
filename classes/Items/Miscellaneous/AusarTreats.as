@@ -316,6 +316,7 @@
 							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up over the new limbs, and by the time it finishes, <b>you've grown ausar-like legs.</b>");
 						}
 						pc.legCount = 2;
+						pc.genitalSpot = 0;
 						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);

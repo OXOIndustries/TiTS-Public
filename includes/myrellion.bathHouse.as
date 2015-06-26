@@ -17,7 +17,7 @@ public function bathHouseBonus():Boolean
 public function showMatron():void
 {
 	showName("GOLD\nMATRON");
-	showBust("GOLD_MATRON");
+	showBust("MATRON_OSERRE");
 }
 
 //[Matron] / Bath House Menu
@@ -61,6 +61,7 @@ public function talkToMatronAbootBathHooose():void
 	addDisabledButton(1,"Talk","Talk","You just finished that.");
 	if(pc.credits >= 50) addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
 	else addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Public Bath
@@ -319,7 +320,7 @@ public function honeyPotFunTimes():void
 	output("\n\nThe answer, you quickly find out, is yes.");
 	output("\n\nWish a splash, the honeypot’s hands leap up to her mouth, covering her mouth to catch a scream of pleasure. You dig your teeth into one of her nipples, rolling the stiff tip between your teeth and groping at the other with your hand. Nectar squirts out, splattering into the water in a glistening golden arc. All there is for you to do is keep doing what you’re doing, lavishing rough affection onto the swollen breasts as they steadily discharge their pent-up bounty into the pool, your mouth, and onto the honeypot herself. The two of you must look like a pair of honey-slathered messes by the time you think she’s finally calming down, gasping and panting and drooling honey from her dark mountaintops.");
 	output("\n\n<i>“You </i>were<i> hungry, weren’t you?”</i> she giggles, giving a smile to the collected gold ant-girls who’re eying you both with a mix of hunger and arousal. <i>“Now look what you’ve done... I think there’s a line forming.”</i>");
-	output("\n\nSo there is. You give them bunch of golds wading your way a sheepish smile, thank the honeypot for the snack, and haul yourself up out of the pool. You’ve had enough relaxation for one trip...");
+	output("\n\nSo there is. You give the bunch of golds wading your way a sheepish smile, thank the honeypot for the snack, and haul yourself up out of the pool. You’ve had enough relaxation for one trip...");
 	//[Next]
 	//Pass 20 minutes
 	pc.energy(pc.energyMax());

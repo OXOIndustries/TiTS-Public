@@ -1285,7 +1285,7 @@ public function maleNaleenSucksPCOff():void
 	}
 	output("\n\nThen you lean forward and press your [pc.lips] against his in an aggressive kiss.The poor kitty is surprised at first, but soon enough, he kisses you back with eagerness. Your bodies press together, your [pc.skinFurScales] rubbing against his black fur sensually.");
 	if(pc.biggestTitSize() >= 2) output("\n\nYour [pc.fullChest] presses into the naleen’s toned front, and you can’t help but " + pc.mf("groan","moan") + " into the kiss as your rock hard [pc.nipples] grind against your lover.");
-	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both, your own mammaries and the fur of the naga-kitty.");
+	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both your own mammaries and the fur of the naga-kitty.");
 
 	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze.The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
 	output("\n\nWith a ");
@@ -1324,7 +1324,7 @@ public function maleNaleenSucksPCOff():void
 
 	if(pc.lipRating() >= 6) output("\n\nYour whorish, cocksucker lips seal around the penis tightly, and their smooth, soft  flesh makes the naleen shiver under your ministrations. You decide to really get going and descend on his shaft. Your [pc.lips] slide down the reptilian prick with ease and massage the senitive dickfesh almost as well as a terran pussy. Your sensitive, pornstar-level dickpillows tingle with pleasure as you wrap them around the naleen’s length.");
 	else output("\n\nGently you circle the penis with your tongue, before you descend on his shaft. You stretch your jaw wide and slide your [pc.lips] down on the reptilian prick.");
-	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes into your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skinFurScales] is flushed with arousal and you can barely think straight.");
+	output("\n\nSoon enough you can feel it poke at the back of your throat. You suppress your gag reflex as best as you can and force the rigid shaft further down. You shudder in delight as it pushes into your tight throat. So does the your lover. The naleen lets out a pleasured cry and another spurt of precum shoots straight into your gullet. By now your [pc.skin] is flushed with arousal and you can barely think straight.");
 	if(pc.isBimbo()) output("\n\nSucking a big cock always gets so so hot and bothered and it feels just soooo good. It’s way more fun to use your mouth for cocksucking than for talking at any rate.");
 	else if(pc.legCount == 1) output("\n\nIn your groin");
 	else 
@@ -1345,12 +1345,12 @@ public function maleNaleenSucksPCOff():void
 		}
 		else 
 		{
-			if(pc.cockTotal() == 1) output("It practically leaks pre like a faucet.");
-			else output("They practically leak pre like faucets.");
+			if(pc.cockTotal() == 1) output(" It practically leaks pre like a faucet.");
+			else output(" They practically leak pre like faucets.");
 			output(" The ground beneath you is getting drenched in your copious fluids.");
 		}
 		//if herm: 
-		if(pc.hasVagina()) output("Similarly ");
+		if(pc.hasVagina()) output(" Similarly ");
 	}
 	//if vagina: 
 	if(pc.hasVagina())

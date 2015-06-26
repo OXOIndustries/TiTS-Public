@@ -245,6 +245,7 @@
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 						pc.legCount = 2;
+						pc.genitalSpot = 0;
 						changes++;
 					}
 					else kGAMECLASS.output(target.legTypeLockedMessage());

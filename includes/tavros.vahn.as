@@ -171,7 +171,7 @@ public function giveVahnABJ():void
 	else output("and slide your hands down your naked form. Since you’re not wearing a scrap of clothing, everything is already on display, but here in private, he doesn’t have to pretend not to stare...");
 	//PC is wearing armor:
 	if(!(pc.armor is EmptySlot)) output(" You pull off your [pc.armor], letting your garb fall to the docking floor as he watches on with obvious lust.");
-	if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, you slip off your [pc.upperGarment], tossing it aside and liberating your [pc.chest]");
+	if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, you slip off your [pc.upperGarment], tossing it aside and liberating your [pc.chest].");
 	if(!(pc.lowerUndergarment is EmptySlot))
 	{
 		output(" When you remove your [pc.lowerUndergarment], you take it nice and slow, letting him enjoy the sight of your slowly emerging ");

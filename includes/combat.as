@@ -1601,6 +1601,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is WetraHound) wetraHoundAI();
 	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
 	else if (aggressor is MyrInfectedFemale) infectedMyrAI();
+	else if (aggressor is DoctorLash) docLashAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1746,6 +1747,10 @@ public function victoryRouting():void
 	{
 		winVsInfectedMyr();
 	}
+	else if(foes[0] is DoctorLash)
+	{
+		winVsDoctorLash();
+	}
 	else genericVictory();
 }
 
@@ -1887,6 +1892,10 @@ public function defeatRouting():void
 	else if (foes[0] is MyrInfectedFemale)
 	{
 		loseToInfectedMyrYouSubbieSloot();
+	}
+	else if(foes[0] is DoctorLash)
+	{
+		loseToDoctorLash();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2209,6 +2218,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "infected myr":
 			chars["INFECTED MYR FEMALE"].prepForCombat();
+			break;
+		case "Dr. Lash":
+			chars["DRLASH"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2923,7 +2935,7 @@ public function crotchTeaseText(target:Creature):void {
 			output("One of your hands");
 		}
 		else if(pc.hasVagina()) output("Your other hand");
-		if(pc.hasVagina()) output(" opens your [pc.oneVagina], giving your foe a good view of the glorious [pc.vaginaColor] interior. ");
+		if(pc.hasVagina()) output(" opens [pc.oneVagina], giving your foe a good view of the glorious [pc.vaginaColor] interior. ");
 		output("After a bit, ");
 		if(pc.hasCock()) output("[pc.cum] begins to bubble from your dick");
 		if(pc.hasVagina() && pc.hasCock()) output(" while");
@@ -2967,7 +2979,7 @@ public function crotchTeaseText(target:Creature):void {
 		//PC is relevantly clothed: 
 		if(pc.isCrotchGarbed()) output("You slip your [pc.lowerGarments] down just enough to reveal");
 		else output("You adjust your thighs to highlight");
-		output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of your [pc.oneVagina], drawing your target’s gaze.");
+		output(" where your [pc.skinFurScalesColor] starts to give way to the dusky shade of [pc.oneVagina], drawing your target’s gaze.");
 		output("\n\n<i>“Surprised? When I saw ");
 		if(foes[0] is ZilFemale) output("you girls");
 		else output("your zil girls");

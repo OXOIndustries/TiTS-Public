@@ -6,7 +6,7 @@
 		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0, "Woman", talkToBrothelLadyRepeat);
 		else addButton(0,"Woman",talkToBrothelLadyRepeatAgain);
 	}
-
+	else addButton(0, "Woman", talkToBrothelLadyRepeatAgain);
 	if (reahaAtBeths())
 	{
 		author("Savin");
@@ -15,7 +15,7 @@
 		output(RandomInCollection("ausar", "kaithrit", "human", "leithan", "rahn"));
 		output(" girl shakes her stuff for the crowd. The little cow perks up when she sees you, flashing you a hopeful smile.");
 
-		addButton(0, "Reaha", reahaBackAtBeths);
+		addButton(1, "Reaha", reahaBackAtBeths);
 	}
 }
 
@@ -149,11 +149,11 @@ public function roughMilkingFollowerReaha():void {
 	userInterface.showName("\nREAHA");
 	userInterface.showBust("REAHA");
 	output("You tighten your grip on the poor cow-slut's teats, fingers sinking into her soft, squishy boobflesh. They're practically deflating under your grip as more and more of her sweet [reaha.milk] floods out into the bucket, sloshing ever closer toward the brim as you continue to coax out her heavy load. Reaha groans as you squeeze her tighter, trying and failing to keep her voice from breaking into an ecstatic \"Moooooo!\" as she cums. Her [reaha.milk] flow practically explodes as her whole body quivers and quakes, from her big tits to her thighs as she creams herself, fem-spunk drooling lewdly from her sodden snatch as the boobgasm rocks her sultry form.");
-	output("\n\n<i>\"Gaaaah!\"</i>  she cries, her mooing finally resuming a human tone as the steady flow of [reaha.milkColor] dies down to nothing but a trickle, smearing across your fingers. <i>\"O-oh fuck me, that... that feeling makes it all worthwhile,\"</i>  she breathes, head resting");
+	output("\n\n<i>\"Gaaaah!\"</i>  she cries, her mooing finally resuming a human tone as the steady flow of [reaha.milkColor] dies down to nothing but a trickle, smearing across your fingers. <i>\"O-oh fuck me, that... that feeling makes it all worthwhile,\"</i> she breathes, head resting");
 
 	//if NotFree:
-	if(flags["REAHA_SLAVE"] == 1) output("heavily against the wall as she pants and heaves.");
-	else output("back against your shoulder, nuzzling against your [pc.chest] as she recovers from the boobgasm.");
+	if(flags["REAHA_SLAVE"] == 1) output(" heavily against the wall as she pants and heaves.");
+	else output(" back against your shoulder, nuzzling against your [pc.chest] as she recovers from the boobgasm.");
 
 	output("\n\nYou pat the cow-girl on one of her much-reduced breasts, leaving her soft flesh jiggling as you step back, looking for a towel to dry your hands off with.");
 
@@ -453,7 +453,7 @@ public function dominantReahaAss():void {
 	}
 	output(". Reaha, too, screams a cry of pleasure, milk and fem-cum spurting as you pile-drive the dildo down into her sodden box, ramming all eighteen inches of latex into her cunt. Holding your cow tight, the two of you hump and thrust through the orgasm, drenching each other in your sexual juices as the dildo hammers from one hole to the other.");
 
-	output("\n\nThe orgasm leaves you both panting heavily, rolled in each other's arms in a tangle of cum-stained sheets. You barely feel the dildo slip from your guts, only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky smile. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
+	output("\n\nThe orgasm leaves you both panting heavily, rolled in each other's arms in a tangle of cum-stained sheets. You barely feel the dildo slip from your guts, only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky slime. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	pc.orgasm();
 	processTime(20+rand(5));
 	clearMenu();

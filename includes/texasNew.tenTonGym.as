@@ -190,6 +190,7 @@ public function takeARunInNewTexas():void
 	pc.modThickness(-3,false);
 	soreDebuff(2);
 	sweatyDebuff(2);
+	pc.energy(-50);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -370,7 +371,7 @@ public function talkToQuenton():void
 	if(flags["MET_QUENTON"] == undefined)
 	{
 		output("<i>“Always good to see someone lookin’ to be their best and buffest.”</i> The musclebound bull grins, the cords of his thick neck standing out. If his shirt had a collar, it would have just ripped. He holds out his hand, and you introduce yourself. His grip feels like it could crush your bones, but he doesn’t squeeze.");
-		output("\n\n<i>“If you’re lookin’ to join up here at the Ten Ton Gym, we’re runnin’ a special right now, full membership for five hundred credits. If you just want to get yourself a sample, you can use the facilities today for fifty credits. Whatcha say?”</i>");
+		output("\n\n<i>“If you’re lookin’ to join up here at the Ten Ton Gym, we’re runnin’ a special right now, full membership for 10,000 credits. If you just want to get yourself a sample, you can use the facilities today for 500 credits. Whatcha say?”</i>");
 		processTime(2);
 	}
 	else
@@ -396,11 +397,11 @@ public function purchaseTempGymMembership():void
 	clearOutput();
 	showQuenton();
 	author("Slab Bulkhead");
-	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift?  I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be fifty credits, friend.”</i>");
+	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift?  I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be 500, friend.”</i>");
 	processTime(1);
 	clearMenu();
 	//[Purchase Day]{Set global flag GYM_MEMBER_DAY to true}{Deduct 50 credits} Go to Purchased Day
-	if(pc.credits >= 50) addButton(0,"Purchase",purchaseTempGymMembershipConfirm,undefined,"Purchase","Spend 50 credits on a day pass.");
+	if(pc.credits >= 500) addButton(0,"Purchase",purchaseTempGymMembershipConfirm,undefined,"Purchase","Spend 500 credits on a day pass.");
 	else addDisabledButton(0,"Purchase","Purchase","You can't afford a day pass.");
 	//[Never Mind] Go to Entrance
 	addButton(14,"Back",talkToQuenton);
@@ -414,7 +415,7 @@ public function purchaseTempGymMembershipConfirm():void
 	author("Slab Bulkhead");
 	output("You pay Quenton with a credit chit, and he gestures toward the gym doors. <i>“Enjoy your workout, and do come back.”</i>");
 	processTime(1);
-	pc.credits -= 50;
+	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -426,10 +427,10 @@ public function buyDatLifetimeMembership():void
 	clearOutput();
 	showQuenton();
 	author("Slab Bulkhead");
-	output("Quenton’s grin stretches even wider. <i>“Always happy to welcome a new member!”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“Five hundred credits, friend, and you’ve got a home at the greatest gym this side of the galaxy.”</i>");
+	output("Quenton’s grin stretches even wider. <i>“Always happy to welcome a new member!”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“10,000 credits, friend, and you’ve got a home at the greatest gym this side of the galaxy.”</i>");
 	clearMenu();
-	if(pc.credits >= 500) addButton(0,"Purchase",purchaseLifetimeGymMembership,undefined,"Purchase","Purchase a lifetime membership for 500 credits.");
-	else addDisabledButton(500,"Purchase","Purchase","You cannot afford that.");
+	if(pc.credits >= 10000) addButton(0,"Purchase",purchaseLifetimeGymMembership,undefined,"Purchase","Purchase a lifetime membership for 10,000 credits.");
+	else addDisabledButton(0,"Purchase","Purchase","You cannot afford that.");
 	//[Purchase Life]{Set global flag GYM_MEMBER_LIFE to true}{Deduct 500 credits} Go to Purchased Life
 	//[Never Mind] Go to Entrance
 	addButton(14,"Back",talkToQuenton);
@@ -443,7 +444,7 @@ public function purchaseLifetimeGymMembership():void
 	author("Slab Bulkhead");
 	output("You pay him with a credit chit, and the computer plays a twangy musical fanfare. <i>“You’re all set, [pc.name]. Welcome to the Ten Ton Gym!”</i>");
 	processTime(1);
-	pc.credits -= 500;
+	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

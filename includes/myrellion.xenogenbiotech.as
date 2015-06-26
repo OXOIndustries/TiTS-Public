@@ -685,7 +685,7 @@ public function mcallisterMyrTFsMeetThem(fromRootMenu:Boolean = false):void
 	
 	output("\n\nCompletely nonchalantly, McAllister starts to undo the buttons on his lab coat, lets it fall to the ground, and starts to unbuckle his belt.");
 	if (pc.isNude()) output(" You chuck your [pc.gear] into the bin and wait for the doctor to join you in nudity.");
-	else if (pc.libido() < 70)
+	else if (pc.libido() < 70 || pc.exhibitionism() < 66)
 	{
 		output(" You feel a blush come over you as you realize you’re going to have to disrobe not just in front of Doctor McAllister, but the dozen or so female assistants standing placidly just outside the glass. You can feel their eyes on you, taking you in like just another specimen to study.");
 	
@@ -724,7 +724,7 @@ public function mcallisterMeetThemII():void
 	
 	output("\n\n<i>“Great!”</i> the faux-red beams, running a hand up her svelte, naked body until she’s cupping one of her perky breasts. She barely puts any pressure at all on it before a bead of myr nectar wells up on the tip of her nipple, staining her chitin-black digits. She giggles and makes a bit of a show of licking the nectar from her fingers.");
 	
-	output("\n\nThe other myr nods, running a hand through her long golden hair. Her other arms busies itself supporting her very, very generous bosom: while the wanna-be red isn’t exactly petite, her gold companion is absolutely stacked, rocking a honey-swollen rack that must be at least in the H-cup region.");
+	output("\n\nThe other myr nods, running a hand through her long golden hair. Her other arm busies itself supporting her very, very generous bosom: while the wanna-be red isn’t exactly petite, her gold companion is absolutely stacked, rocking a honey-swollen rack that must be at least in the H-cup region.");
 	
 	output("\n\n<i>“The last round of mods did this to us,”</i> the gold says, pointing a plated finger at her companion’s leaky bosom. <i>“There’s so much coming out now, we can barely keep up with it!”</i>");
 	
@@ -757,7 +757,7 @@ public function mcallisterMeetThemIII():void
 	output("\n\n<i>“Hi!”</i> the red myr says, still fondling herself. Your eyes are immediately drawn to to pink peak of her teat, beading with golden moisture. She grins up at you. <i>“Haven’t seen you before. Are you one of Doctor McAllister’s assistants?”</i>");
 	
 	if (pc.isMasculine()) output("\n\n<i>“Can’t be,”</i> the gold giggles. <i>“He’s a dude! And... pretty handsome, too!”</i>");
-	else output("The gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be a another scientist!”</i>");
+	else output("\n\nThe gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be a another scientist!”</i>");
 	
 	output("\n\nYou introduce yourself: <i>“I’m [pc.name] Steele, the one who helped Doctor McAllister finish the red myr therapy.”</i>");
 	
@@ -830,7 +830,7 @@ public function mcallisterMyrGirlsCocky():void
 	
 	output("\n\n<i>“How about you let your friend here in on the action, too?”</i> McAllister laughs, drawing your attention for the first time since you earned the myrs’ attentions. As he speaks, he gently pushes the red girl’s head off his cock - no mean feat, considering how much he was just shoving down her throat - and lets the crown flop onto the gold-painted lips of the other ant-girl. She opens wide, almost languidly, like it’s the most natural thing in the word to accept the doctor’s spit-slick human shaft. McAllister’s hips start to pump forward, driving his footlong prick down her throat until the front of it bulges with his sheer size. The doctor starts to thrust in and out, fucking her mouth like a welcoming cunt and forcing up rivulets of spit and gagging moans from the golden’s mouth.");
 	
-	output("\n\nNow lacking a cock to suck, your red partner finds something else to keep her busy: a pair of big, jiggling golden tits. With a purr dripping with relish and anticipation, the red babe wraps her lips around the gold’s saucer-sized teats and starts to suck. You can see her cheeks bulging a second later, trying to keep up with the sudden surge of nectar flooding into her mouth. Grinning to yourself, you give the slap on the ass, making that rosy butt jiggle - and making her gulp down what looks like a gallon of backed-up nectar straining her cheeks. She all but spews honey over the other myr’s balloon-like tit, giving you a look over her shoulder... that you answer with another open-handed swat and going");
+	output("\n\nNow lacking a cock to suck, your red partner finds something else to keep her busy: a pair of big, jiggling golden tits. With a purr dripping with relish and anticipation, the red babe wraps her lips around the gold’s saucer-sized teats and starts to suck. You can see her cheeks bulging a second later, trying to keep up with the sudden surge of nectar flooding into her mouth. Grinning to yourself, you give her a slap on the ass, making that rosy butt jiggle - and making her gulp down what looks like a gallon of backed-up nectar straining her cheeks. She all but spews honey over the other myr’s balloon-like tit, giving you a look over her shoulder... that you answer with another open-handed swat and going");
 	if (pc.balls > 0) output(" balls-deep");
 	else output(" to the hilt");
 	output(" in her sodden box.");
@@ -874,7 +874,7 @@ public function mcallisterMyrGirlsCocky():void
 	
 	output("\n\n<i>“Gonna... gonna...”</i> you grunt, grabbing both their heads and angling them up to meet your gaze.");
 	
-	output("\n\n<i>“Cum on already!”</i> the red teases, lickingh er envenomed tongue across your glans, giving you a potent surge of lust - just in time for you to splatter her lips with [pc.cumColor] spunk! The girls all but fight over your cock after that, angling it onto one of their faces, then the other, then wrapping two pairs of lips around the head to try and suck your remaining load down. They drain you like pros, sucking up every last drop of seed you have to offer them until their faces are covered, and their mouths seem entirely painted with [pc.cumColor].");
+	output("\n\n<i>“Cum on already!”</i> the red teases, licking her envenomed tongue across your glans, giving you a potent surge of lust - just in time for you to splatter her lips with [pc.cumColor] spunk! The girls all but fight over your cock after that, angling it onto one of their faces, then the other, then wrapping two pairs of lips around the head to try and suck your remaining load down. They drain you like pros, sucking up every last drop of seed you have to offer them until their faces are covered, and their mouths seem entirely painted with [pc.cumColor].");
 	
 	output("\n\n<i>“That was nice,”</i> the gold coos, running her tongue along the length of your cumslit. <i>“Maybe this new, uh, libido isn’t so bad.”</i>");
 	
@@ -935,7 +935,7 @@ public function mcallisterMyrGirlsCunty():void
 	
 	output("\n\n<i>“Doing okay there?”</i> McAllister asks, barely audible over the sounds of your moans, and the faux-myrs’ eager slurps.");
 	
-	output("\n\nYou nod over your shoulder, unable to form words while a pair of writhing muscles are squirming all over your G-spot. He laughs, and you hear the wet sounds of his unsheathing his cock from whichever myr pussy he was going balls-deep in at the time. A look over your shoulder shows him meandering up the bed, hands all over the buxom ants... and then your [pc.butt]. Your eyes go wide as another pair of fingers slides in between your [pc.legs] drilling in alongside the babes eating you out.");
+	output("\n\nYou nod over your shoulder, unable to form words while a pair of writhing muscles are squirming all over your G-spot. He laughs, and you hear the wet sounds of him unsheathing his cock from whichever myr pussy he was going balls-deep in at the time. A look over your shoulder shows him meandering up the bed, hands all over the buxom ants... and then your [pc.butt]. Your eyes go wide as another pair of fingers slides in between your [pc.legs] drilling in alongside the babes eating you out.");
 	
 	output("\n\n<i>“N-no,”</i> you manage to moan, already feeling that it’s too late. <i>“Gonna... gonna cum!”</i>");
 	
@@ -953,7 +953,7 @@ public function mcallisterMyrGirlsCunty():void
 	else output(" stretches you in wondrous ways");
 	output(", making you scream with pleasure.");
 	
-	output("\n\n<i>“That a [pc.boyGirl],”</i> McAllister grunts, grabbing at your [pc.chest] as he rapidly hilts himself inside you. One of your hands immediately falls to your [pc.belly], feeling the lump of his monumental cock battering against your gut, stretching you out with its sheer inhuman size.");
+	output("\n\n<i>“That a " + pc.mf("boy","girl") + ",”</i> McAllister grunts, grabbing at your [pc.chest] as he rapidly hilts himself inside you. One of your hands immediately falls to your [pc.belly], feeling the lump of his monumental cock battering against your gut, stretching you out with its sheer inhuman size.");
 	
 	output("\n\nMcAllister starts to move after that, fucking you with quick, hard thrusts that leave your [pc.butt] quivering with every movement. Seeing you rendered passive by the big man hammering you, the myr girls guide your head down towards their quartet of ample, nectar-swollen breasts. Your lips find the red myr’s teat first, and she arches her back and moans, squirting her syrupy nectar into your eager mouth. The taste is distinctly different than that of the faux-gold - it’s not as sweet, but has a richer and creamier taste to it. Your taste buds swoon as you gobble it down, loving every moment of the alien taste.");
 	
@@ -968,7 +968,7 @@ public function mcallisterMyrGirlsCunty():void
 	if (pc.hasCock() && pc.cocks.length > 1) output("s");
 	output(". The doctor’s pace picks up, subtly at first, letting you adjust to him, but soon he’s pounding you like a jackhammer. You’re keenly aware of his breath becoming more ragged, and his cock twitching and throbbing more and more inside you - he’s getting close!");
 	
-	output("\n\nThen again, so are you. Though you’re still on the heels of the first climax, you can feel the tell-tale contractions starting your [pc.cunt], squeezing tight around McAllister’s shaft. All you can do is grip the headboard and hold on for dear life while McAllister and the myr take you for a hell of a ride.");
+	output("\n\nThen again, so are you. Though you’re still on the heels of the first climax, you can feel the telltale contractions starting in your [pc.cunt], squeezing tight around McAllister’s shaft. All you can do is grip the headboard and hold on for dear life while McAllister and the myr take you for a hell of a ride.");
 	
 	output("\n\nMcAllister grunts and hilts himself in you, burying his unnaturally long prick into your quivering slit and unleashing a torrent of seed. A gasp rends its way out of your mouth, but nothing else: no scream of pleasure, no lewd moans... all you can manage is a silent bulge of your eyes - and your [pc.belly] - as you take the doctor’s load.");
 	if (pc.hasCock()) output(" As if to balance your body out, your [pc.cock] erupts across the myr girls’ faces, slathering the faux-ants with [pc.cumNoun]. They take it eagerly, mouths open and giggling.");
@@ -1048,7 +1048,7 @@ public function mcallisterMyrHybrids():void
 	
 	output("\n\n<i>“More importantly, though, you’d have problems of distribution and education.”</i> McAllister says, an almost venomous hiss on the last word. He glances in the direction of the Federation embassy, and adds, <i>“Most myr wouldn’t take it just </i>because<i>, you know. They’ve had seven years to entrench themselves in racial jingoism, especially the reds. Even if you convinced enough myr to take the therapy, you’d actually have to distribute it, and neither of us have the resources to mass produce and distribute expensive gene mods on our own dime.”</i>");
 	
-	output("\n\nNot on your dime, no... <i>“I didn’t introduce myself as Steele, right?”</i> you say");
+	output("\n\nNot on your dime, no... <i>“I introduced myself as Steele, right?”</i> you say");
 	if (pc.isTreatedFemale() || pc.isBimbo()) output(" with a playful giggle");
 	else output(" with a grin");
 	output(". <i>“I might be able to handle that.”</i>");

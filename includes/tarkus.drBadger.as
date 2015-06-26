@@ -6,6 +6,7 @@
 		rooms[currentLocation].northExit = "";
 	}
 	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	outsideDrLashBonusBonus();
 	return false;
 }
 
@@ -161,6 +162,7 @@ public function heyDocImAHero():void
 		{
 			output("\n\nThis change seems to come at the expense of your lower body, your rounding figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
+			pc.genitalSpot = 0;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.legType = GLOBAL.TYPE_HUMAN;
@@ -172,6 +174,7 @@ public function heyDocImAHero():void
 		{
 			output("\n\nYour lower body is the first to change, your changing figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
+			pc.genitalSpot = 0;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.legType = GLOBAL.TYPE_HUMAN;

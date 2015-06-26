@@ -99,6 +99,7 @@
 						//Naleen scales = hair color as per codex.
 						target.scaleColor = target.hairColor;
 						target.legCount = 1;
+						target.genitalSpot = 0;
 						target.clearLegFlags();
 						target.addLegFlag(GLOBAL.FLAG_PREHENSILE);
 						target.addLegFlag(GLOBAL.FLAG_TAPERED);

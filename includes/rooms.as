@@ -1925,12 +1925,25 @@ public function initializeRooms():void
 	rooms["209"].runOnEnter = bimbotoriumHallBonus;
 	rooms["209"].westExit = "208";
 	rooms["209"].northExit = "304";
+	rooms["209"].southExit = "LASH OFFICE";
 	rooms["209"].moveMinutes = 2;
 	rooms["209"].planet = "PLANET: TARKUS";
 	rooms["209"].system = "SYSTEM: REDACTED";
 	rooms["209"].addFlag(GLOBAL.INDOOR);
 	rooms["209"].addFlag(GLOBAL.PUBLIC);
 	
+	rooms["LASH OFFICE"] = new RoomClass(this);
+	rooms["LASH OFFICE"].roomName = "EAST\nNOVAHOME";
+	rooms["LASH OFFICE"].description = "";
+	rooms["LASH OFFICE"].runOnEnter = drLashOfficeBonus;
+	rooms["LASH OFFICE"].northExit = "209";
+	rooms["LASH OFFICE"].moveMinutes = 1;
+	rooms["LASH OFFICE"].planet = "PLANET: TARKUS";
+	rooms["LASH OFFICE"].system = "SYSTEM: REDACTED";
+	rooms["LASH OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["LASH OFFICE"].addFlag(GLOBAL.PUBLIC);
+	rooms["LASH OFFICE"].addFlag(GLOBAL.NPC);
+
 	//#10 NOVAHOME
 	rooms["210"] = new RoomClass(this);
 	rooms["210"].roomName = "\nNOVAHOME";

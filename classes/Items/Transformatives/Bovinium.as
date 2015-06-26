@@ -497,6 +497,7 @@ package classes.Items.Transformatives
 					output("The bottoms of your legs take form: <b>rather than feet, they mutate into distinctly animalistic hooves.</b> You spend a good long while standing up and adjusting to your new gait, wobbling around until you get your footing. Or hoofing, as the case may be.\n\n");
 					
 					target.legCount = 2;
+					target.genitalSpot = 0;
 					target.legType = GLOBAL.TYPE_BOVINE;
 					
 					target.legFlags = [];
@@ -514,7 +515,7 @@ package classes.Items.Transformatives
 						target.legType = GLOBAL.TYPE_BOVINE;
 						target.addLegFlag(GLOBAL.FLAG_FURRED);
 					}
-					
+					target.genitalSpot = 0;					
 					target.legCount = 2;
 					target.legFlags = [];
 					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);

@@ -261,6 +261,7 @@ public function useTheCaptureHarness():void {
 	//NO LOOT! NO CREDITS!
 	foes[0].inventory = new Array();
 	foes[0].credits = 0;
+	pc.addHard(1);
 	if(foes[0].hasCock()) {
 		flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] = 1;
 		flags["LAST_ZIL_CAPTURED_FOR_HASWELL_SEX"] = 1;

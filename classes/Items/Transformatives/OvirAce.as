@@ -204,7 +204,9 @@ package classes.Items.Transformatives
 						hasNoneOvirCock = true;
 						break;
 					}
-					else if (target.cocks[ci].cockColor != String("dark " + target.skinTone) && InCollection(target.skinTone, scaleColors))
+					var overDickSkinColor = "dark " + target.skinTone;
+					if(target.skinTone == "dark") overDickSkinColor = "black";
+					else if (target.cocks[ci].cockColor != overDickSkinColor && InCollection(target.skinTone, scaleColors))
 					{
 						hasNoneOvirCock = true;
 						break;
@@ -229,13 +231,14 @@ package classes.Items.Transformatives
 							}
 						}
 					}
-
+					overDickSkinColor = "dark " + target.skinTone;
+					if(target.skinTone == "dark") overDickSkinColor = "black";
 					// Failing that, find a cock that is the wrong color wrt Ovir-colouring.
 					if (targetCock == -1)
 					{
 						for (ci = 0; ci < target.cocks.length; ci++)
 						{
-							if (target.cocks[ci].cockColor != String("dark " + target.skinTone))
+							if (target.cocks[ci].cockColor != overDickSkinColor)
 							{
 								if (target.cocks[ci].cLength() > tCockLen)
 								{
@@ -249,16 +252,16 @@ package classes.Items.Transformatives
 					output("\n\nYour [pc.cock " + targetCock + "] feels odd for a moment. Heat spreads throughout its length, and blood pulses through it, quickly causing it to engorge. A tingling pain passes over your manhood briefly, and before your eyes you see it change.");
 					if (target.cocks[targetCock].cType == GLOBAL.TYPE_EQUINE)
 					{
-						output(" It barely transforms, really, just smoothing out in overall shape, taking on a dark "+target.skinTone+" hue.");
-						target.cocks[targetCock].cockColor = "dark " + target.skinTone;
+						output(" It barely transforms, really, just smoothing out in overall shape, taking on a " + overDickSkinColor + " hue.");
+						target.cocks[targetCock].cockColor = overDickSkinColor;
 						output(" You give your cock a few experimental strokes and let out a light moan. Mmm, yeah that will do.");
 					}
 					else
 					{
-						output(" The first thing you notice is the color change. Your dick seems to deepen in color, taking on a dark "+target.skinTone+" hue. The whole thing seems to elongate, smoothing out in shape, leaving you with a semi-flat head, a flare-like crown and a long, smooth shaft.");
+						output(" The first thing you notice is the color change. Your dick seems to deepen in color, taking on a " + overDickSkinColor + " hue. The whole thing seems to elongate, smoothing out in shape, leaving you with a semi-flat head, a flare-like crown and a long, smooth shaft.");
 						
 						var tCock:CockClass = target.cocks[targetCock];
-						tCock.cockColor = "dark " + target.skinTone;
+						tCock.cockColor = overDickSkinColor;
 						tCock.cType = GLOBAL.TYPE_EQUINE;
 						tCock.clearFlags();
 						tCock.addFlag(GLOBAL.FLAG_BLUNT);
@@ -627,6 +630,7 @@ package classes.Items.Transformatives
 				if (target.legCount != 2 || target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" taking on a bipedal, humanoid appearance!");
 				else output(" gaining a lusiously scaled covering!");
 
+				target.genitalSpot = 0;
 				target.legCount = 2;
 				target.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SCALED];
 				target.legType = GLOBAL.TYPE_OVIR;

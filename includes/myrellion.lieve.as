@@ -1,4 +1,4 @@
-public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
+﻿public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");
 	author("Savin");
@@ -2379,6 +2379,7 @@ public function questionTheWrongGates():void
 {
 	clearOutput();
 	showName("QUESTIONING\nTHE GUARDS");
+	showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 	output("You approach the guards and show them Sier’s stone rod, asking them if they recognize it, or if they knew an orange-haired soldier by the name of Iaya. Some of the guards take the stone and look it over, but none of them can identify the markings, nor do they recognize the name and description.");
 	output("\n\nSighing, you thank them for their time and move on.");
 	processTime(3);
@@ -2391,6 +2392,7 @@ public function questionTheRightGate():void
 {
 	clearOutput();
 	showName("QUESTIONING\nTHE GUARDS");
+	showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 	output("You approach the guards, eying the strange crests on their vehicle. After a moment’s thought, a hint of recollection teases at your brain and you pull out the stone rod from your pack. Looking it over, you quickly match up one of the strange symbols on the rock to the one printed on the sides of the vehicles clustered around the barricade.");
 	output("\n\nA sentry standing a few paces away catches your gaze and stalks over, resting a tremendous warhammer on her shoulder with almost frightening ease. <i>“Offworlders aren’t permitted past this checkpoint,”</i> she informs you cooly. <i>“Please step back.”</i>");
 	output("\n\n<i>“Wait, wait,”</i> you say, holding out the rod. <i>“Do you know what this is?”</i>");

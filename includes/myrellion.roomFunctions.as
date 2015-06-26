@@ -382,10 +382,17 @@ public function kressiaGateBonus():Boolean
 	return false;
 }
 
+public function sledgehammersBonus():Boolean
+{
+	showBust("MYR_GOLD_GUARD_HAMMER","","MYR_GOLD_GUARD_HAMMER");
+	return false;
+}
+
 public function northGildenmereCheckpoint():Boolean
 {
 	if(!pc.hasKeyItem("Gildenmere Pass"))
 	{
+		showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 		output("\n\nA group of golden soldiers approaches you here, checking you for the paperwork that would allow one free roam of this part of Gildenmere. When you don't have it, they show you the door. Looks like you'll have to go walk through the caves of no ant's land.");
 		processTime(2);
 		clearMenu();
@@ -394,6 +401,7 @@ public function northGildenmereCheckpoint():Boolean
 	}
 	else
 	{
+		showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 		output("\n\nA group of golden soldiers approaches you, checking your paperwork. Once satisfied, they let you go on your way.");
 		processTime(2);
 	}
@@ -402,11 +410,13 @@ public function northGildenmereCheckpoint():Boolean
 
 public function wrongCheckpointBonus():Boolean
 {
+	showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES && flags["LEARNED_IAYAS_FATE"] == undefined) addButton(0,"Question",questionTheWrongGates,undefined,"Question","Ask the guards here about Sierva’s friend, Iaya. It’s a long shot, but...");
 	return false;
 }
 public function rightCheckpointBonus():Boolean
 {
+	showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES && flags["LEARNED_IAYAS_FATE"] == undefined) addButton(0,"Question",questionTheRightGate,undefined,"Question","Ask the guards here about Sierva’s friend, Iaya. It’s a long shot, but...");
 	return false;
 }
@@ -417,6 +427,7 @@ public function gildenmereElevatorBottomBonus():Boolean
 	{
 		//Elevator with no pass:
 		clearOutput();
+		showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 		output("A pair of gold myr guards ask to see your clearance to visit the city. When you explain that you have none, they turn you away. You’ll have to ask ");
 		if(flags["MET_LYRALLA"] == undefined) output("Lyralla");
 		else output("their diplomat");
@@ -429,7 +440,11 @@ public function gildenmereElevatorBottomBonus():Boolean
 		return true;
 	}
 	//Elevator with pass:
-	else output("You flash the pass Lyralla gave you to the guards. They nod and gesture to the elevator. You can go to greater Gildenmere at your leisure.");
+	else 
+	{
+		showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD");
+		output("\n\nYou flash the pass Lyralla gave you to the guards. They nod and gesture to the elevator. You can go to greater Gildenmere at your leisure.");
+	}
 	return false;
 }
 

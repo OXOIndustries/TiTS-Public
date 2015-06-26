@@ -900,7 +900,7 @@ public function initializeMyrellionRooms():void
 	rooms["745"].northExit = "732";
 	rooms["745"].southExit = "746";
 	rooms["745"].moveMinutes = 2;
-	rooms["745"].runOnEnter = undefined;
+	rooms["745"].runOnEnter = sledgehammersBonus;
 	rooms["745"].addFlag(GLOBAL.INDOOR);
 	rooms["745"].addFlag(GLOBAL.PUBLIC);
 

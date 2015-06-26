@@ -1242,6 +1242,8 @@ public function processTime(arg:int):void {
 				
 				// Lane monies
 				laneHandleCredits();
+				//Venus pitcher
+				venusSubmission(-1);
 			}
 		}
 		arg--;
@@ -1754,6 +1756,7 @@ public function statisticsScreen():void
 		output2("<b>Vanae Deflowered: </b>" + StatTracking.getStat("characters/maiden vanae/cherrys popped") + "\n");
 	}
 	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output2("<b>Venus Pitcher Elders, Times Hypnotized By: </b>" + flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] + "\n");
+	if(venusSubmission() > 0) output2("<b>Venus Pitcher Elders, Submission: </b>" + Math.round(venusSubmission()*10)/10 + "%\n");
 	var totalVirginitiesTaken:Number = StatTracking.getStat("characters/maiden vanae/cherrys popped");
 	if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
 	if(!embry.vaginalVirgin) totalVirginitiesTaken++;

@@ -35,7 +35,7 @@ public function appearance(target:Creature):void {
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you're");
-		if(target.armor is EmptySlot) output2(" not wearing a single scrap of armor");
+		if(target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
 		if(target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
 		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
@@ -331,6 +331,16 @@ public function appearance(target:Creature):void {
 		else output2(".");
 		//Vanaebutt Skin
 		if(pc.hasStatusEffect("Vanae Markings")) output2(" Swirls of " + pc.skinAccent + " trace brighter accents across much of your form.");
+		// Muscles - Sweaty ( Shazam Remix )
+		if(pc.hasStatusEffect("Sweaty"))
+		{
+			output2(" In addition, your body");
+			if(pc.statusEffectv1("Sweaty") <= 1) output2(" is sprinkled with a light layer");
+			else if(pc.statusEffectv1("Sweaty") <= 2) output2(" glistens with visible layers");
+			else if(pc.statusEffectv1("Sweaty") <= 4) output2(" is covered in multiple layers");
+			else output2(" looks soaked, completely drenched in thick layers");
+			output2(" of sweat, signaling the exertion of your previous physical activities.");
+		}
 		//Wing arms
 		if(target.armType == GLOBAL.TYPE_AVIAN) output2(" Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
