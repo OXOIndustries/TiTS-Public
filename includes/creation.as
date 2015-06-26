@@ -148,6 +148,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_SCALED);
 		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+		pc.genitalSpot = 2;
 		CodexManager.unlockEntry("Leithan");
 		pc.scaleColor = "black";
 		this.addButton(0,"Male",setStartingSex,1);

@@ -293,7 +293,7 @@ package classes.Items.Transformatives
 				output(" changing in shape");
 				output(" until <b>they look smooth and human</b>. You slowly wander around, adjusting to the new feeling in your legs. Not bad!");
 			}
-
+			target.genitalSpot = 0;
 			target.legCount = 2;
 			target.legType = GLOBAL.TYPE_HUMAN;
 			target.legFlags = [GLOBAL.FLAG_PLANTIGRADE];

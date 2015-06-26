@@ -162,6 +162,7 @@ public function heyDocImAHero():void
 		{
 			output("\n\nThis change seems to come at the expense of your lower body, your rounding figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
+			pc.genitalSpot = 0;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.legType = GLOBAL.TYPE_HUMAN;
@@ -173,6 +174,7 @@ public function heyDocImAHero():void
 		{
 			output("\n\nYour lower body is the first to change, your changing figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
+			pc.genitalSpot = 0;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.legType = GLOBAL.TYPE_HUMAN;

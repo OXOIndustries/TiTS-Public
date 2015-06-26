@@ -630,6 +630,7 @@ package classes.Items.Transformatives
 				if (target.legCount != 2 || target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" taking on a bipedal, humanoid appearance!");
 				else output(" gaining a lusiously scaled covering!");
 
+				target.genitalSpot = 0;
 				target.legCount = 2;
 				target.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SCALED];
 				target.legType = GLOBAL.TYPE_OVIR;

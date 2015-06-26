@@ -953,7 +953,7 @@ public function mcallisterMyrGirlsCunty():void
 	else output(" stretches you in wondrous ways");
 	output(", making you scream with pleasure.");
 	
-	output("\n\n<i>“That a [pc.boyGirl],”</i> McAllister grunts, grabbing at your [pc.chest] as he rapidly hilts himself inside you. One of your hands immediately falls to your [pc.belly], feeling the lump of his monumental cock battering against your gut, stretching you out with its sheer inhuman size.");
+	output("\n\n<i>“That a " + pc.mf("boy","girl") + ",”</i> McAllister grunts, grabbing at your [pc.chest] as he rapidly hilts himself inside you. One of your hands immediately falls to your [pc.belly], feeling the lump of his monumental cock battering against your gut, stretching you out with its sheer inhuman size.");
 	
 	output("\n\nMcAllister starts to move after that, fucking you with quick, hard thrusts that leave your [pc.butt] quivering with every movement. Seeing you rendered passive by the big man hammering you, the myr girls guide your head down towards their quartet of ample, nectar-swollen breasts. Your lips find the red myr’s teat first, and she arches her back and moans, squirting her syrupy nectar into your eager mouth. The taste is distinctly different than that of the faux-gold - it’s not as sweet, but has a richer and creamier taste to it. Your taste buds swoon as you gobble it down, loving every moment of the alien taste.");
 	
@@ -1048,7 +1048,7 @@ public function mcallisterMyrHybrids():void
 	
 	output("\n\n<i>“More importantly, though, you’d have problems of distribution and education.”</i> McAllister says, an almost venomous hiss on the last word. He glances in the direction of the Federation embassy, and adds, <i>“Most myr wouldn’t take it just </i>because<i>, you know. They’ve had seven years to entrench themselves in racial jingoism, especially the reds. Even if you convinced enough myr to take the therapy, you’d actually have to distribute it, and neither of us have the resources to mass produce and distribute expensive gene mods on our own dime.”</i>");
 	
-	output("\n\nNot on your dime, no... <i>“I didn’t introduce myself as Steele, right?”</i> you say");
+	output("\n\nNot on your dime, no... <i>“I introduced myself as Steele, right?”</i> you say");
 	if (pc.isTreatedFemale() || pc.isBimbo()) output(" with a playful giggle");
 	else output(" with a grin");
 	output(". <i>“I might be able to handle that.”</i>");

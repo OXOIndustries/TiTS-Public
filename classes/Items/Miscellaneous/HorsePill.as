@@ -923,6 +923,7 @@
 						{
 							kGAMECLASS.eventBuffer += "Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.";
 							target.legCount = 2;
+							target.genitalSpot = 0;
 						}
 						//Quad+ legs
 						else if (target.legCount >= 3 && target.legCountUnlocked(4)) 

@@ -334,6 +334,7 @@
 					kGAMECLASS.output(" four sharp claws for toes, strong and well-balanced</b>. After a few uncertain steps, pit-patting away on your reptilian feet is coming quite naturally.");
 					changes++;
 					pc.legType = GLOBAL.TYPE_RASKVEL;
+					pc.genitalSpot = 0;
 					pc.legCount = 2;
 					pc.clearLegFlags();
 					pc.addLegFlag(GLOBAL.FLAG_SCALED);

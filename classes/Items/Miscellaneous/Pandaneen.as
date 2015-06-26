@@ -601,6 +601,7 @@
 							kGAMECLASS.output("\n\nYou drop to the ground as your [pc.legs] go boneless. The jarring impact is enough to make you wince, but of far more concern is what's happening below your bruised bottom. Your [pc.legs] are changing! <b>Your [pc.feet] reform into fluffy panda-paws tipped by sharp-looking claws.</b> It'll take a little bit of practice to get used to walking with these.");
 						}
 						target.legCount = 2;
+						target.genitalSpot = 0;
 						target.legType = GLOBAL.TYPE_PANDA;
 						target.clearLegFlags();
 						target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
