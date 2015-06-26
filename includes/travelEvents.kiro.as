@@ -2325,7 +2325,7 @@ public function kiroPussPumpPartII():void
 	flags["PUMPED_KIRO_PUSSY"] = 1;
 
 	//[FuckThem] [TribThem] [GrindFrot]
-	if(pc.hasCock() && pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro's plush, pumped-up lips. She's begging for it.");
+	if(pc.hasCock() && pc.biggestCockLength() < 20) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro's plush, pumped-up lips. She's begging for it.");
 	else if(pc.hasCock()) addDisabledButton(0,"Fuck Them","Fuck Them","Your dick is too large to fuck Kiro's pussy.");
 	else addDisabledButton(0,"Fuck Them","Fuck Them","You need a penis in order to fuck Kiro's pussy.");
 	
