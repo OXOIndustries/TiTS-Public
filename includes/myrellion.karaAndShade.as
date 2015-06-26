@@ -1274,8 +1274,8 @@ public function shadeTailSex():void
 	clearOutput();
 	showShade();
 	author("Savin");
-	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking i your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
-	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sistive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
+	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking in your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
+	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sensitive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
 	output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you. You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");
 	output("\n\nYou murmur something like <i>“God, yes,”</i> from between her tits, kissing and licking at the insides of her fleshy mounds, loving the perfumed taste of her skin on your [pc.tongue].");
 	output("\n\nShe laughs, but the idea of lounging around for hours on end in the beautiful cat-girl’s embrace just drives you even wilder. Trapped under her as you are, your lusts can only take themselves out on your [pc.tails], ");
@@ -1294,7 +1294,7 @@ public function shadeTailSex():void
 	else output("across your bald pate");
 	output(" before throwing you flat against the bed, pinning you down at the shoulders with both hands. A moment of panic hits you, until your amazonian lover drops flat overtop you and presses her lips to yours, entwining your [pc.tongue] in a passionate kiss while your tails intertwine, slowly feeling their way towards each others’ tips. Shade lets out a soft little moan, barely audible from within your kiss, and you know you’ve found your mark: the hot, sodden gash on the underside of her tail’s tip, wet and ready for you...");
 	output("\n\nYou press forward, slapping Shade’s ass with both hands as you do, making the amorous cat-girl cry out in pleasure. <i>“Fuck... oh!”</i> she growls, teeth clenches as your [pc.tailCock] parts the lips of her drooling twat-tail and slithers into the squeezing, slippery channel within. You and Shade both moan, hands and lips tight against each other as your tails make passionate love.");
-	output("\n\nShade moves like liquid heat over you, rocking forward and back as her tail is filled with inch after inch of throbbing tail-cock. You feel her big, soft breasts glic over your [pc.chest]; her thighs gripping your [pc.hips] and the wet heat of her other, unused cunt ");
+	output("\n\nShade moves like liquid heat over you, rocking forward and back as her tail is filled with inch after inch of throbbing tail-cock. You feel her big, soft breasts glide over your [pc.chest]; her thighs gripping your [pc.hips] and the wet heat of her other, unused cunt ");
 	if(!pc.hasGenitals()) output("dragging across your body.");
 	else if(pc.hasVagina()) output("grinding against your [pc.cunt], sending shivers of pleasure up your spine.");
 	else output("grinding across the underside of your cock, driving you wild with even greater pleasure.");
@@ -1327,7 +1327,7 @@ public function shadeTailSex():void
 	if(pc.biggestTitSize() < 1) output("on your chest.");
 	else output("between your tits. You note gleefully that your tits and Shade’s make a perfect sheathe for your tail-cock.");
 
-	output("\n\n<i>“Think you can go again, [pc.name]?”</i> Shade asks, not look at your face as she does so. You answer by spurting a little cum out of your prick, not quite able to get hard that quickly. <i>“Aww, well, I guess we’ll just have to give you a little boost first... won’t we?”</i>");
+	output("\n\n<i>“Think you can go again, [pc.name]?”</i> Shade asks, not looking at your face as she does so. You answer by spurting a little cum out of your prick, not quite able to get hard that quickly. <i>“Aww, well, I guess we’ll just have to give you a little boost first... won’t we?”</i>");
 
 	output("\n\nYour eyes go wide, but you can’t find the willpower... or the desire... to stop her from running her rough tongue along your cockhead, teasing the slit and squeezing her tits around it like a hot, soft vice of flesh. Oh, God, that’s nice...");
 
@@ -1347,7 +1347,7 @@ public function shadeTailSex():void
 
 	output("\n\nHer tail mirrors the rest of her body, squeezing and massaging your cock as it floods with fem-cum. You grunt and let loose, your obligations to the amorous cat-girl fulfilled in the most pleasurable way your can imagine. [pc.cumNoun] spurts from your tail’s slit, filling Shade’s sloppy passage with another hefty helping of spooge.");
 
-	output("\n\nThe cat-girl flops back beside you a moment later, breathing hard. You watch her breasts rise and fall, enjoying the feeling of her tail squeezing your still-spasming tail-cock].");
+	output("\n\nThe cat-girl flops back beside you a moment later, breathing hard. You watch her breasts rise and fall, enjoying the feeling of her tail squeezing your still-spasming tail-cock.");
 	processTime(30);
 	pc.orgasm();
 	pc.orgasm();
