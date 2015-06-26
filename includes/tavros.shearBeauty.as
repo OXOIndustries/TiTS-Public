@@ -542,6 +542,7 @@ public function furColor():void
 	author("Couch");
 	output("Ceria pulls out a small tablet showing a color wheel and presents it to you. <i>“Alright, pick what looks good.”</i>");
 
+	clearMenu();
 	processTime(1);
 	//[Buttons for Colors] Go to Fur Treatment
 	addButton(0,"Black",furColorApplication,"black","Black","Dye your fur black.");

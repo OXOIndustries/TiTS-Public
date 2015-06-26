@@ -364,7 +364,7 @@ public function volunteerAsAntPI(repeat:Boolean = false):void
 public function unificationInvitationEventProcInGildenmere():void
 {
 	showName("A CHANCE\nENCOUNTER!");
-	showBust("MYR_GOLD_STUDENT")
+	showBust("MYR_GOLD_STUDENT");
 	output("\n\nA young, barely-matured ant-girl brushes past you, forcing a flyer into your hand. She’s gone before you question her. Curious, you take a look at the pamphlet. It’s an advertisement for a unification rally - something about creating a unified Myrellion where golds and reds can live as one species, together. They have meetings in the southwest corner of the mushroom park at 18:00.");
 	output("\n\n(<b>Gained Key Item: Unification Rally Invite</b> - This piece of paper invites you to a unification rally at 18:00 hours in the southwest corner of Mushroom Park.)");
 	pc.createKeyItem("Unification Rally Invite: 18:00, Mushroom Park",0,0,0,0);

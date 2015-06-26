@@ -6,7 +6,7 @@
 		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0, "Woman", talkToBrothelLadyRepeat);
 		else addButton(0,"Woman",talkToBrothelLadyRepeatAgain);
 	}
-
+	else addButton(0, "Woman", talkToBrothelLadyRepeatAgain);
 	if (reahaAtBeths())
 	{
 		author("Savin");
@@ -15,7 +15,7 @@
 		output(RandomInCollection("ausar", "kaithrit", "human", "leithan", "rahn"));
 		output(" girl shakes her stuff for the crowd. The little cow perks up when she sees you, flashing you a hopeful smile.");
 
-		addButton(0, "Reaha", reahaBackAtBeths);
+		addButton(1, "Reaha", reahaBackAtBeths);
 	}
 }
 

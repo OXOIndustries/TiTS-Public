@@ -61,6 +61,7 @@ public function talkToMatronAbootBathHooose():void
 	addDisabledButton(1,"Talk","Talk","You just finished that.");
 	if(pc.credits >= 50) addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
 	else addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Public Bath
