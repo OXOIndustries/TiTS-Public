@@ -31,7 +31,7 @@ public function encounterRegularTentaclePitcherYouGay():void {
 		else output("\n\nDo you help her?");
 		//[Help Her][Don't]
 		clearMenu();
-		addButton(0,"Help Her",firstTimeVenusEntrance,tricked);
+		addButton(0,"Help Her",firstTimeVenusEntrance,true);
 		addButton(1,"Don't",dontHelpVenusPitcher);
 	}
 	//*Repeat Venus Pitcher Encounters
