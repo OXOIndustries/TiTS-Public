@@ -10,6 +10,8 @@ package classes.GameData
 		/*
 		ENTRIES = {
 			"KeyName" : {
+				"KeyReference" : KeyName,
+				
 				"UnlockedTimestamp" : undefined,
 				"ViewedTimestamp" : undefined
 				
@@ -29,7 +31,9 @@ package classes.GameData
 				"ToCache" : null,
 				
 				"ToAddress" : null,
-				"ToAddressCache" : null
+				"ToAddressCache" : null,
+				
+				"Buttons" : null
 			}
 		}
 		*/
@@ -55,9 +59,10 @@ package classes.GameData
 		 * @param 	to			Display name of recipient
 		 * @param	toAddress	Address of recipient
 		 */
-		public static function addMailEntry(entryName:String, content:*, subject:*, from:*, fromAddress:*, to:*, toAddress:*):void
+		public static function addMailEntry(entryName:String, content:*, subject:*, from:*, fromAddress:*, to:*, toAddress:*, buttons:Array = null):void
 		{
 			var mObj:Object = {
+				"KeyReference" : entryName,
 				"UnlockedTimestamp" : undefined,
 				"ViewedTimestamp" : undefined
 			};
@@ -78,7 +83,26 @@ package classes.GameData
 			mObj.ToCache = (to is String ? to : null);
 			
 			mObj.ToAddress = (toAddress is Function ? toAddress : null);
-			mObj.ToAddressCache = (toAddress is String ? toAddress : null);			
+			mObj.ToAddressCache = (toAddress is String ? toAddress : null);
+			
+			if (buttons != null)
+			{
+				for (var i:int = 0; i < buttons.length; i++)
+				{
+					mObj.Buttons = [];
+					
+					var b:Object = buttons[i];
+					
+					if (b.DisplayName !== undefined && b.Functor !== undefined)
+					{
+						mObj.Buttons.push( { DisplayName: b.DisplayName, Functor: b.Functor } );
+					}
+					else
+					{
+						throw new Error("Malformed button option for mail entry!");
+					}
+				}
+			}
 			
 			if (MailManager.ENTRIES[entryName] === undefined)
 			{
@@ -193,6 +217,22 @@ package classes.GameData
 			}
 		}
 		
+		public static function readEntry(entryName:String, timestamp:uint):void
+		{
+			if (MailManager.ENTRIES[entryName] === undefined)
+			{
+				throw new Error("Mail entry '" + entryName + "' was not found in the datastore.");
+			}
+			else
+			{
+				var bo:Object = MailManager.ENTRIES[entryName];
+				if (bo.ViewedTimestamp == null || bo.ViewedTimestamp == undefined)
+				{
+					bo.ViewedTimestamp = timestamp;
+				}
+			}
+		}
+		
 		public static function hasUnlockedEntries():Boolean
 		{
 			for (var k:String in MailManager.ENTRIES)
@@ -210,6 +250,13 @@ package classes.GameData
 			if (MailManager.ENTRIES[entryName].UnlockedTimestamp !== undefined) return true;
 			
 			return false;
+		}
+		
+		public static function getEntry(entryName:String):Object
+		{
+			if (MailManager.ENTRIES[entryName] === undefined) throw new Error("Specified entry name '" + entryName + "' was not found in the datastore.");
+			
+			return MailManager.ENTRIES[entryName];
 		}
 		
 		public static function isEntryLocked(entryName:String):Boolean

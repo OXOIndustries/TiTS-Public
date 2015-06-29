@@ -1,5 +1,6 @@
 ﻿package classes.UIComponents 
 {
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
@@ -225,6 +226,13 @@
 				return false;
 			}
 			return true;
-		}	
+		}
+		
+		public function set iconColour(color:uint):void
+		{
+			var ct:ColorTransform = new ColorTransform();
+			ct.color = color;
+			_icon.transform.colorTransform = ct;
+		}
 	}
 }

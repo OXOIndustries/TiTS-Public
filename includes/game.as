@@ -9,6 +9,7 @@ import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.RoomClass;
 import classes.StorageClass;
+import classes.UIComponents.ContentModules.MailModule;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
 
@@ -99,6 +100,9 @@ public function mainGameMenu():void {
 			}
 		}
 	}
+	
+	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
+	updateMailStatus();
 	
 	//Set up all appropriate flags
 	//Display the room description
@@ -206,7 +210,22 @@ public function mainGameMenu():void {
 	
 	// Enable the perk list button
 	(userInterface as GUI).perkDisplayButton.Activate();
-	(userInterface as GUI).mailsDisplayButton.Activate();
+}
+
+public function showCodex():void
+{
+	this.userInterface.showCodex();
+	this.codexHomeFunction();
+	this.clearGhostMenu();
+	
+	// TESTO BUTTONO
+	addGhostButton(0, "Stats", statisticsScreen);
+	
+	//addGhostButton(1, "Messages", function():void { } );
+	//addGhostButton(2, "Log", function():void { } );
+	//addGhostButton(3, "CHEEVOS", function():void { } );
+	
+	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 }
 
 // Temp display stuff for perks
@@ -228,6 +247,14 @@ public function showPerkListHandler(e:Event = null):void
 public function showMailsHandler(e:Event = null):void
 {
 	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
+	
+	if (flags["PC_EMAIL_ADDRESS"] == undefined)
+	{
+		(userInterface as GUI).showSecondaryOutput();
+		initialMailConfiguration();
+		return;
+	}
+	
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		showMails();
@@ -242,14 +269,56 @@ public function showMailsHandler(e:Event = null):void
 
 public function showMails():void
 {
-	userInterface.showCodex();
+	userInterface.showMails();
 	codexMailFunction();
 }
 
 public function codexMailFunction():void
 {
+	var m:MailModule = (userInterface as GUI).mailModule;
+	
+	m.htmlText = "<span class='words'><p>";
+	m.htmlText += "Welcome to the Steele Industries® CODEX™ Extranet Messenger Extension.";
+	m.htmlText += "\n\nThe Codex EME system allows you, as a user of a Steele Industries® CODEX™ device, to exchange messages with other EME system users, allowing you to keep a historical record of various communications and transactions.";
+	m.htmlText += "\n\nRecieved messages are displayed to the right of the CODEX™ display, with as-yet unread messages sorted to the top and displayed in <b>bold</b>.\n\nThe CODEX™ root menu will alert you to new messages via an un-obtrusive notification - the access icon for the system will display as a green icon when unread messages are detected.";
+	m.htmlText += "</p></span>";
+	
 	clearGhostMenu();
-	addGhostButton(14, "Back", 
+	addGhostButton(4, "Back", showMailsHandler);
+}
+
+import classes.GameData.MailManager;
+import classes.GUI;
+import classes.UIComponents.UIStyleSettings;
+
+public function updateMailStatus():void
+{
+	// Initial mail config option!
+	if (flags["PC_EMAIL_ADDRESS"] == undefined)
+	{
+		userInterface.mailsDisplayButton.Activate();
+		userInterface.mailsDisplayButton.iconColour = UIStyleSettings.gStatusGoodColour;
+		return;
+	}
+	
+	// No mails, disable button
+	if (!MailManager.hasUnlockedEntries())
+	{
+		(userInterface as GUI).mailsDisplayButton.Deactivate();
+		(userInterface as GUI).mailsDisplayButton.iconColour = 0xFFFFFF;
+	}
+	// Has mails, no new mails
+	else if (!MailManager.hasUnreadEntries())
+	{
+		(userInterface as GUI).mailsDisplayButton.Activate();
+		(userInterface as GUI).mailsDisplayButton.iconColour = 0xFFFFFF;
+	}
+	// Has new mails
+	else
+	{
+		(userInterface as GUI).mailsDisplayButton.Activate();
+		(userInterface as GUI).mailsDisplayButton.iconColour = UIStyleSettings.gStatusGoodColour;
+	}
 }
 
 public function showPerksList():void
@@ -1680,7 +1749,7 @@ public function statisticsScreen():void
 {
 	clearOutput2();
 	clearGhostMenu();
-	addGhostButton(14, "Back", showStatsHandler);
+	addGhostButton(14, "Back", showCodex);
 	
 	output2("<b><u>Personal Statistics:</u></b>\n");
 	output2("<b>Alcohol Tolerance: </b>" + pc.tolerance() + "/100\n");

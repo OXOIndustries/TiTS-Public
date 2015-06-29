@@ -9,6 +9,7 @@
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.ContentModules.LevelUpPerksModule;
+	import classes.UIComponents.ContentModules.MailModule;
 	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.ContentModules.OptionsModule;
 	import classes.UIComponents.LeftSideBar;
@@ -148,6 +149,7 @@
 			this.ConfigurePrimaryOutput();
 			this.ConfigureSecondaryOutput();
 			this.ConfigureCodex();
+			ConfigureMails();
 			this.ConfigureLevelUp();
 			this.ConfigureOptions();
 			
@@ -187,7 +189,7 @@
 			this._leftSideBar.dataButton.Deactivate();
 			this._leftSideBar.quickSaveButton.Deactivate();
 			
-			this._leftSideBar.statsButton.Deactivate();
+			this._leftSideBar.mailsButton.Deactivate();
 			this._leftSideBar.perksButton.Deactivate();
 			this._leftSideBar.levelUpButton.Deactivate();
 			
@@ -246,7 +248,7 @@
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 			this._leftSideBar.levelUpButton.addEventListener(MouseEvent.CLICK, titsClassPtr.levelUpHandler);
 			this._leftSideBar.perksButton.addEventListener(MouseEvent.CLICK, titsClassPtr.showPerkListHandler);
-			this._leftSideBar.statsButton.addEventListener(MouseEvent.CLICK, titsClassPtr.showStatsHandler);
+			this._leftSideBar.mailsButton.addEventListener(MouseEvent.CLICK, titsClassPtr.showMailsHandler);
 		}
 		
 		private function mainMenuToggle(e:Event = null):void
@@ -275,7 +277,7 @@
 			
 			AttachTooltipListeners(_leftSideBar.appearanceButton);
 			
-			AttachTooltipListeners(_leftSideBar.statsButton);
+			AttachTooltipListeners(_leftSideBar.mailsButton);
 			AttachTooltipListeners(_leftSideBar.perksButton);
 			AttachTooltipListeners(_leftSideBar.levelUpButton);
 		}
@@ -408,6 +410,17 @@
 			
 			titsClassPtr.addChild(pCodex);
 			pCodex.visible = false;
+		}
+		
+		private function ConfigureMails():void
+		{
+			var pMails:MailModule = new MailModule();
+			_availableModules[pMails.moduleName] = pMails;
+			
+			pMails.x = 200;
+			pMails.y = 0;
+			titsClassPtr.addChild(pMails);
+			pMails.visible = false;
 		}
 		
 		private function ConfigureLevelUp():void
@@ -587,6 +600,13 @@
 			(_currentModule as CodexModule).update();
 		}
 		
+		public function showMails():void
+		{
+			showModule("MailDisplay");
+			setLocation("", "CODEX", "MESSENGER");
+			(_currentModule as MailModule).update();
+		}
+		
 		public function showLevelUpStats(character:PlayerCharacter):void
 		{
 			this.showModule("LevelUpStats");
@@ -661,6 +681,7 @@
 		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }
 		public function get primaryOutputModule():GameTextModule { return (_availableModules["PrimaryOutput"] as GameTextModule); }
 		public function get secondaryOutputModule():GameTextModule { return (_availableModules["SecondaryOutput"] as GameTextModule); }
+		public function get mailModule():MailModule { return (_availableModules["MailDisplay"] as MailModule); }
 		
 		// Child access because MORE LAZY
 		public function get buttonTray():ButtonTray { return _buttonTray; }
@@ -673,7 +694,19 @@
 		}
 
 		// Text input bullshittery
-		public function get textInput():TextField { return (_availableModules["PrimaryOutput"] as GameTextModule).textInput; }
+		public function get textInput():TextField 
+		{
+			if (_currentModule is GameTextModule)
+			{
+				return (_currentModule as GameTextModule).textInput;
+			}
+			else
+			{
+				throw new Error("Presently active display module doesn't support text input fields.");
+			}
+			
+			return null;
+		}
 		
 		// Menu text bullshittery
 		public function get warningText():TextField { return (_availableModules["MainMenu"] as MainMenuModule).warningText; }
@@ -1033,7 +1066,10 @@
 
 		public function displayInput():void 
 		{
-			this.primaryOutputModule.showInput();
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).showInput();
+			}
 			
 			menuButtonsOff();
 			appearanceOff();
@@ -1047,7 +1083,10 @@
 		
 		public function removeInput():void 
 		{
-			this.primaryOutputModule.hideInput();
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).hideInput();
+			}
 			
 			menuButtonsOn();
 
@@ -1114,7 +1153,7 @@
 			_leftSideBar.generalInfoBlock.HideTime();
 			_leftSideBar.quickSaveButton.visible = false;
 			_leftSideBar.dataButton.visible = false;
-			_leftSideBar.statsButton.visible = false;
+			_leftSideBar.mailsButton.visible = false;
 			_leftSideBar.perksButton.visible = false;
 			_leftSideBar.levelUpButton.visible = false;
 		}

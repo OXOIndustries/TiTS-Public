@@ -17,7 +17,14 @@ public function quickPCTo():String
 
 public function quickPCToAddress():String
 {
-	return flags["PC_EMAIL_ADDRESS"];
+	if (flags["PC_EMAIL_ADDRESS"] == undefined)
+	{
+		return pc.short + "_Steele@SteeleTech.corp";
+	}
+	else
+	{
+		return flags["PC_EMAIL_ADDRESS"] + "@SteeleTech.corp";
+	}
 }
 
 public function configureMails():void
@@ -136,7 +143,7 @@ public function messageFromDad():String
 	ret += "\n\nTake care, kiddo.";
 	ret += "\n-Dad";
 
-	ret += "<i>Attached below the email is a picture you've never seen before. It's your father and mother, with dad leaning over a hospital bed, looking down on baby you in your mother's arms. All three of you are smiling.</i>";
+	ret += "\n\n<i>Attached below the email is a picture you've never seen before. It's your father and mother, with dad leaning over a hospital bed, looking down on baby you in your mother's arms. All three of you are smiling.</i>";
 	
 	return ret;
 }
@@ -172,4 +179,52 @@ public function newtexasmailmessage():String
 	ret += "\nGovernor Benjamin Tiberius Tee";
 	
 	return ret;
+}
+
+public function initialMailConfiguration():void
+{
+	clearOutput2();
+	output2("Welcome, NEW USER, to the Steele Tech Quantum-Communications Extranet Messaging System. Please wait while we confirm your system's access privileges.");
+
+	output2("\n\nConfirmed.");
+
+	output2("\n\nYou have been granted Executive Trainee access. You may now enter a custom email address below. Please note that the company standard is Firstname_Lastname@SteelTech.corp. Your access mask grants you the ability to deviate from this standard for personal use. Please refrain from egregious sexual or profane phrases in your custom corporate email address. Remember: your conduct reflects on the company as a whole.");
+	
+	output2("\n\nPlease enter your desired address prefix now:\n");
+	
+	displayInput();
+	userInterface.textInput.text = pc.short + "_Steele";
+
+	clearGhostMenu();
+	addGhostButton(0, "Confirm", confirmMailConfig);
+}
+
+public function confirmMailConfig():void
+{
+	if (userInterface.textInput.text == "")
+	{
+		initialMailConfiguration();
+		output2("\n\n\n<b>You must input something.</b>");
+		return;
+	}
+	if (userInterface.textInput.text.indexOf(" ") != -1)
+	{
+		initialMailConfiguration();
+		output2("\n\n\n<b>Spaces are verboten!</b>");
+		return;
+	}
+	
+	userInterface.removeInput();
+	flags["PC_EMAIL_ADDRESS"] = userInterface.textInput.text;
+	
+	clearOutput2();
+	output2("Email Address confirmed!");
+	output2("\n\nWelcome, " + quickPCToAddress() +".");
+	output2("\n\nPlease press the NEXT button to proceed to your inbox.");
+	
+	MailManager.unlockEntry("welcomeMailConfirmed", GetGameTimestamp());
+	MailManager.unlockEntry("messageFromDad", GetGameTimestamp());
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", showMails);
 }

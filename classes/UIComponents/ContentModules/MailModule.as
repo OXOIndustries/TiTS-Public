@@ -6,6 +6,10 @@ package classes.UIComponents.ContentModules
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.UIComponents.ContentModuleComponents.MailTree;
+	import classes.GameData.MailManager;
+	import classes.kGAMECLASS;
+	import classes.Engine.Interfaces.*;
 	
 	/**
 	 * ...
@@ -24,7 +28,7 @@ package classes.UIComponents.ContentModules
 		{
 			leftBarEnabled = true;
 			rightBarEnabled = false;
-			fullButtonTrayEnabled = true;
+			fullButtonTrayEnabled = false;
 			_moduleName = "MailDisplay";
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -50,7 +54,7 @@ package classes.UIComponents.ContentModules
 			_mailText.x = 5;
 			_mailText.y = 5;
 			_mailText.height = 735;
-			_mailText.width = 774;
+			_mailText.width = 474;
 			_mailText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_mailText.name = _moduleName+"text";
 			_mailText.htmlText = "<span class='words'><p>Syncing smutbuffer... preparing waifusbase... reticulating horsecocks... DONE\n\n> I am mailbox. Please insert dragon dongs.</p></span>";
@@ -86,6 +90,25 @@ package classes.UIComponents.ContentModules
 		public function update():void
 		{
 			_mailTree.update();
+		}
+		
+		public function displayFor(key:String):void
+		{
+			MailManager.readEntry(key, kGAMECLASS.GetGameTimestamp());
+			var entry:Object = MailManager.getEntry(key);
+			
+			_mailText.htmlText = "<span class='words'><p>";
+			_mailText.htmlText += "<b>From:</b> " + entry.FromCache + " &lt;" + entry.FromAddressCache + "&gt;\n";
+			_mailText.htmlText += "<b>To:</b> " + entry.ToCache + " &lt;" + entry.ToAddressCache + "&gt;\n";
+			_mailText.htmlText += "<b>Subject:</b> " + entry.SubjectCache + "\n\n";
+			_mailText.htmlText += entry.ContentCache;
+			_mailText.htmlText += "</p></span>";
+			update();
+			
+			kGAMECLASS.updateMailStatus();
+			
+			clearGhostMenu();
+			addButton(4, "Back", kGAMECLASS.showMails);
 		}
 	}
 }

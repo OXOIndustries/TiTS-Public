@@ -42,6 +42,9 @@ package classes.Resources
 		
 		[Embed(source = "../../assets/icons/buttons/textPageNext.svg", mimeType = "image/svg")]
 		public static var Icon_TextNext:Class;
+		
+		[Embed(source = "../../assets/icons/sort_arrow.svg", mimeType = "image/svg")]
+		public static var Icon_SortArrow:Class;
 	}
 
 }

@@ -642,19 +642,6 @@
 			userInterface.refreshFontSize(gameOptions.fontSize);
 		}
 		
-		public function showCodex():void
-		{
-			this.userInterface.showCodex();
-			this.codexHomeFunction();
-			this.clearGhostMenu();
-			// TESTO BUTTONO
-			//addGhostButton(0, "Database", function():void { } );
-			//addGhostButton(1, "Messages", function():void { } );
-			//addGhostButton(2, "Log", function():void { } );
-			//addGhostButton(3, "CHEEVOS", function():void { } );
-			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
-		}
-		
 		public function levelUpHandler(e:Event = null):void
 		{
 			if (!this.userInterface.levelUpButton.isActive) return;

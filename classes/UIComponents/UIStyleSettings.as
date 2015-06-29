@@ -136,8 +136,6 @@ package classes.UIComponents
 		[Embed(source = "../../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const LatoBoldItalicTFF:String;
 		
-		// There IS actually a family of fonts for bold/italics etc for Univers, but I don't have it on this computer... its on my laptop... which tried
-		// its hardest to commit sepuku today... so I'll actually add the family at some point.
 		[Embed(source = "../../assets/Univers 59 Ultra Condensed.ttf", fontName = "Univers UltraCondensed", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const UniverseUltraCondensedTFF:String;
 		
@@ -170,6 +168,36 @@ package classes.UIComponents
 				UIStyleSettings._gStatBlockHeaderFormatter.bold = true;
 			}
 			return UIStyleSettings._gStatBlockHeaderFormatter;
+		}
+		
+		private static var _gMailEntryUnreadFormatter:TextFormat;
+		public static function get gMailEntryUnreadFormatter():TextFormat
+		{
+			if (UIStyleSettings._gMailEntryUnreadFormatter == null)
+			{
+				UIStyleSettings._gMailEntryUnreadFormatter = new TextFormat();
+				UIStyleSettings._gMailEntryUnreadFormatter.size = 14;
+				UIStyleSettings._gMailEntryUnreadFormatter.color = 0xFF0000;
+				UIStyleSettings._gMailEntryUnreadFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gMailEntryUnreadFormatter.font = "Lato";
+				UIStyleSettings._gMailEntryUnreadFormatter.bold = true;
+			}
+			return UIStyleSettings._gMailEntryUnreadFormatter;
+		}
+
+		private static var _gMailEntryReadFormatter:TextFormat;
+		public static function get gMailEntryReadFormatter():TextFormat
+		{
+			if (UIStyleSettings._gMailEntryReadFormatter == null)
+			{
+				UIStyleSettings._gMailEntryReadFormatter = new TextFormat();
+				UIStyleSettings._gMailEntryReadFormatter.size = 14;
+				UIStyleSettings._gMailEntryReadFormatter.color = 0x00FF00;
+				UIStyleSettings._gMailEntryReadFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gMailEntryReadFormatter.font = "Lato";
+				UIStyleSettings._gMailEntryReadFormatter.bold = false;
+			}
+			return UIStyleSettings._gMailEntryReadFormatter;
 		}
 		
 		private static var _gTooltipHeaderFormatter:TextFormat;
@@ -1093,6 +1121,33 @@ package classes.UIComponents
 				UIStyleSettings._gPerkButtonTakenColorTransform.color = UIStyleSettings.gHighlightColour;
 			}
 			return UIStyleSettings._gPerkButtonTakenColorTransform;
+		}
+		
+		private static var _gMailListCSSStyleSheet:StyleSheet;
+		public static function get gMailListCSSStyleSheet():StyleSheet
+		{
+			if (UIStyleSettings._gMailListCSSStyleSheet == null)
+			{
+				UIStyleSettings._gMailListCSSStyleSheet = new StyleSheet();
+				
+				var readFormat:Object = {
+					fontFamily: "Lato",
+					fontSize: 14,
+					color: "#FFFFFF"
+				};
+				
+				var unreadFormat:Object = {
+					fontFamily: "Lato",
+					fontSize:15,
+					color: "#FFFFFF",
+					fontWeight: "bold"
+				};
+				
+				UIStyleSettings._gMailListCSSStyleSheet.setStyle(".unread", unreadFormat);
+				UIStyleSettings._gMailListCSSStyleSheet.setStyle(".read", readFormat);
+			}
+			
+			return UIStyleSettings._gMailListCSSStyleSheet;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks
