@@ -5,6 +5,7 @@
 // they were sent, or the state of the sender of the message.
 
 import classes.GameData.MailManager;
+import classes.GUI;
 
 // Simple way to handle spammails for now -- tag the keys into this array and I'll do shit
 // behind the scenes with them. (Delete on read, auto-sending etc)
@@ -214,8 +215,8 @@ public function confirmMailConfig():void
 		return;
 	}
 	
-	userInterface.removeInput();
 	flags["PC_EMAIL_ADDRESS"] = userInterface.textInput.text;
+	removeInput();
 	
 	clearOutput2();
 	output2("Email Address confirmed!");
@@ -224,6 +225,8 @@ public function confirmMailConfig():void
 	
 	MailManager.unlockEntry("welcomeMailConfirmed", GetGameTimestamp());
 	MailManager.unlockEntry("messageFromDad", GetGameTimestamp());
+	
+	(userInterface as GUI).mailsDisplayButton.Highlight();
 	
 	clearGhostMenu();
 	addGhostButton(0, "Next", showMails);
