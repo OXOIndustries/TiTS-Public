@@ -345,6 +345,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["DRLASH"] = new DoctorLash();
 	}
+	if (!justUpdate || (justUpdate && chars["CERIA"] == undefined))
+	{
+		chars["CERIA"] = new Ceria();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

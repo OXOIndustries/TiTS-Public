@@ -75,7 +75,7 @@ public function ceriaMenu():void
 {
 	showCeria();
 	clearMenu();
-	addDisabledButton(0,"Shop","Shop","Sorry, this part of the store has been closed ever since an imp stole all the supplies!");
+	addButton(0,"Shop",buyFromCeria,undefined,"Shop","Sorry, this part of the store has been closed ever since an imp stole all the supplies!");
 	addButton(1,"Styling",hairworkFromCeria,undefined,"Styling","Get your hair lengthened, cut, or dyed!");
 	addButton(2,"Talk",ceriaTalk,undefined,"Talk","Talk to Ceria.");
 	addButton(3,"Appearance",ceriaAppearance,undefined,"Appearance","Take a good look a the elfin proprietor.");
@@ -108,6 +108,25 @@ output("\n\n{No items exist to be sold: Honestly nothing here looks all that app
 
 output("\n\n[Back] Go to Ceria Main");
 */
+
+public function buyFromCeria():void
+{
+	shopkeep = chars["CERIA"];
+	chars["CERIA"].keeperBuy = "Ceria gestures to the shelf of hair care products on your left. <i>“Alright, grab whatever you want off the shelf and I’ll ring it up for you.”</i>\n\nYou let your eyes roam across the various shampoos and conditioners on sale. You also see a rack with several teardrop-shaped medipens in a variety of colors.\n\n";
+	if(flags["CERIA_BOUGHT"] == undefined)
+	{
+		flags["CERIA_BOUGHT"] = 1;
+		chars["CERIA"].keeperBuy += "<i>“What are those?”</i> you ask, pointing towards the medipens.\n\n<i>“Oh, those are our Sylvanol-brand transformatives. I’ve gotten pretty into them myself. If you’re jealous of these-”</i> She gives you a wink as she twitches her lengthy ears. <i>“-you should give them a try. They’re an adjustable medipen, you just twist that dial near the top and they cycle between a few different settings.”</i>\n\n";
+	}
+
+	//List prices and whatnot. Back should go back to CERIA's main menu.
+	//Sell Menu
+	chars["CERIA"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	buyItem();
+}
 
 //Doing The Thing You’re Probably Here For
 //Main Menu

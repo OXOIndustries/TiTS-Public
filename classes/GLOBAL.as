@@ -152,6 +152,8 @@
 		public static const TYPE_NYREA:int									= 55;
 		public static const TYPE_INHUMAN:int 								= 56; //For when you want things to be vaguely like a human's but not quite the same
 		public static const TYPE_OVIR:int									= 57;
+		public static const TYPE_SYLVAN:int 								= 58; //Fuckin' elves
+		public static const TYPE_DARK_SYLVAN:int 							= 59;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -208,7 +210,9 @@
 			"Cockvine",
 			"Nyrea",
 			"Inhuman",
-			"Ovir"
+			"Ovir",
+			"Sylvan",
+			"Dark Sylvan"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -280,6 +284,7 @@
 			TYPE_HUMAN,
 			TYPE_LEITHAN,
 			TYPE_RASKVEL,
+			TYPE_SYLVAN,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -360,6 +365,8 @@
 			TYPE_AVIAN,
 			TYPE_DRAGONFLY,
 			TYPE_DRACONIC,
+			TYPE_SYLVAN,
+			TYPE_DARK_SYLVAN,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.

@@ -512,6 +512,7 @@
 		public var lipColor:String = "peach";
 
 		public var earType: Number = 0;
+		public var earLength:Number = 0;
 		public function earTypeUnlocked(newEarType:Number):Boolean
 		{
 			return true;

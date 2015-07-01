@@ -181,6 +181,11 @@ public function shop(keeper:Creature):void {
 		repeatSeifynMeeting();
 		return;
 	}
+	else if(keeper is Ceria)
+	{
+		ceriaMenu();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
