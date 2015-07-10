@@ -1654,7 +1654,7 @@ public function newFutaSaendraScenes():void
 	if(silly) output(" and mutters <i>“Dat ass,”</i>");
 	output(" as she rubs the lube in, fingering your [pc.vagOrAss " + x + "] and spreading the shockingly cold stuff around.");
 
-	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. ");
+	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
 	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
 	else if(pc.buttRating()  <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
