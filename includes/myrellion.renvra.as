@@ -866,7 +866,11 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 
 		output("\n\nYou");
 		if (currentLocation != "SHIP INTERIOR") output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
-		else output(" punch your ship to maximum LightDrive speed, and set a course for Tavros station. You've got just enough willpower left to forward an emergency medical alert to the dock, making sure an ambulance will be there when you arrive.");
+		else 
+		{
+			if (shipLocation == "TAVROS HANGAR") output(" grab your Codex and dial Tavros station's emergency medical alert, summoning an ambulance from the nearest hospital.");
+			else output(" punch your ship to maximum LightDrive speed, and set a course for Tavros station. You've got just enough willpower left to forward an emergency medical alert to the dock, making sure an ambulance will be there when you arrive.");
+		}
 
 		output("\n\nIt isn't long before you're in an ambulance, several V-KO droids looming over you as you're carted to a medical station. The last thing you see is a mask being placed over your face, and one of the droids telling you to be calm -- you'll be fine soon.");
 
