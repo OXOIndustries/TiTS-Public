@@ -2422,8 +2422,8 @@ public function moderateExhibitionOmniFap():void
 		if(pc.isTaur() || !pc.hasGenitals()) output("[pc.chest]");
 		else if(pc.hasCock()) output("[pc.cocks]");
 		else output("[pc.vaginas]");
-		if(pc.isTaur() || !pc.hasGenitals() || pc.cockTotal() > 1 || (!pc.hasCock() && pc.totalVaginas() > 1)) output("are");
-		else output("is");
+		if(pc.isTaur() || !pc.hasGenitals() || pc.cockTotal() > 1 || (!pc.hasCock() && pc.totalVaginas() > 1)) output(" are");
+		else output(" is");
 		output(" thrumming with pent-up pleasure.");
 	}
 	output("\n\nShould you walk back to the ship to deal with it? Find somewhere private to touch yourself? Both of these options are going to take so long! In the meantime, your ");
@@ -2439,7 +2439,7 @@ public function moderateExhibitionOmniFap():void
 	output("\n\n");
 	if((pc.isTaur() || !pc.hasGenitals()) && pc.isChestGarbed()) output("You groan and quickly strip off your [pc.upperGarments].");
 	//Crotchgarbed && Non-Neuter && Non Taur:
-	else output("You groan and quickly strip off your [pc.lowerGarments].");
+	else if(pc.isCrotchGarbed()) output("You groan and quickly strip off your [pc.lowerGarments].");
 	output(" With trembling fingers, you slide your hands down ");
 	var taurNeuter:Boolean = (pc.isTaur() || !pc.hasGenitals());
 	//TaurORNeuter:

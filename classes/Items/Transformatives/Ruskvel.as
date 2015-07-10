@@ -391,7 +391,7 @@
 							kGAMECLASS.output("\n\nYour eyes cross as [pc.eachCock] suddenly shoots backwards into your body with a distinctly wet sound. A panicked fumble around downstairs reveals that it’s left a vertical slit behind - but it doesn’t feel much like a vagina, and when you carefully slide a finger inside it encounters your [pc.cocks], still fully accounted for.\n\nYou flex your hips slightly and sigh as ");
 							if(pc.cockTotal() == 1) kGAMECLASS.output("it slides out of its");
 							else kGAMECLASS.output("one slides out of its");
-							kGAMECLASS.output(" new hollow housing. <b>It is now a brilliant purple color, thick and fairly human-shaped but much smoother</b>, and – you close your eyes when you wrap your hand around it – slightly more sensitive for spending most of its time safely ensconced inside your <b>new, warm genital sheath</b>.");
+							kGAMECLASS.output(" new hollow housing. <b>It is now a brilliant purple color, thick and fairly human-shaped but much smoother</b>, and – you close your eyes when you wrap your hand around it – slightly more sensitive for spending most of its time safely ensconced inside your <b>new, warm genital slit</b>.");
 							if(pc.cockTotal() == 2) kGAMECLASS.output(" The other is unchanged.");
 							if(pc.cockTotal() > 2) kGAMECLASS.output(" The others are unchanged.");
 							target.createStatusEffect("Genital Slit",0,0,0,0);
@@ -399,7 +399,7 @@
 						//Genital sheath:
 						else
 						{
-							kGAMECLASS.output("\n\nSomething warm and slightly ticklish is happening to [pc.oneCock], tucked away inside your genital slit. Once the fuzzy sensation has passed you flex your hips slightly and admire the <b>smooth, strikingly purple reptilian cock your penis has morphed into</b>. It’s fairly human-shaped and slightly sensitive for spending most of its time safely ensconced inside your genital sheath - but then you’re already fully used to that. You slide it back into its box with a pleased huff.");
+							kGAMECLASS.output("\n\nSomething warm and slightly ticklish is happening to [pc.oneCock], tucked away inside your genital slit. Once the fuzzy sensation has passed you flex your hips slightly and admire the <b>smooth, strikingly purple reptilian cock your penis has morphed into</b>. It’s fairly human-shaped and slightly sensitive for spending most of its time safely ensconced inside your genital slit - but then you’re already fully used to that. You slide it back into its box with a pleased huff.");
 						}
 						pc.cocks[cockToBe].clearFlags();
 						pc.cocks[cockToBe].cType = GLOBAL.TYPE_RASKVEL;

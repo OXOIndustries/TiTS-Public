@@ -6462,7 +6462,6 @@
 			if (type == GLOBAL.TYPE_RASKVEL) {
 				cocks[slot].cockColor = "purple";
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
 		}
 		//PC can fly?

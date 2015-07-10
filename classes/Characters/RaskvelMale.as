@@ -191,7 +191,7 @@
 			combatRaskvelMale.sexualPreferences.setRandomPrefs(3 + rand(3));
 			
 			combatRaskvelMale.long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
-			combatRaskvelMale.long += " Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.";
+			combatRaskvelMale.long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
 			combatRaskvelMale.long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 
 			//combatRaskvelMale.ass.loosenessRaw = rand(4) + 1;

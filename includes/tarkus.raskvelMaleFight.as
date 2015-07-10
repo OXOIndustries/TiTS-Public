@@ -663,7 +663,7 @@ public function raskvelMobAppearanceUpdate():void
 	foes[0].long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
 	//Lust 0-40:
 	if(foes[0].lust() <= 40) foes[0].long += " Their dicks are hidden away in their sheaths, although their snug, pouch-like balls are clear to see.";
-	else if(foes[0].lust() <= 80) foes[0].long += " Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their sheaths. The three of them seem distracted and even redder in the face than usual.";
+	else if(foes[0].lust() <= 80) foes[0].long += " Their brilliantly purple cocks, the same color as their long tongues, have protracted some of the way out of their slits. The three of them seem distracted and even redder in the face than usual.";
 	else foes[0].long += " Their thick, sleek dicks are straining urgently upwards, and it is taking obvious effort on their part to maintain their focus on you.";
 	foes[0].long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 }
@@ -1162,8 +1162,8 @@ public function redRidingRaskvel():void
 	}
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("<i>“On the floor,”</i> you say curtly to the largest one, <i>“and let’s see it. Now.”</i> The raskvel is clearly not used to this treatment; cheeks burgundy and with no idea where to put his eyes, he clumsily sits down and ");
-	if(foes[0].lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his wad-like sheath, curling his hand around it in an almost protective gesture");
-	else output("slides his thick, purple, semi-erect erection out of his wad-like sheath. Probably aware of what you want, he wraps his hand around and nervously rubs it, practically urging it to get harder quickly.");
+	if(foes[0].lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his slender slit, curling his hand around it in an almost protective gesture");
+	else output("slides his thick, purple, semi-erect erection out of his slender slit. Probably aware of what you want, he wraps his hand around and nervously rubs it, practically urging it to get harder quickly.");
 	output(" You smirk at the sight; the belligerent tech-savage prostrate in front of you, subdued, intimidated and yet still rock hard, waiting to be used. It’s pleasing, and you feel blood sink towards your groin, [pc.eachVagina] reacting warmly and wetly to the fact of your position of strength.");
 
 	output("\n\nYou ");
