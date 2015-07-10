@@ -6470,6 +6470,7 @@
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
 			if (wingType == GLOBAL.TYPE_BEE) return true;
+			if (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DRAGONFLY || wingType == GLOBAL.TYPE_DRACONIC || wingType == GLOBAL.TYPE_SYLVAN || wingType == GLOBAL.TYPE_DARK_SYLVAN) return true;
 			return false;
 		}
 		public function hasWings(): Boolean {
