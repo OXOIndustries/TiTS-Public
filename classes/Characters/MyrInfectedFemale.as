@@ -28,8 +28,8 @@
 			
 			this.short = "infected myrmedion";
 			this.originalRace = "myrmedion";
-			this.a = "an ";
-			this.capitalA = "An ";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.tallness = 62;
 			this.scaleColor = "red";
 			
