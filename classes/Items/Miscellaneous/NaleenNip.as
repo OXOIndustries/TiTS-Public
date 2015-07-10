@@ -211,8 +211,8 @@
 					}
 				}
 				//Naleen eyes: No prereq
-				if (rand(5) == 0 && target.eyeType != GLOBAL.TYPE_FELINE && changes < changeLimit) {
-					if (target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE))
+				if (rand(5) == 0 && target.eyeType != GLOBAL.TYPE_NAGA && changes < changeLimit) {
+					if (target.eyeTypeUnlocked(GLOBAL.TYPE_NAGA))
 					{
 						if(target.eyeColor != "green" && target.eyeColor != "blue" && target.eyeColor != "gold") {
 							if(rand(3) == 0) target.eyeColor = "green";
@@ -221,7 +221,7 @@
 						}
 						kGAMECLASS.output("\n\nEverything is suddenly too bright then too dark. You rapidly blink your bleary eyes closed to try to keep from crying at the massive fluctuations in luminance. Finally, your vision stabilizes, and you can see just fine again, though the shadows seem a touch less oppressive than before. A quick check using your codex's camera identifies the source of your enhanced vision: <b>you have vertically-slit, " + target.eyeColor + " eyes, like a cat, a snake, or more specifically, a naleen.</b>");
 						//Green, blue, gold - set before above mention!
-						target.eyeType = GLOBAL.TYPE_FELINE;
+						target.eyeType = GLOBAL.TYPE_NAGA;
 						changes++;
 					}
 					else
