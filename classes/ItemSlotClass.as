@@ -330,6 +330,7 @@
 			var lRes:String = getResistComparison("Lust Resistances", DamageType.LustDamageTypes, newItem, oldItem);
 			
 			if (pRes.length > 0 && lRes.length > 0) pRes += "\n\n" + lRes;
+			else if (pRes.length == 0 && lRes.length != 0) pRes = lRes;
 			
 			// Flagshit
 			var flagStr:String = getResistanceFlags("Protective Flags", newItem, oldItem);

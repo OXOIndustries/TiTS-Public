@@ -174,10 +174,10 @@ public function debugMenusTwo():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new TachyonBeamLaser(), function():void {
-		output("\n\nTach Beam.\n");
+	addItemButton(1, new AtmaArmor(), function():void {
+		output("\n\nAtma Armor.\n");
 		
-		quickLoot(new TachyonBeamLaser());
+		quickLoot(new AtmaArmor());
 	});
 	
 	addItemButton(2, new MyrBow(), function():void {
