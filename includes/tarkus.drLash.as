@@ -218,20 +218,24 @@ public function genitalRemovalShit():void
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You're not losing your junk.");
 		else if(pc.isPregnant()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don't have any genitals!");
-		else addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
+		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
+		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
 	}
 	else addDisabledButton(0,"Pure Purge","Pure Purge","You don't have genitals to remove.");
 	if(pc.hasCock() && pc.isBro()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","No way! You're not losing your junk.");
 	else if(!pc.hasCock()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You don't have a phallus to remove.");
-	else addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
+	else if(pc.credits >= 5000) addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
+	else addDisabledButton(1,"Priaprism P.","Priaprism Purge","You do not have the credits for this treatment.");
 
 	if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You're not losing your junk.");
 	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don't have a penis to lose.");
-	else addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
+	else if(pc.credits >= 10000) addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
+	else addDisabledButton(2,"Phallus P.","Phallus Purge","You cannot afford this treatment.");
 
 	if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You're not getting rid of your junk!");
 	else if(pc.balls == 0) addDisabledButton(3,"Neutering","Neutering","You don't have any balls to lose.");
-	else addButton(3,"Neutering",lashTreatment,"neutering","Neutering","4,000 credits. Removes external gonads and testicular tissue.");
+	else if(pc.credits >= 4000) addButton(3,"Neutering",lashTreatment,"neutering","Neutering","4,000 credits. Removes external gonads and testicular tissue.");
+	else addDisabledButton(3,"Neutering","Neutering","You cannot afford this treatment.");
 
 	if(pc.hasVagina() && pc.isBimbo())
 	{
@@ -250,10 +254,16 @@ public function genitalRemovalShit():void
 	}
 	else
 	{
-		addButton(4,"Birth-P.",lashTreatment,"birth-proofing","Birth-Proofing","5,000 credits. Converts all vaginas and associated wombs to less libidinous tissues.");
-		addButton(5,"Vagina R.",lashTreatment,"vagina replacement","Vaginal Replacement","10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
+		if(pc.credits >= 5000) addButton(4,"Birth-P.",lashTreatment,"birth-proofing","Birth-Proofing","5,000 credits. Converts all vaginas and associated wombs to less libidinous tissues.");
+		else addDisabledButton(4,"Birth-P","Birth-Proofing","You cannot afford this treatment.");
+		if(pc.credits >= 10000) addButton(5,"Vagina R.",lashTreatment,"vagina replacement","Vaginal Replacement","10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
+		else addDisabledButton(5,"Vagina R.","Vagina Replacement","You cannot afford this treatment.");
 	}
-	if(pc.biggestTitSize() >= 1 || pc.bRows()) addButton(6,"'Rack' R.",lashTreatment,"rack removal","Rack Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+	if((pc.biggestTitSize() >= 1 || pc.bRows()))
+	{
+		if(pc.credits >= 7500) addButton(6,"'Rack' R.",lashTreatment,"rack removal","Rack Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+		else addDisabledButton(6,"'Rack' R.","'Rack' Removal","You cannot afford this treatment.");
+	}
 	else addDisabledButton(6,"'Rack' R.","'Rack' Removal","You need a rack to remove in order to get this operation.");
 	addButton(14,"Back",walkUpToDocLashAgain);
 }

@@ -32,6 +32,7 @@ public function showAnno():void
 
 public function steeleTechTarkusShopAvailable():Boolean
 {
+	if (flags["ANNO_ASLEEP"] != undefined) return false;
 	if (pc.hasStatusEffect("ST Tarkus Closed")) return false;
 	if (flags["ANNO_CREWMEMBER"] == 1) return false;
 	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
@@ -537,6 +538,7 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 	else output(" around");
 	output(" your [pc.legs]. You run your hands through her soft, snowy hair, brushing a few stray strands from her face. Anno mewls in her sleep, a soft, pathetic little noise of comfort as she rubs her cheek against your chest. You stay like that few a few more pleasant minutes before realizing that you still have a quest to complete. You gently nudge Anno off you, resting her back under the blanket once you've stood up. You tuck your ausar friend back in before making your way back to the shop front, content to let her finish her nap.");
 	processTime(122);
+	flags["ANNO_ASLEEP"] = 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -1174,6 +1174,11 @@ public function processTime(arg:int):void {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
 			}
+			if(flags["ANNO_ASLEEP"] != undefined)
+			{
+				flags["ANNO_ASLEEP"]--;
+				if(flags["ANNO_ASLEEP"] <= 0) flags["ANNO_ASLEEP"] = undefined;
+			}
 			if(chars["ALISS"].lust() < 70)
 			{
 				chars["ALISS"].lust(5);
