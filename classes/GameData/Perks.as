@@ -232,7 +232,7 @@ package classes.GameData
 			aimedShot.classLimit = GLOBAL.CLASS_SMUGGLER;
 			aimedShot.levelLimit = 3;
 			aimedShot.perkName = "Aimed Shot";
-			aimedShot.perkDescription = "Grants the ability to perform a ranged attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
+			aimedShot.perkDescription = "Upgrades ranged attacks with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
 			insertPerkData(aimedShot);
 			
 			// Level 4
