@@ -351,14 +351,14 @@ public function novaShipHangarElevator():Boolean
 
 public function novaMainDeckElevator():Boolean
 {
-	if (flags["DECK13_COMPLETE"] == undefined)
+	/*if (flags["DECK13_COMPLETE"] == undefined)
 	{
 		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
-	}
-	else
-	{
+	}*/
+	//else
+	//{
 		addButton(0, "Elevator", novaElevatorControlPanel);
-	}
+	//}
 	
 	return false;
 }
