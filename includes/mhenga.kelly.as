@@ -887,7 +887,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 
 		output("\n\nShe gasps and groans, dicks throbbing as you stimulate her, thick rivulets of honey-jism bubbling from their flat heads and running in steady rivulets onto the fur of her belly and spattering the underside of her breasts.");
 
-		output("\n\nYou force her to spread around your digits as you probe her depths in one fell swoop, quickly finding her prostrate.");
+		output("\n\nYou force her to spread around your digits as you probe her depths in one fell swoop, quickly finding her prostate.");
 
 		output("\n\n<i>\"Oh! D-don't do that! I-I'm gonna...\"</i> she gasps and whimpers, biting her lip as fresh rivulets of honey pour from her cocks, her drooling netherlips slick with her arousal, visibly fighting against a miniature orgasm.");
 

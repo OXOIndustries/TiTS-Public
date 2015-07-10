@@ -9073,7 +9073,7 @@
 				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
 				if (tail && rand(2) == 0) noun += "tail-";
 				//Don't say "canine dog-cock" that's dumb.
-				else if(descript != "feline " && descript != "kitty") choices.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
+				else if(descript != "feline " && descript != "kitty ") choices.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
 				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
 				if (!simple) {
