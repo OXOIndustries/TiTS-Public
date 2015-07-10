@@ -1026,7 +1026,7 @@ public function giveBurtAHandyYouSlooooooooooot():void {
 	
 	output("\n\nHe shudders at the lick and smiles down at you, encouraging you with soft groans and grunts of pleasure.");
 	
-	output("\n\nTaking the encouragement for what it is, you begin to slided your hands up and down his length, able to forget that it is metal and plastic with how naturally it shifts and moves as though made of flesh and blood. You can feel the rise of the medial ring in the center of his cock, like a speedbump for your hands as you work to jerk him off, and each time your grip passes over it he lets out the most adorable groan. Brushing your hands over his flare makes him shiver and arch his hips out towards you, almost thrusting against your grip.");
+	output("\n\nTaking the encouragement for what it is, you begin to slide your hands up and down his length, able to forget that it is metal and plastic with how naturally it shifts and moves as though made of flesh and blood. You can feel the rise of the medial ring in the center of his cock, like a speedbump for your hands as you work to jerk him off, and each time your grip passes over it he lets out the most adorable groan. Brushing your hands over his flare makes him shiver and arch his hips out towards you, almost thrusting against your grip.");
 	//[pg]
 	pc.lust(5);
 	this.clearMenu();
@@ -1097,7 +1097,7 @@ public function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
-	output("You move your hands to your [pc.fullChest], lifting and pressing your pillows together, giving Burt a teasing wink, and he grins as he gets the idea. He pushes his equine shaft between the curves of your ample breasts and starts to gently saw up and down, letting you lick and kiss at his flared tip whenever his thrusts are at their highest. He groans as your breasts caress and slide along his metal and plastic length, his hands stroking through you [pc.hair] gently.");
+	output("You move your hands to your [pc.fullChest], lifting and pressing your pillows together, giving Burt a teasing wink, and he grins as he gets the idea. He pushes his equine shaft between the curves of your ample breasts and starts to gently saw up and down, letting you lick and kiss at his flared tip whenever his thrusts are at their highest. He groans as your breasts caress and slide along his metal and plastic length, his hands stroking through your [pc.hair] gently.");
 	//[if (lipples = true)]
 	if(pc.hasLipples()) 
 	{
@@ -1207,7 +1207,7 @@ public function threeDSurprise():void {
 	output("...or not?");
 	output("\n\nYou hear Burt shout a warning to you, but before you can react, tentacles wrap around your [pc.legOrLegs] from behind, hoisting you into the air upside down. Your " + pc.rangedWeapon.longName + " slips out of your grip, landing with a clatter on the floor as Three-Dee’s black tentacles coil around your arms and jerk them out to the sides, rendering you relatively immobile.");
 	output("\n\nYou can feel the blood rushing to your head as you are held there, watching as Burt fights through the tentacles, trying to get to the control panel at the bar to turn her off.");
-	output("\n\nThere isn’t time, sadly, you can feel her cold black tentacles slithering across your [pc.skinFurScales], exploring you. Her hologram twitches and she stammers out,<i> “Th-this ve-ve-vessel is s-soiled... begin c-cleansing process....”</i>");
+	output("\n\nThere isn’t time, sadly. You can feel her cold black tentacles slithering across your [pc.skinFurScales], exploring you. Her hologram twitches and she stammers out,<i> “Th-this ve-ve-vessel is s-soiled... begin c-cleansing process....”</i>");
 	output("\n\nYou don’t have long to think about what that means. The segments of Three-Dee’s tentacles separate, exposing silky soft bristles, like a bottle brush intended for the most fragile of crystal decanters. The bristles begin to spin in alternating directions as she scrubs at your [pc.skin] in ways that make you shiver.");
 	//[if (chest > 0)]
 	if(pc.biggestTitSize() >= 1) {
@@ -1290,7 +1290,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\nSome of the bar's patrons ooh and aah as the camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
-	output("\n\n<i>“D-don't touch meeeee”</i>  the naleen cries, writhing violently under Steph as the show's host practically shoves her arm into the alien's sodden box. <i>“.... ooh!... ooohhhh.... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
+	output("\n\n<i>“D-don't touch meeeee”</i>  the naleen cries, writhing violently under Steph as the show's host practically shoves her arm into the alien's sodden box. <i>“...Ooh! Ooohhhh... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
 	
 	output("\n\n<i>“There we go!”</i>  Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She's a real beauty, innit she?”</i>");
 	

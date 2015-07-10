@@ -558,7 +558,7 @@ public function sellToCarl():void {
 	output("You glance over the display for a moment, though find yourself curious about something. Looking up to the old man, you ask if he’ll buy anything instead of just sell.");
 	output("\n\n\"<i>Ah, ‘fraid not. Laws of the place says no... ya’d have to chuck it over at Artie the Junk Hut if ya wanted to lose some guns off ya, I can’t purchase ‘em. License whatsits, the Oogie-sea get a bit messed with ‘em.</i>\"");
 	output("\n\nYou nod gently in understanding.");
-	output("\n\n\"<i>Careful ‘bout the guy, though. Bit weird n’ wiry</i>\"");
+	output("\n\n\"<i>Careful ‘bout the guy, though. Bit weird n’ wiry.</i>\"");
 	processTime(1);
 	//[Back] 
 	clearMenu();
@@ -592,7 +592,7 @@ public function carlsEncounterStart():Boolean {
 		if(silly) output(" The worst kind of fell mood!");
 
 		output("\n\nYou know full well this is Carl’s machina, gone off the deep end with whatever programming corruption it received. You’ll have to defeat this thing before it hurts someone - or someone else maybe, you can’t see the mess under the sometimes bloodied plants.");
-		output("\n\n<b>This will be a hard fight</b> just looking at the tools its carrying and its thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>");
+		output("\n\n<b>This will be a hard fight</b> just from looking at the tools it's carrying and its thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>");
 		output("\n\nThe machina hasn’t noticed you yet, though. You could engage it or fight another day.");
 		//[Fight] [Back off]
 		clearMenu();
