@@ -377,6 +377,8 @@ public function sleepInRuinedCamp():void
 		{
 			output("\n\nYou're awoken by a low, deep mechanical barking outside your tent, full of enough bass to make your [pc.ears] rattle. You grab your [pc.gear] and stumble out of the tent, wiping the sleep from your eyes. Tam-wolf is standing outside in a low, threatening posture, his steel ears low against his head. A vanae is standing just a short way away, held at bay by your robotic guard dog. Still, it doesn't look like she's backing off... you'll have to fight her.");
 		}
+		showName("FIGHT: VANAE\nHUNTRESS");
+		showBust("VANAE_HUNTRESS");
 		clearMenu();
 		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
 		return;
