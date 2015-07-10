@@ -108,7 +108,7 @@ public function kellysOfficeBonusFunction():Boolean
 	{
 		output("\n\n<b>Xenogen Biotech is currently closed. You'll have to come back later.</b>");
 		clearMenu();
-		addButton(0,"Next",move,"SOUTH ESBETH 2");
+		addButton(0,"Next",leaveKellyNext);
 		return true;
 	}
 	return false;
@@ -165,7 +165,7 @@ public function dontRegisterInKellysOffice():void {
 	//Leave the area and redo everything in case the PC comes back.
 	
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=Yes=]
@@ -359,7 +359,7 @@ public function flirtWithKellyAnywayPartII():void {
 	pc.exhibitionism(2);
 	processTime(10+rand(5));
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //At Burt's Mead Hall
@@ -635,7 +635,7 @@ public function noHotCofeeCheatsPleaseKelly():void
 	pc.lust(15);
 	processTime(4);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Talk
@@ -1157,7 +1157,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 	pc.lust(50+rand(10));
 	processTime(43);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=No=]
@@ -1775,7 +1775,7 @@ public function refuseDesertFromKellysWang():void
 	output("\n\n<i>\"Come back anytime, honey; you might be a tease, but you're still damn fine company,\"</i> Kelly calls after you before you close the door.");
 	processTime(7);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=HelpHer=]
@@ -2045,7 +2045,6 @@ public function postMealEpilogue():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("\n\n<i>\"Well, honey... since dinner went down so smooth, how about some dessert before you go, hmm?\"</i> Kelly's voice is husky with desire as she suggests this, one hip outthrust, shafts rising shamelessly before her, one hand kneading her breasts with abandon as she awaits your decision.");
-	tempNudeOff();
 	processTime(12);
 	//Display Sex Scene options, PC gains a boost to Attraction (say, 15, 20?)//
 	kellyAttraction(15);
@@ -2175,7 +2174,7 @@ public function kellyBarSexMenu():void
 	if (kellyAttraction() >= 50 && pc.cockThatFits(chars["KELLY"].analCapacity()) >= 0) addButton(5, "Assfuck", doKellyInTheBumBUMBUMMMMMMMM, undefined, "Assfuck", "Do her right up the bumhole!");
 	else addDisabledButton(5, "Assfuck", "Assfuck", "You need a cock that'll fit into her butt, and Kelly's affection for you must be fairly high.");
 	
-	addButton(14,"Leave",move,"SOUTH ESBETH 2");
+	addButton(14,"Leave",leaveKellyNext);
 }
 
 //Sex Scenes
@@ -2508,7 +2507,7 @@ public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 	flags["KELLY_HYPERPLAY_COUNT"]++;
 	kellyFucked();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Do Kelly's Ass
@@ -2775,7 +2774,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 	kellyFucked();
 	pc.shower();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=DeepFuck=]
@@ -2994,7 +2993,7 @@ public function deepFuckKellysButthole():void
 	
 	kellyFucked();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Oral Her
@@ -3150,7 +3149,6 @@ public function kellysCocksGetBLOWN():void
 
 	processTime(20+rand(3));
 	pc.lust(15);
-	tempNudeOff();
 	//[Splatter][DrinkAll]
 	clearMenu();
 	addButton(0,"Splatter",splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ,undefined,"Splatter","Splatter yourself with Kelly's honey.");
@@ -3192,6 +3190,8 @@ public function drinkAllOfKellysSpoo():void
 	else addDisabledButton(0,"Cock","Cock","You need a cock for Kelly to suck it.");
 	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh);
 	else addDisabledButton(1,"Pussy","Pussy","You need a pussy in order for Kelly to lick it.");
+	if(!pc.hasCock() && !pc.hasVagina()) addButton(2,"Neither",noDrinksForKelly,true,"Oops...","Tell her you have nothing for her to drink...");
+	else addButton(2,"Neither",noDrinksForKelly,false,"Neither","Decline her advances and don't allow her a drink.");
 }
 
 //Go to appropriate/selected "Kelly gives the PC oral" sex scene//
@@ -3233,9 +3233,10 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 		output("\n\nYou thank her and head to get clean.");
 		processTime(10);
 		pc.lust(10);
+		pc.shower();
 		//Think back to street.
 		clearMenu();
-		addButton(0,"Next",move,"SOUTH ESBETH 2");
+		addButton(0,"Next",leaveKellyNext);
 		return;
 	}
 	else
@@ -3295,7 +3296,8 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 		output("\n\nTaking the offered glass, you down it in a single gulp and lay it on a table nearby, whilst sighing in relief.");
 		output("\n\n<i>\"Not thirsty anymore?\"</i> She asks. At your nod, she grins a grin that you have come to know very well. <i>\"That's good, but now, I'm just dying for a drink... and I'm not interested in water,\"</i> she croons. As if she really needs the emphasis, she leans forward and rubs at your ");
 		if(pc.hasCock()) output("[pc.cockBiggest]");
-		else output("[pc.vaginas]");
+		else if(pc.hasVagina()) output("[pc.vaginas]");
+		else output("[pc.crotch]");
 		output(", still naked and exposed, making it very clear what sort of \"drink\" she wants.");
 
 		processTime(10);
@@ -3307,7 +3309,51 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 		else addDisabledButton(0,"GetBlown","GetBlown","You need a cock for Kelly to suck it.");
 		if(pc.hasVagina()) addButton(1,"GetLicked",getLickedOutByKellllaaaahhhh);
 		else addDisabledButton(1,"GetLicked","GetLicked","You need a pussy in order for Kelly to lick it.");
+		if(!pc.hasCock() && !pc.hasVagina()) addButton(2,"Neither",noDrinksForKelly,true,"Oops...","Tell her you have nothing for her to drink...");
+		else addButton(2,"Neither",noDrinksForKelly,false,"Neither","Decline her advances and don't allow her a drink.");
 	}
+}
+
+//Exit strategy
+public function noDrinksForKelly(genderless:Boolean = false):void
+{
+    clearOutput();
+    userInterface.showBust("KELLY_NUDE");
+    showKellyName();
+    
+    output("Even though you had your fill, you shake your head and refuse Kelly's advances.");
+    if(!genderless)
+    {
+        output("\n\nKelly hungrily stares at your [pc.crotch] and frowns, <i>“A-Are you sure, honey?”</i>");
+        if(pc.isNice()) output("\n\n<i>“Thanks for the meal, but I don't think I'm ready to cum at the moment,”</i> you say as you tickle her under her chin with your fingertips.");
+        else if(pc.isMischievous()) output("\n\n<i>“I think I'll hold onto what I've got, thanks.”</i> You are holding your orgasm hostage to see how the honey bunny would react.");
+        else output("\n\n<i>“You've had your orgasm, and now you want mine? You're such a slutty bunny. I think I'll punish you a little for that,”</i> you playfully scold her.");
+        output("\n\nKelly's eyes widen and glaze over. <i>“But after what you've done, I'm sooo thirsty now! I have to have some, please?”</i>");
+        output("\n\nYou are adamant about your decision and shake your head.");
+        output("\n\n<i>“Oh fine, you big fat meanie!”</i> she says, accepting defeat, but not without some retribution.");
+        if(pc.isAss()) output(" You're sure she can manage and advise that she have some water instead. With two loud smacks, your cheek tingles. You give her a surprised look and notice her hands clutched at the base of her two equine sex poles. Did... did she just cock slap you? <i>“Well you don't have to be a jerk about it!”</i>");
+        else output(" She gives you two light smacks on your belly and flicks her head with an exaggerated <i>“hmph!”</i>");
+    }
+    else
+    {
+        output("\n\nKelly does a double take at your [pc.crotch] and turns up to you blushing, <i>“Oh my, [pc.name]... I guess I was so caught up in the moment that I didn't realize...”<\i>");
+        output("\n\nYou give her a knowing grin. She <i>was</i> pretty immersed there, but you can't blame her after making her loose.");
+        output("\n\n<i>“Well, I guess I can manage for now,”<\i> she says. <i>“You know, you should definitely mod some equipment down there. I don't see why you shouldn't--you apparently like genitals enough to know how to please mine.”<\i> She trails her fingers from your blank pelvis upwards, then softly ends at your belly, giving it a light pat.");
+    }
+    output("\n\nAside from her disappointment of not being able to have her way with you, Kelly allows you to quickly rinse off in her shower before you put your [pc.gear] back on and leave her place.");
+
+    output("\n\n<i>“Farewell, honey! Please drop by any time, but do remember that you should give some after you get some - sharing is caring after all, right?”</i> the laquine lectures with a snarky smile to her lips. <i>“When I go all the way, I want you to go all the way too,”</i> she concludes seductively as she steps back inside, closing the door behind you.");
+    processTime(15+rand(11));
+    pc.shower();
+    pc.lust(10);
+    clearMenu();
+    addButton(0,"Next",leaveKellyNext);
+}
+
+public function leaveKellyNext():void
+{
+    if(pc.hasStatusEffect("Temporary Nudity Cheat")) tempNudeOff();
+    move("SOUTH ESBETH 2");
 }
 
 //Kelly's Cunny
@@ -3499,7 +3545,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 			output("\n\nOnce you’ve double-checked to make sure nothing is missing, you pull Kelly in for a kiss. Then make your way out of her home.");
 			output("\n\n<i>\"Come back when I'm not so sore - I promise you'll enjoy it,\"</i> Kelly calls after you with a smirk. <i>\"Of course, it might be you who walks away sore the next time,\"</i> she giggles, before closing the door behind you.");
 			clearMenu();
-			addButton(0,"Next",move,"SOUTH ESBETH 2");
+			addButton(0,"Next",leaveKellyNext);
 			return;
 		}
 		else
@@ -3557,7 +3603,6 @@ public function eatOutKellysQuoteUnquoteCunny():void
 		}
 	}
 	pc.shower();
-	tempNudeOff();
 }
 
 //[=Nap=]
@@ -3592,7 +3637,7 @@ public function takeANapAfterNiceCunnilingus():void
 	}
 	processTime(46);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=Masturbate=]
@@ -3655,7 +3700,7 @@ public function mischievousNapAfterCunnilingateKelly():void
 	output("\n\n<i>\"It's no worries,\"</i> she assures you. <i>\"Come back any time, honey,\"</i> she tells you before you leave.");
 	processTime(46);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=Masturbate=]
@@ -3712,7 +3757,7 @@ public function nudeNapAfterKellyCunnilingus():void
 	output("\n\nShe lets out a wordless noise of approval and kisses you back, stealing a quick hug from you before you separate yourselves. <i>\"Don't be a stranger, honey,\"</i> she tells you before you leave.");
 	processTime(46);
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //[=Masturbate=]
@@ -3782,7 +3827,7 @@ public function kellyCunnilingusHardEndingNap():void
 	output("\n\n<i>\"See you later sweet thing... maybe next time, you're the one who'll be going home sore?\"</i> Kelly calls after you, a wicked smirk on her lips at the thought.");
 	processTime(45+rand(4));
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 
@@ -3921,7 +3966,7 @@ public function taurKellyDPCumInside(x:int):void
 	}
 	flags["KELLY_HAD_SPECIAL_TAUR_DP"] = 1;
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Cum on your tauric torso
@@ -3979,7 +4024,7 @@ public function getCummedOnByKellyDuringTaurDPs(x:int):void
 	}
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",leaveKellyNext);
 }
 /*
 output("\n\nCum on your terran torso");
@@ -4221,7 +4266,7 @@ public function getDPedByKelly():void
 	pc.orgasm();
 	kellyFucked();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Get Double-stuffed (canceled by QB/LD, open to rewrite)
@@ -4517,7 +4562,7 @@ public function getBlownByKelly(noIntro:Boolean = false):void
 	kellyFucked();
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }
 
 //Get Licked
@@ -4622,5 +4667,5 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	pc.orgasm();
 	kellyFucked();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 2");
+	addButton(0,"Next",leaveKellyNext);
 }

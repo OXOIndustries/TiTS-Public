@@ -1985,7 +1985,7 @@ public function giveGiannaSilicone():void
 		giannaPersonality(2);
 	}
 	//Merge
-	output("\n\nGianna pushes her prize against a port in machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. <i>“Let’s get started.”</i>");
+	output("\n\nGianna pushes her prize against a port in the machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. <i>“Let’s get started.”</i>");
 	//Menu!
 	giannaAvailableSilicone(6);
 	pc.destroyItem(new Silicone(),1);
