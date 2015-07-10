@@ -75,7 +75,7 @@ public function ceriaMenu():void
 {
 	showCeria();
 	clearMenu();
-	addButton(0,"Shop",buyFromCeria,undefined,"Shop","Sorry, this part of the store has been closed ever since an imp stole all the supplies!");
+	addButton(0,"Shop",buyFromCeria,undefined,"Shop","Buy some beautication products or gene-mods.");
 	addButton(1,"Styling",hairworkFromCeria,undefined,"Styling","Get your hair lengthened, cut, or dyed!");
 	addButton(2,"Talk",ceriaTalk,undefined,"Talk","Talk to Ceria.");
 	addButton(3,"Appearance",ceriaAppearance,undefined,"Appearance","Take a good look a the elfin proprietor.");

@@ -95,7 +95,13 @@ public function sendCeliseAway():void
 		if(flags["GIGACELISE"] == 1) output(", converging her tentacles into a semi-solid base that may as well be a massive deposit of green jello");
 		else output(", shrinking her breasts down until they barely exist, the additional mass padding out her base");
 		output(". The viridian galotian steadies her quivering and fixes you with a determined look that drags on for an uncomfortable amount of time. Her brows knit into an uncharacteristically serious glare.");
-		output("\n\nThen, just when you’re about to say anything to break the tension, she sticks out her tongue and claps you on the back. <i>“You’re just like him - all serious and stuff! Don’t worry, Vic had me wait for him tons of times - I’ve still got the travel chit and everything.”</i> She leans forward, her bust filling out to press meaningfully into your side as she does so. <i>“When you want to have fun, come pick me up on Tavros Station.”</i>");
+		output("\n\nThen, just when you’re about to say anything to break the tension, she sticks out her tongue and claps you on the back. <i>“You’re just like him - all serious and stuff! Don’t worry, Vic had me wait for him tons of times");
+
+		if(shipLocation != "TAVROS HANGAR") output(" - I’ve still got the travel chit and everything");
+		output(".”</i> She leans forward, her bust filling out to press meaningfully into your side as she does so. <i>“When you want to have fun");
+		if(shipLocation == "TAVROS HANGAR") output(" you can find me here on Tavros Station, okay?");
+		else output(", come pick me up on Tavros Station.");
+		output("”</i>");
 		output("\n\nYou’re left there, stunned, while the galotian disembarks.");
 		output("\n\n(<b>Celise is no longer on your crew. You can find her again in Tavros Station.</b>)");
 		flags["CELISE_EVER_SENT_AWAY"] = 1;
@@ -118,9 +124,14 @@ public function sendCeliseAway():void
 		else if(rand(3) == 0) output("mean purple dick-girl");
 		else if(rand(2) == 0) output("fluffy panda");
 		else output("cat-dog girl");
-		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly. <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");
-		output("\n\nYou smile back at her. <i>“I just might.”</i>");
-		output("\n\nCelise giggles at that and flows past you, giving you a squeeze on the butt on her way past. She pulls a travel chit out from somewhere inside of herself on her way down the boarding ramp.");
+		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
+		if(shipLocation == "TAVROS HANGAR") 
+		{
+			output(" <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");
+			output("\n\nYou smile back at her. <i>“I just might.”</i>");
+			output("\n\nCelise giggles at that and flows past you, giving you a squeeze on the butt on her way past. She pulls a travel chit out from somewhere inside of herself on her way down the boarding ramp.");
+		}
+		else output(" With a short giggle, she flows past you, giving your [pc.butts] a squeeze before exiting the ship.");
 		output("\n\n(<b>Celise is no longer on your crew. You can find her again in Tavros Station.</b>)");
 	}
 	processTime(2);

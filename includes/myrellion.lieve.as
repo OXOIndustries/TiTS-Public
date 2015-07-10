@@ -275,8 +275,8 @@ public function lieveTrenchWivesMenu():void
 	addButton(1, "Mayren", lieveTalkToMayren);
 	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] != LIEVE_LATEGOODBYE_COMPLETE && flags["LEARNED_IAYAS_FATE"] == 1) addButton(2,"Iaya",tellSiervaTheBadNews,undefined,"Iaya","Tell Sierva the bad news.");
 	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) addDisabledButton(2,"Iaya","Iaya","You've already broken the news to Sierva.");
-	else addDisabledButton(2,"Iaya","Iaya","You don't know about Iaya's fate.");
-	addButton(4, "Back", lieveMenu);
+	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES) addDisabledButton(2,"Iaya","Iaya","You don't know about Iaya's fate.");
+	addButton(14, "Back", lieveMenu);
 }
 
 public function lieveTalkToSierva():void
@@ -2392,7 +2392,7 @@ public function questionTheRightGate():void
 {
 	clearOutput();
 	showName("QUESTIONING\nTHE GUARDS");
-	showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
+	showBust("MYR_GOLD_GUARD_HAMMER","MYR_GOLD_GUARD","MYR_GOLD_GUARD");
 	output("You approach the guards, eying the strange crests on their vehicle. After a moment’s thought, a hint of recollection teases at your brain and you pull out the stone rod from your pack. Looking it over, you quickly match up one of the strange symbols on the rock to the one printed on the sides of the vehicles clustered around the barricade.");
 	output("\n\nA sentry standing a few paces away catches your gaze and stalks over, resting a tremendous warhammer on her shoulder with almost frightening ease. <i>“Offworlders aren’t permitted past this checkpoint,”</i> she informs you cooly. <i>“Please step back.”</i>");
 	output("\n\n<i>“Wait, wait,”</i> you say, holding out the rod. <i>“Do you know what this is?”</i>");

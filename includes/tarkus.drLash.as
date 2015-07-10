@@ -317,6 +317,31 @@ public function lashTreatment2(treatment:String):void
 	output("\n\nYou’re naked on a bench in the center of the lab, completely uncovered and unprotected. Anyone could’ve walked in and seen you while you were unconscious!");
 	output(" Part of you thrills at the realization, but your body doesn’t react quite as you’d expect.");
 	output(" Gasping, you take in your changed form. <b>");
+
+	var parasites:Boolean = false;
+
+	if(pc.hasCuntTail() || pc.hasCockTail() || attachedMimbranes() > 0)
+	{
+		parasites = true;
+		// Do the removal shit
+		if (pc.hasCuntTail() || pc.hasCockTail())
+		{
+			pc.tailType = GLOBAL.TYPE_HUMAN;
+			pc.tailCount = 0;
+			pc.tailFlags = [];
+			pc.tailGenital = 0;
+			pc.tailGenitalArg = 0;
+			pc.tailGenitalColor = "";
+			
+			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+		}
+		else if (attachedMimbranes() > 0)
+		{
+			removeMimbranes();
+		}
+	}
+	
 	if(treatment == "rack removal")
 	{
 		//Trim down to 1 row.
@@ -393,29 +418,6 @@ public function lashTreatment2(treatment:String):void
 	}
 	output("</b>");
 
-	var parasites:Boolean = false;
-
-	if(pc.hasCuntTail() || pc.hasCockTail() || attachedMimbranes() > 0)
-	{
-		parasites = true;
-		// Do the removal shit
-		if (pc.hasCuntTail() || pc.hasCockTail())
-		{
-			pc.tailType = GLOBAL.TYPE_HUMAN;
-			pc.tailCount = 0;
-			pc.tailFlags = [];
-			pc.tailGenital = 0;
-			pc.tailGenitalArg = 0;
-			pc.tailGenitalColor = "";
-			
-			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-		}
-		else if (attachedMimbranes() > 0)
-		{
-			removeMimbranes();
-		}
-	}
 	output("\n\n<i>“Oh, you’re awake.”</i> Doctor Lash tosses your equipment none-too-gently onto your [pc.belly]. <i>“");
 	if(!parasites) output("Get dressed and be on your way, unless you’d like another treatment.");
 	else output("I took the liberty of removing some filthy parasites while you were under. You can thank me by restoring my privacy post-haste.");

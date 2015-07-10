@@ -1524,7 +1524,7 @@ public function reahaBootOffShip():void
 		
 			output("\n\n<i>“You’re off the crew! Get out!”</i>");
 		}
-		else output("<i>“Pack your bags. You’re staying here.”</i>");
+		else output("<i>“Pack your bags. You’re not staying here.”</i>");
 		
 		output("\n\nReaha stares at you for a second, her big blue eyes growing wide. <i>“Wh-what...”</i> she mumbles. <i>“You can’t leave me here! I don’t belong here, they’ll make me take the Treatment or... or my mother will find me! Pleasepleaseplease don’t leave me, I’ll be a good cow I promise.”</i>");
 		
@@ -1553,12 +1553,12 @@ public function reahaBootOffShip():void
 		
 			output("\n\n<i>“You’re off the crew! Get out!”</i>");
 		}
-		else output(" <i>“Pack your bags. You’re staying here.”</i>");
+		else output(" <i>“Pack your bags. You’re not staying here.”</i>");
 		
 		output("\n\nReaha’s expectant smile fades, but she nods with understanding. <i>“Alright, if that’s what you want. I’ll");
-		if (shipLocation == "TAVROS HANGAR") output(" wait here on Tavros");
-		else output(" catch a cab to Tavros");
-		output(" and wait for you. Is that okay?”</i>");
+		if (shipLocation == "TAVROS HANGAR") output(" wait for you here on Tavros");
+		else output(" catch a cab to Tavros and wait for you");
+		output(". Is that okay?”</i>");
 		
 		output("\n\nYou nod. Sounds perfect. She quickly and silently gathers her scant possessions -- not much more than a Magic Milker and some sex toys");
 		if (reahaAddicted()) output(", plus her boxes of pleasure patches");
