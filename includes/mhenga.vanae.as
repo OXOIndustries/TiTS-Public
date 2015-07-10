@@ -2555,7 +2555,7 @@ public function vanaeMaidenPCDefeat():void
 	{
 		output("The pain is too much and you fall on your back, unable to continue the fight. The vanae maiden pumps her fist and spear in the air, clearly elated by her victory.");
 		
-		output("\n\n<i>“YES! I did it, I won - i’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won.");
+		output("\n\n<i>“YES! I did it, I won - I’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won.");
 		
 		output("\n\nRemembering your injuries, her elated look turns to one of clear concern. <i>“Oh... um... sorry I had to hurt you so badly. You didn’t look like you were going to go down without a fight, so... yeah.”</i> She scratches the back of her neck, looking a little bashful and nervous. You can’t believe you were beaten by such an obviously inexperienced huntress.");
 		
@@ -2576,7 +2576,7 @@ public function vanaeMaidenPCDefeat():void
 		
 		output("\n\nMeanwhile, the vanae maiden pumps her fist and spear in the air, clearly elated by her victory. She completely ignores your obvious frustration as you fiddle with yourself on the ground.");
 		
-		output("\n\n<i>“YES! I did it, I won - i’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won. Walking up to you, she sticks her spear in the ground and shoots you a confident grin.");
+		output("\n\n<i>“YES! I did it, I won - I’m a real huntress now!”</i> She seems giddy with delight. It seems it’s the first fight that she’s ever won. Walking up to you, she sticks her spear in the ground and shoots you a confident grin.");
 		
 		output("\n\n<i>“I can’t believe I won with my sex appeal. Wait until I tell everyone about it! Well, after I help you with your frustration problem, that is.”</i> She suddenly looks a little bashful, <i>“A-as... as the victor, I have to take my prize. That’s the way my people do things. Any problems with that?”</i>");
 		

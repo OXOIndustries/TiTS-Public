@@ -981,7 +981,7 @@ public function femaleFirstTimePennyLesboz():void {
 	else output("a pec");
 	output(" and rubbing around the [pc.nipple]. <i>“Now, what to do with my poor, trapped prey,”</i>  she says, giggling when her fingers hit a sensitive spot and drop some of your weight into her arms. <i>“Atta " + pc.mf("boy","girl") + ".... I’m going to take you and make you mine... my mate. You don’t mind, do you?”</i>");
 	
-	output("\n\nYou open your mouth, but as soon as you do, Penny’s thumb graces the sensitive flesh around your [pc.oneClit] with steady circles. Her other exposed fingers spread apart your lips, dilating your entrance to better allow her middle fingers to penetrate you. All that escapes your mouth is a pleasured gasp, and it turns into a moan a moment later. You writhe on the pretty fox’s fingers with sensuous need, bucking your [pc.hips] against her for more: more touches, more penetration, more teasing of your nipples. You want it all.");
+	output("\n\nYou open your mouth, but as soon as you do, Penny’s thumb graces the sensitive flesh around [pc.oneClit] with steady circles. Her other exposed fingers spread apart your lips, dilating your entrance to better allow her middle fingers to penetrate you. All that escapes your mouth is a pleasured gasp, and it turns into a moan a moment later. You writhe on the pretty fox’s fingers with sensuous need, bucking your [pc.hips] against her for more: more touches, more penetration, more teasing of your nipples. You want it all.");
 	if(pc.tallness >= 84) output(" If you were more conscious of the scenario, you’d find it almost comical how the little fennec is supporting your larger frame. Instead, you luxuriate in the moment, leaning back against the wall while Penny helps to keep you on your [pc.feet] in the water.");
 	
 	output("\n\n<i>“Speak up,”</i>  Penny says encouragingly, <i>“I couldn’t hear you. You came into this shower, my little trap, and now you’re not leaving until I’ve made you my mate. Or would you rather remain my prey, to be taken and discarded once you satisfy me?”</i>");
@@ -1015,9 +1015,9 @@ public function femaleFirstTimePennyLesboz():void {
 	output(" is filled with fingers again, though they run over the vulvae before slipping through the curtains of your labia, eventually disappearing entirely into your rabbit hole. You feel yourself climbing up a cliffside, mounting the edge of a precipice involuntarily, pushed by Penny’s noisily pumping hand, her palm grinding the exterior of your sex while the fingers take you higher. You’re shuddering and twitching involuntarily, and you watch your new mate’s smile widen as she pushes you off the cliff.");
 	
 	output("\n\nYou bite your lip and let your eyes roll back, humping Penny’s hand as it carries you into orgasm. The contractions of pleasure run up from your [pc.feet], through your [pc.legs], across your spasming puss");
-	if(pc.cockTotal() == 1) output("y");
+	if(pc.totalVaginas() == 1) output("y");
 	else output("ies");
-	if(pc.cockTotal() > 0)
+	if(pc.totalCocks() > 0)
 	{
 		output(", into ");
 		if(pc.cockTotal() > 1) output("each ");
@@ -1050,7 +1050,7 @@ public function femaleFirstTimePennyLesboz():void {
 		output(". Feeling you gush around her intruding fingers brings a smile to the fox’s face.");
 	}
 	else if(pc.wetness() >= 2) {
-		output(" Her hand is soaked with your copious secretions, coated with by your climaxing cunt");
+		output(" Her hand is soaked with your copious secretions, coated by your climaxing cunt");
 		if(pc.totalVaginas() > 1) output("s");
 		output(" secretions. Feeling you leak around her intruding fingers brings a smile to the fox’s face.");
 	}
