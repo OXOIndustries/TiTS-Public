@@ -134,6 +134,13 @@
 					if(pc.cockTotal() == 1) kGAMECLASS.output("its");
 					else kGAMECLASS.output("their");
 					kGAMECLASS.output(" normal size, or close. It seems overdosing has undone the normal effect of the Condensol, but also made you permanently smaller. Damn, that hurt.");
+
+					pc.removeStatusEffect("Condensol-B");
+					for(x = 0; x < pc.cockTotal(); x++)
+					{
+						pc.cocks[x].cLengthRaw *= 4;
+					}
+
 					for(x = 0; x < pc.cockTotal(); x++)
 					{
 						pc.cocks[x].cLengthRaw--;
