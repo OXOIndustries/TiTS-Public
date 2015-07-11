@@ -427,7 +427,7 @@ public function chicksRideASydian():void
 	output(" <i>\"You don't have to be sure,\"</i> you say as you sidle into position above him. <i>\"You just have to stay hard for me.\"</i>");
 	output("\n\nThe male's tail, folded beside him by own supine position, flicks back and forth in agitation, but he does not respond. His gaze remains fixedly aimed at the ground in a gesture of submission, though his three-fingered hands clench in irritation. So long as he doesn't get any bright ideas about being on top, you'll get along fine.");
 	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legOrLegs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
-	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tool's don't come with build-in stimulation functions. Your [pc.lips] wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
+	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tools don't come with build-in stimulation functions. Your [pc.lips] open wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
 	pc.cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
 	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(foes[0].cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
@@ -457,8 +457,8 @@ public function chicksRideASydian():void
 	else output("[pc.oneClit] and starts rubbing against it, wracking you with intense sensation.");
 	output(" You give in, eyes crossed, and let it happen. You let the heat in your [pc.vaginas] blossom into a wonderful, glowing bloom. [pc.GirlCum]");
 	if(pc.isSquirter()) output(" washes out of you in a tide");
-	else if(pc.wetness(x) >= 3) output("soaks your mate");
-	else output("dribbles out");
+	else if(pc.wetness(x) >= 3) output(" soaks your mate");
+	else output(" dribbles out");
 	output(" at your orgasm, and your walls wring the trapped dick for all they're worth, trying to milk it for cum that isn't going to come until you let him.");
 	output("\n\nThe sydian squirms and writhes, noisily grunting and growling, obviously needing to cum. You regard him, your face still flushed with the heady glow of pleasure. What do you do? Are you going to let him cum inside you or make him squirt all over himself?\n\n");
 	if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] == undefined) flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] = 0;

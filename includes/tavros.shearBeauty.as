@@ -640,7 +640,9 @@ public function furColorApplication(newColor:String):void
 		else output("not at all shy about getting some squeezing in that you’re pretty sure isn’t necessary for working the gel into your breasts");
 		output(". As the tub starts to run low, you tear your gaze away from the elven tits hanging above you for just a moment to observe your fur’s palette changing, as if the [pc.furColor] was being washed away to reveal " + newColor + " underneath. Ceria takes a moment to observe this as well, licking her lips.");
 		output("\n\n<i>“Oh, that’s hot, [pc.name]. " + upperCase(newColor) + " looks amazing on you, you’re gonna love it. I know I certainly do.”</i> The stylist keeps going until she runs out of gel completely, and a little longer besides, rubbing your [pc.breasts] while she watches your fur finish transitioning to its new coloration. You can feel the tingling deep in your roots, as the gel ensures that its adjustments to your palette are permanent.");
-		output("\n\n<i>“Oh yes, perfect. You look great, [pc.name].”</i> Ceria traces her fingers downward across your body, giving you a teasing grin as she stops just shy of your crotch{PC has a cock: and narrowly avoids brushing your erection with her fingertips}. <i>“Of course, if you want to try out a different color sometime, I’ll gladly do this for you again any time you want.”</i>");
+		output("\n\n<i>“Oh yes, perfect. You look great, [pc.name].”</i> Ceria traces her fingers downward across your body, giving you a teasing grin as she stops just shy of your crotch");
+		if(pc.hasCock()) output(" and narrowly avoids brushing your erection with her fingertips");
+		output(". <i>“Of course, if you want to try out a different color sometime, I’ll gladly do this for you again any time you want.”</i>");
 		output("\n\nCeria eventually takes her hands off of your body and gets up to put her shirt back on, allowing you to reclaim your gear and get a proper look at your new coloration. <b>Your fur is now " + newColor + "!</b>");
 		pc.lust(10);
 	}
