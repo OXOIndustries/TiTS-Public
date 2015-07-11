@@ -2045,7 +2045,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output("\n\nShe plants a single kiss on your");
 	if (pc.balls > 0) output(" [pc.balls]");
 	output(" [pc.cock " + selCock + "]");
-	output(" before retreating back into the Mhen'gan jungle, her tail and hips swaying all the while. It seems you're going to be the father of quite a few vanae daughters.");
+	output(" before retreating back into the Mhen'gan jungle, her tail and hips swaying all the while. It seems you're going to be the father of quite a few vanae daughters.\n\n");
 
 	processTime(75+rand(25));
 	flags["VANAE_HUNTRESS_BRED"] = 1;
@@ -2157,7 +2157,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 
 	if (flags["VANAE_MILKBATH_TIMES"] == undefined) flags["VANAE_MILKBATH_TIMES"] = 0;
 	flags["VANAE_MILKBATH_TIMES"]++;
-
+	output("\n\n");
 	genericLoss();
 }
 
@@ -2230,6 +2230,7 @@ public function vanaeHuntressPCDefeatSquirtNJerk():void
 	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
 	processTime(90+rand(25));
+	output("\n\n");
 	genericLoss();
 }
 
@@ -2317,6 +2318,7 @@ public function vanaeHuntressPCDefeatTitfux():void
 	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
 	processTime(90+rand(25));
+	output("\n\n");
 	genericLoss();
 }
 
@@ -2375,6 +2377,7 @@ public function vanaeHuntressPCDefeatCunnilingus():void
 	output("\n\n<i>“Thanks for the meal, beautiful. Maybe I'll catch you again sometime?”</i> The vanae huntress purrs, sliding off your paralyzed form. She lands a sensuous kiss on your [pc.lips], and you can taste your own [pc.girlCum]. She then retreats into the Mhen'gan jungle, her tail and hips sexily swaying all the while.");
 
 	processTime(90+rand(25));
+	output("\n\n");
 	genericLoss();
 }
 
@@ -2541,6 +2544,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
 	processTime(90+rand(25));
+	output("\n\n");
 	genericLoss();
 }
 

@@ -733,7 +733,7 @@ public function adultCockvinePCLoses():void
 
 	output("\n\nIt takes you a while for the green vagueness to recede and for you to regain enough strength to stand up. You exhale heavily as plant cum oozes warmly out of your ravaged [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.vagina]");
-	output(", and you shoot a sour look at the nearby crevice. There is no sign whatsoever of your assailant; it has completely withdrawn. The high taste, texture and smell of citrus sex stays with you as you go your unsteady way.");
+	output(", and you shoot a sour look at the nearby crevice. There is no sign whatsoever of your assailant; it has completely withdrawn. The high taste, texture and smell of citrus sex stays with you as you go your unsteady way.\n\n");
 
 	processTime(45+rand(15));
 
@@ -780,7 +780,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 
 	output("\n\n<i>“I – uh…”</i> you stammer.");
 
-	output("\n\n<i>“Good. Now fuck off.”</i> The tentacle clutching your lower body coils itself up and then lashes you out of the crevice, where you land with a thump. After a couple of moments recovering you pick yourself up and carry on your unsteady way, making a wide berth of the cockvine nest. You wonder whether getting rejected by the plant monster in this way was on balance a good thing or a bad thing.");
+	output("\n\n<i>“Good. Now fuck off.”</i> The tentacle clutching your lower body coils itself up and then lashes you out of the crevice, where you land with a thump. After a couple of moments recovering you pick yourself up and carry on your unsteady way, making a wide berth of the cockvine nest. You wonder whether getting rejected by the plant monster in this way was on balance a good thing or a bad thing.\n\n");
 
 	processTime(10);
 

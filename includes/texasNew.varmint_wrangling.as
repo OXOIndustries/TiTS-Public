@@ -485,7 +485,7 @@ public function pcLosesToVarmint2():void
 		pc.credits -= eatenCreds;
 	}
 	else output(" You're missing your dignity, but not much else.");
-	output(" You dust yourself off and move on, a little sore from the beating.");
+	output(" You dust yourself off and move on, a little sore from the beating.\n\n");
 	processTime(120+rand(30));
 	clearMenu();
 	genericLoss();

@@ -1797,12 +1797,13 @@ public function statisticsScreen():void
 
 	//======NPC STATISTICS=====//
 	output2("\n<b><u>NPC Statistics:</u></b>\n");
+	if (flags["KELLY_ATTRACTION"] != undefined) output2("<b>Kelly's Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%\n");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output2("<b>Kiro's Trust: </b>" + kiroTrust() + "%\n");
 	//Lane shit
 	if(flags["LANE_HYPNOSIS_LEVEL"] != 0 && flags["LANE_HYPNOSIS_LEVEL"] != undefined)
 	{
-		output2("\n<b>Lane, Hypnosis Level: </b>" + flags["LANE_HYPNOSIS_LEVEL"] + "\n");
-
+		output2("<b>Lane, Hypnosis Level: </b>" + flags["LANE_HYPNOSIS_LEVEL"] + "\n");
+		if (flags["LANE_DETOX_COUNTER"] != undefined) output2("<b>Lane, Hypnotism Detoxification Duration: </b>" + prettifyMinutes(flags["LANE_DETOX_COUNTER"]) + "\n");
 	}
 	if(reahaRecruited()) 
 	{
@@ -1810,9 +1811,6 @@ public function statisticsScreen():void
 		output2("<b>Reaha's Confidence: </b>" + reahaConfidence() + "%\n");
 	}
 	if (flags["SAEN MET AT THE BAR"] != undefined) output2("<b>Saendra's Affection: </b>" + saendraAffection() + "% (69% Max)\n");
-	if (flags["KELLY_ATTRACTION"] != undefined) output2("<b>Kelly's Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%\n");
-
-
 
 	//=====GENERAL STATS=====//
 	output2("\n<b><u>General Statistics:</u></b>\n");
@@ -1858,6 +1856,85 @@ public function statisticsScreen():void
 			output2("<b>Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") + "\n");
 		
 	}
+
+	//======PARASITE STATISTICS=====//
+	//Parasites!
+	output2("\n<b><u>Parasite Statistics:</u></b>\n");
+
+	var bHasParasites:Boolean = false;
+
+	// Cockvines
+	if(pc.tailType == GLOBAL.TYPE_COCKVINE && pc.tailCount > 0)
+	{
+		output2("<b>Cockvine, Attached, Type: </b>" + GLOBAL.TYPE_NAMES[pc.tailGenitalArg] + "\n");
+		bHasParasites = true;
+	}
+	// Cunt Snakes
+	if(pc.tailType == GLOBAL.TYPE_CUNTSNAKE && pc.tailCount > 0)
+	{
+		output2("<b>Cunt Snake, Attached, Type: </b>" + GLOBAL.TYPE_NAMES[pc.tailGenitalArg] + "\n");
+		if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined) output2("<b>Cunt Snake, Feeding, Current: </b>" + flags["DAYS_SINCE_FED_CUNT_TAIL"] + " days since last fed\n");
+		bHasParasites = true;
+	}
+	if(flags["TIMES_FED_CUNT_SNAKE"] != undefined)
+	{
+		output2("<b>Cunt Snake, Feeding, Total: </b>" + flags["TIMES_FED_CUNT_SNAKE"] + " times\n");
+		bHasParasites = true;
+	}
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0)
+	{
+		output2("<b>Cunt Snake, Pregnancy, Gestation Time: </b>" + prettifyMinutes(flags["CUNT_TAIL_PREGNANT_TIMER"]) + " until birth\n");
+		bHasParasites = true;
+	}
+	if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] > 0)
+	{
+		output2("<b>Cunt Snake, Reproduction, Eggs in Hatchery: </b>" + flags["CUNT_SNAKE_EGGS_FAXED_HOME"] + "\n");
+		bHasParasites = true;
+	}
+	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
+	{
+		output2("<b>Cunt Snake, Reproduction, Eggs Laid Total: </b>" + (flags["CUNT_SNAKES_HELPED_TO_INFEST"] + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]) + "\n");
+		bHasParasites = true;
+	}
+	// Mimbranes
+	if(attachedMimbranes() > 0)
+	{
+		output2("<b>Mimbranes, Attached, Total: </b>" + attachedMimbranes() + "\n");
+		
+		var mimSumReproductionCounter:int = 0;
+		
+		if(pc.hasStatusEffect("Mimbrane Cock")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Cock");
+		if(pc.hasStatusEffect("Mimbrane Pussy")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Pussy");
+		if(pc.hasStatusEffect("Mimbrane Ass")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Ass");
+		if(pc.hasStatusEffect("Mimbrane Balls")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Balls");
+		if(pc.hasStatusEffect("Mimbrane Boobs")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Boobs");
+		if(pc.hasStatusEffect("Mimbrane Hand Left")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Hand Left");
+		if(pc.hasStatusEffect("Mimbrane Hand Right")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Hand Right");
+		if(pc.hasStatusEffect("Mimbrane Foot Left")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Foot Left");
+		if(pc.hasStatusEffect("Mimbrane Foot Right")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Foot Right");
+		if(pc.hasStatusEffect("Mimbrane Face")) mimSumReproductionCounter += pc.statusEffectv4("Mimbrane Face");
+		
+		if(mimSumReproductionCounter > 0) output2("<b>Mimbranes, Reproduction, Current Total: </b>" + mimSumReproductionCounter + " times\n");
+		bHasParasites = true;
+	}
+	if(flags["MIMBRANE_COCK_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_ASS_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_BOOBS_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_HAND_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_FOOT_REPRODUCTION_NOTICED"] != undefined || flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"] != undefined)
+	{
+		var mimSumRepNoteCounter:int = 0;
+		
+		if(flags["MIMBRANE_COCK_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_COCK_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_ASS_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_ASS_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_BOOBS_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_BOOBS_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_HAND_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_HAND_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_FOOT_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_FOOT_REPRODUCTION_NOTICED"];
+		if(flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"] != undefined) mimSumRepNoteCounter += flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"];
+		
+		if(mimSumRepNoteCounter > 0) output2("<b>Mimbranes, Reproduction, Total Noticed: </b>" + mimSumRepNoteCounter + " times\n");
+		bHasParasites = true;
+	}
+	// You're clean!
+	if(!bHasParasites) output2("<i>There is no history of any attached parasites.</i>\n");
 }
 
 public function prettifyMinutes(minutes:Number):String

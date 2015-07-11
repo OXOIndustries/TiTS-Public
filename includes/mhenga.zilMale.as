@@ -1174,6 +1174,7 @@ public function tailPussyFuckZilEpilogue():void {
 	if(pc.hasCock() || pc.hasVagina()) output(" Fragrant, musky mud clings to you all over. You fairly reek of your own sexual effluence - gross. Luckily, a babbling brook can be heard a short distance away, and you spend the better portion of another hour cleaning up.");
 	processTime(30+rand(15));
 	clearMenu();
+	output("\n\n");
 	genericLoss();
 }
 //*Apparently Dudes Can't Peg Other Dudes:

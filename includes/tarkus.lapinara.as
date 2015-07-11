@@ -367,7 +367,7 @@ public function buttFuckALapinara(cockNum:int = 0):void
 	output("\n\nAmused by your partner’s eagerness, you gladly oblige her, bouncing her up and down on your [pc.cock " + x + "]. She thrashes her head back, squealing to the sky as she further loses herself in the pleasure that you were so kind to give her. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");
 	output("\n\n<i>“E-EGG eggeggEGG!”</i> she whines lustily, pistoning her hand over her pseudocock at a rate you would have never imagined possible.");
 	output("\n\nA mere seconds later, you blow your load into her, and two soft-shelled eggs shoot from her cock in rapid succession with a loud pop, landing on your chest. She starts panting, exhausted and at a loss for breath. You lift her off of you easily, sitting her down at your side.");
-	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>");
+	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
 	genericVictory();

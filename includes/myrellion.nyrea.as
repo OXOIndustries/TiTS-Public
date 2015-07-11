@@ -691,7 +691,7 @@ public function pcLossToNyrea():void
 			output("\n\nShe huffs, crossing her arms under her breasts. <i>“What use is there for a creature with no genitals!? You offworlders are strange!”</i> Without another word, the nyrea turns on a heel and stalks off into the cavern.");
 		}
 	}
-
+	output("\n\n");
 	processTime(30);
 	genericLoss();
 }
@@ -801,7 +801,7 @@ public function fuckNyreaButtsGetHerOff():void
 	}
 	else output(".");
 	
-	output("\n\nWith a heavy sigh, you pat the cum-soaked huntress on the thigh and pull out of her, wiping the last of your own seed off on her chitinous leg before reaching back to gather your gear. By the time you’ve got a hold of it, the huntress is already on her feet, walking shakily away. <i>“Thanks for being a friend,”</i> she says with a slight smile, indicated her cum-spattered legs and wilting prick. You wave as she departs, leaving you to catch your breath.");
+	output("\n\nWith a heavy sigh, you pat the cum-soaked huntress on the thigh and pull out of her, wiping the last of your own seed off on her chitinous leg before reaching back to gather your gear. By the time you’ve got a hold of it, the huntress is already on her feet, walking shakily away. <i>“Thanks for being a friend,”</i> she says with a slight smile, indicated her cum-spattered legs and wilting prick. You wave as she departs, leaving you to catch your breath.\n\n");
 
 	processTime(45+rand(15));
 	pc.orgasm();
@@ -837,7 +837,7 @@ public function fuckNyreaButtsFuckHer():void
 	if (pc.balls <= 1) output("s");
 	output(" utterly drained, leaving you panting and gasping, head buried in the nyrea’s bust as you recover from the orgasm.");
 	
-	output("\n\nAfter a moment’s rest, you manage to work up the strength to pull out of her, shuddering at the over-sensitive sensation along your [pc.cock] as you withdraw, wiping the last of your leaking post-cum seed on her thigh. With your work finished, you stagger to your feet and collect your [pc.gear], leaving the slut in a heap on the ground, leaking cum from her hole as she furiously masturbates, trying to get herself off.");
+	output("\n\nAfter a moment’s rest, you manage to work up the strength to pull out of her, shuddering at the over-sensitive sensation along your [pc.cock] as you withdraw, wiping the last of your leaking post-cum seed on her thigh. With your work finished, you stagger to your feet and collect your [pc.gear], leaving the slut in a heap on the ground, leaking cum from her hole as she furiously masturbates, trying to get herself off.\n\n");
 
 	processTime(45+rand(15));
 	pc.orgasm();
@@ -1024,7 +1024,7 @@ public function rideNyreaDick():void
 	}
 	
 	processTime(45 + rand(15));
-	
+	output("\n\n");
 	pc.orgasm();
 	clearMenu();
 	genericVictory();

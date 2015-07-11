@@ -456,7 +456,7 @@ public function loseToPhoenixPirates():void
 
 	output("\n\nYou wake up aboard your ship, crumpled on the deck of your airlock with a massive headache. You look through the window, only to see empty space. The pirate ship is gone, as is the <i>Phoenix</i>. Whoever that captain was, or the pirates, they seem to be gone now.");
 
-	output("\n\nYou sigh, rubbing your head and stumbling back to your bridge. Damn it.");
+	output("\n\nYou sigh, rubbing your head and stumbling back to your bridge. Damn it.\n\n");
 
 	genericLoss();
 }

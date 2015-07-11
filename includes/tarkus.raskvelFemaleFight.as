@@ -619,6 +619,7 @@ public function raskyNotInterestedInYerWeirdShit():void
 		else output(" cool yourself off");
 		output(" some before you grab your [pc.gear] and set yourself back on your [pc.feet] ready to carry on.");
 	}
+	output("\n\n");
 	
 	processTime(3+rand(7));
 	genericLoss();

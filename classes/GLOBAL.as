@@ -85,7 +85,8 @@
 			"Nubby",
 			"Foreskinned",
 			"Hollow",
-			"Ribbed"
+			"Ribbed",
+			"Chitinous"
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -174,7 +175,7 @@
 			"Demonic",
 			"Gooey",
 			"Kangaroo",
-			"Tanuki",
+			"UNUSED",
 			"Shark",
 			"Siren",
 			"Deer",
@@ -184,6 +185,9 @@
 			"Humanmasked",
 			"Mouse",
 			"Mouseman",
+			"(Name Index 28)",
+			"(Name Index 29)",
+			"(Name Index 30)",
 			"Dragonfly",
 			"MLP",
 			"Cuntsnake",
@@ -239,6 +243,7 @@
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
+			FLAG_LONG,
 			FLAG_SMOOTH,
 			FLAG_MUZZLED,
 			FLAG_ANGULAR,
@@ -258,13 +263,23 @@
 			TYPE_NAGA,
 			TYPE_DEMONIC,
 			TYPE_DRACONIC,
-			TYPE_LEITHAN
+			TYPE_LEITHAN,
+			TYPE_OVIR,
+			TYPE_LAPINE,
+			TYPE_EQUINE,
+			TYPE_CANINE,
+			TYPE_FELINE,
+			TYPE_BOVINE,
+			TYPE_RASKVEL,
+			TYPE_GOOEY
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
 			FLAG_LONG,
 			FLAG_PREHENSILE,
 			FLAG_HOLLOW,
+			FLAG_LUBRICATED,
+			FLAG_SQUISHY
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -298,7 +313,8 @@
 			TYPE_ARACHNID,
 			TYPE_DRIDER,
 			TYPE_BADGER,
-			TYPE_LEITHAN
+			TYPE_LEITHAN,
+			TYPE_OVIR
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -326,6 +342,7 @@
 			TYPE_SUCCUBUS,
 			TYPE_KUITAN,
 			TYPE_RASKVEL,
+			TYPE_OVIR
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -338,6 +355,8 @@
 			FLAG_HOOVES,
 			FLAG_PAWS,
 			FLAG_HEELS,
+			FLAG_PREHENSILE,
+			FLAG_SMOOTH
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
@@ -363,6 +382,7 @@
 			TYPE_SMALLDRACONIC,
 			TYPE_SHARK,
 			TYPE_AVIAN,
+			TYPE_DEMONIC,
 			TYPE_DRAGONFLY,
 			TYPE_DRACONIC,
 			TYPE_SYLVAN,
@@ -409,7 +429,9 @@
 			FLAG_TAILCOCK,
 			FLAG_FURRED,
 			FLAG_SCALED,
-			FLAG_OVIPOSITOR
+			FLAG_OVIPOSITOR,
+			FLAG_THICK,
+			FLAG_STINGER_TIPPED
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -593,6 +615,7 @@
 			TYPE_BEE,
 			TYPE_SIMII,
 			TYPE_RASKVEL,
+			TYPE_KUITAN
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -618,6 +641,7 @@
 			TYPE_LAPINARA,
 			TYPE_VANAE,
 			TYPE_KUITAN,
+			TYPE_NAGA
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

@@ -294,7 +294,7 @@
 					kGAMECLASS.output("\n\nThere’s a sucking feeling on the top of your head, as it draws its extra appendages inward. By the time it’s done, <b>your ");
 					if(pc.horns > 0) 
 					{
-						kGAMECLASS.output("horns");
+						kGAMECLASS.output("[pc.horns]");
 						pc.horns = 0;
 					}
 					else 
@@ -308,7 +308,8 @@
 				//Wings:
 				if(pc.wingType != 0 && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
+					if(pc.wingType == GLOBAL.TYPE_SHARK) kGAMECLASS.output("\n\nYour back feels uncomfortable, like something is stabbing you between your shoulder blades. You look behind you to see your [pc.wing] is being drawn into your back, soon vanishing entirely. <b>You no longer have a [pc.wing]</b>!");
+					else kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
 					changes++;
 					pc.wingType = 0;
 				}

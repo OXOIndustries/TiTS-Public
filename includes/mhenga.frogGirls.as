@@ -384,6 +384,7 @@ public function hasCockLossForForgGirls():void
 	output("\n\nYou awaken a bit later, feeling a little sore, but otherwise somewhat rested. You get up and gather your [pc.gear] and return to your prior affairs.");
 	processTime(60+rand(30));
 	pc.orgasm();
+	output("\n\n");
 	genericLoss();
 }
 //!hasCock Loss
@@ -415,6 +416,7 @@ public function youDontHaveADickLossToFrogGirls():void
 	processTime(120+rand(60));
 	pc.orgasm();
 	pc.lust(33+rand(33));
+	output("\n\n");
 	genericLoss();
 }
 
@@ -806,7 +808,7 @@ public function itemRapeAFrogGirl():void
 	output("\n\nAs her flow begins to die down, the insensate kerokoras attempts to pull out, only to shout as she cums again. She collapses against you a second time as her flood of jizz rebounds from your full womb and splashes out onto the ground. You also feel her cock begin to shrink, releasing another spurt of cum and shrinking another inch or so with every attempt to pull out. By the time she’s free she has been returned to her dickless self. In a final act of clarity you grasp her head and shove it between your legs.");
 
 	output("\n\nWith her brain numbed from the intensity of her orgasm, the frog-girl does the only thing she can make sense of given her situation and begins sucking and slurping the fluids leaking out of your [pc.vagina " + x + "]. Her gooey tongue slides inside you, licking up everything she can reach. You squeeze your [pc.breasts] as she licks, feeling satisfied with your purchase. Maybe you should try this again sometime.");
-	output("\n\nAt least that’s what you thought at first. You shake your head, realizing that a few hours must’ve passed. Your, err, the kerokoras is nowhere to be found, and your body aches now that the poison is wearing off. You gather your gear, grumbling about being careful the next time as you go back to what you were doing before.");
+	output("\n\nAt least that’s what you thought at first. You shake your head, realizing that a few hours must’ve passed. Your, err, the kerokoras is nowhere to be found, and your body aches now that the poison is wearing off. You gather your gear, grumbling about being careful the next time as you go back to what you were doing before.\n\n");
 
 	processTime(34 + rand(10));
 	pc.orgasm();

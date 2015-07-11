@@ -75,12 +75,12 @@
 						if (target.vaginas.length > 1)
 						{
 							output("\n\n" + StringUtil.capitalize(num2Ordinal(i + 1)) + " vagina - ");
-							addButton(0, String("Vagina " + (i + 1)), ItemTargetChoice, [target, i]);
+							addButton(i, String("Vagina " + (i + 1)), ItemTargetChoice, [target, i]);
 						}
 						else
 						{
 							output("\n\nVagina:");
-							addButton(0, "Vagina", ItemTargetChoice, [target, i]);
+							addButton(i, "Vagina", ItemTargetChoice, [target, i]);
 						}
 						
 						output("\nLooseness: " + formatFloat((target.vaginas[i] as VaginaClass).loosenessRaw, 3));
@@ -96,7 +96,7 @@
 						output("\nWetness: " + formatFloat(target.ass.wetnessRaw, 3));
 					}
 					
-					addButton(i, "Butthole", ItemTargetChoice, [target, 3]);
+					addButton((i+1), "Butthole", ItemTargetChoice, [target, 3]);
 					
 					return true;
 				}
@@ -108,7 +108,7 @@
 				
 			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " eats the food, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " applies the cream but to no effect!");
 				target.energy(35);
 			}
 			return false;

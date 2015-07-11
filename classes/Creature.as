@@ -3072,6 +3072,13 @@
 					adjectives[adjectives.length] = "smooth-scaled";
 					adjectives[adjectives.length] = "lengthy";
 					break;
+				case GLOBAL.TYPE_SYLVAN:
+					adjectives[adjectives.length] = "elven";
+					adjectives[adjectives.length] = num2Text(earLength) + "-inch long";
+					adjectives[adjectives.length] = "sensitive";
+					adjectives[adjectives.length] = "pointy";
+					adjectives[adjectives.length] = "elvish";
+					break;
 			}
 			//Pick an adjective about 75% of the time
 			if(rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
@@ -3698,6 +3705,7 @@
 		}
 		public function wingDescript():String
 		{
+			if(wingType == GLOBAL.TYPE_SHARK) return "dorsal fin";
 			return "wing";
 		}
 		public function wingsDescript():String
@@ -6468,11 +6476,18 @@
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (wingType == GLOBAL.TYPE_BEE) return true;
-			if (wingType == GLOBAL.TYPE_AVIAN || wingType == GLOBAL.TYPE_DRAGONFLY || wingType == GLOBAL.TYPE_DRACONIC || wingType == GLOBAL.TYPE_SYLVAN || wingType == GLOBAL.TYPE_DARK_SYLVAN) return true;
+			if (InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN)) return true;
 			return false;
 		}
+		//PC can swim?
+		public function canSwim(): Boolean {
+			//Oh god, why Spiderman, why?!!!
+			if (hasStatusEffect("Web")) return false;
+			if (wingType == GLOBAL.TYPE_SHARK) return true;
+			return true;
+		}
 		public function hasWings(): Boolean {
+			if(wingType == GLOBAL.TYPE_SHARK) return false;
 			return (wingType > 0);
 		}
 		//check for vagoo
@@ -9805,171 +9820,131 @@
 			return fluidColor(girlCumType);
 		}
 		public function fluidFlavor(arg: int):String {
-			var temp:int = rand(10);
-			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK)
-			{
-				if (temp <= 4) return "creamy";
-				else if (temp <= 7) return "delicious";
-				else if (temp <= 8) return "sweet";
-				else return "creamy";
+			var collection:Array = [];
+				//CUM & MILK TYPES
+			if (arg == GLOBAL.FLUID_TYPE_MILK) {
+				collection = ["creamy","creamy","creamy","creamy","creamy","delicious","delicious","delicious","sweet","creamy"];
 			} else if(arg == GLOBAL.FLUID_TYPE_CUM) {
-				if (temp <= 6) return "salty";
-				else return "potent";
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
-				if (temp <= 4) return "sweet";
-				else if (temp <= 7) return "syrupy";
-				else return "sugary";
+				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+				collection = ["sweet","sweet","sweet","sweet","sweet","syrupy","syrupy","syrupy","sugary","sugary"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				return "tasteless";
+				collection = ["tasteless"];
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				if (temp <= 4) return "creamy";
-				else if (temp <= 7) return "sweet";
-				else if (temp <= 8) return "sugary";
-				else return "delicious";
+				collection = ["creamy","creamy","creamy","creamy","creamy","sweet","sweet","sweet","sugary","delicious"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				if (temp <= 6) return "tangy";
-				else return "flavorful";
+				collection = ["tangy","tangy","tangy","tangy","tangy","tangy","tangy","flavorful","flavorful","flavorful"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				if (temp <= 4) return "salty-sweet";
-				else if (temp <= 7) return "syrupy";
-				else return "salty";
-			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
-			{
-				if (temp <= 2) return "creamy";
-				else if (temp <= 4) return "delicious";
-				else if (temp <= 5) return "sweet";
-				else if (temp <= 8) return "chocolatey";
-				else return "rich";
-			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
-				if (temp <= 5) return "sweet";
-				else return "fruity";
-			}
-			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
-			{
-				if (temp <= 4) return "tangy";
-				else if (temp <= 7) return "sweet";
-				return "intoxicating";
-			}
-			return "bland";
-		}
-		public function fluidViscosity(arg: int):String {
-			var temp:int = rand(10);
-			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
-			{
-				return "creamy";
-			} else if(arg == GLOBAL.FLUID_TYPE_CUM) {
-				if (temp <= 5) return "thick";
-				else if (temp <= 7) return "slick";
-				else return "creamy";
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
-				if (temp <= 5) return "sticky";
-				else return "slick";
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				if (temp <= 4) return "slippery";
-				return "slick";
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				if (temp <= 4) return "creamy";
-				else return "syrupy";
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				if (temp <= 6) return "slick";
-				else return "slippery";
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				if (temp <= 4) return "slick";
-				else if (temp <= 7) return "sticky";
-				else return "syrupy";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK || GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
-				if(temp <= 5) return "creamy";
-				else return "sticky";
-			}
-			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
-			{
-				if (temp <= 5) return "thick";
-				return "creamy";
-			}
-			return "fluid";
-		}
-		public function fluidColor(arg: int): String {
-			var temp: int = this.rand(10);
-			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM) {
-				if (temp <= 4) return "white";
-				else if (temp <= 7) return "alabaster";
-				else return "ivory";
-			}
-			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK)
-			{
-				if (temp <= 4) return "alabaster";
-				else if (temp <= 7) return "semi-transparent";
-				return "off-white";
-			} 
-			else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
-				if (temp <= 4) return "amber";
-				else if (temp <= 7) return "yellow";
-				else if (temp <= 8) return "gold";
-				else return "tawny";
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				if (temp <= 4) return "semi-transparent";
-				else if (temp <= 7) return "transluscent brown";
-				else return "lucent";
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				if (temp <= 4) return "whitish-yellow";
-				else if (temp <= 7) return "ivory gold";
-				else return "off-white";
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				if (temp <= 4) return "transluscent";
-				else if (temp <= 7) return "clear";
-				else return "semi-transparent";
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				if (temp <= 4) return "off white";
-				else if (temp <= 7) return "pearl-marbled amber";
-				else return "ivory-amber";
-			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
-				if (temp <= 4) return "chocolate";
-				else if(temp <= 7) return "creamy brown, chocolate";
-				else return "dark, chocolate";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
-				if (temp <= 4) return "pink";
-				else if (temp <= 7) return "milky-pink";
-				else return "pink-marbled cream";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
-				if (temp <= 4) return "violet";
-				else if (temp <= 7) return "milky-violet";
-				else return "violet-marbled cream";
+				collection = ["salty-sweet","salty-sweet","salty-sweet","salty-sweet","salty-sweet","syrupy","syrupy","syrupy","salty","salty"];
+			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","chocolatey","cocoa-flavored","rich"];
+			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","strawberry-flavored","fruity","rich"];
+			} else if(arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+				collection = ["citrusy","citrusy","citrusy","citrusy","citrusy","tangy","tangy","tangy","metallic","metallic"];
+			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				collection = ["sweet","fruity"];
+			} else if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
+				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
 			}
 			
-			return "ERROR, INVALID FLUID TYPE.";
+			else collection = ["bland"];
+			
+			return RandomInCollection(collection);
+		}
+		public function fluidViscosity(arg: int):String {
+			var collection:Array = [];
+			
+			//CUM & MILK TYPES
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+				collection = ["creamy"];
+			} else if(arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+				collection = ["thick","thick","thick","slick","creamy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+				collection = ["sticky","sticky","sticky","slick","slick"];
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
+				collection = ["slippery","slick"];
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
+				collection = ["creamy","syrupy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
+				collection = ["slick","slick","slick","slick","slick","slick","slick","slippery","slippery","slippery"];
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
+				collection = ["slick","slick","slick","slick","slick","sticky","sticky","sticky","syrupy","syrupy"];
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				collection = ["creamy","creamy","creamy","sticky","sticky"];
+			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
+				collection = ["thick","thick","thick","creamy","creamy"];
+			}
+			
+			else collection = ["fluid"];
+			
+			return RandomInCollection(collection);
+		}
+		public function fluidColor(arg: int): String {
+			var collection:Array = [];
+			
+			//CUM & MILK TYPES
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM) {
+				collection = ["white","white","white","white","white","alabaster","alabaster","alabaster","ivory","ivory"];
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
+				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","transluscent brown","transluscent brown","transluscent brown","lucent","lucent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
+				collection = ["whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","ivory gold","ivory gold","ivory gold","off-white","off-white"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
+				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
+				collection = ["off white","off white","off white","off white","off white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
+			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
+			} else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light, pink","light, pink"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+				collection = ["silvery","silvery","silvery","silvery","silvery","metallic silver","metallic silver","metallic silver","silver","silver"];
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
+				collection = ["pink","pink","pink","pink","pink","milky-pink","milky-pink","milky-pink","pink-marbled cream","pink-marbled cream"];
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				collection = ["violet","violet","violet","violet","violet","milky-violet","milky-violet","milky-violet","violet-marbled cream","violet-marbled cream"];
+			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
+				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
+			}
+			
+			else collection = ["ERROR, INVALID FLUID TYPE."];
+			
+			return RandomInCollection(collection);
 		}
 		public function fluidNoun(arg: int): String {
-			var temp: int = this.rand(10);
+			var collection:Array = [];
+			
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
-				if (temp <= 4) return "milk";
-				else return "cream";
-			} else if (arg == GLOBAL.FLUID_TYPE_CUM) {
-				return "cum";
+				collection = ["milk","cream"];
+			} else if (arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+				collection = ["cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
-				return "honey";
+				collection = ["honey"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				return "oil";
+				collection = ["oil"];
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				return "milk-sap";
+				collection = ["milk-sap"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				return "girl-cum";
+				collection = ["girl-cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				if (rand(4) <= 1) return "cum-sap";
-				else if (rand(2) == 0) return "botanical spunk";
-				else return "floral jism";
-			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
-				return "milk";
+				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
+			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+				collection = ["milk"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
-				return "milk";
+				collection = ["milk"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NECTAR) {
+				collection = ["nectar"];
+			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
+				collection = ["milk"];
 			}
-			else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
-				return "milk";
-			}
-			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
+			
+			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
+			
+			return RandomInCollection(collection);
 		}
 		public function milkDescript(): String {
 			var temp: int = this.rand(10);
@@ -11211,7 +11186,7 @@
 			var descript: String = "";
 			var randt: Number = this.rand(10);
 			var descripted: Number = 0;
-    
+	
 			if(hasStatusEffect("Horn Bumps"))
 			{
 				if (this.rand(3) == 0)
@@ -11330,7 +11305,7 @@
 				if (descripted > 0) descript += " ";
 				descript += hornNoun();
 			}
-    
+	
 			return descript;
 		}
 		public function hornsNoun():String 

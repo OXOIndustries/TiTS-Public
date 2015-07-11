@@ -26,20 +26,20 @@ public function appearance(target:Creature):void {
 	var feedVal:int;
 	if(target == pc) {
 		//Overall
-		if(target.originalRace == target.race()) output2("You are a " + target.originalRace + ".");
+		if(target.originalRace == target.race()) output2("You are " + indefiniteArticle(target.originalRace) + ".");
 		else
 		{
-			output2("You started your journey as a " + target.originalRace + ", but you've become "+indefiniteArticle(target.race())+" over the course of your adventures.");
+			output2("You started your journey as " + indefiniteArticle(target.originalRace) + ", but you've become "+indefiniteArticle(target.race())+" over the course of your adventures.");
 		}
 		output2(" You're a good " + Math.floor(target.tallness / 12) + " feet");
 		if(target.tallness % 12 != 0) output2(" and " + target.tallness % 12 + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you're");
-		if(target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
+		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
-		if(target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
+		if(target.isNude() || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
 		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
-		if(target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
+		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
 		if(target.isNude()) {
 			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
@@ -188,7 +188,7 @@ public function appearance(target:Creature):void {
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
 			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
 			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
-			else output2("surrounded by a " + target.eyeColor + " iris.");
+			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
 		{
@@ -592,7 +592,7 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
-			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
@@ -927,7 +927,7 @@ public function appearance(target:Creature):void {
 					else output2(" Unfortunately, a bit of [pc.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
 				}
 			}
-			if (target.breastRows[0].breastRating() >= 1) output2(" You could easily fill a " + target.breastCup(0) + " bra.");
+			if (target.breastRows[0].breastRating() >= 1) output2(" You could easily fill " + indefiniteArticle(target.breastCup(0)) + " bra.");
 		}
 		//many rows
 		else {
@@ -984,7 +984,7 @@ public function appearance(target:Creature):void {
 						output2(" There isn't any actual nub to your nipples - just flat areolae.");
 					}
 				}
-				if(target.breastRows[temp].breastRating() >= 1) output2(" You could easily fill a " + target.breastCup(temp) + " bra.");
+				if(target.breastRows[temp].breastRating() >= 1) output2(" You could easily fill " + indefiniteArticle(target.breastCup(temp)) + " bra.");
 				temp++;
 			}
 			//Done with tits. Move on.
@@ -1093,13 +1093,13 @@ public function appearance(target:Creature):void {
 				else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + target.ballsDescript(true,true) + " snugly against you.");
 			}
 			else if(target.cockTotal() == 0) {
-				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("A " + target.sackDescript(true,true) + " with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
+				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("" + StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under where a penis would normally grow.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
 			}
 			else {
-				if(target.skinType == GLOBAL.TYPE_HUMAN) output2("A " + target.sackDescript(true,true) + " with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
+				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under your " + target.multiCockDescript() + ".");
 				if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
 				if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
@@ -1125,7 +1125,7 @@ public function appearance(target:Creature):void {
 			if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
 			//Vaginal Numbers
 			if(target.vaginaTotal() == 1) {
-				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
+				output2("You have " + indefiniteArticle(target.vaginaDescript(0)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[0].clits > 1) output2("s");
 				if(target.vaginas[0].hymen) output2(" and an intact hymen");
 				output2(". ");
@@ -1239,7 +1239,7 @@ public function appearance(target:Creature):void {
 					if(temp == 0) output2("\nYour first entrance");
 					else if(temp == 1) output2("\nThe second slit");
 					else output2("\nThe third and final vagina");
-					output2(" is a " + target.vaginaNounDescript(temp) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+					output2(" is " + indefiniteArticle(target.vaginaNounDescript(temp)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
 					if(target.vaginas[temp].clits > 1) output2("s");
 					//Virginal trumps all else
 					if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");

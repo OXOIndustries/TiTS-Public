@@ -186,7 +186,7 @@ public function wetraHoundPCVictory():void
 
 	output("Yowling in pain, the wetra hound stumbles back and licks at its wounds. You take a threatening step forward, and the wounded hound yelps and starts loping away, hustling off into the shadows. The sounds of the beast howling echo back to you through the caverns.");
 
-	output("\n\nNo way that sound is going to go unnoticed...");
+	output("\n\nNo way that sound is going to go unnoticed...\n\n");
 
 	//Increase chance of Wetraxxel Brawler encounter.
 	flags["WETRAXXEL_ENCOUNTER_WEIGHT"] += 1;
@@ -557,7 +557,7 @@ public function wetraxxelBrawlerPCLossPinnedAndFingeredII():void
 	if (pc.isFeminine()) output(" yet");
 	output(".”</i>");
 	
-	output("\n\nWith a grunt, the wetraxxel stalks off into the caverns, leaving you to gather your gear and weakly stumble off.");
+	output("\n\nWith a grunt, the wetraxxel stalks off into the caverns, leaving you to gather your gear and weakly stumble off.\n\n");
 
 	processTime(200+rand(40));
 
@@ -628,7 +628,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 	
 	output("\n\n<i>“Take this as a warning,”</i> the bug-man grunts, withdrawing himself from your gaping hole. <i>“Do not return here, if you value your freedom.”</i>");
 	
-	output("\n\nSeemingly satisfied by the punishment he’s meted out, the bug-man turns on a heel and walks away, disappearing into the deeper caves. Woozily, you gather up your [pc.gear] and stumble off.");
+	output("\n\nSeemingly satisfied by the punishment he’s meted out, the bug-man turns on a heel and walks away, disappearing into the deeper caves. Woozily, you gather up your [pc.gear] and stumble off.\n\n");
 
 	processTime(40+rand(20));
 	pc.orgasm();
@@ -681,7 +681,7 @@ public function wetraxxelBrawlerPCLossTonguePolish():void
 	
 	output("\n\n<i>“Acceptable,”</i> the wetraxxel grunts, standing and wiping off his cockhead on your cheek. <i>“Now begone from this place. I will not suffer many more of your invasions before more drastic punishments must be given out.”</i>");
 	
-	output("\n\nSeemingly satisfied by the punishment he’s meted out, the bug-man turns on a heel and walks away, disappearing into the deeper caves. Woozily, you gather up your [pc.gear] and stumble off.");
+	output("\n\nSeemingly satisfied by the punishment he’s meted out, the bug-man turns on a heel and walks away, disappearing into the deeper caves. Woozily, you gather up your [pc.gear] and stumble off.\n\n");
 
 	processTime(15+rand(5));
 	pc.lust(15);
@@ -788,6 +788,7 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 	pc.orgasm();
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
+	output("\n\n");
 	genericVictory();
 }
 
@@ -857,7 +858,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	
 	output("\n\nWhile you cum, you feel the brawler’s hands wrap around your hips, holding you steady until your climax has passed, and you slump down against his chest. You find your cheek resting against the lighter plates of the brawler’s abs while you catch your breath, letting the wetraxxel’s cock slowly wilt and slide out of you, leaving a sticky trail of seed that clings to your thighs. You slip off to sleep, held tight against the insectile brute’s chest");
 	if (flags["WETRAXXEL_SUBMISSION"] >= 6) output(", right where you belong...");
-	output(".");
+	output(".\n\n");
 
 	processTime(30+rand(15));
 	pc.orgasm();
@@ -901,7 +902,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nFinally, the huge bug-man’s orgasm abates. You slide off his cock like a well-used condom, flopping to the ground and drooling spunk from your [pc.lips]. Now that’s a meal you wouldn’t mind getting seconds of...");
 	
-	output("\n\nThe brawler grunts and leans back against the rockface, looking completely exhausted. While he recovers, you take the opportunity to crawl off and collect your gear, trying not to move too quickly for fear of all that cum in your belly sloshing around...");
+	output("\n\nThe brawler grunts and leans back against the rockface, looking completely exhausted. While he recovers, you take the opportunity to crawl off and collect your gear, trying not to move too quickly for fear of all that cum in your belly sloshing around...\n\n");
 
 	// 9999 something about cumflation
 

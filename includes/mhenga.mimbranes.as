@@ -3802,6 +3802,7 @@ public function killDatMimbrane():void
 		else output(" they");
 		output(" saw your act.\n\n");
 	}
+	else output("\n\n");
 
 	genericVictory();
 }
@@ -3868,7 +3869,7 @@ public function useDatMimbraneLikeACondom():void
 	output(" It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.");
 	if (!pc.isNude()) output("\n\nReclaiming your [pc.armor], you realize that while you have satisfied your initial craving, y");
 	else output("\n\nY");
-	output("our [pc.cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.");
+	output("our [pc.cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.\n\n");
 
 	// Todo: Possibly add a lust increasing effect. Dunno if I want to considering how complicated this shit is already though.
 
@@ -4194,7 +4195,7 @@ public function refuseFaceMimbrane():void
 	output("You’re wary of letting the Mimbrane cover your head, unsure how this final measure would pan out for you. You’re at least compelled to spit out an apology with your decline. It’s weird to have some hint of conversation with what you figured was just an animal.");
 	output("\n\nThe parasite scoots backwards from you, talking amongst your puppeted body parts. You think its disappointed, but there’s really no way to tell. Especially not when you’re feeling as horny and norma– ");
 	output("\n\nNormal. Normal’s burst back onto the scene. It’s a bit more of a shock this time. Your conqueror has vanished and your body is pre-savaged. You double check your head to make sure the parasite didn’t get on it. There aren’t any unusual bumps or sensations. The assumption was that the blink from rut to right was a byproduct of a Mimbrane latching onto you. Now you don’t know what to think again.");
-	output("\n\nThe question simmers while you gather your equipment and leave.");
+	output("\n\nThe question simmers while you gather your equipment and leave.\n\n");
 
 	genericLoss();
 }
@@ -4256,7 +4257,7 @@ public function acceptFaceMimbrane():void
 		output("\n\nYou put your fingers to your mouth, surprised when your [pc.lips] suddenly kiss them! Seems the Mimbrane on your face is quite content, and isn’t anxious to hide away from you quite so soon. A breathless laugh escapes you, taken aback by the cute little show of affection. Fingers return and find a couple of little bumps just above your upper lip. You weren’t going to be leaving before you knew where those eyes were, after all.");
 		output("\n\nRejuvenated, you gather your equipment and venture forth somewhat happier than you were before.");
 	}
-
+	output("\n\n");
 	createMimbraneEffect("Mimbrane Face");
 
 	genericLoss();

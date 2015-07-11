@@ -1575,7 +1575,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	output("”</i>");
 
 	output("\n\n<i>“Just agree to have fun with us next time,”</i> suggests one of the others. <i>“Doesn’t have to be so rough.”</i>");
-	output("\n\nWith that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.");
+	output("\n\nWith that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.\n\n");
 	processTime(55);
 	pc.orgasm();
 	genericLoss();

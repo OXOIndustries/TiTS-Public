@@ -2232,7 +2232,7 @@ public function victoryOverSecurityDroid():void
 	output("\n\n<i>“We got ‘em first, though,”</i> you answer, ruffling the hair between her perky ears. ");
 
 	output("\n\n<i>“Yeah. We did,”</i> she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again.");
-	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
+	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.\n\n");
 
 	genericVictory();
 }

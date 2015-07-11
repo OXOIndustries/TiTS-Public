@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 						break;
 					}
 					var overDickSkinColor:String = "dark " + target.skinTone;
-					if(target.skinTone == "dark") overDickSkinColor = "black";
+					if(target.skinTone.indexOf("dark") != -1) overDickSkinColor = "black";
 					else if (target.cocks[ci].cockColor != overDickSkinColor && InCollection(target.skinTone, scaleColors))
 					{
 						hasNoneOvirCock = true;

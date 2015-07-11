@@ -367,7 +367,6 @@
 					target.furColor = "white and black";
 					target.clearSkinFlags();
 					target.addSkinFlag(GLOBAL.FLAG_FLUFFY);
-					target.addSkinFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				//Face, if already has spots or inhuman, goes full panda

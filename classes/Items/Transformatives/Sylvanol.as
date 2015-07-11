@@ -298,7 +298,7 @@
 				highEventsArgs.push(undefined);
 			}
 			//Gain fairy wings:
-			if(pc.wingType != GLOBAL.TYPE_SYLVAN) 
+			if(pc.wingType != GLOBAL.TYPE_DARK_SYLVAN) 
 			{
 				highEvents.push(sylvanolShadowWingGrow);
 				highEventsArgs.push(undefined);
