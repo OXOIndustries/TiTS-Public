@@ -907,6 +907,7 @@
 					{
 						kGAMECLASS.eventBuffer += "Your fingers abruptly clench, driving your fingertips into your palm. The feel firmer than normal, and when you open your hands, you discover that from the last joint of your finger on your fingers have hardened into black, almost hoof-like material. You can still feel through them. <b>You've grown hoof-nails!</b>";
 						target.armType = GLOBAL.TYPE_EQUINE;
+						target.clearArmFlags();
 					}
 					else
 					{

@@ -423,6 +423,8 @@
 			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that's when you realise <b>you now have leithan-like arms!</b>");
 			
 			target.armType = GLOBAL.TYPE_LEITHAN;
+			target.clearArmFlags();
+			target.addArmFlag(GLOBAL.FLAG_CHITINOUS);
 
 			return true;
 		}

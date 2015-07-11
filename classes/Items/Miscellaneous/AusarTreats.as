@@ -283,6 +283,8 @@
 					{
 						kGAMECLASS.output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your arms are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer, now....");
 						pc.armType = GLOBAL.TYPE_CANINE;
+						pc.clearArmFlags();
+						pc.addArmFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else kGAMECLASS.output(target.armTypeLockedMessage());

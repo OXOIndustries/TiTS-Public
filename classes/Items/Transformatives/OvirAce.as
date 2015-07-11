@@ -189,6 +189,7 @@ package classes.Items.Transformatives
 					target.skinTone = RandomInCollection(remColors);
 					
 					target.armType = GLOBAL.TYPE_OVIR;
+					target.clearArmFlags();
 
 					changes++;
 				}
@@ -497,6 +498,7 @@ package classes.Items.Transformatives
 					target.skinTone = RandomInCollection(remColors);
 
 					target.armType = GLOBAL.TYPE_OVIR;
+					target.clearArmFlags();
 					
 					changes++;
 				}

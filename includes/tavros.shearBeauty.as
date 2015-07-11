@@ -158,7 +158,7 @@ public function hairworkFromCeria():void
 	else addDisabledButton(2,"Color","Color","You need something on your head to dye!");
 	if(pc.hairType == 0) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style","You can only get traditional hair styled here.");
-	if(pc.hasFur() || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
+	if(pc.hasFur() || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FURRED)) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
 	else addDisabledButton(4,"Fur Color","Fur Color","You don't have fur to dye!");
 	addButton(14,"Back",approachCeria);
 }
@@ -630,7 +630,16 @@ public function furColorApplication(newColor:String):void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	if(fuckedCeria())
+	if(!pc.hasFur())
+	{
+		output("<i>“This is going to be a little trickier than doing your hair, but at least we don't have to do a full body job. Dealing with a full coat of fur can be quite tricky.”</i>");
+		if(fuckedCeria()) output(" Ceria's eyes rove up and down your body. <i>“But then again, some of us wouldn't mind giving you a full-body once-over.”</i>")
+		output("\n\nThe bubbly hairstylist leads to a chair and instructs, <i>“Strip and lie down while I get the gel ready.”</i>");
+		output("\n\nYou’re provided a moment of privacy and a small towel to put across your lap for modesty before the elf returns. Ceria allows herself a moment to take in your almost-nude body with a lascivious smile before recovering her professional composure. ");
+		output("Reaching into the tub of gel, she takes out a thick glob and smears it across the parts of you covered in fur, working the gel in with confident, skilled strokes until it’s fully absorbed. You can feel the gel’s contents flowing through you just under the surface, diffusing across your entire body but particularly seeking out the spots where you’ve already got fur on display.");
+		output("\n\nCeria doesn’t stop until she empties out the entire tub, leaving you tingling all over as the payload in the gel gets to work altering your fur all the way down to the roots. By the time she lets you up, you’ve got an all-new palette to your pelt. <b>Your fur is now " + newColor + "!</b>");
+	}
+	else if(fuckedCeria())
 	{
 		output("<i>“This is a little more complicated than doing your hair. Come on, [pc.name], this way.”</i> For a moment you think Ceria might be about to take you into the break room again, but instead she takes you to what looks like a massage table, drawing a curtain around it for privacy. You see a small towel lying on the table, but Ceria scoops it up with one hand and lays it over her shoulder.");
 		output("\n\n<i>“Strip and lie down while I get the gel ready.”</i> Ceria doesn’t leave while you obey, openly licking her lips at the view of you stripping for her. You indulge her a bit by taking your time to give her a stripshow, easing off each piece of your gear in turn before stretching out on your back on the table. When you’re done Ceria gets up on the table as well, kneeling over you and placing the tub of gel by your side. The stylist glances towards the privacy screen before looking back at you, at which point she gives you a grin and pulls her top off, dropping it off by your gear.");

@@ -162,6 +162,8 @@
 				if(target.armTypeUnlocked(GLOBAL.TYPE_BEE) && target.armType != GLOBAL.TYPE_BEE && changes < changeLimit && rand(3) == 0) {
 					kGAMECLASS.output("\n\nStarting at your fingertips, you feel your [pc.skinFurScales] tightening, slowly shaping into a smooth, black expanse. The inky, chitinous darkness expands to cover the whole of your hand, forming joints to allow the hardening flesh to allow you movement. It doesn't stop there. Your wrists and your forearms are encased in ebony armor, followed shortly after by about half of your upper arms. The border between your [pc.skinFurScales] and the growth fluffs up with a tuft of yellowish fuzz, similar to that of a zil. <b>You have chitin-armored arms now.</b>");
 					target.armType = GLOBAL.TYPE_BEE;
+					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_CHITINOUS);
 					changes++;
 				}
 				else if (!target.armTypeUnlocked(GLOBAL.TYPE_BEE))

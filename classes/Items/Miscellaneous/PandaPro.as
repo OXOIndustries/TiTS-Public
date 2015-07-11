@@ -352,6 +352,8 @@
 				{
 					kGAMECLASS.output("\n\nYour hands clench into curled-up claws all on their own. Fascinated, you try to open them, but your mind's commands to your body go unheeded. The muscles in your fingers are twitching wildly, and slowly, you see them changing them shape into slightly-shortened, thick fingers. They relax, allowing you to open your hands, and just in time too! Sharp claws snick out of the tips of your fingers, completing <b>your new, fuzzy panda hands.</b> There's even " + target.furColor + " fur all over your arms!");
 					target.armType = GLOBAL.TYPE_PANDA;
+					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				//Fur is grown

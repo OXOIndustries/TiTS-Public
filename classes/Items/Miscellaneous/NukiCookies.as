@@ -316,8 +316,11 @@
 				//Fuzzy handtypeshit - req’s fur.
 				if(pc.armType != GLOBAL.TYPE_KUITAN && pc.hasFur())
 				{
-					kGAMECLASS.output("\n\nYou ball a hand into a fist while you wait, only to feel the softest little pads pressing into your palm. Opening your digits, you marvel at the appearance of small, dark-brown pads on the tips of your fingers. A larger one stretches across the top of your palm. They’re soft as hell and might feel pretty good in certain... tender areas. <b>You’ve got padded palms, just like a kui-tan.</b>");
+					kGAMECLASS.output("\n\nYou ball a hand into a fist while you wait, only to feel the softest little pads pressing into your palm. Opening your digits, you marvel at the appearance of small, dark-brown pads on the tips of your fingers. A larger one stretches across the top of your palm. They’re soft as hell and might feel pretty good in certain... tender areas. <b>You’ve got padded palms, just like a kui-tan");
+					if(!pc.hasFur()) kGAMECLASS.output(", and fur has grown in up to your shoulders to boot.</b>");
 					pc.armType = GLOBAL.TYPE_KUITAN;
+					pc.clearArmFlags();
+					pc.addArmFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				//Grow fur

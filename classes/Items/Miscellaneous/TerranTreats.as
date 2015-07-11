@@ -231,6 +231,7 @@
 					{
 						kGAMECLASS.output("\n\nYour arms begin to itch, your fingers twitching erratically as their shape stretches and tightens, forming a short nail at the tip of each finger. By the time you regain control of your hands, <b>you’ve got human-like arms</b>.");
 						pc.armType = GLOBAL.TYPE_HUMAN;
+						pc.clearArmFlags();
 						changes++;
 					}
 					else kGAMECLASS.output(target.armTypeLockedMessage());

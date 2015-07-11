@@ -581,6 +581,7 @@
 		{
 			return "You arms twitch yet resist changing.";
 		}
+		public var armFlags: Array = new Array();
 		
 		public var gills: Boolean = false;
 		public function gillsUnlocked(newGills:Boolean):Boolean
@@ -2897,6 +2898,18 @@
 		}
 		public function clearTailFlags(): void {
 			tailFlags = new Array();
+		}
+		public function hasArmFlag(arg:int): Boolean {
+			for (var temp: int = 0; temp < armFlags.length; temp++) {
+				if (armFlags[temp] == arg) return true;
+			}
+			return false;
+		}
+		public function addArmFlag(arg:int): void {
+			if (!hasArmFlag(arg)) armFlags[armFlags.length] = arg;
+		}
+		public function clearArmFlags(): void {
+			armFlags = new Array();
 		}
 		public function hasLegFlag(arg:int): Boolean {
 			for (var temp: int = 0; temp < legFlags.length; temp++) {

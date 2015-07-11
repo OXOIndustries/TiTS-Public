@@ -359,6 +359,8 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands</b>!");
 		pc.armType = GLOBAL.TYPE_BADGER;
+		pc.clearArmFlags();
+		pc.addArmFlag(GLOBAL.FLAG_FURRED);
 	}
 	output("\n\nFinally you begin to feel full, the liquid that has been mercilessly pumping into you seeming to surge back up your throat and fill the inside of your head. The haze you’ve been swimming in intensifies, a pink mist so thick that it’s almost physical overwhelming your thoughts. Your vision blurs, and you’re dimly aware of your face reshaping, but mostly all you can think about is your need. You <i>need</i> to fuck - no, that’s not right; you need to <i>be</i> fucked. That’s right, that’s what’s important; you need to be used and taken and god you’d forgotten that smell of cock but suddenly it’s in front of you again and it’s all you can think about. Thinking is hard, but somehow you <i>know</i> deep inside yourself that thinking isn’t important for you anymore, nowhere near as important as being fucked.");
 	output("\n\nYou barely register the tendril pulling itself out of your mouth, the only thought that provokes in you is one of mild discomfort as you’re no longer being filled from at least one end. You drool helplessly, your dripping tongue hanging from your lips");
