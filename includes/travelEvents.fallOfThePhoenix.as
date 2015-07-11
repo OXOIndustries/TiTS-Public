@@ -436,7 +436,7 @@ public function loseToPhoenixPirates():void
 
 	output("\n\nThe guard nods, and drags her away through a side door. The pirate captain then turns to you,");
 	if (pc.tallness > 80) output(" taking a knee and"); 
-	output(" looking you in the eye. \"<i>Unfortunate that you stuck your nose in. Still, we're not looking for slaves.</i>\" She looks up to one of the other guards, \"<i>Strip "+ pc.mf("his","her") +" credits and equipment, and throw the "+ pc.mf("him","her") +" back on "+ pc.mf("his","her") +" ship.</i>\"");
+	output(" looking you in the eye. \"<i>Unfortunate that you stuck your nose in. Still, we're not looking for slaves.</i>\" She looks up to one of the other guards, \"<i>Strip "+ pc.mf("his","her") +" credits and equipment, and throw "+ pc.mf("him","her") +" back on "+ pc.mf("his","her") +" ship.</i>\"");
 
 	output("\n\n\"<i>Aye, captain,</i>\" the guard says, just before you get a rifle butt in the back of the head.");
 
@@ -444,7 +444,7 @@ public function loseToPhoenixPirates():void
 	output("\n\n<b>Hours pass...</b>");
 
 	//{PC loses 75% of credits + all equipment save underclothes}
-	pc.credits *= 0.25;
+	pc.credits = Math.floor(pc.credits * 0.25);
 	pc.shield = new EmptySlot();
 	pc.accessory = new EmptySlot();
 	pc.armor = new EmptySlot();
