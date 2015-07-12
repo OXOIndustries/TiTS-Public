@@ -2756,8 +2756,8 @@ public function initializeRooms():void
 	//#68 METAL\nRAVINE
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
-	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is marketly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.\n\n<b>Wait... what's that? You step forward to discover that Fenoxo plans to put something here and hasn't done it yet.</b>";
-	rooms["268"].runOnEnter = rustRidgesEncounters;
+	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is marketly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.";
+	rooms["268"].runOnEnter = cockBoxDiscoveryBlurb;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";
 	rooms["268"].system = "SYSTEM: REDACTED";

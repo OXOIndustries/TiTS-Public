@@ -57,7 +57,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 			}
 			
 			// Consume an item from the stack
-			if (!infiniteItems())
+			if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 			{
 				item.quantity--;
 				if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
@@ -730,6 +730,8 @@ public function shipStorageMenuRoot():void
 	
 	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined) addButton(2, "Consumables", shipStorageMenuType, "CONSUMABLES");
 	else addDisabledButton(2, "Consumables");
+
+	if(kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1) addButton(5,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
 	
 	addButton(14, "Back", mainGameMenu);
 }
