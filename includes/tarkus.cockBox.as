@@ -84,7 +84,7 @@ public function useInstalledDickBox():void
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
 	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don't have any penis to insert into the machine.");
-	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,y,"Yes","Yes, you will stick your dick in that box.");
+	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,0,"Yes","Yes, you will stick your dick in that box.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -260,7 +260,7 @@ public function dickBoxTF(args:Array):void
 public function cockBoxDickDoublingHijinx(args:Array):void
 {
 	clearOutput();
-	output("The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
+	output("The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
 	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
 	else output("Fuck, not again.");
 	output("\n\nThe inside of the Dong Designer is already vibrating and hot, like before, but this time it’s almost too hot, uncomfortably so. Sweat breaks out on your forehead");
@@ -292,12 +292,10 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 
 	var cloneDick:CockClass = new CockClass;
 
-	var newLength:Number = Math.pow((pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw / 2), 1/3)
-
-	trace("TEST CUBE ROOT of 8000 (EXPECT 20): " + Math.pow(8000,1/3));
+	var newLength:Number = Math.round(Math.pow((pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw / 2), 1/3)*10)/10;
 
 	cloneDick.cLengthRaw = pc.cocks[args[0]].cLengthRaw;
-	cloneDick.thicknessRatioRaw = pc.cocks[args[0]].thicknessRatioRaw;
+	cloneDick.cThicknessRatioRaw = pc.cocks[args[0]].cThicknessRatioRaw;
 	cloneDick.cType = pc.cocks[args[0]].cType;
 	cloneDick.cockColor = pc.cocks[args[0]].cockColor;
 	cloneDick.knotMultiplier = pc.cocks[args[0]].knotMultiplier;
