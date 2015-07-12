@@ -73,14 +73,18 @@ public function useInstalledDickBox():void
 		//Fit
 		output("\n\nWhich of your [pc.cocks] will you put inside, if you use it at all?");
 	}
+	output("\n\n");
 	processTime(1);
 	clearMenu();
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
+		output("#" + (y+1) + ": [pc.cockNounComplex " + y + "]\n")
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
+	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don't have any penis to insert into the machine.");
+	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,y,"Yes","Yes, you will stick your dick in that box.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -131,6 +135,11 @@ public function dickBoxTF(args:Array):void
 {
 	clearOutput();
 	showName("DONG\nDESIGNER");
+	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
+	{
+		cockBoxDickDoublingHijinx(args);
+		return;
+	}
 	output("As soon as you select a color, the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
 	else output("It’s just as intense as you remembered.");
@@ -239,6 +248,7 @@ public function dickBoxTF(args:Array):void
 		pc.shower();
 		flags["DONG_DESIGNER_FLOODED"] = 1;
 	}
+	flags["USED_DONG_DESIGNER"] = 1;
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
 	pc.orgasm();
@@ -246,24 +256,61 @@ public function dickBoxTF(args:Array):void
 	addButton(0,"Next",useInstalledDickBox);
 }
 	
-/*
-Something’s Gone Wrong! [Dick Doubler!]
-	The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:
-	<i>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</i>
-	<i>Compensating...</i>
-	<i>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</i>
-	{Uh oh./Fuck, not again.} The inside of the [redacted] is already vibrating and hot, like before, but this time it’s almost too hot, uncomfortably so. Sweat breaks out on your forehead{, slipping out from between your scales/ and drips from your fur/ dripping down your face}. A part of you is dreadfully afraid you’ve accidentally thrust yourself into a malfunctioning cock-smelter, but the rest of you is paradoxically excited by the too-warm massage coming from the box’s interior.
-	A winking woman with pointed ears and a glowing shock of purple hair appears overtop of the fading warnings accompanied by a pre-recorded voice clip, “Please try to remain still while we take care of this little hiccup. Remember, here at TamaniCorp, your junk is our treasure! Our Hora Series devices are built with multiple redundancies to ensure complete customer satisfaction.”
-	The recording ends about the same time the heat changes texture, suffusing your [pc.cock " + args[0] + "] so completely that it’s difficult to determine if the box is still warming you up or if you penis has transformed into a miniature fusion reactor. It’s like your length is being force-fed distilled ambrosia until you can scarcely determine where your cock ends and the rhythmically squeezing box begins.
-	The punky elf-girl returns. This time she’s far enough away from the holocam for you make out two corset-straining breasts. She knows it too, judging by the way she’s leaning forward to give you a look straight into the beckoning canyon of cleavage. “We apologize for this small error, and I assure you that technicians will be dispatched to ensure this unit functions as exactly as well as your own...” Sparkling violet eyes glance downward toward your crotch. While a glowing message declares, “UNIT OUT OF WARRANTY. PLEASE REPLACE.”
-	You grunt and try not to cum to the sight of the jiggling sexpot they’ve programmed into the machine. You’d love to have eye-candy like this when your salvaged cock box is actually working properly...
-	The slut’s image flickers, and her syrupy voice coos, “We’ll have both of those dicks modded back to normal in no time, unless you’re two brave boys who decided to go into together.” She giggles. “If that’s the case, you guys might wind up with identical cocks, but that’s nothing a solo trip to one of our Hora Series Dong Designers won’t fix!” Tugging at the top left of her latex corset, the tart pops a glossy, purple nipple into view. It engorges before your eyes. “Thank you for your patience, {stud/hot stuff}. As the chief customer relations officer, advertising model, test subject, CEO, and owner of TamaniCorp, I assure you that I want nothing more than for you to have a happy, safe, and fuck-filled day.” She flicks her nipple and squeaks.
-	Both dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + args[0] + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals.
-	The hologram flickers. When it comes back, the top-heavy spokesmodel-slash-owner is completely topless. Her other nipple is pierced with a ring of amethyst hardlight, and she’s openly rubbing both of them with her manicured fingernails, pulling and squeezing them encouraging, making her valley-like cleavage shift with every jiggle of her mountainous melons. “If you’re seeing me here, about to cum for you, then we’re almost done fixing our mistake! Thanks for being such a w-wonderful... {handsome/sexy}... customer, and feel free to cum whenever the need takes you.”
-	Her words couldn’t come at a better time. Your obviously doubled dongs are getting harder by the second, almost impossibly so. [pc.Cum] slowly bubbles up inside you, pumped toward inevitable release by violent clenches of your abdominal muscles.{ Even your [pc.sack] feels pulled tight.}{ Your other dick - the one not in the machine - unashamedly weeps strands of pre-cum down the side of the box./ Your other dicks - the ones not in the machine - unashamedly weep strands of pre-cum down the side of the box.}
-	The sensuous CEO visibly shudders and cums when she tugs on her violaceous nipples, her piercing flashing bright to announce her orgasm’s arrive. And you climax right on with her, suddenly screaming and thrashing as you unload [pc.cum] through one more dick than you expected to have to today, so drenched in orgiastic ecstasy that your body can’t even keep your ejaculation from being trembling, misfiring things.
-	You flop your torso through the busty hologram and over the top of the machine, bonelessly ejaculating for what feels like hours but must only be a minute at the most.{ When you come to, you discover thick streams of [pc.cum] have broken through the seal around your newly doubled dicks and puddled on the floor.{ Although, puddle is hardly a fitting word for the lake you’ve created.{ Celise will certainly be pleased.}}}
-	“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!” The purple-haired harlot winks and blows a kiss down at you from above. “Cum back soon!” She flickers out of existence with a saucy, satisfied smile.
-	It’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.
+//Something’s Gone Wrong! [Dick Doubler!]
+public function cockBoxDickDoublingHijinx(args:Array):void
+{
+	clearOutput();
+	output("The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
+	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
+	else output("Fuck, not again.");
+	output("\n\nThe inside of the Dong Designer is already vibrating and hot, like before, but this time it’s almost too hot, uncomfortably so. Sweat breaks out on your forehead");
+	if(pc.hasScales()) output(", slipping out from between your scales");
+	else if(pc.hasFur()) output(" and drips from your fur");
+	else output(" dripping down your face");
+	output(". A part of you is dreadfully afraid you’ve accidentally thrust yourself into a malfunctioning cock-smelter, but the rest of you is paradoxically excited by the too-warm massage coming from the box’s interior.");
+	output("\n\nA winking woman with pointed ears and a glowing shock of purple hair appears overtop of the fading warnings accompanied by a pre-recorded voice clip, <i>“Please try to remain still while we take care of this little hiccup. Remember, here at TamaniCorp, your junk is our treasure! Our Hora Series devices are built with multiple redundancies to ensure complete customer satisfaction.”</i>");
+	output("\n\nThe recording ends about the same time the heat changes texture, suffusing your [pc.cock " + args[0] + "] so completely that it’s difficult to determine if the box is still warming you up or if you penis has transformed into a miniature fusion reactor. It’s like your length is being force-fed distilled ambrosia until you can scarcely determine where your cock ends and the rhythmically squeezing box begins.");
+	output("\n\nThe punky elf-girl returns. This time she’s far enough away from the holocam for you make out two corset-straining breasts. She knows it too, judging by the way she’s leaning forward to give you a look straight into the beckoning canyon of cleavage. <i>“We apologize for this small error, and I assure you that technicians will be dispatched to ensure this unit functions as exactly as well as your own...”</i> Sparkling violet eyes glance downward toward your crotch. While a glowing message declares, <i>“UNIT OUT OF WARRANTY. PLEASE REPLACE.”</i>");
+	output("\n\nYou grunt and try not to cum to the sight of the jiggling sexpot they’ve programmed into the machine. You’d love to have eye-candy like this when your salvaged cock box is actually working properly...");
+	output("\n\nThe slut’s image flickers, and her syrupy voice coos, <i>“We’ll have both of those dicks modded back to normal in no time, unless you’re two brave boys who decided to go into together.”</i> She giggles. <i>“If that’s the case, you guys might wind up with identical cocks, but that’s nothing a solo trip to one of our Hora Series Dong Designers won’t fix!”</i> Tugging at the top left of her latex corset, the tart pops a glossy, purple nipple into view. It engorges before your eyes. <i>“Thank you for your patience, " + pc.mf("stud","hot stuff") + ". As the chief customer relations officer, advertising model, test subject, CEO, and owner of TamaniCorp, I assure you that I want nothing more than for you to have a happy, safe, and fuck-filled day.”</i> She flicks her nipple and squeaks.");
+	output("\n\nBoth dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + args[0] + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals.");
+	output("\n\nThe hologram flickers. When it comes back, the top-heavy spokesmodel-slash-owner is completely topless. Her other nipple is pierced with a ring of amethyst hardlight, and she’s openly rubbing both of them with her manicured fingernails, pulling and squeezing them encouraging, making her valley-like cleavage shift with every jiggle of her mountainous melons. <i>“If you’re seeing me here, about to cum for you, then we’re almost done fixing our mistake! Thanks for being such a w-wonderful... " + pc.mf("handsome","sexy") + "... customer, and feel free to cum whenever the need takes you.”</i>");
+	output("\n\nHer words couldn’t come at a better time. Your obviously doubled dongs are getting harder by the second, almost impossibly so. [pc.Cum] slowly bubbles up inside you, pumped toward inevitable release by violent clenches of your abdominal muscles.");
+	if(pc.balls > 0) output(" Even your [pc.sack] feels pulled tight.");
+	if(pc.cockTotal() == 2) output(" Your other dick - the one not in the machine - unashamedly weeps strands of pre-cum down the side of the box.");
+	else if(pc.cockTotal() > 2) output(" Your other dicks - the ones not in the machine - unashamedly weep strands of pre-cum down the side of the box.");
+	output("\n\nThe sensuous CEO visibly shudders and cums when she tugs on her violaceous nipples, her piercing flashing bright to announce her orgasm’s arrive. And you climax right on with her, suddenly screaming and thrashing as you unload [pc.cum] through one more dick than you expected to have to today, so drenched in orgiastic ecstasy that your body can’t even keep your ejaculation from being trembling, misfiring things.");
+	output("\n\nYou flop your torso through the busty hologram and over the top of the machine, bonelessly ejaculating for what feels like hours but must only be a minute at the most.");
+	if(pc.cumQ() >= 1000) 
+	{
+		output(" When you come to, you discover thick streams of [pc.cum] have broken through the seal around your newly doubled dicks and puddled on the floor.");
+		if(pc.cumQ() >= 5000) output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
+		if(celiseIsCrew()) output(" Celise will certainly be pleased.");
+	}
+	output("\n\n<i>“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!”</i> The purple-haired harlot winks and blows a kiss down at you from above. <i>“Cum back soon!”</i> She flickers out of existence with a saucy, satisfied smile.");
+	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.");
 
-*/
+	var cloneDick:CockClass = new CockClass;
+
+	var newLength:Number = Math.pow((pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw / 2), 1/3)
+
+	trace("TEST CUBE ROOT of 8000 (EXPECT 20): " + Math.pow(8000,1/3));
+
+	cloneDick.cLengthRaw = pc.cocks[args[0]].cLengthRaw;
+	cloneDick.thicknessRatioRaw = pc.cocks[args[0]].thicknessRatioRaw;
+	cloneDick.cType = pc.cocks[args[0]].cType;
+	cloneDick.cockColor = pc.cocks[args[0]].cockColor;
+	cloneDick.knotMultiplier = pc.cocks[args[0]].knotMultiplier;
+	cloneDick.flaccidMultiplier = pc.cocks[args[0]].flaccidMultiplier;
+	for(var x:int = 0; x < pc.cocks[args[0]].cockFlags.length; x++)
+	{
+		cloneDick.cockFlags.push(pc.cocks[args[0]].cockFlags[x]);
+	}
+	
+	pc.cocks.splice(args[0],0,cloneDick);
+	processTime(7);
+	pc.orgasm();
+	flags["DONG_DESIGNER_MALFUNCTIONED"] = 1;
+	clearMenu();
+	addButton(0,"Next",useInstalledDickBox);
+}
