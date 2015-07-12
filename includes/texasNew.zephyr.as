@@ -525,7 +525,7 @@ public function getFuckedByZephyrV():void
 	if(pc.isBimbo()) 
 	{
 		output("\n\nIt looks fucking delicious. You wrap your [pc.lips] around it and suck it like your life depends on it, shining it until its been spit-polished.");
-		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
+		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide to keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
