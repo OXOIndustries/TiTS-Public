@@ -16,7 +16,7 @@ public function investigateTheCockBox():void
 {
 	clearOutput();
 	showName("STRANGE\nBOX");
-	output("You climb through the wasted machines and rust-scaled heaps to get a closer look, even going so far as to brush away the grit and grime that covers it. Lettering in luminescent paint declares it to be a TamanaiCorp Dong Designer. What a find! These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.");
+	output("You climb through the wasted machines and rust-scaled heaps to get a closer look, even going so far as to brush away the grit and grime that covers it. Lettering in luminescent paint declares it to be a TamaniCorp Dong Designer. What a find! These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.");
 	output("\n\nBedding an ausar lady? Punch a few buttons on a Dong Designer, stick your dick inside, and you’ll be knotting her in no time. Need something to properly scratch a kaithrit’s itch? Satisfaction is a button press away. About the only thing they can’t do is make you bigger - or smaller. And once you’ve had your fun, a return to normalcy is just a touch away.");
 	output("\n\nBut how the hell did one of these wind up out here, thrown away in a galactic trash heap? The caustic atmosphere hasn’t had time to corrode the metal, and the safety cover on the phallus input port should have kept the planet’s grime from mucking it up. It <i>looks</i> in good condition. The gauges all read good, save for power. All you’ve got to do is lug it back to the ship and plug it in.");
 	output("\n\nDo you pick it up? You’ll move twice as slowly while dragging the heavy thing around.");
@@ -118,6 +118,7 @@ public function cockBoxUse(x:int):void
 	addButton(1,"Equine",dickBoxTF,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
 	addButton(2,"Kaithrit",dickBoxTF,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
 	addButton(3,"Kui-Tan",dickBoxTF,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
+	addButton(4,"Terran",dickBoxTF,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
 	addButton(14,"Back",useInstalledDickBox);
 }
 
