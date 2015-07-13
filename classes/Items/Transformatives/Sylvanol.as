@@ -39,7 +39,7 @@
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 6000;
+			this.basePrice = 2000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -114,18 +114,24 @@
 				if(pc.earLength >= 12) output("\n\nYou have a feeling they won’t be able to grow much more than this, though.");
 			}
 		}
-		public function sylvanolEyeTF(pc:Creature,color:String = ""):void
+		public function sylvanolEyeTF(args:Array):void
 		{
+			var pc:Creature = args[0];
+			var color:String = args[1];
 			output("\n\nA sparkling flash of " + pc.eyeColor + " fills your vision, leaving you briefly stunned. When you recover and check your vision, you discover that your eyes have shed their old hue in favor of " + color + ".");
 			pc.eyeColor = color;
 		}
-		public function sylvanolHairTF(pc:Creature,color:String = ""):void
+		public function sylvanolHairTF(args:Array):void
 		{
+			var pc:Creature = args[0];
+			var color:String = args[1];
 			output("\n\nA liquid feeling flows down your hair from the roots as if someone had poured a bucket of water over your head.  You’re able to catch the trail end of the transformation that goes with this sensation, the last vestiges of " + pc.hairColor + " disappearing from your hair in favor of a new lovely " + color + " shade.");
 			pc.hairColor = color;
 		}
-		public function sylvanolSkinTF(pc:Creature,color:String = ""):void
+		public function sylvanolSkinTF(args:Array):void
 		{
+			var pc:Creature = args[0];
+			var color:String = args[1];
 			output("\n\nA delicious tingle washes across your whole body, a splotch of " + color + " forming at the center of your chest before sweeping all across your body, replacing your old skin color entirely");
 			//human cock:
 			if(pc.hasCock())
@@ -200,7 +206,7 @@
 		}
 		public function sylvanolSmoothSkinTF(pc:Creature):void
 		{
-			output("You can feel your skin ");
+			output("\n\nYou can feel your skin ");
 			//PC has fur/scales:
 			if(pc.hasFur() || pc.hasScales()) output(" underneath your " + pc.skinNoun(false) + " ");
 			output("being swept over by the Sylvanol, fixing every blemish and smoothing out every wrinkle beyond what’s even natural. By the time it’s done, <b>you’re left with flawless smooth skin</b>.");
@@ -232,8 +238,10 @@
 			}
 			pc.wingType = GLOBAL.TYPE_DARK_SYLVAN;
 		}
-		public function sylvanolVanaeMarkings(pc:Creature,tarColor:String = ""):void
+		public function sylvanolVanaeMarkings(args:Array):void
 		{
+			var pc:Creature = args[0];
+			var tarColor:String = args[1];
 			output("\n\nYou feel a tingle like the medipen is going to change your skin, but suddenly it concentrates into just a few places. You watch in amazement as " + tarColor + " markings begin to flow across your [pc.skinFurScalesNoun] like a liquid paint, covering every inch of your body in the intricate tattoos. The lines stand out clear as day thanks to their glow, forming a beautiful contrast with your [pc.skinFurScales]. <b>You now have " + tarColor + " body markings!</b>");
 			pc.createStatusEffect("Vanae Markings");
 			pc.skinAccent = tarColor;
@@ -267,7 +275,8 @@
 			Change skin color to pale violet and nipple color to indigo.  Also change color of any human cocks to pale violet and any human vaginas to indigo.
 			Change skin color to pale and nipple color to pink.  Also change color of any human cocks to pale and any human vaginas to pink.
 			Gain glittering black, glowing red, glowing violet, or luminous silver vanae markings.*/
-
+	
+			kGAMECLASS.clearOutput();
 			//Consumption Text
 			output("You apply the medipen to the base of your neck, as instructed, and feel the Sylvanol Au Ronce’s payload get to work.");
 			//Get elf ears:
@@ -295,13 +304,13 @@
 			if(pc.earLength < 12) 
 			{
 				highEvents.push(sylvanolEarGrow);
-				highEventsArgs.push(undefined);
+				highEventsArgs.push(pc);
 			}
 			//Gain fairy wings:
 			if(pc.wingType != GLOBAL.TYPE_DARK_SYLVAN) 
 			{
 				highEvents.push(sylvanolShadowWingGrow);
-				highEventsArgs.push(undefined);
+				highEventsArgs.push(pc);
 			}
 			//Transparo hair
 			if(pc.hairType != GLOBAL.HAIR_TYPE_TRANSPARENT && pc.hairLength > 0)
@@ -316,7 +325,7 @@
 			if(!InCollection(pc.hairColor, hairColors)) 
 			{
 				mediumEvents.push(sylvanolHairTF);
-				mediumEventsArgs.push(tarColor);
+				mediumEventsArgs.push([pc,tarColor]);
 			}
 			//Change eye color to red, ruby, crimson, indigo, violet, or silver.
 			var eyeColors:Array = ["red", "ruby", "crimson", "indigo","violet","silver"];
@@ -324,7 +333,7 @@
 			if(!InCollection(pc.eyeColor, eyeColors)) 
 			{
 				mediumEvents.push(sylvanolEyeTF);
-				mediumEventsArgs.push(tarColor);
+				mediumEventsArgs.push([pc,tarColor]);
 			}
 			
 			//Change skin/nipple/cock/vagina color:
@@ -333,7 +342,7 @@
 			if(InCollection(pc.skinTone, skinColors))
 			{
 				lowEvents.push(sylvanolSkinTF);
-				lowEventsArgs.push(tarColor);
+				lowEventsArgs.push([pc,tarColor]);
 			}
 			//Gain glittering black, glowing red, glowing violet, or luminous silver vanae markings.
 			var vanaeColors:Array = ["glittering black", "glowing red", "glowing violet","luminous silver"];
@@ -341,7 +350,7 @@
 			if(!pc.hasStatusEffect("Vanae Markings")) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
-				lowEventsArgs.push(tarColor);
+				lowEventsArgs.push([pc,tarColor]);
 			}
 			//Lets roll!
 			if(highEvents.length > 0 && rand(4) != 0)
@@ -364,6 +373,8 @@
 			}
 			//Dud result:
 			if(!changed) output("\n\nDespite applying the medipen correctly, nothing happens aside from a brief tingle in your ears. It must have been a dud.");
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		//Sylvanol Au Myrtille
 		public function sylvanolAuMyrtille(pc:Creature):void
@@ -416,13 +427,13 @@
 			if(pc.earLength < 12) 
 			{
 				highEvents.push(sylvanolEarGrow);
-				highEventsArgs.push(undefined);
+				highEventsArgs.push(pc);
 			}
 			//Gain fairy wings:
 			if(pc.wingType != GLOBAL.TYPE_SYLVAN) 
 			{
 				highEvents.push(sylvanolWingGrow);
-				highEventsArgs.push(undefined);
+				highEventsArgs.push(pc);
 			}
 			
 
@@ -432,7 +443,7 @@
 			if(!InCollection(pc.hairColor, hairColors)) 
 			{
 				mediumEvents.push(sylvanolHairTF);
-				mediumEventsArgs.push(tarColor);
+				mediumEventsArgs.push([pc,tarColor]);
 			}
 			
 
@@ -442,7 +453,7 @@
 			if(!InCollection(pc.eyeColor, eyeColors)) 
 			{
 				mediumEvents.push(sylvanolEyeTF);
-				mediumEventsArgs.push(tarColor);
+				mediumEventsArgs.push([pc,tarColor]);
 			}
 
 			//Change skin/nipple/cock/vagina color:
@@ -451,7 +462,7 @@
 			if(InCollection(pc.skinTone, skinColors))
 			{
 				lowEvents.push(sylvanolSkinTF);
-				lowEventsArgs.push(tarColor);
+				lowEventsArgs.push([pc,tarColor]);
 			}
 
 			//Gain vanae-style markings:
@@ -460,7 +471,7 @@
 			if(!pc.hasStatusEffect("Vanae Markings")) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
-				lowEventsArgs.push(tarColor);
+				lowEventsArgs.push([pc,tarColor]);
 			}
 
 			//Lets roll!
@@ -484,6 +495,8 @@
 			}
 			//Dud result:
 			if(!changed) output("\n\nDespite applying the medipen correctly, nothing happens aside from a brief tingle in your ears. It must have been a dud.");
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		//Sylvanol Au Chocolate
 		public function chocolateSylvabutts(pc:Creature):void
@@ -528,7 +541,7 @@
 			//Change hair:
 			if(!haveElfHair && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolHairTF(pc,tarColor);
+				sylvanolHairTF([pc,tarColor]);
 				changed = true;
 			}
 			//Eye color TFs
@@ -538,7 +551,7 @@
 			//Change eyes:
 			if(!haveElfEyes && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolEyeTF(pc,tarColor);
+				sylvanolEyeTF([pc,tarColor]);
 				changed = true;
 			}
 			//Change skin/nipples/cock/vagina:
@@ -547,7 +560,7 @@
 			var haveElfSkin:Boolean = InCollection(pc.skinTone, skinColors);
 			if(!haveElfSkin && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolSkinTF(pc,tarColor);
+				sylvanolSkinTF([pc,tarColor]);
 				changed = true;
 			}
 			//Change skin to smooth:
@@ -561,6 +574,8 @@
 			{
 				output("\n\nDespite applying the medipen correctly, nothing happens aside from a brief tingle in your ears. It must have been a dud.");
 			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 
 		//Sylvanol Au Lait
@@ -605,7 +620,7 @@
 			//Change hair:
 			if(!haveElfHair && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolHairTF(pc,tarColor);
+				sylvanolHairTF([pc,tarColor]);
 				changed = true;
 			}
 			//Eye color TFs
@@ -615,7 +630,7 @@
 			//Change eyes:
 			if(!haveElfEyes && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolEyeTF(pc,tarColor);
+				sylvanolEyeTF([pc,tarColor]);
 				changed = true;
 			}
 			//Change skin/nipples/cock/vagina:
@@ -624,7 +639,7 @@
 			var haveElfSkin:Boolean = InCollection(pc.skinTone, skinColors);
 			if(!haveElfSkin && (rand(2) == 0 || !elvenEars))
 			{
-				sylvanolSkinTF(pc,tarColor);
+				sylvanolSkinTF([pc,tarColor]);
 				changed = true;
 			}
 			//Change skin to smooth:
@@ -638,6 +653,8 @@
 			{
 				output("\n\nDespite applying the medipen correctly, nothing happens aside from a brief tingle in your ears. It must have been a dud.");
 			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		public function Franc(pc:Creature):void
 		{
@@ -661,6 +678,8 @@
 			{
 				output("\n\nDespite applying the medipen correctly, nothing happens aside from a brief tingle in your ears. You must have hit the limit of what Sylvanol can do for you.");
 			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 	}
 }
