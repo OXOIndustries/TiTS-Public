@@ -696,6 +696,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	var moveMinutes:int = rooms[currentLocation].moveMinutes;
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
+	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
 	if(pc.hasItem(new Hoverboard())) {
 		moveMinutes -= 1;
 		if(moveMinutes < 1) moveMinutes = 1;
