@@ -207,9 +207,9 @@ public function kressiaSurvivalShopTalkVenomVials():void
 	
 	output("\n\n<i>“Let’s just say it’s all made made in-house,”</i> Annarie says, giving you a coy look. <i>“I mix mine with just a touch of soda water and honey to make it frothier and sweeter. It’s been pretty popular since we opened, more so than I would have thought. Especially with you star-walkers. Definitely our most popular item with the aliens that come through. Couldn’t tell you why.”</i>");
 	
-	if (9999 == 0)
+	if (pc.isDependant(Creature.DEPENDANT_MYRVENOM))
 	{
-		output("\n\n{if PC is venom-addicted: You might have an idea...}");
+		output("\n\nYou might have an idea...");
 	}
 
 	kressiaSurvivalShopTalkMenu();

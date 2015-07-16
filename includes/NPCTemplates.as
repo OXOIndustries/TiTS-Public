@@ -12,6 +12,7 @@ import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.GunTurrets;
+import classes.Characters.QueenOfTheDeep;
 import classes.Characters.Saendra;
 import classes.Characters.SecurityDroids;
 public function initializeNPCs(justUpdate:Boolean = false):void 
@@ -348,6 +349,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["CERIA"] == undefined))
 	{
 		chars["CERIA"] = new Ceria();
+	}
+	if (!justUpdate || (justUpdate && chars["QUEENOFTHEDEEP"] == undefined))
+	{
+		chars["QUEENOFTHEDEEP"] = new QueenOfTheDeep();
 	}
 	// Check all characters have version information set
 	for (var prop:String in chars)

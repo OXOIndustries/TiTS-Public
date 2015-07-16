@@ -2224,6 +2224,16 @@
 			trace("Final reported exhibition level: " + exhibitionismRaw);
 			return exhibitionismRaw;
 		}
+		
+		public static const DEPENDANT_ANY:uint = -1;
+		public static const DEPENDANT_MYRVENOM:uint = 1;
+		
+		// Is the character dependant on some external drug/chemical/etc
+		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
+		{
+			return false;
+		}
+		
 		public function cumflationEnabled():Boolean
 		{
 			return false;
@@ -4589,6 +4599,15 @@
 			return storageValue(keyItems, statusName, 4);
 		}
 
+		public function getStatusEffect(statusName:String):StorageClass
+		{
+			for (var i:int = 0; i < statusEffects.length; i++)
+			{
+				if (statusEffects[i].storageName == statusName) return statusEffects[i];
+			}
+			
+			return null;
+		}
 
 		//Grow
 		public function increaseCock(increase: Number, cockNum: Number): Number {
@@ -10691,11 +10710,22 @@
 		 * Find the index of the first empty pregnancy slot
 		 * @return			index of the first empty pregnancy slot, -1 if none available.
 		 */
-		public function findEmptyPregnancySlot():int
+		public static const PREGSLOT_ANY:uint = 0;
+		public static const PREGSLOT_VAG:uint = 1;
+		public static const PREGSLOT_ASS:uint = 2;
+		public function findEmptyPregnancySlot(type:uint):int
 		{
-			for (var i:int = 0; i < this.vaginas.length; i++)
+			if (type == PREGSLOT_ANY || type == PREGSLOT_VAG)
 			{
-				if ((pregnancyData[i] as PregnancyData).pregnancyType == "") return i;
+				for (var i:int = 0; i < this.vaginas.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType == "") return i;
+				}
+			}
+			
+			if (type == PREGSLOT_ANY || type == PREGSLOT_ASS)
+			{
+				if ((pregnancyData[3] as PregnancyData).pregnancyType == "") return 3;
 			}
 			
 			return -1;

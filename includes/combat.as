@@ -9,6 +9,7 @@ import classes.Characters.NyreaAlpha;
 import classes.Characters.NyreaBeta;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.PlayerCharacter;
+import classes.Characters.QueenOfTheDeep;
 import classes.Characters.SecurityDroids;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
@@ -181,7 +182,8 @@ public function combatMainMenu():void
 		
 		if(foes[0] is classes.Characters.Varmint && pc.hasKeyItem("Lasso")) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
 		//Bonus shit for stuff!
-		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
+		if (foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
+		if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
@@ -1489,6 +1491,10 @@ public function displayMonsterStatus(targetFoe:Creature):void
 		else if(foes.length > 1 || foes[0].plural) output("<b>" + targetFoe.capitalA + targetFoe.short + " have turned you on too much to keep fighting. You give in....</b>\n");
 		else output("<b>" + targetFoe.capitalA + targetFoe.short + " has turned you on too much to keep fighting. You give in....</b>\n");
 	}
+	else if (targetFoe is QueenOfTheDeep && !pc.hasStatusEffect("Watered Down"))
+	{
+		output("<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>\n");
+	}
 	else {
 		if(pc.statusEffectv1("Blind") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
@@ -1499,7 +1505,14 @@ public function displayMonsterStatus(targetFoe:Creature):void
 				author("Nonesuch");			
 				adultCockvineCombatDescriptionExtension();
 			}
-			showMonsterArousalFlavor(targetFoe);
+			if (targetFoe is QueenOfTheDeep)
+			{
+				if (targetFoe.lust() >= 50) output("You can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
+			}
+			else
+			{
+				showMonsterArousalFlavor(targetFoe);
+			}
 			mutinousMimbranesCombat();
 			neglectedMimbranesCombat();
 		}
@@ -1602,6 +1615,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
 	else if (aggressor is MyrInfectedFemale) infectedMyrAI();
 	else if (aggressor is DoctorLash) docLashAI();
+	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1751,6 +1765,10 @@ public function victoryRouting():void
 	{
 		winVsDoctorLash();
 	}
+	else if (foes[0] is QueenOfTheDeep)
+	{
+		queenOfTheDeepPCVictory();
+	}
 	else genericVictory();
 }
 
@@ -1896,6 +1914,10 @@ public function defeatRouting():void
 	else if(foes[0] is DoctorLash)
 	{
 		loseToDoctorLash();
+	}
+	else if (foes[0] is QueenOfTheDeep)
+	{
+		queenOfTheDeepPCLoss();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2222,6 +2244,9 @@ public function startCombat(encounter:String):void
 		case "Dr. Lash":
 			chars["DRLASH"].prepForCombat();
 			break;
+		case "QueenOfTheDeep":
+			chars["QUEENOFTHEDEEP"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
@@ -2235,6 +2260,12 @@ public function startCombat(encounter:String):void
 public function runAway():void {
 	clearOutput();
 	output("You attempt to flee from your opponent");
+	if (foes[0] is QueenOfTheDeep)
+	{
+		output(", but you don't have a lot of options down here!");
+		processCombat();
+		return;
+	}
 	if(foes[0].plural || foes.length > 1) output("s");
 	output("! ")
 	//Autofail conditions first!
