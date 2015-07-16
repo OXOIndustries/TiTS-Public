@@ -1395,7 +1395,7 @@ public function initializeMyrellionRooms():void
 	// Bathen Hausen H10
 	rooms["830"] = new RoomClass(this);
 	rooms["830"].roomName = "BATH\nWALK";
-	rooms["830"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.\n\nThe bath house is open for business, it seems. Several people are wandering in and out, a healthy mix of both gold and red myr. The golds you see on the marble stairs are in various states of undress, some naked outright and others in skimpy robes that leave little to the imagination. Their red counterparts take in the view with an as much arousal as disdain.";
+	rooms["830"].description = "The corner of the street gives way to a huge, marble structure that dives down into the earth, connected to the sidewalk by a sweeping marble staircase. A large sign touts it as the city bath house.\n\nThe bath house is open for business, it seems. Several people are wandering in and out, a healthy mix of both gold and red myr. The golds you see on the marble stairs are in various states of undress, some naked outright and others in skimpy robes that leave little to the imagination. Their red counterparts take in the view with as much arousal as disdain.";
 	rooms["830"].system = "SYSTEM: SINDATHU";
 	rooms["830"].planet = "PLANET: MYRELLION";
 	rooms["830"].southExit = "809";
