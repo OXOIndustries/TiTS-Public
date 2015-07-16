@@ -1099,6 +1099,16 @@ public function processTime(arg:int):void {
 	// I named this badly, but this is the secondary pregnancy variant that Renvra has. It's much more complicated, so
 	// all the checking is done at the target callsite.
 	renvraMessageHandler();
+	
+	// Extra special handler for Queen of the Deeps pregnancy
+	if (flags["Queen Message Supression"] == undefined)
+	{
+		QueenOfTheDeepPregnancy.queenPregnancyMessages(arg);
+	}
+	else
+	{
+		flags["Queen Message Supression"] = undefined;
+	}
 
 	//========== Stuff that gets checked once every time that time passes ===========//
 	//Blue balls removed for not having cock and balls.
