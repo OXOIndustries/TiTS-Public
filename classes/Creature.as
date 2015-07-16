@@ -2649,12 +2649,12 @@
 		}
 		public function hasMeleeEnergyWeapon():Boolean
 		{
-			if (meleeWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || meleeWeapon.baseDamage.hasFlag(DamageFlag.LASER)) return true;
+			if (meleeWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || meleeWeapon.baseDamage.hasFlag(DamageFlag.LASER) || meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON)) return true;
 			return false;
 		}
 		public function hasRangedEnergyWeapon():Boolean
 		{
-			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || rangedWeapon.baseDamage.hasFlag(DamageFlag.LASER)) return true;
+			if (rangedWeapon.baseDamage.hasFlag(DamageFlag.ENERGY_WEAPON) || rangedWeapon.baseDamage.hasFlag(DamageFlag.LASER) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON)) return true;
 			return false;
 		}
 		public function hasCombatDrone():Boolean

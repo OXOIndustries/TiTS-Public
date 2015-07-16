@@ -46,6 +46,7 @@
 			baseDamage.burning.damageValue = 4;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

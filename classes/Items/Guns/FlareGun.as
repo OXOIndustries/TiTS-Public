@@ -44,6 +44,7 @@ package classes.Items.Guns
 			
 			baseDamage.burning.damageValue = 10;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
+			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

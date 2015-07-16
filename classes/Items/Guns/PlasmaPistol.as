@@ -45,6 +45,7 @@
 			baseDamage.electric.damageValue = 1;
 			baseDamage.burning.damageValue = 30;
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
+			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
