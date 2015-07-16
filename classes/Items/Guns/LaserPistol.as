@@ -42,8 +42,8 @@
 			this.attack = 2;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 2;
-			baseDamage.burning.damageValue = 4;
+			baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
