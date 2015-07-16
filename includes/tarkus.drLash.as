@@ -122,7 +122,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 	showDrLash();
 	flags["MET_DR_LASH"] = 1;
 	output("<i>“[pc.name]. That is... acceptable. Could be better, of course. Nongendered names are superior to their gendered counterparts, just as with the individuals that bear them. So free of those distracting urges for reproduction.”</i> He adjusts his goggles’ fit against his shining head. They flicker violet, shifting to some different wavelength. <i>“");
-	if((pc.hasGenitals() && (pc.hasTailCock() || pc.hasTailCunt())) || (pc.hasCock() && pc.hasVagina())) output("A shame you’ve been burdened with such an overwhelming sexual palette. I imagine it must be quite difficult for you converse with all those... feelings coursing through you.");
+	if((pc.hasGenitals() && (pc.hasTailCock() || pc.hasTailCunt())) || (pc.hasCock() && pc.hasVagina())) output("A shame you’ve been burdened with such an overwhelming sexual palette. I imagine it must be quite difficult for you to converse with all those... feelings coursing through you.");
 	else if(pc.hasCock())
 	{
 		output("A shame you’ve been burdened with such ");

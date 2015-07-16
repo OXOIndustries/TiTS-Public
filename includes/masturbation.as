@@ -333,7 +333,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	if (roundTwo == true)
 	{
 		//If anything on the screen, do as a next
-		if(userInterface.outputBuffer != "")
+		if(userInterface.outputBuffer != "\n")
 		{
 			clearMenu();
 			addButton(0,"Next",selectRandomFap,faps);
