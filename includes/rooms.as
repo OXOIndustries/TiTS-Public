@@ -2952,7 +2952,7 @@ public function initializeRooms():void
 	//#85 PLANET\nDIVIDE
 	rooms["285"] = new RoomClass(this);
 	rooms["285"].roomName = "PLANET\nDIVIDE";
-	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way to down whatever is holding this wreck of together. The only viable direction is best to the west.";
+	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way to down whatever is holding this wreck together. The only viable direction is best to the west.";
 	rooms["285"].runOnEnter = rustScytheGladeEncounters;
 	rooms["285"].westExit = "284";
 	rooms["285"].planet = "PLANET: TARKUS";

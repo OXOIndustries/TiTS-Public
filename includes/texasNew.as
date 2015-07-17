@@ -1,9 +1,11 @@
 ﻿import classes.Items.Miscellaneous.BBQToGo;
+import classes.GameData.MailManager;
 
 public function newTexasEmail():void
 {
 	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
-	eventBuffer += "\n\n<b>New Email!</b>\nCome on out to New Texas, Partner!\nFrom: Benjamin Tiberius Tee (NoReply@NewTexas.gov)\nTo: [pc.name]@SteeleTech.corp\n\n<i>This message opens with a 3D masthead depicting rolling green hills that stretch off into the beautiful blue horizon. Several incredibly chesty woman are cavorting across the field, each dressed in a cow-pattern leotard that hugs her almost inhumanly ample curves just right...</i>\n\nHowdy, " + pc.mf("Mr.","Mz.") + " [pc.name] Steele!\n\nMy name is Benjamin Tee, but you and yours can call me Big T. I'm the governor of New Texas, and I'd like to invite you and your crew to our beautiful planet! Enjoy fresh-from-the-tap milk and ice cream, relax in rolling fields unspoiled by civilization, and meet the most beautiful women the galaxy has to offer!\n\nAttached to this message are coordinates and exclusive landing access codes for my personal ranch. Speaking for all of New Texas: we hope to see you soon, partner!\n\n<i>Giddy-on-up to New Texas!</i>\n-Governor Benjamin Tiberious Tee";
+	MailManager.unlockEntry("newtexas", GetGameTimestamp());
+	eventBuffer += "\n\n<b>New Email From Benjamin Tiberius Tee (NoReply@NewTexas.gov)!";
 }
 
 //Landing on New Texas (First Time)

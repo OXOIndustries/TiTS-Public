@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import flash.events.Event;
+import classes.GameData.MailManager;
 
 
 public function creationRouter(e:Event = null):void {
@@ -21,6 +22,7 @@ public function startCharacterCreation(e:Event = null):void
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
+	MailManager.resetMails();
 	hours = 0;
 	minutes = 0;
 	days = 0;

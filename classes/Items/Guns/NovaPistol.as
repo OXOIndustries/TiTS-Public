@@ -44,10 +44,11 @@ package classes.Items.Guns
 			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 4;
-			baseDamage.burning.damageValue = 10;
+			baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

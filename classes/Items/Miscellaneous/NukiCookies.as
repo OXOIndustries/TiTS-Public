@@ -293,7 +293,7 @@
 							changes++;
 						}
 					}
-					else kGAMECLASS.output(target.tailTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 				}
 				//GO FULL Nukiface
 				//Requires nonhumoo face.
@@ -484,7 +484,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output(target.cockTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 					}
 				}
 				//Find nonblack vags for TF!

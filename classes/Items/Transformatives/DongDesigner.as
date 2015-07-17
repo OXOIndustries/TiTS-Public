@@ -19,7 +19,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.GADGET;
 			//Used on inventory buttons
 			this.shortName = "Dong D.";
 			//Regular name
@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a TamaniCorp Hora Series Dong Designer";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Lettering in luminescent paint declares it to be a TamanaiCorp Dong Designer. These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.\n\nWith only a few button presses, you can use this to change the appearance of your penis to be satisfying to a partner of almost any race. Of course, you found this one on a junkyard, so maybe there's something strange about it.";
+			this.tooltip = "Lettering in luminescent paint declares it to be a TamaniCorp Dong Designer. These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.\n\nWith only a few button presses, you can use this to change the appearance of your penis to be satisfying to a partner of almost any race. Of course, you found this one on a junkyard, so maybe there's something strange about it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
