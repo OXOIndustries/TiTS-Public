@@ -138,8 +138,11 @@ public function dickBoxTF(args:Array):void
 	showName("DONG\nDESIGNER");
 	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
 	{
-		cockBoxDickDoublingHijinx(args);
-		return;
+		if(pc.cockTotal() < 10)
+		{
+			cockBoxDickDoublingHijinx(args);
+			return;
+		}
 	}
 	output("As soon as you select a color, the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
