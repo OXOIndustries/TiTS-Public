@@ -882,7 +882,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	output("You slink down onto your hands and [pc.knees], gently nudging the wetraxxel’s knees apart to reveal the thick brown strip of his loincloth. You eagerly lift the obstructing bit of cloth, revealing the soft shaft of chitinous bug-dick beneath it. Licking your lips, your toss the loincloth aside and urge the wetraxxel to sit up on an outcropping of rock, facing you with legs spread.");
 	
 	output("\n\nOnce the towering bug-man has complied, giving you absolute access to his over-sized alien schlong, you take the lead. Your hands slide up his chitinous thighs, drawing yourself inexorably towards his crotch. Your fingers reverently cup the plated orbs of the brawler’s balls, rolling the churning sack around in your fingers. They’re like a pair of apples, swollen and thick with unspent seed, awaiting a fertile hole to sow.");
-	if (pc.findEmptyPregnancySlot() == -1) output(" You may not have one of those, but you’re sure your lips will make a more than adequate substitute");
+	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) == -1) output(" You may not have one of those, but you’re sure your lips will make a more than adequate substitute");
 	else output(" For now, though, you’re sure he’ll be able to make do with your lips instead. You did win this time, after all");
 	output("...");
 	

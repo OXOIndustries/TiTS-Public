@@ -8,6 +8,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.Engine.Map.InPublicSpace;
 	import classes.GLOBAL;
 	import classes.StorageClass;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * ...
@@ -113,9 +114,9 @@ package classes.GameData.Pregnancy.Handlers
 			if (pregSlot == 3) mother.addStatusValue("Queen Pregnancy End", 3, 1);
 			else mother.addStatusValue("Queen Pregnancy End", 4, 1);
 			
-			if (kGAMECLASS.eventQueue.indexOf(queenPregnancyEnds) == -1)
+			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.queenPregnancyEnds) == -1)
 			{
-				kGAMECLASS.eventQueue.push(queenPregnancyEnds);
+				kGAMECLASS.eventQueue.push(kGAMECLASS.queenPregnancyEnds);
 			}
 		}
 		
@@ -124,7 +125,7 @@ package classes.GameData.Pregnancy.Handlers
 			for (var i:int = 0; i < kGAMECLASS.pc.pregnancyData.length; i++)
 			{
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[i];
-				if (pData.pregnancyType == this._handlesType)
+				if (pData.pregnancyType == "DeepQueenPregnancy")
 				{
 					StatTracking.track("pregnancy/queen of the deep eggs", pData.pregnancyQuantity);
 					StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
@@ -229,9 +230,9 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function queenBellyrubMessageHandler():void
 		{
-			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.queenBellyRubEvent) == -1)
+			if (kGAMECLASS.eventQueue.indexOf(kGAMECLASS.queenBellyrubEvent) == -1)
 			{
-				kGAMECLASS.eventQueue.push(kGAMECLASS.queenBellyRubEvent);
+				kGAMECLASS.eventQueue.push(kGAMECLASS.queenBellyrubEvent);
 			}
 		}
 		

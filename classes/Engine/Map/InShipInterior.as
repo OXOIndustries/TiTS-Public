@@ -1,6 +1,7 @@
 package classes.Engine.Map 
 {
 	import classes.Creature;
+	import classes.kGAMECLASS;
 	/**
 	 * ...
 	 * @author Gedan

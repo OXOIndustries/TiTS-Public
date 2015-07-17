@@ -313,7 +313,7 @@ public function bendItLikeBeckhamForRenvra():void
 	output("\n\nAfter a few moments, Ren’s chitinous hands find their ways to your shoulders and pull you off her cock -- just by an inch, leaving you close enough to still bridge the distance between your lips and her flare with thick trails of spittle laced with pink. Your thoughts are awash in lust, hazy save for the overwhelming need for that big, beautiful, ");
 
 	var x:int = -1;
-	if(pc.hasVagina()) x = pc.findEmptyPregnancySlot();
+	if(pc.hasVagina()) x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 
 	if(x < 0) output("ass");
 	else output("pussy");
@@ -377,7 +377,7 @@ public function getRenvraFuckedPart2():void
 	clearOutput();
 	showRenvra();
 	var x:int = -1;
-	if(pc.hasVagina()) x = pc.findEmptyPregnancySlot();
+	if(pc.hasVagina()) x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	//if Bimbo:
 	if(pc.isBimbo()) 
 	{

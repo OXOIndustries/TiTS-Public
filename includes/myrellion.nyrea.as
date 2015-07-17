@@ -454,7 +454,7 @@ public function pcLossToNyrea():void
 	else if (foes[0].hasStatusEffect("Nyrea Eggs"))
 	{
 		// Butt is full, check to see if there's a free vag
-		var tHole:int = pc.findEmptyPregnancySlot();
+		var tHole:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 		var isFull:Boolean = true;
 
 		if (tHole >= 0) isFull = false;
@@ -859,9 +859,9 @@ public function rideNyreaDick():void
 		useAss = true;
 		isFull = false;
 	}
-	else if (pc.findEmptyPregnancySlot() >= 0)
+	else if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) >= 0)
 	{
-		tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot() +"]";
+		tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) +"]";
 		useAss = false;
 		isFull = false;
 	}
@@ -951,7 +951,7 @@ public function rideNyreaDick():void
 		}
 		else
 		{
-			tHoleIdx = pc.findEmptyPregnancySlot();
+			tHoleIdx = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 			pc.loadInCunt(foes[0], tHoleIdx);
 		}
 

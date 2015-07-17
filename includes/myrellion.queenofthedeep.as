@@ -2,7 +2,7 @@ import classes.Creature;
 public function tryEncounterQueenOfTheDeep():Boolean
 {
 	if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined) return false;
-	if (pc.findEmptyPregnancySlot(CREATURE.PREGSLOT_ANY) == -1) return false;
+	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) return false;
 
 	queenOfTheDeepInitialEncounter();
 
@@ -69,7 +69,7 @@ public function queenOfTheDeepGoFite():void
 
 public function queenOfTheDeepInitFight():void
 {
-	pc.createStatusEffect("Watered Down", 0, 0, 0, false, "", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
 
 	startCombat("QueenOfTheDeep");
 }
@@ -150,7 +150,7 @@ public function queenOfTheDeepWaterVeil():void
 {
 	output("\n<i>“You cannot fight what you cannot see,”</i> the creature hisses gleefully, slamming her lower claws into the water before you with earthshaking force and kicking up a spray of water that seems to have no end. Worse, she keeps swiping her claws through the water, creating a thick mist between the two of you. <b>It’s much harder to see the creature now!</b>\n");
 
-	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 0, 0, 0, false "", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
+	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 0, 0, 0, false, "", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
 	foes[0].evasion += 25;
 }
 
@@ -158,13 +158,14 @@ public function queenOfTheDeepLegStomp():void
 {
 	output("\nThe lake monster rears up one of her huge, slender legs and jabs it at you like a titanic spear.");
 
-	if (combatMiss())
+	// attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1
+	if (combatMiss(foes[0], pc))
 	{
 		output(" You manage to duck under the thrust, avoiding the blow and putting some distance between you and the monster.");
 	}
 	else
 	{
-		output("  The pointed tip of the leg slams into your chest, sending you hurtling back. You could have sworn you just heard your ribs creaking... oh, you’re going to be sore in the morning.");
+		output(" The pointed tip of the leg slams into your chest, sending you hurtling back. You could have sworn you just heard your ribs creaking... oh, you’re going to be sore in the morning.");
 
 		output("\n\nAssuming you make it out of here alive.");
 	}
@@ -310,9 +311,9 @@ public function queenOfTheDeepPCLoss():void
 		output(" more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legs] just about give out, though the creature holds you fast, refusing to let you fall.");
 	}
 	output(" A tentacle quickly finds its way to your [pc.asshole], pressing against the");
-	if (pc.ass.loosness() <= 1) output(" tight");
+	if (pc.ass.looseness() <= 1) output(" tight");
 	else if (pc.ass.looseness() <= 3) output(" inviting");
-	else if (pc.ass.loosness() <= 4) output(" loose");
+	else if (pc.ass.looseness() <= 4) output(" loose");
 	else output(" agape");
 	output(" ring of it and kissing your hole with venom-soaked lips. You tremble and moan as more and more of the chemical seeps into your body, lighting your nerves aflame with pleasure.");
 
@@ -408,11 +409,9 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nAnd you must grow stronger to better carry the next one.");
 	
 	output("\n\nBut for now, exhaustion takes you.");
-	
-	output("\n\n<b>Game Over</b>.");
 
 	// 9999
-	do_gameover();
+	badEnd();
 }
 
 public function queenOfTheDeepSurrenderCombat():void
@@ -498,7 +497,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	}
 	output(" A tentacle quickly finds its way to your asshole, pressing against the");
 	if (pc.ass.looseness() <= 1) output(" tight");
-	else if (pc.ass.loosness() <= 3) output(" inviting");
+	else if (pc.ass.looseness() <= 3) output(" inviting");
 	else if (pc.ass.looseness() <= 4) output(" loose");
 	else output(" agape");
 	output(" ring of it and kissing your hole with venom-soaked lips. You tremble and moan as more and more of the chemical seeps into your body, lighting your nerves aflame with pleasure.");
@@ -560,7 +559,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	if (!pc.isPregnant(3))
 	{
 		pc.loadInAss(queenOfTheDeep);
-		pc.assChange(arg_check);
+		(pc as Creature).buttChange((queenOfTheDeep as Creature).biggestCockVolume(), false, false, false);
 	}
 
 	for (var vi:int = 0; vi < pc.vaginas.length; vi++)
@@ -568,7 +567,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 		if (!pc.isPregnant(vi))
 		{
 			pc.loadInCunt(queenOfTheDeep, vi);
-			pc.cuntChange(arg_check);
+			(pc as Creature).cuntChange(vi, queenOfTheDeep.biggestCockVolume(), false, false, false);
 		}
 	}
 
@@ -626,7 +625,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 
 	//[Next]
 	clearMenu();
-	addButton(0, "Next", queenOfTheDeepSurrenderCombatII, fromCombat);
+	addButton(0, "Next", queenOfTheDeepSurrenderIII, fromCombat);
 }
 
 public function queenOfTheDeepSurrenderIII(fromCombat:Boolean)
@@ -641,7 +640,7 @@ public function queenOfTheDeepSurrenderIII(fromCombat:Boolean)
 
 	if (fromCombat)
 	{
-		end_combat(); // 9999
+		genericLoss();
 	}
 	else
 	{
@@ -705,10 +704,14 @@ public function queenOfTheDeepCloacaFuck():void
 {
 	clearOutput();
 	queenOfTheDeepHeader();
+	
+	var selCock:int = (pc as Creature).cockThatFits(queenOfTheDeep.ass.capacity());
+	
+	if (selCock == -1) selCock = (pc as Creature).smallestCockIndex();
 
-	output("To the victor go the spoils, you tell yourself. The creature intended to fill you with her eggs... or whatever it is she lays, so you might as well return the favor and fill her with seed. You start to wade towards her through the water, shedding your [pc.gear] as you go until you’re bare naked and unarmed, mere inches from the creature’s humanoid half. Your [pc.cock] announces itself with a tumescing throb, poking out of the water and all but pressing against the monstrous woman’s belly.");
+	output("To the victor go the spoils, you tell yourself. The creature intended to fill you with her eggs... or whatever it is she lays, so you might as well return the favor and fill her with seed. You start to wade towards her through the water, shedding your [pc.gear] as you go until you’re bare naked and unarmed, mere inches from the creature’s humanoid half. Your [pc.cock " + selCock + "] announces itself with a tumescing throb, poking out of the water and all but pressing against the monstrous woman’s belly.");
 
-	output("\n\n<i>“It is pleasure you desire after all,”</i> she says, licking her dark blue lips and reaching down to caress your [pc.cock]. <i>“A shame. You will never know the bliss I could have brought you, if only you would take my eggs.”</i>");
+	output("\n\n<i>“It is pleasure you desire after all,”</i> she says, licking her dark blue lips and reaching down to caress your [pc.cock " + selCock + "]. <i>“A shame. You will never know the bliss I could have brought you, if only you would take my eggs.”</i>");
 
 	output("\n\nEnough of that, you command her. She tried and failed, and now it’s your turn to call the shots. She groans, but doesn’t resist your invective; the woman merely busies herself with your prick, stroking you from tip to base with growing speed using the endless warm water around you as lube. A moan of pleasure soon escapes your [pc.lips], and you find yourself drawn to the big, cyan breasts hanging heavily from the creature’s chest. Your fingers sink into them, all but vanishing into cool flesh that quivers and jiggles in the most alluring ways. You can feel just how full each tit is, how laden with her alien milk.");
 
@@ -731,7 +734,7 @@ public function queenOfTheDeepCloacaFuck():void
 		else if (pc.cumQ() <= 500) output(" several thick globs of spunk");
 		else if (pc.cumQ() <= 2500) output(" what looks like an entire bukkake scene");
 		else output(" a full body-covering of your jizz that’s");
-		else output(" intermixing with the milky coating on her tits.");
+		output(" intermixing with the milky coating on her tits.");
 
 		output("\n\n<i>“My, aren’t we sensitive?”</i> the creature purrs, her inhumanly long tongue reaching down to lick through the mess you’ve left between her tits. <i>“And what a mess you made...”</i>");
 
@@ -744,15 +747,16 @@ public function queenOfTheDeepCloacaFuck():void
 
 	if (!pc.isTaur())
 	{
-		output("\n\nYou push the creature’s humanoid half down and scramble up her back, fighting off the dozens of squirming tentacles on her back in order to find somewhere to sit, straddling her back with your cock hanging heavily over the bubble-butt resting on her lower body, barely concealing her sex. You ease yourself down, gently prying apart her soft asscheeks and slipping your [pc.cock] between them.");
+		output("\n\nYou push the creature’s humanoid half down and scramble up her back, fighting off the dozens of squirming tentacles on her back in order to find somewhere to sit, straddling her back with your cock hanging heavily over the bubble-butt resting on her lower body, barely concealing her sex. You ease yourself down, gently prying apart her soft asscheeks and slipping your [pc.cock " + selCock + "] between them.");
 	}
 	else
 	{
-		output("\n\nYou dash around the defeated creature’s behemoth body until you’re directly behind her. Once positioned, you lunge forward and mount her like a mare, leaping onto her back and thrusting your [pc.cock] into a gaping orifice on her hind end.");
+		output("\n\nYou dash around the defeated creature’s behemoth body until you’re directly behind her. Once positioned, you lunge forward and mount her like a mare, leaping onto her back and thrusting your [pc.cock " + selCock + "] into a gaping orifice on her hind end.");
 	}
-	pc.cockChange(arg_check);
+	
+	(pc as Creature).cockChange();
 
-	output("\n\nThe woman screams, a bellowing cry of pleasure that echoes throughout the caverns as you ram your prick into her gaping fuck-hole. You reach around her body, grasping at her heavy breasts and squeezing to the beat of your thrusting hips. Her quivering hole squeezes around your [pc.cock], sealing you in an embrace of wet warmth that slides around your shaft this way and that until your voice joins hers in cries of ecstasy. Beneath you, the creature’s legs spasm and scrape against the cavern walls, trying to keep their balance as pleasure threatens to overwhelm her.");
+	output("\n\nThe woman screams, a bellowing cry of pleasure that echoes throughout the caverns as you ram your prick into her gaping fuck-hole. You reach around her body, grasping at her heavy breasts and squeezing to the beat of your thrusting hips. Her quivering hole squeezes around your [pc.cock " + selCock + "], sealing you in an embrace of wet warmth that slides around your shaft this way and that until your voice joins hers in cries of ecstasy. Beneath you, the creature’s legs spasm and scrape against the cavern walls, trying to keep their balance as pleasure threatens to overwhelm her.");
 
 	output("\n\nHer screams only drive you on, spurring you to hammer her hole harder, driving yourself as deep into her cunt as you can.");
 
@@ -772,7 +776,7 @@ public function queenOfTheDeepCloacaFuck():void
 	output("\n\nGrunting, you slam yourself into her, down to the hilt until she screams. You’re gonna have to give her everything you’ve got now, before the venom leaves you too horny to think. You secure your hands on her hips, grabbing hard and using her human half as leverage to pound her genital hole faster and harder. Sinking as much cockflesh as you can into the spasming slit, you find yourself already succumbing to her venom: your body heats up, becoming more and more sensitive to every touch.");
 	if (!pc.isTaur()) output(" The feeling of your [pc.butt] grinding against the smooth carapace of the creature’s back, t");
 	else output(" T");
-	output("he sensation of wet muscle contracting around your [pc.cock], the cold smoothness of the creature’s cyan skin in your hands... it’s all too much to bear.");
+	output("he sensation of wet muscle contracting around your [pc.cock " + selCock + "], the cold smoothness of the creature’s cyan skin in your hands... it’s all too much to bear.");
 
 	output("\n\nWith a roar of ecstasy, you slam yourself in to the hilt and cum, letting loose");
 	if (pc.libido() >= 75) output(" all the seed you’ve got left");
@@ -833,6 +837,8 @@ public function queenOfTheDeepGetEgged():void
 			}
 		}
 	}
+	
+	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
 
 	output("<i>“Now that you’ve calmed down,”</i> you say, starting to peel off your [pc.gear], <i>“maybe we can work something out.”</i>");
 
@@ -901,7 +907,7 @@ public function queenOfTheDeepGetEgged():void
 	if (!pc.isPregnant(3))
 	{
 		pc.loadInAss(queenOfTheDeep);
-		pc.assChange(arg_check);
+		(pc as Creature).buttChange(queenOfTheDeep.biggestCockVolume(), false, false, false);
 	}
 
 	for (var vi:int = 0; vi < pc.vaginas.length; vi++)
@@ -909,7 +915,7 @@ public function queenOfTheDeepGetEgged():void
 		if (!pc.isPregnant(vi))
 		{
 			pc.loadInCunt(queenOfTheDeep, vi);
-			pc.cuntChange(arg_check);
+			(pc as Creature).cuntChange(vi, queenOfTheDeep.biggestCockVolume(), false, false, false);
 		}
 	}
 	
@@ -1052,7 +1058,7 @@ public function queenLactationEvent():void
 	if (pc.biggestTitSize() <= 0)
 	{
 		output(" When you move your hand around, you suddenly feel your chest starting to... starting to grow! You watch with amazement as your previously flat chest expands outward, creating a pair of small, but perfectly formed breasts! <b>You stare at your new tits</b> for a few moments, gingerly rubbing a hand around the newly sensitive flesh.");
-		pc.breastRow[0].breastRatingRaw = 2;
+		pc.breastRows[0].breastRatingRaw = 2;
 	}
 	output(" After a moment, you feel an altogether pleasant pressure building up behind your [pc.nipples], and quickly find that they're beading with moisture!");
 
@@ -1089,7 +1095,7 @@ public function queenBellyMovementEvent():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function queenBellyrubMessageHandler():void
+public function queenBellyrubEvent():void
 {
 	clearOutput();
 	
@@ -1175,8 +1181,8 @@ public function queenPregnancyEnds():void
 	output("\n\nAs quickly as you can, you divest yourself of your [pc.gear] while you’re still able, and slump to the ground with your [pc.legs] spread wide. Another wave of almost-orgasmic pleasure hits you, all but knocking you prone - it’s an effort to keep your eyes focused, watching as your belly starts to deflate. You can actually <i>feel</i> the queen’s spawn moving inside you, crawling through your body towards the open air.");
 
 	output("\n\nThe way they’re moving, you don’t think you need to do anything, much less push - the creatures looked so delicate going in, you’re afraid the extra pressure might hurt them. Instead, you do all you can to relax yourself, aided in that cause by the alien pleasure your implanted children bring you. You start to feel an unnatural heat and wetness drooling out of your");
-	if (pc.numCuntPreggers > 1) output(" [pc.cunts]");
-	else if (pc.numCuntPreggers == 1) output(" [pc.cunt]");
+	if (numCuntPreggers > 1) output(" [pc.cunts]");
+	else if (numCuntPreggers == 1) output(" [pc.cunt]");
 	if (buttPreggers && cuntPreggers) output(" and");
 	if (buttPreggers) output(" [pc.asshole]");
 	output(", which you quickly recognize as the queen’s venom, finally burst out of you after weeks of churning inside you.");
@@ -1200,7 +1206,7 @@ public function queenPregnancyEnds():void
 	addButton(0, "Next", queenPregnancyEndsII);
 }
 
-public function queenPregnancyEnds():void
+public function queenPregnancyEndsII():void
 {
 	clearOutput();
 

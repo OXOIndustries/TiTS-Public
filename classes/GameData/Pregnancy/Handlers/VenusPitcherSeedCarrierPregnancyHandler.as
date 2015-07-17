@@ -49,7 +49,7 @@ package classes.GameData.Pregnancy.Handlers
 				if (mother.hasPregnancyOfType(thisPtr.handlesType)) return true;
 				
 				// But if there's no available slot, and no existing pregnancy that can be "upgraded", then fail
-				pregSlot = mother.findEmptyPregnancySlot();
+				pregSlot = mother.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 				if (pregSlot == -1) return false;
 			}
 			
@@ -70,7 +70,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (pregSlot == -1)
 			{
-				pregSlot = mother.findEmptyPregnancySlot();
+				pregSlot = mother.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 				
 				if (pregSlot == -1)
 				{

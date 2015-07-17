@@ -2225,7 +2225,7 @@
 			return exhibitionismRaw;
 		}
 		
-		public static const DEPENDANT_ANY:uint = -1;
+		public static const DEPENDANT_ANY:uint = 0;
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		
 		// Is the character dependant on some external drug/chemical/etc

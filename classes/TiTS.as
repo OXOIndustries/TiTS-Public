@@ -38,6 +38,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
+	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
 	
 	import fl.transitions.easing.None;
 
@@ -207,6 +208,7 @@
 		include "../includes/myrellion.nehzara.as";
 		include "../includes/myrellion.nyrea.as";
 		include "../includes/myrellion.orryx.as";
+		include "../includes/myrellion.queenofthedeep.as";
 		include "../includes/myrellion.renvra.as";
 		include "../includes/myrellion.rooms.as";
 		include "../includes/myrellion.roomFunctions.as";
@@ -1033,6 +1035,10 @@
 		public function get nevrie():Nevrie
 		{
 			return chars["NEVRIE"];
+		}
+		public function get queenOfTheDeep():QueenOfTheDeep
+		{
+			return chars["QUEENOFTHEDEEP"];
 		}
 	}
 }
