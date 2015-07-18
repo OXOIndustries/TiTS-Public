@@ -4,6 +4,7 @@ package classes.GameData.Pregnancy
 	import classes.rand;
 	import classes.GLOBAL;
 	import classes.PregnancyData;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -191,8 +192,8 @@ package classes.GameData.Pregnancy
 		
 			// Catch potential repeated calls to updatePregnancyStage that could trip another onDurationEnd without having a chance to cleanup post-pregnancy data
 			if (oldInc < 0) return;
-			
-			if (_debugTrace) trace("New incubation value = " + newInc);
+						
+			if (_debugTrace) trace("New incubation value = " + newInc + "(" + kGAMECLASS.prettifyMinutes(newInc) + ")");
 			
 			var triggeredPSPs:Array = new Array();
 			

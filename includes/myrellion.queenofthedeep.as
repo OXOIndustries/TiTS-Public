@@ -699,6 +699,9 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 
 public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 {
+	clearOutput();
+	queenOfTheDeepHeader();
+	
 	var numEmptyHoles:int = 0;
 	var numEmptyVaginas:int = 0;
 	var bEmptyAss:Boolean = false;
@@ -727,23 +730,26 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 
 	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
 	
-	output("\n\n<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
+	output("<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legs], gently circling and caressing your [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.vagina]");
 	output(".");
 
-	output("\n\n");
 	if (pc.isBiped())
 	{
 		output("\n\n<i>“Your body is so small, so frail,”</i> the queen laments as her tendrils press against your hole");
 		if (bMultiTentacle) output("s");
-		output(". <i>“I hope I do not cause you pain.”</i>");
+		output(". <i>“I hope I do not cause you pain.”</i> ");
+	}
+	else
+	{
+		output("\n\n");
 	}
 
 	if (bMultiTentacle)
 	{
-		output("\n\nOther, smaller tendrils coil around you, finding your other hole");
+		output("Other, smaller tendrils coil around you, finding your other hole");
 		if (numEmptyVaginas > 1) output("s");
 		output(" and starting to tease them, searching out every empty baby-maker you have and preparing to fill them with alien offspring.");
 	}
@@ -1350,9 +1356,6 @@ public function queenDreamEvent():void
 	output("\n\nHappiness overwhelms you, and you return the girl's affectionate kiss, holding onto her back as she leads you into the deepest caves of her homeworld.");
 
 	output("\n\nAround you, you can hear the movements of dozens... hundreds, even... of legs moving through the water as your brood comes home to roost.");
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 }
 
 public function queenAlmostDueMessage():void

@@ -1,5 +1,6 @@
 package classes.Engine.Map 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.kGAMECLASS;
 	/**
@@ -10,7 +11,7 @@ package classes.Engine.Map
 	{
 		var tLoc:String = "";
 		
-		if (target == null)
+		if (target == null || target is PlayerCharacter)
 		{
 			tLoc = kGAMECLASS.currentLocation;
 		}

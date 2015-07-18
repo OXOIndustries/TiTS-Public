@@ -168,7 +168,7 @@ package classes.GameData.Pregnancy.Handlers
 				{
 					kGAMECLASS.eventQueue.push(kGAMECLASS.queenAlmostDueMessage);
 				}
-				
+				kGAMECLASS.pc.setStatusValue("Queen Pregnancy State", 4, 0);
 				kGAMECLASS.flags["Queen Message Supression"] = 1;
 				return;
 			}
@@ -188,7 +188,7 @@ package classes.GameData.Pregnancy.Handlers
 					
 					if (pSE.value1 != 0) 
 					{
-						pMsgFunctors.push(queenBellyrubMessageHandler);
+						pMsgFunctors.push(queenBellymovementMessageHandler);
 					}
 					
 					if (pSE.value2 != 0)
@@ -203,9 +203,16 @@ package classes.GameData.Pregnancy.Handlers
 					
 				}
 				
-				pMsgFunctors[rand(pMsgFunctors.length)]();
-				kGAMECLASS.flags["Queen Message Supression"] = 1;
-				kGAMECLASS.flags["Queen Message Weight"] = 0;
+				if (pMsgFunctors.length > 0)
+				{
+					pMsgFunctors[rand(pMsgFunctors.length)]();
+					kGAMECLASS.flags["Queen Message Supression"] = 1;
+					kGAMECLASS.flags["Queen Message Weight"] = 0;
+				}
+				else
+				{
+					kGAMECLASS.flags["Queen Message Weight"] += delta;
+				}
 			}
 			else
 			{
@@ -247,7 +254,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		override public function pregBellyFragment(target:Creature, slot:int):String
 		{
-			return "Your belly is bulging heavily. At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, full of several individual, moving creatures as you are.";
+			return "At first glance, people might be mistaken for thinking you're properly pregnant, but closer inspection reveals your belly to be lumpy and slightly misshapen, full of several individual, moving creatures as you are.";
 		}
 		
 	}

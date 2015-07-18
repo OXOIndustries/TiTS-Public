@@ -200,12 +200,8 @@ public function debugMenusTwo():void
 		pc.credits += 100000;
 	});
 	
-	addButton(8, "Silicone", function():void {
-		var items:Array = [];
-		items.push(new Silicone());
-		items[0].quantity = 10;
-		
-		itemCollect(items);
+	addButton(8, "Time", function():void {
+		processTime(24 * 60);
 	});
 	
 	addItemButton(9, new GooArmor(), function():void {

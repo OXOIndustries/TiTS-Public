@@ -482,6 +482,19 @@ public function sleep(outputs:Boolean = true):void {
 	
 	processTime(minutes);
 
+	if (pc.hasStatusEffect("Queen Pregnancy State"))
+	{
+		if (pc.statusEffectv1("Queen Pregnancy State") > 0 && flags["Queen Message Supression"] == undefined && (flags["Queen Dream Last Day"] < days || flags["Queen Dream Last Day"] == undefined))
+		{
+			queenDreamEvent();
+			flags["Queen Message Supression"] = 1;
+			flags["Queen Dream Last Day"] = days;
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			return;
+		}
+	}
+	
 	mimbraneSleepEvents();
 	grayGooSpessSkype();
 	
