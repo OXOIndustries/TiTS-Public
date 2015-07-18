@@ -1421,7 +1421,7 @@ public function queenPregnancyEndsII():void
 {
 	clearOutput();
 
-	output("\n\nYou quickly lose track of time, your world fading into the abstract pleasure of birth, bringing each successive offspring to a nipple to nurse, and trying to keep others from wandering off as they adjust to their spindly legs. By the time your body seems finally empty, you count a total of " + pc.statusEffectv1("Queen Pregnancy End") + " offspring having clawed their way out of you, leaving you panting and gasping on the ground.");
+	output("You quickly lose track of time, your world fading into the abstract pleasure of birth, bringing each successive offspring to a nipple to nurse, and trying to keep others from wandering off as they adjust to their spindly legs. By the time your body seems finally empty, you count a total of " + pc.statusEffectv1("Queen Pregnancy End") + " offspring having clawed their way out of you, leaving you panting and gasping on the ground.");
 
 	output("\n\nThe queen’s young are nothing if not precocious, and soon you’re surrounded by little eight-legged princesses wobbling around unsteadily, chattering at each other in high-pitched voices that struggle to form full sentences. Each seems utterly amazed at her ability to speak, stopping to squeal or giggle or jump around before they can finish a thought.");
 
