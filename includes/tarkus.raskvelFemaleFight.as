@@ -23,6 +23,11 @@ public function encounterHostileRaskvelFemale():void
 		output("\n\n\"<i>That's too bad. Since you're trespassing, you're going to have to pay the hundred credit fee,</i>\" the scaly little thing offers before smiling. \"<i>If you don't pay, I'll find another way to take it out of you.</i>\" She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". \"<i>I'd rather just play with you, but we need the money.</i>\" She shrugs her little shoulders apologetically and awaits your response.");
 		output("\n\nDo you pay the fiesty little alien, fight her, or try and get a little something for your credits?");
 	}
+	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
+	{
+		giveRaskvelSomeDongToSuckle();
+		return;
+	}
 	//Second Encounter
 	else
 	{
@@ -417,6 +422,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	//EPILOGUE FOR BOTH
 	output("\n\nShe slumps onto her side, still trembling, and smiles, rubbing her hands back and forth all over her belly while you ready yourself to resume your journeys.\n\n");
 	processTime(30+rand(5));
+	knockUpRaskChance();
 	pc.orgasm();
 	processTime(5);
 	genericVictory();
@@ -681,6 +687,7 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 	output("\n\nWith a contented sigh, you gather your gear and, rubbing your sore, utterly emptied [pc.cockBiggest], you get ready to resume your exploration, eager to meet another of these sultry sluts.");
 
 	processTime(20+rand(10));
+	knockUpRaskChance();
 	pc.orgasm();
 	pc.girlCumInMouth(chars["RASKVEL_FEMALE"]);
 	if(combat)
@@ -887,6 +894,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel():void
 	}
 	output("\n\nThe huge spunk-bubble is twisted off just past the top of your penis, and the whole mess is pulled away. The cool feeling of evaporating sexual juices causes [pc.eachCock] to shrivel faster while recover. Unfortunately, the raskvel has time to rummage through your equipment and tie off her prize before she goes. She even waves goodbye, saying, <i>\"Thanks for the good time, love. Be a dear and come back later if you want to see how your juice took.\"</i>");
 	processTime(30+rand(10));
+	knockUpRaskChance();
 	pc.orgasm();
 	output("\n\n");
 	payRaskvel();
@@ -993,6 +1001,7 @@ public function getPeggedWhileDoublePenetrate():void
 	if(pc.cumQ() >= 2000) output(" as best she can, given how thoroughly you filled her");
 	output(" and bends down for one last kiss. There's a snap of pain on your neck, and then you're unconscious.");
 	processTime(30+rand(10));
+	knockUpRaskChance();
 	pc.orgasm();
 	processTime(200+rand(50));
 	//Pass time and lose some cash!
@@ -1005,4 +1014,252 @@ public function payRaskvel():void
 {
 	if(pc.credits - 100 < 0) pc.credits = 0;
 	else pc.credits -= 100;
+}
+
+//Catch Raskvel Birthing Post Sex
+public function catchPostBirthRaskvel():void
+{
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("\n\nQuiet moans catch your ear, emanating from somewhere close by. Your attention piqued, you quietly look around for the source of the sounds. The source of the mewling sounds of pleasure obviously wants to remain hidden, but you find her all the same. There’s no hiding your surprise as you see a familiar-looking raskvel there, her legs spread akimbo, mouth open and panting. Her tail is twitching feebly next to her, and her eyes are half-closed. She’s not even cognizant of your arrival.");
+	output("\n\nThe feminine alien is clearly riding some kind of orgasmic high, but incredibly, neither of her hands are at the sodden junction of her thighs. Instead, they’re both perched upon the gravid dome of her belly, rubbing at it with slavish devotion, worshipfully stroking her own smooth-scaled skin on automatic impulse. Her greedy, purple slit isn’t like you remember it either. It’s bigger, puffier, so swollen and engorged that you can’t help but wonder if it would feel any different than the last time you were inside it.");
+	output("\n\n<i>\"Ohhh, yes! Gonna have such big, strong eggs!\”</i> Her outburst catches you off guard, and you nearly stumble onto her, but catch yourself at the last minute. <i>\"Mmmm... big... swollen... offworlder eggs!\”</i> The raskvel’s hips shudder violently, twisting back and forth.");
+	output("\n\nWait a second... she couldn’t be... with.... Could she? You watch in fascination as one of your trysts comes to bear fruit, noting that an avalanche of girl-honey is pouring out of the shortstack’s double-clittied cunt. Her swollen lips part slightly to reveal a round alabaster surface. A solid, gleaming egg is forcing its way out of the slut’s steaming sex, spreading the soaked cunt so wide that you fear it will tear her in half. The raskvel doesn’t seem to feel an ounce of pain. In fact, she’s bucking her hips, her legs thrashing. Her hands haven’t left her belly, but the way they’re twitching, you’re surprised she’s able to hold them there at all.");
+	output("\n\n");
+	if(pc.hasCock() && pc.hasVagina()) output("A sudden surge of pressure in your loins wars with the increasingly sensuous wetness a hairsbreadth below. Either way, you bet the raskvel mother would put her delicious-looking tongue to work on your body. What do you do?");
+	else if(pc.hasCock()) output("A welcome pressure in your loins asserts that she’d probably love something to suck on right now. Do you keep watching, or put the mother-to-be’s mouth to work?");
+	else if(pc.hasVagina()) output("A growing slickness in your loins asserts that she’d probably love something to keep her mouth busy while she births. Do you want to put the mother-to-be’s mouth to work?");
+	clearMenu();
+	addButton(0,"Watch",watchDatRaskvelEggLayyyy,undefined,"Watch","Watch her lay the eggs, then go on your way.");
+	if(pc.hasVagina()) addButton(1,"Get Licked",giveHerSumthinToLickSloot,undefined,"Get Licked","Offer her your pussy. She'd probably be into it.");
+	if(pc.hasCock()) addButton(2,"Get Sucked",giveRaskvelSomeDongToSuckle,undefined,"Get Sucked","Offer her your cock. She'd probably be into sharing some pleasure with her babies' daddy" + pc.mf("","-mommy") + ".");
+}
+
+//Give Her Something to Suck On
+public function giveRaskvelSomeDongToSuckle():void
+{
+	clearOutput();
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("You make sure to make plenty of noise as you walk up to her");
+	if(pc.isCrotchGarbed()) 
+	{
+		output(", opening your [pc.lowerGarments] as you go. Your [pc.cocks] flop out, free to rapidly engorge at the sight of your alien children’s slut of a mother");
+		if(pc.cockTotal() > 1) output(", the biggest points as stiffly at her as a hound on the hunt");
+		else output(", stroking your [pc.cocks] as you go");
+	}
+	output(".");
+	if(!pc.isCrotchGarbed())
+	{
+		output(" It wouldn’t do to frighten the poor thing, so you give her the most soothing sight you can possibly conjure up - your ");
+		if(pc.cockTotal() > 1) output("biggest dick");
+		else output("[pc.cock]");
+		output(" in your slowly stroking hand, fully erect and jutting in her direction.");
+	}
+	output("\n\nBlinking rapidly, the egg-blessed mother raskvel marshals her wits. <i>“...You... you came back...”</i> She shivers, spreading her legs wider to allow the egg to push forward until it’s nearly halfway out. <i>“Mmm... give me some of that,”</i> she coos, pointing at your dick and opening her maw. <i>“Can’t leave any c-cum for the other girls, can we?”</i> Visibly quaking, her body arches and violently expels the egg in a wash of feminine lubricant.");
+	output("\n\nOnce her pupils come out from behind her eyelids, she purrs, <i>“Come here, egg-daddy.”</i>");
+	output("\n\nYou smirk and sidle up to her with your [pc.cockBiggest] in hand. Juices pour from her supremely engorged pussy-lips in a steady flow, and her clits are so puffy they’re almost as thick around as little thumbs. Angled inward, they’re perfectly positioned to rub against the surface of the next egg to make an appearance. It’s a supremely erotic sight, but then again, so too is her widespread maw and flexible tongue. Her mischievous muscle flicks out to caress the underside of your [pc.cockHeadBiggest] then retreats to lacquer her lips in a thin veneer of spit.");
+	output("\n\nThat taste is more than enough to get you to shove yourself up against her proffered palate. Thankfully, she keeps her shining lips tight enough around your intruding length to protect you from her teeth, and her tongue is rolled out across the bottom of her mouth like a hybrid of a slip n’ slide and a red carpet. Sucking deeply, the raskvel pulls you deep into her throat by vacuum force alone, using her fleshy purple tongue to stroke along the bottom and sides while her tightly-sealed lips provide an ‘o’-ring of too-pleasant friction.");
+	output("\n\nYou hear her next egg splatter into the cummy mud beneath her, but you feel it more in the blissful purrs of pleasure that thrum through her throat. The raskvel’s eyelids droop low, fluttering in ecstasy. You can see flashes of her arms below you, stroking over the gravid expanse of her belly, encouraging more of her fertilized presents to make the journey to her squirting gates. She keeps sucking throughout, rhythmically bobbing her head and up and down your length, occasionally pausing to let out eggs and accompanying hums of delight.");
+	output("\n\nLetting your own eyes drift closed, you focus on enjoying the sensations, listening for the wet ‘plops’ the eggs make as they land in the soaked, sandy soil. Sometimes you’ll take a peek at the miniature broodmother and admire the way she ardently sucks your cock while her wide-flared hips part around an oversized egg. The longer this goes on, the more vigorously she sucks you and the faster you hear the eggs fall.");
+	output("\n\nYou can’t hold out anymore, not when you’re getting your [pc.cockBiggest] sucked this vigorously by your knocked-up alien slut. Grabbing hold of her long ears, you guide her in a few quick back-and-forth strokes to push you over the edge, and judging by her muffled squeals, her as well.");
+	if(pc.cumQ() < 150) output(" She swallows your load without protest, though her eyes are rolled back in her head from the act of passing a gigantic egg at the same time.");
+	else 
+	{
+		output(" She tries to swallow your load, but there’s so much [pc.cum] that ");
+		if(pc.cumQ() < 500) output("it leaks");
+		else if(pc.cumQ() < 1000) output("thick streams leak");
+		else output("it hoses");
+		output(" from the corners of her mouth");
+		if(pc.cumQ() >= 2000) output(", soaking the front half of her body in a reminder of your excessive virility");
+		output(".");
+	}
+	//Knot
+	if(pc.hasKnot(pc.biggestCockIndex())) output("\n\nYou have to struggle to work your still-bloated knot out of her mouth. When you do get it out, it’s with a loud ‘pop.’ The raskvel shivers and releases her final egg into the sands, barely noticing as your still-cumming cock paints the bridge of her nose.");
+	//No knot
+	else output("\n\nYou pull out and hear a loud ‘pop.’ At first, you assumed she had still been sucking, even after you came, but when you pull back, you can see a huge, gleaming egg nestled against her supremely aroused netherlips.");
+	output("\n\nYou stretch in total satisfaction and ready yourself to leave.");
+	output("\n\n<i>“Wait,”</i> the raskvel calls, still laying bow-legged in the sands. <i>“You want one of your kids? Could you... show her the stars?”</i> She tries to sit up, but the mere act of attempting to close her legs causes her puffy purple slit to spray a fountain of orgasmic honey. <i>“Oooh... uh... if it’s... not too much trouble.”</i>");
+	//[Take One] [Dont]
+	processTime(19);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Take One",takeOneEggSloot);
+	addButton(1,"Don't",dontTakeARaskEgg);
+}
+
+//Give Her Something to Lick
+public function giveHerSumthinToLickSloot():void
+{
+	clearOutput();
+	var x:int = rand(pc.totalVaginas());
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("Making sure to make plenty of noise as you approach, ");
+	if(!pc.isCrotchGarbed()) 
+	{
+		output("you ");
+		if(pc.hasCock())
+		{
+			output("lift your [pc.cocks]");
+			if(pc.balls > 0) output(" and [pc.balls]");
+			output(" out of the way and ");
+		}
+		output("pat your mons, drawing the licentious reptile’s stare right where you want it.");
+	}
+	else 
+	{
+		output("you open your [pc.lowerGarments] to bare your [pc.vaginas], patting your hand on ");
+		if(pc.totalVaginas() == 1) output("it");
+		else output("one");
+		output(" to guide the licentious reptile’s stare exactly where you want it.");
+	}
+	output("\n\n<i>“Y-you!”</i> the raskvel squeaks. <i>“You came back! I-I... I... mmm...”</i> She rocks back and forth, still rubbing her belly as the egg gradually spreads her straining hips. She shudders once, oozing yet more lubricant from her purple pussy, and shakes her head, trying to regain her composure. <i>“I never thought I’d see you again.”</i>");
+	output("\n\nStill advancing and openly rubbing on [pc.oneVagina], you answer, <i>“I didn’t think I’d see you either.”</i> Moisture wicks its way onto your fingertips. <i>“And I definitely didn’t expect it to be this hot...”</i>");
+	output("\n\nA pink glow radiates through the rask girl’s scaly cheeks, and she moans, <i>“I knoooow,”</i> as the egg slips from her slit, bathed in her gushing fluids. Her eyes cross from the sensation, and when she manages to look back up at you, her gaze is fixed on your [pc.vagina " + x + "]. <i>“Get over here. I wanna lick ya.”</i>");
+	output("\n\nPerfect. You thrust your hips forward and present yourself for a good licking");
+	if(pc.hasCock())
+	{
+		output(", flopping your ");
+		if(pc.balls > 0) output("[pc.sack] and ");
+		output("[pc.cocks] across her feathery hair. It tickles at your hardness, and you’ve got to admit, she looks damn good draped in dick");
+	}
+	output(".");
+	output("\n\n<i>“");
+	if(pc.totalVaginas() > 1) output("There’s so many...”</i> Her voice sounds almost breathless with wonderment. <i>“I think... I think I’ve got to get these for myself someday.");
+	else if(pc.totalClits() > 2) output("Wow, you’ve got so many clits! I bet it feels fabulous when you lay, huh?");
+	else if(pc.totalClits() == 2) output("It looks just like one of ours...");
+	else output("Aww, you only have one clit? No wonder you offworlders hardly lay any eggs!");
+	output("”</i> Her tongue stops wasting time on words and slithers out, snake-like toward your ");
+	if(pc.wetness(x) < 3) output("dewy");
+	else output("dripping");
+	output(" mound. The first contact is electric, enough for you to lurch forward and plant your cunt against her face, nether-lips to lips. Resting one hand on the back of her head, you stroke down her sensitive ears, encouraging her muscular organ to plunge deeper, further inside you.");
+	output("\n\nThe gravid slut’s lips brush [pc.oneClit], gently sucking on it while her tongue slithers deeper, caressing your innermost folds. At the same time, she moans, and, though the vibrations are muffled, it’s obvious that she’s creaming herself to eating you out and laying another member of your brood. You can actually hear the egg slopping out of her inflamed cunt and into the sex-scented mud below.");
+	output("\n\nAgain and again, you hear the sound of her pussy slurping around another outsized orb as it passes one egg after another. She whimpers into your pussy but never stops her feverish licking, greedily devouring the [pc.girlCum] your [pc.vagina " + x + "] so freely offers her. You can feel your internal muscles fluttering, fed by the pleasure sparking through your [pc.clits] like electricity through a live wire.");
+	output("\n\nYou and the raskvel maiden both moan at the same time");
+	if(pc.hasCock()) output(", and before you know what you’re doing, you wrap her ear around your [pc.cocks] and jerk them, milking your way to a cunt-shattering, dick-draining orgasm");
+	else output(", and before you can really register what’s going on, her moan turns into a scream, vibrating your pussy into a cunt-shattering orgasm");
+	output(". The near prehensile purple tongue inside you thrashes wildly, slathering your walls in raskvel spit and stirring you into an ecstatic frenzy. Shuddering against one another, neither of you notices the eggs slapping into the mud one after another.");
+	output("\n\nYou fall over, dragging her with you as you go, humping, squirting, and spasming until you’ve left the raskvel’s face a slimy mess. Her tonguing is artless and distracted at this point, but it’s enough to keep your climax rolling for what feels like ages. It’s only when she feebly pushes against you that you finally pull away, allowing her to breathe.");
+	output("\n\n<i>“F-fuck... you wanna... wanna take one of the eggs? Show ‘em the stars and stuff?”</i> The panting raskvel");
+	if(pc.hasCock()) output(" wipes some of your [pc.cum] off of her ear and ");
+	output("sighs contentedly. <i>“Our kids could see the stars, ya know?”</i>");
+	output("\n\nDo you take one of the eggs?");
+	//[Take One] [Dont]
+	processTime(19);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Take One",takeOneEggSloot);
+	addButton(1,"Don't",dontTakeARaskEgg);
+}
+
+//Take One Egg
+public function takeOneEggSloot():void
+{
+	clearOutput();
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("Nodding, you put a call in for a drone to come pick up the egg. That nursery your father set up must have a transport ship set to follow you around, because a speedy little robot shows up in minutes. After a quick scan, it confirms that it’s your offspring. You place the egg in its padded chamber and send it off, back to Tavros station.");
+	output("\n\nThe mother is already passed out, and you note with a grin that her legs are still spread wide-open. At least her elastic cunt seems no worse for the wear - it’s closed as if she’d never been pregnant.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/raskvel sired/day care");
+	StatTracking.track("pregnancy/total day care");
+	flags["RASKVEL_EGG_COUNT"] = undefined;
+	flags["RASKVEL_PREG_TIMER"] = undefined;
+}
+
+//Don’t Take An Egg
+public function dontTakeARaskEgg():void
+{
+	clearOutput();
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("You shake your head and turn to go on your way. The mother doesn’t protest any further, in fact, she’s already snoring as you leave - and still spread-eagled in the sands.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/total births");
+	flags["RASKVEL_EGG_COUNT"] = undefined;
+	flags["RASKVEL_PREG_TIMER"] = undefined;
+}
+
+//Watch as Normal
+public function watchDatRaskvelEggLayyyy():void
+{
+	clearOutput();
+	showName("PREGNANT\nRASKVEL");
+	userInterface.showBust("RASKVEL_FEMALE_NUDE");
+	output("The evolutionary reason for the raskvels’ exceedingly large hips makes itself known when an immense, one foot wide egg is halfway out. No normal woman could pass such a mass so easily or enjoyably, but the diminutive tart is doing so with gusto. She’s screaming out her moans now, her eyes rolled back until only the whites are visible, a long tongue drooling down the side of her face. She’s rutting out the egg an inch at a time, squirting juices every which way. Then, the ovoid mass falls out, still connected to its mother by strings of thick lubricant.");
+	output("\n\n<i>\"Fffffffuck yesssss!\”</i> the raskvel hisses before losing her voice to less cogent utterances of bliss. She cradles her ");
+	if(flags["RASKVEL_EGG_COUNT"] >= 8) output("slightly ");
+	output("diminished belly with a needy look on her face. <i>\"More... more!\”</i> Her lips look even more swollen now, ludicrously engorged and flushed brilliantly purple. They shine invitingly, lacquered with liquid love and begging to be stretched once more. Luckily, they have not long to wait.");
+	pc.lust(10+rand(5));
+	//Few eggs
+	if(flags["RASKVEL_EGG_COUNT"] <= 3) 
+	{
+		output("\n\nAnother white orb peeks from between the elastic alien’s folds, greeted by an octave jump in its mother’s exaltations of pleasure. She babbles happily, and her hands finally leave her diminishing belly to play with her tumescent clits, rubbing and gently tugging them in opposite directions, spreading herself even wider to ease the passage of her shell-bound young. She’s still cumming, still delirious with lust and quaking in place.");
+		output("\n\nThe newcomer plops wetly into the muddied sand alongside its brother, kicking up a small wave of fragrant fluid. The raskvel’s pussy doesn’t even gape, snapping back to its old dimensions in a heartbeat, but another rounded ivory curve pulls it right back open. Her once-stuffed belly has already lost a great deal of mass, and if you had to guess, the egg sliding down her passage is the last of her litter. Fascinated and ");
+		if(pc.lust() < 50) output("a little");
+		else if(pc.lust() < 75) output("more than a little");
+		else output("incredibly");
+		output(" aroused, you watch her give a body-shuddering, juice-squirting climax, her hips lifting slightly on impulses beyond conscious control.");
+		output("\n\nRolling out on a torrent of feminine slime, the egg comes to rest with the others, and the raskvel collapses on the other side, naked, legs splayed, and gently rubbing her tummy as she dozes off.");
+		flags["RASKVEL_EGG_COUNT"] = 3;
+	}
+	//Medium Eggs
+	else if(flags["RASKVEL_EGG_COUNT"] <= 7)
+	{
+		output("\n\nAnother white orb peeks from between the elastic alien’s folds, greeted by a wild spasm from its mother’s thighs and insensate babbling. The raskvel’s fingers finally cease their tracing of her gravid belly and sink down to the heavily engorged lips, yanking them open, spreading them so wide that the egg’s passage seems almost easy. She cums with surprising violence, screaming and moaning, but another egg has already found its way to her distended gateway, sliding out after its sister with an accompanying splash of girl-cum.");
+		output("\n\nThe sticky mud beneath her cushions the rolling orbs as they exit the gravid rask’s quavering sex, cupping one egg after another. Her pussy doesn’t seem to mind passing the oversized ovoids in the slightest. Once her hands lose their grip on her sodden folds, it almost snaps closed... only to be forced open by the passage of another, still-larger egg.");
+		output("\n\nThis time, the alien loses it completely. She collapses flat on her back when the pleasure of birthing robs her of her strength, cooing gently while her eyelids flutter closed. One of her hands manages to rub her scaly belly while the other finds a petite, pierced nipple to pull and tug upon. Her body’s on autopilot now, awash in the pleasures of motherhood, wriggling and writhing in supine bliss. She showers the swell of her too-large egg with more feminine honey as it passes, making its surface gleam and shine.");
+		output("\n\nThe birthing-addict’s body isn’t done there. Smaller eggs come out of her faster now, one after another, landing next to their big sister with gentle splashes in the musky lake of their mother’s love. High-pitched whimpers and sighs of supreme relief accompany them. You can only imagine what the little alien must be feeling. Even unconscious, she’s grinning like an idiot and molesting her body.");
+		output("\n\nOnly after a mound of " + num2Text(flags["RASKVEL_EGG_COUNT"]) + " eggs have piled up in front of her does the raskvel’s belly finally return to its formerly flat appearance. With a final, happy coo, she presses her fist past her top clit and into her passage, falling into a fitful rest that must be full of erotically-charged dreams.");
+	}
+	//High eggs
+	else
+	{
+		output("\n\nAnother white orb peeks from between the alien’s outstretched lips only to reveal the cum-polished surface of another behind it, trying to crowd past the first. The raskvel whimpers, but a glance at her face shows you it’s in pleasure rather than pain. She’s biting a lip with a too-sharp canine, and her eyes have fluttered closed. Her fingers twitch like they want to journey south, want to grab her lips and pull them wide open and let the eggs spill out in an unending stream of reproductive bliss, but she’s too far out of it to do anything but flop back and quiver.");
+		output("\n\nThe topmost egg abruptly pops out, launching a few inches in the air and rolling a foot or more through the estrus-slicked mud, followed shortly after by another... and another. The insensate raskvel giggles mindlessly and rubs her too-big belly, letting out sharp moans to accompany the launch of each new orb. You note that her clits are hugely engorged and angled inward. You wouldn’t have thought they could get so big without some kind of pump, but here they are, at least an inch long and quivering against the surface of every passing egg.");
+		output("\n\nNo wonder she’s drooling all over herself and practically unconscious from pleasure. Her body is designed to get off on this!");
+		output("\n\nYou watch in awe as egg after egg joins a growing pile in front of her, giving up on counting them after the tenth shining ovoid comes to rest in the red-tinted mud. The raskvel isn’t even making an attempt at consciousness anymore. Her eyes are closed and fluttering as if deep in a dream, and her fingers are weakly twitching against her rapidly-diminishing belly, stroking the still-taut scales with the unconditional love of a mother, or a total addict. It’s hard to tell which with these shortstacks, but your money is on the latter.");
+		output("\n\nEven a prodigious birther like a raskvel has her limits, and as the minutes and eggs tick by, her endurance begins to flag. There are barely any eggs left by this point, but they’re expelled in slow motion, the gleaming surfaces slowly pushing out to lie with their sisters. Her belly goes flat a moment before the last egg appears between her thighs, but the sticky reptile doesn’t even have the energy to expel it. Instead, it sits there between her twitching thighs, ensuring that her slumber will be filled with the incredible sensation of her dual clits rubbing against an egg’s smooth surface.");
+		output("\n\nAs she starts to snore, you can’t help but wonder if you were somehow responsible for all that.");
+	}
+	processTime(19);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/total births");
+	flags["RASKVEL_EGG_COUNT"] = undefined;
+	flags["RASKVEL_PREG_TIMER"] = undefined;
+}
+
+public function knockUpRaskChance():void
+{
+	//If one's already preggos, no go
+	if(flags["RASKVEL_PREG_TIMER"] == undefined)
+	{
+		var bonusChance:int = 0;
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 50) bonusChance += 5;
+		if(cumQ >= 150) bonusChance += 5;
+		if(cumQ >= 500) bonusChance += 10;
+		if(cumQ >= 1000) bonusChance += 10;
+		if(cumQ >= 4000) bonusChance += 10;
+		if(cumQ >= 10000) bonusChance += 20;
+		//Roll the dice - base 10% pregrate
+		if(rand(100) + 1 <= 10 + bonusChance)
+		{
+			var bonusEggs:int = rand(Math.floor(cumQ/500)+2)
+			//Succeed! Induce Preggoz
+			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;
+			//Five days till eggpop!
+			flags["RASKVEL_PREG_TIMER"] = 5;
+		}
+	}
 }

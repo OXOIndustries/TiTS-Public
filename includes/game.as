@@ -1311,7 +1311,13 @@ public function processTime(arg:int):void {
 				//Reset milk barn events
 				if (flags["MILK_BARN_EVENT_TODAY"] != undefined) flags["MILK_BARN_EVENT_TODAY"] = undefined;
 				if (flags["BRYNN_MET_TODAY"] != undefined) flags["BRYNN_MET_TODAY"] = undefined;
-
+				//Raskvel pregger shit
+				if(flags["RASKVEL_PREG_TIMER"] != undefined)
+				{
+					flags["RASKVEL_PREG_TIMER"]--;
+					//She pops eggs without you seeing.
+					if(flags["RASKVEL_PREG_TIMER"] < -5) flags["RASKVEL_PREG_TIMER"] = undefined;
+				}
 				// Tick up all of the attached mimbranes days since last fed
 				mimbranesIncreaseDaysSinceFed();
 				
