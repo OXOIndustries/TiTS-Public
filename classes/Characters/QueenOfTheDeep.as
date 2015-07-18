@@ -8,6 +8,7 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.VaginaClass;
 	
 	public class QueenOfTheDeep extends Creature
 	{
@@ -24,8 +25,8 @@
 			this.originalRace = "Deeps Queen";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.\n\nA pair of large, black eyes regard you with cool malice... and just a hint of lust. The woman-half of the Queen's monstrous form licks her dark blue lips eagerly as she draws back the string of her crystalline bow.";
-			this.customDodge = "Crazy spoodercrab blocks your attack!";
+			this.long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.";
+			this.customDodge = "The creatures many tentacles dance and weave around, making it difficult to focus your attack toward her properly!";
 			this.customBlock = "The alien's chitin deflects the attack.";
 			this.plural = false;
 			
@@ -37,14 +38,14 @@
 			baseHPResistances.freezing.resistanceValue = 45.0;
 			
 			baseHPResistances.drug.resistanceValue = 25.0;
-			baseHPResistances.tease.resistanceValue = 25.0;
+			baseHPResistances.tease.resistanceValue = 45.0;
 			baseHPResistances.pheromone.resistanceValue = 25.0;
 			baseHPResistances.psionic.resistanceValue = 25.0;
 			
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 15;
+			this.armor.defense = 8;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 45;
@@ -60,10 +61,10 @@
 			this.XPRaw = 2000;
 			this.level = 8;
 			this.credits = 0;
-			this.HPMod = 180;
+			this.HPMod = 110;
 			this.HPRaw = this.HPMax();
 			
-			this.femininity = 5;
+			this.femininity = 100;
 			this.eyeType = GLOBAL.TYPE_SYDIAN;
 			this.eyeColor = "black";
 			this.tallness = 120;
@@ -121,7 +122,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 2;
+			this.hipRatingRaw = 11;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -132,20 +133,29 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 2;
+			this.buttRatingRaw = 11;
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
 			this.cocks[0].cLengthRaw = 12;
 			this.cocks[0].cThicknessRatioRaw = 1.5;
+			
+			this.vaginas = new Array();
+			var tarVag:VaginaClass = new VaginaClass();
+			tarVag.hymen = false;
+			tarVag.wetnessRaw = 4;
+			tarVag.loosenessRaw = 5;
+			tarVag.bonusCapacity = 500;
+			vaginas.push(tarVag);			
+			
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 10;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 8;
-			this.ballFullness = 3;
+			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 200;
 			//Scales from 0 (never produce more) to infinity.
@@ -160,18 +170,19 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 15;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
-			this.ass.bonusCapacity += 15
-			this.ass.loosenessRaw = 2;
+			this.ass.bonusCapacity += 500
+			this.ass.loosenessRaw = 5;
 			//this.inventory.push(new ZilRation());
-
-			this.createStatusEffect("Disarm Immune");
+			
+			this.impregnationType = "DeepQueenPregnancy";
+			createStatusEffect("Force Fem Gender");
 			
 			this._isLoading = false;
 		}

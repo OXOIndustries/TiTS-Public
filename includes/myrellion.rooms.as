@@ -2950,7 +2950,7 @@ public function initializeMyrellionRooms():void
 	rooms["2G27"].southExit = "";
 	rooms["2G27"].westExit = "";
 	rooms["2G27"].moveMinutes = 5;
-	rooms["2G27"].runOnEnter = DeepCavesBonus;
+	rooms["2G27"].runOnEnter = tryEncounterQueenOfTheDeep;
 	rooms["2G27"].addFlag(GLOBAL.CAVE);
 	rooms["2G27"].addFlag(GLOBAL.INDOOR);
 	rooms["2G27"].addFlag(GLOBAL.HAZARD);

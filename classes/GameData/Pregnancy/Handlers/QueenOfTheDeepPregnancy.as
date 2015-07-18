@@ -144,6 +144,7 @@ package classes.GameData.Pregnancy.Handlers
 		public static function queenPregnancyMessages(delta:Number):void
 		{
 			if (kGAMECLASS.flags["Queen Message Supression"] != undefined) return;
+			if (!kGAMECLASS.pc.hasStatusEffect("Queen Pregnancy State")) return;
 			
 			var pSE:StorageClass = kGAMECLASS.pc.getStatusEffect("Queen Pregnancy State");
 			

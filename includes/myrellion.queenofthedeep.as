@@ -1,12 +1,17 @@
 import classes.Creature;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
+
 public function tryEncounterQueenOfTheDeep():Boolean
 {
-	if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined) return false;
-	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) return false;
-
-	queenOfTheDeepInitialEncounter();
-
-	return true;
+	if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) >= 0)
+	{
+		queenOfTheDeepInitialEncounter();
+		return true;
+	}
+	else
+	{
+		return DeepCavesBonus();
+	}
 }
 
 public function queenOfTheDeepHeader():void
@@ -18,12 +23,11 @@ public function queenOfTheDeepHeader():void
 
 public function queenOfTheDeepInitialEncounter():void
 {
-	clearOutput();
 	queenOfTheDeepHeader();
 
 	flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] = 1;
 
-	output("As you wade through the deep, clear waters of the darkened cave, you begin to hear a faint clicking noise, echoing off of craggy walls. <i>Click. Click. Click</i>. You pause, holding yourself very still to try and isolate the source of the sound. The lake cave is deafening, however, refusing to yield its secrets. Your [pc.ears] strain, every nerve on edge as the clicking becomes louder, more insistent... closer. It resolves into a cacophony of sound, like many legs skittering across the wet stone. The longer it lasts, the more unnerved you become, looking all around you to try and find the impending threat.");
+	output("\n\nAs you wade through the deep, clear waters of the darkened cave, you begin to hear a faint clicking noise, echoing off of craggy walls. <i>Click. Click. Click</i>. You pause, holding yourself very still to try and isolate the source of the sound. The lake cave is deafening, however, refusing to yield its secrets. Your [pc.ears] strain, every nerve on edge as the clicking becomes louder, more insistent... closer. It resolves into a cacophony of sound, like many legs skittering across the wet stone. The longer it lasts, the more unnerved you become, looking all around you to try and find the impending threat.");
 	
 	output("\n\nA few droplets of water plunging past you to splash into the lake are your only hint to where the creature is.");
 	
@@ -60,7 +64,7 @@ public function queenOfTheDeepGoFite():void
 	clearOutput();
 	queenOfTheDeepHeader();
 
-	output("You bite back your fear and ready your [pc.mainWeapon]. Above you, the creature snarls and pulls an arrow from the quiver on her hip, nearly as long as a spear’s shaft. <i>“So be it! It has been too long since my prey last dared resist me.... Let us see what you star-walkers are capable of!”</i>");
+	output("You bite back your fear and ready your [pc.weapon]. Above you, the creature snarls and pulls an arrow from the quiver on her hip, nearly as long as a spear’s shaft. <i>“So be it! It has been too long since my prey last dared resist me.... Let us see what you star-walkers are capable of!”</i>");
 
 	//[Next] //To fitemenu
 	clearMenu();
@@ -69,7 +73,7 @@ public function queenOfTheDeepGoFite():void
 
 public function queenOfTheDeepInitFight():void
 {
-	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
 
 	startCombat("QueenOfTheDeep");
 }
@@ -85,6 +89,13 @@ public function queenOfTheDeepAI():void
 			foes[0].evasion -= 25;
 			output("\nThe creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n");
 		}
+	}
+	
+	if (pc.hasStatusEffect("Grappled"))
+	{
+		queenOfTheDeepGrappledFollowup();
+		processCombat();
+		return;
 	}
 
 	if (!foes[0].hasStatusEffect("Climaxed") && foes[0].lust() >= 80)
@@ -103,62 +114,91 @@ public function queenOfTheDeepAI():void
 
 	// Human attack
 	var humanAttacks:Array = [];
-	humanAttacks.push(queenOfTheDeepBowShot);
-	humanAttacks.push(queenOfTheDeepTittySuckle);
+	
+	humanAttacks.push({ v: queenOfTheDeepBowShot, w: 4 });
+	
+	if (foes[0].hasStatusEffect("Tittysuckle CD"))
+	{
+		foes[0].addStatusValue("Tittysuckle CD", 1, -1);
+		if (foes[0].statusEffectv1("Tittysuckle CD") <= 0)
+		{
+			foes[0].removeStatusEffect("Tittysuckle CD");
+		}
+	}
+	else if (foes[0].HP() < foes[0].HPMax())
+	{
+		humanAttacks.push({ v: queenOfTheDeepTittySuckle, w: 1 });
+	}
+	
+	weightedRand(humanAttacks)();
 
-
+	output("\n\n");
+	
 	// Crab attack
 	var crabAttacks:Array = [];
-	if (pc.hasStatusEffect("Grappled"))
+
+	if (!foes[0].hasStatusEffect("Water Veil"))
 	{
-		crabAttacks.push(queenOfTheDeepGrappledFollowup);
+		if (foes[0].hasStatusEffect("Clawgrab CD"))
+		{
+			foes[0].addStatusValue("Clawgrab CD", 1, -1);
+			if (foes[0].statusEffectv1("Clawgrab CD") <= 0)
+			{
+				foes[0].removeStatusEFfect("Clawgrab CD");
+			}
+		}
+		else
+		{
+			crabAttacks.push( { v: queenOfTheDeepClawChomp, 		w: 15 } );
+		}
+		crabAttacks.push( { v: queenOfTheDeepWaterVeil, 			w: 15 } );
+		crabAttacks.push( { v: queenOfTheDeepLegStomp,  			w: 30 } );
+		crabAttacks.push( { v: queenOfTheDeepTentacleBarrage, 		w: 30 } );
+		
+		weightedRand(crabAttacks)();
 	}
-	if (foes[0].hasStatusEffect("Water Veil"))
-	{
-		// noop
-	}
-	else
-	{
-		crabAttacks.push(queenOfTheDeepClawChomp);
-		crabAttacks.push(queenOfTheDeepWaterVeil);
-		crabAttacks.push(queenOfTheDeepLegStomp);
-		crabAttacks.push(queenOfTheDeepTentacleBarrage);
-	}
+	
+	processCombat();
 }
 
 public function queenOfTheDeepClawChomp():void
 {
-	output("\nOne of the creature’s claws lunges forward, opening like a carapace-clad ‘V’ to grab you.");
+	output("One of the creature’s claws lunges forward, opening like a carapace-clad ‘V’ to grab you.");
 	// 9999 miss
-	if (9999 == 0)
+	if (combatMiss(foes[0], pc))
 	{
 		output(" You stumble out of the way, avoiding the crushing weight of the creature's pincers snapping closed inches in front of your nose with bone-crushing finality.");
 	}
 	else
 	{
 		output(" You try to leap out of the way, but are too slow to avoid the monstrous crab-drider's embrace. Mammoth claws close around your waist, hauling you up and out of the water, leaving you thrashing and screaming as the claws squeeze you. <b>You're grappled -- and getting crushed by a monster's claws to boot!</b>");
-		pc.createStatusEffect("Grappled", 9999);
+		
+		applyDamage(damageRand(new TypeCollection( { kinetic: 20 }, DamageFlag.CRUSHING ), 15), foes[0], pc, "minimal");
+		
+		pc.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
 	}
+	
+	foes[0].createStatusEffect("Clawgrab CD", 5);
 }
 
 public function queenOfTheDeepGrappledFollowup():void
 {
-	output("\nThe lake monster continues to crush you in her claws, squeezing just enough to hurt, but not enough to rip you in half -- as she surely could.\n");
+	output("The lake monster continues to crush you in her claws, squeezing just enough to hurt, but not enough to rip you in half -- as she surely could.");
+	
+	applyDamage(damageRand(new TypeCollection( { kinetic: 10 }, DamageFlag.CRUSHING ), 10), foes[0], pc, "minimal");
 }
 
 public function queenOfTheDeepWaterVeil():void
 {
-	output("\n<i>“You cannot fight what you cannot see,”</i> the creature hisses gleefully, slamming her lower claws into the water before you with earthshaking force and kicking up a spray of water that seems to have no end. Worse, she keeps swiping her claws through the water, creating a thick mist between the two of you. <b>It’s much harder to see the creature now!</b>\n");
+	output("<i>“You cannot fight what you cannot see,”</i> the creature hisses gleefully, slamming her lower claws into the water before you with earthshaking force and kicking up a spray of water that seems to have no end. Worse, she keeps swiping her claws through the water, creating a thick mist between the two of you. <b>It’s much harder to see the creature now!</b>");
 
-	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 0, 0, 0, false, "", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
-	foes[0].evasion += 25;
+	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 25, 0, 0, false, "", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
 }
 
 public function queenOfTheDeepLegStomp():void
 {
-	output("\nThe lake monster rears up one of her huge, slender legs and jabs it at you like a titanic spear.");
+	output("The lake monster rears up one of her huge, slender legs and jabs it at you like a titanic spear.");
 
-	// attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1
 	if (combatMiss(foes[0], pc))
 	{
 		output(" You manage to duck under the thrust, avoiding the blow and putting some distance between you and the monster.");
@@ -166,23 +206,83 @@ public function queenOfTheDeepLegStomp():void
 	else
 	{
 		output(" The pointed tip of the leg slams into your chest, sending you hurtling back. You could have sworn you just heard your ribs creaking... oh, you’re going to be sore in the morning.");
+		
+		applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING ), 20), foes[0], pc, "minimal");
 
 		output("\n\nAssuming you make it out of here alive.");
 	}
 
-	output("\n\n<i>“It is not too late to beg for mercy,”</i> the creature coos, bracing her leg against the side of the cavern. <i>“You may yet walk away with your body intact. All you need do is get on your knees and worship me...”</i>\n");
+	output("\n\n<i>“It is not too late to beg for mercy,”</i> the creature coos, bracing her leg against the side of the cavern. <i>“You may yet walk away with your body intact. All you need do is get on your knees and worship me...”</i>");
 }
 
 public function queenOfTheDeepTentacleBarrage():void
 {
-output("\n\nThe towering beast slips down onto its knees, almost toppling over onto its side as it exposes its back to you. At first, you think she’s tiring, finally showing a weak point. Instead, as you close the distance, you’re suddenly accosted by her mass of writhing tentacles. The venom-tipped appendages slap and jab at you, trying to cover you with their chemical payload! {All misses: You evade the barrage of tentacles! // Each hit: {One of t/T}he tentacles manage{s} to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!}");
+	var numHits:int = 0;
+	for (var i:int = 0; i < 5; i++)
+	{
+		if (!combatMiss(foes[0], pc)) numHits++;
+	}
+	
+	output("The towering beast slips down onto its knees, almost toppling over onto its side as it exposes its back to you. At first, you think she’s tiring, finally showing a weak point. Instead, as you close the distance, you’re suddenly accosted by her mass of writhing tentacles. The venom-tipped appendages slap and jab at you, trying to cover you with their chemical payload!");
+	
+	if (numHits == 0) output(" You evade the barrage of tentacles!");
+	else if (numHits == 1) output(" One of the tentacles manages"); 
+	else if (numHits < 5) output(" Some of the tentacles manage");
+	else output(" The tentacles manage");
+	output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
+	
+	if (numHits > 0)
+	{
+		var baseDamage:TypeCollection = new TypeCollection( { drug: 2 } );
+		if (numHits > 1) baseDamage.multiply(numHits);
+		applyDamage(baseDamage, foes[0], pc, "minimal");
+	}
 }
 
 public function queenOfTheDeepGETOFF():void
 {
-output("\nThe lake monster shrieks at you, <i>“Get off! Get off me, worm!”</i> Her many tentacles slap at you, {though you're able to duck their attacks, especially now that you're out of the water // hitting you {once/X times} and slathering you in her aphrodisiac venom}. Worse, one of her gigantic claws reaches back over her shoulder, trying to pincer you off her back! {You're able to dodge -- for now! // The mammoth jaws of her claw grab hold of you, hauling you off its owner's back with frightening strength.");
+	output("The lake monster shrieks at you, <i>“Get off! Get off me, worm!”</i> Her many tentacles slap at you,");
 
-output("\n\n<i>“I said OFF!”</i> the woman bellows, hurling you like a rag doll across the cavern and into the depths of the lake. <b>There goes your advantage!</b>\n");
+	var numHits:int = 0;
+	for (var i:int = 0; i < 3; i++)
+	{
+		if (!combatMiss(foes[0], pc)) numHits++;
+	}
+	
+	if (numHits == 0) output(" though you're able to duck their attacks, especially now that you're out of the water");
+	else
+	{
+		output(" hitting you"); 
+		if (numHits == 1) output(" once");
+		else output(numHits + " times");
+		output(" and slathering you in her aphrodisiac venom");
+	}
+	output(". Worse, one of her gigantic claws reaches back over her shoulder, trying to pincer you off her back!");
+	
+	var clawHit:Boolean = !combatMiss(foes[0], pc, -1, 2)
+	
+	if (!clawHit) output(" You're able to dodge -- for now!");
+	else
+	{
+		output(" The mammoth jaws of her claw grab hold of you, hauling you off its owner's back with frightening strength.");
+
+		output("\n\n<i>“I said OFF!”</i> the woman bellows, hurling you like a rag doll across the cavern and into the depths of the lake. <b>There goes your advantage!</b>");
+		
+		pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+	}
+	
+	if (numHits > 0 || clawHit)
+	{
+		var damage:TypeCollection = new TypeCollection();
+		if (numHits > 0) damage.drug.damageValue = 3 * numHits;
+		if (clawHit)
+		{
+			damage.kinetic.damageValue = 10;
+			damage.addFlag(DamageFlag.CRUSHING);
+		}
+		
+		applyDamage(damageRand(damage, 40), foes[0], pc, "minimal");
+	}
 }
 
 public function queenOfTheDeepCombatMenuAddition():void
@@ -193,29 +293,89 @@ public function queenOfTheDeepCombatMenuAddition():void
 
 public function queenOfTheDeepBowShot():void
 {
-	output("\nThe woman-half of the lake monster pulls a crystal-tipped arrow from the quiver on her waist and draws it back, taking only a moment to aim before letting fly at you! {Lucky you, the shot goes wide and shatters against the cavern wall. // The arrow slams into you, shattering like glass and covering you with scratches {X damage}... which immediately fill with a dark, thick liquid that makes your skin burn not with pain but a red, lusty heat... {Y lust}\n");
+	output("The woman-half of the lake monster pulls a crystal-tipped arrow from the quiver on her waist and draws it back, taking only a moment to aim before letting fly at you!");
+	
+	if (rangedCombatMiss(foes[0], pc))
+	{
+		output(" Lucky you, the shot goes wide and shatters against the cavern wall.");
+	}
+	else
+	{
+		output(" The arrow slams into you, shattering like glass and covering you with scratches... which immediately fill with a dark, thick liquid that makes your skin burn not with pain but a red, lusty heat...");
+		
+		applyDamage(new TypeCollection( { drug: 7, kinetic: 3 } ), foes[0], pc, "minimal");
+	}
 }
 
 public function queenOfTheDeepTittySuckle():void
 {
-	output("\nThe monstrous woman smirks down at you and cups one of her huge breasts, hefting it up to her mouth and running her long probe-like tongue along its smooth curves. <i>“Come now, wouldn’t you rather experience the pleasure I have to offer?”</i>");
+	output("The monstrous woman smirks down at you and cups one of her huge breasts, hefting it up to her mouth and running her long probe-like tongue along its smooth curves. <i>“Come now, wouldn’t you rather experience the pleasure I have to offer?”</i>");
 	
 	output("\n\nAs she speaks, the monster’s tentacles coil around her body, slathering her pale blue flesh with liquid venom. They form a facsimile of a corset around her taut belly, emphasizing her heavy breasts even more. Never taking her eyes off you, the creature wraps her dark lips around the four nipples on the tit she’s fondling. She starts to suck, slurping up the amber sap from within.");
 	
-	output("\n\nThe more she drinks for herself, the more her cheeks flush darkly... and the faster her lower body seems to move. <b>The creature’s healing itself</b>{if hit: , and doing it in the most arousing way... {X}}\n");
+	output("\n\nThe more she drinks for herself, the more her cheeks flush darkly... and the faster her lower body seems to move. <b>The creature’s healing itself</b>");
+	
+	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
+	
+	foes[0].HP(20);
+	
+	foes[0].createStatusEffect("Tittysuckle CD", 5);
 }
 
 public function queenOfTheDeepCloacaTease():void
 {
 	output("\n<i>“Why must you fight, child? All I want is for you to worship my body, to let me seed yours with my young...”</i> the creature hisses, raising up to her full height so that her arms can caress the lowest-hanging outcroppings of rock hanging down from the cavern ceiling, spidery legs stretching out across the cavern walls. One hand braces against the ceiling, but the other disappears, sliding down behind her back to the ample ass resting atop her bestial lower body. She lets out a soft, whimpering moan, and you can see her hand thrusting deep into a hole of some kind, as if inviting you to climb up and fuck it.");
-	output(" {Hit: An offer you find so very hard to resist...}\n");
+	
+	var hits:Boolean = false;
+	
+	if (pc.hasCock())
+	{
+		if (rand(10) <= 7) hits = true; 
+	}
+	else
+	{
+		if (rand(10) <= 4) hits = true;
+	}
+	
+	if (hits)
+	{
+		output(" An offer you find so very hard to resist...\n");
+		
+		applyDamage(new TypeCollection( { tease: 7 } ), foes[0], pc, "minimal");
+	}
+	else
+	{
+		output(" Averting your gaze from the creature, you save yourself from her attempts to subvert you into lustfueled submission.");
+	}
 }
 
 public function queenOfTheDeepTentacleSelfRape():void
 {
 	output("\nThe creature’s womanly half coos and moans seductively, wrapping herself in her writhing mass of tentacles. They go everywhere, like a thousand ravenous serpents: they squeeze and caress her breasts, making the eight nipples she’s sporting squirt geysers of amber milk across the water’s surface. Others penetrate her mouth, filling it like a wriggling cock and spraying her mouth with liquid venom, or squirm down between the cheeks of her ass and fill the hole hidden there with a half dozen shafts.");
 	
-	output("\n\n<i>“Perhaps when I’ve taught you your place, I’ll let you enjoy my body like this,”</i> the creature hisses, running her tongue along a tentacle’s underside. <i>“You’ll spend days mired in my tendrils, violated nonstop until you cannot bear to think any longer...”</i> {Hit: The idea is more tempting than you’d like to admit...}\n");
+	output("\n\n<i>“Perhaps when I’ve taught you your place, I’ll let you enjoy my body like this,”</i> the creature hisses, running her tongue along a tentacle’s underside. <i>“You’ll spend days mired in my tendrils, violated nonstop until you cannot bear to think any longer...”</i>");
+	
+	var hits:Boolean = false;
+	
+	if (pc.hasVagina())
+	{
+		if (rand(10) <= 7) hits = true;
+	}
+	else
+	{
+		if (rand(10) <= 4) hits = true;
+	}
+	
+	if (hits)
+	{	
+		output(" The idea is more tempting than you’d like to admit...");
+		
+		applyDamage(new TypeCollection( { tease: 10 } ), foes[0], pc, "minimal");
+	}
+	else
+	{
+		output(" Seeing it for what it is, you mentally rebuke the creatures attempts to influence you!");
+	}
 }
 
 public function queenOfTheDeepClimax():void
@@ -229,8 +389,8 @@ public function queenOfTheDeepClimax():void
 	output("\n\nShe doesn’t wait for you to answer, but instead screams with pleasure. Her body quakes, staggering forward as orgasm rocks her. Her legs buckle, sending her slumping to the ground with a low, lewd moan. <b>The monster seems stunned</b>, momentarily unable to act as she recovers from her body-shaking orgasm!\n");
 
 	foes[0].lustRaw = 0;
-	foes[0].createStatusEffect("Climaxed", 0, 0, 0, 0, true); // 9999
-	foes[0].createStatusEffect("Stunned", 1, 0, 0, 0, false);
+	foes[0].createStatusEffect("Climaxed", 0, 0, 0, 0, true);
+	foes[0].createStatusEffect("Stunned", 1, 0, 0, 0, false,"Stun","Cannot take action!",true,0);
 }
 
 public function queenOfTheDeepPCLoss():void
@@ -279,7 +439,7 @@ public function queenOfTheDeepPCLoss():void
 
 	output("\n\n<i>“Not strong enough to fight, nor wise enough to submit,”</i> the woman says in a sing-song voice, stalking closer until her tremendous claws are under your chin, the threat obvious. <i>“What a waste... I had thought you might be different, star-walker. Worthy of me.”</i>");
 
-	output("\n\nThere’s no room left for you to retreat as the woman lowers herself down, almost face to face with you. Her tentacles reach out, silently grasping your [pc.mainWeapon] and tossing it aside, following in short order by the rest of your [pc.gear]. While they work, the woman-half stares at you with arms crossed and eyes narrowed, the malice of the pose hampered by the way her arms are hefting up her tits, drawing your eyes to the two succulent orbs.");
+	output("\n\nThere’s no room left for you to retreat as the woman lowers herself down, almost face to face with you. Her tentacles reach out, silently grasping your [pc.weapon] and tossing it aside, following in short order by the rest of your [pc.gear]. While they work, the woman-half stares at you with arms crossed and eyes narrowed, the malice of the pose hampered by the way her arms are hefting up her tits, drawing your eyes to the two succulent orbs.");
 
 	output("\n\n<i>“I see your gaze, star-walker,”</i> the woman says, not changing her stance. <i>“And I believe the thoughts of violence have been sufficiently stricken from your mind. You realize now who is superior... who your queen truly is. Do you not?”</i>");
 
@@ -339,14 +499,20 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you cannot help but whimper as the two largest of her tentacles find their way to your [pc.legs], gently circling and caressing your [pc.asshole]");
 	if (bEmptyVagina) output(" and [pc.vaginas].");
 
-	output("\n\n");
+	var needNL:Boolean = true;
 	if (pc.isBiped())
 	{
+		if (needNL) output("\n\n");
+		needNL = false;
 		output("<i>“Your body is so small, so frail,”</i> the queen laments as her tendrils press against your hole");
 		if (bMultiTentacle) output("s");
 		output(". <i>“I hope I do not cause you pain.”</i> ");
 	}
-	if (numEmptyVaginas > 1) output("Other, smaller tendrils coils around you, finding your other hole{s} and starting to tease them, finding every empty baby-maker you have and preparing to fill them with alien offspring.");
+	if (numEmptyVaginas > 1)
+	{
+		if (needNL) output("\n\n");
+		output("Other, smaller tendrils coils around you, finding your other hole{s} and starting to tease them, finding every empty baby-maker you have and preparing to fill them with alien offspring.");
+	}
 
 	output("\n\nA moment of silent anticipation consumes you, a momentary eternity of perfect stillness and contentment, before you feel the queen’s");
 	if (bMultiTentacle) output(" tentacles start their inescapable advance");
@@ -409,8 +575,7 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nAnd you must grow stronger to better carry the next one.");
 	
 	output("\n\nBut for now, exhaustion takes you.");
-
-	// 9999
+	
 	badEnd();
 }
 
@@ -418,11 +583,10 @@ public function queenOfTheDeepSurrenderCombat():void
 {
 	clearOutput();
 
-	output("<i>“Alright, alright! I surrender!”</i> you say, setting your [pc.mainWeapon] down on the rocks nearby.");
+	output("<i>“Alright, alright! I surrender!”</i> you say, setting your [pc.weapon] down on the rocks nearby.");
 	
 	output("\n\nA huge smile spreads across the creature’s cyan lips, and she lowers herself down almost to your level, submerging much of her titanic body in the shifting waters. <i>“I knew you would come around,”</i> she purrs, lowering her bow and running a hand across her bare breasts. <i>“Rest easy, child; I can forgive your momentary insolence. What’s important is that you came around in the end...”</i>");
 
-	//9999 go to main surrender scene
 	queenOfTheDeepSurrenderII(true);
 }
 
@@ -430,7 +594,7 @@ public function queenOfTheDeepInitialSurrender():void
 {
 	clearOutput();
 
-	output("<i>“Alright, alright,”</i> you say, gently setting your [pc.mainWeapon] down on the rocks nearby. <i>“Let’s go with pleasure.”</i>");
+	output("<i>“Alright, alright,”</i> you say, gently setting your [pc.weapon] down on the rocks nearby. <i>“Let’s go with pleasure.”</i>");
 	
 	output("\n\nThe creature smiles, her writhing forest of tentacles coiling seductively around her humanoid half, drooling venom over her cyan skin as they cup her breasts and tease at the plump curves of ass resting on the lower body’s carapace. <i>“I’m so very glad you chose sense, my dear,”</i> she coos, running her long tongue along the underside of the largest of her tendrils, a fat squirming mass of translucent flesh that squirts pink pre from its tapered lips.");
 
@@ -527,7 +691,42 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	{
 		output("\n\nAfter a blissful eternity of suckling, your enchanting queen gently guides you off of her breast and hefts you up, cradling you in arms that seem as strong and sure as a titan’s. <i>“There, there,”</i> she coos when you groan unhappily, mind reeling at being deprived of your meal. <i>“I will feed you again soon. Many times... as often as you want, my lovely breeder.”</i>");
 	}
+	
+	clearMenu();
+	addButton(0, "Next", queenOfTheDeepSurrenderIISplit, fromCombat);
+}
 
+
+public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
+{
+	var numEmptyHoles:int = 0;
+	var numEmptyVaginas:int = 0;
+	var bEmptyAss:Boolean = false;
+	var bEmptyVagina:Boolean = false;
+
+	// ass
+	if (pc.isPregnant(3))
+	{
+		bEmptyAss = true;
+		numEmptyHoles++;
+	}
+
+	// cunts
+	if (pc.hasVagina())
+	{
+		for (var vi:int = 0; vi <= 3; vi++)
+		{
+			if (pc.isPregnant(vi))
+			{
+				numEmptyVaginas++;
+				numEmptyHoles++;
+				bEmptyVagina = true;
+			}
+		}
+	}
+
+	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
+	
 	output("\n\n<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legs], gently circling and caressing your [pc.asshole]");
@@ -588,7 +787,9 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	if (bEmptyAss && !bEmptyVagina) output(" Your ass is soon stuffed full of the queen’s many offspring");
 	else if (numEmptyHoles > 1 && (numEmptyHoles != pc.vaginas.length + 1)) output(" Every hole not full of other offspring is soon playing home to the queen’s");
 	else output(" Your every hole is soon stuffed with the queen’s offspring");
-	output(", a squirming and writhing mass of tiny creatures that move in ways that make you feel ill, even as their mother’s tentacles continue to hold your hole{s} open, squirting in more and more of her venomous cocktail and thrusting into you, making sure your body is too overwhelmed by pleasure to reject her children.");
+	output(", a squirming and writhing mass of tiny creatures that move in ways that make you feel ill, even as their mother’s tentacles continue to hold your hole");
+	if (bMultiTentacle) output("s");
+	output(" open, squirting in more and more of her venomous cocktail and thrusting into you, making sure your body is too overwhelmed by pleasure to reject her children.");
 
 	if (pc.hasCock())
 	{
@@ -904,10 +1105,12 @@ public function queenOfTheDeepGetEgged():void
 	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharging gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
 	else if (bEmptyVagina && bEmptyAss) output(" The tendril fucking your [pc.cunt] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
 
+	//permanent +wetness in holes filled, +10 Libido
 	if (!pc.isPregnant(3))
 	{
 		pc.loadInAss(queenOfTheDeep);
 		(pc as Creature).buttChange(queenOfTheDeep.biggestCockVolume(), false, false, false);
+		if (pc.ass.wetnessRaw < 5) pc.ass.wetnessRaw += 1;
 	}
 
 	for (var vi:int = 0; vi < pc.vaginas.length; vi++)
@@ -916,8 +1119,11 @@ public function queenOfTheDeepGetEgged():void
 		{
 			pc.loadInCunt(queenOfTheDeep, vi);
 			(pc as Creature).cuntChange(vi, queenOfTheDeep.biggestCockVolume(), false, false, false);
+			if (pc.vaginas[vi].wetnessRaw < 5) pc.vaginas[vi].wetnessRaw += 1;
 		}
 	}
+	
+	pc.libido(10);
 	
 	output("\n\nAnother scream of unparalleled pleasure rips itself from your throat as the first of the queen’s young penetrates your now-gaping hole, stretching you unbearably wide around its seemingly tiny frame before it rushes into your deepest depths, squirted out into the sticky wad of chemicals left for it by the thrashing tentacle ravaging your bowels. A second spawn quickly follows the first, bloating your belly with the growing occupation of the queen’s alien brood.");
 	if (numEmptyHoles == 1)
@@ -967,7 +1173,7 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\nYour eyes flutter closed at the queen’s words. Exhaustion takes you.");
 
 	processTime(60 * 4);
-	for (var i:int = 0; i < numEmptyHoles * 2; i++) pc.orgasm();
+	for (var i:int = 0; i < numEmptyHoles * 3; i++) pc.orgasm();
 
 	clearMenu();
 	addButton(0, "Next", queenOfTheDeepGetEggedII);
@@ -981,6 +1187,8 @@ public function queenOfTheDeepGetEggedII():void
 	output("You awaken on the lakeshore, groggily opening your eyes. For a moment, you wonder if your encounter with the queen of the deep lake was a dream, a delusion born of darkness and isolation. That dream (or is it terror?) ends when you feel something churning inside you, and your hand is drawn instinctively to your [pc.belly]. You’re gravid, and your [pc.skinFurScales] bulges with new life... the queen’s offspring squirm just under the surface, slight bulges in your flesh you can both see and feel as they adjust themselves inside you.");
 
 	output("\n\nGroaning, you stagger to your [pc.feet], hand still protectively on your spawn-swollen belly. You find your equipment a short distance away, dry and neatly packed away for you. You smile to yourself as you kit up, wondering if you’ll ever see your queen again...");
+	
+	// permanent +wetness in holes filled, +10 Libido
 
 	genericVictory();
 }

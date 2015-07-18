@@ -251,8 +251,29 @@ public function updateNPCStats():void {
 		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(foes[0].originalRace));
 		
 		var gText:String = "";
-		if(foes[0] is NyreaAlpha || foes[0] is NyreaBeta) gText = "Female???";
-		else if(foes[0].hasCock()) {
+		
+		if (foes[0].hasStatusEffect("Force It Gender"))
+		{
+			gText = "???";
+		}
+		else if (foes[0].hasStatusEffect("Force Fem Gender"))
+		{
+			gText = "Female";
+		}
+		else if (foes[0].hasStatusEffect("Force Male Gender"))
+		{
+			gText = "Male";
+		}
+		else if (foes[0].hasStatusEffect("Force Herm Gender"))
+		{
+			gText = "Herm";
+		}
+		else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
+		{
+			gText = "Female???";
+		}
+		else if (foes[0].hasCock()) 
+		{
 			if (foes[0].hasVagina()) gText = "Herm";
 			else gText = "Male";
 		}

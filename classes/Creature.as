@@ -2851,8 +2851,11 @@
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
 			if (hasStatusEffect("Evasion Reduction")) temp -= statusEffectv1("Evasion Reduction");
 			if (hasStatusEffect("Resolve")) temp += 50;
+			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
+			
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
+			
 			return temp;
 		}
 		public function fortification(): Number {
