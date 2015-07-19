@@ -86,7 +86,6 @@ public function queenOfTheDeepAI():void
 		if (foes[0].statusEffectv1("Water Veil") <= 0)
 		{
 			foes[0].removeStatusEffect("Water Veil");
-			foes[0].evasion -= 25;
 			output("\nThe creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n");
 		}
 	}
