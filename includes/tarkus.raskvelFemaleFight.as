@@ -1165,7 +1165,7 @@ public function takeOneEggSloot():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	StatTracking.track("pregnancy/raskvel sired/day care");
-	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
 	StatTracking.track("pregnancy/total day care");
 	flags["RASKVEL_EGG_COUNT"] = undefined;
@@ -1182,7 +1182,7 @@ public function dontTakeARaskEgg():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
@@ -1233,7 +1233,7 @@ public function watchDatRaskvelEggLayyyy():void
 	processTime(19);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
