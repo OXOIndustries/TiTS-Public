@@ -226,8 +226,6 @@ public function confirmMailConfig():void
 	MailManager.unlockEntry("welcomeMailConfirmed", GetGameTimestamp());
 	MailManager.unlockEntry("messageFromDad", GetGameTimestamp());
 	
-	(userInterface as GUI).mailsDisplayButton.Highlight();
-	
 	clearGhostMenu();
 	addGhostButton(0, "Next", showMails);
 }

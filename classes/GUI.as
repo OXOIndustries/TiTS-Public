@@ -1266,6 +1266,8 @@
 			this.dataButton.DeGlow();
 			this.appearanceButton.DeGlow();
 			this.levelUpButton.DeGlow();
+			this.mailsDisplayButton.DeGlow();
+			this.perkDisplayButton.DeGlow();
 		}
 
 		// New passthrough event/keyboard control handlers for scroll mechanics. Here, we can redirect them to the

@@ -664,12 +664,13 @@
 				//{
 				//		this.userInterface.showLevelUpGenericPerks(pc);
 				//}
+				userInterface.DeGlowButtons();
 				this.userInterface.levelUpButton.Glow();
 			}
 			else
 			{
 				this.userInterface.showPrimaryOutput();
-				this.userInterface.levelUpButton.DeGlow();
+				userInterface.DeGlowButtons();
 			}
 		}
 		

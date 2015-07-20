@@ -235,12 +235,13 @@ public function showPerkListHandler(e:Event = null):void
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		showPerksList();
+		userInterface.DeGlowButtons();
 		pButton.Highlight();
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
 		userInterface.showPrimaryOutput();
-		pButton.DeHighlight();
+		userInterface.DeGlowButtons();
 	}
 }
 
@@ -258,18 +259,19 @@ public function showMailsHandler(e:Event = null):void
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		showMails();
-		pButton.Highlight();
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
 		userInterface.showPrimaryOutput();
-		pButton.DeHighlight();
+		userInterface.DeGlowButtons();
 	}
 }
 
 public function showMails():void
 {
 	userInterface.showMails();
+			userInterface.DeGlowButtons();
+	(userInterface as GUI).mailsDisplayButton.Highlight();
 	codexMailFunction();
 }
 

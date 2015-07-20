@@ -25,7 +25,9 @@
 	import classes.Creature;
 	import classes.GameData.CodexManager;
 	import classes.GameData.StatTracking;
+	import classes.GameData.MailManager;
 	import flash.events.IOErrorEvent;
+	
 	
 	import classes.Engine.Interfaces.*;
 	
@@ -127,6 +129,7 @@
 			}
 			else
 			{
+				kGAMECLASS.userInterface.DeGlowButtons();
 				kGAMECLASS.userInterface.showSecondaryOutput();
 				this.showDataMenu();
 				kGAMECLASS.userInterface.dataButton.Glow();
@@ -920,6 +923,9 @@
 			
 			// Stat tracking
 			dataFile.statTracking = cloneObject(StatTracking.getStorageObject());
+			
+			// Mail system
+			dataFile.mailSystem = cloneObject(MailManager.getSaveObject());
 		}
 		
 		/**
@@ -1131,6 +1137,11 @@
 			if (obj.statTracking != undefined && obj.statTracking is Object)
 			{
 				StatTracking.loadStorageObject(cloneObject(obj.statTracking));
+			}
+			
+			if (obj.mailSystem != undefined)
+			{
+				MailManager.loadSaveObject(cloneObject(obj.mailSystem));
 			}
 			
 			//Update room placement:
