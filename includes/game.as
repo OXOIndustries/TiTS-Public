@@ -1884,7 +1884,10 @@ public function statisticsScreen():void
 			output2("<b>Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") + "\n");
 		if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
 			output2("<b>Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") + "\n");
-		
+		if(StatTracking.getStat("pregnancy/raskvel sired") > 0)
+			output2("<b>Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired") + "\n");
+		if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
+			output2("<b>Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care") + "\n");
 	}
 
 	//======PARASITE STATISTICS=====//

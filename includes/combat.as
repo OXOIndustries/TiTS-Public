@@ -3821,9 +3821,10 @@ public function pcConcShot(target:Creature):void
 	{
 		output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 		
-		if (rand(3) == 0)
+		//Aim/2 + 10 DC fort save!
+		if (target.physique()/2 + rand(20) + 1 >= pc.aim()/2 + 10)
 		{
-			output(" though " + target.a + target.short + " seems to resist the blast. Your stun-shot failed!");
+			output(" though " + target.a + target.short + " resists the blast. Your stun-shot failed!");
 		}
 		else
 		{

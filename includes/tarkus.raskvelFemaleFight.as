@@ -25,7 +25,7 @@ public function encounterHostileRaskvelFemale():void
 	}
 	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
 	{
-		giveRaskvelSomeDongToSuckle();
+		catchPostBirthRaskvel();
 		return;
 	}
 	//Second Encounter
@@ -1164,9 +1164,9 @@ public function takeOneEggSloot():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/raskvel sired",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total births");
-	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/total day care");
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
@@ -1255,7 +1255,8 @@ public function knockUpRaskChance():void
 		//Roll the dice - base 10% pregrate
 		if(rand(100) + 1 <= 10 + bonusChance)
 		{
-			var bonusEggs:int = rand(Math.floor(cumQ/500)+2)
+			var bonusEggs:int = rand(Math.floor(cumQ/500)+2);
+			if(bonusEggs > 12) bonusEggs = 12;
 			//Succeed! Induce Preggoz
 			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;
 			//Five days till eggpop!
