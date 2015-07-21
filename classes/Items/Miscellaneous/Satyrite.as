@@ -31,7 +31,7 @@
 			this.description = "a satyrite crystal";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Satyrite is a rare gem that is much sought after for its vibrant vibrant, striped pattern, similar to the rings that circle many planets.";
+			this.tooltip = "Satyrite is a rare gem that is much sought after for its vibrant, striped pattern, similar to the rings that circle many planets.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
