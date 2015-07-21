@@ -541,15 +541,17 @@ public function furColorMenu():void
 	output("<i>“Fur, huh? Okay, these are pretty much the same options as hair. We’ve got like vanilla colors, metallics, glowy fur...pick whatever kind you want. Because it’s a full-body treatment, I’m gonna have to charge 1,500 credits for a vanilla or metallic, 1,800 for one of the glowy colors. Fur’s a lot of dye.”</i>");
 
 	//[Standard] Go to Standard Fur Color
-	if(pc.credits >= 1500) addButton(0,"Next",furColor);
 	//[Metallic] Go to Metallic Fur Color
 	//[Glowing] Go to Glowing Fur Color
 	//[Back] Go To Hairwork
 	processTime(1);
 	clearMenu();
-	addButton(0,"Standard",furColor,undefined,"Standard","Standard colors.");
-	addButton(1,"Metallic",metalliaColor,undefined,"Metallic","Metallic colors.");
-	addButton(2,"Glowing",glowFurGo,undefined,"Glowing","Glowing colors.");
+	if(pc.credits >= 1500) addButton(0,"Standard",furColor,undefined,"Standard","Standard colors.");
+	else addDisabledButton(0,"Standard","Standard","You can't afford this.");
+	if(pc.credits >= 1500) addButton(1,"Metallic",metalliaColor,undefined,"Metallic","Metallic colors.");
+	else addDisabledButton(1,"Metallic","Metallic","You can't afford this.");
+	if(pc.credits >= 1800) addButton(2,"Glowing",glowFurGo,undefined,"Glowing","Glowing colors.");
+	else addDisabledButton(2,"Glowing","Glowing","You can't afford this.");
 	addButton(14,"Back",mainGameMenu);
 }
 

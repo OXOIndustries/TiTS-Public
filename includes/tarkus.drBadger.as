@@ -372,7 +372,7 @@ public function heyDocImAHero():void
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 	}
 	else output(".");
-	if(pc.femininity > 75) pc.femininity = 75;
+	if(pc.femininity < 75) pc.femininity = 75;
 	if(pc.lipMod < 1) pc.lipMod = 1;
 	output("\n\n<i>“There girl”</i>, Dr Badger coos, <i>“doesn’t that feel better? Don’t you like being one of my perfect bimbos better than being a silly hero?”</i>");
 	output("\n\nYou nod happily. You’d agree to anything she says, but especially in this case because when she calls you a bimbo your body responds instinctively; making thick strands of pre-cum leak from your straining cock while your slit moistens even further in excitement.");
