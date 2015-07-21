@@ -339,7 +339,7 @@
 			//Change skin/nipple/cock/vagina color:
 			var skinColors:Array = ["gray", "pale violet", "pale"];
 			tarColor = RandomInCollection(skinColors);
-			if(InCollection(pc.skinTone, skinColors))
+			if(!InCollection(pc.skinTone, skinColors))
 			{
 				lowEvents.push(sylvanolSkinTF);
 				lowEventsArgs.push([pc,tarColor]);
@@ -459,7 +459,7 @@
 			//Change skin/nipple/cock/vagina color:
 			var skinColors:Array = ["pale blue", "white"];
 			tarColor = RandomInCollection(skinColors);
-			if(InCollection(pc.skinTone, skinColors))
+			if(!InCollection(pc.skinTone, skinColors))
 			{
 				lowEvents.push(sylvanolSkinTF);
 				lowEventsArgs.push([pc,tarColor]);

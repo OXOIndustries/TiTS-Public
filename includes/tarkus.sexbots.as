@@ -498,7 +498,13 @@ public function loseToSexBotAndHaveADick():void
 	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
 	output(".");
 	//Vagina:
-	if(pc.hasVagina()) output("\n\nIt doesn’t take it long to calibrate the pulse needed to find the thousands of nerve endings in your [pc.vagina]. It packs your tunnel full of vibrations, [pc.oneClit] flicked and caressed by insistent electric fingers until you have moved from moans to screams, your female sex forced to orgasm again and again whilst your cocks are kept trapped in the endlessly tight rubber above.");
+	if(pc.hasVagina()) 
+	{
+		output("\n\nIt doesn’t take it long to calibrate the pulse needed to find the thousands of nerve endings in your [pc.vagina]. It packs your tunnel full of vibrations, [pc.oneClit] flicked and caressed by insistent electric fingers until you have moved from moans to screams, your female sex forced to orgasm again and again whilst your ");
+		if(pc.cockTotal() > 1) output("cocks are ");
+		else output("cock is ");
+		output("kept trapped in the endlessly tight rubber above.");
+	}
 	if(pc.cockTotal() > 2)
 	{
 		//[2 < Cocks:
