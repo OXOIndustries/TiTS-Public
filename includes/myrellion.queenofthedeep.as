@@ -3,7 +3,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 public function tryEncounterQueenOfTheDeep():Boolean
 {
-	if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) >= 0)
+	if ((pc.hasVagina() && pc.fertility() > 0) && flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) >= 0)
 	{
 		queenOfTheDeepInitialEncounter();
 		return true;
@@ -467,7 +467,9 @@ public function queenOfTheDeepPCLoss():void
 	{
 		output(" Trickles of moisture stain your thighs as the venomous arousal snakes its way down to your sex, and the lips of your [pc.cunts] attract");
 		if (pc.vaginas.length == 1) output("s");
-		output(" more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legs] just about give out, though the creature holds you fast, refusing to let you fall.");
+		output(" more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legOrLegs] just about give");
+		if(pc.legCount == 1) output("s");
+		output(" out, though the creature holds you fast, refusing to let you fall.");
 	}
 	output(" A tentacle quickly finds its way to your [pc.asshole], pressing against the");
 	if (pc.ass.looseness() <= 1) output(" tight");
@@ -495,7 +497,7 @@ public function queenOfTheDeepPCLoss():void
 
 	output("\n\n<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues, that I am not the last as my mother prophesied. Surrender your misused body to me, let me give you new purpose...”</i>");
 
-	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you cannot help but whimper as the two largest of her tentacles find their way to your [pc.legs], gently circling and caressing your [pc.asshole]");
+	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you cannot help but whimper as the two largest of her tentacles find their way to your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
 	if (bEmptyVagina) output(" and [pc.vaginas].");
 
 	var needNL:Boolean = true;
@@ -510,7 +512,12 @@ public function queenOfTheDeepPCLoss():void
 	if (numEmptyVaginas > 1)
 	{
 		if (needNL) output("\n\n");
-		output("Other, smaller tendrils coils around you, finding your other hole{s} and starting to tease them, finding every empty baby-maker you have and preparing to fill them with alien offspring.");
+		output("Other, smaller tendrils coils around you, finding your other hole");
+		if(numEmptyVaginas > 2) output("s");
+		output(" and starting to tease ");
+		if(numEmptyVaginas == 2) output("it");
+		else output("them");
+		output(", finding every empty baby-maker you have and preparing to fill them with alien offspring.");
 	}
 
 	output("\n\nA moment of silent anticipation consumes you, a momentary eternity of perfect stillness and contentment, before you feel the queen’s");
@@ -656,7 +663,9 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	}
 	if (pc.hasVagina())
 	{
-		output(" Trickles of moisture stain your thighs as the venomous arousal snakes its way down to your sex, and the lips of your twat attract more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legs] just about give out, though the creature holds you fast, refusing to let you fall.");
+		output(" Trickles of moisture stain your thighs as the venomous arousal snakes its way down to your sex, and the lips of your twat attract more and more attention from the queen’s tendrils. She gives you a playful smile as one almost penetrates you, instead squirting a thick covering of pink poison across your pussy. Your [pc.legOrLegs] just about give");
+		if(pc.legCount == 1) output("s");
+		output(" out, though the creature holds you fast, refusing to let you fall.");
 	}
 	output(" A tentacle quickly finds its way to your asshole, pressing against the");
 	if (pc.ass.looseness() <= 1) output(" tight");
@@ -731,7 +740,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	
 	output("<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
-	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legs], gently circling and caressing your [pc.asshole]");
+	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.vagina]");
 	output(".");
 
@@ -1234,7 +1243,9 @@ public function queenOfTheDeepHerStory():void
 	
 	output("\n\n<i>“In truth, I do not know what became of my race,”</i> the queen says, wrapping her cyan arms around herself. As she speaks, now, the glowing moss that covers much of her body droops down to the barest embers of luminescence, bathing the two of you in shadows. <i>“I have sent my servants out to scout other lakes in the Deep many times. Each returns with the same story: there are no Water Queens at the other lakes, not for a hundred miles around. Even the furthest-fielding travelers that I have captured cannot say they’ve seen one before. My mother, may her spirit rest, gave voice to prophecy when I was young: that I would be the last of our race, and soon we would be nothing but shadows in the legends of the other Deep-dwellers. As years go by, I believe more and more that she was right.”</i>");
 	
-	output("\n\nCurious, you find yourself having to ask, <i>“Didn’t you say you were{, like, super} pregnant? That you were going to lay eggs in me? What about </i>your<i> children?”</i>");
+	output("\n\nCurious, you find yourself having to ask, <i>“Didn’t you say you were");
+	if(pc.isBimbo()) output(", like, super");
+	output(" pregnant? That you were going to lay eggs in me? What about </i>your<i> children?”</i>");
 	
 	output("\n\nA pained look washes over the queen’s features, and she looks sharply away from you. <i>“Ah. Yes. I have laid more than one hundred clutches of my young in the bodies of nearly every race that calls this world their home. Water Queens are a difficult pregnancy, demanding on their hosts. Only the strongest can bear our young to term, and those that do leave an... impression upon the young they bear. You do not yet understand, I sense. Allow me to explain: I was laid in the body of a red myrmedion, a young woman who ventured into the Deep to escape the violence that consumed her people. I wield her venom, now. Her strength flows in my veins, making me mightier than my mother and granting me armor that turns aside all but the most savage of blows. They were my bearer’s gifts to me, her first and only child.”</i>");
 	
@@ -1388,7 +1399,10 @@ public function queenPregnancyEnds():void
 	}
 	output(". Realization hits you a moment later as your hands instinctively wrap around your stomach, and tendrils of pleasure start to creep out through your [pc.skinFurScales]: your pregnancy is about to be at an end.");
 
-	output("\n\nAs quickly as you can, you divest yourself of your [pc.gear] while you’re still able, and slump to the ground with your [pc.legs] spread wide. Another wave of almost-orgasmic pleasure hits you, all but knocking you prone - it’s an effort to keep your eyes focused, watching as your belly starts to deflate. You can actually <i>feel</i> the queen’s spawn moving inside you, crawling through your body towards the open air.");
+	output("\n\nAs quickly as you can, you divest yourself of your [pc.gear] while you’re still able, and slump to the ground with your [pc.legOrLegs] ");
+	if(pc.legCount == 1) output("limp");
+	else output("spread wide");
+	output(". Another wave of almost-orgasmic pleasure hits you, all but knocking you prone - it’s an effort to keep your eyes focused, watching as your belly starts to deflate. You can actually <i>feel</i> the queen’s spawn moving inside you, crawling through your body towards the open air.");
 
 	output("\n\nThe way they’re moving, you don’t think you need to do anything, much less push - the creatures looked so delicate going in, you’re afraid the extra pressure might hurt them. Instead, you do all you can to relax yourself, aided in that cause by the alien pleasure your implanted children bring you. You start to feel an unnatural heat and wetness drooling out of your");
 	if (numCuntPreggers > 1) output(" [pc.cunts]");

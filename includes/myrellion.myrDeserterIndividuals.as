@@ -194,7 +194,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		//First Pregnancy && First Time Ever Seeing Her Pregnant
 		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == undefined)
 		{
-			output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, petting the obvious bump. <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix</i>that<i> up.”</i>");
+			output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, petting the obvious bump. <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix </i>that<i> up.”</i>");
 			flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
 		}
 		//{Second Pregnancy && First Time Seeing Her Pregnant (this time)
@@ -1849,7 +1849,7 @@ public function sitAndScrewGoldMyr():void
 
 			output("\n\nThe raven-haired ant girl blushes and pulls out a strap-on dildo. It’s pretty impressive - ten inches of veiny goodness - and the same hue as a gold myr’s cock.");
 
-			output("\n\n<i>“... This? The Gilden Federation issues this to all the girls on the front line. We’ve got to use it on each other, mind you, since we can’t easily play with ourselves.”</i>");
+			output("\n\n<i>“... This? The Gilden Republic issues this to all the girls on the front line. We’ve got to use it on each other, mind you, since we can’t easily play with ourselves.”</i>");
 
 			output("\n\nYou notice there’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
 			if(pc.hasVagina()) output(" You ask her if you can use it on her.");

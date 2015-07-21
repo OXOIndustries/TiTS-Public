@@ -1322,7 +1322,7 @@ public function processTime(arg:int):void {
 				}
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
-				if(days >= 2 && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined) newTexasEmail();
+				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
 				this.hours = 0;
 				if(chars["ALISS"].lust() >= 70)
 				{
@@ -1345,7 +1345,11 @@ public function processTime(arg:int):void {
 				{
 					flags["RASKVEL_PREG_TIMER"]--;
 					//She pops eggs without you seeing.
-					if(flags["RASKVEL_PREG_TIMER"] < -5) flags["RASKVEL_PREG_TIMER"] = undefined;
+					if(flags["RASKVEL_PREG_TIMER"] < -5) 
+					{
+						flags["RASKVEL_PREG_TIMER"] = undefined;
+						flags["RASKVEL_EGG_COUNT"] = undefined;
+					}
 				}
 				//Myr preggo shit
 				if(flags["BRIHA_INCUBATION_TIMER"] != undefined) flags["BRIHA_INCUBATION_TIMER"]++;

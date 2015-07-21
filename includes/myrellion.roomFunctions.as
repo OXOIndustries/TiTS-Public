@@ -148,7 +148,7 @@ public function myrellionTaxiMenu():void
 		if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) addDisabledButton(2,"Deep Caves","Deep Caves","You haven't unlocked the comm array in the deep caves yet.");
 		else
 		{
-			if(pc.credits >= 150) addButton(2,"Deep Caves",takeATransPortMyrellion,"2I7","Deep Caves","Spend 150 credits to go to no man's land.");
+			if(pc.credits >= 150) addButton(2,"Deep Caves",takeATransPortMyrellion,"2I7","Deep Caves","Spend 150 credits to go to the deep caves.");
 			else addDisabledButton(2,"Deep Caves","Deep Caves","You can't afford the taxi fee.");
 		}
 	}
