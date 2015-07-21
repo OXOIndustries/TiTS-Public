@@ -139,6 +139,7 @@
 						kGAMECLASS.output("\n\nYour fingertips clench involuntarily, digging into your palms with painful pricks of sharpness. Reluctantly prying them open, you watch in shock as your nails gradually shift closer to your fingertips. They narrow even as they lengthen, resulting in a set of sharp, feline-looking claws. <b>You could give someone quite the nasty scratch with your new claws!</b>");
 						target.armType = GLOBAL.TYPE_FELINE;
 						target.clearArmFlags();
+						target.addArmFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else

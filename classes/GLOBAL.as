@@ -316,6 +316,14 @@
 			TYPE_LEITHAN,
 			TYPE_OVIR
 		];
+
+		public static const VALID_ARM_FLAGS:Array = [
+			FLAG_SMOOTH,
+			FLAG_AMORPHOUS,
+			FLAG_FURRED,
+			FLAG_SCALED,
+			FLAG_CHITINOUS,
+		];
 		
 		public static const VALID_LEG_TYPES:Array = [
 			TYPE_HUMAN,

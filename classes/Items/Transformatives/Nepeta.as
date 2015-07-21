@@ -73,7 +73,8 @@ package classes.Items.Transformatives
 			nomText.push("With only one whole biscuit left cupped in your palm, you greedily scoop it into your mouth -- a little rain of crumbs falling from your face as you bite into the final treat.");
 
 			var tfs:Array = [];
-			
+			if (target.armType != GLOBAL.TYPE_FELINE && target.armTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(armTF);
+			else if(target.armType == GLOBAL.TYPE_FELINE && target.hasArmFlag(GLOBAL.FLAG_FURRED) && target.armTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(armTF);
 			if (target.earType != GLOBAL.TYPE_FELINE && target.earTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(earTF);
 			if (target.eyeType != GLOBAL.TYPE_FELINE && target.eyeTypeUnlocked(GLOBAL.TYPE_FELINE)) tfs.push(eyeTF);
 			if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN)) tfs.push(skinTF);
@@ -479,6 +480,24 @@ package classes.Items.Transformatives
 			output(", running a hand along your length. <b>It looks like you have feline nubs on your cock");
 			if (target.cocks.length > 1) output("s");
 			output(" now!</b>");
+		}
+		private function armTF(target:Creature):void
+		{
+			//Gain human-like arms, kitty claws!
+			if(target.armType == GLOBAL.TYPE_FELINE && target.hasArmFlag(GLOBAL.FLAG_FURRED))
+			{
+			    output("The " + target.furColor + " fur sheds from your arms, leaving behind smooth, bare skin. You flex your claws in response, but they do not change. Though your arms have retained their feline form, <b>you have lost all the fur from your arms!</b>");
+			}
+			else
+			{
+				output("Your arms begin to change in form,");
+				if (target.hasArmFlag(GLOBAL.FLAG_FURRED)) output(" shedding their fur and");
+				else if (target.hasArmFlag(GLOBAL.FLAG_SCALED)) output(" flaking their scales and");
+				else if (target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output(" molting their exoskeletal covering and");
+				output(" shifting in shape until <b>they look smooth and human-like - with exception to your sharp nails, which extend and retract, looking very much like feline claws!</b>");
+			}
+			target.armType = GLOBAL.TYPE_FELINE;
+			target.clearArmFlags();
 		}
 	}
 

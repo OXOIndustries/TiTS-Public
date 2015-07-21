@@ -6910,6 +6910,7 @@
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
 			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter+=2;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (counter > 0 && armType == GLOBAL.TYPE_FELINE && !hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
 			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 5) counter++;
 			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_HUMAN && counter > 2) counter++;
 			return counter;
@@ -6934,7 +6935,7 @@
 			if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
-			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
+			if (armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED) && counter > 0) counter++;
 			if (eyeType == GLOBAL.TYPE_NAGA && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			return counter;
 		}

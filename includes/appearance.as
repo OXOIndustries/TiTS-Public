@@ -370,29 +370,29 @@ public function appearance(target:Creature):void {
 		else if(target.armType == GLOBAL.TYPE_EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
 		else if(target.armType == GLOBAL.TYPE_CANINE) 
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		}
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.TYPE_FELINE) 
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		}
 		else if(target.armType == GLOBAL.TYPE_PANDA) 
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
 		}
 		else if(target.armType == GLOBAL.TYPE_KUITAN)
 		{
-			if(target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
+			if(!target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
 			else output2(" A coat of " + pc.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
 			output2("They're softer and more supple than the finest leather.");
 		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tip your fingers.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of thick " + pc.furColor + " fur covers your arms while claws tip your fingers.");
 			else output2(" Claws tip your fingers.");
 			output2(" These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
 		}
