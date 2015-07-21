@@ -23,6 +23,7 @@
 		//Displayed on tooltips during mouseovers
 		public var tooltip:String;
 		public var attackVerb:String;
+		public var attackNoun:String;
 		//Information
 		public var type:int;
 		public var basePrice:Number;
@@ -69,6 +70,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "";
 			this.attackVerb = "";
+			attackNoun = "";
 			//Information
 			this.type = 0;
 			this.basePrice = 0;

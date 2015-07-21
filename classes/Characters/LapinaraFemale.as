@@ -32,12 +32,14 @@
 			this.meleeWeapon.attack = 0;
 			this.meleeWeapon.longName = "fist";
 			this.meleeWeapon.attackVerb = "punch";
+			this.meleeWeapon.attackNoun = "punch";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 1;
 			this.rangedWeapon.attack = 0;
 			this.rangedWeapon.longName = "rock";
 			this.rangedWeapon.attackVerb = "smash";
+			this.rangedWeapon.attackNoun = "smash";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "thick fur";

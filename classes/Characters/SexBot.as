@@ -36,6 +36,7 @@
 			this.meleeWeapon.attack = 5;
 			this.meleeWeapon.longName = "tentacle";
 			this.meleeWeapon.attackVerb = "smack";
+			this.meleeWeapon.attackNoun = "smack";
 			this.meleeWeapon.hasRandomProperties = true;
 
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
@@ -43,6 +44,7 @@
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
 			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackNoun = "buckshot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "latex";

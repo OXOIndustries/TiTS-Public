@@ -32,6 +32,7 @@
 			this.tooltip = "Easy to swing, not very easy to get back out. It’s little more than a axe with a sinister, slightly curved pointy bit at the end instead of a blade, meant to find its way into little crevices in armor and punch right through. It’s unwieldy, however, and only as good as you are strong.";
 			//Piercing weapon.
 			this.attackVerb = "pierce";
+			attackNoun = "swing";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

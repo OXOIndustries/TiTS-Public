@@ -33,6 +33,7 @@
 			this.tooltip = "Lengthy and slender, with an auspicious arch designed to not get caught in your target. However, it’s just a hunk of sharpened metal these days and not very effective when you aren’t on some expedient mount. The hilt and pommel are both very ornamental, though, and the image of this mounted on someone’s mantle is an alluring one. At least you could rattle it when you’re raring for a scrap.";
 			//Shitty sword that isn’t much better than basic knifes and other starting junk. It’s a gimmick weapon. Slashing, obviously!
 			this.attackVerb = "slash";
+			attackNoun = "slash";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

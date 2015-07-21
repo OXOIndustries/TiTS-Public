@@ -39,6 +39,7 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "slap";
+			attackNoun = "slap";
 			
 			//Information
 			this.basePrice = 150;

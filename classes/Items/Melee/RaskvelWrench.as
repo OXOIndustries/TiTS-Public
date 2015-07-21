@@ -35,6 +35,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Used by raskvel all over Tarkus, this giant wrench serves a useful tool for working on large machinery and a capable bludgeon.";
 			this.attackVerb = "smack";
+			attackNoun = "smack";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

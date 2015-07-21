@@ -36,6 +36,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "shoot";
+			attackNoun = "plasma ball";
 			
 			//Information
 			this.basePrice = 100050;

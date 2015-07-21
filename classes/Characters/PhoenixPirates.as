@@ -28,6 +28,9 @@ package classes.Characters
 			
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon = new MagnumPistol();
+			rangedWeapon.attackVerb = "shoot";
+			rangedWeapon.attackNoun = "shot";
+			rangedWeapon.hasRandomProperties = true;
 			this.shield = new JoyCoPremiumShield();
 			
 			this.armor.longName = "black void armor";

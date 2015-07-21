@@ -35,6 +35,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			//Information
 			this.basePrice = 420;

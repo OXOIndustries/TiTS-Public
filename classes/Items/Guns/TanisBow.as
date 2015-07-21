@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A compound bow made to the specifications of the leithan scout Tanisaran, who trained you in the ancient tradition of leithan bowhunting. It's a huge bow, but light as a feather and almost unbelievably easy to draw. Your arrows are tipped with acid bulbs that shatter on impact, splattering the target."
 			this.attackVerb = "shoot";
+			attackNoun = "arrow";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

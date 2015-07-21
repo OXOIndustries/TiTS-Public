@@ -32,6 +32,7 @@
 			this.tooltip = "It took you this long to find a goddamn shotgun? It’s pretty rudimentary in design, just a quick and easy breech that you can thumb a pair of shells into. The real quality is what you want to load into it - with a thick gauge, as long as you have enough time to prepare, this’ll put the hurt on anything. Just... do it slowly, sausagefingers.";
 			//No damage type - not weak to anything! Not strong to anything, either. Nothing special stats wise.
 			this.attackVerb = "shoot";
+			attackNoun = "buckshot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A bow made of a strange, semi-flexible crystal found in the deepest depths of Myrellion and used by the Queen of the Deep Lake. The bow comes with a quiver of arrows tipped with dark green shards that seem to contain traces of the queen's lusty venom.";
 			this.attackVerb = "shoot";
+			attackNoun = "arrow";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

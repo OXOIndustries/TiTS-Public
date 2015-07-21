@@ -47,7 +47,8 @@
 			this.rangedWeapon = new MyrRifle();
 			rangedWeapon.longName = "heavy handgun";
 			rangedWeapon.description = "a heavy handgun";
-			rangedWeapon.attackVerb = "shot";
+			rangedWeapon.attackVerb = "shoot";
+			rangedWeapon.attackNoun = "shot";
 			rangedWeapon.hasRandomProperties = true;
 
 			armor.longName = "thick chitin";

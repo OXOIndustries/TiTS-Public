@@ -27,7 +27,8 @@
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;
 			
-			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackVerb = "swipe";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.baseDamage.kinetic.damageValue = 1;
 			this.meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);

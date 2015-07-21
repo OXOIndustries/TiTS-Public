@@ -48,7 +48,8 @@
 			rangedWeapon = new BoltActionRifle();
 			rangedWeapon.longName = "shotgun";
 			rangedWeapon.description = "a shotgun";
-			rangedWeapon.attackVerb = "buckshot";
+			rangedWeapon.attackVerb = "shoot";
+			rangedWeapon.attackNoun = "buckshot";
 			rangedWeapon.hasRandomProperties = true;
 
 

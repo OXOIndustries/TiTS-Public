@@ -27,7 +27,8 @@
 			this.customBlock = "The naleen deflects your strikes with quick strikes of his own, effectively parrying your attack.";
 			this.plural = false;
 			
-			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackVerb = "swipe";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.longName = "claws";
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 2;

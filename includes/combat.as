@@ -1240,7 +1240,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	else if(combatMiss(attacker,target)) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
-			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
 		}
 		else output(target.customDodge);
 	}
@@ -1253,7 +1253,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
-			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
 		}
 		else output(target.customDodge);
 	}
@@ -1327,7 +1327,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 				concentratedFire(false);
 			}
-			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
 		}
 		else output(target.customDodge)
 	}
@@ -1348,7 +1348,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 				concentratedFire(false);
 			}
-			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
 		}
 		else output(target.customDodge);
 	}
@@ -3518,12 +3518,12 @@ public function NPCOvercharge():void {
 	output(foes[0].capitalA + foes[0].short + " smiles as a high-pitched hum emanates from " + foes[0].mfn("his","her","its") + " " + foes[0].rangedWeapon.longName + "! ");
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
-	if(rangedCombatMiss(foes[0],pc)) output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " overcharged " + foes[0].rangedWeapon.attackVerb + ".");
+	if(rangedCombatMiss(foes[0],pc)) output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " overcharged " + foes[0].rangedWeapon.attackNoun + ".");
 	//Extra miss for blind
 	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) output(foes[0].capitalA + possessive(foes[0].short) + " blinded, <b>overcharged</b> shot fails to connect!");
 	//Attack connected!
 	else {
-		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackVerb + "!");
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackNoun + "!");
 		//Damage bonuses:
 		var damage:TypeCollection = foes[0].damage(false);
 		damage.add(foes[0].aim() / 2);

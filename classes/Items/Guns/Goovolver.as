@@ -33,6 +33,7 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "shoot";
+			attackNoun = "goo";
 			
 			//Information
 			this.basePrice = 4280;

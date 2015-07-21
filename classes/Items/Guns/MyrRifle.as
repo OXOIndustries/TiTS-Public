@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This beat up old gun looks something like an old-earth lever action rifle, chambered in a magnum pistol cartridge meant for close range blasting through the armored chitin of the myr races. The stock and barrel have been cut down significantly compared to the similar rifles you've seen in the hands of myr soldiers, but it still packs a punch and is dead accurate in close quarters.";
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

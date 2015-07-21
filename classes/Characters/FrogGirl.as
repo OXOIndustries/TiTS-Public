@@ -29,6 +29,7 @@
 			meleeWeapon.baseDamage.kinetic.damageValue = 3;
 			meleeWeapon.attack = 2;
 			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.hasRandomProperties = true;
 			

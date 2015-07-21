@@ -41,6 +41,7 @@ package classes.Items.Melee
 			this.tooltip = "Your best friend when tasked with wilderness survival, a good axe can chop wood as easily as it can chop skulls. This particular axe is of Federation military issue, and has an incredibly strong blade and a short haft, easy to sling on your belt and carry around.";
 			
 			this.attackVerb = "chop";
+			attackNoun = "chop";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

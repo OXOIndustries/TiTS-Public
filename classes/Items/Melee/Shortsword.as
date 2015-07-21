@@ -37,6 +37,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Shortswords have been around as long as terran history has been recorded. This one is no exception. It has a simple steel blade with a point and stab interface.";
 			this.attackVerb = "stab";
+			attackNoun = "stab";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

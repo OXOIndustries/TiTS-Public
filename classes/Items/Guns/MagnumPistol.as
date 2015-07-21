@@ -33,6 +33,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This is a large-barreled weapon of ancient design. Don't let it's age fool you - projectile weapon design hasn't changed that much with the passage of time. Big, heavy projectiles launched at insane speeds do just as much damage now as they did back then. The kick on this gun makes it a little more difficult to aim than its smaller caliber brothers.";
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

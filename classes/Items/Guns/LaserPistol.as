@@ -36,6 +36,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "shoot";
+			attackNoun = "laser beam";
 			
 			//Information
 			this.basePrice = 1050;

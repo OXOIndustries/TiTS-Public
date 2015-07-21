@@ -32,7 +32,8 @@
 			
 			this.rangedWeapon = new HammerPistol();
 			this.rangedWeapon.hasRandomProperties = true;
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "shot";
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 3;
 			

@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This slightly curved blade is made for hacking and chopping through jungle vegetation, but it'll chop through flesh and bone with equal effacy. The blade is made from tempered steel and feels nice and heavy in your hand.";
 			this.attackVerb = "slash";
+			attackNoun = "slash";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

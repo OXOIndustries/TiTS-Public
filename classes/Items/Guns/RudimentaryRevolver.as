@@ -34,6 +34,7 @@
 			this.tooltip = "Six shots. More than enough to kill anything that moves - a thousand years ago, if you were some sort of militant savant. These days all this weapon has going for it is a sense of style and modest reliability. It’s hard not to be robust with less than ten parts!";
 			//TRASH. Barely an upgrade from starter stuff, but has a sexiness bonus - hey there, cowboy! Tease players might be shooting space-Lethice with it in the end.
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

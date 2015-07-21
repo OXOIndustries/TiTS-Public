@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The ZK rifle is a fantastic piece of weaponry, heavily modified, of course. Many with such a rifle choose to give it a name.";
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

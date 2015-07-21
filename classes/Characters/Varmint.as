@@ -40,6 +40,7 @@
 			meleeWeapon.addFlag(DamageFlag.PENETRATING);
 			this.meleeWeapon.longName = "claw";
 			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.rangedWeapon.longName = "guns";

@@ -33,7 +33,8 @@
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackVerb = "buckshot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "chitinous plating";

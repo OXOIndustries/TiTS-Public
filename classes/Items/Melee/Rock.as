@@ -35,6 +35,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "smack";
+			attackNoun = "smack";
 			
 			//Information
 			this.basePrice = 0;

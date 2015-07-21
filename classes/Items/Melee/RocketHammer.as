@@ -36,6 +36,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Less a hammer and more the dangerous fusion of a high speed rocket and a metallic brick, complete with a pole for vague direction, this chemical-boosted sledge is perfect for beating down your enemies. When the rocket actually activates it has quite the devastating kick, too! When you have a jet powered hammer, everything <b>acts</b> like a nail!";
 			this.attackVerb = "slam";
+			attackNoun = "slam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

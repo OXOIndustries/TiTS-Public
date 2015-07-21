@@ -35,6 +35,7 @@
 			isLustImmune = true;
 			
 			this.meleeWeapon.attackVerb = "bite";
+			meleeWeapon.attackNoun = "bite";
 			meleeWeapon.baseDamage.kinetic.damageValue = 4;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
 			this.meleeWeapon.attack = 2;

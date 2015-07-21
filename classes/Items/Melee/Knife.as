@@ -37,6 +37,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
 			this.attackVerb = "slash";
+			attackNoun = "slash";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -38,6 +38,7 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "shoot";
+			attackNoun = "laser beam";
 			
 			//Information
 			this.basePrice = 1; // Intentionally giving the items from Kiro a shit value so that they won't outweigh the 1k credit reward from /not/ taking any items.

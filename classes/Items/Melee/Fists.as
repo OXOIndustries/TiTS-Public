@@ -37,6 +37,7 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "punch";
+			attackNoun = "punch";
 			
 			//Information
 			this.basePrice = 0;

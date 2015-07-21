@@ -37,6 +37,7 @@ package classes.Items.Guns
 			this.tooltip = "Based on an old Earth favorite, this modified holdout pistol was custom-built by Dr. Anno Dorna. Compact, easy to hide, and exceptionally accurate, this gun can really punch a hole for a weapon its size thanks to a proprietary armor-piercing round. It has an integrated suppressor and laser sight. ";
 			
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

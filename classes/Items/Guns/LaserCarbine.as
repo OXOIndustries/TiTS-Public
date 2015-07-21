@@ -33,6 +33,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The Reaper Mk.5 Laser Carbine is currently the service rifle of the Terran Coalition Expeditionary Force, the main force of Earth's military. Produced with an integrated holographic scope and digital heads-up display, the Reaper Mk.5 is a sturdy, balanced rifle suitable for a variety of combat scenarios.";
 			this.attackVerb = "shoot";
+			attackNoun = "laser beam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

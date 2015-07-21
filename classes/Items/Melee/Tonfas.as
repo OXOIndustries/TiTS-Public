@@ -28,6 +28,7 @@ package classes.Items.Melee
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			this.attackVerb = "smack";
+			attackNoun = "smack";
 						
 			this.tooltip = "Penny's Tonfas";
 			

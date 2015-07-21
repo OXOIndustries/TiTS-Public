@@ -37,6 +37,7 @@
 			this.meleeWeapon.attack = 8;
 			this.meleeWeapon.longName = "claw";
 			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "tough hide";

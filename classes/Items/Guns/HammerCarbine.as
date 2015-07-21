@@ -32,6 +32,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A questionably civilian-legal modification of the popular Hammer pistol, the Hammer Carbine features a folding stock for greater accuracy, an expanded magazine, and a three-round burst trigger mod, greatly increasing damage-per-hit over its smaller cousin.";
 			this.attackVerb = "shoot";
+			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

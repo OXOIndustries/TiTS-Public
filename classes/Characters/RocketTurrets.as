@@ -41,6 +41,7 @@
 			rangedWeapon.baseDamage.kinetic.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
 			this.rangedWeapon.attackVerb = "rocket";
+			this.rangedWeapon.attackNoun = "rocket";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "steel plates";
