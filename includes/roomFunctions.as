@@ -365,7 +365,7 @@ public function novaElevatorControlPanel():void
 	author("Gedan");
 	showName("NOVA\nELEVATOR");
 	
-	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, a number of which are lit up.");
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order..");
 	
 	clearMenu();
 	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
@@ -374,7 +374,7 @@ public function novaElevatorControlPanel():void
 	if (currentLocation != "NOVA MAIN DECK ELEVATOR") addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
 	else addDisabledButton(0, "Main Deck");
 	
-	if (currentLocation != "DECK 13 ELEVATOR SHAFT") addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	if (currentLocation != "DECK 13 ELEVATOR SHAFT" && ((flags["ANNO_MISSION_OFFER"] >= 2 && flags["ANNO_MISSION_OFFER"] != undefined) || flags["DECK13_COMPLETE"] == 1)) addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
 	else addDisabledButton(1, "Deck 13");
 	
 	addButton(14, "Back", mainGameMenu);
