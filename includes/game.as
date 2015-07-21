@@ -224,6 +224,7 @@ public function showCodex():void
 	//addGhostButton(1, "Messages", function():void { } );
 	//addGhostButton(2, "Log", function():void { } );
 	//addGhostButton(3, "CHEEVOS", function():void { } );
+	addGhostButton(1, "Log", displayQuestLog);
 	
 	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 }
@@ -2017,4 +2018,390 @@ public function prettifyMinutes(minutes:Number):String
 	buffer += minutes + " minute";
 	if(minutes != 1) buffer += "s";
 	return buffer;
+}
+
+// Displays the Captain's quest log.
+public function displayQuestLog():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	addGhostButton(14, "Back", showCodex);
+	
+	output2("<b>Captain's Log:</b>");
+	
+	// Main Questline:
+	output2("\n<b>MAIN MISSION:</b>");
+	var mainCount:int = 0;
+	// Mhen'ga
+	if(flags["RIVALCONFIGURED"] != undefined)
+	{
+		output2("\n<b><u>Mhen'ga</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined) output2(" Coordinates received, Did not engage [rival.name]");
+		else if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined) output2(" Coordinates received, Won against Dane");
+		else if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(" Coordinates received, Lost against Dane");
+		else output2(" <i>In progress...</i>");
+		mainCount++;
+	}
+	// Tarkus
+	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	{
+		output2("\n<b><u>Tarkus</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["PLANET_3_UNLOCKED"] != undefined) output2(" Coordinates received");
+		else output2(" <i>In progress...</i>");
+		if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", gave probe to Shekka");
+		if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
+		{
+			output2("\n<b>* The Stellar Tether:</b>");
+			if(flags["STELLAR_TETHER_CLOSED"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0)
+			{
+				if(flags["TARKUS_DESTROYED"] != undefined) output2(" Planet destroyed from pirates of the <i>Tarasque</i>");
+				else output2(" Planet saved from pirates of the <i>Tarasque</i>");
+			}
+			else output2(" <i>In progress...</i>");
+			if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n* The Stellar Tether, Time-Bomb Countdown: " + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
+		}
+		mainCount++;
+	}
+	// Myrellion
+	if(flags["PLANET_3_UNLOCKED"] != undefined)
+	{
+		output2("\n<b><u>Myrellion</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(9999 == 0) output2(" Coordinates received");
+		else output2(" <i>In progress...</i> STILL IN DEVELOPMENT");
+		mainCount++;
+	}
+	// Nothing recorded
+	if(mainCount == 0)
+	{
+		output2("\n<b><u>Not Available</u></b>");
+		output2("\n* <i>No data from your main mission has been logged.</i>");
+	}
+	
+	// Side quests:
+	output2("\n\n<b>SIDE MISSION:</b>");
+	var sideCount:int = 0;
+	// Zil Capture
+	if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined)
+	{
+		output2("\n<b><u>Zil Capture</u></b>");
+		output2("\n<b>* Female Zil:</b>");
+		if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+		else output2(" <i>In progress...</i>");
+		output2("\n<b>* Male Zil:</b>");
+		if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Captured");
+		else output2(" <i>In progress...</i>");
+		output2("\n<b>* Status:</b>");
+		if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined) output2(" Completed");
+		else output2(" <i>In progress...</i>");
+		sideCount++;
+	}
+	// Penny's Zil Problem
+	if(flags["MET_PENNY"] != undefined)
+	{
+		output2("\n<b><u>Penny's Zil Problem</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["ZIL_PROBLEM_DEALT_WITH"] != undefined) output2(" Completed");
+		else output2(" <i>In progress...</i>");
+		sideCount++;
+	}
+	// The Forge Machina
+	if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
+	{
+		output2("\n<b><u>The Forge Machina</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["ROBOT_QUEST_COMPLETE"] == 2) output2(" Robot Retrieved, Completed");
+		else if(flags["ROBOT_QUEST_COMPLETE"] == 1) output2(" Robot Found, Return to Carl");
+		else output2(" <i>In progress...</i>");
+		sideCount++;
+	}
+	// Varmint Wranglin'
+	if(flags["MET_CAMERON"] != undefined)
+	{
+		output2("\n<b><u>Varmint Wranglin'</u></b>");
+		output2("\n<b>* Varmints Captured, Total: </b>");
+		if(flags["VARMINTS_CAUGHT"] != undefined) output2(flags["VARMINTS_CAUGHT"]);
+		else output2("<i>In progress...</i>");
+		// Silicone stuff!
+		var siliconeTotal:int = 0;
+		if(flags["TAKEN_SILICONE_538"] != undefined) siliconeTotal++;
+		if(flags["TAKEN_SILICONE_552"] != undefined) siliconeTotal++;
+		if(flags["TAKEN_SILICONE_556"] != undefined) siliconeTotal++;
+		if(flags["TAKEN_SILICONE_564"] != undefined) siliconeTotal++;
+		if(siliconeTotal > 0) output2("\n<b>* Silicone Collected: </b>" + siliconeTotal);
+		if(siliconeTotal >= 4) output2(", Completed");
+		sideCount++;
+	}
+	// Breaking the male milker
+	if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+	{
+		output2("\n<b><u>Prostate Milker</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] <= 0) output2(" Paid, Fixed!");
+		else if(flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined) output2(" Paid, Repairing...");
+		else output2(" Broken");
+		sideCount++;
+	}
+	// Deck 13
+	if(flags["ANNO_MISSION_OFFER"] != undefined)
+	{
+		output2("\n<b><u>The Ghost Deck</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["ANNO_MISSION_OFFER"] <= 1) output2(" Offered");
+		else
+		{
+			if(flags["DECK13_GRAY_PRIME_DECISION"] == 1) output2(" Completed, Helped Nova with cybernetic bodies");
+			else if(flags["DECK13_GRAY_PRIME_DECISION"] == 2) output2(" Completed, Convinced Nova to make use of gray goo");
+			else if(flags["DECK13_GRAY_PRIME_DECISION"] == 3) output2(" Completed, Killed Nova");
+			else output2(" <i>In progress...</i>");
+			if(flags["ANNO_NOVA_UPDATE"] != undefined && flags["ANNO_MISSION_OFFER"] >= 3)
+			{
+				output2("\n<b>* Nova Update:</b>");
+				if(flags["ANNO_NOVA_UPDATE"] == 2) output2(" Goo Made");
+				else output2(" <i>In progress...</i>");
+			}
+		}
+		sideCount++;
+	}
+	// Colenso's Conspiracy Theories
+	if(flags["SEXBOT_QUEST_STATUS"] != undefined)
+	{
+		output2("\n<b><u>The Hnngularity</u></b>");
+		output2("\n<b>* Sexbots Scanned: </b>");
+		if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined) output(flags["SEXBOTS_SCANNED_FOR_COLENSO"]);
+		else output2(" <i>In progress...</i>");
+		if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
+		{
+			output2(", Complete");
+			if(flags["SEXBOT_QUEST_STATUS"] < 2 && flags["HAND_SOS_ROBOT_DESTROYED"] == undefined && flags["HAND_SO_TALKED_DOWN"] == undefined)
+			{
+				output2("\n<b>* Sexbot Factory:</b> <i>Exploring...</i>");
+			}
+			else
+			{
+				output2("\n<b>* Sexbot Factory:</b>");
+				if(flags["SEXBOT_FACTORY_DISABLED"] != undefined) output2(" Disabled");
+				else if(flags["SEXBOTS_GENDER_SETTING"] == 1) output2(" Active, Male sexbot preferred");
+				else if(flags["SEXBOTS_GENDER_SETTING"] == -1) output2(" Active, Female sexbot preferred");
+				else output2(" Active");
+				if(flags["HAND_SOS_ROBOT_DESTROYED"] != undefined) output2("\n<b>* Firewall:</b> Destroyed");
+				output2("\n<b>* Hand So:</b>");
+				if(flags["HAND_SO_LISTENED_TO"] != undefined) output2(" Listened to,");
+				if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined || flags["HAND_SO_LOOTED"] != undefined)
+				{
+					if(flags["HAND_SO_TALKED_DOWN"] != undefined) output2(" Talked Down to");
+					else output2(" Defeated");
+					if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined) output2(", Console destroyed");
+					else if(flags["HAND_SO_LOOTED"] != undefined && !pc.hasKeyItem("Hand So's Data Bead")) output2(", Disposed of data bead");
+					if(pc.hasKeyItem("Hand So's Data Bead")) output2(", Contained in data bead");
+				}
+				else output2(" <i>Active...</i>");
+			}
+		}
+		sideCount++;
+	}
+	// The Great Ant World War
+	if(9999 == 0)
+	{
+		output2("\n<b><u>War in Myrellion</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(9999 == 0) output2(" ???");
+		else output2(" <i>In progress... STILL IN DEVELOPMENT</i>");
+		sideCount++;
+	}
+	// IrelliaQuest
+	if(flags["IRELLIA_QUEST_STATUS"] != undefined)
+	{
+		output2("\n<b><u>IrelliaQuest</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["IRELLIA_QUEST_STATUS"] == 0) output2(" Refused");
+		else if(flags["IRELLIA_QUEST_STATUS"] == -1) output2(" Failed, Bomb exploded");
+		else if(flags["IRELLIA_QUEST_STATUS"] == 2) output2(" Investigating, Attend unification rally");
+		else if(flags["IRELLIA_QUEST_STATUS"] == 3) output2(" Investigated, Not reported");
+		else if(flags["IRELLIA_QUEST_STATUS"] == 4) output2(" Investigated, Reported");
+		else if(flags["IRELLIA_QUEST_STATUS"] >= 5) output2(" Investigated, Completed");
+		else output2(" <i>In progress...</i>");
+		sideCount++;
+	}
+	// "All the Feels: The Quest"
+	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] != undefined)
+	{
+		if(flags["LEARNED_IAYAS_FATE"] == undefined) output2("\n<b><u>In Love and War</u></b>");
+		else output2("\n<b><u>War is Hell</u></b>");
+		output2("\n<b>* Sierva's Request:</b>");
+		if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == 1) output2(" Refused");
+		else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == 2)
+		{
+			if(flags["LEARNED_IAYAS_FATE"] == undefined) output2(" Accepted, Find Iaya");
+			else output2(" Accepted, Tell Sievra");
+		}
+		else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == 3) output2(" Accepted, Told Sievra, Completed");
+		sideCount++;
+	}
+	// Red Myr Blood Donation Drive
+	if(flags["NEVRIE_QUEST"] != undefined)
+	{
+		output2("\n<b><u>Nevrie's Co-worker</u></b>");
+		output2("\n<b>* Red Myr Blood Sample:</b>");
+		if(pc.hasKeyItem("Red Myr Blood") || flags["LIEVE_BLOOD_SAMPLE"] != undefined || flags["NEHZARA_BLOOD_SAMPLE"] != undefined || flags["NEVRIE_QUEST"] >= 2)
+		{
+			output2(" Acquired");
+			if(flags["LIEVE_BLOOD_SAMPLE"] != undefined || flags["NEHZARA_BLOOD_SAMPLE"] != undefined) output2(" from");
+			if(flags["LIEVE_BLOOD_SAMPLE"] != undefined) output2(" Lieve");
+			if(flags["LIEVE_BLOOD_SAMPLE"] != undefined && flags["NEHZARA_BLOOD_SAMPLE"] != undefined) output2(" and");
+			if(flags["NEHZARA_BLOOD_SAMPLE"] != undefined) output2(" Nehzara");
+			if(flags["NEVRIE_QUEST"] < 2) output2(", Return to Nevrie");
+		}
+		else if(flags["NEVRIE_QUEST"] >= 2)
+		{
+			output2(", Completed");
+			if(flags["NEVRIE_QUEST"] < 3) output2(", Dr. McAllister is out");
+			else output2(", Lab unlocked");
+		}
+		else output2(" <i>In progress...</i>");
+		sideCount++;
+	}
+	// Ant Hybrids
+	if(flags["MCALLISTER_MYR_HYBRIDITY"] != undefined)
+	{
+		output2("\n<b><u>Myr Hybridity</u></b>");
+		output2("\n<b>* Research:</b>");
+		if(flags["MCALLISTER_MYR_HYBRIDITY"] == 1) output2(" Pending funds...");
+		else if(flags["MCALLISTER_MYR_HYBRIDITY"] == 2)
+		{
+			output2(" Funded");
+			if(GetGameTimestamp() < (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) output2(", Researching...");
+			else output2(", Complete");
+		}
+		if(flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+		{
+			output2("\n<b>* Orange Myr Data Chit:</b>");
+			if(flags["MCALLISTER_MYR_HYBRIDITY"] == 4) output2(" Gave to Juro");
+			else if(pc.hasKeyItem("Orange Myr Data")) output2(" In inventory");
+			else output2(" <i>Missing</i>");
+		}
+		sideCount++;
+	}
+	// Kara's Big Adventure!
+	if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
+	{
+		output2("\n<b><u>KaraQuest</u></b>");
+		output2("\n<b>* First Encounter:</b>");
+		if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored Kara and Shade");
+		else if(flags["DISTRACTED_SHADE"] != undefined) output2(" Distracted Shade");
+		else if(flags["TRIPPED_ON_SHADE"] != undefined) output2(" Tripped on Shade");
+		else if(flags["BETRAYED_KARA"] == 1) output2(" Betrayed Kara by telling Shade");
+		else if(flags["BETRAYED_KARA"] == 2) output2(" Agreed to Shade's Offer to catch Kara");
+		else output2(" <i>In progress...</i>");
+		if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) output2(", Won against Shade");
+		if(flags["KARA_DEFEATED_WITH_SHADE"] != undefined) output2(", Won against Kara");
+		if(flags["LOST_TO_SHADE_WITH_KARA"] != undefined) output2(", Lost against Shade");
+		if(flags["SHADE_PAID_YOU"] != undefined) output2(", Rewarded by Shade");
+		if(flags["KARA_PAID_YOU"] != undefined) output2(", Rewarded by Kara");
+		sideCount++;
+	}
+	// Nothing recorded
+	if(sideCount == 0)
+	{
+		output2("\n<b><u>Not Available</u></b>");
+		output2("\n* <i>No data from side missions have been logged.</i>");
+	}
+	
+	// Distress Calls:
+	output2("\n\n<b>DISTRESS CALLS:</b>");
+	var travelCount:int = 0;
+	// Operation: Phoenix Down
+	if(flags["FALL OF THE PHOENIX STATUS"] != undefined)
+	{
+		output2("\n<b><u>Fall of the Phoenix</u></b>");
+		output2("\n<b>* Status:</b>");
+		if(flags["FALL OF THE PHOENIX DEFEATED PIRATES"] != undefined)
+		{
+			if(flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == 1) output2(" Defeated pirates");
+			else if(flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == -1)  output2(" Lost to pirates");
+			if(flags["FALL OF THE PHOENIX TAKEN SHIELD"] != undefined) output2(", Looted ship");
+			if(flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) output2(", Engines need starting");
+			else if(flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1) output2(", Started engines");
+			else if(flags["FALL OF THE PHOENIX STATUS"] == -1) output2(", Failed to save ship");
+			if(flags["FALL OF THE PHOENIX STATUS"] >= 1) output2(", Saved Captain Saendra");
+		}
+		else if(flags["FALL OF THE PHOENIX STATUS"] == -1) output2(" Ignored call");
+		else output2(" <i>In progress...</i>");
+		
+		//Phoenix status shit
+		output2("\n<b>* The <i>Phoenix</i>, Status:</b>");
+		if(flags["SAENDRA PHOENIX AVAILABLE"] == undefined) output2(" Locked");
+		else if(flags["SAENDRA PHOENIX STATUS TIMES"] >= -1) output2(", Undergoing repairs");
+		else output2(" Unlocked");
+		
+		
+		travelCount++;
+	}
+	// Operation: Tanuki Problems #69
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] != undefined)
+	{
+		output2("\n<b><u>Rescue Kiro from Blueballs</u></b>");
+		output2("\n<b>* Status:</b>");
+		// Did you fix it?
+		if(flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == -1) output2(" Failed to fix machine,");
+		else if(flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == 1) output2(" Fixed machine,");
+		// Did you save her?
+		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+		{
+			output2(" Saved Kiro");
+			if(flags["KIRO_FUCKED_DURING_RESCUE"] != undefined) output2(", Fucked Kiro during rescue");
+		}
+		else if(flags["RESCUE KIRO FROM BLUEBALLS"] == -1)
+		{
+			if(flags["RESCUE KIRO TOOK CUTLASS"] != undefined || flags["RESCUE KIRO TOOK PISTOL"] != undefined || flags["RESCUE KIRO TECHSPEC MACHINE FIX"] != undefined || flags["RESCUE KIRO WAITED TO BOARD"] != undefined) output2(" Refused to rescue");
+			else output2(" Ignored call");
+		}
+		else output2(" <i>In progress</i>");
+		// Rewards or Loot?
+		if(flags["RESCUE KIRO TOOK CUTLASS"] != undefined || flags["RESCUE KIRO TOOK PISTOL"] != undefined) output2(", Looted ship");
+		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output2(", Rewarded");
+		travelCount++;
+	}
+	// Nothing recorded
+	if(travelCount == 0)
+	{
+		output2("\n<b><u>Not Available</u></b>");
+		output2("\n* <i>No data from distress calls have been logged.</i>");
+	}
+	
+	// Misc: (Optional)
+	output2("\n\n<b>MISCELLANEOUS:</b>");
+	var miscCount:int = 0;
+	// Resources, rare elements, etc.
+	if(flags["OXONIUM_FOUND"] != undefined || 9999 == 0)
+	{
+		output2("\n<b><u>Resources</u></b>");
+		// Oxonium
+		if(flags["OXONIUM_FOUND"] != undefined) output2("\n<b>* Oxonium Deposits Found, Total: </b>" + flags["OXONIUM_FOUND"]);
+		miscCount++;
+	}
+	// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
+	if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || 9999 == 0)
+	{
+		output2("\n<b><u>Suspicious Items</u></b>");
+		// Horse wieners
+		if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined)
+		{
+			if(!CodexManager.entryViewed("SynthSheath")) output2("\n<b>* Equine Phallus Found, Total: </b>");
+			else output2("\n<b>* SynthSheath Found, Total: </b>");
+			var horseCocksTotal:int = 0;
+			if(flags["SYNTHSHEATH_ACQUIRED"] != undefined) horseCocksTotal++;
+			if(flags["SYNTHSHEATH_TWO_FOUND"] != undefined) horseCocksTotal++;
+			output2(num2Text(horseCocksTotal));
+		}
+		miscCount++;
+	}
+	// Nothing recorded
+	if(miscCount == 0)
+	{
+		output2("\n<b><u>Not Available</u></b>");
+		output2("\n* <i>No miscellaneous information has been logged.</i>");
+	}
 }
