@@ -1335,7 +1335,7 @@ public function approachEmbrysSecondTransition():void
 	output("\n\n<i>\"Guess what--? I’ve got enough for my next round of treatment!”</i> she gushes. There’s an excited glimmer in her blue eyes. The monkey girl looks like she’s about to start bouncing on the spot!");
 	output("\n\nYou accompany her back to her cabin on the Cappella to witness her transformation. When you arrive, she pulls out the container. It looks exactly the same as last time, and just like last time, the pink haired girl begins removing her clothes.");
 	output("\n\nEmbry is less bashful than last time, but her cheeks are still flushed as she strips in front of you. She then removes the canister, and sits down on the bed. You notice her [embry.nipples] are stiff, and her [embry.thighs] are slightly parted.");
-	output("\n\nYou watch and wait as she self-administers the treatment. It’s not long before her skin is breaking out in that telltale sweat, and her whole body is burning up. <i>\"P-please, hold my hand -- it helps with the spinning,</i> she implores you, and you firmly grab her hand.");
+	output("\n\nYou watch and wait as she self-administers the treatment. It’s not long before her skin is breaking out in that telltale sweat, and her whole body is burning up. <i>\"P-please, hold my hand -- it helps with the spinning,\"</i> she implores you, and you firmly grab her hand.");
 	output("\n\nBefore you her body begins to change. The last remnants of her adam’s apple disappears. Her skin becomes smoother and softer. Her pink fur becomes finer. Between her legs, her [embry.cock] shrinks another inch, retracting back further into her body.");
 	output("\n\nEvery part of her becomes more jaw-droppingly feminine. Her nose becomes adorably small and cute. Her eyelashes become long and beautiful. Her nails extend out, and her fingertips are gorgeously petite. ");
 	output("\n\nBetween her legs, her [embry.balls] pull up and into her body. They stop just short of completely disappearing. She is left a small, soft mound just below her cock that barely rises up from between her womanly thighs.");
@@ -1432,7 +1432,7 @@ public function confrontDatSlovenlyAusar():void
 		if(flags["EMBRY_RELATIONSHIP"] != 3) output("friend");
 		else output("girlfriend");
 		output("’s ass--?”</i> you icily ask him, and pointedly flash your [pc.weapon]. <i>\"You’ve got five seconds to run out of this bar.”</i>");
-		output("\n\n<i>\"If you’re still here by then...<i>“ you lean in, speaking in a low, throaty growl, <i>\"I will grab you, and take you up into space in my starship. And then, I will dump you out of an airlock in the furthest reaches of uncharted space - some place where your body will NEVER be found. Capische, asshole?</i>");
+		output("\n\n<i>\"If you’re still here by then...</i>\" you lean in, speaking in a low, throaty growl, <i>\"I will grab you, and take you up into space in my starship. And then, I will dump you out of an airlock in the furthest reaches of uncharted space - some place where your body will NEVER be found. Capische, asshole?</i>\"");
 	}
 	output("\n\nThe scruffy ausar looks mortified, and can’t get out of the bar quickly enough. He flees with his tail literally between his legs. It seems he definitely did not want to pick a fight with you.");
 	output("\n\nWhen you turn around, [embry.name] is self-consciously flattening down the back of her skirt, and her cheeks are burning brightly. <i>“... Y-you’re so cool!”</i> she stammers out, gratitude written all over her face.");
