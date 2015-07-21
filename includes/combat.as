@@ -1056,6 +1056,10 @@ public function staticBurst():void {
 		pc.addStatusValue("Cockvine Grip", 1, -2);
 		if (pc.statusEffectv1("Cockvine Grip") < 0) pc.setStatusValue("Cockvine Grip", 1, 0);
 	}
+	if(foes[0] is MaidenVanae || foes[0] is HuntressVanae)
+	{
+		pc.removeStatusEffect("Trip");
+	}
 	output("\n");
 	processCombat();
 }
