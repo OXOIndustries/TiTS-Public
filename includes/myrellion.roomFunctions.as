@@ -467,6 +467,8 @@ public function noManzLandBonus():Boolean
 		if(CodexManager.entryUnlocked("Cockvines")) choices[choices.length] = adultCockvineEncounter;
 		choices[choices.length] = cockvineSeedlingEncounter;
 		choices[choices.length] = encounterNyreaBeta;
+		choices[choices.length] = approachMyrDeserters;
+		choices[choices.length] = approachMyrDeserters;
 
 		//Run the event
 		choices[rand(choices.length)]();

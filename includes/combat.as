@@ -1616,6 +1616,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is MyrInfectedFemale) infectedMyrAI();
 	else if (aggressor is DoctorLash) docLashAI();
 	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
+	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
+	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1769,6 +1771,10 @@ public function victoryRouting():void
 	{
 		queenOfTheDeepPCVictory();
 	}
+	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter)
+	{
+		winVsAntGrillDeserts();
+	}
 	else genericVictory();
 }
 
@@ -1918,6 +1924,10 @@ public function defeatRouting():void
 	else if (foes[0] is QueenOfTheDeep)
 	{
 		queenOfTheDeepPCLoss();
+	}
+	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter)
+	{
+		loseToAntGrillDeserts();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2246,6 +2256,12 @@ public function startCombat(encounter:String):void
 			break;
 		case "QueenOfTheDeep":
 			chars["QUEENOFTHEDEEP"].prepForCombat();
+			break;
+		case "Gold Deserter":
+			chars["GOLD_DESERTER"].prepForCombat();
+			break;
+		case "Red Deserter":
+			chars["RED_DESERTER"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

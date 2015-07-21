@@ -56,7 +56,7 @@ package classes.Engine.Combat
 			if (special == "melee")
 			{				
 				// Melee crit
-				if(attacker.critBonus(true) >= rand(100) + 1 && attacker is PlayerCharacter)
+				if(attacker.critBonus(true) >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);

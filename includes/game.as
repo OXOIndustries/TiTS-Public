@@ -1343,6 +1343,12 @@ public function processTime(arg:int):void {
 					//She pops eggs without you seeing.
 					if(flags["RASKVEL_PREG_TIMER"] < -5) flags["RASKVEL_PREG_TIMER"] = undefined;
 				}
+				//Myr preggo shit
+				if(flags["BRIHA_INCUBATION_TIMER"] != undefined) flags["BRIHA_INCUBATION_TIMER"]++;
+				if(flags["BRIHA_LATEST_SPAWN_AGE"] != undefined) flags["BRIHA_LATEST_SPAWN_AGE"]++;
+				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]++;
+				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]++;
+
 				// Tick up all of the attached mimbranes days since last fed
 				mimbranesIncreaseDaysSinceFed();
 				
@@ -1872,6 +1878,7 @@ public function statisticsScreen():void
 	{
 		output2("\n<b><u>Reproduction Statistics:</u></b>\n");
 		output2("<b>Births, Total: </b>" + StatTracking.getStat("pregnancy/total births") + "\n");
+
 		if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
 			output2("<b>Births, Cockvines: </b>" + StatTracking.getStat("pregnancy/cockvine seedlings birthed") + "\n");
 		if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
@@ -1890,6 +1897,12 @@ public function statisticsScreen():void
 			output2("<b>Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total") + "\n");
 		if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
 			output2("<b>Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care") + "\n");
+		if(StatTracking.getStat("pregnancy/briha kids") > 0)
+			output2("<b>Fathered, Briha Children: </b>" + StatTracking.getStat("pregnancy/briha kids") + "\n");
+		if(StatTracking.getStat("pregnancy/briha sons") > 0)
+			output2("<b>Fathered, Briha Sons: </b>" + StatTracking.getStat("pregnancy/briha sons") + "\n");
+		if(StatTracking.getStat("pregnancy/briha daughters") > 0)
+			output2("<b>Fathered, Briha Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters") + "\n");
 	}
 
 	//======PARASITE STATISTICS=====//

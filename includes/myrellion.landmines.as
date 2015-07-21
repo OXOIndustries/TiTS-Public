@@ -2,7 +2,7 @@ import classes.Creature;
 import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
-	if (rand(100) <= 3)
+	if (rand(100) <= 2)
 	{
 		flags["ENCOUNTERED_LANDMINES"] = 1;
 

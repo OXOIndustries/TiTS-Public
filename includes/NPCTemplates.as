@@ -354,6 +354,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["QUEENOFTHEDEEP"] = new QueenOfTheDeep();
 	}
+	if (!justUpdate || (justUpdate && chars["RED_DESERTER"] == undefined))
+	{
+		chars["RED_DESERTER"] = new MyrRedFemaleDeserter();
+	}
+	if (!justUpdate || (justUpdate && chars["GOLD_DESERTER"] == undefined))
+	{
+		chars["GOLD_DESERTER"] = new MyrGoldFemaleDeserter();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

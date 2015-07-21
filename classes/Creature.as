@@ -1510,6 +1510,9 @@
 				case "oneCock":
 					buffer = oneCock();
 					break;
+				case "oneCockHead":
+					buffer = oneCockHead();
+					break;
 				case "balls":
 					buffer = ballsDescript();
 					break;
@@ -4209,8 +4212,8 @@
 			}
 			
 			//Noun selection:
-			if(belly < 10) sBuilder += "midriff";
-			else if(belly < 20 && rand(2) == 0) sBuilder += "middle";
+			if(belly < 10 && rand(4) == 0) sBuilder += "midriff";
+			else if(belly < 20 && rand(3) == 0) sBuilder += "middle";
 			else sBuilder += "belly";
 			
 			return sBuilder;
