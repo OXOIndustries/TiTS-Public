@@ -144,7 +144,8 @@ public function combatBlurb(gold:Boolean = false):void
 		else output("gold. A ragged looking female myrmedion is standing above you. The chipped, gleaming edge of a bayonet - and the barrel of the trench shotgun it is attached to - are pointed directly at your face.");
 
 		output("\n\n<i>“You’ve got terrible luck, off-worlder, running into the likes of me,”</i> she dryly smiles. ");
-		if(gold) output("A notable scar mars her otherwise pretty mouth/Red: There’s a distinct scar over her right eye, which is half closed");
+		if(gold) output("A notable scar mars her otherwise pretty mouth");
+		else output("There’s a distinct scar over her right eye, which is half closed");
 		output(". <i>“... I’m going to help myself to your things. Maybe I’ll help myself to you too, while I’m at it.”</i>");
 
 		output("\n\n<i>“It’s the rules of this place, so don’t feel too hard done by - I’ve been on the receiving end as well. It’s just your turn, that’s all.”</i>");
@@ -488,7 +489,7 @@ public function specialRedAntPreggosShitEvent():void
 	else output("a ragged looking red deserter");
 	output(". She’s carrying a ");
 	//overFourMonthsPregnant: 
-	if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("small child wrapped in a bundle in her arms");
+	if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("small child wrapped in a bundle in her arms");
 	else output("pale white egg in in her arms");
 	output(".");
 
@@ -496,7 +497,7 @@ public function specialRedAntPreggosShitEvent():void
 	if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == undefined)
 	{
 		output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, gently stroking the ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("baby’s cheek");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("baby’s cheek");
 		else output("eggshell");
 		output(". <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix</i>that<i> up.”</i>");
 		flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
@@ -505,7 +506,7 @@ public function specialRedAntPreggosShitEvent():void
 	else if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == 1)
 	{
 		output("\n\n<i>“Hi there, soldier. You’ve gone and done it again - another bundle of joy,”</i> she grins, gently stroking the ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("baby’s cheek");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("baby’s cheek");
 		else output("eggshell");
 		output(". <i>“We really do have beautiful children, you know?”</i>");
 		flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
@@ -514,7 +515,7 @@ public function specialRedAntPreggosShitEvent():void
 	else
 	{
 		output("\n\n<i>“Hi there, soldier. You missed the big event - lucky you!”</i> she smiles, gently stroking the ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("baby’s cheek");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("baby’s cheek");
 		else output("eggshell");
 		output(". <i>“");
 		if(flags["RED_MYR_BIRTHS"] == undefined) output("Hurt more than getting shot, but </i>so<i> worth it.");
@@ -542,13 +543,13 @@ public function specialRedAntPreggosShitEvent():void
 		output("\n\n<i>“See? She takes after you. Her name is Aya, after my grandmother,”</i> Briha smiles, then adds, <i>“...And before you say anything, I had to push her out, so I get to name her.”</i>");
 		output("\n\nIt’s a girl. You have a baby girl named Aya Steele. You’re a <i>father</i>.");
 		output("\n\n<i>“Okay, your time to hold her,”</i> her amber-haired mother tells you, hoisting ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("your newborn daughter");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("your newborn daughter");
 		else output("the egg");
 		output(" into your arms. You smile down at the bundle-wrapped baby, stroking ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("her smooth, puffy cheek.");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("her smooth, puffy cheek.");
 		else output("her outer shell, protecting her from the world she has yet to enter.");
 
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] >= 120) output("\n\nYour heart stops as your little daughter smiles up at you - an innocent, perfect little smile - and grabs one of your fingers. Her tiny hand clasps it and doesn’t let go. The world seems to stop, just for that perfect moment.");
+		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("\n\nYour heart stops as your little daughter smiles up at you - an innocent, perfect little smile - and grabs one of your fingers. Her tiny hand clasps it and doesn’t let go. The world seems to stop, just for that perfect moment.");
 		output("\n\nCoughing a little, Briha hugs her waist. There’s a tense look on her face. <i>“... Look. I’m a deserter. It-it breaks my heart into a million pieces, but you should take Aya. This place - not just the wastelands, but Myrellion - I don’t want her growing up here.”</i>");
 		output("\n\nYou look at her intently. Her words are heavy, like each one is an effort to push out. Motherly concern is written all over her scarred face.");
 		output("\n\n<i>“It’s a no-brainer, right? This world might end any moment, and even if it doesn’t, I’m a deserter. The Scarlet Federation will never take me back and I can never go to the Golds. What kind of future can she have here?”</i> She strokes ");
