@@ -11,6 +11,9 @@
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Melee.SurvivalAxe;
 	import classes.Items.Guns.MyrRifle;
+	import classes.Items.Miscellaneous.Picardine;
+	import classes.Items.Miscellaneous.Kirkite;
+	import classes.Items.Miscellaneous.Satyrite;
 	
 	import classes.GLOBAL;
 	
@@ -190,6 +193,8 @@
 			var RedMyr:MyrRedFemaleDeserter = this.makeCopy();
 			
 			RedMyr.credits = rand(200);
+			if (rand(20) == 0) RedMyr.inventory.push(new Kirkite());
+			else if(rand(20) == 0) RedMyr.inventory.push(new Satyrite());
 					
 			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			//RedMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
@@ -199,6 +204,8 @@
 			if(kGAMECLASS.flags["KNOW_RED_MYR_NAME"] != undefined) 
 			{
 				short = "Briha";
+				a = "";
+				capitalA = "";
 				kGAMECLASS.showName("FIGHT:\nBRIHA");
 			}
 			kGAMECLASS.foes.push(RedMyr);

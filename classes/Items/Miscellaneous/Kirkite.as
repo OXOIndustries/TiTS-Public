@@ -8,37 +8,37 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class Cargobot extends ItemSlotClass
+	public class Kirkite extends ItemSlotClass
 	{
 		//constructor
-		public function Cargobot()
+		public function Kirkite()
 		{
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.ACCESSORY;
+			this.type = GLOBAL.GEM;
 			
 			//Used on inventory buttons
-			this.shortName = "Cargobot";
+			this.shortName = "Kirkite";
 			
 			//Regular name
-			this.longName = "hovering cargobot";
+			this.longName = "kirkite crystal";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a hovering cargobot";
+			this.description = "a kirkite crystal";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This hovering cargobot is as custom made as they come. Its frame appears to have been \"donated\" from a busted service-droid, the legs replaced miniaturized plasma motor that allows it to hover. Its shoulders have two bins welded to them, and the arms are long gone. It appears that its only purpose is to carry items for you. (+2 inventory slots while equipped in your accessory slot).";
+			this.tooltip = "An uncommon crystal formation that is rarely found in the galactic core, kirkite deposits seem to increase in size and quantity the farther one gets from Terra. Some scientists have also found a correlation between kirkite density and the color of a planet's dominant sapient. Planets rich in greenskins always seem to have denser deposits this curious gem. No suitable explanation for this phenomenon has yet been postulated.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1250;
+			this.basePrice = 2000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

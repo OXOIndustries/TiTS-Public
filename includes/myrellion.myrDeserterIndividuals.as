@@ -120,6 +120,7 @@ public function approachMyrDeserters():void
 
 public function combatBlurb(gold:Boolean = false):void
 {
+	author("Jim Thermic");
 	foes = new Array();
 	if(gold) chars["GOLD_DESERTER"].prepForCombat();
 	else chars["RED_DESERTER"].prepForCombat();
@@ -179,6 +180,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	if(gold) chars["GOLD_DESERTER"].prepForCombat();
 	else chars["RED_DESERTER"].prepForCombat();
 	showDeserter(gold);
+	author("Jim Thermic");
 	//Encounter is pregnant red myr deserter:
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
@@ -284,6 +286,7 @@ public function fightADumbShitAntWaifu(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	output("You pull out your [pc.weapon]. [monster.name] clicks her tongue. <i>“... Damn. Oh well, it was worth a try, right?”</i>");
 	output("\n\n<b>It’s a fight!</b>");
 	processTime(1);
@@ -297,6 +300,7 @@ public function runFromDatAntSloot(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	output("You decide to avoid dealing with [monster.name] altogether. As she stands there with a dumbfounded expression, you slip off.");
 	processTime(2);
 	clearMenu();
@@ -308,6 +312,7 @@ public function talkToAntSloots(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	output("Since you’re not going to fight, you decide to sit down with [monster.name] and talk. What do you chat about?");
 	processTime(1);
 	//[About Her] [Desertion] [Scars] [Leave]
@@ -321,6 +326,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	output("Which act will you perform?");
 	clearMenu();
 	
@@ -374,6 +380,7 @@ public function leaveAntShits(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	output("You say your goodbyes and go on your way.");
 	processTime(2);
 	clearMenu();
@@ -385,6 +392,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	//Red/Briha:
 	if(!gold)
 	{
@@ -413,6 +421,7 @@ public function askAntSlootsAboutDesertion(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	//Red/Briha:
 	if(!gold)
 	{
@@ -442,6 +451,7 @@ public function askAntDesertersAboutScurrs(gold:Boolean = false):void
 {
 	clearOutput();
 	showDeserter(gold);
+	author("Jim Thermic");
 	//Red/Briha:
 	if(!gold)
 	{
@@ -470,6 +480,7 @@ public function askAntDesertersAboutScurrs(gold:Boolean = false):void
 public function specialRedAntPreggosShitEvent():void
 {
 	showDeserter(false);
+	author("Jim Thermic");
 	// This is a once-off scene that occurs three or more months after red myr impregnation. The next encounter with the red myr / Briha is this one, where she hands over her egg (or child, if it’s beyond four months) to Steele to have transferred to the nursery.
 	// Also treating the first Briha kid as speshul and remembering her details, because Jim will probably write stuff later for her.
 	output("\n\nNearby, you spot ");
@@ -775,6 +786,7 @@ public function antGrillLustAttacku(gold:Boolean = false):void
 //PC Loss
 public function loseToAntGrillDeserts():void
 {
+	author("Jim Thermic");
 	var gold:Boolean = (foes[0] is MyrGoldFemaleDeserter);
 	//HP Loss:
 	if(pc.HP() <= 0)
@@ -817,6 +829,7 @@ public function winVsAntGrillDeserts():void
 	clearOutput();
 	var gold:Boolean = (foes[0] is MyrGoldFemaleDeserter);
 	showDeserter(gold);
+	author("Jim Thermic");
 	//HP Loss:
 	if(foes[0].HP() <= 0)
 	{
@@ -920,6 +933,7 @@ public function genericVictoryLeaveMyr():void
 public function handPlayForGoldWaifusInTraining():void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(!inCombat())
 	{
 		foes[0] = new MyrGoldFemaleDeserter();
@@ -1048,6 +1062,7 @@ public function handPlayForGoldWaifusInTraining():void
 public function analRedButtStuffMcStuffinButts():void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(!inCombat())
 	{
 		foes[0] = new MyrRedFemaleDeserter();
@@ -1136,6 +1151,7 @@ public function analRedButtStuffMcStuffinButts():void
 public function cumSplurgeForRedAntSloots():void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(!inCombat())
 	{
 		foes[0] = new MyrRedFemaleDeserter();
@@ -1310,6 +1326,7 @@ public function cumSplurgeForRedAntSloots():void
 public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(inCombat()) gold = (foes[0] is MyrGoldFemaleDeserter);
 	else
 	{
@@ -1479,6 +1496,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 public function redDildoScrew():void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(!inCombat())
 	{
 		foes[0] = new MyrRedFemaleDeserter();
@@ -1757,6 +1775,7 @@ public function redDildoScrew():void
 public function sitAndScrewGoldMyr():void
 {
 	clearOutput();
+	author("Jim Thermic");
 	if(!inCombat())
 	{
 		foes[0] = new MyrGoldFemaleDeserter();

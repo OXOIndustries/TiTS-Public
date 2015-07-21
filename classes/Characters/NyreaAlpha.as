@@ -12,8 +12,12 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Guns.EagleHandgun;
 	import classes.Items.Guns.LaserPistol;
+	import classes.Items.Miscellaneous.Picardine;
+	import classes.Items.Miscellaneous.Kirkite;
+	import classes.Items.Miscellaneous.Satyrite;
 	
 	import classes.GLOBAL;
+	
 	
 	/**
 	 * ...
@@ -196,15 +200,11 @@
 			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
 			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
 			
-			if (rand(20) == 0)
-			{
-				nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
-			}
-			
-			if (rand(15) == 0)
-			{
-				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			}
+			if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
+			else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
+			else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
+			else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
+			else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			kGAMECLASS.nyreaHeader(1,"FIGHT:");
 			kGAMECLASS.foes.push(nyrea);
 		}

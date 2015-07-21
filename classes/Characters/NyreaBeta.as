@@ -1,4 +1,4 @@
-package classes.Characters 
+﻿package classes.Characters 
 {
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -8,9 +8,12 @@ package classes.Characters
 	import classes.Util.RandomInCollection;
 
 	import classes.Items.Melee.NyreanSpear;
-	
+	import classes.Items.Miscellaneous.Picardine;
+	import classes.Items.Miscellaneous.Kirkite;
+	import classes.Items.Miscellaneous.Satyrite;
 	import classes.GLOBAL;
 	import classes.CockClass;
+	
 	
 	/**
 	 * ...
@@ -179,7 +182,8 @@ package classes.Characters
 		override public function prepForCombat():void
 		{
 			var nyrea:NyreaBeta = this.makeCopy();
-			
+			if (rand(20) == 0) nyrea.inventory.push(new Kirkite());
+			else if(rand(20) == 0) nyrea.inventory.push(new Satyrite());
 			nyrea.tallness = 60 + (rand(10) - 5);
 			
 			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);

@@ -11,7 +11,10 @@
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Melee.SurvivalAxe;
 	import classes.Items.Guns.BoltActionRifle;
-	
+	import classes.Items.Miscellaneous.Picardine;
+	import classes.Items.Miscellaneous.Kirkite;
+	import classes.Items.Miscellaneous.Satyrite;
+
 	import classes.GLOBAL;
 	
 	/**
@@ -193,7 +196,8 @@
 			var GoldMyr:MyrGoldFemaleDeserter = this.makeCopy();
 			
 			GoldMyr.credits = rand(200);
-					
+			if(rand(20) == 0) GoldMyr.inventory.push(new Kirkite());
+			else if(rand(20) == 0) GoldMyr.inventory.push(new Satyrite());
 			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			//GoldMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
 			
@@ -202,6 +206,8 @@
 			if(kGAMECLASS.flags["KNOW_GOLD_MYR_NAME"] != undefined) 
 			{
 				short = "Lys";
+				a = "";
+				capitalA = "";
 				kGAMECLASS.showName("FIGHT:\nLYS");
 			}
 			kGAMECLASS.foes.push(GoldMyr);

@@ -8,37 +8,37 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class Cargobot extends ItemSlotClass
+	public class Picardine extends ItemSlotClass
 	{
 		//constructor
-		public function Cargobot()
+		public function Picardine()
 		{
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.ACCESSORY;
+			this.type = GLOBAL.GEM;
 			
 			//Used on inventory buttons
-			this.shortName = "Cargobot";
+			this.shortName = "Picardine";
 			
 			//Regular name
-			this.longName = "hovering cargobot";
+			this.longName = "picardine crystal";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a hovering cargobot";
+			this.description = "a picardine crystal";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This hovering cargobot is as custom made as they come. Its frame appears to have been \"donated\" from a busted service-droid, the legs replaced miniaturized plasma motor that allows it to hover. Its shoulders have two bins welded to them, and the arms are long gone. It appears that its only purpose is to carry items for you. (+2 inventory slots while equipped in your accessory slot).";
+			this.tooltip = "Few gems are prized for scientific purposes quite as much as picardine. Used for everything from intelligence-boosting supplements to artificial intelligence cores, this plain-looking crystal fetches quite a high price on the open market. When it comes to research, nothing \"makes it so\" quite like picardine.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1250;
+			this.basePrice = 7000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;

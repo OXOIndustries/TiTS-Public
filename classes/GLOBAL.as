@@ -705,6 +705,7 @@
 		public static const GADGET:int 								   = 13;
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
 		public static const QUESTITEM:int							   = 15;
+		public static const GEM:int 								   = 16;
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;
