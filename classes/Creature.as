@@ -1800,6 +1800,9 @@
 				case "cocktype":
 					buffer = cockShape(arg2);
 					break;
+				case "accurateCockName":
+					buffer = accurateCockName(arg2);
+					break;
 				case "tailCockColor":
 				case "tailCuntColor":
 				case "tailGenitalColor":
@@ -8965,7 +8968,16 @@
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cockNounComplex()</b>";
 			return cockNoun(cocks[arg].cType, false);
 		}
-		
+		//Spit back an accurate name for the cock
+		public function accurateCockName(cockIndex:int):String
+		{
+			var collection:Array = new Array();
+			var type:String = GLOBAL.TYPE_NAMES[cocks[cockIndex].cType];
+			type = type.toLowerCase();
+			var name:String = RandomInCollection(["prick","cock","cock","cock","penis","tool","member","pecker","dong","phallus","phallus","dick","dick","dick"]);
+			
+			return type + " " + name;
+		}
 		// Spit back a singular word related to the shape of the target cock, with the minimum
 		// of ambiguity. Basically describe a very clear feature of the cock, either its type or a flag.
 		// I didn't want to potentially fuck up an existing descriptor in the process, so I've opted to keep it separate.

@@ -79,7 +79,7 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("#" + (y+1) + ": [pc.cockNounComplex " + y + "]\n")
+		output("#" + (y+1) + ": [pc.AccurateCockName " + y + "]\n")
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
@@ -182,7 +182,7 @@ public function dickBoxTF(args:Array):void
 	testChar.createCock();
 	testChar.shiftCock(0,args[1]);
 	//Cause ausar are too cool for sheaths.
-	if(args[1] == GLOBAL.TYPE_CANINE) testChar.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
+	if(args[1] == GLOBAL.TYPE_CANINE) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
 	if(testChar.hasKnot(0) && !pc.hasKnot(args[0]))
 	{
 		output(" Your [pc.cock " + args[0] + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");
