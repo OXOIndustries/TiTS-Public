@@ -566,8 +566,8 @@ public function appearance(target:Creature):void {
 			output2(" A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_FELINE) {
-			if(target.tailCount == 1) output2(" A soft " + target.hairColor + " cat-tail sprouts just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " soft, " + target.hairColor + " cat-tails sprout just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
+			if(target.tailCount == 1) output2(" A soft " + target.furColor + " cat-tail sprouts just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
+			else output2(" " + upperCase(num2Text(target.tailCount)) + " soft, " + target.furColor + " cat-tails sprout just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_LIZAN) {
 			output2(" A tapered tail hangs down from just above your " + target.buttDescript() + ". It sways back and forth, assisting you with keeping your balance.");
