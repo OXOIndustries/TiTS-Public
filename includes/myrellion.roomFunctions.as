@@ -132,14 +132,14 @@ public function myrellionTaxiMenu():void
 		if(pc.credits >= 150) addButton(0,"ScoutAuth.",takeATransPortMyrellion,"610","Scout Authority","Spend 150 credits to go back to the scout authority in the DMZ.");
 		else addDisabledButton(0,"ScoutAuth.","Scout Authority","You can't afford the taxi fee.");
 	}
-	if(currentLocation == "1L18") addDisabledButton(1,"NoMan'sLand","No Man's Land","You're already at that taxi stop.");
+	if(currentLocation == "1L18") addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You're already at that taxi stop.");
 	else
 	{
-		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(1,"NoMan'sLand","No Man's Land","You haven't unlocked the comm array in no man's land yet.");
+		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You haven't unlocked the comm array in no myr's land yet.");
 		else
 		{
-			if(pc.credits >= 150) addButton(1,"NoMan'sLand",takeATransPortMyrellion,"1L18","No Man's Land","Spend 150 credits to go to no man's land.");
-			else addDisabledButton(1,"NoMan'sLand","No Man's Land","You can't afford the taxi fee.");
+			if(pc.credits >= 150) addButton(1,"NoMyr'sLand",takeATransPortMyrellion,"1L18","No Myr's Land","Spend 150 credits to go to no myr's land.");
+			else addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You can't afford the taxi fee.");
 		}
 	}
 	if(currentLocation == "2I7") addDisabledButton(2,"Deep Caves","Deep Caves","You're already at the deep caves taxi beacon!");

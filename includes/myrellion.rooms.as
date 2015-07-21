@@ -1479,7 +1479,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N8"] = new RoomClass(this);
 	rooms["1N8"].roomName = "NEAR\nKRESSIA";
-	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of \"no man's land\": vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads \"Nearing Kressia, the friendliest city near the surface!\" followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
+	rooms["1N8"].description = "To the south, you can see the beginnings of the Scarlet Federation military presence in the dark depths of \"no myr's land\": vehicles and bunkers, all abandoned during the cease-fire your government caused. The passage to the west grows smaller and thinner, barely wide enough for a single vehicle to pass through. A sign bolted to the cavern wall reads \"Nearing Kressia, the friendliest city near the surface!\" followed by the picture of a particularly voluptuous gold ant advertising a famous bath house.";
 	rooms["1N8"].planet = "PLANET: MYRELLION";
 	rooms["1N8"].system = "SYSTEM: SINDATHU";
 	rooms["1N8"].westExit = "1L8";
@@ -1597,7 +1597,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1N22"] = new RoomClass(this);
 	rooms["1N22"].roomName = "\nCAVERN";
-	rooms["1N22"].description = "No man's land is the only phrase to describe this long, barren stretch of cavern. While the passage is wide open and high-vaulted, there's nothing but devastation to be found wherever you look. It's difficult to pick your way through the mass of barbed wire and piled sandbags, but at least the fungus on the top of the cavern makes it easy to see.";
+	rooms["1N22"].description = "No myr's land is the only phrase to describe this long, barren stretch of cavern. While the passage is wide open and high-vaulted, there's nothing but devastation to be found wherever you look. It's difficult to pick your way through the mass of barbed wire and piled sandbags, but at least the fungus on the top of the cavern makes it easy to see.";
 	rooms["1N22"].planet = "PLANET: MYRELLION";
 	rooms["1N22"].system = "SYSTEM: SINDATHU";
 	rooms["1N22"].northExit = "1N20";

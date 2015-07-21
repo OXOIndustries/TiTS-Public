@@ -2716,7 +2716,7 @@ public function embryAnalSex():void
 		output("\n\nBoth you and [embry.name] climax at the same time, and she cries out with delight, her [embry.asshole] madly clenching the strap on ");
 		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output("Her [embry.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
-		output("\n\nWhen you pull your strap-on out from her ass, there is a plopping noise from her [embry.asshole], and she lets out a blissful little sigh. You relish in the sight of [embry.noun] laying spend over the table, her skirt flipped up, and her [embry.asshole] ");
+		output("\n\nWhen you pull your strap-on out from her ass, there is a plopping noise from her [embry.asshole], and she lets out a blissful little sigh. You relish in the sight of [embry.name] laying spent over the table, her skirt flipped up, and her [embry.asshole] ");
 		if(embry.analVirgin)
 		{
 			output("totally deflowered");

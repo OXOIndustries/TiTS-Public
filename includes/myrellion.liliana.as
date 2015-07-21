@@ -398,7 +398,7 @@ public function sexUpDatAntBitch():void
 		else output("smooth head");
 		output(" and pulls you tighter against her.");
 
-		output("\n\nYou let your [pc.tongue] wander lower, teasing her pussy’s soaking entrance. You knead the thin muscle of her legs, stopping when you reach the place where skin transitions to chitin. The ant-girl’s legs clench tighter in response, trying to holding you tight but failing when they don’t find their mark. The rising volume of her moans are muted by her warm body, and you continue to lick until you feel her empty hole begin to twitch spasmodically.");
+		output("\n\nYou let your [pc.tongue] wander lower, teasing her pussy’s soaking entrance. You knead the thin muscle of her legs, stopping when you reach the place where skin transitions to chitin. The ant-girl’s legs clench tighter in response, trying to hold you tight but failing when they don’t find their mark. The rising volume of her moans are muted by her warm body, and you continue to lick until you feel her empty hole begin to twitch spasmodically.");
 
 		output("\n\nYou slip around her fruitless leg-lock, swiftly moving to kiss her while the electric lust of orgasm still courses along her nerves. She tries to return it, but the pulses of feeling prevent her from putting forth too much effort. When she calms you pull away, stripping out of your [pc.lowerGarment]. Liliana stares in anticipation as you undress, looking at your ");
 		if(pc.hasCock() && pc.hasVagina()) output("[pc.cocks] and [pc.vaginas]");
