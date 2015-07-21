@@ -630,15 +630,18 @@ public function flyTo(arg:String):void {
 		output(" and step out of your ship.");
 		if(flags["LANDING_EVENT_CHECK"] == 1)
 		{
-			if(syriIsAFuckbuddy() && !pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
+			if((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew())
 			{
-				gettingSyrisPanties();
-				return;
-			}
-			else if(syriIsAFuckbuddy() && rand(4) == 0)
-			{
-				gettingSyrisPanties();
-				return;
+				if(syriIsAFuckbuddy() && !pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
+				{
+					gettingSyrisPanties();
+					return;
+				}
+				else if(syriIsAFuckbuddy() && rand(4) == 0)
+				{
+					gettingSyrisPanties();
+					return;
+				}
 			}
 			flags["LANDING_EVENT_CHECK"] = undefined;
 		}
