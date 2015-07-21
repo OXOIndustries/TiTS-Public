@@ -2170,7 +2170,7 @@ public function displayQuestLog():void
 	{
 		output2("\n<b><u>The Hnngularity</u></b>");
 		output2("\n<b>* Sexbots Scanned: </b>");
-		if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined) output(flags["SEXBOTS_SCANNED_FOR_COLENSO"]);
+		if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined) output2(flags["SEXBOTS_SCANNED_FOR_COLENSO"]);
 		else output2(" <i>In progress...</i>");
 		if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
 		{
