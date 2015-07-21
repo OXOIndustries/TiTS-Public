@@ -1083,7 +1083,7 @@ public function nyreaTailcockDocking():void
 	
 	output("\n\nAs if on command, you shoot your load into her. Your tail shivers, swells, and busts its nut, flooding the nyrea’s hole with [pc.cum]. Her head rolls back, a cry of exultation leaving her lips as you fuck your jizz deep inside her, slathering her eggs with seed.");
 	if (pc.hasCock()) output(" Her thighs and legs get a coating of spunk a second later as her hands work your [pc.cock] to climax, milking out a thick stream of [pc.cumNoun] from your throbbing erection.");
-	output(" She revels in the feeling of your [pc.cumVisc] inside her");
+	output(" She revels in the feeling of your [pc.cumVisc] [pc.cumNoun] inside her");
 	if (pc.hasCock()) output(" and on her skin and chitin");
 	output(", purring like a wanton slut as you fill her.");
 	

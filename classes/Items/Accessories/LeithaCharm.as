@@ -274,7 +274,7 @@
 					output(" lower body splits, becoming a pair of legs!");
 					if (wrongLegType) output(" They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
 				}
-				else output(" your legs begin to look like those of a leithan, growing chitinous plates and luminescent streaks.");
+				else output(" [pc.legs] begin to look like those of a leithan, growing chitinous plates and luminescent streaks.");
 
 				if (wrongLegType)
 				{

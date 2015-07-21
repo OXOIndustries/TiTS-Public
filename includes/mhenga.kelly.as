@@ -3935,13 +3935,13 @@ public function taurKellyDPCumInside(x:int):void
 		if(y >= pc.totalVaginas()) y = x-1;
 	}
 
-	output("You want all of double-dicked fuckbunny’s seed inside you, filling you impregnating you with her sheer volume of spunk.");
+	output("You want all of the double-dicked fuckbunny’s seed inside you, filling you, impregnating you with her sheer volume of spunk.");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output(" It’s a shame you’re already pregnant, unable to feel the visceral rush of having your womb filled with her warm, sweet jizz.");
 	output(" You push back against her until she’s fallen on her back, her legs hanging open in the perfect position for you to take charge. You begin to gyrate and bob yourself on her, desperate to milk her of her delicious honey-cum. She finally begins to fill you, spilling inside and coating your walls in a sticky yellow.");
 	output("\n\n");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output("You can feel her hot spooge pouring out of you to puddle below, unable to penetrate your sealed cervix. Knowing that she’s cumming so hard, wasting all that virile seed on you, makes it all the more exciting. ");
 	output("You can almost feel your belly swelling up underneath you. She may make others swell like balloons, but not you. ");
-	if(tailginad) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
+	if(tailginad && !pc.hasCock()) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
 	//if tailingulus: 
 	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailGina] insides. ");
 	output("Rope after thick, impregnating rope of her jism fills you, making you cum in an almost motherly bliss.");

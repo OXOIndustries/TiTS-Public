@@ -224,7 +224,7 @@
 				else kGAMECLASS.output(". They start ");
 				kGAMECLASS.output("leaking lubricant as you watch the lips plump and reshape slightly, blotches of yellow and black rolling across your skin as your body adapts to the foreign foods. The shifting hues settle into a shiny, almost lightless black, leaving the exterior of your [pc.vaginas] dusky. You pry ");
 				if(target.vaginaTotal() == 1) kGAMECLASS.output("it");
-				else kGAMECLASS.output("they");
+				else kGAMECLASS.output("them");
 				kGAMECLASS.output(" open to find");
 				if(target.vaginas[x].clits > 1) {
 					kGAMECLASS.output(" yourself with " + kGAMECLASS.num2Text(target.vaginas[x].clits - 1) + " less clit");
@@ -490,7 +490,7 @@
 					{
 						kGAMECLASS.output(" The skin of your [pc.cock " + x + "] is thickening perceptibly.");
 						if(target.hasKnot(x)) kGAMECLASS.output(" It's definitely worst on your knot, which is shrinking away before your eyes. Soon your familiar bulge is reduced to just another part of your smoothing shaft. Higher,");
-						else kGAMECLASS.output("Up");
+						else kGAMECLASS.output(" Up");
 						kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You're growing a long, stretchy foreskin");
 						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT) || target.hasCockFlag(GLOBAL.FLAG_FLARED) || target.hasCockFlag(GLOBAL.FLAG_TAPERED)) 
 							kGAMECLASS.output(", moulding your phallus into a more human-like shape as it develops");

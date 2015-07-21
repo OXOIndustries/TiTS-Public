@@ -1780,8 +1780,9 @@ public function mimbraneSleepEvents():void
 				else output(" it");
 				output(" just clumsily woke you up.");
 				output("\n\nYour hand");
-				if (bothHands) output("s");
-				output(" go numb and become");
+				if (bothHands) output("s go");
+				else output(" goes");
+				output(" numb and become");
 				if (!bothHands) output("s");
 				output(" harder to move. Little parasite eyes blank out next, creeping you out with");
 				if (!bothHands) output(" a dead empty stare");
@@ -1800,9 +1801,9 @@ public function mimbraneSleepEvents():void
 				else output(" skin-tight gloves");
 				output(" now.");
 				output("\n\n");
-				if (!bothHands) output("This glove");
-				else output(" These gloves");
-				output(" are itching to come off. Some liquid trails down your arm from underneath the faux skin. Judging by the smell and appearance, it seems to be Mimbrane sweat. As more space opens up, you realize that your");
+				if (!bothHands) output("This glove is");
+				else output(" These gloves are");
+				output(" itching to come off. Some liquid trails down your arm from underneath the faux skin. Judging by the smell and appearance, it seems to be Mimbrane sweat. As more space opens up, you realize that your");
 				if (!bothHands) output(" hand is");
 				else output(" hands are");
 				output(" drenched in the stuff. The Mimbrane");

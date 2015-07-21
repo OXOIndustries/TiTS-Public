@@ -1323,7 +1323,7 @@ public function shadeTailSex():void
 
 	output("\n\nNow she’s just trying to get you horny again... and its working. Sliding out of her tail-pussy is an agony of over-sensation, and when you finally pull out of her, you’re left with such a cold and exposed sensation that you can’t help but moan.");
 
-	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your writhing parasite by its tip, dragging it all the way up your boy until its stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
+	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your writhing parasite by its tip, dragging it all the way up your body until it's stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
 	if(pc.biggestTitSize() < 1) output("on your chest.");
 	else output("between your tits. You note gleefully that your tits and Shade’s make a perfect sheathe for your tail-cock.");
 
@@ -1335,7 +1335,7 @@ public function shadeTailSex():void
 
 	output("\n\n<i>“See? Ready to go already,”</i> Shade purrs, planting both hands on your chest and pushing herself up to her knees - and taking your cock with her, keeping it trapped between the pliant mounds of her breasts.");
 
-	output("\n\nIn one fluid motion, Shade flips around on her knees and catches your cock with her own tail, coiling around your squirming member as she mounts yo reverse-cowgirl");
+	output("\n\nIn one fluid motion, Shade flips around on her knees and catches your cock with her own tail, coiling around your squirming member as she mounts you reverse-cowgirl");
 	if(pc.hasCock()) output(", her <i>“normal”</i> twat left rubbing dangerously against your [pc.cock]");
 	output(". Her tail pulls yours taut, dragging your cock through the crack of its mistress’s ass before enveloping your crown in her rosy lips.");
 
@@ -1345,7 +1345,7 @@ public function shadeTailSex():void
 
 	output("\n\nThis time, though, you keep yourself restrained until your lover’s openly moaning, and her tail feels so luridly wet that stains are forming under her - from both cunts, you’re pleased to see. You slip your fingers into the one between her legs, making the lusty cat groan as you spread her nice and wide to the beat of your thrusting tail-cock. Shade reaches her climax with a scream that reverberates off the bulkheads, throwing her head back and arching her back in a way only a cat-girl could do, her body all but convulsing in pleasure.");
 
-	output("\n\nHer tail mirrors the rest of her body, squeezing and massaging your cock as it floods with fem-cum. You grunt and let loose, your obligations to the amorous cat-girl fulfilled in the most pleasurable way your can imagine. [pc.cumNoun] spurts from your tail’s slit, filling Shade’s sloppy passage with another hefty helping of spooge.");
+	output("\n\nHer tail mirrors the rest of her body, squeezing and massaging your cock as it floods with fem-cum. You grunt and let loose, your obligations to the amorous cat-girl fulfilled in the most pleasurable way you can imagine. [pc.CumNoun] spurts from your tail’s slit, filling Shade’s sloppy passage with another hefty helping of spooge.");
 
 	output("\n\nThe cat-girl flops back beside you a moment later, breathing hard. You watch her breasts rise and fall, enjoying the feeling of her tail squeezing your still-spasming tail-cock.");
 	processTime(30);
