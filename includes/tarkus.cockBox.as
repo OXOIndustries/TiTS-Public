@@ -181,6 +181,8 @@ public function dickBoxTF(args:Array):void
 	var testChar:Creature = new Creature();
 	testChar.createCock();
 	testChar.shiftCock(0,args[1]);
+	//Cause ausar are too cool for sheaths.
+	if(args[1] == GLOBAL.TYPE_CANINE) testChar.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
 	if(testChar.hasKnot(0) && !pc.hasKnot(args[0]))
 	{
 		output(" Your [pc.cock " + args[0] + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");
@@ -255,6 +257,8 @@ public function dickBoxTF(args:Array):void
 	flags["USED_DONG_DESIGNER"] = 1;
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
+	//Cause ausar are too cool for sheaths.
+	if(args[1] == GLOBAL.TYPE_CANINE) pc.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",useInstalledDickBox);

@@ -248,7 +248,12 @@
 				pc.createCock();
 				pc.cocks[0].cLengthRaw = 5;
 				if(pc.hasPerk("Hung")) pc.cocks[0].cLengthRaw += 2+rand(4);
-				if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
+				if(pc.race() == "ausar" || pc.race() == "half-ausar") 
+				{
+					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
+					//Cause ausar are too cool for sheaths.
+					pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+				}
 			    if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
 			    if(pc.race() == "leithan" || pc.race() == "half-leithan") pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
 			    if(pc.race() == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);

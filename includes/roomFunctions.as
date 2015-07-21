@@ -365,7 +365,7 @@ public function novaElevatorControlPanel():void
 	author("Gedan");
 	showName("NOVA\nELEVATOR");
 	
-	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order..");
+	output("You step into the cavernous elevator and take a look around. There's a heavily damaged control panel attached to a console beside the elevator's doors. Through the grime and rust you can just barely make out a set buttons, some of which <i>might</i> be in working order.");
 	
 	clearMenu();
 	//if (currentLocation != "NOVA SHIP DECK ELEVATOR") addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");

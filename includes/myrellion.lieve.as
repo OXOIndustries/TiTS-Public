@@ -368,7 +368,7 @@ public function lieveTalkToMayren():void
 public function lieveTalkMenu():void
 {
 	clearMenu();
-	addButton(0, "NoMyrsLand", lieveTalkNoMansLand, undefined, "No Mans Land", "Ask for details about the stretch of territory outside Kressia: No Myr's Land.");
+	addButton(0, "NoMyrsLand", lieveTalkNoMansLand, undefined, "No Myr's Land", "Ask for details about the stretch of territory outside Kressia: No Myr's Land.");
 	
 	if (flags["LIEVE_TALK_NOMANSLAND"] != undefined) addButton(1, "FungalMyr", lieveTalkFungalMyr, undefined, "Fungal Myr", "Try and get more information about the fungus-infected myr.");
 	else addDisabledButton(1, "FungalMyr");
