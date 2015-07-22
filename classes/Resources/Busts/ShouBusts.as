@@ -17,6 +17,14 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/antrias.png", mimeType = "image/png")]
 		public var Bust_ANTRIAS:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/asennia_1.png", mimeType = "image/png")]
+		public var Bust_ASENNIA_1:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/asennia_2.png", mimeType = "image/png")]
+		public var Bust_ASENNIA_2:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/asennia_3.png", mimeType = "image/png")]
+		public var Bust_ASENNIA_3:Class;
+
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/aurora.png", mimeType = "image/png")]
 		public var Bust_AURORA:Class;
 

@@ -28,7 +28,9 @@ As the day goes on, her tits shrink and shrink - gets drained by dozens of peopl
 public function showAsennia():void
 {
 	showName("\nASENNIA");
-	showBust("ASENNIA");
+	if(hours < 12) showBust("ASENNIA_3");
+	else if(hours <= 15) showBust("ASENNIA_2");
+	else showBust("ASENNIA_1");
 }
 
 //Room Descripts & Intros
@@ -55,7 +57,7 @@ public function honeyAntStallShit():Boolean
 			//Early morning: 
 			if(hours < 10) output("and resting her huge, barrel-sized tits on the rock. Her nipples are big and puffy, so swollen with honey that every slight movement or pressure seems to make her squirt her amber nectar.");
 			//Late morning:
-			else if(hours <= 12) output("and resting her honey-swollen jugs on the rock, leaning her head back with eyes closed as a pair of off-worlders kneel in front of her and suckle.");
+			else if(hours < 12) output("and resting her honey-swollen jugs on the rock, leaning her head back with eyes closed as a pair of off-worlders kneel in front of her and suckle.");
 			// Early afternoon:
 			else if(hours <= 16) output("with a lazy, pleasured look on her face. Her melon-sized tits are resting heavily on the rocks while a gold myr girl and an ausar woman both suckle from her, pawing all over her bare chest.");
 			// Late afternoon:
@@ -162,7 +164,7 @@ public function asseniaMenu():void
 	showAsennia();
 	if(pc.credits >= 50)
 	{
-		if(hours <= 12) addButton(0,"TapDrink",repeatDrinkStraightFromAsenniasTap,undefined,"Drink From The Tap","Get a drink straight from the tap!\n\n<b>50 Credits</b>");
+		if(hours < 12) addButton(0,"TapDrink",repeatDrinkStraightFromAsenniasTap,undefined,"Drink From The Tap","Get a drink straight from the tap!\n\n<b>50 Credits</b>");
 		else 
 		{
 			if(pc.hasCock() && flags["ASENNIA_COCK_OFFERED"] != undefined) addButton(0,"TapDrink",afterNoonMyrSnackRouter,undefined,"TapDrink","Get a drink straight from the tap! Given the way you and Asennia have gotten along, you might get a little more than that, too...\n\n<b>50 Credits</b>");
@@ -186,7 +188,7 @@ public function repeatApproachAsennia():void
 	clearOutput();
 	showAsennia();
 	//Morning Greeting (Huge Tits)
-	if(hours <= 12)
+	if(hours < 12)
 	{
 		output("Seeing Asennia leaning on her huge, honey-laden tits is enough to draw you over to the suckling stall. She smiles and gives you a wave, beckoning you around the line.");
 		output("\n\n<i>“And here’s one of my favorite customers!”</i> she beams, between muted moans as a pair of off-worlders busily suckle from her. <i>“Welcome back, [pc.name]. Come for a morning drink?”</i>");
@@ -252,7 +254,7 @@ public function milkToGoCup():void
 	if(!pc.hasKnees()) output("lower body");
 	else output("knees");
 	output(" in front of Asennia’s left tit. She gives a quiet little moan as your hands reach out to caress the ");
-	if(hours <= 12) output("huge");
+	if(hours < 12) output("huge");
 	else output("hefty");
 	output(", amber-filled swells of her breast. A dollop of golden nectar bubbles up from the wide, dark saucer of Asennia’s nipple, which you quickly reach out and lick off.");
 
@@ -274,12 +276,12 @@ public function milkToGoCup():void
 		output("\n\nYou blush and mumble something about this not being your first time. Shade just laughs and grabs Asennia’s right tit, squeezing hard enough to make a little honey squirt out. <i>“I’d prefer milk, personally,”</i> she says, <i>“though it’s hard to pass up a chance to play with tits like these.”</i>");
 	}
 	output("\n\nYou give your fellow-drinker a nod and turn your attention back to the drooling teat in front of you. ");
-	if(hours <= 12) output("You run a hand along the huge, honey-laden globe and press your to-go container against her saucer-sized nipple, encasing the stiff promontory in the thermos.");
+	if(hours < 12) output("You run a hand along the huge, honey-laden globe and press your to-go container against her saucer-sized nipple, encasing the stiff promontory in the thermos.");
 	else output("Hefting up Asennia’s heavy, big breast, you plant it at the rim of your to-go cup and give it a little squeeze.");
 	output(" The honeypot ant moans as you start to milk her breasts; it’s hard to resist getting your mouth in on the fun, the way honey just geysers from her nipple and splatters onto the side of the plastic container.");
 
 	output("\n\nWith one hand holding the cup, you’re left milking the myr’s honey-laden udder one-handed: you squeeze and knead the amber-tinted flesh, urging Asennia’s nectar out from within the depths of her bosom. Honey pours out ");
-	if(hours <= 12) output("easily. You barely have to work to keep up a nice, steady stream from the honeypot.");
+	if(hours < 12) output("easily. You barely have to work to keep up a nice, steady stream from the honeypot.");
 	else output("at a slow but steady pace. So many people have already had their fill of Asennia’s nectar today that you have to work for your future meal, squeezing her roughly until she moans and chews her lip. Taking pity on the over-taxed ant, you lean in and run your [pc.tongue] along the side of her breast, avoiding the nipple but lavishing the rest of her breast with oral affection. Occasionally you stop to nip at her skin, playfully biting before leaving her with a kiss or a long lick that goes almost all the way up to her neck.");
 	output(" Your hostess’s whole body quivers with pleasure as you milk her into the cup, and you’re treated to a small symphony of moans, groans, and pleasured cries.");
 

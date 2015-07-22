@@ -18,7 +18,7 @@ public function queenOfTheDeepHeader():void
 {
 	author("Savin");
 	showName("QUEEN OF\nTHE DEEP");
-	showBust("queenofthedeep");
+	showBust("DEEP_LAKE_QUEEN");
 }
 
 public function queenOfTheDeepInitialEncounter():void
