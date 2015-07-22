@@ -432,11 +432,12 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 	var tPC:PlayerCharacter = pc;
 	
 	//Update 
-	if (tPC.hasStatusEffect(effectName) && (force || tPC.statusEffectv2(effectName) > 0) && tPC.statusEffectv3(effectName) < 15)
+	if (tPC.hasStatusEffect(effectName) && (force || tPC.statusEffectv2(effectName) > 0))
 	{
-		if (!force) tPC.setStatusValue(effectName, 2, 0);
-		
+		if (!force) tPC.setStatusValue(effectName, 2, 0);		
 		var oldFeedValue:int = tPC.statusEffectv3(effectName);
+		
+		if (oldFeedValue == 15) return;
 		
 		var actualFeed:int = 0;
 		if (feedValue + tPC.statusEffectv3(effectName) <= 15)
@@ -776,7 +777,7 @@ public function mimbranesIncreaseDaysSinceFed():void
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			pc.setStatusValue(mimbraneEffects[i], 2, pc.statusEffectv2(mimbraneEffects[i]) + 1);
+			pc.addStatusValue(mimbraneEffects[i], 2, 1);
 		}
 	}
 

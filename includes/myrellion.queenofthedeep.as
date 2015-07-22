@@ -784,7 +784,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 		(pc as Creature).buttChange((queenOfTheDeep as Creature).biggestCockVolume(), false, false, false);
 	}
 
-	for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+	for (vi = 0; vi < pc.vaginas.length; vi++)
 	{
 		if (!pc.isPregnant(vi))
 		{
@@ -852,7 +852,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	addButton(0, "Next", queenOfTheDeepSurrenderIII, fromCombat);
 }
 
-public function queenOfTheDeepSurrenderIII(fromCombat:Boolean)
+public function queenOfTheDeepSurrenderIII(fromCombat:Boolean):void
 {
 	clearOutput();
 
@@ -1136,7 +1136,7 @@ public function queenOfTheDeepGetEgged():void
 		if (pc.ass.wetnessRaw < 5) pc.ass.wetnessRaw += 1;
 	}
 
-	for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+	for (vi = 0; vi < pc.vaginas.length; vi++)
 	{
 		if (!pc.isPregnant(vi))
 		{
