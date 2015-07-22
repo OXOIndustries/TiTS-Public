@@ -403,7 +403,7 @@ public function queenOfTheDeepPCLoss():void
 	var bEmptyVagina:Boolean = false;
 
 	// ass
-	if (pc.isPregnant(3))
+	if (!pc.isPregnant(3))
 	{
 		bEmptyAss = true;
 		numEmptyHoles++;
@@ -412,9 +412,9 @@ public function queenOfTheDeepPCLoss():void
 	// cunts
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi <= 3; vi++)
+		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
 		{
-			if (pc.isPregnant(vi))
+			if (!pc.isPregnant(vi))
 			{
 				numEmptyVaginas++;
 				numEmptyHoles++;
@@ -615,7 +615,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	var bEmptyVagina:Boolean = false;
 
 	// ass
-	if (pc.isPregnant(3))
+	if (!pc.isPregnant(3))
 	{
 		bEmptyAss = true;
 		numEmptyHoles++;
@@ -624,9 +624,9 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 	// cunts
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi <= 3; vi++)
+		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
 		{
-			if (pc.isPregnant(vi))
+			if (!pc.isPregnant(vi))
 			{
 				numEmptyVaginas++;
 				numEmptyHoles++;
@@ -716,7 +716,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	var bEmptyVagina:Boolean = false;
 
 	// ass
-	if (pc.isPregnant(3))
+	if (!pc.isPregnant(3))
 	{
 		bEmptyAss = true;
 		numEmptyHoles++;
@@ -725,9 +725,9 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	// cunts
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi <= 3; vi++)
+		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
 		{
-			if (pc.isPregnant(vi))
+			if (!pc.isPregnant(vi))
 			{
 				numEmptyVaginas++;
 				numEmptyHoles++;
@@ -1033,7 +1033,7 @@ public function queenOfTheDeepGetEgged():void
 	var bEmptyVagina:Boolean = false;
 
 	// ass
-	if (pc.isPregnant(3))
+	if (!pc.isPregnant(3))
 	{
 		bEmptyAss = true;
 		numEmptyHoles++;
@@ -1042,9 +1042,9 @@ public function queenOfTheDeepGetEgged():void
 	// cunts
 	if (pc.hasVagina())
 	{
-		for (var vi:int = 0; vi <= 3; vi++)
+		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
 		{
-			if (pc.isPregnant(vi))
+			if (!pc.isPregnant(vi))
 			{
 				numEmptyVaginas++;
 				numEmptyHoles++;
