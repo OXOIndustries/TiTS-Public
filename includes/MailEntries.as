@@ -198,6 +198,10 @@ public function initialMailConfiguration():void
 
 	clearGhostMenu();
 	addGhostButton(0, "Confirm", confirmMailConfig);
+	
+	(userInterface as GUI).perkDisplayButton.Deactivate();
+	(userInterface as GUI).dataButton.Deactivate();
+	(userInterface as GUI).appearanceButton.Deactivate();
 }
 
 public function confirmMailConfig():void
@@ -228,4 +232,8 @@ public function confirmMailConfig():void
 	
 	clearGhostMenu();
 	addGhostButton(0, "Next", showMails);
+	
+	(userInterface as GUI).perkDisplayButton.Activate();
+	(userInterface as GUI).dataButton.Activate();
+	(userInterface as GUI).appearanceButton.Activate();
 }
