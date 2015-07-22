@@ -76,7 +76,7 @@ public function laneHypnosisLevel():int
 {
 	if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) return 5;
 	if (flags["LANE_HYPNOSIS_LEVEL"] == undefined) return 0;
-	else return flags["LANE_HYPNOSIS_LEVEL"];
+	return flags["LANE_HYPNOSIS_LEVEL"];
 }
 
 /*
@@ -1025,7 +1025,7 @@ public function laneTalkDaynar():void
 	else 
 	{
 		output(" You ask [lane.himHer] what [lane.hisHer] own glowing means for [lane.hisHer] health. <i>“I’m not asked that too often,”</i> [lane.heShe] notes, looking down at [lane.hisHer] chest. <i>“I</i> feel <i>fine... I’m hardly a fitness nut, but I usually start my mornings with a set of " + lane.mf("push-ups", "crunches") +". I think I’m about average.”</i> And, you ask... what about [lane.hisHer] ‘sexual potency?’");
-		if (!hasLaneHypnosis()) output(" The colour of [lane.hisHer] eyes change from brown to a rosy red, and [lane.heShe] just chuckles and looks away.");
+		if (!hasMaxedLaneHypnosis()) output(" The colour of [lane.hisHer] eyes change from brown to a rosy red, and [lane.heShe] just chuckles and looks away.");
 		else output(" <i>“I should think you’d know,”</i> [lane.heShe] says, flaring open [lane.hisHer] tassels for a moment, <i>“but I can give you a reminder a little later, pet.”</i> You feel something of yours flaring between your legs as well.");
 	}
 
@@ -1054,7 +1054,7 @@ public function laneTalkThemself():void
 
 	output("\n\n[lane.HeShe] rests [lane.hisHer] chin on the palm of [lane.hisHer] scaly hand, reminiscing about [lane.hisHer] younger years. <i>“I didn’t learn about hypnotism until my adolescent years, when I was studying history. One of my textbooks mentioned hypnosis as an old, ancient, spiritual practice. I was intrigued, so I studied it some more, and before I knew it, I was getting a permit to practice it as a business.”</i>");
 
-	if (!hasLaneHypnosis())
+	if (!hasMaxedLaneHypnosis())
 	{
 		output("\n\nYou chuckle uncomfortably, rolling your shoulders. [lane.HeShe] learned how to control people, and [lane.heShe] made it a legitimate business... because of a power fantasy? <i>“I know what you’re thinking,”</i> [lane.heShe] says smoothly, trying to calm your nerves. <i>“If I put a person ‘under’, then I could, theoretically, control what the person feels and thinks and does until they pull out of it. Believe it or not, the UGC thought so too – and they made me swear that I wouldn’t use my skills ‘to the detriment of the peoples that trust my judgment’. Sort of like the Hippocratic Oath for doctors.”</i> You narrow your eyes and chew your bottom lip. You could trust a surgeon, but a hypnotist...?");
 	}
@@ -1185,7 +1185,7 @@ public function laneServicesMenu():void
 		addDisabledButton(3, "Intelligence");
 		addDisabledButton(4, "Willpower");
 	}
-	if (!hasLaneHypnosis()) addButton(14, "Back", laneServicesBack);
+	if (!hasMaxedLaneHypnosis()) addButton(14, "Back", laneServicesBack);
 	else addButton(14, "Taxes", laneServicesBack);
 
 	//[=Physique=] [=Reflexes=] [=Aim=] [=Intelligence=] [=Willpower=] [=Back=]
@@ -1195,7 +1195,7 @@ public function laneServicesBack():void
 {
 	clearOutput();
 	laneHeader();
-	if (!hasLaneHypnosis())
+	if (!hasMaxedLaneHypnosis())
 	{
 		output("[lane.HeShe] frowns as you hand [lane.himHer] the codex. <i>“Changed your mind?”</i> You apologize, but you’re just not ready for [lane.hisHer] business today. <i>“Don’t worry, I understand. A lot of my customers, even the repeats, get the jitters sometimes. Is there anything else I can help you with, while you’re here?”</i>");
 
@@ -1342,6 +1342,7 @@ public function laneConfirmService(selectedService:String):void
 		if (hasLaneHypnosis()) output(", your eyes lingering on the smoothness of [lane.hisHer] skin for a little longer than you mean");
 		output(", and then [lane.heShe] walks past you, towards [lane.hisHer] seat");
 		if (laneHypnosisLevel() >= 3) output(". Your eyes glue to [lane.himHer], trailing themselves from the ridges of [lane.hisHer] shoulders to where [lane.hisHer] tail meets the small of [lane.hisHer] back....");
+		else output(".");
 	}
 
 	output("\n\n");
