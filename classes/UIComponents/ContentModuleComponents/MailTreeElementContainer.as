@@ -80,7 +80,7 @@ package classes.UIComponents.ContentModuleComponents
 					}
 					
 					un.sortOn("UnlockedTimestamp", Array.NUMERIC | Array.DESCENDING);
-					r.sortOn("UnlockedTimestamp", Array.NUMERIC | Array.DESCENDING);
+					r.sortOn(["UnlockedTimestamp", "ViewedTimestamp"], [Array.NUMERIC | Array.DESCENDING, Array.NUMERIC | Array.DESCENDING]);
 					
 					entries = un.concat(r);
 					return entries;
