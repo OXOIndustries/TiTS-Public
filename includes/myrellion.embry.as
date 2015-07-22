@@ -2690,7 +2690,7 @@ public function embryAnalSex():void
 		else output(" They");
 		output(" drip down on the floor between her legs.");
 
-		output("\n\nYou relish in the sight of [embry.name] laying spend over the table, her skirt flipped up, and your [pc.cum] drooling from her ");
+		output("\n\nYou relish in the sight of [embry.name] laying spent over the table, her skirt flipped up, and your [pc.cum] drooling from her ");
 		if(embry.analVirgin)
 		{
 			output("deflowered anus");
@@ -2742,7 +2742,7 @@ public function embryAnalSex():void
 		if(embry.hasCock()) output(" Her [embry.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
 
-		output("\n\nWhen you pull your artificial shaft out from her ass, there is a plopping noise from her [embry.asshole], and she lets out a blissful little sigh. You relish in the sight of [embry.name] laying spend over the table, her skirt flipped up, and her [embry.asshole] ");
+		output("\n\nWhen you pull your artificial shaft out from her ass, there is a plopping noise from her [embry.asshole], and she lets out a blissful little sigh. You relish in the sight of [embry.name] laying spent over the table, her skirt flipped up, and her [embry.asshole] ");
 		if(embry.analVirgin)
 		{
 			embry.analVirgin = false;
