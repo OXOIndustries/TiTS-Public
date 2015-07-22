@@ -3,7 +3,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 public function tryEncounterQueenOfTheDeep():Boolean
 {
-	if ((pc.hasVagina() && pc.fertility() > 0) && flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) >= 0)
+	if ((pc.hasVagina() && pc.fertility() > 0) && flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1)
 	{
 		queenOfTheDeepInitialEncounter();
 		return true;
@@ -905,7 +905,7 @@ public function queenOfTheDeepPCVictory():void
 	if (pc.hasCock()) addButton(0, "Cloaca Fuck", queenOfTheDeepCloacaFuck, undefined, "Cloaca Fuck", "Take the queen up on her offer. Climb up on that giant lower body of hers and find somewhere to sheathe your cock. ");
 	else addDisabledButton(0, "Cloaca Fuck", "Cloaca Fuck", "Requires a dick.");
 
-	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY)) addButton(1, "Get Egged", queenOfTheDeepGetEgged, undefined, "Get Egged", "You’ll let the queen fill you with her young, as she wanted, though she'll do it your way.");
+	if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1) addButton(1, "Get Egged", queenOfTheDeepGetEgged, undefined, "Get Egged", "You’ll let the queen fill you with her young, as she wanted, though she'll do it your way.");
 	else addDisabledButton(1, "Get Egged", "Get Egged", "You’d need to have a viable orifice for the Queen to stuff full of eggs.")
 
 	addButton(2, "Take Bow", queenOfTheDeepTakeBow, undefined, "Take her bow", "Take the queen's bow as payment for her assault on you. The strange crystal weapon looks damn swanky.");
