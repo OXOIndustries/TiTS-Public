@@ -80,12 +80,14 @@ public function queenOfTheDeepInitFight():void
 
 public function queenOfTheDeepAI():void
 {
-	if (foes[0].hasStatusEffect("Water Veil"))
+	var foe:Creature = foes[0];
+	
+	if (foe.hasStatusEffect("Water Veil"))
 	{
-		foes[0].addStatusValue("Water Veil", 1, -1);
-		if (foes[0].statusEffectv1("Water Veil") <= 0)
+		foe.addStatusValue("Water Veil", 1, -1);
+		if (foe.statusEffectv1("Water Veil") <= 0)
 		{
-			foes[0].removeStatusEffect("Water Veil");
+			foe.removeStatusEffect("Water Veil");
 			output("The creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n\n");
 		}
 		else
@@ -101,7 +103,7 @@ public function queenOfTheDeepAI():void
 		return;
 	}
 
-	if (!foes[0].hasStatusEffect("Climaxed") && foes[0].lust() >= 80)
+	if (!foe.hasStatusEffect("Climaxed") && foe.lust() >= 80)
 	{
 		queenOfTheDeepClimax();
 		processCombat();
@@ -120,22 +122,22 @@ public function queenOfTheDeepAI():void
 	
 	humanAttacks.push({ v: queenOfTheDeepBowShot, w: 5 });
 	
-	if (foes[0].hasStatusEffect("Tittysuckle CD"))
+	if (foe.hasStatusEffect("Tittysuckle CD"))
 	{
-		foes[0].addStatusValue("Tittysuckle CD", 1, -1);
-		if (foes[0].statusEffectv1("Tittysuckle CD") <= 0)
+		foe.addStatusValue("Tittysuckle CD", 1, -1);
+		if (foe.statusEffectv1("Tittysuckle CD") <= 0)
 		{
-			foes[0].removeStatusEffect("Tittysuckle CD");
+			foe.removeStatusEffect("Tittysuckle CD");
 		}
 	}
-	else if (foes[0].HP() < foes[0].HPMax())
+	else if (foe.HP() < foe.HPMax())
 	{
 		humanAttacks.push({ v: queenOfTheDeepTittySuckle, w: 1 });
 	}
 	
 	weightedRand(humanAttacks)();
 
-	if (!foes[0].hasStatusEffect("Water Veil"))
+	if (!foe.hasStatusEffect("Water Veil"))
 	{
 		output("\n\n");
 	}
@@ -143,14 +145,14 @@ public function queenOfTheDeepAI():void
 	// Crab attack
 	var crabAttacks:Array = [];
 
-	if (!foes[0].hasStatusEffect("Water Veil"))
+	if (!foe.hasStatusEffect("Water Veil"))
 	{
-		if (foes[0].hasStatusEffect("Clawgrab CD"))
+		if (foe.hasStatusEffect("Clawgrab CD"))
 		{
-			foes[0].addStatusValue("Clawgrab CD", 1, -1);
-			if (foes[0].statusEffectv1("Clawgrab CD") <= 0)
+			foe.addStatusValue("Clawgrab CD", 1, -1);
+			if (foe.statusEffectv1("Clawgrab CD") <= 0)
 			{
-				foes[0].removeStatusEffect("Clawgrab CD");
+				foe.removeStatusEffect("Clawgrab CD");
 			}
 		}
 		else
