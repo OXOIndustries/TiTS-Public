@@ -609,6 +609,7 @@ public function initializeMyrellionRooms():void
 	rooms["724"].system = "SYSTEM: SINDATHU";
 	rooms["724"].eastExit = "723";
 	rooms["724"].westExit = "725";
+	rooms["724"].southExit = "749";
 	rooms["724"].moveMinutes = 2;
 	rooms["724"].runOnEnter = gildenmereStreetBonus;
 	rooms["724"].addFlag(GLOBAL.INDOOR);
@@ -938,6 +939,18 @@ public function initializeMyrellionRooms():void
 	rooms["748"].addFlag(GLOBAL.INDOOR);
 	rooms["748"].addFlag(GLOBAL.PUBLIC);
 	rooms["748"].addFlag(GLOBAL.NPC);
+
+	rooms["749"] = new RoomClass(this);
+	rooms["749"].roomName = "THE\nHONEY NOZZLE";
+	rooms["749"].description = "";
+	rooms["749"].planet = "PLANET: MYRELLION";
+	rooms["749"].system = "SYSTEM: SINDATHU";
+	rooms["749"].northExit = "724";
+	rooms["749"].moveMinutes = 1;
+	rooms["749"].runOnEnter = honeyAntStallShit;
+	rooms["749"].addFlag(GLOBAL.INDOOR);
+	rooms["749"].addFlag(GLOBAL.PUBLIC);
+	rooms["749"].addFlag(GLOBAL.COMMERCE);
 
 	//=========================================//
 	//     KRESSIA ROOMS. 800-899 reserved  //

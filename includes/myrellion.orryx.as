@@ -110,7 +110,7 @@ public function encounterFrogapi():void
 		{
 			output("\n\n<i>“Ah hah! It’s you! Wonderful to see you again! Tell me, have you collected enough Golden Honey?”</i> he says, all fours of his hands wringing together excitedly.");
 			clearMenu();
-			if(9999 == 0) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
+			if(pc.hasItem(new MyrNectar(),5)) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
 			else addDisabledButton(0,"Yes","Yes","You don't have enough honey yet.");
 			//No
 			addButton(14,"Leave",noHoneyForYouSlut);
@@ -319,7 +319,7 @@ public function itsADealYouLittleMuppetSlut():void
 	output("\n\n<i>“Fantastic! Money for you, money for me, it’s what spins this entire universe around ...at least on one of her axis,”</i> he says. <i>“As soon as you have five units of Golden Honey, drop by, and I’ll trade ya.”</i>");
 	clearMenu();
 	//I have some now!
-	if(9999 == 0) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
+	if(pc.hasItem(new MyrNectar(),5)) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
 	else addDisabledButton(0,"I Have It","I Have It","You don't have any.");
 	//Farewell.
 	addButton(1,"Farewell",farewellYouSackOfFluff);
@@ -339,7 +339,8 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		//[+1 Rep with Orryx]
 		orryxReputation(1);
 		processTime(2);
-		//9999 - strip honey item
+		//strip honey item
+		pc.destroyItemByName("MyrNectr",5)
 		pc.credits += 500;
 		flags["ORRYX_SHIPPED_TODAY"] = 1;
 		flags["ORRYX_SHIPPED_HONEY"] = 1;
@@ -356,7 +357,7 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		output("\n\nYou bid the tove farewell as you walk away.");
 		//[+1 Rep with Orryx]
 		orryxReputation(1);
-		//9999 strip honey
+		pc.destroyItemByName("MyrNectr",5)
 		flags["ORRYX_SHIPPED_TODAY"] = 1;
 		pc.credits += 500;
 		processTime(2);
@@ -413,7 +414,8 @@ public function orryxBlackmarket():void
 		output("<i>“I’ve got a supply of Red Venom. Enough pleasure and stimulation to shake the gametophytes from your gonopores. I’ve got a much more ready supply than I do with Golden Honey, and I have a few regulars who get their fix on a daily basis. What they do with it, I don’t ask. How I get it, YOU don’t ask. But you’ve been so good to me that I’d like to help you out in return -really, I’d be happy to. Just 100 credits - friends and family discount.”</i> He winks each of his four eyes, one at a time.");
 		processTime(1);
 		clearMenu();
-		if(pc.credits >= 100) addButton(0,"Buy Red Venom",buySomeRedShit);
+		if(pc.credits >= 100 && 9999 == 0) addButton(0,"Buy Red Venom",buySomeRedShit);
+		else if(9999 == 9999) addDisabledButton(0,"Buy Some","Buy Some","That item has not been added to the game yet.");
 		else addDisabledButton(0,"Buy Red Venom","Buy Red Venom","You can't afford the 100 credit price!");
 		addButton(1,"No Thanks",noThanksNoRedVenom);
 	}
@@ -431,7 +433,8 @@ public function orryxBlackmarket():void
 		//Yes, have some
 		//No thanks
 		clearMenu();
-		if(pc.credits >= price) addButton(0,"Buy Some",buySomeExpensiveShit);
+		if(pc.credits >= price && 9999 == 0) addButton(0,"Buy Some",buySomeExpensiveShit);
+		else if(9999 == 9999) addDisabledButton(0,"Buy Some","Buy Some","That item has not been added to the game yet.");
 		else addDisabledButton(0,"Buy Some","Buy Some","You can't afford that!");
 		addButton(1,"No Thanks",turnDownExpensiveFroggieShitz);
 		processTime(1);
@@ -448,7 +451,6 @@ public function buySomeRedShit():void
 	//[+1 Orryx Rep]
 	orryxReputation(1);
 	pc.credits -= 100;
-
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
