@@ -86,7 +86,11 @@ public function queenOfTheDeepAI():void
 		if (foes[0].statusEffectv1("Water Veil") <= 0)
 		{
 			foes[0].removeStatusEffect("Water Veil");
-			output("\nThe creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n");
+			output("The creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n\n");
+		}
+		else
+		{
+			output("The creature's claws are thrashing against the surface of the water, kicking up a heavy veil of mist!\n\n");
 		}
 	}
 	
@@ -114,7 +118,7 @@ public function queenOfTheDeepAI():void
 	// Human attack
 	var humanAttacks:Array = [];
 	
-	humanAttacks.push({ v: queenOfTheDeepBowShot, w: 4 });
+	humanAttacks.push({ v: queenOfTheDeepBowShot, w: 5 });
 	
 	if (foes[0].hasStatusEffect("Tittysuckle CD"))
 	{
@@ -131,7 +135,10 @@ public function queenOfTheDeepAI():void
 	
 	weightedRand(humanAttacks)();
 
-	output("\n\n");
+	if (!foes[0].hasStatusEffect("Water Veil"))
+	{
+		output("\n\n");
+	}
 	
 	// Crab attack
 	var crabAttacks:Array = [];
@@ -143,7 +150,7 @@ public function queenOfTheDeepAI():void
 			foes[0].addStatusValue("Clawgrab CD", 1, -1);
 			if (foes[0].statusEffectv1("Clawgrab CD") <= 0)
 			{
-				foes[0].removeStatusEFfect("Clawgrab CD");
+				foes[0].removeStatusEffect("Clawgrab CD");
 			}
 		}
 		else
@@ -191,7 +198,7 @@ public function queenOfTheDeepWaterVeil():void
 {
 	output("<i>“You cannot fight what you cannot see,”</i> the creature hisses gleefully, slamming her lower claws into the water before you with earthshaking force and kicking up a spray of water that seems to have no end. Worse, she keeps swiping her claws through the water, creating a thick mist between the two of you. <b>It’s much harder to see the creature now!</b>");
 
-	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 25, 0, 0, false, "", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
+	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 25, 0, 0, false, "Icon_DefUp", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
 }
 
 public function queenOfTheDeepLegStomp():void
