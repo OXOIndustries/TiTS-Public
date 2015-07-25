@@ -6862,6 +6862,22 @@
 			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
 			return counter;
 		}
+		public function redMyrScore(): int
+		{
+			var counter:int = 0;
+			if(antennae == 2) counter++;
+			if(eyeType == GLOBAL.TYPE_RED_MYR || eyeType == GLOBAL.TYPE_GOLD_MYR) counter++;
+			if(armType == GLOBAL.TYPE_RED_MYR) counter++;
+			if(legType == GLOBAL.TYPE_RED_MYR) counter++;
+			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if(hasFur() || hasScales()) counter--;
+			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			return counter;
+		}
+		public function goldMyrScore(): int
+		{
+			return 0;
+		}
 		public function horseScore(): int
 		{
 			var counter:int = 0;
