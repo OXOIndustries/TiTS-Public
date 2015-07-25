@@ -1711,6 +1711,12 @@
 				case "wings":
 					buffer = wingsDescript();
 					break;
+				case "arm":
+					buffer = armDescript();
+					break;
+				case "arms":
+					buffer = pluralize(armDescript());
+					break;
 				case "leg":
 					buffer = leg();
 					break;
@@ -3743,6 +3749,10 @@
 		public function wingsDescript():String
 		{
 			return pluralize(wingDescript());
+		}
+		public function armDescript():String
+		{
+			return "arm";
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
