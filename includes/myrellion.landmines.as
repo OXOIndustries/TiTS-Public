@@ -4,7 +4,7 @@ public function tryEncounterLandmines():Boolean
 {
 	if (rand(100) <= 2)
 	{
-		flags["ENCOUNTERED_LANDMINES"] = 1;
+		IncrementFlag("ENCOUNTERED_LANDMINES");
 
 		if ((pc as Creature).accessory is Minesweeper)
 		{

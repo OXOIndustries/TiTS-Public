@@ -614,7 +614,10 @@ public function closetFuckFinaleWithNehzara():void
 	output("\n\nThe colonel pulls away, cleaning herself up and pulling on her uniform. She looks every bit as crisp and composed as when you first laid eyes on her, like she didn’t just ride you through three complete orgasms. She clears her throat and extends her hand to give you a pat on the head. <i>“I should return to the office before I’m missed.”</i> Nehzara’s voice has returned to its normal hard tone, but you know it’s only because she’s switched back to professional mode.");
 	output("\n\nNehzara gives you a curt nod and leaves the storage closet, letting you take a moment to catch your breath and step back out into the warehouse.");
 	//(--Lust, PC is returned to general area description, PC can now take the shuttle to Kressia)
-	if(!pc.hasKeyItem("Kressia Pass")) pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
+	if (!pc.hasKeyItem("Kressia Pass")) pc.createKeyItem("Kressia Pass", 0, 0, 0, 0, "");
+	
+	IncrementFlag("NEHZARA_CLOSET_FUCKED");
+	
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

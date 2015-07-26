@@ -477,6 +477,8 @@ public function millieMilkingFinale():void
 	if(milkAmount < 1000 && pc.hasStatusEffect("Temporary Treatment")) milkAmount += 1500 + rand(500);
 
 	milkAmount = Math.round(milkAmount);
+	StatTracking.track("milkers/breast milker uses");
+	StatTracking.track("milkers/milk milked", milkAmount);
 
 	if(milkAmount > 1000) output(milkAmount/1000 + " Ls</b>")
 	else output(milkAmount + " mLs</b>");
@@ -485,6 +487,7 @@ public function millieMilkingFinale():void
 	processTime(65);
 	pc.boostLactation(1);
 	flags["MILLIE_LAST_ACTION"] = "Milker";
+	IncrementFlag("MILLIE_MILK_COUNT");
 
 	//Faux Treatment!
 	if(pc.hasStatusEffect("Temporary Treatment"))

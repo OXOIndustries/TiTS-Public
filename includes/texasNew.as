@@ -1227,7 +1227,7 @@ public function specialOrdersForTreatedGals():void
 	pc.energy(100);
 	//pc.thickness += (1);
 	pc.modThickness(1, false);
-	if(pc.thickness > 100) pc.thickness = 100;
+	IncrementFlag("HERMAN_SPECIAL_ORDER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

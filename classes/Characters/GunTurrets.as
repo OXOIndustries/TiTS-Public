@@ -39,7 +39,8 @@
 			this.rangedWeapon.attack = -2;
 			rangedWeapon.baseDamage.kinetic.damageValue = 2;
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "shot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "steel plates";

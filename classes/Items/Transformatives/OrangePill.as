@@ -441,7 +441,7 @@ package classes.Items.Transformatives
 				//Honeypot Perk (Convert Thickness to Boob Size)
 				if(changes < changeLimit && rand(5) == 0 && pc.biggestTitSize() >= 5 && !pc.hasPerk("Honeypot") && pc.canLactate())
 				{
-					var boobDiff = 0;
+					var boobDiff:Number = 0;
 					//if PC has high thickness:
 					if(pc.thickness >= 50)
 					{

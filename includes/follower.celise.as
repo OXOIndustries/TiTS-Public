@@ -125,7 +125,7 @@ public function sendCeliseAway():void
 		else if(rand(2) == 0) output("fluffy panda");
 		else output("cat-dog girl");
 		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
-		if(shipLocation == "TAVROS HANGAR") 
+		if(shipLocation != "TAVROS HANGAR") 
 		{
 			output(" <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");
 			output("\n\nYou smile back at her. <i>“I just might.”</i>");
@@ -590,6 +590,7 @@ public function celiseInBallsFinalEnding():void {
 		if(pc.ballEfficiency > 20) pc.ballEfficiency -= 10;
 	}
 	output("\n\nThe area is a total mess, but you’re sure the goo-girl will suck it up soon enough.");
+	IncrementFlag("TIMES_CELISE_IN_BALLS");
 	processTime(7);
 	pc.orgasm();
 	this.clearMenu();
@@ -696,6 +697,7 @@ public function celiseSleezeLactation():void {
 	}
 	//Repeat:
 	else {
+		IncrementFlag("LACTATION_FED_CELISE");
 		output("\n\nWithout a word you sit yourself down and ");
 		if(pc.armor.shortName != "") output("shake off the top half of your [pc.armor]");
 		else if(pc.isChestGarbed()) output("shake off your [pc.upperGarment]");

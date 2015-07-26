@@ -34,7 +34,7 @@
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "shotgun";
 			this.rangedWeapon.attackVerb = "shoot";
-			this.rangedWeapon.attackVerb = "buckshot";
+			this.rangedWeapon.attackNoun = "buckshot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "chitinous plating";

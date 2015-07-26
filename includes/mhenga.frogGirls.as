@@ -54,6 +54,8 @@ public function frogGirlsEncounter():void
 	foes = new Array();
 	chars["FROG_GIRL"].prepForCombat();
 	showFrogGirl();
+	
+	IncrementFlag("MET_KEROKORAS");
 
 	//First Encounter
 	if(!CodexManager.entryUnlocked("Kerokoras"))

@@ -36,6 +36,7 @@
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.longName = "cutlass";
 			this.meleeWeapon.attackVerb = "slash";
+			this.meleeWeapon.attackNoun = "blade";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "sexy bodice";

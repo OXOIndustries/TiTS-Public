@@ -23,7 +23,11 @@ public function encounterDasGooGray():void
 		output("\n\n<i>\"Aww, so much for surprise!\"</i> the gray goo giggles, licking her lips. <i>\"I just need some all-natural lubricant, " + pc.mf("Mister","Miss") + " - and you're gonna give it to me!\"</i>");
 		flags["MET_GRAY_GOO"] = 1;
 	}
-	else output(" down her feet. The gray goo steps forward on her unsteady legs, licking her lips hungrily. <i>\"I just need some all-natural lubricant, " + pc.mf("Mister","Miss") + " - and you're gonna give it to me!\"</i>");
+	else
+	{
+		IncrementFlag("MET_GRAY_GOO");
+		output(" down her feet. The gray goo steps forward on her unsteady legs, licking her lips hungrily. <i>\"I just need some all-natural lubricant, " + pc.mf("Mister","Miss") + " - and you're gonna give it to me!\"</i>");
+	}
 	output("\n\nIt doesn't look like she'll take no for an answer!");
 	clearMenu();
 	addButton(0,"Next",startCombat,"Gray Goo");

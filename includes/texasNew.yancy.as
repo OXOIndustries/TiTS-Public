@@ -403,8 +403,8 @@ public function treatedPCsSuckYancysDickForMilkPartIII():void
 	pc.orgasm();
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & sucked";
-	flags["YANCY_MILKED_PC"] = 1;
-	flags["YANCY_SEXED"] = 1;
+	IncrementFlag("YANCY_MILKED_PC");
+	IncrementFlag("YANCY_SEXED");
 	clearMenu();
 	addButton(0,"Next",treatedPCsSuckYancysDickForMilkPartIV);
 }
@@ -565,8 +565,8 @@ public function treatedPCsGetCuntFilledAndMilkedPtIII():void
 	milkResultDisplay();
 	processTime(3);
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & fucked";
-	flags["YANCY_MILKED_PC"] = 1;
-	flags["YANCY_SEXED"] = 1;
+	IncrementFlag("YANCY_MILKED_PC");
+	IncrementFlag("YANCY_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -745,8 +745,8 @@ public function untreatedMilkedAndFuckedII():void
 	milkResultDisplay();
 	processTime(2);
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & fucked";
-	flags["YANCY_MILKED_PC"] = 1;
-	flags["YANCY_SEXED"] = 1;
+	IncrementFlag("YANCY_MILKED_PC");
+	IncrementFlag("YANCY_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -799,8 +799,8 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	processTime(30);
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & sucked";
-	flags["YANCY_MILKED_PC"] = 1;
-	flags["YANCY_SEXED"] = 1;
+	IncrementFlag("YANCY_MILKED_PC");
+	IncrementFlag("YANCY_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -974,9 +974,9 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	processTime(30);
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & pitched";
-	flags["YANCY_MILKED_PC"] = 1;
-	flags["YANCY_BUTTFUCKED_BY_PC"] = 1;
-	flags["YANCY_SEXED"] = 1;
+	IncrementFlag("YANCY_MILKED_PC");
+	IncrementFlag("YANCY_BUTTFUCKED_BY_PC");
+	IncrementFlag("YANCY_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -988,6 +988,8 @@ public function milkResultDisplay():void
 	if(milkAmount < 1000 && pc.hasStatusEffect("Temporary Treatment")) milkAmount += 1500 + rand(500);
 
 	milkAmount = Math.round(milkAmount);
+	StatTracking.track("milkers/breast milker uses");
+	StatTracking.track("milkers/milk milked", milkAmount);
 
 	if(milkAmount > 1000) output(milkAmount/1000 + " Ls</b>")
 	else output(milkAmount + " mLs</b>");

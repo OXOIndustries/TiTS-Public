@@ -42,6 +42,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 	//[Repeat] (If PC didn't fight her last time)
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
 		author("Savin");
+		IncrementFlag("TIMES_MET_FEMZIL");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, but relaxes as she recognizes you. <i>“Hey there, stranger. Back for a taste of my honey?”</i>");
 		//[Fight her]
 		//[Leave]
@@ -61,6 +62,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 	//[Repeat] (If PC fought her last time) && not a hostile zil
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] != undefined){
 		author("Savin");
+		IncrementFlag("TIMES_MET_FEMZIL");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, grabbing one of the darts from her belt to defend herself. <i>“H-hey there, stranger, no need to get violent. Just back off, okay?”</i>");
 		clearMenu();
 		//[Fight her]
@@ -71,6 +73,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 	//HOSTILE ZIL!
 	else {
 		author("Zeikfried");
+		IncrementFlag("TIMES_MET_FEMZIL");
 		output("\n\nAs you wander the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. Your eyes and nose lead you to a familiar feminine form reclining on a log, legs spread wide to let loose the potent scent. The girl looks up as you approach with a knowing smile. <i>“Hello, lover. I’m in the mood for some excitement, and you’re right on time.”</i>  She does not look like she will take no for an answer.");
 		output("\n\nHer pussy fairly glistens, lending truth to her words. The atmosphere thickens with pheromones and tension as she stares you down, tracing the outline of her vulva. You feel a strong compulsion to agree to whatever she wants.");
 		clearMenu();

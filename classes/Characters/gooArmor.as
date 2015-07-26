@@ -26,6 +26,7 @@
 			this.plural = false;
 			
 			this.meleeWeapon.attackVerb = "claw";
+			meleeWeapon.attackNoun = "claws";
 			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.hasRandomProperties = true;
 			

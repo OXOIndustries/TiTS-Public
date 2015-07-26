@@ -40,7 +40,8 @@
 			
 			this.rangedWeapon = new HammerCarbine();
 			this.rangedWeapon.hasRandomProperties = true;
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "shot";
 			rangedWeapon.baseDamage.kinetic.damageValue = 3;
 			
 			this.armor.longName = "armor";

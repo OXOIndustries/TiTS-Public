@@ -27,7 +27,8 @@
 			
 			this.rangedWeapon = new PlasmaPistol();
 			this.rangedWeapon.hasRandomProperties = true;
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "shot";
 			
 			this.armor.longName = "armor";
 			this.armor.defense = 25;

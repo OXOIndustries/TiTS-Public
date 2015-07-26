@@ -37,6 +37,7 @@ public function infectedMyrmedionShit():void
 	//Repeat encounter
 	else
 	{
+		IncrementFlag("MET_INFECTED_MYR_FEMALE");
 		output("As you walk through the caves you hear someone shout from behind you. You turn to find an infected myr standing in a battle stance.");
 	}
 	clearMenu();

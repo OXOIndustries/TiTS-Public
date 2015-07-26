@@ -36,6 +36,7 @@
 			this.rangedWeapon.attack = 10;
 			this.rangedWeapon.longName = "mining laser";
 			this.rangedWeapon.attackVerb = "laser";
+			this.rangedWeapon.attackNoun = "laser-beam";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "hull plates";

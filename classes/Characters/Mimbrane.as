@@ -35,6 +35,7 @@ package classes.Characters
 			isLustImmune = true;
 			
 			this.meleeWeapon.attackVerb = "scratch";
+			this.meleeWeapon.attackNoun = "barbs";
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 4;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);

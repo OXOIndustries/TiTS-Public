@@ -42,6 +42,7 @@
 			
 			this.shield = new EmptySlot();
 			this.meleeWeapon.attackVerb = "chitinous punch";
+			this.meleeWeapon.attackNoun = "chitinous punch";
 			this.meleeWeapon.longName = "chitin-covered fist";
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 18;

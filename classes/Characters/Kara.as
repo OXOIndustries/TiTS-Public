@@ -32,6 +32,7 @@
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.longName = "cutlass";
 			this.meleeWeapon.attackVerb = "slash";
+			this.meleeWeapon.attackNoun = "blade";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor new GenericCatsuit();
@@ -40,6 +41,7 @@
 			rangedWeapon.baseDamage.kinetic.damageValue = 12;
 			this.rangedWeapon.longName = "plasma pistol";
 			this.rangedWeapon.attackVerb = "plasma";
+			this.rangedWeapon.attackNoun = "plasma";
 			this.rangedWeapon.hasRandomProperties = true;
 
 			this.shield = new ReaperArmamentsMarkIIShield();

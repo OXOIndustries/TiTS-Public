@@ -33,6 +33,7 @@
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "pincers";
+			this.meleeWeapon.attackNoun = "claw";
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 3;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);

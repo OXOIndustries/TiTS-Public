@@ -88,7 +88,7 @@ public function firstTimeAtHoneyTits():void
 	flags["MET_ASENNIA"] = 1;
 	output("A chance to suckle honey from the tits of a smoking-hot ant girl? Sure, why not! You walk over to the shortest line out from the stalls and claim your place: maybe six people back in line for the inhumanly-busty myr’s left breast.");
 	output("\n\nAt the front of the line, you see an attractive young woman in a skin-tight jumpsuit with long, leathery blue wings behind her is on her knees in front of the honeypot, a hand digging into either side of her balloon-like tit in her face. She’s squeezing while she suckles, gulping down a steady stream of myr nectar. The myr is moaning happily, a hand atop the head of both the off-worlders suckling from her; her second pair of hands is noticeably absent from view, wrapped behind her sitting body and her bloated abdomen. The way she’s moving, the way her chest is heaving, something tells you she’s thoroughly enjoying the act of nursing person after person.");
-	output("\n\nOf course, with both customer and vendor enjoying themselves so much, the line doesn’t seem to be in much of a hurry. The dragon-woman ahead of you seems to take the better part of half an hour to finish her drink, finally popping off the tit and running a cream-pale hand over her lips to wipe away an excess of sticky amber. You see her swipe a credit chit through a hand-held device the myr hands her, then slip away in the crowd. The line steps forward all of three or four paces, and you start mumbling about your [pc.footOrFeet] aching.");
+	output("\n\nOf course, with both customer and vendor enjoying themselves so much, the line doesn’t seem to be in much of a hurry. The dragon-woman ahead of you seems to take the better part of half an hour to finish her drink, finally popping off the tit and running a cream-pale hand over her lips to wipe away an excess of sticky amber. You see her swipe a credit chit through a hand-held device the myr hands her, then slip away in the crowd. The line steps forward all of three or four paces, and you start mumbling about your [pc.feet] aching.");
 	output("\n\nYou’re starting to think that the line’s not worth waiting through - and pity the dozen or so people who’ve fallen in behind you - when you see the shop door open and a tall, extraordinarily busty gold myr steps out. She’s clad in nothing but a silky white sash around her waist, but leaving her chest completely bare. The myr is gorgeous, her statuesque beauty accented by silver jewelry and gemstones all around her brow, neck, and shoulders. All four arms are curled under her chest, trying to support her barrel-sized breasts.");
 	output("\n\n<i>“I’m sorry for the long lines, my dears,”</i> the woman says, loud enough for everyone nearby to hear. <i>“There’s so many of you lately! Please, if some of you will come over here and form two more lines, I will provide for you myself.”</i>");
 	output("\n\nMust be the owner, you figure. The bountiful honeypot scoots one of the women already working the stall aside, and sets up just beside the line you’re already in. Considering how slow it’s been, you decide you join the scrabble of people who are forming the new lines. With a little ");
@@ -153,7 +153,7 @@ public function introToAsseniaPartThree():void
 	output("\n\nYou smile at the well-sucked honeypot and stand up, wiping away an excess of honey on your cheeks. The other woman, the redhead, hops to her feet and starts to leave - but not before reaching back and slapping your [pc.butt] first. You flinch and turn to face her, just in time to see her flashing you a wink before she saunters off into the crowd.");
 	output("\n\n<i>“See you next time,”</i> Asennia murmurs to you as you step out of line, letting her next set of customers come over to get their long-awaited drink.");
 	processTime(13);
-	pc.thickness++;
+	pc.modThickness(1, false);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -221,7 +221,7 @@ public function herBusinessAsennia():void
 	output("\n\nWhen she puts it like that, it certainly seems the more appealing option. The dozens of customers lined up to suck her tits, and those of her employees, only reaffirm her point.");
 	output("\n\n<i>“Are there many shops like this, then?”</i> you ask.");
 	output("\n\nAsennia shrugs. <i>“There were more, before the war. It took a great deal of money and work to secure the food required to keep myself and my employees nice and plump. I can assure you-”</i> she starts to say, cut off when the girl currently suckling on her starts to get overly amorous, sucking and groping until Asennia moans.");
-	output("\n\nAfter a few moments, Assenia manages to urge her customer down, chiding her behavior while she’s talking. With a sigh, the proprietor turns her attention back to you and says, <i>“As I said, there are few honeypot shops like mine nowadays. I’ve already bought out the remaining ones in Gildenmere, so we’re certainly the only one you’re likely to see during your visit.”</i>");
+	output("\n\nAfter a few moments, Asennia manages to urge her customer down, chiding her behavior while she’s talking. With a sigh, the proprietor turns her attention back to you and says, <i>“As I said, there are few honeypot shops like mine nowadays. I’ve already bought out the remaining ones in Gildenmere, so we’re certainly the only one you’re likely to see during your visit.”</i>");
 	output("\n\n<i>“You bought them all?”</i>");
 	output("\n\nShe nods. <i>“But you asked how I got into the business, did you not?”</i>");
 
@@ -314,7 +314,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 {
 	clearOutput();
 	showAsennia();
-	output("Looking at the huge, honey-swollen breasts Asennia’s resting on the stone counter fills you with hunger. You can’t help but lick your lips at the sight of them, eyes taking in the full curves and the dark ring of her nipple, surrounded by a pebbly ring around a prominent peak. She’s so... so <i>full</i>, intoxicatingly beautiful in her swollen state. The primal part of your brain switches on, and you slip down onto the paved ground in front of the honeypot stall - in front of Assenia’s fully laden breasts.");
+	output("Looking at the huge, honey-swollen breasts Asennia’s resting on the stone counter fills you with hunger. You can’t help but lick your lips at the sight of them, eyes taking in the full curves and the dark ring of her nipple, surrounded by a pebbly ring around a prominent peak. She’s so... so <i>full</i>, intoxicatingly beautiful in her swollen state. The primal part of your brain switches on, and you slip down onto the paved ground in front of the honeypot stall - in front of Asennia’s fully laden breasts.");
 	output("\n\n<i>“Thirsty, darling?”</i> she purrs, her dark lips smiling broadly. <i>“You know you’re welcome to as much as you’d like.”</i>");
 	output("\n\nOne of her arms reaches down and runs her black-plated fingers around her nipple, pinching herself just hard enough to draw out a tiny trickle of her golden nectar. Your eyes widen as the smell of sweet honey hits you, and you find yourself leaning closer and closer into the swollen tit until your lips brush against the dark plane of Asennia’s tit, smearing the pre-trickle of honey across your [pc.lips].");
 	output("\n\nThe taste lights your mind on fire, compelling you to greedily lock your mouth around Asennia’s boob and start to suckle for more. The busty honeypot moans, drawing a sharp breath as you latch onto her, and your [pc.tongue] laps across the rough surface of her teat. With her breast so full, it doesn’t take much to start a flow of honey into your mouth. Your hands wander up, first on the front swell of her breast, then caressing their way up her curves; as you go, you roughly squeeze and dig your fingers into her titflesh. Your fingers practically disappear into her warm amber flesh, working to knead the honey out of her chest.");
@@ -361,8 +361,8 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	processTime(23);
 	pc.lust(11);
 	pc.energy(200);
-	pc.thickness+=2;
-	pc.tone--;
+	pc.modThickness(2, false);
+	pc.modTone( -1, false);
 	pc.credits -= 50;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -424,7 +424,7 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 	else if(pc.cumQ() < 250) output("a thick load of steaming spunk across Asennia’s lap");
 	else output("an overwhelming blast of spunk across Asennia’s lower body. The ant-girl makes a pleasured sound and rolls her head back, eyes closed contentedly. Her hand continues to work, though, ceaselessly pumping your shaft until you’ve spilled every last drop of seed.");
 
-	output("\n\n<i>“I hope that was worth every credit,”</i> she chuckles as you stagger to your [pc.footOrFeet], realizing that you’re a mess of cum and nectar and sweat.");
+	output("\n\n<i>“I hope that was worth every credit,”</i> she chuckles as you stagger to your [pc.feet], realizing that you’re a mess of cum and nectar and sweat.");
 	if(pc.exhibitionism() < 33) output(" The sudden realization that dozens of people just watched you bathe Asennia in cum makes your cheeks burn with embarrassment.");
 	else
 	{
@@ -433,10 +433,11 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 	output("\n\n<i>“There’s a shower in back,”</i> the honeypot offers, handing you your gear as soon as you’ve swiped your credits through her terminal. You give her a smile and slip into her shop to clean yourself off. A few minutes, and a hot shower, later, you head back onto the street with your gear back on - though you couldn’t quite get the smell of cum and nectar off you...");
 	processTime(18);
 	pc.orgasm();
+	pc.shower();
 	pc.energy(100);
 	pc.exhibitionism(2);
-	pc.thickness+= 2;
-	pc.tone--;
+	pc.modThickness(2, false);
+	pc.modTone( -1, false);
 	pc.credits -= 50;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -506,7 +507,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	processTime(19);
 	clearMenu();
 	pc.credits -= 50;
-	pc.thickness+=2;
-	pc.tone--;
+	pc.modThickness(2, false);
+	pc.modTone( -1, false);
 	addButton(0,"Next",mainGameMenu);
 }

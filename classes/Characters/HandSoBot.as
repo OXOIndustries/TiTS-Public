@@ -32,6 +32,7 @@
 			isLustImmune = true;
 			
 			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackNoun = "claw";
 			this.meleeWeapon.longName = "claws";
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 3;

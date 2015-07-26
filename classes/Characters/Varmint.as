@@ -47,7 +47,8 @@
 			this.rangedWeapon.attack = -2;
 			rangedWeapon.baseDamage.kinetic.damageValue = 1;
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			rangedWeapon.attackNoun = "shot";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "tough hide";

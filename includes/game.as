@@ -1910,6 +1910,13 @@ public function statisticsScreen():void
 		output2("<b>Milk, Production Bonus: </b>" + Math.round(pc.milkRate*100)/10 + "%\n");
 	}
 	output2("<b>Orgasms, Total: </b>" + StatTracking.getStat("sex/player/orgasms") + "\n");
+	
+	output2("<b>Personality Score: </b>" + Math.round(pc.personality));
+	if (pc.isNice()) output(", Kind");
+	if (pc.isMischievous()) output(", Mischievous");
+	if (pc.isAss()) output(", Hard");
+	output("\n");
+	
 	if(pc.hasCock()) output2("<b>Refractory Rate: </b>" + Math.round(pc.refractoryRate*1000)/10 + "%\n");
 	if(pc.hasCock()) output2("<b>Virility: </b>" + Math.round(pc.virility()*1000)/10 + "%\n");
 
@@ -1924,7 +1931,9 @@ public function statisticsScreen():void
 
 
 	//======NPC STATISTICS=====//
-	output2("\n<b><u>NPC Statistics:</u></b>\n");
+	output2("\n<b><u>Interpersonal Statistics:</u></b>\n");
+	if (flags["MET_ELLIE"] != undefined && flags["NEPH_AFFECTION"] != undefined) output2("<b>Ellie's Affection: </b>" + flags["NEPH_AFFECTION"] + "%\n");
+	if (flags["MET_GIANNA"] != undefined) output2("<b>Gianna's Personality Score:</b>" + giannaPersonality() + "\n");
 	if (flags["KELLY_ATTRACTION"] != undefined) output2("<b>Kelly's Attraction: </b>" + flags["KELLY_ATTRACTION"] + "%\n");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output2("<b>Kiro's Trust: </b>" + kiroTrust() + "%\n");
 	//Lane shit
@@ -1933,6 +1942,11 @@ public function statisticsScreen():void
 		output2("<b>Lane, Hypnosis Level: </b>" + flags["LANE_HYPNOSIS_LEVEL"] + "\n");
 		if (flags["LANE_DETOX_COUNTER"] != undefined) output2("<b>Lane, Hypnotism Detoxification Duration: </b>" + prettifyMinutes(flags["LANE_DETOX_COUNTER"]) + "\n");
 	}
+	if (flags["MET_ORRYX"] >= 2 && flags["ORRYX_REP"] != undefined)
+	{
+		output2("<b>Orryx's Reputation Level: </b>" + flags["ORRYX_REP"] + "\n");
+	}
+	if (flags["MET_PENNY"] != undefined && flags["PENNY_AFFECTION"] != undefined) output2("<b>Penny's Affection: </b>" + flags["PENNY_AFFECTION"] + "%\n");
 	if(reahaRecruited()) 
 	{
 		output2("<b>Reaha's Patch Addiction: </b>" + reahaAddiction() + "%\n");
@@ -1944,10 +1958,15 @@ public function statisticsScreen():void
 	output2("\n<b><u>General Statistics:</u></b>\n");
 	output2("<b>Crew, Recruited: </b>" + crewRecruited() + "\n");
 	output2("<b>Crew, Onboard: </b>" + crew(true) + "\n");
+	if(StatTracking.getStat("milkers/breast milker uses") > 0)
+	{
+		output2("<b>Milker, Breast, Times Used: </b>" + StatTracking.getStat("milkers/breast milker uses") + "\n");
+		output2("<b>Milker, Breast, Fluid Milked: </b>" + StatTracking.getStat("milkers/milk milked") + " mL\n");
+	}
 	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 	{
 		output2("<b>Milker, Prostate, Times Used: </b>" + StatTracking.getStat("milkers/prostate milker uses") + "\n");
-		output2("<b>Milker, Prostate, Cum Milked: </b>" + StatTracking.getStat("milkers/cum milked") + "\n");
+		output2("<b>Milker, Prostate, Cum Milked: </b>" + StatTracking.getStat("milkers/cum milked") + " mL\n");
 	}
 	output2("<b>Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")) + "\n");
 	output2("<b>Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")) + "\n");
@@ -1983,6 +2002,8 @@ public function statisticsScreen():void
 			output2("<b>Births, Venus Pitcher Seeds @ Daycare: </b>" + StatTracking.getStat("pregnancy/fertilized venus pitcher seeds/day care") + "\n");
 		if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") > 0)
 			output2("<b>Births, Venus Pitcher Seeds, Unfertilized: </b>" + StatTracking.getStat("pregnancy/unfertilized venus pitcher seed") + "\n");
+		if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
+			output2("<b>Births, Water Queen Eggs: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs") + "\n");
 		if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
 			output2("<b>Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total") + "\n");
 		if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
@@ -2029,9 +2050,13 @@ public function statisticsScreen():void
 		output2("<b>Cunt Snake, Reproduction, Eggs in Hatchery: </b>" + flags["CUNT_SNAKE_EGGS_FAXED_HOME"] + "\n");
 		bHasParasites = true;
 	}
-	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined && flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
+	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] != undefined || flags["CUNT_SNAKE_EGGS_FAXED_HOME"] != undefined)
 	{
-		output2("<b>Cunt Snake, Reproduction, Eggs Laid Total: </b>" + (flags["CUNT_SNAKES_HELPED_TO_INFEST"] + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]) + "\n");
+		output2("<b>Cunt Snake, Reproduction, Eggs Laid Total: </b>");
+		if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] == undefined) output2(flags["CUNT_SNAKES_HELPED_TO_INFEST"]);
+		else if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] == undefined) output2(flags["CUNT_SNAKE_EGGS_FAXED_HOME"]);
+		else output2(flags["CUNT_SNAKES_HELPED_TO_INFEST"] + flags["CUNT_SNAKE_EGGS_FAXED_HOME"]);
+		output2("\n");
 		bHasParasites = true;
 	}
 	// Mimbranes

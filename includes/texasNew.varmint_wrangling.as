@@ -295,6 +295,7 @@ public function fuckCamsButt(camCame:Boolean = false):void
 
 	processTime(16);
 	pc.orgasm();
+	IncrementFlag("SEXED_CAMERON");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

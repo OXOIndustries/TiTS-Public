@@ -455,7 +455,7 @@ public function kaedeMyrellionSexIntroII():void
 	output("\n\nIt looks like this horny halfbreed’s entirely at your disposal...");
 
 	// [Fuck Ass] [Suck & Ride]
-	flags["KAEDE_FUCKED"] = 1;
+	IncrementFlag("KAEDE_FUCKED");
 	
 	processTime(15 + rand(5));
 	

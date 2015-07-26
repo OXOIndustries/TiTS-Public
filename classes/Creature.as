@@ -3459,37 +3459,53 @@
 			if (hasBeard()) return "beard";
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
 		}
-		public function modThickness(change: Number, display:Boolean = true):String {
+		public function modThickness(change: Number, display:Boolean = true): String 
+		{
 			var oldN: Number = thickness;
-			//Lose weight fatty!
-			//Check bounds.
-			if (change > 0 && change + thickness > 100) change = 100 - thickness;
-			if (change < 0 && thickness - change < 0) change = thickness;
-			//Cancel out if nowhere to go.
-			if (change == 0) return "";
-			thickness += change;
+			var minN: Number = 0;
+			var maxN: Number = 100;
+			
+			// Mods to caps here
+			
+			//Check bounds
+			if (change != 0) 
+			{
+				thickness += change;
+				if (thickness > maxN) thickness = maxN;
+				if (thickness < minN) thickness = minN;
+			}
+			change = thickness - oldN;
 			if(display)
 			{
-				//Display 'U GOT FAT'
+				// Display 'U GOT FAT'
 				if (change > 0) return "\n\nYour center of balance changes a little bit as your body noticeably widens. (+" + Math.round(change * 10) / 10 + " body thickness)";
-				//GET THIN BITCH
-				else return "\n\nEach movement feels a tiny bit easier than the last.  Did you just lose a little weight!? (" + Math.round(change * 10) / 10 + " body thickness)";
+				// GET THIN BITCH
+				if (change < 0) return "\n\nEach movement feels a tiny bit easier than the last. Did you just lose a little weight!? (" + Math.round(change * 10) / 10 + " body thickness)";
 			}
 			return "";
 		}
-		public function modTone(change: Number, display:Boolean = true):String {
+		public function modTone(change: Number, display:Boolean = true): String 
+		{
 			var oldN: Number = tone;
+			var minN: Number = 0;
+			var maxN: Number = 100;
+			
+			// Mods to caps
+			
 			//Check bounds
-			if (change > 0 && change + tone > 100) change = 100 - tone;
-			if (change < 0 && tone - change < 0) change = tone;
-			if (change == tone) return "";
-			tone += change;
-			//DIsplay BITCH I WORK OUT
+			if (change != 0) 
+			{
+				tone += change;
+				if (tone > maxN) tone = maxN;
+				if (tone < minN) tone = minN;
+			}
+			change = tone - oldN;
 			if(display)
 			{
+				// Display BITCH I WORK OUT
 				if (change > 0) return "\n\nYour body feels a little more solid as you move, and your muscles look slightly more visible. (+" + Math.round(change * 10) / 10 + " muscle tone)";
-				//Display DERP I HAVE GIRL MUSCLES
-				else return "\n\nMoving brings with it a little more jiggle than you're used to.  You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
+				// Display DERP I HAVE GIRL MUSCLES
+				if (change < 0) return "\n\nMoving brings with it a little more jiggle than you're used to. You don't seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
 			}
 			return "";
 		}

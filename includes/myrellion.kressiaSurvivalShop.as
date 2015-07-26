@@ -170,7 +170,7 @@ public function kressiaSurvivalShopTalkHerShop():void
 	
 	output("\n\n<i>“What she didn’t say is that this place was going to be a fixer-upper,”</i> Shiare adds, waving one of her four arms around the shop. <i>“A bomb went off just down the street, so we didn’t have any windows, the walls were banged up...”</i>");
 	
-	output("\n\n<i>“But we made it work,”</i> Anarrie finishes with a smile. <i>“Anybody who’s thinking about going out in No Man’s Land learns pretty quick to stop in here first. Trust me, you don’t wanna go out there without one of our minesweepers to clear the path, or a good flare gun to light the way.”</i>");
+	output("\n\n<i>“But we made it work,”</i> Anarrie finishes with a smile. <i>“Anybody who’s thinking about going out in No Myr’s Land learns pretty quick to stop in here first. Trust me, you don’t wanna go out there without one of our minesweepers to clear the path, or a good flare gun to light the way.”</i>");
 
 	kressiaSurvivalShopTalkMenu();
 	addDisabledButton(2, "Her Shop");

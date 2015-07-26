@@ -403,11 +403,11 @@ public function lieveTalkNoMansLand():void
 
 	flags["LIEVE_TALK_NOMANSLAND"] = 1;
 
-	output("<i>“Tell me a little about No Man’s Land,”</i> you prompt. <i>“That’s why they’ve got you out here, right?”</i>");
+	output("<i>“Tell me a little about No Myr’s Land,”</i> you prompt. <i>“That’s why they’ve got you out here, right?”</i>");
 	
 	output("\n\n<i>“To keep you off-worlders from blundering out there blindly, anyway,”</i> she answers, adding with a mischievous wink: <i>“Apparently it’s bad PR if too many of you step on landmines or something.”</i>");
 	
-	// Encountered landmines - 9999
+	// Encountered landmines
 	if (flags["ENCOUNTERED_LANDMINES"] == undefined) output("\n\nYou blink. <i>“Landmines?”</i>");
 	else output("\n\n<i>“I’ve noticed a few already,”</i> you grumble.");
 	
@@ -415,7 +415,7 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“They’re not the worst things you’ll find out there, though,”</i> Lieve adds, inviting you to sit down. You do so as Lieve continues talking. Her voice shifts from the guarded friendliness she normally shows you to a more authoritative pitch, as if she’s talking to one of her subordinates. You imagine she’s given this speech several times before.");
 	
-	output("\n\n<i>“Ever since the cease-fire, we’ve gotten plenty of deep dwelling creatures coming back to the surface caves. Most are interested in looting the equipment and supplies left in No Man’s, others in capturing our patrols or offworlder explorers for... breeding.”</i> Her brow twitches ever so slightly. <i>“The most common threat you’ll face out there are the nyrea. Like us red myr, they’re a warrior race, and damn good at it.”</i>");
+	output("\n\n<i>“Ever since the cease-fire, we’ve gotten plenty of deep dwelling creatures coming back to the surface caves. Most are interested in looting the equipment and supplies left in No Myr’s, others in capturing our patrols or offworlder explorers for... breeding.”</i> Her brow twitches ever so slightly. <i>“The most common threat you’ll face out there are the nyrea. Like us red myr, they’re a warrior race, and damn good at it.”</i>");
 	
 	output("\n\nShe gives a wry chuckle at that. <i>“We’ve been fighting the nyrea for years up north. They’re more common there, more organized. Here in the heartlands, though, you’ll mostly be fighting lone huntresses");
 	if (pc.mf("m", "f") == "m") output(" keen on stealing your sperm");
@@ -432,7 +432,7 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“Anything else I should be aware of?”</i>");
 	
-	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Man’s. If you go down in the deep caves, you’ll start seeing bothrioc, wetraxxal, creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
+	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Myrs’s. If you go down in the deep caves, you’ll start seeing bothrioc, wetraxxal, creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
 
 	processTime(10 + rand(5));
 	
@@ -563,7 +563,7 @@ public function lieveTalkScars():void
 	
 	output("\n\n<i>“But not you?”</i>");
 	
-	output("\n\nLieve sighs. <i>“Not me. At least, not for those scars. A little over a year ago, I pulled spotter duty. Nothing out of the ordinary - one of the most important things us scouts do is carry radios into No Man’s Land and spot for artillery. That’s how I met Sierva, even. Dangerous work, and exhausting, but it makes our cannons a hell of a lot more effective. Worth every sweaty, filthy day of curling up in a crater hoping the shells don’t fall just a little bit short and blow me to pieces.”</i>");
+	output("\n\nLieve sighs. <i>“Not me. At least, not for those scars. A little over a year ago, I pulled spotter duty. Nothing out of the ordinary - one of the most important things us scouts do is carry radios into No Myr’s Land and spot for artillery. That’s how I met Sierva, even. Dangerous work, and exhausting, but it makes our cannons a hell of a lot more effective. Worth every sweaty, filthy day of curling up in a crater hoping the shells don’t fall just a little bit short and blow me to pieces.”</i>");
 	
 	output("\n\n<i>“It was the tenth time I’d played spotter, back when the fighting was about fifty miles back east. Everything was going fine until I crawled into a ditch... that happened to have a trap door in it.”</i>");
 	
@@ -714,7 +714,7 @@ public function lieveTalkTrenchWives():void
 	
 	output("\n\n<i>“With my winning personality, mostly,”</i> Lieve chuckles, running her hand through one of the girls’ hair. <i>“Well, and winning the war, too.”</i>");
 	
-	output("\n\nYou urge Lieve on, and she most happily obliges. <i>“Trench wives are prisoners of war. We’ve taken more prisoners than we could ever possibly deal with over the last seven years. Thousands and thousands of deserters we’ve picked up, wounded we’ve pulled out of No Man’s Land, and more surrendered soldiers than we could stuff into camps even if we wanted to. But P.O.W.s have to go somewhere, right?”</i>");
+	output("\n\nYou urge Lieve on, and she most happily obliges. <i>“Trench wives are prisoners of war. We’ve taken more prisoners than we could ever possibly deal with over the last seven years. Thousands and thousands of deserters we’ve picked up, wounded we’ve pulled out of No Myr’s Land, and more surrendered soldiers than we could stuff into camps even if we wanted to. But P.O.W.s have to go somewhere, right?”</i>");
 	
 	output("\n\n<i>“Somewhere being your bed?”</i>");
 	

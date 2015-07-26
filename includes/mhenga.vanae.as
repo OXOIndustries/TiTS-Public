@@ -10,11 +10,13 @@ public function encounterVanae(isHuntress:Boolean):void
 	{
 		userInterface.showName("FIGHT: VANAE\nHUNTRESS");
 		userInterface.showBust("VANAE_HUNTRESS");
+		IncrementFlag("MET_VANAE_HUNTRESS");
 	}
 	else
 	{
 		userInterface.showName("FIGHT: VANAE\nMAIDEN");
 		userInterface.showBust("VANAE_MAIDEN");
+		IncrementFlag("MET_VANAE_MAIDEN");
 	}
 
 	author("Jim T");
@@ -2048,7 +2050,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output(" before retreating back into the Mhen'gan jungle, her tail and hips swaying all the while. It seems you're going to be the father of quite a few vanae daughters.\n\n");
 
 	processTime(75+rand(25));
-	flags["VANAE_HUNTRESS_BRED"] = 1;
+	IncrementFlag("VANAE_HUNTRESS_BRED");
 
 	genericLoss();
 }

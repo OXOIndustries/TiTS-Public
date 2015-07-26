@@ -14,6 +14,7 @@ public function adultCockvineEncounter():void
 	adultCockvineHeader();
 
 	CodexManager.unlockEntry("Cockvines");
+	IncrementFlag("MET_ADULT_COCKVINE");
 
 	output("\n\n");
 	
@@ -535,7 +536,7 @@ public function adultCockvineConsentacles():void
 	pc.orgasm();
 	pc.orgasm();
 
-	flags["FUCKED_ADULT_COCKVINE"] = 1;
+	IncrementFlag("FUCKED_ADULT_COCKVINE");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

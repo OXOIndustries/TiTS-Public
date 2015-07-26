@@ -34,6 +34,8 @@ public function wetraHoundHeader():void
 public function encounterWetraHound():void
 {
 	wetraHoundHeader();
+	
+	IncrementFlag("MET_WETRA_HOUND");
 
 	output("\n\nAs you’re making your way through the rough cavern, you start to hear the sound of claws clattering on the cold stone. You turn, just in time to see a heavy, muscular mass stepping out of the shadows, showing you a mouth full of glistening white fangs. It looks like some unholy amalgamation of a crocodile and a gorilla, covered in scraggly gray fur on its back and its muscle-bound arms, and plates of leithan-like scales coat its back, chest, and hind-legs.");
 	
@@ -256,6 +258,8 @@ public function wetraxxelBrawlerHeader():void
 public function encounterWetraxxelBrawler():void
 {
 	flags["WETRAXXEL_ENCOUNTER_WEIGHT"] = 0;
+	
+	IncrementFlag("MET_WETRAXXEL_BRAWLER");
 
 	output("\n\nAs you’re wandering through the strange passage, you take a slight turn in the winding caverns and gasp as you nearly run face-first into the chest of a towering, insectile pile of muscle. The man scowls");
 	if (pc.tallness < 120) output(" down at you");

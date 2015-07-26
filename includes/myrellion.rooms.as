@@ -929,7 +929,7 @@ public function initializeMyrellionRooms():void
 	rooms["747"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["748"] = new RoomClass(this);
-	rooms["748"].roomName = "THE\nHONEY NOZZLE";
+	rooms["748"].roomName = "THE HONEYPOT\nSTALL";
 	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stores leads east back to the street.";
 	rooms["748"].planet = "PLANET: MYRELLION";
 	rooms["748"].system = "SYSTEM: SINDATHU";
@@ -941,7 +941,7 @@ public function initializeMyrellionRooms():void
 	rooms["748"].addFlag(GLOBAL.NPC);
 
 	rooms["749"] = new RoomClass(this);
-	rooms["749"].roomName = "THE\nHONEY NOZZLE";
+	rooms["749"].roomName = "THE HONEYPOT\nSTALL";
 	rooms["749"].description = "";
 	rooms["749"].planet = "PLANET: MYRELLION";
 	rooms["749"].system = "SYSTEM: SINDATHU";
@@ -1439,7 +1439,7 @@ public function initializeMyrellionRooms():void
 	//800 Airfield
 	rooms["1H6"] = new RoomClass(this);
 	rooms["1H6"].roomName = "NARROW\nPASSAGE";
-	rooms["1H6"].description = "A winding, narrow passage leads between the gates of Kressia, visible to the east, and the winding caves of no-man's land. Sandbags are piled up on either side, and several Federation troops are sitting behind machineguns on tripods. They eye you warily as you pass, but keep their hands well away from their weapons.";
+	rooms["1H6"].description = "A winding, narrow passage leads between the gates of Kressia, visible to the east, and the winding caves of No Myr’s Land. Sandbags are piled up on either side, and several Federation troops are sitting behind machineguns on tripods. They eye you warily as you pass, but keep their hands well away from their weapons.";
 	rooms["1H6"].planet = "PLANET: MYRELLION";
 	rooms["1H6"].system = "SYSTEM: SINDATHU";
 	rooms["1H6"].southExit = "1H8";

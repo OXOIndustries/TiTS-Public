@@ -43,10 +43,12 @@ public function nyreaHeaderFromCreature(target:Creature, prefix:String = null):v
 //Lazymoad Fencode
 public function encounterNyreaBeta():void
 {
+	IncrementFlag("MET_NYREA_BETA");
 	encounterNyreaHuntress(NYREA_BETA);
 }
 public function encounterNyreaAlpha():void
 {
+	IncrementFlag("MET_NYREA_ALPHA");
 	encounterNyreaHuntress(NYREA_ALPHA);
 }
 

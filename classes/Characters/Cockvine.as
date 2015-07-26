@@ -33,6 +33,7 @@
 			isLustImmune = true;
 			
 			this.meleeWeapon.attackVerb = "lash";
+			this.meleeWeapon.attackNoun = "tendrils";
 			this.meleeWeapon.attack = 2;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 4;

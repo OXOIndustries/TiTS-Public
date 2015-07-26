@@ -72,6 +72,7 @@ public function encounterASexBot():void
 	//Repeat 
 	else
 	{
+		IncrementFlag("MET_SEXBOTS_ON_TARKUS");
 		output("\n\nA familiar electronic hum permeates this area of the wastes, and you watch guardedly as a raskvel-shaped sexbot advances serenely out of the nearby wreckage towards you. Word is evidently getting around; its green eyes flicker over you once, and it says nothing before beginning to transform itself into a human sexual ideal. ");
 		if(flags["MET_SEXBOT_MALE_ON_TARKUS"] == 1 && flags["MET_SEXBOT_FEMALE_ON_TARKUS"] == 1)
 		{

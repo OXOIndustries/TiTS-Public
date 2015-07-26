@@ -25,12 +25,14 @@ public function encounterHostileRaskvelFemale():void
 	}
 	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
 	{
+		IncrementFlag("MET_FEMALE_RASKVEL");
 		catchPostBirthRaskvel();
 		return;
 	}
 	//Second Encounter
 	else
 	{
+		IncrementFlag("MET_FEMALE_RASKVEL");
 		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, \"<i>Fork over your credits, off-worlder. I need 'em!</i>\" She hefts her wrench threateningly. It doesn't look like negotiation is an option.");	
 	}
 	//[FIght] [Pay] ["Pay"]
@@ -530,7 +532,8 @@ public function faceRidingRaskvelLadies():void
 	}
 	output(" You sag back, eventually falling off her face as your climax has its way with you. Soft coos of pleasure slip through your [pc.lips], matched by the slight alien babe beside you. Both of you just suffered mind-meltingly strong orgasms, and it takes a little while to recover.");
 	output("\n\nLuckily, you're able to master your excitement first and gather your things while the raskvel is still twitching through her aftershocks. You yank the needles out of your ass as you prepare to leave. The clever little bitch has a matching set in her own.\n\n");
-	processTime(25+rand(5));
+	processTime(25 + rand(5));
+	IncrementFlag("TIMES_RODE_RASKVEL_FACE");
 	pc.orgasm();
 	genericVictory();
 }

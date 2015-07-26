@@ -155,6 +155,9 @@ public function combatBlurb(gold:Boolean = false):void
 	}
 	else
 	{
+		if (gold) IncrementFlag("MET_GOLD_DESERTER");
+		else IncrementFlag("MET_RED_DESERTER");
+		
 		output("You’re walking through the desolate and war-torn wasteland. Suddenly, there’s a bee-like whizzing past your ear. A ragged-looking ");
 		if(gold) output("gold");
 		else output("red");
@@ -438,7 +441,7 @@ public function askAntSlootsAboutDesertion(gold:Boolean = false):void
 		output("You ask Lys why she deserted the Gilden Republic. She sighs and looks at one of her fingers, rubbing it compulsively.");
 		output("\n\n<i>“... My wife. We were both conscripted early on during the war. She... I... well... same platoon,”</i> she chokes up. Her black eyes become glassy with tears. <i>“... Sorry. I really thought I could talk about it this time... but I just can’t.”</i>");
 		output("\n\nTaking a deep breath, she tries to calm her trembling body. <i>“... Whoooh. Right. So. When she left me, I ended up in a medical hospital for a little while. They put me back on the front line when the war effort started going south, though.”</i>");
-		output("\n\n<i>“When the Reds took Kressia, I figured it wasn’t long before the End, what with the nukes. If I’m going to die, I wanted to do it near where our old house was, here in No Ants Land - not in some hopeless defense of the capital.”</i>");
+		output("\n\n<i>“When the Reds took Kressia, I figured it wasn’t long before the End, what with the nukes. If I’m going to die, I wanted to do it near where our old house was, here in No Myr’s Land - not in some hopeless defense of the capital.”</i>");
 		output("\n\n<i>“... So that’s it. I wander the wastes, stealing what I can, robbing strays, all so I can stay close to where she and I lived. I kind of feel like she’s there, you know?”</i>");
 		output("\n\n<i>“I know I’m a terrible person, but the whole world is terrible. I don’t think there’s a single thing worth salvaging anymore - we’re all just a bunch of trampled flowers, struggling to grow on scorched earth.”</i>");
 	}

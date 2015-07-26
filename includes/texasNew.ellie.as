@@ -779,7 +779,7 @@ public function ellieSexScene():void
 	output("\n\nThe tip of her tail flicks across your cheek, wiping away a bit of her girl-spunk... only to turn around and drive itself into her twat. Ellie gives a little gasp as her tail sinks into her cum-soaked snatch, spreading her black lips wide open around its thick girth. <i>“Mmm, now what am I going to do with you, sweet thing?”</i> Ellie coos, cupping her tits and wiggling her animalistic hips as she spears herself. Her twin-pupiled eyes regard with you a look of lust and unrestrained desire...");
 	pc.lust(300);
 	processTime(14);
-	flags["ELLIE_SEXED"] = 1;
+	IncrementFlag("ELLIE_SEXED");
 	clearMenu();
 	//Scene routing here!
 	var scenes:Array = new Array();

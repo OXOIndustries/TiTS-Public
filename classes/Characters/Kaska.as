@@ -33,7 +33,8 @@
 			
 			this.rangedWeapon.attack = -5;
 			this.rangedWeapon.longName = "dual-barreled machine gun";
-			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "shot";
 			this.rangedWeapon.baseDamage.kinetic.damageValue = 1;
 			this.rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
 			this.rangedWeapon.hasRandomProperties = true;

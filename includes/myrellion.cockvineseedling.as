@@ -16,6 +16,8 @@ public function cockvineSeedlingEncounter():void
 {
 	clearOutput();
 	cockvineSeedlingHeader();
+	
+	IncrementFlag("MET_COCKVINE_SEEDLING");
 
 	output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind.");
 

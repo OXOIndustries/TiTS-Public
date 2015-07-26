@@ -27,6 +27,7 @@
 			this.plural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
+			meleeWeapon.attackNoun = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
 			this.meleeWeapon.hasRandomProperties = true;
 			

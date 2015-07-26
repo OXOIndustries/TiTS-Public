@@ -1538,6 +1538,7 @@ public function irelliaDoubleTeamFinale(partner:String):void
 	// Big spooges in VagOrAss for player. 
 	// Scene End
 	processTime(7);
+	IncrementFlag("IRELLIA_DOUBLE_TEAM_EVER_DONE");
 	pc.orgasm();
 	irelliaSexBreak(4);
 	pc.exhibitionism(1);
