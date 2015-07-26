@@ -1547,6 +1547,7 @@ public function askShade4Sex():void
 	output("\n\nIt’s a short trip to Shade’s bunk, but you’re buck naked by the time you reach it. The kaithrit huntress gives you a lascivious wink over her shoulder as she pops the door open and guides you through. Her quarters are cluttered, a random assortment of clothes, gun parts, and chunks of armor scattered across the floor beneath punk rock posters and kaithrit grav-balls. In one fluid motion, she faces you, slips her arms out of her jacket sleeves, and pulls her shirt off over her head, giving you an eyeful of big, E-cup tits barely restrained by a black sports bra.\n\nShade takes a single step towards you, pressing herself tight against you, letting you feel those lush mounds compress against your [pc.chest]... before she gives you a rough shove onto the bed, sending you tumbling onto your back. Her pants hit the deck with an audible <i>thump</i> of a gunbelt clattering on steel before she hops in after you, straddling your [pc.hips] and slipping a hand under her bra to cup her breast, slipping the garment off to reveal the sun-kissed mounds beneath it, and letting a slim silver necklace fall free, dangling over you.");
 	output("\n\n<i>“Now then,”</i> Shade purrs, <i>“what to do with you...?”</i>");
 	processTime(15);
+
 	//{Shade’s Scenes go Here}
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Cunt Tail",cuntTailShadeFux,undefined,"Cunt Tail","Let her use her cunt tail on you. It probably feels pretty good.");
@@ -1566,6 +1567,10 @@ public function askShade4Sex():void
 	//Because it’s only been requested literally 50 billion times. Just another add to her normal sex menu.
 	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
+
+	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Jiggle jiggle.");
+	else addDisabledButton(4, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
+
 	addButton(14,"Back",shouldIShadeOrShouldIGo);
 }
 
@@ -1607,6 +1612,39 @@ public function shadeTalkMenu(arg:Function):void
 		else addButton(4,"Runes",runesYouTurdShade,undefined,"Runes","Ask her about the runes she's got all over.")
 	}
 	else addDisabledButton(4,"Runes","Runes","You don't know enough about Shade to broach this topic yet.");
+
+	if (flags["SHADE_BOOBWORSHIP"] != undefined)
+	{
+		if (flags["SHADE_TALKED_ABOUT_MODS"] == undefined)
+		{
+			if (arg == talkToShadeAboutMods) addDisabledButton(5, "Mods", "You just talked about that.")
+			else addButton(5, "Mods", talkToShadeAboutMods, undefined, "Mods", "Ask Shade if she's ever thought about getting some mod work done... especially for those rockin' tits of hers. You can only imagine suckling some rich, creamy milk from them...");
+		}
+		else
+		{
+			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItem(new Lactaid()) || pc.hasItem(new MilkCaramelGushers(), 5)))
+			{
+				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+			}
+			else if (!shade.milkType == GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
+			{
+				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+			}
+			else if (!shade.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
+			{
+				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+			}
+			else
+			{
+				addDisabledButton(5, "Mods", "Mods", "You don't have anything to give Shade.");
+			}
+		}
+	}
+	else
+	{
+		addDisabledButton(5, "Mods", "Mods", "You don't know enough about Shade to broach this topic yet.");
+	}
+
 	addButton(14,"Back",shadeApproach);
 	if(flags["SHADE_INSEMINATION_COUNTER"] != undefined && flags["SHADE_INSEMINATION_COUNTER"] >= 20)
 	{
@@ -1921,4 +1959,300 @@ public function stayWithShadeAfterLayingAnEgg2():void
 	output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function shadeBoobWorship():void
+{
+	clearOutput();
+	showShade();
+
+	output("You can’t take your eyes off of the two perfect orbs of unblemished flesh looming over you, resting low on your lover’s chest and punctuated with a pair of broad, pink teats. The way your lover’s breasts rise and fall with her heavy, husky breaths fills you with lust; Shade coos and chews her lower lips as");
+	if (pc.hasCock())
+	{
+		output(" your [pc.cocks] stiffen");
+		if (pc.cocks.length == 1) output("s");
+		output(", rubbing against her thigh.");
+	}
+	else output(" she feels the heat and moisture radiating off your [pc.cunt], grinding into her dark blue panties.");
+	output(" <i>“Like what you see, junior?”</i> she grins, squeezing one of her breasts and rocking her hips against your crotch.");
+
+	output("\n\nNodding eagerly, you reach up to run your fingers across her other tit, sinking them into Shade’s flawless flesh. She gives you an approving moan, tail rigling happily behind her. The parasitic appendages own pussy brushes wetly against your [pc.leg], subtly");
+	if (pc.hasCock())
+	{
+		output(" creeping towards your throbbing prick");
+		if (pc.cocks.length > 1) output("s");
+	}
+	else output(" searching for a nice, thick cock to gets its lips around");
+	output(". The more your hands squeeze and cup her chest, the heavier Shade’s breathing gets, and the more her pair of cuts grind against you, seeking out every avenue of pleasure in your foreplay.");
+
+	output("\n\n<i>“You really like big tits, huh?”</i> she teases, putting a hand over yours on her breast and shifting her knees forward, getting her chest positioned perfectly over your head.");
+	if (shade.canLactate())
+	{
+		output(" <i>“Guess I should have expected that... after all, you’re the one who gave me these mods. So, want to put ‘em to use?");
+	}
+	else
+	{
+		output(" <i>“Good. I’m damn proud of mine... and I’ll let you in on a secret: I love having ‘em played with. Think you could do that for me?");
+	}
+	output("”</i>");
+
+	output("\n\n<i>“");
+	if (pc.isNice()) output("Definitely!”</i> you grin, giving her a playful squeeze.");
+	else if (pc.isMischievous())
+	{
+		output("You better believe it!”</i> you says with a playful grin, pinching the nipple you’ve got your hand on until she sucks in a sharp breath");
+		if (shade.canLactate()) output(" and squirts a bit of moisture onto your fingers");
+		output(".");
+	}
+	else if (pc.isAss()) output("Damn straight,”</i> you tell her, squeezing her hard enough to make the huntress squeal.");
+	output(" She flashes you a sultry smile and grabs your shoulders, pulling you up to a sitting position and mashing her chest into your face. You gasp and squirm, suddenly blinded and smothered by your lover’s chest. Shade takes the opportunity to adjust herself, moving up until she’s straddling your [pc.hips] and grinding her crotch against yours. Her cunt-tail reaches in behind to rub at your bare");
+	if (pc.hasCock()) output(" cock");
+	else output(" cunt");
+	output(", teasing you relentlessly white Shade’s breasts batter your cheeks.");
+
+	output("\n\nWhen the lusty kaithrit finally leans back, you’re treated to the intoxicating sight of two huge");
+	if (shade.canLactate()) output(", milky");
+	output(" breasts with diamond-hard nipples on full display, a mere inch from your [pc.lips]. You’re almost drooling with anticipation, yearning to taste the perky pink mountains");
+	if (shade.canLactate()) output(" and the bounty of sweet, sweet [shade.milkNoun] within them");
+	output(". Shade seems to wait for you to take the initiative for once, giving you the chance to wrap your hands around her tight ass and pull her back against you, drawing one of her prominent nipples right into your mouth.");
+
+	output("\n\n<i>“There ya go,”</i> she groans, arching her back and pressing forward, squeezing her tit between your face and her chest. Shade’s arms wrap around your shoulders, letting you play with her ass and pussy to your heart’s content: she’s clearly focused on her boobs, of making sure you get as much of her teat into your mouth as you can, that the one you aren’t servicing is rubbing against your cheek, demanding attention. Your hands are drawn back up, around Shade’s motherly hips and up to her big, womanly bust again, squeezing hard");
+	if (shade.canLactate()) output(" until a thick, squirting stream of [shade.milk] shoots into your mouth");
+	output(". Shade moans, rolling her head back and letting out a feral grunt of pleasure. <i>“Just like that, kid... just like that,”</i> she breathes into your [pc.ear].");
+
+	if (shade.canLactate())
+	{
+		output("\n\nYour lover clearly enjoys having her tits milked - she’d never admit it, but you’re pretty sure she likes having them nice and full of [shade.milkNoun], bigger and more sensitive than they ever were before, between sessions of letting you nurse your fill from her. As if to confirm your thoughts, you hear her breathe <i>“I feel like a new mother again,”</i> just on the edge of hearing. You lock your gaze on Shade’s bliss-filled face, squeezing her tit and sucking out a steady stream of her delicious [shade.milkNoun] until she gives a pleasured cry and presses her chest hard against your face.");
+	}
+
+	output("\n\nIt’s hard not to enjoy the feeling of your lover’s breast in your hands");
+	if (shade.canLactate()) output(", the taste of her bounty trickling into your mouth");
+	output(", the heat of her body as it presses against your own. Her crotch is a sultry inferno beside your own, radiating heat and desire until all you can think about");
+	if (pc.hasCock() && !pc.hasVagina()) output(" is your own cock, so close to her slit... it would be effortless to slip it inside her, to join her in bliss");
+	else if (pc.hasVagina() && !pc.hasCock())output(" is your pussy, soiling Shade’s panties with your sexual excitement as she grinds against you - then again, she’s in no better shape than you are, all but drooling through her undies as her body revels in its excitement");
+	else output(" are your [pc.multiCock] and [pc.multiCunt], overwhelming you in a mix of need and desire. What you wouldn’t give to rip those panties aside and slam yourself into Shade’s slit while you suckle, joining her in bliss");
+	output(". As if reading your mind, Shade gives you a fierce grin, and you feel her hand slipping down to your crotch...");
+
+	output("\n\n<i>“Fair’s fair,”</i> she insists, running her fingers along your sex. <i>“Switch tits for me, though?");
+	if (!shade.canLactate()) output(" Other one’s feeling a little left out...");
+	else output(" Starting to run dry there...");
+	output("”</i>");
+
+	output("\n\nThat’s a hell of a trade. You nod eagerly, popping off her well-sucked boob with a wet squelch");
+	if (shade.canLactate()) output(" and a squirt of [shade.milkNoun]");
+	output(". The other is just as succulent and alluring as the first, and when you start to tease your [pc.tongue] around her pink areola, her hand rewards you in the most pleasurable ways.");
+	if (pc.hasCock())
+	{
+		output(" Shade’s slender, strong fingers wrap around your [pc.cock], giving you a few experimental pumps before starting to move your member. You shiver and let the cat-like amazon angle your prick back, caressing her toned thigh before she pulls the backside of her panties aside and lets your prick slip in under them.");
+
+		output("\n\nRather than angling your [pc.cock] into her sweet little honeypot, though, Shade lets your cock run through the sodden lips of her vulva, then back behind her thighs and into the crack of her ample rear. Flashing you another grin, she lets her panties snap back, pressing your prick fiercely between her cheeks. Using you for support, Shade starts to move her big ol’ hips, using her backside like a silken, wet vice to fuck your prick.");
+
+		output("\n\n<i>“Like it?”</i> she teases, pacing her movements to the same rhythm of your sucking. Damn, do you ever...");
+	}
+	else
+	{
+		output(" As she plays with you, Shade’s cunt-tipped tail slips up between her legs and eagerly seeks out a little pleasure for itself. <i>“Ah, wanna play, do you?”</i> she laughs, scratching the bulb at her tail’s tip under what passes for a chin before guiding it to your sex. The huntress favors you with a wink as she runs the wet tip of her tail against your [pc.cunt], sending shockwaves of pleasure through the both of you.");
+
+		output("\n\n<i>“That’s more like it,”</i> Shade moans, rubbing her tail’s clit against your own. You have to agree - and show your appreciation by running your tongue all over her breast, slathering her in a glistening glaze of spit");
+		if (shade.canLactate()) output(" and [shade.milkNoun]");
+		output(". Indeed, there’s a lot more to the amazonian’s perfect bust than just those nipples you’ve been worshipping.");
+	}
+
+	output(" You dig your fingers into Shade’s ample bosom, licking your tongue from one nipple all the way to the other, then down to the neglected undersides, finding your way around where her tits join her chest. The taste of her flesh, tinged with the sweat and excitement of your lovemaking, is exquisite: you moan lustily in appreciation, squeezing at Shade’s chest until");
+	if (!shade.canLactate()) output(" she gasps with a mix of pleasure and pain");
+	else output(" [shade.milk] squirts out all over your [pc.face]");
+	output(". You grin with delight, and no small amount of pleasure thanks to Shade’s tireless ministrations.");
+
+	output("\n\nBetween moans and shakes of her hips, Shade manages to murmur into your ear, <i>“Getting close, kiddo... real close.”</i> As if on cue, her words bring a new wave of lust hammering through you, making your");
+	if (pc.hasCock())
+	{
+		output(" [pc.cocks] drool into the crack of her ass, throbbing with need and ready to blow");
+	}
+	else
+	{
+		output(" [pc.cunts] drool with excitement, slathering your");
+		if (pc.vaginas.length == 1) output(" pussy");
+		else output(" pussies");
+		output(" and Shade’s lewd tail with a delicious mix of juices.");
+	}
+	output(" Cumming with her wouldn’t be so bad at all, would it? You surrender yourself to it, and wrap your lips around one of Shade’s");
+	if (shade.canLactate()) output(" milky");
+	output(" tits to suckle as you do so.");
+
+	output("\n\nA few moments later, amid Shade’s must sultry and bombastic moans,");
+	if (pc.hasCock())
+	{
+		output(" you feel your [pc.cocks] swell and erupt, blasting a wad of [pc.cumNoun] all across Shade’s marvelous ass");
+	}
+	else
+	{
+		output(" you find yourself reaching climax, hurtling into bliss in the cat-girl’s wake. Your cunts rub together, grinding hard and fast and oh-so wonderfully until you’re both screaming in ecstasy")
+	}
+	output(". Shade’s head rolls back on her shoulders, tits all but smothering you as she cries and cums and bucks in your lap.");
+
+	output("\n\nWhen she finishes, you’re left with a heaving chest in your face, and a cat-babe who’s panting and moaning heavily clinging to you. <i>“That...”</i> she starts to say, trailing off as she catches her breath.");
+
+	output("\n\nSomething tells you you know what she’s going to say anyway. You wrap your arms around your lover’s wait and close your eyes, letting the afterglow wash over you until Shade’s finally calmed down and rolls off of you with a contented sigh.");
+
+	//[Next] //Same after-sex scene as normal
+	processTime(20);
+	flags["SEXED_SHADE"] = 1;
+	flags["SHADE_BOOBWORSHIP"] = 1;
+
+	clearMenu()
+	addButton(0, "Next", shadePostCoitusHangouts);
+}
+
+public function talkToShadeAboutMods():void
+{
+	clearOutput();
+	showShade();
+
+	output("<i>“So, what’s your thoughts on mods?”</i> you ask your lover with a bright smile, unabashedly looking at the plump breasts resting over her black vest.");
+	
+	output("\n\nShade cocks a silver eyebrow at you, her feline eyes narrowing at you. <i>“Oh boy, this conversation,”</i> she grunts, taking a long drink from her mug. <i>“Look, [pc.name], I’m almost forty - and kaithrit don’t live all that long to begin with. You don’t look this good at my age without a little help.”</i>");
+	
+	output("\n\nYou blink, a bit takken aback. For a moment, you’d thought Shade was about to tell you off for bringing the topic up. Instead, she doesn’t seem hesitant to tell you she’s used mods of her own accord. Like your father, Shade’s probably invested in some over the counter drugs to keep her looking young and hale. They’re working, too: for a woman in her species’ middle ages, she looks remarkably good - barely past twenty, firm and perky in all the right places.");
+	
+	output("\n\nModern medicine really is a marvel.");
+	
+	output("\n\n<i>“I’m up here, junior,”</i> Shade laughs, giving an exasperated sigh as she draws your attentions back to her face. She rolls her eyes and leans back in her chair, clearly not all that displeased with your wandering gaze. Indeed, her slutty little tail rubs affectionately against your [pc.foot]. <i>“So, was there a point to that question? Want to tell me how you’d rather be with a MILF who looks her age... or are you one of those anti-mod weirdos?”</i>");
+	
+	output("\n\n<i>“Not at all,”</i> you grin. <i>“Actually, I was going to talk about you getting some...”</i>");
+	
+	output("\n\nShade chuckles and drinks again. <i>“Oh, well, that’s another story entirely. I haven’t really had much work done other than cosmetics, but I’m not entirely opposed to some simple mods. Just don’t expect me to go turning into a centaur or something");
+	if (pc.hasCock()) output(" just so you can get wood");
+	output(".”</i>");
+	
+	output("\n\nYou didn’t have anything that drastic in mind, you assure her. <i>“Maybe just something to enhance those tits of yours? Ever thought about lactating, for instance?”</i>");
+	
+	output("\n\n<i>“Shit, I don’t need mods for that,”</i> Shade laughs, the hearty motions making her chest bounce alluringly. <i>“You know I’ve had a kid, right? Gotta admit, being all milky was actually pretty great: my chest plumped up, got even more sensitive... and nursing! There’s something alluringly feminine about it, don’t you think?”</i>");
+	
+	output("\n\nThe way she says that, you think Shade might have a bit of a fetish hiding behind that lusty grin. Maybe this’ll be easier than you thought...");
+	
+	output("\n\n<i>“Tell ya what, [pc.name],”</i> she says, kicking her feet up on the edge of the table between you. <i>“You bring me the mods you want, maybe Lactaid or a handful of milk gushers to actually get me started, and I’ll give you first dibs on draining me dry. Sound like a deal?”</i>");
+	
+	output("\n\n<i>“Deal!”</i> you say, smiling wide. You can’t wait to taste what Shade has to offer...");
+
+	flags["SHADE_TALKED_ABOUT_MODS"] = 1;
+	shadeTalkMenu(talkToShadeAboutMods);
+}
+
+public function gibShadeModItems():void
+{
+	clearOutput();
+	showShade();
+
+	output("Grinning at the cat-girl, you reach into your pack and tell her <i>“Got something for you!”</i>");
+	
+	output("\n\n<i>“Oh?”</i> she says, cocking an eyebrow as you pull out...");
+
+	Honeyizer
+	Chocolac
+	Honeydew
+
+	clearMenu();
+	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)
+	{
+		if (pc.hasItem(new Lactaid(), 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
+		else addDisabledButton(0, "1x Lactaid", "Lactaid", "You don't have any Lactaid.");
+
+		if (pc.hasItem(new MilkCaramelGushers(), 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
+		else addDisabledButton(1, "5x M.Gush", "Milk Gushers", "You don't have enough Milk Gushers.");
+	}
+	
+	if (!shade.canLactate())
+	{
+		addDisabledButton(2, "1x Hnyizr", "Honeyizer", "Shade needs to be lactating before she can change lactation type!");
+		addDisabledButton(3, "1x Chclac", "Chocolac", "Shade needs to be lactating before she can change lactation type!");
+		addDisabledButton(4, "1x Hnydew", "Honeydew", "Shade needs to be lactating before she can change lactation type!");
+	}
+	else
+	{
+		if (pc.hasItem(new Honeyizer())) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
+		else addDisabledButton(2, "1x Hnyizr", "Honeyizer", "You don't have any Honeyizer.");
+
+		if (pc.hasItem(new Chocolac())) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
+		else addDisabledButton(3, "1x Chclac", "Chocolac", "You don't have any Chocolac.");
+
+		if (pc.hasItem(new Honeydew())) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
+		else addDisabledButton(4, "1x Hnydew", "Honeydew", "You don't have any Honeydew");
+	}
+
+	addButton(14, "Back", talkToShadeAboutMods);
+}
+
+public function gibShadeModItemsII(selItem:String):void
+{
+	clearOutput();
+	showShade();
+	
+	switch (selItem)
+	{
+		case "lactaid":
+			pc.destroyItem(new Lactaid(), 1);
+			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
+			shade.milkMultiplier = 75;
+			shade.milkFullness = 75;
+			break;
+		case "gushers":
+			pc.destroyItem(new MilkCaramelGushers(), 5);
+			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
+			shade.milkMultiplier = 75;
+			shade.milkFullness = 75;
+			break;
+
+		case "honeyizer":
+			pc.destroyItem(new Honeyizer(), 1);
+			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
+			break;
+
+		case "honeydew":
+			pc.destroyItem(new Honeydew(), 1);
+			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
+			break;
+
+		case "chocolac":
+			pc.destroyItem(new Chocolac(), 1);
+			shade.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
+			break;
+
+		default:
+			output("WELP ITEM FUGGED HALP:" + selItem);
+			break;
+	}
+	
+	output("... and hand");
+	if (selItem != "gushers") output(" it");
+	else output(" them");
+	output(") over to her. Shade takes your gift and smiles to herself, eyeing the lactic treat. <i>“Aha. I see you’re still obsessed with my tits, huh, [pc.name]?”</i>");
+	
+	output("\n\nYou don’t bother to deny it. You’re more interested in how she’s going to put your gift to use.");
+	
+	output("\n\n<i>“Alright, let me go back to my ship. I know how these things can make you a little less than decent when you use them. I’ll be back in a minute, sweetheart. Don’t  go anywhere...”</i>");
+	
+	output("\n\nShade flashes you a wink and stands up, heading towards the door. Her hand brushes your shoulder as she goes, pursing her lips in a blown kiss when you turn to watch her leave.");
+
+	processTime(5);
+
+	clearMenu();
+	addButton(0, "Wait", shadeComesBackForBoobystuff);
+}
+
+public function shadeComesBackForBoobystuff():void
+{
+	clearOutput();
+	showShade();
+
+	output("A few minutes later, Shade returns to you. Her breasts look plump and full, and you can see a pair of moisture stains on her shirt, only partially hidden by her coat and vest. Her skin is flushed red, too, and she’s breathing harder than before. Looks like you missed quite the event.");
+
+	output("\n\n<i>“Whew,”</i> Shade sighs, resuming her seat and leaning in to give you an enticing view of her cleavage. <i>“That was... something. Gonna need to invest in one of those Magic Milkers if we keep this up. Had to clean up a little bit of a mess.”</i>");
+
+	output("\n\nShe grins, and licks her lips. You notice her tongue still has traces of [shade.milk] on it. <i>“So, back to my place? I know you’re dying to give my rack a little worship after that. Can barely wait to get your hands on ‘em, can you?”</i>");
+
+	processTime(5);
+	pc.lust(5);
+
+	// [Shade Options Here]
+	shadeMenu();
 }

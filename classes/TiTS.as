@@ -1043,5 +1043,9 @@
 		{
 			return chars["QUEENOFTHEDEEP"];
 		}
+		public function get shade():Shade
+		{
+			return chars["SHADE"];
+		}
 	}
 }
