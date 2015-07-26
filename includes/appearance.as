@@ -201,6 +201,10 @@ public function appearance(target:Creature):void {
 			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by a single " + target.eyeColor + " iris.");
 		}
+		else if (target.eyeType == GLOBAL.TYPE_MYR)
+		{
+			output2(" Your eyes are gleaming, solid " + pc.eyeColor + " orbs that seem to give little away.");
+		}
 		else 
 		{
 			if (target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
@@ -373,7 +377,8 @@ public function appearance(target:Creature):void {
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		}
-		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
+		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
+		else if(target.armType == GLOBAL.TYPE_MYR) output2(" Shining " + target.scaleColor + " exoskeleton covers parts of arms in a gleaming patchwork.");
 		else if(target.armType == GLOBAL.TYPE_FELINE) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
@@ -562,6 +567,9 @@ public function appearance(target:Creature):void {
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Poisonous bee venom coats your stinger completely.");
 			if(target.tailVenom == 100) output2(" Venom drips from your poisoned stinger regularly.");*/
 		}
+		else if(target.tailType == GLOBAL.TYPE_MYR) {
+			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard " + pc.scaleColor + " chitin that is smooth to the touch.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN) {
 			output2(" A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
 		}
@@ -651,6 +659,11 @@ public function appearance(target:Creature):void {
 		{
 			if(pc.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " normal human legs extend below your waist, ending in normal human feet.");
 			else output2(" You have normal human legs that end in " + target.feet(true,true) + ".");
+		}
+		else if(target.legType == GLOBAL.TYPE_MYR)
+		{
+			if(pc.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs extend below your waist, covered in numerous chitin plates all the way to your feet.");
+			else output2(" You have human-like legs that end in chitinous feet.");
 		}
 		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) 
 		{

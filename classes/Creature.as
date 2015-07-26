@@ -6877,6 +6877,20 @@
 			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
 			return counter;
 		}
+		public function goldMyrScore(): int
+		{
+			var counter:int = 0;
+			if(hasPerk("Honeypot")) counter++;
+			if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
+			if(antennae == 2) counter++;
+			if(eyeType == GLOBAL.TYPE_MYR) counter++;
+			if(armType == GLOBAL.TYPE_MYR) counter++;
+			if(legType == GLOBAL.TYPE_MYR) counter++;
+			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if(hasFur() || hasScales()) counter--;
+			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			return counter;
+		}
 		public function redMyrScore(): int
 		{
 			var counter:int = 0;
@@ -6889,7 +6903,7 @@
 			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
 			return counter;
 		}
-		public function goldMyrScore(): int
+		public function orangeMyrScore(): int
 		{
 			return 0;
 		}
