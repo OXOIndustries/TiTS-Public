@@ -896,6 +896,17 @@
 			else return foes[0];
 		}
 
+		// Hackjob to support parser usage for scenes/functions that can target a variable creature
+		private var _target:Creature = null;
+		public function get target():Creature
+		{
+			return _target;
+		}
+		public function set target(v:Creature):void
+		{
+			_target = v;
+		}
+		
 		public function get celise():Celise
 		{
 			return chars["CELISE"];

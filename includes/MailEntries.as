@@ -188,7 +188,7 @@ public function myrPillsEmailMessage():String
 {
 	//Notification Email
 	//Get when Doc McAllister's done researching Red/Gold pills after NevrieQuest (such as it is).
-	var ret:String = "Hey, this is your email address, right [pc.name]? Hope so. Anyway, if you're the " + pc.mfn("man","woman","person") + " who helped us out with the myr thing, Doc McAllister's finished his work. Pills will be available for purchase at the kiosk in just a few minutes.\n\nAssuming you want to be an ant-person, come by and pick one up.\n-Nev";
+	var ret:String = "Hey, this is your email address, right "+pc.short+"? Hope so. Anyway, if you're the " + pc.mfn("man","woman","person") + " who helped us out with the myr thing, Doc McAllister's finished his work. Pills will be available for purchase at the kiosk in just a few minutes.\n\nAssuming you want to be an ant-person, come by and pick one up.\n-Nev";
 	return ret;
 }
 

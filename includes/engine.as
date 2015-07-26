@@ -34,6 +34,8 @@ public function clearOutput():void
 {
 	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
+	
+	this.target = null;
 }
 
 public function output2(words:String, markdown:Boolean = false):void
@@ -45,6 +47,8 @@ public function output2(words:String, markdown:Boolean = false):void
 public function clearOutput2():void
 {
 	this.userInterface.clearOutput2();
+	
+	this.target = null;
 }
 
 public function outputCodex(words:String, markdown:Boolean = false):void

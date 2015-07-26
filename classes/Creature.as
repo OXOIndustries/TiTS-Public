@@ -3292,6 +3292,13 @@
 				if(race() == "galotian") types[types.length] = "galotian";
 				if(race() == "Conglomerate") types[types.length] = "nanomite";
 			}
+			else if(tongueType == GLOBAL.TYPE_BEE)
+			{
+				types[types.length] = "bright yellow";
+				types[types.length] = "insectile";
+				types[types.length] = "straw-like";
+				types[types.length] = "bee-like";
+			}
 			
 			//Show type 50% of the time
 			if(rand(2) == 0 && types.length > 0) 
@@ -3320,6 +3327,9 @@
 				else description += "heavily-pierced";
 				descripted++;
 			}
+			
+			if(tongueType == GLOBAL.TYPE_BEE) nouns[nouns.length] = "proboscis";
+			
 			//Pick a noun.
 			if(bNoun)
 			{
@@ -3699,6 +3709,11 @@
 				adjectives.push("scaled");
 				adjectives.push("scaly");
 			}
+			if (hasTailFlag(GLOBAL.FLAG_CHITINOUS))
+			{
+				adjectives.push("chitinous");
+				adjectives.push("armored");
+			}
 			if(tailType == GLOBAL.TYPE_LAPINE)
 			{
 				adjectives[adjectives.length] = "twitching";
@@ -3734,6 +3749,30 @@
 				adjectives.push("lizard-like");
 				adjectives.push("tapered");
 			}
+			else if(tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID || tailType == GLOBAL.TYPE_BEE || tailType == GLOBAL.TYPE_MYR)
+			{
+				nouns = ["abdomen"];
+				adjectives[adjectives.length] = "dangling";
+				adjectives[adjectives.length] = "insectile";
+				adjectives[adjectives.length] = "insect-like";
+		
+				if(tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID)
+				{
+					adjectives[adjectives.length] = "arachnid";
+					adjectives[adjectives.length] = "spherical";
+				}
+				if(tailType == GLOBAL.TYPE_BEE)
+				{
+					adjectives[adjectives.length] = "zil";
+					adjectives[adjectives.length] = "bee-like";
+				}
+				if(tailType == GLOBAL.TYPE_MYR)
+				{
+					adjectives[adjectives.length] = "myr";
+					adjectives[adjectives.length] = "ant-like";
+				}
+			}
+			
 			//Show color 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.

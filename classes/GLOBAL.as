@@ -218,7 +218,6 @@
 			"Ovir",
 			"Sylvan",
 			"Dark Sylvan",
-			"Gold Myr",
 			"Myr"
 		];
 		
@@ -259,6 +258,8 @@
 			TYPE_SNAKE,
 			TYPE_SYNTHETIC,
 			TYPE_LEITHAN,
+			TYPE_BEE,
+			TYPE_MYR,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -274,7 +275,8 @@
 			TYPE_FELINE,
 			TYPE_BOVINE,
 			TYPE_RASKVEL,
-			TYPE_GOOEY
+			TYPE_GOOEY,
+			TYPE_BEE,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -317,7 +319,8 @@
 			TYPE_DRIDER,
 			TYPE_BADGER,
 			TYPE_LEITHAN,
-			TYPE_OVIR
+			TYPE_OVIR,
+			TYPE_MYR,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -353,7 +356,8 @@
 			TYPE_SUCCUBUS,
 			TYPE_KUITAN,
 			TYPE_RASKVEL,
-			TYPE_OVIR
+			TYPE_OVIR,
+			TYPE_MYR,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -374,6 +378,7 @@
 			TYPE_HUMAN,
 			TYPE_BEE,
 			TYPE_SYDIAN,
+			TYPE_MYR,
 		];
 		
 		public static const VALID_HORN_TYPES:Array = [
@@ -398,6 +403,7 @@
 			TYPE_DRACONIC,
 			TYPE_SYLVAN,
 			TYPE_DARK_SYLVAN,
+			TYPE_MYR,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -429,7 +435,8 @@
 			TYPE_NAGA,
 			TYPE_SYDIAN,
 			TYPE_COCKVINE,
-			TYPE_OVIR
+			TYPE_OVIR,
+			TYPE_MYR,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -442,7 +449,8 @@
 			FLAG_SCALED,
 			FLAG_OVIPOSITOR,
 			FLAG_THICK,
-			FLAG_STINGER_TIPPED
+			FLAG_STINGER_TIPPED,
+			FLAG_CHITINOUS,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
