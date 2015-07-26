@@ -94,7 +94,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_tailFlags = new ListLabelPair();
 			AddControl(_tailFlags);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_TAIL_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_TAIL_FLAGS.length; i++)
 			{
 				_tailFlags.addItem(GLOBAL.VALID_TAIL_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_TAIL_FLAGS[i]]);
 			}
@@ -106,7 +106,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_tailGenitalArg = new ComboLabelPair();
 			AddControl(_tailGenitalArg);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_TAIL_GENITAL_ARGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_TAIL_GENITAL_ARGS.length; i++)
 			{
 				_tailGenitalArg.addItem(GLOBAL.VALID_TAIL_GENITAL_ARGS[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_TAIL_GENITAL_ARGS[i]]);
 			}
@@ -119,7 +119,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_tailGenitalType = new ComboLabelPair();
 			AddControl(_tailGenitalType);
 			
-			for (var i:int = 0; i < GLOBAL.TAIL_GENITAL_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.TAIL_GENITAL_TYPES.length; i++)
 			{
 				_tailGenitalType.addItem(GLOBAL.TAIL_GENITAL_TYPES[i], GLOBAL.TAIL_GENTIAL_TYPE_NAMES[GLOBAL.TAIL_GENITAL_TYPES[i]]);
 			}

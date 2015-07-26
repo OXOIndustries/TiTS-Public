@@ -204,7 +204,7 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_cockFlags);
 			_cockFlags.labelText = "Flags";
 			
-			for (var i:int = 0; i < GLOBAL.VALID_COCK_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_COCK_FLAGS.length; i++)
 			{
 				_cockFlags.addItem(GLOBAL.VALID_COCK_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_COCK_FLAGS[i]]);
 			}

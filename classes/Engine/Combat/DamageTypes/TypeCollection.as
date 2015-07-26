@@ -2,7 +2,6 @@ package classes.Engine.Combat.DamageTypes
 {
 	import classes.DataManager.Serialization.ISaveable;
 	import flash.utils.getQualifiedClassName;
-	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -10,14 +9,6 @@ package classes.Engine.Combat.DamageTypes
 	 */
 	public class TypeCollection implements ISaveable
 	{
-		private function fprint(msg:String):void
-		{
-			if (kGAMECLASS.debug)
-			{
-				trace(msg);
-			}
-		}
-		
 		private var typeCollection:Vector.<DamageType>;
 		private var flagCollection:Vector.<DamageFlag>;
 		

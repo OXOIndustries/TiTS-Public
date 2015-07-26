@@ -107,7 +107,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_girlCumType = new ComboLabelPair();
 			AddControl(_girlCumType);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_GIRLCUM_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_GIRLCUM_TYPES.length; i++)
 			{
 				_girlCumType.addItem(GLOBAL.VALID_GIRLCUM_TYPES[i], GLOBAL.FLUID_TYPE_NAMES[GLOBAL.VALID_GIRLCUM_TYPES[i]]);
 			}
@@ -139,7 +139,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_milkType = new ComboLabelPair();
 			AddControl(_milkType);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_MILK_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_MILK_TYPES.length; i++)
 			{
 				_milkType.addItem(GLOBAL.VALID_MILK_TYPES[i], GLOBAL.FLUID_TYPE_NAMES[GLOBAL.VALID_MILK_TYPES[i]]);
 			}

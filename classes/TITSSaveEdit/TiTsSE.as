@@ -34,8 +34,8 @@ package classes.TITSSaveEdit
 		public var SupportedSaveVersion:int = 14;
 		
 		// Copying the TiTs version string.
-		public var GameVersion:String = "0.05.33";
-		public var EditorVersion:String = "0.02.04";
+		public var GameVersion:String = "0.05.53";
+		public var EditorVersion:String = "0.02.05";
 		
 		public function TiTsSE():void 
 		{

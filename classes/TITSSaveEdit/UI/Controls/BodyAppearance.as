@@ -17,6 +17,7 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _header:TextField;
 		
 		private var _armType:ComboLabelPair;
+		private var _armFlags:ListLabelPair;
 		private var _wingType:ComboLabelPair;
 		private var _legType:ComboLabelPair;
 		private var _legFlags:ListLabelPair;
@@ -24,6 +25,9 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function get armType():int { return int(_armType.inputValue); }
 		public function set armType(v:int):void { _armType.inputValue = String(v); }
+		
+		public function get armFlags():Array { return _armFlags.inputValues; }
+		public function set armFlags(v:Array):void { _armFlags.inputValues = v; }
 		
 		public function get wingType():int { return int(_wingType.inputValue); }
 		public function set wingType(v:int):void { _wingType.inputValue = String(v); }
@@ -79,10 +83,21 @@ package classes.TITSSaveEdit.UI.Controls
 			_armType.labelText = "Arm Type";
 			_armType.selectedIndex = 0;
 			
+			_armFlags = new ListLabelPair();
+			AddControl(_armFlags);
+			
+			for (i = 0; i < GLOBAL.VALID_ARM_FLAGS.length; i++)
+			{
+				_armFlags.addItem(GLOBAL.VALID_ARM_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_ARM_FLAGS[i]]);
+			}
+			
+			_armFlags.labelText = "Arm Flags";
+			_armFlags.allowMultiSelect();
+			
 			_wingType = new ComboLabelPair();
 			AddControl(_wingType);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_WING_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_WING_TYPES.length; i++)
 			{
 				if (GLOBAL.VALID_WING_TYPES[i] == 0)
 				{
@@ -101,7 +116,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_legType = new ComboLabelPair();
 			AddControl(_legType);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_LEG_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_LEG_TYPES.length; i++)
 			{
 				_legType.addItem(GLOBAL.VALID_LEG_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_LEG_TYPES[i]]);
 			}
@@ -113,7 +128,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_legFlags = new ListLabelPair();
 			AddControl(_legFlags);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_LEG_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_LEG_FLAGS.length; i++)
 			{
 				_legFlags.addItem(GLOBAL.VALID_LEG_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_LEG_FLAGS[i]]);
 			}

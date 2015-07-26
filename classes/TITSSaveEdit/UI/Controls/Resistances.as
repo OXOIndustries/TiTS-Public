@@ -1,11 +1,13 @@
 package classes.TITSSaveEdit.UI.Controls 
 {
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.display.DisplayObject;
 	import classes.GLOBAL;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.Engine.Combat.DamageTypes.DamageType;
 	
 	/**
 	 * ...
@@ -16,25 +18,36 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _underline:Sprite;
 		private var _header:TextField;
 		
+		public var headerText:String;
+		
 		private var _resistances:Vector.<InputLabelPair>;
 		
-		public function get resistances():Array
+		public function get resistances():TypeCollection
 		{
-			var newArray:Array = [];
+			var newTC:TypeCollection = new TypeCollection();
+			var uI:int = 0;
 			
-			for (var i:int = 0; i < _resistances.length; i++)
+			for (var i:int = 0; i < DamageType.NUMTYPES; i++)
 			{
-				newArray.push(Number(_resistances[i].inputValue));
+				if (i == DamageType.UNRESISTABLE_HP || i == DamageType.UNRESISTABLE_LUST) continue;
+				
+				newTC.getType(i).resistanceValue = (_resistances[uI].inputValue as Number); // TODO: Apply some value clamping?
+				uI++;
 			}
 			
-			return newArray;
+			return newTC;
 		}
 		
-		public function set resistances(v:Array):void
+		public function set resistances(v:TypeCollection):void
 		{
-			for (var i:int = 0; i < _resistances.length; i++)
+			var uI:int = 0;
+			
+			for (var i:int = 0; i < DamageType.NUMTYPES; i++)
 			{
-				_resistances[i].inputValue = String(v[i]);
+				if (i == DamageType.UNRESISTABLE_HP || i == DamageType.UNRESISTABLE_LUST) continue;
+				
+				_resistances[uI].inputValue = String(v.getType(i).resistanceValue);
+				uI++;
 			}
 		}
 			
@@ -60,7 +73,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_header.x = 15;
 			_header.height = 25;
 			_header.width = 300
-			_header.text = "Resistances";
+			_header.text = headerText;
 			
 			_underline = new Sprite();
 			_underline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
@@ -70,11 +83,13 @@ package classes.TITSSaveEdit.UI.Controls
 			_underline.x = 5;
 			_underline.y = _header.y + _header.height - 2;
 			
-			for (var i:int = 0; i < GLOBAL.DamageTypeStrings.length - 1; i++)
+			for (var i:int = 0; i < DamageType.NUMTYPES; i++)
 			{
+				if (i == DamageType.UNRESISTABLE_HP || i == DamageType.UNRESISTABLE_LUST) continue; // dont display the unresistable types
+				
 				var newControl:InputLabelPair = new InputLabelPair();
 				AddControl(newControl);
-				newControl.labelText = GLOBAL.DamageTypeStrings[i];
+				newControl.labelText = DamageType.TypeLongNames[i];
 				newControl.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 				
 				_resistances.push(newControl);

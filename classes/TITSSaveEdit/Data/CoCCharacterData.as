@@ -166,14 +166,14 @@ package classes.TITSSaveEdit.Data
 			}
 			
 			this.cocks = new Array();
-			for (var i:int = 0; i < o.cocks.length; i++)
+			for (i = 0; i < o.cocks.length; i++)
 			{
 				this.cocks.push(new CoCCockClass());
 				this.cocks[this.cocks.length - 1].loadSaveObject(o.cocks[i]);
 			}
 			
 			this.vaginas = new Array();
-			for (var i:int = 0; i < o.vaginas.length; i++)
+			for (i = 0; i < o.vaginas.length; i++)
 			{
 				this.vaginas.push(new CoCVaginaClass());
 				this.vaginas[this.vaginas.length - 1].loadSaveObject(o.vaginas[i]);

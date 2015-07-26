@@ -114,7 +114,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_faceFlags = new ListLabelPair();
 			AddControl(_faceFlags);
 
-			for (var i:int = 0; i < GLOBAL.VALID_FACE_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_FACE_FLAGS.length; i++)
 			{
 				_faceFlags.addItem(GLOBAL.VALID_FACE_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_FACE_FLAGS[i]]);
 			}
@@ -125,7 +125,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_tongueType = new ComboLabelPair();
 			AddControl(_tongueType);
 
-			for (var i:int = 0; i < GLOBAL.VALID_TONGUE_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_TONGUE_TYPES.length; i++)
 			{
 				_tongueType.addItem(GLOBAL.VALID_TONGUE_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_TONGUE_TYPES[i]]);
 			}
@@ -137,7 +137,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_tongueFlags = new ListLabelPair();
 			AddControl(_tongueFlags);
 
-			for (var i:int = 0; i < GLOBAL.VALID_TONGUE_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_TONGUE_FLAGS.length; i++)
 			{
 				_tongueFlags.addItem(GLOBAL.VALID_TONGUE_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_TONGUE_FLAGS[i]]);
 			}
@@ -158,7 +158,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_earType = new ComboLabelPair();
 			AddControl(_earType);
 
-			for (var i:int = 0; i < GLOBAL.VALID_EAR_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_EAR_TYPES.length; i++)
 			{
 				_earType.addItem(GLOBAL.VALID_EAR_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_EAR_TYPES[i]]);
 			}
@@ -170,7 +170,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_eyeType = new ComboLabelPair();
 			AddControl(_eyeType);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_EYE_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_EYE_TYPES.length; i++)
 			{
 				_eyeType.addItem(GLOBAL.VALID_EYE_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_EYE_TYPES[i]]);
 			}
@@ -197,7 +197,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_hornType = new ComboLabelPair();
 			AddControl(_hornType);
 
-			for (var i:int = 0; i < GLOBAL.VALID_HORN_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_HORN_TYPES.length; i++)
 			{
 				_hornType.addItem(GLOBAL.VALID_HORN_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_HORN_TYPES[i]]);
 			}

@@ -40,7 +40,8 @@ package classes.TITSSaveEdit.UI
 		private var _generalStats:GeneralStats;
 		private var _coreStats:CoreStats;
 		private var _combatStats:CombatStats;
-		private var _resistances:Resistances;
+		private var _hpresistances:Resistances;
+		private var _shieldresistances:Resistances;
 		private var _tailAppearance:TailAppearance
 		private var _fluidSettings:FluidSettings;
 		private var _generalGender:GeneralGender;
@@ -71,6 +72,9 @@ package classes.TITSSaveEdit.UI
 		public function get vaginaAppearance():VaginaSettings { return _vaginaAppearance; }
 		public function get breastAppearance():BreastSettings { return _breastAppearance; }
 		public function get assSettings():AssSettings { return _assSettings; }
+		
+		public function get hpResistances():Resistances { return _hpresistances; }
+		public function get shieldResistances():Resistances { return _shieldresistances; }
 		
 		public function SEMainDisplay() 
 		{
@@ -186,9 +190,15 @@ package classes.TITSSaveEdit.UI
 			AddControl(_bodyAppearance, LEFT_COL);
 			_bodyAppearance.name = "bodyappearance";			
 			
-			_resistances = new Resistances();
-			AddControl(_resistances, LEFT_COL);
-			_resistances.name = "resistances";
+			_hpresistances = new Resistances();
+			_hpresistances.headerText = "HP Resistances";
+			AddControl(_hpresistances, LEFT_COL);
+			_hpresistances.name = "hpresistances";
+			
+			_shieldresistances = new Resistances();
+			_shieldresistances.headerText = "Shield Resistances";
+			AddControl(_shieldresistances, LEFT_COL);
+			_shieldresistances.name = "shieldresistances";
 				
 			// RIGHT			
 			_cockAppearance = new CockSettings();

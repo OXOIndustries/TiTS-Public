@@ -177,6 +177,7 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.headAppearance.eyeColor = char.eyeColor;
 			
 			_mainDisplay.bodyAppearance.armType = char.armType;
+			_mainDisplay.bodyAppearance.armFlags = char.armFlags;
 			_mainDisplay.bodyAppearance.wingType = char.wingType;
 			_mainDisplay.bodyAppearance.legType = char.legType;
 			_mainDisplay.bodyAppearance.legFlags = char.legFlags;
@@ -202,6 +203,9 @@ package classes.TITSSaveEdit.UI
 			
 			_mainDisplay.assSettings.analVirgin = char.analVirgin;
 			_mainDisplay.assSettings.ass = char.ass;
+			
+			_mainDisplay.hpResistances.resistances = char.baseHPResistances;
+			_mainDisplay.shieldResistances.resistances = char.baseShieldResistances;
 		}
 		
 		public function getCharacterData(char:TiTsCharacterData):void
@@ -276,6 +280,7 @@ package classes.TITSSaveEdit.UI
 			char.hornLength = _mainDisplay.headAppearance.hornLength;
 			
 			char.armType = _mainDisplay.bodyAppearance.armType;
+			char.armFlags = _mainDisplay.bodyAppearance.armFlags;
 			char.wingType = _mainDisplay.bodyAppearance.wingType;
 			char.legType = _mainDisplay.bodyAppearance.legType;
 			char.legFlags = _mainDisplay.bodyAppearance.legFlags;
@@ -301,6 +306,9 @@ package classes.TITSSaveEdit.UI
 			
 			char.analVirgin = _mainDisplay.assSettings.analVirgin;
 			char.ass = _mainDisplay.assSettings.ass;
+			
+			char.baseHPResistances = _mainDisplay.hpResistances.resistances;
+			char.baseShieldResistances = _mainDisplay.shieldResistances.resistances;
 		}
 		
 	}

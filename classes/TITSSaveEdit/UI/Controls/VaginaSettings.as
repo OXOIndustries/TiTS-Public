@@ -211,7 +211,7 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_flags);
 			_flags.labelText = "Flags";
 			
-			for (var i:int = 0; i < GLOBAL.VALID_VAGINA_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_VAGINA_FLAGS.length; i++)
 			{
 				_flags.addItem(GLOBAL.VALID_VAGINA_FLAGS[i], GLOBAL.FLAG_NAMES[GLOBAL.VALID_VAGINA_FLAGS[i]]);
 			}

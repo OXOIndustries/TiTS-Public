@@ -4,6 +4,7 @@ package classes.TITSSaveEdit.Data
 	import classes.CockClass;
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.VaginaClass;
 	import flash.utils.ByteArray;
@@ -88,6 +89,7 @@ package classes.TITSSaveEdit.Data
 			"hornLength",
 			"hornType",
 			"armType",
+			"armFlags",
 			"wingType",
 			"legType",
 			"legFlags",
@@ -114,7 +116,9 @@ package classes.TITSSaveEdit.Data
 			"cumMultiplierRaw",
 			"unspentStatPoints",
 			"unclaimedClassPerks",
-			"unclaimedGenericPerks"
+			"unclaimedGenericPerks",
+			"baseHPResistances",
+			"baseShieldResistances"
 		];
 		
 		// General
@@ -144,6 +148,8 @@ package classes.TITSSaveEdit.Data
 		public var HPMod:int;
 		public var energyMod:Number;
 		public var lustRaw:Number;
+		public var baseHPResistances:TypeCollection;
+		public var baseShieldResistances:TypeCollection;
 		
 		// Tail
 		public var tailType:Number;
@@ -206,6 +212,7 @@ package classes.TITSSaveEdit.Data
 		
 		// Appearance -- Body
 		public var armType:Number;
+		public var armFlags:Array;
 		public var wingType:Number;
 		public var legType:Number;
 		public var legFlags:Array;
@@ -271,6 +278,7 @@ package classes.TITSSaveEdit.Data
 			ass = new VaginaClass(false);
 			
 			armType = 0;
+			armFlags = [];
 			wingType = 0;
 			legType = 0;
 			legFlags = [];
@@ -347,10 +355,15 @@ package classes.TITSSaveEdit.Data
 			
 			eyeType = 0;
 			eyeColor = "blue";
+			
+			baseHPResistances = new TypeCollection();
+			baseShieldResistances = new TypeCollection();
 		}
 		
 		public function getSaveObject():Object
 		{
+			var i:int = 0;
+			
 			if (level != loadLevel)
 			{
 				unspentStatPoints = level - loadLevel * 13;
@@ -383,7 +396,7 @@ package classes.TITSSaveEdit.Data
 				{
 					newObj.cocks = new Array();
 					
-					for (var i:int = 0; i < this.cocks.length; i++)
+					for (i = 0; i < this.cocks.length; i++)
 					{
 						newObj.cocks.push(this.cocks[i].getSaveObject());
 					}
@@ -392,7 +405,7 @@ package classes.TITSSaveEdit.Data
 				{
 					newObj.vaginas = new Array();
 					
-					for (var i:int = 0; i < this.vaginas.length; i++)
+					for (i = 0; i < this.vaginas.length; i++)
 					{
 						newObj.vaginas.push(this.vaginas[i].getSaveObject());
 					}
@@ -401,7 +414,7 @@ package classes.TITSSaveEdit.Data
 				{
 					newObj.breastRows = new Array();
 					
-					for (var i:int = 0; i < this.breastRows.length; i++)
+					for (i = 0; i < this.breastRows.length; i++)
 					{
 						newObj.breastRows.push(this.breastRows[i].getSaveObject());
 					}
@@ -409,6 +422,10 @@ package classes.TITSSaveEdit.Data
 				else if (property == "ass")
 				{
 					newObj.ass = this.ass.getSaveObject();
+				}
+				else if (property == "baseHPResistances" || property == "baseShieldResistances")
+				{
+					newObj[property] = this[property].getSaveObject();
 				}
 				else
 				{
@@ -427,6 +444,7 @@ package classes.TITSSaveEdit.Data
 		public function loadSaveObject(o:Object):void
 		{
 			flagNewFile = false;
+			var i:int = 0;
 			
 			this.backup = clone(o);
 			
@@ -450,7 +468,7 @@ package classes.TITSSaveEdit.Data
 				{
 					this.cocks = new Array();
 					
-					for (var i:int = 0; i < o.cocks.length; i++)
+					for (i = 0; i < o.cocks.length; i++)
 					{
 						this.cocks.push(new CockClass());
 						this.cocks[this.cocks.length - 1].loadSaveObject(o.cocks[i]);
@@ -460,7 +478,7 @@ package classes.TITSSaveEdit.Data
 				{
 					this.vaginas = new Array();
 					
-					for (var i:int = 0; i < o.vaginas.length; i++)
+					for (i = 0; i < o.vaginas.length; i++)
 					{
 						this.vaginas.push(new VaginaClass());
 						this.vaginas[this.vaginas.length - 1].loadSaveObject(o.vaginas[i]);
@@ -470,7 +488,7 @@ package classes.TITSSaveEdit.Data
 				{
 					this.breastRows = new Array();
 					
-					for (var i:int = 0; i < o.breastRows.length; i++)
+					for (i = 0; i < o.breastRows.length; i++)
 					{
 						this.breastRows.push(new BreastRowClass());
 						this.breastRows[this.breastRows.length - 1].loadSaveObject(o.breastRows[i]);
@@ -480,6 +498,11 @@ package classes.TITSSaveEdit.Data
 				{
 					this.ass = new VaginaClass(false);
 					this.ass.loadSaveObject(o.ass);
+				}
+				else if (property == "baseHPResistances" || property == "baseShieldResistances")
+				{
+					this[property] = new TypeCollection();
+					this[property].loadSaveObject(o[property]);
 				}
 				else
 				{

@@ -98,7 +98,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_skinFlags = new ListLabelPair();
 			AddControl(_skinFlags);
 			
-			for (var i:int = 0; i < GLOBAL.VALID_SKIN_FLAGS.length; i++)
+			for (i = 0; i < GLOBAL.VALID_SKIN_FLAGS.length; i++)
 			{
 				_skinFlags.addItem(GLOBAL.VALID_SKIN_FLAGS[i], String(GLOBAL.FLAG_NAMES[GLOBAL.VALID_SKIN_FLAGS[i]]));
 			}

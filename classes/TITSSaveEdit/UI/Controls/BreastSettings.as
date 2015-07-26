@@ -175,7 +175,7 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_nippleType);
 			_nippleType.labelText = "Nip. Type";
 			
-			for (var i:int = 0; i < GLOBAL.VALID_NIPPLE_TYPES.length; i++)
+			for (i = 0; i < GLOBAL.VALID_NIPPLE_TYPES.length; i++)
 			{
 				_nippleType.addItem(GLOBAL.VALID_NIPPLE_TYPES[i], GLOBAL.NIPPLE_TYPE_NAMES[GLOBAL.VALID_NIPPLE_TYPES[i]]);
 			}
