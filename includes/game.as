@@ -2352,6 +2352,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 		}
+
 		if(showID == "Mhen'ga" || showID == "All")
 		{
 			// Zil Capture
@@ -2495,6 +2496,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 		}
+
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// The Great Ant World War
@@ -2599,6 +2601,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 		}
+
 		if(showID == "Uveto" || showID == "All")
 		{
 			// 9999
@@ -2631,6 +2634,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 		}
+
 		// Nothing recorded
 		if(sideCount == 0)
 		{
@@ -3265,6 +3269,7 @@ public function displayQuestLog(showID:String = "All"):void
 				variousCount++;
 			}
 		}
+
 		if(showID == "Tarkus" || showID == "All")
 		{
 			// Colenso's
@@ -3284,7 +3289,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// Aurora
 			if(flags["MET_AURORA"] != undefined)
 			{
-				output2("\n<b><u>Mechanist’s Shop/u></b>")
+				output2("\n<b><u>Mechanist’s Shop</u></b>")
 				output2("\n<b>* Aurora:</b> Met her");
 				if(flags["AURORA_SEEN_AFTER_SPLOSION"] != undefined) output2(", She remains as perky as ever");
 				if(silly) output2(", This bat is too fukken kawaii");
@@ -3412,6 +3417,7 @@ public function displayQuestLog(showID:String = "All"):void
 				variousCount++;
 			}
 		}
+
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// Embassy
@@ -3816,6 +3822,7 @@ public function displayQuestLog(showID:String = "All"):void
 				variousCount++;
 			}
 		}
+
 		// Nothing recorded
 		if(variousCount == 0)
 		{
@@ -3824,7 +3831,7 @@ public function displayQuestLog(showID:String = "All"):void
 			if(showID != "All") output2("<i> at this location</i>");
 			output2("<i>.</i>");
 		}
-		
+
 		// Unique Encounters:
 		output2("\n\n" + blockHeader("Unique Encounters"));
 		var uniqueCount:int = 0;
@@ -3898,7 +3905,7 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("<i>.</i>");
 		}
 	}
-	
+
 	// Other/Misc Info
 	if(showID == "Other" || showID == "All")
 	{
