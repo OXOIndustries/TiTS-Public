@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.Lactaid;
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
 	
@@ -40,6 +41,7 @@
 			this.inventory.push(new LightningDuster());
 			this.inventory.push(new MilkCaramelGushers());
 			this.inventory.push(new MilkmaidsAid());
+			this.inventory.push(new Lactaid());
 			
 			this.short = "Ellie";
 			this.originalRace = "leithan";

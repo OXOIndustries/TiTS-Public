@@ -58,6 +58,7 @@
 			this.inventory.push(new Pussybloom());
 			this.inventory.push(new Pussyblossom());
 			this.inventory.push(new Bovinium());
+			this.inventory.push(new Lactaid());
 
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
