@@ -60,6 +60,13 @@ package classes.Characters
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("face");
+			if(hasPerk("Honeypot")) 
+			{
+				kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+			}
 			return false;
 		}
 		

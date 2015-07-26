@@ -681,7 +681,7 @@
 			var msg:String = "";
 			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
 			{
-				msg = "\n\nThe creature masquerading as a tail seems pretty spooked about something all of a sudden;";
+				msg = "The creature masquerading as a tail seems pretty spooked about something all of a sudden;";
 				if (isBiped()) msg += " it's wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
 				else msg += " it's busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
 				return msg;
@@ -5900,6 +5900,11 @@
 			//Set boob swelling to new appropriate tier
 			//trace("Milk fullness: " + milkFullness);
 			if(milkFullness < 0) milkFullness = 0;
+			//Honeypot reduction!
+			for(var bb:int = 0; bb < bRows(); bb++)
+			{
+				breastRows[bb].breastRatingHoneypotMod = 0;
+			}
 			setBoobSwelling();
 			return milkFullness;
 		}
@@ -6876,9 +6881,9 @@
 		{
 			var counter:int = 0;
 			if(antennae == 2) counter++;
-			if(eyeType == GLOBAL.TYPE_RED_MYR || eyeType == GLOBAL.TYPE_GOLD_MYR) counter++;
-			if(armType == GLOBAL.TYPE_RED_MYR) counter++;
-			if(legType == GLOBAL.TYPE_RED_MYR) counter++;
+			if(eyeType == GLOBAL.TYPE_MYR) counter++;
+			if(armType == GLOBAL.TYPE_MYR) counter++;
+			if(legType == GLOBAL.TYPE_MYR) counter++;
 			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
 			if(hasFur() || hasScales()) counter--;
 			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
@@ -10567,6 +10572,13 @@
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
+			if(hasPerk("Honeypot")) 
+			{
+				kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+			}
 			return false;
 		}
 		public function loadInMouth(cumFrom:Creature = null):Boolean

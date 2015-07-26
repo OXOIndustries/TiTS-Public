@@ -18,6 +18,7 @@
 		public var breastRatingRaw:Number = 0;
 		public var breastRatingMod:Number = 0;
 		public var breastRatingLactationMod:Number = 0;
+		public var breastRatingHoneypotMod:Number = 0;
 		
 		public function breastRating(arg:Number = 0, apply:Boolean = false):Number
 		{
@@ -31,7 +32,7 @@
 				if (breastRatingRaw < 0) breastRatingRaw = 0;
 			}
 			
-			var currRating:Number = breastRatingRaw + breastRatingMod + breastRatingLactationMod;
+			var currRating:Number = breastRatingRaw + breastRatingMod + breastRatingLactationMod + breastRatingHoneypotMod;
 			
 			if (currRating < 0)
 			{

@@ -1309,6 +1309,7 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
 				{
@@ -1394,9 +1395,88 @@ public function processTime(arg:int):void {
 			eventQueue[eventQueue.length] = procDumbfuckStuff;
 		}
 	}
-	
+	//NEVRIE MAIL!
+	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
+}
+
+public function honeyPotCheck():void
+{
+	if(pc.thickness >= 30)
+	{
+		var boobDiff:Number = 0;
+		boobDiff = pc.thickness - 10;
+		if(pc.thickness >= 30)
+		{
+
+		}
+		boobDiff /= 10;
+
+		pc.addPerkValue("Honeypot",1,boobDiff);
+		pc.thickness = 20;
+		
+		if(pc.milkFullness < 100) pc.milkFullness = 100;
+		//Bump up boob sizes
+		for(var bb:int = 0; bb < pc.bRows(); bb++)
+		{
+			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
+		}
+		eventBuffer += "\n\nYour body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].";
+	}
+}
+
+public function honeyPotBump(cumShot:Boolean = false):void
+{
+	if(pc.thickness >= 30)
+	{
+		pc.thickness -= 10;
+		var boobDiff:Number = 0;
+		boobDiff = 10;
+		if(pc.thickness >= 30) 
+		{
+			boobDiff = 10;
+			pc.thickness -= 10;
+		}
+		boobDiff /= 10;
+		if(pc.milkFullness < 100) pc.milkFullness = 100;
+		for(var bb:int = 0; bb < pc.bRows(); bb++)
+		{
+			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
+		}
+		eventBuffer += "\n\nYour body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
+	{
+		eventBuffer += "\n\nYour [pc.chest] feel bigger than normal, swollen ";
+		if(cumShot) eventBuffer += "from all the oral calories you've taken in.";
+		else eventBuffer += "with the spare calories your honeypot gene has siphoned off of your meals.";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod < 10 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 10)
+	{
+		eventBuffer += "\n\nYour [pc.chest] practically glows with the ever-expanding fruit of your honeypot gene. You wonder just how big you'll get.";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod < 20 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 20)
+	{
+		eventBuffer += "\n\nSometimes when you move, your [pc.arm] sends your liquid-filled [pc.chest] bouncing. You can feel as much as hear the fluid churning inside, ready to be released into your hands, the ground, or a passersby's open mouth.";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod < 30 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 30)
+	{
+		eventBuffer += "\n\nEvery movement is accompanied by a weighty, sloshing jiggle from your [pc.chest]. The more you take in, the more like a gold myr honeypot you seem, growing until you seem more boob than " + pc.mfn("man","woman","person") + ".";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod < 40 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 40)
+	{
+		eventBuffer += "\n\nWherever you go, the eyes of every single passing sapient zero in on your [pc.chest]. It juts from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.";
+	}
+	else if(pc.breastRows[0].breastRatingHoneypotMod < 50 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 50)
+	{
+		eventBuffer += "\n\nIt's tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavored] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You've got to share this beautiful bosom with the galaxy!";
+	}
+	//Bump up boob size for 3 days of eating or a cumshot!
+	for(var cc:int = 0; cc < pc.bRows(); cc++)
+	{
+		pc.breastRows[cc].breastRatingHoneypotMod += 1;
+	}
 }
 
 public function racialPerkUpdateCheck():void
@@ -1635,7 +1715,8 @@ public function milkGainNotes():void
 		}
 		
 		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if ";
-		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "it wasn't for your genetically engineered super-tits, your body would be slowing down production";
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) eventBuffer += "it wasn't for your genetically engineered super-tits, your body would be slowing down production";
+		else if(pc.hasPerk("Honeypot")) eventBuffer += "it wasn't for your honeypot gene, your body would be slowing down production";
 		else if(pc.isPregnant()) eventBuffer += "you weren't pregnant, you'd probably be slowing production.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "you weren't wearing a <b>Bounty Bra</b>, your body would be slowing down production";
 		else eventBuffer += "you don't take care of it soon, a loss of production is likely";
@@ -1654,7 +1735,8 @@ public function milkGainNotes():void
 		}
 		
 		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. ";
-		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) eventBuffer += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		else if(pc.hasPerk("Honeypot")) eventBuffer += "<b>However, with your honeypot gene, they'll likely never stop.</b>";
 		else if(pc.isPregnant()) eventBuffer += "<b>With a pregnancy on the way, there's no way your body will stop producing.";
 		else if(pc.upperUndergarment is BountyBra) eventBuffer += "<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>";
 		else eventBuffer += "<b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
@@ -1670,7 +1752,7 @@ public function lactationUpdateHourTick():void
 	//Milk Rate drops by .1 an hour above 200.
 	var originalMultiplier:Number = pc.milkMultiplier;
 	//Bounty bra never loses milkMultiplier!
-	if(pc.upperUndergarment is BountyBra || pc.isPregnant())
+	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot"))
 	{
 
 	}
@@ -1688,7 +1770,7 @@ public function lactationUpdateHourTick():void
 		}
 	}
 	//Drops a tiny amount if below 50.
-	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant()) {
+	if(pc.milkMultiplier < 50 && !(pc.upperUndergarment is BountyBra) && !pc.isPregnant() && !pc.hasPerk("Honeypot")) {
 		if(pc.hasPerk("Milky") && pc.hasPerk("Treated Milk")) {}
 		else if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) pc.milkMultiplier -= .02;
 		else pc.milkMultiplier -= 0.1;

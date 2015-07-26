@@ -1,4 +1,4 @@
-// This works similar to the codex system -- we build a list of all the mails at game-startup
+﻿// This works similar to the codex system -- we build a list of all the mails at game-startup
 // And then store their unlocked/viewed state as the player interacts with them/the game.
 // The difference here is we have capability to store the results of 'dynamic' content in the
 // save file so we can persist mails that may make reference to the players state at the time
@@ -87,7 +87,9 @@ public function configureMails():void
 	MailManager.addMailEntry("kihaai", kihaaiMailMessage, "Need an AI with some FIRE? Check out the new Kiha lines!", "NoReply@Kiha.corp", "NoReply@Kiha.corp", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("newtexas", newtexasmailmessage, "Come on out to New Texas, Partner!", "Benjamin Tiberius Tee", "NoReply@NewTexas.gov", quickPCTo, quickPCToAddress);
-	
+
+	MailManager.addMailEntry("myrpills", myrPillsEmailMessage,"Pills Here!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
+		
 	MailManager.addMailEntry("syrividja", "Hey, Steele\n\nBeen a while! I'm guessing you're off-world, right? Chasing the next piece of your big puzzle -- or chasing the next cute skirt? :P Well if you get a break in your quest, swing back by Mhen'ga sometime. I'll buy you a drink and treat you right for an evening~\n\nMaybe play some games, too? >_> CoV 7 just came out... and I'm the only person in this shithole with a rig that can handle it. Ugh.\n\nMiss you!\n-your favorite ausar", "Hang out sometime?", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("annoweirdshit", "Hey, boss,\n\nJust a heads up. Something weird's going on here. I saw a bunch of Peacekeeper dropships coming down on the east on Nova, over by the Rift. Thought I heard gunshots, too, but....\n\nCould be something worth checking out. Alternatively: get me the fuck out of here before Novahome explodes or something.\n\n:|\n\nAnno E. Dorna\nPlanetary Branch Manager, Tarkus\nSteele Tech Applied Sciences Division", "Tarkus: Weirder than usual", "Anno Dorna", "Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
@@ -179,6 +181,14 @@ public function newtexasmailmessage():String
 	ret += "\n\n<i>Giddy-on-up to New Texas!</i>";
 	ret += "\nGovernor Benjamin Tiberius Tee";
 	
+	return ret;
+}
+
+public function myrPillsEmailMessage():String
+{
+	//Notification Email
+	//Get when Doc McAllister's done researching Red/Gold pills after NevrieQuest (such as it is).
+	var ret:String = "Hey, this is your email address, right [pc.name]? Hope so. Anyway, if you're the " + pc.mfn("man","woman","person") + " who helped us out with the myr thing, Doc McAllister's finished his work. Pills will be available for purchase at the kiosk in just a few minutes.\n\nAssuming you want to be an ant-person, come by and pick one up.\n-Nev";
 	return ret;
 }
 

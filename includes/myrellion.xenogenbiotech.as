@@ -1,4 +1,4 @@
-import classes.Creature;
+﻿import classes.Creature;
 
 /*
 NEVRIE_QUEST states:
@@ -196,6 +196,13 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 		nevrie.sellMarkup = 1.2;
 	}
 
+	if(MailManager.isEntryUnlocked("myrpills"))
+	{
+		if(!nevrie.hasItem(new RedPill())) nevrie.inventory.push(new RedPill());
+		if(!nevrie.hasItem(new GoldPill())) nevrie.inventory.push(new GoldPill());
+		
+	}
+	if(!nevrie.hasItem(new OrangePill()) && (flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)) nevrie.inventory.push(new OrangePill());
 	processTime(8 + rand(2));
 
 	itemScreen = mainGameMenu;
@@ -419,6 +426,13 @@ public function myrellionNevrieBloodVial():void
 	myrellionNevrieMenu();
 }
 
+public function nevriMailGet():void
+{
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+
+	MailManager.unlockEntry("myrpills", GetGameTimestamp());
+}
+
 public function mcallisterMeeting():void
 {
 	clearOutput();
@@ -469,7 +483,7 @@ public function approachMcallister():void
 		processTime(3 + rand(2));
 		
 		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		quickLoot(new OrangePill());
 	}
 	else
 	{

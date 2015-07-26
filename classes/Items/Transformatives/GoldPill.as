@@ -1,29 +1,31 @@
 ﻿/*
-RED MYR TF BREAKDOWN
+GOLD MYR TF BREAKDOWN
 
 Always Gives:
 Chitin Limbs
-Red or Black Hair
-+Dicksize (up to 2 ft.) 18”
+Gold or Black Hair
++Dicksize (up to 2 ft.)
++Breastsize (up to GG)
+Lactation Typechange
 Human Skin
 Elfin Ears
 Human Face
 
+
 Sometimes Gives:
 Black, Insectile Eyes
 Insect Feelers
-Red Myr Venom
-Lactation Typechange
+Honey Jizz
+Honey Girlspunk
++Libido
 +Thin
-+Tone
-+Femininity (if PC has cunt)
+
 
 Rare Procs:
-Lactation start
-Libido Increase
-Breast Size Increase (up to DD)
-Honey Jizz
-+Libido*/
+Honeypot Perk (Convert Thickness to Boob Size)
+Ant Abdomen
+Second Breast Row
+*/
 
 package classes.Items.Transformatives
 {
@@ -39,11 +41,11 @@ package classes.Items.Transformatives
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Utility.num2Text;
 	
-	public class RedPill extends ItemSlotClass
+	public class GoldPill extends ItemSlotClass
 	{
 		
 		//constructor
-		public function RedPill()
+		public function GoldPill()
 		{
 			this._latestVersion = 1;
 			
@@ -51,23 +53,23 @@ package classes.Items.Transformatives
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "Red Pill";
+			this.shortName = "Gold Pill";
 			//Regular name
-			this.longName = "red pill";
+			this.longName = "gold pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a red pill";
+			this.description = "a gold pill";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A simple-looking pill with white and red stripes produced by Xenogen Biotech, this pill is loaded with a new, proprietary blend of nanomachines programmed to rebuild your body in the image of a red myrmedion, one of the ant-like inhabitants of Myrellion.";
+			this.tooltip = "A simple-looking pill with white and gold stripes produced by Xenogen Biotech, this pill is loaded with a new, proprietary blend of nanomachines programmed to rebuild your body in the image of a gold myrmedion, one of the ant-like inhabitants of Myrellion.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1000;
+			this.basePrice = 600;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -117,11 +119,11 @@ package classes.Items.Transformatives
 				//Chitin Limbs & Human Skin
 				if(changes < changeLimit)
 				{
-					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_RED_MYR || (pc.legType != GLOBAL.TYPE_RED_MYR && pc.legCount != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
+					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
 					if(armLegSkinTF && rand(2) == 0)
 					{
 						//PC isn't a biped: 
-						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_RED_MYR && pc.legCount != GLOBAL.TYPE_HUMAN))
+						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN))
 						{
 							if(target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 							{
@@ -143,10 +145,10 @@ package classes.Items.Transformatives
 							else output("\n\n" + target.legTypeLockedMessage());
 						}
 						//Gain Chitin: 
-						if(pc.armType != GLOBAL.TYPE_RED_MYR || pc.legType != GLOBAL.TYPE_RED_MYR)
+						if(pc.armType != GLOBAL.TYPE_MYR || pc.legType != GLOBAL.TYPE_MYR)
 						{
-							var arms:Boolean = (pc.armType != GLOBAL.TYPE_RED_MYR);
-							var legs:Boolean = (pc.legType != GLOBAL.TYPE_RED_MYR);
+							var arms:Boolean = (pc.armType != GLOBAL.TYPE_MYR);
+							var legs:Boolean = (pc.legType != GLOBAL.TYPE_MYR);
 							if(legs && pc.legFlagsUnlocked(GLOBAL.FLAG_CHITINOUS))
 							{
 								output("\n\nYou grunt as an itching sensation begins to spread over your");
@@ -168,8 +170,8 @@ package classes.Items.Transformatives
 								}
 								if(legs) output("legs");
 								output(" cover themselves with plates of insectile chitin</b>, just like a myr's!");
-								pc.armType = GLOBAL.TYPE_RED_MYR;
-								pc.legType = GLOBAL.TYPE_RED_MYR;
+								pc.armType = GLOBAL.TYPE_MYR;
+								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
 								pc.clearLegFlags();
 								pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -198,16 +200,16 @@ package classes.Items.Transformatives
 					}
 				}
 				//Black Hair/Red Hair
-				if(!InCollection(pc.hairColor,"black","red") && changes < changeLimit && rand(2) == 0)
+				if(!InCollection(pc.hairColor,"gold","black") && changes < changeLimit && rand(2) == 0)
 				{
 					if(rand(2) == 0)
 					{
-						if(pc.hairColorUnlocked("red"))
+						if(pc.hairColorUnlocked("gold"))
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
-							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - you're now sporting a head of dark red hair!");
-							else output("\n\nacross your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that your eyebrows and lashes have changed to a dark red - your hair color's different!");
-							pc.hairColor = "red";
+							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - <b>you're now sporting a head of brilliant gold hair!</b>");
+							else output("\n\nacross your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark gold - your hair color's different!</b>");
+							pc.hairColor = "gold";
 							changes++;
 						}
 						else output("\n\n" + pc.hairColorLockedMessage());
@@ -217,8 +219,8 @@ package classes.Items.Transformatives
 						if(pc.hairColorUnlocked("black"))
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
-							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - you're now sporting a head of hair that's black as night!");
-							else output("across your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that your eyebrows and lashes have changed to pitch black - your hair color's different!");
+							if(pc.hasHair()) output("through your [pc.hair], you realize it's changed color - <b>you're now sporting a head of hair that's black as night!</b>");
+							else output("across your bald head across your head, you don't feel any differences. A quick look in your Codex's reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color's different!</b>");
 							pc.hairColor = "black";
 							changes++;
 						}
@@ -270,44 +272,9 @@ package classes.Items.Transformatives
 						else output("\n\n" + pc.cockLengthLockedMessage());
 					}
 				}
-				//END OF SUPER COMMON SHIT!
-
-				//Black, Insectile Eyes
-				if(changes < changeLimit && (pc.eyeType != GLOBAL.TYPE_RED_MYR && pc.eyeType != GLOBAL.TYPE_GOLD_MYR) && rand(4) == 0)
-				{
-					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_RED_MYR))
-					{
-						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex's reflective back shows you that <b>your eyes are now black and featureless like a myr's!</b>");
-						pc.eyeType = GLOBAL.TYPE_RED_MYR;
-						changes++;
-					}
-					else output("\n\n" + pc.eyeTypeLockedMessage());
-				}
-				//Insect Feelers
-				//Gain slight vulnerability to Lust (Tease) & Lust (Chemical) damage
-				if(pc.antennae == 0 && changes < changeLimit && rand(4) == 0)
-				{
-					if(pc.antennaeUnlocked(2))
-					{
-						output("\n\nYou feel a pressure welling up on your brow, concentrating in two places just over your eyes. You run your fingers across your forehead, just in time to feel a pair of nubs poking up out of your [pc.skinFurScales]. The budding nubs quickly coalesce into <b>a pair of long, fleshy feelers</b> - feelers that prove to be exceptionally sensitive as you run your fingers along them, and find yourself shivering in pleasure.");
-						pc.antennae = 2;
-						pc.antennaeType = GLOBAL.TYPE_RED_MYR;
-						changes++;
-					}
-					else output("\n\n" + pc.antennaeLockedMessage());
-				}
-				/*Red Myr Venom
-				//Gain slight resistance to Lust (Chemical) damage
-				You feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva running freely in your maw. It's actually quite nice, you find... you suck down the alien chemical that seems to be generating in your mouth, enjoying the taste... and finding yourself growing more aroused as you do so. Oh, that is nice... 
-
-				After a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to the venom of a red myrmedion. <b>You've gain a red myr's lusty venom!</b>
-
-				//Gain Venom Bite Perk (Add to any successful melee attack, light lust damage)
-				When you strike, you leap in and deliver a bite while your enemy is staggered, injecting a healthy dose of your red myrmedion venom!*/
-
 				//Lactation Typechange
 				//Gain honey milk
-				if(pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(4) == 0)
+				if(pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(2) == 0)
 				{
 					if(pc.milkTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
@@ -322,12 +289,116 @@ package classes.Items.Transformatives
 						//if PC isn't lactating
 						else
 						{
-							output("\n\nYou feel a strange tightness in your chest - not painful, really, but a little alarming. After a few moments, your Codex alerts you that were you to ever begin lactating in the future, you'd now produce a honey-like nectar of the same variety that myr do.");
+							output("\n\nYou feel a strange tightness in your chest - not painful, really, but a little alarming. After a few moments, your Codex alerts you that <b>were you to ever begin lactating in the future, you'd now produce a honey-like nectar of the same variety that myr do.</b>");
 						}
 						pc.milkType = GLOBAL.FLUID_TYPE_HONEY;
 						changes++;
 					}
 					else output("\n\n" + pc.milkTypeLockedMessage());
+				}
+				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
+				if(changes < changeLimit)
+				{
+					var smallestBoobRow:int = 0;
+					//find smallestIndex
+					for(var b:int = 0; b < pc.bRows(); b++)
+					{
+						//See if testing row is smaller than smallest row
+						if(pc.breastRows[smallestBoobRow].breastRating() < pc.breastRows[b].breastRating()) smallestBoobRow = b;
+					}
+					//Check if in size
+					if(pc.breastRows[smallestBoobRow].breastRating() < 18 && rand(2) == 0)
+					{
+						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw+1))
+						{
+							output("\n\nYou feel a slight pressure building in your [pc.chest], and a stretching in your skin. Pleasure, not pain, hits you like a brick wall, and you find yourself grabbing your chest and caressing your tits as they grow in your hands. A moan escapes your lips as your body trembles with pleasure, almost orgasming from the sensation of growing titflesh.");
+							pc.breastRows[smallestBoobRow].breastRatingRaw++;
+							if(rand(2) == 0) pc.breastRows[smallestBoobRow].breastRatingRaw++;
+							//Bump up all smaller rows
+							for(b = 0; b < pc.bRows(); b++)
+							{
+								//Grow other too-small rows.
+								if(pc.breastRows[b].breastRating() < 18 && b != smallestBoobRow) pc.breastRows[b].breastRatingRaw++;
+							}
+							output("\n\nBy the time the growth begins to abate, you're sure <b>you're up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
+							changes++;
+							pc.lust(20+rand(10));
+						}
+						else output("\n\n" + pc.breastRatingLockedMessage());
+					}
+				}
+				//END OF SUPER COMMON SHIT!
+
+				//Black, Insectile Eyes
+				if(changes < changeLimit && pc.eyeType != GLOBAL.TYPE_MYR && rand(4) == 0)
+				{
+					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_MYR))
+					{
+						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex's reflective back shows you that <b>your eyes are now black and featureless like a myr's!</b>");
+						pc.eyeType = GLOBAL.TYPE_MYR;
+						changes++;
+					}
+					else output("\n\n" + pc.eyeTypeLockedMessage());
+				}
+				//Insect Feelers
+				//Gain slight vulnerability to Lust (Tease) & Lust (Chemical) damage
+				if(pc.antennae == 0 && changes < changeLimit && rand(4) == 0)
+				{
+					if(pc.antennaeUnlocked(2))
+					{
+						output("\n\nYou feel a pressure welling up on your brow, concentrating in two places just over your eyes. You run your fingers across your forehead, just in time to feel a pair of nubs poking up out of your [pc.skinFurScales]. The budding nubs quickly coalesce into <b>a pair of long, fleshy feelers</b> - feelers that prove to be exceptionally sensitive as you run your fingers along them, and find yourself shivering in pleasure.");
+						pc.antennae = 2;
+						pc.antennaeType = GLOBAL.TYPE_MYR;
+						changes++;
+					}
+					else output("\n\n" + pc.antennaeLockedMessage());
+				}
+				//Honey Jizz
+				if(changes < changeLimit && pc.cumType != GLOBAL.FLUID_TYPE_HONEY && pc.hasCock() && rand(3) == 0)
+				{
+					if(pc.cumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
+					{
+						output("\n\nA sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the myr pill's changes wrack your body, altering the very fabric of your being");
+						if(pc.balls > 0) output(", radiating out from your [pc.balls] to your manhood");
+						output(". You grab ");
+						if(pc.cockTotal() > 1) output("one of your rods");
+						else output("your [pc.cock]");
+						output(", instinctively stroking the rapidly hardening shaft as you feel... something... coming. Your breath quickens, turgid shaft quaking with effort as you pump your prick, working up what must be a load of cum, but immeasurably thicker than your previous spunk.");
+						changes++;
+						pc.orgasm();
+						
+						output("\n\nWith a cry of pleasure, your [pc.hips] buck into your hand, ramming out a thick streak of amber spooge that spatters across your thighs and crotch, glazing your groin in a creamy yellow. Your back arches instinctively, thrusting your crotch out as you continue to fap and cum, spraying yourself in sweet cock-nectar for what seems like an eternity, until all that pressure in your ");
+						if(pc.balls > 0) output("[pc.balls]");
+						else output("body");
+						output(" finally fades away.\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
+						pc.cumType = GLOBAL.FLUID_TYPE_HONEY;
+						changes++;
+					}
+					else output("\n\n" + pc.cumTypeLockedMessage());
+				}
+				//Honey Girlspunk
+				if(changes < changeLimit && pc.girlCumType != GLOBAL.FLUID_TYPE_HONEY && pc.hasVagina() && rand(3) == 0)
+				{
+					if(pc.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
+					{
+						output("\n\nA heat begins to radiates from your loins. Eager to grant yourself some release, you let your fingers wander, fondling your labia and caressing your [pc.clits] and rubbing your insides with mounting desire. The heat fades away but your lust remains, so you continue with your play.");
+						if(pc.wettestVaginalWetness() <= 2) output("\n\nWhen your fluids begin to flow");
+						else output("\n\nWhen your always flowing fluids are dripping");
+						output(", your nostrils are greeted by a sweet scent. And your fingers can feel a sticky thick sap ");
+						if(pc.wettestVaginalWetness() <= 2) output("dripping");
+						else output("gushing");
+						output(" from your [pc.vaginas]. <b>Looks like ");
+						if(pc.totalVaginas() > 1)
+						{
+							output("your vaginas are secreting honey from now on.");
+						}
+						else output("you’ve got a literal honeypot now!");
+						output("</b>");
+						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+						pc.lust(Math.round(pc.lustMax()/2))
+						changes++;
+					}
+					else output("\n\n" + pc.girlCumTypeLockedMessage());
 				}
 				//+Thin
 				//Slight reduction to thickness. 
@@ -335,16 +406,6 @@ package classes.Items.Transformatives
 				{
 					output("\n\nAs the pill works its magic, you find yourself feeling a little slimmer. Your [pc.belly] seems a little flatter and firmer, and you feel lighter overall. You guess you've gotten thinner!");
 					pc.thickness-=(5+rand(5));
-					changes++;
-				}
-				//+Tone
-				//Slight Tone bonus
-				if(pc.tone < 85 && changes < changeLimit && rand(3) == 0)
-				{
-					output("\n\nYour muscles seem a little more pronounced now, and your body seems firmer and more defined. You're definitely a little bit better-toned now");
-					if(pc.redMyrScore() >= 4) output(", like the warrior-ant you're trying to be");
-					output("!");
-					pc.tone += 5+rand(5);
 					changes++;
 				}
 				//+Femininity (if PC has cunt)
@@ -374,58 +435,85 @@ package classes.Items.Transformatives
 					pc.lust(30);
 					changes++;
 				}
-				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
-				if(changes < changeLimit)
+				//Honeypot Perk (Convert Thickness to Boob Size)
+				if(changes < changeLimit && rand(5) == 0 && pc.biggestTitSize() >= 5 && !pc.hasPerk("Honeypot") && pc.canLactate())
 				{
-					var smallestBoobRow:int = 0;
-					//find smallestIndex
-					for(var b:int = 0; b < pc.bRows(); b++)
+					var boobDiff = 0;
+					//if PC has high thickness:
+					if(pc.thickness >= 50)
 					{
-						//See if testing row is smaller than smallest row
-						if(pc.breastRows[smallestBoobRow].breastRating() < pc.breastRows[b].breastRating()) smallestBoobRow = b;
+						output("\n\nYour entire body starts to tingle, an odd feeling just under the [pc.skin] that has you itching and scratching at yourself. Your arms, belly, and [pc.legOrLegs] all feel particularly strange... and oddly light. You watch as your body seems to tighten, losing its thickness. At the same time, your [pc.chest] tightens and stretches, seeming to gain every bit of thickness the rest of your body is losing.");
+						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body's reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you'll just become more and more curvaceous.");
+						//Drop thickness to 20 and put remainder into boobs!
+						boobDiff = pc.thickness - 20;
+						boobDiff /= 10;
+						pc.thickness = 20;
 					}
-					//Check if in size
-					if(pc.breastRows[smallestBoobRow].breastRating() < 5 && rand(3) == 0)
+					//if PC has low thickness:
+					else
 					{
-						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw+1))
-						{
-							output("\n\nYou feel a slight pressure building in your [pc.chest], and a stretching in your skin. Pleasure, not pain, hits you like a brick wall, and you find yourself grabbing your chest and caressing your tits as they grow in your hands. A moan escapes your lips as your body trembles with pleasure, almost orgasming from the sensation of growing titflesh.");
-							pc.breastRows[smallestBoobRow].breastRatingRaw++;
-							//Bump up all smaller rows
-							for(b = 0; b < pc.bRows(); b++)
-							{
-								//Grow other too-small rows.
-								if(pc.breastRows[b].breastRating() < 5 && b != smallestBoobRow) pc.breastRows[b].breastRatingRaw++;
-							}
-							output("\n\nBy the time the growth begins to abate, you're sure <b>you're up to " + pc.breastCup(smallestBoobRow) + "s by now!</b>");
-							changes++;
-							pc.lust(20+rand(10));
-						}
-						else output("\n\n" + pc.breastRatingLockedMessage());
+						output("\n\nYou feel a little tingly all over, and your [pc.chest] starts to feel warm and tight. Looking yourself over, you could swear you look thinner... and that your tits look a little bigger. You run a hand over your chest, and feel a shiver of pleasure as you cup your breast. After a moment, you're sure: <b>your tits are definitely bigger now, full of [pc.milkNoun]</b>. If only a little.");
+						output("\n\nAs pleasure overwhelms every other feeling, you recall the reason why gold myr are called honeypots so much: the more they eat, the bigger their tits and abdomens get, swelling with honey instead of fat. The way your body's reacting now, <b>you think that you have the honeypot gene now!</b> Instead of gaining thickness, you'll just become more and more curvaceous.");
+						boobDiff = 1;
+						pc.thickness -= 10;
+						if(pc.thickness < 1) pc.thickness = 1;
 					}
+					//Bump up boob sizes
+					for(var bb:int = 0; bb < pc.bRows(); bb++)
+					{
+						pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
+					}
+					if(pc.milkFullness < 100) pc.milkFullness = 100;
+					pc.createPerk("Honeypot",0,0,0,0,"Allows your body to convert excess thickness into delicious, boob-filling goodness.");
+					changes++;
 				}
-				//Honey Jizz
-				if(changes < changeLimit && pc.cumType != GLOBAL.FLUID_TYPE_HONEY && pc.hasCock() && rand(5) == 0)
+				//Ant Abdomen
+				if((pc.tailCount == 0 || pc.tailType != GLOBAL.TYPE_MYR) && changes < changeLimit && rand(3) == 0)
 				{
-					if(pc.cumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
+					if(pc.tailTypeUnlocked(GLOBAL.TYPE_MYR) && pc.tailType != GLOBAL.TYPE_MYR)
 					{
-						output("\n\nA sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the myr pill's changes wrack your body, altering the very fabric of your being");
-						if(pc.balls > 0) output(", radiating out from your [pc.balls] to your manhood");
-						output(". You grab ");
-						if(pc.cockTotal() > 1) output("one of your rods");
-						else output("your [pc.cock]");
-						output(", instinctively stroking the rapidly hardening shaft as you feel... something... coming. Your breath quickens, turgid shaft quaking with effort as you pump your prick, working up what must be a load of cum, but immeasurably thicker than your previous spunk.");
-						changes++;
-						pc.orgasm();
-						
-						output("\n\nWith a cry of pleasure, your [pc.hips] buck into your hand, ramming out a thick streak of amber spooge that spatters across your thighs and crotch, glazing your groin in a creamy yellow. Your back arches instinctively, thrusting your crotch out as you continue to fap and cum, spraying yourself in sweet cock-nectar for what seems like an eternity, until all that pressure in your ");
-						if(pc.balls > 0) output("[pc.balls]");
-						else output("body");
-						output(" finally fades away.\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
-						pc.cumType = GLOBAL.FLUID_TYPE_HONEY;
-						changes++;
+						if(pc.tailCountUnlocked(1) && pc.tailCount != 1)
+						{
+							if(pc.tailCount == 0) 
+							{
+								output("\n\nSomething feels... strange in your backside, like your spine is trying to curl up out of your back and out of your body. Pain hits you, making you stagger down onto the ground as something sprouts from your back. You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you're left with a thick, insectile abdomen growing from your back</b>.");
+							}
+							else
+							{
+								output("\n\nSomething feels... strange in your [pc.tails], like ");
+								if(pc.tailCount == 1) output("its trying to curl up into itself.");
+								else output("they're trying to curl into one another.");
+								output(" Pain hits you, making you stagger down onto the ground as ");
+								if(pc.tailCount == 1) output("your [pc.tail] becomes something else");
+								else output("your [pc.tails] become something else");
+								output(". You reach back, feeling your body up... and realize that something bulbous and plated is growing from you. Minutes pass in a mix of agony and alien pleasure before your transformation seems to have completed, and <b>you're left with a thick, insectile abdomen growing from your back</b>.");
+							}
+							pc.tailCount = 1;
+							pc.clearTailFlags();
+							pc.addTailFlag(GLOBAL.FLAG_CHITINOUS);
+							pc.addTailFlag(GLOBAL.FLAG_SMOOTH);
+							pc.tailType = GLOBAL.TYPE_MYR;
+							changes++;
+						}
+						else output("\n\n" + pc.tailCountLockedMessage());
 					}
-					else output("\n\n" + pc.cumTypeLockedMessage());
+					else output("\n\n" + pc.tailTypeLockedMessage());
+				}
+				//Second Breast Row
+				//If PC has only 1 row of tits. 
+				if(changes < changeLimit && rand(5) == 0 && pc.bRows() == 1 && pc.biggestTitSize() >= 4 && pc.hasVagina())
+				{
+					if(pc.createBreastRowUnlocked(2))
+					{
+						output("\n\nYou feel something poking out of your [pc.skin], just below your [pc.chest]. With a discomforted grunt, you slip a hand ");
+						if(pc.isChestGarbed()) output("under your clothes");
+						else output("to your chest");
+						output(" and run your fingers across your [pc.skinFurScales]. You quickly find a pair of small spots, little more than nubs of flesh, growing out of you, getting thicker and larger. The skin around them starts to bud up, forming into a pair of small, and <i>very</i> sensitive little mounds. You blink in surprise, ogling your body as you realize that <b>you've grown a second pair of breasts</b>!");
+						changes++;
+						pc.createBreastRow();
+						pc.breastRows[1].breastRatingRaw = 1;
+					}
+					else output("\n\n" + pc.createBreastRowsLockedMessage());
 				}
 				if(changes == 0)
 				{
@@ -434,7 +522,7 @@ package classes.Items.Transformatives
 				return false;
 			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " eats the red pill to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the gold pill to no effect.");
 			}
 			return false;
 		}
