@@ -5,6 +5,7 @@
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
+	import classes.Items.Transformatives.RedPill;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -58,6 +59,7 @@
 			this.inventory.push(new AusarTreats());
 			inventory.push(new OvirAce());
 			inventory.push(new OvirPositive());
+			inventory.push(new RedPill());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

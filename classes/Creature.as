@@ -1711,6 +1711,12 @@
 				case "wings":
 					buffer = wingsDescript();
 					break;
+				case "arm":
+					buffer = armDescript();
+					break;
+				case "arms":
+					buffer = pluralize(armDescript());
+					break;
 				case "leg":
 					buffer = leg();
 					break;
@@ -3743,6 +3749,10 @@
 		public function wingsDescript():String
 		{
 			return pluralize(wingDescript());
+		}
+		public function armDescript():String
+		{
+			return "arm";
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -6861,6 +6871,22 @@
 			if (legType == GLOBAL.TYPE_KUITAN) counter++;
 			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
 			return counter;
+		}
+		public function redMyrScore(): int
+		{
+			var counter:int = 0;
+			if(antennae == 2) counter++;
+			if(eyeType == GLOBAL.TYPE_RED_MYR || eyeType == GLOBAL.TYPE_GOLD_MYR) counter++;
+			if(armType == GLOBAL.TYPE_RED_MYR) counter++;
+			if(legType == GLOBAL.TYPE_RED_MYR) counter++;
+			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if(hasFur() || hasScales()) counter--;
+			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			return counter;
+		}
+		public function goldMyrScore(): int
+		{
+			return 0;
 		}
 		public function horseScore(): int
 		{

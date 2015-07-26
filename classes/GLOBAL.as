@@ -155,6 +155,8 @@
 		public static const TYPE_OVIR:int									= 57;
 		public static const TYPE_SYLVAN:int 								= 58; //Fuckin' elves
 		public static const TYPE_DARK_SYLVAN:int 							= 59;
+		public static const TYPE_GOLD_MYR:int 								= 60;
+		public static const TYPE_RED_MYR:int 								= 61;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -216,7 +218,9 @@
 			"Inhuman",
 			"Ovir",
 			"Sylvan",
-			"Dark Sylvan"
+			"Dark Sylvan",
+			"Gold Myr",
+			"Red Myr"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
