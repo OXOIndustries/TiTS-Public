@@ -1568,7 +1568,7 @@ public function askShade4Sex():void
 	if(pc.hasTailCock() && pc.tailCount > 0) addButton(3,"Tailsex",shadeTailSex,undefined,"Tailsex","You’ve got a tail-cock, Shade’s got a tail-cunt... it seems like a match made in heaven, so why not let your tail-genitalia have some fun together?");
 	else addDisabledButton(3,"TailSex","TailSex","You would need some kind of tail-mounted penis to try this...");
 
-	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Jiggle jiggle.");
+	if (pc.hasCock() || pc.hasVagina()) addButton(4, "Boobship", shadeBoobWorship, undefined, "Boob Worship", "Get hands on with Shades glorious chestpillows.");
 	else addDisabledButton(4, "Boobship", "Boob Worship", "You need genitalia to properly worship Shade's chestpillows.");
 
 	addButton(14,"Back",shouldIShadeOrShouldIGo);
@@ -1624,15 +1624,15 @@ public function shadeTalkMenu(arg:Function):void
 		{
 			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItem(new Lactaid()) || pc.hasItem(new MilkCaramelGushers(), 5)))
 			{
-				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
 			else if (!shade.milkType == GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
 			{
-				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
 			else if (!shade.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
 			{
-				addButton(5, "Mods", gibShadeModItems, "Mods", "Give Shade some mod goodies.");
+				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
 			else
 			{
@@ -1642,7 +1642,7 @@ public function shadeTalkMenu(arg:Function):void
 	}
 	else
 	{
-		addDisabledButton(5, "Mods", "Mods", "You don't know enough about Shade to broach this topic yet.");
+		addDisabledButton(5, "Mods", "Mods", "You need to get hands on with Shades chestpillows before talking to her about modding 'em up some.");
 	}
 
 	addButton(14,"Back",shadeApproach);
@@ -2030,7 +2030,7 @@ public function shadeBoobWorship():void
 	output(", the heat of her body as it presses against your own. Her crotch is a sultry inferno beside your own, radiating heat and desire until all you can think about");
 	if (pc.hasCock() && !pc.hasVagina()) output(" is your own cock, so close to her slit... it would be effortless to slip it inside her, to join her in bliss");
 	else if (pc.hasVagina() && !pc.hasCock())output(" is your pussy, soiling Shade’s panties with your sexual excitement as she grinds against you - then again, she’s in no better shape than you are, all but drooling through her undies as her body revels in its excitement");
-	else output(" are your [pc.multiCock] and [pc.multiCunt], overwhelming you in a mix of need and desire. What you wouldn’t give to rip those panties aside and slam yourself into Shade’s slit while you suckle, joining her in bliss");
+	else output(" are your [pc.cocks] and [pc.cunts], overwhelming you in a mix of need and desire. What you wouldn’t give to rip those panties aside and slam yourself into Shade’s slit while you suckle, joining her in bliss");
 	output(". As if reading your mind, Shade gives you a fierce grin, and you feel her hand slipping down to your crotch...");
 
 	output("\n\n<i>“Fair’s fair,”</i> she insists, running her fingers along your sex. <i>“Switch tits for me, though?");
@@ -2098,6 +2098,8 @@ public function shadeBoobWorship():void
 	processTime(20);
 	flags["SEXED_SHADE"] = 1;
 	flags["SHADE_BOOBWORSHIP"] = 1;
+	
+	pc.orgasm();
 
 	clearMenu()
 	addButton(0, "Next", shadePostCoitusHangouts);
@@ -2225,7 +2227,7 @@ public function gibShadeModItemsII(selItem:String):void
 	output("... and hand");
 	if (selItem != "gushers") output(" it");
 	else output(" them");
-	output(") over to her. Shade takes your gift and smiles to herself, eyeing the lactic treat. <i>“Aha. I see you’re still obsessed with my tits, huh, [pc.name]?”</i>");
+	output(" over to her. Shade takes your gift and smiles to herself, eyeing the lactic treat. <i>“Aha. I see you’re still obsessed with my tits, huh, [pc.name]?”</i>");
 	
 	output("\n\nYou don’t bother to deny it. You’re more interested in how she’s going to put your gift to use.");
 	
@@ -2251,7 +2253,7 @@ public function shadeComesBackForBoobystuff():void
 	output("\n\nShe grins, and licks her lips. You notice her tongue still has traces of [shade.milk] on it. <i>“So, back to my place? I know you’re dying to give my rack a little worship after that. Can barely wait to get your hands on ‘em, can you?”</i>");
 
 	processTime(5);
-	pc.lust(5);
+	pc.lust(33);
 
 	// [Shade Options Here]
 	shadeMenu();
