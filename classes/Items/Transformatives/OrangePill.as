@@ -505,6 +505,19 @@ package classes.Items.Transformatives
 					}
 					else output("\n\n" + pc.tailTypeLockedMessage());
 				}
+				//Red Myr Venom
+				//Gain slight resistance to Lust (Chemical) damage
+				if(changes < changeLimit && !pc.hasPerk("Myr Venom") && rand(4) == 0 && pc.myrScore() >= 4)
+				{
+					output("\n\nYou feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva dribbling from your canines. It's actually quite nice, you find, sucking down the alien chemical that seems to be generating in your mouth.");
+
+					pc.lust(15);
+					pc.libido(1);
+					output("\n\nA pinching, clenching sensation in your palate follows, cutting off the supply of drugged spit from your dripping canines. You flex muscles you didn't even know you had, discovering that you can release more on a whim. Excellent.");
+					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You've gained a form of red myrvenom!</b>");
+					changes++;
+					pc.createPerk("Myr Venom",0,0,0,0,"Allows you do to a little lust damage when melee attacking.");
+				}
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
 				if(changes < changeLimit)
 				{
