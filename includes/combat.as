@@ -1165,6 +1165,18 @@ public function playerAttack(target:Creature):void
 		output("<b>Cleave!</b>\n");
 		attack(pc, target, true, 1);
 	}
+	//Myr venom shit!
+	if(pc.hasPerk("Myr Venom"))
+	{
+		if(combatMiss(pc,target)) output("You can't manage to sneak in a bite!");
+		else
+		{
+			output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
+			applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
+
+		}
+		output("\n");
+	}
 	processCombat();
 }
 

@@ -6858,6 +6858,10 @@
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
+			if (myrScore() >= 4) race = "myr";
+			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
+			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
+			if (orangeMyrScore() >= 9) race = "orange myr";
 			else if (isNaga()) race = "naga";
 
 			return race;
@@ -6932,35 +6936,40 @@
 			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
 			return counter;
 		}
+		public function myrScore(): int
+		{
+			var counter:int = 0;
+			if(eyeType == GLOBAL.TYPE_MYR) counter++;
+			if(armType == GLOBAL.TYPE_MYR) counter++;
+			if(legType == GLOBAL.TYPE_MYR) counter++;
+			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if(antennae == 2) counter++;
+			if(hasFur() || hasScales()) counter--;
+			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			return counter;
+		}
+		public function redMyrScore():int
+		{
+			var counter:int = myrScore();
+			if(hasPerk("Myr Venom")) counter += 3;
+			if(scaleColor == "red" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
+			return counter;
+		}
 		public function goldMyrScore(): int
 		{
-			var counter:int = 0;
-			if(hasPerk("Honeypot")) counter++;
+			var counter:int = myrScore();
+			if(hasPerk("Honeypot")) counter += 3;
+			if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter += 4;
+			if(scaleColor == "gold" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
+			return counter;
+		}
+		public function orangeMyrScore():int
+		{
+			var counter:int = myrScore();
+			if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
 			if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
-			if(antennae == 2) counter++;
-			if(eyeType == GLOBAL.TYPE_MYR) counter++;
-			if(armType == GLOBAL.TYPE_MYR) counter++;
-			if(legType == GLOBAL.TYPE_MYR) counter++;
-			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
-			if(hasFur() || hasScales()) counter--;
-			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter+=5;
 			return counter;
-		}
-		public function redMyrScore(): int
-		{
-			var counter:int = 0;
-			if(antennae == 2) counter++;
-			if(eyeType == GLOBAL.TYPE_MYR) counter++;
-			if(armType == GLOBAL.TYPE_MYR) counter++;
-			if(legType == GLOBAL.TYPE_MYR) counter++;
-			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
-			if(hasFur() || hasScales()) counter--;
-			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
-			return counter;
-		}
-		public function orangeMyrScore(): int
-		{
-			return 0;
 		}
 		public function horseScore(): int
 		{

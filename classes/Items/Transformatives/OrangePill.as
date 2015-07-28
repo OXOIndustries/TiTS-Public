@@ -168,7 +168,7 @@ package classes.Items.Transformatives
 									if(legs) output(" and ");
 								}
 								if(legs) output("legs");
-								output(" cover themselves with plates of insectile chitin</b>, just like a myr's!");
+								output(" cover themselves with plates of orange, insectile chitin</b>, just like a myr's!");
 								pc.armType = GLOBAL.TYPE_MYR;
 								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
@@ -177,6 +177,8 @@ package classes.Items.Transformatives
 								pc.addLegFlag(GLOBAL.FLAG_CHITINOUS);
 								pc.clearArmFlags();
 								pc.addArmFlag(GLOBAL.FLAG_CHITINOUS);
+								if(pc.hasScales()) output(" <b>Your scales change color to match.</b>");
+								pc.scaleColor = "orange";
 								changes++;
 							}
 							else output("\n\n" + target.legFlagsLockedMessage());
@@ -312,6 +314,7 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex's reflective back shows you that <b>your eyes are now black and featureless like a myr's!</b>");
 						pc.eyeType = GLOBAL.TYPE_MYR;
+						pc.eyeColor = "black";
 						changes++;
 					}
 					else output("\n\n" + pc.eyeTypeLockedMessage());
