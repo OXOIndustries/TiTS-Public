@@ -366,6 +366,7 @@ public function myrellionNevrieBlowjerb():void
 
 	flags["NEVRIE_DISCOUNT"] = 1;
 	flags["FUCKED_NEVRIE"] = 1;
+	flags["NEVRIE_FIRST_DISCOUNT_DATE"] = days;
 	
 	processTime(10 + rand(5));
 
@@ -431,6 +432,18 @@ public function nevriMailGet():void
 	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
 
 	MailManager.unlockEntry("myrpills", GetGameTimestamp());
+}
+public function nevriOrangeMailGet():void
+{
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+
+	MailManager.unlockEntry("orangepills", GetGameTimestamp());
+}
+public function nevriBJMailGet():void
+{
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+
+	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }
 
 public function mcallisterMeeting():void
