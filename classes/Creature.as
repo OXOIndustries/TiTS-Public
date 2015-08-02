@@ -1264,6 +1264,10 @@
 				case "rangedWeapon":
 					buffer = rangedWeapon.longName;
 					break;
+				case "weapon":
+					if(physique() > aim()) buffer = meleeWeapon.longName;
+					else buffer = rangedWeapon.longName;
+					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
 					break;
@@ -2864,6 +2868,9 @@
 			if (hasStatusEffect("Evasion Reduction")) temp -= statusEffectv1("Evasion Reduction");
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
+			if (hasStatusEffect("Spear Wall")) temp += 50;
+			//Nonspecific evasion boost status effect enemies can use.
+			temp += statusEffectv1("Evasion Boost");
 			
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;

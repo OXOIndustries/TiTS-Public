@@ -362,6 +362,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["GOLD_DESERTER"] = new MyrGoldFemaleDeserter();
 	}
+	if (!justUpdate || (justUpdate && chars["NYREAN_PRAETORIANS"] == undefined))
+	{
+		chars["NYREAN_PRAETORIANS"] = new NyreanPraetorians();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

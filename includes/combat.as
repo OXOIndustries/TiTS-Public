@@ -474,12 +474,32 @@ public function updateCombatStatuses():void {
 			output("\n");
 		}
 	}
-	if(pc.hasStatusEffect("Poison"))
+	//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+	if(pc.hasStatusEffect("Aphro"))
 	{
-		//2% of HP per tic.
-		output("<b>The poison continues to take its toll on your body; you need to end this fight as soon as possible!</b>");
-		applyDamage(new TypeCollection( { poison: Math.round(pc.HPMax() * 0.02) } ), foes[0], pc);
+		pc.addStatusValue("Aphro",2,-1);
+		if(pc.statusEffectv2("Aphro") == 0)
+		{
+			output("<b>The aphrodisiac in your bloodstream has faded!</b>");
+			pc.removeStatusEffect("Aphro");
+		}
+		else
+		{
+			output("<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
+			applyDamage(new TypeCollection( { drug: pc.statusEffectv1("Aphro") } ), foes[0], pc);
+		}
 		output("\n");
+	}
+	if(foes[0].hasStatusEffect("Evasion Boost"))
+	{
+		pc.addStatusMinutes("Evasion Boost",-1);
+		if(pc.getStatusMinutes("Evasion Boost") <= 0)
+		{
+			if(foes[0].plural) output("<b>" + foes[0].cappitalA + foes[0].short + " no longer have boosted evasion!</b>");
+			else output("<b>" + foes[0].cappitalA + foes[0].short + " no longer has boosted evasion!</b>");
+			pc.removeStatusEffect("Evasion Boost");
+			output("\n");
+		}
 	}
 	if(pc.hasStatusEffect("Burn"))
 	{
@@ -1634,6 +1654,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
 	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
+	else if (aggressor is NyreanPraetorians) praetorianAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1791,6 +1812,7 @@ public function victoryRouting():void
 	{
 		winVsAntGrillDeserts();
 	}
+	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
 	else genericVictory();
 }
 
@@ -1945,6 +1967,7 @@ public function defeatRouting():void
 	{
 		loseToAntGrillDeserts();
 	}
+	else if(foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2278,6 +2301,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "Red Deserter":
 			chars["RED_DESERTER"].prepForCombat();
+			break;
+		case "Nyrean Praetorians":
+			chars["NYREAN_PRAETORIANS"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

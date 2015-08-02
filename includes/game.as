@@ -1200,6 +1200,12 @@ public function processTime(arg:int):void {
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
 				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
 			}
+			//Taivra's guards respawn
+			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] != 0)
+			{
+				flags["PRAETORIAN_RESPAWN"]--;
+				if(flags["PRAETORIAN_RESPAWN"] <= 0) flags["PRAETORIAN_RESPAWN"] = 0;
+			}
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
