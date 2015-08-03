@@ -7,6 +7,7 @@
 	import classes.Items.Melee.GooeyPsuedopod;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class Goocubator extends Creature
 	{
