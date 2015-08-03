@@ -11,6 +11,7 @@ import classes.Characters.PhoenixPirates;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.QueenOfTheDeep;
 import classes.Characters.SecurityDroids;
+import classes.Characters.SX1Techguard;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
 import classes.Characters.Varmint;
@@ -1513,10 +1514,11 @@ public function displayMonsterStatus(targetFoe:Creature):void
 			{
 				if (targetFoe.lust() >= 50) output("You can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 			}
-			else
+			if (targetFoe is SX1Techguard && targetFoe.shields() > 0)
 			{
-				showMonsterArousalFlavor(targetFoe);
+				output("A small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
 			}
+			showMonsterArousalFlavor(targetFoe);
 			mutinousMimbranesCombat();
 			neglectedMimbranesCombat();
 		}
@@ -1622,6 +1624,9 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
 	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
+	else if (aggressor is SX1GroupPirates) sx1PirateGroupAI();
+	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
+	else if (aggressor is SX1Techguard) sx1TechguardAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1779,6 +1784,9 @@ public function victoryRouting():void
 	{
 		winVsAntGrillDeserts();
 	}
+	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
+	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
+	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
 	else genericVictory();
 }
 
@@ -1933,6 +1941,9 @@ public function defeatRouting():void
 	{
 		loseToAntGrillDeserts();
 	}
+	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
+	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
+	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2266,6 +2277,15 @@ public function startCombat(encounter:String):void
 			break;
 		case "Red Deserter":
 			chars["RED_DESERTER"].prepForCombat();
+			break;
+		case "SX1GROUPPIRATES":
+			chars["SX1GROUPPIRATES"].prepForCombat();
+			break;
+		case "SX1SHOTGUARD":
+			chars["SX1SHOTGUARD"].prepForCombat();
+			break;
+		case "SX1TECHGUARD":
+			chars["SX1TECHGUARD"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

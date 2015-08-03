@@ -58,9 +58,11 @@ public function xenogenOutsideBlurb():Boolean
 
 public function hangarBonus():Boolean 
 {
-	trace("this", this);
-	// trace("this.titsClassPtr.move,", this.titsClassPtr.move);
-	// trace("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
+	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"])
+	{
+		addButton(0, "Deck 92", saendraX1LiftGo); 
+	}
+	
 	if(currentLocation == "LIFT: MERCHANT DECK") {
 		output("\n\n<b>You are currently on the merchant deck.</b>");
 		addButton(5,"Down",liftMove, "TAVROS LIFT");

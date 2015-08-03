@@ -128,6 +128,7 @@
 		include "../includes/tavros.shearBeauty.as";
 		include "../includes/tavros.shelly.as";
 		include "../includes/tavros.vahn.as";
+		include "../includes/tavros.saendraXPack1.as";
 		
 		//First planet
 		include "../includes/mhenga.burt.as";
