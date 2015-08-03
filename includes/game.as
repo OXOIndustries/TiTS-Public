@@ -403,7 +403,6 @@ public function rest(deltaT:int = -1):void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	clearOutput();
-	restHeal();
 	if (deltaT == -1)
 	{
 		minutes = 230 + rand(20) + 1;
@@ -418,7 +417,7 @@ public function rest(deltaT:int = -1):void {
 	{
 		minutes = deltaT;
 	}
-	
+	restHeal();
 	processTime(minutes);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -866,7 +865,7 @@ public function variableRoomUpdateCheck():void
 	{
 		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) rooms["2G11"].westExit = "2E11"
 	}
-	else rooms["2G11"].westExit = "";
+	else if(flags["PRAETORIAN_RESPAWN"] == undefined) rooms["2G11"].westExit = "";
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";

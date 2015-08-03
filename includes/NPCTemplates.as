@@ -366,6 +366,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["NYREAN_PRAETORIANS"] = new NyreanPraetorians();
 	}
+	if (!justUpdate || (justUpdate && chars["GOOCUBATOR"] == undefined))
+	{
+		chars["GOOCUBATOR"] = new Goocubator();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

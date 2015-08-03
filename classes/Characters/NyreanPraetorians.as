@@ -184,6 +184,7 @@
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
 			
+			this.createPerk("Sneak Attack",0,0,0,0);
 			this._isLoading = false;
 		}
 		

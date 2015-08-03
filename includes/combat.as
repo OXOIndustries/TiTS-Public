@@ -1,5 +1,6 @@
 ﻿import classes.Characters.Cockvine;
 import classes.Characters.GigaGoo;
+import classes.Characters.Goocubator;
 import classes.Characters.GrayGoo;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
@@ -490,17 +491,6 @@ public function updateCombatStatuses():void {
 		}
 		output("\n");
 	}
-	if(foes[0].hasStatusEffect("Evasion Boost"))
-	{
-		pc.addStatusMinutes("Evasion Boost",-1);
-		if(pc.getStatusMinutes("Evasion Boost") <= 0)
-		{
-			if(foes[0].plural) output("<b>" + foes[0].capitalA + foes[0].short + " no longer have boosted evasion!</b>");
-			else output("<b>" + foes[0].cappitalA + foes[0].short + " no longer has boosted evasion!</b>");
-			pc.removeStatusEffect("Evasion Boost");
-			output("\n");
-		}
-	}
 	if(pc.hasStatusEffect("Burn"))
 	{
 		//2% of HP per tic.
@@ -731,6 +721,17 @@ public function updateCombatStatuses():void {
 			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, foes[x]);
 			output("\n");
 		}
+		if(foes[x].hasStatusEffect("Evasion Boost"))
+		{
+			foes[x].addStatusMinutes("Evasion Boost",-1);
+			if(foes[x].getStatusMinutes("Evasion Boost") <= 0)
+			{
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " no longer have boosted evasion!</b>");
+				else output("<b>" + foes[x].cappitalA + foes[x].short + " no longer has boosted evasion!</b>");
+				foes[x].removeStatusEffect("Evasion Boost");
+				output("\n");
+			}
+		}
 		if(foes[x].hasStatusEffect("Blind"))
 		{
 			foes[x].addStatusValue("Blind",1,-1);
@@ -799,6 +800,7 @@ public function updateCombatStatuses():void {
 		if (foes[x].hasStatusEffect("Stunned"))
 		{
 			if(foes[x].hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
+			else if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are stunned and unable to act!</b>\n");
 			else output("<b>" + foes[x].capitalA + foes[x].short + " is stunned and unable to act!</b>\n");
 		}
 		if (foes[x].hasStatusEffect("Stealth Field Generator"))
@@ -1029,6 +1031,11 @@ public function grappleStruggle():void {
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
 			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
 			//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+			else if (foes[0] is Goocubator) 
+			{
+				output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
+				output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
+			}
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
@@ -1655,6 +1662,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
 	else if (aggressor is NyreanPraetorians) praetorianAI();
+	else if (aggressor is Goocubator) gooCubatorAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1813,6 +1821,7 @@ public function victoryRouting():void
 		winVsAntGrillDeserts();
 	}
 	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
+	else if(foes[0] is Goocubator) pcBeatsGoo();
 	else genericVictory();
 }
 
@@ -1968,6 +1977,7 @@ public function defeatRouting():void
 		loseToAntGrillDeserts();
 	}
 	else if(foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
+	else if(foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2304,6 +2314,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "Nyrean Praetorians":
 			chars["NYREAN_PRAETORIANS"].prepForCombat();
+			break;
+		case "Goocubator":
+			chars["GOOCUBATOR"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
