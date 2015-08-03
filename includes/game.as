@@ -411,6 +411,7 @@ public function rest(deltaT:int = -1):void {
 			output("You take a rest for about " + num2Text(Math.round(minutes/60)) + " hours");
 			if(pc.HP() < pc.HPMax()) output(" and dress your injuries with some less-than-legal nanogel you appropriated on an old job");
 			output(".");
+		}
 		else output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
 	else
