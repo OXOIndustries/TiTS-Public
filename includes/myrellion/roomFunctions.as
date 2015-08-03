@@ -646,15 +646,6 @@ public function queensRoadTradingPost():Boolean
 	return queensRoadBonusShit();
 }
 
-public function gateExteriorBonusNyreaVillage():Boolean
-{
-	output("You stand before a large, stone gate. ");
-	if(9999 == 0) output("The gate is standing open, as you left it. The nyrea camp lies ahead, open for your investigation.");
-	else output("The gate is standing closed, a stark barrier against entry. Beyond it, you can hear the sounds of talking, and smell the alluring aroma of cooked meat. Somebody's living beyond this gate...");
-	//If not open: [Open Gate]
-	return false;
-}
-
 public function DeepCavesBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;

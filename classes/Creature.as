@@ -2854,11 +2854,11 @@
 			temp += rangedWeapon.evasion;
 			temp += armor.evasion + upperUndergarment.evasion + lowerUndergarment.evasion + accessory.evasion + shield.evasion;
 			if (hasPerk("Agility")) {
-				if ((temp *= .2) < 6) temp += 6;
-				else temp = Math.round(temp * 1.2);
+				if ((temp *= .5) < 10) temp += 10;
+				else temp = Math.round(temp * 1.5);
 			}
 			if (hasPerk("Improved Agility")) {
-				temp += 6;
+				temp += 10;
 			}
 			if (hasStatusEffect("Riposting"))
 			{

@@ -495,7 +495,7 @@ public function updateCombatStatuses():void {
 		pc.addStatusMinutes("Evasion Boost",-1);
 		if(pc.getStatusMinutes("Evasion Boost") <= 0)
 		{
-			if(foes[0].plural) output("<b>" + foes[0].cappitalA + foes[0].short + " no longer have boosted evasion!</b>");
+			if(foes[0].plural) output("<b>" + foes[0].capitalA + foes[0].short + " no longer have boosted evasion!</b>");
 			else output("<b>" + foes[0].cappitalA + foes[0].short + " no longer has boosted evasion!</b>");
 			pc.removeStatusEffect("Evasion Boost");
 			output("\n");
@@ -1279,7 +1279,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	//Extra miss for blind
 	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
 		if(attacker == pc) output("Your blind strike fails to connect.");
-		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackVerb + " goes wide!");
+		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
 	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
@@ -3721,12 +3721,12 @@ public function lowBlow(target:Creature):void {
 
 		applyDamage(damageRand(new TypeCollection( { kinetic: pc.damage() + pc.physique() / 2 } ), 15), pc, target, "lowblow");
 
-		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
+		if((pc.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
 			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
-			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-			else target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+			if(target is Kaska) target.createStatusEffect("Stunned",3+rand(2),0,0,0,false,"Stun","Cannot act for a while. You hit her balls pretty hard!",true,0);
+			else target.createStatusEffect("Stunned",2+rand(2),0,0,0,false,"Stun","Cannot act until recovery, typically in 1 to 2 turns.",true,0);
 		}
 		else {
 			output("\nIt doesn't look like you accomplished much more than hitting your target.");
@@ -3747,7 +3747,7 @@ public function stealthFieldActivation():void {
 public function NPCstealthFieldActivation(user:Creature):void {
 	user.energy(-20);
 	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.");
-	user.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
+	user.createStatusEffect("Stealth Field Generator",3,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
 	processCombat();
 }
 

@@ -2075,12 +2075,12 @@ public function kaskaVolleyShot():void
 	{
 		if (rangedCombatMiss(foes[0], pc))
 		{
-			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackNoun + ".");
 		}
 		else if (rand(100) <= 45 && !pc.isImmobilized())
 		{
 			if (pc.customDodge.length > 0) output(pc.customDodge);
-			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackVerb + ".");
+			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackNoun + ".");
 		}
 		else if (mimbraneFeetBonusEvade(pc))
 		{

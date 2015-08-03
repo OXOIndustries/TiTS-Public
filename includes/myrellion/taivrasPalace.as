@@ -20,7 +20,7 @@ public function taivrasPalaceSquareBonus():Boolean
 			output("\n\nA pair of nyrean huntresses in light armor and carrying spears stand outside the gates, staring impassively into the corridor. When you approach, they awkwardly press their open palms to their hearts and bow. <i>“My liege,”</i> one of them says by way of greeting.");
 		}
 		//within 12 hours:
-		if(flags["PRAETORIAN_RESPAWN"] != 0) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
+		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
 		//13+ hours, BEAT DUNGEON SOME OTHER WAY!
 		else if(9999 == 0) 
 		{
@@ -29,7 +29,7 @@ public function taivrasPalaceSquareBonus():Boolean
 		}
 		
 		//13+ hours, PC hasn’t finished dungeon OR PC got rekt by the Praetorian last time:
-		else if(9999 == 0)
+		else
 		{
 			output("\n\nThe queen’s bodyguard seems to have recovered and are prepared to fight you off again!");
 			//PC can’t advance past until they [Fight], which leads straight into another battle.
@@ -303,11 +303,20 @@ public function loseToPraetorianNyreaGangbangu():void
 	output("\n\nThe other huntresses murmur their agreement, and you feel hands grabbing your [pc.legs] and starting to drag you away.");
 
 	//3-4 loads in mouth and similar amount in butt?
+	pc.loadInAss(foes[0]);
+	pc.loadInAss(foes[0]);
+	pc.loadInAss(foes[0]);
+	pc.loadInAss(foes[0]);
+	pc.loadInMouth(foes[0]);
+	pc.loadInMouth(foes[0]);
+	pc.loadInMouth(foes[0]);
+	pc.loadInMouth(foes[0]);
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	currentLocation = "2I11";
+	addButton(0,"Next",loseToPraetorianNyreaPt2);
 }
 
 //[Next]
@@ -327,7 +336,6 @@ public function loseToPraetorianNyreaPt2():void
 	output(". Several commoners look on with wide eyes as you’re dumped off, and the guards return to the palace.");
 
 	output("\n\nYou groan and stagger back to your [pc.footOrFeet], thankful the nyrea left you your equipment. Gonna have to try again if you want to face your cousin and find the probe...\n\n");
-	//9999 move PC
 	//[Next] //To map
 	genericLoss();
 }
@@ -345,88 +353,168 @@ public function spankDaShitOuttaPraetorians():void
 	genericVictory();
 }
 
-/*
+
 //Palace Interior Descriptions
-output("\n\nRoom 2E11 Gate Interior");
-output("\n\nThe interior of the palace gates is a well-lit cavern with a high, vaulted roof and several pillars bearing fungal lanterns. A small guard post is set up just past the gates, a little room hollowed out of the rock and outfitted with a dozen or so chairs. {if KingNyrea: Several of your nyrea warriors are milling around here, ready to stave off an enemy attack // elseif beat Praetorian: The place has been cleared out, thanks to your forceful entrance.}");
+public function gateExteriorBonusNyreaVillage():Boolean
+{
+	output("You stand before a large, stone gate. Beyond it, you can hear the sounds of talking, and smell the alluring aroma of cooked meat.");
 
-output("\n\nRoom 2E13 Palace Thoroughfare");
-output("\n\nA long tunnel runs east to west, T-boning north back towards the gates. A painted mural decorates the southern wall, showing {Queen Taivra // an especially buxom, powerful-looking huntress} wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nrea cling to her plated legs, cowering behind the amazonian warrior woman.");
+	//If not open: [Open Gate]
+	return taivrasPalaceSquareBonus();
+}
+//Room 2E11 Gate Interior
+public function taivrasGateInteriorBonus():Boolean
+{
+	output("The interior of the palace gates is a well-lit cavern with a high, vaulted roof and several pillars bearing fungal lanterns. A small guard post is set up just past the gates, a little room hollowed out of the rock and outfitted with a dozen or so chairs.");
+	//if KingNyrea: 
+	//9999 - maybe disable these if this is where the praetorian fight actually happens?
+	if(9999 == 0) output(" Several of your nyrea warriors are milling around here, ready to stave off an enemy attack.");
+	//elseif beat Praetorian:
+	else if(9999 == 0) output(" The place has been cleared out, thanks to your forceful entrance.");
+	return false;
+}
 
-output("\n\nRoom 2C13 Queen’s Fountain");
-output("\n\nThis large, circular chamber has passages leading north, south, and east, each a squared-off tunnel with a simple silk curtain acting as a door. The center of the room is dominated by a natural fountain: a caldera of stone eroded in a perfect bowl shape in the floor, and filled with water that trickles down from a crack in the cavern’s ceiling.");
+//Room 2E13 Palace Thoroughfare
+public function palaceThoroughfareBonus():Boolean
+{
+	output("A long tunnel runs east to west, T-boning north back towards the gates. A painted mural decorates the southern wall, showing ");
+	if(flags["MET_TAIVRA"] != undefined) output("Queen Taivra");
+	else output("an especially buxom, powerful-looking huntress");
+	output(" wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nrea cling to her plated legs, cowering behind the amazonian warrior woman.");
+	return false;
+}
 
-output("\n\n{if PC is NyreaKing, 12 hours have passed since dungeon victory:");
-output("\n\nQueensguard, Taivra’s personal bodyguard, is standing here. Her shield is sitting on the ground beside her, and both hands are on the hilt of her sword. She favors you with a slight nod, saying <i>“My {king/queen},”</i> by way of greeting. It looks like she’s recovered nicely from her wounds.");
+//Room 2C13 Queen’s Fountain
+public function queensFountainBonusShit():Boolean
+{
+	output("This large, circular chamber has passages leading north, south, and east, each a squared-off tunnel with a simple silk curtain acting as a door. The center of the room is dominated by a natural fountain: a caldera of stone eroded in a perfect bowl shape in the floor, and filled with water that trickles down from a crack in the cavern’s ceiling.");
 
-output("\n\nRoom 2C15 Queen’s Chambers");
-output("\n\n//Play <i>“Incubator Goo”</i> encounter on first entry.");
+	//if PC is NyreaKing, 12 hours have passed since dungeon victory:
+	if(9999 == 0) output("\n\nQueensguard, Taivra’s personal bodyguard, is standing here. Her shield is sitting on the ground beside her, and both hands are on the hilt of her sword. She favors you with a slight nod, saying <i>“My " + pc.mf("king","queen") + ",”</i> by way of greeting. It looks like she’s recovered nicely from the fight.");
+	return false;
+}
 
-output("\n\nYou stand in a lavish bedchamber, staring at a more than king-sized canopied bed with lush pink silken sheets and blankets. A rack of simple swords and spears line the walls, none of which are worth your attention. A few pieces of art - sculptures, mostly - adorn the tops of a dresser and nightstand, as does a large fungus-filled lantern that glows with a soft blue light.");
+//Room 2C15 Queen’s Chambers
+public function queensChambersBonus():Boolean
+{
+	output("You stand in a lavish bedchamber, staring at a more than king-sized canopied bed with lush pink silken sheets and blankets. A rack of simple swords and spears line the walls, none of which are worth your attention. A few pieces of art - sculptures, mostly - adorn the tops of a dresser and nightstand, as does a large fungus-filled lantern that glows with a soft blue light.");
+	//Play <i>“Incubator Goo”</i> encounter on first entry.9999
 
-output("\n\n{if not NyreaKing:");
-output("\n\nThe crystal-coated broodmother is {if beated by lust: moaning and groaning in the corner, still locked in the throes of pleasure even after you had your way with her //by physical: cowering in the corner, arms and crystal plates wrapped protectively around her belly full of eggs}.");
+	//if not NyreaKing:
+	if(9999 == 0)
+	{
+		output("\n\nThe crystal-coated broodmother is ");
+		//Lustbeat
+		if(9999 == 9999) output("moaning and groaning in the corner, still locked in the throes of pleasure even after you had your way with her");
+		//by physical:
+		else output("cowering in the corner, arms and crystal plates wrapped protectively around her belly full of eggs");
+		output(".");
+	}
+	//if NyreaKing & did Goofite:
+	else
+	{
+		if(9999 == 9999) output("\n\nYou can see some gooey slop on the stone floor, near the little hatch Taivra’s pet broodmother goo lives in. You suppose she’s been out lately... probably so your mate could pump her full of a new batch of royal eggs.");
+		//if NyreaKing & skipped Goofite:
+		else output("\n\nYou can see some gooey slop on the stone floor, near one of the big carpets on the stone floor just under a gloryhole in the wall beside her bed.");
+	}
+	return false;
+}
 
-output("\n\n{if NyreaKing & did Goofite:");
-output("\n\nYou can see some gooey slop on the stone floor, near the little hatch Taivra’s pet broodmother goo lives in. You suppose she’s been out lately... probably so your mate could pump her full of a new batch of royal eggs.}");
+//[Search]
+//Maybe you’ll find something useful in the queen’s chambers?
+public function searchTheQueensChambers():void
+{
+	clearOutput();
+	showName("\nSEARCHING...");
+	output("You spend a few minutes tossing the room, looking for anything of value. Your search reveals several interesting finds: some sex toys made for the nyrea’s unique biology, some handcuffs and gags, and what looks like primitive pornography etched in stone tablets. Clearly the queen’s got a kinky side...");
+	output("\n\nMore important to your quest, though, you find hidden away in her nightstand a <b>silver key</b> and a <b>satchel full of gemstones</b>. These will probably turn quite a profit...");
+	output("\n\n(<b>Gained Key Item: Silver Key</b> - This must open something somewhere in the royal complex.)");
+  	pc.createKeyItem("Silver Key",0,0,0,0);
 
-output("\n\n{if NyreaKing & skipped Goofite:");
-output("\n\nYou can see some gooey slop on the stone floor, near one of the big carpets on the stone floor just under a gloryhole in the wall beside her bed.}");
+  	//Add Silver Gate Key to Key Items
+	//Add Gem Satchel to inventory. Worth about ~10k Creds when sold.
+	//9999 sumbody get on dis
+}
 
-
-output("\n\n[Search]");
-output("\n\n//Maybe you’ll find something useful in the queen’s chambers?");
-
-output("\n\nYou spend a few minutes tossing the room, looking for anything of value. Your search reveals several interesting finds: some sex toys made for the nyrea’s unique biology, some handcuffs and gags, and what looks like primitive pornography etched in stone tablets. Clearly the queen’s got a kinky side...");
-
-output("\n\nMore important to your quest, though, you find hidden away in her nightstand a <b>silver key</b> and a <b>satchel full of gemstones</b>. These will probably turn quite a profit...");
-
-output("\n\n//Add Silver Gate Key to Key Items");
-output("\n\n//Add Gem Satchel to inventory. Worth about ~10k Creds when sold.");
+/*
 
 output("\n\nGem Satchel");
 output("\n\n//Tooltip: This is a satchel full of sparkling green gemstones. You could make a tidy profit selling this to a merchant - they don’t have much practical application, after all.");
-
-output("\n\nRoom 2C11 Circle Tunnel");
-output("\n\nThis long, smooth passage is nearly circular in the way it’s been drilled out, suggesting the nyrea put a great deal of time and effort into their construction. A flat walking path connects the fountain chamber south with a curving passage ahead, leading towards a large set of stairs.");
-
-output("\n\nRoom 2C9 Stairway");
-output("\n\nA curving path connects the rest of the palace grounds to a large set of stairs, leading up to a pair of heavy stone doors flanked by brilliantly glowing blue lanterns. Through the door, you can hear the sounds of pleasure echoing, moans and cries of sexual ecstasy. Several of them, in fact. {if Princess Defeated: You’re surprised the harem is still going, even after freeing them from the queen’s daughter.}");
-
-output("\n\nRoom 2A9 Harem Chamber");
-output("\n\nThe harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildoes and plugs - sit in racks along the walls. Several dozen <i>“male”</i> nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen’s harem.");
-
-output("\n\n{Post Princess battle:");
-output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
-
-output("\n\n{PC is KingNyrea:");
-output("\n\nYour nyrea harem is lounging around on the cushions and couches. They do nothing to conceal their nudity as you observe them - indeed, some actively flaunt it, running their hands over hefty tits or spreading their pussy-lips invitingly. Others are busy with each other, groping and kissing and grinding their unique sexes against each others’ chitinous bodies.");
-
-output("\n\n[Use Harem] [Free Them] (see Princess and Harem stuff below)");
-
-output("\n\nRoom 2G13 Royal Hallway");
-output("\n\nA curving passage connects the entrance hallway to a long, foreboding passage flanked by pillars and fungal lanterns and several large crossed spears set into the stone. An imposing gate stands to the south, made of steel and embossed with a glyph that must symbolize the queen.");
-
-output("\n\nRoom 2G15 Gateway");
-output("\n\nYou’re standing before a huge, imposing steel gate bearing the symbol of the queen: a shield with a spear pierced through it, and what looks like several tentacles wrapped around them both. The gate is currently {sealed, barring your path. You’ll need to find a key to get the big, meaty padlock off of it. // standing open, allowing you to enter the queen’s throne room.} To your surprise, the gate isn’t guarded.");
-
-output("\n\nRoom 2G17 Throne Stairs");
-output("\n\nBeyond the gate lies a twisting passage heading westward, with sharp steps taking you even deeper into the stone in Myrellion’s heart. Flickering lanterns light your way, and the sounds of speech below tell you that you’re not the only one here...");
-
-output("\n\nRoom 2E17 Throneroom");
-output("\n\n{PC executed Taivra:");
-output("\n\nQueensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
-
-output("\n\n{PC spared Taivra:");
-output("\n\nQueen Taivra is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at {your hands / at Dane’s hands}. As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
-
-output("\n\n{PC is KingNyrea:");
-output("\n\n//First 12 hours after fight:");
-output("\n\nYour newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at {your hands / at Dane’s hands}. As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
-
-
-output("\n\n//Thereafter");
-output("\n\nQueen  Taivra is sitting on her throne, one leg crossed over the other and a great spear held in her hand. Her mass of tentacle cocks are busily breeding several beta huntresses, sprawled out on their backs at the foot of her throne with their hollow ovipositors erect and penetrated, being filled with their queen’s seed. Taivra looks almost bored, even with twelve cocks simultaneously fucking a dozen huntresses at once.");
-
-output("\n\n<i>“[pc.name],”</i> she says with a faint smile, not interrupting her mating. <i>“You desire something, my {queen/king}?”</i>");
 */
+
+//Room 2C9 Stairway
+public function taivrasStairwellBonus():Boolean
+{
+	output("A curving path connects the rest of the palace grounds to a large set of stairs, leading up to a pair of heavy stone doors flanked by brilliantly glowing blue lanterns. Through the door, you can hear the sounds of pleasure echoing, moans and cries of sexual ecstasy. Several of them, in fact.");
+	//if Princess Defeated:
+	if (9999 == 9999) output(" You’re surprised the harem is still going, even after freeing them from the queen’s daughter.");
+	return false;
+}
+
+//Room 2A9 Harem Chamber
+public function haremChamberBonusFunc():Boolean
+{
+	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildoes and plugs - sit in racks along the walls. Several dozen <i>“male”</i> nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen’s harem.");
+
+	//Post Princess battle:
+	if(9999 == 0)
+	{
+		output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
+	}
+	//PC is KingNyrea:
+	if(9999 == 0)
+	{
+		output("\n\nYour nyrea harem is lounging around on the cushions and couches. They do nothing to conceal their nudity as you observe them - indeed, some actively flaunt it, running their hands over hefty tits or spreading their pussy-lips invitingly. Others are busy with each other, groping and kissing and grinding their unique sexes against each others’ chitinous bodies.");
+	}
+	//[Use Harem] [Free Them] (see Princess and Harem stuff below)
+	//9999 - check for conflicts between king nyrea & post princessbeat stuff
+	return false;
+}
+
+
+//Room 2G15 Gateway
+public function gatewayBonusFunc():Boolean
+{
+	output("You’re standing before a huge, imposing steel gate bearing the symbol of the queen: a shield with a spear pierced through it, and what looks like several tentacles wrapped around them both. The gate is currently ");
+	if(9999 == 9999) output("sealed, barring your path. You’ll need to find a key to get the big, meaty padlock off of it.");
+	else output("standing open, allowing you to enter the queen’s throne room.");
+	output(" To your surprise, the gate isn’t guarded.");
+	return false;
+}
+
+//Room 2E17 Throneroom
+public function taivrasThroneBonusFunc():Boolean
+{
+	//PC executed Taivra:
+	if(9999 == 0)
+	{
+		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
+	}
+	//PC spared Taivra:
+	else if(9999 == 0)
+	{
+		output("Queen Taivra is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
+		if(9999 == 9999) output("your hands");
+		else output("at Dane’s hands");
+		output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
+	}
+	//PC is KingNyrea:
+	else if(9999 == 0)
+	{
+		//First 12 hours after fight:
+		if(9999 == 0)
+		{
+			output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
+			if(9999 == 9999) output("your hands");
+			else output("at Dane’s hands");
+			output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
+		}
+		//Thereafter
+		else 
+		{
+			output("Queen Taivra is sitting on her throne, one leg crossed over the other and a great spear held in her hand. Her mass of tentacle cocks are busily breeding several beta huntresses, sprawled out on their backs at the foot of her throne with their hollow ovipositors erect and penetrated, being filled with their queen’s seed. Taivra looks almost bored, even with twelve cocks simultaneously fucking a dozen huntresses at once.");
+			output("\n\n<i>“[pc.name],”</i> she says with a faint smile, not interrupting her mating. <i>“You desire something, my " + pc.mf("king","queen") + "?”</i>");
+		}
+	}
+	return false;
+}
