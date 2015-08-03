@@ -67,7 +67,7 @@ package classes.Engine.Combat
 				{
 					damageResult.wasSneak = true;
 					
-					baseHPDamage.add(attacker.level * 2);
+					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}
@@ -94,7 +94,7 @@ package classes.Engine.Combat
 				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
-					baseHPDamage.add(attacker.level * 2);
+					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}

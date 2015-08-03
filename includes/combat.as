@@ -1,5 +1,6 @@
 ﻿import classes.Characters.Cockvine;
 import classes.Characters.GigaGoo;
+import classes.Characters.Goocubator;
 import classes.Characters.GrayGoo;
 import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
@@ -475,11 +476,20 @@ public function updateCombatStatuses():void {
 			output("\n");
 		}
 	}
-	if(pc.hasStatusEffect("Poison"))
+	//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+	if(pc.hasStatusEffect("Aphro"))
 	{
-		//2% of HP per tic.
-		output("<b>The poison continues to take its toll on your body; you need to end this fight as soon as possible!</b>");
-		applyDamage(new TypeCollection( { poison: Math.round(pc.HPMax() * 0.02) } ), foes[0], pc);
+		pc.addStatusValue("Aphro",2,-1);
+		if(pc.statusEffectv2("Aphro") == 0)
+		{
+			output("<b>The aphrodisiac in your bloodstream has faded!</b>");
+			pc.removeStatusEffect("Aphro");
+		}
+		else
+		{
+			output("<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
+			applyDamage(new TypeCollection( { drug: pc.statusEffectv1("Aphro") } ), foes[0], pc);
+		}
 		output("\n");
 	}
 	if(pc.hasStatusEffect("Burn"))
@@ -712,6 +722,17 @@ public function updateCombatStatuses():void {
 			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, foes[x]);
 			output("\n");
 		}
+		if(foes[x].hasStatusEffect("Evasion Boost"))
+		{
+			foes[x].addStatusMinutes("Evasion Boost",-1);
+			if(foes[x].getStatusMinutes("Evasion Boost") <= 0)
+			{
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " no longer have boosted evasion!</b>");
+				else output("<b>" + foes[x].cappitalA + foes[x].short + " no longer has boosted evasion!</b>");
+				foes[x].removeStatusEffect("Evasion Boost");
+				output("\n");
+			}
+		}
 		if(foes[x].hasStatusEffect("Blind"))
 		{
 			foes[x].addStatusValue("Blind",1,-1);
@@ -780,6 +801,7 @@ public function updateCombatStatuses():void {
 		if (foes[x].hasStatusEffect("Stunned"))
 		{
 			if(foes[x].hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
+			else if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are stunned and unable to act!</b>\n");
 			else output("<b>" + foes[x].capitalA + foes[x].short + " is stunned and unable to act!</b>\n");
 		}
 		if (foes[x].hasStatusEffect("Stealth Field Generator"))
@@ -1010,6 +1032,11 @@ public function grappleStruggle():void {
 			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
 			else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
 			//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+			else if (foes[0] is Goocubator) 
+			{
+				output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
+				output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
+			}
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
@@ -1166,6 +1193,18 @@ public function playerAttack(target:Creature):void
 		output("<b>Cleave!</b>\n");
 		attack(pc, target, true, 1);
 	}
+	//Myr venom shit!
+	if(pc.hasPerk("Myr Venom"))
+	{
+		if(combatMiss(pc,target)) output("You can't manage to sneak in a bite!");
+		else
+		{
+			output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
+			applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
+
+		}
+		output("\n");
+	}
 	processCombat();
 }
 
@@ -1248,7 +1287,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	//Extra miss for blind
 	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
 		if(attacker == pc) output("Your blind strike fails to connect.");
-		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackVerb + " goes wide!");
+		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
 	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
@@ -1624,6 +1663,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
 	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
+	else if (aggressor is NyreanPraetorians) praetorianAI();
+	else if (aggressor is Goocubator) gooCubatorAI();
 	else if (aggressor is SX1GroupPirates) sx1PirateGroupAI();
 	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
 	else if (aggressor is SX1Techguard) sx1TechguardAI();
@@ -1784,6 +1825,8 @@ public function victoryRouting():void
 	{
 		winVsAntGrillDeserts();
 	}
+	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
+	else if(foes[0] is Goocubator) pcBeatsGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
@@ -1941,6 +1984,8 @@ public function defeatRouting():void
 	{
 		loseToAntGrillDeserts();
 	}
+	else if(foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
+	else if(foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
@@ -2277,6 +2322,12 @@ public function startCombat(encounter:String):void
 			break;
 		case "Red Deserter":
 			chars["RED_DESERTER"].prepForCombat();
+			break;
+		case "Nyrean Praetorians":
+			chars["NYREAN_PRAETORIANS"].prepForCombat();
+			break;
+		case "Goocubator":
+			chars["GOOCUBATOR"].prepForCombat();
 			break;
 		case "SX1GROUPPIRATES":
 			chars["SX1GROUPPIRATES"].prepForCombat();
@@ -3703,12 +3754,12 @@ public function lowBlow(target:Creature):void {
 
 		applyDamage(damageRand(new TypeCollection( { kinetic: pc.damage() + pc.physique() / 2 } ), 15), pc, target, "lowblow");
 
-		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
+		if((pc.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
 			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
 			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
-			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-			else target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+			if(target is Kaska) target.createStatusEffect("Stunned",3+rand(2),0,0,0,false,"Stun","Cannot act for a while. You hit her balls pretty hard!",true,0);
+			else target.createStatusEffect("Stunned",2+rand(2),0,0,0,false,"Stun","Cannot act until recovery, typically in 1 to 2 turns.",true,0);
 		}
 		else {
 			output("\nIt doesn't look like you accomplished much more than hitting your target.");
@@ -3729,7 +3780,7 @@ public function stealthFieldActivation():void {
 public function NPCstealthFieldActivation(user:Creature):void {
 	user.energy(-20);
 	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.");
-	user.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
+	user.createStatusEffect("Stealth Field Generator",3,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
 	processCombat();
 }
 

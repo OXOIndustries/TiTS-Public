@@ -53,7 +53,8 @@
 
 		//[Embed(source = "../../../assets/images/npcs/kara.png", mimeType = "image/png")]
 		//public var Bust_KARA:Class;
-
+		[Embed(source = "../../../assets/images/npcs/lieve.png", mimeType = "image/png")]
+		public var Bust_LIEVE:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana.png", mimeType = "image/png")]
 		public var Bust_LILIANA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_blanket.png", mimeType = "image/png")]

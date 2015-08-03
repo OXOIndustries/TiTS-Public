@@ -89,6 +89,8 @@ public function configureMails():void
 	MailManager.addMailEntry("newtexas", newtexasmailmessage, "Come on out to New Texas, Partner!", "Benjamin Tiberius Tee", "NoReply@NewTexas.gov", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("myrpills", myrPillsEmailMessage,"Pills Here!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("orangepills", myrOrangePillsEmailMessage,"Ding! Pills Are Done!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("bjreminder", xenogenBlowjobReminder,"Xenogen Discount Program!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
 		
 	MailManager.addMailEntry("syrividja", "Hey, Steele\n\nBeen a while! I'm guessing you're off-world, right? Chasing the next piece of your big puzzle -- or chasing the next cute skirt? :P Well if you get a break in your quest, swing back by Mhen'ga sometime. I'll buy you a drink and treat you right for an evening~\n\nMaybe play some games, too? >_> CoV 7 just came out... and I'm the only person in this shithole with a rig that can handle it. Ugh.\n\nMiss you!\n-your favorite ausar", "Hang out sometime?", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	
@@ -191,6 +193,23 @@ public function myrPillsEmailMessage():String
 	//Notification Email
 	//Get when Doc McAllister's done researching Red/Gold pills after NevrieQuest (such as it is).
 	var ret:String = "Hey, this is your email address, right "+pc.short+"? Hope so. Anyway, if you're the " + pc.mfn("man","woman","person") + " who helped us out with the myr thing, Doc McAllister's finished his work. Pills will be available for purchase at the kiosk in just a few minutes.\n\nAssuming you want to be an ant-person, come by and pick one up.\n-Nev";
+	return ret;
+}
+
+public function myrOrangePillsEmailMessage():String
+{
+	//Notification Email
+	//Get when McAllister's done researching Orange Myr stuff
+	//From: Nevrie Redarra (N_Redarra@Xenogen.net)
+	//To: [pc.Email]@SteeleTech.corp
+	var ret:String = "Hi. Whatever you had Doc McAllister working on is finished, he says. Come by the shop and pick it up. Or don't, no rush.\n\nHe also said you might wanna talk to that Ambassador Juro guy about something I think???\n\nLater~\n-Nev";
+	return ret;
+}
+public function xenogenBlowjobReminder():String
+{
+	//Notification Email
+	//Get when Doc McAllister's done researching Red/Gold pills after NevrieQuest (such as it is).
+	var ret:String = "Hey, " + pc.short + ". Been a while. So I thought I'd write through the official Xenogen account they graciously <i>let</i> me use to inform you of an exciting special we're running. On discounts. For returning customers that haven't been with us in a while.\n\nIf you know what I mean.\n\n:3\n\n-Nev";
 	return ret;
 }
 

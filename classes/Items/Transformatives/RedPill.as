@@ -167,7 +167,7 @@ package classes.Items.Transformatives
 									if(legs) output(" and ");
 								}
 								if(legs) output("legs");
-								output(" cover themselves with plates of insectile chitin</b>, just like a myr's!");
+								output(" cover themselves with plates of red, insectile chitin</b>, just like a myr's!");
 								pc.armType = GLOBAL.TYPE_MYR;
 								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
@@ -176,6 +176,8 @@ package classes.Items.Transformatives
 								pc.addLegFlag(GLOBAL.FLAG_CHITINOUS);
 								pc.clearArmFlags();
 								pc.addArmFlag(GLOBAL.FLAG_CHITINOUS);
+								if(pc.hasScales()) output(" <b>Your scales change color to match.</b>");
+								pc.scaleColor = "red";
 								changes++;
 							}
 							else output("\n\n" + target.legFlagsLockedMessage());
@@ -279,6 +281,7 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYour eyes feel strange after a few moments, and your vision starts to swim. You clutch at them and find them... different... as you run your fingers near them. Larger, fuller... darker. Your vision completely blanks, leaving you momentarily blinded. When your vision returns, you feel like everything looks a little fuzzy, especially at long ranges. A quick glance at your Codex's reflective back shows you that <b>your eyes are now black and featureless like a myr's!</b>");
 						pc.eyeType = GLOBAL.TYPE_MYR;
+						pc.eyeColor = "black";
 						changes++;
 					}
 					else output("\n\n" + pc.eyeTypeLockedMessage());
@@ -296,14 +299,19 @@ package classes.Items.Transformatives
 					}
 					else output("\n\n" + pc.antennaeLockedMessage());
 				}
-				/*Red Myr Venom
+				//Red Myr Venom
 				//Gain slight resistance to Lust (Chemical) damage
-				You feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva running freely in your maw. It's actually quite nice, you find... you suck down the alien chemical that seems to be generating in your mouth, enjoying the taste... and finding yourself growing more aroused as you do so. Oh, that is nice... 
+				if(changes < changeLimit && !pc.hasPerk("Myr Venom") && rand(4) == 0 && pc.myrScore() >= 4)
+				{
+					output("\n\nYou feel a sudden burning in your mouth, a strange sensation that feels like thickened, hot saliva dribbling from your canines. It's actually quite nice, you find, sucking down the alien chemical that seems to be generating in your mouth.");
 
-				After a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to the venom of a red myrmedion. <b>You've gain a red myr's lusty venom!</b>
-
-				//Gain Venom Bite Perk (Add to any successful melee attack, light lust damage)
-				When you strike, you leap in and deliver a bite while your enemy is staggered, injecting a healthy dose of your red myrmedion venom!*/
+					pc.lust(15);
+					pc.libido(1);
+					output("\n\nA pinching, clenching sensation in your palate follows, cutting off the supply of drugged spit from your dripping canines. You flex muscles you didn't even know you had, discovering that you can release more on a whim. Excellent.");
+					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You've gained a form of red myrvenom!</b>");
+					changes++;
+					pc.createPerk("Myr Venom",0,0,0,0,"Allows you do to a little lust damage when melee attacking.");
+				}
 
 				//Lactation Typechange
 				//Gain honey milk

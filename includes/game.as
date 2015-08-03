@@ -403,17 +403,21 @@ public function rest(deltaT:int = -1):void {
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 
 	clearOutput();
-	restHeal();
 	if (deltaT == -1)
 	{
 		minutes = 230 + rand(20) + 1;
-		output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
+		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {
+			output("You take a rest for about " + num2Text(Math.round(minutes/60)) + " hours");
+			if(pc.HP() < pc.HPMax()) output(" and dress your injuries with some less-than-legal nanogel you appropriated on an old job");
+			output(".");
+		}
+		else output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
 	else
 	{
 		minutes = deltaT;
 	}
-	
+	restHeal();
 	processTime(minutes);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -421,7 +425,8 @@ public function rest(deltaT:int = -1):void {
 public function restHeal():void
 {
 	if(pc.HPRaw < pc.HPMax()) {
-		pc.HP(Math.round(pc.HPMax() * .2));
+		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
+		else pc.HP(Math.round(pc.HPMax() * .33));
 	}
 	if(pc.energy() < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33));
@@ -855,6 +860,12 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	//Open Nyrea village gate
+	if(rooms["2G11"].westExit != "2E11")
+	{
+		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) rooms["2G11"].westExit = "2E11"
+	}
+	else if(flags["PRAETORIAN_RESPAWN"] == undefined) rooms["2G11"].westExit = "";
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
@@ -1200,6 +1211,12 @@ public function processTime(arg:int):void {
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
 				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
 			}
+			//Taivra's guards respawn
+			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] != 0)
+			{
+				flags["PRAETORIAN_RESPAWN"]--;
+				if(flags["PRAETORIAN_RESPAWN"] <= 0) flags["PRAETORIAN_RESPAWN"] = 0;
+			}
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
@@ -1397,6 +1414,8 @@ public function processTime(arg:int):void {
 	}
 	//NEVRIE MAIL!
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
+	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
+	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	updatePCStats();
 }

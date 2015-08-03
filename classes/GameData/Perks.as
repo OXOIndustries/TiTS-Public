@@ -225,14 +225,14 @@ package classes.GameData
 			sneakAttack.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sneakAttack.levelLimit = 3;
 			sneakAttack.perkName = "Sneak Attack";
-			sneakAttack.perkDescription = "Grants the ability to perform a melee attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
+			sneakAttack.perkDescription = "Grants the ability to perform a melee attack with greatly increased damage against stunned or blinded targets. Higher intelligence provides additional bonus damage.";
 			insertPerkData(sneakAttack);
 			
 			var aimedShot:PerkData = new PerkData();
 			aimedShot.classLimit = GLOBAL.CLASS_SMUGGLER;
 			aimedShot.levelLimit = 3;
 			aimedShot.perkName = "Aimed Shot";
-			aimedShot.perkDescription = "Upgrades ranged attacks with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
+			aimedShot.perkDescription = "Upgrades ranged attacks with greatly increased damage against stunned or blinded targets. Higher intelligence provides additional bonus damage.";
 			insertPerkData(aimedShot);
 			
 			// Level 4
@@ -241,7 +241,7 @@ package classes.GameData
 			agility.levelLimit = 4;
 			agility.autoGained = true;
 			agility.perkName = "Agility";
-			agility.perkDescription = "Increases evasion granted via items by 20%, or provides a flat 6% evasion boost, whichever is higher.";
+			agility.perkDescription = "Increases evasion granted via items by 50%, or provides a flat 10% evasion boost, whichever is higher.";
 			insertPerkData(agility);
 			
 			var sfGen:PerkData = new PerkData();
@@ -296,7 +296,7 @@ package classes.GameData
 			improvedAgility.levelLimit = 6;
 			improvedAgility.autoGained = true;
 			improvedAgility.perkName = "Improved Agility";
-			improvedAgility.perkDescription = "Increases your evasion by an additional 6%.";
+			improvedAgility.perkDescription = "Increases your evasion by an additional 10%.";
 			insertPerkData(improvedAgility);
 			
 			//1. Quickdraw: Changing weapons does not take your entire turn. 
@@ -330,7 +330,7 @@ package classes.GameData
 			takeAdvantage.levelLimit = 7;
 			takeAdvantage.autoGained = true;
 			takeAdvantage.perkName = "Take Advantage";
-			takeAdvantage.perkDescription = "Increase sneak attack and aimed shot bonuses by 100%.";
+			takeAdvantage.perkDescription = "Increase sneak attack and aimed shot base bonuses by 100%.";
 			insertPerkData(takeAdvantage);
 			
 			//1. Smuggled Stimulant: Gain 25 energy per round for 3 rounds, once per combat.
