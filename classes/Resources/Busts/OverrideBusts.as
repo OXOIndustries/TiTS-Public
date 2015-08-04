@@ -35,6 +35,10 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/queen_fuzzlebottom.png", mimeType = "image/png")]
 		public var Bust_FUZZLEBOTTOM:Class;
 
+		[Embed(source = "../../../assets/images/npcs/Incugoo.png", mimeType = "image/png")]
+		public var Bust_GOOCUBATOR:Class;
+
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
