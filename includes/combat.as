@@ -3631,8 +3631,11 @@ public function thermalDisruptor(target:Creature):void
 public function powerSurge(target:Creature):void {
 	clearOutput();
 	output("You channel a surge of power into your shield generator, instantly restoring a portion of their lost energy.");
-	var amount:int = 8+pc.intelligence()/3 + rand(6);
+	//OLD AMOUNT: var amount:int = 8+pc.intelligence()/3 + rand(6);
+	//New amount:
+	var amount:int = Math.ceil(pc.intelligence() * 1.5 + rand(pc.level) + pc.shieldsMax() * 0.25);
 	if(amount + pc.shields() > pc.shieldsMax()) amount = pc.shieldsMax() - pc.shields();
+
 	pc.shields(amount);
 	pc.energy(-33);
 	output(" (" + amount + ")\n");
@@ -3643,7 +3646,7 @@ public function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	output("You fiddle with your shield, tuning it to regenerate over the next few turns.\n");
-	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
+	pc.createStatusEffect("Deflector Regeneration",4,Math.ceil((pc.intelligence() * 1.5 + rand(pc.level) + pc.shieldsMax() * 0.25)/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
 	processCombat();
 }
 
