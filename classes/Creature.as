@@ -2405,6 +2405,7 @@
 			//Debuffs!
 			if (hasStatusEffect("Trip")) currReflexes -= 4;
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
+			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 
 			if (currReflexes > reflexesMax())
 			{
@@ -2438,6 +2439,7 @@
 			var currAim:int = aimRaw + aimMod;
 			
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
+			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			
 			if (currAim > aimMax())
 			{

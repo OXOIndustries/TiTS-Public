@@ -163,7 +163,7 @@ public function saendraX1LiftGo():void
 
 public function initsx1PirateGroupFight():void
 {
-	pc.createStatusEffect("Pitch Black"); // Fight is in pitch black. Aim and Reflexes are significantly reduced.
+	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	startCombat("SX1GROUPPIRATES");
 }
 
@@ -889,6 +889,8 @@ public function sx1Holoburn():void
 
 		// [Fight!] {Go to Shotgun Guard fite}
 		// 9999 -- shotgun guard fite
+		clearMenu();
+		addButton(0, "Fight!", sx1InitShotguardFight);
 	}
 }
 
@@ -915,6 +917,8 @@ public function sx1SaenDistract():void
 
 	// [Next] {to Pirate Tech fite}
 	// 9999
+	clearMenu();
+	addButton(0, "Next", sx1SkipShotguard)
 }
 
 public function sx1ThrowFlashbang():void
@@ -926,6 +930,8 @@ public function sx1ThrowFlashbang():void
 	output("\n\nA thunderous <i>kabang</i> echoes out of the room with a blinding flash to accompany it. The moment the bang passes, you and Saendra charge in with weapons drawn - and come face to face with a staggering man, dressed in a long coat and a ballistic vest, fumbling for the shotgun strapped to his back.");
 
 	// 9999 -- shotgun pirate fite -- start him with a debuff or something
+	clearMenu();
+	addButton(0, "Fight!", sx1InitShotguardFight, true);
 }
 
 public function sx1DoorBreach():void
@@ -940,9 +946,11 @@ public function sx1DoorBreach():void
 
 	//{To Shotgun Guard fite}
 	// 9999 -- shotgun pirate fite
+	clearMenu();
+	addButton(0, "Fight!", sx1InitShotguardFight);
 }
 
-public function sx1InitShotguardFight():void
+public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	// 9999 debuffs
 }
@@ -1070,7 +1078,9 @@ public function sx1ShotguardPCVictory():void
 		
 		output("\n\nOpposite her, a bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up. Sitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 
-		//Go to "Rescue" scene - 9999
+		//Go to "Rescue" scene
+		clearMenu();
+		addButton(0, "Next", sx1RescueTheDude);
 	}
 	else
 	{
@@ -1082,8 +1092,26 @@ public function sx1ShotguardPCVictory():void
 		
 		output("\n\nThat settles that!");
 
-		// [Fight] {To Tech Fite} -- 9999
+		// [Fight] {To Tech Fite}
+		clearMenu();
+		addButton(0, "Fight!", sx1InitTechguardFight);
 	}
+}
+
+public function sx1SkipShotguard():void
+{
+	clearOutput();
+
+	output("Cautiously, you peer into the room. An ausar woman with a shock of blonde hair is standing inside, aiming a machine pistol toward the door and stumbling back until she’s against the far wall with nowhere else to go. Wires lead down from a brace around her neck to a huge rig of computer equipment planted on a desk a few feet away.");
+		
+	output("\n\n<i>“Stay back!”</i> she shouts, waving her gun around. <i>“I’m warning you!”</i>");
+	
+	output("\n\n<i>“Get fucked, bitch,”</i> Saen answers, taking aim through the door.");
+	
+	output("\n\nThat settles that!");
+
+	clearMenu();
+	addButton(0, "Fight!", sx1InitTechguardFight);
 }
 
 public function sx1ShotguardPCLoss():void
@@ -1096,8 +1124,6 @@ public function sx1ShotguardPCLoss():void
 	output("\n\nHe tsks his tongue and kicks Saen’s pistol away, leaving her defenseless. <i>“There’s a bounty out on you, kitten. Guess I’ll be getting paid double... plus a little fun before I hand you over. As for your friend...”</i> he waves his shotgun over in your direction, and pulls the trigger as casually as he might toss away a cigarette butt. Your world is overwhelmed by a lightning bolt of pain, and the world goes black.");
 	
 	output("\n\nIn the end, you got the easy way out.");
-	
-	output("\n\n<b>GAME OVER</b>");
 
 	badEnd();
 }
