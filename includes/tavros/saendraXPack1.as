@@ -157,7 +157,7 @@ public function saendraX1LiftGo():void
 
 		//Pirate fight here
 		clearMenu();
-		addButton(0, "Next", initsx1PirateGroupFight); // 9999
+		addButton(0, "Next", initsx1PirateGroupFight);
 	}
 }
 
@@ -265,7 +265,7 @@ public function sx1GroupFlashbang():void
 	// Flashbang
 	output(" One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
 
-	if (rand(3) == 0) // 9999 convert to some kinda stat check/perk-weight for pc blindness
+	if (rand(10) != 0)
 	{
 		output(" blinding you and Saendra");
 		pc.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
@@ -855,7 +855,9 @@ public function sx1CallgirlOfferJob():void
 	flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] = 1;
 	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 1;
 
-	// 9999 -- go to rescue scene
+	// go to rescue scene
+	clearMenu();
+	addButton(0, "Next", sx1RescueTheDude);
 }
 
 public function sx1Holoburn():void
@@ -888,7 +890,6 @@ public function sx1Holoburn():void
 		flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 2;
 
 		// [Fight!] {Go to Shotgun Guard fite}
-		// 9999 -- shotgun guard fite
 		clearMenu();
 		addButton(0, "Fight!", sx1InitShotguardFight);
 	}
@@ -916,7 +917,6 @@ public function sx1SaenDistract():void
 	flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] = 2;
 
 	// [Next] {to Pirate Tech fite}
-	// 9999
 	clearMenu();
 	addButton(0, "Next", sx1SkipShotguard)
 }
@@ -929,7 +929,6 @@ public function sx1ThrowFlashbang():void
 	
 	output("\n\nA thunderous <i>kabang</i> echoes out of the room with a blinding flash to accompany it. The moment the bang passes, you and Saendra charge in with weapons drawn - and come face to face with a staggering man, dressed in a long coat and a ballistic vest, fumbling for the shotgun strapped to his back.");
 
-	// 9999 -- shotgun pirate fite -- start him with a debuff or something
 	clearMenu();
 	addButton(0, "Fight!", sx1InitShotguardFight, true);
 }
@@ -945,14 +944,18 @@ public function sx1DoorBreach():void
 	output("\n\nJust inside the door is a gruff-looking man in a long coat and a ballistic vest - and who’s got a shotgun aimed right at you. There’s no avoiding a fight now!");
 
 	//{To Shotgun Guard fite}
-	// 9999 -- shotgun pirate fite
 	clearMenu();
 	addButton(0, "Fight!", sx1InitShotguardFight);
 }
 
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
-	// 9999 debuffs
+	startCombat("SX1SHOTGUARD");
+	
+	if (wasFlashed)
+	{
+		foes[0].createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+	}
 }
 
 public function sx1ShotguardAI():void
@@ -965,6 +968,8 @@ public function sx1ShotguardAI():void
 	var zapAvail:Boolean = !pc.hasStatusEffect("Stunned") && foes[0].energy() >= 10;
 
 	var attacks:Array = [];
+	if (!foes[0].hasStatusEffect("Disarmed")) attacks.push({ v: sx1RangedAttack, w: 30 });
+	attacks.push({ v: sx1MeleeAttack, w: 10 });
 	if (!foes[0].hasStatusEffect("Disarmed")) attacks.push({ v: sx1ShotguardShotblast, w: 40 });
 	if (blastAvail) attacks.push({ v: sx1ShotguardSolidSlug, w: 25 });
 	if (netAvail) attacks.push({ v: sx1ShotguardRopeShot, w: 10 });
@@ -975,15 +980,32 @@ public function sx1ShotguardAI():void
 	processCombat();
 }
 
+public function sx1RangedAttack():void
+{
+	rangedAttack(foes[0], pc, true);
+}
+
+public function sx1MeleeAttack():void
+{
+	attack(foes[0], pc, true);
+}
+
 public function sx1ShotguardShotblast():void
 {
 	// Shotgun Blast
 	// Deals light to moderate damage; always hits.
 
-	// 9999 maybe do multiple projectiles w/ individual miss chances
+	var numHits:int = 1;
+	for (var i:int = 0; i < 5; i++)
+	{
+		if (!rangedCombatMiss(foes[0], pc, -1)) numHits++;
+	}
+
+	var damage:TypeCollection = foes[0].rangedDamage();
+	damage.multiply(0.33 * numHits); // potentially double the damage of a base ranged shot
 
 	output("The pirate gunner fires off his shotgun, blasting you with a cone of hot lead!");
-	applyDamage(foes[0].rangedDamage(), foes[0], pc, "minimal");
+	applyDamage(damage, foes[0], pc, "minimal");
 }
 
 public function sx1ShotguardSolidSlug():void
@@ -1130,7 +1152,7 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
-
+	startCombat("SX1TECHGUARD");
 }
 
 public function sx1TechguardAI():void
@@ -1211,7 +1233,7 @@ public function sx1TechguardShockDart():void
 
 		applyDamage(new TypeCollection({ electric: 17 }), foes[0], pc, "minimal");
 
-		if (rand(3) > 0) // 9999 -- some kinda stat check
+		if (pc.physique() + rand(25) + 1 < 35)
 		{
 			output(" The shock of it leaves you reeling -- <b>you're stunned!</b>");
 			pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0);
@@ -1228,8 +1250,16 @@ public function sx1TechguardTease():void
 
 	output("\n\nHey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
 
-	// 9999 miss/resist stuff
-	applyDamage(new TypeCollection({ tease: 10 * (pc.libido() / pc.libidoMax()) }), foes[0], pc, "minimal");
+	if (pc.willpower() + rand(30) + 1 < 30)
+	{
+		output("\n\nAn subtle warmth builds in your crotch as you stare at the ausar womans pert breasts, transfixed by their succulent, pliant flesh forming so perfectly around the tips of her fingers....");
+		applyDamage(new TypeCollection({ tease: 10 * (pc.libido() / pc.libidoMax()) }), foes[0], pc, "minimal");
+	}
+	else
+	{
+		output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!.”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
+		applyDamage(new TypeCollection({ tease: 2 }), foes[0], pc, "minimal");
+	}
 }
 
 public function sx1TechguardDroneAttack():void

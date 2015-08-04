@@ -187,13 +187,20 @@
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
+
 		public function UpgradeVersion2(dataObject:Object):void
 		{
-
+			dataObject.inventory.push(new Knife().getSaveObject());
+			dataObject.inventory.push(new ComfortableClothes().getSaveObject());
+			dataObject.inventory.push(new PlainUndershirt().getSaveObject());
+			dataObject.inventory.push(new PlainBra().getSaveObject());
+			dataObject.inventory.push(new PlainPanties().getSaveObject());
+			dataObject.inventory.push(new PlainBriefs().getSaveObject());
 		}
 		public function UpgradeVersion3(dataObject:Object):void
 		{
-
+			dataObject.inventory.push(new LeatherArmor().getSaveObject());
+			dataObject.inventory.push(new NaleenArmor().getSaveObject());
 		}
 		public function UpgradeVersion4(dataObject:Object):void
 		{
