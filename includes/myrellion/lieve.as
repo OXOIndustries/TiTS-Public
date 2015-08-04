@@ -1605,7 +1605,7 @@ public function lieveBodyWorship():void
 	
 	output("\n\nYou know she’s only teasing, but in your envenomed state, you can’t deny just how aroused the suggestion suddenly makes you....");
 	
-	output("\n\nLieve’s hands gently push you down, guiding you back down to her legs. <i>“Now let’s put that talented tongue of yours back to work,”</i> she says, hooking one of her long legs over your shoulder. You find yourself staring down her tight ass and the cleft of her sex, but her gentle hands guide you to the fleshy underside of her leg. Live must have been a dirty, dirty girl to need all this cleaning... but you’re happy to help her.");
+	output("\n\nLieve’s hands gently push you down, guiding you back down to her legs. <i>“Now let’s put that talented tongue of yours back to work,”</i> she says, hooking one of her long legs over your shoulder. You find yourself staring down her tight ass and the cleft of her sex, but her gentle hands guide you to the fleshy underside of her leg. Lieve must have been a dirty, dirty girl to need all this cleaning... but you’re happy to help her.");
 	
 	output("\n\nLicking your way around Lieve’s leg, you lavish your lover with long drags of your [pc.tongue] along her inner thighs and the backs of her leg. You work your way all the way around her leg, circling again and again until your face is nestled into her crotch, and your tongue is probing deep into her rose-red pussy. She groans and squirms, back arching. Her cunt clenches around your tongue, trying to trap you inside her; your fingers have to join into the fray, teasing at her clit and ass until she’s crying out and grabbing your [pc.hair], pushing you deeper in.");
 	
