@@ -512,8 +512,13 @@ public function gatewayBonusFunc():Boolean
 //Room 2E17 Throneroom
 public function taivrasThroneBonusFunc():Boolean
 {
+	if(flags["BEATEN_TAIVRA"] == undefined)
+	{
+		queenTaivrasThrone(false);
+		return true;
+	}
 	//PC executed Taivra:
-	if(9999 == 0)
+	else if(9999 == 0)
 	{
 		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
 	}
@@ -1153,8 +1158,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	output("You reach the bottom of the winding stairs and push through a silken curtain, stepping into a broad square chamber at the heart of the nyrean palace. You’re instantly greeted by the sounds of sex, the wet beating of flesh on flesh echoing off the stone walls in a cacophony of sensuality. As your eyes adjust to the glare of bright blue lanterns hanging from pillars along the walls, your gaze settles on a room lavishly decorated with animal hide rugs and silky tapestries hanging from behind the Greek-style pillars, showing images of nyrea warriors battling cthonic abominations from an old-Earth artist’s nightmares.");
 	output("\n\nYour eyes wander up to the far end of the room, to a dias upon which sits a huge black throne, surrounded by writhing bodies. A nyrea woman sits lazily on the throne, one leg crossed over the other, a spear resting at her side. She wears the same chainmail bikini as the other huntresses you’ve seen, though she wears a long red cape hanging down from her leather-padded shoulders, and her fur-lined bottom gives way behind her to a squirming mass of of green tentacles. Each tentacle moves on its own accord, wiggling around the nyrean queen’s hips and down to the prone bodies of a dozen huntresses, all naked with their pseudo-penises erect and penetrated: her betas are being vigorously cock-fucked, their tumescent shafts bulging and throbbing as the queen’s tentacles violate them, spreading her seed into their alien wombs.");
 	output("\n\n<i>“I believe I commanded that I was not to be disturbed,”</i> the regal huntress says, her voice a low murmur over the cries of her writhing submissives. Her claw-nailed fingers tighten around the haft of her spear, and you feel her black eyes sizing you up, drinking in every inch of your body.");
-	output("\n\n");
-	if(plat190) output("<i>“We’re sorry, my queen. The off-worlder was very... persuasive,”</i> one of the guards whimpers, retreating towards the curtain. You give your escort a look, just in time to see them scampering off back the way they came.");
+	if(plat190) output("\n\n<i>“We’re sorry, my queen. The off-worlder was very... persuasive,”</i> one of the guards whimpers, retreating towards the curtain. You give your escort a look, just in time to see them scampering off back the way they came.");
 	output("\n\nThe queen tsks her tongue and turns her attention from you to another figure on the dias, standing behind the throne. Another nyrea, but unlike her sisters, is clad in glistening steel plates from head to toe and carrying a blade and shield. Very unhuntress-like. <i>“My dear Queensguard,”</i> the queen says, leaning back on her throne, <i>“Kindly show this-”</i>");
 	output("\n\n<i>“[pc.name]!”</i> a familiar voice shrieks from the shadows near the throne, cutting the queen off mid-sentence. At the foot of the dias, though, are a pair of metal cages meant more for an animal than a person. Your cousin and [rival.hisHer] bodyguard, Dane, are held captive inside them. <i>“Get us out of here, cousin [pc.name]! This stupid wanna-be queen grabbed us - she’ll get you next. Hurry!”</i>");
 	output("\n\n<i>“<b>SILENCE!</b>”</i> the armored nyrea, Queensguard, bellows, slamming her kite shield against [rival.name]’s cage. Your cousin shrinks back with a yelp of surprise. Dane growls, his four arms grabbing the bars and straining against them. <i>“Queen Taivra will suffer no further insult from you, worm.”</i>");
@@ -1164,7 +1168,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	output("\n\nShe waves the hand not wielding her towering spear across the dozen huntresses sprawled at her feet, all moaning and squirming as the queen’s bushel of tentacle cocks fuck their strange sexes. <i>“Your cousin has already attempted to usurp my throne, star-walker. [rival.HeShe] very likely would have assassinated me in the process. And now you have ");
 	if(plat190) output("clearly bribed");
 	else output("fought your way through");
-	output(" my guards. I can see now your kind really is nothing but trouble. How you’ve duped the myrmedion into accepting you, I can’t imagine.");
+	output(" my guards. I can see now your kind really is nothing but trouble. How you’ve duped the myrmedion into accepting you, I can’t imagine.”</i>");
 	output("\n\n<i>“So,”</i> she says, leaning forward in her seat and smiling at you with purple-painted lips. <i>“I do hope you have something to say for yourself. Before my darling bodyguard puts you in a cage with your cousin, that is.”</i>");
 	processTime(5);
 	//[Fight] [Rivals] [Peace] [Probe]
@@ -1480,7 +1484,8 @@ public function badDealWithTaivra():void
 	output("\n\nYou guess this only could have ended one way. You draw your [pc.weapon] and level it at Queensguard. Time to show the queen what you’re made of.”</i>");
 	output("\n\n<i>“Tear that bitch up!”</i> your cousin shouts, rattling [rival.hisHer] cage.");
 	processTime(2);
-	//9999
+	clearMenu();
+	addButton(0,"Next",startCombat,"Queensguard");
 }
 
 //Queensguard Fight
@@ -1513,6 +1518,48 @@ public function queensguardLongUpdate():void
 "You're about halfway to Dane's cage. One good move will put you alongside it."
 "You're right next to the cage! You can break out Dane (and your cousin) if you want a hand."
 */
+
+public function queensguardAI():void
+{
+	//Use Fungal Extract
+	//When below 60% health. Effect as per item. Up to 3/encounter.
+	//if(!foes[0].hasStatusEffect("Fungaled");
+	if(foes[0].HP()/foes[0].HPMax() < .6 && foes[0].statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
+	//Focus
+	//First time QG gets to Lust 75+. Reduce lust by 30.
+	else if(foes[0].lust() >= 75 && !foes[0].hasStatusEffect("Focused")) queensGuardLust();
+
+	//Thunder Kick
+	//Rare attack that staggers the PC, like a Wetraxxel.
+	else if(rand(7) == 0) queensGuardThunderKick();
+
+	else if(rand(4) == 0) queensguardShieldBash();
+	//Power Attack
+	//Huge damage sword strike. Chance to stun.
+	else if(!pc.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard();
+	
+	//Slice and Dice
+	//Three moderate-damage attacks. Sword, shield, sword.
+	else sliceAndDiceQueenieGuardieRetardie();
+}
+
+public function queensguardWeaponToggle():void
+{
+	if(foes[0].meleeWeapon.longName == "shield")
+	{
+		foes[0].meleeWeapon.attackVerb = "slash";
+		foes[0].meleeWeapon.attackNoun = "slash";
+		foes[0].meleeWeapon.longName = "polished longsword";
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 10;
+	}
+	else
+	{
+		foes[0].meleeWeapon.attackVerb = "smack";
+		foes[0].meleeWeapon.attackNoun = "smack";
+		foes[0].meleeWeapon.longName = "shield";
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 0;
+	}
+}
 
 //Queensguard Abilities:
 //Shield Bash
@@ -1548,9 +1595,10 @@ public function queensguardShieldBash():void
 			}
 		}
 		output("!");
-		//9999 set to be holding shield for this.
+		//Swap in shield and back out to sword
+		queensguardWeaponToggle();
 		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		//9999 set to be 
+		queensguardWeaponToggle();
 	}
 	processCombat();
 }
@@ -1570,9 +1618,9 @@ public function sliceAndDiceQueenieGuardieRetardie():void
 	if(!combatMiss(foes[0],pc)) 
 	{
 		output("be slammed with her shield a moment later");
-		//9999 set as shield
+		queensguardWeaponToggle();
 		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		//9999 set back to sword.
+		queensguardWeaponToggle();
 	}
 	else output("have to dodge a shield swipe a second later");
 	output(". A third strike, with her sword again this time, follows up, lunging for your chest. You ");
@@ -1637,6 +1685,7 @@ public function queensGuardThunderKick():void
 	{
 		pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
 	}
+	applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
 	processCombat();
 }
 
@@ -1650,6 +1699,7 @@ public function queensGuardLust():void
 	output("\n\nThe Queensguard takes a deep breath to steady herself, turning her amethyst-colored eyes to you with renewed vigor.");
 	foes[0].lust(-30);
 	output(" (-30 Lust)");
+	foes[0].createStatusEffect("Focused",0,0,0,0);
 	processCombat();
 }
 
@@ -1725,9 +1775,9 @@ public function spankedQueensguardsAss():void
 	output("\n\nThe nyrea queen’s tentacles flare out behind her as she steps down from the dias. She gives her spear a menacing flourish, closing the distance with a fearsome confidence. <i>“Queensguard, stand down. It appears ");
 	if(flags["FREED_DANE_FROM_TAIVRA"] == undefined) output("this off-worlder is too much for you.");
 	else output("these star-walkers truly have no honor.");
-	output(" Very well, it’s been much too long since I’ve bloodied my spear.");
+	output(" Very well, it’s been much too long since I’ve bloodied my spear.”</i>");
 
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.");
+	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.”</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",startCombat,"Taivra");
@@ -2201,6 +2251,11 @@ public function loseToQueensTaivra():void
 			output("\n\n<i>“I believe you’re done, [pc.name],”</i> she growls, her jagged spear-tip hovering menacingly. <i>“Drop your weapons and yield.”</i>");
 			output("\n\nWith a heavy sigh, you release your [pc.weapon]. A few of the beta nyrea still in the room leap forward and secure your equipment. They roll Dane off you and pull you up, ripping off your [pc.gear] until you’re naked and shivering on your [pc.knees] before the queen.\n\n");
 		}
+		else
+		{
+			pcBeatByTaivraOneOnOneManoEManoLady();
+			return;
+		}
 		//Combine:
 	}
 	output("<i>“A shame you did not live up to my expectations, [pc.name],”</i> Taivra sighs, reclining on her throne. <i>“I hoped for more... ah, well. I suppose you star-walkers are all alike in the end: weak.”</i>");
@@ -2262,7 +2317,10 @@ public function pcBeatByTaivraOneOnOneManoEManoLady():void
 	output(" <i>“My first gift to you. Consider [rival.himHer] a reward for your valor. I was still deciding what to do with [rival.himHer] before your arrival. Perhaps you’d care to decide [rival.hisHer] fate? As I understand it, there’s a great deal of enmity between you two.");
 
 	//[Execute] [Egg Slut] [Bed Warmer]
-	//9999
+	clearMenu();
+	addButton(0,"Execute",cousinGetsExecuted,undefined,"Execute","Have your cousin killed. If you can’t be CEO of Steele Tech, [rival.heShe] sure as hell can’t either!");
+	addButton(1,"Egg Slut",cousinTurnsEggSlut,undefined,"Egg Slut","If your cousin tried to kill Taivra, the least [rival.heShe] can do is spend the rest of [rival.hisHer] existence making life. Have [rival.name] become an egg incubator for the harem.");
+	addButton(2,"Bed Warmer",bedWarmerCuz,undefined,"Bed Warmer","You have to admit, even after all of this... you and your cousin have a certain connection. Have [rival.name] become your personal sex slave.");
 }
 
 //Execute
@@ -2274,7 +2332,8 @@ public function cousinGetsExecuted():void
 	output("<i>“Kill [rival.himHer],”</i> you say, sneering at your helpless cousin.");
 	output("\n\nTaivra chuckles and nods at a couple of her soldiers, who latch their arms on [rival.name]’s shoulder and start to pull [rival.himHer] away. <i>“Good choice, my new mate... better to have your rivals killed than risk their coming back to harm you later. I’ll have gallows erected in the village, and we’ll dispose of this worm.”</i>");
 	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
-	//99999?
+	clearMenu();
+	addButton(0,"Next",badEndWithTaivraShit);
 }
 
 //Egg Slut
@@ -2290,7 +2349,8 @@ public function cousinTurnsEggSlut():void
 	output(" Very well, I will order [rival.himHer] bathed and set aside with the rest of my favored incubators. A better life that that worm deserves, but one that is at least productive. You are both wise and magnanimous, my mate.”</i>");
 	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
 	flags["COUSIN_EGGSLUT"] = 1;
-	//9999
+	clearMenu();
+	addButton(0,"Next",badEndWithTaivraShit);
 }
 
 //Bed Warmer
@@ -2307,6 +2367,8 @@ public function bedWarmerCuz():void
 	output("\n\n<i>“I’ll have your cousin bathed and prepared for you,”</i> Taivra promises. <i>“I hope your first mating will be as pleasant as ours shall.”</i>");
 	output("\n\nYou feel one of the queen’s hands brush over your [pc.butt] at that, giving you just enough of a push towards the door to get you moving. It looks like your new queen is going to take advantage of your surrender sooner rather than later.");
 	flags["COUSIN_BEDWARMER"] = 1;
+	clearMenu();
+	addButton(0,"Next",badEndWithTaivraShit);
 }
 
 //Combine, no new pg.

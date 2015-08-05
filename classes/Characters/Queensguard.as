@@ -27,7 +27,7 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "Taivra";
+			this.short = "Queensguard";
 			this.originalRace = "nyrea";
 			this.a = "";
 			this.capitalA = "";
@@ -42,6 +42,8 @@
 			this.meleeWeapon.hasRandomProperties = true;
 			this.meleeWeapon.attackVerb = "slash";
 			this.meleeWeapon.attackNoun = "slash";
+			this.meleeWeapon.longName = "polished longsword";
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
 			this.armor = new PolishedPlate();
 						
 			this.physiqueRaw = 34;
@@ -184,7 +186,7 @@
 		
 		override public function prepForCombat():void
 		{
-			var nyrea:Taivra = this.makeCopy();
+			var nyrea:Queensguard = this.makeCopy();
 			
 			nyrea.sexualPreferences.setRandomPrefs(8,2);
 			
@@ -202,8 +204,8 @@
 			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			kGAMECLASS.showName("FIGHT:\nQUEEN TAIVRA");
-			kGAMECLASS.showBust("TAIVRA");
+			kGAMECLASS.showName("FIGHT:\nQUEENSGUARD");
+			kGAMECLASS.showBust("QUEENSGUARD");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

@@ -186,6 +186,11 @@ public function combatMainMenu():void
 		//Bonus shit for stuff!
 		if (foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 		if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
+		if (foes[0] is Queensguard) 
+		{
+			if(pc.statusEffectv1("Cage Distance") != 0) addButton(5,"Cage",moveToCage,undefined,"Cage","Attempt to move closer to Dane and [rival.name]'s cage.");
+			else addButton(5,"BreakCage",breakOutDane,undefined,"Break Cage","Try and break Dane out - that big, burly ausar might just level the playing field!");
+		}
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
@@ -1695,6 +1700,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is SX1GroupPirates) sx1PirateGroupAI();
 	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
 	else if (aggressor is SX1Techguard) sx1TechguardAI();
+	else if (aggressor is Queensguard) queensguardAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1857,6 +1863,7 @@ public function victoryRouting():void
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
+	else if (foes[0] is Queensguard) spankedQueensguardsAss();
 	else genericVictory();
 }
 
@@ -2016,6 +2023,8 @@ public function defeatRouting():void
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
+	else if (foes[0] is Queensguard) loseToQueensTaivra();
+	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2364,6 +2373,13 @@ public function startCombat(encounter:String):void
 			break;
 		case "SX1TECHGUARD":
 			chars["SX1TECHGUARD"].prepForCombat();
+			break;
+		case "Queensguard":
+			chars["QUEENSGUARD"].prepForCombat();
+			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"9999 CAGE","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
+			break;
+		case "Taivra":
+			chars["TAIVRA"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
