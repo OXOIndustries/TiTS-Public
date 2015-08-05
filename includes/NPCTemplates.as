@@ -370,6 +370,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["GOOCUBATOR"] = new Goocubator();
 	}
+	if (!justUpdate || (justUpdate && chars["TAIVRA"] == undefined))
+	{
+		chars["TAIVRA"] = new Taivra();
+	}
+	if (!justUpdate || (justUpdate && chars["QUEENSGUARD"] == undefined))
+	{
+		chars["QUEENSGUARD"] = new Queensguard();
+	}
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{

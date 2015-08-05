@@ -491,6 +491,22 @@ public function updateCombatStatuses():void {
 		}
 		output("\n");
 	}
+	//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+	if(pc.hasStatusEffect("Aphro Gas"))
+	{
+		pc.addStatusValue("Aphro Gas",2,-1);
+		if(pc.statusEffectv2("Aphro Gas") == 0)
+		{
+			output("<b>The aphrodisiac cloud has dispersed!</b>");
+			pc.removeStatusEffect("Aphro Gas");
+		}
+		else
+		{
+			output("<b>The cloud of aphrodisiac continues to excite your body!</b>");
+			applyDamage(new TypeCollection( { drug: pc.statusEffectv1("Aphro Gas") } ), foes[0], pc);
+		}
+		output("\n");
+	}
 	if(pc.hasStatusEffect("Burn"))
 	{
 		//2% of HP per tic.

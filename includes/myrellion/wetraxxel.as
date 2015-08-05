@@ -386,7 +386,7 @@ public function wetraxxelBrawlerDropKick():void
 		}
 		else
 		{
-			pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered and your Aim and Reflexes have been reduced!", true, 0);
+			pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
 		}
 	}
 }

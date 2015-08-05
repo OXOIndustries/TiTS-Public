@@ -796,7 +796,7 @@ public function loseToAntGrillDeserts():void
 	if(pc.HP() <= 0)
 	{
 		output("The last of your strength leaves your battered body.");
-		if(!pc.hasStatusEffect("Tripped")) output(" Suddenly you’re falling backward. You hit the ground and the air leaves your chest in a giant <i>“oof”</i>. All you’re able to do now is stare at the cavern roof, your limbs heavy and useless.");
+		if(!pc.hasStatusEffect("Trip")) output(" Suddenly you’re falling backward. You hit the ground and the air leaves your chest in a giant <i>“oof”</i>. All you’re able to do now is stare at the cavern roof, your limbs heavy and useless.");
 		else output(" You’re unable to lift your limbs to get off the ground - they’re heavy and useless.");
 
 		output("\n\nRather than leave you battered and bruised, the [monster.skinColor] skinned soldieress pulls out a first aid kit. She dutifully patches you up, bandaging and dressing your wounds. The salve she puts on it instantly numbs your ails.");
@@ -818,7 +818,7 @@ public function loseToAntGrillDeserts():void
 		output(" slips from your fingers. Instead of picking it up,/you can no longer make a fist. Instead,} you find yourself touching yourself, fanning the flames of your wildly raging libido instead of putting them out.");
 
 		//PcNotTripped:
-		if(!pc.hasStatusEffect("Tripped")) output("\n\nStriding up to you, the seasoned soldieress presses a palm against your [pc.chest]. With a simple push, she knocks on your back. Instead of getting up, you gulp with delight. What does she have planned for you? A delighted shiver of anticipation scampers up your back.");
+		if(!pc.hasStatusEffect("Trip")) output("\n\nStriding up to you, the seasoned soldieress presses a palm against your [pc.chest]. With a simple push, she knocks on your back. Instead of getting up, you gulp with delight. What does she have planned for you? A delighted shiver of anticipation scampers up your back.");
 	}
 	// If Red, Dildo Screw Sex Scene
 	// If Gold, Sit and Screw Sex Scene
