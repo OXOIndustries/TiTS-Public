@@ -40,9 +40,8 @@
 		
 		/**
 		 * Configure a random set of sexual preferences, according to the parameter count
-		 * @param	count
-		 * Difficulty parameter sets whether to make an easy to please, normal, or difficult foe for teasing.
-		 * -1 = super easy, 0 = easy, 1 = normal, 2 = hard, 3= super hard
+		 * @param	count			number of preferences to set
+		 * @param	difficulty 		difficulty factor (-1 = super easy, 0 = easy, 1 = normal, 2 = hard, 3= super hard)
 		 */
 		public function setRandomPrefs(count:int,difficulty:int = 1):void
 		{

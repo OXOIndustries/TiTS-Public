@@ -1317,7 +1317,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
+	else if((special == 1 && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS)) && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
@@ -1408,7 +1408,8 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if((special == 1 || special == 2) && rand(100) <= 45 && !target.isImmobilized()) {
+	else if (((special == 1 && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS)) || (special == 2)) && rand(100) <= 45 && !target.isImmobilized())
+	{
 		if(target.customDodge == "") {
 			if(attacker == pc) 
 			{
@@ -1426,7 +1427,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
-		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + attacker.rangedWeapon.longName + "!");
+		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
 		if (attacker.rangedWeapon is Goovolver)

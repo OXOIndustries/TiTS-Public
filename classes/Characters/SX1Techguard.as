@@ -7,6 +7,7 @@ package classes.Characters
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.VaginaClass;
 	
 	//Low health, mid armor, heavy shields. Carries a rapid-fire, low-damage gun. Level 5.
 
@@ -42,25 +43,23 @@ package classes.Characters
 			this.armor.defense = 2;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 12;
+			this.physiqueRaw = 10;
 			this.reflexesRaw = 18;
 			this.aimRaw = 18;
 			this.intelligenceRaw = 25;
 			this.willpowerRaw = 8;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 65;
+			this.shieldsRaw = shieldsMax();
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 400 + rand(37);
-			this.HPMod = 0;
+			this.HPMod = -35;
 			this.HPRaw = this.HPMax();
 			
-			this.createPerk("Multiple Attacks",0,0,0,0,"");
-			
-			this.femininity = 35;
+			this.femininity = 100;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 68;
@@ -130,11 +129,9 @@ package classes.Characters
 			this.buttRatingRaw = 2;
 			//No dicks here!
 			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLengthRaw = 6;
-			this.cocks[0].cThicknessRatioRaw = 1.75;
+			this.vaginas = [new VaginaClass()];
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -155,7 +152,7 @@ package classes.Characters
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 4;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
@@ -169,12 +166,14 @@ package classes.Characters
 		
 		override public function prepForCombat():void
 		{
-			var pGang:PhoenixPirates = this.makeCopy();
+			var techie:SX1Techguard = this.makeCopy();
+			
+			techie.sexualPreferences.setRandomPrefs(4, 2);
 			
 			kGAMECLASS.userInterface.showBust("TECHGUARD");
 			kGAMECLASS.showName("FIGHT:\nPIRATE TECHIE");
 			
-			kGAMECLASS.foes.push(pGang);
+			kGAMECLASS.foes.push(techie);
 		}
 	}
 }
