@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Guns.TrenchShotgun;
 	import classes.Items.Melee.Fists;
+	import classes.Items.Protection.DecentShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
@@ -34,10 +35,10 @@ package classes.Characters
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
 			rangedWeapon.hasRandomProperties = true;
-			this.shield = new JoyCoPremiumShield();
+			this.shield = new DecentShield();
 			
-			this.armor.longName = "black void armor";
-			this.armor.defense = 3;
+			this.armor.longName = "ballistic armor";
+			this.armor.defense = 8;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 17;
@@ -50,10 +51,10 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 250;
-			this.level = 4;
-			this.credits = 2500;
-			this.HPMod = 60;
+			this.XPRaw = 500;
+			this.level = 5;
+			this.credits = 120 + rand(52);
+			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
@@ -169,7 +170,7 @@ package classes.Characters
 		{
 			var pGang:SX1Shotguard = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("SHOTGUNGUARD");
+			kGAMECLASS.userInterface.showBust("BLACKVOID");
 			kGAMECLASS.showName("FIGHT: SHOTGUN\nGUARD");
 			
 			kGAMECLASS.foes.push(pGang);

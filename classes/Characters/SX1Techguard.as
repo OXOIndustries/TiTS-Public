@@ -19,40 +19,43 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "pirate gang";
+			this.short = "pirate techie";
 			this.originalRace = "pirates";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.plural = true;
-			isLustImmune = true;
+			this.plural = false;
+			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon = new MagnumPistol();
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
+			rangedWeapon.longName = "machine pistol";
 			rangedWeapon.hasRandomProperties = true;
 			this.shield = new JoyCoPremiumShield();
+			shield.shields = 120;
+			shield.hasRandomProperties = true;
 			
-			this.armor.longName = "black void armor";
-			this.armor.defense = 3;
+			this.armor.longName = "flight suit";
+			this.armor.defense = 2;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 17;
-			this.reflexesRaw = 15;
-			this.aimRaw = 16;
-			this.intelligenceRaw = 12;
-			this.willpowerRaw = 14;
+			this.physiqueRaw = 12;
+			this.reflexesRaw = 18;
+			this.aimRaw = 18;
+			this.intelligenceRaw = 25;
+			this.willpowerRaw = 8;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 40;
+			this.shieldsRaw = 65;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 250;
-			this.level = 4;
-			this.credits = 2500;
-			this.HPMod = 60;
+			this.XPRaw = 500;
+			this.level = 5;
+			this.credits = 400 + rand(37);
+			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
@@ -168,8 +171,8 @@ package classes.Characters
 		{
 			var pGang:PhoenixPirates = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID");
-			kGAMECLASS.setLocation("FIGHT: BLACK\nVOID GANG", "SHIP: PHOENIX", "SYSTEM: UNKNOWN");
+			kGAMECLASS.userInterface.showBust("TECHGUARD");
+			kGAMECLASS.showName("FIGHT:\nPIRATE TECHIE");
 			
 			kGAMECLASS.foes.push(pGang);
 		}

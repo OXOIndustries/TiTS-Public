@@ -1,12 +1,15 @@
 package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
+	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	//Fight is in pitch black. Aim and Reflexes are significantly reduced. 
 	public class SX1GroupPirates extends Creature
@@ -27,15 +30,21 @@ package classes.Characters
 			this.plural = true;
 			isLustImmune = true;
 			
-			this.meleeWeapon = new Fists();
+			this.meleeWeapon = new ShockBlade();
 			this.rangedWeapon = new MagnumPistol();
+			rangedWeapon.longName = "machine pistol"
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
 			rangedWeapon.hasRandomProperties = true;
+			rangedWeapon.baseDamage = new TypeCollection();
+			rangedWeapon.baseDamage.kinetic.damageValue = 7;
+			rangedWeapon.attack = 4;
+			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
+			
 			this.shield = new JoyCoPremiumShield();
 			
 			this.armor.longName = "black void armor";
-			this.armor.defense = 3;
+			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
 			this.physiqueRaw = 17;
@@ -48,10 +57,10 @@ package classes.Characters
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			
-			this.XPRaw = 250;
-			this.level = 4;
-			this.credits = 2500;
-			this.HPMod = 60;
+			this.XPRaw = 500;
+			this.level = 5;
+			this.credits = 80 + rand(80);
+			this.HPMod = 80;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
@@ -167,8 +176,8 @@ package classes.Characters
 		{
 			var pGang:SX1GroupPirates = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID");
-			kGAMECLASS.setLocation("FIGHT: PIRATE\nGANG", "SHIP: PHOENIX", "SYSTEM: UNKNOWN");
+			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID", "BLACKVOID");
+			kGAMECLASS.showName("FIGHT:\nPIRATE GANG");
 			
 			kGAMECLASS.foes.push(pGang);
 		}

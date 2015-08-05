@@ -44,6 +44,7 @@ public function tryProcSaendraXPackEmail():void
 	if (shipLocation != "TAVROS HANGAR") return;
 	if (saendraAffection() < 60) return;
 	if (MailManager.isEntryUnlocked("saendraxpack1")) return;
+	if (eventQueue.indexOf(unlockSaendraXPackMail) != -1) return;
 
 	eventQueue.push(unlockSaendraXPackMail);
 }
@@ -235,7 +236,7 @@ public function sx1SaendraAI():Boolean
 	var attacks:Array = [];
 	attacks.push({ v: sx1SaenHammerPistol, w: 40 });
 	attacks.push({ v: sx1SaenLowBlow, w: 20 });
-	if (foes[0].shield() > 0 && sHackAvail) attacks.push({ v: sx1SaenShieldHack, w: 25 });
+	if (foes[0].shields() > 0 && sHackAvail) attacks.push({ v: sx1SaenShieldHack, w: 25 });
 	if (pc.shields() < pc.shieldsMax() && sBoostAvail) attacks.push({ v: sx1ShieldBooster, w: 25 });
 	if (sDisarmAvail) attacks.push({ v: sx1DisarmingShot, w: 15 });
 
@@ -247,7 +248,7 @@ public function sx1SaendraAI():Boolean
 public function sx1GroupMachinePistols():void
 {
 	//Machine Pistols
-	output(" One of the assassins brings his machine pistol to bear, firing a burst of toward you!");
+	output("One of the assassins brings his machine pistol to bear, firing a burst of toward you!");
 	if (rangedCombatMiss(foes[0], pc, -1, 3))
 	{
 		output(" The burst misses!");
@@ -263,7 +264,7 @@ public function sx1GroupMachinePistols():void
 public function sx1GroupFlashbang():void
 {
 	// Flashbang
-	output(" One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
+	output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
 
 	if (rand(10) != 0)
 	{
@@ -284,7 +285,7 @@ public function sx1GroupSmokeGrenade():void
 {
 	// Smoke Grenade
 	output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
-	pc.createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.");
+	pc.createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
 
 	foes[0].createStatusEffect("NadeCD", 5);
 }
@@ -344,7 +345,7 @@ public function sx1SaenShieldHack():void
 	if (foes[0].plural == true) output(" one of ");
 	output(foes[0].a + foes[0].short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
 	if (foes[0].plural == true) output(" a chain of energy shooting forth and connecting to his compatriots");
-	if (foes[0].shield() <= 0) output(" completely");
+	if (foes[0].shields() <= 0) output(" completely");
 	else output(" nearly");
 	output(" burning out!");
 	outputDamage(damage);
@@ -366,7 +367,7 @@ public function sx1DisarmingShot():void
 	//Disarming Shot
 	output("Saendra takes careful aim with her Hammer pistol, aiming for");
 	if (foes[0].plural == true) output(" one of");
-	output(target.a + target.short);
+	output(foes[0].a + foes[0].short);
 	output("’s weapon. She squeezes off a shot");
 
 	if (rand(3) == 0)
@@ -425,8 +426,6 @@ public function sx1PirateGroupPCLoss():void
 	output("\n\nShe turns from you to the soldier holding you. <i>“Give [pc.himHer] to Carver. The full break.”</i>");
 	
 	output("\n\n<i>“Aye, Lord Bragga,”</i> he says, hauling you up to your [pc.feet] and dragging you towards the elevator. You’re thrown against the far wall of the elevator when it opens, behind the soldier. He pushes a button, down to one of the docks. You feel your hopes of freedom slipping away with every deck. You’re going to spend the rest of your life as a sex slave, all because you wanted to help a friend. Fuck you for being nice, right?");
-	
-	output("\n\n<b>Game Over.</b>");
 
 	badEnd();
 }
@@ -480,8 +479,7 @@ public function sx1PirateGroupPCVictory():void
 	flags["SAENDRA_XPACK1_TIMER"] = GetGameTimestamp();
 
 	// [Next] //Put PC back in elevator. Saendra returns to the bar as usual.
-	clearMenu();
-	addButton(0, "Next", mainGameMenu); // 9999 - maybe move pc
+	genericVictory();
 }
 
 public function sx1TalkFriend():void
@@ -864,7 +862,7 @@ public function sx1Holoburn():void
 {
 	clearOutput();
 
-	output("\n\n<i>“Valeria, think you can overload the power in there?”</i> you ask, jerking a thumb to the pirates’ door.");
+	output("<i>“Valeria, think you can overload the power in there?”</i> you ask, jerking a thumb to the pirates’ door.");
 	
 	output("\n\nThe little holo-fairy shakes her head apologetically. <i>“Not from digital space. I’m equipped for basic security tasks, but I don’t have the training protocols to go toe to toe with their hacker. You’d have to do it manually, [pc.name].”</i>");
 	

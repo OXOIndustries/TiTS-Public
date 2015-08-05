@@ -565,6 +565,17 @@ public function updateCombatStatuses():void {
 			output("<b>You can see again!</b>\n");	
 		}
 	}
+	if (pc.hasStatusEffect("Smoke Grenade")) {
+		pc.addStatusValue("Smoke Grenade", 1, -1);
+		if (pc.statusEffectv1("Smoke Grenade") <= 0) {
+			pc.removeStatusEffect("Smoke Grenade");
+			output("<b>The cloud of smoke finally dissipates!</b>\n");
+		}
+		else if(pc.hasPerk("Smoke Grenade") && pc.statusEffectv1("Blind") <= 1) {
+			pc.removeStatusEffect("Smoke Grenade");
+			output("<b>You can see again!</b>\n");	
+		}
+	}
 	if(pc.hasStatusEffect("Paralyzed")) {
 		pc.addStatusValue("Paralyzed",1,-1);
 		if(pc.statusEffectv1("Paralyzed") <= 0) {
@@ -1285,7 +1296,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		else output(target.customDodge);
 	}
 	//Extra miss for blind
-	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0) {
 		if(attacker == pc) output("Your blind strike fails to connect.");
 		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
 	}
@@ -1372,7 +1383,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else output(target.customDodge)
 	}
 	//Extra miss for blind
-	else if(attacker.hasStatusEffect("Blind") && rand(10) > 0) {
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0) {
 		if(attacker == pc) 
 		{
 			output("None of your blind-fired shots manage to connect.");
@@ -1540,7 +1551,7 @@ public function displayMonsterStatus(targetFoe:Creature):void
 		output("<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>\n");
 	}
 	else {
-		if(pc.statusEffectv1("Blind") <= 1) {
+		if(pc.statusEffectv1("Blind") <= 1 && pc.statusEffectv1("Smoke Grenade") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
 			if(targetFoe is Naleen) author("Savin");
 			if (targetFoe is ZilFemale) author("Savin");
@@ -3560,7 +3571,7 @@ public function overcharge(target:Creature):void {
 		else output(target.customDodge)
 	}
 	//Extra miss for blind
-	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) {
+	else if((pc.hasStatusEffect("Blind") || pc.hasStatusEffect("Smoke Grenade")) && rand(10) > 0) {
 		output("Your blind, <b>overcharged</b> shot missed.");
 		//else output(attacker.capitalA + possessive(attacker.short) + " blinded, <b>overcharged</b> shot fails to connect!");
 	}
@@ -4120,8 +4131,8 @@ public function shieldHack(target:Creature):void
 	
 	if(target.shields() > 0)
 	{
-		if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold.");
-		else output(" " + target.a + possessive(target.short) + " shield crackles but holds.");
+		if(target.plural) output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
+		else output(" " + target.capitalA + possessive(target.short) + " shield crackles but holds.");
 	}
 	else
 	{

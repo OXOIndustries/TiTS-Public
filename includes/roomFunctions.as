@@ -58,7 +58,7 @@ public function xenogenOutsideBlurb():Boolean
 
 public function hangarBonus():Boolean 
 {
-	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"])
+	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
 		addButton(0, "Deck 92", saendraX1LiftGo); 
 	}
