@@ -12,6 +12,7 @@ import classes.Characters.PhoenixPirates;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.QueenOfTheDeep;
 import classes.Characters.SecurityDroids;
+import classes.Characters.SX1Techguard;
 import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
 import classes.Characters.Varmint;
@@ -577,6 +578,17 @@ public function updateCombatStatuses():void {
 		}
 		else if(pc.hasPerk("Sharp Eyes") && pc.statusEffectv1("Blind") <= 1) {
 			pc.removeStatusEffect("Blind");
+			output("<b>You can see again!</b>\n");	
+		}
+	}
+	if (pc.hasStatusEffect("Smoke Grenade")) {
+		pc.addStatusValue("Smoke Grenade", 1, -1);
+		if (pc.statusEffectv1("Smoke Grenade") <= 0) {
+			pc.removeStatusEffect("Smoke Grenade");
+			output("<b>The cloud of smoke finally dissipates!</b>\n");
+		}
+		else if(pc.hasPerk("Smoke Grenade") && pc.statusEffectv1("Blind") <= 1) {
+			pc.removeStatusEffect("Smoke Grenade");
 			output("<b>You can see again!</b>\n");	
 		}
 	}
@@ -1300,7 +1312,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		else output(target.customDodge);
 	}
 	//Extra miss for blind
-	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0) {
 		if(attacker == pc) output("Your blind strike fails to connect.");
 		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
 	}
@@ -1387,7 +1399,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else output(target.customDodge)
 	}
 	//Extra miss for blind
-	else if(attacker.hasStatusEffect("Blind") && rand(10) > 0) {
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0) {
 		if(attacker == pc) 
 		{
 			output("None of your blind-fired shots manage to connect.");
@@ -1555,7 +1567,7 @@ public function displayMonsterStatus(targetFoe:Creature):void
 		output("<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>\n");
 	}
 	else {
-		if(pc.statusEffectv1("Blind") <= 1) {
+		if(pc.statusEffectv1("Blind") <= 1 && pc.statusEffectv1("Smoke Grenade") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
 			if(targetFoe is Naleen) author("Savin");
 			if (targetFoe is ZilFemale) author("Savin");
@@ -1568,10 +1580,11 @@ public function displayMonsterStatus(targetFoe:Creature):void
 			{
 				if (targetFoe.lust() >= 50) output("You can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 			}
-			else
+			if (targetFoe is SX1Techguard && targetFoe.shields() > 0)
 			{
-				showMonsterArousalFlavor(targetFoe);
+				output("A small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
 			}
+			showMonsterArousalFlavor(targetFoe);
 			mutinousMimbranesCombat();
 			neglectedMimbranesCombat();
 		}
@@ -1679,6 +1692,9 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
 	else if (aggressor is NyreanPraetorians) praetorianAI();
 	else if (aggressor is Goocubator) gooCubatorAI();
+	else if (aggressor is SX1GroupPirates) sx1PirateGroupAI();
+	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
+	else if (aggressor is SX1Techguard) sx1TechguardAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1838,6 +1854,9 @@ public function victoryRouting():void
 	}
 	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
 	else if(foes[0] is Goocubator) pcBeatsGoo();
+	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
+	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
+	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
 	else genericVictory();
 }
 
@@ -1994,6 +2013,9 @@ public function defeatRouting():void
 	}
 	else if(foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
 	else if(foes[0] is Goocubator) loseToRoyalIncuGoo();
+	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
+	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
+	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2333,6 +2355,15 @@ public function startCombat(encounter:String):void
 			break;
 		case "Goocubator":
 			chars["GOOCUBATOR"].prepForCombat();
+			break;
+		case "SX1GROUPPIRATES":
+			chars["SX1GROUPPIRATES"].prepForCombat();
+			break;
+		case "SX1SHOTGUARD":
+			chars["SX1SHOTGUARD"].prepForCombat();
+			break;
+		case "SX1TECHGUARD":
+			chars["SX1TECHGUARD"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -3556,7 +3587,7 @@ public function overcharge(target:Creature):void {
 		else output(target.customDodge)
 	}
 	//Extra miss for blind
-	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) {
+	else if((pc.hasStatusEffect("Blind") || pc.hasStatusEffect("Smoke Grenade")) && rand(10) > 0) {
 		output("Your blind, <b>overcharged</b> shot missed.");
 		//else output(attacker.capitalA + possessive(attacker.short) + " blinded, <b>overcharged</b> shot fails to connect!");
 	}
@@ -4116,8 +4147,8 @@ public function shieldHack(target:Creature):void
 	
 	if(target.shields() > 0)
 	{
-		if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold.");
-		else output(" " + target.a + possessive(target.short) + " shield crackles but holds.");
+		if(target.plural) output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
+		else output(" " + target.capitalA + possessive(target.short) + " shield crackles but holds.");
 	}
 	else
 	{

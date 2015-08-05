@@ -1381,7 +1381,9 @@ public function processTime(arg:int):void {
 				// Lane monies
 				laneHandleCredits();
 				//Venus pitcher
-				venusSubmission(-1);
+				venusSubmission( -1);
+				
+				tryProcSaendraXPackEmail();
 			}
 		}
 		arg--;

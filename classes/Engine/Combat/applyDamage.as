@@ -62,11 +62,11 @@ package classes.Engine.Combat
 			{
 				if (target.plural) 
 				{
-					output(" " + target.a + possessive(target.short) + " shields crackle but hold.");
+					output(" " + target.capitalA + possessive(target.short) + " shields crackle but hold.");
 				}
 				else
 				{
-					output(" " + target.a + possessive(target.short) + " shield crackles but holds."); 
+					output(" " + target.capitalA + possessive(target.short) + " shield crackles but holds."); 
 				}
 			}
 		}

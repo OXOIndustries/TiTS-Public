@@ -105,6 +105,8 @@ public function configureMails():void
 	MailManager.addMailEntry("saendrathanks", "You're a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn't have lasted much longer, even if I didn't get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I've got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You're my new hero, cap.\n\nI'm going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
+	
+	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes!</i> the message reads. <i>If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra", "flygirl@phoenixcargo.net", quickPCTo, quickPCToAddress); 
 }
 
 public function cuzName():String

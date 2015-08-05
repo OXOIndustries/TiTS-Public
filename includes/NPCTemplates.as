@@ -1,35 +1,91 @@
-﻿import classes.Characters.Anarrie;
-import classes.Characters.Brynn;
-import classes.Characters.GigaGoo;
-import classes.Characters.gooArmor;
-import classes.Characters.GrayPrime;
-import classes.Characters.HuntressVanae;
-import classes.Characters.Kiro;
-import classes.Characters.Lane;
-import classes.Characters.MaidenVanae;
-import classes.Characters.Nevrie;
-import classes.Characters.NyreaAlpha;
-import classes.Characters.NyreaBeta;
-import classes.Characters.PhoenixPirates;
-import classes.Characters.GunTurrets;
-import classes.Characters.QueenOfTheDeep;
-import classes.Characters.Saendra;
-import classes.Characters.SecurityDroids;
-public function initializeNPCs(justUpdate:Boolean = false):void 
+﻿public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
 	
-	if (!justUpdate || (justUpdate && chars["CELISE"] == undefined))
-	{
-		chars["CELISE"] = new classes.Characters.Celise();
-	}
-	//Rival!
-	if (!justUpdate || (justUpdate && chars["RIVAL"] == undefined))
-	{
-		//Rival!
-		chars["RIVAL"] = new classes.Characters.Rival();
-	}
+	prepChar(justUpdate, "CELISE", Celise);
+	prepChar(justUpdate, "RIVAL", Rival);
+	prepChar(justUpdate, "GEOFF", Geoff);
+	prepChar(justUpdate, "FLAHNE", Flahne);
+	prepChar(justUpdate, "ZILPACK", ZilPack);
+	prepChar(justUpdate, "ZIL", ZilMale);
+	prepChar(justUpdate, "PENNY", Penny);
+	prepChar(justUpdate, "BURT", Burt);
+	prepChar(justUpdate, "ZILFEMALE", ZilFemale);
+	prepChar(justUpdate, "CUNTSNAKE", CuntSnake);
+	prepChar(justUpdate, "NALEEN", Naleen);
+	prepChar(justUpdate, "VENUSPITCHER", VenusPitcher);
+	prepChar(justUpdate, "ELDERVENUSPITCHER", ElderVenusPitcher);
+	prepChar(justUpdate, "SYRI", Syri);
+	prepChar(justUpdate, "NALEEN_MALE", NaleenMale);
+	prepChar(justUpdate, "MACHINA", CarlsRobot);
+	prepChar(justUpdate, "JADE", Jade);
+	prepChar(justUpdate, "REAHA", Reaha);
+	prepChar(justUpdate, "DANE", Dane);
+	prepChar(justUpdate, "SERA", Sera);
+	prepChar(justUpdate, "MIMBRANE", Mimbrane);
+	prepChar(justUpdate, "RASKVEL_FEMALE", RaskvelFemale);
+	prepChar(justUpdate, "RASKVEL_MALE", RaskvelMale);
+	prepChar(justUpdate, "VKO", VKo);
+	prepChar(justUpdate, "SEXBOT", SexBot);
+	prepChar(justUpdate, "GRAYGOO", GrayGoo);
+	prepChar(justUpdate, "LAPINARAFEMALE", LapinaraFemale);
+	prepChar(justUpdate, "SYDIANMALE", SydianMale);
+	prepChar(justUpdate, "DELILAH", Delilah);
+	prepChar(justUpdate, "ALISS", Aliss);
+	prepChar(justUpdate, "SHEKKA", Shekka);
+	prepChar(justUpdate, "ANNO", Anno);
+	prepChar(justUpdate, "DRBADGER", DrBadger);
+	prepChar(justUpdate, "COLENSO", Colenso);
+	prepChar(justUpdate, "KELLY", Kelly);
+	prepChar(justUpdate, "FIREWALL", HandSoBot);
+	prepChar(justUpdate, "PHOENIXPIRATES", PhoenixPirates);
+	prepChar(justUpdate, "AUTOTURRETS", GunTurrets);
+	prepChar(justUpdate, "ROCKETPODS", RocketTurrets);
+	prepChar(justUpdate, "CAPTAINKHORGANMECH", CaptainKhorganMech);
+	prepChar(justUpdate, "CAPTAINKHORGAN", CaptainKhorgan);
+	prepChar(justUpdate, "KASKA", Kaska);
+	prepChar(justUpdate, "KIRO", Kiro);
+	prepChar(justUpdate, "SAENDRA", Saendra);
+	prepChar(justUpdate, "AMMA", Amma);
+	prepChar(justUpdate, "HUNTRESS_VANAE", HuntressVanae);
+	prepChar(justUpdate, "MAIDEN_VANAE", MaidenVanae);
+	prepChar(justUpdate, "SECURITYDROIDS", SecurityDroids);
+	prepChar(justUpdate, "GRAYPRIME", GrayPrime);
+	prepChar(justUpdate, "GIGAGOO", GigaGoo);
+	prepChar(justUpdate, "ELLIE", Ellie);
+	prepChar(justUpdate, "GIANNA", Gianna);
+	prepChar(justUpdate, "BRYNN", Brynn);
+	prepChar(justUpdate, "VARMINT", Varmint);
+	prepChar(justUpdate, "KARA", Kara);
+	prepChar(justUpdate, "SHADE", Shade);
+	prepChar(justUpdate, "EMBRY", Embry);
+	prepChar(justUpdate, "LANE", Lane);
+	prepChar(justUpdate, "RENVRA", Renvra);
+	prepChar(justUpdate, "COCKVINE", Cockvine);
+	prepChar(justUpdate, "XANTHE", Xanthe);
+	prepChar(justUpdate, "NYREA ALPHA", NyreaAlpha);
+	prepChar(justUpdate, "NYREA BETA", NyreaBeta);
+	prepChar(justUpdate, "FROG_GIRL", FrogGirl);
+	prepChar(justUpdate, "WETRA HOUND", WetraHound);
+	prepChar(justUpdate, "WETRAXXEL BRAWLER", WetraxxelBrawler);
+	prepChar(justUpdate, "MERCHANT QUEEN", MerchantQueen);
+	prepChar(justUpdate, "ANARRIE", Anarrie);
+	prepChar(justUpdate, "GOO", gooArmor);
+	prepChar(justUpdate, "SEIFYN", Seifyn);
+	prepChar(justUpdate, "INFECTED MYR FEMALE", MyrInfectedFemale);
+	prepChar(justUpdate, "NEVRIE", Nevrie);
+	prepChar(justUpdate, "DRLASH", DoctorLash);
+	prepChar(justUpdate, "CERIA", Ceria);
+	prepChar(justUpdate, "QUEENOFTHEDEEP", QueenOfTheDeep);
+	prepChar(justUpdate, "RED_DESERTER", MyrRedFemaleDeserter);
+	prepChar(justUpdate, "GOLD_DESERTER", MyrGoldFemaleDeserter);
+	prepChar(justUpdate, "NYREAN_PRAETORIANS", NyreanPraetorians);
+	prepChar(justUpdate, "GOOCUBATOR", Goocubator);
+	prepChar(justUpdate, "SX1GROUPPIRATES", SX1GroupPirates);
+	prepChar(justUpdate, "SX1SHOTGUARD", SX1Shotguard);
+	prepChar(justUpdate, "SX1TECHGUARD", SX1Techguard);
 	
+<<<<<<< HEAD
 	if (!justUpdate || (justUpdate && chars["GEOFF"] == undefined))
 	{
 		chars["GEOFF"] = new classes.Characters.Geoff();
@@ -378,6 +434,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["QUEENSGUARD"] = new Queensguard();
 	}
+=======
+>>>>>>> 8baf6cd951e2f34094c53f5acc107327fac6ce69
 	// Check all characters have version information set
 	for (var prop:String in chars)
 	{
@@ -391,4 +449,12 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 		}
 	}
 	this.foes[0] = new Creature();
+}
+
+public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
+{
+	if (!justUpdate || (justUpdate && chars[index] == undefined))
+	{
+		chars[index] = new classT();
+	}
 }

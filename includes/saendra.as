@@ -19,7 +19,14 @@ public function saendraBarAddendum():Boolean
 		else
 		{
 			output("\n\nThe firey red-head you saved from the pirates aboard <i>The Phoenix</i> is here tucked away in one of the many booths available throughout the bar.");
-			addButton(7, "Saendra", meetSaenAtTheBar);
+			if (flags["SAENDRA_XPACK1_STATUS"] == 5)
+			{
+				addButton(7, "Saendra", sx1TalkFriend, undefined, "Saendra", "Talk to Saen about her friend. Can you help her out?");
+			}
+			else
+			{
+				addButton(7, "Saendra", meetSaenAtTheBar);
+			}
 			return false;
 		}
 	}
@@ -28,6 +35,29 @@ public function saendraBarAddendum():Boolean
 
 public function saendraAtBar():Boolean
 {
+	if (flags["SAENDRA_XPACK1_STATUS"] != undefined)
+	{
+		switch (flags["SAENDRA_XPACK1_STATUS"])
+		{
+			case 0: // not started
+			case 5: // beat pirate group
+			case 6:
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			default:
+				return true;
+				break;
+
+			case 1: // waiting at elevator
+			case 2: // timer expired to elevator
+			case 3: // visited elevator location after expiration
+				return false;
+				break;
+		}
+	}
+
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
 		if (flags["SAEN MET AT THE BAR"] == undefined)
@@ -51,6 +81,7 @@ public function saendraAtBar():Boolean
 public function saendraAffection(arg:int = 0):int
 {
 	if (flags["SAENDRA AFFECTION"] == undefined) flags["SAENDRA AFFECTION"] = 0;
+	if (flags["SAENDRA_MAX_AFFECTION"] == undefined) flags["SAENDRA_MAX_AFFECTION"] = 69;
 
 	if (arg != 0)
 	{
@@ -58,7 +89,7 @@ public function saendraAffection(arg:int = 0):int
 	}
 
 	// capped!
-	if (flags["SAENDRA AFFECTION"] > 69) flags["SAENDRA AFFECTION"] = 69;
+	if (flags["SAENDRA AFFECTION"] > flags["SAENDRA_MAX_AFFECTION"]) flags["SAENDRA AFFECTION"] = flags["SAENDRA_MAX_AFFECTION"];
 
 	trace("Saendra Affection: " + flags["SAENDRA AFFECTION"]);
 	return flags["SAENDRA AFFECTION"];
@@ -179,6 +210,24 @@ public function saendrasBarMenu():void
 	{
 		addDisabledButton(3, "Kiss Her", "Kiss Her", "Maybe if she liked you more and stuff you could totally make out and kiss her on the lips and stuff and things.")
 	}
+
+	if (flags["SAENDRA_XPACK1_STATUS"] == 5)
+	{
+		// talk about rescue
+		addButton(5, "Her Friend", sx1TalkFriend, undefined, "Saendra’s Friend", "Talk to Saen about her friend. Can you help her out?");
+	}
+	else if (flags["SAENDRA_XPACK1_STATUS"] == 6)
+	{
+		// talk about expired rescue
+		addButton(5, "Her Friend", sx1SaensFriendExpired, undefined, "Saendra’s Friend", "Ask Saendra about her friend.");
+	}
+	else if (flags["SAENDRA_XPACK1_STATUS"] == 9)
+	{
+		// followup about rescue
+		addButton(5, "Pirates", sx1TalkPirates, undefined, "The Pirates", "Follow up with Saendra about the pirates. You deserve answers after all of this.");
+	}
+
+
 	addButton(14, "Leave", leaveSaendraAtTheBar, undefined);
 }
 
@@ -283,8 +332,14 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
 	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You've already talked to Saendra about the status of her ship today.");
 
-	if (flags["SAENDRA OFFER CREDITS UNLOCKED"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "Offer Credits", saendraOfferCredits, "Offer Credits", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
-	else addDisabledButton(5, "Offer Credits", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
+	if (flags["SAENDRA OFFER CREDITS UNLOCKED"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+	else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
+
+	if (flags["SAENDRA_XPACK1_CREDITOFFER"] == 1)
+	{
+		if (pc.credits >= 20000) addButton(5, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra's ship to be repaired. You may end up in the hole for twenty grand or so, but you'll make her very, very happy.")
+		else addDisabledButton(5, "OfferCreds", "Offer Credits", "You figure you'll need about twenty grand to get Saendra back into space....")
+	}
 
 	if (!saendra.hasCock())
 	{
@@ -1746,6 +1801,7 @@ public function newFutaSaendraScenes():void
 	if(pc.hasVagina()) pc.loadInCunt(saendra,x);
 	else pc.loadInAss(saendra);
 	processTime(24);
+	flags["SAENDRA TIMES SEXED"]++;
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
