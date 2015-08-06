@@ -1133,7 +1133,7 @@ public function initializeMyrellionRooms():void
 	//Street H16
 	rooms["811"] = new RoomClass(this);
 	rooms["811"].roomName = "\nSTREET";
-	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the west leads into the city park, called \"Queen's Solace.\"";
+	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the east leads into the city park, called \"Queen's Solace.\"";
 	rooms["811"].planet = "PLANET: MYRELLION";
 	rooms["811"].system = "SYSTEM: SINDATHU";
 	rooms["811"].eastExit = "824";
