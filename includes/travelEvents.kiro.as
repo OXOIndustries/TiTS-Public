@@ -1833,7 +1833,7 @@ public function yesKiroIDoWantPubbieFJ():void
 	{
 		output("\n\nGrimly clamping your mouth closed, you pull up the credit transfer app on your Codex and pay for the drink. It’s a pittance to pay for something as nice as this anyway.");
 		output("\n\nKiro giggles, <i>“What a gentle" + pc.mf("man","lady") + ". Such genteel manners on this one!”</i> Her foot flows back and forth like the lapping of gentle waves, squirming against your hot flesh.");
-		output("\n\nYou do your best to wear a mask of calm and sophistication, but your gut isn’t buying it. By the looks of it, neither is the bartender. A disbelieving smile later and the two of you are more or less along once more.");
+		output("\n\nYou do your best to wear a mask of calm and sophistication, but your gut isn’t buying it. By the looks of it, neither is the bartender. A disbelieving smile later and the two of you are more or less alone once more.");
 		output("\n\n<i>“You really shouldn’t let pirates trick you into paying for their drinks. It’s a terrible habit to get into,”</i> Kiro drawls, ");
 		if(pc.balls > 0) output("resting your [pc.sack] atop her other foot, playfully wiggling her toes against your [pc.balls].");
 		else output("bringing her other foot to press on your [pc.sheathBiggest], gingerly squeezing the supply flesh there.");
