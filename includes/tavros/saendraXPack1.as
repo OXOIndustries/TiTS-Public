@@ -1570,6 +1570,9 @@ public function sx1TalkPirates():void
 	if (flags["SAENDRA TIMES SEXED"] != undefined) output(" lover");
 	else output(" companion");
 	output(".");
+	
+	flags["SAENDRA_MAX_AFFECTION"] = 100;
+	saendraAffection(30);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
