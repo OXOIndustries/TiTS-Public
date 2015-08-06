@@ -64,7 +64,10 @@
 		public var currentPCNotes:String;
 		
 		// Location caching so we can temp hide the location texts and shift them back to proper
-		private var cacheRoom:String;
+		private var _cacheRoom:String;
+		protected function get cacheRoom():String { return _cacheRoom; }
+		protected function set cacheRoom(v:String):void { _cacheRoom = v; }
+		
 		private var cachePlanet:String;
 		private var cacheSystem:String;
 		

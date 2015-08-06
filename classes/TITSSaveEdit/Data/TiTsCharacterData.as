@@ -2,6 +2,7 @@ package classes.TITSSaveEdit.Data
 {
 	import classes.BreastRowClass;
 	import classes.CockClass;
+	import classes.DataManager.DataManager;
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -377,7 +378,7 @@ package classes.TITSSaveEdit.Data
 			{
 				newObj = {
 					classInstance: "classes.Characters::PlayerCharacter",
-					version: 1
+					version: DataManager.LATEST_SAVE_VERSION;
 				};
 			}
 			else
