@@ -2393,7 +2393,7 @@ public function firstTimeLaneMPCM():void
 
 	output("\n\nHe shifts back and traces along your open [pc.lips]. You can feel it leave behind a trail of his juices, wetting your lips for you, until he’s made a full circle. He descends, slowly at first, running his length across [pc.tongue], and you moan at finally, <i>finally,</i> getting what you’ve wanted since you first saw him. Your lips close without his consent, but from the way he continues to sink into you and the way he moans when the flaps of his genital slit meet your face, he doesn’t mind. You suckle on him, cherishing the juices he gives you and swallowing them thankfully; you’re eager to get more.");
 
-	output("\n\nHis length delights [pc.eachTongue] and his taste sets your mouth positively aflame. He pulls back, driving his tool over as much of your mouth as you can, renewing your taste. He pauses, enjoying but unused to his position over you. He thrusts again, and again, and soon, once he’s comfortable with his domineering position, he’s outright fucking your face, and not only do you let him, you love it. Unable to touch him – much as you want to grope and squeeze at his ass, and stroke at his tail, and grip his ankles for support – your hands instead go to your");
+	output("\n\nHis length delights [pc.tongue] and his taste sets your mouth positively aflame. He pulls back, driving his tool over as much of your mouth as you can, renewing your taste. He pauses, enjoying but unused to his position over you. He thrusts again, and again, and soon, once he’s comfortable with his domineering position, he’s outright fucking your face, and not only do you let him, you love it. Unable to touch him – much as you want to grope and squeeze at his ass, and stroke at his tail, and grip his ankles for support – your hands instead go to your");
 	if (pc.cocks.length == 1)
 	{
 		output(" [pc.cock], stroking along it in time with Lane’s thrusting");
@@ -2436,7 +2436,7 @@ public function firstTimeLaneMPCM():void
 	if (pc.hasCock())
 	{
 		output(" you reach down with one hand and start stroking your [pc.cock] in excitement");
-		if (pc.cocks.length == 2) output(" while your [pc.cock 2] bounces shamelessly against your stroking knuckles");
+		if (pc.cocks.length == 2) output(" while your [pc.cock 1] bounces shamelessly against your stroking knuckles");
 		else if (pc.cocks.length >= 3) output(" while [pc.eachCock] flops and slaps against your stroking knuckles and heaving belly");
 		output(".");
 	}
@@ -2467,7 +2467,7 @@ public function firstTimeLaneMPCM():void
 	}
 	if (pc.cocks.length == 2)
 	{
-		output(" Your [pc.cock 2] thrusts and bounce in time with the one in your hand, spraying even more of your [pc.cum] all over Lane’s bed and underneath your body, adding to the glorious mess your master made you do.");
+		output(" Your [pc.cock 1] thrusts and bounce in time with the one in your hand, spraying even more of your [pc.cum] all over Lane’s bed and underneath your body, adding to the glorious mess your master made you do.");
 	}
 	else if (pc.cocks.length > 2)
 	{
