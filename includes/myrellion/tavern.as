@@ -425,7 +425,7 @@ public function grayGooAtBar():void
 	processTime(5+rand(3));
 
 	// [Sure] [Not now]
-	clearOutput();
+	clearMenu();
 	addButton(0, "Sure", grayGooAtBarSure, undefined, "Sure", "Tell the goo-girl you'll take her with you. Considering what she was able to do when you fought her, maybe you can get some use out of her in battle...");
 	addButton(1, "Not Now", grayGooAtBarNotNow);
 }
