@@ -1122,7 +1122,7 @@ public function processTime(arg:int):void {
 	}
 	
 	// Extra special handler for Renvra's egg messages
-	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available"))
+	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available") || pc.hasStatusEffect("Royal Eggs Messages Available"))
 	{
 		var cRoom:RoomClass = rooms[currentLocation];
 		var pSpace:Boolean = cRoom.hasFlag(GLOBAL.PUBLIC);
@@ -1130,6 +1130,8 @@ public function processTime(arg:int):void {
 		// This should avoid doubling messages up if the player has both pregnancies at the same time.
 		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
 		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, arg);
+		else if (pc.hasStatusEffect("Royal Eggs Messages Available")) RoyalEggPregnancy.royalEggsMessageHandler(pSpace, arg);
+		
 	}
 	
 	// I named this badly, but this is the secondary pregnancy variant that Renvra has. It's much more complicated, so

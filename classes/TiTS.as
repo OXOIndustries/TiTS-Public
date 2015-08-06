@@ -38,7 +38,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
-	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
+	import classes.GameData.Pregnancy.Handlers.*;
 	
 	import fl.transitions.easing.None;
 
