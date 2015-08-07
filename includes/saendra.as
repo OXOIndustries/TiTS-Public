@@ -35,6 +35,11 @@ public function saendraBarAddendum():Boolean
 
 public function saendraAtBar():Boolean
 {
+	if (flags["SAENDRA_XPACK1_CREDITTIME"] != undefined && (GetGameTimestamp() - flags["SAENDRA_XPACK1_CREDITTIME"] <= (24 * 60)))
+	{
+		return false;
+	}
+	
 	if (flags["SAENDRA_XPACK1_STATUS"] != undefined)
 	{
 		switch (flags["SAENDRA_XPACK1_STATUS"])
