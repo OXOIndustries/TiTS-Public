@@ -1,3 +1,4 @@
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 /*
 
@@ -458,7 +459,9 @@ public function sx1PirateGroupPCVictory():void
 	
 	output("\n\nYou turn to Saen and give her a look, which she answers with a loud declaration of <i>“MAWP”</i> while she rubs her ears. You mutter a small thanks to your nano-docs for repairing your hearing damage about as fast as it happens.");
 	
-	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You{ draw your [pc.weapon] and} grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
+	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You");
+	if ((pc as Creature).hasEquippedWeapon()) output(" draw your [pc.weapon] and");
+	output(" grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
 	
 	output("\n\nLight floods into the darkened corridor, and a trio of people stride out - two more armored men, and a woman in a skin-tight red jumpsuit, worn under a flowing black longcoat. The woman’s dark hair half-conceals a face that’s a network of scars and tattoos that wrap around an eyepatch. One of her gloved hands rests on the hilt of a saber at her hip; the other carries a sleek laser pistol.");
 	
@@ -775,7 +778,10 @@ public function sx1CallgirlOkay():void
 	
 	output("\n\n<i>“Is that so?”</i> she says as you explain your desires. <i>“I think I can make all your dreams come true, then.”</i>");
 	
-	output("\n\nYou smile at her and run a hand along the cup of her of her soft, squeezable breasts. Steadily moving up her lush body, you brush your thumb over the sin-black flesh of her nipple, her slender shoulders, finally hooking it into her lip and gently pulling at the lush, dark rim of her mouth. You start to crawl up the {zil / exotic} woman’s slender frame, kissing and caressing until your");
+	output("\n\nYou smile at her and run a hand along the cup of her of her soft, squeezable breasts. Steadily moving up her lush body, you brush your thumb over the sin-black flesh of her nipple, her slender shoulders, finally hooking it into her lip and gently pulling at the lush, dark rim of her mouth. You start to crawl up the");
+	if (CodexManager.entryViewed("Zil")) output(" zil");
+	else output(" exotic");
+	output(" woman’s slender frame, kissing and caressing until your");
 	if (pc.hasCock())
 	{
 		output(" [pc.cocks]");
@@ -1550,7 +1556,7 @@ public function sx1TalkPirates():void
 	
 	output("\n\n<i>“What’re you talking about? Who’s Miri?”</i>");
 	
-	output("\n\nYour companion doesn’t meet your eye as she answers. <i>“Mirian Bragga. A Dread Lord of the Black Void pirates, one of the most powerful women in the galaxy’s underworld. She... we were...”</i> she pauses for a moment, struggling to collect her thoughts. When she continues, Saendra’s robotic fingers clench hard. <i>“Miri and I were raised together. Like sisters, almost. And yeah, before you ask, that means I used to be part of the Void. My parents commanded an interceptor frigate on the fringe; when I was born, they left me on a Void base to keep me safe. Miri was just a year older, and our parents were good friends. So Miss Braga and her servants brought me up, same as her daughter.”</i>");
+	output("\n\nYour companion doesn’t meet your eye as she answers. <i>“Mirian Bragga. A Dread Lord of the Black Void pirates, one of the most powerful women in the galaxy’s underworld. She... we were...”</i> she pauses for a moment, struggling to collect her thoughts. When she continues, Saendra’s robotic fingers clench hard. <i>“Miri and I were raised together. Like sisters, almost. And yeah, before you ask, that means I used to be part of the Void. My parents commanded an interceptor frigate on the fringe; when I was born, they left me on a Void base to keep me safe. Miri was just a year older, and our parents were good friends. So Miss Bragga and her servants brought me up, same as her daughter.”</i>");
 	
 	output("\n\n<i>“I could have been her second in command,”</i> Saen laughs sadly. <i>“We were such good friends...”</i>");
 	
