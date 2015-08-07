@@ -3053,12 +3053,8 @@ public function lossToGrayPrime():void
 	output("\n\nYou shudder as shockwaves of pleasure tear through you, pumping out every moment of orgasm from you that the goo possibly can, drawing your climax out... and out... and out... until you start to think it will never end. That the pumping goo inside you will keep you cumming and cumming forever, hours turning into days into weeks of unending orgasm.");
 	
 	output("\n\nThat’s exactly what they do.");
-
-
-	output("\n\n<b>GAME OVER</b>");
-
-	clearMenu();
-	addDisabledButton(0, "GAME OVER", "Game Over", "Roll end credits.");
+	
+	badEnd();
 }
 
 public function deck13Breach():void
