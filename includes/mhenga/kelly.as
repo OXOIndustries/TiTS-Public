@@ -75,9 +75,9 @@ public function kellysOfficeBonusFunction():Boolean
 		author("Quiet Browser & LD");
 		//If Player has not met Kelly Yet:
 		if(flags["KELLY_MET"] == undefined) {
-			output("\n\nA strange figure is seated behind the receptionist counter; a bipedal female humanoid who looks... well, like an anthropomorphic rabbit. But with a vaguely bee-like fur pattern of black stripes on yellow, offset by honey-orange hair. Maybe she's one of those furry gene-modders?"); 
-			if(flags["MET_PENNY"] != undefined) output(" Like Penny?");
-			output(" She calls for you to approach.");
+			output("\n\nA strange figure is seated behind the receptionist counter; a bipedal female humanoid who looks... well, like an anthropomorphic rabbit, but with a vaguely bee-like fur pattern of black stripes on yellow, offset by honey-orange hair. Maybe she's one of those furry gene-modders"); 
+			if(flags["MET_PENNY"] != undefined) output(", like Penny");
+			output("? She calls for you to approach.");
 
 			//1st Time:
 			output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One floppy ear, nearly hidden among her lush strands of honey-orange hair, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\" Though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
