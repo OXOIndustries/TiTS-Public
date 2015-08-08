@@ -2835,7 +2835,7 @@ public function initializeMyrellionRooms():void
 	rooms["2G17"].description = "Beyond the gate lies a twisting passage heading westward, with sharp steps taking you even deeper into the stone in Myrellion’s heart. Flickering lanterns light your way, and the sounds of speech below tell you that you’re not the only one here...";
 	rooms["2G17"].planet = "PLANET: MYRELLION";
 	rooms["2G17"].system = "SYSTEM: SINDATHU";
-	rooms["2G17"].northExit = "2G13";
+	rooms["2G17"].northExit = "2G15";
 	rooms["2G17"].eastExit = "";
 	rooms["2G17"].southExit = "";
 	rooms["2G17"].westExit = "2E17";

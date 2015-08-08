@@ -860,12 +860,30 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
-	//Open Nyrea village gate
+	//Gate is closed right now
 	if(rooms["2G11"].westExit != "2E11")
 	{
-		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) rooms["2G11"].westExit = "2E11"
+		//If King or guards recently defeeated, open.
+		if(flags["KING_NYREA"] == 1) rooms["2G11"].westExit = "2E11";
+		//Not king!
+		else
+		{
+			//Queen down? Open dat shit if not at lockdown time
+			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60*13 < GetGameTimestamp()) rooms["2G11"].westExit = "2E11";
+			//Guards down? Open.
+			else if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60 * 12 < GetGameTimestamp()) rooms["2G11"].westExit = "2E11";
+		}
 	}
-	else if(flags["PRAETORIAN_RESPAWN"] == undefined) rooms["2G11"].westExit = "";
+	//Nyrea gate is open. Should we close?
+	else 
+	{
+		//King? KEEP DAT SHIT OPEN.
+		if(flags["KING_NYREA"] == 1) {}
+		//Queen down? SEAL IT 5EVER.
+		else if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60*13 >= GetGameTimestamp()) rooms["2G11"].westExit = "";
+		//Queen still unbeaten && Praetorians respawned? Aww yiss, close dat shit.
+		else if(flags["PRAETORIAN_RESPAWN"] == undefined || flags["PRAETORIAN_RESPAWN"] + 60 * 12 >= GetGameTimestamp()) rooms["2G11"].westExit = "";
+	}
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
@@ -1107,7 +1125,7 @@ public function processTime(arg:int):void {
 
 	//Queue up procs for boobswell shit
 	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
-	variableRoomUpdateCheck();
+
 	//Laneshit
 	processLaneDetoxEvents(arg);
 	
@@ -1210,12 +1228,6 @@ public function processTime(arg:int):void {
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
 				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
-			}
-			//Taivra's guards respawn
-			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] != 0)
-			{
-				flags["PRAETORIAN_RESPAWN"]--;
-				if(flags["PRAETORIAN_RESPAWN"] <= 0) flags["PRAETORIAN_RESPAWN"] = 0;
 			}
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
@@ -1419,6 +1431,7 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
+	variableRoomUpdateCheck();
 	updatePCStats();
 }
 

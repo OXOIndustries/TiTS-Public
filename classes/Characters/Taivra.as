@@ -17,8 +17,7 @@
 	import classes.Items.Miscellaneous.Satyrite;
 	
 	import classes.GLOBAL;
-	
-	
+
 	/**
 	 * ...
 	 * @author Gedan

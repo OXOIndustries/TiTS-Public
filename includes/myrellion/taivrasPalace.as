@@ -33,19 +33,17 @@ public function taivrasPalaceSquareBonus():Boolean
 	else
 	{
 		//KING NYREA!
-		if(9999 == 0)
+		if(flags["KING_NYREA"] == 1)
 		{
 			output("\n\nA pair of nyrean huntresses in light armor and carrying spears stand outside the gates, staring impassively into the corridor. When you approach, they awkwardly press their open palms to their hearts and bow. <i>“My liege,”</i> one of them says by way of greeting.");
 		}
 		//within 12 hours:
-		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
+		else if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 < GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
 		//13+ hours, BEAT DUNGEON SOME OTHER WAY!
-		else if(9999 == 0) 
+		else if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60*13 >= GetGameTimestamp()) 
 		{
 			output("\n\nThe gates are sealed, and nobody is standing outside. There doesn’t seem to be any way you can get the gate open without a lot of help...");
-			//9999 make sure gate be sealed yo?
 		}
-		
 		//13+ hours, PC hasn’t finished dungeon OR PC got rekt by the Praetorian last time:
 		else
 		{
@@ -369,7 +367,7 @@ public function spankDaShitOuttaPraetorians():void
 	showName("NYREAN\nGUARDS");
 	output("<i>“Enough, enough,”</i> the lead guard says, stumbling to a knee and leaning heavily on her spear. <i>“We yield... no more, please.”</i>");
 	output("\n\nThe other nyrea similarly show their submission, throwing down their spears and kneeling - those who can still manage to stand, anyway. You don’t want to risk staying here too long, or the guards might try and jump you: there’s far too many for you to keep an eye on all of them!\n\n");
-	flags["PRAETORIAN_RESPAWN"] = 12;
+	flags["PRAETORIAN_RESPAWN"] = GetGameTimestamp();
 	variableRoomUpdateCheck();
 	//Back to map. Praetorian fight can’t occur again for several hours.
 	genericVictory();
@@ -389,10 +387,10 @@ public function taivrasGateInteriorBonus():Boolean
 {
 	output("The interior of the palace gates is a well-lit cavern with a high, vaulted roof and several pillars bearing fungal lanterns. A small guard post is set up just past the gates, a little room hollowed out of the rock and outfitted with a dozen or so chairs.");
 	//if KingNyrea: 
-	//9999 - maybe disable these if this is where the praetorian fight actually happens?
-	if(9999 == 0) output(" Several of your nyrea warriors are milling around here, ready to stave off an enemy attack.");
+	//maybe disable these if this is where the praetorian fight actually happens?
+	if(flags["KING_NYREA"] == 1) output(" Several of your nyrea warriors are milling around here, ready to stave off an enemy attack.");
 	//elseif beat Praetorian:
-	else if(9999 == 0) output(" The place has been cleared out, thanks to your forceful entrance.");
+	else output(" The place has been cleared out, thanks to your forceful entrance.");
 	return false;
 }
 
@@ -412,7 +410,7 @@ public function queensFountainBonusShit():Boolean
 	output("This large, circular chamber has passages leading north, south, and east, each a squared-off tunnel with a simple silk curtain acting as a door. The center of the room is dominated by a natural fountain: a caldera of stone eroded in a perfect bowl shape in the floor, and filled with water that trickles down from a crack in the cavern’s ceiling.");
 
 	//if PC is NyreaKing, 12 hours have passed since dungeon victory:
-	if(9999 == 0) output("\n\nQueensguard, Taivra’s personal bodyguard, is standing here. Her shield is sitting on the ground beside her, and both hands are on the hilt of her sword. She favors you with a slight nod, saying <i>“My " + pc.mf("king","queen") + ",”</i> by way of greeting. It looks like she’s recovered nicely from the fight.");
+	if(flags["KING_NYREA"] == 1) output("\n\nQueensguard, Taivra’s personal bodyguard, is standing here. Her shield is sitting on the ground beside her, and both hands are on the hilt of her sword. She favors you with a slight nod, saying <i>“My " + pc.mf("king","queen") + ",”</i> by way of greeting. It looks like she’s recovered nicely from the fight.");
 	return false;
 }
 
@@ -427,7 +425,7 @@ public function queensChambersBonus():Boolean
 		return true;
 	}
 	//if not NyreaKing:
-	if(9999 == 9999)
+	if(flags["KING_NYREA"] == undefined)
 	{
 		output("\n\nThe crystal-coated broodmother is ");
 		//Lustbeat
@@ -489,7 +487,7 @@ public function haremChamberBonusFunc():Boolean
 		output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
 	}
 	//PC is KingNyrea:
-	if(9999 == 0)
+	if(flags["KING_NYREA"] == 1)
 	{
 		output("\n\nYour nyrea harem is lounging around on the cushions and couches. They do nothing to conceal their nudity as you observe them - indeed, some actively flaunt it, running their hands over hefty tits or spreading their pussy-lips invitingly. Others are busy with each other, groping and kissing and grinding their unique sexes against each others’ chitinous bodies.");
 	}
@@ -512,32 +510,32 @@ public function gatewayBonusFunc():Boolean
 //Room 2E17 Throneroom
 public function taivrasThroneBonusFunc():Boolean
 {
-	if(flags["BEATEN_TAIVRA"] == undefined)
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] == undefined)
 	{
 		queenTaivrasThrone(false);
 		return true;
 	}
 	//PC executed Taivra:
-	else if(9999 == 0)
+	else if(flags["KILLED_TAIVRA"] == 1)
 	{
 		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
 	}
 	//PC spared Taivra:
-	else if(9999 == 0)
+	else if(flags["KING_NYREA"] == undefined)
 	{
 		output("Queen Taivra is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
-		if(9999 == 9999) output("your hands");
+		if(flags["FREED_DANE_FROM_TAIVRA"] == undefined) output("your hands");
 		else output("at Dane’s hands");
 		output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
 	}
 	//PC is KingNyrea:
-	else if(9999 == 0)
+	else
 	{
 		//First 12 hours after fight:
-		if(9999 == 0)
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] + 60 * 12 < GetGameTimestamp())
 		{
 			output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
-			if(9999 == 9999) output("your hands");
+			if(flags["FREED_DANE_FROM_TAIVRA"] == undefined) output("your hands");
 			else output("at Dane’s hands");
 			output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
 		}
@@ -1310,6 +1308,7 @@ public function dealWithTaivra(plat190:Boolean = false):void
 		addButton(0,"Next",badDealWithTaivra);
 		return;
 	}
+	addButton(0,"Sex",offerTaivraSexUSloot,undefined,"Sex","Maybe you could offer your body up as an incentive to the randy queen...");
 	if(pc.credits >= 20000) addButton(1,"Credits",offerTaivraCredits,plat190,"Credits","Offer to pay her for the probe. Give her what it’s worth to the company, and you’ll break out even. Everybody likes money, right?");
 	else addDisabledButton(1,"Credits","Credits","You don't have a decent amount of credits to offer.");
 
@@ -1325,6 +1324,18 @@ public function dealTick():void
 	if(flags["TAIVRA_DEAL_ATTEMPTS"] == undefined) flags["TAIVRA_DEAL_ATTEMPTS"] = 0;
 	flags["TAIVRA_DEAL_ATTEMPTS"]++;
 }
+
+//Sex
+//Maybe you could offer your body up as an incentive to the randy queen...
+public function offerTaivraSexUSloot(plat190:Boolean = false):void
+{
+	clearOutput();
+	showTaivra();
+	output("<i>“Surely we can come to some kind of... mutually beneficial arrangement,”</i> you offer, taking a playful step forward and running a hand across your body, emphasizing your crotch and chest for the queen’s perusal.");
+	output("\n\nTaivra stares flatly at you, scowling. <i>“Is that the best you can offer, offworlder? Pleasures of the flesh?”</i> she asks, sweeping a hand across the throne-full of mewling betas around herself. <i>“Surely you realize I have more sex at hand than even a Gold Myr queen. I’m sure you have some very interesting skills, and perhaps unique... parts... meant for pleasure, but I’m not so easily swayed. Hmpf, if you star-walkers all negotiate like that, perhaps you belong on this planet after all.”</i>");
+
+}
+
 
 //Weapons
 //Offer the nyrean queen futuristic weapons from Steele Tech. Imagine going from the literal stone age to rocking modern ray guns. Goodbye, balance of power... Though you’ll be trading your reward for recovering the probe in exchange for the guns.
@@ -1531,9 +1542,9 @@ public function queensguardAI():void
 
 	//Thunder Kick
 	//Rare attack that staggers the PC, like a Wetraxxel.
-	else if(rand(7) == 0) queensGuardThunderKick();
+	else if(rand(5) == 0) queensGuardThunderKick();
 
-	else if(rand(4) == 0) queensguardShieldBash();
+	else if(rand(3) == 0) queensguardShieldBash();
 	//Power Attack
 	//Huge damage sword strike. Chance to stun.
 	else if(!pc.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard();
@@ -1550,14 +1561,14 @@ public function queensguardWeaponToggle():void
 		foes[0].meleeWeapon.attackVerb = "slash";
 		foes[0].meleeWeapon.attackNoun = "slash";
 		foes[0].meleeWeapon.longName = "polished longsword";
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 10;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 4;
 	}
 	else
 	{
 		foes[0].meleeWeapon.attackVerb = "smack";
 		foes[0].meleeWeapon.attackNoun = "smack";
 		foes[0].meleeWeapon.longName = "shield";
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 0;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = -4;
 	}
 }
 
@@ -1648,13 +1659,13 @@ public function powerAttackQueensguard():void
 		output("You try and block, but to no avail! Queensguard’s sword slams into you with bone-crushing force, throwing you back and leaving you reeling.");
 		var damage:TypeCollection = foes[0].damage();
 		damage.add(foes[0].physique() / 2);
-		damage.multiply(2);
+		damage.multiply(1.4);
 		damageRand(damage, 15);
 		applyDamage(damage, foes[0], pc, "melee");
 		if(foes[0].physique()/2 + rand(20) + 1 >= pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned"))
 		{
 			output("\n<b>You’re stunned by the blow!</b>");
-			pc.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
 		}
 	}
 	processCombat();
@@ -1794,6 +1805,35 @@ public function spankedQueensguardsAss():void
 
 //{if Dane: Dane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.}
 
+public function taivraAI():void
+{
+	if(rand(3) <= 1)
+	{
+		if(rand(4) == 0) lustFungus();
+		else if(rand(2) == 0) taivraCockTease();
+		else tentacleCocks();
+	}
+	else
+	{
+		if(!pc.hasStatusEffect("Blind")) pocketSandAttack();
+		else if(rand(2) == 0) taivraSpearSweep();
+		else strikeAndSlash();
+	}
+	//Special Combat Actions:
+	//Slavegasm
+	//Play at the end of each of Taivra’s turns when she has any Lust. Reduces her lust by 10.
+	if(foes[0].lust() >= 10) taivraConstantLustReduction();
+	//Flurry Attack
+	//Taivra makes a Flurry attack after any turn!
+	else taivraBonusAttackShit();
+	//COUSIN DOUCHEBAGGERY
+	//Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
+	if(flags["FREED_DANE_FROM_TAIVRA"] == 1 && flags["RIVAL_GOT_MYR_COORDS_FIRST"] == undefined) cousinDouchebaggery();
+	processCombat();
+
+}
+
+
 //Queen Taivra Abilities
 //Spear Sweep
 //Heavy slashing damage, hits both Dane and the PC
@@ -1802,21 +1842,20 @@ public function taivraSpearSweep():void
 	output("Taivra swings her spear in a wide arc, savagely slashing at you");
 	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and your companion");
 	output("! You ");
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and Dane are");
-	else output("is");
+	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and Dane ");
+	else output("are");
 	if(combatMiss(foes[0],pc))
 	{
 		output(" able to dodge the strike.");
 	}
 	else
 	{
-		foes[0].meleeWeapon.damage += 20;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue += 20;
 		output(" struck by the sweeping spear!");
 		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		foes[0].meleeWeapon.damage -= 20;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue -= 20;
 	}
 	output(" The nyrean queen sneers, twirling the haft around herself is a buzzing ring that cuts the air.");
-	processCombat();
 }
 
 //Strike and Slash
@@ -1827,10 +1866,10 @@ public function strikeAndSlash():void
 	if(combatMiss(foes[0],pc)) output("comes crashing down at your head.\nYou barely sidestep it!");
 	else 
 	{
-		foes[0].meleeWeapon.damage -= 10;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue -= 10;
 		output("comes crashing down on your head, hard.");
 		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		foes[0].meleeWeapon.damage += 10;
+		foes[0].meleeWeapon.baseDamage.kinetic.damageValue += 10;
 		if(foes[0].physique()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned"))
 		{
 			output(" <b>You are stunned!</b>");
@@ -1843,7 +1882,6 @@ public function strikeAndSlash():void
 	{
 		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
 	}
-	processCombat();
 }
 
 //Cocktease
@@ -1865,7 +1903,6 @@ public function taivraCockTease():void
 		if(rand(2) == 0) output("\nDane seems oddly taken with the queen...");
 		else output("\nDane sneers at the queen’s offer, clearly not ready to be her next bottom bitch.");
 	}
-	processCombat();
 }
 
 //Tentacle Cocks
@@ -1873,7 +1910,7 @@ public function taivraCockTease():void
 public function tentacleCocks():void
 {
 	output("Swinging her hips like a whore on strut, Taivra runs her free hand along the lengths of several of her parasitic tentacle cocks. Her betas moan and squirm as the tails probing their sexes move and thrust. <i>“You know you want it,”</i> the queen teases, slapping her ass in a way that makes her taut cheeks and squirming tails quake.");
-	output("\n\n");
+	output("\n");
 	for(var x:int = 0; x < 4; x++)
 	{
 		if(pc.willpower()/2 + rand(20) + 1 >= 26) output("\nYou shrug off the nyrea’s advances.");
@@ -1883,7 +1920,6 @@ public function tentacleCocks():void
 			applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
 		}
 	}
-	processCombat();
 }
 
 //Lust Fungus
@@ -1891,13 +1927,13 @@ public function tentacleCocks():void
 public function lustFungus():void
 {
 	output("Taivra grabs a vial of some pink fungal compound off her belt and hurls it at you.");
-	if(rangedCombatMiss(foes[0],pc)) output("\nYou dodge it and the vial shatters harmlessly against the stone wall.");
+	if(rangedCombatMiss(foes[0],pc)) output("\nYou dodge it, and the vial shatters harmlessly against the stone wall.");
 	else
 	{
 		output("\nThe vial shatters against your chest, bursting into a cloud of pink mist. You cough as the mist billows out, making your eyes water and flesh tingle. <b>You are surrounded by a cloud of lust-drug!</b>");
 		applyDamage(new TypeCollection( { drug: 6 } ), foes[0], pc, "minimal");
 		//4 rounds of lust damage!
-		if(!pc.hasStatusEffect("Aphro Gas")) pc.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_DrugVial","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
+		if(!pc.hasStatusEffect("Aphro Gas")) pc.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_LustUp","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
 		else 
 		{
 			output(" <b>The chemical in your air is getting stronger!</b>");
@@ -1905,7 +1941,6 @@ public function lustFungus():void
 			pc.setStatusValue("Aphro Gas",2,4);
 		}
 	}
-	processCombat();
 }
 
 //Pocket Sand
@@ -1914,7 +1949,6 @@ public function pocketSandAttack():void
 {
 	output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand! <b>You’re blinded!</b>");
 	pc.createStatusEffect("Blind",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-	processCombat();
 }
 
 //Special Combat Actions:
@@ -1922,15 +1956,15 @@ public function pocketSandAttack():void
 //Play at the end of each of Taivra’s turns when she has any Lust. Reduces her lust by 10.
 public function taivraConstantLustReduction():void
 {
-	output("Taivra’s back arches and moans. You cock an eyebrow curiously, until you realize that one of her tentacle cocks is throbbing, squirting seed into one of her beta sluts. The queen gives a sated sigh, looking calmer and more collected even as her bottom bitch’s psuedo-cock erupts in a shower of juice and cum.\n");
-	foes[0].lust -= 10;
+	output("\n\nTaivra’s back arches and moans. You cock an eyebrow curiously, until you realize that one of her tentacle cocks is throbbing, squirting seed into one of her beta sluts. The queen gives a sated sigh, looking calmer and more collected even as her bottom bitch’s psuedo-cock erupts in a shower of juice and cum.");
+	foes[0].lust(-10);
 }
 
 //Flurry Attack
 //Taivra makes a Flurry attack after any turn!
 public function taivraBonusAttackShit():void
 {
-	output("The queen follows through with a quick jab at you, thrusting at your chest.\n");
+	output("\n\nThe queen follows through with a quick jab at you, thrusting at your chest.");
 	attack(foes[0],pc,true,1);
 	output("\n");
 }
@@ -1939,9 +1973,9 @@ public function taivraBonusAttackShit():void
 //Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
 public function cousinDouchebaggery():void
 {
-	output("As you’re engaged with Taivra, you notice movement in the shadows behind her throne. Between warding off spear-thrusts and keeping yourself out of Dane’s berzerker swings, it takes you a moment to realize what’s going on: your scumbag cousin’s gotten free, and [rival.heShe]’s trying to get to the probe! [rival.HeShe] must have picked the lock after Dane wrecked the guards.");
+	output("\n\nAs you’re engaged with Taivra, you notice movement in the shadows behind her throne. Between warding off spear-thrusts and keeping yourself out of Dane’s berzerker swings, it takes you a moment to realize what’s going on: your scumbag cousin’s gotten free, and [rival.heShe]’s trying to get to the probe! [rival.HeShe] must have picked the lock after Dane wrecked the guards.");
 	output("\n\nShit! You try and push forward to stop [rival.himHer], but the damn bug-queen almost spears you through the chest for your troubles. She forces you back with a flurry of strikes, refusing to let you anywhere near her throne... even as [rival.name] plants [rival.hisHer] hand on the scanner and activates it. DAMMIT!");
-	output("\n\nYou cousin flashes you a shit-eating grin as the probe’s coordinates download onto [rival.hisHer] Codex. " + chars["RIVAL"].mf("Jack gives you a sarcastic salute","Jill blows you an over-acted kiss") + " before leaping off the back of the throne and scampering off. Looks like you’re getting left in the dust again...\n");
+	output("\n\nYou cousin flashes you a shit-eating grin as the probe’s coordinates download onto [rival.hisHer] Codex. " + chars["RIVAL"].mf("Jack gives you a sarcastic salute","Jill blows you an over-acted kiss") + " before leaping off the back of the throne and scampering off. Looks like you’re getting left in the dust again...");
 	flags["RIVAL_GOT_MYR_COORDS_FIRST"] = 1;
 	//[Next] //back to fitan
 }
@@ -1986,6 +2020,19 @@ public function whupTaivrasAss():void
 
 	//[Fuck Taivra] [Kill Taivra] [Subjugate] [Leave]
 	//Any option gets you a Taivra’s Spear. Killing Tairvra gets you a Reaper Mk. I Shield Generator. Regardless, Steele will have the probe taken into town for Steele Tech to retrieve it - get 20,00 Credits. Item descripts follow.
+	clearMenu();
+	if(pc.lust() >= 33) 
+	{
+		if(pc.hasGenitals()) addButton(0,"Fuck Taivra",fuckTaivra,undefined,"Fuck Taivra","Take your frustrations out on the nyrean queen. It’s the least you deserve for conquering her and her people.");
+		else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You need genitals to fuck the Queen.");
+	}
+	else addDisabledButton(0,"Fuck Taivra","Fuck Taivra","You're not aroused enough to consider this.");
+	addButton(1,"Kill Taivra",killTaivraYouMonster,undefined,"Kill Taivra","The nyrea have been a constant threat on this planet, and would have done far worse. Kill the queen to keep her and her people from bothering you - and any other offworlder - ever again.");
+	//Subjugate
+	//PC must have either read the nyrea codex or talked to Seifyn about Queen Taivra. Must have solo’d Queensguard and Taivra.
+	if(CodexManager.entryViewed("Nyrea") || flags["SEIFYN_TAIVRA_TALK"] == 1) addButton(2,"Subjugate",subjugateQueenTaivra,undefined,"Subjugate","You know how the nyrea operate - especially Queen Taivra, it seems. Were your positions reversed, she’d have added you to her harem; maybe you should add the queen to yours? To the victor go the spoils, and you just single-handedly beat down her and her bodyguard.");
+	else addDisabledButton(2,"Subjugate","Subjugate","You don’t know enough about the nyrea to try and seize control here.")
+	addButton(14,"Leave",leaveTaivraLikeABaws,undefined,"Leave","You don’t need anything else from the nyrea. Take your leave.");
 }
 
 //Leave
@@ -2002,6 +2049,7 @@ public function leaveTaivraLikeABaws():void
 	output("\n\n<i>“Have your people take the probe into the village. My company will retrieve it there,”</i> you instruct.");
 	output("\n\nYou give the queen a curt nod and stride out of the room, making your way back out of the nyrean palace and back to the deep caves.");
 	output("\n\nTime to see what the next planet has in store!\n\n");
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
 	genericVictory();
 }
@@ -2019,8 +2067,10 @@ public function killTaivraYouMonster():void
 	output("\n\n<i>“I could not have picked a worthier foe,”</i> she says, barely a whisper. <i>“Do as you will.”</i>");
 	output("\n\nA moment later, and the deed is done. You rip your spear from Taivra’s chest and help yourself to the queen’s other belongings: her shield belt and the gemstones on her belt. Queensguard sobs quietly, cradling the body of her fallen ruler as you take what you want and depart. <i>“Have the probe brought to town, or I’ll come back and take it myself,”</i> you command. After all, Steele Tech is willing to pay a premium to recover them, apparently. None of the remaining nyrea dare to disturb you as you stride out of the dungeon, back onto the trail of your scumbag cousin.\n\n");
 	flags["KILLED_TAIVRA"] = 1;
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
-	//9999 add shield belt and satchel to loot, then watch the game engine implode.
+	foes[0].inventory.push(new ReaperArmamentsMarkIShield());
+	foes[0].inventory.push(new GemSatchel());
 	genericVictory();
 }
 
@@ -2034,10 +2084,12 @@ public function fuckTaivra():void
 	output("\n\n<i>“I suppose you’ve earned it,”</i> the queen admits, beckoning one of her submissives over to tend to Queensguard. She stands after that, geting pushing the tip of your spear out of the way. <i>“I’ll come willingly. To my chambers, then?”</i>");
 	output("\n\nOh, no. You want every last one of Taivra’s followers to see what happens when you get between a Steel and [pc.hisHer] prize. You grab the queen’s wrist and twist her around, shoving her down onto the dias at the foot of her throne. She grunts, biting back a yelp of surprise as she’s forced down, and your hands grab the hem of her mail panties. One good yank and she’s bared to the air, her full cheeks swaying and a forearm-length shaft of pink ovipositor dangling between her legs. You grin, seeing a dark ring of asshole winking at you between her cheeks, though no feminine sex in sight");
 	//if read codex:
-	if(9999 == 0) output(", as you would expect for her race");
+	if(CodexManager.entryViewed("Nyrea")) output(", as you would expect for her race");
 	output(". She gives you a darkly reproachful look over her shoulder, but does not resist as you decide just how to take your pent-up lusts out on the amazonian insect...");
 	processTime(4);
-	//9999 choose fuckmethod!
+	clearMenu();
+	if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
+	addButton(1,"Take Tentacles",takeTentaclesForTaivra(),undefined,"Take Tentacles","Take Taivra’s tentacles in every hole. Get the most out of all those wriggling parasites attached to her hind end.");
 }
 
 //Fuck Her Ass
@@ -2133,6 +2185,7 @@ public function fuckTaivrasAss():void
 	processTime(30);
 	pc.orgasm();
 	flags["FUCKED_TAIVRA"] = 1;
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	genericVictory();
 }
 
@@ -2197,6 +2250,7 @@ public function takeTentaclesForTaivra():void
 
 	output("\n\nTime to find out what your dad has in store for you next!\n\n");
 	flags["FUCKED_BY_TAIVRA"] = 1;
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//[Next]
 	genericVictory();
 }
@@ -2224,6 +2278,7 @@ public function subjugateQueenTaivra():void
 	output("\n\n<i>“We’ll talk later, [pc.name],”</i> she says quietly. <i>“I can only imagine how eager you are to... claim your prizes.”</i>");
 	output("\n\nMore than one prize, too. After all, you’ve got the coordinates you need for the next leg of your quest!\n\n");
 	flags["KING_NYREA"] = 1;
+	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	genericVictory();
 }
 
@@ -2427,3 +2482,857 @@ public function soloTaivraBadEndPart2():void
 	badEnd();
 }
 
+//Post-Probe Resolution
+//9999
+//Once the PC leaves the palace for the first time after defeating Taivra...
+
+//if PC isn't NyreaKing:
+//>Seal the gates again. No guards, no way to get back into the palace. Just like the Tether. 
+//>Remove Seifyn's [Taivra] talk. Replace with [Leadership]
+
+//if PC IS the NyreaKing:
+//>Remove the princess from the harem chamber. She's off plotting your and her mother's downfall.
+//>Queensguard added to 2C13 after a few hours. 
+
+//Either Way:
+//>Add the "Probe Reclaimation" event when the PC enters the airfield for the first time:
+
+
+//[Leadership] (ded Taivra vers.) 
+//Replace Seifyn's [Taivra] talk.
+//Ask Seifyn what's become of the village since you defeated Queen Taivra.
+
+public function leaderShipDeadTaivraConvo():void
+{
+	clearOutput();
+	showSeifyn();
+	if(flags["KILLED_TAIVRA"] == 1)
+	{
+		output("<i>“So, who’s in charge these days?”</i> you ask, glancing at the ground of armed huntresses near the middle of the small village.");
+		output("\n\nSeifyn sighs heavily, wrapping her arms around herself. <i>“Taivra’s eldest daughter. She’s the heir, after all... but she’s locked herself in the palace, surrounded by her elite guard. Barely comes out now, except to send soldiers to take mates or bring in food.”</i>");
+		output("\n\nSounds like the princess has become something of a recluse since your door kicking adventures. <i>“So, how does she stack up to Taivra?”</i>");
+		output("\n\n<i>“I wouldn’t know. She hasn’t... chosen me yet. But I hear she’s brutal, a real tyrant. I’m just trying to keep my head down, [pc.name]. I don’t want any trouble from her. I know I miss her mom, though. Wish it was one of mine that was on the throne... at least then I’d probably get to live in the palace. Definitely wouldn’t have to get mated again. Would be nice to choose my own for once, but I guess that’s not happening any time soon.”</i>");
+		output("\n\nSiefyn sighs wistfully and rests her chin on her hands. <i>“Anyway... something else I can help you with, [pc.name]?”</i>");
+	}
+	//[Leadership] (Live Taivra vers.)
+	else
+	{
+		output("<i>“So, how’s the queen doing?”</i> you ask with a grin, shooting a glance to the sealed doors of the palace.");
+		output("\n\n<i>“You mean after you kicked her ass?”</i> Siefyn says, crossing her arms. <i>“She told us what happened. Gathered everyone up, said offworlders made a fool of her. Hurt her bodyguard. Something told me you might have been the one.”</i>");
+		output("\n\nYou ");
+		if(pc.isMischievous()) output("shrug noncommittally. Maybe it was, maybe it wasn’t.");
+		else output("admit that it was, yes.");
+		output(" Siefyn nods slowly. <i>“Well, she’s locked herself in her palace now. Says she doesn’t want anything else to do with off-worlders. I can see why, but... we need the trade. I don’t want to be the one with sticks and stones when the myr have magic guns from space.”</i>");
+
+		output("\n\n<i>“So Taivra doesn’t want you trading us now?”</i>");
+
+		output("\n\n<i>“No, but...”</i> Siefyn chuckles, flicking back a stray lock of hair. <i>“You’re way too valuable to turn away.”</i>");
+
+		output("\n\nUh-huh. You’re sure that’s what she says to all the star-walkers...");
+
+		output("\n\nSiefyn sighs wistfully and rests her chin on her hands. <i>“Anyway... something else I can help you with, [pc.name]?”</i>");
+	}
+	//[Next]
+	processTime(5);
+	seifynTalkMenu(leaderShipDeadTaivraConvo);
+}
+
+//Probe Reclamation
+//When PC first makes it to the DMZ airstrip after the dungeon. Find out Shade’s your half-sister if she’s still your friend.
+public function probeReclamationShit():void
+{
+	clearOutput();
+	showName("STEELE\nTECH");
+	output("With your victory over the nyrea - and your cousin - fresh on your mind, you start crossing the tarmac with a relative skip in your step, eager to see what the next leg of your voyage has in store for you.");
+	output("\n\nYou pause, though, when you see a Steele Tech freighter parked on the airfield beside your own vessel. Its cargo doors are down, and a pair of crewmen in the familiar black and yellow company jumpsuit are inspecting a familiar glossy-black hunk of space junk: your Dad’s probe! The company made good time in retrieving it, no doubt about it. You walk over and give the two burly men a wave, and head over to check in with them.");
+	output("\n\n<i>“Ah, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of the pilots says with a grin, tipping his cap to you. <i>“Good work finding this old bird. The techs back at headquarters will have her shooting through the stars again in no time. Probably rewire her as an explorer or comm relay, I reckon.”</i>");
+	output("\n\nThat’s good to hear. If there’s one thing that makes Steele Tech great, its that the company never lets anything go to waste. The company pilots chuckle when you mention it, and one jokes that he’s fairly certain ");
+	if(9999 == 9999) output("that starship next to their must be old Tricky Vic’s original");
+	else output("that old Tricky Vic’s original is still flying out there, somewhere");
+	output(". You just grin.");
+
+	output("\n\n<i>“Alright, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of them says, taking out Codex just like yours. <i>“There’s an outstanding bounty on these old probes, as you know. Let’s get you paid up, huh?”</i>");
+
+	output("\n\nA moment later and your own device beeps happily, alerting you to a new deposit of <b>20,000 credits</b> into your bank account. Score!");
+
+	output("\n\nYou thank the pair and turn to leave.");
+	pc.credits += 20000;
+	processTime(4);
+	
+	clearMenu();
+	//{if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map}
+	if(9999) addButton(0,"Next",shadeHalfSisterShit);
+	else addButton(0,"Next",mainGameMenu);
+}
+
+//Unlock Uveto on GalMap, if it wasn’t already.
+public shadeHalfSisterShit():void
+{
+	clearOutput();
+	showShade();
+	output("...and just save yourself from face-planting into a familiar pair of breasts barely held back by a ballistic vest.");
+	output("\n\n<i>“Woah, easy there,”</i> Shade laughs, giving you a gentle push out of her personal space. <i>“Going somewhere, kid?”</i>");
+	output("\n\nYou laugh off the near-collision and say that you just found one of your dad’s probes, loaded with the coordinates you need for the next leg of your quest.");
+	output("\n\n<i>“Well, good for you,”</i> she smiles with a playful punch on your shoulder. <i>“Guess that means you’re done with this war-torn shithole of a planet, huh?”</i>");
+	output("\n\n<i>“It’s not that bad,”</i> you riposte, smiling at the amazonian cat-girl. <i>“It’s got some good people on it.”</i>");
+	output("\n\nShe rolls her eyes at the obvious flirtation, but her arms settle under her impressive bust, subtly emphasizing the way her button-up shirt strains around it. <i>“Yeah, well, looks like I’m off, too. ");
+	//Helped capture Shade
+	if(flags["KARA_DEFEATED_WITH_SHADE"] == 1) output("Now that I’ve nailed that blue-haired bounty of mine, there’s not much reason to stick around. Turns out the locals don’t want off-world hunters rounding up military deserters like I’d thought.");
+	else output("I just can’t find that stupid blue-haired bombshell I’m supposed to be tracking. Lost track of how long I’ve been looking for her, now... Guess I’ll phone it in.");
+	output(" I think I’ve earned some R&R after all this time, maybe I’ll head back home for a couple weeks.”</i>");
+
+	output("\n\n<i>“Home?”</i>");
+
+	output("\n\n<i>“Uveto VII. I’ve got a house there, a little place is Irestead I managed to buy. I sort of fell in love with the planet the first time I was there, decided to put down roots... at least as much as somebody in my line of work can. ");
+	//if Lovers: 
+	if(flags["SEXED_SHADE"] == 1) output("You should drop by sometime. I’ll show you around, make you dinner... maybe give you a few reasons to stay a while.");
+	//elseif Fought Kara:
+	else if(flags["KARA_DEFEATED_WITH_SHADE"] == 1) output("You’ve got skills, you know, [pc.name]. You should swing by sometime. I could show you a few things, get you some training at the Stormguard temple. You could be a real badass hunter if you put your mind to it.");
+	else output("If you’re ever on-planet, look me up. I’ll buy you a drink.");
+	output(" My daughter, Astra, lives there, too. I’ll introduce you: something tells me you’d get along." + pc.mf("","You remind me of her quite a bit"));
+	output("”</i>");
+
+	output("\n\nAs she’s speaking, Shade leans aside onto the Steele Tech probe, giving the pair of pilots a respectful nod. They start to return the gesture, right up until the probe bleeps and its screens start glowing.");
+
+	output("\n\n<i>“Uh...”</i> Shade gulps, staring at the probe. <i>“Did I do something?”</i>");
+	output("\n\nOne of the Steele Tech pilots jogs over, pulling his Codex back out. <i>“Hey, weren’t these things only supposed to turn on for you, " + pc.mf("Mr.","Ms.") + " Steele?”</i>");
+
+	output("\n\n<i>“Yeah,”</i> you admit. <i>“Me or anybody with enough of my Dad’s DNA.”</i>");
+
+	output("\n\n<i>“Oh, shit,”</i> Shade says, forcing a chuckle. <i>“That’s a hell of a bug.");
+	if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output(" What, does it think I’m your mom or something?");
+	else output(" What, does it think I’m your long-lost sister or something?");
+	output("”</i>");
+
+	output("\n\nThe company pilot punches a few buttons on his Codex and waves its scanner over the banged-up old probe, mumbling about that specific model of probe and software hiccups. After a moment, though, he scratches his stubbly chin and furrows his brow. You and Shade both look at him expectantly, but rather than assuring you it’s just some random bug in the century-old probe, he pushes another button and turns the scanner towards Shade.");
+
+	output("\n\n<i>“Hey,”</i> Shade scowls. <i>“What gives?”</i>");
+
+	output("\n\nYou feel a knot forming in your gut as the pilot’s Codex beeps at him, its screen flashing in his face.");
+	if(flags["SEXED_SHADE"] == 1) output(" Gulping, you reach over and take your lover’s hand, assuring her it’s probably just a bug... right?");
+
+	output("\n\nAfter a couple more moments, the pilot makes a perplexed grunt and flips the Codex over and hands it to you screen-down. That alone is enough to make you worry - what the hell is going on? You take a peek at the Codex’s screen, where you see a bio-scanner readout showing your ");
+	if(flags["SEXED_SHADE"] != 1) output("kaithrit friend");
+	else output("lover");
+	output(" and all sorts of privacy-invading data: her age, blood type, a racial blurb about kaithrit... and a DNA analysis. Several computer-generated pinpoints cover the analysis, comparing several points on hers to your father’s - and yours. A red data readout in the corner gives what, to your untrained mind, is a meaningless series of compatibility notes summarized in big, bold capitals: <b>Chance of Close Relation: 98.356%</b>. Uh-oh...");
+
+	output("\n\nYou curse your randy father under your breath, suddenly realizing what’s happened");
+	if(flags["SEXED_SHADE"] == 1) output("... and what you’ve done");
+	output(". Why the hell couldn’t he have left a list of all his bastards somewhere!?");
+	//if talked about her history:
+	if(flags["SHADE_TALKED_ABOUT_FAMILY"] == 1) output(" Then again, maybe you should have seen this coming. She did say her father was a wealthy, mystery playboy. Even if she’s a full kaithrit, your dad never spent long as any one race. He could easily have been a cat-boy forty years ago or so, well before he started to get sick...");
+	output("\n\nWith a sigh, you look between the revelatory Codex screen and Shade, sitting against the side of the probe with a hint of concern betrayed on her face. What do you say?");
+	processTime(14);
+	//[Reveal] [Hide]
+	clearMenu();
+	if(flags["SEXED_SHADE"] == 1) addButton(0,"Reveal",revealShadesDad,undefined,"Reveal","Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes. More importantly, though, the two of you have been unknowingly incestuous.");
+	else addButton(0,"Reveal",revealShadesDad,undefined,"Reveal","Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes.")
+	if(flags["SEXED_SHADE"] == 1) addButton(1,"Hide",hideShadesRelation,undefined,"Hide","Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that. Especially if you want to keep your affair with your new-found sister going.");
+	else addButton(1,"Hide",hideShadesRelation,undefined,"Hide","Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that.");
+}
+
+//Reveal
+//Tell Shade the truth. She was able to activate the probe because, like you and [rival.name], she carries your father’s genes. {if fucked: More importantly, though, the two of you have been unknowingly incestuous.}
+//Small +Kindness. Remove Shade from Myrellion.
+public function revealShadesDad():void
+{
+	clearOutput();
+	showShade();
+	output("You take a breath to steel yourself, and hand the Codex to Shade with all the relevant data on full display. She takes it warily, golden eyes scanning across the screen. The corners of her mouth twitch as she reads it, and looks up at you over the top of the screen.");
+	//if Lover!Shade:
+	if(flags["SEXED_SHADE"] == 1) 
+	{
+		output("\n\n<i>“Oh... shit,”</i> she breathes, staring at you with wide eyes. <i>“Is this for real, [pc.name]?”</i>");
+		output("\n\nYou nod slowly. It’s hard to know what to say in a situation like this");
+		if(pc.isMischievous()) output("... other than <i>“Hey, sis, nice to meet you!”</i>\n\nWhich doesn’t earn you anything but a scowl");
+		output(". Shade curses, setting the tablet down on top of the beeping probe. Her gaze drifts from you, and her fingers start to drum on the top of the probe. You try to ask if she’s alright, but when you approach with a comforting hand outstretched, Shade recoils onto her feet and turns away, her coat billowing back behind her.");
+		output("\n\n<i>“I, uh, I need to go,”</i> she says hastily, striding off at just short of a run. You take a step to follow her, but the perplexed pilot puts a hand on your shoulder to stop you.");
+		output("\n\nYou sigh, and let her go. You’re freaking out more than a little bit yourself... what a fucked-up little family your Dad’s left you!");
+		output("\n\nA few moments later, as you’re getting ready to return to your vessel and have said farewell to the crew of the Steele Tech salvage ship, you turn back towards the tarmac just in time to see Shade’s ship launch out of one of the hangers, burning its engines hard as it hurtles into the sky. You sigh: perhaps you should give her some space... then again, she did mention where she was going: her home world of Uveto. If you want to talk things over, that’s where you need to go.");
+		
+		//[Next]
+	}
+	//Else:
+	else
+	{
+		output("\n\n<i>“What the... what the fuck?”</i> Shade breathes, staring at you with wide eyes. <i>“Is this thing for real, kid?”</i>");
+		output("\n\nYou nod. <i>“The Codex is loaded with the best bio-scanners in the galaxy. It looks like we’re...”</i>");
+		output("\n\nShe rolls her eyes and laughs, cutting you off with an almost maniacal cackle. <i>“Of course. Fuckin’ of course we are, why not? After all, my mom always said my father was some big-shot rich playboy. I just never figured... well, I’d have thought he’d have been a kaithrit, at least.”</i>");
+		output("\n\nYou shrug, explaining that your Dad had a knack for transforming into different species");
+		if(pc.race() != pc.originalRace) output(", much like yourself");
+		output(". He spent time as almost every race and sex at some point, you suppose he must have been a kaithrit at some point.");
+
+		output("\n\nShade shakes her head and laughs again. <i>“When I met you, I thought, ‘no way [pc.heShe]’s THAT Steele... no way I just met a space trillionaire. And now you’re my " + pc.mf("brother","sister") + ", is that it? Shit.");
+		//if PC defeated Kara:
+		if(flags["KARA_DEFEATED_WITH_SHADE"] == 1) output(" Well, I should have know. I guess fighting skill must run in the family, huh?”</i> she grins. <i>“You and your... our... dad are adventurers, and I’m a bounty hunter.”</i>");
+		else output(" Hey, at least I wasn’t drunk enough to try and fuck you back in the bar. Can’t say I didn’t think about it... how gross would that have been?”</i> she says with a nervous chuckle, running a hand through her silver hair.");
+
+		output("\n\nIt’s a shame she never got a chance to meet her father, but after all you’ve been through with your cousin, you have to admit it’s nice to find a Steele that doesn’t want to fuck you out of your fortune. Of course, the moment you think it, a pang of paranoid flits through you. Shade wouldn’t...");
+		output("\n\n<i>“Don’t worry,”</i> she laughs when you start to ask her. <i>“I don’t want your damn money, junior. Have you seen my ship? I do pretty well for myself on my own, and I prefer it that way. Wouldn’t have much use for a CEO spot on some mega-corp’s board. Too much responsibility. I prefer the free-wheeling hunter’s life myself, but good luck finding the rest of your probes. I’m sure... I’m sure our father wanted you to have it. Otherwise he would have at least introduced himself at some point, right?”</i>");
+		output("\n\nShe almost seems sad when she says it, prompting you to reach out and put a hand on her shoulder. She flashes you a smile, and her green tail rubs at your [pc.leg]. The pair of Steele Tech pilots haul the probe up and into the hold of your ship, giving you a respectful nod as they retreat into their starship. You and Shade are left standing on the tarmac, you arm still wrapped on her shoulder.");
+		output("\n\n<i>“I think I’m going to need a little time to parse this,”</i> she admits a few moments later, sighing and stepping out of your grasp. <i>“I’m glad you told me, though. This is... I never thought I’d know who my father was. I always wondered, though. And wondered if I had any siblings out there, somewhere. It’s nice to know.");
+		if(flags["KARA_DEFEATED_WITH_SHADE"] == 1) output(" Especially that my " + pc.mf("brother","sister") + " is such a badass!");
+		output("”</i>");
+
+		output("\n\nShe gives you a smile and stuffs her hands into her coat pocket, starting to walk towards the hangar. <i>“I’m gonna... gonna take some time. Get my head around this on the way back home. Come by some time, I’ll... I’ll make you dinner. We can get to know each other a little better. You can tell me about my father, maybe.”</i>");
+
+		output("\n\nYou tell her that you’d like that. Hopefully you’ll see her again soon.");
+		output("\n\nShe waves as she walks, disappearing into the crowd of myr bustling about. Not long after, you see a huge, purple starship taking off from one of the hangers, blasting off into orbit. You shield your eyes from the brilliant burn of the engines and wave, sending her off on her homeward journey.");
+		output("\n\nAnd you’ve got places to be, too. Time to track [rival.name] down.");
+	}
+	//[Next]
+	flags["TOLD_SHADE_SHES_YER_SIS"] = 1;
+	processTime(16);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Hide
+//Don’t tell Shade what your employee’s uncovered. No need to rock the cat-girl’s boat like that. {Especially if you want to keep your affair with your new-found sister going.}
+//+Small Misch. bonus. Remove Shade from Myrellion.
+public function hideShadesRelation():void
+{
+	clearOutput();
+	showShade();
+	output("You make a few over-acted <i>“hmm”</i>s and <i>“aahh”</i>s, staring at the screen with furrowed brows. After a few moments, you make a grand shrug and hand the Codex back to its owner, telling him to take the probe aboard his ship.");
+	output("\n\n<i>“So...?”</i> Shade asks, hopping off the old black probe as the pilots start pushing it on its hover-platform and into the cargo hold of their ship. Her gaze turns suspiciously towards you.");
+	output("\n\nYou flash her a disarming smile. <i>“Like I figured, the probe’s just old and bugged out,”</i> you lie. <i>“Couldn’t tell my DNA from a nyrea’s. We’ll get it fixed up before sending it back out.”</i>");
+	output("\n\nShe nods slowly. You’re not sure if your ruse is working, but thankfully the cat-girl doesn’t challenge your story. Instead, she shoves her hands into her duster’s pockets and laughs. <i>“Well, that’s why I don’t buy much from Steele Tech. No offense.”</i>");
+	output("\n\n<i>“None taken,”</i> you say, trying not to sigh with relief.");
+	output("\n\nShade winks at you and turns towards the northern tarmac. <i>“Alright, I’m out of here, [pc.name]. My offer stands, if you’re ever on Uveto. I’m heading back now, I guess. Good luck with your probe, kiddo.”</i>");
+	output("\n\nShe waves over her shoulder, and her cunt-like tail winks its pink slit alluring as she walks.");
+	output("\n\nYou watch her go, until she’s lost in the crowd of myr on the tarmac. After that, you let go of a long-held breath and wipe your brow. You’re not sure if Shade believed you, but for now, you’ve got other things to worry about: there’s a new leg of your journey ahead of you!");
+	processTIme(7);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dungeon Followup: Kingshit Nyrea
+//Return to the Palace
+//Play the first time the PC enters the dungeon after 12 hours have passed. Gains the Nyrean Monarch perk (aka KingNyrea).
+public function nyreaKingReturnGreeting():void
+{
+	clearOutput();
+	output("As you make your way back into the nyrean palace, you see several of Taivra’s praetorian soldiers stepping out of their guardpost, all carrying their barbed longspears with crimson capes fluttering behind them. For a moment, you’re afraid that the queen’s intending to go back on her word - that her soldiers mean to challenge you again - until the group of soldiers slip onto their knees before you, bowing low.");
+	output("\n\n<i>“Queen Taivra sent word of your agreement throughout her domain,”</i> their leader says. <i>“All her subjects know to treat you as if you were the queen herself. We are at your service, my " + pc.mf("lord","lady") + ".”</i>");
+
+	output("\n\nNow that’s more like it. Certainly a step up from your first meeting with these soldiers... though you don’t recognize any from before. Clearly Taivra was none too pleased with their performance. You command the new gate guards to rise, and direct you to their mistress. You’re told you can find the queen in her throne room, and that she’ll no doubt be expecting you. Hopefully, now that things have calmed down after your cousin’s escape, you’ll have the chance to take advantage of your new privileges...");
+
+	//[Next]
+}
+
+//Nyrean Monarch
+//Grants a 10% tease bonus against enemy nyrea, and reduces the chance of finding hostile nyrea.
+
+//Get Royal Spoils
+//Play when PC enters the palace after first return trip. Up to 1/week. Gibs credits, based on level. Not a huge resource, but it’ll pay off for not being a violent prick all the time! Maybe 100/Level?
+//Stockpiles weekly gains until PC picks them up.
+public function getRoyalSpoils():void
+{
+	clearOutput();
+	showName("ROYAL\nSPOILS");
+	output("<i>“Ah, my " + pc.mf("lord","lady") + ",”</i> a voice says as you enter the palace proper. You turn and see the captain of the gate guard jogging towards you. She gives you a respectful nod and produces a small pouch from her belt. <i>“Queen Taivra asked us to give you this when you arrived. Our mines and traders have been working tirelessly since your last visit. Prosperity reigns throughout the queenship, and we’re only expanding. Taivra has, of course, set aside some of our growing wealth for her mate.”</i>");
+	output("\n\nYou take the pouch, and find several small green crystals jostling around inside. This will certainly fetch a tidy profit somewhere - maybe even in your little village down the tunnel. Smiling at the guard-captain, you pocket your royal gains. It’s good to be the " + pc.mf("king","queen") + "!");
+
+	//PC gets a satchel of gemstones worth whatever, same item descript as the one found in Taivra’s chambers. [Next] into palace map.
+	pc.credits += pc.level*100;
+}
+
+//Repeat Gloryhole Shenanigans
+//Add [Use Gloryhole] to Queen Taivra’s chambers. PC can re-use the goo-girl gloryhole from before. No boss battle this time! :P
+//Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.
+public function useRepeatGloryhole():void
+{
+	clearOutput();
+	showIncuGoo();
+	output("Given your arrangement with Taivra, you figure you’re well within your rights to enjoy everything your subterranean palace has to offer. Especially the perfectly round, smooth stone gloryhole beside the royal bed, glistening with green goo. You slip off your [pc.gear] and approach the hole, grabbing your prick as you walk. You know the girl on the other side is thoroughly eager to do her duty behind the gloryhole, and you’re all too happy to enable it. With a few preparatory stokes, you bring your [pc.cock] up to full size and ");
+	//if short: 
+	if(pc.tallness < 60) output("grab the pillows off of the bed, giving yourself enough height to just barely get your wang into the head-height hole");
+	//if normal size:
+	else if(pc.tallness < 80) output("guide your schlong into the waiting hole");
+	//f bigPC:
+	else
+	{
+		output("slip down ");
+		if(pc.isNaga()) output("into a serpentine coil");
+		else if(pc.hasKnees()) output("onto your knees");
+		else output("as low as you can go");
+		output(" to align your prick with the hole, and slide on in");
+	}
+	output(".");
+
+	output("\n\nThe stone is cold, but it’s smooth and wet, the remnants of what could be years of sexual excess and lube smeared across the tunnel. You only need to endure the rocky gloryhole for a moment, though, before your [pc.cock] slides into the green substance waiting on the other side. Whatever it is, it’s delightfully warm and stickily wet, just like ");
+	if(celiseIsCrew()) output("fucking Celise");
+	else output("sliding your tool into a bowl of heated-up yoghurt");
+	output(". The voice on the other side makes a delighted squeal, and you’re treated to a faint sucking sensation around your member, like the substance is drawing you in.");
+
+	output("\n\n");
+	//if not fought goo: 
+	if(9999 == 0) 
+	{
+		output("Is that a goo-girl on the other side? It has to be, you tell yourself");
+		if(9999 == 0) output(" - probably a ganrael in the queen’s service");
+	}
+	else output("You smile as the familiar sensation of the ganrael broodmare’s gooey body surrounds you");
+	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of [pc.oneCock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
+	output("\n\n");
+	//if not fucked before:
+	if(9999 == 0) 
+	{
+		output("<i>“Wow, this feels totally different!”</i> a voice on the other side giggles, quivering wonderfully around your dick. <i>“Did you, like, get a whole new cock? Just for me, right?”</i>");
+		output("\n\nShe still thinks you’re somebody else - the queen, you suppose! You try not to laugh as the goo-girl squirms excitedly around your prick, exploring every inch of her <i>“queen”</i>’s new shaft.");
+	}
+	//elseif fucked before: 
+	else
+	{
+		output("<i>“Oh, hi [pc.name]!”</i> the goo-girl squeals happily from the other side, her amorphous body exploring your prick as a means of identification. <i>“Mmm, just relax and let me take gooood care of you - Queen Taivra says I’ve gotta make sure you fertilize all of her precious little eggs floating around in here if you fuck me, so go ahead and blast me with spunk!”</i>");
+	}
+	output(" All you need to is hang on, grabbing at the smooth stone walls to steady yourself as pleasure hammers through you");
+	if(pc.legCount > 1) output(", making your [pc.legs] tremble");
+	output(". Taivra is clearly leading the good life if she’s got every day access to treatment like this!");
+	pc.cockChange();
+
+	output("\n\nYour [pc.hips] start to move, thrusting into the gooey clocksleeve on the other side of the gloryhole. The green girl coos happily, making a series of lusty moans to the rhythm of your pumping thrusts. <i>“Oooh, you’re just treating me soooo right!”</i> she murmurs, barely audible over the wet squelches of her body slurping up your cockflesh. <i>“Mmm, yeah, gimme all that creamy cum...”</i>");
+
+	output("\n\nThe way she’s handling you, that’s going to be damn soon! You grit your teeth and try and hold back as long as you can against her slimy caresses, but this gloryhole goo is a supremely talented cocksucker who’s using her whole body to pleasure your [pc.cock]. You’d love to get a look at her blissed-out face about now, but have to content yourself with listening to her sultry, wet sounds echoing through the little tunnel.");
+	output("\n\nA few minutes of the goo-girl’s tender caresses later, and you’re ready to blow - and she knows it! <i>“Gonna fill me with [pc.cum] now?”</i> she coos excitedly, wiggling wetly all over your length. <i>“C’mon, I’m soooo ready for it!”</i>");
+	output("\n\nWell, if she’s going to ask so nicely... you might as well give the squirming goo-girl what she wants! You grunt and dig your fingers into the stone wall, announcing your impending orgasm with a feral growl of pleasure. The goo squeals as the first spurt of your [pc.cum] squirts into her, ");
+	if(pc.cumQ() < 50) output("leavig a little cloud of spooge billowing through her liquid-like body");
+	else if(pc.cumQ() <= 1000) output("bloating her gooey body with a massive dose of [pc.cum]! She moans happily, jiggling up and down your shaft as you pump her full of cum. A normal girl would be drooling your spunk out around your cock, but a goo... she just drinks it all up!");
+	//if hugecum: 
+	else output("and again and again until the goo must be absolutely bloated with spooge - and you keep on going! She yelps and squirms around as you pump her with cum, enough to have made a normal girl look pregnant; as a goo, though, you imagine she’s just swelling up with all the extra fluid!");
+
+	output("\n\nWith a heavy sigh, you step back from the gloryhole and drag your [pc.cock] out from the goo-girl’s insides in a wet, musky mess of goop and cum. <i>“Thanks for that, [pc.name]!”</i> the girl calls out from inside her compartment, making series of wet squelches as she adjusts to the extra fluid floating inside her. <i>“Mmm, I love the taste of your cum! Gimme some more, like, real soon, okay?”</i>");
+
+	output("\n\nYou’re sure you will. For now, though, there’s a big, soft bed calling your name. You dry yourself off and crawl in, content to bask in the afterglow for a while...");
+
+	//[Next] //Pass ~1 hour
+	processTime(60);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Queen Taivra Repeat Scenes
+//Unlock after ~12 hours post-dungeon. Taivra is found in her throne room, naturally.
+public function taivraRepeatScenes():void
+{
+	clearOutput();
+	showTaivra();
+	//Some of Taivra’s sexytimes revolve around her having fertile eggs or not. If Steele’s cock-fucked her within the last 24 hours, she does; else, she has a 25% chance of having fertilized eggs. Non-fertile eggs implanted in the PC dissolve like normal, fertile ones go through Renvra’s pregnancy again.
+	//Greeting Taivra
+	output("You approach Taivra, stepping up onto the dias of her throne and between the tangle of limbs surrounding her. The dozen betas writhing around her moan softly, some reaching out to brush your [pc.legOrLegs] or thrusting their bare chests out at you, trying to entice you to join them. Taivra tsks her tongue at the rowdy bunch, and the mass of tentacle cocks thrusting into their ovipositors move a little bit faster, surrounding you in the wet, sultry sounds of sex.");
+
+	output("\n\nTurning your attention back to the queen. you find her relaxed on her throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]. Anything I can do for you, my mate?”</i>");
+	//Respect 41-70: [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up from her throne to brush a hand across your cheek. <i>“Is there something you desire, my mate?”</i> //Respect 71+: <i>“Welcome back, my love,”</i> she purrs, beckoning you closer. When you slip up beside her, Taivra reaches up from her throne to cup your cheek and pull you down into a passionate kiss. <i>“Care to sit with me a while, or was there something you desired?”</i>}");
+	
+	if(rand(10) == 0) taivraMidConvoEvents();
+	//[Talk] [Chambers] [Throne Sex] [Appearance]
+	processTime(2);
+	clearMenu();
+	//9999
+	if(pc.lust() >= 33) addButton(0,"Chambers",goToTaivrasChambersForSex,undefined,"Chambers","Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting. (This means sex!)");
+	else addDisabledButton(0,"Chambers","Chambers","You're not really interested in a bedroom romp at the moment.");
+	addButton(2,"Appearance",queenTaivraAppearance,undefined,"Appearance","Take a gander at the queen.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Mid-Convo Events
+//Play randomly when going back to Taivra’s menu. Only a 10% chance to play anything special at all.
+public taivraMidConvoEvents():void
+{
+	//Bust a Tentacle Nut (75%)
+	if(rand(4) <= 2)
+	{
+		output("\n\nAs you’re talking with the queen, you notice her ever so slightly tense up. One of the sluts at her foot arches her back and desperately stifles a cry of pleasure, and you watch as a white paste burbles up from the X-shaped slit of her ovipositor. Taivra makes a slight, relieved sigh and draws her spent tentacle from her beta’s cockslit, letting the well-bred bitch stumble off in a leaking, moaning mess.");
+		output("\n\nAnother beta is quickly marshalled in by one of the queen’s soldiers, and quickly finds herself squirming on the ground as the queen’s freshly-milked tentacle snakes its way down her egg-tube. Taivra flashes you a slight smile as she penetrate the beta, leaning back in her throne and crossing her legs.");
+	}
+	//Birth Announcement (20%)
+	else if(rand(5) == 0)
+	{
+		output("\n\nAs you’re talking with Taivra, you hear a set of booted feet clattering in behind you. You cast a glance back, and see a young nyrean woman in Praetorian armor with a stone tablet tucked under her arm approaching. <i>“My queen. My {lord/lady},”</i> she says, bowing low to you and your mate. <i>“I’ve just gotten word from ");
+		if(rand(3) == 0) output("the village");
+		else if(rand(2) == 0) output("the harem chamber");
+		else output("one of the guards");
+		output(": a brood of royal eggs have just hatched. All healthy and nursing well.”</i>");
+
+		output("\n\nTaivra smiles slightly. <i>“Ah, good. Let the bearer name them, as always. And send her a pouch of silver for their care.”</i>");
+		output("\n\n<i>“Very good, m’lady,”</i> the herald says, bowing again and departing.");
+		output("\n\nThe queen sighs and runs a hand along the bulge of her chain bikini bottom, as if to congratulate her ovipositor on another successful clutch out of so many you can barely imagine. <i>“My apologies, [pc.name]. Was there something else you wanted to say?”</i>");
+	}
+	//Battle Report (5%)
+	else if(rand(100) <= 4)
+	{
+		output("\n\nAll of a sudden, you hear the clanking of armor on the stone floor behind you. You take a peek over your shoulder, in time to see ");
+		if(flags["MET_CERRES"] == 1) output("Cerres");
+		else output("Queensguard");
+		output(" marching towards the throne.");
+
+		output("\n\n<i>“Queen Taivra. [pc.name],”</i> she says, snapping a rigid salute. <i>“A band of scouts just returned from the eastern depths. They were ambushed by several ");
+		if(rand(4) == 0) output("ganrael");
+		else if(rand(3) == 0) output("nyrea from another village");
+		else if(rand(2) == 0) output("wetraxxel warriors");
+		else output("myr renegades");
+		output(". Our scouts only took light casualties, but were forced to flee back to the city.”</i>");
+
+		output("\n\nTaivra scowls. <i>“Again? Our enemies seem to be clawing at the gates more and more, [pc.name]. Queensguard, assemble a company of your best warriors and have the scouts retrace their steps. Find the enemy, and destroy them.”</i>");
+
+		output("\n\n<i>“None shall escape my wrath,”</i> the knight promises, turning on a heel to leave.");
+
+		output("\n\n<i>“And Cerres,”</i> Taivra says, stopping her favored warrioress in her tracks. <i>“Be careful.”</i>");
+		output("\n\n<i>“I always am, my queen,”</i> she says firmly before stepping out of the throne room.");
+		output("\n\nCurious, you ask Tiavra if attacks like that are common. She shakes her head sadly, rapping her fingers on the haft of her spear. <i>“More than I’d like, but... no. Most denizens of the deep are loners, not prone to working together like that. Few can challenge my soldiers.”</i>");
+		output("\n\nThat’s good, you suppose.");
+		output("\n\n<i>“We can talk tactics and military matters another time, my mate. In the meantime, did you have anything else to talk about?”</i>");
+	}
+}
+
+//[Appearance]
+//Take a gander at the queen.
+public function queenTaivraAppearance():void
+{
+	clearOutput();
+	showTaivra();
+	output("Queen Tiavra is the archetypal specimen of a nyrean female: tall, strong, and voluptuous. She stands a hair shy of six feet tall, her body a mix of cream-pale skin untouched by the sun and black chitin plates that safeguard her limbs and chest like an underbust corset. Taivra has a long head of spiny black <i>“hair,”</i> tied into a braid down her back. Short bangs reveal a pair of dark near-black eyes that regard you with a mix of curiosity and amusement as the queen sees you staring. Her purple-painted lips curl into a faint smile, and she leans back in her throne in a way that emphasizes her ample E-cups bust beneath her chainmail bra.");
+	output("\n\nA long, red cape drapes behind her from the leather shoulder pads she’s attached to the top of her chain armor, drawing your eyes down the queen’s supple body. Her broad, egg-bearing hips are clad in padded chainmail, just barely hiding the huge, pink ovipositor between her legs. When the queen pulls it out, her ovi-cock is easily two feet long and as thick around as a soda can; the slit is X-shaped, leading to a hollow shaft connect all the way to her womb full of eggs. The crown of her cock is surrounded by tiny, soft spines that make penetration excruciatingly pleasurable for any of her partners.");
+	output("\n\nPerhaps her most distinctive feature, though, is the writhing mass of green tentacles growing from the base of her spine, just above her firm ass. She has twelve of them, each tipped with a distinctly cock-shaped tipped - and all of them are currently buried in the ovi-cock or ass of one of her beta huntresses, making sure the queen is constantly sexually sated.");
+	output("\n\nBetween her tentacle-tails and her throbbing ovipositor, Taivra has a well-practiced ass built for taking eggs, right where it belongs.");
+	clearMenu();
+	addButton(0,"Next",taivraRepeatScenes);
+}
+
+//[Chambers]
+//Ask Taivra if the two of you can retire to her chambers - a bit more intimate of a setting.
+public function goToTaivrasChambersForSex():void
+{
+	clearOutput();
+	currentLocation = "2C15";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	showName("QUEEN'S\nCHAMBERS");
+	showTaivra();
+	output("With an alluring smile, you ask the nyrean queen if she’d care to retire to her chambers with you.");
+	output("\n\nShe smiles and stands, taking a long-legged step towards you that pops her many tentacles out of her mewling betas. <i>“I’d like that very much,”</i> she purrs, wrapping a hand around your waist and pulling herself close. <i>“There’s not much requiring my attention at the moment, after all.”</i>");
+	output("\n\nExcellent. You return Taivra’s gesture, putting your arm around her supple waist and letting your hand play across one of her thick, egg-bearing hips. You accompany her out of the throne room, up the stairs and through the slender corridor towards her chambers. A few soldiers and servants bow as you pass, pointedly not looking as your hand roughly grabs Taivra’s ass, and her tails wrap and rub at your [pc.leg] and [pc.butt].");
+	output("\n\nBy the time you tumble into Tavira’s chambers, the two of you are tearing "):
+	if(!pc.isNude()) output("each other’s");
+	else output("Taivra’s");
+	output(" clothes, off, leaving your bodies bare and pressing against each other with burning lust. Her lips press against yours, pulling you towards her bed until you’re rolling onto the silken sheets, [pc.legs] wrapping around your lover. She comes out on top");
+	if(pc.isAss()) output(" for now");
+	output(", straddling you and cupping one of her big, firm breasts.");
+
+	output("\n\n<i>“Tell me, what appeals to you offworlders?”</i> she purrs, grinding her hips against your crotch. Her words are a subtle affirmation that she’ll defer to you, letting you choose just how you’ll make love to your queenly lover...");
+	processTime(7);
+	clearMenu();
+	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
+	//99999
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	if(pc.hasCock()) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
+	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
+	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
+	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
+	addDisabledButton(14,"Back","Back","There's no way you're getting out of here without satisfying your domineering partner at least once!");
+}
+
+//Cowgirl
+//Roll Taivra over and mount her, riding her thick, throbbing ovipoistor until she’s bloating you with eggs... {if all holes preggers: Or at least, with her sticky fem-cum.}
+//vagOrAss scene
+public function cowgirlWivTaivra():void
+{
+	var x:int = pc.cuntThatFits(chars["TAIVRA"].cockVolume(0));
+	if(pc.hasVagina() && x < 0) x = rand(pc.totalVaginas());
+	if(pc.hasVagina()) x = -1;
+	output("You reach up and run your hands over Taivra’s big hips, purpose-built to pass the thick, smooth orbs of her eggs. You can just imagine the clutch already growing in the thoroughly-fertile nyrea’s womb, ready to be pumped into you. It’s hard not to wonder if Taivra’s been fertilized... and if you’ll be popping out some royal heirs before long.");
+	output("\n\nExcited by the thought, you secure your hands on your lover’s waist and roll her over, putting the queen on her back and taking her place on top, straddling her breeder’s hips and reaching down to caress her horse-sized ovipositor.");
+	output("\n\n<i>“Mmm, aggressive, aren’t we?”</i> your queen purrs, obviously not displeased. She smiles, caressing your [pc.hips]. <i>“I like that...”</i>");
+	output("\n\n<i>“Good,”</i> you answer, leaning in and kissing her forcefully, thrusting your [pc.tongue] into the warrior woman’s mouth and jousting with her own. You feel her giggling under you, holding you close and kissing back, even as her many tails curl around your [pc.butt] and her hands play across your bare ass, her tongue twisting around and caressing your own. You grab one of her ample breasts, squeezing hard enough to make Taivra gasp and squirt a few droplets of her sweet milk around your fingers.");
+	output("\n\nHer ovipositor is hot and throbbing against your thigh, demanding your attention. Rising up on your ");
+	if(pc.hasKnees()) output("[pc.knees]");
+	else output("[pc.legOrLeg]");
+	output(", you grab Taivra’s thick alien dong and stroke to full hardness as you align the flat head with your [pc.vagOrAss " + x + "]. The pressure against your hole is immense and instantaneous, her girth more like a horse’s than anything a girl her size should be packing! You start to press down, but Taivra’s hands stop you, firmly holding up your [pc.butt]. <i>“How about a little lube, first? I think things might be a little more pleasurable for us both that way...”</i>");
+	output("\n\nYou give her a quick nod, and the queen reaches into her nightstand to retrieve a small vial of a familiar green goop - doubtless shed from her gloryhole goo-girl. Taivra drinks in a deep whiff of it before reaching down and smearing the vial’s contents onto the X-shaped slit of her huge dick. You smell it too: the sweetly musky, wet odor of goo that she slathers onto her prick and your thighs, all around your waiting hole.");
+	output("\n\nWith a lusty smile, Taivra presses her cockhead against your [pc.vagOrAss " + x + "], letting the hefty glaze of goo on both your bodies ease her initial entry. A moan escapes your lips as you lower yourself down onto her royal rod, Taivra’s hips thrusting up to meet you in a moment of overwhelming pressure... and then echoing screams of pleasure as she pushes inside you. You’re hit with a sudden fullness, completely and totally stretching your [pc.vagOrAss " + x + "] around Taivra’s blunted cockhead. You can feel her spiny pleasure-nubs digging into your tender flesh, scraping along your inner walls until you’re screaming with ecstasy, rubbing your [pc.butt] on the queen’s thighs as moisture drools down onto her lap.");
+	if(x >= 0) pc.cuntChange(x,chars["TAIVRA"].cockVolume(0));
+	else pc.buttChange(chars["TAIVRA"].cockVolume(0));
+
+	output("\n\nTaivra gives you a bestial growl of pleasure and reaches up to ");
+	if(pc.biggestTitSize() >= 1) 
+	{
+		output("grab your [pc.breasts], roughly grabbing and squeezing your boobs");
+		if(pc.canMilkSquirt()) output(" until [pc.milk] squirts from your teats");
+		else output(" and nipples");
+	}
+	//if flatchest:
+	else
+	{
+		output("pinch at your [pc.nipples]");
+	}
+	output(". Your lover pulls you close against her own chest, holding you deep on her throbbing, drooling ovi-cock. Her knot presses against your ");
+	if(x >= 0) output(" pussylips");
+	else output(" asscheeks");
+	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
+
+	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
+	if(x >= 0) output("belly");
+	else output("womb");
+	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, vicious lube into your ");
+	if(x >= 0) output("twat");
+	else output("asshole");
+	output(", adding her own juices to the mix of spit");
+	if(x >= 0) output(" and your own pussyjuices");
+	else if(pc.ass.wetness() >= 1) output(" and your unnaturally lubed ass");
+	else output(" slathered in your behind");
+	output(".");
+	//if hole isn’t preggers:
+	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) output(" After a moment you realize that your queen’s cock is getting you ready to carry her eggs, packing your hole with as much of her sticky juice as she can!");
+
+	output("\n\nYou give Taivra a wink over your shoulder and start to really bounce, determined to milk out every drop of her fem-cum before you reach your limit.");
+	if(pc.hasCock()) output(" She returns your affection, wrapping her plated fingers around [pc.oneCock] and starting to stroke you off to the same rhythm as your rising hips.");
+	output(" The more you ride her, the more Taivra’s cock throbs, and her tentacle-tails squirm around you, trying to worm their ways in after her ovipositor. But you’re both too focused on her cock, the way she’s so close to cumming already - and you’re not far behind.");
+
+	//if hole isn’t preggers: 
+	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) 
+	{
+		output("\n\nTaivra’s head rolls back, bellowing a feral roar of pleasure as the crown of her ovipositor erupts in what feels like a geyser of wet head, following by a firm pressure straining your hole - an egg! Your eyes wide, lips curling in a silent scream as wet bumps pop into your ");
+		if(x < 0) output("bowels");
+		else output("womb");
+		output(", one after the other. You feel incredibly full, hands wrapping around your [pc.belly] as the royal eggs flood inside you.");
+		if(pc.hasCock()) output(" Between the sudden pressure of eggs stretching you out and the queen’s skillful handjob, you can’t help but cum! <i>“That’s it, join me!”</i> Taivra groans, stroking faster as the first jet of [pc.cumNoun] erupts onto Taivra’s belly and breasts, covering her inyour seed. <i>“I want you to feel every bit of pleasure I do...”</i>");
+		output("\n\nWhen the final egg settles inside you, you feel so bloated and worn out by the ordeal that it’s hard not to just fall asleep on the queen’s lap. She chuckles and wraps her arms around your swollen belly, giving you a surprisingly tender hug. <i>“");
+		//if fertile eggs:
+		if(9999 == 0) output("Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
+		else output("Don’t worry, love, they’ll dissolve soon enough. Can’t have you waddling around with a belly full of empty eggs... at least, not without me there to enjoy it.");
+		output("”</i>");
+	}
+	//if hole is already preggers:
+	else
+	{
+		output("\n\nTaivra grunts and thrusts herself deep into you, gliding through your lube-glazed walls until her knot presses hard against your hole. You cry out as the queen hammers her hips up into your ass, ramming her thick bitch-breaker home into your [pc.vagOrAss " + x + "]. Your cries turn into a scream of ecstasy as you’re stretched to the limit, tied on Taivra’s throbbing mass of nyrean knot and left able to do nothing but rock on her lap, grinding the mass of flesh in your battered hole");
+		if(pc.hasCock()) output(" until you cum, shooting a thick rope of spunk across the queen’s belly and the bottoms of her breasts, marking her with seed");
+		output(". Your lover’s fem-cum floods into you, pumping your ");
+		if(x < 0) output("gut");
+		else output("womb");
+		output(" with her creamy, hot fem-cum.");
+		output("\n\nYou relax in Taivra’s lap after that, breathing hard as her thick ovipositor slowly deflates inside of you, dragging her spines through your [pc.vagOrAss " + x + "] one last time before you’re free - and drooling moisture out of your thoroughly-fucked hole.");
+	}
+	//9999 loadInAss/etc?
+	//Hole aint preggers? KNOCK DAT UP~
+	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) 
+	{
+		//If fertile eggs
+		if(9999 == 0) {}
+		else {}
+	}
+	processTime(33);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",unifiedPostSexTaivraShits);
+}
+
+//Glory Fuck
+//Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.
+public function gloryFuckTaivra():void
+{
+	clearOutput();
+	showTaivra();
+	var x:int = pc.cockThatFits(chars["TAIVRA"].analCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Rather than taking your lover on the bed, you ask if she’d like to spice things up... and get a little use out of her gooey gloryhole. As you pose the question, you wrap your fingers around your [pc.cock " + x + "], starting to stroke yourself to the thought of shoving the haughty queen against the wall and railing her tight little ass.");
+	output("\n\n<i>“You have quite the imagination,”</i> the queen purrs, right before you decide to say fuck it and grab her around the waist, hauling her up and staggering towards the wall. She giggles like a schoolgirl, wrapping her chitinous legs around your waist and her many tails rubbing against you. You grunt with the surprising weight of the warrior woman, hefting up across the chambers in your arms until her back slams against the smooth stone wall above her royal gloryhole. She moans, squeezing your whole body and leaning in to kiss you fiercely, running her hands along your back and her tongue across your own. You kiss back, shifting your grip on the queen to grab her tight ass, squeezing the fleshy cheeks and spreading them apart. She gasps, arching her back as one of your fingers teases around Taivra’s dark hole - just enough to give the queen a momentary thrill before you set her down and spin her around, pushing her face-first into the wall.");
+	output("\n\n<i>“Like it rough, do you?”</i> Taivra teases, her tentacle-tails coiling around your [pc.hips] and pulling you flush against her out-thrust behind. It’s your turn to moan as the queen grinds her ass against your [pc.cock " + x + "], catching your shaft between her cheeks. She gives you a playful wink over her shoulder, and you see one of her hands disappear into the gaping gloryhole.");
+	output("\n\n<i>“Eep!”</i> a girlish voice squeals from inside, followed by a squishing wet sound. Taivra’s hand returns covered in drooling viridian goo, and she reaches back to grab your [pc.prick], lubing you up with warm, greasy goo. A shiver of pleasure wracks you as Taivra strokes your shaft, making sure to slather every inch of your throbbing cockflesh in her gooey lube. you grin and return the favor, reaching around the queen’s powerful thighs to grasp her half-hard horse-like erection, roughly jerking it off and lifting its heavy weight up towards the smooth rim of the gloryhole.");
+	output("\n\nNow the fun begins!");
+	output("\n\nWith a thrust of your hips, you ram Taivra into the hole, and force the first inches of your cock into her eager hole. The queen groans, and the goo-girl through hole squeals as the royal scepter splashes into her body, thrusting in to the hilt as you let your weight push Taivra in. The queen moans and squirms, biting her lip to contain a cry as her clenching asshole is forced open by your [pc.cock " + x + "].");
+	pc.cockChange();
+	output("\n\n<i>“G-gentle,”</i> she manages to grunt, painted fingers scratching on the stone wall. <i>“I’m... I’m not used to this...”</i>");
+	output("\n\nYou’re sure her betas tell her that all the time. Wonder if she listens, then...");
+
+	output("\n\nStill, you ease up your assault, staying half-buried in the spasming anal hole you’re ravishing to let your queen adjust to you. Big, bad alpha that she is, Taivra must not be used to getting assfucked, and she’s tight enough to prove it. You have trouble getting the rest of your prick in, rocking your hips back and forth to ease yourself in nice and slow to let the lube do its job. While you do, Taivra moans and makes short, jerky little thrusts of her own into the goo-filled gloryhole. A delicious squishing sound echoes out from the hole, and the queen’s ass clenches wonderfully around your [pc.cock " + x + "] - she’s clearly starting to feel whatever’s going on on the other side of her chamber walls, and that only serves to make your slow fucking all the better.");
+	output("\n\nWith a great deal of effort, you finally ");
+	if(pc.cockVolume(x) <= chars["TAIVRA"].analCapacity()) 
+	{
+		output("hilt yourself in Taivra’s ass");
+		if(pc.hasKnot(x)) output(", letting your growing knot press between her cheeks");
+		output(".");
+	}
+	else output("have as much dick inside the queen as you can possibly imagine, so much so that her stomach is starting to visibly distend. Nyrea may be made for fucking, but even their greatest warrior can only take so much!");
+	output(" Your lover’s belly is pressed flush with the stone, her whole body sandwiched between yours and the unyielding stone. Pistoning hips drive her crotch deep into the gloryhole, battering against her firm cheeks. As deep in as you are, your [pc.cock " + x + "] is enveloped in a spasming, wet, hot vice that feels like it’s working tirelessly to drain the cum from your throbbing manhood. Better yet, you’re certainly having the same effect on your moaning queen, fucking her tender ass until she’s ready to bust a nut of her colorful fem-cum into the goo-hole.");
+	output("\n\nThe thought of making your queen cum from your rough ass-fucking spurs you on to thrust harder, ignoring the queen’s wordless cries as you build up speed and force. With that kind of treatment, and God knows what’s going on through the gloryhole, it doesn’t take long for Taivra to reach her limit. She pushes hard back against you");
+	if(pc.cockVolume(x) <= chars["TAIVRA"].analCapacity() && pc.hasKnot(x)) output(", enough to make your [pc.knot " + x + "] batter its way into her ass");
+	output(", and lets loose a bestial roar that reverberates off the smooth stone walls and through your bones. Her asshole clenches like a fist around your shaft, and you suddenly feel a massive pressure near the [pc.cockHead " + x + "] of your prick - even through the lust hazing your mind, you realize you’re feeling <i>eggs</i>pumping out of her belly and through her thick ovipositor. The voice through the gloryhole squeals happily as the queen pumps her full of her tiny spawn, and Taivra herself keeps growling and grunting like an animal as she orgasm... and draws you over the edge with her.");
+
+	output("\n\n");
+	//if xboxheug cumvol:
+	if(pc.cumQ() >= 2000) 
+	{
+		output("Your overactive [pc.balls] ensure");
+		if(pc.balls <= 1) output("s");
+		output(" that you bloat the queen’s stomach until she looks absolutely pregnant with your cum. Taivra goes limp in your arms, slumping forward with her arms around her gut as your inhuman orgasm bloats her like a water balloon.");
+	}
+	//Moderate cumvol: 
+	else if(pc.cumQ() >= 200) output("Your [pc.cock " + x + "] blasts a huge, thick wad of cum into the queen’s thoroughly-abused asshole. Taivra’s eyes roll back, and her arms clutch at her bloated belly now churning with hot, sticky seed.");
+	//elseif low cum:
+	else output("Your [pc.cock " + x + "] discharges a nice, hot wad of [pc.cumNoun] into the queen’s well-fucked ass, milked out by pleasurable contractions and sliding pressure as the queen thrusts limply into the gloryhole, trying to get as much pleasure as she can as she blows her eggs deep into the goo on the other side.");
+
+	output("\n\nWith a heavy sigh");
+	if(pc.hasKnot(x)) output(", you wait for your [pc.knot] to deflate before");
+	output(" you slowly pull out of Taivra. When your crown finally wiggles free, you’re treated to the truly glorious sight of a ");
+	if(pc.cumQ() >= 2000) output("torrent");
+	else if(pc.cumQ() >= 200) output("stream");
+	else output("trickle");
+	output(" of [pc.cumColor] pouring out of her ass and down her thighs, forming a little puddle between her legs. Without you to support her, Taivra slumps forward like her legs are about to give out on her, and her softening ovi-cock flops out of the wall with a spurt of purple juices.");
+	output("\n\n<i>“Ugh,”</i> she groans, reaching back to rub her battered, sperm-coated ass. <i>“I suppose this must be what one of my betas feel like...”</i>");
+	processTime(17);
+	pc.orgasm();
+	//Fertilize queen eggs?
+	clearMenu();
+	addButton(0,"Next",unifiedPostSexTaivraShits);
+}
+
+//Breed Her
+//Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.
+//PC must have a cock that fits inside her ovipositor. Fertilizes her eggs for the Cowgirl / Thronesex scenes.
+public function dockingBonerIntensifies():void
+{
+	clearOutput();
+	showTaivra();
+	var x:int = pc.cockThatFits(200);
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Your eyes are drawn to the thick, heavy shaft of Taivra’s ovipositor: a tube of tender meat that leads straight to her egg-laden womb, ready to be fertilized. Your queen sees where your gaze is going, and she smiles and runs an alluring hand along her half-hard ovi-cock. <i>“A pity you star-walkers are so different from us... I’d love to just spread your [pc.legs] and ram this inside your boy-pussy to drain out all you cum. Our offspring would be so wonderfully strong, after all. Conquerors and queens, every one of them.”</i>");
+	output("\n\nYou return her smile, reaching up to run your fingers across the queen’s prick and the nubby spines around her crown. She gasps as your thumb caresses her fleshy slit, gently pushing in one the folds of sensitive skin around her X-shaped slit before slipping inside her, teasing the inner walls of her thick shaft. She’s sultry-hot inside, walls covered with slimey lubricants that let you glide across her flesh. Every inch must be as sensitive as a clit, as Taivra instantly sucks in a sharp breath, hands digging into the bedding beside you as pleasure takes her. The way her cock opens up for you, only gently massaging your exploring digit, you realize her horse-sized ovi-cock feels just like a tight little pussy. Maybe you could fuck it like one...");
+	output("\n\nThe positioning is going to be awkward as hell, what with the sheer size of Taivra’s... less than feminine parts, and your need to either thrust - something tells you being on bottom here’s only going to make the awkwardness of everything that much worse.");
+	output("\n\nFeeling your [pc.cock " + x + "] stiffening against her thigh, Taivra grunts and reaches down to give you a little of your own medicine, stroking your prick and moving her hips ever so slightly, letting your cockflesh grind against the smooth, warm chitin on her legs. <i>“Something on your mind, love?”</i>");
+	output("\n\nYou give her a cheeky grin and hook a hand under your lover’s arm. In the blink of an eye, she’s on her back under you, breasts jiggling heavily with the impact as you settle overtop her. Her black eyes go wide, and you feel her fingers slipping off your tumescent member and onto her own - she’s figured out what you’re up to, and as you crawl your way up her body, until your [pc.butt] is rest on her quivering bust.");
+	output("\n\n<i>“This... is this how you star-walkers breed?”</i> she asks, a hint of nervousness in her voice. You give her a wink and turn around, aligning your [pc.cock " + x + "] with the flared, spine-crested crown of your queen’s ovipositor. A tiny trickle of purple lube peeks out from her four-part slit to greet you, letting you easily slide your [pc.cockHead " + x + "] between her folds. As you do, you gleefully realize that every wiggle of your [pc.hips] sends quakes through Taivra’s huge breasts, even squished between your ass and her chest as they are. The queen gasps with every motion, both from the impending penetration and the shockwaves of jiggling pleasure you’re battering her tits with. Oh, this is going to be fun!");
+	output("\n\nYour hips piston forward, rocking forward on Taivra’s oh-so-soft breasts and guide your prick into the welcoming embrace of her tremendous cock. She’s like a lubed-up onahole, hot and smooth and perfectly molding to the shape of your [pc.cock " + x + "]; every inch brings another moan from the lustful queen, making her squirm like a fresh virgin underneath you. <i>“Oh, fuck. Oooohhh, go slow go slow,”</i> she begs, tearing into the sheets with her long nails, desperately trying to hold on.");
+	output("\n\nYou heed the queen’s request - for now - and slow your steady penetration to a crawl, letting her adjust to the unnatural girth stretching out her ovipositor. Her hips buck desperately, reacting on base, animal instinct as you slowly hilt yourself inside the queen’s cock");
+	if(pc.hasKnot(x)) output(", pushing in until your [pc.knot " + x + "] is touching her crown");
+	output(". Her shaft contracts hard around you, alternating between desperate attempts to repel the invasion, or sucking you in like a Galotian hooker. Her body can do nothing but take you, and the raw, bestial submission seems to only excite the queen more - her shaft floods with the slimy purple fem-cum you’ve come to know and love by now, filling every tiny space your cock isn’t with a steady flow of her alien juices, letting it pour out around your prick");
+	if(pc.hasKnot(x)) output(" until you finally thrust in again, using your [pc.knot " + x + "] to block the flow before you’re utterly drenched");
+	output(".");
+
+	output("\n\nAll that’s left to do is breed your queen’s fertile womb... but where’s the fun in jumping right to the end? You’ve got the queen in a position of submission she’s not used to, giving her pleasures no other huntress could give her. With a smile, you grab the queen’s legs by the knees, hefting them up and driving your cock deep inside her.");
+	output("\n\nTaivra screams, arching her back and clawing at your [pc.butt]; her cock grinds down on your shaft, trying to get a grip on you but so utterly soaked with her cum that you just slide through her clenching muscles with ease. Your pistoning hips keep the queen in a state of constant, overwhelming sensation - hammering her cock and bouncing on her breasts - until at least with a shrill cry you feel her cumming - and hard! The wetness in her cock-sheath redoubles in the blink of an eye, gushing towards her opening and ");
+	if(pc.hasKnot(x)) output("slamming into your hilted bitch-breaker, causing the front of Taivra’s cock to blimp out in a soggy cum-bubble around your [pc.knot " + x + "]");
+	else output("splattering across you, smearing your [pc.belly] in a rush of musky purple fem-spunk. You laugh and recoil from the explosive orgasm, trying not to get hit in the face with the queen’s vibrantly-colored girl-spunk");
+	output(". Taivra’s hand clamp down on your [pc.butt], long nails digging painfully into your [pc.skinFurScales] as she bellows her pleasure for the whole palace to hear. You feel her tits bounce against your thrusting rump, and her ovi-dick squeezing down like a lurid sleeve around your [pc.cock " + x + "] as if it were trying to milk you for every drop.");
+
+	output("\n\nAnd by now, you’re more than happy to let her succeed. Still thrusting as fast and hard as you can, you let the queen’s orgasming cock-sleeve milk you until you join her in climax, blasting a ");
+	if(pc.cumQ() < 6) output("thin, wispy rope of [pc.cumNoun] down her sodden egg-tube, adding to the deluge flooding her prick.");
+	else if(pc.cumQ() < 500) output("nice, thick wad of [pc.cumNoun] right down Taivra’s soaked ovi-prick, flooding her womb with seed.");
+	else output("torrent of [pc.cumNoun] down Taivra’s ovipositor, flooding her already-soaked slit with seed until her womb is bloated with you cum. She cries out as her belly swells with seed, utterly soaking her eager womb.");
+
+	output("\n\nYou sigh and lean forward, catching your breath as the last twitching drops of cum drool out of your [pc.cock " + x + "]. Underneath you, Taivra flops back, all the energy suddenly gone out of her; her hands caress her full belly and breasts, enjoying the feeling of her body in the afterglow. Slowly, you pull yourself out of her, letting loose a small flood of mixed fluids onto her belly and your thighs before you flop down beside her.");
+
+	processTime(19);
+	pc.orgasm();
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",unifiedPostSexTaivraShits);
+}
+
+//Unified Post-Sex Scene
+public function unifiedPostSexTaivraShits():void
+{
+	clearOutput();
+	showTaivra();
+	output("A few minutes later, and you find yourself sitting up against the headboard of the royal bed, watching the shapely hips and ass of your royal lover swishing about as she pours out some sweet-smelling liquid into a pair of gemstone mugs. She returns to bed, long legs making her flaccid ovi-cock bob heavily between them until she’s snuggled up beside you, offering you a glass.");
+	output("\n\n<i>“I have to admit,”</i> she smiles, nestling her cheek on your shoulder, <i>“that was... not something I could get with another huntress. I find I’m quite enjoying our... partnership.”</i>");
+	output("\n\nShe certainly seems to. You smile and put a hand around her shoulders, pulling the queen close and sipping on your... wine? Whatever this is, it’s quite nice. You’re content to lay and rest awhile, enjoying the afterglow with your mate, but Taivra soon finishes her drink and swings her legs out of bed, reaching for her armored bra. She does have a palace to rule, after all... and doubtless a few dozen betas who need wombs full of parasitic spunk, knowing her.");
+	output("\n\nThe queen gives you a knowing wink and gets dressed, with what little clothes she feels she needs, before slipping out of the room and leaving you to relax.");
+	processTime(45);
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Throne Sex]
+//Don’t bother with privacy or modesty: join Taivra’s group of betas on her throne and enjoy the pleasure the queen can offer.
+//Respect -1. Slut.
+//Big +Exhibitionism
+public function taivraThroneSex():void
+{
+	clearOutput();
+	showTaivra();
+	output("<i>“Got room for one more?”</i> you ask, already starting to pull your [pc.gear] off as you close the distance with Taivra and her harem of moaning betas. You ");
+	if(pc.hasCock()) output("start to stroke your cock, lustily looking your amazonian queen over.");
+	else output("let your gaze wander over your amazonian queen, up her toned thighs to the chainmail bikini barely holding back her monster ovi-cock.");
+	output("\n\n<i>“Wouldn’t you prefer to retire to our chambers, my mate?”</i> Taivra asks, though you notice a tell-tale shift beneath her armored panties. You shake your head at her, wading in between the orgiastic submissives getting tail-fucked around her throne. <i>“No? Tsk, very well... I suppose I can sate your lusts. What else are mates for, after all.”</i>");
+	output("\n\nGlad to have your queen’s approval, you toss aside the rest of your gear and approach, wondering just what you could convince her to do...");
+	processTime(2);
+	//[Footjob] [Lap Ride]
+	//9999
+}
+
+//[Footjob]
+//Have Taivra but her smooth, chitinous feet to use on your cock. Doubtless, her harem will get in on the action too.
+public function cockFootsies():void
+{
+	clearOutput();
+	showTaivra();
+	output("<i>“Since you’re already so busy... how about you just get my off with your feet,”</i> you suggest, indicating your crotch that’s already just a scant few inches from her crossed legs.");
+	output("\n\nOne of her eyebrows raises slightly, but the queen shifts slightly in her throne and chews one of her painted lips. <i>“You offworlders certainly have strange tastes.");
+	if(flags["TAIVRA_FOOTJOBBED"] != undefined) output(" Though I certainly can see the appeal...");
+	output("”</i> She reaches down to run her hands through the spiny hair of a few of her betas, gently turning their attentions from her thrusting tail-cocks to your [pc.cock]. <i>“Alright, girls, put those tongues of yours to good use. Make my plates sparkle, and maybe I won’t waste your wombs on these filthy little tentacle eggs. For a while, anyway.”</i>");
+	output("\n\nThe closest beta whimpers and wraps her hands around one of Taivra’s feet, immediately shoving her mouth against the chitinous underside and licking from heel to toe. Two or three other girls clamber over, struggling to do more than crawl with the queen’s cocks still thrusting into their own thick ovipositors. Taivra leans back in her throne as the squirming submissives gang up around her feet, lifting them both up and giving her dark limbs a thorough tongue-bathing.");
+	output("\n\nWhile most of her harem busies themselves lathering their queen’s smooth feet in slick spit, a pair of them crawl over to you with lust in their eyes, tongues wetting their lips as their dark eyes fix on your [pc.cock]. You doubt they’ve ever seen a proper cock aside from their queen’s tails, much less had the chance to have one do anything but rail their wombs. You pat your thigh and urge them forward, letting the pair wrap their hands around your [pc.cock] and start to explore your manhood. A shiver of pleasure works its way up your spine as their smooth, cold digits play around your [pc.cockHead]");
+	if(pc.balls > 0) output(" and reach down to cup your [pc.balls]");
+	output(", squeezing and caressing your tender [pc.cockColor] skin.");
+
+	output("\n\nSmiling down at them, you run your hands through their spine-like black hair, gently guiding their faces into your groin. They take the hint, and one of them opens wide to get her lips around your [pc.cockHead] while the other’s tongue lolls out, flicking across your sensitive underside.");
+	output("\n\n<i>“Skillful, are they not?”</i> Taivra murmurs proudly, clearly enjoying her tongue-bath more than a little. <i>“Get [pc.himHer] nice and hard, girls... I’ll need something firm to grab onto.”</i>");
+	output("\n\nThe two betas are well ahead of her on that count, slurping and licking with ravenous abandon. ");
+	if(pc.libido() >= 90) 
+	{
+		output("You don’t bother to mask your enjoyment, but thrust your hips into one of the submissive sluts’ mouths, face-fucking her while her partner desperately licks your shaft. Between the two of them, eager and aggressive as they are, you decide to give the pair a little present: the first taste of your seed. With a muted grunt, you plant your hips against the girl’s lips and let loose, filling her mouth with [pc.cum]. Her black eyes go wide, and a trickle of [pc.cumColor] drools out from the sides of her mouth around your prick.");
+		output("\n\n<i>“Don’t make a sound,”</i> you whisper, giving her a wink. Nobody else needs to know, you figure - you’d hate to make Taivra jealous of a random beta. The girl gags and swallows weakly, popping off your cock and letting her partner go throat-deep on you. You’re hard again in moments, ready to be handed off to the queen.");
+	}
+	//elseif not megalibido:
+	else output("You try desperatley to hold back as the two betas pleasure you, butting all their hard-earned skills to make sure you’re as hard as you’ve ever been before surrendering your cock to their queen.");
+	output("\n\nSatisfied with her betas’ efforts, Taivra dismisses them with a snap of her fingers that sends them scrambling off to the far reaches of her throne’s dias, leaving you and the queen as alone as you can be while she’s still tentacle-fucking their ovi-slits. Taivra lavishes you with an alluring, amethyst-lipped smile and a crook of her finger, beckoning you towards her spread legs and the spit-glistened black chitin of her feet.");
+	output("\n\nYou close the distance, letting your rock-hard dick bob hypnotically until it’s gliding between the arches of her chitinous feet. She pushes her feet together as you settle between them, trapping your meat between her sinfully smooth, thoroughly lubed-up chitin plates. <i>“Need something to hold onto?”</i> she teases as her feet glide from base to crown, and pleasure makes your whole body shudder. You think she’s joking, until your queen outstretches her hands, taking yours in hers and squeezing you tightly - as tight as her black feet around your prick, pulling you in until most of your weight is supported by the amazonian queen and her throne.");
+	output("\n\nHer feet move slowly at first, taking their time in tracing your throbbing prick from base to crown. <i>“Does this feel... good?”</i> Taivra asks, and if you didn’t know better, you’d say she sounded almost bashful. <i>“I’ve ");
+	if(flags["TAIVRA_FOOTJOBBED"] == 1) output("only ever done this for you");
+	else output("never done something like this before");
+	output(".”</i>");
+
+	output("\n\nYou give the queen an encouraging nod, telling her that it feels more than good. She smiles and starts to move her legs faster, using her knees to piston her feet along your slick shaft. It’s hard to do anything but moan and buck your [pc.hips] against her chitinous limbs, enjoying the sensation of her perfectly smooth, firm toes and heels squeezing you wonderfully. You’d never have expected a bug-girl footjob to feel like this, like lubed-up latex gliding across your [pc.cock].");
+	output("\n\nIt doesn’t take long for Taivra’s gliding feet to bring you to the edge, leaving you panting and moaning as her feet work faster and faster, working tirelessly to milk out your [pc.cum]. <i>“Don’t hold back now,”</i> she murmurs, squeezing your hands. <i>“Cum, so I can take you back to our chambers and have the real thing.”</i>");
+	output("\n\nYou can’t say no to that, and promptly find your [pc.cock] is swelling with seed, ready to burst all over the queen’s black feet. A few more seconds and you slam your hips forward into her arches, grunting with feral lust as a burst of [pc.cum] sprays from your [pc.cockHead] and all over Taivra’s black chitin and the pale flesh of her thighs.");
+	if(pc.cumQ() >= 1000) output(" More and more sprays out of your dick until the queen’s legs are covered in [pc.cum], and her throne is left slathered in your spunk.");
+	output("\n\nTaivra chuckles, keeping her feet moving until you’ve emptied your [pc.balls] all over her. <i>“Very nice, my mate. I’m sure my betas will have a good time cleaning up your mess. Perhaps a few will even try and put your seed to good use, hmm?”</i>");
+	output("\n\nAs if on cue, one of her submissives moan, a jet of fem-cum spurting out around Taivra’s tail-cock.");
+	output("\n\n<i>“Now, shall we take this back somewhere private? Or is there something else?”</i>");
+	//[Next]
+	processTime(22);
+	pc.orgasm();
+	flags["TAIVRA_FOOTJOBBED"] = 1;
+	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",taivraRepeatScenes);
+}
+
+//[Lap Ride]
+//No need to be fancy: crawl into your queen’s lap and let her ram that massive ovipositor into you.
+//vagOrAss scene
+public function lapRideDatQueenAllPublicLike():void
+{
+	clearOutput();
+	showTaivra();
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+
+	output("You just stride up to Taivra, reclining on her throne, and climb on top");
+	if(pc.legCount > 1) output(" to straddle her spread legs");
+	else output(" of her, aligning your crotch with hers");
+	output(". Your hand plays across her mailed breast, giving the queen a lusty smile as you grind your [pc.vagOrAss " + x + "] along her thigh, stopping just short of her armored panties.");
+
+	output("\n\n<i>“Oh, you’re going to make all of my poor betas jealous,”</i> Taivra teases, nevertheless reaching around to grab a handful of your [pc.butt], squeezing until your gasp with pleasure.");
+
+	output("\n\n<i>“Good,”</i> you answer, leaning in and kissing her forcefully, thrusting your [pc.tongue] into the warrior woman’s mouth and jousting with her own. You feel her giggling under you, holding you close and kissing back, even as her many tails keep thrusting deep into her other, less important mates. You have the full attention of Queen Taivra, feeling her hands play across your bare ass, her tongue twisting around and caressing your own. Your hand snakes down from her ample chest with a parting squeeze, tracing your fingers down her taut, battle-scarred belly and to the padded hem of her panties.");
+
+	output("\n\nOne good yank and the heavy chain is out of the way, letting the lengthy probe of Tavira’s ovipositor spill out against your thighs, throbbing hotly against your [pc.skinFurScales]. <i>“All yours, [pc.name],”</i> she purrs, rocking her hips just enough to make the hard pillar of ovi-cock grind on your flesh. <i>“Come and get it.”</i>");
+
+	output("\n\nYou do so, rising up on your [pc.knees] and grabbing Taivra’s thick alien dong, stroking it as you align the flat head with your [pc.vagOrAss " + x + "]. The pressure against your hole is immense and instantaneous, her girth more like a horse’s than anything a girl her size should be packing! You start to press down, but Taivra’s hands stop you, firmly holding up your [pc.butt]. <i>“How about a little lube, first? I think things might be a little more pleasurable for us both that way...”</i>");
+
+	output("\n\nCan’t deny that logic - especially when Taivra beckons over a couple of her harem sluts The pair scamper over and kneel between their queen’s legs, immediately starting to lavish her oversized egg-layer with their tongues. Your lover’s clearly got her betas well-trained! Taivra rolls her head back and moans, arching her back into the two horny beta’s oral ministrations. They’ll have her ready to go in seconds, but you want a piece of that action!");
+
+	output("\n\nWith a little awkwardness, you twist around in Taivra’s lap and pat your thighs to get the betas’ attention. Their big black eyes look up at you and your [pc.vagOrAss " + x + "], and with a few encouraging words, you urge them to ply their talented tongues on your hole, too. The pair slowly reach their tongues out towards your ");
+	if(x >= 0) output("bare crotch");
+	else output("presented backside");
+	output(", sending a shiver through you as their soft, wet mouths begin to lather up your waiting hole for their queen. You chew your [pc.lip] and stroke their hair, pulling the girls deeper and deeper into your [pc.vagOrAss " + x + "], letting them get you dripping wet before Taivra waves them off with an impatient grunt, reaching around your [pc.leg] to grasp her throbbing ovi-cock and angling it back towards your drooling hole.");
+
+	output("\n\n<i>“I think that’s enough of that,”</i> she purrs, pressing her cockhead against your [pc.vagOrAss " + x + "], letting the hefty glaze of spittle on both your bodies ease her initial entry. A moan escapes your lips as Taivra’s supporting hands lower your butt down, helping you to descend on her royal rod. A long moment of pressure gives way to a sudden fullness, completely and totally stretching your [pc.vagOrAss " + x + "] around Taivra’s blunted cockhead. You can feel her spiny pleasure-nubs digging into your tender flesh, scraping along your inner walls until you’re screaming with ecstasy, rubbing your [pc.butt] on the queen’s thighs as moisture drools down onto her lap.");
+	if(x >= 0) pc.cuntChange(x,chars["TAIVRA"].cockVolume(0));
+	else pc.buttChange(chars["TAIVRA"].cockVolume(0));
+
+	output("\n\nA sudden, sharp pain shoots through your [pc.ear], abating into a faint hint of pleasure as you feel Taivra’s teeth on your [pc.skinFurScales]. Her hands ");
+	if(pc.biggestTitSize() >= 1) 
+	{
+		output("grab your [pc.breasts], roughly grabbing and squeezing your boobs");
+		if(pc.canMilkSquirt()) output(" until [pc.milk] squirts from your teats");
+		else output(" and [pc.nipples]");
+	}
+	else output("run across your [pc.chest], rubbing and pinching at your [pc.nipples]");
+	output(". Your lover pulls you close against her own chest, running her breasts along your back, holding you deep on her throbbing, drooling ovi-cock. Her knot presses against your ");
+	if(x >= 0) output("pussylips");
+	else output("asscheeks");
+	output(", hot and heavy against the entrance to your hole... but never trying to push in.");
+
+	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
+	if(x == -1) output("belly");
+	else output("womb");
+	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, vicious lube into your ");
+	if(x >= 0) output("twat");
+	else output("asshole");
+	output(", adding her own juices to the mix of spit");
+	if(x >= 0) output(" and your own pussyjuices");
+	else if(pc.ass.wetness() >= 1) output("and your unnaturally lubed ass");
+	else output("slathered in your behind");
+	output(".");
+	//if hole isn’t preggers: 
+	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) output(" After a moment you realize that your queen’s cock is getting you ready to carry her eggs, packing your hole with as much of her sticky juice as she can!");
+
+	output("\n\nYou give Taivra a wink over your shoulder and start to really bounce, determined to milk out every drop of her fem-cum before you reach your limit.");
+	if(pc.hasCock()) output(" She returns your affection with a quick reach-around, wrapping her plated fingers around [pc.oneCock] and starting to stroke you off to the same rhythm as your rising hips.");
+	output(" The more you ride her, the more Taivra’s cock throbs, and the more the harem girls sprawling around her moan and cry with pleasure as her tail-cocks thrust into them, starting to cum one after the other, filling their wombs with parasitic seed. The queen’s got a very different load waiting for you, however...");
+
+	//if hole isn’t preggers:
+	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) 
+	{
+		output("\n\nTaivra’s head rolls back, bellowing a feral roar of pleasure as the crown of her ovipositor erupts in what feels like a geyser of wet head, following by a firm pressure straining your hole - an egg! Your eyes wide, lips curling in a silent scream as wet bumps pop into your ");
+		if(x < 0) output("bowels");
+		else output("womb");
+		output(", one after the other. You feel incredibly full, hands wrapping around your [pc.belly] as the royal eggs flood inside you.");
+		if(pc.hasCock()) output(" Between the sudden pressure of eggs stretching you out and the queen’s skillful handjob, you can’t help but cum! <i>“That’s it, join me!”</i> Taivra groans, stroking faster as the first jet of [pc.cumNoun] splatters across the dias of her throne. <i>“I want you to feel every bit of pleasure I do...”</i>");
+		output("\n\nWhen the final egg settles inside you, you feel so bloated and worn out by the ordeal that it’s hard not to just fall asleep on the queen’s lap. She chuckles and wraps her arms around your swollen belly, giving you a surprisingly tender hug. <i>“");
+		//if fertile eggs:
+		if(9999 == 0) output(" Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
+		else output(" Don’t worry, love, they’ll dissolve soon enough. Can’t have you waddling around with a belly full of empty eggs... at least, not without me there to enjoy it.");
+		output("”</i>");
+	}
+	else
+	{
+		output("\n\nTaivra grunts and thrusts herself deep into you, gliding through your lube-glazed walls until her knot presses hard against your hole. You cry out as the queen hammers her hips up into your ass, ramming her thick bitch-breaker home into your [pc.vagOrAss " + x + "]. Your cries turn into a scream of ecstasy as you’re stretched to the limit, tied on Taivra’s throbbing mass of nyrean knot and left able to do nothing but rock on her lap, grinding the mass of flesh in your battered hole");
+		if(pc.hasCock()) output(" until you cum, shooting a thick rope of spunk across the throne’s dias");
+		output(". Your lover’s fem-cum floods into you, pumping your ");
+		if(x < 0) output("gut");
+		else output("womb");
+		output(" with her creamy, hot fem-cum.");
+	}
+	output("\n\nYou relax in Taivra’s lap after that, breathing hard as her thick ovipositor slowly deflates inside of you, dragging her spines through your [pc.vagOrAss " + x + "] one last time before you’re free - and drooling moisture out of your thoroughly-fucked hole.");
+	output("\n\n<i>“I suppose I can’t convince you to retire with me to my chambers, love?”</i> Taivra murmurs, gently stroking her sodden prick as you dislodge yourself from her. <i>“That only got me ready for a proper fuck...”</i>");
+	processTime(22);
+	pc.exhibitionism(2);
+	pc.orgasm();
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",taivraRepeatScenes);
+}
+
+//Queensguard Repeat Scenes
+//Unlock after ~12 hours post-dungeon. QG is found next to the fountain near the queen’s chambers.
+public function queensGuardRepeatApproaches():void
+{
+	clearOutput();
+	showBust("QUEENSGUARD");
+	showName("\nQUEENSGUARD");
+	//First Time Greeting
+	//if(flags["MET_CERRES"] == undefined)
+	//{
+		output("Seeing the wounded nyrean knight standing beside the fountain, you decide to go over and check on your subject.");
+		output("\n\nAbnormally for her, you suspect, her helmet is resting on the stone beside her, revealing a pale, battle-scarred face and a head of short, spiky black hair falling just over her oddly amethyst-colored eyes. Hearing you approach, she blinks away a thousand-yard stare and turns to face you, gauntlets respectfully abandoning the planted hilt of her sword.");
+		output("\n\n<i>“My " + pc.mf("lord","lady") + ",”</i> she says with a slight nod of her head.");
+		output("\n\n<i>“Queensguard, isn’t it?”</i> you ask. That can’t actually be her name, can it?");
+		output("\n\nShe answers with a faint smile, planting one of her armored hands on her side. <i>“Most of Queen Taivra’s subjects, and more importantly, her enemies, know me by that name,”</i> she says with a hint of pride. <i>“I know of your arrangement with my queen, so of course may call me Cerres, if you wish. That is my given name.”</i>");
+		output("\n\nYou notice that her breastplate’s been patched with an off-color plate of steel, hiding the injury Dane left her with during your cousin’s escape. She doesn’t seem any worse for wear, despite having been on the verge of death at the time. Taivra must have a truly talented healer at her disposal, and you find yourself asking the knight if her wounds have fully healed.");
+		output("\n\n<i>“They have. Thank you, my " + pc.mf("lord","lady") + ",”</i> she answers crisply. The injury looked worse than it was. Debilitatingly painful, but not life-threatening. A bit of crystal goo and some medical herbs were enough to get me back on my feet, though I don’t think I’ll be doing much fighting for a while.”</i>");
+		output("\n\nA shame, you tell her. Her fight with Dane was certainly something to behold - she’s a great warrior, even among nyrean huntresses.");
+		output("\n\nShe smiles faintly at that, resting a hand back on the hilt of her very un-huntresslike sword. <i>“I’m no huntress, though you’re kind to say so. We males don’t take that title, no matter how well it may fit.”</i>");
+		output("\n\nWait, Queensguard’s a... a male? That’s certainly new - you’ve never seen a male nyrea as anything but a submissive in your time on Myrellion. Still, with skills like hers, you imagine Queensguard must fought her way to the top and earned her place. Taivra doesn’t seem like the type to keep pets as mere gimmicks.");
+		output("\n\nMaybe there’s more to Queensguard than a mere soldier after all...");
+		flags["MET_CERRES"] = 1;
+	//}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

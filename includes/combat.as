@@ -188,8 +188,8 @@ public function combatMainMenu():void
 		if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
 		if (foes[0] is Queensguard) 
 		{
-			if(pc.statusEffectv1("Cage Distance") != 0) addButton(5,"Cage",moveToCage,undefined,"Cage","Attempt to move closer to Dane and [rival.name]'s cage.");
-			else addButton(5,"BreakCage",breakOutDane,undefined,"Break Cage","Try and break Dane out - that big, burly ausar might just level the playing field!");
+			if(pc.statusEffectv1("Cage Distance") != 0) addButton(10,"Cage",moveToCage,undefined,"Cage","Attempt to move closer to Dane and [rival.name]'s cage.");
+			else addButton(10,"BreakCage",breakOutDane,undefined,"Break Cage","Try and break Dane out - that big, burly ausar might just level the playing field!");
 		}
 	}
 	flags["COMBAT MENU SEEN"] = 1;
@@ -551,7 +551,7 @@ public function updateCombatStatuses():void {
 		if (pc.statusEffectv1("Staggered"))
 		{
 			pc.addStatusValue("Staggered", 1, -1);
-			output("<b>You're still reeling from the force of the blows to which you've been subject.</b>");
+			output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>");
 		}
 		else
 		{
@@ -1701,6 +1701,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
 	else if (aggressor is SX1Techguard) sx1TechguardAI();
 	else if (aggressor is Queensguard) queensguardAI();
+	else if (aggressor is Taivra) taivraAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1864,6 +1865,7 @@ public function victoryRouting():void
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
 	else if (foes[0] is Queensguard) spankedQueensguardsAss();
+	else if (foes[0] is Taivra) whupTaivrasAss();
 	else genericVictory();
 }
 
@@ -2376,9 +2378,10 @@ public function startCombat(encounter:String):void
 			break;
 		case "Queensguard":
 			chars["QUEENSGUARD"].prepForCombat();
-			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"9999 CAGE","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
+			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"Icon_RadioSignal","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
 			break;
 		case "Taivra":
+			pc.removeStatusEffect("Cage Distance");
 			chars["TAIVRA"].prepForCombat();
 			break;
 		default:
@@ -3891,6 +3894,7 @@ public function gasGrenade(target:Creature):void
 	output("\n");
 	output(teaseReactions(damageResult.lustDamage, target));
 	outputDamage(damageResult);
+	output("\n");
 	processCombat();
 }
 

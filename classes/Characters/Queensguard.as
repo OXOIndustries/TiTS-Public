@@ -43,10 +43,10 @@
 			this.meleeWeapon.attackVerb = "slash";
 			this.meleeWeapon.attackNoun = "slash";
 			this.meleeWeapon.longName = "polished longsword";
-			this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 4;
 			this.armor = new PolishedPlate();
 						
-			this.physiqueRaw = 34;
+			this.physiqueRaw = 22;
 			this.reflexesRaw = 22;
 			this.aimRaw = 20;
 			this.intelligenceRaw = 15;
@@ -64,7 +64,7 @@
 			this.XPRaw = 750;
 			this.level = 8;
 			this.credits = 0;
-			this.HPMod = 230;
+			this.HPMod = 130;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 100;
